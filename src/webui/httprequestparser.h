@@ -1,5 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Ishan Arora and Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -24,41 +25,38 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
-
 
 #ifndef HTTPREQUESTPARSER_H
 #define HTTPREQUESTPARSER_H
 
-#include <QHash>
-#include "httprequestheader.h"
+#include "httptypes.h"
 
-class HttpRequestParser {
-
+class HttpRequestParser
+{
 public:
-  HttpRequestParser();
-  ~HttpRequestParser();
-  bool isError() const;
-  const QString& url() const;
-  const QByteArray& message() const;
-  QString get(const QString& key) const;
-  QString post(const QString& key) const;
-  const QList<QByteArray>& torrents() const;
-  void writeHeader(const QByteArray& ba);
-  void writeMessage(const QByteArray& ba);
-  bool acceptsEncoding();
-  inline const HttpRequestHeader& header() const { return m_header; }
+  enum ErrorCode { NoError = 0, IncompleteRequest, BadRequest };
+
+  // when result != NoError parsed request is undefined
+  // Warning! Header names are converted to lower-case.
+  static ErrorCode parse(const QByteArray& data, HttpRequest& request, uint maxContentLength = 10000000 /* ~10MB */);
 
 private:
-  HttpRequestHeader m_header;
-  bool m_error;
-  QByteArray m_data;
-  QString m_path;
-  QHash<QString, QString> m_postMap;
-  QHash<QString, QString> m_getMap;
-  QList<QByteArray> m_torrents;
+  HttpRequestParser(uint maxContentLength);
+
+  ErrorCode parseHttpRequest(const QByteArray& data, HttpRequest& request);
+
+  bool parseHttpHeader(const QByteArray& data);
+  bool parseStartingLine(const QString &line);
+  bool parseContent(const QByteArray& data);
+  bool parseFormData(const QByteArray& data);
+  QList<QByteArray> splitMultipartData(const QByteArray& data, const QByteArray& boundary);
+
+  static bool parseHeaderLine(const QString& line, QPair<QString, QString>& out);
+  static bool parseHeaderValue(const QString& value, QStringMap& out);
+
+  const uint maxContentLength_;
+  HttpRequest request_;
 };
 
 #endif

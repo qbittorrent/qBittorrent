@@ -1,5 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Ishan Arora and Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -24,110 +25,231 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-
-#include "httprequestparser.h"
+#include <QStringList>
 #include <QUrl>
+//#include <QVariant>
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 #include <QUrlQuery>
 #endif
+#include <QDir>
+#include <QTemporaryFile>
 #include <QDebug>
+#include "httprequestparser.h"
 
-HttpRequestParser::HttpRequestParser(): m_error(false)
+const QByteArray EOL("\r\n");
+const QByteArray EOH("\r\n\r\n");
+
+inline QString unquoted(const QString& str)
+{
+  if ((str[0] == '\"') && (str[str.length() - 1] == '\"'))
+    return str.mid(1, str.length() - 2);
+
+  return str;
+}
+
+HttpRequestParser::ErrorCode HttpRequestParser::parse(const QByteArray& data, HttpRequest& request, uint maxContentLength)
+{
+  return HttpRequestParser(maxContentLength).parseHttpRequest(data, request);
+}
+
+HttpRequestParser::HttpRequestParser(uint maxContentLength)
+  : maxContentLength_(maxContentLength)
 {
 }
 
-HttpRequestParser::~HttpRequestParser()
+HttpRequestParser::ErrorCode HttpRequestParser::parseHttpRequest(const QByteArray& data, HttpRequest& request)
 {
-}
+  request_ = HttpRequest();
 
-bool HttpRequestParser::isError() const {
-  return m_error;
-}
-
-const QString& HttpRequestParser::url() const {
-  return m_path;
-}
-
-const QByteArray& HttpRequestParser::message() const {
-  return m_data;
-}
-
-QString HttpRequestParser::get(const QString& key) const {
-  return m_getMap.value(key);
-}
-
-QString HttpRequestParser::post(const QString& key) const {
-  return m_postMap.value(key);
-}
-
-const QList<QByteArray>& HttpRequestParser::torrents() const {
-  return m_torrents;
-}
-
-void HttpRequestParser::writeHeader(const QByteArray& ba) {
-  m_error = false;
-  // Parse header
-  m_header = HttpRequestHeader(ba);
-  QUrl url = QUrl::fromEncoded(m_header.path().toLatin1());
-  m_path = url.path();
-
-  // Parse GET parameters
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-  QUrlQuery query(url);
-  QListIterator<QPair<QString, QString> > i(query.queryItems());
-#else
-  QListIterator<QPair<QString, QString> > i(url.queryItems());
-#endif
-  while (i.hasNext()) {
-    QPair<QString, QString> pair = i.next();
-    m_getMap[pair.first] = pair.second;
+  // Parse HTTP request header
+  const int header_end = data.indexOf(EOH);
+  if (header_end < 0)
+  {
+    qDebug() << Q_FUNC_INFO << "incomplete request";
+    return IncompleteRequest;
   }
+
+  if (!parseHttpHeader(data.left(header_end)))
+  {
+    qWarning() << Q_FUNC_INFO << "header parsing error";
+    return BadRequest;
+  }
+
+  // Parse HTTP request message
+  int content_length = 0;
+  if (request_.headers.contains("content-length"))
+  {
+    content_length = request_.headers["content-length"].toInt();
+    if (content_length > static_cast<int>(maxContentLength_))
+    {
+      qWarning() << Q_FUNC_INFO << "bad request: message too long";
+      return BadRequest;
+    }
+
+    QByteArray content = data.mid(header_end + EOH.length(), content_length);
+    if (content.length() < content_length)
+    {
+      qDebug() << Q_FUNC_INFO << "incomplete request";
+      return IncompleteRequest;
+    }
+
+    if (!parseContent(content))
+    {
+      qWarning() << Q_FUNC_INFO << "message parsing error";
+      return BadRequest;
+    }
+  }
+  
+//  qDebug() << Q_FUNC_INFO;
+//  qDebug() << "HTTP Request header:";
+//  qDebug() << data.left(header_end) << "\n";
+
+  request = request_;
+  return NoError;
 }
 
-static QList<QByteArray> splitRawData(QByteArray rawData, const QByteArray& sep)
+bool HttpRequestParser::parseStartingLine(const QString &line)
+{
+  const QRegExp rx("^([A-Z]+)\\s+(\\S+)\\s+HTTP/\\d\\.\\d$");
+
+  if (rx.indexIn(line.trimmed()) >= 0)
+  {
+    request_.method = rx.cap(1);
+
+    QUrl url = QUrl::fromEncoded(rx.cap(2).toLatin1());
+    request_.path = url.path(); // Path
+
+    // Parse GET parameters
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+    QListIterator<QPair<QString, QString> > i(url.queryItems());
+#else
+    QListIterator<QPair<QString, QString> > i(QUrlQuery(url).queryItems());
+#endif
+    while (i.hasNext())
+    {
+      QPair<QString, QString> pair = i.next();
+      request_.gets[pair.first] = pair.second;
+    }
+
+    return true;
+  }
+
+  qWarning() << Q_FUNC_INFO << "invalid http header:" << line;
+  return false;
+}
+
+bool HttpRequestParser::parseHeaderLine(const QString &line, QPair<QString, QString>& out)
+{
+  int i = line.indexOf(QLatin1Char(':'));
+  if (i == -1)
+  {
+    qWarning() << Q_FUNC_INFO << "invalid http header:" << line;
+    return false;
+  }
+
+  out = qMakePair(line.left(i).trimmed().toLower(), line.mid(i + 1).trimmed());
+  return true;
+}
+
+bool HttpRequestParser::parseHttpHeader(const QByteArray &data)
+{
+  QString str = QString::fromUtf8(data);
+  QStringList lines = str.trimmed().split(EOL);
+
+  QStringList headerLines;
+  foreach (const QString& line, lines)
+  {
+    if (line[0].isSpace()) // header line continuation
+    {
+      if (!headerLines.isEmpty()) // really continuation
+      {
+        headerLines.last() += QLatin1Char(' ');
+        headerLines.last() += line.trimmed();
+      }
+    }
+    else
+    {
+      headerLines.append(line);
+    }
+  }
+
+  if (headerLines.isEmpty())
+    return false; // Empty header
+
+  QStringList::Iterator it = headerLines.begin();
+  if (!parseStartingLine(*it))
+    return false;
+
+  ++it;
+  for (; it != headerLines.end(); ++it)
+  {
+    QPair<QString, QString> header;
+    if (!parseHeaderLine(*it, header))
+      return false;
+
+    request_.headers[header.first] = header.second;
+  }
+
+  return true;
+}
+
+QList<QByteArray> HttpRequestParser::splitMultipartData(const QByteArray& data, const QByteArray& boundary)
 {
   QList<QByteArray> ret;
+  QByteArray sep = boundary + EOL;
   const int sepLength = sep.size();
-  int index = 0;
-  while ((index = rawData.indexOf(sep)) >= 0) {
-    ret << rawData.left(index);
-    rawData = rawData.mid(index + sepLength);
+
+  int start = 0, end = 0;
+  if ((end = data.indexOf(sep, start)) >= 0)
+  {
+    start = end + sepLength; // skip first boundary
+
+    while ((end = data.indexOf(sep, start)) >= 0)
+    {
+      ret << data.mid(start, end - start);
+      start = end + sepLength;
+    }
+
+    // last or single part
+    sep = boundary + "--" + EOL;
+    if ((end = data.indexOf(sep, start)) >= 0)
+      ret << data.mid(start, end - start);
   }
+
   return ret;
 }
 
-void HttpRequestParser::writeMessage(const QByteArray& ba) {
+bool HttpRequestParser::parseContent(const QByteArray& data)
+{
   // Parse message content
-  Q_ASSERT (m_header.hasContentLength());
-  m_error = false;
-  m_data = ba;
-  qDebug() << Q_FUNC_INFO << "m_data.size(): " << m_data.size();
+  qDebug() << Q_FUNC_INFO << "Content-Length: " << request_.headers["content-length"];
+  qDebug() << Q_FUNC_INFO << "data.size(): " << data.size();
 
-  // Parse POST data
-  if (m_header.contentType() == "application/x-www-form-urlencoded") {
+  // Parse url-encoded POST data
+  if (request_.headers["content-type"].startsWith("application/x-www-form-urlencoded"))
+  {
     QUrl url;
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    QString tmp(m_data);
-    QUrlQuery query(tmp);
-    QListIterator<QPair<QString, QString> > i(query.queryItems(QUrl::FullyDecoded));
-#else
-    url.setEncodedQuery(m_data);
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+    url.setEncodedQuery(data);
     QListIterator<QPair<QString, QString> > i(url.queryItems());
+#else
+    url.setQuery(data);
+    QListIterator<QPair<QString, QString> > i(QUrlQuery(url).queryItems(QUrl::FullyDecoded));
 #endif
-    while (i.hasNext())	{
+    while (i.hasNext())
+    {
       QPair<QString, QString> pair = i.next();
-      m_postMap[pair.first] = pair.second;
+      request_.posts[pair.first] = pair.second;
     }
-    return;
+
+    return true;
   }
 
   // Parse multipart/form data (torrent file)
   /**
-        m_data has the following format (if boundary is "cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5")
+        data has the following format (if boundary is "cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5")
 
 --cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5
 Content-Disposition: form-data; name=\"Filename\"
@@ -144,58 +266,108 @@ Content-Disposition: form-data; name=\"Upload\"
 Submit Query
 --cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5--
 **/
-  if (m_header.contentType().startsWith("multipart/form-data")) {
-    qDebug() << Q_FUNC_INFO << "header is: " << m_header.toString();
-    static QRegExp boundaryRegexQuoted("boundary=\"([ \\w'()+,-\\./:=\\?]+)\"");
-    static QRegExp boundaryRegexNotQuoted("boundary=([\\w'()+,-\\./:=\\?]+)");
+  QString content_type = request_.headers["content-type"];
+  if (content_type.startsWith("multipart/form-data"))
+  {
+    const QRegExp boundaryRegexQuoted("boundary=\"([ \\w'()+,-\\./:=\\?]+)\"");
+    const QRegExp boundaryRegexNotQuoted("boundary=([\\w'()+,-\\./:=\\?]+)");
+
     QByteArray boundary;
-    if (boundaryRegexQuoted.indexIn(m_header.toString()) < 0) {
-      if (boundaryRegexNotQuoted.indexIn(m_header.toString()) < 0) {
+    if (boundaryRegexQuoted.indexIn(content_type) < 0)
+    {
+      if (boundaryRegexNotQuoted.indexIn(content_type) < 0)
+      {
         qWarning() << "Could not find boundary in multipart/form-data header!";
-        m_error = true;
-        return;
-      } else {
+        return false;
+      }
+      else
+      {
         boundary = "--" + boundaryRegexNotQuoted.cap(1).toLatin1();
       }
-    } else {
+    }
+    else
+    {
       boundary = "--" + boundaryRegexQuoted.cap(1).toLatin1();
     }
+
     qDebug() << "Boundary is " << boundary;
-    QList<QByteArray> parts = splitRawData(m_data, boundary);
+    QList<QByteArray> parts = splitMultipartData(data, boundary);
     qDebug() << parts.size() << "parts in data";
-    foreach (const QByteArray& part, parts) {
-      const int filenameIndex = part.indexOf("filename=");
-      if (filenameIndex < 0)
-        continue;
-      qDebug() << "Found a torrent";
-      m_torrents << part.mid(part.indexOf("\r\n\r\n", filenameIndex + 9) + 4);
+
+    foreach (const QByteArray& part, parts)
+    {
+      if (!parseFormData(part))
+        return false;
     }
+    
+    return true;
   }
+
+  qWarning() << Q_FUNC_INFO << "unknown content type:" << qPrintable(content_type);
+  return false;
 }
 
-bool HttpRequestParser::acceptsEncoding() {
-  QString encoding = m_header.value("Accept-Encoding");
-
-  int pos = encoding.indexOf("gzip", 0, Qt::CaseInsensitive);
-  if (pos == -1)
+bool HttpRequestParser::parseFormData(const QByteArray& data)
+{
+  // Parse form data header
+  const int header_end = data.indexOf(EOH);
+  if (header_end < 0)
+  {
+    qDebug() << "Invalid form data: \n" << data;
     return false;
+  }
 
-  // Let's see if there's a qvalue of 0.0 following
-  if (encoding[pos+4] != ';') //there isn't, so it accepts gzip anyway
-    return true;
+  QString header_str = QString::fromUtf8(data.left(header_end));
+  QStringList lines = header_str.trimmed().split(EOL);
+  QStringMap headers;
+  foreach (const QString& line, lines)
+  {
+    QPair<QString, QString> header;
+    if (!parseHeaderLine(line, header))
+      return false;
 
-  //So let's find = and the next comma
-  pos = encoding.indexOf("=", pos+4, Qt::CaseInsensitive);
-  int comma_pos = encoding.indexOf(",", pos, Qt::CaseInsensitive);
+    headers[header.first] = header.second;
+  }
 
-  QString value;
-  if (comma_pos == -1)
-    value = encoding.mid(pos+1, comma_pos);
-  else
-    value = encoding.mid(pos+1, comma_pos-(pos+1));
-
-  if (value.toDouble() == 0.0)
+  QStringMap disposition;
+  if (!headers.contains("content-disposition") ||
+      !parseHeaderValue(headers["content-disposition"], disposition) ||
+      !disposition.contains("name"))
+  {
+    qDebug() << "Invalid form data header: \n" << header_str;
     return false;
+  }
+
+  if (disposition.contains("filename"))
+  {
+    UploadedFile ufile;
+    ufile.filename = disposition["filename"];
+    ufile.type = disposition["content-type"];
+    ufile.data = data.mid(header_end + EOH.length());
+
+    request_.files[disposition["name"]] = ufile;
+  }
   else
-    return true;
+  {
+    request_.posts[disposition["name"]] = QString::fromUtf8(data.mid(header_end + EOH.length()));
+  }
+
+  return true;
+}
+
+bool HttpRequestParser::parseHeaderValue(const QString& value, QStringMap& out)
+{
+  QStringList items = value.split(QLatin1Char(';'));
+  out[""] = items[0];
+
+  for (QStringList::size_type i = 1; i < items.size(); ++i)
+  {
+    int pos = items[i].indexOf("=");
+    if (pos < 0)
+      return false;
+
+    out[items[i].left(pos).trimmed()] = unquoted(items[i].mid(pos + 1).trimmed());
+  }
+
+  return true;
 }

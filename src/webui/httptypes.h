@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Ishan Arora and Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,16 +26,64 @@
  * exception statement from your version.
  */
 
+#ifndef HTTPTYPES_H
+#define HTTPTYPES_H
 
-#ifndef HTTPRESPONSEGENERATOR_H
-#define HTTPRESPONSEGENERATOR_H
+#include <QString>
+#include <QMap>
+#include <QHostAddress>
 
-#include "httptypes.h"
+typedef QMap<QString, QString> QStringMap;
 
-class HttpResponseGenerator
+const QString HEADER_SET_COOKIE = "Set-Cookie";
+const QString HEADER_CONTENT_TYPE = "Content-Type";
+const QString HEADER_CONTENT_ENCODING = "Content-Encoding";
+const QString HEADER_CONTENT_LENGTH = "Content-Length";
+
+const QString CONTENT_TYPE_CSS = "text/css";
+const QString CONTENT_TYPE_GIF = "image/gif";
+const QString CONTENT_TYPE_HTML = "text/html";
+const QString CONTENT_TYPE_JS = "text/javascript";
+const QString CONTENT_TYPE_PNG = "image/png";
+const QString CONTENT_TYPE_TXT = "text/plain";
+
+struct HttpEnvironment
 {
-public:
-    static QByteArray generate(HttpResponse response);
+  QHostAddress clientAddress;
 };
 
-#endif
+struct UploadedFile
+{
+  QString filename; // original filename
+  QString type; // MIME type
+  QByteArray data; // File data
+};
+
+struct HttpRequest
+{
+  QString method;
+  QString path;
+  QStringMap headers;
+  QStringMap gets;
+  QStringMap posts;
+  QMap<QString, UploadedFile> files;
+};
+
+struct HttpResponseStatus
+{
+  uint code;
+  QString text;
+
+  HttpResponseStatus(uint code = 200, const QString& text = "OK"): code(code), text(text) {}
+};
+
+struct HttpResponse
+{
+  HttpResponseStatus status;
+  QStringMap headers;
+  QByteArray content;
+
+  HttpResponse(uint code = 200, const QString& text = "OK"): status(code, text) {}
+};
+
+#endif // HTTPTYPES_H
