@@ -2347,19 +2347,18 @@ void QBtSession::readAlerts() {
               bool suspend = pref.suspendWhenDownloadsComplete();
               bool hibernate = pref.hibernateWhenDownloadsComplete();
               bool shutdown = pref.shutdownWhenDownloadsComplete();
+              shutDownAction action = NO_SHUTDOWN;
+
+              if (suspend)
+                action = SUSPEND_COMPUTER;
+              else if (hibernate)
+                action = HIBERNATE_COMPUTER;
+              else if (shutdown)
+                action = SHUTDOWN_COMPUTER;
               // Confirm shutdown
-              QString confirm_msg;
-              if (suspend) {
-                confirm_msg = tr("The computer will now go to sleep mode unless you cancel within the next 15 seconds...");
-              } else if (hibernate) {
-                confirm_msg = tr("The computer will now go to hibernation mode unless you cancel within the next 15 seconds...");
-              } else if (shutdown) {
-                confirm_msg = tr("The computer will now be switched off unless you cancel within the next 15 seconds...");
-              } else {
-                confirm_msg = tr("qBittorrent will now exit unless you cancel within the next 15 seconds...");
-              }
-              if (!ShutdownConfirmDlg::askForConfirmation(confirm_msg))
+              if (!ShutdownConfirmDlg::askForConfirmation(action))
                 return;
+
               // Actually shut down
               if (suspend || hibernate || shutdown) {
                 qDebug("Preparing for auto-shutdown because all downloads are complete!");
@@ -2368,12 +2367,7 @@ void QBtSession::readAlerts() {
                 pref.setSuspendWhenDownloadsComplete(false);
                 pref.setHibernateWhenDownloadsComplete(false);
                 // Make sure preferences are synced before exiting
-                if (suspend)
-                  m_shutdownAct = SUSPEND_COMPUTER;
-                else if (hibernate)
-                  m_shutdownAct = HIBERNATE_COMPUTER;
-                else
-                  m_shutdownAct = SHUTDOWN_COMPUTER;
+                m_shutdownAct = action;
               }
               qDebug("Exiting the application");
               qApp->exit();
