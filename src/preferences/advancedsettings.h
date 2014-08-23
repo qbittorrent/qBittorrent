@@ -17,7 +17,7 @@ enum AdvSettingsRows {DISK_CACHE,
                     #if LIBTORRENT_VERSION_NUM >= 1610
                       DISK_CACHE_TTL,
                     #endif
-                      OS_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
+                      OS_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_LISTEN_IPV6, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
                     #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
                       UPDATE_CHECK,
                     #endif
@@ -35,7 +35,7 @@ private:
   QSpinBox spin_cache, outgoing_ports_min, outgoing_ports_max, spin_list_refresh, spin_maxhalfopen, spin_tracker_port;
   QCheckBox cb_os_cache, cb_ignore_limits_lan, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
   cb_super_seeding, cb_program_notifications, cb_tracker_status, cb_confirm_torrent_deletion,
-  cb_enable_tracker_ext;
+  cb_enable_tracker_ext, cb_listen_ipv6;
   QComboBox combo_iface;
 #if LIBTORRENT_VERSION_NUM >= 1610
   QSpinBox spin_cache_ttl;
@@ -106,6 +106,8 @@ public slots:
       pref.setNetworkInterface(combo_iface.itemData(combo_iface.currentIndex()).toString());
       pref.setNetworkInterfaceName(combo_iface.currentText());
     }
+    // Listen on IPv6 address
+    pref.setListenIPv6(cb_listen_ipv6.isChecked());
     // Network address
     QHostAddress addr(txt_network_address.text().trimmed());
     if (addr.isNull())
@@ -259,6 +261,9 @@ private slots:
       combo_iface.setCurrentIndex(i);
     }
     setRow(NETWORK_IFACE, tr("Network Interface (requires restart)"), &combo_iface);
+    // Listen on IPv6 address
+    cb_listen_ipv6.setChecked(pref.getListenIPv6());
+    setRow(NETWORK_LISTEN_IPV6, tr("Listen on IPv6 address (requires restart)"), &cb_listen_ipv6);
     // Network address
     txt_network_address.setText(pref.getNetworkAddress());
     setRow(NETWORK_ADDRESS, tr("IP Address to report to trackers (requires restart)"), &txt_network_address);

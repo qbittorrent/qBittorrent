@@ -1130,7 +1130,15 @@ public:
   QString getNetworkInterface() const {
     return value(QString::fromUtf8("Preferences/Connection/Interface"), QString()).toString();
   }
-  
+
+  bool getListenIPv6() const {
+    return value("Preferences/Connection/InterfaceListenIPv6", false).toBool();
+  }
+
+  void setListenIPv6(bool enable) {
+    setValue("Preferences/Connection/InterfaceListenIPv6", enable);
+  }
+
   void setNetworkInterfaceName(const QString& iface) {
     setValue(QString::fromUtf8("Preferences/Connection/InterfaceName"), iface);
   }
