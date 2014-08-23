@@ -318,37 +318,37 @@
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="194"/>
+        <location filename="../preferences/advancedsettings.h" line="196"/>
         <source>Disk write cache size</source>
         <translation>Tamanho de cache em disco</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="175"/>
+        <location filename="../preferences/advancedsettings.h" line="177"/>
         <source> MiB</source>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="210"/>
+        <location filename="../preferences/advancedsettings.h" line="212"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Portas de saída (Min) [0: Desabilitado]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="215"/>
+        <location filename="../preferences/advancedsettings.h" line="217"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>Portas de saída (Max) [0: Desabilitado]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="221"/>
+        <location filename="../preferences/advancedsettings.h" line="223"/>
         <source>Recheck torrents on completion</source>
         <translation>Rechecar torrents em completação</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="227"/>
+        <location filename="../preferences/advancedsettings.h" line="229"/>
         <source>Transfer list refresh interval</source>
         <translation>Intervalo de atualização da lista de transferência</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="226"/>
+        <location filename="../preferences/advancedsettings.h" line="228"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation>ms</translation>
@@ -365,104 +365,109 @@
         <translation>Valor</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="173"/>
+        <location filename="../preferences/advancedsettings.h" line="175"/>
         <source> (auto)</source>
         <translation>(auto)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="200"/>
+        <location filename="../preferences/advancedsettings.h" line="202"/>
         <source> s</source>
         <comment> seconds</comment>
         <translation> s</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="201"/>
+        <location filename="../preferences/advancedsettings.h" line="203"/>
         <source>Disk cache expiry interval</source>
         <translation>tempo de expiração de cache de disco </translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="205"/>
+        <location filename="../preferences/advancedsettings.h" line="207"/>
         <source>Enable OS cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="230"/>
+        <location filename="../preferences/advancedsettings.h" line="232"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>Resolver peer dos países (GeoIP)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="233"/>
+        <location filename="../preferences/advancedsettings.h" line="235"/>
         <source>Resolve peer host names</source>
         <translation>Resolver nomes de peer</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="238"/>
+        <location filename="../preferences/advancedsettings.h" line="240"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
         <translation>Número máximo de conexões abertas [0:desabilitada]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="241"/>
+        <location filename="../preferences/advancedsettings.h" line="243"/>
         <source>Strict super seeding</source>
         <translation>Super semeador</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="261"/>
+        <location filename="../preferences/advancedsettings.h" line="263"/>
         <source>Network Interface (requires restart)</source>
         <translation>Interface de rede (requer reinício)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="289"/>
+        <location filename="../preferences/advancedsettings.h" line="266"/>
+        <source>Listen on IPv6 address (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/advancedsettings.h" line="294"/>
         <source>Exchange trackers with other peers</source>
         <translation>Mudar os trackers com outros pares</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="292"/>
+        <location filename="../preferences/advancedsettings.h" line="297"/>
         <source>Always announce to all trackers</source>
         <translation>Sempre anunciar para todos os trackers</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="243"/>
+        <location filename="../preferences/advancedsettings.h" line="245"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Qualquer interface</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="264"/>
+        <location filename="../preferences/advancedsettings.h" line="269"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>Endereço IP para reportar aos trackers (requer reinicio)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="267"/>
+        <location filename="../preferences/advancedsettings.h" line="272"/>
         <source>Display program on-screen notifications</source>
         <translation>Exibir notificações do programa na tela</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="270"/>
+        <location filename="../preferences/advancedsettings.h" line="275"/>
         <source>Enable embedded tracker</source>
         <translation>Ativar tracker embutido</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="275"/>
+        <location filename="../preferences/advancedsettings.h" line="280"/>
         <source>Embedded tracker port</source>
         <translation>Porta do tracker embutido</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="278"/>
+        <location filename="../preferences/advancedsettings.h" line="283"/>
         <source>Check for software updates</source>
         <translation>Verificar atualizações</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="282"/>
+        <location filename="../preferences/advancedsettings.h" line="287"/>
         <source>Use system icon theme</source>
         <translation>Usar tema de ícone do sistema</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="286"/>
+        <location filename="../preferences/advancedsettings.h" line="291"/>
         <source>Confirm torrent deletion</source>
         <translation>Confirmar deletar torrent</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="218"/>
+        <location filename="../preferences/advancedsettings.h" line="220"/>
         <source>Ignore transfer limits on local network</source>
         <translation>Ignorar limite de transferência na internet local</translation>
     </message>
@@ -3117,73 +3122,59 @@ Quer mesmo sair do qBittorrent?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1987"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1988"/>
         <source>qBittorrent is trying to listen on any interface port: TCP/%1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent está tentando escutar em qualquer porta de interface: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2013"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2003"/>
+        <source>qBittorrent failed to listen on any interface port: %1. Reason: %2</source>
+        <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2027"/>
         <source>qBittorrent is trying to listen on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent está tentando se comunicar na interface %1 porta: TCP/%2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2339"/>
-        <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation>O computador entrará em modo de espera a não ser que você cancele durante os próximos 15 segundos...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2341"/>
-        <source>The computer will now go to hibernation mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2343"/>
-        <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation>O computador irá se desligar a não ser que você cancele durante os próximos 15 segundos...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2345"/>
-        <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation>qBittorrent irá sair a não ser que você cancele durante os próximos 15 segundos...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2495"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2503"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2500"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2508"/>
         <source>Attempting to move torrent: &apos;%1&apos; to path: &apos;%2&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2687"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2695"/>
         <source>qBittorrent is successfully listening on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent está comunicando com sucesso na interface %1 porta: TCP/%2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2700"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2708"/>
         <source>qBittorrent failed listening on interface %1 port: TCP/%2. Reason: %3</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2730"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2738"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2987"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2995"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Filtro de IP analisado com sucesso: %1 regras foram aplicadas.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2993"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="3001"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Erro: Falha ao analisar o filtro de IP.</translation>
     </message>
@@ -3240,92 +3231,92 @@ Quer mesmo sair do qBittorrent?</translation>
         <translation>Nota: nova URL de seed foi adicionada ao torrent existente.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1999"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2011"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>A interface de rede definida é inválida: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2198"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2200"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2212"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2214"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Download recursivo do arquivo %1 embutido no torrent %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2284"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2286"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2298"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2300"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Impossível decodificar %1 do arquivo torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2234"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2248"/>
         <source>Torrent name: %1</source>
         <translation>Nome do torrent: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2235"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2249"/>
         <source>Torrent size: %1</source>
         <translation>Tamanho do torrent: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2236"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2250"/>
         <source>Save path: %1</source>
         <translation>Caminho para salvar: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2237"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2251"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrent baixado em %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2238"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2252"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Obrigado por usar o qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2241"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2255"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 terminou o download</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2561"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2569"/>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Um erro de I/O aconteceu, &apos;%1&apos; foi pausado.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2562"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2676"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2570"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2684"/>
         <source>Reason: %1</source>
         <translation>Motivo: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2640"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2648"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Falha no mapeamento de porta, mensagem: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2645"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2653"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Portas mapeadas com sucesso, mensagem: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2671"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2679"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>O tamanho do arquivo para o torrent %1 está incorreto, pausando.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2675"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2683"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Resumo rápido rejeitado para o torrent %1, tente novamente...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2681"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2689"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url falhou para: %1, mensagem: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2813"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2821"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>baixando &apos;%1&apos;, por favor espere...</translation>
@@ -3778,9 +3769,44 @@ Por favor instale manualmente.</translation>
 <context>
     <name>ShutdownConfirmDlg</name>
     <message>
-        <location filename="../qtlibtorrent/shutdownconfirm.h" line="44"/>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="40"/>
+        <source>Exit confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="41"/>
+        <source>Exit now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="44"/>
         <source>Shutdown confirmation</source>
         <translation>Confirmação de desligamento</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="45"/>
+        <source>Shutdown now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="97"/>
+        <source>qBittorrent will now exit unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="100"/>
+        <source>The computer will now be switched off unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="103"/>
+        <source>The computer will now go to sleep mode unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="106"/>
+        <source>The computer will now go to hibernation mode unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

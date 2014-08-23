@@ -318,37 +318,37 @@
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="194"/>
+        <location filename="../preferences/advancedsettings.h" line="196"/>
         <source>Disk write cache size</source>
         <translation>Velikost diskové cache pro zápis</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="175"/>
+        <location filename="../preferences/advancedsettings.h" line="177"/>
         <source> MiB</source>
         <translation> MiB</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="210"/>
+        <location filename="../preferences/advancedsettings.h" line="212"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Odchozí porty (Min) [0: Vypnuto]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="215"/>
+        <location filename="../preferences/advancedsettings.h" line="217"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>Odchozí porty (Max) [0: Vypnuto]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="221"/>
+        <location filename="../preferences/advancedsettings.h" line="223"/>
         <source>Recheck torrents on completion</source>
         <translation>Při dokončení překontrolovat torrenty</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="227"/>
+        <location filename="../preferences/advancedsettings.h" line="229"/>
         <source>Transfer list refresh interval</source>
         <translation>Interval obnovování seznamu přenosů</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="226"/>
+        <location filename="../preferences/advancedsettings.h" line="228"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation> ms</translation>
@@ -365,104 +365,109 @@
         <translation>Hodnota</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="173"/>
+        <location filename="../preferences/advancedsettings.h" line="175"/>
         <source> (auto)</source>
         <translation> (auto)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="200"/>
+        <location filename="../preferences/advancedsettings.h" line="202"/>
         <source> s</source>
         <comment> seconds</comment>
         <translation> s</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="201"/>
+        <location filename="../preferences/advancedsettings.h" line="203"/>
         <source>Disk cache expiry interval</source>
         <translation>Interval vypršení diskové cache </translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="205"/>
+        <location filename="../preferences/advancedsettings.h" line="207"/>
         <source>Enable OS cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="230"/>
+        <location filename="../preferences/advancedsettings.h" line="232"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>Zjišťovat zemi původu protějšků (GeoIP)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="233"/>
+        <location filename="../preferences/advancedsettings.h" line="235"/>
         <source>Resolve peer host names</source>
         <translation>Zjišťovat názvy počítačů protějšků</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="238"/>
+        <location filename="../preferences/advancedsettings.h" line="240"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
         <translation>Maximální počet napůl otevřených spojení [0: Vypnuto]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="241"/>
+        <location filename="../preferences/advancedsettings.h" line="243"/>
         <source>Strict super seeding</source>
         <translation>Striktní super seeding</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="261"/>
+        <location filename="../preferences/advancedsettings.h" line="263"/>
         <source>Network Interface (requires restart)</source>
         <translation>Síťové rozhraní (vyžaduje restart)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="289"/>
+        <location filename="../preferences/advancedsettings.h" line="266"/>
+        <source>Listen on IPv6 address (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/advancedsettings.h" line="294"/>
         <source>Exchange trackers with other peers</source>
         <translation>Vyměňovat trackery s ostatními protějšky</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="292"/>
+        <location filename="../preferences/advancedsettings.h" line="297"/>
         <source>Always announce to all trackers</source>
         <translation>Vždy oznamovat všem trackerům</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="243"/>
+        <location filename="../preferences/advancedsettings.h" line="245"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Jakékoli rozhraní</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="264"/>
+        <location filename="../preferences/advancedsettings.h" line="269"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>IP adresa hlášená trackerům (vyžaduje restart)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="267"/>
+        <location filename="../preferences/advancedsettings.h" line="272"/>
         <source>Display program on-screen notifications</source>
         <translation>Zobrazovat on-screen oznámení programu</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="270"/>
+        <location filename="../preferences/advancedsettings.h" line="275"/>
         <source>Enable embedded tracker</source>
         <translation>Povolit vestavěný tracker</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="275"/>
+        <location filename="../preferences/advancedsettings.h" line="280"/>
         <source>Embedded tracker port</source>
         <translation>Port vestavěného trackeru</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="278"/>
+        <location filename="../preferences/advancedsettings.h" line="283"/>
         <source>Check for software updates</source>
         <translation>Zkontrolovat aktualizace</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="282"/>
+        <location filename="../preferences/advancedsettings.h" line="287"/>
         <source>Use system icon theme</source>
         <translation>Použít systémový motiv ikon</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="286"/>
+        <location filename="../preferences/advancedsettings.h" line="291"/>
         <source>Confirm torrent deletion</source>
         <translation>Potvrdit smazání torrentu</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="218"/>
+        <location filename="../preferences/advancedsettings.h" line="220"/>
         <source>Ignore transfer limits on local network</source>
         <translation>Ignorovat limity přenosu dat v místní síti</translation>
     </message>
@@ -3117,73 +3122,59 @@ Opravdu chcete ukončit qBittorrent?</translation>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; byl zakázán (ban)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1987"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1988"/>
         <source>qBittorrent is trying to listen on any interface port: TCP/%1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent se pokouší naslouchat na jakémkoli rozhraní, portu: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2013"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2003"/>
+        <source>qBittorrent failed to listen on any interface port: %1. Reason: %2</source>
+        <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2027"/>
         <source>qBittorrent is trying to listen on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent se pokouší naslouchat na rozhraní %1, portu: TCP/%2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2339"/>
-        <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation>Nezrušíte-li akci do 15 sekund, počítač se uspí...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2341"/>
-        <source>The computer will now go to hibernation mode unless you cancel within the next 15 seconds...</source>
-        <translation>Nezrušíte-li akci do 15 sekund, počítač přejde do režimu spánku...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2343"/>
-        <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation>Nezrušíte-li akci do 15 sekund, počítač se vypne...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2345"/>
-        <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation>Nezrušíte-li akci do 15 sekund, qBittorrent bude ukončen...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2495"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2503"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation>Nelze přesunout torrent: &apos;%1&apos;. Důvod: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2500"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2508"/>
         <source>Attempting to move torrent: &apos;%1&apos; to path: &apos;%2&apos;.</source>
         <translation>Pokus o přesunutí torrentu: &apos;%1&apos; do: &apos;%2&apos;.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2687"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2695"/>
         <source>qBittorrent is successfully listening on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent naslouchá na rozhraní %1, portu: TCP/%2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2700"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2708"/>
         <source>qBittorrent failed listening on interface %1 port: TCP/%2. Reason: %3</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
         <translation>qBittorrent selhal naslouchat na rozhraní %1, portu: TCP/%2, důvod: %3</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2730"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2738"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>Externí IP: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2987"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2995"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>IP filter byl úspěšně zpracován: bylo aplikováno %1 pravidel.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2993"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="3001"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Chyba: Nepovedlo se zpracovat poskytnutý IP filtr.</translation>
     </message>
@@ -3240,92 +3231,92 @@ Opravdu chcete ukončit qBittorrent?</translation>
         <translation>Poznámka: ke stávajícímu torrentu byly přidány nové URL seedy.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1999"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2011"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Nastavené síťové rozhraní je neplatné: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2198"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2200"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2212"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2214"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekurzivní stahování souboru %1 vloženého v torrentu %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2284"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2286"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2298"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2300"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Nelze dekódovat soubor torrentu %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2234"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2248"/>
         <source>Torrent name: %1</source>
         <translation>Název torrentu: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2235"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2249"/>
         <source>Torrent size: %1</source>
         <translation>Velikost torrentu: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2236"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2250"/>
         <source>Save path: %1</source>
         <translation>Cesta pro uložení: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2237"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2251"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrent byl stažen za %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2238"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2252"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Děkujeme Vám za používání qBittorrentu.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2241"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2255"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] bylo dokončeno stahování %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2561"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2569"/>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Došlo k chybě I/O, &apos;%1&apos; je pozastaven.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2562"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2676"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2570"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2684"/>
         <source>Reason: %1</source>
         <translation>Důvod: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2640"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2648"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Namapování portů selhalo, zpráva: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2645"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2653"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Namapování portů bylo úspěšné, zpráva: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2671"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2679"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Nesouhlasí velikost souborů u torrentu %1, pozastaveno.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2675"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2683"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Rychlé obnovení torrentu %1 bylo odmítnuto, zkouším znovu...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2681"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2689"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Vyhledání URL seedu selhalo pro URL: %1, zpráva: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2813"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2821"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Stahuji  &apos;%1&apos;, prosím čekejte...</translation>
@@ -3778,9 +3769,44 @@ Nainstalujte jej prosím ručně.</translation>
 <context>
     <name>ShutdownConfirmDlg</name>
     <message>
-        <location filename="../qtlibtorrent/shutdownconfirm.h" line="44"/>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="40"/>
+        <source>Exit confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="41"/>
+        <source>Exit now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="44"/>
         <source>Shutdown confirmation</source>
         <translation>Potvrdit vypnutí</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="45"/>
+        <source>Shutdown now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="97"/>
+        <source>qBittorrent will now exit unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="100"/>
+        <source>The computer will now be switched off unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="103"/>
+        <source>The computer will now go to sleep mode unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="106"/>
+        <source>The computer will now go to hibernation mode unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

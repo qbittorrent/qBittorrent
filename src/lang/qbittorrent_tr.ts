@@ -318,37 +318,37 @@
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="194"/>
+        <location filename="../preferences/advancedsettings.h" line="196"/>
         <source>Disk write cache size</source>
         <translation>Yazılabilir disk ön arabellek boyutu</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="175"/>
+        <location filename="../preferences/advancedsettings.h" line="177"/>
         <source> MiB</source>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="210"/>
+        <location filename="../preferences/advancedsettings.h" line="212"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Giden portlar (Min) [0: Etkisiz]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="215"/>
+        <location filename="../preferences/advancedsettings.h" line="217"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>Giden portlar (Maks) [0: Etkisiz]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="221"/>
+        <location filename="../preferences/advancedsettings.h" line="223"/>
         <source>Recheck torrents on completion</source>
         <translation>Tamamlanmış torentleri yeniden denetle</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="227"/>
+        <location filename="../preferences/advancedsettings.h" line="229"/>
         <source>Transfer list refresh interval</source>
         <translation>Aktarım listesi yenilenme aralığı</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="226"/>
+        <location filename="../preferences/advancedsettings.h" line="228"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation>ms</translation>
@@ -365,104 +365,109 @@
         <translation>Değer</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="173"/>
+        <location filename="../preferences/advancedsettings.h" line="175"/>
         <source> (auto)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="200"/>
+        <location filename="../preferences/advancedsettings.h" line="202"/>
         <source> s</source>
         <comment> seconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="201"/>
+        <location filename="../preferences/advancedsettings.h" line="203"/>
         <source>Disk cache expiry interval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="205"/>
+        <location filename="../preferences/advancedsettings.h" line="207"/>
         <source>Enable OS cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="230"/>
+        <location filename="../preferences/advancedsettings.h" line="232"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>Eş ülkelerini çözümle (GeoIP)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="233"/>
+        <location filename="../preferences/advancedsettings.h" line="235"/>
         <source>Resolve peer host names</source>
         <translation>Ana makina adı eşlerini çöz</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="238"/>
+        <location filename="../preferences/advancedsettings.h" line="240"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
         <translation>Yarı açık bağlantıların azami sayısı [0: Etkisiz]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="241"/>
+        <location filename="../preferences/advancedsettings.h" line="243"/>
         <source>Strict super seeding</source>
         <translation>Süper gönderme kipi</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="261"/>
+        <location filename="../preferences/advancedsettings.h" line="263"/>
         <source>Network Interface (requires restart)</source>
         <translation>Ağ arayüzü (yeniden başlatma gerektirir)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="289"/>
+        <location filename="../preferences/advancedsettings.h" line="266"/>
+        <source>Listen on IPv6 address (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/advancedsettings.h" line="294"/>
         <source>Exchange trackers with other peers</source>
         <translation>Diğer gönderenlerle izleyicileri değiştir</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="292"/>
+        <location filename="../preferences/advancedsettings.h" line="297"/>
         <source>Always announce to all trackers</source>
         <translation>Her zaman tüm izleyicilere bildir</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="243"/>
+        <location filename="../preferences/advancedsettings.h" line="245"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Herhangi bir arayüz</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="264"/>
+        <location filename="../preferences/advancedsettings.h" line="269"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>İzleyicilere raporlanacak IP Adresi (yeniden başlatmak gerektirir)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="267"/>
+        <location filename="../preferences/advancedsettings.h" line="272"/>
         <source>Display program on-screen notifications</source>
         <translation>Ekran bildirimlerinde programı göster</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="270"/>
+        <location filename="../preferences/advancedsettings.h" line="275"/>
         <source>Enable embedded tracker</source>
         <translation>Gömülü bir izleyici etkinleştir</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="275"/>
+        <location filename="../preferences/advancedsettings.h" line="280"/>
         <source>Embedded tracker port</source>
         <translation>Gömülü izleyici portu</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="278"/>
+        <location filename="../preferences/advancedsettings.h" line="283"/>
         <source>Check for software updates</source>
         <translation>Yazılım güncellemelerini denetle</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="282"/>
+        <location filename="../preferences/advancedsettings.h" line="287"/>
         <source>Use system icon theme</source>
         <translation>Sistem simge temasını kullan</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="286"/>
+        <location filename="../preferences/advancedsettings.h" line="291"/>
         <source>Confirm torrent deletion</source>
         <translation>Torrent silinmesini onayla</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="218"/>
+        <location filename="../preferences/advancedsettings.h" line="220"/>
         <source>Ignore transfer limits on local network</source>
         <translation>Yerel ağda tarım sınırlarını yoksay</translation>
     </message>
@@ -3116,73 +3121,59 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1987"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1988"/>
         <source>qBittorrent is trying to listen on any interface port: TCP/%1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2013"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2003"/>
+        <source>qBittorrent failed to listen on any interface port: %1. Reason: %2</source>
+        <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2027"/>
         <source>qBittorrent is trying to listen on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2339"/>
-        <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation>15 saniye içinde iptal etmezseniz bu bilgisayar uyku kipine geçecek...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2341"/>
-        <source>The computer will now go to hibernation mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2343"/>
-        <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation>15 saniye içinde iptal etmezseniz bu bilgisayar kapatılacak...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2345"/>
-        <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation>15 saniye içinde iptal etmezseniz qBittorrent&apos;ten çıkılacak...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2495"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2503"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2500"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2508"/>
         <source>Attempting to move torrent: &apos;%1&apos; to path: &apos;%2&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2687"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2695"/>
         <source>qBittorrent is successfully listening on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2700"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2708"/>
         <source>qBittorrent failed listening on interface %1 port: TCP/%2. Reason: %3</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2730"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2738"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2987"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2995"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Sağlanan IP süzgeci başarıyla ayrıştırıldı: %1 kural kabul edildi.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2993"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="3001"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Hata:sağlanan IP süzgeci ayrıştırmada başarısız.</translation>
     </message>
@@ -3239,92 +3230,92 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>Not: yeni URL eşleri varolan torrente eklendi.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1999"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2011"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Tanımlanan ağ arayüzü geçersiz: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2198"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2200"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2212"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2214"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>%1 dosyasının özyineli indirmesi %2 torenti içine gömülü</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2284"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2286"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2298"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2300"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>%1 torrent dosyası çözümlenemiyor.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2234"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2248"/>
         <source>Torrent name: %1</source>
         <translation>Torrent adı: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2235"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2249"/>
         <source>Torrent size: %1</source>
         <translation>Torent boyutu: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2236"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2250"/>
         <source>Save path: %1</source>
         <translation>Kayıt yolu: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2237"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2251"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrentin indirilme süresi: %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2238"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2252"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>qBittorrent kullandığınız için teşekkür ederiz.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2241"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2255"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 indirilmesi bitti</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2561"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2569"/>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Bir G/Ç hatası meydana geldi, &apos;%1&apos; duraklatıldı.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2562"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2676"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2570"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2684"/>
         <source>Reason: %1</source>
         <translation>Sebep: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2640"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2648"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port adresleme hatası, ileti: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2645"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2653"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port adresleme başarılı, ileti: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2671"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2679"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>%1 torrentinin dosya boyutu eşleşmiyor, duraklatılıyor.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2675"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2683"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Hızlı başlat verisi %1 torrenti için reddedildi, yeniden denetleniyor...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2681"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2689"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url gönderme araştırması başarısız: %1, ileti: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2813"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2821"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;, indiriliyor, lütfen bekleyin...</translation>
@@ -3777,9 +3768,44 @@ Lütfen elle yükleyiniz.</translation>
 <context>
     <name>ShutdownConfirmDlg</name>
     <message>
-        <location filename="../qtlibtorrent/shutdownconfirm.h" line="44"/>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="40"/>
+        <source>Exit confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="41"/>
+        <source>Exit now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="44"/>
         <source>Shutdown confirmation</source>
         <translation>Kapatma onayı</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="45"/>
+        <source>Shutdown now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="97"/>
+        <source>qBittorrent will now exit unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="100"/>
+        <source>The computer will now be switched off unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="103"/>
+        <source>The computer will now go to sleep mode unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="106"/>
+        <source>The computer will now go to hibernation mode unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
