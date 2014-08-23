@@ -32,28 +32,81 @@
 
 #include "shutdownconfirm.h"
 
+#include <QPushButton>
 
-ShutdownConfirmDlg::ShutdownConfirmDlg(const QString &message) {
-  // Text
-  setWindowTitle(tr("Shutdown confirmation"));
-  setText(message);
+ShutdownConfirmDlg::ShutdownConfirmDlg(const shutDownAction &action): exit_now(NULL), timeout(15), action0(action) {
+  // Title and button
+  if (action0 == NO_SHUTDOWN) {
+    setWindowTitle(tr("Exit confirmation"));
+    exit_now = addButton(tr("Exit now"), QMessageBox::AcceptRole);
+  }
+  else {
+    setWindowTitle(tr("Shutdown confirmation"));
+    exit_now = addButton(tr("Shutdown now"), QMessageBox::AcceptRole);
+  }
   // Cancel Button
   addButton(QMessageBox::Cancel);
+  // Text
+  updateText();
   // Icon
   setIcon(QMessageBox::Warning);
   // Always on top
   setWindowFlags(windowFlags()|Qt::WindowStaysOnTopHint);
+  timer.setInterval(1000); // 1sec
+  connect(&timer, SIGNAL(timeout()), this, SLOT(updateSeconds()));
   show();
   // Move to center
   move(misc::screenCenter(this));
 }
 
-bool ShutdownConfirmDlg::askForConfirmation(const QString &message) {
-  ShutdownConfirmDlg dlg(message);
-  // Auto shutdown timer
-  QTimer timer;
-  connect(&timer, SIGNAL(timeout()), &dlg, SLOT(accept()));
-  timer.start(15000); // 15sec
-  dlg.exec();
-  return (dlg.result() == QDialog::Accepted);
+void ShutdownConfirmDlg::showEvent(QShowEvent *event) {
+  QMessageBox::showEvent(event);
+  timer.start();
 }
+
+bool ShutdownConfirmDlg::askForConfirmation(const shutDownAction &action) {
+  ShutdownConfirmDlg dlg(action);
+  dlg.exec();
+  return dlg.shutdown();
+}
+
+void ShutdownConfirmDlg::updateSeconds() {
+  --timeout;
+  updateText();
+  if (timeout == 0) {
+    timer.stop();
+    accept();
+  }
+}
+
+bool ShutdownConfirmDlg::shutdown() const {
+  // This is necessary because result() in the case of QMessageBox
+  // returns a type of StandardButton, but since we use a custom button
+  // it will return 0 instead, even though we set the 'accept' role on it.
+  if (result() != QDialog::Accepted)
+    return (clickedButton() == exit_now);
+  else
+    return true;
+}
+
+void ShutdownConfirmDlg::updateText() {
+  QString text;
+
+  switch (action0) {
+  case NO_SHUTDOWN:
+    text = tr("qBittorrent will now exit unless you cancel within the next %1 seconds.").arg(QString::number(timeout));
+    break;
+  case SHUTDOWN_COMPUTER:
+    text = tr("The computer will now be switched off unless you cancel within the next %1 seconds.").arg(QString::number(timeout));
+    break;
+  case SUSPEND_COMPUTER:
+    text = tr("The computer will now go to sleep mode unless you cancel within the next %1 seconds.").arg(QString::number(timeout));
+    break;
+  case HIBERNATE_COMPUTER:
+    text = tr("The computer will now go to hibernation mode unless you cancel within the next %1 seconds.").arg(QString::number(timeout));
+    break;
+  }
+
+  setText(text);
+}
+
