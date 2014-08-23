@@ -334,6 +334,8 @@ public:
   void setNetworkInterface(const QString& iface);
   QString getNetworkInterfaceName() const;
   void setNetworkInterfaceName(const QString& iface);
+  bool getListenIPv6() const;
+  void setListenIPv6(bool enable);
   QString getNetworkAddress() const;
   void setNetworkAddress(const QString& addr);
   bool isAnonymousModeEnabled() const;

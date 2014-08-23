@@ -1248,6 +1248,14 @@ void Preferences::setNetworkInterfaceName(const QString& iface) {
   setValue("Preferences/Connection/InterfaceName", iface);
 }
 
+bool Preferences::getListenIPv6() const {
+  return value("Preferences/Connection/InterfaceListenIPv6", false).toBool();
+}
+
+void Preferences::setListenIPv6(bool enable) {
+  setValue("Preferences/Connection/InterfaceListenIPv6", enable);
+}
+
 QString Preferences::getNetworkAddress() const {
   return value("Preferences/Connection/InetAddress").toString();
 }

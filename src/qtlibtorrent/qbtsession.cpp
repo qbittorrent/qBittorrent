@@ -1896,9 +1896,17 @@ void QBtSession::setListeningPort(int port) {
   std::pair<int,int> ports(port, port);
   libtorrent::error_code ec;
   const QString iface_name = pref->getNetworkInterface();
+  const bool listen_ipv6 = pref->getListenIPv6();
   if (iface_name.isEmpty()) {
     addConsoleMessage(tr("qBittorrent is trying to listen on any interface port: %1", "e.g: qBittorrent is trying to listen on any interface port: TCP/6881").arg(QString::number(port)), "blue");
-    s->listen_on(ports, ec, 0, session::listen_no_system_port);
+    if (listen_ipv6)
+      s->listen_on(ports, ec, "::", session::listen_no_system_port);
+    else
+      s->listen_on(ports, ec, "0.0.0.0", session::listen_no_system_port);
+
+    if (ec)
+      addConsoleMessage(tr("qBittorrent failed to listen on any interface port: %1. Reason: %2", "e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface" ).arg(QString::number(port)).arg(misc::toQStringU(ec.message())), "red");
+
     return;
   }
   // Attempt to listen on provided interface
@@ -1911,6 +1919,8 @@ void QBtSession::setListeningPort(int port) {
   QString ip;
   qDebug("This network interface has %d IP addresses", network_iface.addressEntries().size());
   foreach (const QNetworkAddressEntry &entry, network_iface.addressEntries()) {
+    if (!listen_ipv6 && (entry.ip().protocol() == QAbstractSocket::IPv6Protocol))
+      continue;
     qDebug("Trying to listen on IP %s (%s)", qPrintable(entry.ip().toString()), qPrintable(iface_name));
     s->listen_on(ports, ec, entry.ip().toString().toLatin1().constData(), session::listen_no_system_port);
     if (!ec) {
