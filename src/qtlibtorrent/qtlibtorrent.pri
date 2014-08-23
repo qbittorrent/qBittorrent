@@ -15,5 +15,6 @@ SOURCES += $$PWD/qbtsession.cpp \
   HEADERS += $$PWD/torrentmodel.h \
              $$PWD/shutdownconfirm.h
 
-  SOURCES += $$PWD/torrentmodel.cpp
+  SOURCES += $$PWD/torrentmodel.cpp \
+             $$PWD/shutdownconfirm.cpp
 }

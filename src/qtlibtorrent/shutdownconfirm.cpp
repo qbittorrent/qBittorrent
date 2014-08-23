@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
  * Copyright (C) 2011  Christophe Dumez
+ * Copyright (C) 2014  sledgehammer999
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,22 +27,33 @@
  * exception statement from your version.
  *
  * Contact : chris@qbittorrent.org
+ * Contact : hammered999@gmail.com
  */
 
-#ifndef SHUTDOWNCONFIRM_H
-#define SHUTDOWNCONFIRM_H
+#include "shutdownconfirm.h"
 
-#include <QMessageBox>
-#include <QTimer>
-#include "misc.h"
 
-class ShutdownConfirmDlg : public QMessageBox {
-  Q_OBJECT
+ShutdownConfirmDlg::ShutdownConfirmDlg(const QString &message) {
+  // Text
+  setWindowTitle(tr("Shutdown confirmation"));
+  setText(message);
+  // Cancel Button
+  addButton(QMessageBox::Cancel);
+  // Icon
+  setIcon(QMessageBox::Warning);
+  // Always on top
+  setWindowFlags(windowFlags()|Qt::WindowStaysOnTopHint);
+  show();
+  // Move to center
+  move(misc::screenCenter(this));
+}
 
-public:
-  ShutdownConfirmDlg(const QString &message);
-
-  static bool askForConfirmation(const QString &message);
-};
-
-#endif // SHUTDOWNCONFIRM_H
+bool ShutdownConfirmDlg::askForConfirmation(const QString &message) {
+  ShutdownConfirmDlg dlg(message);
+  // Auto shutdown timer
+  QTimer timer;
+  connect(&timer, SIGNAL(timeout()), &dlg, SLOT(accept()));
+  timer.start(15000); // 15sec
+  dlg.exec();
+  return (dlg.result() == QDialog::Accepted);
+}
