@@ -52,6 +52,8 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(const shutDownAction &action): exit_now(N
   setIcon(QMessageBox::Warning);
   // Always on top
   setWindowFlags(windowFlags()|Qt::WindowStaysOnTopHint);
+  // Set 'Cancel' as default button.
+  setDefaultButton(QMessageBox::Cancel);
   timer.setInterval(1000); // 1sec
   connect(&timer, SIGNAL(timeout()), this, SLOT(updateSeconds()));
   show();
