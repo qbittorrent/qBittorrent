@@ -318,37 +318,37 @@
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="186"/>
+        <location filename="../preferences/advancedsettings.h" line="188"/>
         <source>Disk write cache size</source>
         <translation>Кеш для записи на диск</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="167"/>
+        <location filename="../preferences/advancedsettings.h" line="169"/>
         <source> MiB</source>
         <translation> МиБ</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="200"/>
+        <location filename="../preferences/advancedsettings.h" line="202"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Исходящие порты (Мин) [0: Отключено]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="205"/>
+        <location filename="../preferences/advancedsettings.h" line="207"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>Исходящие порты (Макс) [0: Отключено]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="211"/>
+        <location filename="../preferences/advancedsettings.h" line="213"/>
         <source>Recheck torrents on completion</source>
         <translation>Перепроверить торрент по окончании</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="217"/>
+        <location filename="../preferences/advancedsettings.h" line="219"/>
         <source>Transfer list refresh interval</source>
         <translation>Интервал обновления списка торрентов</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="216"/>
+        <location filename="../preferences/advancedsettings.h" line="218"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation> мс</translation>
@@ -365,104 +365,109 @@
         <translation>Значение</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="165"/>
+        <location filename="../preferences/advancedsettings.h" line="167"/>
         <source> (auto)</source>
         <translation> (авто)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="191"/>
+        <location filename="../preferences/advancedsettings.h" line="193"/>
         <source> s</source>
         <comment> seconds</comment>
         <translation> с</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="192"/>
+        <location filename="../preferences/advancedsettings.h" line="194"/>
         <source>Disk cache expiry interval</source>
         <translation>Интервал очистки дискового кеша</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="195"/>
+        <location filename="../preferences/advancedsettings.h" line="197"/>
         <source>Enable OS cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="220"/>
+        <location filename="../preferences/advancedsettings.h" line="222"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>Определять страну пира (GeoIP)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="223"/>
+        <location filename="../preferences/advancedsettings.h" line="225"/>
         <source>Resolve peer host names</source>
         <translation>Определять имя хоста пира</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="228"/>
+        <location filename="../preferences/advancedsettings.h" line="230"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
         <translation>Максимальное количество полуоткрытых соединений [0:Отключено]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="231"/>
+        <location filename="../preferences/advancedsettings.h" line="233"/>
         <source>Strict super seeding</source>
         <translation>Режим супер раздачи</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="251"/>
+        <location filename="../preferences/advancedsettings.h" line="253"/>
         <source>Network Interface (requires restart)</source>
         <translation>Сетевой интерфейс (требуется перезапуск)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="279"/>
+        <location filename="../preferences/advancedsettings.h" line="256"/>
+        <source>Listen on IPv6 address (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/advancedsettings.h" line="284"/>
         <source>Exchange trackers with other peers</source>
         <translation>Обмениваться трекерами с другими пирами</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="282"/>
+        <location filename="../preferences/advancedsettings.h" line="287"/>
         <source>Always announce to all trackers</source>
         <translation>Всегда анонсировать на все трекеры</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="233"/>
+        <location filename="../preferences/advancedsettings.h" line="235"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Любой интерфейс</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="254"/>
+        <location filename="../preferences/advancedsettings.h" line="259"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>IP адрес для сообщения трекерам (требуется перезапуск)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="257"/>
+        <location filename="../preferences/advancedsettings.h" line="262"/>
         <source>Display program on-screen notifications</source>
         <translation>Показывать экранные сообщения</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="260"/>
+        <location filename="../preferences/advancedsettings.h" line="265"/>
         <source>Enable embedded tracker</source>
         <translation>Включить встроенный трекер</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="265"/>
+        <location filename="../preferences/advancedsettings.h" line="270"/>
         <source>Embedded tracker port</source>
         <translation>Порт встроенного трекера</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="268"/>
+        <location filename="../preferences/advancedsettings.h" line="273"/>
         <source>Check for software updates</source>
         <translation>Проверять обновления</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="272"/>
+        <location filename="../preferences/advancedsettings.h" line="277"/>
         <source>Use system icon theme</source>
         <translation>Использовать системные иконки</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="276"/>
+        <location filename="../preferences/advancedsettings.h" line="281"/>
         <source>Confirm torrent deletion</source>
         <translation>Подтверждать удаление торрента</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="208"/>
+        <location filename="../preferences/advancedsettings.h" line="210"/>
         <source>Ignore transfer limits on local network</source>
         <translation>Игнорировать лимиты в локальной сети</translation>
     </message>
@@ -3109,49 +3114,29 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; был забанен</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2294"/>
-        <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation>Сейчас компьютер перейдёт в спящий режим, если вы не отмените это в течение следующих 15 секунд...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2296"/>
-        <source>The computer will now go to hibernation mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2298"/>
-        <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation>Сейчас компьютер будет отключён, если вы не отмените это в течение следующих 15 секунд...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2300"/>
-        <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation>qBittorrent закроется, если вы не отмените это в течение следующих 15 секунд...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2456"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2460"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2461"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2465"/>
         <source>Attempting to move torrent: &apos;%1&apos; to path: &apos;%2&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2730"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2734"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>Внешний IP адрес: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2990"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2994"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Успешно прочитан фильтр IP: %1 правил применено.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2996"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="3000"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Ошибка: невозможно разобрать фильтр IP.</translation>
     </message>
@@ -3207,114 +3192,120 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Примечание: новые URL сидов были добавлены к существующему торренту.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1908"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1916"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Указанный сетевой интерфейс ошибочен: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2070"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2080"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Рекурсивная загрузка файла %1 встроена в торрент %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2242"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2252"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Не удалось декодировать %1 torrent файл.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2104"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2114"/>
         <source>Torrent name: %1</source>
         <translation>Имя торрента: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1900"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1901"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1918"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1908"/>
+        <source>qBittorrent failed to listen on any interface port: %1. Reason: %2</source>
+        <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1928"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2105"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2115"/>
         <source>Torrent size: %1</source>
         <translation>Размер торрента: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2106"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2116"/>
         <source>Save path: %1</source>
         <translation>Путь для сохранения: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2107"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2117"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Торрент был загружен за %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2108"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2118"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Спасибо за использование qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2111"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2121"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] скачивание %1 завершено</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2523"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2527"/>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Ошибка ввода/вывода: &apos;%1&apos; приостановлен.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2524"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2648"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2528"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2652"/>
         <source>Reason: %1</source>
         <translation>Причина: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2608"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2612"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>Распределение портов UPnP/NAT-PMP не удалось с сообщением: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2614"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2618"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>Распределение портов UPnP/NAT-PMP прошло успешно: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2643"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2647"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Несовпадение размеров файлов для торрента %1, приостанавливаю его.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2647"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2651"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Быстрое восстановление данных для torrentа %1 было невозможно, проверяем заново...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2654"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2658"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Поиск раздающего Url не удался: %1, сообщение: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2670"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2674"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2697"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2701"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2813"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2817"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Скачиваем &apos;%1&apos;, подождите...</translation>
@@ -3767,9 +3758,44 @@ Please install it manually.</source>
 <context>
     <name>ShutdownConfirmDlg</name>
     <message>
-        <location filename="../qtlibtorrent/shutdownconfirm.h" line="44"/>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="40"/>
+        <source>Exit confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="41"/>
+        <source>Exit now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="44"/>
         <source>Shutdown confirmation</source>
         <translation>Подтверждение выключения</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="45"/>
+        <source>Shutdown now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="97"/>
+        <source>qBittorrent will now exit unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="100"/>
+        <source>The computer will now be switched off unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="103"/>
+        <source>The computer will now go to sleep mode unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/shutdownconfirm.cpp" line="106"/>
+        <source>The computer will now go to hibernation mode unless you cancel within the next %1 seconds.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
