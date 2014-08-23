@@ -1999,8 +1999,10 @@ void QBtSession::setListeningPort(int port) {
       s->listen_on(ports, "0.0.0.0");
 #endif
 
+#if LIBTORRENT_VERSION_NUM >= 1600
     if (ec)
       addConsoleMessage(tr("qBittorrent failed to listen on any interface port: %1. Reason: %2", "e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface" ).arg(QString::number(port)).arg(misc::toQStringU(ec.message())), "red");
+#endif
 
     return;
   }
