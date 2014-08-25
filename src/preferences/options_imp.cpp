@@ -125,7 +125,6 @@ options_imp::options_imp(QWidget *parent):
 
   // Connect signals / slots
   connect(comboProxyType, SIGNAL(currentIndexChanged(int)),this, SLOT(enableProxy(int)));
-  connect(checkAnonymousMode, SIGNAL(toggled(bool)), this, SLOT(toggleAnonymousMode(bool)));
   connect(checkRandomPort, SIGNAL(toggled(bool)), spinPort, SLOT(setDisabled(bool)));
 
   // Apply button is activated when a value is changed
@@ -699,8 +698,6 @@ void options_imp::loadOptions() {
   checkLSD->setChecked(pref->isLSDEnabled());
   comboEncryption->setCurrentIndex(pref->getEncryptionSetting());
   checkAnonymousMode->setChecked(pref->isAnonymousModeEnabled());
-  /* make sure ui matches options */
-  toggleAnonymousMode(checkAnonymousMode->isChecked());
   // Ratio limit
   floatValue = pref->getGlobalMaxRatio();
   if (floatValue >= 0.) {
@@ -1325,23 +1322,6 @@ void options_imp::setSslCertificate(const QByteArray &cert, bool interactive)
       QMessageBox::warning(this, tr("Invalid certificate"), tr("This is not a valid SSL certificate."));
   }
 #endif
-}
-
-void options_imp::toggleAnonymousMode(bool enabled)
-{
-  if (enabled) {
-    // Disable DHT, LSD, UPnP / NAT-PMP
-    checkDHT->setEnabled(false);
-    checkDHT->setChecked(false);
-    checkLSD->setEnabled(false);
-    checkLSD->setChecked(false);
-    checkUPnP->setEnabled(false);
-    checkUPnP->setChecked(false);
-  } else {
-    checkDHT->setEnabled(true);
-    checkLSD->setEnabled(true);
-    checkUPnP->setEnabled(true);
-  }
 }
 
 bool options_imp::schedTimesOk() {
