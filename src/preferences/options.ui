@@ -1373,6 +1373,16 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkForceProxy">
+                 <property name="text">
+                  <string>Disable connections not supported by proxies</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="checkProxyAuth">
                  <property name="enabled">
                   <bool>false</bool>
@@ -2030,6 +2040,9 @@
                 <layout class="QHBoxLayout" name="horizontalLayout_6">
                  <item>
                   <widget class="QCheckBox" name="checkAnonymousMode">
+                   <property name="toolTip">
+                    <string>Enable when using a proxy or a VPN connection</string>
+                   </property>
                    <property name="text">
                     <string>Enable anonymous mode</string>
                    </property>

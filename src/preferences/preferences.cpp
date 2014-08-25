@@ -698,6 +698,16 @@ void Preferences::setProxyPeerConnections(bool enabled) {
   setValue("Preferences/Connection/ProxyPeerConnections", enabled);
 }
 
+#if LIBTORRENT_VERSION_NUM >= 10000
+bool Preferences::getForceProxy() const {
+  return value("Preferences/Connection/ProxyForce", true).toBool();
+}
+
+void Preferences::setForceProxy(bool enabled) {
+  setValue("Preferences/Connection/ProxyForce", enabled);
+}
+#endif
+
 // Bittorrent options
 int Preferences::getMaxConnecs() const {
   return value("Preferences/Bittorrent/MaxConnecs", 500).toInt();

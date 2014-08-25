@@ -215,6 +215,9 @@ options_imp::options_imp(QWidget *parent):
   connect(textProxyIP, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinProxyPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkProxyPeerConnecs, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+#if LIBTORRENT_VERSION_NUM >= 10000
+  connect(checkForceProxy, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+#endif
   connect(checkProxyAuth, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(textProxyUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(textProxyPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -251,6 +254,11 @@ options_imp::options_imp(QWidget *parent):
   adv_layout->addWidget(advancedSettings);
   scrollArea_advanced->setLayout(adv_layout);
   connect(advancedSettings, SIGNAL(settingsChanged()), this, SLOT(enableApplyButton()));
+
+  //Hide incompatible options
+#if LIBTORRENT_VERSION_NUM < 10000
+  checkForceProxy->setVisible(false);
+#endif
 
   // Adapt size
   show();
@@ -418,6 +426,9 @@ void options_imp::saveOptions() {
   pref->setProxyIp(getProxyIp());
   pref->setProxyPort(getProxyPort());
   pref->setProxyPeerConnections(checkProxyPeerConnecs->isChecked());
+#if LIBTORRENT_VERSION_NUM >= 10000
+  pref->setForceProxy(checkForceProxy->isChecked());
+#endif
   pref->setProxyAuthEnabled(isProxyAuthEnabled());
   pref->setProxyUsername(getProxyUsername());
   pref->setProxyPassword(getProxyPassword());
@@ -643,6 +654,9 @@ void options_imp::loadOptions() {
   textProxyIP->setText(pref->getProxyIp());
   spinProxyPort->setValue(pref->getProxyPort());
   checkProxyPeerConnecs->setChecked(pref->proxyPeerConnections());
+#if LIBTORRENT_VERSION_NUM >= 10000
+  checkForceProxy->setChecked(pref->getForceProxy());
+#endif
   checkProxyAuth->setChecked(pref->isProxyAuthEnabled());
   textProxyUsername->setText(pref->getProxyUsername());
   textProxyPassword->setText(pref->getProxyPassword());
@@ -930,6 +944,9 @@ void options_imp::enableProxy(int index) {
     lblProxyPort->setEnabled(true);
     spinProxyPort->setEnabled(true);
     checkProxyPeerConnecs->setEnabled(true);
+#if LIBTORRENT_VERSION_NUM >= 10000
+    checkForceProxy->setEnabled(true);
+#endif
     if (index > 1) {
       checkProxyAuth->setEnabled(true);
     } else {
@@ -943,6 +960,9 @@ void options_imp::enableProxy(int index) {
     lblProxyPort->setEnabled(false);
     spinProxyPort->setEnabled(false);
     checkProxyPeerConnecs->setEnabled(false);
+#if LIBTORRENT_VERSION_NUM >= 10000
+    checkForceProxy->setEnabled(false);
+#endif
     checkProxyAuth->setEnabled(false);
     checkProxyAuth->setChecked(false);
   }

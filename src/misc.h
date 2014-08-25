@@ -31,7 +31,6 @@
 #ifndef MISC_H
 #define MISC_H
 
-#include <libtorrent/version.hpp>
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/torrent_handle.hpp>
 #include <sstream>

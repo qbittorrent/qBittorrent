@@ -42,6 +42,8 @@
 #include <QNetworkCookie>
 #include <QVariant>
 
+#include <libtorrent/version.hpp>
+
 #define QBT_REALM "Web UI Access"
 enum scheduler_days { EVERY_DAY, WEEK_DAYS, WEEK_ENDS, MON, TUE, WED, THU, FRI, SAT, SUN };
 enum maxRatioAction {PAUSE_ACTION, REMOVE_ACTION};
@@ -203,6 +205,10 @@ public:
   void setProxyType(int type);
   bool proxyPeerConnections() const;
   void setProxyPeerConnections(bool enabled);
+#if LIBTORRENT_VERSION_NUM >= 10000
+  bool getForceProxy() const;
+  void setForceProxy(bool enabled);
+#endif
 
   // Bittorrent options
   int getMaxConnecs() const;

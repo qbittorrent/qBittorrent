@@ -482,6 +482,12 @@ void QBtSession::configureSession() {
   else
     sessionSettings.mixed_mode_algorithm = session_settings::peer_proportional;
   sessionSettings.connection_speed = 20; //default is 10
+#if LIBTORRENT_VERSION_NUM >= 10000
+  if (pref->isProxyEnabled())
+    sessionSettings.force_proxy = pref->getForceProxy();
+  else
+    sessionSettings.force_proxy = false;
+#endif
   qDebug() << "Settings SessionSettings";
   setSessionSettings(sessionSettings);
   // Bittorrent
