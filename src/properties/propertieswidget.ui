@@ -746,6 +746,10 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="speed_page">
+      <layout class="QVBoxLayout" name="speed_layout">
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>

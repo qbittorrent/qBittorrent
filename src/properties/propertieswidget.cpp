@@ -48,6 +48,7 @@
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodel.h"
 #include "peerlistwidget.h"
+#include "speedwidget.h"
 #include "trackerlist.h"
 #include "mainwindow.h"
 #include "downloadedpiecesbar.h"
@@ -110,6 +111,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   // Peers list
   peersList = new PeerListWidget(this);
   peerpage_layout->addWidget(peersList);
+  // Speed widget
+  speedWidget = new SpeedWidget(this);
+  speed_layout->addWidget(speedWidget);
   // Tab bar
   m_tabBar = new PropTabBar();
   verticalLayout->addLayout(m_tabBar);
@@ -133,6 +137,7 @@ PropertiesWidget::~PropertiesWidget() {
   delete refreshTimer;
   delete trackerList;
   delete peersList;
+  delete speedWidget;
   delete downloaded_pieces;
   delete pieces_availability;
   delete PropListModel;

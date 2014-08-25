@@ -1850,3 +1850,12 @@ void Preferences::setHostNameCookies(const QString &host_name, const QList<QByte
   hosts_table.insert(host_name, raw_cookies);
   setValue("Rss/hosts_cookies", hosts_table);
 }
+
+int Preferences::getSpeedWidgetPeriod() const {
+  return value("SpeedWidget/period").toInt();
+}
+
+void Preferences::setSpeedWidgetPeriod(const int period) {
+  setValue("SpeedWidget/period", period);
+}
+

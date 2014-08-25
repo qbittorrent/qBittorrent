@@ -14,11 +14,13 @@ HEADERS += $$PWD/propertieswidget.h \
            $$PWD/peeraddition.h \
            $$PWD/trackersadditiondlg.h \
            $$PWD/pieceavailabilitybar.h \
-           $$PWD/proptabbar.h
+           $$PWD/proptabbar.h \
+           $$PWD/speedwidget.h
 
 SOURCES += $$PWD/propertieswidget.cpp \
            $$PWD/peerlistwidget.cpp \
            $$PWD/trackerlist.cpp \
            $$PWD/proptabbar.cpp \
            $$PWD/downloadedpiecesbar.cpp \
-           $$PWD/pieceavailabilitybar.cpp
+           $$PWD/pieceavailabilitybar.cpp \
+           $$PWD/speedwidget.cpp
