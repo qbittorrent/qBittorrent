@@ -85,7 +85,6 @@ private slots:
   void on_btnWebUiKey_clicked();
   void on_registerDNSBtn_clicked();
   void setLocale(const QString &locale);
-  void toggleAnonymousMode(bool enabled);
 
 private:
   // Methods
