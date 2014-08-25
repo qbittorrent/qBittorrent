@@ -34,13 +34,13 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent):
     QPen greenPen;
     greenPen.setColor(QColor(134, 196, 63));
     m_plot->graph(0)->setPen(greenPen);
-    m_plot->graph(0)->setName(tr("download"));
+    m_plot->graph(0)->setName(tr("total download"));
 
     m_plot->addGraph();
     QPen bluePen;
     bluePen.setColor(QColor(50, 153, 255));
     m_plot->graph(1)->setPen(bluePen);
-    m_plot->graph(1)->setName(tr("upload"));
+    m_plot->graph(1)->setName(tr("total upload"));
 
     m_plot->addGraph();
     greenPen.setStyle(Qt::DashLine);
@@ -183,7 +183,7 @@ void SpeedWidget::update()
                 maxSpeed = graphSpeedTrackerDown[i];
         }
 
-        maxSpeed = ceil(maxSpeed); // +5% to upper bound
+        maxSpeed = ceil(maxSpeed);
 
         emit speedChanged();
         sleep(1);
