@@ -14,7 +14,9 @@ HEADERS += $$PWD/propertieswidget.h \
            $$PWD/peeraddition.h \
            $$PWD/trackersadditiondlg.h \
            $$PWD/pieceavailabilitybar.h \
-           $$PWD/proptabbar.h
+           $$PWD/proptabbar.h \
+           $$PWD/speedwidget.h \
+           $$PWD/speedplotview.h
 
 SOURCES += $$PWD/propertieswidget.cpp \
            $$PWD/proplistdelegate.cpp \
@@ -24,4 +26,6 @@ SOURCES += $$PWD/propertieswidget.cpp \
            $$PWD/downloadedpiecesbar.cpp \
            $$PWD/peeraddition.cpp \
            $$PWD/trackersadditiondlg.cpp \
-           $$PWD/pieceavailabilitybar.cpp
+           $$PWD/pieceavailabilitybar.cpp \
+           $$PWD/speedwidget.cpp \
+           $$PWD/speedplotview.cpp

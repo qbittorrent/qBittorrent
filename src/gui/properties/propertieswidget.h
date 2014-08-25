@@ -43,6 +43,7 @@ class PropListDelegate;
 class torrent_file;
 class PeerListWidget;
 class TrackerList;
+class SpeedWidget;
 class MainWindow;
 class DownloadedPiecesBar;
 class PieceAvailabilityBar;
@@ -68,6 +69,7 @@ public:
   TrackerList* getTrackerList() const { return trackerList; }
   PeerListWidget* getPeerList() const { return peersList; }
   QTreeView* getFilesList() const { return filesList; }
+  SpeedWidget* getSpeedWidget() const { return speedWidget; }
 
 protected:
   QPushButton* getButtonFromIndex(int index);
@@ -113,6 +115,7 @@ private:
   PropListDelegate *PropDelegate;
   PeerListWidget *peersList;
   TrackerList *trackerList;
+  SpeedWidget *speedWidget;
   QList<int> slideSizes;
   DownloadedPiecesBar *downloaded_pieces;
   PieceAvailabilityBar *pieces_availability;

@@ -534,6 +534,12 @@ public:
     QList<QNetworkCookie> getHostNameQNetworkCookies(const QString& host_name) const;
     void setHostNameCookies(const QString &host_name, const QList<QByteArray> &cookies);
 
+    // SpeedWidget
+    int getSpeedWidgetPeriod() const;
+    void setSpeedWidgetPeriod(const int period);
+    bool getSpeedWidgetGraphEnable(int id) const;
+    void setSpeedWidgetGraphEnable(int id, const bool enable);
+
 public slots:
     void setStatusFilterState(bool checked);
     void setLabelFilterState(bool checked);

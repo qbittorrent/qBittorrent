@@ -2501,6 +2501,25 @@ void Preferences::setHostNameCookies(const QString &host_name, const QList<QByte
     setValue("Rss/hosts_cookies", hosts_table);
 }
 
+int Preferences::getSpeedWidgetPeriod() const {
+    return value("SpeedWidget/period", 1).toInt();
+}
+
+void Preferences::setSpeedWidgetPeriod(const int period) {
+    setValue("SpeedWidget/period", period);
+}
+
+bool Preferences::getSpeedWidgetGraphEnable(int id) const
+{
+    // UP and DOWN graphs enabled by default
+    return value("SpeedWidget/graph_enable_" + QString::number(id), (id == 0 || id == 1)).toBool();
+}
+
+void Preferences::setSpeedWidgetGraphEnable(int id, const bool enable)
+{
+    setValue("SpeedWidget/graph_enable_" + QString::number(id), enable);
+}
+
 void Preferences::apply()
 {
     if (save())
