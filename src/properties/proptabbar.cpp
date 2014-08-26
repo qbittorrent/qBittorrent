@@ -62,6 +62,10 @@ PropTabBar::PropTabBar(QWidget *parent) :
   QPushButton *files_button = new QPushButton(IconProvider::instance()->getIcon("inode-directory"), tr("Content"), parent);
   addWidget(files_button);
   m_btnGroup->addButton(files_button, FILES_TAB);
+  // Speed tab
+  QPushButton *speed_button = new QPushButton(IconProvider::instance()->getIcon("inode-directory"), tr("Speed"), parent);
+  addWidget(speed_button);
+  m_btnGroup->addButton(speed_button, SPEED_TAB);
   // Spacer
   addItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
   // SIGNAL/SLOT

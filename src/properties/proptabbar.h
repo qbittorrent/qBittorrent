@@ -43,7 +43,7 @@ class PropTabBar : public QHBoxLayout
   Q_DISABLE_COPY(PropTabBar)
 
 public:
-  enum PropertyTab {MAIN_TAB, TRACKERS_TAB, PEERS_TAB, URLSEEDS_TAB, FILES_TAB};
+  enum PropertyTab {MAIN_TAB, TRACKERS_TAB, PEERS_TAB, URLSEEDS_TAB, FILES_TAB, SPEED_TAB};
 
 public:
   explicit PropTabBar(QWidget *parent = 0);

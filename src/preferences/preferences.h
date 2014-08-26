@@ -481,6 +481,11 @@ public:
   QList<QByteArray> getHostNameCookies(const QString &host_name) const;
   QList<QNetworkCookie> getHostNameQNetworkCookies(const QString& host_name) const;
   void setHostNameCookies(const QString &host_name, const QList<QByteArray> &cookies);
+
+  // SpeedWidget
+  int getSpeedWidgetPeriod() const;
+  void setSpeedWidgetPeriod(const int period);
+
 };
 
 #endif // PREFERENCES_H
