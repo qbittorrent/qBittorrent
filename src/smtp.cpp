@@ -48,6 +48,7 @@
 #include <QNetworkInterface>
 #include <QCryptographicHash>
 
+namespace {
 const short DEFAULT_PORT = 25;
 const short DEFAULT_PORT_SSL = 465;
 
@@ -75,6 +76,20 @@ QByteArray hmacMD5(QByteArray key, const QByteArray &msg)
   total.append(QCryptographicHash::hash(part, QCryptographicHash::Md5));
   return QCryptographicHash::hash(total, QCryptographicHash::Md5);
 }
+
+QByteArray determineLocalAddress()
+{
+  QByteArray address = "127.0.0.1";
+  foreach (const QHostAddress& addr, QNetworkInterface::allAddresses()) {
+    if (addr == QHostAddress::LocalHost || addr == QHostAddress::LocalHostIPv6)
+      continue;
+    address = addr.toString().toLatin1();
+    break;
+  }
+
+  return address;
+}
+} // namespace
 
 Smtp::Smtp(QObject *parent): QObject(parent),
   state(Init), use_ssl(false) {
@@ -290,18 +305,18 @@ QByteArray Smtp::encode_mime_header(const QString& key, const QString& value, QT
 
 void Smtp::ehlo()
 {
-  QByteArray address = "127.0.0.1";
-  foreach (const QHostAddress& addr, QNetworkInterface::allAddresses())
-  {
-    if (addr == QHostAddress::LocalHost || addr == QHostAddress::LocalHostIPv6)
-      continue;
-    address = addr.toString().toLatin1();
-    break;
-  }
-  // Send EHLO
-  socket->write("ehlo "+ address + "\r\n");
+  QByteArray address = determineLocalAddress();
+  socket->write("ehlo " + address + "\r\n");
   socket->flush();
   state = EhloSent;
+}
+
+void Smtp::helo()
+{
+  QByteArray address = determineLocalAddress();
+  socket->write("helo " + address + "\r\n");
+  socket->flush();
+  state = HeloSent;
 }
 
 void Smtp::parseEhloResponse(const QByteArray& code, bool continued, const QString& line)
@@ -311,9 +326,7 @@ void Smtp::parseEhloResponse(const QByteArray& code, bool continued, const QStri
     if (state == EhloSent) {
       // try to send HELO instead of EHLO
       qDebug() << "EHLO failed, trying HELO instead...";
-      socket->write("helo\r\n");
-      socket->flush();
-      state = HeloSent;
+      helo();
     } else {
       // Both EHLO and HELO failed, chances are this is NOT
       // a SMTP server

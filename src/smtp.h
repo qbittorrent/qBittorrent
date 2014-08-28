@@ -64,6 +64,7 @@ private slots:
 private:
   QByteArray encode_mime_header(const QString& key, const QString& value, QTextCodec* latin1, const QByteArray& prefix=QByteArray());
   void ehlo();
+  void helo();
   void parseEhloResponse(const QByteArray& code, bool continued, const QString& line);
   void authenticate();
   void startTLS();
