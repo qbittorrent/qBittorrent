@@ -234,42 +234,6 @@ initializeWindows = function(){
 		}
 	}
 
-	addClickEvent('bug', function(e){
-		new Event(e).stop();
-		new MochaUI.Window({
-			id: 'bugPage',
-			title: '_(Report a bug)',
-			loadMethod: 'iframe',
-			contentURL: 'http://bugs.qbittorrent.org/',
-			width: 650,
-			height: 400
-		});
-	});
-
-	addClickEvent('site', function(e){
-		new Event(e).stop();
-		new MochaUI.Window({
-			id: 'sitePage',
-			title: 'qBittorrent Website',
-			loadMethod: 'iframe',
-			contentURL: 'http://www.qbittorrent.org/',
-			width: 650,
-			height: 400
-		});
-	});
-
-	addClickEvent('docs', function(e){
-		new Event(e).stop();
-		new MochaUI.Window({
-			id: 'docsPage',
-			title: 'qBittorrent official wiki',
-			loadMethod: 'iframe',
-			contentURL: 'http://wiki.qbittorrent.org/',
-			width: 650,
-			height: 400
-		});
-	});
-
 	addClickEvent('about', function(e){
 		new Event(e).stop();
 		new MochaUI.Window({
