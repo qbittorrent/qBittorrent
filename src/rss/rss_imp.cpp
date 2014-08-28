@@ -334,8 +334,11 @@ void RSSImp::downloadSelectedTorrents()
 {
   QList<QListWidgetItem*> selected_items = listArticles->selectedItems();
   foreach (const QListWidgetItem* item, selected_items) {
-    RssArticlePtr article =  m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
-        ->getItem(item->data(Article::IdRole).toString());
+    if (!item) continue;
+    RssFeedPtr feed = m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString());
+    if (!feed) continue;
+    RssArticlePtr article = feed->getItem(item->data(Article::IdRole).toString());
+    if (!article) continue;
 
     QString torrentLink = article->torrentUrl();
     // Check if it is a magnet link
