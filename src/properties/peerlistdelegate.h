@@ -39,7 +39,7 @@ class PeerListDelegate: public QItemDelegate {
   Q_OBJECT
 
 public:
-  enum PeerListColumns {COUNTRY, IP, CONNECTION, FLAGS, CLIENT, PROGRESS, DOWN_SPEED, UP_SPEED,
+  enum PeerListColumns {COUNTRY, IP, PORT, CONNECTION, FLAGS, CLIENT, PROGRESS, DOWN_SPEED, UP_SPEED,
                         TOT_DOWN, TOT_UP, IP_HIDDEN, COL_COUNT};
 
 public:
