@@ -62,6 +62,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent):
   m_listModel = new QStandardItemModel(0, PeerListDelegate::COL_COUNT);
   m_listModel->setHeaderData(PeerListDelegate::COUNTRY, Qt::Horizontal, QVariant()); // Country flag column
   m_listModel->setHeaderData(PeerListDelegate::IP, Qt::Horizontal, tr("IP"));
+  m_listModel->setHeaderData(PeerListDelegate::PORT, Qt::Horizontal, tr("Port"));
   m_listModel->setHeaderData(PeerListDelegate::FLAGS, Qt::Horizontal, tr("Flags"));
   m_listModel->setHeaderData(PeerListDelegate::CONNECTION, Qt::Horizontal, tr("Connection"));
   m_listModel->setHeaderData(PeerListDelegate::CLIENT, Qt::Horizontal, tr("Client", "i.e.: Client application"));
@@ -371,6 +372,7 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, const peer_info& peer)
   m_listModel->insertRow(row);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP), ip);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP), ip, Qt::ToolTipRole);
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::PORT), QString::number(peer.ip.port()));
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP_HIDDEN), ip);
   if (m_displayFlags) {
     const QIcon ico = GeoIPManager::CountryISOCodeToIcon(peer.country);
@@ -411,6 +413,7 @@ void PeerListWidget::updatePeer(const QString& ip, const peer_info& peer) {
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), getConnectionString(peer));
   QString flags, tooltip;
   getFlags(peer, flags, tooltip);
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::PORT), QString::number(peer.ip.port()));
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), flags);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), tooltip, Qt::ToolTipRole);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::CLIENT), misc::toQStringU(peer.client));
