@@ -1202,7 +1202,7 @@ void options_imp::showConnectionTab()
 }
 
 void options_imp::on_btnWebUiCrt_clicked() {
-  QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), tr("SSL Certificate (*.crt *.pem)"));
+  QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), tr("SSL Certificate")+QString(" (*.crt *.pem)"));
   if (filename.isNull())
     return;
   QFile file(filename);
@@ -1213,7 +1213,7 @@ void options_imp::on_btnWebUiCrt_clicked() {
 }
 
 void options_imp::on_btnWebUiKey_clicked() {
-  QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), tr("SSL Key (*.key *.pem)"));
+  QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), tr("SSL Key")+QString(" (*.key *.pem)"));
   if (filename.isNull())
     return;
   QFile file(filename);
