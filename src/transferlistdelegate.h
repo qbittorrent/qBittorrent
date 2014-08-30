@@ -68,11 +68,13 @@ public:
     case TorrentModelItem::TR_COMPLETED:
     case TorrentModelItem::TR_SIZE: {
         QItemDelegate::drawBackground(painter, opt, index);
+        opt.displayAlignment = Qt::AlignRight;
         QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
         break;
       }
     case TorrentModelItem::TR_ETA: {
         QItemDelegate::drawBackground(painter, opt, index);
+        opt.displayAlignment = Qt::AlignRight;
         QItemDelegate::drawDisplay(painter, opt, option.rect, misc::userFriendlyDuration(index.data().toLongLong()));
         break;
       }
@@ -85,6 +87,7 @@ public:
           display += " ("+QString::number(total)+")";
         }
         QItemDelegate::drawBackground(painter, opt, index);
+        opt.displayAlignment = Qt::AlignRight;
         QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
         break;
       }
@@ -137,6 +140,7 @@ public:
     case TorrentModelItem::TR_DLSPEED: {
         QItemDelegate::drawBackground(painter, opt, index);
         const qulonglong speed = index.data().toULongLong();
+        opt.displayAlignment = Qt::AlignRight;
         QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (.i.e per second)"));
         break;
       }
@@ -144,6 +148,7 @@ public:
     case TorrentModelItem::TR_DLLIMIT: {
       QItemDelegate::drawBackground(painter, opt, index);
       const qlonglong limit = index.data().toLongLong();
+      opt.displayAlignment = Qt::AlignRight;
       QItemDelegate::drawDisplay(painter, opt, opt.rect, limit > 0 ? misc::accurateDoubleToString(limit/1024., 1) + " " + tr("KiB/s", "KiB/second (.i.e per second)") : QString::fromUtf8("∞"));
       break;
     }
@@ -164,6 +169,7 @@ public:
     case TorrentModelItem::TR_RATIO_LIMIT:
     case TorrentModelItem::TR_RATIO: {
         QItemDelegate::drawBackground(painter, opt, index);
+        opt.displayAlignment = Qt::AlignRight;
         const qreal ratio = index.data().toDouble();
         QItemDelegate::drawDisplay(painter, opt, opt.rect,
                                    (ratio == -1 || ratio > QBtSession::MAX_RATIO) ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
@@ -171,9 +177,10 @@ public:
       }
     case TorrentModelItem::TR_PRIORITY: {
         const int priority = index.data().toInt();
-        if (priority >= 0) {
+        opt.displayAlignment = Qt::AlignRight;
+        if (priority >= 0)
           QItemDelegate::paint(painter, opt, index);
-        } else {
+        else {
           QItemDelegate::drawBackground(painter, opt, index);
           QItemDelegate::drawDisplay(painter, opt, opt.rect, "*");
         }
