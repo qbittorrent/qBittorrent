@@ -466,6 +466,8 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
 }
 
 void PropertiesWidget::displayFilesListMenu(const QPoint&) {
+  if (!h.is_valid())
+    return;
   QMenu myFilesLlistMenu;
   QModelIndexList selectedRows = filesList->selectionModel()->selectedRows(0);
   QAction *actOpen = 0;
@@ -521,6 +523,8 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&) {
 }
 
 void PropertiesWidget::displayWebSeedListMenu(const QPoint&) {
+  if (!h.is_valid())
+    return;
   QMenu seedMenu;
   QModelIndexList rows = listWebSeeds->selectionModel()->selectedRows();
   QAction *actAdd = seedMenu.addAction(IconProvider::instance()->getIcon("list-add"), tr("New Web seed"));
