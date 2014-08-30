@@ -385,7 +385,7 @@ void AutomatedRssDownloader::on_exportBtn_clicked()
 void AutomatedRssDownloader::on_importBtn_clicked()
 {
   // Ask for filter path
-  QString load_path = QFileDialog::getOpenFileName(this, tr("Please point to the RSS download rules file"), QDir::homePath(), tr("Rules list (*.rssrules *.filters)"));
+  QString load_path = QFileDialog::getOpenFileName(this, tr("Please point to the RSS download rules file"), QDir::homePath(), tr("Rules list")+QString(" (*.rssrules *.filters)"));
   if (load_path.isEmpty() || !QFile::exists(load_path)) return;
   // Load it
   if (!m_editableRuleList->unserialize(load_path)) {

@@ -65,7 +65,7 @@ void TorrentImportDlg::on_browseTorrentBtn_clicked()
   QIniSettings settings;
   const QString default_dir = settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString();
   // Ask for a torrent file
-  m_torrentPath = QFileDialog::getOpenFileName(this, tr("Torrent file to import"), default_dir, tr("Torrent files (*.torrent)"));
+  m_torrentPath = QFileDialog::getOpenFileName(this, tr("Torrent file to import"), default_dir, tr("Torrent files")+QString(" (*.torrent)"));
   if (!m_torrentPath.isEmpty()) {
     loadTorrent(m_torrentPath);
   } else {
