@@ -301,7 +301,9 @@ void AddNewTorrentDialog::updateDiskSpaceLabel() {
 
   QString size_string = torrent_size ? misc::friendlyUnit(torrent_size) : QString(tr("Not Available", "This size is unavailable."));
   size_string += " (";
-  size_string += tr("Disk space: %1").arg(misc::friendlyUnit(fsutils::freeDiskSpaceOnPath(ui->save_path_combo->currentText())));
+  size_string += tr("Disk space: %1").arg(misc::friendlyUnit(fsutils::freeDiskSpaceOnPath(
+                                                               ui->save_path_combo->itemData(
+                                                                 ui->save_path_combo->currentIndex()).toString())));
   size_string += ")";
   ui->size_lbl->setText(size_string);
 }
