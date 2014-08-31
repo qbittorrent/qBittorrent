@@ -174,6 +174,10 @@ void Smtp::readyRead()
     switch(state) {
     case Init: {
       if (code[0] == '2') {
+        // The server may send a multiline greeting/INIT/220 response.
+        // We wait until it finishes.
+        if (line[3] != ' ')
+          break;
         // Connection was successful
         ehlo();
       } else {
