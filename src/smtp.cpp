@@ -79,12 +79,33 @@ QByteArray hmacMD5(QByteArray key, const QByteArray &msg)
 
 QByteArray determineLocalAddress()
 {
+  const Preferences pref;
+  const QString iface_name = pref.getNetworkInterface();
+  const bool listen_ipv6 = pref.getListenIPv6();
   QByteArray address = "127.0.0.1";
-  foreach (const QHostAddress& addr, QNetworkInterface::allAddresses()) {
-    if (addr == QHostAddress::LocalHost || addr == QHostAddress::LocalHostIPv6)
-      continue;
-    address = addr.toString().toLatin1();
-    break;
+
+  if (address.isEmpty()) {
+    foreach (const QHostAddress& addr, QNetworkInterface::allAddresses()) {
+      if (addr == QHostAddress::LocalHost || addr == QHostAddress::LocalHostIPv6
+          || (!listen_ipv6 && (addr.protocol() == QAbstractSocket::IPv6Protocol)))
+        continue;
+      address = addr.toString().toLatin1();
+      break;
+    }
+  }
+  else {
+    const QNetworkInterface network_iface = QNetworkInterface::interfaceFromName(iface_name);
+    if (!network_iface.isValid())
+      return address;
+
+    foreach (const QNetworkAddressEntry &entry, network_iface.addressEntries()) {
+      if (entry.ip() == QHostAddress::LocalHost || entry.ip() == QHostAddress::LocalHostIPv6
+          || (!listen_ipv6 && (entry.ip().protocol() == QAbstractSocket::IPv6Protocol)))
+        continue;
+
+      address = entry.ip().toString().toLatin1();
+      break;
+    }
   }
 
   return address;
@@ -115,7 +136,7 @@ Smtp::~Smtp() {
 }
 
 void Smtp::sendMail(const QString &from, const QString &to, const QString &subject, const QString &body) {
-  Preferences pref;
+  const Preferences pref;
   QTextCodec* latin1 = QTextCodec::codecForName("latin1");
   message = "";
   message += encode_mime_header("Date", QDateTime::currentDateTime().toUTC().toString("ddd, d MMM yyyy hh:mm:ss UT"), latin1);
