@@ -81,7 +81,7 @@ QByteArray determineLocalAddress()
 {
   const Preferences pref;
   const QString iface_name = pref.getNetworkInterface();
-  const bool listen_ipv6 = pref.getListenIPv6();
+  const bool use_ipv6 = pref.getListenIPv6();
   QByteArray address = "127.0.0.1";
 
   if (iface_name.isEmpty()) {
