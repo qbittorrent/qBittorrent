@@ -87,7 +87,8 @@ QByteArray determineLocalAddress()
   if (iface_name.isEmpty()) {
     foreach (const QHostAddress& addr, QNetworkInterface::allAddresses()) {
       if (addr == QHostAddress::LocalHost || addr == QHostAddress::LocalHostIPv6
-          || (!listen_ipv6 && (addr.protocol() == QAbstractSocket::IPv6Protocol)))
+          || (!use_ipv6 && (addr.protocol() == QAbstractSocket::IPv6Protocol))
+          || (use_ipv6 && (addr.protocol() == QAbstractSocket::IPv4Protocol)))
         continue;
       address = addr.toString().toLatin1();
       break;
@@ -100,7 +101,8 @@ QByteArray determineLocalAddress()
 
     foreach (const QNetworkAddressEntry &entry, network_iface.addressEntries()) {
       if (entry.ip() == QHostAddress::LocalHost || entry.ip() == QHostAddress::LocalHostIPv6
-          || (!listen_ipv6 && (entry.ip().protocol() == QAbstractSocket::IPv6Protocol)))
+          || (!use_ipv6 && (entry.ip().protocol() == QAbstractSocket::IPv6Protocol))
+          || (use_ipv6 && (entry.ip().protocol() == QAbstractSocket::IPv4Protocol)))
         continue;
 
       address = entry.ip().toString().toLatin1();
