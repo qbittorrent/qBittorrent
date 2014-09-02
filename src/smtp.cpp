@@ -397,6 +397,10 @@ void Smtp::authenticate()
     // Skip authentication
     qDebug() << "Skipping authentication...";
     state = Authenticated;
+    // At this point the server will not send any response
+    // So fill the buffer with a fake one to pass the tests
+    // in readyRead()
+    buffer.push_front("250 QBT FAKE RESPONSE\r\n");
     return;
   }
   // AUTH extension is supported, check which
@@ -420,6 +424,10 @@ void Smtp::authenticate()
              "we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, "
              "knowing it is likely to fail... Server Auth Modes: "+auth.join("|"));
     state = Authenticated;
+    // At this point the server will not send any response
+    // So fill the buffer with a fake one to pass the tests
+    // in readyRead()
+    buffer.push_front("250 QBT FAKE RESPONSE\r\n");
   }
 }
 
