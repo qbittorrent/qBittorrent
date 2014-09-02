@@ -84,7 +84,7 @@ QByteArray determineLocalAddress()
   const bool listen_ipv6 = pref.getListenIPv6();
   QByteArray address = "127.0.0.1";
 
-  if (address.isEmpty()) {
+  if (iface_name.isEmpty()) {
     foreach (const QHostAddress& addr, QNetworkInterface::allAddresses()) {
       if (addr == QHostAddress::LocalHost || addr == QHostAddress::LocalHostIPv6
           || (!listen_ipv6 && (addr.protocol() == QAbstractSocket::IPv6Protocol)))
