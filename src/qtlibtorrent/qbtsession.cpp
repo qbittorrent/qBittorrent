@@ -1925,16 +1925,18 @@ void QBtSession::setListeningPort(int port) {
   QString ip;
   qDebug("This network interface has %d IP addresses", network_iface.addressEntries().size());
   foreach (const QNetworkAddressEntry &entry, network_iface.addressEntries()) {
-    if (!listen_ipv6 && (entry.ip().protocol() == QAbstractSocket::IPv6Protocol))
+    if ((!listen_ipv6 && (entry.ip().protocol() == QAbstractSocket::IPv6Protocol))
+        || (listen_ipv6 && (entry.ip().protocol() == QAbstractSocket::IPv4Protocol)))
       continue;
     qDebug("Trying to listen on IP %s (%s)", qPrintable(entry.ip().toString()), qPrintable(iface_name));
     s->listen_on(ports, ec, entry.ip().toString().toLatin1().constData(), session::listen_no_system_port);
     if (!ec) {
       ip = entry.ip().toString();
       addConsoleMessage(tr("qBittorrent is trying to listen on interface %1 port: %2", "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881").arg(ip).arg(QString::number(port)), "blue");
-      break;
+      return;
     }
-  }  
+  }
+  addConsoleMessage(tr("qBittorrent didn't find an %1 local address to listen on", "qBittorrent didn't find an IPv4 local address to listen on").arg(listen_ipv6 ? "IPv6" : "IPv4"), "red");
 }
 
 // Set download rate limit
