@@ -22,7 +22,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-#VERSION: 1.32
+#VERSION: 1.33
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -35,6 +35,9 @@ import socket
 import socks
 import re
 
+# Some sites blocks default python User-agent
+user_agent = 'Mozilla/5.0'
+headers    = {'User-Agent': user_agent}
 # SOCKS5 Proxy support
 if os.environ.has_key("sock_proxy") and len(os.environ["sock_proxy"].strip()) > 0:
     proxy_str = os.environ["sock_proxy"].strip()
@@ -61,7 +64,7 @@ def htmlentitydecode(s):
     
 def retrieve_url(url):
     """ Return the content of the url page as a string """
-    req = urllib2.Request(url)
+    req = urllib2.Request(url, headers)
     response = urllib2.urlopen(req)
     dat = response.read()
     # Check if it is gzipped
@@ -86,7 +89,7 @@ def download_file(url, referer=None):
     file, path = tempfile.mkstemp()
     file = os.fdopen(file, "w")
     # Download url
-    req = urllib2.Request(url)
+    req = urllib2.Request(url, headers)
     if referer is not None:
         req.add_header('referer', referer)
     response = urllib2.urlopen(req)
