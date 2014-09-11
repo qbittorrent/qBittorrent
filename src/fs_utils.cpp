@@ -52,7 +52,7 @@
 #if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
-#elif defined(Q_WS_HAIKU)
+#elif defined(Q_OS_HAIKU)
 #include <kernel/fs_info.h>
 #else
 #include <sys/vfs.h>
@@ -293,7 +293,7 @@ long long fsutils::freeDiskSpaceOnPath(QString path) {
 
 #ifndef Q_OS_WIN
   unsigned long long available;
-#ifdef Q_WS_HAIKU
+#ifdef Q_OS_HAIKU
   const QString statfs_path = dir_path.path()+"/.";
   dev_t device = dev_for_path (qPrintable(statfs_path));
   if (device >= 0) {
