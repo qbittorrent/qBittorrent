@@ -156,7 +156,7 @@ void sigtermHandler(int) {
 void sigsegvHandler(int) {
   signal(SIGABRT, 0);
   signal(SIGSEGV, 0);
-#if !defined Q_WS_WIN && !defined Q_WS_HAIKU
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGSEGV, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   std::cerr << "qBittorrent version: " << VERSION << std::endl;
@@ -173,7 +173,7 @@ void sigsegvHandler(int) {
 void sigabrtHandler(int) {
   signal(SIGABRT, 0);
   signal(SIGSEGV, 0);
-#if !defined Q_WS_WIN && !defined Q_WS_HAIKU
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGABRT, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   std::cerr << "qBittorrent version: " << VERSION << std::endl;
