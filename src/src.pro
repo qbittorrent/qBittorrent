@@ -111,7 +111,6 @@ HEADERS += misc.h \
            smtp.h \
            dnsupdater.h
 
-
 SOURCES += main.cpp \
            downloadthread.cpp \
            scannedfoldersmodel.cpp \
@@ -153,7 +152,9 @@ nox {
               addnewtorrentdialog.h \
               autoexpandabledialog.h \
               statsdialog.h \
-              messageboxraised.h
+              messageboxraised.h \
+              statussortfilterproxymodel.h \
+              torrentfilterenum.h
 
   SOURCES += mainwindow.cpp \
              ico.cpp \
@@ -173,7 +174,8 @@ nox {
              addnewtorrentdialog.cpp \
              autoexpandabledialog.cpp \
              statsdialog.cpp \
-             messageboxraised.cpp
+             messageboxraised.cpp \
+             statussortfilterproxymodel.cpp
 
   win32 {
     HEADERS += programupdater.h

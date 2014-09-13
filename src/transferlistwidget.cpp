@@ -60,6 +60,7 @@
 #include "iconprovider.h"
 #include "fs_utils.h"
 #include "autoexpandabledialog.h"
+#include "statussortfilterproxymodel.h"
 
 using namespace libtorrent;
 
@@ -84,11 +85,9 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
   labelFilterModel->setFilterKeyColumn(TorrentModelItem::TR_LABEL);
   labelFilterModel->setFilterRole(Qt::DisplayRole);
 
-  statusFilterModel = new QSortFilterProxyModel();
+  statusFilterModel = new StatusSortFilterProxyModel();
   statusFilterModel->setDynamicSortFilter(true);
   statusFilterModel->setSourceModel(labelFilterModel);
-  statusFilterModel->setFilterKeyColumn(TorrentModelItem::TR_STATUS);
-  statusFilterModel->setFilterRole(Qt::DisplayRole);
 
   nameFilterModel = new TransferListSortModel();
   nameFilterModel->setDynamicSortFilter(true);
@@ -912,29 +911,7 @@ void TransferListWidget::applyNameFilter(const QString& name) {
 }
 
 void TransferListWidget::applyStatusFilter(int f) {
-  switch(f) {
-  case FILTER_DOWNLOADING:
-    statusFilterModel->setFilterRegExp(QRegExp(QString::number(TorrentModelItem::STATE_DOWNLOADING)+"|"+QString::number(TorrentModelItem::STATE_STALLED_DL)+"|"+
-                                               QString::number(TorrentModelItem::STATE_PAUSED_DL)+"|"+QString::number(TorrentModelItem::STATE_CHECKING_DL)+"|"+
-                                               QString::number(TorrentModelItem::STATE_QUEUED_DL)+"|"+QString::number(TorrentModelItem::STATE_DOWNLOADING_META), Qt::CaseSensitive));
-    break;
-  case FILTER_COMPLETED:
-    statusFilterModel->setFilterRegExp(QRegExp(QString::number(TorrentModelItem::STATE_SEEDING)+"|"+QString::number(TorrentModelItem::STATE_STALLED_UP)+"|"+
-                                               QString::number(TorrentModelItem::STATE_PAUSED_UP)+"|"+QString::number(TorrentModelItem::STATE_CHECKING_UP)+"|"+
-                                               QString::number(TorrentModelItem::STATE_QUEUED_UP), Qt::CaseSensitive));
-    break;
-  case FILTER_ACTIVE:
-    statusFilterModel->setFilterRegExp(QRegExp(QString::number(TorrentModelItem::STATE_DOWNLOADING)+"|"+QString::number(TorrentModelItem::STATE_SEEDING), Qt::CaseSensitive));
-    break;
-  case FILTER_INACTIVE:
-    statusFilterModel->setFilterRegExp(QRegExp("[^"+QString::number(TorrentModelItem::STATE_DOWNLOADING)+QString::number(TorrentModelItem::STATE_SEEDING)+"]", Qt::CaseSensitive));
-    break;
-  case FILTER_PAUSED:
-    statusFilterModel->setFilterRegExp(QRegExp(QString::number(TorrentModelItem::STATE_PAUSED_UP)+"|"+QString::number(TorrentModelItem::STATE_PAUSED_DL)));
-    break;
-  default:
-    statusFilterModel->setFilterRegExp(QRegExp());
-  }
+  statusFilterModel->setFilterStatus((TorrentFilter::TorrentFilter)f);
   // Select first item if nothing is selected
   if (selectionModel()->selectedRows(0).empty() && nameFilterModel->rowCount() > 0) {
     qDebug("Nothing is selected, selecting first row: %s", qPrintable(nameFilterModel->index(0, TorrentModelItem::TR_NAME).data().toString()));

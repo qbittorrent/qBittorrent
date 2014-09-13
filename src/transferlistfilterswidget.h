@@ -50,6 +50,7 @@
 #include "iconprovider.h"
 #include "fs_utils.h"
 #include "autoexpandabledialog.h"
+#include "torrentfilterenum.h"
 
 class LabelFiltersList: public QListWidget {
   Q_OBJECT
@@ -301,12 +302,12 @@ public:
 protected slots:
   void updateTorrentNumbers() {
     const TorrentStatusReport report = transferList->getSourceModel()->getTorrentStatusReport();
-    statusFilters->item(FILTER_ALL)->setData(Qt::DisplayRole, QVariant(tr("All")+" ("+QString::number(report.nb_active+report.nb_inactive)+")"));
-    statusFilters->item(FILTER_DOWNLOADING)->setData(Qt::DisplayRole, QVariant(tr("Downloading")+" ("+QString::number(report.nb_downloading)+")"));
-    statusFilters->item(FILTER_COMPLETED)->setData(Qt::DisplayRole, QVariant(tr("Completed")+" ("+QString::number(report.nb_seeding)+")"));
-    statusFilters->item(FILTER_PAUSED)->setData(Qt::DisplayRole, QVariant(tr("Paused")+" ("+QString::number(report.nb_paused)+")"));
-    statusFilters->item(FILTER_ACTIVE)->setData(Qt::DisplayRole, QVariant(tr("Active")+" ("+QString::number(report.nb_active)+")"));
-    statusFilters->item(FILTER_INACTIVE)->setData(Qt::DisplayRole, QVariant(tr("Inactive")+" ("+QString::number(report.nb_inactive)+")"));
+    statusFilters->item(TorrentFilter::ALL)->setData(Qt::DisplayRole, QVariant(tr("All")+" ("+QString::number(report.nb_active+report.nb_inactive)+")"));
+    statusFilters->item(TorrentFilter::DOWNLOADING)->setData(Qt::DisplayRole, QVariant(tr("Downloading")+" ("+QString::number(report.nb_downloading)+")"));
+    statusFilters->item(TorrentFilter::COMPLETED)->setData(Qt::DisplayRole, QVariant(tr("Completed")+" ("+QString::number(report.nb_seeding)+")"));
+    statusFilters->item(TorrentFilter::PAUSED)->setData(Qt::DisplayRole, QVariant(tr("Paused")+" ("+QString::number(report.nb_paused)+")"));
+    statusFilters->item(TorrentFilter::ACTIVE)->setData(Qt::DisplayRole, QVariant(tr("Active")+" ("+QString::number(report.nb_active)+")"));
+    statusFilters->item(TorrentFilter::INACTIVE)->setData(Qt::DisplayRole, QVariant(tr("Inactive")+" ("+QString::number(report.nb_inactive)+")"));
   }
 
   void torrentDropped(int row) {

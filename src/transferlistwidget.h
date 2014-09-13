@@ -41,13 +41,12 @@ class QBtSession;
 class TransferListDelegate;
 class MainWindow;
 class TorrentModel;
+class StatusSortFilterProxyModel;
 
 QT_BEGIN_NAMESPACE
 class QSortFilterProxyModel;
 class QStandardItemModel;
 QT_END_NAMESPACE
-
-enum TorrentFilter {FILTER_ALL, FILTER_DOWNLOADING, FILTER_COMPLETED, FILTER_PAUSED, FILTER_ACTIVE, FILTER_INACTIVE};
 
 class TransferListWidget: public QTreeView {
   Q_OBJECT
@@ -115,7 +114,7 @@ private:
   TransferListDelegate *listDelegate;
   TorrentModel *listModel;
   TransferListSortModel *nameFilterModel;
-  QSortFilterProxyModel *statusFilterModel;
+  StatusSortFilterProxyModel *statusFilterModel;
   QSortFilterProxyModel *labelFilterModel;
   QBtSession* BTSession;
   MainWindow *main_window;
