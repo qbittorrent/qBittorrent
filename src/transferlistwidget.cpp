@@ -28,6 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QShortcut>
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QDesktopServices>
@@ -62,6 +63,7 @@
 #include "fs_utils.h"
 #include "autoexpandabledialog.h"
 #include "statussortfilterproxymodel.h"
+#include "transferlistsortmodel.h"
 
 using namespace libtorrent;
 

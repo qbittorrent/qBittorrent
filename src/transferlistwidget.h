@@ -31,19 +31,19 @@
 #ifndef TRANSFERLISTWIDGET_H
 #define TRANSFERLISTWIDGET_H
 
-#include <QShortcut>
 #include <QTreeView>
 #include <libtorrent/version.hpp>
-#include "qtorrenthandle.h"
-#include "transferlistsortmodel.h"
 
 class QBtSession;
-class TransferListDelegate;
+class QTorrentHandle;
 class MainWindow;
+class TransferListDelegate;
+class TransferListSortModel;
 class TorrentModel;
 class StatusSortFilterProxyModel;
 
 QT_BEGIN_NAMESPACE
+class QShortcut;
 class QSortFilterProxyModel;
 class QStandardItemModel;
 QT_END_NAMESPACE
