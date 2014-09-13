@@ -45,6 +45,7 @@
 #include <QTextCodec>
 #include <QDebug>
 #include <QHostAddress>
+#include <QHostInfo>
 #include <QNetworkInterface>
 #include <QCryptographicHash>
 
@@ -77,40 +78,13 @@ QByteArray hmacMD5(QByteArray key, const QByteArray &msg)
   return QCryptographicHash::hash(total, QCryptographicHash::Md5);
 }
 
-QByteArray determineLocalAddress()
+QByteArray determineFQDN()
 {
-  const Preferences pref;
-  const QString iface_name = pref.getNetworkInterface();
-  const bool use_ipv6 = pref.getListenIPv6();
-  QByteArray address = "127.0.0.1";
+  QString hostname = QHostInfo::localHostName();
+  if (hostname.isEmpty())
+    hostname = "localhost";
 
-  if (iface_name.isEmpty()) {
-    foreach (const QHostAddress& addr, QNetworkInterface::allAddresses()) {
-      if (addr == QHostAddress::LocalHost || addr == QHostAddress::LocalHostIPv6
-          || (!use_ipv6 && (addr.protocol() == QAbstractSocket::IPv6Protocol))
-          || (use_ipv6 && (addr.protocol() == QAbstractSocket::IPv4Protocol)))
-        continue;
-      address = addr.toString().toLatin1();
-      break;
-    }
-  }
-  else {
-    const QNetworkInterface network_iface = QNetworkInterface::interfaceFromName(iface_name);
-    if (!network_iface.isValid())
-      return address;
-
-    foreach (const QNetworkAddressEntry &entry, network_iface.addressEntries()) {
-      if (entry.ip() == QHostAddress::LocalHost || entry.ip() == QHostAddress::LocalHostIPv6
-          || (!use_ipv6 && (entry.ip().protocol() == QAbstractSocket::IPv6Protocol))
-          || (use_ipv6 && (entry.ip().protocol() == QAbstractSocket::IPv4Protocol)))
-        continue;
-
-      address = entry.ip().toString().toLatin1();
-      break;
-    }
-  }
-
-  return address;
+  return hostname.toLocal8Bit();
 }
 } // namespace
 
@@ -332,7 +306,7 @@ QByteArray Smtp::encode_mime_header(const QString& key, const QString& value, QT
 
 void Smtp::ehlo()
 {
-  QByteArray address = determineLocalAddress();
+  QByteArray address = determineFQDN();
   socket->write("ehlo " + address + "\r\n");
   socket->flush();
   state = EhloSent;
@@ -340,7 +314,7 @@ void Smtp::ehlo()
 
 void Smtp::helo()
 {
-  QByteArray address = determineLocalAddress();
+  QByteArray address = determineFQDN();
   socket->write("helo " + address + "\r\n");
   socket->flush();
   state = HeloSent;
