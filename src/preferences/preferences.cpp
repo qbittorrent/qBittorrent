@@ -844,7 +844,7 @@ void Preferences::banIP(const QString &ip) {
 
 // Search
 bool Preferences::isSearchEnabled() const {
-  return value("Preferences/Search/SearchEnabled", true).toBool();
+  return value("Preferences/Search/SearchEnabled", false).toBool();
 }
 
 void Preferences::setSearchEnabled(bool enabled) {
