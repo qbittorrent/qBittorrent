@@ -1054,7 +1054,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
 }
 
 // Add a torrent to the Bittorrent session
-QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString from_url, bool resumed) {
+QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString from_url, bool resumed, bool imported) {
   QTorrentHandle h;
   Preferences pref;
 
@@ -1193,9 +1193,9 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     // Remember label
     TorrentTempData::setLabel(hash, savePath_label.second);
   } else {
-    savePath = getSavePath(hash, fromScanDir, path);
+    savePath = getSavePath(hash, fromScanDir, path, imported);
   }
-  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash)) {
+  if (!imported && !defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash)) {
     qDebug("addTorrent::Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
     p.save_path = torrent_tmp_path.toUtf8().constData();
@@ -2775,14 +2775,14 @@ session_status QBtSession::getSessionStatus() const {
   return s->status();
 }
 
-QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString filePath) {
+QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString filePath, bool imported) {
   QString savePath;
   if (TorrentTempData::hasTempData(hash)) {
     savePath = TorrentTempData::getSavePath(hash);
     if (savePath.isEmpty()) {
       savePath = defaultSavePath;
     }
-    if (appendLabelToSavePath) {
+    if (!imported && appendLabelToSavePath) {
       qDebug("appendLabelToSavePath is true");
       const QString label = TorrentTempData::getLabel(hash);
       if (!label.isEmpty()) {
