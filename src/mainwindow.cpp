@@ -458,6 +458,7 @@ void MainWindow::displayRSSTab(bool enable) {
 }
 
 void MainWindow::displaySearchTab(bool enable) {
+  Preferences::instance()->setSearchEnabled(enable);
   if (enable) {
     // RSS tab
     if (!searchEngine) {
@@ -1327,7 +1328,14 @@ void MainWindow::on_actionRSS_Reader_triggered() {
 void MainWindow::on_actionSearch_engine_triggered() {
 #ifdef Q_OS_WIN
   if (!has_python && actionSearch_engine->isChecked()) {
-    bool res = addPythonPathToEnv();
+    bool res = false;
+
+    // Check if python is already in PATH
+    if (misc::pythonVersion())
+      res = true;
+    else
+      res = addPythonPathToEnv();
+
     if (res)
       has_python = true;
     else if (QMessageBox::question(this, tr("Missing Python Interpreter"),
@@ -1544,7 +1552,6 @@ void MainWindow::pythonDownloadSuccess(QString url, QString file_path) {
   has_python = addPythonPathToEnv();
   if (has_python) {
     actionSearch_engine->setChecked(true);
-    Preferences::instance()->setSearchEnabled(true);
     displaySearchTab(true);
   }
   sender()->deleteLater();
