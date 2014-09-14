@@ -49,6 +49,10 @@
 #include "fs_utils.h"
 #include "qinisettings.h"
 
+#ifdef Q_OS_WIN
+#include <winreg.h>
+#endif
+
 #define QBT_REALM "Web UI Access"
 enum scheduler_days { EVERY_DAY, WEEK_DAYS, WEEK_ENDS, MON, TUE, WED, THU, FRI, SAT, SUN };
 enum maxRatioAction {PAUSE_ACTION, REMOVE_ACTION};
@@ -1219,28 +1223,44 @@ public:
 
 #ifdef Q_WS_WIN
   static QString getPythonPath() {
-    QSettings reg_python("HKEY_LOCAL_MACHINE\\SOFTWARE\\Python\\PythonCore", QIniSettings::NativeFormat);
-    QStringList versions = reg_python.childGroups();
-    qDebug("Python versions nb: %d", versions.size());
-    //versions = versions.filter(QRegExp("2\\..*"));
-    versions.sort();
-    while(!versions.empty()) {
-      const QString version = versions.takeLast();
-      qDebug("Detected possible Python v%s location", qPrintable(version));
-      QString path = reg_python.value(version+"/InstallPath/Default", "").toString().replace("/", "\\");
-      if (!path.isEmpty() && QDir(path).exists("python.exe")) {
-        qDebug("Found python.exe at %s", qPrintable(path));
-        return path;
+    HKEY key_handle1;
+    long res = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("SOFTWARE\\Python\\PythonCore"), 0, KEY_READ, &key_handle1);
+    if (res == ERROR_SUCCESS) {
+      QStringList versions = getRegSubkeys(key_handle1);
+      qDebug("Python versions nb: %d", versions.size());
+      versions.sort();
+
+      while(!versions.empty()) {
+        const QString version = versions.takeLast()+"\\InstallPath";
+        HKEY key_handle2;
+        LPTSTR subkey = new TCHAR[version.size()+1];
+        version.toWCharArray(subkey);
+        subkey[version.size()] = '\0';
+
+        res = ::RegOpenKeyEx(key_handle1, subkey, 0, KEY_READ, &key_handle2);
+        delete[] subkey;
+        if (res == ERROR_SUCCESS) {
+          qDebug("Detected possible Python v%s location", qPrintable(version));
+          QString path = getRegValue(key_handle2);
+          ::RegCloseKey(key_handle2);
+          if (!path.isEmpty() && QDir(path).exists("python.exe")) {
+            qDebug("Found python.exe at %s", qPrintable(path));
+            ::RegCloseKey(key_handle1);
+            return path;
+          }
+        }
+        else
+          ::RegCloseKey(key_handle2);
       }
     }
+    ::RegCloseKey(key_handle1);
+
     // Fallback: Detect python from default locations
     QStringList supported_versions;
     supported_versions << "32" << "31" << "30" << "27" << "26" << "25";
     foreach (const QString &v, supported_versions) {
-      if (QFile::exists("C:/Python"+v+"/python.exe")) {
-        reg_python.setValue(v[0]+"."+v[1]+"/InstallPath/Default", QString("C:\\Python"+v));
+      if (QFile::exists("C:/Python"+v+"/python.exe"))
         return "C:\\Python"+v;
-      }
     }
     return QString::null;
   }
@@ -1379,6 +1399,64 @@ public:
   void setTrayIconStyle(TrayIcon::Style style) {
     setValue(QString::fromUtf8("Preferences/Advanced/TrayIconStyle"), style);
   }
+
+#ifdef Q_OS_WIN
+private:
+  static QStringList getRegSubkeys(const HKEY &handle) {
+    QStringList keys;
+    DWORD subkeys_count = 0;
+    DWORD max_subkey_len = 0;
+    long res = ::RegQueryInfoKey(handle, NULL, NULL, NULL, &subkeys_count, &max_subkey_len, NULL, NULL, NULL, NULL, NULL, NULL);
+    if (res == ERROR_SUCCESS) {
+      max_subkey_len++; //For null character
+      LPTSTR key_name = new TCHAR[max_subkey_len];
+
+      for (uint i=0; i<subkeys_count; i++) {
+        res = ::RegEnumKeyEx(handle, 0, key_name, &max_subkey_len, NULL, NULL, NULL, NULL);
+        if (res == ERROR_SUCCESS)
+          keys.push_back(QString::fromWCharArray(key_name));
+      }
+      delete[] key_name;
+    }
+
+    return keys;
+  }
+
+  static QString getRegValue(const HKEY &handle, const QString &name = QString()) {
+    QString end_result;
+    DWORD type = 0;
+    DWORD size = 0;
+    DWORD array_size = 0;
+
+    LPTSTR value_name = NULL;
+    if (!name.isEmpty()) {
+      value_name = new TCHAR[name.size()+1];
+      name.toWCharArray(value_name);
+      value_name[name.size()] = '\0';
+    }
+
+    // Discover the size of the value
+    ::RegQueryValueEx(handle, value_name, NULL, &type, NULL, &size);
+    array_size = size / sizeof(TCHAR);
+    if (size % sizeof(TCHAR))
+      array_size++;
+    array_size++; //For null character
+    LPTSTR value = new TCHAR[array_size];
+
+    long res = ::RegQueryValueEx(handle, value_name, NULL, &type, (LPBYTE)value, &size);
+    if (res == ERROR_SUCCESS) {
+      value[array_size] = '\0';
+      end_result = QString::fromWCharArray(value);
+    }
+
+    if (value_name)
+      delete[] value_name;
+    if (value)
+      delete[] value;
+
+    return end_result;
+  }
+#endif
 };
 
 #endif // PREFERENCES_H
