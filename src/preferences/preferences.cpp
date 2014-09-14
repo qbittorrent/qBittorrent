@@ -1340,6 +1340,8 @@ void Preferences::disableRecursiveDownload(bool disable) {
 
 #ifdef Q_OS_WIN
 namespace {
+enum REG_SEARCH_TYPE {USER, SYSTEM_32BIT, SYSTEM_64BIT};
+
 QStringList getRegSubkeys(const HKEY &handle) {
   QStringList keys;
   DWORD subkeys_count = 0;
@@ -1395,11 +1397,22 @@ QString getRegValue(const HKEY &handle, const QString &name = QString()) {
   return end_result;
 }
 
-}
-
-QString Preferences::getPythonPath() {
+QString pythonSearchReg(const REG_SEARCH_TYPE type) {
   HKEY key_handle1;
-  long res = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("SOFTWARE\\Python\\PythonCore"), 0, KEY_READ, &key_handle1);
+  long res = 0;
+
+  switch (type) {
+  case USER:
+    res = ::RegOpenKeyEx(HKEY_CURRENT_USER, TEXT("SOFTWARE\\Python\\PythonCore"), 0, KEY_READ, &key_handle1);
+    break;
+  case SYSTEM_32BIT:
+    res = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("SOFTWARE\\Python\\PythonCore"), 0, KEY_READ|KEY_WOW64_32KEY, &key_handle1);
+    break;
+  case SYSTEM_64BIT:
+    res = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("SOFTWARE\\Python\\PythonCore"), 0, KEY_READ|KEY_WOW64_64KEY, &key_handle1);
+    break;
+  }
+
   if (res == ERROR_SUCCESS) {
     QStringList versions = getRegSubkeys(key_handle1);
     qDebug("Python versions nb: %d", versions.size());
@@ -1412,7 +1425,18 @@ QString Preferences::getPythonPath() {
       version.toWCharArray(subkey);
       subkey[version.size()] = '\0';
 
-      res = ::RegOpenKeyEx(key_handle1, subkey, 0, KEY_READ, &key_handle2);
+      switch (type) {
+      case USER:
+        res = ::RegOpenKeyEx(key_handle1, subkey, 0, KEY_READ, &key_handle2);
+        break;
+      case SYSTEM_32BIT:
+        res = ::RegOpenKeyEx(key_handle1, subkey, 0, KEY_READ|KEY_WOW64_32KEY, &key_handle2);
+        break;
+      case SYSTEM_64BIT:
+        res = ::RegOpenKeyEx(key_handle1, subkey, 0, KEY_READ|KEY_WOW64_64KEY, &key_handle2);
+        break;
+      }
+
       delete[] subkey;
       if (res == ERROR_SUCCESS) {
         qDebug("Detected possible Python v%s location", qPrintable(version));
@@ -1429,6 +1453,23 @@ QString Preferences::getPythonPath() {
     }
   }
   ::RegCloseKey(key_handle1);
+  return QString::null;
+}
+
+}
+
+QString Preferences::getPythonPath() {
+  QString path = pythonSearchReg(USER);
+  if (path.isEmpty())
+    path = pythonSearchReg(SYSTEM_32BIT);
+  else return path;
+
+  if (path.isEmpty())
+    path = pythonSearchReg(SYSTEM_64BIT);
+  else return path;
+
+  if (!path.isEmpty())
+    return path;
 
   // Fallback: Detect python from default locations
   QStringList supported_versions;
