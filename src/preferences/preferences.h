@@ -725,7 +725,7 @@ public:
 
   // Search
   bool isSearchEnabled() const {
-    return value(QString::fromUtf8("Preferences/Search/SearchEnabled"), true).toBool();
+    return value(QString::fromUtf8("Preferences/Search/SearchEnabled"), false).toBool();
   }
 
   void setSearchEnabled(bool enabled) {
