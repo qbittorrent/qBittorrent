@@ -152,6 +152,12 @@ protected:
 
 private:
   QIcon getSystrayIcon() const;
+#ifdef Q_OS_WIN
+  bool addPythonPathToEnv();
+  void installPython();
+  void pythonDownloadSuccess(QString url, QString file_path);
+  void pythonDownloadFailure(QString url, QString error);
+#endif
 
 private:
   QFileSystemWatcher *executable_watcher;
@@ -199,6 +205,9 @@ private:
   QTimer *preventTimer;
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
   QTimer programUpdateTimer;
+#endif
+#ifdef Q_OS_WIN
+  bool has_python;
 #endif
 
 private slots:

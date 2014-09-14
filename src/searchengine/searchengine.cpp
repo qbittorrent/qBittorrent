@@ -49,7 +49,6 @@
 
 #include "searchengine.h"
 #include "qbtsession.h"
-#include "downloadthread.h"
 #include "fs_utils.h"
 #include "misc.h"
 #include "preferences.h"
@@ -80,9 +79,6 @@ SearchEngine::SearchEngine(MainWindow* parent)
   // Boolean initialization
   search_stopped = false;
   // Creating Search Process
-#ifdef Q_WS_WIN
-  has_python = addPythonPathToEnv();
-#endif
   searchProcess = new QProcess(this);
   searchProcess->setEnvironment(QProcess::systemEnvironment());
   connect(searchProcess, SIGNAL(started()), this, SLOT(searchStarted()));
@@ -94,11 +90,7 @@ SearchEngine::SearchEngine(MainWindow* parent)
   connect(searchTimeout, SIGNAL(timeout()), this, SLOT(on_search_button_clicked()));
   // Update nova.py search plugin if necessary
   updateNova();
-  supported_engines = new SupportedEngines(
-      #ifdef Q_WS_WIN
-        has_python
-      #endif
-        );
+  supported_engines = new SupportedEngines();
   // Fill in category combobox
   fillCatCombobox();
 
@@ -114,65 +106,6 @@ void SearchEngine::fillCatCombobox() {
     comboCategory->addItem(full_cat_names[cat], QVariant(cat));
   }
 }
-
-#ifdef Q_WS_WIN
-bool SearchEngine::addPythonPathToEnv() {
-  QString python_path = Preferences::getPythonPath();
-  if (!python_path.isEmpty()) {
-    // Add it to PATH envvar
-    QString path_envar = QString::fromLocal8Bit(qgetenv("PATH").constData());
-    if (path_envar.isNull()) {
-      path_envar = "";
-    }
-    path_envar = python_path+";"+path_envar;
-    qDebug("New PATH envvar is: %s", qPrintable(path_envar));
-    qputenv("PATH", path_envar.toLocal8Bit());
-    return true;
-  }
-  return false;
-}
-
-void SearchEngine::installPython() {
-  setCursor(QCursor(Qt::WaitCursor));
-  // Download python
-  DownloadThread *pydownloader = new DownloadThread(this);
-  connect(pydownloader, SIGNAL(downloadFinished(QString,QString)), this, SLOT(pythonDownloadSuccess(QString,QString)));
-  connect(pydownloader, SIGNAL(downloadFailure(QString,QString)), this, SLOT(pythonDownloadFailure(QString,QString)));
-  pydownloader->downloadUrl("http://python.org/ftp/python/2.7.3/python-2.7.3.msi");
-}
-
-void SearchEngine::pythonDownloadSuccess(QString url, QString file_path) {
-  setCursor(QCursor(Qt::ArrowCursor));
-  Q_UNUSED(url);
-  QFile::rename(file_path, file_path+".msi");
-  QProcess installer;
-  qDebug("Launching Python installer in passive mode...");
-
-  installer.start("msiexec.exe /passive /i "+file_path.replace("/", "\\")+".msi");
-  // Wait for setup to complete
-  installer.waitForFinished();
-
-  qDebug("Installer stdout: %s", installer.readAllStandardOutput().data());
-  qDebug("Installer stderr: %s", installer.readAllStandardError().data());
-  qDebug("Setup should be complete!");
-  // Reload search engine
-  has_python = addPythonPathToEnv();
-  if (has_python) {
-    supported_engines->update();
-    // Launch the search again
-    on_search_button_clicked();
-  }
-  // Delete temp file
-  fsutils::forceRemove(file_path);
-}
-
-void SearchEngine::pythonDownloadFailure(QString url, QString error) {
-  Q_UNUSED(url);
-  setCursor(QCursor(Qt::ArrowCursor));
-  QMessageBox::warning(this, tr("Download error"), tr("Python setup could not be downloaded, reason: %1.\nPlease install it manually.").arg(error));
-}
-
-#endif
 
 QString SearchEngine::selectedCategory() const {
   return comboCategory->itemData(comboCategory->currentIndex()).toString();
@@ -227,17 +160,6 @@ void SearchEngine::giveFocusToSearchInput() {
 
 // Function called when we click on search button
 void SearchEngine::on_search_button_clicked() {
-#ifdef Q_WS_WIN
-  if (!has_python) {
-    if (QMessageBox::question(this, tr("Missing Python Interpreter"),
-                             tr("Python 2.x is required to use the search engine but it does not seem to be installed.\nDo you want to install it now?"),
-                             QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
-      // Download and Install Python
-      installPython();
-    }
-    return;
-  }
-#endif
   if (searchProcess->state() != QProcess::NotRunning) {
 #ifdef Q_WS_WIN
     searchProcess->kill();
