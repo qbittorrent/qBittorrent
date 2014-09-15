@@ -54,6 +54,7 @@ public:
 signals:
   void downloadFinished(const QString &url, const QString &file_path);
   void downloadFailure(const QString &url, const QString &reason);
+  void magnetRedirect(const QString &url_new, const QString &url_old);
 
 private slots:
   void processDlFinished(QNetworkReply* reply);

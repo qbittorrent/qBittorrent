@@ -121,6 +121,14 @@ void DownloadThread::processDlFinished(QNetworkReply* reply) {
         newUrl = reply->url().resolved(newUrl);
     const QString newUrlString = newUrl.toString();
     qDebug("Redirecting from %s to %s", qPrintable(url), qPrintable(newUrlString));
+    // Redirect to magnet workaround
+    if (newUrlString.startsWith("magnet:", Qt::CaseInsensitive)) {
+      qDebug("Magnet redirect detected.");
+      reply->abort();
+      emit magnetRedirect(newUrlString, url);
+      reply->deleteLater();
+      return;
+    }
     m_redirectMapping.insert(newUrlString, url);
     // redirecting with first cookies
     downloadUrl(newUrlString, m_networkManager.cookieJar()->cookiesForUrl(url));

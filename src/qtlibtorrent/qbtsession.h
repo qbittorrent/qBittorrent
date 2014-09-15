@@ -138,6 +138,7 @@ public slots:
   void disableIPFilter();
   void setQueueingEnabled(bool enable);
   void handleDownloadFailure(QString url, QString reason);
+  void handleMagnetRedirect(const QString &url_new, const QString &url_old);
   void downloadUrlAndSkipDialog(QString url, QString save_path=QString(), QString label=QString(), const QList<QNetworkCookie>& cookies = QList<QNetworkCookie>());
   // Session configuration - Setters
   void setListeningPort(int port);
@@ -174,7 +175,7 @@ public slots:
   void clearConsoleMessages() { consoleMessages.clear(); }
   void clearPeerBanMessages() { peerBanMessages.clear(); }
   void processDownloadedFile(QString, QString);
-  void addMagnetSkipAddDlg(const QString& uri, const QString& save_path = QString(), const QString& label = QString());
+  void addMagnetSkipAddDlg(const QString& uri, const QString& save_path = QString(), const QString& label = QString(), const QString &uri_old = QString());
   void addMagnetInteractive(const QString& uri);
   void downloadFromURLList(const QStringList& urls);
   void configureSession();
