@@ -168,6 +168,7 @@ QBtSession::QBtSession()
   downloader = new DownloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), SLOT(processDownloadedFile(QString, QString)));
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), SLOT(handleDownloadFailure(QString, QString)));
+  connect(downloader, SIGNAL(magnetRedirect(QString, QString)), SLOT(handleMagnetRedirect(QString, QString)));
   // Regular saving of fastresume data
   connect(&resumeDataTimer, SIGNAL(timeout()), SLOT(saveTempFastResumeData()));
   resumeDataTimer.start(170000); // 3min
@@ -274,6 +275,20 @@ void QBtSession::handleDownloadFailure(QString url, QString reason) {
   const QUrl qurl = QUrl::fromEncoded(url.toUtf8());
   url_skippingDlg.removeOne(qurl);
   savepathLabel_fromurl.remove(qurl);
+}
+
+void QBtSession::handleMagnetRedirect(const QString &url_new, const QString &url_old) {
+  if (url_skippingDlg.contains(url_old)) {
+    url_skippingDlg.removeOne(url_old);
+    QPair<QString, QString> savePath_label;
+    if (savepathLabel_fromurl.contains(url_old)) {
+      savePath_label = savepathLabel_fromurl.take(QUrl::fromEncoded(url_old.toUtf8()));
+      savepathLabel_fromurl.remove(url_old);
+    }
+    addMagnetSkipAddDlg(url_new, savePath_label.first, savePath_label.second, url_old);
+  }
+  else
+    addMagnetInteractive(url_new);
 }
 
 void QBtSession::setQueueingEnabled(bool enable) {
@@ -2843,11 +2858,11 @@ void QBtSession::addMagnetInteractive(const QString& uri)
   emit newMagnetLink(uri);
 }
 
-void QBtSession::addMagnetSkipAddDlg(const QString& uri, const QString& save_path, const QString& label) {
+void QBtSession::addMagnetSkipAddDlg(const QString& uri, const QString& save_path, const QString& label, const QString &uri_old) {
   if (!save_path.isEmpty() || !label.isEmpty())
     savepathLabel_fromurl[uri] = qMakePair(save_path, label);
   addMagnetUri(uri, false);
-  emit newDownloadedTorrentFromRss(uri);
+  emit newDownloadedTorrentFromRss(uri_old.isEmpty() ? uri : uri_old);
 }
 
 void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QString label, const QList<QNetworkCookie>& cookies) {
