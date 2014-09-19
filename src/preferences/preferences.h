@@ -993,7 +993,7 @@ public:
 
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.
     // These macros may not be available on compilers other than MSVC and GCC
-#if !defined(_M_X64) || !defined(__amd64__)
+#if !defined(_M_X64) && !defined(__amd64__)
     //1800MiB to leave 248MiB room to the rest of program data in RAM
     if (size > 1800)
       size = 1800;
@@ -1012,7 +1012,7 @@ public:
   void setDiskCacheSize(uint size) {
     uint size0 = size;
 
-#if !defined(_M_X64) || !defined(__amd64__)
+#if !defined(_M_X64) && !defined(__amd64__)
     //1800MiB to leave 248MiB room to the rest of program data in RAM
     if (size0 > 1800)
       size0 = 1800;
