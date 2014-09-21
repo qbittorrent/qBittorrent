@@ -22,7 +22,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-#VERSION: 1.33
+#VERSION: 1.34
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -64,7 +64,7 @@ def htmlentitydecode(s):
     
 def retrieve_url(url):
     """ Return the content of the url page as a string """
-    req = urllib2.Request(url, headers)
+    req = urllib2.Request(url, headers = headers)
     response = urllib2.urlopen(req)
     dat = response.read()
     # Check if it is gzipped
@@ -89,7 +89,7 @@ def download_file(url, referer=None):
     file, path = tempfile.mkstemp()
     file = os.fdopen(file, "w")
     # Download url
-    req = urllib2.Request(url, headers)
+    req = urllib2.Request(url, headers = headers)
     if referer is not None:
         req.add_header('referer', referer)
     response = urllib2.urlopen(req)
