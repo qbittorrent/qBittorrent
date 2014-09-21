@@ -185,7 +185,7 @@ FunctionEnd
 Function check_instance
 
   check:
-  FindProcDLL::FindProc "qbittorrent.exe"
+  FindProcDLL::FindProc "$INSTDIR\qbittorrent.exe"
   StrCmp $R0 "1" 0 notfound
   MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION $(inst_warning) IDRETRY check IDCANCEL done
 
