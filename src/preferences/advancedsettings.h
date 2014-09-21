@@ -184,7 +184,7 @@ private slots:
     spin_cache.setMinimum(0);
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.
     // These macros may not be available on compilers other than MSVC and GCC
-#if !defined(_M_X64) || !defined(__amd64__)
+#if !defined(_M_X64) && !defined(__amd64__)
     //1800MiB to leave 248MiB room to the rest of program data in RAM
     spin_cache.setMaximum(1800);
 #else
