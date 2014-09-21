@@ -800,7 +800,7 @@ bool QBtSession::hasDownloadingTorrents() const {
       try {
         const torrent_status status = torrentIT->status();
         if (status.state != torrent_status::finished && status.state != torrent_status::seeding
-            && !status.paused)
+            && !(status.paused && !status.auto_managed))
           return true;
       } catch(std::exception) {}
     }
