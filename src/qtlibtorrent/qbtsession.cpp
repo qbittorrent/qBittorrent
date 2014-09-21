@@ -803,7 +803,7 @@ bool QBtSession::hasDownloadingTorrents() const {
             &&
 #if LIBTORRENT_VERSION_NUM >= 1600
             !(status.paused && !status.auto_managed))
-#elif
+#else
             !(torrentIT->is_paused() && !torrentIT->is_auto_managed()))
 #endif
           return true;
