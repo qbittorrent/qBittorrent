@@ -1331,7 +1331,7 @@ void MainWindow::on_actionSearch_engine_triggered() {
     bool res = false;
 
     // Check if python is already in PATH
-    if (misc::pythonVersion())
+    if (misc::pythonVersion() > 0)
       res = true;
     else
       res = addPythonPathToEnv();
