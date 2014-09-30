@@ -468,8 +468,10 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
 void PropertiesWidget::displayFilesListMenu(const QPoint&) {
   if (!h.is_valid())
     return;
-  QMenu myFilesLlistMenu;
   QModelIndexList selectedRows = filesList->selectionModel()->selectedRows(0);
+  if (selectedRows.empty())
+    return;
+  QMenu myFilesLlistMenu;
   QAction *actOpen = 0;
   QAction *actOpenContainingFolder = 0;
   QAction *actRename = 0;
