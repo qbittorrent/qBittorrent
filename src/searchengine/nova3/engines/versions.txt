@@ -1,4 +1,4 @@
-torrentreactor: 1.32
+torrentreactor: 1.33
 mininova: 1.50
 piratebay: 1.53
 vertor: 1.3

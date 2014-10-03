@@ -1,6 +1,7 @@
-#VERSION: 1.32
+#VERSION: 1.33
 #AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
+#              Bruno Barbieri (brunorex@gmail.com)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -27,8 +28,10 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 from novaprinter import prettyPrinter
-import sgmllib3
 from helpers import retrieve_url, download_file
+from urllib import error, parse
+import sgmllib3
+import re
 
 class torrentreactor(object):
 	url = 'http://www.torrentreactor.net'
@@ -37,7 +40,7 @@ class torrentreactor(object):
 
 	def download_torrent(self, info):
 		print(download_file(info))
-		
+
 	class SimpleSGMLParser(sgmllib3.SGMLParser):
 		def __init__(self, results, url, *args):
 			sgmllib3.SGMLParser.__init__(self)
@@ -49,18 +52,15 @@ class torrentreactor(object):
 
 		def start_a(self, attr):
 			params = dict(attr)
-			if 'torrentreactor.net/download.php' in params['href']:
+			if re.match("/torrents/\d+.*", params['href']):
 				self.current_item = {}
+				self.current_item['desc_link'] = self.url+params['href'].strip()
+			elif 'torrentreactor.net/download.php' in params['href']:
 				self.td_counter = 0
 				self.current_item['link'] = params['href'].strip()
-			elif params['href'].startswith('/torrents/'):
-				self.current_item['desc_link'] = 'http://www.torrentreactor.net'+params['href'].strip()
+				self.current_item['name'] = parse.unquote_plus(params['href'].split('&')[1].split('name=')[1])
 
 		def handle_data(self, data):
-			if self.td_counter == 0:
-				if 'name' not in self.current_item:
-					self.current_item['name'] = ''
-				self.current_item['name']+= data.strip()
 			if self.td_counter == 1:
 				if 'size' not in self.current_item:
 					self.current_item['size'] = ''
@@ -96,10 +96,16 @@ class torrentreactor(object):
 
 	def search(self, what, cat='all'):
 		i = 0
+		dat = ''
 		while True and i<11:
 			results = []
 			parser = self.SimpleSGMLParser(results, self.url)
-			dat = retrieve_url(self.url+'/ts.php?search=&words=%s&cid=%s&sid=&type=1&orderby=a.seeds&asc=0&skip=%s'%(what, self.supported_categories[cat], (i*35)))
+
+			try:
+				dat = retrieve_url(self.url+'/torrent-search/%s/%s?sort=seeders.desc&type=all&period=none&categories=%s'%(what, (i*35), self.supported_categories[cat]))
+			except error.HTTPError:
+				break
+
 			parser.feed(dat)
 			parser.close()
 			if len(results) <= 0:
