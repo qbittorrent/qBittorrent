@@ -1,4 +1,4 @@
-#VERSION: 1.43
+#VERSION: 1.44
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -24,22 +24,18 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-import sys
-#import codecs
-
-# Force UTF-8 printing
-#sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
 
 def prettyPrinter(dictionary):
-	# Convert everything to unicode for safe printing
-	#for key,value in list(dictionary.items()):
-		#if isinstance(dictionary[key], str):
-		#	dictionary[key] = str(dictionary[key], 'utf-8')
+	outtext = ''
 	dictionary['size'] = anySizeToBytes(dictionary['size'])
 	if 'desc_link' in dictionary:
-		print("%s|%s|%s|%s|%s|%s|%s"%(dictionary['link'],dictionary['name'].replace('|',' '),dictionary['size'],dictionary['seeds'],dictionary['leech'],dictionary['engine_url'],dictionary['desc_link']))
+		outtext = '%s|%s|%s|%s|%s|%s|%s'%(dictionary['link'],dictionary['name'].replace('|',' '),dictionary['size'],dictionary['seeds'],dictionary['leech'],dictionary['engine_url'],dictionary['desc_link'])
 	else:
-		print("%s|%s|%s|%s|%s|%s"%(dictionary['link'],dictionary['name'].replace('|',' '),dictionary['size'],dictionary['seeds'],dictionary['leech'],dictionary['engine_url']))
+		outtext = '%s|%s|%s|%s|%s|%s'%(dictionary['link'],dictionary['name'].replace('|',' '),dictionary['size'],dictionary['seeds'],dictionary['leech'],dictionary['engine_url'])
+
+	# fd 1 is stdout
+	with open(1, 'w', encoding='utf-8', closefd=False) as utf8stdout:
+		print(outtext, file=utf8stdout)
 
 def anySizeToBytes(size_string):
 	"""
