@@ -30,7 +30,7 @@
 from novaprinter import prettyPrinter
 from helpers import retrieve_url, download_file
 from urllib import error, parse
-import sgmllib3
+from html.parser import HTMLParser
 import re
 
 class torrentreactor(object):
@@ -41,14 +41,19 @@ class torrentreactor(object):
 	def download_torrent(self, info):
 		print(download_file(info))
 
-	class SimpleSGMLParser(sgmllib3.SGMLParser):
+	class SimpleHTMLParser(HTMLParser):
 		def __init__(self, results, url, *args):
-			sgmllib3.SGMLParser.__init__(self)
+			HTMLParser.__init__(self)
 			self.td_counter = None
 			self.current_item = None
 			self.results = results
 			self.id = None
 			self.url = url
+			self.dispatcher = { 'a' : self.start_a, 'td' : self.start_td }
+
+		def handle_starttag(self, tag, attrs):
+			if tag in self.dispatcher:
+				self.dispatcher[tag](attrs)
 
 		def start_a(self, attr):
 			params = dict(attr)
@@ -92,14 +97,14 @@ class torrentreactor(object):
 
 	def __init__(self):
 		self.results = []
-		self.parser = self.SimpleSGMLParser(self.results, self.url)
+		self.parser = self.SimpleHTMLParser(self.results, self.url)
 
 	def search(self, what, cat='all'):
 		i = 0
 		dat = ''
 		while True and i<11:
 			results = []
-			parser = self.SimpleSGMLParser(results, self.url)
+			parser = self.SimpleHTMLParser(results, self.url)
 
 			try:
 				dat = retrieve_url(self.url+'/torrent-search/%s/%s?sort=seeders.desc&type=all&period=none&categories=%s'%(what, (i*35), self.supported_categories[cat]))
