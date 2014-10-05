@@ -136,8 +136,8 @@ void misc::shutdownComputer(shutDownAction action) {
   }
 #endif
 #ifdef Q_WS_MAC
+  AEEventID EventToSend;
   if (action != SHUTDOWN_COMPUTER)
-  if (sleep)
     EventToSend = kAESleep;
   else
     EventToSend = kAEShutDown;
