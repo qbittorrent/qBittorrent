@@ -633,8 +633,10 @@ void TransferListWidget::askNewLabelForSelection() {
 bool TransferListWidget::openUrl(const QString &_path) const {
   const QString path = fsutils::fromNativePath(_path);
   // Hack to access samba shares with QDesktopServices::openUrl
-  const QString p = path.startsWith("//") ? QString("file:") + path : path;
-  return QDesktopServices::openUrl(QUrl::fromLocalFile(p));
+  if (path.startsWith("//"))
+    return QDesktopServices::openUrl(fsutils::toNativePath("file:" + path));
+  else
+    return QDesktopServices::openUrl(QUrl::fromLocalFile(path));
 }
 
 void TransferListWidget::renameSelectedTorrent() {

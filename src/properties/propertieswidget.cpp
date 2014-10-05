@@ -429,9 +429,10 @@ void PropertiesWidget::openFile(const QModelIndex &index) {
   // Flush data
   h.flush_cache();
   if (QFile::exists(file_path)) {
-    // Hack to access samba shares with QDesktopServices::openUrl
-    const QString p = file_path.startsWith("//") ? QString("file:") + file_path : file_path;
-    QDesktopServices::openUrl(QUrl::fromLocalFile(p));
+    if (file_path.startsWith("//"))
+      QDesktopServices::openUrl(fsutils::toNativePath("file:" + file_path));
+    else
+      QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
   }
   else {
     QMessageBox::warning(this, tr("I/O Error"), tr("This file does not exist yet."));
@@ -471,8 +472,10 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
 #endif
     if (QFile::exists(file_path)) {
       // Hack to access samba shares with QDesktopServices::openUrl
-      const QString p = file_path.startsWith("//") ? QString("file:") + file_path : file_path;
-      QDesktopServices::openUrl(QUrl::fromLocalFile(p));
+      if (file_path.startsWith("//"))
+        QDesktopServices::openUrl(fsutils::toNativePath("file:" + file_path));
+      else
+        QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
     } else {
       QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
     }
