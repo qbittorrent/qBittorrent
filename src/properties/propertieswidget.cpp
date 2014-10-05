@@ -477,7 +477,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&) {
   QAction *actOpenContainingFolder = 0;
   QAction *actRename = 0;
   if (selectedRows.size() == 1) {
-    actOpen = myFilesLlistMenu.addAction(tr("Open"));
+    actOpen = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("folder-documents"), tr("Open"));
     actOpenContainingFolder = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
     actRename = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
     myFilesLlistMenu.addSeparator();
