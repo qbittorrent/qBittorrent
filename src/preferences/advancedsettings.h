@@ -13,7 +13,7 @@
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, DISK_CACHE_TTL, OS_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_LISTEN_IPV6, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
+enum AdvSettingsRows {DISK_CACHE, DISK_CACHE_TTL, OS_CACHE, SAVE_RESUME_DATA_INTERVAL, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_LISTEN_IPV6, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
                     #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
                       UPDATE_CHECK,
                     #endif
@@ -28,7 +28,7 @@ class AdvancedSettings: public QTableWidget {
   Q_OBJECT
 
 private:
-  QSpinBox spin_cache, outgoing_ports_min, outgoing_ports_max, spin_list_refresh, spin_maxhalfopen, spin_tracker_port;
+  QSpinBox spin_cache, spin_save_resume_data_interval, outgoing_ports_min, outgoing_ports_max, spin_list_refresh, spin_maxhalfopen, spin_tracker_port;
   QCheckBox cb_os_cache, cb_ignore_limits_lan, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
   cb_super_seeding, cb_program_notifications, cb_tracker_status, cb_confirm_torrent_deletion,
   cb_enable_tracker_ext, cb_listen_ipv6;
@@ -73,6 +73,8 @@ public slots:
     pref->setDiskCacheTTL(spin_cache_ttl.value());
     // Enable OS cache
     pref->setOsCache(cb_os_cache.isChecked());
+    // Save resume data interval
+    pref->setSaveResumeDataInterval(spin_save_resume_data_interval.value());
     // Outgoing ports
     pref->setOutgoingPortsMin(outgoing_ports_min.value());
     pref->setOutgoingPortsMax(outgoing_ports_max.value());
@@ -195,6 +197,12 @@ private slots:
     // Enable OS cache
     cb_os_cache.setChecked(pref->osCache());
     setRow(OS_CACHE, tr("Enable OS cache"), &cb_os_cache);
+    // Save resume data interval
+    spin_save_resume_data_interval.setMinimum(1);
+    spin_save_resume_data_interval.setMaximum(1440);
+    spin_save_resume_data_interval.setValue(pref->saveResumeDataInterval());
+    spin_save_resume_data_interval.setSuffix(tr(" m", " minutes"));
+    setRow(SAVE_RESUME_DATA_INTERVAL, tr("Save resume data interval"), &spin_save_resume_data_interval);
     // Outgoing port Min
     outgoing_ports_min.setMinimum(0);
     outgoing_ports_min.setMaximum(65535);

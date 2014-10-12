@@ -316,6 +316,8 @@ public:
   void setDiskCacheTTL(uint ttl);
   bool osCache() const;
   void setOsCache(bool enable);
+  uint saveResumeDataInterval() const;
+  void setSaveResumeDataInterval(uint m);
   uint outgoingPortsMin() const;
   void setOutgoingPortsMin(uint val);
   uint outgoingPortsMax() const;
