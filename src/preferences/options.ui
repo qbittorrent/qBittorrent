@@ -92,6 +92,9 @@
        <property name="text">
         <string>Downloads</string>
        </property>
+       <property name="toolTip">
+        <string>Downloads</string>
+       </property>
        <property name="textAlignment">
         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
@@ -101,6 +104,9 @@
       </item>
       <item>
        <property name="text">
+        <string>Connection</string>
+       </property>
+       <property name="toolTip">
         <string>Connection</string>
        </property>
        <property name="textAlignment">
@@ -114,6 +120,9 @@
        <property name="text">
         <string>Speed</string>
        </property>
+       <property name="toolTip">
+        <string>Speed</string>
+       </property>
        <property name="textAlignment">
         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
@@ -123,6 +132,9 @@
       </item>
       <item>
        <property name="text">
+        <string>BitTorrent</string>
+       </property>
+       <property name="toolTip">
         <string>BitTorrent</string>
        </property>
        <property name="textAlignment">
@@ -136,6 +148,9 @@
        <property name="text">
         <string>Web UI</string>
        </property>
+       <property name="toolTip">
+        <string>Web UI</string>
+       </property>
        <property name="textAlignment">
         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
@@ -145,6 +160,9 @@
       </item>
       <item>
        <property name="text">
+        <string>Advanced</string>
+       </property>
+       <property name="toolTip">
         <string>Advanced</string>
        </property>
        <property name="textAlignment">
