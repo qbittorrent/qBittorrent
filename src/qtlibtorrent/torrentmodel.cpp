@@ -549,7 +549,7 @@ void TorrentModel::stateUpdated(const std::vector<libtorrent::torrent_status> &s
   for (statuses_t::const_iterator i = statuses.begin(), end = statuses.end(); i != end; ++i) {
     libtorrent::torrent_status const& status = *i;
 
-    const int row = torrentRow(misc::toQString(status.handle.info_hash()));
+    const int row = torrentRow(misc::toQString(status.info_hash));
     if (row >= 0)
       m_torrents[row]->refreshStatus(status);
   }

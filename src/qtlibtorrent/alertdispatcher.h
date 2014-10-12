@@ -42,18 +42,20 @@ class QAlertDispatcher : public QObject {
   Q_OBJECT
   Q_DISABLE_COPY(QAlertDispatcher)
 
+  struct Tag;
+
 public:
   QAlertDispatcher(libtorrent::session *session, QObject* parent);
   ~QAlertDispatcher();
 
-  void getPendingAlertsNoWait(std::deque<libtorrent::alert*>&);
-  void getPendingAlerts(std::deque<libtorrent::alert*>&, unsigned long time = ULONG_MAX);
+  void getPendingAlertsNoWait(std::vector<libtorrent::alert*>&);
+  void getPendingAlerts(std::vector<libtorrent::alert*>&, unsigned long time = ULONG_MAX);
 
 signals:
   void alertsReceived();
 
 private:
-  static void dispatch(QSharedPointer<QAtomicPointer<QAlertDispatcher> >,
+  static void dispatch(QSharedPointer<Tag>,
                        std::auto_ptr<libtorrent::alert>);
   void enqueueToMainThread();
 
@@ -62,10 +64,9 @@ private slots:
 
 private:
   libtorrent::session *m_session;
-  QMutex alerts_mutex;
   QWaitCondition alerts_condvar;
-  std::deque<libtorrent::alert*> alerts;
-  QSharedPointer<QAtomicPointer<QAlertDispatcher> > current_tag;
+  std::vector<libtorrent::alert*> alerts;
+  QSharedPointer<Tag> current_tag;
   bool event_posted;
 };
 

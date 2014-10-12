@@ -1649,7 +1649,7 @@ void QBtSession::saveFastResumeData() {
     } catch(libtorrent::invalid_handle&) {}
   }
   while (num_resume_data > 0) {
-    std::deque<alert*> alerts;
+    std::vector<alert*> alerts;
     m_alertDispatcher->getPendingAlerts(alerts, 30*1000);
     if (alerts.empty()) {
       std::cerr << " aborting with " << num_resume_data << " outstanding "
@@ -1657,7 +1657,7 @@ void QBtSession::saveFastResumeData() {
       break;
     }
 
-    for (std::deque<alert*>::const_iterator i = alerts.begin(), end = alerts.end(); i != end; ++i)
+    for (std::vector<alert*>::const_iterator i = alerts.begin(), end = alerts.end(); i != end; ++i)
     {
       alert const* a = *i;
       // Saving fastresume data can fail
@@ -2147,7 +2147,7 @@ void QBtSession::sendNotificationEmail(const QTorrentHandle &h) {
 // Read alerts sent by the Bittorrent session
 void QBtSession::readAlerts() {
 
-  typedef std::deque<alert*> alerts_t;
+  typedef std::vector<alert*> alerts_t;
   alerts_t alerts;
   m_alertDispatcher->getPendingAlertsNoWait(alerts);
 
