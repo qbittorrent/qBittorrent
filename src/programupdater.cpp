@@ -43,10 +43,10 @@
 #include "preferences.h"
 
 #ifdef Q_OS_MAC
-const QUrl RSS_URL("http://sourceforge.net/api/file/index/project-id/163414/mtime/desc/rss?path=/qbittorrent-mac");
+const QUrl RSS_URL("http://sourceforge.net/projects/qbittorrent/rss?path=/qbittorrent-mac");
 const QString FILE_EXT = "DMG";
 #else
-const QUrl RSS_URL("http://sourceforge.net/api/file/index/project-id/163414/mtime/desc/rss?path=/qbittorrent-win32");
+const QUrl RSS_URL("http://sourceforge.net/projects/qbittorrent/rss?path=/qbittorrent-win32");
 const QString FILE_EXT = "EXE";
 #endif
 
