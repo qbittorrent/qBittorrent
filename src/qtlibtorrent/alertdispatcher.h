@@ -42,6 +42,8 @@ class QAlertDispatcher : public QObject {
   Q_OBJECT
   Q_DISABLE_COPY(QAlertDispatcher)
 
+  struct Tag;
+
 public:
   QAlertDispatcher(libtorrent::session *session, QObject* parent);
   ~QAlertDispatcher();
@@ -53,7 +55,7 @@ signals:
   void alertsReceived();
 
 private:
-  static void dispatch(QSharedPointer<QAtomicPointer<QAlertDispatcher> >,
+  static void dispatch(QSharedPointer<Tag>,
                        std::auto_ptr<libtorrent::alert>);
   void enqueueToMainThread();
 
@@ -62,10 +64,9 @@ private slots:
 
 private:
   libtorrent::session *m_session;
-  QMutex alerts_mutex;
   QWaitCondition alerts_condvar;
   std::vector<libtorrent::alert*> alerts;
-  QSharedPointer<QAtomicPointer<QAlertDispatcher> > current_tag;
+  QSharedPointer<Tag> current_tag;
   bool event_posted;
 };
 
