@@ -46,8 +46,8 @@ public:
   QAlertDispatcher(libtorrent::session *session, QObject* parent);
   ~QAlertDispatcher();
 
-  void getPendingAlertsNoWait(std::deque<libtorrent::alert*>&);
-  void getPendingAlerts(std::deque<libtorrent::alert*>&, unsigned long time = ULONG_MAX);
+  void getPendingAlertsNoWait(std::vector<libtorrent::alert*>&);
+  void getPendingAlerts(std::vector<libtorrent::alert*>&, unsigned long time = ULONG_MAX);
 
 signals:
   void alertsReceived();
@@ -64,7 +64,7 @@ private:
   libtorrent::session *m_session;
   QMutex alerts_mutex;
   QWaitCondition alerts_condvar;
-  std::deque<libtorrent::alert*> alerts;
+  std::vector<libtorrent::alert*> alerts;
   QSharedPointer<QAtomicPointer<QAlertDispatcher> > current_tag;
   bool event_posted;
 };

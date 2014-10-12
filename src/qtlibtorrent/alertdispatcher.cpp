@@ -33,12 +33,15 @@
 #include <boost/bind.hpp>
 #include <QMutexLocker>
 
+const size_t DEFAULT_ALERTS_CAPACITY = 32;
+
 QAlertDispatcher::QAlertDispatcher(libtorrent::session *session, QObject* parent)
   : QObject(parent)
   , m_session(session)
   , current_tag(new QAtomicPointer<QAlertDispatcher>(this))
   , event_posted(false)
 {
+  alerts.reserve(DEFAULT_ALERTS_CAPACITY);
   m_session->set_alert_dispatch(boost::bind(&QAlertDispatcher::dispatch, current_tag, _1));
 }
 
@@ -60,16 +63,18 @@ QAlertDispatcher::~QAlertDispatcher() {
   m_session->set_alert_dispatch(dispatch_function_t());
 }
 
-void QAlertDispatcher::getPendingAlertsNoWait(std::deque<libtorrent::alert*>& out) {
+void QAlertDispatcher::getPendingAlertsNoWait(std::vector<libtorrent::alert*>& out) {
   Q_ASSERT(out.empty());
+  out.reserve(DEFAULT_ALERTS_CAPACITY);
 
   QMutexLocker lock(&alerts_mutex);
   alerts.swap(out);
   event_posted = false;
 }
 
-void QAlertDispatcher::getPendingAlerts(std::deque<libtorrent::alert*>& out, unsigned long time) {
+void QAlertDispatcher::getPendingAlerts(std::vector<libtorrent::alert*>& out, unsigned long time) {
   Q_ASSERT(out.empty());
+  out.reserve(DEFAULT_ALERTS_CAPACITY);
 
   QMutexLocker lock(&alerts_mutex);
 
