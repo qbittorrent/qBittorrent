@@ -1277,7 +1277,7 @@ public:
         return false;
       QString assoc_exe = exe_reg.cap(1);
       qDebug("exe: %s", qPrintable(assoc_exe));
-      if (assoc_exe.compare(qApp->applicationFilePath(), Qt::CaseInsensitive) != 0)
+      if (assoc_exe.compare(qApp->applicationFilePath().replace("/", "\\"), Qt::CaseInsensitive) != 0)
         return false;
       return true;
     }
@@ -1303,8 +1303,8 @@ public:
 
       // Magnet association
       if (set) {
-        const QString command_str = "\""+qApp->applicationFilePath()+"\" \"%1\"";
-        const QString icon_str = "\""+qApp->applicationFilePath()+"\",1";
+        const QString command_str = "\""+qApp->applicationFilePath().replace("/", "\\")+"\" \"%1\"";
+        const QString icon_str = "\""+qApp->applicationFilePath().replace("/", "\\")+"\",1";
 
         settings.setValue("magnet/Default", "URL:Magnet link");
         settings.setValue("magnet/Content Type", "application/x-magnet");
