@@ -26,7 +26,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 
-#VERSION: 1.23
+#VERSION: 1.24
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -134,7 +134,7 @@ if __name__ == '__main__':
 	if cat not in CATEGORIES:
 		raise SystemExit('Invalid category!')
 	
-	what = urllib.parse.quote('+'.join(sys.argv[3:]))
+	what = urllib.parse.quote(' '.join(sys.argv[3:]))
 	
 	threads = []
 	for engine in engines_list:
