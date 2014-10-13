@@ -26,7 +26,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 
-#VERSION: 1.31
+#VERSION: 1.32
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -41,6 +41,7 @@ import sys
 import threading
 import os
 import glob
+import urllib
 
 import fix_encoding
 
@@ -138,7 +139,7 @@ if __name__ == '__main__':
 	if cat not in CATEGORIES:
 		raise SystemExit('Invalid category!')
 	
-	what = '+'.join(sys.argv[3:])
+	what = urllib.quote(' '.join(sys.argv[3:]))
 	
 	threads = []
 	for engine in engines_list:
