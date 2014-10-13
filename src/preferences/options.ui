@@ -78,9 +78,6 @@
        <property name="text">
         <string>Behavior</string>
        </property>
-       <property name="toolTip">
-        <string>Behavior</string>
-       </property>
        <property name="textAlignment">
         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
