@@ -310,8 +310,8 @@ void options_imp::loadWindowState() {
     sizes << sizes_str.first().toInt();
     sizes << sizes_str.last().toInt();
   } else {
-    sizes << 130;
-    sizes << hsplitter->width()-130;
+    sizes << 116;
+    sizes << hsplitter->width()-116;
   }
   hsplitter->setSizes(sizes);
 }
