@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 
-#VERSION: 1.21
+#VERSION: 1.23
 #AUTHORS: BTDigg team (research@btdigg.org)
 #
 #                    GNU GENERAL PUBLIC LICENSE
@@ -36,7 +36,7 @@ class btdigg(object):
         pass
         
     def search(self, what, cat='all'):
-        req = urllib.parse.unquote(what).replace('+', ' ')
+        req = urllib.parse.unquote(what)
         u = urllib.request.urlopen('https://api.btdigg.org/api/public-8e9a50f8335b964f/s01?%s' % (urllib.parse.urlencode(dict(q = req)),))
 
         try:
