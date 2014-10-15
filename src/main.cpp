@@ -228,9 +228,14 @@ int main(int argc, char *argv[]) {
     QStringList torrentCmdLine = app.arguments();
     //Pass program parameters if any
     QString message;
+    QFileInfo torrentPath;
     for (int a = 1; a < torrentCmdLine.size(); ++a) {
       if (torrentCmdLine[a].startsWith("--")) continue;
-      message += torrentCmdLine[a];
+      torrentPath.setFile(torrentCmdLine[a]);
+      if (torrentPath.exists())
+        message += torrentPath.absoluteFilePath();
+      else
+        message += torrentCmdLine[a];
       if (a < argc-1)
         message += "|";
     }
