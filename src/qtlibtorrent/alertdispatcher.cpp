@@ -30,6 +30,7 @@
 
 #include "alertdispatcher.h"
 
+#include <libtorrent/session.hpp>
 #include <boost/bind.hpp>
 #include <QMutexLocker>
 
