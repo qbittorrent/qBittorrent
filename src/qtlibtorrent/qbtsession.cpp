@@ -41,6 +41,7 @@
 #include "torrentspeedmonitor.h"
 #include "torrentstatistics.h"
 #include "qbtsession.h"
+#include "alertdispatcher.h"
 #include "misc.h"
 #include "fs_utils.h"
 #include "downloadthread.h"

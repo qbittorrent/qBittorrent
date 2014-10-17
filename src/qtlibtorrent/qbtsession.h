@@ -52,7 +52,6 @@
 #include "qtracker.h"
 #include "qtorrenthandle.h"
 #include "trackerinfos.h"
-#include "alertdispatcher.h"
 #include "misc.h"
 
 #define MAX_SAMPLES 20
@@ -65,6 +64,7 @@ class ScanFoldersModel;
 class TorrentSpeedMonitor;
 class TorrentStatistics;
 class DNSUpdater;
+class QAlertDispatcher;
 
 const int MAX_LOG_MESSAGES = 1000;
 
