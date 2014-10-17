@@ -48,6 +48,7 @@
 #include "filterparserthread.h"
 #include "preferences.h"
 #include "scannedfoldersmodel.h"
+#include "qtracker.h"
 #ifndef DISABLE_GUI
 #include "shutdownconfirm.h"
 #include "geoipmanager.h"

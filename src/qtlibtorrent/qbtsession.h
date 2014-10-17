@@ -49,7 +49,6 @@
 #include <libtorrent/ip_filter.hpp>
 #include <libtorrent/alert_types.hpp>
 
-#include "qtracker.h"
 #include "qtorrenthandle.h"
 #include "trackerinfos.h"
 #include "misc.h"
@@ -72,6 +71,8 @@ enum TorrentExportFolder {
   RegularTorrentExportFolder,
   FinishedTorrentExportFolder
 };
+
+class QTracker;
 
 class QBtSession : public QObject {
   Q_OBJECT
