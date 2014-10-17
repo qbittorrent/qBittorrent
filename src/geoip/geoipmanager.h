@@ -31,9 +31,12 @@
 #ifndef GEOIPMANAGER_H
 #define GEOIPMANAGER_H
 
-#include <libtorrent/session.hpp>
 #include <QString>
 #include <QIcon>
+
+namespace libtorrent {
+  class session;
+}
 
 class GeoIPManager : public QObject {
   Q_OBJECT
