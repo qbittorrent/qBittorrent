@@ -70,6 +70,13 @@ const int UNLEN = 256;
 #endif
 #endif // DISABLE_GUI
 
+#if LIBTORRENT_VERSION_NUM < 10000
+#include <libtorrent/peer_id.hpp>
+#else
+#include <libtorrent/sha1_hash.hpp>
+#endif
+#include <libtorrent/escape_string.hpp>
+
 using namespace libtorrent;
 
 static struct { const char *source; const char *comment; } units[] = {
@@ -79,6 +86,28 @@ static struct { const char *source; const char *comment; } units[] = {
   QT_TRANSLATE_NOOP3("misc", "GiB", "gibibytes (1024 mibibytes)"),
   QT_TRANSLATE_NOOP3("misc", "TiB", "tebibytes (1024 gibibytes)")
 };
+
+QString misc::toQString(const std::string &str) {
+  return QString::fromLocal8Bit(str.c_str());
+}
+
+QString misc::toQString(const char* str) {
+  return QString::fromLocal8Bit(str);
+}
+
+QString misc::toQStringU(const std::string &str) {
+  return QString::fromUtf8(str.c_str());
+}
+
+QString misc::toQStringU(const char* str) {
+  return QString::fromUtf8(str);
+}
+
+QString misc::toQString(const libtorrent::sha1_hash &hash) {
+  char out[41];
+ libtorrent::to_hex((char const*)&hash[0], libtorrent::sha1_hash::size, out);
+  return QString(out);
+}
 
 #ifndef DISABLE_GUI
 void misc::shutdownComputer(shutDownAction action) {
