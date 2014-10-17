@@ -541,15 +541,29 @@ QString misc::toQString(time_t t)
 bool misc::naturalSort(QString left, QString right, bool &result) { // uses lessThan comparison
   // Return value indicates if functions was successful
   // result argument will contain actual comparison result if function was successful
+  int posL = 0;
+  int posR = 0;
   do {
-    int posL = left.indexOf(QRegExp("[0-9]"));
-    int posR = right.indexOf(QRegExp("[0-9]"));
-    if (posL == -1 || posR == -1)
-      break; // No data
-    else if (posL != posR)
-      break; // Digit positions mismatch
-    else  if (left.left(posL) != right.left(posR))
-      break; // Strings' subsets before digit do not match
+    for (;;) {
+      if (posL == left.size() || posR == right.size())
+        return false; // No data
+
+      QChar leftChar = left.at(posL);
+      QChar rightChar = right.at(posR);
+      bool leftCharIsDigit = leftChar.isDigit();
+      bool rightCharIsDigit = rightChar.isDigit();
+      if (leftCharIsDigit != rightCharIsDigit)
+        return false; // Digit positions mismatch
+
+      if (leftCharIsDigit)
+        break; // Both are digit, break this loop and compare numbers
+
+      if (leftChar != rightChar)
+         return false; // Strings' subsets before digit do not match
+
+      ++posL;
+      ++posR;
+    }
 
     QString temp;
     while (posL < left.size()) {
@@ -578,8 +592,6 @@ bool misc::naturalSort(QString left, QString right, bool &result) { // uses less
 
     // Strings + digits do match and we haven't hit string end
     // Do another round
-    left.remove(0, posL);
-    right.remove(0, posR);
 
   } while (true);
 
