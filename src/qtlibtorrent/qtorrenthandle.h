@@ -31,9 +31,7 @@
 #ifndef QTORRENTHANDLE_H
 #define QTORRENTHANDLE_H
 
-#include <libtorrent/version.hpp>
 #include <libtorrent/torrent_handle.hpp>
-#include <libtorrent/torrent_info.hpp>
 
 #include <QString>
 

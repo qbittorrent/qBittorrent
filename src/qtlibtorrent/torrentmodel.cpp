@@ -35,6 +35,8 @@
 #include "qbtsession.h"
 #include "fs_utils.h"
 
+#include <libtorrent/session.hpp>
+
 using namespace libtorrent;
 
 namespace {
