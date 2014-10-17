@@ -41,6 +41,7 @@
 #include <QProcess>
 #include <QSettings>
 #include <QLocale>
+#include <QThread>
 
 #ifdef DISABLE_GUI
 #include <QCoreApplication>
@@ -630,4 +631,19 @@ QString misc::accurateDoubleToString(const double &n, const int &precision, bool
     return QLocale::system().toString(std::floor(n*prec)/prec, 'f', precision);
   else
     return QString::number(std::floor(n*prec)/prec, 'f', precision);
+}
+
+namespace {
+  //  Trick to get a portable sleep() function
+  class SleeperThread : public QThread {
+  public:
+    static void msleep(unsigned long msecs)
+    {
+      QThread::msleep(msecs);
+    }
+  };
+}
+
+void misc::msleep(unsigned long msecs) {
+  SleeperThread::msleep(msecs);
 }

@@ -34,7 +34,6 @@
 #include <sstream>
 #include <QString>
 #include <QStringList>
-#include <QThread>
 #include <ctime>
 #include <QPoint>
 #include <QFile>
@@ -106,15 +105,8 @@ namespace misc
 #ifndef DISABLE_GUI
   bool naturalSort(QString left, QString right, bool& result);
 #endif
-}
 
-//  Trick to get a portable sleep() function
-class SleeperThread : public QThread {
-public:
-  static void msleep(unsigned long msecs)
-  {
-    QThread::msleep(msecs);
-  }
-};
+  void msleep(unsigned long msecs);
+}
 
 #endif

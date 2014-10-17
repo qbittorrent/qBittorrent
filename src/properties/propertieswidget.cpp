@@ -666,7 +666,7 @@ void PropertiesWidget::renameSelectedFile() {
       int timeout = 10;
       while(!QDir().rmpath(old_folder.absolutePath()) && timeout > 0) {
         // XXX: We should not sleep here (freezes the UI for 1 second)
-        SleeperThread::msleep(100);
+        misc::msleep(100);
         --timeout;
       }
     }
