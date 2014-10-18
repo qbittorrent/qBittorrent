@@ -34,6 +34,7 @@
 #include "qbtsession.h"
 #include "torrentpersistentdata.h"
 #include "jsonutils.h"
+#include "preferences.h"
 
 #if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
 #include <QElapsedTimer>
@@ -122,6 +123,7 @@ static const char KEY_FILE_IS_SEED[] = "is_seed";
 // TransferInfo keys
 static const char KEY_TRANSFER_DLSPEED[] = "dl_info";
 static const char KEY_TRANSFER_UPSPEED[] = "up_info";
+static const char KEY_SPEED_IN_BROWSER_TITLE[] = "speed_in_browser_title";
 
 static QVariantMap toMap(const QTorrentHandle& h)
 {
@@ -376,7 +378,13 @@ QByteArray btjson::getTransferInfo()
 {
   CACHED_VARIABLE(QVariantMap, info, CACHE_DURATION_MS);
   session_status sessionStatus = QBtSession::instance()->getSessionStatus();
-  info[KEY_TRANSFER_DLSPEED] = tr("D: %1/s - T: %2", "Download speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_download_rate, true, true)).arg(misc::friendlyUnit(sessionStatus.total_payload_download, false, true));
-  info[KEY_TRANSFER_UPSPEED] = tr("U: %1/s - T: %2", "Upload speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_upload_rate, true, true)).arg(misc::friendlyUnit(sessionStatus.total_payload_upload, false, true));
+  info[KEY_TRANSFER_DLSPEED] = tr("D: %1 - T: %2", "Download speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_download_rate, true, true)).arg(misc::friendlyUnit(sessionStatus.total_payload_download, false, true));
+  info[KEY_TRANSFER_UPSPEED] = tr("U: %1 - T: %2", "Upload speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_upload_rate, true, true)).arg(misc::friendlyUnit(sessionStatus.total_payload_upload, false, true));
+
+  if (Preferences::instance()->speedInTitleBar())
+    info[KEY_SPEED_IN_BROWSER_TITLE] = tr("D: %1 / U: %2", "Speed in a compact format to be displayed in the browser title bar: 'D:x KiB/s / U:x KiB/s'").arg(misc::friendlyUnit(sessionStatus.payload_download_rate, true, true)).arg(misc::friendlyUnit(sessionStatus.payload_upload_rate, true, true));
+  else
+    info[KEY_SPEED_IN_BROWSER_TITLE] = "not displayed";
+
   return json::toJson(info);
 }

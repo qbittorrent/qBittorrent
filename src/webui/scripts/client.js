@@ -110,6 +110,13 @@ window.addEvent('load', function(){
                       if(info) {
                         $("DlInfos").set('html', info.dl_info);
                         $("UpInfos").set('html', info.up_info);
+                        if(info.speed_in_browser_title == 'not displayed'){
+                          document.title = 'qBittorrent web User Interface';
+                        }
+                        else
+                        {
+                          document.title = info.speed_in_browser_title;
+                        }
                         waitingTrInfo=false;
                         loadTransferInfo.delay(3000);
                       }
