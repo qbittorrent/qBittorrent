@@ -311,9 +311,6 @@
    <property name="text">
     <string>Lock qBittorrent</string>
    </property>
-   <property name="toolTip">
-    <string>Lock qBittorrent</string>
-   </property>
    <property name="iconText">
     <string>Lock</string>
    </property>
