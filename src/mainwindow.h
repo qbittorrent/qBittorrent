@@ -161,6 +161,7 @@ private slots:
     void pythonDownloadSuccess(QString url, QString file_path);
     void pythonDownloadFailure(QString url, QString error);
 #endif
+    void addToolbarContextMenu();
 
 private:
     QFileSystemWatcher *executable_watcher;
@@ -214,6 +215,7 @@ private:
 #ifdef Q_OS_WIN
     bool has_python;
 #endif
+    QMenu* toolbarMenu;
 
 private slots:
     void on_actionSearch_engine_triggered();
@@ -232,6 +234,12 @@ private slots:
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     void checkProgramUpdate();
 #endif
+    void toolbarMenuRequested(QPoint);
+    void toolbarIconsOnly();
+    void toolbarTextOnly();
+    void toolbarTextBeside();
+    void toolbarTextUnder();
+    void toolbarFollowSystem();
 };
 
 #endif

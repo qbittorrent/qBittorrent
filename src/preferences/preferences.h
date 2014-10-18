@@ -460,6 +460,8 @@ public:
   void setTransSelFilter(const int &index);
   QByteArray getTransHeaderState() const;
   void setTransHeaderState(const QByteArray &state);
+  int getToolbarTextPosition() const;
+  void setToolbarTextPosition(const int position);
 
   // Temp code.
   // See TorrentStatistics::loadStats() for details.
