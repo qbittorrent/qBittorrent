@@ -145,6 +145,9 @@
    <property name="text">
     <string>&amp;Add torrent file...</string>
    </property>
+   <property name="iconText">
+    <string>Open</string>
+   </property>
   </action>
   <action name="actionExit">
    <property name="text">
@@ -158,6 +161,9 @@
    <property name="text">
     <string>&amp;Options...</string>
    </property>
+   <property name="iconText">
+    <string>Options</string>
+   </property>
   </action>
   <action name="actionAbout">
    <property name="text">
@@ -168,15 +174,24 @@
    <property name="text">
     <string>&amp;Resume</string>
    </property>
+   <property name="iconText">
+    <string>Resume</string>
+   </property>
   </action>
   <action name="actionPause">
    <property name="text">
     <string>&amp;Pause</string>
    </property>
+   <property name="iconText">
+    <string>Pause</string>
+   </property>
   </action>
   <action name="actionDelete">
    <property name="text">
     <string>&amp;Delete</string>
+   </property>
+   <property name="iconText">
+    <string>Delete</string>
    </property>
   </action>
   <action name="actionWebsite">
@@ -191,6 +206,9 @@
   <action name="actionDownload_from_URL">
    <property name="text">
     <string>Add &amp;link to torrent...</string>
+   </property>
+   <property name="iconText">
+    <string>Open URL</string>
    </property>
   </action>
   <action name="actionCreate_torrent">
@@ -315,6 +333,9 @@
    </property>
    <property name="toolTip">
     <string>Lock qBittorrent</string>
+   </property>
+   <property name="iconText">
+    <string>Lock</string>
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+L</string>
