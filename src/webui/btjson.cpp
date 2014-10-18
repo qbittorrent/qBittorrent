@@ -256,7 +256,7 @@ QByteArray btjson::getTrackersForTorrent(const QString& hash)
       tracker_list.append(tracker_dict);
     }
   } catch(const std::exception& e) {
-    qWarning() << Q_FUNC_INFO << "Invalid torrent: " << e.what();
+    qWarning() << Q_FUNC_INFO << "Invalid torrent: " << misc::toQStringU(e.what());
     return QByteArray();
   }
 
@@ -312,7 +312,7 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
     const qreal ratio = QBtSession::instance()->getRealRatio(status);
     data[KEY_PROP_RATIO] = ratio > 100. ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 1, false);
   } catch(const std::exception& e) {
-    qWarning() << Q_FUNC_INFO << "Invalid torrent: " << e.what();
+    qWarning() << Q_FUNC_INFO << "Invalid torrent: " << misc::toQStringU(e.what());
     return QByteArray();
   }
 
@@ -357,7 +357,7 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
       file_list.append(file_dict);
     }
   } catch (const std::exception& e) {
-    qWarning() << Q_FUNC_INFO << "Invalid torrent: " << e.what();
+    qWarning() << Q_FUNC_INFO << "Invalid torrent: " << misc::toQStringU(e.what());
     return QByteArray();
   }
 

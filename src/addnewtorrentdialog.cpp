@@ -193,7 +193,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     m_torrentInfo = new torrent_info(fsutils::toNativePath(m_filePath).toUtf8().data());
     m_hash = misc::toQString(m_torrentInfo->info_hash());
   } catch(const std::exception& e) {
-    MessageBoxRaised::critical(0, tr("Invalid torrent"), tr("Failed to load the torrent: %1").arg(e.what()));
+    MessageBoxRaised::critical(0, tr("Invalid torrent"), tr("Failed to load the torrent: %1").arg(misc::toQStringU(e.what())));
     return false;
   }
 

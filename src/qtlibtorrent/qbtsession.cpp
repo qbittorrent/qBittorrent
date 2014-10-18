@@ -1074,7 +1074,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   } catch(std::exception& e) {
     if (!from_url.isNull()) {
       addConsoleMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(from_url), QString::fromUtf8("red"));
-      addConsoleMessage(misc::toQString(e.what()), "red");
+      addConsoleMessage(misc::toQStringU(e.what()), "red");
       //emit invalidTorrent(from_url);
       fsutils::forceRemove(path);
     }else{
@@ -1565,7 +1565,7 @@ void QBtSession::enableDHT(bool b) {
       }
       catch(std::exception &e) {
         qDebug("Could not enable DHT, reason: %s", e.what());
-        addConsoleMessage(tr("DHT support [OFF]. Reason: %1").arg(misc::toQString(e.what())), QString::fromUtf8("red"));
+        addConsoleMessage(tr("DHT support [OFF]. Reason: %1").arg(misc::toQStringU(e.what())), QString::fromUtf8("red"));
       }
     }
   }
@@ -2201,7 +2201,7 @@ void QBtSession::handleAlert(libtorrent::alert* a) {
       break;
     }
   } catch (const std::exception& e) {
-    qWarning() << "Caught exception in readAlerts(): " << e.what();
+    qWarning() << "Caught exception in readAlerts(): " << misc::toQStringU(e.what());
   }
 }
 

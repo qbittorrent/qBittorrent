@@ -42,6 +42,7 @@
 
 #include "torrentcreatorthread.h"
 #include "fs_utils.h"
+#include "misc.h"
 
 #include <boost/bind.hpp>
 #include <iostream>
@@ -136,6 +137,6 @@ void TorrentCreatorThread::run() {
     emit updateProgress(100);
     emit creationSuccess(save_path, parent_path);
   } catch (std::exception& e) {
-    emit creationFailure(QString::fromLocal8Bit(e.what()));
+    emit creationFailure(misc::toQStringU(e.what()));
   }
 }
