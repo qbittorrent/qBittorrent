@@ -46,6 +46,9 @@
 #include "preferences.h"
 #include "misc.h"
 
+#include <libtorrent/session.hpp>
+#include <libtorrent/session_status.hpp>
+
 class StatusBar: public QObject {
   Q_OBJECT
 

@@ -39,6 +39,8 @@
 #include <QElapsedTimer>
 #endif
 
+#include <libtorrent/session_status.hpp>
+
 using namespace libtorrent;
 
 #if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)

@@ -37,7 +37,8 @@
 #include <QHostAddress>
 #include "ui_peer.h"
 
-#include <libtorrent/session.hpp>
+#include <libtorrent/socket.hpp>
+#include <libtorrent/address.hpp>
 
 #include <boost/version.hpp>
 #if BOOST_VERSION < 103500

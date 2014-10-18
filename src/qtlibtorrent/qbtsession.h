@@ -45,17 +45,50 @@
 #include <QNetworkCookie>
 
 #include <libtorrent/version.hpp>
-#include <libtorrent/session.hpp>
-#include <libtorrent/ip_filter.hpp>
-#include <libtorrent/alert_types.hpp>
 
-#include "qtracker.h"
 #include "qtorrenthandle.h"
 #include "trackerinfos.h"
-#include "alertdispatcher.h"
 #include "misc.h"
 
-#define MAX_SAMPLES 20
+namespace libtorrent {
+  class add_torrent_params;
+  class pe_settings;
+  class proxy_settings;
+  class session;
+  class session_status;
+
+  class alert;
+  class torrent_finished_alert;
+  class save_resume_data_alert;
+  class file_renamed_alert;
+  class torrent_deleted_alert;
+  class storage_moved_alert;
+  class storage_moved_failed_alert;
+  class metadata_received_alert;
+  class file_error_alert;
+  class file_completed_alert;
+  class torrent_paused_alert;
+  class tracker_error_alert;
+  class tracker_reply_alert;
+  class tracker_warning_alert;
+  class portmap_error_alert;
+  class portmap_alert;
+  class peer_blocked_alert;
+  class peer_ban_alert;
+  class fastresume_rejected_alert;
+  class url_seed_alert;
+  class listen_succeeded_alert;
+  class listen_failed_alert;
+  class torrent_checked_alert;
+  class external_ip_alert;
+  class state_update_alert;
+  class stats_alert;
+
+#if LIBTORRENT_VERSION_NUM < 10000
+  class upnp;
+  class natpmp;
+#endif
+}
 
 class DownloadThread;
 class FilterParserThread;
@@ -65,6 +98,7 @@ class ScanFoldersModel;
 class TorrentSpeedMonitor;
 class TorrentStatistics;
 class DNSUpdater;
+class QAlertDispatcher;
 
 const int MAX_LOG_MESSAGES = 1000;
 
@@ -72,6 +106,8 @@ enum TorrentExportFolder {
   RegularTorrentExportFolder,
   FinishedTorrentExportFolder
 };
+
+class QTracker;
 
 class QBtSession : public QObject {
   Q_OBJECT
@@ -151,8 +187,6 @@ public slots:
   void setMaxRatioPerTorrent(const QString &hash, qreal ratio);
   qreal getMaxRatioPerTorrent(const QString &hash, bool *usesGlobalRatio) const;
   void removeRatioPerTorrent(const QString &hash);
-  void setProxySettings(libtorrent::proxy_settings proxySettings);
-  void setSessionSettings(const libtorrent::session_settings &sessionSettings);
   void setDefaultSavePath(const QString &savepath);
   void setDefaultTempPath(const QString &temppath);
   void setAppendLabelToSavePath(bool append);
@@ -160,7 +194,6 @@ public slots:
   void changeLabelInTorrentSavePath(const QTorrentHandle &h, QString old_label, QString new_label);
   void appendqBextensionToTorrent(const QTorrentHandle &h, bool append);
   void setAppendqBExtension(bool append);
-  void applyEncryptionSettings(libtorrent::pe_settings se);
   void setDownloadLimit(QString hash, long val);
   void setUploadLimit(QString hash, long val);
   void enableUPnP(bool b);
@@ -184,6 +217,9 @@ public slots:
   void unhideMagnet(const QString &hash);
 
 private:
+  void applyEncryptionSettings(libtorrent::pe_settings se);
+  void setProxySettings(libtorrent::proxy_settings proxySettings);
+  void setSessionSettings(const libtorrent::session_settings &sessionSettings);
   QString getSavePath(const QString &hash, bool fromScanDir = false, QString filePath = QString::null, bool imported = false);
   bool loadFastResumeData(const QString &hash, std::vector<char> &buf);
   void loadTorrentSettings(QTorrentHandle &h);

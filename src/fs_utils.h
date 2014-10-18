@@ -32,7 +32,6 @@
 #define FS_UTILS_H
 
 #include <QString>
-#include <QCoreApplication>
 
 /**
  * Utility functions related to file system.

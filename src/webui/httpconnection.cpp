@@ -52,6 +52,8 @@
 #include <queue>
 #include <vector>
 
+#include <libtorrent/session.hpp>
+
 using namespace libtorrent;
 
 HttpConnection::HttpConnection(QTcpSocket *socket, HttpServer *parent)

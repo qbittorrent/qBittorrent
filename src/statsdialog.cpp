@@ -32,6 +32,8 @@
 #include "ui_statsdialog.h"
 
 #include "misc.h"
+#include <libtorrent/session.hpp>
+#include <libtorrent/disk_io_thread.hpp>
 
 StatsDialog::StatsDialog(QWidget *parent) :   QDialog(parent), ui(new Ui::StatsDialog) {
   ui->setupUi(this);

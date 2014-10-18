@@ -31,12 +31,9 @@
 #ifndef MISC_H
 #define MISC_H
 
-#include <libtorrent/torrent_info.hpp>
-#include <libtorrent/torrent_handle.hpp>
 #include <sstream>
 #include <QString>
 #include <QStringList>
-#include <QThread>
 #include <ctime>
 #include <QPoint>
 #include <QFile>
@@ -46,33 +43,28 @@
 #include <QIcon>
 #endif
 
+#include <libtorrent/version.hpp>
+
+namespace libtorrent {
+#if LIBTORRENT_VERSION_NUM < 10000
+  class big_number;
+  typedef big_number sha1_hash;
+#else
+  class sha1_hash;
+#endif
+}
+
 const qlonglong MAX_ETA = 8640000;
 enum shutDownAction { NO_SHUTDOWN, SHUTDOWN_COMPUTER, SUSPEND_COMPUTER, HIBERNATE_COMPUTER };
 
 /*  Miscellaneaous functions that can be useful */
 namespace misc
 {
-  inline QString toQString(const std::string &str) {
-    return QString::fromLocal8Bit(str.c_str());
-  }
-
-  inline QString toQString(const char* str) {
-    return QString::fromLocal8Bit(str);
-  }
-
-  inline QString toQStringU(const std::string &str) {
-    return QString::fromUtf8(str.c_str());
-  }
-
-  inline QString toQStringU(const char* str) {
-    return QString::fromUtf8(str);
-  }
-
-  inline QString toQString(const libtorrent::sha1_hash &hash) {
-    char out[41];
-	 libtorrent::to_hex((char const*)&hash[0], libtorrent::sha1_hash::size, out);
-    return QString(out);
-  }
+  QString toQString(const std::string &str);
+  QString toQString(const char* str);
+  QString toQStringU(const std::string &str);
+  QString toQStringU(const char* str);
+  QString toQString(const libtorrent::sha1_hash &hash);
 
 #ifndef DISABLE_GUI
   void shutdownComputer(shutDownAction action=SHUTDOWN_COMPUTER);
@@ -113,15 +105,8 @@ namespace misc
 #ifndef DISABLE_GUI
   bool naturalSort(QString left, QString right, bool& result);
 #endif
-}
 
-//  Trick to get a portable sleep() function
-class SleeperThread : public QThread {
-public:
-  static void msleep(unsigned long msecs)
-  {
-    QThread::msleep(msecs);
-  }
-};
+  void msleep(unsigned long msecs);
+}
 
 #endif

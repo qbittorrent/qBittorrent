@@ -36,7 +36,14 @@
 #include <QWaitCondition>
 #include <QAtomicPointer>
 #include <QSharedPointer>
-#include <libtorrent/session.hpp>
+
+#include <vector>
+#include <memory>
+
+namespace libtorrent {
+  class session;
+  class alert;
+}
 
 class QAlertDispatcher : public QObject {
   Q_OBJECT

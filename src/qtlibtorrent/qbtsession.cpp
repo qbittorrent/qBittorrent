@@ -41,12 +41,14 @@
 #include "torrentspeedmonitor.h"
 #include "torrentstatistics.h"
 #include "qbtsession.h"
+#include "alertdispatcher.h"
 #include "misc.h"
 #include "fs_utils.h"
 #include "downloadthread.h"
 #include "filterparserthread.h"
 #include "preferences.h"
 #include "scannedfoldersmodel.h"
+#include "qtracker.h"
 #ifndef DISABLE_GUI
 #include "shutdownconfirm.h"
 #include "geoipmanager.h"
@@ -68,6 +70,9 @@
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/error_code.hpp>
+#include <libtorrent/alert_types.hpp>
+#include <libtorrent/session.hpp>
+#include <libtorrent/ip_filter.hpp>
 #include <queue>
 #include <string.h>
 #include "dnsupdater.h"
@@ -2054,48 +2059,6 @@ void QBtSession::disableIPFilter() {
   filterPath = "";
 }
 
-// Set BT session settings (user_agent)
-void QBtSession::setSessionSettings(const session_settings &sessionSettings) {
-  qDebug("Set session settings");
-  s->set_settings(sessionSettings);
-}
-
-// Set Proxy
-void QBtSession::setProxySettings(proxy_settings proxySettings) {
-  qDebug() << Q_FUNC_INFO;
-
-  proxySettings.proxy_peer_connections = Preferences::instance()->proxyPeerConnections();
-  s->set_proxy(proxySettings);
-
-  // Define environment variable
-  QString proxy_str;
-  switch(proxySettings.type) {
-  case proxy_settings::http_pw:
-    proxy_str = "http://"+misc::toQString(proxySettings.username)+":"+misc::toQString(proxySettings.password)+"@"+misc::toQString(proxySettings.hostname)+":"+QString::number(proxySettings.port);
-    break;
-  case proxy_settings::http:
-    proxy_str = "http://"+misc::toQString(proxySettings.hostname)+":"+QString::number(proxySettings.port);
-    break;
-  case proxy_settings::socks5:
-    proxy_str = misc::toQString(proxySettings.hostname)+":"+QString::number(proxySettings.port);
-    break;
-  case proxy_settings::socks5_pw:
-    proxy_str = misc::toQString(proxySettings.username)+":"+misc::toQString(proxySettings.password)+"@"+misc::toQString(proxySettings.hostname)+":"+QString::number(proxySettings.port);
-    break;
-  default:
-    qDebug("Disabling HTTP communications proxy");
-    qputenv("http_proxy", QByteArray());
-    qputenv("sock_proxy", QByteArray());
-    return;
-  }
-  // We need this for urllib in search engine plugins
-  qDebug("HTTP communications proxy string: %s", qPrintable(proxy_str));
-  if (proxySettings.type == proxy_settings::socks5 || proxySettings.type == proxy_settings::socks5_pw)
-    qputenv("sock_proxy", proxy_str.toLocal8Bit());
-  else
-    qputenv("http_proxy", proxy_str.toLocal8Bit());
-}
-
 void QBtSession::recursiveTorrentDownload(const QTorrentHandle &h) {
   try {
     for (int i=0; i<h.num_files(); ++i) {
@@ -2792,6 +2755,53 @@ session_status QBtSession::getSessionStatus() const {
   return s->status();
 }
 
+void QBtSession::applyEncryptionSettings(pe_settings se) {
+  qDebug("Applying encryption settings");
+  s->set_pe_settings(se);
+}
+
+// Set Proxy
+void QBtSession::setProxySettings(proxy_settings proxySettings) {
+  qDebug() << Q_FUNC_INFO;
+
+  proxySettings.proxy_peer_connections = Preferences::instance()->proxyPeerConnections();
+  s->set_proxy(proxySettings);
+
+  // Define environment variable
+  QString proxy_str;
+  switch(proxySettings.type) {
+  case proxy_settings::http_pw:
+    proxy_str = "http://"+misc::toQString(proxySettings.username)+":"+misc::toQString(proxySettings.password)+"@"+misc::toQString(proxySettings.hostname)+":"+QString::number(proxySettings.port);
+    break;
+  case proxy_settings::http:
+    proxy_str = "http://"+misc::toQString(proxySettings.hostname)+":"+QString::number(proxySettings.port);
+    break;
+  case proxy_settings::socks5:
+    proxy_str = misc::toQString(proxySettings.hostname)+":"+QString::number(proxySettings.port);
+    break;
+  case proxy_settings::socks5_pw:
+    proxy_str = misc::toQString(proxySettings.username)+":"+misc::toQString(proxySettings.password)+"@"+misc::toQString(proxySettings.hostname)+":"+QString::number(proxySettings.port);
+    break;
+  default:
+    qDebug("Disabling HTTP communications proxy");
+    qputenv("http_proxy", QByteArray());
+    qputenv("sock_proxy", QByteArray());
+    return;
+  }
+  // We need this for urllib in search engine plugins
+  qDebug("HTTP communications proxy string: %s", qPrintable(proxy_str));
+  if (proxySettings.type == proxy_settings::socks5 || proxySettings.type == proxy_settings::socks5_pw)
+    qputenv("sock_proxy", proxy_str.toLocal8Bit());
+  else
+    qputenv("http_proxy", proxy_str.toLocal8Bit());
+}
+
+// Set BT session settings (user_agent)
+void QBtSession::setSessionSettings(const session_settings &sessionSettings) {
+  qDebug("Set session settings");
+  s->set_settings(sessionSettings);
+}
+
 QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString filePath, bool imported) {
   QString savePath;
   if (TorrentTempData::hasTempData(hash)) {
@@ -2919,11 +2929,6 @@ qreal QBtSession::getPayloadDownloadRate() const {
 // account "useful" part of the rate
 qreal QBtSession::getPayloadUploadRate() const {
   return s->status().payload_upload_rate;
-}
-
-void QBtSession::applyEncryptionSettings(pe_settings se) {
-  qDebug("Applying encryption settings");
-  s->set_pe_settings(se);
 }
 
 // Will fast resume torrents in
