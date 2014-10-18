@@ -111,6 +111,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
 #if defined(Q_OS_MAC)
   setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
+  header()->setStretchLastSection(false);
 
   // Default hidden columns
   if (!column_loaded) {
