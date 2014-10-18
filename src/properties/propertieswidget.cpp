@@ -384,7 +384,7 @@ void PropertiesWidget::loadDynamicData() {
       }
     }
   } catch(const invalid_handle& e) {
-    qWarning() << "Caught exception in PropertiesWidget::loadDynamicData(): " << e.what();
+    qWarning() << "Caught exception in PropertiesWidget::loadDynamicData(): " << misc::toQStringU(e.what());
   }
 }
 

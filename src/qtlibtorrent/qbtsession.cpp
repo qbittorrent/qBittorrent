@@ -1110,7 +1110,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   } catch(std::exception& e) {
     if (!from_url.isNull()) {
       addConsoleMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(from_url), QString::fromUtf8("red"));
-      addConsoleMessage(misc::toQString(e.what()), "red");
+      addConsoleMessage(misc::toQStringU(e.what()), "red");
       //emit invalidTorrent(from_url);
       fsutils::forceRemove(path);
     }else{
