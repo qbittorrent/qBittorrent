@@ -184,6 +184,7 @@ private:
   bool force_exit;
   bool ui_locked;
   LineEdit *search_filter;
+  QAction *searchFilterAct;
   // Keyboard shortcuts
   QShortcut *switchSearchShortcut;
   QShortcut *switchSearchShortcut2;
