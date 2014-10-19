@@ -184,6 +184,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   // Name filter
   search_filter = new LineEdit();
   searchFilterAct = toolBar->insertWidget(actionLock_qBittorrent, search_filter);
+  search_filter->setPlaceholderText(tr("Filter torrent list..."));
   search_filter->setFixedWidth(200);
   QWidget *spacer = new QWidget(this);
   spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
