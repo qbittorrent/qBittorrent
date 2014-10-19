@@ -90,11 +90,17 @@ bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIn
     Q_ASSERT(vL.isValid());
     Q_ASSERT(vR.isValid());
 
-    bool res = false;
-    if (misc::naturalSort(vL.toString(), vR.toString(), res))
-      return res;
-
-    return QSortFilterProxyModel::lessThan(left, right);
+    bool leftType = m_model->itemType(left);
+    bool rightType = m_model->itemType(right);
+    if (rightType == leftType) {
+      bool res = false;
+      if (misc::naturalSort(vL.toString(), vR.toString(), res))
+        return res;
+      return QSortFilterProxyModel::lessThan(left, right);
+    } else if (leftType == TorrentContentModelItem::FolderType)
+      return true;
+    else
+      return false;
   }
   return QSortFilterProxyModel::lessThan(left, right);
 }
