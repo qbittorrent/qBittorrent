@@ -17,5 +17,3 @@ src/lang/qbittorrent_*.qm
 aclocal.m4
 autom4te.cache/*
 config.status
-*.pri
-src/qtlibtorrent/qbtsession.h
