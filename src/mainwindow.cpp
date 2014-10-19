@@ -311,6 +311,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
 
   // Populate the transfer list
   transferList->getSourceModel()->populate();
+  transferList->setFocus();
 
   // Update the number of torrents (tab)
   updateNbTorrents();
