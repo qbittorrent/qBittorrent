@@ -3877,7 +3877,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../statsdialog.ui" line="126"/>
         <source>Total buffers size:</source>
-        <translation>Общий размера буферов:</translation>
+        <translation>Общий размер буферов:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="136"/>
