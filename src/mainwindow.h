@@ -183,6 +183,7 @@ private:
   bool displaySpeedInTitle;
   bool force_exit;
   bool ui_locked;
+  bool unlockDlgShowing;
   LineEdit *search_filter;
   // Keyboard shortcuts
   QShortcut *switchSearchShortcut;
