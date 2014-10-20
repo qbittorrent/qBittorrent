@@ -209,7 +209,7 @@ QVariant TorrentModelItem::data(int column, int role) const
   case TR_NAME:
     return m_name.isEmpty() ? m_torrent.name() : m_name;
   case TR_PRIORITY: {
-    int pos = m_torrent.queue_position(m_lastStatus);;
+    int pos = m_torrent.queue_position(m_lastStatus);
     if (pos > -1)
       return pos - HiddenData::getSize();
     else

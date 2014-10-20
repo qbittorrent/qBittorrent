@@ -125,7 +125,7 @@ QBtSession::QBtSession()
   BigRatioTimer = new QTimer(this);
   BigRatioTimer->setInterval(10000);
   connect(BigRatioTimer, SIGNAL(timeout()), SLOT(processBigRatios()));
-  Preferences* const pref = Preferences::instance();;
+  Preferences* const pref = Preferences::instance();
   // Creating Bittorrent session
   QList<int> version;
   version << VERSION_MAJOR;
