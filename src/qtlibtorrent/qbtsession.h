@@ -51,38 +51,38 @@
 #include "misc.h"
 
 namespace libtorrent {
-  class add_torrent_params;
-  class pe_settings;
-  class proxy_settings;
+  struct add_torrent_params;
+  struct pe_settings;
+  struct proxy_settings;
   class session;
-  class session_status;
+  struct session_status;
 
   class alert;
-  class torrent_finished_alert;
-  class save_resume_data_alert;
-  class file_renamed_alert;
-  class torrent_deleted_alert;
-  class storage_moved_alert;
-  class storage_moved_failed_alert;
-  class metadata_received_alert;
-  class file_error_alert;
-  class file_completed_alert;
-  class torrent_paused_alert;
-  class tracker_error_alert;
-  class tracker_reply_alert;
-  class tracker_warning_alert;
-  class portmap_error_alert;
-  class portmap_alert;
-  class peer_blocked_alert;
-  class peer_ban_alert;
-  class fastresume_rejected_alert;
-  class url_seed_alert;
-  class listen_succeeded_alert;
-  class listen_failed_alert;
-  class torrent_checked_alert;
-  class external_ip_alert;
-  class state_update_alert;
-  class stats_alert;
+  struct torrent_finished_alert;
+  struct save_resume_data_alert;
+  struct file_renamed_alert;
+  struct torrent_deleted_alert;
+  struct storage_moved_alert;
+  struct storage_moved_failed_alert;
+  struct metadata_received_alert;
+  struct file_error_alert;
+  struct file_completed_alert;
+  struct torrent_paused_alert;
+  struct tracker_error_alert;
+  struct tracker_reply_alert;
+  struct tracker_warning_alert;
+  struct portmap_error_alert;
+  struct portmap_alert;
+  struct peer_blocked_alert;
+  struct peer_ban_alert;
+  struct fastresume_rejected_alert;
+  struct url_seed_alert;
+  struct listen_succeeded_alert;
+  struct listen_failed_alert;
+  struct torrent_checked_alert;
+  struct external_ip_alert;
+  struct state_update_alert;
+  struct stats_alert;
 
 #if LIBTORRENT_VERSION_NUM < 10000
   class upnp;
