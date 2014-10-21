@@ -66,14 +66,6 @@ StatusBar::StatusBar(QStatusBar *bar)
   dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
   dlSpeedLbl->setCursor(Qt::PointingHandCursor);
 
-  altSpeedsBtn = new QPushButton(bar);
-  altSpeedsBtn->setFlat(true);
-  altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
-  altSpeedsBtn->setCursor(Qt::PointingHandCursor);
-  updateAltSpeedsBtn(pref->isAltBandwidthEnabled());
-
-  connect(altSpeedsBtn, SIGNAL(clicked()), this, SLOT(toggleAlternativeSpeeds()));
-
   upSpeedLbl = new QPushButton(bar);
   upSpeedLbl->setIcon(QIcon(":/Icons/skin/seeding.png"));
   //upSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
@@ -84,7 +76,14 @@ StatusBar::StatusBar(QStatusBar *bar)
   DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), bar);
   DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
 
-  QRect labelRect = dlSpeedLbl->fontMetrics().boundingRect(" XX 0.000,00 XiX/s (000,0 XiX) ");
+  altSpeedsBtn = new QPushButton(bar);
+  altSpeedsBtn->setFlat(true);
+  altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
+  altSpeedsBtn->setCursor(Qt::PointingHandCursor);
+  updateAltSpeedsBtn(pref->isAltBandwidthEnabled());
+  connect(altSpeedsBtn, SIGNAL(clicked()), this, SLOT(toggleAlternativeSpeeds()));
+
+  QRect labelRect = dlSpeedLbl->fontMetrics().boundingRect(" XX [0.000,0 XiX/s] 0.000,00 XiX/s (000,0 XiX) ");
   if (labelRect.height() < 26)
     labelRect.setHeight(26);
   dlSpeedLbl->setIconSize(QSize(16,16));
@@ -187,8 +186,16 @@ void StatusBar::refreshStatusBar() {
     //statusSep1->setVisible(false);
   }
   // Update speed labels
-  dlSpeedLbl->setText(tr("%1/s", "Per second").arg(misc::friendlyUnit(sessionStatus.payload_download_rate))+" ("+misc::friendlyUnit(sessionStatus.total_payload_download)+")");
-  upSpeedLbl->setText(tr("%1/s", "Per second").arg(misc::friendlyUnit(sessionStatus.payload_upload_rate))+" ("+misc::friendlyUnit(sessionStatus.total_payload_upload)+")");
+  QString speedLbl = misc::friendlyUnit(sessionStatus.payload_download_rate, true)+" ("+misc::friendlyUnit(sessionStatus.total_payload_download)+")";
+  int speedLimit = QBtSession::instance()->getSession()->settings().download_rate_limit;
+  if (speedLimit)
+    speedLbl = "["+misc::friendlyUnit(speedLimit, true)+"] " + speedLbl;
+  dlSpeedLbl->setText(speedLbl);
+  speedLimit = QBtSession::instance()->getSession()->settings().upload_rate_limit;
+  speedLbl = misc::friendlyUnit(sessionStatus.payload_upload_rate, true)+" ("+misc::friendlyUnit(sessionStatus.total_payload_upload)+")";
+  if (speedLimit)
+    speedLbl = "["+misc::friendlyUnit(speedLimit, true)+"] " + speedLbl;
+  upSpeedLbl->setText(speedLbl);
 }
 
 void StatusBar::updateAltSpeedsBtn(bool alternative) {
@@ -201,6 +208,7 @@ void StatusBar::updateAltSpeedsBtn(bool alternative) {
     altSpeedsBtn->setToolTip(tr("Click to switch to alternative speed limits"));
     altSpeedsBtn->setDown(false);
   }
+  refreshStatusBar();
 }
 
 void StatusBar::toggleAlternativeSpeeds() {
@@ -230,6 +238,7 @@ void StatusBar::capDownloadSpeed() {
       if (!alt)
         pref->setGlobalDownloadLimit(new_limit/1024.);
     }
+    refreshStatusBar();
   }
 }
 
@@ -251,5 +260,6 @@ void StatusBar::capUploadSpeed() {
       if (!alt)
         Preferences::instance()->setGlobalUploadLimit(new_limit/1024.);
     }
+    refreshStatusBar();
   }
 }
