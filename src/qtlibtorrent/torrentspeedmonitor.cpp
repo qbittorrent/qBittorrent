@@ -29,8 +29,6 @@
  */
 
 #include <QList>
-#include <QDateTime>
-#include <vector>
 
 #include "qbtsession.h"
 #include "misc.h"
