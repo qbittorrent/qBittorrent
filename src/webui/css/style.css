@@ -137,6 +137,8 @@ hr {
 	padding-left: 4px;
 	padding-right: 2px;
 	margin-bottom: -4px;
+        width: 16px;
+        height: 16px;
 }
 
 .selectedFilter {
