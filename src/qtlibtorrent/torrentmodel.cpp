@@ -290,6 +290,8 @@ QVariant TorrentModelItem::data(int column, int role) const
     QString hash = misc::toQString(m_lastStatus.info_hash);
     return QBtSession::instance()->getMaxRatioPerTorrent(hash, NULL);
   }
+  case TR_SEEN_COMPLETE_DATE:
+    return m_lastStatus.last_seen_complete ? QDateTime::fromTime_t(m_lastStatus.last_seen_complete) : QDateTime();
   default:
     return QVariant();
   }
@@ -366,6 +368,7 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
       case TorrentModelItem::TR_SAVE_PATH: return tr("Save path", "Torrent save path");
       case TorrentModelItem::TR_COMPLETED: return tr("Completed", "Amount of data completed (e.g. in MB)");
       case TorrentModelItem::TR_RATIO_LIMIT: return tr("Ratio Limit", "Upload share ratio limit");
+      case TorrentModelItem::TR_SEEN_COMPLETE_DATE: return tr("Last Seen Complete", "Torrent was seen complete on 01/01/2010 08:00");
       default:
         return QVariant();
       }

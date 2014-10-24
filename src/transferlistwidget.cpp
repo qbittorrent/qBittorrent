@@ -130,6 +130,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
     setColumnHidden(TorrentModelItem::TR_SAVE_PATH, true);
     setColumnHidden(TorrentModelItem::TR_COMPLETED, true);
     setColumnHidden(TorrentModelItem::TR_RATIO_LIMIT, true);
+    setColumnHidden(TorrentModelItem::TR_SEEN_COMPLETE_DATE, true);
   }
 
   //Ensure that at least one column is visible at all times
