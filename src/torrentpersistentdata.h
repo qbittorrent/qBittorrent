@@ -31,10 +31,13 @@
 #ifndef TORRENTPERSISTENTDATA_H
 #define TORRENTPERSISTENTDATA_H
 
-#include <QDateTime>
 #include <QHash>
 #include <QStringList>
 #include <vector>
+
+QT_BEGIN_NAMESPACE
+class QDateTime;
+QT_END_NAMESPACE
 
 class QTorrentHandle;
 
@@ -119,7 +122,7 @@ public:
   static void setRatioLimit(const QString &hash, const qreal &ratio);
   static qreal getRatioLimit(const QString &hash);
   static bool hasPerTorrentRatioLimit() ;
-  static void setAddedDate(const QString &hash, const QDateTime &time = QDateTime::currentDateTime());
+  static void setAddedDate(const QString &hash, const QDateTime &time);
   static QDateTime getAddedDate(const QString &hash);
   static void setErrorState(const QString &hash, const bool has_error);
   static bool hasError(const QString &hash);

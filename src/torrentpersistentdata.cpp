@@ -30,6 +30,7 @@
 
 #include "torrentpersistentdata.h"
 
+#include <QDateTime>
 #include <QDebug>
 #include <QVariant>
 
@@ -247,7 +248,7 @@ QDateTime TorrentPersistentData::getAddedDate(const QString &hash) {
   const QHash<QString, QVariant> data = all_data.value(hash).toHash();
   QDateTime dt = data.value("add_date").toDateTime();
   if (!dt.isValid()) {
-    setAddedDate(hash);
+    setAddedDate(hash, QDateTime::currentDateTime());
     dt = QDateTime::currentDateTime();
   }
   return dt;
@@ -312,7 +313,7 @@ void TorrentPersistentData::saveTorrentPersistentData(const QTorrentHandle &h, c
   settings.setValue("torrents", all_data);
   qDebug("TorrentPersistentData: Saving save_path %s, hash: %s", qPrintable(h.save_path()), qPrintable(h.hash()));
   // Set Added date
-  setAddedDate(h.hash());
+  setAddedDate(h.hash(), QDateTime::currentDateTime());
   // Finally, remove temp data
   TorrentTempData::deleteTempData(h.hash());
 }
