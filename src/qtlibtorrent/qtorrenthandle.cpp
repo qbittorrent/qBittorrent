@@ -28,6 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QDebug>
 #include <QString>
 #include <QStringList>
 #include <QFile>

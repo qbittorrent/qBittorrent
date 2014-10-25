@@ -114,6 +114,7 @@ HEADERS += misc.h \
 SOURCES += main.cpp \
            downloadthread.cpp \
            scannedfoldersmodel.cpp \
+           torrentpersistentdata.cpp \
            misc.cpp \
            fs_utils.cpp \
            smtp.cpp \

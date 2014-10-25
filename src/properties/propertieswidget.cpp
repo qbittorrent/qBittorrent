@@ -28,6 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QDebug>
 #include <QTimer>
 #include <QListWidgetItem>
 #include <QVBoxLayout>

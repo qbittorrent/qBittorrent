@@ -30,6 +30,7 @@
 
 #include "transferlistfilterswidget.h"
 
+#include <QDebug>
 #include <QListWidgetItem>
 #include <QIcon>
 #include <QVBoxLayout>

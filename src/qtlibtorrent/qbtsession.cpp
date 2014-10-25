@@ -28,6 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QDebug>
 #include <QDir>
 #include <QDateTime>
 #include <QString>
@@ -73,6 +74,7 @@
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
+#include <libtorrent/magnet_uri.hpp>
 #include <queue>
 #include <string.h>
 #include "dnsupdater.h"
@@ -81,12 +83,6 @@
 #include <libtorrent/upnp.hpp>
 #include <libtorrent/natpmp.hpp>
 #endif
-
-//initialize static member variables
-QHash<QString, TorrentTempData::TorrentData> TorrentTempData::data = QHash<QString, TorrentTempData::TorrentData>();
-QHash<QString, TorrentTempData::TorrentMoveState> TorrentTempData::torrentMoveStates = QHash<QString, TorrentTempData::TorrentMoveState>();
-QHash<QString, bool> HiddenData::data = QHash<QString, bool>();
-unsigned int HiddenData::metadata_counter = 0;
 
 using namespace libtorrent;
 

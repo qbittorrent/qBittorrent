@@ -28,6 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QDebug>
 #include <QShortcut>
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
@@ -42,6 +43,7 @@
 #include <QMessageBox>
 
 #include <libtorrent/version.hpp>
+#include <libtorrent/magnet_uri.hpp>
 #include <vector>
 #include <queue>
 
