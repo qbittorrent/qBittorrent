@@ -160,6 +160,7 @@ nox {
              ico.cpp \
              transferlistwidget.cpp \
              transferlistdelegate.cpp \
+             transferlistfilterswidget.cpp \
              torrentcontentmodel.cpp \
              torrentcontentmodelitem.cpp \
              torrentcontentmodelfolder.cpp \
