@@ -452,7 +452,7 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
   if (path_items.isEmpty())
     return;
 
-#ifndef Q_OS_WIN
+#if !(defined(Q_OS_WIN) || (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)))
   if (containing_folder)
     path_items.removeLast();
 #endif
@@ -470,6 +470,22 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
     // Dir separators MUST be win-style slashes
     QProcess::startDetached("explorer.exe", QStringList() << "/select," << fsutils::toNativePath(file_path));
   } else {
+#elif defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
+  if (containing_folder) {
+    QProcess proc;
+    QString output;
+    proc.start("xdg-mime", QStringList() << "query" << "default" << "inode/directory");
+    proc.waitForFinished();
+    output = proc.readLine().simplified();
+    if (output == "dolphin.desktop")
+      proc.startDetached("dolphin", QStringList() << "--select" << fsutils::toNativePath(file_path));
+    else if (output == "nautilus-folder-handler.desktop")
+      proc.startDetached("nautilus", QStringList() << "--no-desktop" << fsutils::toNativePath(file_path));
+    else if (output == "kfmclient_dir.desktop")
+      proc.startDetached("konqueror", QStringList() << "--select" << fsutils::toNativePath(file_path));
+    else
+      QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(file_path).absolutePath()));
+  } else {
 #endif
     if (QFile::exists(file_path)) {
       // Hack to access samba shares with QDesktopServices::openUrl
@@ -480,7 +496,7 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
     } else {
       QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
     }
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) || (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
   }
 #endif
 }
