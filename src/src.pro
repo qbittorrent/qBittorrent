@@ -159,6 +159,7 @@ nox {
   SOURCES += mainwindow.cpp \
              ico.cpp \
              transferlistwidget.cpp \
+             transferlistdelegate.cpp \
              torrentcontentmodel.cpp \
              torrentcontentmodelitem.cpp \
              torrentcontentmodelfolder.cpp \
