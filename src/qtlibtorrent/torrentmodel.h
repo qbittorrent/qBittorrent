@@ -58,6 +58,7 @@ public:
   QVariant data(int column, int role = Qt::DisplayRole) const;
   bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
   inline QString hash() const { return m_hash; }
+  State state() const;
 
 signals:
   void labelChanged(QString previous, QString current);
@@ -65,7 +66,6 @@ signals:
 private:
   static QIcon getIconByState(State state);
   static QColor getColorByState(State state);
-  State state() const;
 
 private:
   QTorrentHandle m_torrent;

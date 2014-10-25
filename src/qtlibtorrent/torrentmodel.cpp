@@ -504,7 +504,7 @@ TorrentStatusReport TorrentModel::getTorrentStatusReport() const
   QList<TorrentModelItem*>::const_iterator it = m_torrents.constBegin();
   QList<TorrentModelItem*>::const_iterator itend = m_torrents.constEnd();
   for ( ; it != itend; ++it) {
-    switch((*it)->data(TorrentModelItem::TR_STATUS).toInt()) {
+    switch((*it)->state()) {
     case TorrentModelItem::STATE_DOWNLOADING:
       ++report.nb_active;
       ++report.nb_downloading;
