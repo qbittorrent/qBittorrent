@@ -100,73 +100,97 @@ void TorrentModelItem::refreshStatus(libtorrent::torrent_status const& status) {
 TorrentModelItem::State TorrentModelItem::state() const {
   try {
     // Pause or Queued
-    if (m_torrent.is_paused(m_lastStatus)) {
-      m_icon = get_paused_icon();
-      m_fgColor = QColor(Qt::red);
+    if (m_torrent.is_paused(m_lastStatus))
       return m_torrent.is_seed(m_lastStatus) ? STATE_PAUSED_UP : STATE_PAUSED_DL;
-    }
-    if (m_torrent.is_queued(m_lastStatus)) {
-      if (m_lastStatus.state != torrent_status::queued_for_checking
-          && m_lastStatus.state != torrent_status::checking_resume_data
-          && m_lastStatus.state != torrent_status::checking_files) {
-        m_icon = get_queued_icon();
-        m_fgColor = QColor(Qt::gray);
-        return m_torrent.is_seed(m_lastStatus) ? STATE_QUEUED_UP : STATE_QUEUED_DL;
-      }
-    }
+
+    if (m_torrent.is_queued(m_lastStatus)
+        && m_lastStatus.state != torrent_status::queued_for_checking
+        && m_lastStatus.state != torrent_status::checking_resume_data
+        && m_lastStatus.state != torrent_status::checking_files)
+      return m_torrent.is_seed(m_lastStatus) ? STATE_QUEUED_UP : STATE_QUEUED_DL;
+
     // Other states
     switch(m_lastStatus.state) {
     case torrent_status::allocating:
-      m_icon = get_stalled_downloading_icon();
-      m_fgColor = QColor(Qt::gray);
       return STATE_ALLOCATING;
     case torrent_status::downloading_metadata:
-      m_icon = get_downloading_icon();
-      m_fgColor = QColor(Qt::green);
       return STATE_DOWNLOADING_META;
-    case torrent_status::downloading: {
-      if (m_lastStatus.download_payload_rate > 0) {
-        m_icon = get_downloading_icon();
-        m_fgColor = QColor(Qt::green);
-        return STATE_DOWNLOADING;
-      } else {
-        m_icon = get_stalled_downloading_icon();
-        m_fgColor = QColor(Qt::gray);
-        return STATE_STALLED_DL;
-      }
-    }
+    case torrent_status::downloading:
+      return m_lastStatus.download_payload_rate > 0 ? STATE_DOWNLOADING : STATE_STALLED_DL;
     case torrent_status::finished:
     case torrent_status::seeding:
-      if (m_lastStatus.upload_payload_rate > 0) {
-        m_icon = get_uploading_icon();
-        m_fgColor = QColor(255, 165, 0);
-        return STATE_SEEDING;
-      } else {
-        m_icon = get_stalled_uploading_icon();
-        m_fgColor = QColor(Qt::gray);
-        return STATE_STALLED_UP;
-      }
+      return m_lastStatus.upload_payload_rate > 0 ? STATE_SEEDING : STATE_STALLED_UP;
     case torrent_status::queued_for_checking:
-      m_icon = get_checking_icon();
-      m_fgColor = QColor(Qt::gray);
       return STATE_QUEUED_CHECK;
     case torrent_status::checking_resume_data:
-      m_icon = get_checking_icon();
-      m_fgColor = QColor(Qt::gray);
       return STATE_QUEUED_FASTCHECK;
     case torrent_status::checking_files:
-      m_icon = get_checking_icon();
-      m_fgColor = QColor(Qt::gray);
       return m_torrent.is_seed(m_lastStatus) ? STATE_CHECKING_UP : STATE_CHECKING_DL;
     default:
-      m_icon = get_error_icon();
-      m_fgColor = QColor(Qt::red);
       return STATE_INVALID;
     }
   } catch(invalid_handle&) {
-    m_icon = get_error_icon();
-    m_fgColor = QColor(Qt::red);
     return STATE_INVALID;
+  }
+}
+
+QIcon TorrentModelItem::getIconByState(State state) {
+  switch (state) {
+  case STATE_DOWNLOADING:
+  case STATE_DOWNLOADING_META:
+    return get_downloading_icon();
+  case STATE_ALLOCATING:
+  case STATE_STALLED_DL:
+    return get_stalled_downloading_icon();
+  case STATE_STALLED_UP:
+    return get_stalled_uploading_icon();
+  case STATE_SEEDING:
+    return get_uploading_icon();
+  case STATE_PAUSED_DL:
+  case STATE_PAUSED_UP:
+    return get_paused_icon();
+  case STATE_QUEUED_DL:
+  case STATE_QUEUED_UP:
+    return get_queued_icon();
+  case STATE_CHECKING_UP:
+  case STATE_CHECKING_DL:
+  case STATE_QUEUED_CHECK:
+  case STATE_QUEUED_FASTCHECK:
+    return get_checking_icon();
+  case STATE_INVALID:
+    return get_error_icon();
+  default:
+    Q_ASSERT(false);
+    return get_error_icon();
+  }
+}
+
+QColor TorrentModelItem::getColorByState(State state) {
+  switch (state) {
+  case STATE_DOWNLOADING:
+  case STATE_DOWNLOADING_META:
+    return QColor(Qt::green);
+  case STATE_ALLOCATING:
+  case STATE_STALLED_DL:
+  case STATE_STALLED_UP:
+    return QColor(Qt::gray);
+  case STATE_SEEDING:
+    return QColor(255, 165, 0);
+  case STATE_PAUSED_DL:
+  case STATE_PAUSED_UP:
+    return QColor(Qt::red);
+  case STATE_QUEUED_DL:
+  case STATE_QUEUED_UP:
+  case STATE_CHECKING_UP:
+  case STATE_CHECKING_DL:
+  case STATE_QUEUED_CHECK:
+  case STATE_QUEUED_FASTCHECK:
+    return QColor(Qt::gray);
+  case STATE_INVALID:
+    return QColor(Qt::red);
+  default:
+    Q_ASSERT(false);
+    return QColor(Qt::red);
   }
 }
 
@@ -199,10 +223,10 @@ bool TorrentModelItem::setData(int column, const QVariant &value, int role)
 QVariant TorrentModelItem::data(int column, int role) const
 {
   if (role == Qt::DecorationRole && column == TR_NAME) {
-    return m_icon;
+    return getIconByState(state());
   }
   if (role == Qt::ForegroundRole) {
-    return m_fgColor;
+    return getColorByState(state());
   }
   if (role != Qt::DisplayRole && role != Qt::UserRole) return QVariant();
   switch(column) {

@@ -63,6 +63,8 @@ signals:
   void labelChanged(QString previous, QString current);
 
 private:
+  static QIcon getIconByState(State state);
+  static QColor getColorByState(State state);
   State state() const;
 
 private:
@@ -71,8 +73,6 @@ private:
   QDateTime m_addedTime;
   QString m_label;
   QString m_name;
-  mutable QIcon m_icon;
-  mutable QColor m_fgColor;
   QString m_hash; // Cached for safety reasons
 };
 
