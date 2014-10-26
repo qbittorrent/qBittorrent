@@ -58,7 +58,8 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
   case TorrentModelItem::TR_AMOUNT_UPLOADED:
   case TorrentModelItem::TR_AMOUNT_LEFT:
   case TorrentModelItem::TR_COMPLETED:
-  case TorrentModelItem::TR_SIZE: {
+  case TorrentModelItem::TR_SIZE:
+  case TorrentModelItem::TR_TOTAL_SIZE: {
       QItemDelegate::drawBackground(painter, opt, index);
       opt.displayAlignment = Qt::AlignRight;
       QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));

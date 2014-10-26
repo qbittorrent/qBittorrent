@@ -299,6 +299,8 @@ QVariant TorrentModelItem::data(int column, int role) const
       return m_lastStatus.time_since_upload;
     else
       return m_lastStatus.time_since_download;
+  case TR_TOTAL_SIZE:
+    return m_lastStatus.has_metadata ? static_cast<qlonglong>(m_torrent.total_size()) : -1;
   default:
     return QVariant();
   }
@@ -377,6 +379,7 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
       case TorrentModelItem::TR_RATIO_LIMIT: return tr("Ratio Limit", "Upload share ratio limit");
       case TorrentModelItem::TR_SEEN_COMPLETE_DATE: return tr("Last Seen Complete", "Torrent was seen complete on 01/01/2010 08:00");
       case TorrentModelItem::TR_LAST_ACTIVITY: return tr("Last Activity", "Time passed since a chunk was downloaded/uploaded");
+      case TorrentModelItem::TR_TOTAL_SIZE: return tr("Total Size", "i.e. Size including unwanted data");
       default:
         return QVariant();
       }
