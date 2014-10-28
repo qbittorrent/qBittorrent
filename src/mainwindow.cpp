@@ -29,7 +29,7 @@
  */
 
 #include <QtGlobal>
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
+#if defined(Q_OS_UNIX) && defined(QT_DBUS_LIB)
 #include <QDBusConnection>
 #include "notifications.h"
 #endif
@@ -1168,7 +1168,7 @@ void MainWindow::updateGUI() {
 
 void MainWindow::showNotificationBaloon(QString title, QString msg) const {
   if (!Preferences::instance()->useProgramNotification()) return;
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
+#if defined(Q_OS_UNIX) && defined(QT_DBUS_LIB)
   org::freedesktop::Notifications notifications("org.freedesktop.Notifications",
                                                 "/org/freedesktop/Notifications",
                                                 QDBusConnection::sessionBus());
