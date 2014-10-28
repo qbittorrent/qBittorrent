@@ -10,6 +10,7 @@ win32 {
 # Mac specific configuration
 macx {
   include(../macxconf.pri)
+  QT += macextras
 }
 
 # Unix specific configuration

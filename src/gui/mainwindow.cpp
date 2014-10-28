@@ -76,6 +76,8 @@
 #include "autoexpandabledialog.h"
 #endif
 #ifdef Q_OS_MAC
+#include <QtMacExtras>
+#include <QtMac>
 #include "qmacapplication.h"
 void qt_mac_set_dock_menu(QMenu *menu);
 #endif
@@ -248,6 +250,10 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
 
 #ifdef Q_OS_MAC
   setUnifiedTitleAndToolBarOnMac(true);
+#endif
+#ifdef Q_OS_MAC
+void QtMac::setBadgeLabelText(tr("D: %1/s", "D = Download").arg(misc::friendlyUnit(QBtSession::instance()->getSessionStatus().payload_download_rate)));
+void QtMac::setBadgeLabelText(tr("U: %1/s", "U = Upload").arg(misc::friendlyUnit(QBtSession::instance()->getSessionStatus().payload_upload_rate)));
 #endif
 
   // View settings
