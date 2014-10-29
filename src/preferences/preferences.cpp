@@ -1999,3 +1999,11 @@ int Preferences::getChokingAlgorithm() const {
 void Preferences::setChokingAlgorithm(const int &algorithm) {
   setValue("Preferences/Advanced/choking_algorithm", algorithm);
 }
+
+int Preferences::getSeedChokingAlgorithm() const {
+  return value("Preferences/Advanced/seed_choking_algorithm", 0).toInt();
+}
+
+void Preferences::setSeedChokingAlgorithm(const int &algorithm) {
+  setValue("Preferences/Advanced/seed_choking_algorithm", algorithm);
+}

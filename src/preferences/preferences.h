@@ -385,6 +385,8 @@ public:
   void setTrayIconStyle(TrayIcon::Style style);
   int getChokingAlgorithm() const;
   void setChokingAlgorithm(const int &algorithm);
+  int getSeedChokingAlgorithm() const;
+  void setSeedChokingAlgorithm(const int &algorithm);
 
 
   // Stuff that don't appear in the Options GUI but are saved

@@ -640,6 +640,8 @@ void QBtSession::configureSession() {
   }
   // Choking algorithm
   sessionSettings.choking_algorithm = pref->getChokingAlgorithm();
+  // Seed choking algorithm
+  sessionSettings.seed_choking_algorithm = pref->getSeedChokingAlgorithm();
   qDebug("Session configured");
 }
 
