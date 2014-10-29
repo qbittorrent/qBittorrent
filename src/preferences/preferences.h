@@ -383,6 +383,8 @@ public:
   void setConfirmTorrentDeletion(bool enabled);
   TrayIcon::Style trayIconStyle() const;
   void setTrayIconStyle(TrayIcon::Style style);
+  int getChokingAlgorithm() const;
+  void setChokingAlgorithm(const int &algorithm);
 
 
   // Stuff that don't appear in the Options GUI but are saved
