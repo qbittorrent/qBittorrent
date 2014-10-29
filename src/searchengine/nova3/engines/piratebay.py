@@ -1,4 +1,4 @@
-#VERSION: 2.00
+#VERSION: 2.01
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 #              Arthur (custparasite@gmx.se)
@@ -35,7 +35,7 @@ import urllib.request
 PREVIOUS_IDS = set()
 
 class piratebay(object):
-    url = 'http://thepiratebay.se'
+    url = 'https://thepiratebay.se'
     name = 'The Pirate Bay'
     supported_categories = {'all': '0', 'music': '100', 'movies': '200', 'games': '400', 'software': '300'}
 

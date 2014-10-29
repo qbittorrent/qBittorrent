@@ -1,6 +1,6 @@
 torrentreactor: 1.33
 mininova: 1.50
-piratebay: 2.00
+piratebay: 2.01
 vertor: 1.3
 extratorrent: 1.2
 kickasstorrents: 1.24
