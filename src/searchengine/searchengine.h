@@ -60,6 +60,7 @@ public:
   SearchEngine(MainWindow *mp_mainWindow);
   ~SearchEngine();
   QString selectedCategory() const;
+  QString selectedEngine() const;
 
   static qreal getPluginVersion(QString filePath) {
     QFile plugin(filePath);
@@ -98,11 +99,13 @@ protected slots:
   void readSearchOutput();
   void searchStarted();
   void updateNova();
+  void selectMultipleBox(const QString &text);
   void on_enginesButton_clicked();
   void propagateSectionResized(int index, int oldsize , int newsize);
   void saveResultsColumnsWidth();
   void downloadFinished(int exitcode, QProcess::ExitStatus);
   void fillCatCombobox();
+  void fillEngineComboBox();
   void searchTextEdited(QString);
 
 private slots:
