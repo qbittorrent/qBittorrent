@@ -121,6 +121,9 @@ public:
   };
 
 public:
+  static void load();
+  static void save();
+
   static bool isKnownTorrent(QString hash);
   static QStringList knownTorrents();
   static void setRatioLimit(const QString &hash, const qreal &ratio);
@@ -151,6 +154,10 @@ public:
   static bool isSeed(const QString &hash);
   static bool isMagnet(const QString &hash);
   static QString getMagnetUri(const QString &hash);
+
+private:
+  static QHash<QString, QVariant> all_data;
+  static bool dirty;
 };
 
 #endif // TORRENTPERSISTENTDATA_H
