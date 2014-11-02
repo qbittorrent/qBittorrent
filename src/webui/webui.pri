@@ -6,10 +6,12 @@ HEADERS += $$PWD/httpserver.h \
            $$PWD/httpresponsegenerator.h \
            $$PWD/btjson.h \
            $$PWD/prefjson.h \
-           $$PWD/httpheader.h \
-           $$PWD/httprequestheader.h \
-           $$PWD/httpresponseheader.h \
-           $$PWD/jsonutils.h
+           $$PWD/jsonutils.h \
+           $$PWD/httptypes.h \
+           $$PWD/extra_translations.h \
+           $$PWD/webapplication.h \
+           $$PWD/abstractrequesthandler.h \
+           $$PWD/requesthandler.h
 
 SOURCES += $$PWD/httpserver.cpp \
            $$PWD/httpconnection.cpp \
@@ -17,9 +19,9 @@ SOURCES += $$PWD/httpserver.cpp \
            $$PWD/httpresponsegenerator.cpp \
            $$PWD/btjson.cpp \
            $$PWD/prefjson.cpp \
-           $$PWD/httpheader.cpp \
-           $$PWD/httprequestheader.cpp \
-           $$PWD/httpresponseheader.cpp
+           $$PWD/webapplication.cpp \
+           $$PWD/abstractrequesthandler.cpp \
+           $$PWD/requesthandler.cpp
 
 # QJson JSON parser/serializer for using with Qt4
 lessThan(QT_MAJOR_VERSION, 5) {

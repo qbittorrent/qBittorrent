@@ -671,8 +671,6 @@ void QBtSession::initWebUi() {
     }
 #endif
 
-    httpServer->setAuthorization(username, password);
-    httpServer->setlocalAuthEnabled(pref->isWebUiLocalAuthEnabled());
     if (!httpServer->isListening()) {
       bool success = httpServer->listen(QHostAddress::Any, port);
       if (success)
