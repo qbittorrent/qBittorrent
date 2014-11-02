@@ -136,7 +136,10 @@ void RequestHandler::action_public_login()
   md5.addData(request().posts["password"].toLocal8Bit());
   QString pass = md5.result().toHex();
 
-  if ((request().posts["username"] == pref->getWebUiUsername()) && (pass == pref->getWebUiPassword()))
+  bool equalUser = misc::slowEquals(request().posts["username"].toUtf8(), pref->getWebUiUsername().toUtf8());
+  bool equalPass = misc::slowEquals(pass.toUtf8(), pref->getWebUiPassword().toUtf8());
+
+  if (equalUser && equalPass)
   {
     sessionStart();
     print(QByteArray("Ok."), CONTENT_TYPE_TXT);

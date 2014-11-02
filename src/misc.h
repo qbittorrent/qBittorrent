@@ -106,6 +106,10 @@ namespace misc
   bool naturalSort(QString left, QString right, bool& result);
 #endif
 
+  // Implements constant-time comparison to protect against timing attacks
+  // Taken from https://crackstation.net/hashing-security.htm
+  bool slowEquals(const QByteArray &a, const QByteArray &b);
+
   void msleep(unsigned long msecs);
 }
 

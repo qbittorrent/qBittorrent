@@ -645,6 +645,20 @@ QString misc::accurateDoubleToString(const double &n, const int &precision, bool
     return QString::number(std::floor(n*prec)/prec, 'f', precision);
 }
 
+// Implements constant-time comparison to protect against timing attacks
+// Taken from https://crackstation.net/hashing-security.htm
+bool misc::slowEquals(const QByteArray &a, const QByteArray &b)
+{
+  int lengthA = a.length();
+  int lengthB = b.length();
+
+  int diff = lengthA ^ lengthB;
+  for(int i = 0; i < lengthA && i < lengthB; i++)
+    diff |= a[i] ^ b[i];
+
+  return (diff == 0);
+}
+
 namespace {
   //  Trick to get a portable sleep() function
   class SleeperThread : public QThread {
