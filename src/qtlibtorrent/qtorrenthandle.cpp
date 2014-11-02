@@ -514,8 +514,6 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
 #endif
   qDebug() << Q_FUNC_INFO;
   bool was_seed = is_seed();
-  vector<size_type> progress;
-  file_progress(progress);
   qDebug() << Q_FUNC_INFO << "Changing files priorities...";
   torrent_handle::prioritize_files(files);
   qDebug() << Q_FUNC_INFO << "Moving unwanted files to .unwanted folder and conversely...";
