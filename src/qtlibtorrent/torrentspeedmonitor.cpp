@@ -29,8 +29,6 @@
  */
 
 #include <QList>
-#include <QDateTime>
-#include <vector>
 
 #include "qbtsession.h"
 #include "misc.h"
@@ -141,6 +139,10 @@ qlonglong TorrentSpeedMonitor::getETA(const QString &hash, const libtorrent::tor
 
 void TorrentSpeedMonitor::statsReceived(const stats_alert &stats)
 {
-  m_samples[misc::toQString(stats.handle.info_hash())].addSample(stats.transferred[stats_alert::download_payload] * 1000 / stats.interval,
-                                                                 stats.transferred[stats_alert::upload_payload] * 1000 / stats.interval);
+  Q_ASSERT(stats.interval >= 1000);
+
+  int speedDL = static_cast<int>(static_cast<long long>(stats.transferred[stats_alert::download_payload]) * 1000 / stats.interval);
+  int speedUL = static_cast<int>(static_cast<long long>(stats.transferred[stats_alert::upload_payload])   * 1000 / stats.interval);
+
+  m_samples[misc::toQString(stats.handle.info_hash())].addSample(speedDL, speedUL);
 }
