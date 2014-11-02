@@ -408,6 +408,7 @@ void TorrentModel::removeTorrent(const QString &hash)
   qDebug() << Q_FUNC_INFO << hash << row;
   if (row >= 0) {
     beginRemoveTorrent(row);
+    delete m_torrents[row];
     m_torrents.removeAt(row);
     endRemoveTorrent();
   }
