@@ -36,6 +36,7 @@
 #include <QPointer>
 #include "ui_mainwindow.h"
 #include "qtorrenthandle.h"
+#include "torrentpersistentdata.h"
 #include "statsdialog.h"
 
 class QBtSession;
@@ -143,7 +144,6 @@ protected slots:
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     void handleUpdateCheckFinished(bool update_available, QString new_version, bool invokedByUser);
 #endif
-  void savePersistentData();
 
 protected:
     void closeEvent(QCloseEvent *);
@@ -217,7 +217,7 @@ private:
     bool has_python;
 #endif
     QMenu* toolbarMenu;
-    QTimer persistentDataSaver;
+    TorrentPersistentData persistentData;
 
 private slots:
     void on_actionSearch_engine_triggered();

@@ -225,7 +225,7 @@ void QBtSession::processBigRatios() {
     if (h.is_seed()) {
       const QString hash = h.hash();
       const qreal ratio = getRealRatio(h.status(torrent_handle::query_accurate_download_counters));
-      qreal ratio_limit = TorrentPersistentData::getRatioLimit(hash);
+      qreal ratio_limit = TorrentPersistentData::instance().getRatioLimit(hash);
       if (ratio_limit == TorrentPersistentData::USE_GLOBAL_RATIO)
         ratio_limit = global_ratio_limit;
       if (ratio_limit == TorrentPersistentData::NO_RATIO_LIMIT)
@@ -825,7 +825,7 @@ void QBtSession::deleteTorrent(const QString &hash, bool delete_local_files) {
   foreach (const QString &file, files) {
     fsutils::forceRemove(torrentBackup.absoluteFilePath(file));
   }
-  TorrentPersistentData::deletePersistentData(hash);
+  TorrentPersistentData::instance().deletePersistentData(hash);
   TorrentTempData::deleteTempData(hash);
   HiddenData::deleteData(hash);
   // Remove tracker errors
@@ -975,7 +975,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   }
   if (savePath.isEmpty())
     savePath = getSavePath(hash, false);
-  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash)) {
+  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::instance().isSeed(hash)) {
     qDebug("addMagnetURI: Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath;
     p.save_path = fsutils::toNativePath(torrent_tmp_path).toUtf8().constData();
@@ -1168,7 +1168,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   } else {
     savePath = getSavePath(hash, fromScanDir, path, imported);
   }
-  if (!imported && !defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash)) {
+  if (!imported && !defaultTempPath.isEmpty() && !TorrentPersistentData::instance().isSeed(hash)) {
     qDebug("addTorrent::Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath;
     p.save_path = fsutils::toNativePath(torrent_tmp_path).toUtf8().constData();
@@ -1333,9 +1333,9 @@ void QBtSession::loadTorrentTempData(QTorrentHandle &h, QString savePath, bool m
   // Save persistent data for new torrent
   qDebug("Saving torrent persistant data");
   if (defaultTempPath.isEmpty())
-    TorrentPersistentData::saveTorrentPersistentData(h, QString::null, magnet);
+    TorrentPersistentData::instance().saveTorrentPersistentData(h, QString::null, magnet);
   else
-    TorrentPersistentData::saveTorrentPersistentData(h, fsutils::fromNativePath(savePath), magnet);
+    TorrentPersistentData::instance().saveTorrentPersistentData(h, fsutils::fromNativePath(savePath), magnet);
 }
 
 void QBtSession::mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri)
@@ -1652,7 +1652,7 @@ void QBtSession::saveFastResumeData() {
       continue;
     try {
       if (isQueueingEnabled())
-        TorrentPersistentData::savePriority(h);
+        TorrentPersistentData::instance().savePriority(h);
       if (!h.has_metadata())
         continue;
       // Actually with should save fast resume data for paused files too
@@ -1877,7 +1877,7 @@ void QBtSession::appendqBextensionToTorrent(const QTorrentHandle &h, bool append
 void QBtSession::changeLabelInTorrentSavePath(const QTorrentHandle &h, QString old_label, QString new_label) {
   if (!h.is_valid()) return;
   if (!appendLabelToSavePath) return;
-  QString old_save_path = fsutils::fromNativePath(TorrentPersistentData::getSavePath(h.hash()));
+  QString old_save_path = fsutils::fromNativePath(TorrentPersistentData::instance().getSavePath(h.hash()));
   if (!old_save_path.startsWith(defaultSavePath)) return;
   QString new_save_path = fsutils::updateLabelInSavePath(defaultSavePath, old_save_path, old_label, new_label);
   if (new_save_path != old_save_path) {
@@ -1890,10 +1890,10 @@ void QBtSession::changeLabelInTorrentSavePath(const QTorrentHandle &h, QString o
 
 void QBtSession::appendLabelToTorrentSavePath(const QTorrentHandle& h) {
   if (!h.is_valid()) return;
-  const QString label = TorrentPersistentData::getLabel(h.hash());
+  const QString label = TorrentPersistentData::instance().getLabel(h.hash());
   if (label.isEmpty()) return;
   // Current save path
-  QString old_save_path = fsutils::fromNativePath(TorrentPersistentData::getSavePath(h.hash()));
+  QString old_save_path = fsutils::fromNativePath(TorrentPersistentData::instance().getSavePath(h.hash()));
   QString new_save_path = fsutils::updateLabelInSavePath(defaultSavePath, old_save_path, "", label);
   if (old_save_path != new_save_path) {
     // Move storage
@@ -2018,20 +2018,20 @@ void QBtSession::setMaxRatioPerTorrent(const QString &hash, qreal ratio)
     ratio = MAX_RATIO;
   qDebug("* Set individual max ratio for torrent %s to %.1f.",
          qPrintable(hash), ratio);
-  TorrentPersistentData::setRatioLimit(hash, ratio);
+  TorrentPersistentData::instance().setRatioLimit(hash, ratio);
   updateRatioTimer();
 }
 
 void QBtSession::removeRatioPerTorrent(const QString &hash)
 {
   qDebug("* Remove individual max ratio for torrent %s.", qPrintable(hash));
-  TorrentPersistentData::setRatioLimit(hash, TorrentPersistentData::USE_GLOBAL_RATIO);
+  TorrentPersistentData::instance().setRatioLimit(hash, TorrentPersistentData::USE_GLOBAL_RATIO);
   updateRatioTimer();
 }
 
 qreal QBtSession::getMaxRatioPerTorrent(const QString &hash, bool *usesGlobalRatio) const
 {
-  qreal ratio_limit = TorrentPersistentData::getRatioLimit(hash);
+  qreal ratio_limit = TorrentPersistentData::instance().getRatioLimit(hash);
   if (ratio_limit == TorrentPersistentData::USE_GLOBAL_RATIO) {
     ratio_limit = global_ratio_limit;
     if (usesGlobalRatio)
@@ -2045,7 +2045,7 @@ qreal QBtSession::getMaxRatioPerTorrent(const QString &hash, bool *usesGlobalRat
 
 void QBtSession::updateRatioTimer()
 {
-  if (global_ratio_limit == -1 && !TorrentPersistentData::hasPerTorrentRatioLimit()) {
+  if (global_ratio_limit == -1 && !TorrentPersistentData::instance().hasPerTorrentRatioLimit()) {
     if (BigRatioTimer->isActive())
       BigRatioTimer->stop();
   } else if (!BigRatioTimer->isActive()) {
@@ -2125,7 +2125,7 @@ void QBtSession::sendNotificationEmail(const QTorrentHandle &h) {
   // Prepare mail content
   QString content = tr("Torrent name: %1").arg(h.name()) + "\n";
   content += tr("Torrent size: %1").arg(misc::friendlyUnit(status.total_wanted)) + "\n";
-  content += tr("Save path: %1").arg(TorrentPersistentData::getSavePath(h.hash())) + "\n\n";
+  content += tr("Save path: %1").arg(TorrentPersistentData::instance().getSavePath(h.hash())) + "\n\n";
   content += tr("The torrent was downloaded in %1.", "The torrent was downloaded in 1 hour and 20 seconds").arg(misc::userFriendlyDuration(status.active_time)) + "\n\n\n";
   content += tr("Thank you for using qBittorrent.") + "\n";
   // Send the notification email
@@ -2239,7 +2239,7 @@ void QBtSession::handleTorrentFinishedAlert(libtorrent::torrent_finished_alert* 
     if (appendqBExtension)
       appendqBextensionToTorrent(h, false);
 
-    const bool was_already_seeded = TorrentPersistentData::isSeed(hash);
+    const bool was_already_seeded = TorrentPersistentData::instance().isSeed(hash);
     qDebug("Was already seeded: %d", was_already_seeded);
     if (!was_already_seeded) {
       h.save_resume_data();
@@ -2282,7 +2282,7 @@ void QBtSession::handleTorrentFinishedAlert(libtorrent::torrent_finished_alert* 
       }
       // Remember finished state
       qDebug("Saving seed status");
-      TorrentPersistentData::saveSeedStatus(h);
+      TorrentPersistentData::instance().saveSeedStatus(h);
       // Recheck if the user asked to
       Preferences* const pref = Preferences::instance();
       if (pref->recheckTorrentsOnCompletion()) {
@@ -2444,7 +2444,7 @@ void QBtSession::handleStorageMovedAlert(libtorrent::storage_moved_alert* p) {
   }
   if (defaultTempPath.isEmpty() || !new_save_path.startsWith(defaultTempPath)) {
     qDebug("Storage has been moved, updating save path to %s", qPrintable(new_save_path));
-    TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
+    TorrentPersistentData::instance().saveSavePath(h.hash(), new_save_path);
   }
   emit savePathChanged(h);
   //h.force_recheck();
@@ -2684,11 +2684,11 @@ void QBtSession::handleFastResumeRejectedAlert(libtorrent::fastresume_rejected_a
   QTorrentHandle h(p->handle);
   if (h.is_valid()) {
     qDebug("/!\\ Fast resume failed for %s, reason: %s", qPrintable(h.name()), p->message().c_str());
-    if (p->error.value() == 134 && TorrentPersistentData::isSeed(h.hash()) && h.has_missing_files()) {
+    if (p->error.value() == 134 && TorrentPersistentData::instance().isSeed(h.hash()) && h.has_missing_files()) {
       const QString hash = h.hash();
       // Mismatching file size (files were probably moved
       addConsoleMessage(tr("File sizes mismatch for torrent %1, pausing it.").arg(h.name()));
-      TorrentPersistentData::setErrorState(hash, true);
+      TorrentPersistentData::instance().setErrorState(hash, true);
       pauseTorrent(hash);
     } else {
       addConsoleMessage(tr("Fast resume data was rejected for torrent %1, checking again...").arg(h.name()), QString::fromUtf8("red"));
@@ -2751,7 +2751,7 @@ void QBtSession::handleTorrentCheckedAlert(libtorrent::torrent_checked_alert* p)
     const QString hash = h.hash();
     qDebug("%s have just finished checking", qPrintable(hash));
     // Save seed status
-    TorrentPersistentData::saveSeedStatus(h);
+    TorrentPersistentData::instance().saveSeedStatus(h);
     // Move to temp directory if necessary
     if (!h.is_seed() && !defaultTempPath.isEmpty()) {
       // Check if directory is different
@@ -2874,7 +2874,7 @@ QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString f
     }
     qDebug("getSavePath, got save_path from temp data: %s", qPrintable(savePath));
   } else {
-    savePath = fsutils::fromNativePath(TorrentPersistentData::getSavePath(hash));
+    savePath = fsutils::fromNativePath(TorrentPersistentData::instance().getSavePath(hash));
     qDebug("SavePath got from persistant data is %s", qPrintable(savePath));
     if (savePath.isEmpty()) {
       if (fromScanDir && m_scanFolders->downloadInTorrentFolder(filePath)) {
@@ -2884,7 +2884,7 @@ QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString f
       }
     }
     if (!fromScanDir && appendLabelToSavePath) {
-      const QString label = TorrentPersistentData::getLabel(hash);
+      const QString label = TorrentPersistentData::instance().getLabel(hash);
       if (!label.isEmpty()) {
         qDebug("Torrent label is %s", qPrintable(label));
         savePath = fsutils::updateLabelInSavePath(defaultSavePath, savePath, "", label);
@@ -3044,7 +3044,7 @@ qreal QBtSession::getPayloadUploadRate() const {
 void QBtSession::startUpTorrents() {
   qDebug("Resuming unfinished torrents");
   const QDir torrentBackup(fsutils::BTBackupLocation());
-  const QStringList known_torrents = TorrentPersistentData::knownTorrents();
+  const QStringList known_torrents = TorrentPersistentData::instance().knownTorrents();
 
   // Safety measure because some people reported torrent loss since
   // we switch the v1.5 way of resuming torrents on startup
@@ -3065,7 +3065,7 @@ void QBtSession::startUpTorrents() {
   if (isQueueingEnabled()) {
     priority_queue<QPair<int, QString>, vector<QPair<int, QString> >, std::greater<QPair<int, QString> > > torrent_queue;
     foreach (const QString &hash, known_torrents) {
-      const int prio = TorrentPersistentData::getPriority(hash);
+      const int prio = TorrentPersistentData::instance().getPriority(hash);
       torrent_queue.push(qMakePair(prio, hash));
     }
     qDebug("Priority_queue size: %ld", (long)torrent_queue.size());
@@ -3074,8 +3074,8 @@ void QBtSession::startUpTorrents() {
       const QString hash = torrent_queue.top().second;
       torrent_queue.pop();
       qDebug("Starting up torrent %s", qPrintable(hash));
-      if (TorrentPersistentData::isMagnet(hash)) {
-        addMagnetUri(TorrentPersistentData::getMagnetUri(hash), true);
+      if (TorrentPersistentData::instance().isMagnet(hash)) {
+        addMagnetUri(TorrentPersistentData::instance().getMagnetUri(hash), true);
       } else {
         addTorrent(torrentBackup.path()+"/"+hash+".torrent", false, QString(), true);
       }
@@ -3084,8 +3084,8 @@ void QBtSession::startUpTorrents() {
     // Resume downloads
     foreach (const QString &hash, known_torrents) {
       qDebug("Starting up torrent %s", qPrintable(hash));
-      if (TorrentPersistentData::isMagnet(hash))
-        addMagnetUri(TorrentPersistentData::getMagnetUri(hash), true);
+      if (TorrentPersistentData::instance().isMagnet(hash))
+        addMagnetUri(TorrentPersistentData::instance().getMagnetUri(hash), true);
       else
         addTorrent(torrentBackup.path()+"/"+hash+".torrent", false, QString(), true);
     }
@@ -3139,7 +3139,7 @@ void QBtSession::handleIPFilterError()
 }
 
 void QBtSession::recoverPersistentData(const QString &hash, const std::vector<char> &buf) {
-  if (TorrentPersistentData::isKnownTorrent(hash) || TorrentTempData::hasTempData(hash) || buf.empty())
+  if (TorrentPersistentData::instance().isKnownTorrent(hash) || TorrentTempData::hasTempData(hash) || buf.empty())
     return;
 
   libtorrent::lazy_entry fast;
@@ -3156,20 +3156,20 @@ void QBtSession::recoverPersistentData(const QString &hash, const std::vector<ch
   int priority = fast.dict_find_int_value("qBt-queuePosition");
   bool seedStatus = fast.dict_find_int_value("qBt-seedStatus");
 
-  TorrentPersistentData::saveSavePath(hash, savePath);
-  TorrentPersistentData::setRatioLimit(hash, ratioLimit);
-  TorrentPersistentData::setAddedDate(hash, addedDate);
-  TorrentPersistentData::saveLabel(hash, label);
-  TorrentPersistentData::savePriority(hash, priority);
-  TorrentPersistentData::saveSeedStatus(hash, seedStatus);
+  TorrentPersistentData::instance().saveSavePath(hash, savePath);
+  TorrentPersistentData::instance().setRatioLimit(hash, ratioLimit);
+  TorrentPersistentData::instance().setAddedDate(hash, addedDate);
+  TorrentPersistentData::instance().saveLabel(hash, label);
+  TorrentPersistentData::instance().savePriority(hash, priority);
+  TorrentPersistentData::instance().saveSeedStatus(hash, seedStatus);
 }
 
 void QBtSession::backupPersistentData(const QString &hash, boost::shared_ptr<libtorrent::entry> data) {
-  (*data)["qBt-savePath"] = fsutils::fromNativePath(TorrentPersistentData::getSavePath(hash)).toUtf8().constData();
-  (*data)["qBt-ratioLimit"] = QString::number(TorrentPersistentData::getRatioLimit(hash)).toUtf8().constData();
-  (*data)["qBt-label"] = TorrentPersistentData::getLabel(hash).toUtf8().constData();
-  (*data)["qBt-queuePosition"] = TorrentPersistentData::getPriority(hash);
-  (*data)["qBt-seedStatus"] = (int)TorrentPersistentData::isSeed(hash);
+  (*data)["qBt-savePath"] = fsutils::fromNativePath(TorrentPersistentData::instance().getSavePath(hash)).toUtf8().constData();
+  (*data)["qBt-ratioLimit"] = QString::number(TorrentPersistentData::instance().getRatioLimit(hash)).toUtf8().constData();
+  (*data)["qBt-label"] = TorrentPersistentData::instance().getLabel(hash).toUtf8().constData();
+  (*data)["qBt-queuePosition"] = TorrentPersistentData::instance().getPriority(hash);
+  (*data)["qBt-seedStatus"] = (int)TorrentPersistentData::instance().isSeed(hash);
 }
 
 void QBtSession::unhideMagnet(const QString &hash) {
@@ -3224,7 +3224,7 @@ void QBtSession::unhideMagnet(const QString &hash) {
   }
 
   h.queue_position_bottom();
-  loadTorrentTempData(h, h.save_path(), !h.has_metadata()); //TempData are deleted by a call to TorrentPersistentData::saveTorrentPersistentData()
+  loadTorrentTempData(h, h.save_path(), !h.has_metadata()); //TempData are deleted by a call to TorrentPersistentData::instance().saveTorrentPersistentData()
   if (!add_paused)
     h.resume();
   h.move_storage(save_path);

@@ -44,8 +44,7 @@ QHash<QString, TorrentTempData::TorrentData> TorrentTempData::data = QHash<QStri
 QHash<QString, TorrentTempData::TorrentMoveState> TorrentTempData::torrentMoveStates = QHash<QString, TorrentTempData::TorrentMoveState>();
 QHash<QString, bool> HiddenData::data = QHash<QString, bool>();
 unsigned int HiddenData::metadata_counter = 0;
-QHash<QString, QVariant> TorrentPersistentData::all_data = QHash<QString, QVariant>();
-bool TorrentPersistentData::dirty = false;
+TorrentPersistentData* TorrentPersistentData::m_instance = 0;
 
 bool TorrentTempData::hasTempData(const QString &hash) {
   return data.contains(hash);
@@ -199,18 +198,28 @@ void HiddenData::gotMetadata(const QString &hash) {
   metadata_counter++;
 }
 
-void TorrentPersistentData::load() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-  all_data = settings.value("torrents").toHash();
-  dirty = false;
+TorrentPersistentData::TorrentPersistentData()
+  : all_data(QIniSettings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume")).value("torrents").toHash())
+  , dirty(false)
+{
+  connect(&timer, SIGNAL(timeout()), SLOT(saveImpl()));
+  m_instance = this;
+}
+
+TorrentPersistentData::~TorrentPersistentData() {
+  save();
+  m_instance = 0;
 }
 
 void TorrentPersistentData::save() {
-  if (dirty) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    settings.setValue("torrents", all_data);
-    dirty = false;
-  }
+  if (dirty)
+    saveImpl();
+}
+
+TorrentPersistentData& TorrentPersistentData::instance()
+{
+  Q_ASSERT(m_instance);
+  return *m_instance;
 }
 
 bool TorrentPersistentData::isKnownTorrent(QString hash) {
@@ -225,7 +234,7 @@ void TorrentPersistentData::setRatioLimit(const QString &hash, const qreal &rati
   QHash<QString, QVariant> data = all_data.value(hash).toHash();
   data["max_ratio"] = ratio;
   all_data[hash] = data;
-  dirty = true;
+  markDirty();
 }
 
 qreal TorrentPersistentData::getRatioLimit(const QString &hash) {
@@ -249,7 +258,7 @@ void TorrentPersistentData::setAddedDate(const QString &hash, const QDateTime &t
   if (!data.contains("add_date")) {
     data["add_date"] = time;
     all_data[hash] = data;
-    dirty = true;
+    markDirty();
   }
 }
 
@@ -267,7 +276,7 @@ void TorrentPersistentData::setErrorState(const QString &hash, const bool has_er
   QHash<QString, QVariant> data = all_data.value(hash).toHash();
   data["has_error"] = has_error;
   all_data[hash] = data;
-  dirty = true;
+  markDirty();
 }
 
 bool TorrentPersistentData::hasError(const QString &hash) {
@@ -283,7 +292,7 @@ QDateTime TorrentPersistentData::getSeedDate(const QString &hash) {
 void TorrentPersistentData::deletePersistentData(const QString &hash) {
   if (all_data.contains(hash)) {
     all_data.remove(hash);
-    dirty = true;
+    markDirty();
   }
 }
 
@@ -309,7 +318,7 @@ void TorrentPersistentData::saveTorrentPersistentData(const QTorrentHandle &h, c
   data["label"] = TorrentTempData::getLabel(h.hash());
   // Save data
   all_data[h.hash()] = data;
-  dirty = true;
+  markDirty();
   qDebug("TorrentPersistentData: Saving save_path %s, hash: %s", qPrintable(h.save_path()), qPrintable(h.hash()));
   // Set Added date
   setAddedDate(h.hash(), QDateTime::currentDateTime());
@@ -323,7 +332,7 @@ void TorrentPersistentData::saveSavePath(const QString &hash, const QString &sav
   QHash<QString, QVariant> data = all_data.value(hash).toHash();
   data["save_path"] = save_path;
   all_data[hash] = data;
-  dirty = true;
+  markDirty();
   qDebug("TorrentPersistentData: Saving save_path: %s, hash: %s", qPrintable(save_path), qPrintable(hash));
 }
 
@@ -332,7 +341,7 @@ void TorrentPersistentData::saveLabel(const QString &hash, const QString &label)
   QHash<QString, QVariant> data = all_data.value(hash).toHash();
   data["label"] = label;
   all_data[hash] = data;
-  dirty = true;
+  markDirty();
 }
 
 void TorrentPersistentData::saveName(const QString &hash, const QString &name) {
@@ -340,21 +349,21 @@ void TorrentPersistentData::saveName(const QString &hash, const QString &name) {
   QHash<QString, QVariant> data = all_data.value(hash).toHash();
   data["name"] = name;
   all_data[hash] = data;
-  dirty = true;
+  markDirty();
 }
 
 void TorrentPersistentData::savePriority(const QTorrentHandle &h) {
   QHash<QString, QVariant> data = all_data[h.hash()].toHash();
   data["priority"] = h.queue_position();
   all_data[h.hash()] = data;
-  dirty = true;
+  markDirty();
 }
 
 void TorrentPersistentData::savePriority(const QString &hash, const int &queue_pos) {
   QHash<QString, QVariant> data = all_data[hash].toHash();
   data["priority"] = queue_pos;
   all_data[hash] = data;
-  dirty = true;
+  markDirty();
 }
 
 void TorrentPersistentData::saveSeedStatus(const QTorrentHandle &h) {
@@ -363,7 +372,7 @@ void TorrentPersistentData::saveSeedStatus(const QTorrentHandle &h) {
   if (was_seed != h.is_seed()) {
     data["seed"] = !was_seed;
     all_data[h.hash()] = data;
-    dirty = true;
+    markDirty();
   }
 }
 
@@ -371,7 +380,7 @@ void TorrentPersistentData::saveSeedStatus(const QString &hash, const bool seedS
   QHash<QString, QVariant> data = all_data[hash].toHash();
   data["seed"] = seedStatus;
   all_data[hash] = data;
-  dirty = true;
+  markDirty();
 }
 
 QString TorrentPersistentData::getSavePath(const QString &hash) {
@@ -409,4 +418,20 @@ QString TorrentPersistentData::getMagnetUri(const QString &hash) {
   const QHash<QString, QVariant> data = all_data.value(hash).toHash();
   Q_ASSERT(data.value("is_magnet", false).toBool());
   return data.value("magnet_uri").toString();
+}
+
+void TorrentPersistentData::markDirty() {
+  if (!dirty) {
+    dirty = true;
+    timer.start(1000);
+  }
+}
+
+void TorrentPersistentData::saveImpl() {
+  Q_ASSERT(dirty);
+
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+  settings.setValue("torrents", all_data);
+  dirty = false;
+  timer.stop();
 }

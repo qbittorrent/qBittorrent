@@ -415,7 +415,7 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
             return QByteArray();
 
         // Save path
-        QString save_path = fsutils::toNativePath(TorrentPersistentData::getSavePath(hash));
+        QString save_path = fsutils::toNativePath(TorrentPersistentData::instance().getSavePath(hash));
         if (save_path.isEmpty())
             save_path = fsutils::toNativePath(h.save_path());
         data[KEY_PROP_SAVE_PATH] = save_path;
@@ -554,7 +554,7 @@ QVariantMap toMap(const QTorrentHandle& h)
     ret[KEY_TORRENT_SEQUENTIAL_DOWNLOAD] = status.sequential_download;
     if (h.has_metadata())
         ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = h.first_last_piece_first();
-    ret[KEY_TORRENT_LABEL] = TorrentPersistentData::getLabel(h.hash());
+    ret[KEY_TORRENT_LABEL] = TorrentPersistentData::instance().getLabel(h.hash());
 
     return ret;
 }
