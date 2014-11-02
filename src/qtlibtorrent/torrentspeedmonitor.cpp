@@ -36,11 +36,68 @@
 
 using namespace libtorrent;
 
-template<class T> struct Sample {
-  Sample(const T down = 0, const T up = 0) : download(down), upload(up) {}
-  T download;
-  T upload;
-};
+namespace {
+
+  template<class T> struct Sample {
+    Sample()
+      : download()
+      , upload()
+    {}
+
+    Sample(T download, T upload)
+      : download(download)
+      , upload(upload)
+    {}
+
+    template <typename U>
+    explicit Sample(Sample<U> other)
+      : download(static_cast<U>(other.download))
+      , upload(static_cast<U>(other.upload))
+    {}
+
+    T download;
+    T upload;
+  };
+
+  template <typename T>
+  Sample<T>& operator+=(Sample<T>& lhs, Sample<T> const& rhs) {
+    lhs.download += rhs.download;
+    lhs.upload   += rhs.upload;
+    return lhs;
+  }
+
+  template <typename T>
+  Sample<T>& operator-=(Sample<T>& lhs, Sample<T> const& rhs) {
+    lhs.download -= rhs.download;
+    lhs.upload   -= rhs.upload;
+    return lhs;
+  }
+
+  template <typename T>
+  Sample<T> operator+(Sample<T> const& lhs, Sample<T> const& rhs) {
+    return Sample<T>(lhs.download + rhs.download, lhs.upload + rhs.upload);
+  }
+
+  template <typename T>
+  Sample<T> operator-(Sample<T> const& lhs, Sample<T> const& rhs) {
+    return Sample<T>(lhs.download - rhs.download, lhs.upload - rhs.upload);
+  }
+
+  template <typename T>
+  Sample<T> operator*(Sample<T> const& lhs, T rhs) {
+    return Sample<T>(lhs.download * rhs, lhs.upload * rhs);
+  }
+
+  template <typename T>
+  Sample<T> operator*(T lhs,Sample<T> const& rhs) {
+    return Sample<T>(lhs * rhs.download, lhs * rhs.upload);
+  }
+
+  template <typename T>
+  Sample<T> operator/(Sample<T> const& lhs, T rhs) {
+    return Sample<T>(lhs.download / rhs, lhs.upload / rhs);
+  }
+}
 
 class SpeedSample {
 
@@ -79,16 +136,13 @@ Sample<qreal> SpeedSample::average() const
   if (m_speedSamples.empty())
     return Sample<qreal>();
 
-  qlonglong sumDL = 0;
-  qlonglong sumUL = 0;
+  Sample<qlonglong> sum;
 
   foreach (const Sample<int>& s, m_speedSamples) {
-    sumDL += s.download;
-    sumUL += s.upload;
+    sum += Sample<qlonglong>(s);
   }
 
-  const qreal numSamples = m_speedSamples.size();
-  return Sample<qreal>(sumDL/numSamples, sumUL/numSamples);
+  return Sample<qreal>(sum) * (1. / m_speedSamples.size());
 }
 
 void TorrentSpeedMonitor::removeSamples(const QString &hash)
