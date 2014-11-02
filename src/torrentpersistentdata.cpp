@@ -38,7 +38,6 @@
 #include "misc.h"
 #include "qtorrenthandle.h"
 
-#include <libtorrent/version.hpp>
 #include <libtorrent/magnet_uri.hpp>
 
 QHash<QString, TorrentTempData::TorrentData> TorrentTempData::data = QHash<QString, TorrentTempData::TorrentData>();
