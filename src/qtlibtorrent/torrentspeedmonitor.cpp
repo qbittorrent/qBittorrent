@@ -103,7 +103,7 @@ class SpeedSample {
 
 public:
   SpeedSample() {}
-  void addSample(int speedDL, int speedUL);
+  void addSample(Sample<int> const& item);
   Sample<qreal> average() const;
 
 private:
@@ -111,6 +111,7 @@ private:
 
 private:
   QList<Sample<int> > m_speedSamples;
+  Sample<long long> m_sum;
 };
 
 TorrentSpeedMonitor::TorrentSpeedMonitor(QBtSession* session)
@@ -124,11 +125,14 @@ TorrentSpeedMonitor::TorrentSpeedMonitor(QBtSession* session)
 TorrentSpeedMonitor::~TorrentSpeedMonitor()
 {}
 
-void SpeedSample::addSample(int speedDL, int speedUL)
+void SpeedSample::addSample(Sample<int> const& item)
 {
-  m_speedSamples << Sample<int>(speedDL, speedUL);
-  if (m_speedSamples.size() > max_samples)
-    m_speedSamples.removeFirst();
+  m_speedSamples.push_back(item);
+  m_sum += Sample<long long>(item);
+  if (m_speedSamples.size() > max_samples) {
+    m_sum -= Sample<long long>(m_speedSamples.front());
+    m_speedSamples.pop_front();
+  }
 }
 
 Sample<qreal> SpeedSample::average() const
@@ -136,13 +140,7 @@ Sample<qreal> SpeedSample::average() const
   if (m_speedSamples.empty())
     return Sample<qreal>();
 
-  Sample<qlonglong> sum;
-
-  foreach (const Sample<int>& s, m_speedSamples) {
-    sum += Sample<qlonglong>(s);
-  }
-
-  return Sample<qreal>(sum) * (1. / m_speedSamples.size());
+  return Sample<qreal>(m_sum) * (1. / m_speedSamples.size());
 }
 
 void TorrentSpeedMonitor::removeSamples(const QString &hash)
@@ -158,10 +156,14 @@ void TorrentSpeedMonitor::removeSamples(const QTorrentHandle& h) {
 
 qlonglong TorrentSpeedMonitor::getETA(const QString &hash, const libtorrent::torrent_status &status) const
 {
-  if (QTorrentHandle::is_paused(status) || !m_samples.contains(hash))
+  if (QTorrentHandle::is_paused(status))
     return MAX_ETA;
 
-  const Sample<qreal> speed_average = m_samples[hash].average();
+  QHash<QString, SpeedSample>::const_iterator i = m_samples.find(hash);
+  if (i == m_samples.end())
+    return MAX_ETA;
+
+  const Sample<qreal> speed_average = i->average();
 
   if (QTorrentHandle::is_seed(status)) {
     if (!speed_average.upload)
@@ -189,8 +191,10 @@ void TorrentSpeedMonitor::statsReceived(const stats_alert &stats)
 {
   Q_ASSERT(stats.interval >= 1000);
 
-  int speedDL = static_cast<int>(static_cast<long long>(stats.transferred[stats_alert::download_payload]) * 1000 / stats.interval);
-  int speedUL = static_cast<int>(static_cast<long long>(stats.transferred[stats_alert::upload_payload])   * 1000 / stats.interval);
+  Sample<int> transferred(stats.transferred[stats_alert::download_payload],
+                          stats.transferred[stats_alert::upload_payload]);
 
-  m_samples[misc::toQString(stats.handle.info_hash())].addSample(speedDL, speedUL);
+  Sample<int> normalized = Sample<int>(Sample<long long>(transferred) * 1000LL / static_cast<long long>(stats.interval));
+
+  m_samples[misc::toQString(stats.handle.info_hash())].addSample(normalized);
 }
