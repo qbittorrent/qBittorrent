@@ -48,7 +48,6 @@ public:
   SpeedSample() {}
   void addSample(int speedDL, int speedUL);
   Sample<qreal> average() const;
-  void clear();
 
 private:
   static const int max_samples = 30;
@@ -90,11 +89,6 @@ Sample<qreal> SpeedSample::average() const
 
   const qreal numSamples = m_speedSamples.size();
   return Sample<qreal>(sumDL/numSamples, sumUL/numSamples);
-}
-
-void SpeedSample::clear()
-{
-  m_speedSamples.clear();
 }
 
 void TorrentSpeedMonitor::removeSamples(const QString &hash)
