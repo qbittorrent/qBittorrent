@@ -290,6 +290,17 @@ QVariant TorrentModelItem::data(int column, int role) const
     QString hash = misc::toQString(m_lastStatus.info_hash);
     return QBtSession::instance()->getMaxRatioPerTorrent(hash, NULL);
   }
+  case TR_SEEN_COMPLETE_DATE:
+    return m_lastStatus.last_seen_complete ? QDateTime::fromTime_t(m_lastStatus.last_seen_complete) : QDateTime();
+  case TR_LAST_ACTIVITY:
+    if (m_torrent.is_paused(m_lastStatus) || m_torrent.is_checking(m_lastStatus))
+      return -1;
+    if (m_lastStatus.time_since_upload < m_lastStatus.time_since_download)
+      return m_lastStatus.time_since_upload;
+    else
+      return m_lastStatus.time_since_download;
+  case TR_TOTAL_SIZE:
+    return m_lastStatus.has_metadata ? static_cast<qlonglong>(m_torrent.total_size()) : -1;
   default:
     return QVariant();
   }
@@ -366,6 +377,9 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
       case TorrentModelItem::TR_SAVE_PATH: return tr("Save path", "Torrent save path");
       case TorrentModelItem::TR_COMPLETED: return tr("Completed", "Amount of data completed (e.g. in MB)");
       case TorrentModelItem::TR_RATIO_LIMIT: return tr("Ratio Limit", "Upload share ratio limit");
+      case TorrentModelItem::TR_SEEN_COMPLETE_DATE: return tr("Last Seen Complete", "Torrent was seen complete on 01/01/2010 08:00");
+      case TorrentModelItem::TR_LAST_ACTIVITY: return tr("Last Activity", "Time passed since a chunk was downloaded/uploaded");
+      case TorrentModelItem::TR_TOTAL_SIZE: return tr("Total Size", "i.e. Size including unwanted data");
       default:
         return QVariant();
       }

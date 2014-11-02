@@ -59,7 +59,7 @@ protected:
 
       return QSortFilterProxyModel::lessThan(left, right);
     }
-    else if (column == TorrentModelItem::TR_ADD_DATE || column == TorrentModelItem::TR_SEED_DATE) {
+    else if (column == TorrentModelItem::TR_ADD_DATE || column == TorrentModelItem::TR_SEED_DATE || column == TorrentModelItem::TR_SEEN_COMPLETE_DATE) {
       QDateTime vL = left.data().toDateTime();
       QDateTime vR = right.data().toDateTime();
 

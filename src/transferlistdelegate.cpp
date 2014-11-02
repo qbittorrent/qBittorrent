@@ -58,7 +58,8 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
   case TorrentModelItem::TR_AMOUNT_UPLOADED:
   case TorrentModelItem::TR_AMOUNT_LEFT:
   case TorrentModelItem::TR_COMPLETED:
-  case TorrentModelItem::TR_SIZE: {
+  case TorrentModelItem::TR_SIZE:
+  case TorrentModelItem::TR_TOTAL_SIZE: {
       QItemDelegate::drawBackground(painter, opt, index);
       opt.displayAlignment = Qt::AlignRight;
       QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
@@ -199,6 +200,18 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
 #endif
       st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
+      break;
+    }
+  case TorrentModelItem::TR_LAST_ACTIVITY: {
+      QString elapsedString;
+      long long elapsed = index.data().toLongLong();
+      QItemDelegate::drawBackground(painter, opt, index);
+      opt.displayAlignment = Qt::AlignRight;
+      if (elapsed == 0)
+        // Show '< 1m ago' when elapsed time is 0
+        elapsed = 1;
+      elapsedString = tr("%1 ago", "e.g.: 1h 20m ago").arg(misc::userFriendlyDuration(elapsed));
+      QItemDelegate::drawDisplay(painter, opt, option.rect, elapsedString);
       break;
     }
   default:
