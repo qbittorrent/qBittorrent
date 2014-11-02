@@ -35,6 +35,8 @@
 #include "torrentpersistentdata.h"
 #include "jsonutils.h"
 
+#include <QDebug>
+#include <QVariant>
 #if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
 #include <QElapsedTimer>
 #endif

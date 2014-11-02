@@ -41,6 +41,7 @@
 #include "autoexpandabledialog.h"
 #include "messageboxraised.h"
 
+#include <QDebug>
 #include <QString>
 #include <QFile>
 #include <QUrl>

@@ -114,6 +114,7 @@ HEADERS += misc.h \
 SOURCES += main.cpp \
            downloadthread.cpp \
            scannedfoldersmodel.cpp \
+           torrentpersistentdata.cpp \
            misc.cpp \
            fs_utils.cpp \
            smtp.cpp \
@@ -159,6 +160,8 @@ nox {
   SOURCES += mainwindow.cpp \
              ico.cpp \
              transferlistwidget.cpp \
+             transferlistdelegate.cpp \
+             transferlistfilterswidget.cpp \
              torrentcontentmodel.cpp \
              torrentcontentmodelitem.cpp \
              torrentcontentmodelfolder.cpp \
