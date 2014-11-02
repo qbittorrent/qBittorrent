@@ -58,12 +58,14 @@ public:
   QVariant data(int column, int role = Qt::DisplayRole) const;
   bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
   inline QString hash() const { return m_hash; }
+  State state() const;
 
 signals:
   void labelChanged(QString previous, QString current);
 
 private:
-  State state() const;
+  static QIcon getIconByState(State state);
+  static QColor getColorByState(State state);
 
 private:
   QTorrentHandle m_torrent;
@@ -71,8 +73,6 @@ private:
   QDateTime m_addedTime;
   QString m_label;
   QString m_name;
-  mutable QIcon m_icon;
-  mutable QColor m_fgColor;
   QString m_hash; // Cached for safety reasons
 };
 
