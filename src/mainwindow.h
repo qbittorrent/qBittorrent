@@ -185,6 +185,7 @@ private:
   bool ui_locked;
   bool unlockDlgShowing;
   LineEdit *search_filter;
+  QAction *searchFilterAct;
   // Keyboard shortcuts
   QShortcut *switchSearchShortcut;
   QShortcut *switchSearchShortcut2;

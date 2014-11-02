@@ -181,6 +181,15 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   hSplitter->setChildrenCollapsible(false);
   hSplitter->setContentsMargins(0, 4, 0, 0);
 
+  // Name filter
+  search_filter = new LineEdit();
+  searchFilterAct = toolBar->insertWidget(actionLock_qBittorrent, search_filter);
+  search_filter->setPlaceholderText(tr("Filter torrent list..."));
+  search_filter->setFixedWidth(200);
+  QWidget *spacer = new QWidget(this);
+  spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+  toolBar->insertWidget(searchFilterAct, spacer);
+
   // Transfer List tab
   transferList = new TransferListWidget(hSplitter, this, QBtSession::instance());
   properties = new PropertiesWidget(hSplitter, this, transferList);
@@ -193,15 +202,9 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   vSplitter->setCollapsible(1, false);
   tabs->addTab(vSplitter, IconProvider::instance()->getIcon("folder-remote"), tr("Transfers"));
 
-  vboxLayout->addWidget(tabs);
-  // Name filter
-  search_filter = new LineEdit();
   connect(search_filter, SIGNAL(textChanged(QString)), transferList, SLOT(applyNameFilter(QString)));
-  QAction *searchFilterAct = toolBar->insertWidget(actionLock_qBittorrent, search_filter);
-  search_filter->setFixedWidth(200);
-  QWidget *spacer = new QWidget(this);
-  spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-  toolBar->insertWidget(searchFilterAct, spacer);
+
+  vboxLayout->addWidget(tabs);
 
 
   prioSeparator = toolBar->insertSeparator(actionDecreasePriority);
@@ -308,6 +311,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
 
   // Populate the transfer list
   transferList->getSourceModel()->populate();
+  transferList->setFocus();
 
   // Update the number of torrents (tab)
   updateNbTorrents();
@@ -495,8 +499,11 @@ void MainWindow::tab_changed(int new_tab) {
   if (tabs->currentWidget() == vSplitter) {
     qDebug("Changed tab to transfer list, refreshing the list");
     properties->loadDynamicData();
+    searchFilterAct->setVisible(true);
     return;
   }
+  else
+    searchFilterAct->setVisible(false);
   if (tabs->currentWidget() == searchEngine) {
     qDebug("Changed tab to search engine, giving focus to search input");
     searchEngine->giveFocusToSearchInput();
