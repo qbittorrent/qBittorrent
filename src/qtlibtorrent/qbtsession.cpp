@@ -645,8 +645,6 @@ void QBtSession::initWebUi() {
   Preferences* const pref = Preferences::instance();
   if (pref->isWebUiEnabled()) {
     const quint16 port = pref->getWebUiPort();
-    const QString username = pref->getWebUiUsername();
-    const QString password = pref->getWebUiPassword();
 
     if (httpServer) {
       if (httpServer->serverPort() != port) {
