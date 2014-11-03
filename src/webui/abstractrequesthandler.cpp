@@ -38,22 +38,25 @@
 AbstractRequestHandler::AbstractRequestHandler(const HttpRequest &request, const HttpEnvironment &env, WebApplication *app)
   : app_(app), session_(0), request_(request), env_(env)
 {
-  if (isBanned())
-  {
-    status(403, "Forbidden");
-    print(QObject::tr("Your IP address has been banned after too many failed authentication attempts."));
-    return;
-  }
-
   sessionInitialize();
-
-  if (!sessionActive() && !isAuthNeeded()) sessionStart();
+  if (!sessionActive() && !isAuthNeeded())
+    sessionStart();
 }
 
 HttpResponse AbstractRequestHandler::run()
 {
   response_ = HttpResponse();
-  processRequest();
+
+  if (isBanned())
+  {
+    status(403, "Forbidden");
+    print(QObject::tr("Your IP address has been banned after too many failed authentication attempts."));
+  }
+  else
+  {
+    processRequest();
+  }
+
   return response_;
 }
 

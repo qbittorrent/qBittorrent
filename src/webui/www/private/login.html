@@ -20,8 +20,15 @@
           url: '/login',
           method: 'post',
           data: $('loginform').toQueryString(),
-          onFailure: function() {
-            alert("_(Unable to log in, qBittorrent is probably unreachable.)");
+          onComplete: function() {
+            $('password').set('value', '');
+          },
+          onFailure: function(xhr) {
+            if (xhr.responseText != "") {
+              $('error_msg').set('html', xhr.responseText);
+            } else {
+              $('error_msg').set('html', '_(Unable to log in, qBittorrent is probably unreachable.)');
+            }
           },
           onSuccess: function(text) {
             if (text == "Ok.") {
