@@ -370,3 +370,16 @@ ul.filterList li:hover a {
 .torrentTable thead tr {
 	background-color: #eee;
 }
+
+/*
+ * Workaround to prevent the transfer list from
+ * disappearing when zooming in the browser. 
+ */
+#filtersColumn_handle {
+	margin-left: -1px;
+}
+
+#error_div {
+	float: left;
+	font-size: 14px;
+}
