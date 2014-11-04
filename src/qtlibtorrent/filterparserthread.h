@@ -32,13 +32,13 @@
 #define FILTERPARSERTHREAD_H
 
 #include <QThread>
-#include <QFile>
 #include <QDataStream>
 #include <QStringList>
-#include <QHostAddress>
 
-#include <libtorrent/session.hpp>
-#include <libtorrent/ip_filter.hpp>
+namespace libtorrent {
+  class session;
+  struct ip_filter;
+}
 
 using namespace std;
 
@@ -58,10 +58,10 @@ public:
   FilterParserThread(QObject* parent, libtorrent::session *s);
   ~FilterParserThread();
 
-  int parseDATFilterFile(QString filePath);
-  int parseP2PFilterFile(QString filePath);
+  int parseDATFilterFile(QString filePath, libtorrent::ip_filter& filter);
+  int parseP2PFilterFile(QString filePath, libtorrent::ip_filter& filter);
   int getlineInStream(QDataStream& stream, string& name, char delim);
-  int parseP2BFilterFile(QString filePath);
+  int parseP2BFilterFile(QString filePath, libtorrent::ip_filter& filter);
   void processFilterFile(QString _filePath);
   static void processFilterList(libtorrent::session *s, const QStringList& IPs);
 
@@ -75,7 +75,6 @@ protected:
 
 private:
   libtorrent::session *s;
-  libtorrent::ip_filter filter;
   bool abort;
   QString filePath;
 };

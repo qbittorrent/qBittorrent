@@ -30,6 +30,12 @@
 
 #include "filterparserthread.h"
 
+#include <QFile>
+#include <QHostAddress>
+
+#include <libtorrent/session.hpp>
+#include <libtorrent/ip_filter.hpp>
+
 FilterParserThread::FilterParserThread(QObject* parent, libtorrent::session *s) : QThread(parent), s(s), abort(false) {
 
 }
@@ -40,7 +46,7 @@ FilterParserThread::~FilterParserThread() {
 }
 
 // Parser for eMule ip filter in DAT format
-int FilterParserThread::parseDATFilterFile(QString filePath) {
+int FilterParserThread::parseDATFilterFile(QString filePath, libtorrent::ip_filter& filter) {
   int ruleCount = 0;
   QFile file(filePath);
   if (file.exists()) {
@@ -126,7 +132,7 @@ int FilterParserThread::parseDATFilterFile(QString filePath) {
 }
 
 // Parser for PeerGuardian ip filter in p2p format
-int FilterParserThread::parseP2PFilterFile(QString filePath) {
+int FilterParserThread::parseP2PFilterFile(QString filePath, libtorrent::ip_filter& filter) {
   int ruleCount = 0;
   QFile file(filePath);
   if (file.exists()) {
@@ -218,7 +224,7 @@ int FilterParserThread::getlineInStream(QDataStream& stream, string& name, char 
 }
 
 // Parser for PeerGuardian ip filter in p2p format
-int FilterParserThread::parseP2BFilterFile(QString filePath) {
+int FilterParserThread::parseP2BFilterFile(QString filePath, libtorrent::ip_filter& filter) {
   int ruleCount = 0;
   QFile file(filePath);
   if (file.exists()) {
@@ -327,8 +333,6 @@ int FilterParserThread::parseP2BFilterFile(QString filePath) {
 //  * PeerGuardian Text (P2P): http://wiki.phoenixlabs.org/wiki/P2P_Format
 //  * PeerGuardian Binary (P2B): http://wiki.phoenixlabs.org/wiki/P2B_Format
 void FilterParserThread::processFilterFile(QString _filePath) {
-  // First, import current filter
-  filter = s->get_ip_filter();
   if (isRunning()) {
     // Already parsing a filter, abort first
     abort = true;
@@ -364,17 +368,18 @@ QString FilterParserThread::cleanupIPAddress(QString _ip) {
 
 void FilterParserThread::run() {
   qDebug("Processing filter file");
+  libtorrent::ip_filter filter = s->get_ip_filter();
   int ruleCount = 0;
   if (filePath.endsWith(".p2p", Qt::CaseInsensitive)) {
     // PeerGuardian p2p file
-    ruleCount = parseP2PFilterFile(filePath);
+    ruleCount = parseP2PFilterFile(filePath, filter);
   } else {
     if (filePath.endsWith(".p2b", Qt::CaseInsensitive)) {
       // PeerGuardian p2b file
-      ruleCount = parseP2BFilterFile(filePath);
+      ruleCount = parseP2BFilterFile(filePath, filter);
     } else {
       // Default: eMule DAT format
-      ruleCount = parseDATFilterFile(filePath);
+      ruleCount = parseDATFilterFile(filePath, filter);
     }
   }
   if (abort)
