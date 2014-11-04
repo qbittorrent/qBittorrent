@@ -352,3 +352,9 @@ ul.filterList li:hover a {
 	background-color: #e60;
 	color: white;
 }
+
+#addTrackersPlus {
+	width: 16px;
+	cursor: pointer;
+	vertical-align: middle;
+}
