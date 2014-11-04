@@ -344,6 +344,10 @@ ul.filterList li:hover a {
 	color: white;
 }
 
+#filesTable tr:nth-child(even) {
+	background-color: #eee;
+}
+
 #filesTable tr:hover {
 	background-color: #e60;
 	color: white;
