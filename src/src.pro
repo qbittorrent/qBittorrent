@@ -178,7 +178,8 @@ nox {
              autoexpandabledialog.cpp \
              statsdialog.cpp \
              messageboxraised.cpp \
-             statussortfilterproxymodel.cpp
+             statussortfilterproxymodel.cpp \
+             statusbar.cpp
 
   win32 {
     HEADERS += programupdater.h
