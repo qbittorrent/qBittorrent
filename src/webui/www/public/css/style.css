@@ -344,6 +344,10 @@ ul.filterList li:hover a {
 	color: white;
 }
 
+#filesTable {
+	line-height: 20px;
+}
+
 #filesTable tr:nth-child(even) {
 	background-color: #eee;
 }
@@ -382,4 +386,8 @@ ul.filterList li:hover a {
 #error_div {
 	float: left;
 	font-size: 14px;
+}
+
+.combo_priority {
+	font-size: 1em;
 }
