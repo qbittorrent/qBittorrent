@@ -275,7 +275,7 @@ a.propButton img {
 }
 
 /* Tri-state checkbox */
-a.tristate {
+label.tristate {
 	background: url(../images/3-state-checkbox.gif) 0 0 no-repeat;
 	display: block;
 	float: left;
@@ -285,8 +285,8 @@ a.tristate {
 	text-indent: -999em;
 	width: 13px;
 }
-a.checked { background-position: 0 -13px; }
-a.partial { background-position: 0 -26px; }
+label.checked { background-position: 0 -13px; }
+label.partial { background-position: 0 -26px; }
 
 fieldset.settings {
 	border: solid 1px black;
