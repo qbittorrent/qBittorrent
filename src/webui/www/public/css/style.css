@@ -358,3 +358,15 @@ ul.filterList li:hover a {
 	cursor: pointer;
 	vertical-align: middle;
 }
+
+.torrentTable th {
+	padding: 5px 10px;
+}
+
+.torrentTable td {
+	padding: 0px 3px;
+}
+
+.torrentTable thead tr {
+	background-color: #eee;
+}
