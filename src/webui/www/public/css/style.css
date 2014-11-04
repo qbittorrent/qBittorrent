@@ -134,9 +134,8 @@ hr {
 }
 
 #Filters ul img {
-	padding-left: 4px;
-	padding-right: 2px;
-	margin-bottom: -4px;
+	padding: 2px 4px;
+	vertical-align: middle;
 }
 
 .selectedFilter {
@@ -333,7 +332,14 @@ ul.filterList {
   padding-left: 0;
 }
 
-ul.filterList li {
-  padding-top: 2px
+ul.filterList a {
+	display: block;
 }
 
+ul.filterList li:hover {
+	background-color: #e60;
+}
+
+ul.filterList li:hover a {
+	color: white;
+}
