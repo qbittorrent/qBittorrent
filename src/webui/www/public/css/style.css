@@ -343,3 +343,8 @@ ul.filterList li:hover {
 ul.filterList li:hover a {
 	color: white;
 }
+
+#filesTable tr:hover {
+	background-color: #e60;
+	color: white;
+}
