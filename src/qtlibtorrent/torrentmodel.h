@@ -57,7 +57,7 @@ public:
   inline int columnCount() const { return NB_COLUMNS; }
   QVariant data(int column, int role = Qt::DisplayRole) const;
   bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
-  inline QString hash() const { return m_hash; }
+  inline QString const& hash() const { return m_hash; }
   State state() const;
 
 signals:
