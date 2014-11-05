@@ -50,7 +50,7 @@ HttpResponse AbstractRequestHandler::run()
   if (isBanned())
   {
     status(403, "Forbidden");
-    print(QObject::tr("Your IP address has been banned after too many failed authentication attempts."));
+    print(QObject::tr("Your IP address has been banned after too many failed authentication attempts."), CONTENT_TYPE_TXT);
   }
   else
   {

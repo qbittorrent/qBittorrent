@@ -40,12 +40,12 @@ const QString HEADER_CONTENT_TYPE = "Content-Type";
 const QString HEADER_CONTENT_ENCODING = "Content-Encoding";
 const QString HEADER_CONTENT_LENGTH = "Content-Length";
 
-const QString CONTENT_TYPE_CSS = "text/css";
+const QString CONTENT_TYPE_CSS = "text/css; charset=UTF-8";
 const QString CONTENT_TYPE_GIF = "image/gif";
-const QString CONTENT_TYPE_HTML = "text/html";
-const QString CONTENT_TYPE_JS = "text/javascript";
+const QString CONTENT_TYPE_HTML = "text/html; charset=UTF-8";
+const QString CONTENT_TYPE_JS = "text/javascript; charset=UTF-8";
 const QString CONTENT_TYPE_PNG = "image/png";
-const QString CONTENT_TYPE_TXT = "text/plain";
+const QString CONTENT_TYPE_TXT = "text/plain; charset=UTF-8";
 
 struct HttpEnvironment
 {

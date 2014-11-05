@@ -268,7 +268,7 @@ void RequestHandler::action_command_upload()
     {
       qWarning() << "I/O Error: Could not create temporary file";
       status(500, "Internal Server Error");
-      print(QByteArray("I/O Error: Could not create temporary file."), CONTENT_TYPE_TXT);
+      print(QObject::tr("I/O Error: Could not create temporary file."), CONTENT_TYPE_TXT);
     }
   }
 }
