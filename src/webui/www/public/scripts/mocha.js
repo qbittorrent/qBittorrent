@@ -52,7 +52,9 @@ MUI.extend({
 	},
 
 	ieSupport: 'excanvas',  // Makes it easier to switch between Excanvas and Moocanvas for testing	
-	
+
+	ieLegacySupport: Browser.Engine.trident && Browser.version < 9,
+
 	/*
 	
 	Function: updateContent
@@ -533,7 +535,7 @@ Element.implement({
 			this.setStyle('position','relative');
 			position = 'relative';
 		}
-		if(Browser.Engine.trident){
+		if(MUI.ieLegacySupport){
 			parent.setStyle('height',parent.getStyle('height'));
 		}
 		var coords = this.getPosition(parent);
@@ -794,7 +796,7 @@ $extend(Asset, {
 			script.addEvents({
 				load: load,
 				readystatechange: function(){
-					if (Browser.Engine.trident && ['loaded', 'complete'].contains(this.readyState)) 
+					if (MUI.ieLegacySupport && ['loaded', 'complete'].contains(this.readyState)) 
 						load();
 				}
 			}).setProperties(properties);
@@ -1058,7 +1060,7 @@ MUI.Themes = {
 		});		
 
 		// Delay gives the stylesheets time to take effect. IE6 needs more delay.	
-		if (Browser.Engine.trident){
+		if (MUI.ieLegacySupport){
 			this.redraw.delay(1250, this);
 		}
 		else {
@@ -1620,7 +1622,7 @@ MUI.Window = new Class({
 		}
 
 		// Fix a mouseover issue with gauges in IE7
-		if ( Browser.Engine.trident && options.shape == 'gauge') {
+		if ( MUI.ieLegacySupport && options.shape == 'gauge') {
 			this.windowEl.setStyle('backgroundImage', 'url(../images/spacer.gif)');
 		}
 
@@ -1793,7 +1795,7 @@ MUI.Window = new Class({
 			'duration': 350,
 			transition: Fx.Transitions.Sine.easeInOut,
 			onComplete: function(){
-				if (Browser.Engine.trident){
+				if (MUI.ieLegacySupport){
 					this.drawWindow();
 				}
 			}.bind(this)
@@ -1883,7 +1885,7 @@ MUI.Window = new Class({
 		}
 		else {
 			// IE cannot handle both element opacity and VML alpha at the same time.
-			if (Browser.Engine.trident){
+			if (MUI.ieLegacySupport){
 				this.drawWindow(false);
 			}
 			this.opacityMorph.start({
@@ -1906,7 +1908,7 @@ MUI.Window = new Class({
 
 		if (this.options.type == 'window'){
 			windowEl.addEvent('mousedown', function(e) {
-				if (Browser.Engine.trident) {
+				if (MUI.ieLegacySupport) {
 					new Event(e).stop();
 				}
 				MUI.focusWindow(windowEl);
@@ -1940,7 +1942,7 @@ MUI.Window = new Class({
 				e = new Event(e).stop();
 			}.bind(this));
 			
-			if (Browser.Engine.trident) {
+			if (MUI.ieLegacySupport) {
 				this.titleBarEl.addEvent('mousedown', function(e) {
 					this.titleEl.setCapture();				
 				}.bind(this));
@@ -1977,7 +1979,7 @@ MUI.Window = new Class({
 					$('windowUnderlay').show();
 				}
 				if (this.iframeEl) {
-					if (!Browser.Engine.trident) {
+					if (!MUI.ieLegacySupport) {
 						this.iframeEl.setStyle('visibility', 'hidden');
 					}
 					else {
@@ -1990,7 +1992,7 @@ MUI.Window = new Class({
 					$('windowUnderlay').hide();
 				}
 				if ( this.iframeEl ){
-					if (!Browser.Engine.trident) {
+					if (!MUI.ieLegacySupport) {
 						this.iframeEl.setStyle('visibility', 'visible');
 					}
 					else {
@@ -2124,7 +2126,7 @@ MUI.Window = new Class({
 	resizeOnStart: function(){
 		$('windowUnderlay').show();
 		if (this.iframeEl){
-			if (!Browser.Engine.trident) {
+			if (!MUI.ieLegacySupport) {
 				this.iframeEl.setStyle('visibility', 'hidden');
 			}
 			else {
@@ -2151,7 +2153,7 @@ MUI.Window = new Class({
 	resizeOnComplete: function(){
 		$('windowUnderlay').hide();
 		if (this.iframeEl){
-			if (!Browser.Engine.trident) {
+			if (!MUI.ieLegacySupport) {
 				this.iframeEl.setStyle('visibility', 'visible');
 			}
 			else {
@@ -2360,7 +2362,7 @@ MUI.Window = new Class({
 			'class': 'mochaContent'
 		}).inject(cache.contentWrapperEl);
 
-		if (this.options.useCanvas == true && Browser.Engine.trident != true) {
+		if (this.options.useCanvas == true && !MUI.ieLegacySupport) {
 			cache.canvasEl = new Element('canvas', {
 				'id': id + '_canvas',
 				'class': 'mochaCanvas',
@@ -2369,7 +2371,7 @@ MUI.Window = new Class({
 			}).inject(this.windowEl);
 		}
 		
-		if (this.options.useCanvas == true && Browser.Engine.trident) {
+		if (this.options.useCanvas == true && MUI.ieLegacySupport) {
 			cache.canvasEl = new Element('canvas', {
 				'id': id + '_canvas',
 				'class': 'mochaCanvas',
@@ -2382,7 +2384,7 @@ MUI.Window = new Class({
 				}
 			}).inject(this.windowEl);
 
-			if (MUI.ieSupport == 'excanvas'){
+			if (MUI.ieLegacySupport && MUI.ieSupport == 'excanvas'){
 				G_vmlCanvasManager.initElement(cache.canvasEl);
 				cache.canvasEl = this.windowEl.getElement('.mochaCanvas');
 			}
@@ -2401,7 +2403,7 @@ MUI.Window = new Class({
 				'height': 14
 			}).inject(this.windowEl);
 
-			if (Browser.Engine.trident && MUI.ieSupport == 'excanvas'){
+			if (MUI.ieLegacySupport && MUI.ieSupport == 'excanvas'){
 				G_vmlCanvasManager.initElement(cache.canvasControlsEl);
 				cache.canvasControlsEl = this.windowEl.getElement('.mochaCanvasControls');
 			}
@@ -2448,13 +2450,13 @@ MUI.Window = new Class({
 				'height': 26
 			}).inject(this.windowEl, 'bottom');
 		
-			if (Browser.Engine.trident && MUI.ieSupport == 'excanvas'){
+			if (MUI.ieLegacySupport && MUI.ieSupport == 'excanvas'){
 				G_vmlCanvasManager.initElement(cache.canvasHeaderEl);
 				cache.canvasHeaderEl = this.windowEl.getElement('.mochaCanvasHeader');
 			}
 		}
 
-		if ( Browser.Engine.trident ){
+		if ( MUI.ieLegacySupport ){
 			cache.overlayEl.setStyle('zIndex', 2);
 		}
 
@@ -2697,7 +2699,7 @@ MUI.Window = new Class({
 		});		
 
 		if (this.options.useCanvas == true) {
-			if (Browser.Engine.trident) {
+			if (MUI.ieLegacySupport) {
 				this.canvasEl.height = 20000;
 				this.canvasEl.width = 50000;
 			}
@@ -2754,7 +2756,7 @@ MUI.Window = new Class({
 			}
 
 			// Invisible dummy object. The last element drawn is not rendered consistently while resizing in IE6 and IE7
-			if (Browser.Engine.trident){
+			if (MUI.ieLegacySupport){
 				MUI.triangle(ctx, 0, 0, 10, 10, options.resizableColor, 0);
 			}
 		}
@@ -2825,7 +2827,7 @@ MUI.Window = new Class({
 			}
 			
 			// Invisible dummy object. The last element drawn is not rendered consistently while resizing in IE6 and IE7
-			if (Browser.Engine.trident){
+			if (MUI.ieLegacySupport){
 				MUI.triangle(ctx, 0, 0, 10, 10, options.resizableColor, 0);
 			}
 		}
@@ -2894,7 +2896,7 @@ MUI.Window = new Class({
 			);
 		}
 					// Invisible dummy object. The last element drawn is not rendered consistently while resizing in IE6 and IE7
-			if (Browser.Engine.trident){
+			if (MUI.ieLegacySupport){
 				MUI.circle(ctx2, 0, 0, 3, this.options.resizableColor, 0);
 			}
 		
@@ -3326,7 +3328,7 @@ MUI.extend({
 		}
 		else {
 			// Redraws IE windows without shadows since IE messes up canvas alpha when you change element opacity
-			if (Browser.Engine.trident) instance.drawWindow(false);
+			if (MUI.ieLegacySupport) instance.drawWindow(false);
 			if (instance.options.type == 'modal' || instance.options.type == 'modal2'){
 				MUI.Modal.modalOverlayCloseMorph.start({
 					'opacity': 0
@@ -3351,7 +3353,7 @@ MUI.extend({
 		var instance = instances.get(windowEl.id);		
 		windowEl.setStyle('visibility', 'hidden');
 		// Destroy throws an error in IE8
-		if (Browser.Engine.trident) {
+		if (MUI.ieLegacySupport) {
 			windowEl.dispose();
 		}
 		else {
@@ -3650,7 +3652,7 @@ MUI.extend({
 			instance.drawWindow();
 			// Show iframe
 			if (instance.iframeEl){
-				if (!Browser.Engine.trident) {
+				if (!MUI.ieLegacySupport) {
 					instance.iframeEl.setStyle('visibility', 'visible');
 				}
 				else {
@@ -4377,7 +4379,7 @@ MUI.Desktop = {
 		// Hide iframe
 		// Iframe should be hidden when minimizing, maximizing, and moving for performance and Flash issues
 		if ( instance.iframeEl ) {
-			if (!Browser.Engine.trident) {
+			if (!MUI.ieLegacySupport) {
 				instance.iframeEl.setStyle('visibility', 'hidden');
 			}
 			else {
@@ -4440,7 +4442,7 @@ MUI.Desktop = {
 		// Hide iframe
 		// Iframe should be hidden when minimizing, maximizing, and moving for performance and Flash issues
 		if ( instance.iframeEl ) {
-			if (!Browser.Engine.trident) {
+			if (!MUI.ieLegacySupport) {
 				instance.iframeEl.setStyle('visibility', 'hidden');
 			}
 			else {
@@ -5307,7 +5309,7 @@ MUI.extend({
 		var contentWrapperEl = instance.contentWrapperEl;
 
 		if (instance.iframeEl) {
-			if (!Browser.Engine.trident) {
+			if (!MUI.ieLegacySupport) {
 				instance.iframeEl.setStyles({
 					'height': contentWrapperEl.getStyle('height'),
 					'width': contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('border-left').toInt() - contentWrapperEl.getStyle('border-right').toInt()
@@ -5373,7 +5375,7 @@ function addResizeRight(element, min, max){
 	handle.setStyle('cursor', Browser.Engine.webkit ? 'col-resize' : 'e-resize');
 	if (!min) min = 50;
 	if (!max) max = 250;
-	if (Browser.Engine.trident) {
+	if (MUI.ieLegacySupport) {
 		handle.addEvents({
 			'mousedown': function(){
 				handle.setCapture();
@@ -5440,7 +5442,7 @@ function addResizeLeft(element, min, max){
 	var partner = element.getPrevious('.column');
 	if (!min) min = 50;
 	if (!max) max = 250;
-	if (Browser.Engine.trident){	
+	if (MUI.ieLegacySupport){	
 		handle.addEvents({
 			'mousedown': function(){
 				handle.setCapture();
@@ -5485,7 +5487,7 @@ function addResizeBottom(element){
 		return element.getStyle('height').toInt() + partner.getStyle('height').toInt();
 	}.bind(this);
 	
-	if (Browser.Engine.trident) {
+	if (MUI.ieLegacySupport) {
 		handle.addEvents({
 			'mousedown': function(){
 				handle.setCapture();
@@ -5507,7 +5509,7 @@ function addResizeBottom(element){
 		}.bind(this),
 		onStart: function(){
 			if (instance.iframeEl) {
-				if (!Browser.Engine.trident) {
+				if (!MUI.ieLegacySupport) {
 					instance.iframeEl.setStyle('visibility', 'hidden');
 					partner.getElements('iframe').setStyle('visibility','hidden');
 				}
@@ -5544,7 +5546,7 @@ function addResizeBottom(element){
 				MUI.panelHeight(column);
 			});			
 			if (instance.iframeEl) {
-				if (!Browser.Engine.trident) {
+				if (!MUI.ieLegacySupport) {
 					instance.iframeEl.setStyle('visibility', 'visible');
 					partner.getElements('iframe').setStyle('visibility','visible');
 				}
@@ -5600,7 +5602,7 @@ MUI.extend({
 			MUI.closePanel($(panel.id));
 		}.bind(this));				
 		
-		if (Browser.Engine.trident) {
+		if (MUI.ieLegacySupport) {
 			columnEl.dispose();
 			if (instance.handleEl != null) {
 				instance.handleEl.dispose();
@@ -5795,7 +5797,7 @@ MUI.Dock = {
 			}).inject(this.dock);
 
 			// Dynamically initialize canvas using excanvas. This is only required by IE
-			if (Browser.Engine.trident && MUI.ieSupport == 'excanvas'){
+			if (MUI.ieLegacySupport && MUI.ieSupport == 'excanvas'){
 				G_vmlCanvasManager.initElement(canvas);
 			}
 		}
@@ -6053,7 +6055,7 @@ MUI.Dock = {
 		// Iframe should be hidden when minimizing, maximizing, and moving for performance and Flash issues
 		if ( instance.iframeEl ) {
 			// Some elements are still visible in IE8 in the iframe when the iframe's visibility is set to hidden.
-			if (!Browser.Engine.trident) {
+			if (!MUI.ieLegacySupport) {
 				instance.iframeEl.setStyle('visibility', 'hidden');
 			}
 			else {
@@ -6119,7 +6121,7 @@ MUI.Dock = {
 
 		// Show iframe
 		if (instance.iframeEl){
-			if (!Browser.Engine.trident){
+			if (!MUI.ieLegacySupport){
 				instance.iframeEl.setStyle('visibility', 'visible');
 			}
 			else {
