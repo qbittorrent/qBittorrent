@@ -273,8 +273,8 @@ MUI.extend({
 			'frameBorder': 0,
 			'scrolling': 'auto',
 			'styles': {
-				'height': contentWrapperEl.offsetHeight - contentWrapperEl.getStyle('border-top').toInt() - contentWrapperEl.getStyle('border-bottom').toInt(),
-				'width': instance.panelEl ? contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('border-left').toInt() - contentWrapperEl.getStyle('border-right').toInt() : '100%'	
+				'height': contentWrapperEl.offsetHeight - contentWrapperEl.getStyle('margin-top').toInt() - contentWrapperEl.getStyle('margin-bottom').toInt(),
+				'width': instance.panelEl ? contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('margin-left').toInt() - contentWrapperEl.getStyle('margin-right').toInt() : '100%'	
 			}
 		}).injectInside(contentEl);
 
@@ -2680,9 +2680,9 @@ MUI.Window = new Class({
 			this.iframeEl.setStyle('height', this.contentWrapperEl.offsetHeight);
 		}
 
-		var borderHeight = this.contentBorderEl.getStyle('border-top').toInt() + this.contentBorderEl.getStyle('border-bottom').toInt();
-		var toolbarHeight = this.toolbarWrapperEl ? this.toolbarWrapperEl.getStyle('height').toInt() + this.toolbarWrapperEl.getStyle('border-top').toInt() : 0;
-		var toolbar2Height = this.toolbar2WrapperEl ? this.toolbar2WrapperEl.getStyle('height').toInt() + this.toolbar2WrapperEl.getStyle('border-top').toInt() : 0;
+		var borderHeight = this.contentBorderEl.getStyle('margin-top').toInt() + this.contentBorderEl.getStyle('margin-bottom').toInt();
+		var toolbarHeight = this.toolbarWrapperEl ? this.toolbarWrapperEl.getStyle('height').toInt() + this.toolbarWrapperEl.getStyle('margin-top').toInt() : 0;
+		var toolbar2Height = this.toolbar2WrapperEl ? this.toolbar2WrapperEl.getStyle('height').toInt() + this.toolbar2WrapperEl.getStyle('margin-top').toInt() : 0;
 
 		this.headerFooterShadow = options.headerHeight + options.footerHeight + shadowBlur2x;
 		var height = this.contentWrapperEl.getStyle('height').toInt() + this.headerFooterShadow + toolbarHeight + toolbar2Height + borderHeight;
@@ -4268,8 +4268,8 @@ MUI.Desktop = {
 					}
 
 					var coordinates = document.getCoordinates();
-					var borderHeight = instance.contentBorderEl.getStyle('border-top').toInt() + instance.contentBorderEl.getStyle('border-bottom').toInt();
-					var toolbarHeight = instance.toolbarWrapperEl ? instance.toolbarWrapperEl.getStyle('height').toInt() + instance.toolbarWrapperEl.getStyle('border-top').toInt() : 0;
+					var borderHeight = instance.contentBorderEl.getStyle('margin-top').toInt() + instance.contentBorderEl.getStyle('margin-bottom').toInt();
+					var toolbarHeight = instance.toolbarWrapperEl ? instance.toolbarWrapperEl.getStyle('height').toInt() + instance.toolbarWrapperEl.getStyle('margin-top').toInt() : 0;
 					instance.contentWrapperEl.setStyles({
 						'height': coordinates.height - instance.options.headerHeight - instance.options.footerHeight - borderHeight - toolbarHeight,
 						'width': coordinates.width
@@ -4302,8 +4302,8 @@ MUI.Desktop = {
 		if (this.pageWrapper) {
 			var dockOffset = MUI.dockVisible ? dockWrapper.offsetHeight : 0;
 			var pageWrapperHeight = windowDimensions.height;
-			pageWrapperHeight -= this.pageWrapper.getStyle('border-top').toInt();
-			pageWrapperHeight -= this.pageWrapper.getStyle('border-bottom').toInt();
+			pageWrapperHeight -= this.pageWrapper.getStyle('margin-top').toInt();
+			pageWrapperHeight -= this.pageWrapper.getStyle('margin-bottom').toInt();
 			if (this.desktopHeader){ pageWrapperHeight -= this.desktopHeader.offsetHeight; }
 			if (this.desktopFooter){ pageWrapperHeight -= this.desktopFooter.offsetHeight; }
 			pageWrapperHeight -= dockOffset;
@@ -4392,9 +4392,9 @@ MUI.Desktop = {
 		var shadowBlur = options.shadowBlur;
 		var shadowOffset = options.shadowOffset;
 		var newHeight = windowDimensions.height - options.headerHeight - options.footerHeight;
-		newHeight -= instance.contentBorderEl.getStyle('border-top').toInt();
-		newHeight -= instance.contentBorderEl.getStyle('border-bottom').toInt();
-		newHeight -= (instance.toolbarWrapperEl ? instance.toolbarWrapperEl.getStyle('height').toInt() + instance.toolbarWrapperEl.getStyle('border-top').toInt() : 0);
+		newHeight -= instance.contentBorderEl.getStyle('margin-top').toInt();
+		newHeight -= instance.contentBorderEl.getStyle('margin-bottom').toInt();
+		newHeight -= (instance.toolbarWrapperEl ? instance.toolbarWrapperEl.getStyle('height').toInt() + instance.toolbarWrapperEl.getStyle('margin-top').toInt() : 0);
 		
 		MUI.resizeWindow(windowEl, {
 			width: windowDimensions.width,
@@ -5290,7 +5290,7 @@ MUI.extend({
 		parent.getChildren('.columnHandle').each(function(handle){
 			var parent = handle.getParent();
 			if (parent.getStyle('height').toInt() < 1) return; // Keeps IE7 and 8 from throwing an error when collapsing a panel within a panel
-			var handleHeight = parent.getStyle('height').toInt() - handle.getStyle('border-top').toInt() - handle.getStyle('border-bottom').toInt();
+			var handleHeight = parent.getStyle('height').toInt() - handle.getStyle('margin-top').toInt() - handle.getStyle('margin-bottom').toInt();
 			if (Browser.Engine.trident4 && parent == MUI.Desktop.pageWrapper){
 				handleHeight -= 1;
 			}
@@ -5312,7 +5312,7 @@ MUI.extend({
 			if (!MUI.ieLegacySupport) {
 				instance.iframeEl.setStyles({
 					'height': contentWrapperEl.getStyle('height'),
-					'width': contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('border-left').toInt() - contentWrapperEl.getStyle('border-right').toInt()
+					'width': contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('margin-left').toInt() - contentWrapperEl.getStyle('margin-right').toInt()
 				});
 			}
 			else {
@@ -5320,10 +5320,10 @@ MUI.extend({
 				// when only the vertical dimension is changed.
 				instance.iframeEl.setStyles({
 					'height': contentWrapperEl.getStyle('height'),
-					'width': contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('border-left').toInt() - contentWrapperEl.getStyle('border-right').toInt() - 1
+					'width': contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('margin-left').toInt() - contentWrapperEl.getStyle('margin-right').toInt() - 1
 				});
 				instance.iframeEl.setStyles({
-					'width': contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('border-left').toInt() - contentWrapperEl.getStyle('border-right').toInt()
+					'width': contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('margin-left').toInt() - contentWrapperEl.getStyle('margin-right').toInt()
 				});			
 			}			
 		}				
@@ -5336,9 +5336,8 @@ MUI.extend({
 		}
 		container.getElements('.rWidth').each(function(column){
 			var currentWidth = column.offsetWidth.toInt();
-			currentWidth -= column.getStyle('border-left').toInt();
-			currentWidth -= column.getStyle('border-right').toInt();
-			
+			currentWidth -= column.getStyle('margin-left').toInt();
+			currentWidth -= column.getStyle('margin-right').toInt();
 			var parent = column.getParent();
 			this.width = 0;
 			
@@ -5355,7 +5354,7 @@ MUI.extend({
 			if (newWidth < 1) newWidth = 0;
 			column.setStyle('width', newWidth);
 			column.getChildren('.panel').each(function(panel){
-				panel.setStyle('width', newWidth - panel.getStyle('border-left').toInt() - panel.getStyle('border-right').toInt());
+				panel.setStyle('width', newWidth - panel.getStyle('margin-left').toInt() - panel.getStyle('margin-right').toInt());
 				MUI.resizeChildren(panel);
 			}.bind(this));
 			
@@ -5413,8 +5412,8 @@ function addResizeRight(element, min, max){
 			if (Browser.Engine.trident4) {
 				element.getChildren().each(function(el){
 					var width = $(element).getStyle('width').toInt();
-					width -= el.getStyle('border-right').toInt();
-					width -= el.getStyle('border-left').toInt();
+					width -= el.getStyle('margin-right').toInt();
+					width -= el.getStyle('margin-left').toInt();
 					width -= el.getStyle('padding-right').toInt();
 					width -= el.getStyle('padding-left').toInt();
 					el.setStyle('width', width);
