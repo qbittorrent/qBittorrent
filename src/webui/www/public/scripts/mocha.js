@@ -5255,7 +5255,10 @@ MUI.extend({
 
 		panelsToResize.each(function(panel){
 			var ratio = this.panelsTotalHeight / panel.offsetHeight.toInt();
-			var newPanelHeight = panel.getStyle('height').toInt() + (remainingHeight / ratio);
+			var panelHeight = panel.getStyle('height').toInt();
+			var newPanelHeight = remainingHeight / ratio;
+			if (!isNaN(panelHeight))
+				newPanelHeight += panelHeight;
 			if (newPanelHeight < 1){
 				newPanelHeight = 0;
 			}
