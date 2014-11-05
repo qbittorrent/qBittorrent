@@ -9,10 +9,15 @@
 
 function stateChangeHandler() {
 	if (this.readyState == this.DONE) {
-		if (this.status == 200)
+		if (this.status == 200) {
 			window.parent.closeWindows();
-		else
-			alert("Upload Failed!");
+		} else {
+			if (this.responseText != "") {
+				alert(this.responseText);
+			} else {
+				alert("_(Upload Failed!)");
+			}
+		}
 	}
 }
 

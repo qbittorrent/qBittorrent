@@ -65,7 +65,8 @@ static const char *__TRANSLATIONS__[] = {
   QT_TRANSLATE_NOOP("HttpServer", "Invalid Username or Password."),
   QT_TRANSLATE_NOOP("HttpServer", "Password"),
   QT_TRANSLATE_NOOP("HttpServer", "Login"),
-  QT_TRANSLATE_NOOP("HttpServer", "qBittorrent web User Interface")
+  QT_TRANSLATE_NOOP("HttpServer", "qBittorrent web User Interface"),
+  QT_TRANSLATE_NOOP("HttpServer", "Upload Failed!")
 };
 
 static const struct { const char *source; const char *comment; } __COMMENTED_TRANSLATIONS__[] = {
