@@ -508,7 +508,6 @@ void TorrentModel::setRefreshInterval(int refreshInterval)
 
 void TorrentModel::forceModelRefresh()
 {
-  emit dataChanged(index(0, 0), index(rowCount()-1, columnCount()-1));
   QBtSession::instance()->postTorrentUpdate();
 }
 
@@ -591,8 +590,10 @@ void TorrentModel::stateUpdated(const std::vector<libtorrent::torrent_status> &s
     libtorrent::torrent_status const& status = *i;
 
     const int row = torrentRow(misc::toQString(status.info_hash));
-    if (row >= 0)
+    if (row >= 0) {
       m_torrents[row]->refreshStatus(status);
+      notifyTorrentChanged(row);
+    }
   }
 }
 
