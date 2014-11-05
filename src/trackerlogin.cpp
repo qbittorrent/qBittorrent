@@ -28,30 +28,30 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef TRACKERLOGIN_H
-#define TRACKERLOGIN_H
+#include "trackerlogin.h"
 
-#include <QDialog>
+trackerLogin::trackerLogin(QWidget *parent, QTorrentHandle h)
+  : QDialog(parent)
+  , h(h)
+{
+  setupUi(this);
+  setAttribute(Qt::WA_DeleteOnClose);
+  login_logo->setPixmap(QPixmap(QString::fromUtf8(":/Icons/oxygen/encrypted.png")));
+  tracker_url->setText(h.current_tracker());
+  connect(this, SIGNAL(trackerLoginCancelled(QPair<QTorrentHandle,QString>)), parent, SLOT(addUnauthenticatedTracker(QPair<QTorrentHandle,QString>)));
+  show();
+}
 
-#include "ui_login.h"
-#include "qtorrenthandle.h"
+trackerLogin::~trackerLogin() {}
 
-class trackerLogin : public QDialog, private Ui::authentication{
-  Q_OBJECT
+void trackerLogin::on_loginButton_clicked() {
+  // login
+  h.set_tracker_login(lineUsername->text(), linePasswd->text());
+  close();
+}
 
-  private:
-    QTorrentHandle h;
-
-  public:
-    trackerLogin(QWidget *parent, QTorrentHandle h);
-    ~trackerLogin();
-
-  signals:
-    void trackerLoginCancelled(QPair<QTorrentHandle,QString> tracker);
-
-  public slots:
-    void on_loginButton_clicked();
-    void on_cancelButton_clicked();
-};
-
-#endif
+void trackerLogin::on_cancelButton_clicked() {
+  // Emit a signal to GUI to stop asking for authentication
+  emit trackerLoginCancelled(QPair<QTorrentHandle,QString>(h, h.current_tracker()));
+  close();
+}

@@ -179,7 +179,8 @@ nox {
              statsdialog.cpp \
              messageboxraised.cpp \
              statussortfilterproxymodel.cpp \
-             statusbar.cpp
+             statusbar.cpp \
+             trackerlogin.cpp
 
   win32 {
     HEADERS += programupdater.h
