@@ -369,3 +369,10 @@ div.mochaToolbarWrapper.bottom {
 #clock {
 	background: #fff;	
 }
+
+/* Workaround to make invisible buttons clickable */
+.mochaMinimizeButton.replaced,
+.mochaMaximizeButton.replaced,
+.mochaCloseButton.replaced {
+	background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7) !important;
+}
