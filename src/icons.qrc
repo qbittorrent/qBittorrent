@@ -319,10 +319,15 @@
   <file>Icons/oxygen/wallet-open.png</file>
   <file>Icons/oxygen/webui.png</file>
   <file>Icons/skin/arrow-right.gif</file>
+  <file>Icons/skin/bg-dropdown.gif</file>
   <file>Icons/skin/bg-handle-horizontal.gif</file>
+  <file>Icons/skin/bg-header.gif</file>
+  <file>Icons/skin/bg-panel-header.gif</file>
   <file>Icons/skin/checking.png</file>
+  <file>Icons/skin/collapse-expand.gif</file>
   <file>Icons/skin/connected.png</file>
   <file>Icons/skin/disconnected.png</file>
+  <file>Icons/skin/dock-tabs.gif</file>
   <file>Icons/skin/download.png</file>
   <file>Icons/skin/downloading.png</file>
   <file>Icons/skin/error.png</file>
@@ -333,6 +338,9 @@
   <file>Icons/skin/handle-icon-horizontal.gif</file>
   <file>Icons/skin/handle-icon.gif</file>
   <file>Icons/skin/knob.gif</file>
+  <file>Icons/skin/logo-blank.gif</file>
+  <file>Icons/skin/logo.gif</file>
+  <file>Icons/skin/logo2.gif</file>
   <file>Icons/skin/mascot.png</file>
   <file>Icons/skin/paused.png</file>
   <file>Icons/skin/qbittorrent16.png</file>
@@ -344,11 +352,15 @@
   <file>Icons/skin/ratio.png</file>
   <file>Icons/skin/seeding.png</file>
   <file>Icons/skin/slider-area.gif</file>
+  <file>Icons/skin/spacer.gif</file>
+  <file>Icons/skin/spinner-placeholder.gif</file>
+  <file>Icons/skin/spinner.gif</file>
   <file>Icons/skin/splash.png</file>
   <file>Icons/skin/stalledDL.png</file>
   <file>Icons/skin/stalledUP.png</file>
   <file>Icons/skin/tabs.gif</file>
   <file>Icons/skin/toolbox-divider.gif</file>
+  <file>Icons/skin/toolbox-divider2.gif</file>
   <file>Icons/skin/uploading.png</file>
   <file>Icons/oxygen/system-log-out.png</file>
 </qresource>

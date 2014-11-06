@@ -1623,7 +1623,7 @@ MUI.Window = new Class({
 
 		// Fix a mouseover issue with gauges in IE7
 		if ( MUI.ieLegacySupport && options.shape == 'gauge') {
-			this.windowEl.setStyle('backgroundImage', 'url(../images/spacer.gif)');
+			this.windowEl.setStyle('backgroundImage', 'url(../images/skin/spacer.gif)');
 		}
 
 		if (options.loadMethod == 'iframe') {
