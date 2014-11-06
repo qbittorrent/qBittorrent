@@ -1626,15 +1626,6 @@ MUI.Window = new Class({
 			this.windowEl.setStyle('backgroundImage', 'url(../images/spacer.gif)');
 		}
 
-		if ((this.options.type == 'modal' || options.type == 'modal2' ) && Browser.Platform.mac && Browser.Engine.gecko){
-			if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
-				var ffversion = new Number(RegExp.$1);
-				if (ffversion < 3) {
-					this.windowEl.setStyle('position', 'fixed');
-				}
-			}
-		}
-
 		if (options.loadMethod == 'iframe') {
 			options.padding = { top: 0, right: 0, bottom: 0, left: 0 };
 		}
@@ -2135,20 +2126,8 @@ MUI.Window = new Class({
 		}	
 	},
 	resizeOnDrag: function(){
-		// Fix for a rendering glitch in FF when resizing a window with panels in it
-		if (Browser.Engine.gecko) {
-			this.windowEl.getElements('.panel').each(function(panel){
-				panel.store('oldOverflow', panel.getStyle('overflow'));
-				panel.setStyle('overflow', 'visible');
-			});
-		}	
 		this.drawWindow();
 		this.adjustHandles();
-		if (Browser.Engine.gecko) {
-			this.windowEl.getElements('.panel').each(function(panel){
-				panel.setStyle('overflow', panel.retrieve('oldOverflow')); // Fix for a rendering bug in FF
-			});
-		}			
 	},		
 	resizeOnComplete: function(){
 		$('windowUnderlay').hide();
@@ -2458,16 +2437,6 @@ MUI.Window = new Class({
 
 		if ( MUI.ieLegacySupport ){
 			cache.overlayEl.setStyle('zIndex', 2);
-		}
-
-		// For Mac Firefox 2 to help reduce scrollbar bugs in that browser
-		if (Browser.Platform.mac && Browser.Engine.gecko){
-			if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)){
-				var ffversion = new Number(RegExp.$1);
-				if (ffversion < 3){
-					cache.overlayEl.setStyle('overflow', 'auto');
-				}
-			}
 		}
 
 		if (options.resizable){
@@ -5401,17 +5370,7 @@ function addResizeRight(element, min, max){
 			element.getNext('.column').getElements('iframe').setStyle('visibility', 'hidden');
 		}.bind(this),
 		onDrag: function(){
-			if (Browser.Engine.gecko) {
-				$$('.panel').each(function(panel){
-					if (panel.getElements('.mochaIframe').length == 0) {
-						panel.hide(); // Fix for a rendering bug in FF
-					}
-				});
-			}
 			MUI.rWidth(element.getParent());
-			if (Browser.Engine.gecko) {
-				$$('.panel').show(); // Fix for a rendering bug in FF			
-			}
 			if (Browser.Engine.trident4) {
 				element.getChildren().each(function(el){
 					var width = $(element).getStyle('width').toInt();
@@ -6071,16 +6030,6 @@ MUI.Dock = {
 			instance.toolbarWrapperEl.hide();
 		}
 		windowEl.setStyle('visibility', 'hidden');
-
-		 // Fixes a scrollbar issue in Mac FF2
-		if (Browser.Platform.mac && Browser.Engine.gecko){
-			if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)){
-				var ffversion = new Number(RegExp.$1);
-				if (ffversion < 3) {
-					instance.contentWrapperEl.setStyle('overflow', 'hidden');
-				}
-			}
-		}
 	
 		MUI.Desktop.setDesktopSize();
 
