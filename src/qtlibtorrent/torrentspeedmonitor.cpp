@@ -117,7 +117,7 @@ private:
 TorrentSpeedMonitor::TorrentSpeedMonitor(QBtSession* session)
   : m_session(session)
 {
-  connect(m_session, SIGNAL(deletedTorrent(QString)), SLOT(removeSamples(QString)));
+  connect(m_session, SIGNAL(torrentAboutToBeRemoved(QTorrentHandle)), SLOT(removeSamples(QTorrentHandle)));
   connect(m_session, SIGNAL(pausedTorrent(QTorrentHandle)), SLOT(removeSamples(QTorrentHandle)));
   connect(m_session, SIGNAL(statsReceived(libtorrent::stats_alert)), SLOT(statsReceived(libtorrent::stats_alert)));
 }
@@ -141,11 +141,6 @@ Sample<qreal> SpeedSample::average() const
     return Sample<qreal>();
 
   return Sample<qreal>(m_sum) * (1. / m_speedSamples.size());
-}
-
-void TorrentSpeedMonitor::removeSamples(const QString &hash)
-{
-  m_samples.remove(hash);
 }
 
 void TorrentSpeedMonitor::removeSamples(const QTorrentHandle& h) {
