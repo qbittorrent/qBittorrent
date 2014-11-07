@@ -49,7 +49,9 @@ window.addEvent('load', function() {
   // is XHR2 available?
 	var xhr = new XMLHttpRequest();
 	if (xhr.upload)
-		$('submitbutton').addClass("invisible");
+    $('submitbutton').addClass("invisible");
+  else
+    $('upload_frame').addEvent('load', function(e) { window.parent.closeWindows(); });
 });
 </script>
 </head>
@@ -60,7 +62,7 @@ window.addEvent('load', function() {
 <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" /><br/>
 <div id="submitbutton">
     <button type="submit">_(Upload Torrents)</button>
-</div
+</div>
 </form>
 </body>
 </html>
