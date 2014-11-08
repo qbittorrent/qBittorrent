@@ -89,6 +89,8 @@ void qt_mac_set_dock_menu(QMenu *menu);
 #include "downloadthread.h"
 #endif
 
+#include <libtorrent/session.hpp>
+
 using namespace libtorrent;
 
 #define TIME_TRAY_BALLOON 5000

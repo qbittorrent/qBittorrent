@@ -28,55 +28,30 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef FILTERPARSERTHREAD_H
-#define FILTERPARSERTHREAD_H
+#include "trackerlogin.h"
 
-#include <QThread>
-#include <QDataStream>
-#include <QStringList>
-
-namespace libtorrent {
-  class session;
-  struct ip_filter;
+trackerLogin::trackerLogin(QWidget *parent, QTorrentHandle h)
+  : QDialog(parent)
+  , h(h)
+{
+  setupUi(this);
+  setAttribute(Qt::WA_DeleteOnClose);
+  login_logo->setPixmap(QPixmap(QString::fromUtf8(":/Icons/oxygen/encrypted.png")));
+  tracker_url->setText(h.current_tracker());
+  connect(this, SIGNAL(trackerLoginCancelled(QPair<QTorrentHandle,QString>)), parent, SLOT(addUnauthenticatedTracker(QPair<QTorrentHandle,QString>)));
+  show();
 }
 
-using namespace std;
+trackerLogin::~trackerLogin() {}
 
-// P2B Stuff
-#include <string.h>
-#ifdef Q_OS_WIN
-#include <Winsock2.h>
-#else
-#include <arpa/inet.h>
-#endif
-// End of P2B stuff
+void trackerLogin::on_loginButton_clicked() {
+  // login
+  h.set_tracker_login(lineUsername->text(), linePasswd->text());
+  close();
+}
 
-class FilterParserThread : public QThread  {
-  Q_OBJECT
-
-public:
-  FilterParserThread(QObject* parent, libtorrent::session *s);
-  ~FilterParserThread();
-
-  int parseDATFilterFile(QString filePath, libtorrent::ip_filter& filter);
-  int parseP2PFilterFile(QString filePath, libtorrent::ip_filter& filter);
-  int getlineInStream(QDataStream& stream, string& name, char delim);
-  int parseP2BFilterFile(QString filePath, libtorrent::ip_filter& filter);
-  void processFilterFile(QString _filePath);
-  static void processFilterList(libtorrent::session *s, const QStringList& IPs);
-
-signals:
-  void IPFilterParsed(int ruleCount);
-  void IPFilterError();
-
-protected:
-  QString cleanupIPAddress(QString _ip);
-  void run();
-
-private:
-  libtorrent::session *s;
-  bool abort;
-  QString filePath;
-};
-
-#endif
+void trackerLogin::on_cancelButton_clicked() {
+  // Emit a signal to GUI to stop asking for authentication
+  emit trackerLoginCancelled(QPair<QTorrentHandle,QString>(h, h.current_tracker()));
+  close();
+}
