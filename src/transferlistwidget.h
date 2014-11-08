@@ -113,7 +113,6 @@ private:
   TransferListDelegate *listDelegate;
   TorrentModel *listModel;
   TransferListSortModel *nameFilterModel;
-  QSortFilterProxyModel *labelFilterModel;
   QBtSession* BTSession;
   MainWindow *main_window;
   QShortcut *editHotkey;

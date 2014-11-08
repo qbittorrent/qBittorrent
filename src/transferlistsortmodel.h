@@ -41,15 +41,21 @@ public:
   TransferListSortModel(QObject *parent = 0);
 
   void setStatusFilter(const TorrentFilter::TorrentFilter &filter);
+  void setLabelFilter(QString const& label);
+  void disableLabelFilter();
 
 private:
   bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
   bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 
   bool matchStatusFilter(int sourceRow, const QModelIndex &sourceParent) const;
+  bool matchLabelFilter(int sourceRow, const QModelIndex &sourceParent) const;
 
 private:
   TorrentFilter::TorrentFilter filter0;
+
+  bool labelFilterEnabled;
+  QString labelFilter;
 };
 
 #endif // TRANSFERLISTSORTMODEL_H

@@ -81,16 +81,9 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
   // Create transfer list model
   listModel = new TorrentModel(this);
 
-  // Set Sort/Filter proxy
-  labelFilterModel = new QSortFilterProxyModel();
-  labelFilterModel->setDynamicSortFilter(true);
-  labelFilterModel->setSourceModel(listModel);
-  labelFilterModel->setFilterKeyColumn(TorrentModelItem::TR_LABEL);
-  labelFilterModel->setFilterRole(Qt::DisplayRole);
-
   nameFilterModel = new TransferListSortModel();
   nameFilterModel->setDynamicSortFilter(true);
-  nameFilterModel->setSourceModel(labelFilterModel);
+  nameFilterModel->setSourceModel(listModel);
   nameFilterModel->setFilterKeyColumn(TorrentModelItem::TR_NAME);
   nameFilterModel->setFilterRole(Qt::DisplayRole);
   nameFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
@@ -165,7 +158,6 @@ TransferListWidget::~TransferListWidget() {
   // Save settings
   saveSettings();
   // Clean up
-  delete labelFilterModel;
   delete nameFilterModel;
   delete listModel;
   delete listDelegate;
@@ -198,14 +190,14 @@ inline QString TransferListWidget::getHashFromRow(int row) const {
 inline QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const {
   Q_ASSERT(index.isValid());
   if (index.model() == nameFilterModel)
-    return labelFilterModel->mapToSource(nameFilterModel->mapToSource(index));
-  return labelFilterModel->mapToSource(index);
+    return nameFilterModel->mapToSource(index);
+  return index;
 }
 
 inline QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) const {
   Q_ASSERT(index.isValid());
-  Q_ASSERT(index.model() == labelFilterModel);
-  return nameFilterModel->mapFromSource(labelFilterModel->mapFromSource(index));
+  Q_ASSERT(index.model() == nameFilterModel);
+  return nameFilterModel->mapFromSource(index);
 }
 
 void TransferListWidget::torrentDoubleClicked(const QModelIndex& index) {
@@ -895,15 +887,15 @@ void TransferListWidget::currentChanged(const QModelIndex& current, const QModel
 
 void TransferListWidget::applyLabelFilter(QString label) {
   if (label == "all") {
-    labelFilterModel->setFilterRegExp(QRegExp());
+    nameFilterModel->disableLabelFilter();
     return;
   }
   if (label == "none") {
-    labelFilterModel->setFilterRegExp(QRegExp("^$"));
+    nameFilterModel->setLabelFilter(QString());
     return;
   }
   qDebug("Applying Label filter: %s", qPrintable(label));
-  labelFilterModel->setFilterRegExp(QRegExp("^" + QRegExp::escape(label) + "$", Qt::CaseSensitive));
+  nameFilterModel->setLabelFilter(label);
 }
 
 void TransferListWidget::applyNameFilter(const QString& name) {

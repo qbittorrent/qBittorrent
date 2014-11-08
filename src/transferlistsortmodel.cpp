@@ -45,6 +45,22 @@ void TransferListSortModel::setStatusFilter(const TorrentFilter::TorrentFilter &
   }
 }
 
+void TransferListSortModel::setLabelFilter(QString const& label) {
+  if (!labelFilterEnabled || labelFilter != label) {
+    labelFilterEnabled = true;
+    labelFilter = label;
+    invalidateFilter();
+  }
+}
+
+void TransferListSortModel::disableLabelFilter() {
+  if (labelFilterEnabled) {
+    labelFilterEnabled = false;
+    labelFilter = QString();
+    invalidateFilter();
+  }
+}
+
 bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const {
   const int column  = sortColumn();
 
@@ -180,6 +196,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
 
 bool TransferListSortModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const {
   return matchStatusFilter(sourceRow, sourceParent)
+      && matchLabelFilter(sourceRow, sourceParent)
       && QSortFilterProxyModel::filterAcceptsRow(sourceRow, sourceParent);
 }
 
@@ -224,4 +241,15 @@ bool TransferListSortModel::matchStatusFilter(int sourceRow, const QModelIndex &
   default:
     return false;
   }
+}
+
+bool TransferListSortModel::matchLabelFilter(int sourceRow, const QModelIndex &sourceParent) const {
+  if (!labelFilterEnabled)
+    return true;
+
+  QAbstractItemModel *model = sourceModel();
+  if (!model)
+    return false;
+
+  return model->index(sourceRow, TorrentModelItem::TR_LABEL, sourceParent).data().toString() == labelFilter;
 }
