@@ -160,6 +160,7 @@ nox {
   SOURCES += mainwindow.cpp \
              ico.cpp \
              transferlistwidget.cpp \
+             transferlistsortmodel.cpp \
              transferlistdelegate.cpp \
              transferlistfilterswidget.cpp \
              torrentcontentmodel.cpp \
