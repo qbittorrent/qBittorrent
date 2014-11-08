@@ -595,6 +595,8 @@ void TorrentModel::stateUpdated(const std::vector<libtorrent::torrent_status> &s
       notifyTorrentChanged(row);
     }
   }
+
+  emit modelRefreshed();
 }
 
 bool TorrentModel::inhibitSystem()

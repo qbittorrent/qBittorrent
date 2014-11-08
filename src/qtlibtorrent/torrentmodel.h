@@ -101,6 +101,7 @@ signals:
   void torrentAdded(TorrentModelItem *torrentItem);
   void torrentAboutToBeRemoved(TorrentModelItem *torrentItem);
   void torrentChangedLabel(TorrentModelItem *torrentItem, QString previous, QString current);
+  void modelRefreshed();
 
 private slots:
   void addTorrent(const QTorrentHandle& h);

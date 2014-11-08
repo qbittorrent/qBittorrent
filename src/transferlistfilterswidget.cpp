@@ -203,7 +203,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
 
   // SIGNAL/SLOT
   connect(statusFilters, SIGNAL(currentRowChanged(int)), transferList, SLOT(applyStatusFilter(int)));
-  connect(transferList->getSourceModel(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), SLOT(updateTorrentNumbers()));
+  connect(transferList->getSourceModel(), SIGNAL(modelRefreshed()), SLOT(updateTorrentNumbers()));
   connect(transferList->getSourceModel(), SIGNAL(torrentAdded(TorrentModelItem*)), SLOT(handleNewTorrent(TorrentModelItem*)));
   connect(labelFilters, SIGNAL(currentRowChanged(int)), this, SLOT(applyLabelFilter(int)));
   connect(labelFilters, SIGNAL(torrentDropped(int)), this, SLOT(torrentDropped(int)));
