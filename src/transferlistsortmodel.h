@@ -32,6 +32,7 @@
 #define TRANSFERLISTSORTMODEL_H
 
 #include <QSortFilterProxyModel>
+#include "torrentfilterenum.h"
 
 class TransferListSortModel : public QSortFilterProxyModel {
   Q_OBJECT
@@ -39,8 +40,16 @@ class TransferListSortModel : public QSortFilterProxyModel {
 public:
   TransferListSortModel(QObject *parent = 0);
 
-protected:
-  virtual bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
+  void setStatusFilter(const TorrentFilter::TorrentFilter &filter);
+
+private:
+  bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
+  bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
+
+  bool matchStatusFilter(int sourceRow, const QModelIndex &sourceParent) const;
+
+private:
+  TorrentFilter::TorrentFilter filter0;
 };
 
 #endif // TRANSFERLISTSORTMODEL_H

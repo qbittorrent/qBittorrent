@@ -40,7 +40,6 @@ class MainWindow;
 class TransferListDelegate;
 class TransferListSortModel;
 class TorrentModel;
-class StatusSortFilterProxyModel;
 
 QT_BEGIN_NAMESPACE
 class QShortcut;
@@ -114,7 +113,6 @@ private:
   TransferListDelegate *listDelegate;
   TorrentModel *listModel;
   TransferListSortModel *nameFilterModel;
-  StatusSortFilterProxyModel *statusFilterModel;
   QSortFilterProxyModel *labelFilterModel;
   QBtSession* BTSession;
   MainWindow *main_window;

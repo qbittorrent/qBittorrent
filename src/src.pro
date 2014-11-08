@@ -154,7 +154,6 @@ nox {
               autoexpandabledialog.h \
               statsdialog.h \
               messageboxraised.h \
-              statussortfilterproxymodel.h \
               torrentfilterenum.h
 
   SOURCES += mainwindow.cpp \
@@ -179,7 +178,6 @@ nox {
              autoexpandabledialog.cpp \
              statsdialog.cpp \
              messageboxraised.cpp \
-             statussortfilterproxymodel.cpp \
              statusbar.cpp \
              trackerlogin.cpp
 

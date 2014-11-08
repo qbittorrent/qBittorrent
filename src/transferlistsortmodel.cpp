@@ -35,7 +35,15 @@
 
 TransferListSortModel::TransferListSortModel(QObject *parent)
   : QSortFilterProxyModel(parent)
+  , filter0(TorrentFilter::ALL)
 {}
+
+void TransferListSortModel::setStatusFilter(const TorrentFilter::TorrentFilter &filter) {
+  if (filter != filter0) {
+    filter0 = filter;
+    invalidateFilter();
+  }
+}
 
 bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const {
   const int column  = sortColumn();
@@ -168,4 +176,52 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
   }
 
   return QSortFilterProxyModel::lessThan(left, right);
+}
+
+bool TransferListSortModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const {
+  return matchStatusFilter(sourceRow, sourceParent)
+      && QSortFilterProxyModel::filterAcceptsRow(sourceRow, sourceParent);
+}
+
+bool TransferListSortModel::matchStatusFilter(int sourceRow, const QModelIndex &sourceParent) const {
+  if (filter0 == TorrentFilter::ALL)
+    return true;
+  QAbstractItemModel *model = sourceModel();
+  if (!model) return false;
+  QModelIndex index = model->index(sourceRow, TorrentModelItem::TR_STATUS, sourceParent);
+  TorrentModelItem::State state = (TorrentModelItem::State)index.data().toInt();
+
+  switch (filter0) {
+  case TorrentFilter::DOWNLOADING:
+    return (state == TorrentModelItem::STATE_DOWNLOADING || state == TorrentModelItem::STATE_STALLED_DL
+            || state == TorrentModelItem::STATE_PAUSED_DL || state == TorrentModelItem::STATE_CHECKING_DL
+            || state == TorrentModelItem::STATE_QUEUED_DL || state == TorrentModelItem::STATE_DOWNLOADING_META);
+
+  case TorrentFilter::COMPLETED:
+    return (state == TorrentModelItem::STATE_SEEDING || state == TorrentModelItem::STATE_STALLED_UP
+            || state == TorrentModelItem::STATE_PAUSED_UP || state == TorrentModelItem::STATE_CHECKING_UP
+            || state == TorrentModelItem::STATE_QUEUED_UP);
+
+  case TorrentFilter::PAUSED:
+    return (state == TorrentModelItem::STATE_PAUSED_UP || state == TorrentModelItem::STATE_PAUSED_DL);
+
+  case TorrentFilter::ACTIVE:
+    if (state == TorrentModelItem::STATE_STALLED_DL) {
+      const qulonglong up_speed = model->index(sourceRow, TorrentModelItem::TR_UPSPEED, sourceParent).data().toULongLong();
+      return (up_speed > 0);
+    }
+
+    return (state == TorrentModelItem::STATE_DOWNLOADING || state == TorrentModelItem::STATE_SEEDING);
+
+  case TorrentFilter::INACTIVE:
+    if (state == TorrentModelItem::STATE_STALLED_DL) {
+      const qulonglong up_speed = model->index(sourceRow, TorrentModelItem::TR_UPSPEED, sourceParent).data().toULongLong();
+      return !(up_speed > 0);
+    }
+
+    return (state != TorrentModelItem::STATE_DOWNLOADING && state != TorrentModelItem::STATE_SEEDING);
+
+  default:
+    return false;
+  }
 }

@@ -63,7 +63,6 @@
 #include "iconprovider.h"
 #include "fs_utils.h"
 #include "autoexpandabledialog.h"
-#include "statussortfilterproxymodel.h"
 #include "transferlistsortmodel.h"
 
 using namespace libtorrent;
@@ -89,13 +88,9 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
   labelFilterModel->setFilterKeyColumn(TorrentModelItem::TR_LABEL);
   labelFilterModel->setFilterRole(Qt::DisplayRole);
 
-  statusFilterModel = new StatusSortFilterProxyModel();
-  statusFilterModel->setDynamicSortFilter(true);
-  statusFilterModel->setSourceModel(labelFilterModel);
-
   nameFilterModel = new TransferListSortModel();
   nameFilterModel->setDynamicSortFilter(true);
-  nameFilterModel->setSourceModel(statusFilterModel);
+  nameFilterModel->setSourceModel(labelFilterModel);
   nameFilterModel->setFilterKeyColumn(TorrentModelItem::TR_NAME);
   nameFilterModel->setFilterRole(Qt::DisplayRole);
   nameFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
@@ -171,7 +166,6 @@ TransferListWidget::~TransferListWidget() {
   saveSettings();
   // Clean up
   delete labelFilterModel;
-  delete statusFilterModel;
   delete nameFilterModel;
   delete listModel;
   delete listDelegate;
@@ -204,16 +198,14 @@ inline QString TransferListWidget::getHashFromRow(int row) const {
 inline QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const {
   Q_ASSERT(index.isValid());
   if (index.model() == nameFilterModel)
-    return labelFilterModel->mapToSource(statusFilterModel->mapToSource(nameFilterModel->mapToSource(index)));
-  if (index.model() == statusFilterModel)
-    return labelFilterModel->mapToSource(statusFilterModel->mapToSource(index));
+    return labelFilterModel->mapToSource(nameFilterModel->mapToSource(index));
   return labelFilterModel->mapToSource(index);
 }
 
 inline QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) const {
   Q_ASSERT(index.isValid());
   Q_ASSERT(index.model() == labelFilterModel);
-  return nameFilterModel->mapFromSource(statusFilterModel->mapFromSource(labelFilterModel->mapFromSource(index)));
+  return nameFilterModel->mapFromSource(labelFilterModel->mapFromSource(index));
 }
 
 void TransferListWidget::torrentDoubleClicked(const QModelIndex& index) {
@@ -919,7 +911,7 @@ void TransferListWidget::applyNameFilter(const QString& name) {
 }
 
 void TransferListWidget::applyStatusFilter(int f) {
-  statusFilterModel->setFilterStatus((TorrentFilter::TorrentFilter)f);
+  nameFilterModel->setStatusFilter((TorrentFilter::TorrentFilter)f);
   // Select first item if nothing is selected
   if (selectionModel()->selectedRows(0).empty() && nameFilterModel->rowCount() > 0) {
     qDebug("Nothing is selected, selecting first row: %s", qPrintable(nameFilterModel->index(0, TorrentModelItem::TR_NAME).data().toString()));
