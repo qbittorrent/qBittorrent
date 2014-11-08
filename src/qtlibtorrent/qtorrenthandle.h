@@ -84,6 +84,7 @@ public:
   bool is_checking() const;
   bool is_sequential_download() const;
   QString creation_date() const;
+  qlonglong creation_date_unix() const;
   bool priv() const;
   bool first_last_piece_first() const;
   QString root_path() const;

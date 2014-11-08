@@ -303,7 +303,7 @@ var createPriorityCombo = function(id, selected_prio) {
                             row.length = 4;
                             row[0] = file.priority;
                             row[1] = file.name;
-                            row[2] = file.size;
+                            row[2] = friendlyUnit(file.size, false);
                             row[3] = (file.progress*100).round(1);
                             if(row[3] == 100.0 && file.progress < 1.0)
                               row[3] = 99.9
