@@ -263,11 +263,12 @@ void RequestHandler::action_command_upload()
       QBtSession::instance()->addTorrent(filePath);
       // Clean up
       fsutils::forceRemove(filePath);
-      print(QLatin1String("<script type=\"text/javascript\">window.parent.hideAll();</script>"));
     }
     else
     {
       qWarning() << "I/O Error: Could not create temporary file";
+      status(500, "Internal Server Error");
+      print(QObject::tr("I/O Error: Could not create temporary file."), CONTENT_TYPE_TXT);
     }
   }
 }
