@@ -4,6 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>_(Download local torrent)</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/Window.css" type="text/css" />
 	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
 <script type="text/javascript">
 
@@ -18,6 +19,7 @@ function stateChangeHandler() {
 				alert("_(Upload Failed!)");
 			}
 		}
+		$('upload_spinner').style.display = "none";
 	}
 }
 
@@ -38,6 +40,7 @@ function uploadFiles(files) {
 
 function fileHandler(e) {
 	e.preventDefault();
+	$('upload_spinner').style.display = "block";
 	// fetch FileList object
 	var files = $('fileselect').files
 	// process all File objects
@@ -51,6 +54,7 @@ window.addEvent('load', function() {
 		$('uploadForm').addEvent('submit', fileHandler);
 	} else {
 		$('upload_frame').addEvent('load', function() { window.parent.closeWindows(); });
+		$('uploadForm').addEvent('submit', function() { $('upload_spinner').style.display = "block"; });
 	}
 });
 </script>
@@ -65,5 +69,6 @@ window.addEvent('load', function() {
 	<button type="submit" style="font-size: 1em;">_(Upload Torrents)</button>
 </div>
 </form>
+<div id="upload_spinner" class="mochaSpinner"></div>
 </body>
 </html>
