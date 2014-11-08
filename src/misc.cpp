@@ -289,9 +289,8 @@ int misc::pythonVersion() {
 // use Binary prefix standards from IEC 60027-2
 // see http://en.wikipedia.org/wiki/Kilobyte
 // value must be given in bytes
-// FIXME: Remove the 'webui' variable, when the webui API is reworked
 // to send numbers instead of strings with suffixes
-QString misc::friendlyUnit(qreal val, bool is_speed, bool webui) {
+QString misc::friendlyUnit(qreal val, bool is_speed) {
   if (val < 0)
     return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
   int i = 0;
@@ -301,7 +300,7 @@ QString misc::friendlyUnit(qreal val, bool is_speed, bool webui) {
   if (i == 0)
     ret = QString::number((long)val) + " " + QCoreApplication::translate("misc", units[0].source, units[0].comment);
   else
-    ret = accurateDoubleToString(val, 1, !webui) + " " + QCoreApplication::translate("misc", units[i].source, units[i].comment);
+    ret = accurateDoubleToString(val, 1) + " " + QCoreApplication::translate("misc", units[i].source, units[i].comment);
   if (is_speed)
     ret += QCoreApplication::translate("misc", "/s", "per second");
   return ret;
@@ -630,9 +629,8 @@ bool misc::naturalSort(QString left, QString right, bool &result) { // uses less
 }
 #endif
 
-// FIXME: Remove the 'localized' variable, when the webui API is reworked
 // to send numbers instead of strings with suffixes
-QString misc::accurateDoubleToString(const double &n, const int &precision, bool localized) {
+QString misc::accurateDoubleToString(const double &n, const int &precision) {
   /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
   ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 The problem manifests when
   ** the number has more digits after the decimal than we want AND the digit after
@@ -640,10 +638,7 @@ QString misc::accurateDoubleToString(const double &n, const int &precision, bool
   ** precision we add an extra 0 behind 1 in the below algorithm. */
 
   double prec = std::pow(10.0, precision);
-  if (localized)
-    return QLocale::system().toString(std::floor(n*prec)/prec, 'f', precision);
-  else
-    return QString::number(std::floor(n*prec)/prec, 'f', precision);
+  return QLocale::system().toString(std::floor(n*prec)/prec, 'f', precision);
 }
 
 // Implements constant-time comparison to protect against timing attacks
