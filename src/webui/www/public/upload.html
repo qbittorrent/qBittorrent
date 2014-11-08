@@ -4,6 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>_(Download local torrent)</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/Window.css" type="text/css" />
 	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
 <script type="text/javascript">
 
@@ -18,6 +19,7 @@ function stateChangeHandler() {
 				alert("_(Upload Failed!)");
 			}
 		}
+		$('upload_spinner').style.display = "none";
 	}
 }
 
@@ -36,33 +38,37 @@ function uploadFiles(files) {
 	}
 }
 
-// file selection
-function fileSelectHandler(e) {
+function fileHandler(e) {
+	e.preventDefault();
+	$('upload_spinner').style.display = "block";
 	// fetch FileList object
-	var files = e.target.files || e.dataTransfer.files;
+	var files = $('fileselect').files
 	// process all File objects
 	uploadFiles(files);
 }
 
 window.addEvent('load', function() {
-  $('fileselect').addEvent('change', fileSelectHandler);
-  // is XHR2 available?
+	// is XHR2 available?
 	var xhr = new XMLHttpRequest();
-	if (xhr.upload)
-    $('submitbutton').addClass("invisible");
-  else
-    $('upload_frame').addEvent('load', function(e) { window.parent.closeWindows(); });
+	if (xhr.upload) {
+		$('uploadForm').addEvent('submit', fileHandler);
+	} else {
+		$('upload_frame').addEvent('load', function() { window.parent.closeWindows(); });
+		$('uploadForm').addEvent('submit', function() { $('upload_spinner').style.display = "block"; });
+	}
 });
 </script>
 </head>
 <body>
-<br/>
-<iframe id="upload_frame" name="upload_frame" style="width:1px;height:1px;border:0px;" src="javascript:false;"></iframe>
-<form action="command/upload" enctype="multipart/form-data" method="post" id="uploadForm" target="upload_frame">
-<input type="file" id="fileselect" name="fileselect[]" multiple="multiple" /><br/>
-<div id="submitbutton">
-    <button type="submit">_(Upload Torrents)</button>
+<iframe id="upload_frame" name="upload_frame" class="invisible" src="javascript:false;"></iframe>
+<form action="command/upload" enctype="multipart/form-data" method="post" id="uploadForm" target="upload_frame" style="text-align: center;">
+<div style="margin-top: 25px; display: inline-block; border: 1px solid lightgrey; border-radius: 4px;">
+	<input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
+</div>
+<div id="submitbutton" style="margin-top: 30px;">
+	<button type="submit" style="font-size: 1em;">_(Upload Torrents)</button>
 </div>
 </form>
+<div id="upload_spinner" class="mochaSpinner"></div>
 </body>
 </html>

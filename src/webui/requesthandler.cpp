@@ -260,7 +260,11 @@ void RequestHandler::action_command_upload()
 
     if (!filePath.isEmpty())
     {
-      QBtSession::instance()->addTorrent(filePath);
+      QTorrentHandle h = QBtSession::instance()->addTorrent(filePath);
+      if (!h.is_valid()) {
+        status(415, "Internal Server Error");
+        print(QObject::tr("Error: '%1' is not a valid torrent file.\n").arg(torrent.filename), CONTENT_TYPE_TXT);
+      }
       // Clean up
       fsutils::forceRemove(filePath);
     }

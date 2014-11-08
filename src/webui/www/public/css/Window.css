@@ -47,7 +47,7 @@ Required by:
 .mochaTitlebar {
 	width: 100%;
 	overflow: hidden;
-	background: url(../images/spacer.gif?from=fafafa&to=e5e5e5); 
+	background: url(../images/skin/spacer.gif?from=fafafa&to=e5e5e5); 
 }
 
 .mochaTitlebar h3 {
@@ -188,7 +188,7 @@ div.mochaToolbarWrapper.bottom {
 	left: 6px;
 	width: 16px;
 	height: 16px;
-	background: url(../images/spinner.gif) no-repeat;
+	background: url(../images/skin/spinner.gif) no-repeat;
 }
 
 .mochaIframe {
@@ -334,7 +334,7 @@ div.mochaToolbarWrapper.bottom {
 /* Example Window Themes */
 
 #about_contentWrapper {
-	background: #e5e5e5 url(../images/logo2.gif) 3px 3px no-repeat;
+	background: #e5e5e5 url(../images/skin/logo2.gif) 3px 3px no-repeat;
 }
 
 #builder_contentWrapper {
@@ -368,4 +368,11 @@ div.mochaToolbarWrapper.bottom {
 
 #clock {
 	background: #fff;	
+}
+
+/* Workaround to make invisible buttons clickable */
+.mochaMinimizeButton.replaced,
+.mochaMaximizeButton.replaced,
+.mochaCloseButton.replaced {
+	background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7) !important;
 }

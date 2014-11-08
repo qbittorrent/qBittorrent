@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" dir="ltr">
 <head>
@@ -8,6 +7,10 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
     <script type="text/javascript">
+      window.onload = function() {
+        $('username').focus();
+      }
+
       window.addEvent('domready', function() {
         $('loginform').addEvent('submit', function(e) {
           new Event(e).stop();
@@ -41,7 +44,7 @@
         }).send();
        }
     </script>
-    <style>
+    <style type="text/css">
         .col {
             display: inline-block;
             vertical-align: middle;
@@ -68,7 +71,7 @@
 	<div id="main">
 		<h1>_(qBittorrent web User Interface)</h1>
 		<div id="logo" class="col">
-			<img src="images/qbittorrent.png" />
+			<img src="images/qbittorrent.png" alt="qBittorrent logo"/>
 		</div>
 		<div id="formplace" class="col">
 			<form id="loginform" action="">

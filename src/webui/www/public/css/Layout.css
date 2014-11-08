@@ -148,7 +148,6 @@ body {
 } 
 
 #desktopNavbar li ul {
-	padding: 2px;
 	border: 1px solid #3f3f3f;
 	background: #fff url(../images/skin/bg-dropdown.gif) repeat-y;
 	position: absolute;
@@ -185,11 +184,11 @@ body {
 #desktopNavbar li ul li a {
 	position: relative;
 	/*padding: 1px 9px 1px 25px;*/
-	width: 130px;
+	width: 134px;
 	color: #3f3f3f;
 	font-weight: normal;
 	/* Fix By Chris */
-	padding: 1px 9px 1px 20px; /* Reduce left padding */
+	padding: 1px 10px 1px 20px; /* Reduce left padding */
 }
 
 #desktopNavbar li ul li a:hover {

@@ -52,7 +52,9 @@ MUI.extend({
 	},
 
 	ieSupport: 'excanvas',  // Makes it easier to switch between Excanvas and Moocanvas for testing	
-	
+
+	ieLegacySupport: Browser.Engine.trident && Browser.version < 9,
+
 	/*
 	
 	Function: updateContent
@@ -271,8 +273,8 @@ MUI.extend({
 			'frameBorder': 0,
 			'scrolling': 'auto',
 			'styles': {
-				'height': contentWrapperEl.offsetHeight - contentWrapperEl.getStyle('border-top').toInt() - contentWrapperEl.getStyle('border-bottom').toInt(),
-				'width': instance.panelEl ? contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('border-left').toInt() - contentWrapperEl.getStyle('border-right').toInt() : '100%'	
+				'height': contentWrapperEl.offsetHeight - contentWrapperEl.getStyle('margin-top').toInt() - contentWrapperEl.getStyle('margin-bottom').toInt(),
+				'width': instance.panelEl ? contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('margin-left').toInt() - contentWrapperEl.getStyle('margin-right').toInt() : '100%'	
 			}
 		}).injectInside(contentEl);
 
@@ -533,7 +535,7 @@ Element.implement({
 			this.setStyle('position','relative');
 			position = 'relative';
 		}
-		if(Browser.Engine.trident){
+		if(MUI.ieLegacySupport){
 			parent.setStyle('height',parent.getStyle('height'));
 		}
 		var coords = this.getPosition(parent);
@@ -794,7 +796,7 @@ $extend(Asset, {
 			script.addEvents({
 				load: load,
 				readystatechange: function(){
-					if (Browser.Engine.trident && ['loaded', 'complete'].contains(this.readyState)) 
+					if (MUI.ieLegacySupport && ['loaded', 'complete'].contains(this.readyState)) 
 						load();
 				}
 			}).setProperties(properties);
@@ -1058,7 +1060,7 @@ MUI.Themes = {
 		});		
 
 		// Delay gives the stylesheets time to take effect. IE6 needs more delay.	
-		if (Browser.Engine.trident){
+		if (MUI.ieLegacySupport){
 			this.redraw.delay(1250, this);
 		}
 		else {
@@ -1620,17 +1622,8 @@ MUI.Window = new Class({
 		}
 
 		// Fix a mouseover issue with gauges in IE7
-		if ( Browser.Engine.trident && options.shape == 'gauge') {
-			this.windowEl.setStyle('backgroundImage', 'url(../images/spacer.gif)');
-		}
-
-		if ((this.options.type == 'modal' || options.type == 'modal2' ) && Browser.Platform.mac && Browser.Engine.gecko){
-			if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
-				var ffversion = new Number(RegExp.$1);
-				if (ffversion < 3) {
-					this.windowEl.setStyle('position', 'fixed');
-				}
-			}
+		if ( MUI.ieLegacySupport && options.shape == 'gauge') {
+			this.windowEl.setStyle('backgroundImage', 'url(../images/skin/spacer.gif)');
 		}
 
 		if (options.loadMethod == 'iframe') {
@@ -1793,7 +1786,7 @@ MUI.Window = new Class({
 			'duration': 350,
 			transition: Fx.Transitions.Sine.easeInOut,
 			onComplete: function(){
-				if (Browser.Engine.trident){
+				if (MUI.ieLegacySupport){
 					this.drawWindow();
 				}
 			}.bind(this)
@@ -1883,7 +1876,7 @@ MUI.Window = new Class({
 		}
 		else {
 			// IE cannot handle both element opacity and VML alpha at the same time.
-			if (Browser.Engine.trident){
+			if (MUI.ieLegacySupport){
 				this.drawWindow(false);
 			}
 			this.opacityMorph.start({
@@ -1906,7 +1899,7 @@ MUI.Window = new Class({
 
 		if (this.options.type == 'window'){
 			windowEl.addEvent('mousedown', function(e) {
-				if (Browser.Engine.trident) {
+				if (MUI.ieLegacySupport) {
 					new Event(e).stop();
 				}
 				MUI.focusWindow(windowEl);
@@ -1940,7 +1933,7 @@ MUI.Window = new Class({
 				e = new Event(e).stop();
 			}.bind(this));
 			
-			if (Browser.Engine.trident) {
+			if (MUI.ieLegacySupport) {
 				this.titleBarEl.addEvent('mousedown', function(e) {
 					this.titleEl.setCapture();				
 				}.bind(this));
@@ -1977,7 +1970,7 @@ MUI.Window = new Class({
 					$('windowUnderlay').show();
 				}
 				if (this.iframeEl) {
-					if (!Browser.Engine.trident) {
+					if (!MUI.ieLegacySupport) {
 						this.iframeEl.setStyle('visibility', 'hidden');
 					}
 					else {
@@ -1990,7 +1983,7 @@ MUI.Window = new Class({
 					$('windowUnderlay').hide();
 				}
 				if ( this.iframeEl ){
-					if (!Browser.Engine.trident) {
+					if (!MUI.ieLegacySupport) {
 						this.iframeEl.setStyle('visibility', 'visible');
 					}
 					else {
@@ -2124,7 +2117,7 @@ MUI.Window = new Class({
 	resizeOnStart: function(){
 		$('windowUnderlay').show();
 		if (this.iframeEl){
-			if (!Browser.Engine.trident) {
+			if (!MUI.ieLegacySupport) {
 				this.iframeEl.setStyle('visibility', 'hidden');
 			}
 			else {
@@ -2133,25 +2126,13 @@ MUI.Window = new Class({
 		}	
 	},
 	resizeOnDrag: function(){
-		// Fix for a rendering glitch in FF when resizing a window with panels in it
-		if (Browser.Engine.gecko) {
-			this.windowEl.getElements('.panel').each(function(panel){
-				panel.store('oldOverflow', panel.getStyle('overflow'));
-				panel.setStyle('overflow', 'visible');
-			});
-		}	
 		this.drawWindow();
 		this.adjustHandles();
-		if (Browser.Engine.gecko) {
-			this.windowEl.getElements('.panel').each(function(panel){
-				panel.setStyle('overflow', panel.retrieve('oldOverflow')); // Fix for a rendering bug in FF
-			});
-		}			
 	},		
 	resizeOnComplete: function(){
 		$('windowUnderlay').hide();
 		if (this.iframeEl){
-			if (!Browser.Engine.trident) {
+			if (!MUI.ieLegacySupport) {
 				this.iframeEl.setStyle('visibility', 'visible');
 			}
 			else {
@@ -2360,7 +2341,7 @@ MUI.Window = new Class({
 			'class': 'mochaContent'
 		}).inject(cache.contentWrapperEl);
 
-		if (this.options.useCanvas == true && Browser.Engine.trident != true) {
+		if (this.options.useCanvas == true && !MUI.ieLegacySupport) {
 			cache.canvasEl = new Element('canvas', {
 				'id': id + '_canvas',
 				'class': 'mochaCanvas',
@@ -2369,7 +2350,7 @@ MUI.Window = new Class({
 			}).inject(this.windowEl);
 		}
 		
-		if (this.options.useCanvas == true && Browser.Engine.trident) {
+		if (this.options.useCanvas == true && MUI.ieLegacySupport) {
 			cache.canvasEl = new Element('canvas', {
 				'id': id + '_canvas',
 				'class': 'mochaCanvas',
@@ -2382,7 +2363,7 @@ MUI.Window = new Class({
 				}
 			}).inject(this.windowEl);
 
-			if (MUI.ieSupport == 'excanvas'){
+			if (MUI.ieLegacySupport && MUI.ieSupport == 'excanvas'){
 				G_vmlCanvasManager.initElement(cache.canvasEl);
 				cache.canvasEl = this.windowEl.getElement('.mochaCanvas');
 			}
@@ -2401,7 +2382,7 @@ MUI.Window = new Class({
 				'height': 14
 			}).inject(this.windowEl);
 
-			if (Browser.Engine.trident && MUI.ieSupport == 'excanvas'){
+			if (MUI.ieLegacySupport && MUI.ieSupport == 'excanvas'){
 				G_vmlCanvasManager.initElement(cache.canvasControlsEl);
 				cache.canvasControlsEl = this.windowEl.getElement('.mochaCanvasControls');
 			}
@@ -2448,24 +2429,14 @@ MUI.Window = new Class({
 				'height': 26
 			}).inject(this.windowEl, 'bottom');
 		
-			if (Browser.Engine.trident && MUI.ieSupport == 'excanvas'){
+			if (MUI.ieLegacySupport && MUI.ieSupport == 'excanvas'){
 				G_vmlCanvasManager.initElement(cache.canvasHeaderEl);
 				cache.canvasHeaderEl = this.windowEl.getElement('.mochaCanvasHeader');
 			}
 		}
 
-		if ( Browser.Engine.trident ){
+		if ( MUI.ieLegacySupport ){
 			cache.overlayEl.setStyle('zIndex', 2);
-		}
-
-		// For Mac Firefox 2 to help reduce scrollbar bugs in that browser
-		if (Browser.Platform.mac && Browser.Engine.gecko){
-			if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)){
-				var ffversion = new Number(RegExp.$1);
-				if (ffversion < 3){
-					cache.overlayEl.setStyle('overflow', 'auto');
-				}
-			}
 		}
 
 		if (options.resizable){
@@ -2678,9 +2649,9 @@ MUI.Window = new Class({
 			this.iframeEl.setStyle('height', this.contentWrapperEl.offsetHeight);
 		}
 
-		var borderHeight = this.contentBorderEl.getStyle('border-top').toInt() + this.contentBorderEl.getStyle('border-bottom').toInt();
-		var toolbarHeight = this.toolbarWrapperEl ? this.toolbarWrapperEl.getStyle('height').toInt() + this.toolbarWrapperEl.getStyle('border-top').toInt() : 0;
-		var toolbar2Height = this.toolbar2WrapperEl ? this.toolbar2WrapperEl.getStyle('height').toInt() + this.toolbar2WrapperEl.getStyle('border-top').toInt() : 0;
+		var borderHeight = this.contentBorderEl.getStyle('margin-top').toInt() + this.contentBorderEl.getStyle('margin-bottom').toInt();
+		var toolbarHeight = this.toolbarWrapperEl ? this.toolbarWrapperEl.getStyle('height').toInt() + this.toolbarWrapperEl.getStyle('margin-top').toInt() : 0;
+		var toolbar2Height = this.toolbar2WrapperEl ? this.toolbar2WrapperEl.getStyle('height').toInt() + this.toolbar2WrapperEl.getStyle('margin-top').toInt() : 0;
 
 		this.headerFooterShadow = options.headerHeight + options.footerHeight + shadowBlur2x;
 		var height = this.contentWrapperEl.getStyle('height').toInt() + this.headerFooterShadow + toolbarHeight + toolbar2Height + borderHeight;
@@ -2697,7 +2668,7 @@ MUI.Window = new Class({
 		});		
 
 		if (this.options.useCanvas == true) {
-			if (Browser.Engine.trident) {
+			if (MUI.ieLegacySupport) {
 				this.canvasEl.height = 20000;
 				this.canvasEl.width = 50000;
 			}
@@ -2754,7 +2725,7 @@ MUI.Window = new Class({
 			}
 
 			// Invisible dummy object. The last element drawn is not rendered consistently while resizing in IE6 and IE7
-			if (Browser.Engine.trident){
+			if (MUI.ieLegacySupport){
 				MUI.triangle(ctx, 0, 0, 10, 10, options.resizableColor, 0);
 			}
 		}
@@ -2825,7 +2796,7 @@ MUI.Window = new Class({
 			}
 			
 			// Invisible dummy object. The last element drawn is not rendered consistently while resizing in IE6 and IE7
-			if (Browser.Engine.trident){
+			if (MUI.ieLegacySupport){
 				MUI.triangle(ctx, 0, 0, 10, 10, options.resizableColor, 0);
 			}
 		}
@@ -2894,7 +2865,7 @@ MUI.Window = new Class({
 			);
 		}
 					// Invisible dummy object. The last element drawn is not rendered consistently while resizing in IE6 and IE7
-			if (Browser.Engine.trident){
+			if (MUI.ieLegacySupport){
 				MUI.circle(ctx2, 0, 0, 3, this.options.resizableColor, 0);
 			}
 		
@@ -3326,7 +3297,7 @@ MUI.extend({
 		}
 		else {
 			// Redraws IE windows without shadows since IE messes up canvas alpha when you change element opacity
-			if (Browser.Engine.trident) instance.drawWindow(false);
+			if (MUI.ieLegacySupport) instance.drawWindow(false);
 			if (instance.options.type == 'modal' || instance.options.type == 'modal2'){
 				MUI.Modal.modalOverlayCloseMorph.start({
 					'opacity': 0
@@ -3351,7 +3322,7 @@ MUI.extend({
 		var instance = instances.get(windowEl.id);		
 		windowEl.setStyle('visibility', 'hidden');
 		// Destroy throws an error in IE8
-		if (Browser.Engine.trident) {
+		if (MUI.ieLegacySupport) {
 			windowEl.dispose();
 		}
 		else {
@@ -3650,7 +3621,7 @@ MUI.extend({
 			instance.drawWindow();
 			// Show iframe
 			if (instance.iframeEl){
-				if (!Browser.Engine.trident) {
+				if (!MUI.ieLegacySupport) {
 					instance.iframeEl.setStyle('visibility', 'visible');
 				}
 				else {
@@ -4266,8 +4237,8 @@ MUI.Desktop = {
 					}
 
 					var coordinates = document.getCoordinates();
-					var borderHeight = instance.contentBorderEl.getStyle('border-top').toInt() + instance.contentBorderEl.getStyle('border-bottom').toInt();
-					var toolbarHeight = instance.toolbarWrapperEl ? instance.toolbarWrapperEl.getStyle('height').toInt() + instance.toolbarWrapperEl.getStyle('border-top').toInt() : 0;
+					var borderHeight = instance.contentBorderEl.getStyle('margin-top').toInt() + instance.contentBorderEl.getStyle('margin-bottom').toInt();
+					var toolbarHeight = instance.toolbarWrapperEl ? instance.toolbarWrapperEl.getStyle('height').toInt() + instance.toolbarWrapperEl.getStyle('margin-top').toInt() : 0;
 					instance.contentWrapperEl.setStyles({
 						'height': coordinates.height - instance.options.headerHeight - instance.options.footerHeight - borderHeight - toolbarHeight,
 						'width': coordinates.width
@@ -4300,8 +4271,8 @@ MUI.Desktop = {
 		if (this.pageWrapper) {
 			var dockOffset = MUI.dockVisible ? dockWrapper.offsetHeight : 0;
 			var pageWrapperHeight = windowDimensions.height;
-			pageWrapperHeight -= this.pageWrapper.getStyle('border-top').toInt();
-			pageWrapperHeight -= this.pageWrapper.getStyle('border-bottom').toInt();
+			pageWrapperHeight -= this.pageWrapper.getStyle('margin-top').toInt();
+			pageWrapperHeight -= this.pageWrapper.getStyle('margin-bottom').toInt();
 			if (this.desktopHeader){ pageWrapperHeight -= this.desktopHeader.offsetHeight; }
 			if (this.desktopFooter){ pageWrapperHeight -= this.desktopFooter.offsetHeight; }
 			pageWrapperHeight -= dockOffset;
@@ -4377,7 +4348,7 @@ MUI.Desktop = {
 		// Hide iframe
 		// Iframe should be hidden when minimizing, maximizing, and moving for performance and Flash issues
 		if ( instance.iframeEl ) {
-			if (!Browser.Engine.trident) {
+			if (!MUI.ieLegacySupport) {
 				instance.iframeEl.setStyle('visibility', 'hidden');
 			}
 			else {
@@ -4390,9 +4361,9 @@ MUI.Desktop = {
 		var shadowBlur = options.shadowBlur;
 		var shadowOffset = options.shadowOffset;
 		var newHeight = windowDimensions.height - options.headerHeight - options.footerHeight;
-		newHeight -= instance.contentBorderEl.getStyle('border-top').toInt();
-		newHeight -= instance.contentBorderEl.getStyle('border-bottom').toInt();
-		newHeight -= (instance.toolbarWrapperEl ? instance.toolbarWrapperEl.getStyle('height').toInt() + instance.toolbarWrapperEl.getStyle('border-top').toInt() : 0);
+		newHeight -= instance.contentBorderEl.getStyle('margin-top').toInt();
+		newHeight -= instance.contentBorderEl.getStyle('margin-bottom').toInt();
+		newHeight -= (instance.toolbarWrapperEl ? instance.toolbarWrapperEl.getStyle('height').toInt() + instance.toolbarWrapperEl.getStyle('margin-top').toInt() : 0);
 		
 		MUI.resizeWindow(windowEl, {
 			width: windowDimensions.width,
@@ -4440,7 +4411,7 @@ MUI.Desktop = {
 		// Hide iframe
 		// Iframe should be hidden when minimizing, maximizing, and moving for performance and Flash issues
 		if ( instance.iframeEl ) {
-			if (!Browser.Engine.trident) {
+			if (!MUI.ieLegacySupport) {
 				instance.iframeEl.setStyle('visibility', 'hidden');
 			}
 			else {
@@ -5253,7 +5224,10 @@ MUI.extend({
 
 		panelsToResize.each(function(panel){
 			var ratio = this.panelsTotalHeight / panel.offsetHeight.toInt();
-			var newPanelHeight = panel.getStyle('height').toInt() + (remainingHeight / ratio);
+			var panelHeight = panel.getStyle('height').toInt();
+			var newPanelHeight = remainingHeight / ratio;
+			if (!isNaN(panelHeight))
+				newPanelHeight += panelHeight;
 			if (newPanelHeight < 1){
 				newPanelHeight = 0;
 			}
@@ -5288,7 +5262,7 @@ MUI.extend({
 		parent.getChildren('.columnHandle').each(function(handle){
 			var parent = handle.getParent();
 			if (parent.getStyle('height').toInt() < 1) return; // Keeps IE7 and 8 from throwing an error when collapsing a panel within a panel
-			var handleHeight = parent.getStyle('height').toInt() - handle.getStyle('border-top').toInt() - handle.getStyle('border-bottom').toInt();
+			var handleHeight = parent.getStyle('height').toInt() - handle.getStyle('margin-top').toInt() - handle.getStyle('margin-bottom').toInt();
 			if (Browser.Engine.trident4 && parent == MUI.Desktop.pageWrapper){
 				handleHeight -= 1;
 			}
@@ -5307,10 +5281,10 @@ MUI.extend({
 		var contentWrapperEl = instance.contentWrapperEl;
 
 		if (instance.iframeEl) {
-			if (!Browser.Engine.trident) {
+			if (!MUI.ieLegacySupport) {
 				instance.iframeEl.setStyles({
 					'height': contentWrapperEl.getStyle('height'),
-					'width': contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('border-left').toInt() - contentWrapperEl.getStyle('border-right').toInt()
+					'width': contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('margin-left').toInt() - contentWrapperEl.getStyle('margin-right').toInt()
 				});
 			}
 			else {
@@ -5318,10 +5292,10 @@ MUI.extend({
 				// when only the vertical dimension is changed.
 				instance.iframeEl.setStyles({
 					'height': contentWrapperEl.getStyle('height'),
-					'width': contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('border-left').toInt() - contentWrapperEl.getStyle('border-right').toInt() - 1
+					'width': contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('margin-left').toInt() - contentWrapperEl.getStyle('margin-right').toInt() - 1
 				});
 				instance.iframeEl.setStyles({
-					'width': contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('border-left').toInt() - contentWrapperEl.getStyle('border-right').toInt()
+					'width': contentWrapperEl.offsetWidth - contentWrapperEl.getStyle('margin-left').toInt() - contentWrapperEl.getStyle('margin-right').toInt()
 				});			
 			}			
 		}				
@@ -5334,9 +5308,8 @@ MUI.extend({
 		}
 		container.getElements('.rWidth').each(function(column){
 			var currentWidth = column.offsetWidth.toInt();
-			currentWidth -= column.getStyle('border-left').toInt();
-			currentWidth -= column.getStyle('border-right').toInt();
-			
+			currentWidth -= column.getStyle('margin-left').toInt();
+			currentWidth -= column.getStyle('margin-right').toInt();
 			var parent = column.getParent();
 			this.width = 0;
 			
@@ -5353,7 +5326,7 @@ MUI.extend({
 			if (newWidth < 1) newWidth = 0;
 			column.setStyle('width', newWidth);
 			column.getChildren('.panel').each(function(panel){
-				panel.setStyle('width', newWidth - panel.getStyle('border-left').toInt() - panel.getStyle('border-right').toInt());
+				panel.setStyle('width', newWidth - panel.getStyle('margin-left').toInt() - panel.getStyle('margin-right').toInt());
 				MUI.resizeChildren(panel);
 			}.bind(this));
 			
@@ -5373,7 +5346,7 @@ function addResizeRight(element, min, max){
 	handle.setStyle('cursor', Browser.Engine.webkit ? 'col-resize' : 'e-resize');
 	if (!min) min = 50;
 	if (!max) max = 250;
-	if (Browser.Engine.trident) {
+	if (MUI.ieLegacySupport) {
 		handle.addEvents({
 			'mousedown': function(){
 				handle.setCapture();
@@ -5397,22 +5370,12 @@ function addResizeRight(element, min, max){
 			element.getNext('.column').getElements('iframe').setStyle('visibility', 'hidden');
 		}.bind(this),
 		onDrag: function(){
-			if (Browser.Engine.gecko) {
-				$$('.panel').each(function(panel){
-					if (panel.getElements('.mochaIframe').length == 0) {
-						panel.hide(); // Fix for a rendering bug in FF
-					}
-				});
-			}
 			MUI.rWidth(element.getParent());
-			if (Browser.Engine.gecko) {
-				$$('.panel').show(); // Fix for a rendering bug in FF			
-			}
 			if (Browser.Engine.trident4) {
 				element.getChildren().each(function(el){
 					var width = $(element).getStyle('width').toInt();
-					width -= el.getStyle('border-right').toInt();
-					width -= el.getStyle('border-left').toInt();
+					width -= el.getStyle('margin-right').toInt();
+					width -= el.getStyle('margin-left').toInt();
 					width -= el.getStyle('padding-right').toInt();
 					width -= el.getStyle('padding-left').toInt();
 					el.setStyle('width', width);
@@ -5440,7 +5403,7 @@ function addResizeLeft(element, min, max){
 	var partner = element.getPrevious('.column');
 	if (!min) min = 50;
 	if (!max) max = 250;
-	if (Browser.Engine.trident){	
+	if (MUI.ieLegacySupport){	
 		handle.addEvents({
 			'mousedown': function(){
 				handle.setCapture();
@@ -5485,7 +5448,7 @@ function addResizeBottom(element){
 		return element.getStyle('height').toInt() + partner.getStyle('height').toInt();
 	}.bind(this);
 	
-	if (Browser.Engine.trident) {
+	if (MUI.ieLegacySupport) {
 		handle.addEvents({
 			'mousedown': function(){
 				handle.setCapture();
@@ -5507,7 +5470,7 @@ function addResizeBottom(element){
 		}.bind(this),
 		onStart: function(){
 			if (instance.iframeEl) {
-				if (!Browser.Engine.trident) {
+				if (!MUI.ieLegacySupport) {
 					instance.iframeEl.setStyle('visibility', 'hidden');
 					partner.getElements('iframe').setStyle('visibility','hidden');
 				}
@@ -5544,7 +5507,7 @@ function addResizeBottom(element){
 				MUI.panelHeight(column);
 			});			
 			if (instance.iframeEl) {
-				if (!Browser.Engine.trident) {
+				if (!MUI.ieLegacySupport) {
 					instance.iframeEl.setStyle('visibility', 'visible');
 					partner.getElements('iframe').setStyle('visibility','visible');
 				}
@@ -5600,7 +5563,7 @@ MUI.extend({
 			MUI.closePanel($(panel.id));
 		}.bind(this));				
 		
-		if (Browser.Engine.trident) {
+		if (MUI.ieLegacySupport) {
 			columnEl.dispose();
 			if (instance.handleEl != null) {
 				instance.handleEl.dispose();
@@ -5795,7 +5758,7 @@ MUI.Dock = {
 			}).inject(this.dock);
 
 			// Dynamically initialize canvas using excanvas. This is only required by IE
-			if (Browser.Engine.trident && MUI.ieSupport == 'excanvas'){
+			if (MUI.ieLegacySupport && MUI.ieSupport == 'excanvas'){
 				G_vmlCanvasManager.initElement(canvas);
 			}
 		}
@@ -6053,7 +6016,7 @@ MUI.Dock = {
 		// Iframe should be hidden when minimizing, maximizing, and moving for performance and Flash issues
 		if ( instance.iframeEl ) {
 			// Some elements are still visible in IE8 in the iframe when the iframe's visibility is set to hidden.
-			if (!Browser.Engine.trident) {
+			if (!MUI.ieLegacySupport) {
 				instance.iframeEl.setStyle('visibility', 'hidden');
 			}
 			else {
@@ -6067,16 +6030,6 @@ MUI.Dock = {
 			instance.toolbarWrapperEl.hide();
 		}
 		windowEl.setStyle('visibility', 'hidden');
-
-		 // Fixes a scrollbar issue in Mac FF2
-		if (Browser.Platform.mac && Browser.Engine.gecko){
-			if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)){
-				var ffversion = new Number(RegExp.$1);
-				if (ffversion < 3) {
-					instance.contentWrapperEl.setStyle('overflow', 'hidden');
-				}
-			}
-		}
 	
 		MUI.Desktop.setDesktopSize();
 
@@ -6119,7 +6072,7 @@ MUI.Dock = {
 
 		// Show iframe
 		if (instance.iframeEl){
-			if (!Browser.Engine.trident){
+			if (!MUI.ieLegacySupport){
 				instance.iframeEl.setStyle('visibility', 'visible');
 			}
 			else {
