@@ -56,15 +56,10 @@ var dynamicTable = new Class	({
 		var reverseSort = tr2.getParent().reverseSort;
 		switch(i) {
 			case 1: // Name
-				if(!reverseSort) {
-					if(tr1.getElements('td')[i].get('html') >  tr2.getElements('td')[i].get('html'))
-						return 1;
-					return -1;
-				} else {
-					if(tr1.getElements('td')[i].get('html') <  tr2.getElements('td')[i].get('html'))
-						return 1;
-					return -1;
-				}
+				if(!reverseSort)
+					return tr1.getElements('td')[i].get('html').localeCompare(tr2.getElements('td')[i].get('html'));
+				else
+					return tr2.getElements('td')[i].get('html').localeCompare(tr1.getElements('td')[i].get('html'));
 			case 2: // Prio
 			case 3: // Size
 			case 4: // Progress
