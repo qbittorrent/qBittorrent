@@ -126,7 +126,6 @@ var dynamicTable = new Class	({
 	updateSort: function() {
 		var trs = this.table.getChildren('tr');
 		trs.sort(this.sortfunction);
-		this.table.set('html', '');
 		this.table.adopt(trs);
 	},
 	
