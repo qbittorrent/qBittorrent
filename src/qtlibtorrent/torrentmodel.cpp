@@ -169,7 +169,7 @@ QColor TorrentModelItem::getColorByState(State state) {
   switch (state) {
   case STATE_DOWNLOADING:
   case STATE_DOWNLOADING_META:
-    return QColor(Qt::green);
+    return QColor(Qt::darkGreen);
   case STATE_ALLOCATING:
   case STATE_STALLED_DL:
   case STATE_STALLED_UP:
