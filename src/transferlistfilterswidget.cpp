@@ -359,10 +359,10 @@ void TransferListFiltersWidget::removeSelectedLabel() {
 void TransferListFiltersWidget::applyLabelFilter(int row) {
   switch(row) {
   case 0:
-    transferList->applyLabelFilter("all");
+    transferList->applyLabelFilterAll();
     break;
   case 1:
-    transferList->applyLabelFilter("none");
+    transferList->applyLabelFilter(QString());
     break;
   default:
     transferList->applyLabelFilter(labelFilters->labelFromRow(row));

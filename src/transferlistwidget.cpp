@@ -885,15 +885,11 @@ void TransferListWidget::currentChanged(const QModelIndex& current, const QModel
   emit currentTorrentChanged(h);
 }
 
+void TransferListWidget::applyLabelFilterAll() {
+  nameFilterModel->disableLabelFilter();
+}
+
 void TransferListWidget::applyLabelFilter(QString label) {
-  if (label == "all") {
-    nameFilterModel->disableLabelFilter();
-    return;
-  }
-  if (label == "none") {
-    nameFilterModel->setLabelFilter(QString());
-    return;
-  }
   qDebug("Applying Label filter: %s", qPrintable(label));
   nameFilterModel->setLabelFilter(label);
 }

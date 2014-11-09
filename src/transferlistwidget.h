@@ -80,6 +80,7 @@ public slots:
   void displayDLHoSMenu(const QPoint&);
   void applyNameFilter(const QString& name);
   void applyStatusFilter(int f);
+  void applyLabelFilterAll();
   void applyLabelFilter(QString label);
   void previewFile(QString filePath);
   void removeLabelFromRows(QString label);
