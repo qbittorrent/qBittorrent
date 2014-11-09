@@ -66,60 +66,18 @@ var dynamicTable = new Class	({
 					return -1;
 				}
 			case 2: // Prio
-				var prio1 = tr1.getElements('td')[i].get('html');
-				if(prio1 == '*') prio1 = '-1';
-				var prio2 = tr2.getElements('td')[i].get('html');
-				if(prio2 == '*') prio2 = '-1';
-				if(!reverseSort)
-					return (prio1.toInt() -  prio2.toInt());
-				else
-					return (prio2.toInt() -  prio1.toInt());
 			case 3: // Size
-			case 7: // Up Speed
-			case 8: // Down Speed
-				var sizeStrToFloat = function(mystr) {
-					var val1 = mystr.split(' ');
-					var val1num = val1[0].toFloat()
-					var unit = val1[1];
-					switch(unit) {
-						case '_(TiB)':
-							return val1num*1099511627776;
-						case '_(GiB)':
-							return val1num*1073741824;
-						case '_(MiB)':
-							return val1num*1048576;
-						case '_(KiB)':
-							return val1num*1024;
-						default:
-							return val1num;
-					}
-				};
-				if(!reverseSort)
-					return (sizeStrToFloat(tr1.getElements('td')[i].get('html')) - sizeStrToFloat(tr2.getElements('td')[i].get('html')));
-				else
-					return (sizeStrToFloat(tr2.getElements('td')[i].get('html')) - sizeStrToFloat(tr1.getElements('td')[i].get('html')));
 			case 4: // Progress
-				if(!reverseSort)
-					return (tr1.getElements('td')[i].getChildren()[0].getValue() - tr2.getElements('td')[i].getChildren()[0].getValue());
-				else
-					return (tr2.getElements('td')[i].getChildren()[0].getValue() - tr1.getElements('td')[i].getChildren()[0].getValue());
 			case 5: // Seeds
 			case 6: // Peers
-				if(!reverseSort)
-					return (tr1.getElements('td')[i].get('html').split(' ')[0].toInt() - tr2.getElements('td')[i].get('html').split(' ')[0].toInt());
-				else
-					return (tr2.getElements('td')[i].get('html').split(' ')[0].toInt() - tr1.getElements('td')[i].get('html').split(' ')[0].toInt());
+			case 7: // Up Speed
+			case 8: // Down Speed
+			case 9: // ETA
 			default: // Ratio
-				var ratio1 = tr1.getElements('td')[i].get('html');
-				if(ratio1 == '∞')
-					ratio1 = '101.0';
-				var ratio2 = tr2.getElements('td')[i].get('html');
-				if(ratio2 == '∞')
-					ratio2 = '101.0';
 				if(!reverseSort)
-					return (ratio1.toFloat() -  ratio2.toFloat());
+					return (tr1.getElements('td')[i].get('data-raw') - tr2.getElements('td')[i].get('data-raw'));
 				else
-					return (ratio2.toFloat() -  ratio1.toFloat());
+					return (tr2.getElements('td')[i].get('data-raw') - tr1.getElements('td')[i].get('data-raw'));
 		}
 	},
 	
@@ -229,7 +187,7 @@ var dynamicTable = new Class	({
 		return !tr.hasClass('invisible');
 	},
 
-	insertRow: function(id, row, status){
+	insertRow: function(id, row, data, status){
 		if(this.rows.has(id)) {
 			return;
 		}
@@ -241,6 +199,8 @@ var dynamicTable = new Class	({
 			var td = new Element('td');
 			if(i==this.progressIndex) {
 				td.adopt(new ProgressBar(row[i].toFloat(), {'id': 'pb_'+id, 'width':80}));
+				if (typeof data[i] != 'undefined')
+					td.set('data-raw', data[i])
 			} else {
 				if(i==0) {
 					td.adopt(new Element('img', {'src':row[i], 'class': 'statusIcon'}));
@@ -251,6 +211,8 @@ var dynamicTable = new Class	({
 							td.addClass('invisible');
 					}
 					td.set('html', row[i]);
+					if (typeof data[i] != 'undefined')
+						td.set('data-raw', data[i])
 				}
 			}
 			td.injectInside(tr);
@@ -370,7 +332,7 @@ var dynamicTable = new Class	({
 		}, this);
 	},
 
-	updateRow: function(id, row, status){
+	updateRow: function(id, row, data, status){
 		if(!this.rows.has(id)) {
 			return false;
 		}
@@ -389,6 +351,8 @@ var dynamicTable = new Class	({
 						tds[i].set('html', row[i]);
 					}
 				}
+				if (typeof data[i] != 'undefined')
+					tds[i].set('data-raw', data[i])
 			};
 		} else {
 			// Row was hidden, check if it was selected
