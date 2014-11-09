@@ -57,7 +57,7 @@ public:
   inline int columnCount() const { return NB_COLUMNS; }
   QVariant data(int column, int role = Qt::DisplayRole) const;
   bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
-  inline QString hash() const { return m_hash; }
+  inline QString const& hash() const { return m_hash; }
   State state() const;
 
 signals:
@@ -101,6 +101,7 @@ signals:
   void torrentAdded(TorrentModelItem *torrentItem);
   void torrentAboutToBeRemoved(TorrentModelItem *torrentItem);
   void torrentChangedLabel(TorrentModelItem *torrentItem, QString previous, QString current);
+  void modelRefreshed();
 
 private slots:
   void addTorrent(const QTorrentHandle& h);

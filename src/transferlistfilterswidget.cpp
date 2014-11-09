@@ -203,7 +203,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
 
   // SIGNAL/SLOT
   connect(statusFilters, SIGNAL(currentRowChanged(int)), transferList, SLOT(applyStatusFilter(int)));
-  connect(transferList->getSourceModel(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), SLOT(updateTorrentNumbers()));
+  connect(transferList->getSourceModel(), SIGNAL(modelRefreshed()), SLOT(updateTorrentNumbers()));
   connect(transferList->getSourceModel(), SIGNAL(torrentAdded(TorrentModelItem*)), SLOT(handleNewTorrent(TorrentModelItem*)));
   connect(labelFilters, SIGNAL(currentRowChanged(int)), this, SLOT(applyLabelFilter(int)));
   connect(labelFilters, SIGNAL(torrentDropped(int)), this, SLOT(torrentDropped(int)));
@@ -359,10 +359,10 @@ void TransferListFiltersWidget::removeSelectedLabel() {
 void TransferListFiltersWidget::applyLabelFilter(int row) {
   switch(row) {
   case 0:
-    transferList->applyLabelFilter("all");
+    transferList->applyLabelFilterAll();
     break;
   case 1:
-    transferList->applyLabelFilter("none");
+    transferList->applyLabelFilter(QString());
     break;
   default:
     transferList->applyLabelFilter(labelFilters->labelFromRow(row));

@@ -40,7 +40,6 @@ class MainWindow;
 class TransferListDelegate;
 class TransferListSortModel;
 class TorrentModel;
-class StatusSortFilterProxyModel;
 
 QT_BEGIN_NAMESPACE
 class QShortcut;
@@ -81,6 +80,7 @@ public slots:
   void displayDLHoSMenu(const QPoint&);
   void applyNameFilter(const QString& name);
   void applyStatusFilter(int f);
+  void applyLabelFilterAll();
   void applyLabelFilter(QString label);
   void previewFile(QString filePath);
   void removeLabelFromRows(QString label);
@@ -114,8 +114,6 @@ private:
   TransferListDelegate *listDelegate;
   TorrentModel *listModel;
   TransferListSortModel *nameFilterModel;
-  StatusSortFilterProxyModel *statusFilterModel;
-  QSortFilterProxyModel *labelFilterModel;
   QBtSession* BTSession;
   MainWindow *main_window;
   QShortcut *editHotkey;
