@@ -105,7 +105,6 @@ signals:
 
 private slots:
   void addTorrent(const QTorrentHandle& h);
-  void removeTorrent(const QString &hash);
   void handleTorrentUpdate(const QTorrentHandle &h);
   void handleFinishedTorrent(const QTorrentHandle& h);
   void notifyTorrentChanged(int row);

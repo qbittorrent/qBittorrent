@@ -821,8 +821,6 @@ void QBtSession::deleteTorrent(const QString &hash, bool delete_local_files) {
   else
     addConsoleMessage(tr("'%1' was removed from transfer list.", "'xxx.avi' was removed...").arg(fileName));
   qDebug("Torrent deleted.");
-  emit deletedTorrent(hash);
-  qDebug("Deleted signal emitted.");
 }
 
 void QBtSession::pauseAllTorrents() {

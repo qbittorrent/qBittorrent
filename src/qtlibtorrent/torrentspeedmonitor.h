@@ -52,7 +52,6 @@ public:
 
 private slots:
   void statsReceived(const libtorrent::stats_alert& stats);
-  void removeSamples(const QString& hash);
   void removeSamples(const QTorrentHandle& h);
 
 private:

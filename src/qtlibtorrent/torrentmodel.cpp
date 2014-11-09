@@ -331,7 +331,6 @@ void TorrentModel::populate() {
   // Listen for torrent changes
   connect(QBtSession::instance(), SIGNAL(addedTorrent(QTorrentHandle)), SLOT(addTorrent(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(torrentAboutToBeRemoved(QTorrentHandle)), SLOT(handleTorrentAboutToBeRemoved(QTorrentHandle)));
-  connect(QBtSession::instance(), SIGNAL(deletedTorrent(QString)), SLOT(removeTorrent(QString)));
   connect(QBtSession::instance(), SIGNAL(finishedTorrent(QTorrentHandle)), SLOT(handleFinishedTorrent(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(metadataReceived(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(resumedTorrent(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
@@ -437,18 +436,6 @@ void TorrentModel::addTorrent(const QTorrentHandle &h)
     m_torrents << item;
     emit torrentAdded(item);
     endInsertTorrent();
-  }
-}
-
-void TorrentModel::removeTorrent(const QString &hash)
-{
-  const int row = torrentRow(hash);
-  qDebug() << Q_FUNC_INFO << hash << row;
-  if (row >= 0) {
-    beginRemoveTorrent(row);
-    delete m_torrents[row];
-    m_torrents.removeAt(row);
-    endRemoveTorrent();
   }
 }
 
@@ -578,8 +565,14 @@ QString TorrentModel::torrentHash(int row) const
 void TorrentModel::handleTorrentAboutToBeRemoved(const QTorrentHandle &h)
 {
   const int row = torrentRow(h.hash());
+  qDebug() << Q_FUNC_INFO << row;
   if (row >= 0) {
     emit torrentAboutToBeRemoved(m_torrents.at(row));
+
+    beginRemoveTorrent(row);
+    delete m_torrents[row];
+    m_torrents.removeAt(row);
+    endRemoveTorrent();
   }
 }
 

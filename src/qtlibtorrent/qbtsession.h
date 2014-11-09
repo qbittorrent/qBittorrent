@@ -272,7 +272,6 @@ private slots:
 
 signals:
   void addedTorrent(const QTorrentHandle& h);
-  void deletedTorrent(const QString &hash);
   void torrentAboutToBeRemoved(const QTorrentHandle &h);
   void pausedTorrent(const QTorrentHandle& h);
   void resumedTorrent(const QTorrentHandle& h);
