@@ -505,7 +505,8 @@ bool misc::isUrl(const QString &s)
 QString misc::parseHtmlLinks(const QString &raw_text)
 {
   QString result = raw_text;
-  QRegExp reURL("(\\s|^)"                                     //start with whitespace or beginning of line
+  static QRegExp reURL(
+                "(\\s|^)"                                     //start with whitespace or beginning of line
                 "("
                 "("                                      //case 1 -- URL with scheme
                 "(http(s?))\\://"                    //start with scheme
@@ -556,7 +557,7 @@ QString misc::parseHtmlLinks(const QString &raw_text)
   result.replace(reURL, "\\1<a href=\"\\2\">\\2</a>");
 
   // Capture links without scheme
-  QRegExp reNoScheme("<a\\s+href=\"(?!http(s?))([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">");
+  static QRegExp reNoScheme("<a\\s+href=\"(?!http(s?))([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">");
   result.replace(reNoScheme, "<a href=\"http://\\1\">");
 
   return result;
