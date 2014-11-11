@@ -29,6 +29,8 @@
 }
 
 
+#myTable tr:nth-child(even),
+#filesTable tr:nth-child(even),
 #properties #torrentFiles tr.alt,
 #properties #trackers tr.alt,
 #transferList tr.alt {
@@ -49,6 +51,8 @@
 	color: #fff;
 }
 
+#myTable tr:hover,
+#filesTable tr:hover,
 #properties #torrentFiles tr.over,
 #properties #trackers tr.over,
 #transferList tr.over {

@@ -63,6 +63,9 @@ var dynamicTable = new Class({
         },
 
         altRow : function () {
+            if (!MUI.ieLegacySupport)
+                return;
+
             var trs = this.table.getElements('tr');
             trs.each(function (el, i) {
                 if (i % 2) {
