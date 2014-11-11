@@ -13,6 +13,7 @@
     <file>www/public/scripts/download.js</file>
     <file>www/public/scripts/dynamicTable.js</file>
     <file>www/public/scripts/excanvas-compressed.js</file>
+    <file>www/public/scripts/misc.js</file>
     <file>www/public/scripts/mocha.js</file>
     <file>www/public/scripts/mocha-init.js</file>
     <file>www/public/scripts/mocha-yc.js</file>

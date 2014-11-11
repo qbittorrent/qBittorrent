@@ -103,6 +103,15 @@ QString QTorrentHandle::creation_date() const {
   return t ? misc::toQString(*t) : "";
 }
 
+qlonglong QTorrentHandle::creation_date_unix() const {
+#if LIBTORRENT_VERSION_NUM < 10000
+  boost::optional<time_t> t = torrent_handle::get_torrent_info().creation_date();
+#else
+  boost::optional<time_t> t = torrent_handle::torrent_file()->creation_date();
+#endif
+  return t ? *t : -1;
+}
+
 QString QTorrentHandle::current_tracker() const {
   return misc::toQString(status(0x0).current_tracker);
 }

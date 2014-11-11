@@ -80,19 +80,34 @@ dynamic information: total_downloaded, total_uploaded, total_wasted, up_limit, d
                 onSuccess: function(data) {
                          $('error_div').set('html', '');
                         if(data){
+                          var temp;
                           // Update Torrent data
                           $('save_path').set('html', data.save_path);
-                          $('creation_date').set('html', data.creation_date);
-                          $('piece_size').set('html', data.piece_size);
+                          temp = data.creation_date;
+                          var timestamp = "_(Unknown)";
+                          if (temp != -1)
+                              timestamp = new Date(data.creation_date*1000).toISOString();
+                          $('creation_date').set('html', timestamp);
+                          $('piece_size').set('html', friendlyUnit(data.piece_size));
                           $('comment').set('html', data.comment);
-                          $('total_uploaded').set('html', data.total_uploaded);
-                          $('total_downloaded').set('html', data.total_downloaded);
+                          $('total_uploaded').set('html', friendlyUnit(data.total_uploaded) +
+                                                          " (" + friendlyUnit(data.total_uploaded_session) +
+                                                          " (" + "_(this session)" + ")");
+                          $('total_downloaded').set('html', friendlyUnit(data.total_downloaded) +
+                                                          " (" + friendlyUnit(data.total_downloaded_session) +
+                                                          " (" + "_(this session)" + ")");
                           $('total_wasted').set('html', data.total_wasted);
-                          $('up_limit').set('html', data.up_limit);
-                          $('dl_limit').set('html', data.dl_limit);
-                          $('time_elapsed').set('html', data.time_elapsed);
-                          $('nb_connections').set('html', data.nb_connections);
-                          $('share_ratio').set('html', data.share_ratio);
+                          temp = data.up_limit;
+                          $('up_limit').set('html', temp == -1 ? "∞" : temp);
+                          temp = data.dl_limit;
+                          $('dl_limit').set('html', temp == -1 ? "∞" : temp);
+                          temp = friendlyDuration(status.active_time);
+                          if (status.is_seed)
+                            temp += " (" + "_(Seeded for %1)".replace("%1", status.seeding_time) + ")";
+                          $('time_elapsed').set('html', temp);
+                          temp = data.nb_connections + " (" + "_(%1 max)".replace("%1", status.nb_connections_limit) + ")";
+                          $('nb_connections').set('html', temp);
+                          $('share_ratio').set('html', data.share_ratio.toFixed(2));
                         } else {
                           clearData();
                         }

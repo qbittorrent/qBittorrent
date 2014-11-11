@@ -108,8 +108,10 @@ window.addEvent('load', function(){
                     },
                     onSuccess: function(info) {
                       if(info) {
-                        $("DlInfos").set('html', info.dl_info);
-                        $("UpInfos").set('html', info.up_info);
+                        $("DlInfos").set('html', "_(D: %1 - T: %2)".replace("%1", friendlyUnit(info.dl_info_speed, true))
+                                                                   .replace("%2", friendlyUnit(info.dl_info_data, false)));
+                        $("UpInfos").set('html', "_(U: %1 - T: %2)".replace("%1", friendlyUnit(info.up_info_speed, true))
+                                                                   .replace("%2", friendlyUnit(info.up_info_data, false)));
                         waitingTrInfo=false;
                         loadTransferInfo.delay(3000);
                       }
@@ -143,30 +145,47 @@ window.addEvent('load', function(){
             events.each(function(event){
               events_hashes[events_hashes.length] = event.hash;
                 var row = new Array();
+                var data = new Array();
                 row.length = 10;
                 row[0] = stateToImg(event.state);
                 row[1] = event.name;
-		row[2] = event.priority
-                row[3] = event.size;
+                row[2] = event.priority > -1 ? event.priority : null;
+                data[2] = event.priority;
+                row[3] = friendlyUnit(event.size, false);
+                data[3] = event.size;
                 row[4] = (event.progress*100).round(1);
                 if(row[4] == 100.0 && event.progress != 1.0)
                   row[4] = 99.9;
-		row[5] = event.num_seeds;
-		row[6] = event.num_leechs;
-                row[7] = event.dlspeed;
-                row[8] = event.upspeed;
-		row[9] = event.eta;
-		row[10] = event.ratio;
-		if(row[2] != "*")
+                data[4] = event.progress;
+                row[5] = event.num_seeds;
+                if (event.num_complete != -1)
+                  row[5] += " (" + event.num_complete + ")";
+                data[5] = event.num_seeds;
+                row[6] = event.num_leechs;
+                if (event.num_incomplete != -1)
+                  row[6] += " (" + event.num_incomplete + ")";
+                data[6] = event.num_leechs;
+                row[7] = friendlyUnit(event.dlspeed, true);
+                data[7] = event.dlspeed;
+                row[8] = friendlyUnit(event.upspeed, true);
+                data[8] = event.upspeed;
+                row[9] = friendlyDuration(event.eta);
+                data[9] = event.eta
+                if(event.ratio == -1)
+                  row[10] = "∞";
+                else
+                  row[10] = (Math.floor(100 * event.ratio) / 100).toFixed(2); //Don't round up
+                data[10] = event.ratio;
+                if(row[2] != null)
 			queueing_enabled = true;
                if(!torrent_hashes.contains(event.hash)) {
                   // New unfinished torrent
                   torrent_hashes[torrent_hashes.length] = event.hash;
 		  //alert("Inserting row");
-                  myTable.insertRow(event.hash, row, event.state);
+                  myTable.insertRow(event.hash, row, data, event.state);
                 } else {
                   // Update torrent data
-                  myTable.updateRow(event.hash, row, event.state);
+                  myTable.updateRow(event.hash, row, data, event.state);
                 }
             });
             // Remove deleted torrents
