@@ -16,31 +16,31 @@ AC_ARG_WITH(qt5,
                             [Compile using Qt5 (default=no)])],
             [],
             [with_qt5=no])
-            
+
 AC_ARG_WITH(geoip-database-embedded,
             [AS_HELP_STRING([--with-geoip-database-embedded],
                             [Embed the GeoIP database in the qBittorrent executable (please follow instructions in src/geoip/README) (default=no)])],
             [],
             [with_geoip_database_embedded=no])
-            
+
 AC_ARG_WITH(qtsingleapplication,
             [AS_HELP_STRING([--with-qtsingleapplication=@<:@system|shipped@:>@],
                             [Use the shipped qtsingleapplication library or the system one (default=shipped)])],
             [],
             [with_qtsingleapplication=shipped])
-             
+
 AC_ARG_ENABLE(debug,
               [AS_HELP_STRING([--enable-debug],
                               [Enable debug build])],
               [],
               [enable_debug=no])
-              
+
 AC_ARG_ENABLE(gui,
               [AS_HELP_STRING([--disable-gui],
                               [Disable the GUI for headless running. Disables QtDBus and the GeoIP Database.])],
               [],
               [enable_gui=yes])
-              
+
 AC_ARG_ENABLE(qt-dbus,
               [AS_HELP_STRING([--disable-qt-dbus],
                               [Disable use of QtDBus (GUI only)])],
@@ -49,19 +49,19 @@ AC_ARG_ENABLE(qt-dbus,
 
 # Detect OS
 AC_MSG_CHECKING([whether OS is FreeBSD])
-AS_IF([test "x$host_os" == "x*freebsd*"],
+AS_IF([test "x$host_os" = "x*freebsd*"],
       [AC_MSG_RESULT([yes])
       LIBS="-lexecinfo $LIBS"],
       [AC_MSG_RESULT([no])])
 
 # Require 0.26 pkg-config
 PKG_PROG_PKG_CONFIG([0.26])
-AS_IF([test "x$PKG_CONFIG" == "x"],
+AS_IF([test "x$PKG_CONFIG" = "x"],
       [AC_MSG_ERROR([Could not find pkg-config])])
 
 # Check which arguments were set and act accordingly
 AC_MSG_CHECKING([whether to enable the Debug build])
-AS_CASE(["x$enable_debug"],        
+AS_CASE(["x$enable_debug"],
         ["xno"],
               [AC_MSG_RESULT([no])
               QBT_ADD_CONFIG="$QBT_ADD_CONFIG release"
@@ -72,7 +72,7 @@ AS_CASE(["x$enable_debug"],
                QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG release"],
         [AC_MSG_RESULT([$enable_debug])
         AC_MSG_ERROR([Unknown option "$enable_debug". Use either "yes" or "no".])])
-      
+
 AC_MSG_CHECKING([whether to enable the GUI])
 AS_CASE(["x$enable_gui"],
         ["xyes"],
@@ -82,7 +82,7 @@ AS_CASE(["x$enable_gui"],
               [AC_MSG_RESULT([no])
               enable_qt_dbus=[no]
               enable_geoip_database=[no]
-              QBT_ADD_CONFIG="$QBT_ADD_CONFIG nox"],        
+              QBT_ADD_CONFIG="$QBT_ADD_CONFIG nox"],
         [AC_MSG_RESULT([$enable_gui])
         AC_MSG_ERROR([Unknown option "$enable_gui". Use either "yes" or "no".])])
 
@@ -96,16 +96,16 @@ AS_CASE(["x$with_qt5"],
                FIND_QT5()],
         [AC_MSG_RESULT([$with_qt5])
         AC_MSG_ERROR([Unknown option "$with_qt5". Use either "yes" or "no".])])
-AS_IF([test "x$QT_QMAKE" == "x"],
+AS_IF([test "x$QT_QMAKE" = "x"],
       [AC_MSG_ERROR([Could not find qmake])
       ])
-      
+
 AC_MSG_CHECKING([whether QtDBus should be enabled])
 AS_CASE(["x$enable_qt_dbus"],
         ["xyes"],
                [AC_MSG_RESULT([yes])
                FIND_QTDBUS()
-               AS_IF([test "x$HAVE_QTDBUS" == "xfalse"],
+               AS_IF([test "x$HAVE_QTDBUS" = "xfalse"],
                      [AC_MSG_ERROR([Could not find QtDBus])],
                      [QBT_ADD_CONFIG="$QBT_ADD_CONFIG dbus"]
                     )],
@@ -115,23 +115,23 @@ AS_CASE(["x$enable_qt_dbus"],
         [AC_MSG_RESULT([$enable_qt_dbus])
         AC_MSG_ERROR([Unknown option "$enable_qt_dbus". Use either "yes" or "no".])])
 
-      
+
 AX_BOOST_BASE([1.35])
 # HAVE_BOOST is set to an empty value when Boost is found. I don't know
 # how to test for a set vs unset variable.
-AS_IF([test "x$BOOST_CPPFLAGS" == "x"],
+AS_IF([test "x$BOOST_CPPFLAGS" = "x"],
       [AC_MSG_ERROR([Could not find Boost])],
-	  [AC_MSG_NOTICE([Boost CPPFLGAS: $BOOST_CPPFLAGS])
-	  CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
-	  LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"])
+      [AC_MSG_NOTICE([Boost CPPFLGAS: $BOOST_CPPFLAGS])
+      CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
+      LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"])
 
 AX_BOOST_SYSTEM()
 # HAVE_BOOST_SYSTEM is set to an empty value when Boost.System is found.
 # I don't know how to test for a set vs unset variable.
-AS_IF([test "x$BOOST_SYSTEM_LIB" == "x"],
+AS_IF([test "x$BOOST_SYSTEM_LIB" = "x"],
       [AC_MSG_ERROR([Could not find Boost.System])],
-	  [AC_MSG_NOTICE([Boost.System LIB: $BOOST_SYSTEM_LIB])
-	  LIBS="$BOOST_SYSTEM_LIB $LIBS"])
+      [AC_MSG_NOTICE([Boost.System LIB: $BOOST_SYSTEM_LIB])
+      LIBS="$BOOST_SYSTEM_LIB $LIBS"])
 
 AC_MSG_CHECKING([whether to embed the GeoIP database])
 AS_CASE(["x$with_geoip_database_embedded"],
@@ -143,7 +143,7 @@ AS_CASE(["x$with_geoip_database_embedded"],
                QBT_ADD_DEFINES="$QBT_ADD_DEFINES WITH_GEOIP_EMBEDDED"],
         [AC_MSG_RESULT([$with_geoip_database_embedded])
         AC_MSG_ERROR([Unknown option "$with_geoip_database_embedded". Use either "yes" or "no".])])
-       
+
 AC_MSG_CHECKING([which qtsingleapplication to use])
 AS_CASE(["x$with_qtsingleapplication"],
         ["xshipped"],
@@ -164,9 +164,9 @@ PKG_CHECK_MODULES(libtorrent,
                  [libtorrent-rasterbar >= 0.16.0],
                  [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
                  LIBS="$libtorrent_LIBS $LIBS"])
-                 
+
 # These are required because autoconf doesn't expand these **particular**
-# vars automatically. And qmake cannot autoexpand them.                 
+# vars automatically. And qmake cannot autoexpand them.
 AX_DEFINE_DIR([EXPAND_PREFIX], [prefix])
 AX_DEFINE_DIR([EXPAND_BINDIR], [bindir])
 AX_DEFINE_DIR([EXPAND_DATADIR], [datadir])
@@ -190,7 +190,7 @@ $QT_QMAKE [$CONFDIR]/qbittorrent.pro
 ret="$?"
 
 AS_ECHO()
-AS_IF([test "x$ret" == "x0"],
+AS_IF([test "x$ret" = "x0"],
       [AC_MSG_NOTICE([Good, your configure finished.])],
       [AC_MSG_ERROR([Failed running $QT_QMAKE to generate the makefile])])
 AS_ECHO()

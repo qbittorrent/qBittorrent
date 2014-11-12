@@ -4080,7 +4080,6 @@ fi
 
 
 
-
 # Define --wth-* and --enable-* arguments
 
 
@@ -4137,7 +4136,7 @@ fi
 # Detect OS
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether OS is FreeBSD" >&5
 $as_echo_n "checking whether OS is FreeBSD... " >&6; }
-if test "x$host_os" == "x*freebsd*"; then :
+if test "x$host_os" = "x*freebsd*"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
       LIBS="-lexecinfo $LIBS"
@@ -4267,7 +4266,7 @@ $as_echo "no" >&6; }
 		PKG_CONFIG=""
 	fi
 fi
-if test "x$PKG_CONFIG" == "x"; then :
+if test "x$PKG_CONFIG" = "x"; then :
   as_fn_error $? "Could not find pkg-config" "$LINENO" 5
 fi
 
@@ -4484,7 +4483,7 @@ fi
 $as_echo "$with_qt5" >&6; }
         as_fn_error $? "Unknown option \"$with_qt5\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
 esac
-if test "x$QT_QMAKE" == "x"; then :
+if test "x$QT_QMAKE" = "x"; then :
   as_fn_error $? "Could not find qmake" "$LINENO" 5
 
 fi
@@ -4533,7 +4532,7 @@ fi
 
 fi
 
-               if test "x$HAVE_QTDBUS" == "xfalse"; then :
+               if test "x$HAVE_QTDBUS" = "xfalse"; then :
   as_fn_error $? "Could not find QtDBus" "$LINENO" 5
 else
   QBT_ADD_CONFIG="$QBT_ADD_CONFIG dbus"
@@ -4829,13 +4828,13 @@ fi
 
 # HAVE_BOOST is set to an empty value when Boost is found. I don't know
 # how to test for a set vs unset variable.
-if test "x$BOOST_CPPFLAGS" == "x"; then :
+if test "x$BOOST_CPPFLAGS" = "x"; then :
   as_fn_error $? "Could not find Boost" "$LINENO" 5
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: Boost CPPFLGAS: $BOOST_CPPFLAGS" >&5
 $as_echo "$as_me: Boost CPPFLGAS: $BOOST_CPPFLAGS" >&6;}
-	  CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
-	  LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
+      CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
+      LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
 fi
 
 
@@ -5081,12 +5080,12 @@ fi
 
 # HAVE_BOOST_SYSTEM is set to an empty value when Boost.System is found.
 # I don't know how to test for a set vs unset variable.
-if test "x$BOOST_SYSTEM_LIB" == "x"; then :
+if test "x$BOOST_SYSTEM_LIB" = "x"; then :
   as_fn_error $? "Could not find Boost.System" "$LINENO" 5
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: Boost.System LIB: $BOOST_SYSTEM_LIB" >&5
 $as_echo "$as_me: Boost.System LIB: $BOOST_SYSTEM_LIB" >&6;}
-	  LIBS="$BOOST_SYSTEM_LIB $LIBS"
+      LIBS="$BOOST_SYSTEM_LIB $LIBS"
 fi
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to embed the GeoIP database" >&5
@@ -6704,7 +6703,7 @@ $QT_QMAKE $CONFDIR/qbittorrent.pro
 ret="$?"
 
 $as_echo
-if test "x$ret" == "x0"; then :
+if test "x$ret" = "x0"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: Good, your configure finished." >&5
 $as_echo "$as_me: Good, your configure finished." >&6;}
 else
