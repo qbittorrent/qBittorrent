@@ -121,6 +121,7 @@ public:
   static bool is_checking(const libtorrent::torrent_status &status);
   static bool has_error(const libtorrent::torrent_status &status);
   static float progress(const libtorrent::torrent_status &status);
+  static QString filepath_at(const libtorrent::torrent_info &info, unsigned int index);
 
 private:
   void prioritize_first_last_piece(int file_index, bool b) const;
