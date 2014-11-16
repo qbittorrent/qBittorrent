@@ -68,6 +68,21 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& m
   Q_ASSERT(ok);
   m_ruleList = manager.toStrongRef()->downloadRules();
   m_editableRuleList = new RssDownloadRuleList; // Read rule list from disk
+  m_episodeValidator = new QRegExpValidator(
+                         QRegExp("^(^[1-9]{1,1}\\d{0,3}x([1-9]{1,1}\\d{0,3}(-([1-9]{1,1}\\d{0,3})?)?;){1,}){1,1}",
+                                 Qt::CaseInsensitive),
+                         ui->lineEFilter);
+  ui->lineEFilter->setValidator(m_episodeValidator);
+  QString tip = "<p>" + tr("Matches articles based on episode filter.") + "</p><p><b>" + tr("Example: ") +
+                "1x2;8-15;5;30-;</b>" + tr(" will match 2, 5, 8 through 15, 30 and onward episodes of season one", "example X will match") + "</p>";
+  tip += "<p>"  + tr("Episode filter rules: ") + "</p><ul><li>" + tr("Season number is a mandatory non-zero value") + "</li>" +
+         "<li>" + tr("Episode number is a mandatory non-zero value") + "</li>" +
+         "<li>" + tr("Filter must end with semicolon") + "</li>" +
+         "<li>" + tr("Three range types for episodes are supported: ") + "</li>" + "<li><ul>"
+         "<li>" + tr("Single number: <b>1x25;</b> matches episode 25 of season one") + "</li>" +
+         "<li>" + tr("Normal range: <b>1x25-40;</b> matches episodes 25 through 40 of season one") + "</li>" +
+         "<li>" + tr("Infinite range: <b>1x25-;</b> matches 40 and onward episodes of season one") + "</li>" + "</ul></li></ul>";
+  ui->lineEFilter->setToolTip(tip);
   initLabelCombobox();
   loadFeedList();
   loadSettings();
@@ -94,6 +109,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& m
   Q_ASSERT(ok);
   ok = connect(this, SIGNAL(finished(int)), SLOT(on_finished(int)));
   Q_ASSERT(ok);
+  ok = connect(ui->lineEFilter, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
+  Q_ASSERT(ok);
   editHotkey = new QShortcut(QKeySequence("F2"), ui->listRules, 0, 0, Qt::WidgetShortcut);
   ok = connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedRule()));
   Q_ASSERT(ok);
@@ -113,6 +130,7 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
   delete deleteHotkey;
   delete ui;
   delete m_editableRuleList;
+  delete m_episodeValidator;
 }
 
 void AutomatedRssDownloader::loadSettings()
@@ -223,6 +241,11 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
     if (rule) {
       ui->lineContains->setText(rule->mustContain());
       ui->lineNotContains->setText(rule->mustNotContain());
+      QString ep = rule->episodeFilter();
+      if (!ep.isEmpty())
+        ui->lineEFilter->setText(ep);
+      else
+        ui->lineEFilter->clear();
       ui->saveDiffDir_check->setChecked(!rule->savePath().isEmpty());
       ui->lineSavePath->setText(fsutils::toNativePath(rule->savePath()));
       ui->checkRegex->setChecked(rule->useRegex());
@@ -301,6 +324,7 @@ void AutomatedRssDownloader::saveEditedRule()
   rule->setUseRegex(ui->checkRegex->isChecked());
   rule->setMustContain(ui->lineContains->text());
   rule->setMustNotContain(ui->lineNotContains->text());
+  rule->setEpisodeFilter(ui->lineEFilter->text());
   if (ui->saveDiffDir_check->isChecked())
     rule->setSavePath(ui->lineSavePath->text());
   else
