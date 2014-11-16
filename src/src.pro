@@ -133,6 +133,7 @@ nox {
               torrentcontentmodelfolder.h \
               torrentcontentmodelfile.h \
               torrentcontentfiltermodel.h \
+              torrentcontenttreeview.h \
               deletionconfirmationdlg.h \
               statusbar.h \
               reverseresolution.h \
@@ -167,6 +168,7 @@ nox {
              torrentcontentmodelfolder.cpp \
              torrentcontentmodelfile.cpp \
              torrentcontentfiltermodel.cpp \
+             torrentcontenttreeview.cpp \
              sessionapplication.cpp \
              torrentimportdlg.cpp \
              executionlog.cpp \

@@ -685,7 +685,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QTreeView" name="filesList">
+        <widget class="TorrentContentTreeView" name="filesList">
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
          </property>
@@ -780,6 +780,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TorrentContentTreeView</class>
+   <extends>QTreeView</extends>
+   <header location="global">torrentcontenttreeview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
