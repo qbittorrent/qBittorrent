@@ -238,7 +238,7 @@ void TorrentCreatorDlg::updateOptimalPieceSize()
       break;
     }
     ++i;
-  }while(i<m_piece_sizes.size());
+  }while(i<(m_piece_sizes.size()-1));
   comboPieceSize->setCurrentIndex(i);
 }
 
