@@ -31,7 +31,7 @@
 #ifndef MISC_H
 #define MISC_H
 
-#include <sstream>
+#include <vector>
 #include <QString>
 #include <QStringList>
 #include <ctime>
