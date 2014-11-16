@@ -220,9 +220,9 @@ void TorrentCreatorDlg::on_checkAutoPieceSize_clicked(bool checked)
 
 void TorrentCreatorDlg::updateOptimalPieceSize()
 {
-  quint64 torrent_size = fsutils::computePathSize(textInputPath->text());
+  qint64 torrent_size = fsutils::computePathSize(textInputPath->text());
   qDebug("Torrent size is %lld", torrent_size);
-  if (torrent_size == 0) return;
+  if (torrent_size < 0) return;
   int i = 0;
   qulonglong nb_pieces = 0;
   do {
@@ -238,7 +238,7 @@ void TorrentCreatorDlg::updateOptimalPieceSize()
       break;
     }
     ++i;
-  }while(i<m_piece_sizes.size());
+  }while(i<(m_piece_sizes.size()-1));
   comboPieceSize->setCurrentIndex(i);
 }
 
