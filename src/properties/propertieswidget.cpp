@@ -80,6 +80,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   filesList->setSortingEnabled(true);
   // Torrent content filtering
   m_contentFilerLine = new LineEdit(this);
+  m_contentFilerLine->setPlaceholderText(tr("Filter files..."));
   connect(m_contentFilerLine, SIGNAL(textChanged(QString)), this, SLOT(filterText(QString)));
   contentFilterLayout->insertWidget(1, m_contentFilerLine);
 
