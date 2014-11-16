@@ -1058,7 +1058,11 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   try {
     qDebug() << "Loading torrent at" << path;
     // Getting torrent file informations
-    t = new torrent_info(fsutils::toNativePath(path).toUtf8().constData());
+    std::vector<char> buffer;
+    lazy_entry entry;
+    libtorrent::error_code ec;
+    misc::loadBencodedFile(path, buffer, entry, ec);
+    t = new torrent_info(entry);
     if (!t->is_valid())
       throw std::exception();
   } catch(std::exception& e) {
@@ -1508,17 +1512,10 @@ void QBtSession::loadSessionState() {
     fsutils::forceRemove(state_path);
     return;
   }
-  QFile state_file(state_path);
-  if (!state_file.open(QIODevice::ReadOnly)) return;
   std::vector<char> in;
-  const qint64 content_size = state_file.bytesAvailable();
-  if (content_size <= 0) return;
-  in.resize(content_size);
-  state_file.read(&in[0], content_size);
-  // bdecode
   lazy_entry e;
   libtorrent::error_code ec;
-  lazy_bdecode(&in[0], &in[0] + in.size(), e, ec);
+  misc::loadBencodedFile(state_path, in, e, ec);
   if (!ec)
     s->load_state(e);
 }
@@ -1752,28 +1749,33 @@ bool QBtSession::isFilePreviewPossible(const QString &hash) const {
   return false;
 }
 
-void QBtSession::addTorrentsFromScanFolder(QStringList &pathList) {
-  foreach (const QString &file, pathList) {
-    qDebug("File %s added", qPrintable(file));
-    if (file.endsWith(".magnet")) {
-      QFile f(file);
-      if (!f.open(QIODevice::ReadOnly)) {
-        qDebug("Failed to open magnet file: %s", qPrintable(f.errorString()));
-      } else {
-        const QString link = QString::fromLocal8Bit(f.readAll());
-        addMagnetUri(link, false, true, file);
-        f.remove();
-      }
-      continue;
+void QBtSession::addTorrentsFromScanFolder(QStringList &pathList)
+{
+    foreach (const QString &file, pathList) {
+        qDebug("File %s added", qPrintable(file));
+        if (file.endsWith(".magnet")) {
+            QFile f(file);
+            if (!f.open(QIODevice::ReadOnly)) {
+                qDebug("Failed to open magnet file: %s", qPrintable(f.errorString()));
+            } else {
+                const QString link = QString::fromLocal8Bit(f.readAll());
+                addMagnetUri(link, false, true, file);
+                f.remove();
+            }
+            continue;
+        }
+        try {
+            std::vector<char> buffer;
+            lazy_entry entry;
+            libtorrent::error_code ec;
+            misc::loadBencodedFile(file, buffer, entry, ec);
+            torrent_info t(entry);
+            if (t.is_valid())
+                addTorrent(file, true);
+        } catch(std::exception&) {
+            qDebug("Ignoring incomplete torrent file: %s", qPrintable(file));
+        }
     }
-    try {
-      torrent_info t(fsutils::toNativePath(file).toUtf8().constData());
-      if (t.is_valid())
-        addTorrent(file, true);
-    } catch(std::exception&) {
-      qDebug("Ignoring incomplete torrent file: %s", qPrintable(file));
-    }
-  }
 }
 
 void QBtSession::setDefaultSavePath(const QString &savepath) {
@@ -2049,24 +2051,30 @@ void QBtSession::disableIPFilter() {
   filterPath = "";
 }
 
-void QBtSession::recursiveTorrentDownload(const QTorrentHandle &h) {
-  try {
-    for (int i=0; i<h.num_files(); ++i) {
-      const QString torrent_relpath = h.filepath_at(i);
-      if (torrent_relpath.endsWith(".torrent")) {
-        addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(fsutils::toNativePath(torrent_relpath)).arg(h.name()));
-        const QString torrent_fullpath = h.save_path()+"/"+torrent_relpath;
+void QBtSession::recursiveTorrentDownload(const QTorrentHandle &h)
+{
+    try {
+        for (int i=0; i<h.num_files(); ++i) {
+            const QString torrent_relpath = h.filepath_at(i);
+            if (torrent_relpath.endsWith(".torrent")) {
+                addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(fsutils::toNativePath(torrent_relpath)).arg(h.name()));
+                const QString torrent_fullpath = h.save_path()+"/"+torrent_relpath;
 
-        boost::intrusive_ptr<torrent_info> t = new torrent_info(fsutils::toNativePath(torrent_fullpath).toUtf8().constData());
-        const QString sub_hash = misc::toQString(t->info_hash());
-        // Passing the save path along to the sub torrent file
-        TorrentTempData::setSavePath(sub_hash, h.save_path());
-        addTorrent(torrent_fullpath);
-      }
+                std::vector<char> buffer;
+                lazy_entry entry;
+                libtorrent::error_code ec;
+                misc::loadBencodedFile(torrent_fullpath, buffer, entry, ec);
+                boost::intrusive_ptr<torrent_info> t = new torrent_info(entry);
+                const QString sub_hash = misc::toQString(t->info_hash());
+                // Passing the save path along to the sub torrent file
+                TorrentTempData::setSavePath(sub_hash, h.save_path());
+                addTorrent(torrent_fullpath);
+            }
+        }
     }
-  } catch(std::exception&) {
-    qDebug("Caught error loading torrent");
-  }
+    catch(std::exception&) {
+        qDebug("Caught error loading torrent");
+    }
 }
 
 void QBtSession::autoRunExternalProgram(const QTorrentHandle &h) {
@@ -2218,15 +2226,20 @@ void QBtSession::handleTorrentFinishedAlert(libtorrent::torrent_finished_alert* 
           const QString torrent_fullpath = h.save_path()+"/"+torrent_relpath;
           qDebug("Full subtorrent path is %s", qPrintable(torrent_fullpath));
           try {
-            boost::intrusive_ptr<torrent_info> t = new torrent_info(fsutils::toNativePath(torrent_fullpath).toUtf8().constData());
-            if (t->is_valid()) {
-              qDebug("emitting recursiveTorrentDownloadPossible()");
-              emit recursiveTorrentDownloadPossible(h);
-              break;
-            }
-          } catch(std::exception&) {
-            qDebug("Caught error loading torrent");
-            addConsoleMessage(tr("Unable to decode %1 torrent file.").arg(fsutils::toNativePath(torrent_fullpath)), QString::fromUtf8("red"));
+              std::vector<char> buffer;
+              lazy_entry entry;
+              libtorrent::error_code ec;
+              misc::loadBencodedFile(torrent_fullpath, buffer, entry, ec);
+              boost::intrusive_ptr<torrent_info> t = new torrent_info(entry);
+              if (t->is_valid()) {
+                  qDebug("emitting recursiveTorrentDownloadPossible()");
+                  emit recursiveTorrentDownloadPossible(h);
+                  break;
+              }
+          }
+          catch(std::exception&) {
+              qDebug("Caught error loading torrent");
+              addConsoleMessage(tr("Unable to decode %1 torrent file.").arg(fsutils::toNativePath(torrent_fullpath)), QString::fromUtf8("red"));
           }
         }
       }

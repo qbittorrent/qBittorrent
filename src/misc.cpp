@@ -77,6 +77,7 @@ const int UNLEN = 256;
 #include <libtorrent/sha1_hash.hpp>
 #endif
 #include <libtorrent/escape_string.hpp>
+#include <libtorrent/lazy_entry.hpp>
 
 using namespace libtorrent;
 
@@ -653,6 +654,18 @@ bool misc::slowEquals(const QByteArray &a, const QByteArray &b)
     diff |= a[i] ^ b[i];
 
   return (diff == 0);
+}
+
+void misc::loadBencodedFile(const QString &filename, std::vector<char> &buffer, libtorrent::lazy_entry &entry, libtorrent::error_code &ec)
+{
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly)) return;
+    const qint64 content_size = file.bytesAvailable();
+    if (content_size <= 0) return;
+    buffer.resize(content_size);
+    file.read(&buffer[0], content_size);
+    // bdecode
+    lazy_bdecode(&buffer[0], &buffer[0] + buffer.size(), entry, ec);
 }
 
 namespace {

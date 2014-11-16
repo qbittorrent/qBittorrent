@@ -44,6 +44,7 @@
 #endif
 
 #include <libtorrent/version.hpp>
+#include <libtorrent/error_code.hpp>
 
 namespace libtorrent {
 #if LIBTORRENT_VERSION_NUM < 10000
@@ -52,6 +53,7 @@ namespace libtorrent {
 #else
   class sha1_hash;
 #endif
+  struct lazy_entry;
 }
 
 const qlonglong MAX_ETA = 8640000;
@@ -109,6 +111,7 @@ namespace misc
   // Implements constant-time comparison to protect against timing attacks
   // Taken from https://crackstation.net/hashing-security.htm
   bool slowEquals(const QByteArray &a, const QByteArray &b);
+  void loadBencodedFile(const QString &filename, std::vector<char> &buffer, libtorrent::lazy_entry &entry, libtorrent::error_code &ec);
 
   void msleep(unsigned long msecs);
 }

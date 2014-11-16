@@ -191,11 +191,16 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
   m_hasMetadata = true;
 
   try {
-    m_torrentInfo = new torrent_info(fsutils::toNativePath(m_filePath).toUtf8().data());
-    m_hash = misc::toQString(m_torrentInfo->info_hash());
-  } catch(const std::exception& e) {
-    MessageBoxRaised::critical(0, tr("Invalid torrent"), tr("Failed to load the torrent: %1").arg(misc::toQStringU(e.what())));
-    return false;
+      std::vector<char> buffer;
+      lazy_entry entry;
+      libtorrent::error_code ec;
+      misc::loadBencodedFile(m_filePath, buffer, entry, ec);
+      m_torrentInfo = new torrent_info(entry);
+      m_hash = misc::toQString(m_torrentInfo->info_hash());
+  }
+  catch(const std::exception& e) {
+      MessageBoxRaised::critical(0, tr("Invalid torrent"), tr("Failed to load the torrent: %1").arg(misc::toQStringU(e.what())));
+      return false;
   }
 
   // Prevent showing the dialog if download is already present

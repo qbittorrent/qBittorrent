@@ -215,22 +215,27 @@ void TorrentImportDlg::importTorrent()
 
 void TorrentImportDlg::loadTorrent(const QString &torrent_path)
 {
-  // Load the torrent file
-  try {
-    t = new torrent_info(fsutils::toNativePath(torrent_path).toUtf8().constData());
-    if (!t->is_valid() || t->num_files() == 0)
-      throw std::exception();
-  } catch(std::exception&) {
-    ui->browseContentBtn->setEnabled(false);
-    ui->lineTorrent->clear();
-    QMessageBox::warning(this, tr("Invalid torrent file"), tr("This is not a valid torrent file."));
-    return;
-  }
-  // Update display
-  ui->lineTorrent->setText(fsutils::toNativePath(torrent_path));
-  ui->browseContentBtn->setEnabled(true);
-  // Load the file names
-  initializeFilesPath();
+    // Load the torrent file
+    try {
+        std::vector<char> buffer;
+        lazy_entry entry;
+        libtorrent::error_code ec;
+        misc::loadBencodedFile(torrent_path, buffer, entry, ec);
+        t = new torrent_info(entry);
+        if (!t->is_valid() || t->num_files() == 0)
+            throw std::exception();
+    }
+    catch(std::exception&) {
+        ui->browseContentBtn->setEnabled(false);
+        ui->lineTorrent->clear();
+        QMessageBox::warning(this, tr("Invalid torrent file"), tr("This is not a valid torrent file."));
+        return;
+    }
+    // Update display
+    ui->lineTorrent->setText(fsutils::toNativePath(torrent_path));
+    ui->browseContentBtn->setEnabled(true);
+    // Load the file names
+    initializeFilesPath();
 }
 
 void TorrentImportDlg::initializeFilesPath()
