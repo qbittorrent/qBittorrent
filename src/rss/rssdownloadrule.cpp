@@ -70,14 +70,14 @@ bool RssDownloadRule::matches(const QString &article_title) const
     QString s = f.cap(1);
     QStringList eps = f.cap(2).split(";");
     QString expStr;
-    expStr += "s0?" + s + "[ -_\.]?" + "e0?";
+    expStr += "s0?" + s + "[ -_\\.]?" + "e0?";
 
     foreach (const QString& ep, eps) {
       if (ep.isEmpty())
         continue;
 
       if (ep.indexOf('-') != -1) { // Range detected
-        QString partialPattern = "s0?" + s + "[ -_\.]?" + "e(0?\\d{1,4})";
+        QString partialPattern = "s0?" + s + "[ -_\\.]?" + "e(0?\\d{1,4})";
         QRegExp reg(partialPattern, Qt::CaseInsensitive);
 
         if (ep.endsWith('-')) { // Infinite range
