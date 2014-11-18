@@ -39,30 +39,26 @@ class ShutdownConfirmDlg : public QMessageBox {
   Q_OBJECT
 
 public:
-  ShutdownConfirmDlg(const QString &message) {
-    // Text
-    setWindowTitle(tr("Shutdown confirmation"));
-    setText(message);
-    // Cancel Button
-    addButton(QMessageBox::Cancel);
-    // Icon
-    setIcon(QMessageBox::Warning);
-    // Always on top
-    setWindowFlags(windowFlags()|Qt::WindowStaysOnTopHint);
-    show();
-    // Move to center
-    move(misc::screenCenter(this));
-  }
+  ShutdownConfirmDlg(const shutDownAction &action);
+  bool shutdown() const;
 
-  static bool askForConfirmation(const QString &message) {
-    ShutdownConfirmDlg dlg(message);
-    // Auto shutdown timer
-    QTimer timer;
-    connect(&timer, SIGNAL(timeout()), &dlg, SLOT(accept()));
-    timer.start(15000); // 15sec
-    dlg.exec();
-    return (dlg.result() == QDialog::Accepted);
-  }
+  static bool askForConfirmation(const shutDownAction &action);
+
+protected:
+  void showEvent(QShowEvent *event);
+
+private slots:
+  void updateSeconds();
+
+private:
+  // Methods
+  void updateText();
+
+  // Vars
+  QAbstractButton *exit_now;
+  QTimer timer;
+  int timeout;
+  shutDownAction action0;
 };
 
 #endif // SHUTDOWNCONFIRM_H

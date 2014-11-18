@@ -28,6 +28,8 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QDebug>
+#include <QShortcut>
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QDesktopServices>
@@ -41,6 +43,7 @@
 #include <QMessageBox>
 
 #include <libtorrent/version.hpp>
+#include <libtorrent/magnet_uri.hpp>
 #include <vector>
 #include <queue>
 
@@ -57,10 +60,10 @@
 #include "torrentmodel.h"
 #include "deletionconfirmationdlg.h"
 #include "propertieswidget.h"
-#include "qinisettings.h"
 #include "iconprovider.h"
 #include "fs_utils.h"
 #include "autoexpandabledialog.h"
+#include "transferlistsortmodel.h"
 
 using namespace libtorrent;
 
@@ -78,22 +81,9 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
   // Create transfer list model
   listModel = new TorrentModel(this);
 
-  // Set Sort/Filter proxy
-  labelFilterModel = new QSortFilterProxyModel();
-  labelFilterModel->setDynamicSortFilter(true);
-  labelFilterModel->setSourceModel(listModel);
-  labelFilterModel->setFilterKeyColumn(TorrentModelItem::TR_LABEL);
-  labelFilterModel->setFilterRole(Qt::DisplayRole);
-
-  statusFilterModel = new QSortFilterProxyModel();
-  statusFilterModel->setDynamicSortFilter(true);
-  statusFilterModel->setSourceModel(labelFilterModel);
-  statusFilterModel->setFilterKeyColumn(TorrentModelItem::TR_STATUS);
-  statusFilterModel->setFilterRole(Qt::DisplayRole);
-
   nameFilterModel = new TransferListSortModel();
   nameFilterModel->setDynamicSortFilter(true);
-  nameFilterModel->setSourceModel(statusFilterModel);
+  nameFilterModel->setSourceModel(listModel);
   nameFilterModel->setFilterKeyColumn(TorrentModelItem::TR_NAME);
   nameFilterModel->setFilterRole(Qt::DisplayRole);
   nameFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
@@ -111,6 +101,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
 #if defined(Q_OS_MAC)
   setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
+  header()->setStretchLastSection(false);
 
   // Default hidden columns
   if (!column_loaded) {
@@ -125,6 +116,11 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
     setColumnHidden(TorrentModelItem::TR_AMOUNT_LEFT, true);
     setColumnHidden(TorrentModelItem::TR_TIME_ELAPSED, true);
     setColumnHidden(TorrentModelItem::TR_SAVE_PATH, true);
+    setColumnHidden(TorrentModelItem::TR_COMPLETED, true);
+    setColumnHidden(TorrentModelItem::TR_RATIO_LIMIT, true);
+    setColumnHidden(TorrentModelItem::TR_SEEN_COMPLETE_DATE, true);
+    setColumnHidden(TorrentModelItem::TR_LAST_ACTIVITY, true);
+    setColumnHidden(TorrentModelItem::TR_TOTAL_SIZE, true);
   }
 
   //Ensure that at least one column is visible at all times
@@ -162,8 +158,6 @@ TransferListWidget::~TransferListWidget() {
   // Save settings
   saveSettings();
   // Clean up
-  delete labelFilterModel;
-  delete statusFilterModel;
   delete nameFilterModel;
   delete listModel;
   delete listDelegate;
@@ -196,22 +190,14 @@ inline QString TransferListWidget::getHashFromRow(int row) const {
 inline QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const {
   Q_ASSERT(index.isValid());
   if (index.model() == nameFilterModel)
-    return labelFilterModel->mapToSource(statusFilterModel->mapToSource(nameFilterModel->mapToSource(index)));
-  if (index.model() == statusFilterModel)
-    return labelFilterModel->mapToSource(statusFilterModel->mapToSource(index));
-  return labelFilterModel->mapToSource(index);
+    return nameFilterModel->mapToSource(index);
+  return index;
 }
 
 inline QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) const {
   Q_ASSERT(index.isValid());
-  Q_ASSERT(index.model() == labelFilterModel);
-  return nameFilterModel->mapFromSource(statusFilterModel->mapFromSource(labelFilterModel->mapFromSource(index)));
-}
-
-
-QStringList TransferListWidget::getCustomLabels() const {
-  QIniSettings settings;
-  return settings.value("TransferListFilters/customLabels", QStringList()).toStringList();
+  Q_ASSERT(index.model() == nameFilterModel);
+  return nameFilterModel->mapFromSource(index);
 }
 
 void TransferListWidget::torrentDoubleClicked(const QModelIndex& index) {
@@ -221,9 +207,9 @@ void TransferListWidget::torrentDoubleClicked(const QModelIndex& index) {
   if (!h.is_valid()) return;
   int action;
   if (h.is_seed()) {
-    action = Preferences().getActionOnDblClOnTorrentFn();
+    action = Preferences::instance()->getActionOnDblClOnTorrentFn();
   } else {
-    action = Preferences().getActionOnDblClOnTorrentDl();
+    action = Preferences::instance()->getActionOnDblClOnTorrentDl();
   }
 
   switch(action) {
@@ -318,7 +304,7 @@ void TransferListWidget::deleteSelectedTorrents() {
   if (hashes.empty()) return;
   QTorrentHandle torrent = BTSession->getTorrentHandle(hashes[0]);
   bool delete_local_files = false;
-  if (Preferences().confirmTorrentDeletion() &&
+  if (Preferences::instance()->confirmTorrentDeletion() &&
       !DeletionConfirmationDlg::askForDeletionConfirmation(delete_local_files, hashes.size(), torrent.name()))
     return;
   foreach (const QString &hash, hashes) {
@@ -330,7 +316,7 @@ void TransferListWidget::deleteVisibleTorrents() {
   if (nameFilterModel->rowCount() <= 0) return;
   QTorrentHandle torrent = BTSession->getTorrentHandle(getHashFromRow(0));
   bool delete_local_files = false;
-  if (Preferences().confirmTorrentDeletion() &&
+  if (Preferences::instance()->confirmTorrentDeletion() &&
       !DeletionConfirmationDlg::askForDeletionConfirmation(delete_local_files, nameFilterModel->rowCount(), torrent.name()))
     return;
   QStringList hashes;
@@ -479,7 +465,7 @@ void TransferListWidget::setDlLimitSelectedTorrents() {
   int default_limit = -1;
   if (all_same_limit)
     default_limit = selected_torrents.first().download_limit();
-  const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Download Speed Limiting"), default_limit, Preferences().getGlobalDownloadLimit()*1024.);
+  const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Download Speed Limiting"), default_limit, Preferences::instance()->getGlobalDownloadLimit()*1024.);
   if (ok) {
     foreach (const QTorrentHandle &h, selected_torrents) {
       qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), qPrintable(h.hash()));
@@ -512,7 +498,7 @@ void TransferListWidget::setUpLimitSelectedTorrents() {
   int default_limit = -1;
   if (all_same_limit)
     default_limit = selected_torrents.first().upload_limit();
-  const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Upload Speed Limiting"), default_limit, Preferences().getGlobalUploadLimit()*1024.);
+  const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Upload Speed Limiting"), default_limit, Preferences::instance()->getGlobalUploadLimit()*1024.);
   if (ok) {
     foreach (const QTorrentHandle &h, selected_torrents) {
       qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), qPrintable(h.hash()));
@@ -647,8 +633,10 @@ void TransferListWidget::askNewLabelForSelection() {
 bool TransferListWidget::openUrl(const QString &_path) const {
   const QString path = fsutils::fromNativePath(_path);
   // Hack to access samba shares with QDesktopServices::openUrl
-  const QString p = path.startsWith("//") ? QString("file:") + path : path;
-  return QDesktopServices::openUrl(QUrl::fromLocalFile(p));
+  if (path.startsWith("//"))
+    return QDesktopServices::openUrl(fsutils::toNativePath("file:" + path));
+  else
+    return QDesktopServices::openUrl(QUrl::fromLocalFile(path));
 }
 
 void TransferListWidget::renameSelectedTorrent() {
@@ -811,7 +799,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   if (selectedIndexes.size() == 1)
     listMenu.addAction(&actionRename);
   // Label Menu
-  QStringList customLabels = getCustomLabels();
+  QStringList customLabels = Preferences::instance()->getTorrentLabels();
   customLabels.sort();
   QList<QAction*> labelActions;
   QMenu *labelMenu = listMenu.addMenu(IconProvider::instance()->getIcon("view-categories"), tr("Label"));
@@ -899,17 +887,13 @@ void TransferListWidget::currentChanged(const QModelIndex& current, const QModel
   emit currentTorrentChanged(h);
 }
 
+void TransferListWidget::applyLabelFilterAll() {
+  nameFilterModel->disableLabelFilter();
+}
+
 void TransferListWidget::applyLabelFilter(QString label) {
-  if (label == "all") {
-    labelFilterModel->setFilterRegExp(QRegExp());
-    return;
-  }
-  if (label == "none") {
-    labelFilterModel->setFilterRegExp(QRegExp("^$"));
-    return;
-  }
   qDebug("Applying Label filter: %s", qPrintable(label));
-  labelFilterModel->setFilterRegExp(QRegExp("^" + QRegExp::escape(label) + "$", Qt::CaseSensitive));
+  nameFilterModel->setLabelFilter(label);
 }
 
 void TransferListWidget::applyNameFilter(const QString& name) {
@@ -917,29 +901,7 @@ void TransferListWidget::applyNameFilter(const QString& name) {
 }
 
 void TransferListWidget::applyStatusFilter(int f) {
-  switch(f) {
-  case FILTER_DOWNLOADING:
-    statusFilterModel->setFilterRegExp(QRegExp(QString::number(TorrentModelItem::STATE_DOWNLOADING)+"|"+QString::number(TorrentModelItem::STATE_STALLED_DL)+"|"+
-                                               QString::number(TorrentModelItem::STATE_PAUSED_DL)+"|"+QString::number(TorrentModelItem::STATE_CHECKING_DL)+"|"+
-                                               QString::number(TorrentModelItem::STATE_QUEUED_DL)+"|"+QString::number(TorrentModelItem::STATE_DOWNLOADING_META), Qt::CaseSensitive));
-    break;
-  case FILTER_COMPLETED:
-    statusFilterModel->setFilterRegExp(QRegExp(QString::number(TorrentModelItem::STATE_SEEDING)+"|"+QString::number(TorrentModelItem::STATE_STALLED_UP)+"|"+
-                                               QString::number(TorrentModelItem::STATE_PAUSED_UP)+"|"+QString::number(TorrentModelItem::STATE_CHECKING_UP)+"|"+
-                                               QString::number(TorrentModelItem::STATE_QUEUED_UP), Qt::CaseSensitive));
-    break;
-  case FILTER_ACTIVE:
-    statusFilterModel->setFilterRegExp(QRegExp(QString::number(TorrentModelItem::STATE_DOWNLOADING)+"|"+QString::number(TorrentModelItem::STATE_SEEDING), Qt::CaseSensitive));
-    break;
-  case FILTER_INACTIVE:
-    statusFilterModel->setFilterRegExp(QRegExp("[^"+QString::number(TorrentModelItem::STATE_DOWNLOADING)+QString::number(TorrentModelItem::STATE_SEEDING)+"]", Qt::CaseSensitive));
-    break;
-  case FILTER_PAUSED:
-    statusFilterModel->setFilterRegExp(QRegExp(QString::number(TorrentModelItem::STATE_PAUSED_UP)+"|"+QString::number(TorrentModelItem::STATE_PAUSED_DL)));
-    break;
-  default:
-    statusFilterModel->setFilterRegExp(QRegExp());
-  }
+  nameFilterModel->setStatusFilter((TorrentFilter::TorrentFilter)f);
   // Select first item if nothing is selected
   if (selectionModel()->selectedRows(0).empty() && nameFilterModel->rowCount() > 0) {
     qDebug("Nothing is selected, selecting first row: %s", qPrintable(nameFilterModel->index(0, TorrentModelItem::TR_NAME).data().toString()));
@@ -949,14 +911,12 @@ void TransferListWidget::applyStatusFilter(int f) {
 
 void TransferListWidget::saveSettings()
 {
-  QIniSettings settings;
-  settings.setValue("TransferList/HeaderState", header()->saveState());
+  Preferences::instance()->setTransHeaderState(header()->saveState());
 }
 
 bool TransferListWidget::loadSettings()
 {
-  QIniSettings settings;
-  bool ok = header()->restoreState(settings.value("TransferList/HeaderState").toByteArray());
+  bool ok = header()->restoreState(Preferences::instance()->getTransHeaderState());
   if (!ok) {
     header()->resizeSection(0, 200); // Default
   }

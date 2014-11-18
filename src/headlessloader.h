@@ -33,8 +33,11 @@
 
 #include <QObject>
 #include <QCoreApplication>
+#include <QDebug>
 #include "preferences.h"
 #include "qbtsession.h"
+#include "fs_utils.h"
+#include "misc.h"
 
 class HeadlessLoader: public QObject {
   Q_OBJECT
@@ -42,9 +45,9 @@ class HeadlessLoader: public QObject {
 public:
   HeadlessLoader(const QStringList &torrentCmdLine) {
     connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(shutdownCleanUp()), Qt::DirectConnection);
-    Preferences pref;
+    Preferences* const pref = Preferences::instance();
     // Enable Web UI
-    pref.setWebUiEnabled(true);
+    pref->setWebUiEnabled(true);
     // Instanciate Bittorrent Object
     connect(QBtSession::instance(), SIGNAL(newConsoleMessage(QString)), this, SLOT(displayConsoleMessage(QString)));
     // Resume unfinished torrents
@@ -53,10 +56,10 @@ public:
     processParams(torrentCmdLine);
     // Display some information to the user
     std::cout << std::endl << "******** " << qPrintable(tr("Information")) << " ********" << std::endl;
-    std::cout << qPrintable(tr("To control qBittorrent, access the Web UI at http://localhost:%1").arg(QString::number(pref.getWebUiPort()))) << std::endl;
-    std::cout << qPrintable(tr("The Web UI administrator user name is: %1").arg(pref.getWebUiUsername())) << std::endl;
-    qDebug() << "Password:" << pref.getWebUiPassword();
-    if (pref.getWebUiPassword() == "32fe0bd2bb001911bb8bcfe23fc92b63") {
+    std::cout << qPrintable(tr("To control qBittorrent, access the Web UI at http://localhost:%1").arg(QString::number(pref->getWebUiPort()))) << std::endl;
+    std::cout << qPrintable(tr("The Web UI administrator user name is: %1").arg(pref->getWebUiUsername())) << std::endl;
+    qDebug() << "Password:" << pref->getWebUiPassword();
+    if (pref->getWebUiPassword() == "32fe0bd2bb001911bb8bcfe23fc92b63") {
       std::cout << qPrintable(tr("The Web UI administrator password is still the default one: %1").arg("adminadmin")) << std::endl;
       std::cout << qPrintable(tr("This is a security risk, please consider changing your password from program preferences.")) << std::endl;
     }
@@ -64,8 +67,8 @@ public:
 
 public slots:
   void shutdownCleanUp() {
-    Preferences().sync();
     QBtSession::drop();
+    Preferences::drop();
   }
 
   // Call this function to exit qBittorrent headless loader

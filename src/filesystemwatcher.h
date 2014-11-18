@@ -16,7 +16,7 @@
 #include <sys/param.h>
 #include <sys/mount.h>
 #include <string.h>
-#else
+#elif !defined Q_OS_HAIKU
 #include <sys/vfs.h>
 #endif
 #endif
@@ -56,7 +56,7 @@ private:
   QHash<QString, int> m_partialTorrents;
   QPointer<QTimer> m_partialTorrentTimer;
 
-#ifndef Q_OS_WIN
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
 private:
   static bool isNetworkFileSystem(QString path) {
     QString file = path;
@@ -145,7 +145,7 @@ public:
   }
 
   void addPath(const QString & path) {
-#ifndef Q_OS_WIN
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
     QDir dir(path);
     if (!dir.exists())
       return;
@@ -167,7 +167,7 @@ public:
       qDebug("FS Watching is watching %s in normal mode", qPrintable(path));
       QFileSystemWatcher::addPath(path);
       scanLocalFolder(path);
-#ifndef Q_OS_WIN
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
     }
 #endif
   }

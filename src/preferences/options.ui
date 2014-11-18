@@ -32,6 +32,12 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="minimumSize">
+       <size>
+        <width>116</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
       </property>
@@ -76,9 +82,6 @@
       </property>
       <item>
        <property name="text">
-        <string>Behavior</string>
-       </property>
-       <property name="toolTip">
         <string>Behavior</string>
        </property>
        <property name="textAlignment">
@@ -1373,6 +1376,16 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkForceProxy">
+                 <property name="text">
+                  <string>Disable connections not supported by proxies</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="checkProxyAuth">
                  <property name="enabled">
                   <bool>false</bool>
@@ -2030,6 +2043,9 @@
                 <layout class="QHBoxLayout" name="horizontalLayout_6">
                  <item>
                   <widget class="QCheckBox" name="checkAnonymousMode">
+                   <property name="toolTip">
+                    <string>Enable when using a proxy or a VPN connection</string>
+                   </property>
                    <property name="text">
                     <string>Enable anonymous mode</string>
                    </property>

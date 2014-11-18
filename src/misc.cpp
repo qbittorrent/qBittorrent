@@ -41,6 +41,7 @@
 #include <QProcess>
 #include <QSettings>
 #include <QLocale>
+#include <QThread>
 
 #ifdef DISABLE_GUI
 #include <QCoreApplication>
@@ -70,6 +71,14 @@ const int UNLEN = 256;
 #endif
 #endif // DISABLE_GUI
 
+#if LIBTORRENT_VERSION_NUM < 10000
+#include <libtorrent/peer_id.hpp>
+#else
+#include <libtorrent/sha1_hash.hpp>
+#endif
+#include <libtorrent/escape_string.hpp>
+#include <libtorrent/lazy_entry.hpp>
+
 using namespace libtorrent;
 
 static struct { const char *source; const char *comment; } units[] = {
@@ -79,6 +88,28 @@ static struct { const char *source; const char *comment; } units[] = {
   QT_TRANSLATE_NOOP3("misc", "GiB", "gibibytes (1024 mibibytes)"),
   QT_TRANSLATE_NOOP3("misc", "TiB", "tebibytes (1024 gibibytes)")
 };
+
+QString misc::toQString(const std::string &str) {
+  return QString::fromLocal8Bit(str.c_str());
+}
+
+QString misc::toQString(const char* str) {
+  return QString::fromLocal8Bit(str);
+}
+
+QString misc::toQStringU(const std::string &str) {
+  return QString::fromUtf8(str.c_str());
+}
+
+QString misc::toQStringU(const char* str) {
+  return QString::fromUtf8(str);
+}
+
+QString misc::toQString(const libtorrent::sha1_hash &hash) {
+  char out[41];
+ libtorrent::to_hex((char const*)&hash[0], libtorrent::sha1_hash::size, out);
+  return QString(out);
+}
 
 #ifndef DISABLE_GUI
 void misc::shutdownComputer(shutDownAction action) {
@@ -259,6 +290,7 @@ int misc::pythonVersion() {
 // use Binary prefix standards from IEC 60027-2
 // see http://en.wikipedia.org/wiki/Kilobyte
 // value must be given in bytes
+// to send numbers instead of strings with suffixes
 QString misc::friendlyUnit(qreal val, bool is_speed) {
   if (val < 0)
     return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
@@ -473,7 +505,8 @@ bool misc::isUrl(const QString &s)
 QString misc::parseHtmlLinks(const QString &raw_text)
 {
   QString result = raw_text;
-  QRegExp reURL("(\\s|^)"                                     //start with whitespace or beginning of line
+  static QRegExp reURL(
+                "(\\s|^)"                                     //start with whitespace or beginning of line
                 "("
                 "("                                      //case 1 -- URL with scheme
                 "(http(s?))\\://"                    //start with scheme
@@ -524,7 +557,7 @@ QString misc::parseHtmlLinks(const QString &raw_text)
   result.replace(reURL, "\\1<a href=\"\\2\">\\2</a>");
 
   // Capture links without scheme
-  QRegExp reNoScheme("<a\\s+href=\"(?!http(s?))([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">");
+  static QRegExp reNoScheme("<a\\s+href=\"(?!http(s?))([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">");
   result.replace(reNoScheme, "<a href=\"http://\\1\">");
 
   return result;
@@ -539,15 +572,29 @@ QString misc::toQString(time_t t)
 bool misc::naturalSort(QString left, QString right, bool &result) { // uses lessThan comparison
   // Return value indicates if functions was successful
   // result argument will contain actual comparison result if function was successful
+  int posL = 0;
+  int posR = 0;
   do {
-    int posL = left.indexOf(QRegExp("[0-9]"));
-    int posR = right.indexOf(QRegExp("[0-9]"));
-    if (posL == -1 || posR == -1)
-      break; // No data
-    else if (posL != posR)
-      break; // Digit positions mismatch
-    else  if (left.left(posL) != right.left(posR))
-      break; // Strings' subsets before digit do not match
+    for (;;) {
+      if (posL == left.size() || posR == right.size())
+        return false; // No data
+
+      QChar leftChar = left.at(posL);
+      QChar rightChar = right.at(posR);
+      bool leftCharIsDigit = leftChar.isDigit();
+      bool rightCharIsDigit = rightChar.isDigit();
+      if (leftCharIsDigit != rightCharIsDigit)
+        return false; // Digit positions mismatch
+
+      if (leftCharIsDigit)
+        break; // Both are digit, break this loop and compare numbers
+
+      if (leftChar != rightChar)
+         return false; // Strings' subsets before digit do not match
+
+      ++posL;
+      ++posR;
+    }
 
     QString temp;
     while (posL < left.size()) {
@@ -576,8 +623,6 @@ bool misc::naturalSort(QString left, QString right, bool &result) { // uses less
 
     // Strings + digits do match and we haven't hit string end
     // Do another round
-    left.remove(0, posL);
-    right.remove(0, posR);
 
   } while (true);
 
@@ -585,6 +630,7 @@ bool misc::naturalSort(QString left, QString right, bool &result) { // uses less
 }
 #endif
 
+// to send numbers instead of strings with suffixes
 QString misc::accurateDoubleToString(const double &n, const int &precision) {
   /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
   ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 The problem manifests when
@@ -594,4 +640,45 @@ QString misc::accurateDoubleToString(const double &n, const int &precision) {
 
   double prec = std::pow(10.0, precision);
   return QLocale::system().toString(std::floor(n*prec)/prec, 'f', precision);
+}
+
+// Implements constant-time comparison to protect against timing attacks
+// Taken from https://crackstation.net/hashing-security.htm
+bool misc::slowEquals(const QByteArray &a, const QByteArray &b)
+{
+  int lengthA = a.length();
+  int lengthB = b.length();
+
+  int diff = lengthA ^ lengthB;
+  for(int i = 0; i < lengthA && i < lengthB; i++)
+    diff |= a[i] ^ b[i];
+
+  return (diff == 0);
+}
+
+void misc::loadBencodedFile(const QString &filename, std::vector<char> &buffer, libtorrent::lazy_entry &entry, libtorrent::error_code &ec)
+{
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly)) return;
+    const qint64 content_size = file.bytesAvailable();
+    if (content_size <= 0) return;
+    buffer.resize(content_size);
+    file.read(&buffer[0], content_size);
+    // bdecode
+    lazy_bdecode(&buffer[0], &buffer[0] + buffer.size(), entry, ec);
+}
+
+namespace {
+  //  Trick to get a portable sleep() function
+  class SleeperThread : public QThread {
+  public:
+    static void msleep(unsigned long msecs)
+    {
+      QThread::msleep(msecs);
+    }
+  };
+}
+
+void misc::msleep(unsigned long msecs) {
+  SleeperThread::msleep(msecs);
 }

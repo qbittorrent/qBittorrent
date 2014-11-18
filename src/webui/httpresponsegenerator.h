@@ -1,5 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Ishan Arora and Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -32,24 +33,12 @@
 #ifndef HTTPRESPONSEGENERATOR_H
 #define HTTPRESPONSEGENERATOR_H
 
-#include "httpresponseheader.h"
+#include "httptypes.h"
 
-class HttpResponseGenerator : public HttpResponseHeader
+class HttpResponseGenerator
 {
-
 public:
-    HttpResponseGenerator(): m_gzip(false) {}
-    void setMessage(const QByteArray& message);
-    void setMessage(const QString& message);
-    void setContentTypeByExt(const QString& ext);
-    void setContentEncoding(bool gzip) { m_gzip = gzip; }
-    QByteArray toByteArray();
-
-private:
-    bool gCompress(QByteArray &dest_buffer);
-    QByteArray m_message;
-    bool m_gzip;
-
+    static QByteArray generate(HttpResponse response);
 };
 
 #endif

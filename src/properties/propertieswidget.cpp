@@ -28,6 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QDebug>
 #include <QTimer>
 #include <QListWidgetItem>
 #include <QVBoxLayout>
@@ -52,7 +53,7 @@
 #include "mainwindow.h"
 #include "downloadedpiecesbar.h"
 #include "pieceavailabilitybar.h"
-#include "qinisettings.h"
+#include "preferences.h"
 #include "proptabbar.h"
 #include "iconprovider.h"
 #include "lineedit.h"
@@ -79,6 +80,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   filesList->setSortingEnabled(true);
   // Torrent content filtering
   m_contentFilerLine = new LineEdit(this);
+  m_contentFilerLine->setPlaceholderText(tr("Filter files..."));
   connect(m_contentFilerLine, SIGNAL(textChanged(QString)), this, SLOT(filterText(QString)));
   contentFilterLayout->insertWidget(1, m_contentFilerLine);
 
@@ -87,7 +89,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(selectAllButton, SIGNAL(clicked()), PropListModel, SLOT(selectAll()));
   connect(selectNoneButton, SIGNAL(clicked()), PropListModel, SLOT(selectNone()));
   connect(filesList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFilesListMenu(const QPoint&)));
-  connect(filesList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(openDoubleClickedFile(QModelIndex)));
+  connect(filesList, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(openDoubleClickedFile(const QModelIndex &)));
   connect(PropListModel, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(listWebSeeds, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayWebSeedListMenu(const QPoint&)));
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle)), this, SLOT(loadTorrentInfos(QTorrentHandle)));
@@ -268,28 +270,28 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle& _h)
 }
 
 void PropertiesWidget::readSettings() {
-  QIniSettings settings;
+  const Preferences* const pref = Preferences::instance();
   // Restore splitter sizes
-  QStringList sizes_str = settings.value(QString::fromUtf8("TorrentProperties/SplitterSizes"), QString()).toString().split(",");
+  QStringList sizes_str = pref->getPropSplitterSizes().split(",");
   if (sizes_str.size() == 2) {
     slideSizes << sizes_str.first().toInt();
     slideSizes << sizes_str.last().toInt();
     QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
     hSplitter->setSizes(slideSizes);
   }
-  if (!filesList->header()->restoreState(settings.value("TorrentProperties/FilesListState").toByteArray())) {
+  if (!filesList->header()->restoreState(pref->getPropFileListState())) {
     filesList->header()->resizeSection(0, 400); //Default
   }
-  const int current_tab = settings.value("TorrentProperties/CurrentTab", -1).toInt();
+  const int current_tab = pref->getPropCurTab();
   m_tabBar->setCurrentIndex(current_tab);
-  if (!settings.value("TorrentProperties/Visible", false).toBool()) {
+  if (!pref->getPropVisible()) {
     setVisibility(false);
   }
 }
 
 void PropertiesWidget::saveSettings() {
-  QIniSettings settings;
-  settings.setValue("TorrentProperties/Visible", state==VISIBLE);
+  Preferences* const pref = Preferences::instance();
+  pref->setPropVisible(state==VISIBLE);
   // Splitter sizes
   QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
   QList<int> sizes;
@@ -299,11 +301,11 @@ void PropertiesWidget::saveSettings() {
     sizes = slideSizes;
   qDebug("Sizes: %d", sizes.size());
   if (sizes.size() == 2) {
-    settings.setValue(QString::fromUtf8("TorrentProperties/SplitterSizes"), QVariant(QString::number(sizes.first())+','+QString::number(sizes.last())));
+    pref->setPropSplitterSizes(QString::number(sizes.first())+','+QString::number(sizes.last()));
   }
-  settings.setValue("TorrentProperties/FilesListState", filesList->header()->saveState());
+  pref->setPropFileListState(filesList->header()->saveState());
   // Remember current tab
-  settings.setValue("TorrentProperties/CurrentTab", m_tabBar->currentIndex());
+  pref->setPropCurTab(m_tabBar->currentIndex());
 }
 
 void PropertiesWidget::reloadPreferences() {
@@ -395,7 +397,7 @@ void PropertiesWidget::loadDynamicData() {
       }
     }
   } catch(const invalid_handle& e) {
-    qWarning() << "Caught exception in PropertiesWidget::loadDynamicData(): " << e.what();
+    qWarning() << "Caught exception in PropertiesWidget::loadDynamicData(): " << misc::toQStringU(e.what());
   }
 }
 
@@ -410,54 +412,108 @@ void PropertiesWidget::loadUrlSeeds() {
   }
 }
 
-void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
+void PropertiesWidget::openDoubleClickedFile(const QModelIndex &index) {
   if (!index.isValid()) return;
   if (!h.is_valid() || !h.has_metadata()) return;
-  if (PropListModel->itemType(index) == TorrentContentModelItem::FileType) {
-    int i = PropListModel->getFileIndex(index);
-    const QDir saveDir(h.save_path());
-    const QString filename = h.filepath_at(i);
-    const QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
-    qDebug("Trying to open file at %s", qPrintable(file_path));
-    // Flush data
-    h.flush_cache();
-    if (QFile::exists(file_path)) {
-      // Hack to access samba shares with QDesktopServices::openUrl
-      const QString p = file_path.startsWith("//") ? QString("file:") + file_path : file_path;
-      QDesktopServices::openUrl(QUrl::fromLocalFile(p));
-    } else {
-      QMessageBox::warning(this, tr("I/O Error"), tr("This file does not exist yet."));
-    }
-  } else {
-    // FOLDER
-    QStringList path_items;
-    path_items << index.data().toString();
-    QModelIndex parent = PropListModel->parent(index);
-    while(parent.isValid()) {
-      path_items.prepend(parent.data().toString());
-      parent = PropListModel->parent(parent);
-    }
-    const QDir saveDir(h.save_path());
-    const QString filename = path_items.join("/");
-    const QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
-    qDebug("Trying to open folder at %s", qPrintable(file_path));
-    // Flush data
-    h.flush_cache();
-    if (QFile::exists(file_path)) {
-      // Hack to access samba shares with QDesktopServices::openUrl
-      const QString p = file_path.startsWith("//") ? QString("file:") + file_path : file_path;
-      QDesktopServices::openUrl(QUrl::fromLocalFile(p));
-    } else {
-      QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
-    }
+  if (PropListModel->itemType(index) == TorrentContentModelItem::FileType)
+    openFile(index);
+  else
+    openFolder(index, false);
+}
+
+void PropertiesWidget::openFile(const QModelIndex &index) {
+  int i = PropListModel->getFileIndex(index);
+  const QDir saveDir(h.save_path());
+  const QString filename = h.filepath_at(i);
+  const QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
+  qDebug("Trying to open file at %s", qPrintable(file_path));
+  // Flush data
+  h.flush_cache();
+  if (QFile::exists(file_path)) {
+    if (file_path.startsWith("//"))
+      QDesktopServices::openUrl(fsutils::toNativePath("file:" + file_path));
+    else
+      QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
+  }
+  else {
+    QMessageBox::warning(this, tr("I/O Error"), tr("This file does not exist yet."));
   }
 }
 
+void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_folder) {
+  // FOLDER
+  QStringList path_items;
+  path_items << index.data().toString();
+  QModelIndex parent = PropListModel->parent(index);
+  while(parent.isValid()) {
+    path_items.prepend(parent.data().toString());
+    parent = PropListModel->parent(parent);
+  }
+  if (path_items.isEmpty())
+    return;
+
+#if !(defined(Q_OS_WIN) || (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)))
+  if (containing_folder)
+    path_items.removeLast();
+#endif
+
+  const QDir saveDir(h.save_path());
+  const QString filename = path_items.join("/");
+  const QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
+  qDebug("Trying to open folder at %s", qPrintable(file_path));
+  // Flush data
+  h.flush_cache();
+
+#ifdef Q_OS_WIN
+  if (containing_folder) {
+    // Syntax is: explorer /select, "C:\Folder1\Folder2\file_to_select"
+    // Dir separators MUST be win-style slashes
+    QProcess::startDetached("explorer.exe", QStringList() << "/select," << fsutils::toNativePath(file_path));
+  } else {
+#elif defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
+  if (containing_folder) {
+    QProcess proc;
+    QString output;
+    proc.start("xdg-mime", QStringList() << "query" << "default" << "inode/directory");
+    proc.waitForFinished();
+    output = proc.readLine().simplified();
+    if (output == "dolphin.desktop")
+      proc.startDetached("dolphin", QStringList() << "--select" << fsutils::toNativePath(file_path));
+    else if (output == "nautilus-folder-handler.desktop")
+      proc.startDetached("nautilus", QStringList() << "--no-desktop" << fsutils::toNativePath(file_path));
+    else if (output == "kfmclient_dir.desktop")
+      proc.startDetached("konqueror", QStringList() << "--select" << fsutils::toNativePath(file_path));
+    else
+      QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(file_path).absolutePath()));
+  } else {
+#endif
+    if (QFile::exists(file_path)) {
+      // Hack to access samba shares with QDesktopServices::openUrl
+      if (file_path.startsWith("//"))
+        QDesktopServices::openUrl(fsutils::toNativePath("file:" + file_path));
+      else
+        QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
+    } else {
+      QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
+    }
+#if defined(Q_OS_WIN) || (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+  }
+#endif
+}
+
 void PropertiesWidget::displayFilesListMenu(const QPoint&) {
-  QMenu myFilesLlistMenu;
+  if (!h.is_valid())
+    return;
   QModelIndexList selectedRows = filesList->selectionModel()->selectedRows(0);
+  if (selectedRows.empty())
+    return;
+  QMenu myFilesLlistMenu;
+  QAction *actOpen = 0;
+  QAction *actOpenContainingFolder = 0;
   QAction *actRename = 0;
   if (selectedRows.size() == 1) {
+    actOpen = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("folder-documents"), tr("Open"));
+    actOpenContainingFolder = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
     actRename = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
     myFilesLlistMenu.addSeparator();
   }
@@ -474,24 +530,25 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&) {
   const QAction *act = myFilesLlistMenu.exec(QCursor::pos());
   // The selected torrent might have dissapeared during exec()
   // from the current view thus leaving invalid indices.
-  if (!(selectedRows.begin()->isValid()))
+  const QModelIndex index = *(selectedRows.begin());
+  if (!index.isValid())
     return;
   if (act) {
-    if (act == actRename) {
+    if (act == actOpen)
+      openDoubleClickedFile(index);
+    else if (act == actOpenContainingFolder)
+      openFolder(index, true);
+    else if (act == actRename)
       renameSelectedFile();
-    } else {
-      int prio = 1;
-      if (act == actionHigh) {
+    else {
+      int prio = prio::NORMAL;
+      if (act == actionHigh)
         prio = prio::HIGH;
-      } else {
-        if (act == actionMaximum) {
-          prio = prio::MAXIMUM;
-        } else {
-          if (act == actionNot_downloaded) {
-            prio = prio::IGNORED;
-          }
-        }
-      }
+      else if (act == actionMaximum)
+        prio = prio::MAXIMUM;
+      else if (act == actionNot_downloaded)
+        prio = prio::IGNORED;
+
       qDebug("Setting files priority");
       foreach (QModelIndex index, selectedRows) {
         qDebug("Setting priority(%d) for file at row %d", prio, index.row());
@@ -504,6 +561,8 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&) {
 }
 
 void PropertiesWidget::displayWebSeedListMenu(const QPoint&) {
+  if (!h.is_valid())
+    return;
   QMenu seedMenu;
   QModelIndexList rows = listWebSeeds->selectionModel()->selectedRows();
   QAction *actAdd = seedMenu.addAction(IconProvider::instance()->getIcon("list-add"), tr("New Web seed"));
@@ -643,7 +702,7 @@ void PropertiesWidget::renameSelectedFile() {
       int timeout = 10;
       while(!QDir().rmpath(old_folder.absolutePath()) && timeout > 0) {
         // XXX: We should not sleep here (freezes the UI for 1 second)
-        SleeperThread::msleep(100);
+        misc::msleep(100);
         --timeout;
       }
     }

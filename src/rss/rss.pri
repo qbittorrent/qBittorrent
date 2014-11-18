@@ -9,7 +9,6 @@ HEADERS +=    $$PWD/rss_imp.h \
               $$PWD/rssfile.h \
               $$PWD/rssarticle.h \
               $$PWD/automatedrssdownloader.h \
-              $$PWD/rsssettings.h \
               $$PWD/rssdownloadrule.h \
               $$PWD/rssdownloadrulelist.h \
               $$PWD/cookiesdlg.h \

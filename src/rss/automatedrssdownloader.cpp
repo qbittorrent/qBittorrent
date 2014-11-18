@@ -36,14 +36,13 @@
 
 #include "automatedrssdownloader.h"
 #include "ui_automatedrssdownloader.h"
-#include "rsssettings.h"
 #include "rssdownloadrulelist.h"
 #include "preferences.h"
-#include "qinisettings.h"
 #include "rssmanager.h"
 #include "rssfeed.h"
 #include "iconprovider.h"
 #include "autoexpandabledialog.h"
+#include "fs_utils.h"
 
 AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& manager, QWidget *parent) :
   QDialog(parent),
@@ -69,6 +68,21 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& m
   Q_ASSERT(ok);
   m_ruleList = manager.toStrongRef()->downloadRules();
   m_editableRuleList = new RssDownloadRuleList; // Read rule list from disk
+  m_episodeValidator = new QRegExpValidator(
+                         QRegExp("^(^[1-9]{1,1}\\d{0,3}x([1-9]{1,1}\\d{0,3}(-([1-9]{1,1}\\d{0,3})?)?;){1,}){1,1}",
+                                 Qt::CaseInsensitive),
+                         ui->lineEFilter);
+  ui->lineEFilter->setValidator(m_episodeValidator);
+  QString tip = "<p>" + tr("Matches articles based on episode filter.") + "</p><p><b>" + tr("Example: ") +
+                "1x2;8-15;5;30-;</b>" + tr(" will match 2, 5, 8 through 15, 30 and onward episodes of season one", "example X will match") + "</p>";
+  tip += "<p>"  + tr("Episode filter rules: ") + "</p><ul><li>" + tr("Season number is a mandatory non-zero value") + "</li>" +
+         "<li>" + tr("Episode number is a mandatory non-zero value") + "</li>" +
+         "<li>" + tr("Filter must end with semicolon") + "</li>" +
+         "<li>" + tr("Three range types for episodes are supported: ") + "</li>" + "<li><ul>"
+         "<li>" + tr("Single number: <b>1x25;</b> matches episode 25 of season one") + "</li>" +
+         "<li>" + tr("Normal range: <b>1x25-40;</b> matches episodes 25 through 40 of season one") + "</li>" +
+         "<li>" + tr("Infinite range: <b>1x25-;</b> matches 40 and onward episodes of season one") + "</li>" + "</ul></li></ul>";
+  ui->lineEFilter->setToolTip(tip);
   initLabelCombobox();
   loadFeedList();
   loadSettings();
@@ -95,6 +109,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& m
   Q_ASSERT(ok);
   ok = connect(this, SIGNAL(finished(int)), SLOT(on_finished(int)));
   Q_ASSERT(ok);
+  ok = connect(ui->lineEFilter, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
+  Q_ASSERT(ok);
   editHotkey = new QShortcut(QKeySequence("F2"), ui->listRules, 0, 0, Qt::WidgetShortcut);
   ok = connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedRule()));
   Q_ASSERT(ok);
@@ -114,26 +130,27 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
   delete deleteHotkey;
   delete ui;
   delete m_editableRuleList;
+  delete m_episodeValidator;
 }
 
 void AutomatedRssDownloader::loadSettings()
 {
   // load dialog geometry
-  QIniSettings settings;
-  restoreGeometry(settings.value("RssFeedDownloader/geometry").toByteArray());
-  ui->checkEnableDownloader->setChecked(RssSettings().isRssDownloadingEnabled());
-  ui->hsplitter->restoreState(settings.value("RssFeedDownloader/hsplitterSizes").toByteArray());
+  const Preferences* const pref = Preferences::instance();
+  restoreGeometry(pref->getRssGeometry());
+  ui->checkEnableDownloader->setChecked(pref->isRssDownloadingEnabled());
+  ui->hsplitter->restoreState(pref->getRssHSplitterSizes());
   // Display download rules
   loadRulesList();
 }
 
 void AutomatedRssDownloader::saveSettings()
 {
-  RssSettings().setRssDownloadingEnabled(ui->checkEnableDownloader->isChecked());
+  Preferences::instance()->setRssDownloadingEnabled(ui->checkEnableDownloader->isChecked());
   // Save dialog geometry
-  QIniSettings settings;
-  settings.setValue("RssFeedDownloader/geometry", saveGeometry());
-  settings.setValue("RssFeedDownloader/hsplitterSizes", ui->hsplitter->saveState());
+  Preferences* const pref = Preferences::instance();
+  pref->setRssGeometry(saveGeometry());
+  pref->setRssHSplitterSizes(ui->hsplitter->saveState());
 }
 
 void AutomatedRssDownloader::loadRulesList()
@@ -157,9 +174,9 @@ void AutomatedRssDownloader::loadRulesList()
 
 void AutomatedRssDownloader::loadFeedList()
 {
-  const RssSettings settings;
-  const QStringList feed_aliases = settings.getRssFeedsAliases();
-  const QStringList feed_urls = settings.getRssFeedsUrls();
+  const Preferences* const pref = Preferences::instance();
+  const QStringList feed_aliases = pref->getRssFeedsAliases();
+  const QStringList feed_urls = pref->getRssFeedsUrls();
   QStringList existing_urls;
   for (int i=0; i<feed_aliases.size(); ++i) {
     QString feed_url = feed_urls.at(i);
@@ -224,6 +241,11 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
     if (rule) {
       ui->lineContains->setText(rule->mustContain());
       ui->lineNotContains->setText(rule->mustNotContain());
+      QString ep = rule->episodeFilter();
+      if (!ep.isEmpty())
+        ui->lineEFilter->setText(ep);
+      else
+        ui->lineEFilter->clear();
       ui->saveDiffDir_check->setChecked(!rule->savePath().isEmpty());
       ui->lineSavePath->setText(fsutils::toNativePath(rule->savePath()));
       ui->checkRegex->setChecked(rule->useRegex());
@@ -275,7 +297,7 @@ RssDownloadRulePtr AutomatedRssDownloader::getCurrentRule() const
 void AutomatedRssDownloader::initLabelCombobox()
 {
   // Load custom labels
-  const QStringList customLabels = Preferences().getTorrentLabels();
+  const QStringList customLabels = Preferences::instance()->getTorrentLabels();
   foreach (const QString& label, customLabels) {
     ui->comboLabel->addItem(label);
   }
@@ -302,6 +324,7 @@ void AutomatedRssDownloader::saveEditedRule()
   rule->setUseRegex(ui->checkRegex->isChecked());
   rule->setMustContain(ui->lineContains->text());
   rule->setMustNotContain(ui->lineNotContains->text());
+  rule->setEpisodeFilter(ui->lineEFilter->text());
   if (ui->saveDiffDir_check->isChecked())
     rule->setSavePath(ui->lineSavePath->text());
   else
@@ -309,7 +332,7 @@ void AutomatedRssDownloader::saveEditedRule()
   rule->setLabel(ui->comboLabel->currentText());
   // Save new label
   if (!rule->label().isEmpty())
-    Preferences().addTorrentLabel(rule->label());
+    Preferences::instance()->addTorrentLabel(rule->label());
   //rule->setRssFeeds(getSelectedFeeds());
   // Save it
   m_editableRuleList->saveRule(rule);
@@ -385,7 +408,7 @@ void AutomatedRssDownloader::on_exportBtn_clicked()
 void AutomatedRssDownloader::on_importBtn_clicked()
 {
   // Ask for filter path
-  QString load_path = QFileDialog::getOpenFileName(this, tr("Please point to the RSS download rules file"), QDir::homePath(), tr("Rules list (*.rssrules *.filters)"));
+  QString load_path = QFileDialog::getOpenFileName(this, tr("Please point to the RSS download rules file"), QDir::homePath(), tr("Rules list")+QString(" (*.rssrules *.filters)"));
   if (load_path.isEmpty() || !QFile::exists(load_path)) return;
   // Load it
   if (!m_editableRuleList->unserialize(load_path)) {

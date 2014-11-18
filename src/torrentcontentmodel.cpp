@@ -37,6 +37,18 @@
 #include "torrentcontentmodelfile.h"
 #include <QDir>
 
+namespace {
+QIcon get_directory_icon() {
+  static QIcon cached = IconProvider::instance()->getIcon("inode-directory");
+  return cached;
+}
+
+QIcon get_file_icon() {
+  static QIcon cached = IconProvider::instance()->getIcon("text-plain");
+  return cached;
+}
+}
+
 TorrentContentModel::TorrentContentModel(QObject *parent):
   QAbstractItemModel(parent),
     m_rootItem(new TorrentContentModelFolder(QList<QVariant>() << tr("Name") << tr("Size")
@@ -169,9 +181,9 @@ QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
   TorrentContentModelItem* item = static_cast<TorrentContentModelItem*>(index.internalPointer());
   if (index.column() == 0 && role == Qt::DecorationRole) {
     if (item->itemType() == TorrentContentModelItem::FolderType)
-      return IconProvider::instance()->getIcon("inode-directory");
+      return get_directory_icon();
     else
-      return IconProvider::instance()->getIcon("text-plain");
+      return get_file_icon();
   }
   if (index.column() == 0 && role == Qt::CheckStateRole) {
     if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::IGNORED)

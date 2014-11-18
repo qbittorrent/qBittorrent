@@ -32,63 +32,30 @@
 #define TRANSFERLISTSORTMODEL_H
 
 #include <QSortFilterProxyModel>
-#include "torrentmodel.h"
-#include "misc.h"
+#include "torrentfilterenum.h"
 
 class TransferListSortModel : public QSortFilterProxyModel {
   Q_OBJECT
 
 public:
-  TransferListSortModel(QObject *parent = 0) : QSortFilterProxyModel(parent) {}
+  TransferListSortModel(QObject *parent = 0);
 
-protected:
-  virtual bool lessThan(const QModelIndex &left, const QModelIndex &right) const {
-    if (sortColumn() == TorrentModelItem::TR_NAME) {
-      QVariant vL = sourceModel()->data(left);
-      QVariant vR = sourceModel()->data(right);
-      if (!(vL.isValid() && vR.isValid()))
-        return QSortFilterProxyModel::lessThan(left, right);
-      Q_ASSERT(vL.isValid());
-      Q_ASSERT(vR.isValid());
+  void setStatusFilter(const TorrentFilter::TorrentFilter &filter);
+  void setLabelFilter(QString const& label);
+  void disableLabelFilter();
 
-      bool res = false;
-      if (misc::naturalSort(vL.toString(), vR.toString(), res))
-        return res;
+private:
+  bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
+  bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 
-      return QSortFilterProxyModel::lessThan(left, right);
-    }
-    else if (sortColumn() == TorrentModelItem::TR_ADD_DATE || sortColumn() == TorrentModelItem::TR_SEED_DATE) {
-      QDateTime vL = sourceModel()->data(left).toDateTime();
-      QDateTime vR = sourceModel()->data(right).toDateTime();
+  bool matchStatusFilter(int sourceRow, const QModelIndex &sourceParent) const;
+  bool matchLabelFilter(int sourceRow, const QModelIndex &sourceParent) const;
 
-      //not valid dates should be sorted at the bottom.
-      if (!vL.isValid()) return false;
-      if (!vR.isValid()) return true;
+private:
+  TorrentFilter::TorrentFilter filter0;
 
-      return vL < vR;
-    } 
-    else if (sortColumn() == TorrentModelItem::TR_PRIORITY) {
-      int vL = sourceModel()->data(left).toInt();
-      int vR = sourceModel()->data(right).toInt();
-      
-      //finished torrents should be last
-      if (vL == -1) return false;
-      if (vR == -1) return true;
-      return vL < vR;
-    } 
-    else if (sortColumn() == TorrentModelItem::TR_PEERS || sortColumn() == TorrentModelItem::TR_SEEDS) {
-      int left_active = sourceModel()->data(left).toInt();
-      int left_total = sourceModel()->data(left, Qt::UserRole).toInt();
-      int right_active = sourceModel()->data(right).toInt();
-      int right_total = sourceModel()->data(right, Qt::UserRole).toInt();
-
-      // Active peers/seeds take precedence over total peers/seeds.
-      if (left_active == right_active)
-        return (left_total < right_total);
-      else return (left_active < right_active);
-    }
-    return QSortFilterProxyModel::lessThan(left, right);
-  }
+  bool labelFilterEnabled;
+  QString labelFilter;
 };
 
 #endif // TRANSFERLISTSORTMODEL_H

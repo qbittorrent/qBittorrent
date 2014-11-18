@@ -30,12 +30,13 @@
 
 #include <QRegExp>
 #include <QDebug>
+#include <QDir>
 
 #include "rssdownloadrule.h"
 #include "preferences.h"
-#include "qinisettings.h"
 #include "rssfeed.h"
 #include "rssarticle.h"
+#include "fs_utils.h"
 
 RssDownloadRule::RssDownloadRule(): m_enabled(false), m_useRegex(false)
 {
@@ -58,6 +59,63 @@ bool RssDownloadRule::matches(const QString &article_title) const
       if (reg.indexIn(article_title) > -1)
         return false;
     }
+  }
+  if (!m_episodeFilter.isEmpty()) {
+    qDebug("Checking episode filter");
+    QRegExp f("(^\\d{1,4})x(.*;$)");
+    int pos = f.indexIn(m_episodeFilter);
+    if (pos < 0)
+      return false;
+
+    QString s = f.cap(1);
+    QStringList eps = f.cap(2).split(";");
+    QString expStr;
+    expStr += "s0?" + s + "[ -_\\.]?" + "e0?";
+
+    foreach (const QString& ep, eps) {
+      if (ep.isEmpty())
+        continue;
+
+      if (ep.indexOf('-') != -1) { // Range detected
+        QString partialPattern = "s0?" + s + "[ -_\\.]?" + "e(0?\\d{1,4})";
+        QRegExp reg(partialPattern, Qt::CaseInsensitive);
+
+        if (ep.endsWith('-')) { // Infinite range
+          int epOurs = ep.left(ep.size() - 1).toInt();
+
+          // Extract partial match from article and ocmpare as digits
+          pos = reg.indexIn(article_title);
+          if (pos != -1) {
+            int epTheirs = reg.cap(1).toInt();
+            if (epTheirs >= epOurs)
+              return true;
+          }
+        }
+        else { // Normal range
+          QStringList range = ep.split('-');
+          Q_ASSERT(range.size() == 2);
+          if (range.first().toInt() > range.last().toInt())
+            continue; // Ignore this subrule completely
+
+          int epOursFirst = range.first().toInt();
+          int epOursLast = range.last().toInt();
+
+          // Extract partial match from article and ocmpare as digits
+          pos = reg.indexIn(article_title);
+          if (pos != -1) {
+            int epTheirs = reg.cap(1).toInt();
+            if (epOursFirst <= epTheirs && epOursLast >= epTheirs)
+              return true;
+          }
+        }
+      }
+      else { // Single number
+        QRegExp reg(expStr + ep + "\\D", Qt::CaseInsensitive);
+        if (reg.indexIn(article_title) != -1)
+          return true;
+      }
+    }
+    return false;
   }
   return true;
 }
@@ -85,6 +143,7 @@ RssDownloadRulePtr RssDownloadRule::fromVariantHash(const QVariantHash &rule_has
   rule->setUseRegex(rule_hash.value("use_regex", false).toBool());
   rule->setMustContain(rule_hash.value("must_contain").toString());
   rule->setMustNotContain(rule_hash.value("must_not_contain").toString());
+  rule->setEpisodeFilter(rule_hash.value("episode_filter").toString());
   rule->setRssFeeds(rule_hash.value("affected_feeds").toStringList());
   rule->setEnabled(rule_hash.value("enabled", false).toBool());
   rule->setSavePath(rule_hash.value("save_path").toString());
@@ -103,6 +162,7 @@ QVariantHash RssDownloadRule::toVariantHash() const
   hash["enabled"] = m_enabled;
   hash["label_assigned"] = m_label;
   hash["use_regex"] = m_useRegex;
+  hash["episode_filter"] = m_episodeFilter;
   return hash;
 }
 
@@ -112,7 +172,7 @@ bool RssDownloadRule::operator==(const RssDownloadRule &other) const {
 
 void RssDownloadRule::setSavePath(const QString &save_path)
 {
-  if (!save_path.isEmpty() && QDir(save_path) != QDir(Preferences().getSavePath()))
+  if (!save_path.isEmpty() && QDir(save_path) != QDir(Preferences::instance()->getSavePath()))
     m_savePath = fsutils::fromNativePath(save_path);
   else
     m_savePath = QString();

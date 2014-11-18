@@ -31,23 +31,21 @@
 #ifndef TRANSFERLISTWIDGET_H
 #define TRANSFERLISTWIDGET_H
 
-#include <QShortcut>
 #include <QTreeView>
 #include <libtorrent/version.hpp>
-#include "qtorrenthandle.h"
-#include "transferlistsortmodel.h"
 
 class QBtSession;
-class TransferListDelegate;
+class QTorrentHandle;
 class MainWindow;
+class TransferListDelegate;
+class TransferListSortModel;
 class TorrentModel;
 
 QT_BEGIN_NAMESPACE
+class QShortcut;
 class QSortFilterProxyModel;
 class QStandardItemModel;
 QT_END_NAMESPACE
-
-enum TorrentFilter {FILTER_ALL, FILTER_DOWNLOADING, FILTER_COMPLETED, FILTER_PAUSED, FILTER_ACTIVE, FILTER_INACTIVE};
 
 class TransferListWidget: public QTreeView {
   Q_OBJECT
@@ -82,6 +80,7 @@ public slots:
   void displayDLHoSMenu(const QPoint&);
   void applyNameFilter(const QString& name);
   void applyStatusFilter(int f);
+  void applyLabelFilterAll();
   void applyLabelFilter(QString label);
   void previewFile(QString filePath);
   void removeLabelFromRows(QString label);
@@ -92,7 +91,6 @@ protected:
   QString getHashFromRow(int row) const;
   QModelIndex mapToSource(const QModelIndex &index) const;
   QModelIndex mapFromSource(const QModelIndex &index) const;
-  QStringList getCustomLabels() const;
   void saveSettings();
   bool loadSettings();
   QStringList getSelectedTorrentsHashes() const;
@@ -116,8 +114,6 @@ private:
   TransferListDelegate *listDelegate;
   TorrentModel *listModel;
   TransferListSortModel *nameFilterModel;
-  QSortFilterProxyModel *statusFilterModel;
-  QSortFilterProxyModel *labelFilterModel;
   QBtSession* BTSession;
   MainWindow *main_window;
   QShortcut *editHotkey;

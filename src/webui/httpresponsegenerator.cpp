@@ -1,5 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Ishan Arora and Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -28,44 +29,50 @@
  * Contact : chris@qbittorrent.org
  */
 
-
-#include "httpresponsegenerator.h"
 #include <zlib.h>
+#include "httpresponsegenerator.h"
 
-void HttpResponseGenerator::setMessage(const QByteArray& message)
+bool gCompress(QByteArray data, QByteArray& dest_buffer);
+
+QByteArray HttpResponseGenerator::generate(HttpResponse response)
 {
-  m_message = message;
+  if (response.headers[HEADER_CONTENT_ENCODING] == "gzip")
+  {
+    // A gzip seems to have 23 bytes overhead.
+    // Also "Content-Encoding: gzip\r\n" is 26 bytes long
+    // So we only benefit from gzip if the message is bigger than 23+26 = 49
+    // If the message is smaller than 49 bytes we actually send MORE data if we gzip
+    QByteArray dest_buf;
+    if ((response.content.size() > 49) && (gCompress(response.content, dest_buf)))
+    {
+      response.content = dest_buf;
+    }
+    else
+    {
+      response.headers.remove(HEADER_CONTENT_ENCODING);
+    }
+  }
+
+  if (response.content.length() > 0)
+    response.headers[HEADER_CONTENT_LENGTH] = QString::number(response.content.length());
+
+  QString ret(QLatin1String("HTTP/1.1 %1 %2\r\n%3\r\n"));
+
+  QString header;
+  foreach (const QString& key, response.headers.keys())
+    header += QString("%1: %2\r\n").arg(key).arg(response.headers[key]);
+
+  ret = ret.arg(response.status.code).arg(response.status.text).arg(header);
+  
+//  qDebug() << Q_FUNC_INFO;
+//  qDebug() << "HTTP Response header:";
+//  qDebug() << ret;
+  
+  return ret.toUtf8() + response.content;
 }
 
-void HttpResponseGenerator::setMessage(const QString& message)
+bool gCompress(QByteArray data, QByteArray& dest_buffer)
 {
-  setMessage(message.toUtf8());
-}
-
-void HttpResponseGenerator::setContentTypeByExt(const QString& ext) {
-  if (ext == "css") {
-		setContentType("text/css");
-		return;
-	}
-  if (ext == "gif") {
-		setContentType("image/gif");
-		return;
-	}
-	if (ext == "htm" || ext == "html")	{
-		setContentType("text/html");
-		return;
-	}
-	if (ext == "js")	{
-		setContentType("text/javascript");
-		return;
-	}
-  if (ext == "png") {
-		setContentType("image/png");
-		return;
-	}
-}
-
-bool HttpResponseGenerator::gCompress(QByteArray &dest_buffer) {
   static const int BUFSIZE = 128 * 1024;
   char tmp_buf[BUFSIZE];
   int ret;
@@ -74,8 +81,8 @@ bool HttpResponseGenerator::gCompress(QByteArray &dest_buffer) {
   strm.zalloc = Z_NULL;
   strm.zfree = Z_NULL;
   strm.opaque = Z_NULL;
-  strm.next_in = reinterpret_cast<unsigned char*>(m_message.data());
-  strm.avail_in = m_message.length();
+  strm.next_in = reinterpret_cast<unsigned char*>(data.data());
+  strm.avail_in = data.length();
   strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
   strm.avail_out = BUFSIZE;
 
@@ -88,53 +95,37 @@ bool HttpResponseGenerator::gCompress(QByteArray &dest_buffer) {
     return false;
 
   while (strm.avail_in != 0)
-   {
+  {
     ret = deflate(&strm, Z_NO_FLUSH);
     if (ret != Z_OK)
       return false;
+
     if (strm.avail_out == 0)
     {
-     dest_buffer.append(tmp_buf, BUFSIZE);
-     strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
-     strm.avail_out = BUFSIZE;
-    }
-   }
-
-  int deflate_res = Z_OK;
-  while (deflate_res == Z_OK) {
-    if (strm.avail_out == 0) {
       dest_buffer.append(tmp_buf, BUFSIZE);
       strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
       strm.avail_out = BUFSIZE;
     }
+  }
+
+  int deflate_res = Z_OK;
+  while (deflate_res == Z_OK)
+  {
+    if (strm.avail_out == 0)
+    {
+      dest_buffer.append(tmp_buf, BUFSIZE);
+      strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
+      strm.avail_out = BUFSIZE;
+    }
+
     deflate_res = deflate(&strm, Z_FINISH);
   }
 
   if (deflate_res != Z_STREAM_END)
     return false;
+
   dest_buffer.append(tmp_buf, BUFSIZE - strm.avail_out);
   deflateEnd(&strm);
 
   return true;
-}
-
-QByteArray HttpResponseGenerator::toByteArray() {
-  // A gzip seems to have 23 bytes overhead.
-  // Also "content-encoding: gzip\r\n" is 26 bytes long
-  // So we only benefit from gzip if the message is bigger than 23+26 = 49
-  // If the message is smaller than 49 bytes we actually send MORE data if we gzip
-  if (m_gzip && m_message.size() > 49) {
-    QByteArray dest_buf;
-    if (gCompress(dest_buf)) {
-      setValue("content-encoding", "gzip");
-#if QT_VERSION < 0x040800
-      m_message = dest_buf;
-#else
-      m_message.swap(dest_buf);
-#endif
-    }
-  }
-
-  setContentLength(m_message.size());
-  return HttpResponseHeader::toString().toUtf8() + m_message;
 }

@@ -45,9 +45,11 @@
 #include <QTextCodec>
 #include <QDebug>
 #include <QHostAddress>
+#include <QHostInfo>
 #include <QNetworkInterface>
 #include <QCryptographicHash>
 
+namespace {
 const short DEFAULT_PORT = 25;
 const short DEFAULT_PORT_SSL = 465;
 
@@ -76,6 +78,16 @@ QByteArray hmacMD5(QByteArray key, const QByteArray &msg)
   return QCryptographicHash::hash(total, QCryptographicHash::Md5);
 }
 
+QByteArray determineFQDN()
+{
+  QString hostname = QHostInfo::localHostName();
+  if (hostname.isEmpty())
+    hostname = "localhost";
+
+  return hostname.toLocal8Bit();
+}
+} // namespace
+
 Smtp::Smtp(QObject *parent): QObject(parent),
   state(Init), use_ssl(false) {
 #ifndef QT_NO_OPENSSL
@@ -100,7 +112,7 @@ Smtp::~Smtp() {
 }
 
 void Smtp::sendMail(const QString &from, const QString &to, const QString &subject, const QString &body) {
-  Preferences pref;
+  const Preferences* const pref = Preferences::instance();
   QTextCodec* latin1 = QTextCodec::codecForName("latin1");
   message = "";
   message += encode_mime_header("Date", QDateTime::currentDateTime().toUTC().toString("ddd, d MMM yyyy hh:mm:ss UT"), latin1);
@@ -122,19 +134,19 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
   this->from = from;
   rcpt = to;
   // Authentication
-  if (pref.getMailNotificationSMTPAuth()) {
-    username = pref.getMailNotificationSMTPUsername();
-    password = pref.getMailNotificationSMTPPassword();
+  if (pref->getMailNotificationSMTPAuth()) {
+    username = pref->getMailNotificationSMTPUsername();
+    password = pref->getMailNotificationSMTPPassword();
   }
 
   // Connect to SMTP server
 #ifndef QT_NO_OPENSSL
-  if (pref.getMailNotificationSMTPSSL()) {
-    socket->connectToHostEncrypted(pref.getMailNotificationSMTP(), DEFAULT_PORT_SSL);
+  if (pref->getMailNotificationSMTPSSL()) {
+    socket->connectToHostEncrypted(pref->getMailNotificationSMTP(), DEFAULT_PORT_SSL);
     use_ssl = true;
   } else {
 #endif
-    socket->connectToHost(pref.getMailNotificationSMTP(), DEFAULT_PORT);
+    socket->connectToHost(pref->getMailNotificationSMTP(), DEFAULT_PORT);
     use_ssl = false;
 #ifndef QT_NO_OPENSSL
   }
@@ -159,6 +171,10 @@ void Smtp::readyRead()
     switch(state) {
     case Init: {
       if (code[0] == '2') {
+        // The server may send a multiline greeting/INIT/220 response.
+        // We wait until it finishes.
+        if (line[3] != ' ')
+          break;
         // Connection was successful
         ehlo();
       } else {
@@ -290,18 +306,18 @@ QByteArray Smtp::encode_mime_header(const QString& key, const QString& value, QT
 
 void Smtp::ehlo()
 {
-  QByteArray address = "127.0.0.1";
-  foreach (const QHostAddress& addr, QNetworkInterface::allAddresses())
-  {
-    if (addr == QHostAddress::LocalHost || addr == QHostAddress::LocalHostIPv6)
-      continue;
-    address = addr.toString().toLatin1();
-    break;
-  }
-  // Send EHLO
-  socket->write("ehlo "+ address + "\r\n");
+  QByteArray address = determineFQDN();
+  socket->write("ehlo " + address + "\r\n");
   socket->flush();
   state = EhloSent;
+}
+
+void Smtp::helo()
+{
+  QByteArray address = determineFQDN();
+  socket->write("helo " + address + "\r\n");
+  socket->flush();
+  state = HeloSent;
 }
 
 void Smtp::parseEhloResponse(const QByteArray& code, bool continued, const QString& line)
@@ -311,9 +327,7 @@ void Smtp::parseEhloResponse(const QByteArray& code, bool continued, const QStri
     if (state == EhloSent) {
       // try to send HELO instead of EHLO
       qDebug() << "EHLO failed, trying HELO instead...";
-      socket->write("helo\r\n");
-      socket->flush();
-      state = HeloSent;
+      helo();
     } else {
       // Both EHLO and HELO failed, chances are this is NOT
       // a SMTP server
@@ -357,6 +371,10 @@ void Smtp::authenticate()
     // Skip authentication
     qDebug() << "Skipping authentication...";
     state = Authenticated;
+    // At this point the server will not send any response
+    // So fill the buffer with a fake one to pass the tests
+    // in readyRead()
+    buffer.push_front("250 QBT FAKE RESPONSE\r\n");
     return;
   }
   // AUTH extension is supported, check which
@@ -380,6 +398,10 @@ void Smtp::authenticate()
              "we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, "
              "knowing it is likely to fail... Server Auth Modes: "+auth.join("|"));
     state = Authenticated;
+    // At this point the server will not send any response
+    // So fill the buffer with a fake one to pass the tests
+    // in readyRead()
+    buffer.push_front("250 QBT FAKE RESPONSE\r\n");
   }
 }
 

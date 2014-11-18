@@ -95,8 +95,12 @@ public slots:
   void readSettings();
   void saveSettings();
   void reloadPreferences();
-  void openDoubleClickedFile(QModelIndex);
+  void openDoubleClickedFile(const QModelIndex &);
   void updateSavePath(const QTorrentHandle& h);
+
+private:
+  void openFile(const QModelIndex &index);
+  void openFolder(const QModelIndex &index, bool containing_folder);
 
 private:
   TransferListWidget *transferList;

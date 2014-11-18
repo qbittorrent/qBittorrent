@@ -32,7 +32,6 @@
 #define OPTIONS_IMP_H
 
 #include "ui_options.h"
-#include <libtorrent/ip_filter.hpp>
 
 // actions on double-click on torrents
 enum DoubleClickAction {TOGGLE_PAUSE, OPEN_DEST, NO_ACTION};
@@ -85,7 +84,6 @@ private slots:
   void on_btnWebUiKey_clicked();
   void on_registerDNSBtn_clicked();
   void setLocale(const QString &locale);
-  void toggleAnonymousMode(bool enabled);
 
 private:
   // Methods
@@ -102,7 +100,7 @@ private:
   bool isSlashScreenDisabled() const;
   bool preventFromSuspend() const;
 #ifdef Q_OS_WIN
-  bool Startup() const;
+  bool WinStartup() const;
 #endif
   // Downloads
   QString getSavePath() const;

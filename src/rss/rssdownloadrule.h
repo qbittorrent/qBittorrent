@@ -65,6 +65,8 @@ public:
   inline QString mustNotContain() const { return m_mustNotContain.join(" "); }
   inline bool useRegex() const { return m_useRegex; }
   inline void setUseRegex(bool enabled) { m_useRegex = enabled; }
+  inline QString episodeFilter() const { return m_episodeFilter; }
+  inline void setEpisodeFilter(const QString& e) { m_episodeFilter = e; }
   QStringList findMatchingArticles(const RssFeedPtr& feed) const;
   // Operators
   bool operator==(const RssDownloadRule &other) const;
@@ -73,6 +75,7 @@ private:
   QString m_name;
   QStringList m_mustContain;
   QStringList m_mustNotContain;
+  QString m_episodeFilter;
   QString m_savePath;
   QString m_label;
   bool m_enabled;

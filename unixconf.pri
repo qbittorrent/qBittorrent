@@ -15,7 +15,9 @@ exists($$OUT_PWD/../conf.pri) {
 }
 
 QMAKE_CXXFLAGS += -Wformat -Wformat-security
-QMAKE_LFLAGS_APP += -rdynamic
+!haiku {
+ QMAKE_LFLAGS_APP += -rdynamic
+}
 
 # Man page
 nox {

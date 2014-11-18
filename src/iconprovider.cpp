@@ -31,12 +31,17 @@
 #include "iconprovider.h"
 #include "preferences.h"
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#include <QDir>
+#include <QFile>
+#endif
+
 IconProvider* IconProvider::m_instance = 0;
 
 IconProvider::IconProvider()
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-  m_useSystemTheme = Preferences().useSystemIconTheme();
+  m_useSystemTheme = Preferences::instance()->useSystemIconTheme();
 #endif
 }
 
@@ -81,7 +86,7 @@ QIcon IconProvider::generateDifferentSizes(const QIcon& icon)
 {
   QIcon new_icon;
   QList<QSize> required_sizes;
-  required_sizes << QSize(16, 16) << QSize(24, 24);
+  required_sizes << QSize(16, 16) << QSize(24, 24) << QSize(32, 32);
   QList<QIcon::Mode> modes;
   modes << QIcon::Normal << QIcon::Active << QIcon::Selected << QIcon::Disabled;
   foreach (const QSize& size, required_sizes) {

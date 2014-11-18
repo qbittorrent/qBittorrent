@@ -34,7 +34,7 @@
 
 #include "torrentimportdlg.h"
 #include "ui_torrentimportdlg.h"
-#include "qinisettings.h"
+#include "preferences.h"
 #include "qbtsession.h"
 #include "torrentpersistentdata.h"
 #include "iconprovider.h"
@@ -62,10 +62,9 @@ TorrentImportDlg::~TorrentImportDlg()
 
 void TorrentImportDlg::on_browseTorrentBtn_clicked()
 {
-  QIniSettings settings;
-  const QString default_dir = settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString();
+  const QString default_dir = Preferences::instance()->getMainLastDir();
   // Ask for a torrent file
-  m_torrentPath = QFileDialog::getOpenFileName(this, tr("Torrent file to import"), default_dir, tr("Torrent files (*.torrent)"));
+  m_torrentPath = QFileDialog::getOpenFileName(this, tr("Torrent file to import"), default_dir, tr("Torrent files")+QString(" (*.torrent)"));
   if (!m_torrentPath.isEmpty()) {
     loadTorrent(m_torrentPath);
   } else {
@@ -75,9 +74,17 @@ void TorrentImportDlg::on_browseTorrentBtn_clicked()
 
 void TorrentImportDlg::on_browseContentBtn_clicked()
 {
-  QIniSettings settings;
-  const QString default_dir = settings.value(QString::fromUtf8("TorrentImport/LastContentDir"), QDir::homePath()).toString();
-  if (t->num_files() == 1) {
+  const QString default_dir = Preferences::instance()->getTorImportLastContentDir();
+  // Test for multi-file taken from libtorrent/create_torrent.hpp -> create_torrent::create_torrent
+  bool multifile = t->num_files() > 1;
+#if LIBTORRENT_VERSION_NUM >= 1600
+  if (!multifile && has_parent_path(t->files().file_path(*(t->files().begin()))))
+      multifile = true;
+#else
+  if (!multifile && t->file_at(0).path.has_parent_path())
+      multifile = true;
+#endif
+  if (!multifile) {
     // Single file torrent
     const QString file_name = fsutils::fileName(misc::toQStringU(t->file_at(0).path));
     qDebug("Torrent has only one file: %s", qPrintable(file_name));
@@ -195,11 +202,11 @@ void TorrentImportDlg::importTorrent()
     TorrentTempData::setSavePath(hash, content_path);
     TorrentTempData::setSeedingMode(hash, dlg.skipFileChecking());
     qDebug("Adding the torrent to the session...");
-    QBtSession::instance()->addTorrent(torrent_path);
+    QBtSession::instance()->addTorrent(torrent_path, false, QString(), false, true);
     // Remember the last opened folder
-    QIniSettings settings;
-    settings.setValue(QString::fromUtf8("MainWindowLastDir"), fsutils::fromNativePath(torrent_path));
-    settings.setValue("TorrentImport/LastContentDir", fsutils::fromNativePath(content_path));
+    Preferences* const pref = Preferences::instance();
+    pref->setMainLastDir(fsutils::fromNativePath(torrent_path));
+    pref->setTorImportLastContentDir(fsutils::fromNativePath(content_path));
     return;
   }
   qDebug() << Q_FUNC_INFO << "EXIT";
@@ -208,22 +215,27 @@ void TorrentImportDlg::importTorrent()
 
 void TorrentImportDlg::loadTorrent(const QString &torrent_path)
 {
-  // Load the torrent file
-  try {
-    t = new torrent_info(fsutils::toNativePath(torrent_path).toUtf8().constData());
-    if (!t->is_valid() || t->num_files() == 0)
-      throw std::exception();
-  } catch(std::exception&) {
-    ui->browseContentBtn->setEnabled(false);
-    ui->lineTorrent->clear();
-    QMessageBox::warning(this, tr("Invalid torrent file"), tr("This is not a valid torrent file."));
-    return;
-  }
-  // Update display
-  ui->lineTorrent->setText(fsutils::toNativePath(torrent_path));
-  ui->browseContentBtn->setEnabled(true);
-  // Load the file names
-  initializeFilesPath();
+    // Load the torrent file
+    try {
+        std::vector<char> buffer;
+        lazy_entry entry;
+        libtorrent::error_code ec;
+        misc::loadBencodedFile(torrent_path, buffer, entry, ec);
+        t = new torrent_info(entry);
+        if (!t->is_valid() || t->num_files() == 0)
+            throw std::exception();
+    }
+    catch(std::exception&) {
+        ui->browseContentBtn->setEnabled(false);
+        ui->lineTorrent->clear();
+        QMessageBox::warning(this, tr("Invalid torrent file"), tr("This is not a valid torrent file."));
+        return;
+    }
+    // Update display
+    ui->lineTorrent->setText(fsutils::toNativePath(torrent_path));
+    ui->browseContentBtn->setEnabled(true);
+    // Load the file names
+    initializeFilesPath();
 }
 
 void TorrentImportDlg::initializeFilesPath()
@@ -253,14 +265,12 @@ bool TorrentImportDlg::skipFileChecking() const
 
 void TorrentImportDlg::loadSettings()
 {
-  QIniSettings settings;
-  restoreGeometry(settings.value("TorrentImportDlg/dimensions").toByteArray());
+  restoreGeometry(Preferences::instance()->getTorImportGeometry());
 }
 
 void TorrentImportDlg::saveSettings()
 {
-  QIniSettings settings;
-  settings.setValue("TorrentImportDlg/dimensions", saveGeometry());
+  Preferences::instance()->setTorImportGeometry(saveGeometry());
 }
 
 void TorrentImportDlg::closeEvent(QCloseEvent *event)

@@ -35,6 +35,7 @@
 #include <QString>
 #include <QClipboard>
 #include <QDragMoveEvent>
+#include <QDebug>
 
 #include "rss_imp.h"
 #include "feedlistwidget.h"
@@ -47,7 +48,6 @@
 #include "rssarticle.h"
 #include "rssparser.h"
 #include "rssfeed.h"
-#include "rsssettings.h"
 #include "automatedrssdownloader.h"
 #include "iconprovider.h"
 #include "autoexpandabledialog.h"
@@ -134,11 +134,11 @@ void RSSImp::on_actionManage_cookies_triggered()
   qDebug("RSS Feed hostname is: %s", qPrintable(feed_hostname));
   Q_ASSERT(!feed_hostname.isEmpty());
   bool ok = false;
-  RssSettings settings;
-  QList<QByteArray> raw_cookies = CookiesDlg::askForCookies(this, settings.getHostNameCookies(feed_hostname), &ok);
+  Preferences* const pref = Preferences::instance();
+  QList<QByteArray> raw_cookies = CookiesDlg::askForCookies(this, pref->getHostNameCookies(feed_hostname), &ok);
   if (ok) {
     qDebug() << "Settings cookies for host name: " << feed_hostname;
-    settings.setHostNameCookies(feed_hostname, raw_cookies);
+    pref->setHostNameCookies(feed_hostname, raw_cookies);
   }
 }
 
@@ -283,10 +283,7 @@ void RSSImp::deleteSelectedItems()
 
 void RSSImp::loadFoldersOpenState()
 {
-  QIniSettings settings;
-  settings.beginGroup("Rss");
-  QStringList open_folders = settings.value("open_folders", QStringList()).toStringList();
-  settings.endGroup();
+  QStringList open_folders = Preferences::instance()->getRssOpenFolders();
   foreach (const QString& var_path, open_folders) {
     QStringList path = var_path.split("\\");
     QTreeWidgetItem* parent = 0;
@@ -322,10 +319,7 @@ void RSSImp::saveFoldersOpenState()
     qDebug("saving open folder: %s", qPrintable(path));
     open_folders << path;
   }
-  QIniSettings settings;
-  settings.beginGroup("Rss");
-  settings.setValue("open_folders", open_folders);
-  settings.endGroup();
+  Preferences::instance()->setRssOpenFolders(open_folders);
 }
 
 // refresh all streams by a button
@@ -340,8 +334,11 @@ void RSSImp::downloadSelectedTorrents()
 {
   QList<QListWidgetItem*> selected_items = listArticles->selectedItems();
   foreach (const QListWidgetItem* item, selected_items) {
-    RssArticlePtr article =  m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
-        ->getItem(item->data(Article::IdRole).toString());
+    if (!item) continue;
+    RssFeedPtr feed = m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString());
+    if (!feed) continue;
+    RssArticlePtr article = feed->getItem(item->data(Article::IdRole).toString());
+    if (!article) continue;
 
     QString torrentLink = article->torrentUrl();
     // Check if it is a magnet link
@@ -351,7 +348,7 @@ void RSSImp::downloadSelectedTorrents()
       // Load possible cookies
       QString feed_url = m_feedList->getItemID(m_feedList->selectedItems().first());
       QString feed_hostname = QUrl::fromEncoded(feed_url.toUtf8()).host();
-      QList<QNetworkCookie> cookies = RssSettings().getHostNameQNetworkCookies(feed_hostname);
+      QList<QNetworkCookie> cookies = Preferences::instance()->getHostNameQNetworkCookies(feed_hostname);
       qDebug("Loaded %d cookies for RSS item\n", cookies.size());
       QBtSession::instance()->downloadFromUrl(torrentLink, cookies);
     }
@@ -583,20 +580,20 @@ void RSSImp::refreshTextBrowser()
 void RSSImp::saveSlidersPosition()
 {
   // Remember sliders positions
-  QIniSettings settings;
-  settings.setValue("rss/splitter_h", splitter_h->saveState());
-  settings.setValue("rss/splitter_v", splitter_v->saveState());
+  Preferences* const pref = Preferences::instance();
+  pref->setRssHSplitterState(splitter_h->saveState());
+  pref->setRssVSplitterState(splitter_v->saveState());
   qDebug("Splitters position saved");
 }
 
 void RSSImp::restoreSlidersPosition()
 {
-  QIniSettings settings;
-  QByteArray pos_h = settings.value("rss/splitter_h", QByteArray()).toByteArray();
+  const Preferences* const pref = Preferences::instance();
+  QByteArray pos_h = pref->getRssHSplitterState();
   if (!pos_h.isNull()) {
     splitter_h->restoreState(pos_h);
   }
-  QByteArray pos_v = settings.value("rss/splitter_v", QByteArray()).toByteArray();
+  QByteArray pos_v = pref->getRssVSplitterState();
   if (!pos_v.isNull()) {
     splitter_v->restoreState(pos_v);
   }
@@ -756,7 +753,7 @@ void RSSImp::on_settingsButton_clicked()
 {
   RssSettingsDlg dlg(this);
   if (dlg.exec())
-    updateRefreshInterval(RssSettings().getRSSRefreshInterval());
+    updateRefreshInterval(Preferences::instance()->getRSSRefreshInterval());
 }
 
 void RSSImp::on_rssDownloaderBtn_clicked()

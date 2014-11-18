@@ -31,9 +31,7 @@
 #ifndef QTORRENTHANDLE_H
 #define QTORRENTHANDLE_H
 
-#include <libtorrent/version.hpp>
 #include <libtorrent/torrent_handle.hpp>
-#include <libtorrent/torrent_info.hpp>
 
 #include <QString>
 
@@ -86,6 +84,7 @@ public:
   bool is_checking() const;
   bool is_sequential_download() const;
   QString creation_date() const;
+  qlonglong creation_date_unix() const;
   bool priv() const;
   bool first_last_piece_first() const;
   QString root_path() const;
@@ -123,6 +122,7 @@ public:
   static bool is_checking(const libtorrent::torrent_status &status);
   static bool has_error(const libtorrent::torrent_status &status);
   static float progress(const libtorrent::torrent_status &status);
+  static QString filepath_at(const libtorrent::torrent_info &info, unsigned int index);
 
 private:
   void prioritize_first_last_piece(int file_index, bool b) const;

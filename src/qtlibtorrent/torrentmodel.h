@@ -49,7 +49,7 @@ Q_OBJECT
 
 public:
   enum State {STATE_DOWNLOADING, STATE_DOWNLOADING_META, STATE_ALLOCATING, STATE_STALLED_DL, STATE_STALLED_UP, STATE_SEEDING, STATE_PAUSED_DL, STATE_PAUSED_UP, STATE_QUEUED_DL, STATE_QUEUED_UP, STATE_CHECKING_UP, STATE_CHECKING_DL, STATE_QUEUED_CHECK, STATE_QUEUED_FASTCHECK, STATE_INVALID};
-  enum Column {TR_NAME, TR_PRIORITY, TR_SIZE, TR_PROGRESS, TR_STATUS, TR_SEEDS, TR_PEERS, TR_DLSPEED, TR_UPSPEED, TR_ETA, TR_RATIO, TR_LABEL, TR_ADD_DATE, TR_SEED_DATE, TR_TRACKER, TR_DLLIMIT, TR_UPLIMIT, TR_AMOUNT_DOWNLOADED, TR_AMOUNT_UPLOADED, TR_AMOUNT_LEFT, TR_TIME_ELAPSED, TR_SAVE_PATH, NB_COLUMNS};
+  enum Column {TR_NAME, TR_PRIORITY, TR_SIZE, TR_TOTAL_SIZE, TR_PROGRESS, TR_STATUS, TR_SEEDS, TR_PEERS, TR_DLSPEED, TR_UPSPEED, TR_ETA, TR_RATIO, TR_LABEL, TR_ADD_DATE, TR_SEED_DATE, TR_TRACKER, TR_DLLIMIT, TR_UPLIMIT, TR_AMOUNT_DOWNLOADED, TR_AMOUNT_UPLOADED, TR_AMOUNT_LEFT, TR_TIME_ELAPSED, TR_SAVE_PATH, TR_COMPLETED, TR_RATIO_LIMIT, TR_SEEN_COMPLETE_DATE, TR_LAST_ACTIVITY, NB_COLUMNS};
 
 public:
   TorrentModelItem(const QTorrentHandle& h);
@@ -57,13 +57,15 @@ public:
   inline int columnCount() const { return NB_COLUMNS; }
   QVariant data(int column, int role = Qt::DisplayRole) const;
   bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
-  inline QString hash() const { return m_hash; }
+  inline QString const& hash() const { return m_hash; }
+  State state() const;
 
 signals:
   void labelChanged(QString previous, QString current);
 
 private:
-  State state() const;
+  static QIcon getIconByState(State state);
+  static QColor getColorByState(State state);
 
 private:
   QTorrentHandle m_torrent;
@@ -71,8 +73,6 @@ private:
   QDateTime m_addedTime;
   QString m_label;
   QString m_name;
-  mutable QIcon m_icon;
-  mutable QColor m_fgColor;
   QString m_hash; // Cached for safety reasons
 };
 
@@ -101,10 +101,10 @@ signals:
   void torrentAdded(TorrentModelItem *torrentItem);
   void torrentAboutToBeRemoved(TorrentModelItem *torrentItem);
   void torrentChangedLabel(TorrentModelItem *torrentItem, QString previous, QString current);
+  void modelRefreshed();
 
 private slots:
   void addTorrent(const QTorrentHandle& h);
-  void removeTorrent(const QString &hash);
   void handleTorrentUpdate(const QTorrentHandle &h);
   void handleFinishedTorrent(const QTorrentHandle& h);
   void notifyTorrentChanged(int row);

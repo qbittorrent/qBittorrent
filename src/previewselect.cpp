@@ -45,7 +45,7 @@
 PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent), h(h) {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
-  Preferences pref;
+  Preferences* const pref = Preferences::instance();
   // Preview list
   previewListModel = new QStandardItemModel(0, NB_COLUMNS);
   previewListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name"));
@@ -56,7 +56,7 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
   listDelegate = new PreviewListDelegate(this);
   previewList->setItemDelegate(listDelegate);
   previewList->header()->resizeSection(0, 200);
-  previewList->setAlternatingRowColors(pref.useAlternatingRowColors());
+  previewList->setAlternatingRowColors(pref->useAlternatingRowColors());
   // Fill list in
   std::vector<libtorrent::size_type> fp;
   h.file_progress(fp);

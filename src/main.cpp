@@ -32,6 +32,7 @@
 #include <QTranslator>
 #include <QFile>
 #include <QLibraryInfo>
+#include <QDebug>
 
 #ifndef DISABLE_GUI
 #if defined(QBT_STATIC_QT)
@@ -62,7 +63,6 @@ Q_IMPORT_PLUGIN(qico)
 #endif
 
 #include "preferences.h"
-#include "qinisettings.h"
 #if defined(Q_OS_UNIX)
 #include <signal.h>
 #include <execinfo.h>
@@ -96,7 +96,7 @@ public:
     std::cout << '\t' << prg_name << " -d | --daemon: " << qPrintable(tr("run in daemon-mode (background)")) << std::endl;
 #endif
     std::cout << '\t' << prg_name << " --help: " << qPrintable(tr("displays this help message")) << std::endl;
-    std::cout << '\t' << prg_name << " --webui-port=x: " << qPrintable(tr("changes the webui port (current: %1)").arg(QString::number(Preferences().getWebUiPort()))) << std::endl;
+    std::cout << '\t' << prg_name << " --webui-port=x: " << qPrintable(tr("changes the webui port (current: %1)").arg(QString::number(Preferences::instance()->getWebUiPort()))) << std::endl;
     std::cout << '\t' << prg_name << " " << qPrintable(tr("[files or urls]: downloads the torrents passed by the user (optional)")) << std::endl;
   }
 };
@@ -106,8 +106,8 @@ class LegalNotice: public QObject {
 
 public:
   static bool userAgreesWithNotice() {
-    QIniSettings settings;
-    if (settings.value(QString::fromUtf8("LegalNotice/Accepted"), false).toBool()) // Already accepted once
+    Preferences* const pref = Preferences::instance();
+    if (pref->getAcceptedLegal()) // Already accepted once
       return true;
 #ifdef DISABLE_GUI
     std::cout << std::endl << "*** " << qPrintable(tr("Legal Notice")) << " ***" << std::endl;
@@ -116,7 +116,7 @@ public:
     char ret = getchar(); // Read pressed key
     if (ret == 'y' || ret == 'Y') {
       // Save the answer
-      settings.setValue(QString::fromUtf8("LegalNotice/Accepted"), true);
+      pref->setAcceptedLegal(true);
       return true;
     }
     return false;
@@ -131,7 +131,7 @@ public:
     msgBox.exec();
     if (msgBox.clickedButton() == agree_button) {
       // Save the answer
-      settings.setValue(QString::fromUtf8("LegalNotice/Accepted"), true);
+      pref->setAcceptedLegal(true);
       return true;
     }
     return false;
@@ -156,7 +156,7 @@ void sigtermHandler(int) {
 void sigsegvHandler(int) {
   signal(SIGABRT, 0);
   signal(SIGSEGV, 0);
-#ifndef Q_OS_WIN
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGSEGV, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   std::cerr << "qBittorrent version: " << VERSION << std::endl;
@@ -173,7 +173,7 @@ void sigsegvHandler(int) {
 void sigabrtHandler(int) {
   signal(SIGABRT, 0);
   signal(SIGSEGV, 0);
-#ifndef Q_OS_WIN
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGABRT, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   std::cerr << "qBittorrent version: " << VERSION << std::endl;
@@ -232,9 +232,14 @@ int main(int argc, char *argv[]) {
     QStringList torrentCmdLine = app.arguments();
     //Pass program parameters if any
     QString message;
+    QFileInfo torrentPath;
     for (int a = 1; a < torrentCmdLine.size(); ++a) {
       if (torrentCmdLine[a].startsWith("--")) continue;
-      message += torrentCmdLine[a];
+      torrentPath.setFile(torrentCmdLine[a]);
+      if (torrentPath.exists())
+        message += torrentPath.absoluteFilePath();
+      else
+        message += torrentCmdLine[a];
       if (a < argc-1)
         message += "|";
     }
@@ -249,7 +254,7 @@ int main(int argc, char *argv[]) {
   }
 
   srand(time(0));
-  Preferences pref;
+  Preferences* const pref = Preferences::instance();
 #ifndef DISABLE_GUI
   bool no_splash = false;
 #else
@@ -260,12 +265,12 @@ int main(int argc, char *argv[]) {
 #endif
 
   // Load translation
-  QString locale = pref.getLocale();
+  QString locale = pref->getLocale();
   QTranslator qtTranslator;
   QTranslator translator;
   if (locale.isEmpty()) {
     locale = QLocale::system().name();
-    pref.setLocale(locale);
+    pref->setLocale(locale);
   }
   if (qtTranslator.load(
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -317,7 +322,7 @@ int main(int argc, char *argv[]) {
             bool ok = false;
             int new_port = parts.last().toInt(&ok);
             if (ok && new_port > 0 && new_port <= 65535) {
-              Preferences().setWebUiPort(new_port);
+              Preferences::instance()->setWebUiPort(new_port);
             }
           }
         }
@@ -328,7 +333,7 @@ int main(int argc, char *argv[]) {
   }
 
 #ifndef DISABLE_GUI
-  if (pref.isSlashScreenDisabled()) {
+  if (pref->isSlashScreenDisabled()) {
     no_splash = true;
   }
   QSplashScreen *splash = 0;

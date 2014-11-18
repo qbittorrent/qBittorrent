@@ -1,0 +1,123 @@
+<fieldset>
+  <legend><b>_(Transfer)</b></legend>
+  <table>
+  <tr><td style="text-align:right; padding: 4px;">_(Uploaded:)</td><td style="padding-right: 20px;" id="total_uploaded">0 Kb</td><td style="text-align:right; padding: 4px;">_(UP limit:)</td><td style="padding-right: 20px;" id="up_limit">xx</td><td style="text-align:right; padding: 4px;">_(Share ratio:)</td><td id="share_ratio">xx</td></tr>
+  <tr><td style="text-align:right; padding: 4px;">_(Downloaded:)</td><td style="padding-right: 20px;" id="total_downloaded">0 Kb</td><td style="text-align:right; padding: 4px;">_(DL limit:)</td><td style="padding-right: 20px;" id="dl_limit">xx</td><td style="text-align:right; padding: 4px;">_(Connections:)</td><td id="nb_connections">xx</td></tr>
+  <tr><td style="text-align:right; padding: 4px;">_(Wasted:)</td><td style="padding-right: 20px;" id="total_wasted">0 Kb</td><td style="text-align:right; padding: 4px;">_(Time active:)</td><td style="padding-right: 20px;" id="time_elapsed">xx</td><td></td></tr>
+  </table>
+</fieldset>
+
+<fieldset>
+  <legend><b>_(Information)</b></legend>
+    <table>
+    <tr><td style="text-align:right; padding: 4px;">_(Save path:)</td><td id="save_path">xxx</td></tr>
+  <tr><td style="text-align:right; padding: 4px;">_(Created on:)</td><td id="creation_date">xxx</td></tr>
+  <tr><td style="text-align:right; padding: 4px;">_(Pieces size:)</td><td id="piece_size">xxx</td></tr>
+  <tr><td style="text-align:right; padding: 4px;">_(Torrent hash:)</td><td id="torrent_hash">xxx</td></tr>
+<tr><td style="vertical-align: top;  padding: 4px; text-align:right;">
+    <br/>
+  _(Comment:)
+  </td><td>
+<textarea name="comment" id="comment" rows="15" cols="80">
+xxx
+</textarea>
+</td></tr>
+  </table>
+<br/>
+</fieldset>
+
+<!--
+static information: save_path, creation_date, torrent_hash, comment
+
+dynamic information: total_downloaded, total_uploaded, total_wasted, up_limit, dl_limit, time_elapsed, share_ratio, nb_connections
+
+-->
+
+<script type="text/javascript">
+    var waiting=false;
+    
+    var clearData = function() {
+      $('torrent_hash').set('html', '');
+      $('save_path').set('html', '');
+      $('creation_date').set('html', '');
+      $('piece_size').set('html', '');
+      $('comment').set('html', '');
+      $('total_uploaded').set('html', '');
+      $('total_downloaded').set('html', '');
+      $('total_wasted').set('html', '');
+      $('up_limit').set('html', '');
+      $('dl_limit').set('html', '');
+      $('time_elapsed').set('html', '');
+      $('nb_connections').set('html', '');
+      $('share_ratio').set('html', '');
+    }
+    
+    var loadData = function() {
+      if(!$defined($('torrent_hash'))) {
+        // Tab changed
+        return;
+      }
+      var current_hash = myTable.getCurrentTorrentHash();
+      if(current_hash == "") {
+        clearData();
+        loadData.delay(1500);
+        return;
+      }
+      // Display hash
+      $('torrent_hash').set('html', current_hash);
+      var url = 'json/propertiesGeneral/'+current_hash;
+      if (!waiting) {
+        waiting=true;
+        var request = new Request.JSON({
+                url: url,
+                noCache: true,
+                method: 'get',
+                onFailure: function() {
+                        $('error_div').set('html', '_(qBittorrent client is not reachable)');
+                        waiting=false;
+                        loadData.delay(2000);
+                },
+                onSuccess: function(data) {
+                         $('error_div').set('html', '');
+                        if(data){
+                          var temp;
+                          // Update Torrent data
+                          $('save_path').set('html', data.save_path);
+                          temp = data.creation_date;
+                          var timestamp = "_(Unknown)";
+                          if (temp != -1)
+                              timestamp = new Date(data.creation_date*1000).toISOString();
+                          $('creation_date').set('html', timestamp);
+                          $('piece_size').set('html', friendlyUnit(data.piece_size));
+                          $('comment').set('html', data.comment);
+                          $('total_uploaded').set('html', friendlyUnit(data.total_uploaded) +
+                                                          " (" + friendlyUnit(data.total_uploaded_session) +
+                                                          " (" + "_(this session)" + ")");
+                          $('total_downloaded').set('html', friendlyUnit(data.total_downloaded) +
+                                                          " (" + friendlyUnit(data.total_downloaded_session) +
+                                                          " (" + "_(this session)" + ")");
+                          $('total_wasted').set('html', data.total_wasted);
+                          temp = data.up_limit;
+                          $('up_limit').set('html', temp == -1 ? "∞" : temp);
+                          temp = data.dl_limit;
+                          $('dl_limit').set('html', temp == -1 ? "∞" : temp);
+                          temp = friendlyDuration(status.active_time);
+                          if (status.is_seed)
+                            temp += " (" + "_(Seeded for %1)".replace("%1", status.seeding_time) + ")";
+                          $('time_elapsed').set('html', temp);
+                          temp = data.nb_connections + " (" + "_(%1 max)".replace("%1", status.nb_connections_limit) + ")";
+                          $('nb_connections').set('html', temp);
+                          $('share_ratio').set('html', data.share_ratio.toFixed(2));
+                        } else {
+                          clearData();
+                        }
+                        waiting=false;
+                        loadData.delay(1500);
+                }
+        }).send();
+      }
+            
+    }
+    // Initial loading
+    loadData();
+</script>

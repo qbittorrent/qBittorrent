@@ -111,10 +111,10 @@ HEADERS += misc.h \
            smtp.h \
            dnsupdater.h
 
-
 SOURCES += main.cpp \
            downloadthread.cpp \
            scannedfoldersmodel.cpp \
+           torrentpersistentdata.cpp \
            misc.cpp \
            fs_utils.cpp \
            smtp.cpp \
@@ -153,11 +153,15 @@ nox {
               addnewtorrentdialog.h \
               autoexpandabledialog.h \
               statsdialog.h \
-              messageboxraised.h
+              messageboxraised.h \
+              torrentfilterenum.h
 
   SOURCES += mainwindow.cpp \
              ico.cpp \
              transferlistwidget.cpp \
+             transferlistsortmodel.cpp \
+             transferlistdelegate.cpp \
+             transferlistfilterswidget.cpp \
              torrentcontentmodel.cpp \
              torrentcontentmodelitem.cpp \
              torrentcontentmodelfolder.cpp \
@@ -173,7 +177,9 @@ nox {
              addnewtorrentdialog.cpp \
              autoexpandabledialog.cpp \
              statsdialog.cpp \
-             messageboxraised.cpp
+             messageboxraised.cpp \
+             statusbar.cpp \
+             trackerlogin.cpp
 
   win32 {
     HEADERS += programupdater.h

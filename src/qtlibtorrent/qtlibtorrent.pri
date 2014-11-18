@@ -13,11 +13,13 @@ SOURCES += $$PWD/qbtsession.cpp \
            $$PWD/qtorrenthandle.cpp \
            $$PWD/torrentspeedmonitor.cpp \
            $$PWD/alertdispatcher.cpp \
-           $$PWD/torrentstatistics.cpp
+           $$PWD/torrentstatistics.cpp \
+           $$PWD/filterparserthread.cpp
 
 !contains(DEFINES, DISABLE_GUI) {
   HEADERS += $$PWD/torrentmodel.h \
              $$PWD/shutdownconfirm.h
 
-  SOURCES += $$PWD/torrentmodel.cpp
+  SOURCES += $$PWD/torrentmodel.cpp \
+             $$PWD/shutdownconfirm.cpp
 }

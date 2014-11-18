@@ -34,6 +34,7 @@
 #include <QDialog>
 #include <QWeakPointer>
 #include <QShortcut>
+#include <QRegExpValidator>
 #include "rssdownloadrule.h"
 
 QT_BEGIN_NAMESPACE
@@ -94,6 +95,7 @@ private:
   QListWidgetItem* m_editedRule;
   RssDownloadRuleList *m_ruleList;
   RssDownloadRuleList *m_editableRuleList;
+  QRegExpValidator *m_episodeValidator;
   QShortcut *editHotkey;
   QShortcut *deleteHotkey;
 };

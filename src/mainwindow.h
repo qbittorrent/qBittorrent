@@ -152,6 +152,12 @@ protected:
 
 private:
   QIcon getSystrayIcon() const;
+#ifdef Q_OS_WIN
+  bool addPythonPathToEnv();
+  void installPython();
+  void pythonDownloadSuccess(QString url, QString file_path);
+  void pythonDownloadFailure(QString url, QString error);
+#endif
 
 private:
   QFileSystemWatcher *executable_watcher;
@@ -177,7 +183,9 @@ private:
   bool displaySpeedInTitle;
   bool force_exit;
   bool ui_locked;
+  bool unlockDlgShowing;
   LineEdit *search_filter;
+  QAction *searchFilterAct;
   // Keyboard shortcuts
   QShortcut *switchSearchShortcut;
   QShortcut *switchSearchShortcut2;
@@ -199,6 +207,9 @@ private:
   QTimer *preventTimer;
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
   QTimer programUpdateTimer;
+#endif
+#ifdef Q_OS_WIN
+  bool has_python;
 #endif
 
 private slots:
