@@ -34,18 +34,19 @@
 #include <QCoreApplication>
 #include <QString>
 
-class btjson {
-  Q_DECLARE_TR_FUNCTIONS(misc)
+class btjson
+{
+    Q_DECLARE_TR_FUNCTIONS(misc)
 
 private:
-  btjson() {}
+    btjson() {}
 
 public:
-  static QByteArray getTorrents();
-  static QByteArray getTrackersForTorrent(const QString& hash);
-  static QByteArray getPropertiesForTorrent(const QString& hash);
-  static QByteArray getFilesForTorrent(const QString& hash);
-  static QByteArray getTransferInfo();
+    static QByteArray getTorrents();
+    static QByteArray getTrackersForTorrent(const QString& hash);
+    static QByteArray getPropertiesForTorrent(const QString& hash);
+    static QByteArray getFilesForTorrent(const QString& hash);
+    static QByteArray getTransferInfo();
 }; // class btjson
 
 #endif // BTJSON_H
