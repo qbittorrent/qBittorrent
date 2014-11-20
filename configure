@@ -592,6 +592,8 @@ QBT_REMOVE_DEFINES
 QBT_ADD_DEFINES
 QBT_REMOVE_CONFIG
 QBT_ADD_CONFIG
+QBT_CONF_EXTRA_CFLAGS
+QBT_CONF_INCLUDES
 EXPAND_MANDIR
 EXPAND_DATADIR
 EXPAND_BINDIR
@@ -2787,8 +2789,8 @@ ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
 ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
-# expand $ac_aux_dir to an absolute path
-am_aux_dir=`cd $ac_aux_dir && pwd`
+# Expand $ac_aux_dir to an absolute path.
+am_aux_dir=`cd "$ac_aux_dir" && pwd`
 
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
@@ -4077,6 +4079,7 @@ END
     as_fn_error $? "Your 'rm' program is bad, sorry." "$LINENO" 5
   fi
 fi
+
 
 
 
@@ -5375,7 +5378,37 @@ _ACEOF
   test "$exec_prefix_NONE" && exec_prefix=NONE
 
 
+# Original extract() function contributed by pmzqla
+# $*: Strings to parse
+# Set $DEFINES, $INCLUDES, $OTHER
+extract() {
+  if [ -z "$*" ]; then
+    echo "Input string required"
+    return 1
+  fi
+
+  # Convert " -" to "\n" if not between quotes
+  string=$(echo " $*" | sed -e 's: -:\n:g' -e 's:"\(.*\)\n\(.*\)":\"\1 -\2":g' -e "s:'\(.*\)\n\(.*\)':\'\1 -\2':g")
+  SAVEIFS=$IFS
+  IFS=$(printf "\n\b")
+  for i in $string; do
+    case "$(echo "$i" | cut -c1)" in
+      '') ;;
+      D) QBT_CONF_DEFINES="$(echo $i | cut -c2-) $QBT_CONF_DEFINES";;
+      I) QBT_CONF_INCLUDES="$(echo $i | cut -c2-) $QBT_CONF_INCLUDES";;
+      *) QBT_CONF_EXTRA_CFLAGS="-$i $QBT_CONF_EXTRA_CFLAGS";;
+    esac
+  done
+  IFS=$SAVEIFS
+}
+
+extract $CPPFLAGS
+QBT_ADD_DEFINES="$QBT_ADD_DEFINES $QBT_CONF_DEFINES"
+QBT_CONF_EXTRA_CFLAGS="$QBT_CONF_EXTRA_CFLAGS $CXXFLAGS"
+
 # Substitute the values of these vars in conf.pri.in
+
+
 
 
 
