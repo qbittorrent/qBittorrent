@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2012, Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,31 +24,40 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#ifndef BTJSON_H
-#define BTJSON_H
+#ifndef QTORRENTFILTER_H
+#define QTORRENTFILTER_H
 
-#include <QCoreApplication>
-#include <QString>
+#include "qtorrenthandle.h"
 
-class QTorrentHandle;
-
-class btjson
+class QTorrentFilter
 {
-    Q_DECLARE_TR_FUNCTIONS(misc)
+public:
+    enum
+    {
+        All,
+        Downloading,
+        Completed,
+        Paused,
+        Active,
+        Inactive
+    };
+
+    // label: pass empty string for "no label" or null string (QString()) for "any label"
+    QTorrentFilter(QString filter, QString label = QString());
+    bool apply(const QTorrentHandle& h) const;
 
 private:
-    btjson() {}
+    int type_;
+    QString label_;
 
-public:
-    static QByteArray getTorrents(QString filter = "all", QString label = QString());
-    static QByteArray getTrackersForTorrent(const QString& hash);
-    static QByteArray getPropertiesForTorrent(const QString& hash);
-    static QByteArray getFilesForTorrent(const QString& hash);
-    static QByteArray getTransferInfo();
-}; // class btjson
+    bool isTorrentDownloading(const QTorrentHandle &h) const;
+    bool isTorrentCompleted(const QTorrentHandle &h) const;
+    bool isTorrentPaused(const QTorrentHandle &h) const;
+    bool isTorrentActive(const QTorrentHandle &h) const;
+    bool isTorrentInactive(const QTorrentHandle &h) const;
+    bool torrentHasLabel(const QTorrentHandle &h) const;
+};
 
-#endif // BTJSON_H
+#endif // QTORRENTFILTER_H

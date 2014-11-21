@@ -188,7 +188,8 @@ void RequestHandler::action_public_images()
 
 void RequestHandler::action_json_torrents()
 {
-    print(btjson::getTorrents(), CONTENT_TYPE_JS);
+    const QStringMap& gets = request().gets;
+    print(btjson::getTorrents(gets["filter"], gets["label"]), CONTENT_TYPE_JS);
 }
 
 void RequestHandler::action_json_preferences()

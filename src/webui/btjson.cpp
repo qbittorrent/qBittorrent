@@ -32,6 +32,7 @@
 #include "fs_utils.h"
 #include "qbtsession.h"
 #include "torrentpersistentdata.h"
+#include "qtorrentfilter.h"
 #include "jsonutils.h"
 
 #include <QDebug>
@@ -213,7 +214,7 @@ static QVariantMap toMap(const QTorrentHandle& h)
  *   - "eta": Torrent ETA
  *   - "state": Torrent state
  */
-QByteArray btjson::getTorrents()
+QByteArray btjson::getTorrents(QString filter, QString label)
 {
     QVariantList torrent_list;
 
@@ -221,8 +222,12 @@ QByteArray btjson::getTorrents()
     std::vector<torrent_handle>::const_iterator it = torrents.begin();
     std::vector<torrent_handle>::const_iterator end = torrents.end();
 
+    QTorrentFilter torrentFilter(filter, label);
     for( ; it != end; ++it) {
-        torrent_list.append(toMap(QTorrentHandle(*it)));
+        QTorrentHandle torrent = QTorrentHandle(*it);
+
+        if (torrentFilter.apply(torrent))
+            torrent_list.append(toMap(torrent));
     }
 
     return json::toJson(torrent_list);

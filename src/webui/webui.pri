@@ -11,7 +11,8 @@ HEADERS += $$PWD/httpserver.h \
            $$PWD/extra_translations.h \
            $$PWD/webapplication.h \
            $$PWD/abstractrequesthandler.h \
-           $$PWD/requesthandler.h
+           $$PWD/requesthandler.h \
+           $$PWD/qtorrentfilter.h
 
 SOURCES += $$PWD/httpserver.cpp \
            $$PWD/httpconnection.cpp \
@@ -21,7 +22,8 @@ SOURCES += $$PWD/httpserver.cpp \
            $$PWD/prefjson.cpp \
            $$PWD/webapplication.cpp \
            $$PWD/abstractrequesthandler.cpp \
-           $$PWD/requesthandler.cpp
+           $$PWD/requesthandler.cpp \
+           $$PWD/qtorrentfilter.cpp
 
 # QJson JSON parser/serializer for using with Qt4
 lessThan(QT_MAJOR_VERSION, 5) {
