@@ -154,42 +154,8 @@ static QVariantMap toMap(const QTorrentHandle& h)
     ret[KEY_TORRENT_NUM_INCOMPLETE] = status.num_incomplete;
     const qreal ratio = QBtSession::instance()->getRealRatio(status);
     ret[KEY_TORRENT_RATIO] = (ratio > 100.) ? -1 : ratio;
-    qulonglong eta = 0;
-    QString state;
-    if (h.is_paused(status)) {
-        if (h.has_error(status))
-            state = "error";
-        else
-            state = h.is_seed(status) ? "pausedUP" : "pausedDL";
-    }
-    else {
-        if (QBtSession::instance()->isQueueingEnabled() && h.is_queued(status)) {
-            state = h.is_seed(status) ? "queuedUP" : "queuedDL";
-        }
-        else {
-            switch (status.state) {
-            case torrent_status::finished:
-            case torrent_status::seeding:
-                state = status.upload_payload_rate > 0 ? "uploading" : "stalledUP";
-                break;
-            case torrent_status::allocating:
-            case torrent_status::checking_files:
-            case torrent_status::queued_for_checking:
-            case torrent_status::checking_resume_data:
-                state = h.is_seed(status) ? "checkingUP" : "checkingDL";
-                break;
-            case torrent_status::downloading:
-            case torrent_status::downloading_metadata:
-                state = status.download_payload_rate > 0 ? "downloading" : "stalledDL";
-                eta = QBtSession::instance()->getETA(h.hash(), status);
-                break;
-            default:
-                qWarning("Unrecognized torrent status, should not happen!!! status was %d", h.state());
-            }
-        }
-    }
-    ret[KEY_TORRENT_ETA] = eta ? eta : MAX_ETA;
-    ret[KEY_TORRENT_STATE] =  state;
+    ret[KEY_TORRENT_STATE] = h.torrentState().toString();
+    ret[KEY_TORRENT_ETA] = h.eta();
 
     return ret;
 }
