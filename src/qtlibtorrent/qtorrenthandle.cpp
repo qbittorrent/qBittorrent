@@ -40,6 +40,7 @@
 #include "preferences.h"
 #include "qtorrenthandle.h"
 #include "torrentpersistentdata.h"
+#include "qbtsession.h"
 #include <libtorrent/version.hpp>
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/torrent_info.hpp>
@@ -403,7 +404,52 @@ bool QTorrentHandle::has_metadata() const {
 }
 
 void QTorrentHandle::file_progress(std::vector<size_type>& fp) const {
-  torrent_handle::file_progress(fp, torrent_handle::piece_granularity);
+    torrent_handle::file_progress(fp, torrent_handle::piece_granularity);
+}
+
+QTorrentState QTorrentHandle::torrentState() const {
+    QTorrentState state = QTorrentState::Unknown;
+    libtorrent::torrent_status s = status(torrent_handle::query_accurate_download_counters);
+
+    if (is_paused(s)) {
+        if (has_error(s))
+            state = QTorrentState::Error;
+        else
+            state = is_seed(s) ? QTorrentState::PausedUploading : QTorrentState::PausedDownloading;
+    }
+    else {
+        if (QBtSession::instance()->isQueueingEnabled() && is_queued(s)) {
+            state = is_seed(s) ? QTorrentState::QueuedUploading : QTorrentState::QueuedDownloading;
+        }
+        else {
+            switch (s.state) {
+            case torrent_status::finished:
+            case torrent_status::seeding:
+                state = s.upload_payload_rate > 0 ? QTorrentState::Uploading : QTorrentState::StalledUploading;
+                break;
+            case torrent_status::allocating:
+            case torrent_status::checking_files:
+            case torrent_status::queued_for_checking:
+            case torrent_status::checking_resume_data:
+                state = is_seed(s) ? QTorrentState::CheckingUploading : QTorrentState::CheckingDownloading;
+                break;
+            case torrent_status::downloading:
+            case torrent_status::downloading_metadata:
+                state = s.download_payload_rate > 0 ? QTorrentState::Downloading : QTorrentState::StalledDownloading;
+                break;
+            default:
+                qWarning("Unrecognized torrent status, should not happen!!! status was %d", this->state());
+            }
+        }
+    }
+
+    return state;
+}
+
+qulonglong QTorrentHandle::eta() const
+{
+    libtorrent::torrent_status s = status(torrent_handle::query_accurate_download_counters);
+    return QBtSession::instance()->getETA(hash(), s);
 }
 
 //
@@ -680,4 +726,45 @@ float QTorrentHandle::progress(const libtorrent::torrent_status &status) {
 QString QTorrentHandle::filepath_at(const libtorrent::torrent_info &info, unsigned int index) {
   return fsutils::fromNativePath(misc::toQStringU(info.files().file_path(index)));
 
+}
+
+
+QTorrentState::QTorrentState(int value)
+    : m_value(value)
+{
+}
+
+QString QTorrentState::toString() const
+{
+    switch (m_value) {
+    case Error:
+        return "error";
+    case Uploading:
+        return "uploading";
+    case PausedUploading:
+        return "pausedUP";
+    case QueuedUploading:
+        return "queuedUP";
+    case StalledUploading:
+        return "stalledUP";
+    case CheckingUploading:
+        return "checkingUP";
+    case Downloading:
+        return "downloading";
+    case PausedDownloading:
+        return "pausedDL";
+    case QueuedDownloading:
+        return "queuedDL";
+    case StalledDownloading:
+        return "stalledDL";
+    case CheckingDownloading:
+        return "checkingDL";
+    default:
+        return "unknown";
+    }
+}
+
+QTorrentState::operator int() const
+{
+    return m_value;
 }
