@@ -108,6 +108,7 @@ QMap<QString, QMap<QString, RequestHandler::Action> > RequestHandler::initialize
     ADD_ACTION(command, recheck);
     ADD_ACTION(version, api);
     ADD_ACTION(version, api_min);
+    ADD_ACTION(version, qbittorrent);
 
     return actions;
 }
@@ -223,6 +224,11 @@ void RequestHandler::action_version_api()
 void RequestHandler::action_version_api_min()
 {
     print(QString::number(API_VERSION_MIN), CONTENT_TYPE_TXT);
+}
+
+void RequestHandler::action_version_qbittorrent()
+{
+    print(QString(VERSION), CONTENT_TYPE_TXT);
 }
 
 void RequestHandler::action_command_shutdown()

@@ -83,6 +83,7 @@ private:
     void action_command_recheck();
     void action_version_api();
     void action_version_api_min();
+    void action_version_qbittorrent();
 
     typedef void (RequestHandler::*Action)();
 
