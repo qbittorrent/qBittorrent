@@ -51,6 +51,9 @@
 
 using namespace libtorrent;
 
+static const int API_VERSION = 2;
+static const int API_VERSION_MIN = 2;
+
 const QString WWW_FOLDER = ":/www/public/";
 const QString PRIVATE_FOLDER = ":/www/private/";
 const QString DEFAULT_SCOPE = "public";
@@ -58,6 +61,7 @@ const QString SCOPE_IMAGES = "images";
 const QString SCOPE_THEME = "theme";
 const QString DEFAULT_ACTION = "index";
 const QString WEBUI_ACTION = "webui";
+const QString VERSION_INFO = "version";
 
 #define ADD_ACTION(scope, action) actions[#scope][#action] = &RequestHandler::action_##scope##_##action
 
@@ -102,6 +106,8 @@ QMap<QString, QMap<QString, RequestHandler::Action> > RequestHandler::initialize
     ADD_ACTION(command, topPrio);
     ADD_ACTION(command, bottomPrio);
     ADD_ACTION(command, recheck);
+    ADD_ACTION(version, api);
+    ADD_ACTION(version, api_min);
 
     return actions;
 }
@@ -207,6 +213,16 @@ void RequestHandler::action_json_propertiesTrackers()
 void RequestHandler::action_json_propertiesFiles()
 {
     print(btjson::getFilesForTorrent(args_.front()), CONTENT_TYPE_JS);
+}
+
+void RequestHandler::action_version_api()
+{
+    print(QString::number(API_VERSION), CONTENT_TYPE_TXT);
+}
+
+void RequestHandler::action_version_api_min()
+{
+    print(QString::number(API_VERSION_MIN), CONTENT_TYPE_TXT);
 }
 
 void RequestHandler::action_command_shutdown()
@@ -489,7 +505,7 @@ void RequestHandler::action_command_recheck()
 
 bool RequestHandler::isPublicScope()
 {
-    return (scope_ == DEFAULT_SCOPE);
+    return (scope_ == DEFAULT_SCOPE || scope_ == VERSION_INFO);
 }
 
 void RequestHandler::processRequest()
