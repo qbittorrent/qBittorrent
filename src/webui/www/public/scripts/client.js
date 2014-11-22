@@ -134,7 +134,8 @@ window.addEvent('load', function () {
 
     var ajaxfn = function () {
         var queueing_enabled = false;
-        var url = 'json/torrents';
+        var url = new URI('json/torrents');
+        url.setData({'filter': filter});
         if (!waiting) {
             waiting = true;
             var request = new Request.JSON({
@@ -272,9 +273,10 @@ window.addEvent('load', function () {
         $("active_filter").removeClass("selectedFilter");
         $("inactive_filter").removeClass("selectedFilter");
         $(f + "_filter").addClass("selectedFilter");
-        myTable.setFilter(f);
-        ajaxfn();
+        filter = f;
         localStorage.setItem('selected_filter', f);
+        // Reload torrents
+        ajaxfn();
     }
 
 });

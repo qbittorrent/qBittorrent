@@ -41,10 +41,6 @@ var dynamicTable = new Class({
             this.cur = new Array();
             this.priority_hidden = false;
             this.progressIndex = progressIndex;
-            this.filter = localStorage.getItem('selected_filter');
-            if (!$defined(this.filter)) {
-                this.filter = 'all';
-            }
             this.context_menu = context_menu;
             this.table.sortedIndex = 1; // Default is NAME
             this.table.reverseSort = false;
@@ -122,10 +118,6 @@ var dynamicTable = new Class({
             this.priority_hidden = true;
         },
 
-        setFilter : function (f) {
-            this.filter = f;
-        },
-
         showPriority : function () {
             if (!this.priority_hidden)
                 return;
@@ -136,49 +128,6 @@ var dynamicTable = new Class({
                 tds[2].removeClass('invisible');
             }.bind(this));
             this.priority_hidden = false;
-        },
-
-        applyFilterOnRow : function (tr, status) {
-            switch (this.filter) {
-            case 'all':
-                tr.removeClass("invisible");
-                break;
-            case 'downloading':
-                if (status == "downloading" || status == "stalledDL" || status == "checkingDL" || status == "pausedDL" || status == "queuedDL") {
-                    tr.removeClass("invisible");
-                } else {
-                    tr.addClass("invisible");
-                }
-                break;
-            case 'completed':
-                if (status == "uploading" || status == "stalledUP" || status == "checkingUP" || status == "pausedUP" || status == "queuedUP") {
-                    tr.removeClass("invisible");
-                } else {
-                    tr.addClass("invisible");
-                }
-                break;
-            case 'paused':
-                if (status == "pausedDL" || status == "pausedUP") {
-                    tr.removeClass("invisible");
-                } else {
-                    tr.addClass("invisible");
-                }
-                break;
-            case 'active':
-                if (status == "downloading" || status == "uploading") {
-                    tr.removeClass("invisible");
-                } else {
-                    tr.addClass("invisible");
-                }
-                break;
-            case 'inactive':
-                if (status != "downloading" && status != "uploading") {
-                    tr.removeClass("invisible");
-                } else {
-                    tr.addClass("invisible");
-                }
-            }
-            return !tr.hasClass('invisible');
         },
 
         insertRow : function (id, row, data, status) {
@@ -302,8 +251,7 @@ var dynamicTable = new Class({
                 }
                 return false;
             }.bind(this));
-            // Apply filter
-            this.applyFilterOnRow(tr, status);
+
             // Insert
             var trs = this.table.getChildren('tr');
             var i = 0;
@@ -336,34 +284,22 @@ var dynamicTable = new Class({
                 return false;
             }
             var tr = this.rows.get(id);
-            // Apply filter
-            if (this.applyFilterOnRow(tr, status)) {
-                var tds = tr.getElements('td');
-                for (var i = 0; i < row.length; i++) {
-                    if (i == 1)
-                        continue; // Do not refresh name
-                    if (i == this.progressIndex) {
-                        $('pb_' + id).setValue(row[i]);
+            var tds = tr.getElements('td');
+            for (var i = 0; i < row.length; i++) {
+                if (i == 1)
+                    continue; // Do not refresh name
+                if (i == this.progressIndex) {
+                    $('pb_' + id).setValue(row[i]);
+                } else {
+                    if (i == 0) {
+                        tds[i].getChildren('img')[0].set('src', row[i]);
                     } else {
-                        if (i == 0) {
-                            tds[i].getChildren('img')[0].set('src', row[i]);
-                        } else {
-                            tds[i].set('html', row[i]);
-                        }
+                        tds[i].set('html', row[i]);
                     }
-                    if (typeof data[i] != 'undefined')
-                        tds[i].set('data-raw', data[i])
-                };
-            } else {
-                // Row was hidden, check if it was selected
-                // and unselect it if it was
-                if (this.cur.contains(id)) {
-                    // Remove from selection
-                    this.cur.erase(id);
-                    // Remove selected style
-                    tr.removeClass('selected');
                 }
-            }
+                if (typeof data[i] != 'undefined')
+                    tds[i].set('data-raw', data[i])
+            };
             return true;
         },
 
