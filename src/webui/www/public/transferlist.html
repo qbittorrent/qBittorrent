@@ -20,48 +20,50 @@
 
 <script type="text/javascript">
 
-	//create a context menu
-	var context_menu = new ContextMenu({
-                targets: '.menu-target',
-		menu: 'contextmenu',
-		actions: {
-			Delete: function(element,ref) {
-				deleteFN();
-			},
-                        DeleteHD: function(element,ref) {
-				deleteHDFN();
-			},
-                        Start: function(element, ref) {
-                                startFN();
-                        },
-                        Pause: function(element, ref) {
-                                pauseFN();
-                        },
-			prioTop: function(element, ref) {
-				setPriorityFN('topPrio');
-			},
-			prioUp: function(element, ref) {
-				setPriorityFN('increasePrio');
-			},
-			prioDown: function(element, ref) {
-				setPriorityFN('decreasePrio');
-			},
-			prioBottom: function(element, ref) {
-				setPriorityFN('bottomPrio');
-			},
-                        ForceRecheck: function(element, ref) {
-                                recheckFN();
-                        },
-                        UploadLimit: function(element, red) {
-                                uploadLimitFN();     
-                        },
-                        DownloadLimit: function(element, red) {
-                                downloadLimitFN();
-                        }
-		},
-		offsets: { x:-15, y:2 }
-	});
-        
-        myTable.setup('myTable', 4, context_menu);
-	
+    //create a context menu
+    var context_menu = new ContextMenu({
+        targets : '.menu-target',
+        menu : 'contextmenu',
+        actions : {
+            Delete : function (element, ref) {
+                deleteFN();
+            },
+            DeleteHD : function (element, ref) {
+                deleteHDFN();
+            },
+            Start : function (element, ref) {
+                startFN();
+            },
+            Pause : function (element, ref) {
+                pauseFN();
+            },
+            prioTop : function (element, ref) {
+                setPriorityFN('topPrio');
+            },
+            prioUp : function (element, ref) {
+                setPriorityFN('increasePrio');
+            },
+            prioDown : function (element, ref) {
+                setPriorityFN('decreasePrio');
+            },
+            prioBottom : function (element, ref) {
+                setPriorityFN('bottomPrio');
+            },
+            ForceRecheck : function (element, ref) {
+                recheckFN();
+            },
+            UploadLimit : function (element, red) {
+                uploadLimitFN();
+            },
+            DownloadLimit : function (element, red) {
+                downloadLimitFN();
+            }
+        },
+        offsets : {
+            x : -15,
+            y : 2
+        }
+    });
+
+    myTable.setup('myTable', 4, context_menu);
 </script>
