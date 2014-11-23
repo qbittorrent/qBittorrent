@@ -136,6 +136,8 @@ hr {
 #Filters ul img {
 	padding: 2px 4px;
 	vertical-align: middle;
+	width: 16px;
+	height: 16px;
 }
 
 .selectedFilter {

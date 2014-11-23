@@ -112,6 +112,11 @@ window.addEvent('load', function(){
                                                                    .replace("%2", friendlyUnit(info.dl_info_data, false)));
                         $("UpInfos").set('html', "_(U: %1 - T: %2)".replace("%1", friendlyUnit(info.up_info_speed, true))
                                                                    .replace("%2", friendlyUnit(info.up_info_data, false)));
+                      if(info.show_speed_in_title) {
+                        document.title = "_(D:%1 U:%2)".replace("%1", friendlyUnit(info.dl_info_speed, true)).replace("%2", friendlyUnit(info.up_info_speed, true));
+                      } else {
+                        document.title = "_(qBittorrent web User Interface)";
+                      }
                         waitingTrInfo=false;
                         loadTransferInfo.delay(3000);
                       }

@@ -363,5 +363,7 @@
   <file>Icons/skin/toolbox-divider2.gif</file>
   <file>Icons/skin/uploading.png</file>
   <file>Icons/oxygen/system-log-out.png</file>
+  <file>Icons/oxygen/go-bottom.png</file>
+  <file>Icons/oxygen/go-top.png</file>
 </qresource>
 </RCC>
