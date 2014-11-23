@@ -16,10 +16,7 @@ function friendlyUnit(value, isSpeed) {
   while (value >= 1024. && i++ < 6)
     value /= 1024.;
   var ret;
-  if (i == 0)
-    ret = value.toFixed(2) + " " + units[0];
-  else
-    ret = value.toFixed(2) + " " + units[i];
+  ret = value.toFixed(1) + " " + units[i];
   if (isSpeed)
     ret += "_(/s)";
   return ret;
