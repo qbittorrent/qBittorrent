@@ -4210,7 +4210,7 @@ fi
 # Detect OS
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether OS is FreeBSD" >&5
 $as_echo_n "checking whether OS is FreeBSD... " >&6; }
-if test "x$host_os" = "x*freebsd*"; then :
+if test "x$host_os" = "x*FreeBSD*"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
       LIBS="-lexecinfo $LIBS"

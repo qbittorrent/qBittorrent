@@ -50,7 +50,7 @@ AC_ARG_ENABLE(qt-dbus,
 
 # Detect OS
 AC_MSG_CHECKING([whether OS is FreeBSD])
-AS_IF([test "x$host_os" = "x*freebsd*"],
+AS_IF([test "x$host_os" = "x*FreeBSD*"],
       [AC_MSG_RESULT([yes])
       LIBS="-lexecinfo $LIBS"],
       [AC_MSG_RESULT([no])])
