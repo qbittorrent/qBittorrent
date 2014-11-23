@@ -1,4 +1,4 @@
-PROJECT_NAME = qBittorrent
+PROJECT_NAME = qbittorrent
 
 # Define version numbers here
 VER_MAJOR = 3
