@@ -4440,16 +4440,22 @@ $as_echo X"$QT_QMAKE" |
 	    s//\1/
 	    q
 	  }
-	  s/.*/./; q'`/qmake
-                                 as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE" >&5
-$as_echo_n "checking for $QT_QMAKE... " >&6; }
+	  s/.*/./; q'`
+fi
+
+fi
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt4 qmake >= 4.8.0" >&5
+$as_echo_n "checking for Qt4 qmake >= 4.8.0... " >&6; }
+as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake" >&5
+$as_echo_n "checking for $QT_QMAKE/qmake... " >&6; }
 if eval \${$as_ac_File+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   test "$cross_compiling" = yes &&
   as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
-if test -r "$QT_QMAKE"; then
+if test -r "$QT_QMAKE/qmake"; then
   eval "$as_ac_File=yes"
 else
   eval "$as_ac_File=no"
@@ -4459,7 +4465,27 @@ eval ac_res=\$$as_ac_File
 	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
 $as_echo "$ac_res" >&6; }
 if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
-
+  QT_QMAKE="$QT_QMAKE/qmake"
+else
+  as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake-qt4" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake-qt4" >&5
+$as_echo_n "checking for $QT_QMAKE/qmake-qt4... " >&6; }
+if eval \${$as_ac_File+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  test "$cross_compiling" = yes &&
+  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
+if test -r "$QT_QMAKE/qmake-qt4"; then
+  eval "$as_ac_File=yes"
+else
+  eval "$as_ac_File=no"
+fi
+fi
+eval ac_res=\$$as_ac_File
+	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+$as_echo "$ac_res" >&6; }
+if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+  QT_QMAKE="$QT_QMAKE/qmake-qt4"
 else
   QT_QMAKE=""
 fi
@@ -4467,10 +4493,6 @@ fi
 
 fi
 
-fi
-
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt4 qmake >= 4.8.0" >&5
-$as_echo_n "checking for Qt4 qmake >= 4.8.0... " >&6; }
 if test "x$QT_QMAKE" != "x"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: $QT_QMAKE" >&5
 $as_echo "$QT_QMAKE" >&6; }
@@ -4513,15 +4535,21 @@ if test "x$QT_QMAKE" = x""; then :
 
 else
   QT_QMAKE=$QT_QMAKE/qmake
-                                 as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE" >&5
-$as_echo_n "checking for $QT_QMAKE... " >&6; }
+fi
+
+fi
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.2.0" >&5
+$as_echo_n "checking for Qt5 qmake >= 5.2.0... " >&6; }
+as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake" >&5
+$as_echo_n "checking for $QT_QMAKE/qmake... " >&6; }
 if eval \${$as_ac_File+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   test "$cross_compiling" = yes &&
   as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
-if test -r "$QT_QMAKE"; then
+if test -r "$QT_QMAKE/qmake"; then
   eval "$as_ac_File=yes"
 else
   eval "$as_ac_File=no"
@@ -4531,7 +4559,27 @@ eval ac_res=\$$as_ac_File
 	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
 $as_echo "$ac_res" >&6; }
 if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
-
+  QT_QMAKE="$QT_QMAKE/qmake"
+else
+  as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake-qt5" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake-qt5" >&5
+$as_echo_n "checking for $QT_QMAKE/qmake-qt5... " >&6; }
+if eval \${$as_ac_File+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  test "$cross_compiling" = yes &&
+  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
+if test -r "$QT_QMAKE/qmake-qt5"; then
+  eval "$as_ac_File=yes"
+else
+  eval "$as_ac_File=no"
+fi
+fi
+eval ac_res=\$$as_ac_File
+	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+$as_echo "$ac_res" >&6; }
+if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+  QT_QMAKE="$QT_QMAKE/qmake-qt5"
 else
   QT_QMAKE=""
 fi
@@ -4539,10 +4587,6 @@ fi
 
 fi
 
-fi
-
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.2.0" >&5
-$as_echo_n "checking for Qt5 qmake >= 5.2.0... " >&6; }
 if test "x$QT_QMAKE" != "x"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: $QT_QMAKE" >&5
 $as_echo "$QT_QMAKE" >&6; }
