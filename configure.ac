@@ -3,6 +3,7 @@ AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AC_PROG_CC
 AC_PROG_CXX
+AC_PROG_SED
 AC_LANG(C++)
 AC_CANONICAL_HOST
 AM_INIT_AUTOMAKE
@@ -182,7 +183,7 @@ extract() {
   fi
 
   # Convert " -" to "\n" if not between quotes
-  string=$(echo " $*" | sed -e 's: -:\n:g' -e 's:"\(.*\)\n\(.*\)":\"\1 -\2":g' -e "s:'\(.*\)\n\(.*\)':\'\1 -\2':g")
+  string=$(echo " $*" | $SED -e 's: -:\n:g' -e 's:"\(.*\)\n\(.*\)":\"\1 -\2":g' -e "s:'\(.*\)\n\(.*\)':\'\1 -\2':g")
   SAVEIFS=$IFS
   IFS=$(printf "\n\b")
   for i in $string; do
