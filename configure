@@ -4568,7 +4568,7 @@ case "x$enable_qt_dbus" in #(
   "xyes") :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
-               if test "x$x$with_qt5" == "xyes"; then :
+               if test "x$with_qt5" == "xyes"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5DBus >= 5.2.0" >&5
 $as_echo_n "checking for Qt5DBus >= 5.2.0... " >&6; }
        if test -n "$PKG_CONFIG" && \
