@@ -36,14 +36,15 @@
     <property name="title">
      <string>&amp;Edit</string>
     </property>
-    <addaction name="separator"/>
     <addaction name="actionStart"/>
     <addaction name="actionPause"/>
     <addaction name="separator"/>
     <addaction name="actionDelete"/>
     <addaction name="separator"/>
-    <addaction name="actionDecreasePriority"/>
+    <addaction name="actionTopPriority"/>
     <addaction name="actionIncreasePriority"/>
+    <addaction name="actionDecreasePriority"/>
+    <addaction name="actionBottomPriority"/>
    </widget>
    <widget class="QMenu" name="menu_Help">
     <property name="title">
@@ -130,8 +131,11 @@
    <addaction name="separator"/>
    <addaction name="actionStart"/>
    <addaction name="actionPause"/>
+   <addaction name="separator"/>
+   <addaction name="actionBottomPriority"/>
    <addaction name="actionDecreasePriority"/>
    <addaction name="actionIncreasePriority"/>
+   <addaction name="actionTopPriority"/>
    <addaction name="separator"/>
    <addaction name="actionOptions"/>
    <addaction name="actionLock_qBittorrent"/>
@@ -222,6 +226,22 @@
   <action name="actionSet_global_upload_limit">
    <property name="text">
     <string>Set global upload limit...</string>
+   </property>
+  </action>
+  <action name="actionBottomPriority">
+   <property name="text">
+    <string>Minimum priority</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionTopPriority">
+   <property name="text">
+    <string>Top priority</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionDecreasePriority">
