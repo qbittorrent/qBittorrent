@@ -44,7 +44,8 @@ private:
     btjson() {}
 
 public:
-    static QByteArray getTorrents(QString filter = "all", QString label = QString());
+    static QByteArray getTorrents(QString filter = "all", QString label = QString(),
+        QString sortedColumn = "name", bool reverse = false);
     static QByteArray getTrackersForTorrent(const QString& hash);
     static QByteArray getPropertiesForTorrent(const QString& hash);
     static QByteArray getFilesForTorrent(const QString& hash);

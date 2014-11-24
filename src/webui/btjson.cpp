@@ -37,6 +37,9 @@
 
 #include <QDebug>
 #include <QVariant>
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+#include <QMetaType>
+#endif
 #if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
 #include <QElapsedTimer>
 #endif
@@ -133,6 +136,58 @@ static const char KEY_TRANSFER_DLDATA[] = "dl_info_data";
 static const char KEY_TRANSFER_UPSPEED[] = "up_info_speed";
 static const char KEY_TRANSFER_UPDATA[] = "up_info_data";
 
+class QTorrentCompare
+{
+public:
+    QTorrentCompare(QString key, bool greaterThan = false)
+        : key_(key)
+        , greaterThan_(greaterThan)
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+        , type_(QVariant::Invalid)
+#endif
+    {
+    }
+
+    bool operator()(QVariant torrent1, QVariant torrent2)
+    {
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+        if (type_ == QVariant::Invalid)
+            type_ = torrent1.toMap().value(key_).type();
+
+        switch (type_) {
+        case QVariant::Int:
+            return greaterThan_ ? torrent1.toMap().value(key_).toInt() > torrent2.toMap().value(key_).toInt()
+                                : torrent1.toMap().value(key_).toInt() < torrent2.toMap().value(key_).toInt();
+        case QVariant::LongLong:
+            return greaterThan_ ? torrent1.toMap().value(key_).toLongLong() > torrent2.toMap().value(key_).toLongLong()
+                                : torrent1.toMap().value(key_).toLongLong() < torrent2.toMap().value(key_).toLongLong();
+        case QVariant::ULongLong:
+            return greaterThan_ ? torrent1.toMap().value(key_).toULongLong() > torrent2.toMap().value(key_).toULongLong()
+                                : torrent1.toMap().value(key_).toULongLong() < torrent2.toMap().value(key_).toULongLong();
+        case QMetaType::Float:
+            return greaterThan_ ? torrent1.toMap().value(key_).toFloat() > torrent2.toMap().value(key_).toFloat()
+                                : torrent1.toMap().value(key_).toFloat() < torrent2.toMap().value(key_).toFloat();
+        case QVariant::Double:
+            return greaterThan_ ? torrent1.toMap().value(key_).toDouble() > torrent2.toMap().value(key_).toDouble()
+                                : torrent1.toMap().value(key_).toDouble() < torrent2.toMap().value(key_).toDouble();
+        default:
+            return greaterThan_ ? torrent1.toMap().value(key_).toString() > torrent2.toMap().value(key_).toString()
+                                : torrent1.toMap().value(key_).toString() < torrent2.toMap().value(key_).toString();
+        }
+#else
+        return greaterThan_ ? torrent1.toMap().value(key_) > torrent2.toMap().value(key_)
+                            : torrent1.toMap().value(key_) < torrent2.toMap().value(key_);
+#endif
+    }
+
+private:
+    QString key_;
+    bool greaterThan_;
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+    QVariant::Type type_;
+#endif
+};
+
 static QVariantMap toMap(const QTorrentHandle& h)
 {
     libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters);
@@ -180,7 +235,7 @@ static QVariantMap toMap(const QTorrentHandle& h)
  *   - "eta": Torrent ETA
  *   - "state": Torrent state
  */
-QByteArray btjson::getTorrents(QString filter, QString label)
+QByteArray btjson::getTorrents(QString filter, QString label, QString sortedColumn, bool reverse)
 {
     QVariantList torrent_list;
 
@@ -196,6 +251,7 @@ QByteArray btjson::getTorrents(QString filter, QString label)
             torrent_list.append(toMap(torrent));
     }
 
+    std::sort(torrent_list.begin(), torrent_list.end(), QTorrentCompare(sortedColumn, reverse));
     return json::toJson(torrent_list);
 }
 

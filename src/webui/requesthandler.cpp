@@ -189,7 +189,10 @@ void RequestHandler::action_public_images()
 void RequestHandler::action_json_torrents()
 {
     const QStringMap& gets = request().gets;
-    print(btjson::getTorrents(gets["filter"], gets["label"]), CONTENT_TYPE_JS);
+
+    print(btjson::getTorrents(
+        gets["filter"], gets["label"], gets["sort"], gets["reverse"] == "true"
+        ), CONTENT_TYPE_JS);
 }
 
 void RequestHandler::action_json_preferences()
