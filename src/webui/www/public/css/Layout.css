@@ -119,7 +119,7 @@ body {
 	font-size: 12px;
 }
 
-#desktopNavbar li {
+#desktopNavbar>ul>li {
 	float: left;
 }
 
@@ -151,7 +151,6 @@ body {
 	border: 1px solid #3f3f3f;
 	background: #fff url(../images/skin/bg-dropdown.gif) repeat-y;
 	position: absolute;
-	width: 164px;
 	left: -999em;
 	z-index: 8000;
 	/* Fix by Chris */
@@ -184,7 +183,7 @@ body {
 #desktopNavbar li ul li a {
 	position: relative;
 	/*padding: 1px 9px 1px 25px;*/
-	width: 134px;
+	min-width: 120px;
 	color: #3f3f3f;
 	font-weight: normal;
 	/* Fix By Chris */
