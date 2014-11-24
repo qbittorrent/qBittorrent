@@ -135,11 +135,13 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   actionStatistics->setIcon(IconProvider::instance()->getIcon("view-statistics"));
   actionBugReport->setIcon(IconProvider::instance()->getIcon("tools-report-bug"));
   actionDecreasePriority->setIcon(IconProvider::instance()->getIcon("go-down"));
+  actionBottomPriority->setIcon(IconProvider::instance()->getIcon("go-bottom"));
   actionDelete->setIcon(IconProvider::instance()->getIcon("list-remove"));
   actionDocumentation->setIcon(IconProvider::instance()->getIcon("help-contents"));
   actionDonate_money->setIcon(IconProvider::instance()->getIcon("wallet-open"));
   actionExit->setIcon(IconProvider::instance()->getIcon("application-exit"));
   actionIncreasePriority->setIcon(IconProvider::instance()->getIcon("go-up"));
+  actionTopPriority->setIcon(IconProvider::instance()->getIcon("go-top"));
   actionLock_qBittorrent->setIcon(IconProvider::instance()->getIcon("object-locked"));
   actionOptions->setIcon(IconProvider::instance()->getIcon("preferences-system"));
   actionPause->setIcon(IconProvider::instance()->getIcon("media-playback-pause"));
@@ -208,18 +210,16 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
 
   vboxLayout->addWidget(tabs);
 
-
-  prioSeparator = toolBar->insertSeparator(actionDecreasePriority);
-  prioSeparatorMenu = menu_Edit->insertSeparator(actionDecreasePriority);
-
   // Transfer list slots
   connect(actionStart, SIGNAL(triggered()), transferList, SLOT(startSelectedTorrents()));
   connect(actionStart_All, SIGNAL(triggered()), QBtSession::instance(), SLOT(resumeAllTorrents()));
   connect(actionPause, SIGNAL(triggered()), transferList, SLOT(pauseSelectedTorrents()));
   connect(actionPause_All, SIGNAL(triggered()), QBtSession::instance(), SLOT(pauseAllTorrents()));
   connect(actionDelete, SIGNAL(triggered()), transferList, SLOT(deleteSelectedTorrents()));
+  connect(actionTopPriority, SIGNAL(triggered()), transferList, SLOT(topPrioSelectedTorrents()));
   connect(actionIncreasePriority, SIGNAL(triggered()), transferList, SLOT(increasePrioSelectedTorrents()));
   connect(actionDecreasePriority, SIGNAL(triggered()), transferList, SLOT(decreasePrioSelectedTorrents()));
+  connect(actionBottomPriority, SIGNAL(triggered()), transferList, SLOT(bottomPrioSelectedTorrents()));
   connect(actionToggleVisibility, SIGNAL(triggered()), this, SLOT(toggleVisibility()));
   connect(actionMinimize, SIGNAL(triggered()), SLOT(minimizeWindow()));
 
@@ -583,8 +583,10 @@ void MainWindow::createKeyboardShortcuts() {
   actionStart_All->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Shift+S")));
   actionPause->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+P")));
   actionPause_All->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Shift+P")));
+  actionBottomPriority->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Shift+-")));
   actionDecreasePriority->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+-")));
   actionIncreasePriority->setShortcut(QKeySequence(QString::fromUtf8("Ctrl++")));
+  actionTopPriority->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Shift++")));
 #ifdef Q_OS_MAC
   actionMinimize->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+M")));
   addAction(actionMinimize);
