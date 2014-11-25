@@ -77,22 +77,13 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
 {
   QIniSettings settings;
   const QString default_dir = settings.value(QString::fromUtf8("TorrentImport/LastContentDir"), QDir::homePath()).toString();
-  // Test for multi-file taken from libtorrent/create_torrent.hpp -> create_torrent::create_torrent
   bool multifile = t->num_files() > 1;
-#if LIBTORRENT_VERSION_NUM >= 1600
-  if (!multifile && has_parent_path(t->files().file_path(*(t->files().begin()))))
-      multifile = true;
-#else
-  if (!multifile && t->file_at(0).path.has_parent_path())
-      multifile = true;
-#endif
+  if (!multifile && (QDir::fromNativeSeparators(misc::toQStringU(t->file_at(0).path)).indexOf('/') != -1))
+    multifile = true;
+
   if (!multifile) {
     // Single file torrent
-#if LIBTORRENT_VERSION_NUM >= 1600
     const QString file_name = fsutils::fileName(misc::toQStringU(t->file_at(0).path));
-#else
-    const QString file_name = misc::toQStringU(t->file_at(0).path.filename());
-#endif
     qDebug("Torrent has only one file: %s", qPrintable(file_name));
     QString extension = fsutils::fileExtension(file_name);
     qDebug("File extension is : %s", qPrintable(extension));

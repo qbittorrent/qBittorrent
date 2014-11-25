@@ -70,6 +70,8 @@ const int UNLEN = 256;
 #endif
 #endif // DISABLE_GUI
 
+#include <libtorrent/magnet_uri.hpp>
+
 using namespace libtorrent;
 
 static struct { const char *source; const char *comment; } units[] = {
@@ -372,6 +374,7 @@ QList<QUrl> misc::magnetUriToTrackers(const QString& magnet_uri)
 }
 
 QString misc::magnetUriToHash(const QString& magnet_uri) {
+#if LIBTORRENT_VERSION_NUM < 1600
   QString hash = "";
   QRegExp regHex("urn:btih:([0-9A-Za-z]+)");
   // Hex
@@ -397,6 +400,15 @@ QString misc::magnetUriToHash(const QString& magnet_uri) {
   }
   qDebug("magnetUriToHash (base32): hash: %s", qPrintable(hash));
   return hash;
+#else
+  add_torrent_params p;
+  error_code ec;
+  parse_magnet_uri(magnet_uri.toUtf8().constData(), p, ec);
+
+  if (ec)
+    return QString::null;
+  return toQString(p.info_hash);
+#endif
 }
 
 // Take a number of seconds and return an user-friendly
