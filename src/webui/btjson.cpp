@@ -235,7 +235,8 @@ static QVariantMap toMap(const QTorrentHandle& h)
  *   - "eta": Torrent ETA
  *   - "state": Torrent state
  */
-QByteArray btjson::getTorrents(QString filter, QString label, QString sortedColumn, bool reverse)
+QByteArray btjson::getTorrents(QString filter, QString label,
+    QString sortedColumn, bool reverse, int limit, int offset)
 {
     QVariantList torrent_list;
 
@@ -252,7 +253,20 @@ QByteArray btjson::getTorrents(QString filter, QString label, QString sortedColu
     }
 
     std::sort(torrent_list.begin(), torrent_list.end(), QTorrentCompare(sortedColumn, reverse));
-    return json::toJson(torrent_list);
+    int size = torrent_list.size();
+    // normalize offset
+    if (offset < 0)
+        offset = size - offset;
+    if ((offset >= size) || (offset < 0))
+        offset = 0;
+    // normalize limit
+    if (limit <= 0)
+        limit = -1; // unlimited
+
+    if ((limit > 0) || (offset > 0))
+        return json::toJson(torrent_list.mid(offset, limit));
+    else
+        return json::toJson(torrent_list);
 }
 
 /**

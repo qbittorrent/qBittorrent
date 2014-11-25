@@ -186,12 +186,20 @@ void RequestHandler::action_public_images()
     printFile(path);
 }
 
+// GET params:
+//   - filter (string): all, downloading, completed, paused, active, inactive
+//   - label (string): torrent label for filtering by it (empty string means "unlabeled"; no "label" param presented means "any label")
+//   - sort (string): name of column for sorting by its value
+//   - reverse (bool): enable reverse sorting
+//   - limit (int): set limit number of torrents returned (if greater than 0, otherwise - unlimited)
+//   - offset (int): set offset (if less than 0 - offset from end)
 void RequestHandler::action_json_torrents()
 {
     const QStringMap& gets = request().gets;
 
     print(btjson::getTorrents(
-        gets["filter"], gets["label"], gets["sort"], gets["reverse"] == "true"
+        gets["filter"], gets["label"], gets["sort"], gets["reverse"] == "true",
+        gets["limit"].toInt(), gets["offset"].toInt()
         ), CONTENT_TYPE_JS);
 }
 
