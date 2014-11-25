@@ -39,51 +39,51 @@
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
-class TorrentImportDlg;
+    class TorrentImportDlg;
 }
 QT_END_NAMESPACE
 
 class QBtSession;
 
-class TorrentImportDlg : public QDialog
+class TorrentImportDlg: public QDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  explicit TorrentImportDlg(QWidget *parent = 0);
-  ~TorrentImportDlg();
-  static void importTorrent();
-  QString getTorrentPath() const;
-  QString getContentPath() const;
-  bool fileRenamed() const;
-  boost::intrusive_ptr<libtorrent::torrent_info> torrent() const;
-  bool skipFileChecking() const;
+    explicit TorrentImportDlg(QWidget *parent = 0);
+    ~TorrentImportDlg();
+    static void importTorrent();
+    QString getTorrentPath() const;
+    QString getContentPath() const;
+    bool fileRenamed() const;
+    boost::intrusive_ptr<libtorrent::torrent_info> torrent() const;
+    bool skipFileChecking() const;
 
 protected slots:
-  void loadTorrent(const QString &torrent_path);
-  void initializeFilesPath();
+    void loadTorrent(const QString &torrent_path);
+    void initializeFilesPath();
 
 private slots:
-  void on_browseTorrentBtn_clicked();
+    void on_browseTorrentBtn_clicked();
 
-  void on_browseContentBtn_clicked();
+    void on_browseContentBtn_clicked();
 
-  void on_importBtn_clicked();
+    void on_importBtn_clicked();
 
 protected:
-  void closeEvent(QCloseEvent *event);
+    void closeEvent(QCloseEvent *event);
 
 private:
-  void loadSettings();
-  void saveSettings();
+    void loadSettings();
+    void saveSettings();
 
 private:
-  Ui::TorrentImportDlg *ui;
-  boost::intrusive_ptr<libtorrent::torrent_info> t;
-  QStringList m_filesPath;
-  QString m_contentPath;
-  QString m_torrentPath;
-  bool m_fileRenamed;
+    Ui::TorrentImportDlg *ui;
+    boost::intrusive_ptr<libtorrent::torrent_info> t;
+    QStringList m_filesPath;
+    QString m_contentPath;
+    QString m_torrentPath;
+    bool m_fileRenamed;
 };
 
 #endif // TORRENTIMPORTDLG_H
