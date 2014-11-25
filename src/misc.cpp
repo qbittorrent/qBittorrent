@@ -78,6 +78,7 @@ const int UNLEN = 256;
 #endif
 #include <libtorrent/escape_string.hpp>
 #include <libtorrent/lazy_entry.hpp>
+#include <libtorrent/magnet_uri.hpp>
 
 using namespace libtorrent;
 
@@ -410,31 +411,13 @@ QList<QUrl> misc::magnetUriToTrackers(const QString& magnet_uri)
 
 QString misc::magnetUriToHash(const QString& magnet_uri)
 {
-    QString hash = "";
-    QRegExp regHex("urn:btih:([0-9A-Za-z]+)");
-    // Hex
-    int pos = regHex.indexIn(magnet_uri);
-    if (pos > -1) {
-        const QString found = regHex.cap(1);
-        qDebug() << Q_FUNC_INFO << "regex found: " << found;
-        if (found.length() == 40) {
-            const sha1_hash sha1(QByteArray::fromHex(found.toLatin1()).constData());
-            qDebug("magnetUriToHash (Hex): hash: %s", qPrintable(misc::toQString(sha1)));
-            return misc::toQString(sha1);
-        }
-    }
-    // Base 32
-    QRegExp regBase32("urn:btih:([A-Za-z2-7=]+)");
-    pos = regBase32.indexIn(magnet_uri);
-    if (pos > -1) {
-        const QString found = regBase32.cap(1);
-        if (found.length() > 20 && (found.length() * 5) % 40 == 0) {
-            const sha1_hash sha1(base32decode(regBase32.cap(1).toStdString()));
-            hash = misc::toQString(sha1);
-        }
-    }
-    qDebug("magnetUriToHash (base32): hash: %s", qPrintable(hash));
-    return hash;
+    add_torrent_params p;
+    error_code ec;
+    parse_magnet_uri(magnet_uri.toUtf8().constData(), p, ec);
+
+    if (ec)
+        return QString::null;
+    return toQString(p.info_hash);
 }
 
 // Take a number of seconds and return an user-friendly
