@@ -62,7 +62,7 @@ public:
   inline bool isEnabled() const { return m_enabled; }
   inline void setEnabled(bool enable) { m_enabled = enable; }
   inline QString mustContain() const { return m_mustContain.join(" "); }
-  inline QString mustNotContain() const { return m_mustNotContain.join(" "); }
+  inline QString mustNotContain() const { return m_mustNotContain.join("|"); }
   inline bool useRegex() const { return m_useRegex; }
   inline void setUseRegex(bool enabled) { m_useRegex = enabled; }
   inline QString episodeFilter() const { return m_episodeFilter; }

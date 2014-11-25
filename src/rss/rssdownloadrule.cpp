@@ -156,7 +156,7 @@ QVariantHash RssDownloadRule::toVariantHash() const
   QVariantHash hash;
   hash["name"] = m_name;
   hash["must_contain"] = m_mustContain.join(" ");
-  hash["must_not_contain"] = m_mustNotContain.join(" ");
+  hash["must_not_contain"] = m_mustNotContain.join("|");
   hash["save_path"] = m_savePath;
   hash["affected_feeds"] = m_rssFeeds;
   hash["enabled"] = m_enabled;
