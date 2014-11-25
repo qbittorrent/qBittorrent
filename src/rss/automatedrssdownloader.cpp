@@ -605,7 +605,7 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
   if (ui->checkRegex->isChecked())
     tokens << text;
   else
-    tokens << text.split(QRegExp("[\\s|]"));
+    tokens << text.split("|");
   foreach (const QString &token, tokens) {
     QRegExp reg(token, Qt::CaseInsensitive, ui->checkRegex->isChecked() ? QRegExp::RegExp : QRegExp::Wildcard);
     if (!reg.isValid()) {
