@@ -76,8 +76,6 @@ const int UNLEN = 256;
 #else
 #include <libtorrent/sha1_hash.hpp>
 #endif
-#include <libtorrent/escape_string.hpp>
-#include <libtorrent/lazy_entry.hpp>
 #include <libtorrent/magnet_uri.hpp>
 
 using namespace libtorrent;
