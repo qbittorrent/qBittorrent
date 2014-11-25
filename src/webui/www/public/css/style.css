@@ -162,7 +162,7 @@ a.propButton img {
 }
 
 /* context menu specific */
-#contextmenu	{ border:1px solid #999; padding:0; background:#eee; list-style-type:none; display:none; width: 164px;}
+#contextmenu	{ border:1px solid #999; padding:0; background:#eee; list-style-type:none; display:none;}
 #contextmenu .separator	{ border-top:1px solid #999; }
 #contextmenu li	{ margin:0; padding:0;}
 #contextmenu li a { display:block; padding:5px 10px 5px 5px; font-size:12px; text-decoration:none; font-family:tahoma,arial,sans-serif; color:#000; }
@@ -176,7 +176,7 @@ a.propButton img {
 	position: absolute;
 	left: -999em;
 	z-index: 8000;
-	margin: -29px 0 0 164px;
+	margin: -29px 0 0 100%;
 	width: 164px;
 }
 #contextmenu li ul li a {
