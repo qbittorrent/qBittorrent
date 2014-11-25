@@ -269,6 +269,24 @@ initializeWindows = function(){
         }).send();
 	});
 
+    updateSpeedInBrowserTitleBarLinkCheckState = function()
+    {
+        if (Cookie.read('speed_in_browser_title_bar') == 'true')
+          $(speedInBrowserTitleBarLink).firstChild.style.opacity = '1';
+        else
+          $(speedInBrowserTitleBarLink).firstChild.style.opacity = '0';
+    }
+
+    updateSpeedInBrowserTitleBarLinkCheckState();
+
+    addClickEvent('speedInBrowserTitleBar', function(e){
+        new Event(e).stop();
+        var speed_in_browser_title_bar = Cookie.read('speed_in_browser_title_bar');
+        speed_in_browser_title_bar = speed_in_browser_title_bar == 'true' ? 'false' : 'true';
+        Cookie.write('speed_in_browser_title_bar', speed_in_browser_title_bar, {duration: 365 * 10});
+        updateSpeedInBrowserTitleBarLinkCheckState(true);
+    });
+
 	// Deactivate menu header links
 	$$('a.returnFalse').each(function(el){
 		el.addEvent('click', function(e){

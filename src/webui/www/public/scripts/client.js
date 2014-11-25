@@ -112,11 +112,10 @@ window.addEvent('load', function(){
                                                                    .replace("%2", friendlyUnit(info.dl_info_data, false)));
                         $("UpInfos").set('html', "_(U: %1 - T: %2)".replace("%1", friendlyUnit(info.up_info_speed, true))
                                                                    .replace("%2", friendlyUnit(info.up_info_data, false)));
-                      if(info.show_speed_in_title) {
+                      if(Cookie.read('speed_in_browser_title_bar') == 'true')
                         document.title = "_(D:%1 U:%2)".replace("%1", friendlyUnit(info.dl_info_speed, true)).replace("%2", friendlyUnit(info.up_info_speed, true));
-                      } else {
+                      else
                         document.title = "_(qBittorrent web User Interface)";
-                      }
                         waitingTrInfo=false;
                         loadTransferInfo.delay(3000);
                       }
@@ -253,7 +252,7 @@ window.addEvent('load', function(){
 	  $("all_filter").removeClass("selectedFilter");
 	  $("downloading_filter").removeClass("selectedFilter");
 	  $("completed_filter").removeClass("selectedFilter");
-          $("paused_filter").removeClass("selectedFilter");
+	  $("paused_filter").removeClass("selectedFilter");
 	  $("active_filter").removeClass("selectedFilter");
 	  $("inactive_filter").removeClass("selectedFilter");
 	  $(f+"_filter").addClass("selectedFilter");
