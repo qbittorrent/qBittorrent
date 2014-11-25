@@ -382,29 +382,27 @@ QString misc::bcLinkToMagnet(QString bc_link)
 
 QString misc::magnetUriToName(const QString& magnet_uri)
 {
-    QString name = "";
-    QRegExp regHex("dn=([^&]+)");
-    const int pos = regHex.indexIn(magnet_uri);
-    if (pos > -1) {
-        const QString found = regHex.cap(1);
-        // URL decode
-        name = QUrl::fromPercentEncoding(found.toLocal8Bit()).replace("+", " ");
-    }
-    return name;
+    add_torrent_params p;
+    error_code ec;
+    parse_magnet_uri(magnet_uri.toUtf8().constData(), p, ec);
+
+    if (ec)
+        return QString::null;
+    return toQStringU(p.name);
 }
 
 QList<QUrl> misc::magnetUriToTrackers(const QString& magnet_uri)
 {
     QList<QUrl> trackers;
-    QRegExp rx("tr=([^&]+)");
-    int pos = 0;
+    add_torrent_params p;
+    error_code ec;
+    parse_magnet_uri(magnet_uri.toUtf8().constData(), p, ec);
 
-    while ((pos = rx.indexIn(magnet_uri, pos)) != -1) {
-        const QUrl tracker = QUrl::fromEncoded(rx.cap(1).toUtf8());
-        qDebug() << Q_FUNC_INFO << "Found tracker: " << tracker.toString();
-        trackers << tracker;
-        pos += rx.matchedLength();
-    }
+    if (ec)
+        return trackers;
+
+    for (std::vector<std::string>::const_iterator i = p.trackers.begin(), e = p.trackers.end(); i != e; ++i)
+        trackers.push_back(QUrl(toQStringU(*i)));
 
     return trackers;
 }
