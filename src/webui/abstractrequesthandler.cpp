@@ -94,6 +94,9 @@ void AbstractRequestHandler::print_impl(const QByteArray& data, const QString& t
   if (!response_.headers.contains(HEADER_CONTENT_TYPE))
     response_.headers[HEADER_CONTENT_TYPE] = type;
 
+  if (type.indexOf("image") > -1)
+    response_.headers[HEADER_CACHE_CONTROL] = "max-age=3000000";
+
   response_.content += data;
 }
 
