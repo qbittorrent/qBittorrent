@@ -12,13 +12,14 @@ AC_DEFUN([FIND_QT4],
                                 [QT_QMAKE=`AS_DIRNAME(["$QT_QMAKE"])`])
                  ])
 
-AC_MSG_CHECKING([for Qt4 qmake >= 4.8.0])
 AC_CHECK_FILE([$QT_QMAKE/qmake],
               [QT_QMAKE="$QT_QMAKE/qmake"],
               [AC_CHECK_FILE([$QT_QMAKE/qmake-qt4],
                              [QT_QMAKE="$QT_QMAKE/qmake-qt4"],
                              [QT_QMAKE=""])
               ])
+
+AC_MSG_CHECKING([for Qt4 qmake >= 4.8.0])
 AS_IF([test "x$QT_QMAKE" != "x"],
       [AC_MSG_RESULT([$QT_QMAKE])],
       [AC_MSG_RESULT([not found])]
@@ -35,13 +36,14 @@ AC_DEFUN([FIND_QT5],
                                 [host_bins])
                  ])
 
-AC_MSG_CHECKING([for Qt5 qmake >= 5.2.0])
 AC_CHECK_FILE([$QT_QMAKE/qmake],
               [QT_QMAKE="$QT_QMAKE/qmake"],
               [AC_CHECK_FILE([$QT_QMAKE/qmake-qt5],
                              [QT_QMAKE="$QT_QMAKE/qmake-qt5"],
                              [QT_QMAKE=""])
               ])
+
+AC_MSG_CHECKING([for Qt5 qmake >= 5.2.0])
 AS_IF([test "x$QT_QMAKE" != "x"],
       [AC_MSG_RESULT([$QT_QMAKE])],
       [AC_MSG_RESULT([not found])]
