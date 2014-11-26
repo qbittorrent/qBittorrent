@@ -4533,8 +4533,6 @@ QT_QMAKE=$pkg_cv_QT_QMAKE
 
 if test "x$QT_QMAKE" = x""; then :
 
-else
-  QT_QMAKE=$QT_QMAKE/qmake
 fi
 
 fi

@@ -32,8 +32,7 @@ AC_DEFUN([FIND_QT5],
 [PKG_CHECK_EXISTS([Qt5Core >= 5.2.0],
                  [PKG_CHECK_VAR(QT_QMAKE,
                                 [Qt5Core >= 5.2.0],
-                                [host_bins],
-                                [QT_QMAKE=[$QT_QMAKE]/qmake])
+                                [host_bins])
                  ])
 
 AC_MSG_CHECKING([for Qt5 qmake >= 5.2.0])
