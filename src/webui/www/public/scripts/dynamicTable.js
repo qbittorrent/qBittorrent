@@ -42,51 +42,18 @@ var dynamicTable = new Class({
             this.priority_hidden = false;
             this.progressIndex = progressIndex;
             this.context_menu = context_menu;
-            this.table.sortedIndex = 1; // Default is NAME
+            this.table.sortedColumn = 'name'; // Default is NAME
             this.table.reverseSort = false;
         },
 
-        sortfunction : function (tr1, tr2) {
-            var i = tr2.getParent().sortedIndex;
-            var reverseSort = tr2.getParent().reverseSort;
-            switch (i) {
-            case 1: // Name
-                if (!reverseSort)
-                    return tr1.getElements('td')[i].get('html').localeCompare(tr2.getElements('td')[i].get('html'));
-                else
-                    return tr2.getElements('td')[i].get('html').localeCompare(tr1.getElements('td')[i].get('html'));
-            case 2: // Prio
-            case 3: // Size
-            case 4: // Progress
-            case 5: // Seeds
-            case 6: // Peers
-            case 7: // Up Speed
-            case 8: // Down Speed
-            case 9: // ETA
-            default: // Ratio
-                if (!reverseSort)
-                    return (tr1.getElements('td')[i].get('data-raw') - tr2.getElements('td')[i].get('data-raw'));
-                else
-                    return (tr2.getElements('td')[i].get('data-raw') - tr1.getElements('td')[i].get('data-raw'));
-            }
-        },
-
-        updateSort : function () {
-            var trs = this.table.getChildren('tr');
-            trs.sort(this.sortfunction);
-            this.table.adopt(trs);
-        },
-
-        setSortedColumn : function (index) {
-            if (index != this.table.sortedIndex) {
-                this.table.sortedIndex = index;
+        setSortedColumn : function (column) {
+            if (column != this.table.sortedColumn) {
+                this.table.sortedColumn = column;
                 this.table.reverseSort = false;
             } else {
                 // Toggle sort order
                 this.table.reverseSort = !this.table.reverseSort;
             }
-            this.updateSort();
-            this.altRow();
         },
 
         getCurrentTorrentHash : function () {
@@ -130,7 +97,7 @@ var dynamicTable = new Class({
             this.priority_hidden = false;
         },
 
-        insertRow : function (id, row, data, status) {
+        insertRow : function (id, row, data, status, pos) {
             if (this.rows.has(id)) {
                 return;
             }
@@ -254,17 +221,12 @@ var dynamicTable = new Class({
 
             // Insert
             var trs = this.table.getChildren('tr');
-            var i = 0;
-            while (i < trs.length && this.sortfunction(tr, trs[i]) > 0) {
-                i++;
-            }
-            if (i == trs.length) {
+            if (pos >= trs.length) {
                 tr.inject(this.table);
             } else {
-                tr.inject(trs[i], 'before');
+                tr.inject(trs[pos], 'before');
             }
             //tr.injectInside(this.table);
-            this.altRow();
             // Update context menu
             this.context_menu.addTarget(tr);
         },
@@ -279,10 +241,11 @@ var dynamicTable = new Class({
             }, this);
         },
 
-        updateRow : function (id, row, data, status) {
+        updateRow : function (id, row, data, status, newpos) {
             if (!this.rows.has(id)) {
                 return false;
             }
+            
             var tr = this.rows.get(id);
             var tds = tr.getElements('td');
             for (var i = 0; i < row.length; i++) {
@@ -300,6 +263,18 @@ var dynamicTable = new Class({
                 if (typeof data[i] != 'undefined')
                     tds[i].set('data-raw', data[i])
             };
+            
+            // Prevent freezing of the backlight.
+            tr.removeClass('over');
+            
+            // Move to 'newpos'
+            var trs = this.table.getChildren('tr');
+            if (newpos >= trs.length) {
+                tr.inject(this.table);
+            } else {
+                tr.inject(trs[newpos], 'before');
+            }
+            
             return true;
         },
 

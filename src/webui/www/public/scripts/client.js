@@ -24,9 +24,6 @@
 
 myTable = new dynamicTable();
 ajaxfn = function () {};
-setSortedColumn = function (index) {
-    myTable.setSortedColumn(index);
-};
 
 window.addEvent('load', function () {
 
@@ -135,7 +132,9 @@ window.addEvent('load', function () {
     var ajaxfn = function () {
         var queueing_enabled = false;
         var url = new URI('json/torrents');
-        url.setData({'filter': filter});
+        url.setData('filter', filter);
+        url.setData('sort', myTable.table.sortedColumn);
+        url.setData('reverse', myTable.table.reverseSort);
         if (!waiting) {
             waiting = true;
             var request = new Request.JSON({
@@ -153,6 +152,7 @@ window.addEvent('load', function () {
                             // Add new torrents or update them
                             torrent_hashes = myTable.getRowIds();
                             events_hashes = new Array();
+                            pos = 0;
                             events.each(function (event) {
                                 events_hashes[events_hashes.length] = event.hash;
                                 var row = new Array();
@@ -193,11 +193,13 @@ window.addEvent('load', function () {
                                     // New unfinished torrent
                                     torrent_hashes[torrent_hashes.length] = event.hash;
                                     //alert("Inserting row");
-                                    myTable.insertRow(event.hash, row, data, event.state);
+                                    myTable.insertRow(event.hash, row, data, event.state, pos);
                                 } else {
                                     // Update torrent data
-                                    myTable.updateRow(event.hash, row, data, event.state);
+                                    myTable.updateRow(event.hash, row, data, event.state, pos);
                                 }
+                                
+                                pos++;
                             });
                             // Remove deleted torrents
                             torrent_hashes.each(function (hash) {
@@ -212,6 +214,8 @@ window.addEvent('load', function () {
                                 $('queueingButtons').addClass('invisible');
                                 myTable.hidePriority();
                             }
+                            
+                            myTable.altRow();
                         }
                         waiting = false;
                         ajaxfn.delay(1500);
@@ -219,6 +223,13 @@ window.addEvent('load', function () {
                 }).send();
         }
     };
+    
+    setSortedColumn = function (column) {
+        myTable.setSortedColumn(column);
+        // reload torrents
+        ajaxfn();
+    };
+
     new MochaUI.Panel({
         id : 'transferList',
         title : 'Panel',
