@@ -383,6 +383,30 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
         return QVariant();
       }
     }
+    else if (role == Qt::TextAlignmentRole) {
+      switch(section) {
+      case TorrentModelItem::TR_AMOUNT_DOWNLOADED:
+      case TorrentModelItem::TR_AMOUNT_UPLOADED:
+      case TorrentModelItem::TR_AMOUNT_LEFT:
+      case TorrentModelItem::TR_COMPLETED:
+      case TorrentModelItem::TR_SIZE:
+      case TorrentModelItem::TR_TOTAL_SIZE:
+      case TorrentModelItem::TR_ETA:
+      case TorrentModelItem::TR_SEEDS:
+      case TorrentModelItem::TR_PEERS:
+      case TorrentModelItem::TR_UPSPEED:
+      case TorrentModelItem::TR_DLSPEED:
+      case TorrentModelItem::TR_UPLIMIT:
+      case TorrentModelItem::TR_DLLIMIT:
+      case TorrentModelItem::TR_RATIO_LIMIT:
+      case TorrentModelItem::TR_RATIO:
+      case TorrentModelItem::TR_PRIORITY:
+      case TorrentModelItem::TR_LAST_ACTIVITY:
+        return Qt::AlignRight;
+      default:
+        return QAbstractListModel::headerData(section, orientation, role);
+      }
+    }
   }
 
   return QVariant();
