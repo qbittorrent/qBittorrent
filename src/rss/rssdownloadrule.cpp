@@ -133,7 +133,7 @@ void RssDownloadRule::setMustNotContain(const QString &tokens)
   if (m_useRegex)
     m_mustNotContain = QStringList() << tokens;
   else
-    m_mustNotContain = tokens.split(QRegExp("[\\s|]"));
+    m_mustNotContain = tokens.split("|");
 }
 
 RssDownloadRulePtr RssDownloadRule::fromVariantHash(const QVariantHash &rule_hash)
@@ -156,7 +156,7 @@ QVariantHash RssDownloadRule::toVariantHash() const
   QVariantHash hash;
   hash["name"] = m_name;
   hash["must_contain"] = m_mustContain.join(" ");
-  hash["must_not_contain"] = m_mustNotContain.join(" ");
+  hash["must_not_contain"] = m_mustNotContain.join("|");
   hash["save_path"] = m_savePath;
   hash["affected_feeds"] = m_rssFeeds;
   hash["enabled"] = m_enabled;
