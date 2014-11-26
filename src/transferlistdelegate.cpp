@@ -210,7 +210,10 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       if (elapsed == 0)
         // Show '< 1m ago' when elapsed time is 0
         elapsed = 1;
-      elapsedString = tr("%1 ago", "e.g.: 1h 20m ago").arg(misc::userFriendlyDuration(elapsed));
+      if (elapsed < 0)
+        elapsedString = misc::userFriendlyDuration(elapsed);
+      else
+        elapsedString = tr("%1 ago", "e.g.: 1h 20m ago").arg(misc::userFriendlyDuration(elapsed));
       QItemDelegate::drawDisplay(painter, opt, option.rect, elapsedString);
       break;
     }
