@@ -23,6 +23,9 @@
 #include <stdio.h>
 
 #include <QTextStream>
+#ifdef __MINGW32__
+#include <cxxabi.h>
+#endif
 
 namespace straceWin
 {
@@ -31,7 +34,26 @@ namespace straceWin
     BOOL CALLBACK EnumModulesCB(LPCSTR, DWORD64, PVOID);
     const QString getBacktrace();
     struct EnumModulesContext;
+    // Also works for MinGW64
+#ifdef __MINGW32__
+    void demangle(QString& str);
+#endif
 }
+
+#ifdef __MINGW32__
+void straceWin::demangle(QString& str)
+{
+    char const* inStr = qPrintable("_" + str); // Really need that underline or demangling will fail
+    int status = 0;
+    size_t outSz = 0;
+    char* demangled_name = abi::__cxa_demangle(inStr, 0, &outSz, &status);
+    if (status == 0) {
+        str = QString::fromLocal8Bit(demangled_name);
+        if (outSz > 0)
+            free(demangled_name);
+    }
+}
+#endif
 
 void straceWin::loadHelpStackFrame(IMAGEHLP_STACK_FRAME& ihsf, const STACKFRAME64& stackFrame)
 {
@@ -42,6 +64,7 @@ void straceWin::loadHelpStackFrame(IMAGEHLP_STACK_FRAME& ihsf, const STACKFRAME6
 
 BOOL CALLBACK straceWin::EnumSymbolsCB(PSYMBOL_INFO symInfo, ULONG size, PVOID user)
 {
+    Q_UNUSED(size)
     QStringList* params = (QStringList*)user;
     if (symInfo->Flags & SYMFLAG_PARAMETER)
         params->append(symInfo->Name);
@@ -58,6 +81,7 @@ struct straceWin::EnumModulesContext
 
 BOOL CALLBACK straceWin::EnumModulesCB(LPCSTR ModuleName, DWORD64 BaseOfDll, PVOID UserContext)
 {
+    Q_UNUSED(ModuleName)
     IMAGEHLP_MODULE64 mod;
     EnumModulesContext* context = (EnumModulesContext*)UserContext;
     mod.SizeOfStruct = sizeof(IMAGEHLP_MODULE64);
@@ -194,21 +218,36 @@ const QString straceWin::getBacktrace()
                     fileName = fileName.mid(slashPos + 1);
             }
             QString funcName;
-            if(SymFromAddr(hProcess, ihsf.InstructionOffset, &dwDisplacement, pSymbol))
+            if(SymFromAddr(hProcess, ihsf.InstructionOffset, &dwDisplacement, pSymbol)) {
                 funcName = QString(pSymbol->Name);
-            else
+#ifdef __MINGW32__
+                demangle(funcName);
+#endif
+            }
+            else {
                 funcName = QString("0x%1").arg(ihsf.InstructionOffset, 8, 16, QLatin1Char('0'));
-            QStringList params;
+            }
             SymSetContext(hProcess, &ihsf, NULL);
+#ifndef __MINGW32__
+            QStringList params;
             SymEnumSymbols(hProcess, 0, NULL, EnumSymbolsCB, (PVOID)&params);
+#endif
 
             QString insOffset = QString("0x%1").arg(ihsf.InstructionOffset, 16, 16, QLatin1Char('0'));
-            QString debugLine = QString("#%1 %2 %3 %4(%5)")
+            QString formatLine = "#%1 %2 %3 %4";
+#ifndef __MINGW32__
+            formatLine += "(%5)";
+#endif
+            QString debugLine = formatLine
                                 .arg(i, 3, 10)
                                 .arg(fileName, -20)
                                 .arg(insOffset, -11)
                                 .arg(funcName)
+#ifndef __MINGW32__
                                 .arg(params.join(", "));
+#else
+                                ;
+#endif
             logStream << debugLine << '\n';
             i++;
         }
