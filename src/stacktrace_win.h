@@ -62,9 +62,9 @@ BOOL CALLBACK straceWin::EnumModulesCB(LPCSTR ModuleName, DWORD64 BaseOfDll, PVO
     EnumModulesContext* context = (EnumModulesContext*)UserContext;
     mod.SizeOfStruct = sizeof(IMAGEHLP_MODULE64);
     if(SymGetModuleInfo64(context->hProcess, BaseOfDll, &mod)) {
-        QString moduleBase = QString("0x%1").arg(BaseOfDll, 8, 16, QLatin1Char('0'));
+        QString moduleBase = QString("0x%1").arg(BaseOfDll, 16, 16, QLatin1Char('0'));
         QString line = QString("%1 %2 Image: %3")
-                       .arg(mod.ModuleName, -14)
+                       .arg(mod.ModuleName, -25)
                        .arg(moduleBase, -13)
                        .arg(mod.LoadedImageName);
         context->stream << line << '\n';
@@ -202,7 +202,7 @@ const QString straceWin::getBacktrace()
             SymSetContext(hProcess, &ihsf, NULL);
             SymEnumSymbols(hProcess, 0, NULL, EnumSymbolsCB, (PVOID)&params);
 
-            QString insOffset = QString("0x%1").arg(ihsf.InstructionOffset, 8, 16, QLatin1Char('0'));
+            QString insOffset = QString("0x%1").arg(ihsf.InstructionOffset, 16, 16, QLatin1Char('0'));
             QString debugLine = QString("#%1 %2 %3 %4(%5)")
                                 .arg(i, 3, 10)
                                 .arg(fileName, -20)
