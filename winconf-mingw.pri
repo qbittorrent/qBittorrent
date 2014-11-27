@@ -4,10 +4,9 @@ strace_win:{
     QMAKE_CXXFLAGS_RELEASE += -fno-omit-frame-pointer
     QMAKE_CXXFLAGS_DEBUG += -fno-omit-frame-pointer
   }
-  release:{
-    #QMAKE_CXXFLAGS_RELEASE += -g
-    #QMAKE_LFLAGS_RELEASE -= -Wl,-s
-  }
+
+  QMAKE_LFLAGS += -Wl,--export-all-symbols
+
   LIBS += libdbghelp
 }
 
