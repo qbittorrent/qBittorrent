@@ -10,6 +10,11 @@ strace_win:{
   LIBS += libdbghelp
 }
 
+CONFIG(debug, debug|release) {
+  # Make sure binary is not relocatable, otherwise debugging will fail
+  QMAKE_LFLAGS -= -Wl,--dynamicbase
+}
+
 RC_FILE = qbittorrent_mingw.rc
 
 #You need to link with libtorrent > 0.15.5 (or svn) and you must
