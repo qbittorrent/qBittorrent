@@ -634,6 +634,10 @@ void QBtSession::configureSession() {
     m_scanFolders->addPath(dir, downloadInDirList.at(i));
     ++i;
   }
+  // Choking algorithm
+  sessionSettings.choking_algorithm = pref->getChokingAlgorithm();
+  // Seed choking algorithm
+  sessionSettings.seed_choking_algorithm = pref->getSeedChokingAlgorithm();
   qDebug("Session configured");
 }
 

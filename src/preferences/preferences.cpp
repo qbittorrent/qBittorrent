@@ -1985,3 +1985,19 @@ void Preferences::setHostNameCookies(const QString &host_name, const QList<QByte
   hosts_table.insert(host_name, raw_cookies);
   setValue("Rss/hosts_cookies", hosts_table);
 }
+
+int Preferences::getChokingAlgorithm() const {
+  return value("Preferences/Advanced/choking_algorithm", 0).toInt();
+}
+
+void Preferences::setChokingAlgorithm(const int &algorithm) {
+  setValue("Preferences/Advanced/choking_algorithm", algorithm);
+}
+
+int Preferences::getSeedChokingAlgorithm() const {
+  return value("Preferences/Advanced/seed_choking_algorithm", 0).toInt();
+}
+
+void Preferences::setSeedChokingAlgorithm(const int &algorithm) {
+  setValue("Preferences/Advanced/seed_choking_algorithm", algorithm);
+}
