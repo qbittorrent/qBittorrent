@@ -275,8 +275,8 @@ void options_imp::initializeLanguageCombo()
     localeStr.chop(3); // Remove ".qm"
     QLocale locale(localeStr);    
     QString language_name = languageToLocalizedString(locale);
-    comboI18n->addItem(/*QIcon(":/Icons/flags/"+country+".png"), */language_name, locale.name());
-    qDebug() << "Supported locale:" << locale.name();
+    comboI18n->addItem(/*QIcon(":/Icons/flags/"+country+".png"), */language_name, localeStr);
+    qDebug() << "Supported locale:" << localeStr;
   }
 }
 
@@ -1026,10 +1026,19 @@ QString options_imp::getLocale() const {
 
 void options_imp::setLocale(const QString &localeStr) {
   QLocale locale(localeStr);
+  QString name = locale.name();
   // Attempt to find exact match
-  int index = comboI18n->findData(locale.name(), Qt::UserRole);
+  int index = comboI18n->findData(name, Qt::UserRole);
+  if (index < 0 ) {
+      //Attempt to find a language match without a country
+      int pos = name.indexOf('_');
+      if (pos > -1) {
+          QString lang = name.left(pos);
+          index = comboI18n->findData(lang, Qt::UserRole);
+      }
+  }
   if (index < 0) {
-    // Unreconized, use US English
+    // Unrecognized, use US English
     index = comboI18n->findData(QLocale("en").name(), Qt::UserRole);
     Q_ASSERT(index >= 0);
   }
