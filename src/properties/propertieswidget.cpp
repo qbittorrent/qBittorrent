@@ -82,7 +82,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   m_contentFilerLine = new LineEdit(this);
   m_contentFilerLine->setPlaceholderText(tr("Filter files..."));
   connect(m_contentFilerLine, SIGNAL(textChanged(QString)), this, SLOT(filterText(QString)));
-  contentFilterLayout->insertWidget(1, m_contentFilerLine);
+  contentFilterLayout->insertWidget(4, m_contentFilerLine);
 
   // SIGNAL/SLOTS
   connect(filesList, SIGNAL(clicked(const QModelIndex&)), filesList, SLOT(edit(const QModelIndex&)));
