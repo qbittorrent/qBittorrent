@@ -109,6 +109,7 @@ void RssArticle::markAsRead() {
   m_read = true;
   m_parent->decrementUnreadCount();
   m_parent->markAsDirty();
+  emit articleWasRead();
 }
 
 const QString& RssArticle::guid() const
@@ -122,8 +123,6 @@ const QString& RssArticle::title() const
 }
 
 void RssArticle::handleTorrentDownloadSuccess(const QString &url) {
-  if (url == m_torrentUrl || url == m_link) {
+  if (url == m_torrentUrl || url == m_link)
     markAsRead();
-    emit articleWasRead();
-  }
 }

@@ -255,6 +255,14 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
       } else {
         ui->comboLabel->setCurrentIndex(ui->comboLabel->findText(rule->label()));
       }
+      ui->spinIgnorePeriod->setValue(rule->ignoreDays());
+      QDateTime dateTime = rule->lastMatch();
+      QString lMatch = tr("Last match: ");
+      if (dateTime.isValid())
+        lMatch += QString::number(dateTime.daysTo(QDateTime::currentDateTime())) + tr(" days ago.");
+      else
+        lMatch += tr("Unknown");
+      ui->lblLastMatch->setText(lMatch);
       updateMustLineValidity();
       updateMustNotLineValidity();
     } else {
@@ -281,6 +289,7 @@ void AutomatedRssDownloader::clearRuleDefinitionBox()
   ui->lineSavePath->clear();
   ui->comboLabel->clearEditText();
   ui->checkRegex->setChecked(false);
+  ui->spinIgnorePeriod->setValue(0);
   updateFieldsToolTips(ui->checkRegex->isChecked());
   updateMustLineValidity();
   updateMustNotLineValidity();
@@ -333,6 +342,7 @@ void AutomatedRssDownloader::saveEditedRule()
   // Save new label
   if (!rule->label().isEmpty())
     Preferences::instance()->addTorrentLabel(rule->label());
+  rule->setIgnoreDays(ui->spinIgnorePeriod->value());
   //rule->setRssFeeds(getSelectedFeeds());
   // Save it
   m_editableRuleList->saveRule(rule);

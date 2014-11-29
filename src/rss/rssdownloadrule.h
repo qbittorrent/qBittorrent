@@ -34,6 +34,7 @@
 #include <QStringList>
 #include <QVariantHash>
 #include <QSharedPointer>
+#include <QDateTime>
 
 class RssFeed;
 typedef QSharedPointer<RssFeed> RssFeedPtr;
@@ -61,6 +62,10 @@ public:
   inline void setLabel(const QString &_label) { m_label = _label; }
   inline bool isEnabled() const { return m_enabled; }
   inline void setEnabled(bool enable) { m_enabled = enable; }
+  inline void setLastMatch(const QDateTime& d) { m_lastMatch = d; }
+  inline QDateTime lastMatch() const { return m_lastMatch; }
+  inline void setIgnoreDays(int d) { m_ignoreDays = d; }
+  inline int ignoreDays() const { return m_ignoreDays; }
   inline QString mustContain() const { return m_mustContain.join(" "); }
   inline QString mustNotContain() const { return m_mustNotContain.join("|"); }
   inline bool useRegex() const { return m_useRegex; }
@@ -81,6 +86,8 @@ private:
   bool m_enabled;
   QStringList m_rssFeeds;
   bool m_useRegex;
+  QDateTime m_lastMatch;
+  int m_ignoreDays;
 };
 
 #endif // RSSDOWNLOADRULE_H
