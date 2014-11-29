@@ -60,7 +60,6 @@ StatusBar::StatusBar(QStatusBar *bar)
   connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
   dlSpeedLbl = new QPushButton(bar);
   dlSpeedLbl->setIcon(QIcon(":/Icons/skin/download.png"));
-  //dlSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
   connect(dlSpeedLbl, SIGNAL(clicked()), this, SLOT(capDownloadSpeed()));
   dlSpeedLbl->setFlat(true);
   dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
@@ -68,7 +67,6 @@ StatusBar::StatusBar(QStatusBar *bar)
 
   upSpeedLbl = new QPushButton(bar);
   upSpeedLbl->setIcon(QIcon(":/Icons/skin/seeding.png"));
-  //upSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
   connect(upSpeedLbl, SIGNAL(clicked()), this, SLOT(capUploadSpeed()));
   upSpeedLbl->setFlat(true);
   upSpeedLbl->setFocusPolicy(Qt::NoFocus);
@@ -83,31 +81,29 @@ StatusBar::StatusBar(QStatusBar *bar)
   updateAltSpeedsBtn(pref->isAltBandwidthEnabled());
   connect(altSpeedsBtn, SIGNAL(clicked()), this, SLOT(toggleAlternativeSpeeds()));
 
-  QRect labelRect = dlSpeedLbl->fontMetrics().boundingRect(" XX [0.000,0 XiX/s] 0.000,00 XiX/s (000,0 XiX) ");
-  if (labelRect.height() < 26)
-    labelRect.setHeight(26);
-  dlSpeedLbl->setIconSize(QSize(16,16));
-  upSpeedLbl->setIconSize(QSize(16,16));
-  connecStatusLblIcon->setFixedHeight(labelRect.height());
-  altSpeedsBtn->setIconSize(QSize(30,30)); // cut out blank parts
-  altSpeedsBtn->setFixedHeight(labelRect.height());
-  dlSpeedLbl->setMinimumSize(labelRect.width(), labelRect.height());
-  upSpeedLbl->setMinimumSize(labelRect.width(), labelRect.height());
+  // Because on some platforms the default icon size is bigger
+  // and it will result in taller/fatter statusbar, even if the
+  // icons are actually 16x16
+  connecStatusLblIcon->setIconSize(QSize(16, 16));
+  dlSpeedLbl->setIconSize(QSize(16, 16));
+  upSpeedLbl->setIconSize(QSize(16, 16));
+  altSpeedsBtn->setIconSize(QSize(28, 16));
+
+  // Set to the known maximum width(plus some padding)
+  // so the speed widgets will take the rest of the space
+  connecStatusLblIcon->setMaximumWidth(16 + 6);
+  altSpeedsBtn->setMaximumWidth(28 + 6);
 
   statusSep1 = new QFrame(bar);
-  statusSep1->setFixedSize(3, labelRect.height());
   statusSep1->setFrameStyle(QFrame::VLine);
   statusSep1->setFrameShadow(QFrame::Raised);
   statusSep2 = new QFrame(bar);
-  statusSep2->setFixedSize(3, labelRect.height());
   statusSep2->setFrameStyle(QFrame::VLine);
   statusSep2->setFrameShadow(QFrame::Raised);
   statusSep3 = new QFrame(bar);
-  statusSep3->setFixedSize(3, labelRect.height());
   statusSep3->setFrameStyle(QFrame::VLine);
   statusSep3->setFrameShadow(QFrame::Raised);
   statusSep4 = new QFrame(bar);
-  statusSep4->setFixedSize(3, labelRect.height());
   statusSep4->setFrameStyle(QFrame::VLine);
   statusSep4->setFrameShadow(QFrame::Raised);
   layout->addWidget(DHTLbl);
@@ -122,7 +118,7 @@ StatusBar::StatusBar(QStatusBar *bar)
 
   bar->addPermanentWidget(container);
   container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-  bar->setStyleSheet("QWidget {padding: 0; margin: 0;}\n QPushButton {padding: 3px;}\n");
+  bar->setStyleSheet("QWidget {margin: 0;}");
   container->adjustSize();
   bar->adjustSize();
   // Is DHT enabled
