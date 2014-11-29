@@ -155,6 +155,8 @@ private:
 #ifdef Q_OS_WIN
   bool addPythonPathToEnv();
   void installPython();
+
+private slots:
   void pythonDownloadSuccess(QString url, QString file_path);
   void pythonDownloadFailure(QString url, QString error);
 #endif
