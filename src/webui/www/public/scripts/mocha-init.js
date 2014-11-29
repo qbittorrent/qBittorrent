@@ -9,6 +9,18 @@
 
    ----------------------------------------------------------------- */
 
+/* Define localStorage object for older browsers */
+if (typeof localStorage == 'undefined') {
+    window['localStorage'] = {
+        getItem: function(name) {
+            return Cookie.read(name);
+        },
+        setItem: function(name, value) {
+            Cookie.write(name, value, {duration: 365 * 10});
+        }
+    }
+}
+
 initializeWindows = function(){
 
 	function addClickEvent(el, fn){
@@ -269,23 +281,23 @@ initializeWindows = function(){
         }).send();
 	});
 
-    updateSpeedInBrowserTitleBarLinkCheckState = function()
-    {
-        if (Cookie.read('speed_in_browser_title_bar') == 'true')
-          $(speedInBrowserTitleBarLink).firstChild.style.opacity = '1';
-        else
-          $(speedInBrowserTitleBarLink).firstChild.style.opacity = '0';
-    }
+	updateSpeedInBrowserTitleBarLinkCheckState = function()
+	{
+		if (localStorage.getItem('speed_in_browser_title_bar') == 'true')
+		  $(speedInBrowserTitleBarLink).firstChild.style.opacity = '1';
+		else
+		  $(speedInBrowserTitleBarLink).firstChild.style.opacity = '0';
+	}
 
-    updateSpeedInBrowserTitleBarLinkCheckState();
+	updateSpeedInBrowserTitleBarLinkCheckState();
 
-    addClickEvent('speedInBrowserTitleBar', function(e){
-        new Event(e).stop();
-        var speed_in_browser_title_bar = Cookie.read('speed_in_browser_title_bar');
-        speed_in_browser_title_bar = speed_in_browser_title_bar == 'true' ? 'false' : 'true';
-        Cookie.write('speed_in_browser_title_bar', speed_in_browser_title_bar, {duration: 365 * 10});
-        updateSpeedInBrowserTitleBarLinkCheckState(true);
-    });
+	addClickEvent('speedInBrowserTitleBar', function(e){
+		new Event(e).stop();
+		var speed_in_browser_title_bar = localStorage.getItem('speed_in_browser_title_bar');
+		speed_in_browser_title_bar = speed_in_browser_title_bar == 'true' ? 'false' : 'true';
+		localStorage.setItem('speed_in_browser_title_bar', speed_in_browser_title_bar);
+		updateSpeedInBrowserTitleBarLinkCheckState();
+	});
 
 	// Deactivate menu header links
 	$$('a.returnFalse').each(function(el){

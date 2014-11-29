@@ -33,9 +33,8 @@ window.addEvent('load', function(){
   var saveColumnSizes = function() {
     var filters_width = $('Filters').getSize().x;
     var properties_height = $('propertiesPanel').getSize().y;
-    // Save it in a cookie
-    Cookie.write('filters_width', filters_width);
-    Cookie.write('properties_height', properties_height);
+    localStorage.setItem('filters_width', filters_width);
+    localStorage.setItem('properties_height', properties_height);
   }
 
   /*MochaUI.Desktop = new MochaUI.Desktop();
@@ -45,7 +44,7 @@ window.addEvent('load', function(){
   });*/
   MochaUI.Desktop.initialize();
 
-  var filt_w = Cookie.read('filters_width');
+  var filt_w = localStorage.getItem('filters_width');
   if($defined(filt_w))
      filt_w =  filt_w.toInt();
   else
@@ -112,7 +111,7 @@ window.addEvent('load', function(){
                                                                    .replace("%2", friendlyUnit(info.dl_info_data, false)));
                         $("UpInfos").set('html', "_(U: %1 - T: %2)".replace("%1", friendlyUnit(info.up_info_speed, true))
                                                                    .replace("%2", friendlyUnit(info.up_info_data, false)));
-                      if(Cookie.read('speed_in_browser_title_bar') == 'true')
+                      if(localStorage.getItem('speed_in_browser_title_bar') == 'true')
                         document.title = "_(D:%1 U:%2)".replace("%1", friendlyUnit(info.dl_info_speed, true)).replace("%2", friendlyUnit(info.up_info_speed, true));
                       else
                         document.title = "_(qBittorrent web User Interface)";
@@ -226,7 +225,7 @@ window.addEvent('load', function(){
 		onResize: saveColumnSizes,
 		height: null
 	});
-    var prop_h = Cookie.read('properties_height');
+    var prop_h = localStorage.getItem('properties_height');
     if($defined(prop_h))
       prop_h = prop_h.toInt();
     else
@@ -258,8 +257,7 @@ window.addEvent('load', function(){
 	  $(f+"_filter").addClass("selectedFilter");
 	  myTable.setFilter(f);
 	  ajaxfn();
-	  // Remember this via Cookie
-	  Cookie.write('selected_filter', f);
+	  localStorage.setItem('selected_filter', f);
 	}
 
 });
