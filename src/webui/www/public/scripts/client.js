@@ -75,6 +75,11 @@ window.addEvent('load', function () {
         height : 300
     });
     initializeWindows();
+
+    var speedInTitle = localStorage.getItem('speed_in_browser_title_bar') == "true";
+    if (!speedInTitle)
+        $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
+
     var r = 0;
 
     var stateToImg = function (state) {
@@ -111,7 +116,7 @@ window.addEvent('load', function () {
                     $("UpInfos").set('html', "_(U: %1 - T: %2)"
                         .replace("%1", friendlyUnit(info.up_info_speed, true))
                         .replace("%2", friendlyUnit(info.up_info_data, false)));
-                    if(localStorage.getItem('speed_in_browser_title_bar') == 'true')
+                    if (speedInTitle)
                         document.title = "_(D:%1 U:%2)".replace("%1", friendlyUnit(info.dl_info_speed, true)).replace("%2", friendlyUnit(info.up_info_speed, true));
                     else
                         document.title = "_(qBittorrent web User Interface)";
@@ -233,20 +238,13 @@ window.addEvent('load', function () {
         updateTransferList();
     };
 
-    updateSpeedInBrowserTitleBarLinkCheckState = function() {
-        if (localStorage.getItem('speed_in_browser_title_bar') == 'true')
-            $(speedInBrowserTitleBarLink).firstChild.style.opacity = '1';
+    $('speedInBrowserTitleBarLink').addEvent('click', function(e) {
+        speedInTitle = !speedInTitle;
+        localStorage.setItem('speed_in_browser_title_bar', speedInTitle.toString());
+        if (speedInTitle)
+            $('speedInBrowserTitleBarLink').firstChild.style.opacity = '1';
         else
-            $(speedInBrowserTitleBarLink).firstChild.style.opacity = '0';
-    }
-
-    updateSpeedInBrowserTitleBarLinkCheckState();
-
-    addClickEvent('speedInBrowserTitleBar', function() {
-        var speed_in_browser_title_bar = localStorage.getItem('speed_in_browser_title_bar');
-        speed_in_browser_title_bar = speed_in_browser_title_bar == 'true' ? 'false' : 'true';
-        localStorage.setItem('speed_in_browser_title_bar', speed_in_browser_title_bar);
-        updateSpeedInBrowserTitleBarLinkCheckState();
+            $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
         updateTransferInfo();
     });
 
