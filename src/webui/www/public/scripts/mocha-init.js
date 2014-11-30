@@ -8,7 +8,6 @@
 	it in the onContentLoaded function of the new window.
 
    ----------------------------------------------------------------- */
-
 /* Define localStorage object for older browsers */
 if (typeof localStorage == 'undefined') {
     window['localStorage'] = {
@@ -16,250 +15,284 @@ if (typeof localStorage == 'undefined') {
             return Cookie.read(name);
         },
         setItem: function(name, value) {
-            Cookie.write(name, value, {duration: 365 * 10});
+            Cookie.write(name, value, {
+                duration: 365 * 10
+            });
         }
     }
 }
 
-initializeWindows = function(){
+initializeWindows = function() {
 
-	function addClickEvent(el, fn){
-		['Link','Button'].each(function(item) {
-			if ($(el+item)){
-				$(el+item).addEvent('click', fn);
-			}
-		});
-	}
+    function addClickEvent(el, fn) {
+        ['Link', 'Button'].each(function(item) {
+            if ($(el + item)) {
+                $(el + item).addEvent('click', fn);
+            }
+        });
+    }
 
-	addClickEvent('download', function(e){
-		new Event(e).stop();
-		new MochaUI.Window({
-			id: 'downloadPage',
-			title: "_(Download from urls)",
-			loadMethod: 'iframe',
-			contentURL:'download.html',
-			scrollbars: true,
-			resizable: false,
-			maximizable: false,
-			closable: true,
-			paddingVertical: 0,
-			paddingHorizontal: 0,
-			width: 500,
-			height: 300
-		});
-	});
+    addClickEvent('download', function(e) {
+        new Event(e).stop();
+        new MochaUI.Window({
+            id: 'downloadPage',
+            title: "_(Download from urls)",
+            loadMethod: 'iframe',
+            contentURL: 'download.html',
+            scrollbars: true,
+            resizable: false,
+            maximizable: false,
+            closable: true,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 500,
+            height: 300
+        });
+    });
 
-	addClickEvent('preferences', function(e) {
-		new Event(e).stop();
-		new MochaUI.Window({
-			id: 'preferencesPage',
-			title: "_(Options)",
-			loadMethod: 'xhr',
-			toolbar: true,
-			contentURL: 'preferences_content.html',
-			require: {
-				css: ['css/Tabs.css']
-			},
-			toolbarURL: 'preferences.html',
-			resizable: true,
-			maximizable: false,
-			closable: true,
-			paddingVertical: 0,
-			paddingHorizontal: 0,
-			width: 700,
-			height: 300
-		});
-	});
+    addClickEvent('preferences', function(e) {
+        new Event(e).stop();
+        new MochaUI.Window({
+            id: 'preferencesPage',
+            title: "_(Options)",
+            loadMethod: 'xhr',
+            toolbar: true,
+            contentURL: 'preferences_content.html',
+            require: {
+                css: ['css/Tabs.css']
+            },
+            toolbarURL: 'preferences.html',
+            resizable: true,
+            maximizable: false,
+            closable: true,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 700,
+            height: 300
+        });
+    });
 
-	addClickEvent('upload', function(e){
-		new Event(e).stop();
-		new MochaUI.Window({
-			id: 'uploadPage',
-			title: "_(Download local torrent)",
-			loadMethod: 'iframe',
-			contentURL:'upload.html',
-			scrollbars: true,
-			resizable: false,
-			maximizable: false,
-			paddingVertical: 0,
-			paddingHorizontal: 0,
-			width: 600,
-			height: 130
-		});
-	});
+    addClickEvent('upload', function(e) {
+        new Event(e).stop();
+        new MochaUI.Window({
+            id: 'uploadPage',
+            title: "_(Download local torrent)",
+            loadMethod: 'iframe',
+            contentURL: 'upload.html',
+            scrollbars: true,
+            resizable: false,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 600,
+            height: 130
+        });
+    });
 
-	globalUploadLimitFN = function() {
-		new MochaUI.Window({
-				id: 'uploadLimitPage',
-				title: "_(Global Upload Speed Limiting)",
-				loadMethod: 'iframe',
-				contentURL:'uploadlimit.html?hash=global',
-				scrollbars: false,
-				resizable: false,
-				maximizable: false,
-				paddingVertical: 0,
-				paddingHorizontal: 0,
-				width: 424,
-				height: 80
-			});
-	}
+    globalUploadLimitFN = function() {
+        new MochaUI.Window({
+            id: 'uploadLimitPage',
+            title: "_(Global Upload Speed Limiting)",
+            loadMethod: 'iframe',
+            contentURL: 'uploadlimit.html?hash=global',
+            scrollbars: false,
+            resizable: false,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 424,
+            height: 80
+        });
+    }
 
-	uploadLimitFN = function() {
-		var h = myTable.selectedIds();
-		if(h.length){
-			var hash = h[0];
-			new MochaUI.Window({
-				id: 'uploadLimitPage',
-				title: "_(Torrent Upload Speed Limiting)",
-				loadMethod: 'iframe',
-				contentURL:'uploadlimit.html?hash='+hash,
-				scrollbars: false,
-				resizable: false,
-				maximizable: false,
-				paddingVertical: 0,
-				paddingHorizontal: 0,
-				width: 424,
-				height: 80
-			});
-		}
-	};
+    uploadLimitFN = function() {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            var hash = h[0];
+            new MochaUI.Window({
+                id: 'uploadLimitPage',
+                title: "_(Torrent Upload Speed Limiting)",
+                loadMethod: 'iframe',
+                contentURL: 'uploadlimit.html?hash=' + hash,
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                paddingVertical: 0,
+                paddingHorizontal: 0,
+                width: 424,
+                height: 80
+            });
+        }
+    };
 
-	globalDownloadLimitFN = function() {
-		new MochaUI.Window({
-				id: 'downloadLimitPage',
-				title: "_(Global Download Speed Limiting)",
-				loadMethod: 'iframe',
-				contentURL:'downloadlimit.html?hash=global',
-				scrollbars: false,
-				resizable: false,
-				maximizable: false,
-				paddingVertical: 0,
-				paddingHorizontal: 0,
-				width: 424,
-				height: 80
-			});
-	}
+    globalDownloadLimitFN = function() {
+        new MochaUI.Window({
+            id: 'downloadLimitPage',
+            title: "_(Global Download Speed Limiting)",
+            loadMethod: 'iframe',
+            contentURL: 'downloadlimit.html?hash=global',
+            scrollbars: false,
+            resizable: false,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 424,
+            height: 80
+        });
+    }
 
-	downloadLimitFN = function() {
-		var h = myTable.selectedIds();
-		if(h.length){
-			var hash = h[0];
-			new MochaUI.Window({
-				id: 'downloadLimitPage',
-				title: "_(Torrent Download Speed Limiting)",
-				loadMethod: 'iframe',
-				contentURL:'downloadlimit.html?hash='+hash,
-				scrollbars: false,
-				resizable: false,
-				maximizable: false,
-				paddingVertical: 0,
-				paddingHorizontal: 0,
-				width: 424,
-				height: 80
-			});
-		}
-	};
+    downloadLimitFN = function() {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            var hash = h[0];
+            new MochaUI.Window({
+                id: 'downloadLimitPage',
+                title: "_(Torrent Download Speed Limiting)",
+                loadMethod: 'iframe',
+                contentURL: 'downloadlimit.html?hash=' + hash,
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                paddingVertical: 0,
+                paddingHorizontal: 0,
+                width: 424,
+                height: 80
+            });
+        }
+    };
 
-	deleteFN = function() {
-		var h = myTable.selectedIds();
-		/*if(h.length && confirm('_(Are you sure you want to delete the selected torrents from the transfer list?)')) {
+    deleteFN = function() {
+        var h = myTable.selectedIds();
+        /*if(h.length && confirm('_(Are you sure you want to delete the selected torrents from the transfer list?)')) {
 			h.each(function(item, index){
 				new Request({url: 'command/delete', method: 'post', data: {hash: item}}).send();
 			});
 		}*/
-		if(h.length) {
-                	new MochaUI.Window({
-				id: 'confirmDeletionPage',
-				title: "_(Deletion confirmation - qBittorrent)",
-				loadMethod: 'iframe',
-				contentURL:'confirmdeletion.html?hashes='+h.join(','),
-				scrollbars: false,
-				resizable: false,
-				maximizable: false,
-				padding: 10,
-				width: 424,
-				height: 140
-			});
+        if (h.length) {
+            new MochaUI.Window({
+                id: 'confirmDeletionPage',
+                title: "_(Deletion confirmation - qBittorrent)",
+                loadMethod: 'iframe',
+                contentURL: 'confirmdeletion.html?hashes=' + h.join(','),
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                padding: 10,
+                width: 424,
+                height: 140
+            });
+        }
+    };
+
+    addClickEvent('delete', function(e) {
+        new Event(e).stop();
+        deleteFN();
+    });
+
+    pauseFN = function() {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            h.each(function(hash, index) {
+                new Request({
+                    url: 'command/pause',
+                    method: 'post',
+                    data: {
+                        hash: hash
+                    }
+                }).send();
+            });
+        }
+    };
+
+    startFN = function() {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            h.each(function(hash, index) {
+                new Request({
+                    url: 'command/resume',
+                    method: 'post',
+                    data: {
+                        hash: hash
+                    }
+                }).send();
+            });
+        }
+    };
+
+    recheckFN = function() {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            h.each(function(hash, index) {
+                new Request({
+                    url: 'command/recheck',
+                    method: 'post',
+                    data: {
+                        hash: hash
+                    }
+                }).send();
+            });
+        }
+    };
+
+    ['pause', 'resume', 'recheck'].each(function(item) {
+        addClickEvent(item, function(e) {
+            new Event(e).stop();
+            var h = myTable.selectedIds();
+            if (h.length) {
+                h.each(function(hash, index) {
+                    new Request({
+                        url: 'command/' + item,
+                        method: 'post',
+                        data: {
+                            hash: hash
+                        }
+                    }).send();
+                });
+            }
+        });
+
+        addClickEvent(item + 'All', function(e) {
+            new Event(e).stop();
+            new Request({
+                url: 'command/' + item + 'all'
+            }).send();
+        });
+    });
+
+    ['decreasePrio', 'increasePrio', 'topPrio', 'bottomPrio'].each(function(item) {
+        addClickEvent(item, function(e) {
+            new Event(e).stop();
+            setPriorityFN(item);
+        });
+    });
+
+    setPriorityFN = function(cmd) {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            new Request({
+                url: 'command/' + cmd,
+                method: 'post',
+                data: {
+                    hashes: h.join("|")
                 }
-	};
+            }).send();
+        }
+    }
 
-	addClickEvent('delete', function(e){
-		new Event(e).stop();
-		deleteFN();
-	});
+    addClickEvent('about', function(e) {
+        new Event(e).stop();
+        new MochaUI.Window({
+            id: 'aboutpage',
+            title: 'About',
+            loadMethod: 'xhr',
+            contentURL: 'about.html',
+            width: 650,
+            height: 200,
+            padding: 10
+        });
+    });
 
-	pauseFN = function() {
-		var h = myTable.selectedIds();
-		if(h.length){
-			h.each(function(hash, index){
-			  new Request({url: 'command/pause', method: 'post', data: {hash: hash}}).send();
-			});
-		}
-	};
-
-	startFN = function() {
-		var h = myTable.selectedIds();
-		if(h.length){
-			h.each(function(hash, index){
-			  new Request({url: 'command/resume', method: 'post', data: {hash: hash}}).send();
-			});
-		}
-	};
-
-	recheckFN = function() {
-		var h = myTable.selectedIds();
-		if(h.length){
-			h.each(function(hash, index){
-			  new Request({url: 'command/recheck', method: 'post', data: {hash: hash}}).send();
-			});
-		}
-	};
-
-	['pause','resume', 'recheck'].each(function(item) {
-		addClickEvent(item, function(e){
-			new Event(e).stop();
-			var h = myTable.selectedIds();
-			if(h.length){
-				h.each(function(hash, index){
-				  new Request({url: 'command/'+item, method: 'post', data: {hash: hash}}).send();
-				});
-			}
-		});
-
-		addClickEvent(item+'All', function(e){
-			new Event(e).stop();
-			new Request({url: 'command/'+item+'all'}).send();
-		});
-	});
-
-	['decreasePrio','increasePrio', 'topPrio', 'bottomPrio'].each(function(item) {
-		addClickEvent(item, function(e){
-			new Event(e).stop();
-			setPriorityFN(item);
-		});
-	});
-
-	setPriorityFN = function(cmd) {
-		var h = myTable.selectedIds();
-		if(h.length) {
-			new Request({url: 'command/'+cmd, method: 'post', data: {hashes: h.join("|")}}).send();
-		}
-	}
-
-	addClickEvent('about', function(e){
-		new Event(e).stop();
-		new MochaUI.Window({
-			id: 'aboutpage',
-			title: 'About',
-			loadMethod: 'xhr',
-			contentURL: 'about.html',
-			width: 650,
-			height: 200,
-			padding: 10
-		});
-	});
-
-    addClickEvent('logout', function(e){
+    addClickEvent('logout', function(e) {
         new Event(e).stop();
         new Request({
             url: '/logout',
@@ -270,8 +303,8 @@ initializeWindows = function(){
         }).send();
     });
 
-	addClickEvent('shutdown', function(e){
-		new Event(e).stop();
+    addClickEvent('shutdown', function(e) {
+        new Event(e).stop();
         new Request({
             url: 'command/shutdown',
             onSuccess: function() {
@@ -279,30 +312,29 @@ initializeWindows = function(){
                 stop();
             }
         }).send();
-	});
+    });
 
-	updateSpeedInBrowserTitleBarLinkCheckState = function()
-	{
-		if (localStorage.getItem('speed_in_browser_title_bar') == 'true')
-		  $(speedInBrowserTitleBarLink).firstChild.style.opacity = '1';
-		else
-		  $(speedInBrowserTitleBarLink).firstChild.style.opacity = '0';
-	}
+    updateSpeedInBrowserTitleBarLinkCheckState = function() {
+        if (localStorage.getItem('speed_in_browser_title_bar') == 'true')
+            $(speedInBrowserTitleBarLink).firstChild.style.opacity = '1';
+        else
+            $(speedInBrowserTitleBarLink).firstChild.style.opacity = '0';
+    }
 
-	updateSpeedInBrowserTitleBarLinkCheckState();
+    updateSpeedInBrowserTitleBarLinkCheckState();
 
-	addClickEvent('speedInBrowserTitleBar', function(e){
-		new Event(e).stop();
-		var speed_in_browser_title_bar = localStorage.getItem('speed_in_browser_title_bar');
-		speed_in_browser_title_bar = speed_in_browser_title_bar == 'true' ? 'false' : 'true';
-		localStorage.setItem('speed_in_browser_title_bar', speed_in_browser_title_bar);
-		updateSpeedInBrowserTitleBarLinkCheckState();
-	});
+    addClickEvent('speedInBrowserTitleBar', function(e) {
+        new Event(e).stop();
+        var speed_in_browser_title_bar = localStorage.getItem('speed_in_browser_title_bar');
+        speed_in_browser_title_bar = speed_in_browser_title_bar == 'true' ? 'false' : 'true';
+        localStorage.setItem('speed_in_browser_title_bar', speed_in_browser_title_bar);
+        updateSpeedInBrowserTitleBarLinkCheckState();
+    });
 
-	// Deactivate menu header links
-	$$('a.returnFalse').each(function(el){
-		el.addEvent('click', function(e){
-			new Event(e).stop();
-		});
-	});
+    // Deactivate menu header links
+    $$('a.returnFalse').each(function(el) {
+        el.addEvent('click', function(e) {
+            new Event(e).stop();
+        });
+    });
 }
