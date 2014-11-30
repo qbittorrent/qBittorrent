@@ -233,6 +233,23 @@ window.addEvent('load', function () {
         updateTransferList();
     };
 
+    updateSpeedInBrowserTitleBarLinkCheckState = function() {
+        if (localStorage.getItem('speed_in_browser_title_bar') == 'true')
+            $(speedInBrowserTitleBarLink).firstChild.style.opacity = '1';
+        else
+            $(speedInBrowserTitleBarLink).firstChild.style.opacity = '0';
+    }
+
+    updateSpeedInBrowserTitleBarLinkCheckState();
+
+    addClickEvent('speedInBrowserTitleBar', function() {
+        var speed_in_browser_title_bar = localStorage.getItem('speed_in_browser_title_bar');
+        speed_in_browser_title_bar = speed_in_browser_title_bar == 'true' ? 'false' : 'true';
+        localStorage.setItem('speed_in_browser_title_bar', speed_in_browser_title_bar);
+        updateSpeedInBrowserTitleBarLinkCheckState();
+        updateTransferInfo();
+    });
+
     new MochaUI.Panel({
         id : 'transferList',
         title : 'Panel',
