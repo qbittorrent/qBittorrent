@@ -80,8 +80,6 @@ window.addEvent('load', function () {
     if (!speedInTitle)
         $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
 
-    var r = 0;
-
     var stateToImg = function (state) {
         if (state == "pausedUP" || state == "pausedDL") {
             state = "paused";
