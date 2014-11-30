@@ -365,5 +365,6 @@
   <file>Icons/oxygen/system-log-out.png</file>
   <file>Icons/oxygen/go-bottom.png</file>
   <file>Icons/oxygen/go-top.png</file>
+  <file>Icons/oxygen/checked.png</file>
 </qresource>
 </RCC>

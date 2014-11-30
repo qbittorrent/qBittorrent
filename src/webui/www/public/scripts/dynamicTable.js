@@ -42,7 +42,7 @@ var dynamicTable = new Class	({
 		this.cur = new Array();
 		this.priority_hidden = false;
 		this.progressIndex = progressIndex;
-		this.filter = Cookie.read('selected_filter');
+		this.filter = localStorage.getItem('selected_filter');
 		if(!$defined(this.filter)) {
 			this.filter = 'all';
 		}

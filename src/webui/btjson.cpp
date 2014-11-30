@@ -33,7 +33,6 @@
 #include "qbtsession.h"
 #include "torrentpersistentdata.h"
 #include "jsonutils.h"
-#include "preferences.h"
 
 #include <QDebug>
 #include <QVariant>
@@ -132,7 +131,6 @@ static const char KEY_TRANSFER_DLSPEED[] = "dl_info_speed";
 static const char KEY_TRANSFER_DLDATA[] = "dl_info_data";
 static const char KEY_TRANSFER_UPSPEED[] = "up_info_speed";
 static const char KEY_TRANSFER_UPDATA[] = "up_info_data";
-static const char KEY_SHOW_SPEED_IN_TITLE[] = "show_speed_in_title";
 
 static QVariantMap toMap(const QTorrentHandle& h)
 {
@@ -396,6 +394,5 @@ QByteArray btjson::getTransferInfo()
   info[KEY_TRANSFER_DLDATA] = static_cast<qlonglong>(sessionStatus.total_payload_download);
   info[KEY_TRANSFER_UPSPEED] = sessionStatus.payload_upload_rate;
   info[KEY_TRANSFER_UPDATA] = static_cast<qlonglong>(sessionStatus.total_payload_upload);
-  info[KEY_SHOW_SPEED_IN_TITLE] = Preferences::instance()->speedInTitleBar();
   return json::toJson(info);
 }
