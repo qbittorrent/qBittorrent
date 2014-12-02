@@ -402,7 +402,7 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
       case TorrentModelItem::TR_RATIO:
       case TorrentModelItem::TR_PRIORITY:
       case TorrentModelItem::TR_LAST_ACTIVITY:
-        return Qt::AlignRight;
+        return QVariant(Qt::AlignRight | Qt::AlignVCenter);
       default:
         return QAbstractListModel::headerData(section, orientation, role);
       }
