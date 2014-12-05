@@ -958,6 +958,10 @@ QString Preferences::getWebUiPassword() const {
 }
 
 void Preferences::setWebUiPassword(const QString &new_password) {
+  // Do not overwrite current password with its hash
+  if (new_password == getWebUiPassword())
+      return;
+
   // Encode to md5 and save
   QCryptographicHash md5(QCryptographicHash::Md5);
   md5.addData(new_password.toLocal8Bit());
