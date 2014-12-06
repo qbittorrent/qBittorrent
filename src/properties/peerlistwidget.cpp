@@ -606,7 +606,7 @@ double PeerListWidget::getPeerRelevance(const torrent_status& status, const libt
     }
 
     if (localMissing == 0)
-        return -1.0;
+        return 0.0;
 
     return (double)remoteHaves/localMissing;
 }
