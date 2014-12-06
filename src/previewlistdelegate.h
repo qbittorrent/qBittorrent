@@ -40,12 +40,10 @@
 #include "misc.h"
 #include "previewselect.h"
 
-#ifdef Q_OS_WIN
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#if defined(Q_OS_WIN) && (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 #include <QPlastiqueStyle>
 #else
 #include <QProxyStyle>
-#endif
 #endif
 
 class PreviewListDelegate: public QItemDelegate {
@@ -80,17 +78,23 @@ class PreviewListDelegate: public QItemDelegate {
             painter->fillRect(opt.rect, opt.palette.highlight());
           }
 
-#ifndef Q_OS_WIN
-          QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
-#else
-          // XXX: To avoid having the progress text on the right of the bar
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#if (defined(Q_OS_MAC) || (defined(Q_OS_UNIX) && (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))))
+          /* System style on OSX and Linux(Qt4) */
+          QProxyStyle st;
+#elif (defined(Q_OS_WIN) && (QT_VERSION < QT_VERSION_CHECK(5, 0, 0)))
+          /* Plastique on Windows to have percentages on top of progressbars */
           QPlastiqueStyle st;
 #else
+          /*
+           * Linux(Qt5): Fusion works reasonably well with every common style and
+           * prevent issues with Breeze which uses the same color for the progressbar
+           * and highlighted rows and show percentages next to the progressbar.
+           *
+           * Windows(Qt5): percentages are shown on top of progressbars
+           */
           QProxyStyle st("fusion");
 #endif
           st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
-#endif
           break;
         }
         default:
