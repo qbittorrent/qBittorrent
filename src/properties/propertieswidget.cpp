@@ -318,11 +318,12 @@ void PropertiesWidget::loadDynamicData() {
   // Refresh only if the torrent handle is valid and if visible
   if (!h.is_valid() || main_window->getCurrentTabWidget() != transferList || state != VISIBLE) return;
   try {
-    libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters
-                                                 | torrent_handle::query_distributed_copies
-                                                 | torrent_handle::query_pieces);
     // Transfer infos
     if (stackedProperties->currentIndex() == PropTabBar::MAIN_TAB) {
+      libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters
+                                                   | torrent_handle::query_distributed_copies
+                                                   | torrent_handle::query_pieces);
+
       wasted->setText(misc::friendlyUnit(status.total_failed_bytes+status.total_redundant_bytes));
       upTotal->setText(misc::friendlyUnit(status.all_time_upload) + " ("+misc::friendlyUnit(status.total_payload_upload)+" "+tr("this session")+")");
       dlTotal->setText(misc::friendlyUnit(status.all_time_download) + " ("+misc::friendlyUnit(status.total_payload_download)+" "+tr("this session")+")");
@@ -382,6 +383,9 @@ void PropertiesWidget::loadDynamicData() {
       return;
     }
     if (stackedProperties->currentIndex() == PropTabBar::FILES_TAB) {
+      libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters
+                                                   | torrent_handle::query_distributed_copies
+                                                   | torrent_handle::query_pieces);
       // Files progress
       if (h.is_valid() && status.has_metadata) {
         qDebug("Updating priorities in files tab");

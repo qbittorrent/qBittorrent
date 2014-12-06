@@ -71,6 +71,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent):
   m_listModel->setHeaderData(PeerListDelegate::UP_SPEED, Qt::Horizontal, tr("Up Speed", "i.e: Upload speed"));
   m_listModel->setHeaderData(PeerListDelegate::TOT_DOWN, Qt::Horizontal, tr("Downloaded", "i.e: total data downloaded"));
   m_listModel->setHeaderData(PeerListDelegate::TOT_UP, Qt::Horizontal, tr("Uploaded", "i.e: total data uploaded"));
+  m_listModel->setHeaderData(PeerListDelegate::RELEVANCE, Qt::Horizontal, tr("Relevance", "i.e: How relevant this peer is to us. How many pieces it has that we don't."));
   // Proxy model to support sorting without actually altering the underlying model
   m_proxyModel = new PeerListSortModel();
   m_proxyModel->setDynamicSortFilter(true);
@@ -327,6 +328,7 @@ void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_reso
   if (!h.is_valid())
     return;
   boost::system::error_code ec;
+  libtorrent::torrent_status status = h.status(torrent_handle::query_pieces);
   std::vector<peer_info> peers;
   h.get_peer_info(peers);
   QSet<QString> old_peers_set = m_peerItems.keys().toSet();
@@ -341,14 +343,14 @@ void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_reso
     QString peer_ip = misc::toQString(ip_str);
     if (m_peerItems.contains(peer_ip)) {
       // Update existing peer
-      updatePeer(peer_ip, peer);
+      updatePeer(peer_ip, status, peer);
       old_peers_set.remove(peer_ip);
       if (force_hostname_resolution && m_resolver) {
         m_resolver->resolve(peer_ip);
       }
     } else {
       // Add new peer
-      m_peerItems[peer_ip] = addPeer(peer_ip, peer);
+      m_peerItems[peer_ip] = addPeer(peer_ip, status, peer);
       m_peerEndpoints[peer_ip] = peer.ip;
       // Resolve peer host name is asked
       if (m_resolver)
@@ -366,7 +368,7 @@ void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_reso
   }
 }
 
-QStandardItem* PeerListWidget::addPeer(const QString& ip, const peer_info& peer) {
+QStandardItem* PeerListWidget::addPeer(const QString& ip, const libtorrent::torrent_status &status, const peer_info& peer) {
   int row = m_listModel->rowCount();
   // Adding Peer to peer list
   m_listModel->insertRow(row);
@@ -395,10 +397,11 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, const peer_info& peer)
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::UP_SPEED), peer.payload_up_speed);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_DOWN), (qulonglong)peer.total_download);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_UP), (qulonglong)peer.total_upload);
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::RELEVANCE), getPeerRelevance(status, peer));
   return m_listModel->item(row, PeerListDelegate::IP);
 }
 
-void PeerListWidget::updatePeer(const QString& ip, const peer_info& peer) {
+void PeerListWidget::updatePeer(const QString& ip, const libtorrent::torrent_status &status, const peer_info& peer) {
   QStandardItem *item = m_peerItems.value(ip);
   int row = item->row();
   if (m_displayFlags) {
@@ -422,6 +425,7 @@ void PeerListWidget::updatePeer(const QString& ip, const peer_info& peer) {
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::UP_SPEED), peer.payload_up_speed);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_DOWN), (qulonglong)peer.total_download);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_UP), (qulonglong)peer.total_upload);
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::RELEVANCE), getPeerRelevance(status, peer));
 }
 
 void PeerListWidget::handleResolved(const QString &ip, const QString &hostname) {
@@ -581,4 +585,25 @@ void PeerListWidget::getFlags(const peer_info& peer, QString& flags, QString& to
   tooltip = tooltip.trimmed();
   if (tooltip.endsWith(',', Qt::CaseInsensitive))
     tooltip.chop(1);
+}
+
+double PeerListWidget::getPeerRelevance(const torrent_status& status, const libtorrent::peer_info &peer)
+{
+    int localMissing = 0;
+    int remoteHaves = 0;
+    libtorrent::bitfield local = status.pieces;
+    libtorrent::bitfield remote = peer.pieces;
+
+    for (int i=0; i<local.size(); ++i) {
+        if (!local[i]) {
+            ++localMissing;
+            if (remote[i])
+                ++remoteHaves;
+        }
+    }
+
+    if (localMissing == 0)
+        return -1.0;
+
+    return (double)remoteHaves/localMissing;
 }
