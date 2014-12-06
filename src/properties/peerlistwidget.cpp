@@ -30,6 +30,7 @@
 
 #include "peerlistwidget.h"
 #include "peerlistdelegate.h"
+#include "peerlistsortmodel.h"
 #include "reverseresolution.h"
 #include "preferences.h"
 #include "propertieswidget.h"
@@ -37,6 +38,7 @@
 #include "peeraddition.h"
 #include "speedlimitdlg.h"
 #include "iconprovider.h"
+#include "qtorrenthandle.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QSet>
@@ -44,6 +46,7 @@
 #include <QMenu>
 #include <QClipboard>
 #include <vector>
+#include <libtorrent/peer_info.hpp>
 
 using namespace libtorrent;
 

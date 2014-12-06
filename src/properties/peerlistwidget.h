@@ -35,20 +35,25 @@
 #include <QHash>
 #include <QPointer>
 #include <QSet>
-#include <libtorrent/peer_info.hpp>
-#include "peerlistsortmodel.h"
-#include "qtorrenthandle.h"
-#include "misc.h"
+#include <libtorrent/version.hpp>
 
 class PeerListDelegate;
+class PeerListSortModel;
 class ReverseResolution;
 class PropertiesWidget;
+class QTorrentHandle;
 
 QT_BEGIN_NAMESPACE
 class QSortFilterProxyModel;
 class QStandardItem;
 class QStandardItemModel;
 QT_END_NAMESPACE
+
+namespace libtorrent
+{
+    struct peer_info;
+    struct torrent_status;
+}
 
 #include <boost/version.hpp>
 #if BOOST_VERSION < 103500
