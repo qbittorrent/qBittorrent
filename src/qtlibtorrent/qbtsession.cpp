@@ -995,7 +995,10 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   loadTorrentSettings(h);
 
   // Load filtered files
+  bool add_paused = pref->addTorrentsInPause();
   if (!resumed) {
+    if (TorrentTempData::hasTempData(hash))
+      add_paused = TorrentTempData::isAddPaused(hash);
     loadTorrentTempData(h, savePath, true);
   }  
   if (HiddenData::hasData(hash) && pref->isQueueingSystemEnabled()) {
@@ -1014,7 +1017,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
     s->set_settings(sessionSettings);
     h.queue_position_top();
   }
-  if (!pref->addTorrentsInPause() || HiddenData::hasData(hash)) {
+  if (!add_paused || HiddenData::hasData(hash)) {
     // Start torrent because it was added in paused state
     h.resume();
   }
@@ -1182,8 +1185,12 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
 
   loadTorrentSettings(h);
 
+  bool add_paused = pref->addTorrentsInPause();
   if (!resumed) {
     qDebug("This is a NEW torrent (first time)...");
+    if (TorrentTempData::hasTempData(hash))
+      add_paused = TorrentTempData::isAddPaused(hash);
+
     loadTorrentTempData(h, savePath, false);
 
     // Append .!qB to incomplete files
@@ -1199,7 +1206,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       exportTorrentFile(h);
   }
 
-  if (!fastResume && !pref->addTorrentsInPause()) {
+  if (!fastResume && !add_paused) {
     // Start torrent because it was added in paused state
     h.resume();
   }
@@ -2912,10 +2919,7 @@ void QBtSession::processDownloadedFile(QString url, QString file_path) {
     emit newDownloadedTorrent(file_path, url);
   } else {
     url_skippingDlg.removeAt(index);
-    QTorrentHandle h = addTorrent(file_path, false, url, false);
-    // Pause torrent if necessary
-    if (h.is_valid() && pref->addTorrentsInPause() && pref->useAdditionDialog())
-        h.pause();
+    addTorrent(file_path, false, url, false);
     emit newDownloadedTorrentFromRss(url);
   }
 }
@@ -3093,6 +3097,11 @@ void QBtSession::unhideMagnet(const QString &hash) {
     return;
   }
 
+  bool add_paused = pref->addTorrentsInPause();
+  if (TorrentTempData::hasTempData(hash)) {
+    add_paused = TorrentTempData::isAddPaused(hash);
+  }
+
   if (!h.has_metadata()) {
     if (pref->isQueueingSystemEnabled()) {
       //Internally decrease the queue limits to ensure that other queued items aren't started
@@ -3109,13 +3118,13 @@ void QBtSession::unhideMagnet(const QString &hash) {
         sessionSettings.active_limit = max_active;
       s->set_settings(sessionSettings);
     }
-    if (pref->addTorrentsInPause())
+    if (add_paused)
       h.pause();
   }
 
   h.queue_position_bottom();
   loadTorrentTempData(h, h.save_path(), !h.has_metadata()); //TempData are deleted by a call to TorrentPersistentData::saveTorrentPersistentData()
-  if (!pref->addTorrentsInPause())
+  if (!add_paused)
     h.resume();
   h.move_storage(save_path);
 
