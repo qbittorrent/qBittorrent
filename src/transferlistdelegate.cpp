@@ -189,6 +189,11 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       newopt.minimum = 0;
       newopt.state |= QStyle::State_Enabled;
       newopt.textVisible = true;
+      if (opt.state & QStyle::State_Selected) {
+        painter->setPen(opt.palette.color(QPalette::HighlightedText));
+        painter->fillRect(opt.rect, opt.palette.highlight());
+      }
+
 #ifndef Q_OS_WIN
       QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
