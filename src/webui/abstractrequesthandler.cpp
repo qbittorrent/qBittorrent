@@ -36,145 +36,137 @@
 #include "abstractrequesthandler.h"
 
 AbstractRequestHandler::AbstractRequestHandler(const HttpRequest &request, const HttpEnvironment &env, WebApplication *app)
-  : app_(app), session_(0), request_(request), env_(env)
+    : app_(app), session_(0), request_(request), env_(env)
 {
-  sessionInitialize();
-  if (!sessionActive() && !isAuthNeeded())
-    sessionStart();
+    sessionInitialize();
+    if (!sessionActive() && !isAuthNeeded())
+        sessionStart();
 }
 
 HttpResponse AbstractRequestHandler::run()
 {
-  response_ = HttpResponse();
+    response_ = HttpResponse();
 
-  if (isBanned())
-  {
-    status(403, "Forbidden");
-    print(QObject::tr("Your IP address has been banned after too many failed authentication attempts."), CONTENT_TYPE_TXT);
-  }
-  else
-  {
-    processRequest();
-  }
+    if (isBanned()) {
+        status(403, "Forbidden");
+        print(QObject::tr("Your IP address has been banned after too many failed authentication attempts."), CONTENT_TYPE_TXT);
+    }
+    else {
+        processRequest();
+    }
 
-  return response_;
+    return response_;
 }
 
 bool AbstractRequestHandler::isAuthNeeded()
 {
-  return
-      (
+    return
+        (
         env_.clientAddress != QHostAddress::LocalHost &&
         env_.clientAddress != QHostAddress::LocalHostIPv6
-      ) || Preferences::instance()->isWebUiLocalAuthEnabled();
+        ) || Preferences::instance()->isWebUiLocalAuthEnabled();
 }
 
 void AbstractRequestHandler::status(uint code, const QString& text)
 {
-  response_.status = HttpResponseStatus(code, text);
+    response_.status = HttpResponseStatus(code, text);
 }
 
 void AbstractRequestHandler::header(const QString& name, const QString& value)
 {
-  response_.headers[name] = value;
+    response_.headers[name] = value;
 }
 
 void AbstractRequestHandler::print(const QString& text, const QString& type)
 {
-  print_impl(text.toUtf8(), type);
+    print_impl(text.toUtf8(), type);
 }
 
 void AbstractRequestHandler::print(const QByteArray& data, const QString& type)
 {
-  print_impl(data, type);
+    print_impl(data, type);
 }
 
 void AbstractRequestHandler::print_impl(const QByteArray& data, const QString& type)
 {
-  if (!response_.headers.contains(HEADER_CONTENT_TYPE))
-    response_.headers[HEADER_CONTENT_TYPE] = type;
+    if (!response_.headers.contains(HEADER_CONTENT_TYPE))
+        response_.headers[HEADER_CONTENT_TYPE] = type;
 
-  if (type.indexOf("image") > -1)
-    response_.headers[HEADER_CACHE_CONTROL] = "max-age=3000000";
+    if (type.indexOf("image") > -1)
+        response_.headers[HEADER_CACHE_CONTROL] = "max-age=3000000";
 
-  response_.content += data;
+    response_.content += data;
 }
 
 void AbstractRequestHandler::printFile(const QString& path)
 {
-  QByteArray data;
-  QString type;
+    QByteArray data;
+    QString type;
 
-  if (!app_->readFile(path, data, type))
-  {
-    status(404, "Not Found");
-    return;
-  }
+    if (!app_->readFile(path, data, type)) {
+        status(404, "Not Found");
+        return;
+    }
 
-  print(data, type);
+    print(data, type);
 }
 
 void AbstractRequestHandler::sessionInitialize()
 {
-  app_->sessionInitialize(this);
+    app_->sessionInitialize(this);
 }
 
 void AbstractRequestHandler::sessionStart()
 {
-  if (app_->sessionStart(this))
-  {
-    QNetworkCookie cookie(C_SID.toUtf8(), session_->id.toUtf8());
-    cookie.setPath("/");
-    header(HEADER_SET_COOKIE, cookie.toRawForm());
-  }
+    if (app_->sessionStart(this)) {
+        QNetworkCookie cookie(C_SID.toUtf8(), session_->id.toUtf8());
+        cookie.setPath("/");
+        header(HEADER_SET_COOKIE, cookie.toRawForm());
+    }
 }
 
 void AbstractRequestHandler::sessionEnd()
 {
-  if (sessionActive())
-  {
-    QNetworkCookie cookie(C_SID.toUtf8(), session_->id.toUtf8());
-    cookie.setPath("/");
-    cookie.setExpirationDate(QDateTime::currentDateTime());
+    if (sessionActive()) {
+        QNetworkCookie cookie(C_SID.toUtf8(), session_->id.toUtf8());
+        cookie.setPath("/");
+        cookie.setExpirationDate(QDateTime::currentDateTime());
 
-    if (app_->sessionEnd(this))
-    {
-      header(HEADER_SET_COOKIE, cookie.toRawForm());
+        if (app_->sessionEnd(this))
+            header(HEADER_SET_COOKIE, cookie.toRawForm());
     }
-  }
 }
 
 bool AbstractRequestHandler::isBanned() const
 {
-  return app_->isBanned(this);
+    return app_->isBanned(this);
 }
 
 int AbstractRequestHandler::failedAttempts() const
 {
-  return app_->failedAttempts(this);
+    return app_->failedAttempts(this);
 }
 
 void AbstractRequestHandler::resetFailedAttempts()
 {
-  app_->resetFailedAttempts(this);
+    app_->resetFailedAttempts(this);
 }
 
 void AbstractRequestHandler::increaseFailedAttempts()
 {
-  app_->increaseFailedAttempts(this);
+    app_->increaseFailedAttempts(this);
 }
 
 QString AbstractRequestHandler::saveTmpFile(const QByteArray &data)
 {
-  QTemporaryFile tmpfile(QDir::temp().absoluteFilePath("qBT-XXXXXX.torrent"));
-  tmpfile.setAutoRemove(false);
-  if (tmpfile.open())
-  {
-    tmpfile.write(data);
-    tmpfile.close();
-    return tmpfile.fileName();
-  }
+    QTemporaryFile tmpfile(QDir::temp().absoluteFilePath("qBT-XXXXXX.torrent"));
+    tmpfile.setAutoRemove(false);
+    if (tmpfile.open()) {
+        tmpfile.write(data);
+        tmpfile.close();
+        return tmpfile.fileName();
+    }
 
-  qWarning() << "I/O Error: Could not create temporary file";
-  return QString();
+    qWarning() << "I/O Error: Could not create temporary file";
+    return QString();
 }
