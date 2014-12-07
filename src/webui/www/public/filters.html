@@ -9,9 +9,9 @@
 				
 				<script type="text/javascript">
 				// Remember this via Cookie
-				var last_filter = Cookie.read('selected_filter');
+				var filter = Cookie.read('selected_filter');
 				if(!$defined(last_filter)) {
-					last_filter = 'all';
+					filter = 'all';
 				}
-				$(last_filter+'_filter').addClass('selectedFilter');
+				$(filter+'_filter').addClass('selectedFilter');
 				</script>

@@ -39,6 +39,36 @@ QT_BEGIN_NAMESPACE
 class QStringList;
 QT_END_NAMESPACE
 
+class QTorrentState
+{
+public:
+    enum {
+        Unknown = -1,
+
+        Error,
+
+        Uploading,
+        PausedUploading,
+        QueuedUploading,
+        StalledUploading,
+        CheckingUploading,
+
+        Downloading,
+        PausedDownloading,
+        QueuedDownloading,
+        StalledDownloading,
+        CheckingDownloading
+    };
+
+    QTorrentState(int value);
+
+    operator int() const;
+    QString toString() const;
+
+private:
+    int m_value;
+};
+
 // A wrapper for torrent_handle in libtorrent
 // to interact well with Qt types
 class QTorrentHandle : public libtorrent::torrent_handle {
@@ -94,6 +124,8 @@ public:
   void downloading_pieces(libtorrent::bitfield& bf) const;
   bool has_metadata() const;
   void file_progress(std::vector<libtorrent::size_type>& fp) const;
+  QTorrentState torrentState() const;
+  qulonglong eta() const;
 
   //
   // Setters
