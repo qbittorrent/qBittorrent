@@ -213,9 +213,11 @@ window.addEvent('load', function () {
                     });
                     if (queueing_enabled) {
                         $('queueingButtons').removeClass('invisible');
+                        $('queueingMenuItems').removeClass('invisible');
                         myTable.showPriority();
                     } else {
                         $('queueingButtons').addClass('invisible');
+                        $('queueingMenuItems').addClass('invisible');
                         myTable.hidePriority();
                     }
                     
