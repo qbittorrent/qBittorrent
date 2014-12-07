@@ -62,6 +62,7 @@ const QString SCOPE_THEME = "theme";
 const QString DEFAULT_ACTION = "index";
 const QString WEBUI_ACTION = "webui";
 const QString VERSION_INFO = "version";
+const QString MAX_AGE_MONTH = "public, max-age=2592000";
 
 #define ADD_ACTION(scope, action) actions[#scope][#action] = &RequestHandler::action_##scope##_##action
 
@@ -178,12 +179,14 @@ void RequestHandler::action_public_theme()
     qDebug() << Q_FUNC_INFO << "There icon:" << url;
 
     printFile(url);
+    header(HEADER_CACHE_CONTROL, MAX_AGE_MONTH);
 }
 
 void RequestHandler::action_public_images()
 {
     const QString path = ":/Icons/" + args_.join("/");
     printFile(path);
+    header(HEADER_CACHE_CONTROL, MAX_AGE_MONTH);
 }
 
 // GET params:
