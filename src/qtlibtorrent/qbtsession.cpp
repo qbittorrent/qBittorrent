@@ -2932,7 +2932,6 @@ void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QStrin
 
 // Add to Bittorrent session the downloaded torrent file
 void QBtSession::processDownloadedFile(QString url, QString file_path) {
-  Preferences* const pref = Preferences::instance();
   const int index = url_skippingDlg.indexOf(QUrl::fromEncoded(url.toUtf8()));
   if (index < 0) {
     // Add file to torrent download list
