@@ -350,15 +350,6 @@ ul.filterList li:hover a {
 	line-height: 20px;
 }
 
-#filesTable tr:nth-child(even) {
-	background-color: #eee;
-}
-
-#filesTable tr:hover {
-	background-color: #e60;
-	color: white;
-}
-
 #addTrackersPlus {
 	width: 16px;
 	cursor: pointer;

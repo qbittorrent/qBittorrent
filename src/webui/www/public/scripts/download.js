@@ -8,10 +8,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,15 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-window.addEvent('domready', function(){
-  $('urls').focus();
-	$('downButton').addEvent('click', function(e){
-		new Event(e).stop();
-		new Request({url: 'command/download', method: 'post', data: {urls: $('urls').value},
-			onComplete: function() {
-				window.parent.document.getElementById('downloadPage').parentNode.removeChild(window.parent.document.getElementById('downloadPage'));
-			}
-		}).send();
-	});
+window.addEvent('domready', function() {
+    $('urls').focus();
+    $('downButton').addEvent('click', function(e) {
+        new Event(e).stop();
+        new Request({
+            url: 'command/download',
+            method: 'post',
+            data: {
+                urls: $('urls').value
+            },
+            onComplete: function() {
+                window.parent.document.getElementById('downloadPage').parentNode.removeChild(window.parent.document.getElementById('downloadPage'));
+            }
+        }).send();
+    });
 });

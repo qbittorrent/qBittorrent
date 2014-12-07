@@ -23,7 +23,6 @@
  */
 
 myTable = new dynamicTable();
-ajaxfn = function () {};
 
 window.addEvent('load', function () {
 
@@ -76,9 +75,10 @@ window.addEvent('load', function () {
         height : 300
     });
     initializeWindows();
-    var r = 0;
-    var waiting = false;
-    var waitingTrInfo = false;
+
+    var speedInTitle = localStorage.getItem('speed_in_browser_title_bar') == "true";
+    if (!speedInTitle)
+        $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
 
     var stateToImg = function (state) {
         if (state == "pausedUP" || state == "pausedDL") {
@@ -94,141 +94,157 @@ window.addEvent('load', function () {
         }
         return 'images/skin/' + state + '.png';
     };
+
+    var loadTransferInfoTimer;
     var loadTransferInfo = function () {
         var url = 'json/transferInfo';
-        if (!waitingTrInfo) {
-            waitingTrInfo = true;
-            var request = new Request.JSON({
-                    url : url,
-                    noCache : true,
-                    method : 'get',
-                    onFailure : function () {
-                        $('error_div').set('html', '_(qBittorrent client is not reachable)');
-                        waitingTrInfo = false;
-                        loadTransferInfo.delay(4000);
-                    },
-                    onSuccess : function (info) {
-                        if (info) {
-                            $("DlInfos").set('html', "_(D: %1 - T: %2)"
-                                .replace("%1", friendlyUnit(info.dl_info_speed, true))
-                                .replace("%2", friendlyUnit(info.dl_info_data, false)));
-                            $("UpInfos").set('html', "_(U: %1 - T: %2)"
-                                .replace("%1", friendlyUnit(info.up_info_speed, true))
-                                .replace("%2", friendlyUnit(info.up_info_data, false)));
-                            if(localStorage.getItem('speed_in_browser_title_bar') == 'true')
-                                document.title = "_(D:%1 U:%2)".replace("%1", friendlyUnit(info.dl_info_speed, true)).replace("%2", friendlyUnit(info.up_info_speed, true));
-                            else
-                                document.title = "_(qBittorrent web User Interface)";
-                            waitingTrInfo = false;
-                            loadTransferInfo.delay(3000);
-                        }
-                    }
-                }).send();
-        }
+        var request = new Request.JSON({
+            url : url,
+            noCache : true,
+            method : 'get',
+            onFailure : function () {
+                $('error_div').set('html', '_(qBittorrent client is not reachable)');
+                loadTransferInfoTimer = loadTransferInfo.delay(4000);
+            },
+            onSuccess : function (info) {
+                if (info) {
+                    $("DlInfos").set('html', "_(D: %1 - T: %2)"
+                        .replace("%1", friendlyUnit(info.dl_info_speed, true))
+                        .replace("%2", friendlyUnit(info.dl_info_data, false)));
+                    $("UpInfos").set('html', "_(U: %1 - T: %2)"
+                        .replace("%1", friendlyUnit(info.up_info_speed, true))
+                        .replace("%2", friendlyUnit(info.up_info_data, false)));
+                    if (speedInTitle)
+                        document.title = "_(D:%1 U:%2)".replace("%1", friendlyUnit(info.dl_info_speed, true)).replace("%2", friendlyUnit(info.up_info_speed, true));
+                    else
+                        document.title = "_(qBittorrent web User Interface)";
+                    loadTransferInfoTimer = loadTransferInfo.delay(3000);
+                }
+            }
+        }).send();
     };
+
+    var updateTransferInfo = function() {
+        clearTimeout(loadTransferInfoTimer);
+        loadTransferInfoTimer = loadTransferInfo();
+    }
+
+    // Start fetching data now
+    loadTransferInfo();
+
     $('DlInfos').addEvent('click', globalDownloadLimitFN);
     $('UpInfos').addEvent('click', globalUploadLimitFN);
 
+    var ajaxfnTimer;
     var ajaxfn = function () {
         var queueing_enabled = false;
         var url = new URI('json/torrents');
         url.setData('filter', filter);
         url.setData('sort', myTable.table.sortedColumn);
         url.setData('reverse', myTable.table.reverseSort);
-        if (!waiting) {
-            waiting = true;
-            var request = new Request.JSON({
-                    url : url,
-                    noCache : true,
-                    method : 'get',
-                    onFailure : function () {
-                        $('error_div').set('html', '_(qBittorrent client is not reachable)');
-                        waiting = false;
-                        ajaxfn.delay(2000);
-                    },
-                    onSuccess : function (events) {
-                        $('error_div').set('html', '');
-                        if (events) {
-                            // Add new torrents or update them
-                            torrent_hashes = myTable.getRowIds();
-                            events_hashes = new Array();
-                            pos = 0;
-                            events.each(function (event) {
-                                events_hashes[events_hashes.length] = event.hash;
-                                var row = new Array();
-                                var data = new Array();
-                                row.length = 10;
-                                row[0] = stateToImg(event.state);
-                                row[1] = event.name;
-                                row[2] = event.priority > -1 ? event.priority : null;
-                                data[2] = event.priority;
-                                row[3] = friendlyUnit(event.size, false);
-                                data[3] = event.size;
-                                row[4] = (event.progress * 100).round(1);
-                                if (row[4] == 100.0 && event.progress != 1.0)
-                                    row[4] = 99.9;
-                                data[4] = event.progress;
-                                row[5] = event.num_seeds;
-                                if (event.num_complete != -1)
-                                    row[5] += " (" + event.num_complete + ")";
-                                data[5] = event.num_seeds;
-                                row[6] = event.num_leechs;
-                                if (event.num_incomplete != -1)
-                                    row[6] += " (" + event.num_incomplete + ")";
-                                data[6] = event.num_leechs;
-                                row[7] = friendlyUnit(event.dlspeed, true);
-                                data[7] = event.dlspeed;
-                                row[8] = friendlyUnit(event.upspeed, true);
-                                data[8] = event.upspeed;
-                                row[9] = friendlyDuration(event.eta);
-                                data[9] = event.eta;
-                                if (event.ratio == -1)
-                                    row[10] = "∞";
-                                else
-                                    row[10] = (Math.floor(100 * event.ratio) / 100).toFixed(2); //Don't round up
-                                data[10] = event.ratio;
-                                if (row[2] != null)
-                                    queueing_enabled = true;
-                                if (!torrent_hashes.contains(event.hash)) {
-                                    // New unfinished torrent
-                                    torrent_hashes[torrent_hashes.length] = event.hash;
-                                    //alert("Inserting row");
-                                    myTable.insertRow(event.hash, row, data, event.state, pos);
-                                } else {
-                                    // Update torrent data
-                                    myTable.updateRow(event.hash, row, data, event.state, pos);
-                                }
-                                
-                                pos++;
-                            });
-                            // Remove deleted torrents
-                            torrent_hashes.each(function (hash) {
-                                if (!events_hashes.contains(hash)) {
-                                    myTable.removeRow(hash);
-                                }
-                            });
-                            if (queueing_enabled) {
-                                $('queueingButtons').removeClass('invisible');
-                                myTable.showPriority();
-                            } else {
-                                $('queueingButtons').addClass('invisible');
-                                myTable.hidePriority();
-                            }
-                            
-                            myTable.altRow();
+        var request = new Request.JSON({
+            url : url,
+            noCache : true,
+            method : 'get',
+            onFailure : function () {
+                $('error_div').set('html', '_(qBittorrent client is not reachable)');
+                ajaxfnTimer = ajaxfn.delay(2000);
+            },
+            onSuccess : function (events) {
+                $('error_div').set('html', '');
+                if (events) {
+                    // Add new torrents or update them
+                    torrent_hashes = myTable.getRowIds();
+                    events_hashes = new Array();
+                    pos = 0;
+                    events.each(function (event) {
+                        events_hashes[events_hashes.length] = event.hash;
+                        var row = new Array();
+                        var data = new Array();
+                        row.length = 10;
+                        row[0] = stateToImg(event.state);
+                        row[1] = event.name;
+                        row[2] = event.priority > -1 ? event.priority : null;
+                        data[2] = event.priority;
+                        row[3] = friendlyUnit(event.size, false);
+                        data[3] = event.size;
+                        row[4] = (event.progress * 100).round(1);
+                        if (row[4] == 100.0 && event.progress != 1.0)
+                            row[4] = 99.9;
+                        data[4] = event.progress;
+                        row[5] = event.num_seeds;
+                        if (event.num_complete != -1)
+                            row[5] += " (" + event.num_complete + ")";
+                        data[5] = event.num_seeds;
+                        row[6] = event.num_leechs;
+                        if (event.num_incomplete != -1)
+                            row[6] += " (" + event.num_incomplete + ")";
+                        data[6] = event.num_leechs;
+                        row[7] = friendlyUnit(event.dlspeed, true);
+                        data[7] = event.dlspeed;
+                        row[8] = friendlyUnit(event.upspeed, true);
+                        data[8] = event.upspeed;
+                        row[9] = friendlyDuration(event.eta);
+                        data[9] = event.eta;
+                        if (event.ratio == -1)
+                            row[10] = "∞";
+                        else
+                            row[10] = (Math.floor(100 * event.ratio) / 100).toFixed(2); //Don't round up
+                        data[10] = event.ratio;
+                        if (row[2] != null)
+                            queueing_enabled = true;
+                        if (!torrent_hashes.contains(event.hash)) {
+                            // New unfinished torrent
+                            torrent_hashes[torrent_hashes.length] = event.hash;
+                            //alert("Inserting row");
+                            myTable.insertRow(event.hash, row, data, event.state, pos);
+                        } else {
+                            // Update torrent data
+                            myTable.updateRow(event.hash, row, data, event.state, pos);
                         }
-                        waiting = false;
-                        ajaxfn.delay(1500);
+                        
+                        pos++;
+                    });
+                    // Remove deleted torrents
+                    torrent_hashes.each(function (hash) {
+                        if (!events_hashes.contains(hash)) {
+                            myTable.removeRow(hash);
+                        }
+                    });
+                    if (queueing_enabled) {
+                        $('queueingButtons').removeClass('invisible');
+                        myTable.showPriority();
+                    } else {
+                        $('queueingButtons').addClass('invisible');
+                        myTable.hidePriority();
                     }
-                }).send();
-        }
+                    
+                    myTable.altRow();
+                }
+                ajaxfnTimer = ajaxfn.delay(1500);
+            }
+        }).send();
     };
-    
+
+    var updateTransferList = function() {
+        clearTimeout(ajaxfnTimer);
+        ajaxfnTimer = ajaxfn();
+    }
+
     setSortedColumn = function (column) {
         myTable.setSortedColumn(column);
-        // reload torrents
-        ajaxfn();
+        updateTransferList();
     };
+
+    $('speedInBrowserTitleBarLink').addEvent('click', function(e) {
+        speedInTitle = !speedInTitle;
+        localStorage.setItem('speed_in_browser_title_bar', speedInTitle.toString());
+        if (speedInTitle)
+            $('speedInBrowserTitleBarLink').firstChild.style.opacity = '1';
+        else
+            $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
+        updateTransferInfo();
+    });
 
     new MochaUI.Panel({
         id : 'transferList',
@@ -243,7 +259,7 @@ window.addEvent('load', function () {
         loadMethod : 'xhr',
         contentURL : 'transferlist.html',
         onContentLoaded : function () {
-            ajaxfn();
+            updateTransferList();
         },
         column : 'mainColumn',
         onResize : saveColumnSizes,
@@ -272,8 +288,6 @@ window.addEvent('load', function () {
         column : 'mainColumn',
         height : prop_h
     });
-    //ajaxfn();
-    loadTransferInfo();
 
     setFilter = function (f) {
         // Visually Select the right filter
@@ -287,7 +301,7 @@ window.addEvent('load', function () {
         filter = f;
         localStorage.setItem('selected_filter', f);
         // Reload torrents
-        ajaxfn();
+        updateTransferList();
     }
 
 });
