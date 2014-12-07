@@ -1725,17 +1725,26 @@ void QBtSession::addConsoleMessage(QString msg, QColor color) {
 #endif
 }
 
-void QBtSession::addPeerBanMessage(QString ip, bool from_ipfilter) {
-  if (peerBanMessages.size() > MAX_LOG_MESSAGES) {
-    peerBanMessages.removeFirst();
-  }
-  QString msg;
-  if (from_ipfilter)
-    msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> was blocked", "x.y.z.w was blocked").arg(ip);
-  else
-    msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(ip);
-  peerBanMessages.append(msg);
-  emit newBanMessage(msg);
+#if LIBTORRENT_VERSION_NUM < 10000
+void QBtSession::addPeerBanMessage(const QString& ip, bool blocked)
+#else
+void QBtSession::addPeerBanMessage(const QString& ip, bool blocked, const QString& blockedReason)
+#endif
+{
+    if (peerBanMessages.size() > MAX_LOG_MESSAGES) {
+        peerBanMessages.removeFirst();
+    }
+    QString msg;
+    if (blocked)
+#if LIBTORRENT_VERSION_NUM < 10000
+        msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> was blocked", "x.y.z.w was blocked").arg(ip);
+#else
+        msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> was blocked %2", "x.y.z.w was blocked").arg(ip).arg(blockedReason);
+#endif
+    else
+        msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(ip);
+    peerBanMessages.append(msg);
+    emit newBanMessage(msg);
 }
 
 bool QBtSession::isFilePreviewPossible(const QString &hash) const {
@@ -2616,13 +2625,38 @@ void QBtSession::handlePortmapAlert(libtorrent::portmap_alert* p) {
   //emit UPnPSuccess(QString(p->msg().c_str()));
 }
 
-void QBtSession::handlePeerBlockedAlert(libtorrent::peer_blocked_alert* p) {
-  boost::system::error_code ec;
-  string ip = p->ip.to_string(ec);
-  if (!ec) {
-    addPeerBanMessage(QString::fromLatin1(ip.c_str()), true);
-    //emit peerBlocked(QString::fromLatin1(ip.c_str()));
-  }
+void QBtSession::handlePeerBlockedAlert(libtorrent::peer_blocked_alert* p)
+{
+    boost::system::error_code ec;
+    string ip = p->ip.to_string(ec);
+    QString reason;
+    switch (p->reason) {
+    case peer_blocked_alert::ip_filter:
+        reason = tr("due to IP filter.", "this peer was blocked due to ip filter.");
+        break;
+    case peer_blocked_alert::port_filter:
+        reason = tr("due to port filter.", "this peer was blocked due to port filter.");
+        break;
+    case peer_blocked_alert::i2p_mixed:
+        reason = tr("due to i2p mixed mode restrictions.", "this peer was blocked due to i2p mixed mode restrictions.");
+        break;
+    case peer_blocked_alert::privileged_ports:
+        reason = tr("because it has a low port.", "this peer was blocked because it has a low port.");
+        break;
+    case peer_blocked_alert::utp_disabled:
+        reason = tr("because μTP is disabled.", "this peer was blocked because μTP is disabled.");
+        break;
+    case peer_blocked_alert::tcp_disabled:
+        reason = tr("because TCP is disabled.", "this peer was blocked because TCP is disabled.");
+        break;
+    }
+
+    if (!ec)
+#if LIBTORRENT_VERSION_NUM < 10000
+        addPeerBanMessage(QString::fromLatin1(ip.c_str()), true);
+#else
+        addPeerBanMessage(QString::fromLatin1(ip.c_str()), true, reason);
+#endif
 }
 
 void QBtSession::handlePeerBanAlert(libtorrent::peer_ban_alert* p) {

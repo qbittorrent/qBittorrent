@@ -204,7 +204,11 @@ public slots:
 #else
   void addConsoleMessage(QString msg, QColor color=QApplication::palette().color(QPalette::WindowText));
 #endif
-  void addPeerBanMessage(QString msg, bool from_ipfilter);
+#if LIBTORRENT_VERSION_NUM < 10000
+  void addPeerBanMessage(const QString &msg, bool blocked);
+#else
+  void addPeerBanMessage(const QString &msg, bool blocked, const QString &blockedReason = QString());
+#endif
   void clearConsoleMessages() { consoleMessages.clear(); }
   void clearPeerBanMessages() { peerBanMessages.clear(); }
   void processDownloadedFile(QString, QString);
