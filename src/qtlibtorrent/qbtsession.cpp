@@ -2629,6 +2629,10 @@ void QBtSession::handlePeerBlockedAlert(libtorrent::peer_blocked_alert* p)
 {
     boost::system::error_code ec;
     string ip = p->ip.to_string(ec);
+#if LIBTORRENT_VERSION_NUM < 10000
+    if (!ec)
+        addPeerBanMessage(QString::fromLatin1(ip.c_str()), true);
+#else
     QString reason;
     switch (p->reason) {
     case peer_blocked_alert::ip_filter:
@@ -2652,9 +2656,6 @@ void QBtSession::handlePeerBlockedAlert(libtorrent::peer_blocked_alert* p)
     }
 
     if (!ec)
-#if LIBTORRENT_VERSION_NUM < 10000
-        addPeerBanMessage(QString::fromLatin1(ip.c_str()), true);
-#else
         addPeerBanMessage(QString::fromLatin1(ip.c_str()), true, reason);
 #endif
 }
