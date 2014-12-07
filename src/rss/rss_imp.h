@@ -45,55 +45,56 @@ QT_BEGIN_NAMESPACE
 class QTreeWidgetItem;
 QT_END_NAMESPACE
 
-class RSSImp : public QWidget, public Ui::RSS {
-  Q_OBJECT
+class RSSImp: public QWidget, public Ui::RSS
+{
+    Q_OBJECT
 
 public:
-  RSSImp(QWidget *parent);
-  ~RSSImp();
+    RSSImp(QWidget *parent);
+    ~RSSImp();
 
 public slots:
-  void deleteSelectedItems();
-  void updateRefreshInterval(uint val);
+    void deleteSelectedItems();
+    void updateRefreshInterval(uint val);
 
 private slots:
-  void on_newFeedButton_clicked();
-  void refreshAllFeeds();
-  void on_markReadButton_clicked();
-  void displayRSSListMenu(const QPoint&);
-  void displayItemsListMenu(const QPoint&);
-  void renameSelectedRssFile();
-  void refreshSelectedItems();
-  void copySelectedFeedsURL();
-  void populateArticleList(QTreeWidgetItem* item);
-  void refreshTextBrowser();
-  void updateFeedIcon(const QString &url, const QString &icon_path);
-  void updateFeedInfos(const QString &url, const QString &display_name, uint nbUnread);
-  void onFeedContentChanged(const QString& url);
-  void updateItemsInfos(const QList<QTreeWidgetItem*> &items);
-  void updateItemInfos(QTreeWidgetItem *item);
-  void openSelectedArticlesUrls();
-  void downloadSelectedTorrents();
-  void fillFeedsList(QTreeWidgetItem *parent=0, const RssFolderPtr& rss_parent = RssFolderPtr());
-  void saveSlidersPosition();
-  void restoreSlidersPosition();
-  void askNewFolder();
-  void saveFoldersOpenState();
-  void loadFoldersOpenState();
-  void on_actionManage_cookies_triggered();
-  void on_settingsButton_clicked();
-  void on_rssDownloaderBtn_clicked();
+    void on_newFeedButton_clicked();
+    void refreshAllFeeds();
+    void on_markReadButton_clicked();
+    void displayRSSListMenu(const QPoint&);
+    void displayItemsListMenu(const QPoint&);
+    void renameSelectedRssFile();
+    void refreshSelectedItems();
+    void copySelectedFeedsURL();
+    void populateArticleList(QTreeWidgetItem* item);
+    void refreshTextBrowser();
+    void updateFeedIcon(const QString &url, const QString &icon_path);
+    void updateFeedInfos(const QString &url, const QString &display_name, uint nbUnread);
+    void onFeedContentChanged(const QString& url);
+    void updateItemsInfos(const QList<QTreeWidgetItem*> &items);
+    void updateItemInfos(QTreeWidgetItem *item);
+    void openSelectedArticlesUrls();
+    void downloadSelectedTorrents();
+    void fillFeedsList(QTreeWidgetItem *parent = 0, const RssFolderPtr& rss_parent = RssFolderPtr());
+    void saveSlidersPosition();
+    void restoreSlidersPosition();
+    void askNewFolder();
+    void saveFoldersOpenState();
+    void loadFoldersOpenState();
+    void on_actionManage_cookies_triggered();
+    void on_settingsButton_clicked();
+    void on_rssDownloaderBtn_clicked();
 
 private:
-  static QListWidgetItem* createArticleListItem(const RssArticlePtr& article);
-  static QTreeWidgetItem* createFolderListItem(const RssFilePtr& rssFile);
+    static QListWidgetItem* createArticleListItem(const RssArticlePtr& article);
+    static QTreeWidgetItem* createFolderListItem(const RssFilePtr& rssFile);
 
 private:
-  RssManagerPtr m_rssManager;
-  FeedListWidget *m_feedList;
-  QListWidgetItem* m_currentArticle;
-  QShortcut *editHotkey;
-  QShortcut *deleteHotkey;
+    RssManagerPtr m_rssManager;
+    FeedListWidget *m_feedList;
+    QListWidgetItem* m_currentArticle;
+    QShortcut *editHotkey;
+    QShortcut *deleteHotkey;
 
 };
 
