@@ -1,11 +1,11 @@
 /* -----------------------------------------------------------------
 
-	ATTACH MOCHA LINK EVENTS
-	Notes: Here is where you define your windows and the events that open them.
-	If you are not using links to run Mocha methods you can remove this function.
+    ATTACH MOCHA LINK EVENTS
+    Notes: Here is where you define your windows and the events that open them.
+    If you are not using links to run Mocha methods you can remove this function.
 
-	If you need to add link events to links within windows you are creating, do
-	it in the onContentLoaded function of the new window.
+    If you need to add link events to links within windows you are creating, do
+    it in the onContentLoaded function of the new window.
 
    ----------------------------------------------------------------- */
 /* Define localStorage object for older browsers */
@@ -164,10 +164,10 @@ initializeWindows = function() {
     deleteFN = function() {
         var h = myTable.selectedIds();
         /*if(h.length && confirm('_(Are you sure you want to delete the selected torrents from the transfer list?)')) {
-			h.each(function(item, index){
-				new Request({url: 'command/delete', method: 'post', data: {hash: item}}).send();
-			});
-		}*/
+            h.each(function(item, index){
+                new Request({url: 'command/delete', method: 'post', data: {hash: item}}).send();
+            });
+        }*/
         if (h.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
