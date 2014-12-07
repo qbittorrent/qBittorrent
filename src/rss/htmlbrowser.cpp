@@ -17,7 +17,7 @@ HtmlBrowser::HtmlBrowser(QWidget* parent)
 {
 	m_netManager = new QNetworkAccessManager(this);
 	m_diskCache = new QNetworkDiskCache(this);
-	m_diskCache->setCacheDirectory(QDir::cleanPath(fsutils::cacheLocation() + "/browser"));
+    m_diskCache->setCacheDirectory(QDir::cleanPath(fsutils::cacheLocation() + "/rss"));
 	m_diskCache->setMaximumCacheSize(50 * 1024 * 1024);
 	qDebug() << "HtmlBrowser  cache path:" << m_diskCache->cacheDirectory() << " max size:" << m_diskCache->maximumCacheSize() / 1024 / 1024 << "MB";
 	m_netManager->setCache(m_diskCache);
