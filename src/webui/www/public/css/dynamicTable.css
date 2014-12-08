@@ -58,6 +58,12 @@
 #transferList tr.over {
 	background-color: #ee6600;
 	color: #fff;
+}
+
+#myTable tr:hover,
+#properties #torrentFiles tr.over,
+#properties #trackers tr.over,
+#transferList tr.over {
 	cursor: pointer;
 }
 
