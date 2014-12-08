@@ -55,7 +55,7 @@ using namespace libtorrent;
     static QElapsedTimer cacheTimer; \
     static bool initialized = false; \
     if (initialized && !cacheTimer.hasExpired(DUR)) \
-    return json::toJson(VAR); \
+        return json::toJson(VAR); \
     initialized = true; \
     cacheTimer.start(); \
     VAR = VARTYPE()
@@ -65,7 +65,7 @@ using namespace libtorrent;
     static QString prev_hash; \
     static QElapsedTimer cacheTimer; \
     if (prev_hash == HASH && !cacheTimer.hasExpired(DUR)) \
-    return json::toJson(VAR); \
+        return json::toJson(VAR); \
     prev_hash = HASH; \
     cacheTimer.start(); \
     VAR = VARTYPE()
@@ -157,26 +157,26 @@ public:
         switch (type_) {
         case QVariant::Int:
             return greaterThan_ ? torrent1.toMap().value(key_).toInt() > torrent2.toMap().value(key_).toInt()
-                                : torrent1.toMap().value(key_).toInt() < torrent2.toMap().value(key_).toInt();
+                   : torrent1.toMap().value(key_).toInt() < torrent2.toMap().value(key_).toInt();
         case QVariant::LongLong:
             return greaterThan_ ? torrent1.toMap().value(key_).toLongLong() > torrent2.toMap().value(key_).toLongLong()
-                                : torrent1.toMap().value(key_).toLongLong() < torrent2.toMap().value(key_).toLongLong();
+                   : torrent1.toMap().value(key_).toLongLong() < torrent2.toMap().value(key_).toLongLong();
         case QVariant::ULongLong:
             return greaterThan_ ? torrent1.toMap().value(key_).toULongLong() > torrent2.toMap().value(key_).toULongLong()
-                                : torrent1.toMap().value(key_).toULongLong() < torrent2.toMap().value(key_).toULongLong();
+                   : torrent1.toMap().value(key_).toULongLong() < torrent2.toMap().value(key_).toULongLong();
         case QMetaType::Float:
             return greaterThan_ ? torrent1.toMap().value(key_).toFloat() > torrent2.toMap().value(key_).toFloat()
-                                : torrent1.toMap().value(key_).toFloat() < torrent2.toMap().value(key_).toFloat();
+                   : torrent1.toMap().value(key_).toFloat() < torrent2.toMap().value(key_).toFloat();
         case QVariant::Double:
             return greaterThan_ ? torrent1.toMap().value(key_).toDouble() > torrent2.toMap().value(key_).toDouble()
-                                : torrent1.toMap().value(key_).toDouble() < torrent2.toMap().value(key_).toDouble();
+                   : torrent1.toMap().value(key_).toDouble() < torrent2.toMap().value(key_).toDouble();
         default:
             return greaterThan_ ? torrent1.toMap().value(key_).toString() > torrent2.toMap().value(key_).toString()
-                                : torrent1.toMap().value(key_).toString() < torrent2.toMap().value(key_).toString();
+                   : torrent1.toMap().value(key_).toString() < torrent2.toMap().value(key_).toString();
         }
 #else
         return greaterThan_ ? torrent1.toMap().value(key_) > torrent2.toMap().value(key_)
-                            : torrent1.toMap().value(key_) < torrent2.toMap().value(key_);
+               : torrent1.toMap().value(key_) < torrent2.toMap().value(key_);
 #endif
     }
 
@@ -236,7 +236,7 @@ static QVariantMap toMap(const QTorrentHandle& h)
  *   - "state": Torrent state
  */
 QByteArray btjson::getTorrents(QString filter, QString label,
-    QString sortedColumn, bool reverse, int limit, int offset)
+                               QString sortedColumn, bool reverse, int limit, int offset)
 {
     QVariantList torrent_list;
 
@@ -245,7 +245,7 @@ QByteArray btjson::getTorrents(QString filter, QString label,
     std::vector<torrent_handle>::const_iterator end = torrents.end();
 
     QTorrentFilter torrentFilter(filter, label);
-    for( ; it != end; ++it) {
+    for(; it != end; ++it) {
         QTorrentHandle torrent = QTorrentHandle(*it);
 
         if (torrentFilter.apply(torrent))
@@ -294,8 +294,9 @@ QByteArray btjson::getTrackersForTorrent(const QString& hash)
             tracker_dict[KEY_TRACKER_URL] = tracker_url;
             const TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
             QString status;
-            if (it->verified)
+            if (it->verified) {
                 status = tr("Working");
+            }
             else {
                 if (it->updating && it->fails == 0)
                     status = tr("Updating...");

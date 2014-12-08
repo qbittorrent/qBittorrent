@@ -47,77 +47,78 @@ class QSortFilterProxyModel;
 class QStandardItemModel;
 QT_END_NAMESPACE
 
-class TransferListWidget: public QTreeView {
-  Q_OBJECT
+class TransferListWidget: public QTreeView
+{
+    Q_OBJECT
 
 public:
-  TransferListWidget(QWidget *parent, MainWindow *main_window, QBtSession* BTSession);
-  ~TransferListWidget();
-  TorrentModel* getSourceModel() const;
+    TransferListWidget(QWidget *parent, MainWindow *main_window, QBtSession* BTSession);
+    ~TransferListWidget();
+    TorrentModel* getSourceModel() const;
 
 public slots:
-  void setSelectionLabel(QString label);
-  void setRefreshInterval(int t);
-  void setSelectedTorrentsLocation();
-  void startSelectedTorrents();
-  void startVisibleTorrents();
-  void pauseSelectedTorrents();
-  void pauseVisibleTorrents();
-  void deleteSelectedTorrents();
-  void deleteVisibleTorrents();
-  void increasePrioSelectedTorrents();
-  void decreasePrioSelectedTorrents();
-  void topPrioSelectedTorrents();
-  void bottomPrioSelectedTorrents();
-  void copySelectedMagnetURIs() const;
-  void openSelectedTorrentsFolder() const;
-  void recheckSelectedTorrents();
-  void setDlLimitSelectedTorrents();
-  void setUpLimitSelectedTorrents();
-  void setMaxRatioSelectedTorrents();
-  void previewSelectedTorrents();
-  void hidePriorityColumn(bool hide);
-  void displayDLHoSMenu(const QPoint&);
-  void applyNameFilter(const QString& name);
-  void applyStatusFilter(int f);
-  void applyLabelFilterAll();
-  void applyLabelFilter(QString label);
-  void previewFile(QString filePath);
-  void removeLabelFromRows(QString label);
-  void renameSelectedTorrent();
+    void setSelectionLabel(QString label);
+    void setRefreshInterval(int t);
+    void setSelectedTorrentsLocation();
+    void startSelectedTorrents();
+    void startVisibleTorrents();
+    void pauseSelectedTorrents();
+    void pauseVisibleTorrents();
+    void deleteSelectedTorrents();
+    void deleteVisibleTorrents();
+    void increasePrioSelectedTorrents();
+    void decreasePrioSelectedTorrents();
+    void topPrioSelectedTorrents();
+    void bottomPrioSelectedTorrents();
+    void copySelectedMagnetURIs() const;
+    void openSelectedTorrentsFolder() const;
+    void recheckSelectedTorrents();
+    void setDlLimitSelectedTorrents();
+    void setUpLimitSelectedTorrents();
+    void setMaxRatioSelectedTorrents();
+    void previewSelectedTorrents();
+    void hidePriorityColumn(bool hide);
+    void displayDLHoSMenu(const QPoint&);
+    void applyNameFilter(const QString& name);
+    void applyStatusFilter(int f);
+    void applyLabelFilterAll();
+    void applyLabelFilter(QString label);
+    void previewFile(QString filePath);
+    void removeLabelFromRows(QString label);
+    void renameSelectedTorrent();
 
 protected:
-  int getRowFromHash(QString hash) const;
-  QString getHashFromRow(int row) const;
-  QModelIndex mapToSource(const QModelIndex &index) const;
-  QModelIndex mapFromSource(const QModelIndex &index) const;
-  void saveSettings();
-  bool loadSettings();
-  QStringList getSelectedTorrentsHashes() const;
+    int getRowFromHash(QString hash) const;
+    QString getHashFromRow(int row) const;
+    QModelIndex mapToSource(const QModelIndex &index) const;
+    QModelIndex mapFromSource(const QModelIndex &index) const;
+    void saveSettings();
+    bool loadSettings();
+    QStringList getSelectedTorrentsHashes() const;
 
 protected slots:
-  void torrentDoubleClicked(const QModelIndex& index);
-  void displayListMenu(const QPoint&);
-  void currentChanged(const QModelIndex& current, const QModelIndex&);
-  void toggleSelectedTorrentsSuperSeeding() const;
-  void toggleSelectedTorrentsSequentialDownload() const;
-  void toggleSelectedFirstLastPiecePrio() const;
-  void askNewLabelForSelection();
+    void torrentDoubleClicked(const QModelIndex& index);
+    void displayListMenu(const QPoint&);
+    void currentChanged(const QModelIndex& current, const QModelIndex&);
+    void toggleSelectedTorrentsSuperSeeding() const;
+    void toggleSelectedTorrentsSequentialDownload() const;
+    void toggleSelectedFirstLastPiecePrio() const;
+    void askNewLabelForSelection();
 
 private:
-  bool openUrl(const QString& _path) const;
+    bool openUrl(const QString& _path) const;
 
 signals:
-  void currentTorrentChanged(const QTorrentHandle &h);
+    void currentTorrentChanged(const QTorrentHandle &h);
 
 private:
-  TransferListDelegate *listDelegate;
-  TorrentModel *listModel;
-  TransferListSortModel *nameFilterModel;
-  QBtSession* BTSession;
-  MainWindow *main_window;
-  QShortcut *editHotkey;
-  QShortcut *deleteHotkey;
+    TransferListDelegate *listDelegate;
+    TorrentModel *listModel;
+    TransferListSortModel *nameFilterModel;
+    QBtSession* BTSession;
+    MainWindow *main_window;
+    QShortcut *editHotkey;
+    QShortcut *deleteHotkey;
 };
 
 #endif // TRANSFERLISTWIDGET_H
