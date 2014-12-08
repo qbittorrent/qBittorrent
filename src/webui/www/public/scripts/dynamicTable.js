@@ -42,18 +42,20 @@ var dynamicTable = new Class({
             this.priority_hidden = false;
             this.progressIndex = progressIndex;
             this.context_menu = context_menu;
-            this.table.sortedColumn = 'name'; // Default is NAME
-            this.table.reverseSort = false;
+            this.table.sortedColumn = getLocalStorageItem('sorted_column', 'name');
+            this.table.reverseSort = getLocalStorageItem('reverse_sort', 'false');;
         },
 
         setSortedColumn : function (column) {
             if (column != this.table.sortedColumn) {
                 this.table.sortedColumn = column;
-                this.table.reverseSort = false;
+                this.table.reverseSort = 'false';
             } else {
                 // Toggle sort order
-                this.table.reverseSort = !this.table.reverseSort;
+                this.table.reverseSort = this.table.reverseSort == 'true' ? 'false' : 'true';
             }
+            localStorage.setItem('sorted_column', column);
+            localStorage.setItem('reverse_sort', this.table.reverseSort);
         },
 
         getCurrentTorrentHash : function () {
