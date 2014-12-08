@@ -64,3 +64,11 @@
 #transferList img.statusIcon {
   margin-bottom: -4px;
 }
+
+#transferList th,
+#transferList td {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	max-width: 300px;
+}
