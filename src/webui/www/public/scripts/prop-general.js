@@ -52,10 +52,10 @@ var loadTorrentData = function() {
                 $('comment').set('html', data.comment);
                 $('total_uploaded').set('html', friendlyUnit(data.total_uploaded) +
                     " (" + friendlyUnit(data.total_uploaded_session) +
-                    " (" + "_(this session)" + ")");
+                    " _(this session)" + ")");
                 $('total_downloaded').set('html', friendlyUnit(data.total_downloaded) +
                     " (" + friendlyUnit(data.total_downloaded_session) +
-                    " (" + "_(this session)" + ")");
+                    " _(this session)" + ")");
                 $('total_wasted').set('html', data.total_wasted);
                 temp = data.up_limit;
                 $('up_limit').set('html', temp == -1 ? "∞" : temp);
