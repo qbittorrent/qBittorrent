@@ -281,7 +281,7 @@ var loadTorrentFilesData = function() {
     var new_hash = myTable.getCurrentTorrentHash();
     if (new_hash == "") {
         fTable.removeAllRows();
-        loadTorrentFilesDataTimer = loadTorrentFilesData.delay(1500);
+        loadTorrentFilesDataTimer = loadTorrentFilesData.delay(5000);
         return;
     }
     if (new_hash != current_hash) {
@@ -295,7 +295,7 @@ var loadTorrentFilesData = function() {
         method: 'get',
         onFailure: function() {
             $('error_div').set('html', '_(qBittorrent client is not reachable)');
-            loadTorrentFilesDataTimer = loadTorrentFilesData.delay(2000);
+            loadTorrentFilesDataTimer = loadTorrentFilesData.delay(10000);
         },
         onSuccess: function(files) {
             $('error_div').set('html', '');
@@ -334,7 +334,7 @@ var loadTorrentFilesData = function() {
             else {
                 fTable.removeAllRows();
             }
-            loadTorrentFilesDataTimer = loadTorrentFilesData.delay(1500);
+            loadTorrentFilesDataTimer = loadTorrentFilesData.delay(5000);
         }
     }).send();
 }
