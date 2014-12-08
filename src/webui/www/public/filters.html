@@ -6,12 +6,3 @@
 					<li id="active_filter"><a href="#" onclick="setFilter('active');"><img src="images/skin/filteractive.png"/>_(Active)</a></li>
 					<li id="inactive_filter"><a href="#" onclick="setFilter('inactive');"><img src="images/skin/filterinactive.png"/>_(Inactive)</a></li>
 				</ul>
-				
-				<script type="text/javascript">
-				// Remember this via Cookie
-				var filter = Cookie.read('selected_filter');
-				if(!$defined(last_filter)) {
-					filter = 'all';
-				}
-				$(filter+'_filter').addClass('selectedFilter');
-				</script>

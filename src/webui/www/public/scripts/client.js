@@ -39,6 +39,8 @@ var stateToImg = function (state) {
     return 'images/skin/' + state + '.png';
 };
 
+filter = getLocalStorageItem('selected_filter', 'all');
+
 var loadTorrentsInfoTimer;
 var loadTorrentsInfo = function () {
     var queueing_enabled = false;
@@ -172,6 +174,23 @@ window.addEvent('load', function () {
         resizeLimit : [100, 300]
     });
     MochaUI.Desktop.setDesktopSize();
+
+    setFilter = function (f) {
+        // Visually Select the right filter
+        $("all_filter").removeClass("selectedFilter");
+        $("downloading_filter").removeClass("selectedFilter");
+        $("completed_filter").removeClass("selectedFilter");
+        $("paused_filter").removeClass("selectedFilter");
+        $("active_filter").removeClass("selectedFilter");
+        $("inactive_filter").removeClass("selectedFilter");
+        $(f + "_filter").addClass("selectedFilter");
+        filter = f;
+        localStorage.setItem('selected_filter', f);
+        // Reload torrents
+        if (typeof myTable.table != 'undefined')
+            updateTransferList();
+    }
+
     new MochaUI.Panel({
         id : 'Filters',
         title : 'Panel',
@@ -184,6 +203,9 @@ window.addEvent('load', function () {
         },
         loadMethod : 'xhr',
         contentURL : 'filters.html',
+        onContentLoaded : function () {
+            setFilter(filter);
+        },
         column : 'filtersColumn',
         height : 300
     });
@@ -290,22 +312,6 @@ window.addEvent('load', function () {
         column : 'mainColumn',
         height : prop_h
     });
-
-    setFilter = function (f) {
-        // Visually Select the right filter
-        $("all_filter").removeClass("selectedFilter");
-        $("downloading_filter").removeClass("selectedFilter");
-        $("completed_filter").removeClass("selectedFilter");
-        $("paused_filter").removeClass("selectedFilter");
-        $("active_filter").removeClass("selectedFilter");
-        $("inactive_filter").removeClass("selectedFilter");
-        $(f + "_filter").addClass("selectedFilter");
-        filter = f;
-        localStorage.setItem('selected_filter', f);
-        // Reload torrents
-        updateTransferList();
-    }
-
 });
 
 function closeWindows() {
