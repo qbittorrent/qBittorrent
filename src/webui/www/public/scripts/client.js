@@ -143,7 +143,7 @@ var loadTorrentsInfo = function () {
 
 var updateTransferList = function() {
     clearTimeout(loadTorrentsInfoTimer);
-    loadTorrentsInfoTimer = loadTorrentsInfo();
+    loadTorrentsInfo();
 }
 
 window.addEvent('load', function () {
@@ -253,7 +253,7 @@ window.addEvent('load', function () {
 
     var updateTransferInfo = function() {
         clearTimeout(loadTransferInfoTimer);
-        loadTransferInfoTimer = loadTransferInfo();
+        loadTransferInfo();
     }
 
     // Start fetching data now
