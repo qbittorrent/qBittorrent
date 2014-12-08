@@ -163,6 +163,8 @@ MUI.extend({
 				new MUI.Require({
 					js: options.require.js,
 					onload: function(){
+						if (!$defined(options.require.onload))
+							return;
 						if (Browser.Engine.presto){
 							options.require.onload.delay(100);
 						}
