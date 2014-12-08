@@ -311,11 +311,33 @@ window.addEvent('load', function () {
             bottom : 0,
             left : 0
         },
-        contentURL : 'prop-general.html',
+        contentURL : 'properties_content.html',
         require : {
-            css : ['css/Tabs.css']
+            css : ['css/Tabs.css'],
+            js : ['scripts/prop-general.js', 'scripts/prop-trackers.js', 'scripts/prop-files.js'],
         },
         tabsURL : 'properties.html',
+        tabsOnload : function() {
+            MochaUI.initializeTabs('propertiesTabs');
+
+            $('PropGeneralLink').addEvent('click', function(e){
+                $('prop_general').removeClass("invisible");
+                $('prop_trackers').addClass("invisible");
+                $('prop_files').addClass("invisible");
+            });
+
+            $('PropTrackersLink').addEvent('click', function(e){
+                $('prop_trackers').removeClass("invisible");
+                $('prop_general').addClass("invisible");
+                $('prop_files').addClass("invisible");
+            });
+
+            $('PropFilesLink').addEvent('click', function(e){
+                $('prop_files').removeClass("invisible");
+                $('prop_general').addClass("invisible");
+                $('prop_trackers').addClass("invisible");
+            });
+        },
         column : 'mainColumn',
         height : prop_h
     });
