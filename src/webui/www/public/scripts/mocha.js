@@ -237,7 +237,7 @@ MUI.extend({
 					var getTitle = new RegExp("<title>[\n\r\s]*(.*)[\n\r\s]*</title>", "gmi");
 					var error = getTitle.exec(response.responseText);
 					if (!error) error = 'Unknown';							 
-					contentContainer.set('html', '<h3>Error: ' + error[1] + '</h3>');
+					contentContainer.set('html', '<h3>Error: ' + error + '</h3>');
 					if (args.recipient == 'window'){
 						instance.hideSpinner();
 					}							
