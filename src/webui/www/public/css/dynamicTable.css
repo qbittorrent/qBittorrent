@@ -65,6 +65,10 @@
   margin-bottom: -4px;
 }
 
+#trackers th,
+#trackers td,
+#torrentFiles th,
+#torrentFiles td,
 #transferList th,
 #transferList td {
 	text-overflow: ellipsis;
