@@ -134,6 +134,34 @@ initializeWindows = function() {
         }
     };
 
+    toggleSequentialDownloadFN = function() {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            new Request({
+                url: 'command/toggleSequentialDownload',
+                method: 'post',
+                data: {
+                    hashes: h.join("|")
+                }
+            }).send();
+            updateTransferList();
+        }
+    };
+
+    toggleFirstLastPiecePrioFN = function() {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            new Request({
+                url: 'command/toggleFirstLastPiecePrio',
+                method: 'post',
+                data: {
+                    hashes: h.join("|")
+                }
+            }).send();
+            updateTransferList();
+        }
+    };
+
     globalDownloadLimitFN = function() {
         new MochaUI.Window({
             id: 'downloadLimitPage',

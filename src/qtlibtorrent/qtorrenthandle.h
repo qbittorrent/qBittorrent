@@ -128,6 +128,8 @@ public:
     void file_progress(std::vector<libtorrent::size_type>& fp) const;
     QTorrentState torrentState() const;
     qulonglong eta() const;
+    void toggleSequentialDownload();
+    void toggleFirstLastPiecePrio();
 
     //
     // Setters

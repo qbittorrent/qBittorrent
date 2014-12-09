@@ -489,6 +489,22 @@ qulonglong QTorrentHandle::eta() const
     return QBtSession::instance()->getETA(hash(), s);
 }
 
+void QTorrentHandle::toggleSequentialDownload()
+{
+    if (is_valid() && has_metadata()) {
+        bool was_sequential = is_sequential_download();
+        set_sequential_download(!was_sequential);
+        if (!was_sequential)
+            prioritize_first_last_piece(true);
+    }
+}
+
+void QTorrentHandle::toggleFirstLastPiecePrio()
+{
+    if (is_valid() && has_metadata())
+        prioritize_first_last_piece(!first_last_piece_first());
+}
+
 //
 // Setters
 //

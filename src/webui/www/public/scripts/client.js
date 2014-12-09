@@ -99,14 +99,21 @@ var loadTorrentsInfo = function () {
                     data[10] = event.ratio;
                     if (row[2] != null)
                         queueing_enabled = true;
+
+                    attrs = {};
+                    attrs['downloaded'] = (event.progress == 1.0);
+                    attrs['state'] = event.state;
+                    attrs['seq_dl'] = (event.seq_dl == true);
+                    attrs['f_l_piece_prio'] = (event.f_l_piece_prio == true);
+
                     if (!torrent_hashes.contains(event.hash)) {
                         // New unfinished torrent
                         torrent_hashes[torrent_hashes.length] = event.hash;
                         //alert("Inserting row");
-                        myTable.insertRow(event.hash, row, data, event.state, pos);
+                        myTable.insertRow(event.hash, row, data, attrs, pos);
                     } else {
                         // Update torrent data
-                        myTable.updateRow(event.hash, row, data, event.state, pos);
+                        myTable.updateRow(event.hash, row, data, attrs, pos);
                     }
 
                     pos++;

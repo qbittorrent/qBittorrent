@@ -127,9 +127,36 @@ var ContextMenu = new Class({
         }.bind(this));
     },
 
+    updateMenuItems: function () {
+        all_are_seq_dl = true;
+        all_are_f_l_piece_prio = true;
+        all_are_downloaded = true;
+
+        var h = myTable.selectedIds();
+        h.each(function(item, index){
+            tr = myTable.rows.get(item);
+            if (tr.getAttribute('seq_dl') != 'true')
+                all_are_seq_dl = false;
+            if (tr.getAttribute('f_l_piece_prio') != 'true')
+                all_are_f_l_piece_prio = false;
+            if (tr.getAttribute('downloaded') != 'true')
+                all_are_downloaded = false;
+        });
+
+        if (all_are_downloaded) {
+            this.hideItem('SequentialDownload');
+            this.hideItem('FirstLastPiecePrio');
+        } else {
+            this.showItem('SequentialDownload');
+            this.showItem('FirstLastPiecePrio');
+            this.setItemChecked('SequentialDownload', all_are_seq_dl);
+            this.setItemChecked('FirstLastPiecePrio', all_are_f_l_piece_prio);
+        }
+    },
+
     //show menu
     show: function(trigger) {
-        //this.menu.fade('in');
+        this.updateMenuItems();
         this.fx.start(1);
         this.fireEvent('show');
         this.shown = true;
@@ -147,15 +174,21 @@ var ContextMenu = new Class({
         return this;
     },
 
-    //disable an item
-    disableItem: function(item) {
-        this.menu.getElements('a[href$=' + item + ']').addClass('disabled');
+    setItemChecked: function(item, checked) {
+        this.menu.getElement('a[href$=' + item + ']').firstChild.style.opacity =
+             checked ? '1' : '0';
         return this;
     },
 
-    //enable an item
-    enableItem: function(item) {
-        this.menu.getElements('a[href$=' + item + ']').removeClass('disabled');
+    //hide an item
+    hideItem: function(item) {
+        this.menu.getElement('a[href$=' + item + ']').parentNode.addClass('invisible');
+        return this;
+    },
+
+    //show an item
+    showItem: function(item) {
+        this.menu.getElement('a[href$=' + item + ']').parentNode.removeClass('invisible');
         return this;
     },
 

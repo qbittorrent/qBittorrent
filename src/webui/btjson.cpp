@@ -98,6 +98,8 @@ static const char KEY_TORRENT_NUM_INCOMPLETE[] = "num_incomplete";
 static const char KEY_TORRENT_RATIO[] = "ratio";
 static const char KEY_TORRENT_ETA[] = "eta";
 static const char KEY_TORRENT_STATE[] = "state";
+static const char KEY_TORRENT_SEQUENTIAL_DOWNLOAD[] = "seq_dl";
+static const char KEY_TORRENT_FIRST_LAST_PIECE_PRIO[] = "f_l_piece_prio";
 
 // Tracker keys
 static const char KEY_TRACKER_URL[] = "url";
@@ -211,6 +213,12 @@ static QVariantMap toMap(const QTorrentHandle& h)
     ret[KEY_TORRENT_RATIO] = (ratio > 100.) ? -1 : ratio;
     ret[KEY_TORRENT_STATE] = h.torrentState().toString();
     ret[KEY_TORRENT_ETA] = h.eta();
+    if (h.has_metadata()) {
+        if (status.sequential_download)
+            ret[KEY_TORRENT_SEQUENTIAL_DOWNLOAD] = true;
+        if (h.first_last_piece_first())
+            ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = true;
+    }
 
     return ret;
 }
