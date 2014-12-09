@@ -89,8 +89,9 @@ QString fsutils::fromNativePath(const QString &path) {
  * Returns the file extension part of a file name.
  */
 QString fsutils::fileExtension(const QString &filename) {
-  const int point_index = filename.lastIndexOf(".");
-  return (point_index >= 0) ? filename.mid(point_index + 1) : QString();
+  QString ext = QString(filename).remove(".!qB");
+  const int point_index = ext.lastIndexOf(".");
+  return (point_index >= 0) ? ext.mid(point_index + 1) : QString();
 }
 
 QString fsutils::fileName(const QString& file_path) {
