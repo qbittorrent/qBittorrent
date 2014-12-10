@@ -425,6 +425,8 @@ void TransferListWidget::hidePriorityColumn(bool hide)
 {
     qDebug("hidePriorityColumn(%d)", hide);
     setColumnHidden(TorrentModelItem::TR_PRIORITY, hide);
+    if (!hide && !columnWidth(TorrentModelItem::TR_PRIORITY))
+        resizeColumnToContents(TorrentModelItem::TR_PRIORITY);
 }
 
 void TransferListWidget::openSelectedTorrentsFolder() const
