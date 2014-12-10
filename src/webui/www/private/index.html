@@ -1,120 +1,125 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" dir="ltr">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8;" />
-	<title>qBittorrent web User Interface</title>
-	<link rel="stylesheet" href="css/dynamicTable.css" type="text/css" />
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
-	<!--<link rel="stylesheet" type="text/css" href="css/Content.css" />-->
-	<link rel="stylesheet" type="text/css" href="css/Core.css" />
-	<link rel="stylesheet" type="text/css" href="css/Layout.css" />
-	<link rel="stylesheet" type="text/css" href="css/Window.css" />
-	<link rel="stylesheet" type="text/css" href="css/Tabs.css" />
-	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
-	<script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
-	<!--[if IE]>
-		<script type="text/javascript" src="scripts/excanvas-compressed.js"></script>
-	<![endif]-->
-	<script type="text/javascript" src="scripts/mocha-yc.js"></script>
-	<script type="text/javascript" src="scripts/mocha-init.js"></script>
-	<script type="text/javascript" src="scripts/misc.js"></script>
-	<script type="text/javascript" src="scripts/progressbar.js"></script>
-	<script type="text/javascript" src="scripts/dynamicTable.js" charset="utf-8"></script>
-	<script type="text/javascript" src="scripts/client.js" charset="utf-8"></script>
-	<script type="text/javascript" src="scripts/contextmenu.js" charset="utf-8"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8;" />
+    <title>qBittorrent web User Interface</title>
+    <link rel="stylesheet" href="css/dynamicTable.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!--<link rel="stylesheet" type="text/css" href="css/Content.css" />-->
+    <link rel="stylesheet" type="text/css" href="css/Core.css" />
+    <link rel="stylesheet" type="text/css" href="css/Layout.css" />
+    <link rel="stylesheet" type="text/css" href="css/Window.css" />
+    <link rel="stylesheet" type="text/css" href="css/Tabs.css" />
+    <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
+    <!--[if IE]>
+        <script type="text/javascript" src="scripts/excanvas-compressed.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="scripts/mocha-yc.js"></script>
+    <script type="text/javascript" src="scripts/mocha-init.js"></script>
+    <script type="text/javascript" src="scripts/misc.js"></script>
+    <script type="text/javascript" src="scripts/progressbar.js"></script>
+    <script type="text/javascript" src="scripts/dynamicTable.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scripts/client.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scripts/contextmenu.js" charset="utf-8"></script>
 </head>
 <body>
-	<div id="desktop">
-		<div id="desktopHeader">
-			<!--<div id="desktopTitlebar">
-				<h1 class="applicationTitle">qBittorrent Web User Interface <span class="version">version 2.0.0</span></h1>
-			</div>-->
-			<div id="desktopNavbar">
-				<ul>
-					<li>
-						<a class="returnFalse">_(File)</a>
-						<ul>
-							<li><a id="uploadLink"><img class="MyMenuIcon" alt="_(&Add torrent file...)" src="theme/list-add" width="16" height="16" onload="fixPNG(this)"/>_(&Add torrent file...)</a></li>
-							<li><a id="downloadLink"><img class="MyMenuIcon" alt="_(Add &link to torrent...)" src="theme/insert-link" width="16" height="16" onload="fixPNG(this)"/>_(Add &link to torrent...)</a></li>
-							<li class="divider"><a id="logoutLink"><img class="MyMenuIcon" alt="_(Logout)" src="theme/system-log-out" width="16" height="16" onload="fixPNG(this)"/>_(Logout)</a></li>
-							<li><a id="shutdownLink"><img class="MyMenuIcon" alt="_(Exit qBittorrent)" src="theme/application-exit" width="16" height="16" onload="fixPNG(this)"/>_(Exit qBittorrent)</a></li>
-						</ul>
-					</li>
-					<li>
-						<a class="returnFalse">_(Edit)</a>
-						<ul>
-							<li><a id="resumeAllLink"><img class="MyMenuIcon" alt="_(R&esume All)" src="theme/media-playback-start" width="16" height="16" onload="fixPNG(this)"/>_(R&esume All)</a></li>
-							<li><a id="pauseAllLink"><img class="MyMenuIcon" alt="_(P&ause All)" src="theme/media-playback-pause" width="16" height="16" onload="fixPNG(this)"/>_(P&ause All)</a></li>
-							<li class="divider"><a id="resumeLink"><img class="MyMenuIcon" alt="_(&Resume)" src="theme/media-playback-start" width="16" height="16" onload="fixPNG(this)"/>_(&Resume)</a></li>
-							<li><a id="pauseLink"><img class="MyMenuIcon" src="theme/media-playback-pause" alt="_(&Pause)" width="16" height="16" onload="fixPNG(this)"/>_(&Pause)</a></li>
-							<li><a id="recheckLink"><img class="MyMenuIcon" src="theme/document-edit-verify" alt="_(Force recheck)" width="16" height="16" onload="fixPNG(this)"/>_(Force recheck)</a></li>
-							<li class="divider"><a id="deleteLink"><img class="MyMenuIcon" src="theme/list-remove" alt="_(&Delete)" width="16" height="16" onload="fixPNG(this)"/>_(&Delete)</a></li>
-						</ul>
-					</li>
-					<li>
-						<a class="returnFalse">_(&View)</a>
-						<ul>
-						<li><a id="speedInBrowserTitleBarLink"><img class="MyMenuIcon" src="theme/checked" alt="_(&Speed in title bar)" width="16" height="16" onload="fixPNG(this)"/>_(&Speed in title bar)</a></li>
-						</ul>
-					</li>
-					<li>
-						<a class="returnFalse">_(&Tools)</a>
-						<ul>
-							<li><a id="preferencesLink"><img class="MyMenuIcon" src="theme/preferences-system" alt="_(&Options...)" width="16" height="16" onload="fixPNG(this)"/>_(&Options...)</a></li>
-						</ul>
-					</li>
-					<li>
-						<a class="returnFalse">_(&Help)</a>
-						<ul>
-							<li><a id="bugLink" target="_blank" href="http://bugs.qbittorrent.org/"><img class="MyMenuIcon" src="theme/tools-report-bug" alt="_(Report a &bug)" width="16" height="16" onload="fixPNG(this)"/>_(Report a &bug)</a></li>
-							<li><a id="siteLink" target="_blank" href="http://www.qbittorrent.org/"><img class="MyMenuIcon" src="images/skin/qbittorrent16.png" alt="_(Visit &Website)" width="16" height="16" onload="fixPNG(this)"/>_(Visit &Website)</a></li>
-							<li><a id="docsLink" target="_blank" href="http://wiki.qbittorrent.org/"><img class="MyMenuIcon" src="theme/help-contents" alt="_(&Documentation)" width="16" height="16" onload="fixPNG(this)"/>_(&Documentation)</a></li>
-							<li><a id="aboutLink"><img class="MyMenuIcon" src="theme/help-about" alt="_(&About)" width="16" height="16" onload="fixPNG(this)"/>_(&About)</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-			<div id="mochaToolbar">
-				&nbsp;&nbsp;
-				<a id="uploadButton"><img class="mochaToolButton" title="_(&Add torrent file...)" src="theme/list-add" alt="_(&Add torrent file...)" width="24" height="24" onload="fixPNG(this)"/></a>
-				<a id="downloadButton"><img class="mochaToolButton" title="_(Add &link to torrent...)" src="theme/insert-link" alt="_(Add &link to torrent...)" width="24" height="24" onload="fixPNG(this)"/></a>
-				<a id="deleteButton" class="divider"><img class="mochaToolButton" title="_(Delete)" src="theme/list-remove" alt="_(Delete)" width="24" height="24" onload="fixPNG(this)"/></a>
-				<a id="resumeButton" class="divider"><img class="mochaToolButton" title="_(Resume)" src="theme/media-playback-start" alt="_(Resume)" width="24" height="24" onload="fixPNG(this)"/></a>
-				<a id="pauseButton"><img class="mochaToolButton" title="_(Pause)" src="theme/media-playback-pause" alt="_(Pause)" width="24" height="24" onload="fixPNG(this)"/></a>
-				<span id="queueingButtons">
-					<a id="decreasePrioButton" class="divider"><img class="mochaToolButton" title="_(Decrease priority)" src="theme/go-down" alt="_(Decrease priority)" width="24" height="24" onload="fixPNG(this)"/></a>
-					<a id="increasePrioButton"><img class="mochaToolButton" title="_(Increase priority)" src="theme/go-up" alt="_(Increase priority)" width="24" height="24" onload="fixPNG(this)"/></a>
-				</span>
-				<a id="preferencesButton" class="divider"><img class="mochaToolButton" title="_(Options)" src="theme/preferences-system" alt="_(Options)" width="24" height="24" onload="fixPNG(this)"/></a>
-			</div>
-		</div>
-		<div id="pageWrapper">
-		</div>
-	</div>
-	<ul id="contextmenu">
-		<li><a href="#Start"><img src="theme/media-playback-start" alt="_(Resume)"/> _(Resume)</a></li>
-		<li><a href="#Pause"><img src="theme/media-playback-pause" alt="_(Pause)"/> _(Pause)</a></li>
-		<li class="separator"><a href="#Delete"><img src="theme/list-remove" alt="_(Delete)"/> _(Delete)</a></li>
-		<li class="separator"><a href="#priority" class="arrow-right">_(Priority)</a>
-		<ul>
-			<li><a href="#prioTop"><img src="theme/go-top" alt="_(Move to top)"/> _(Move to top)</a></li>
-			<li><a href="#prioUp"><img src="theme/go-up" alt="_(Move up)"/> _(Move up)</a></li>
-			<li><a href="#prioDown"><img src="theme/go-down" alt="_(Move down)"/> _(Move down)</a></li>
-			<li><a href="#prioBottom"><img src="theme/go-bottom" alt="_(Move to bottom)"/> _(Move to bottom)</a></li>
-		</ul>
-		</li>
-		<li class="separator"><a href="#DownloadLimit"><img src="images/skin/download.png" alt="_(Limit download rate...)"/> _(Limit download rate...)</a></li>
-		<li><a href="#UploadLimit"><img src="images/skin/seeding.png" alt="_(Limit upload rate...)"/> _(Limit upload rate...)</a></li>
-		<li class="separator"><a href="#ForceRecheck"><img src="theme/document-edit-verify" alt="_(Force recheck)"/>  _(Force recheck)</a></li>
-	</ul>
-	<div id="desktopFooterWrapper">
-		<div id="desktopFooter">
-			<span id="error_div"></span>
-			<table style="position: absolute; right: 5px;">
-				<tr><td id="DlInfos" style="cursor:pointer;"></td><td style="width: 2px;margin:0;"><img src="images/skin/toolbox-divider.gif" alt="" style="height: 18px; padding-left: 10px; padding-right: 10px; margin-bottom: -2px;"/></td><td id="UpInfos" style="cursor:pointer;"></td></tr>
-			</table>
-		</div>
-	</div>
+    <div id="desktop">
+        <div id="desktopHeader">
+            <!--<div id="desktopTitlebar">
+                <h1 class="applicationTitle">qBittorrent Web User Interface <span class="version">version 2.0.0</span></h1>
+            </div>-->
+            <div id="desktopNavbar">
+                <ul>
+                    <li>
+                        <a class="returnFalse">_(File)</a>
+                        <ul>
+                            <li><a id="uploadLink"><img class="MyMenuIcon" alt="_(&Add torrent file...)" src="theme/list-add" width="16" height="16" onload="fixPNG(this)"/>_(&Add torrent file...)</a></li>
+                            <li><a id="downloadLink"><img class="MyMenuIcon" alt="_(Add &link to torrent...)" src="theme/insert-link" width="16" height="16" onload="fixPNG(this)"/>_(Add &link to torrent...)</a></li>
+                            <li class="divider"><a id="logoutLink"><img class="MyMenuIcon" alt="_(Logout)" src="theme/system-log-out" width="16" height="16" onload="fixPNG(this)"/>_(Logout)</a></li>
+                            <li><a id="shutdownLink"><img class="MyMenuIcon" alt="_(Exit qBittorrent)" src="theme/application-exit" width="16" height="16" onload="fixPNG(this)"/>_(Exit qBittorrent)</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="returnFalse">_(Edit)</a>
+                        <ul>
+                            <li><a id="resumeAllLink"><img class="MyMenuIcon" alt="_(R&esume All)" src="theme/media-playback-start" width="16" height="16" onload="fixPNG(this)"/>_(R&esume All)</a></li>
+                            <li><a id="pauseAllLink"><img class="MyMenuIcon" alt="_(P&ause All)" src="theme/media-playback-pause" width="16" height="16" onload="fixPNG(this)"/>_(P&ause All)</a></li>
+                            <li class="divider"><a id="resumeLink"><img class="MyMenuIcon" alt="_(&Resume)" src="theme/media-playback-start" width="16" height="16" onload="fixPNG(this)"/>_(&Resume)</a></li>
+                            <li><a id="pauseLink"><img class="MyMenuIcon" src="theme/media-playback-pause" alt="_(&Pause)" width="16" height="16" onload="fixPNG(this)"/>_(&Pause)</a></li>
+                            <li><a id="recheckLink"><img class="MyMenuIcon" src="theme/document-edit-verify" alt="_(Force recheck)" width="16" height="16" onload="fixPNG(this)"/>_(Force recheck)</a></li>
+                            <li class="divider"><a id="deleteLink"><img class="MyMenuIcon" src="theme/list-remove" alt="_(&Delete)" width="16" height="16" onload="fixPNG(this)"/>_(&Delete)</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="returnFalse">_(&View)</a>
+                        <ul>
+                        <li><a id="speedInBrowserTitleBarLink"><img class="MyMenuIcon" src="theme/checked" alt="_(&Speed in title bar)" width="16" height="16" onload="fixPNG(this)"/>_(&Speed in title bar)</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="returnFalse">_(&Tools)</a>
+                        <ul>
+                            <li><a id="preferencesLink"><img class="MyMenuIcon" src="theme/preferences-system" alt="_(&Options...)" width="16" height="16" onload="fixPNG(this)"/>_(&Options...)</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="returnFalse">_(&Help)</a>
+                        <ul>
+                            <li><a id="bugLink" target="_blank" href="http://bugs.qbittorrent.org/"><img class="MyMenuIcon" src="theme/tools-report-bug" alt="_(Report a &bug)" width="16" height="16" onload="fixPNG(this)"/>_(Report a &bug)</a></li>
+                            <li><a id="siteLink" target="_blank" href="http://www.qbittorrent.org/"><img class="MyMenuIcon" src="images/skin/qbittorrent16.png" alt="_(Visit &Website)" width="16" height="16" onload="fixPNG(this)"/>_(Visit &Website)</a></li>
+                            <li><a id="docsLink" target="_blank" href="http://wiki.qbittorrent.org/"><img class="MyMenuIcon" src="theme/help-contents" alt="_(&Documentation)" width="16" height="16" onload="fixPNG(this)"/>_(&Documentation)</a></li>
+                            <li><a id="aboutLink"><img class="MyMenuIcon" src="theme/help-about" alt="_(&About)" width="16" height="16" onload="fixPNG(this)"/>_(&About)</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div id="mochaToolbar">
+                &nbsp;&nbsp;
+                <a id="uploadButton"><img class="mochaToolButton" title="_(&Add torrent file...)" src="theme/list-add" alt="_(&Add torrent file...)" width="24" height="24" onload="fixPNG(this)"/></a>
+                <a id="downloadButton"><img class="mochaToolButton" title="_(Add &link to torrent...)" src="theme/insert-link" alt="_(Add &link to torrent...)" width="24" height="24" onload="fixPNG(this)"/></a>
+                <a id="deleteButton" class="divider"><img class="mochaToolButton" title="_(Delete)" src="theme/list-remove" alt="_(Delete)" width="24" height="24" onload="fixPNG(this)"/></a>
+                <a id="resumeButton" class="divider"><img class="mochaToolButton" title="_(Resume)" src="theme/media-playback-start" alt="_(Resume)" width="24" height="24" onload="fixPNG(this)"/></a>
+                <a id="pauseButton"><img class="mochaToolButton" title="_(Pause)" src="theme/media-playback-pause" alt="_(Pause)" width="24" height="24" onload="fixPNG(this)"/></a>
+                <span id="queueingButtons">
+                    <a id="bottomPrioButton" class="divider"><img class="mochaToolButton" title="_(Move to bottom)" src="theme/go-bottom" alt="_(Move to bottom)" width="24" height="24" onload="fixPNG(this)"/></a>
+                    <a id="decreasePrioButton"><img class="mochaToolButton" title="_(Decrease priority)" src="theme/go-down" alt="_(Decrease priority)" width="24" height="24" onload="fixPNG(this)"/></a>
+                    <a id="increasePrioButton"><img class="mochaToolButton" title="_(Increase priority)" src="theme/go-up" alt="_(Increase priority)" width="24" height="24" onload="fixPNG(this)"/></a>
+                    <a id="topPrioButton"><img class="mochaToolButton" title="_(Move to top)" src="theme/go-top" alt="_(Move to top)" width="24" height="24" onload="fixPNG(this)"/></a>
+                </span>
+                <a id="preferencesButton" class="divider"><img class="mochaToolButton" title="_(Options)" src="theme/preferences-system" alt="_(Options)" width="24" height="24" onload="fixPNG(this)"/></a>
+            </div>
+        </div>
+        <div id="pageWrapper">
+        </div>
+    </div>
+    <ul id="contextmenu">
+        <li><a href="#Start"><img src="theme/media-playback-start" alt="_(Resume)"/> _(Resume)</a></li>
+        <li><a href="#Pause"><img src="theme/media-playback-pause" alt="_(Pause)"/> _(Pause)</a></li>
+        <li class="separator"><a href="#Delete"><img src="theme/list-remove" alt="_(Delete)"/> _(Delete)</a></li>
+        <li id="queueingMenuItems" class="separator">
+            <a href="#priority" class="arrow-right"><span style="display: inline-block; width:16px"></span> _(Priority)</a>
+            <ul>
+                <li><a href="#prioTop"><img src="theme/go-top" alt="_(Move to top)"/> _(Move to top)</a></li>
+                <li><a href="#prioUp"><img src="theme/go-up" alt="_(Move up)"/> _(Move up)</a></li>
+                <li><a href="#prioDown"><img src="theme/go-down" alt="_(Move down)"/> _(Move down)</a></li>
+                <li><a href="#prioBottom"><img src="theme/go-bottom" alt="_(Move to bottom)"/> _(Move to bottom)</a></li>
+            </ul>
+        </li>
+        <li class="separator"><a href="#DownloadLimit"><img src="images/skin/download.png" alt="_(Limit download rate...)"/> _(Limit download rate...)</a></li>
+        <li><a href="#UploadLimit"><img src="images/skin/seeding.png" alt="_(Limit upload rate...)"/> _(Limit upload rate...)</a></li>
+        <li class="separator"><a href="#SequentialDownload"><img src="theme/checked" alt="_(Download in sequential order)"/> _(Download in sequential order)</a></li>
+        <li><a href="#FirstLastPiecePrio"><img src="theme/checked" alt="_(Download first and last piece first)"/> _(Download first and last piece first)</a></li>
+        <li class="separator"><a href="#ForceRecheck"><img src="theme/document-edit-verify" alt="_(Force recheck)"/>  _(Force recheck)</a></li>
+    </ul>
+    <div id="desktopFooterWrapper">
+        <div id="desktopFooter">
+            <span id="error_div"></span>
+            <table style="position: absolute; right: 5px;">
+                <tr><td id="DlInfos" style="cursor:pointer;"></td><td style="width: 2px;margin:0;"><img src="images/skin/toolbox-divider.gif" alt="" style="height: 18px; padding-left: 10px; padding-right: 10px; margin-bottom: -2px;"/></td><td id="UpInfos" style="cursor:pointer;"></td></tr>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

@@ -42,18 +42,20 @@ var dynamicTable = new Class({
             this.priority_hidden = false;
             this.progressIndex = progressIndex;
             this.context_menu = context_menu;
-            this.table.sortedColumn = 'name'; // Default is NAME
-            this.table.reverseSort = false;
+            this.table.sortedColumn = getLocalStorageItem('sorted_column', 'name');
+            this.table.reverseSort = getLocalStorageItem('reverse_sort', 'false');;
         },
 
         setSortedColumn : function (column) {
             if (column != this.table.sortedColumn) {
                 this.table.sortedColumn = column;
-                this.table.reverseSort = false;
+                this.table.reverseSort = 'false';
             } else {
                 // Toggle sort order
-                this.table.reverseSort = !this.table.reverseSort;
+                this.table.reverseSort = this.table.reverseSort == 'true' ? 'false' : 'true';
             }
+            localStorage.setItem('sorted_column', column);
+            localStorage.setItem('reverse_sort', this.table.reverseSort);
         },
 
         getCurrentTorrentHash : function () {
@@ -100,11 +102,13 @@ var dynamicTable = new Class({
             this.priority_hidden = false;
         },
 
-        insertRow : function (id, row, data, status, pos) {
+        insertRow : function (id, row, data, attrs, pos) {
             if (this.rows.has(id)) {
                 return;
             }
             var tr = new Element('tr');
+            for (var a in attrs)
+                tr.set(a, attrs[a]);
             tr.addClass("menu-target");
             this.rows.set(id, tr);
             for (var i = 0; i < row.length; i++) {
@@ -244,12 +248,14 @@ var dynamicTable = new Class({
             }, this);
         },
 
-        updateRow : function (id, row, data, status, newpos) {
+        updateRow : function (id, row, data, attrs, newpos) {
             if (!this.rows.has(id)) {
                 return false;
             }
             
             var tr = this.rows.get(id);
+            for (var a in attrs)
+                tr.set(a, attrs[a]);
             var tds = tr.getElements('td');
             for (var i = 0; i < row.length; i++) {
                 if (i == 1)

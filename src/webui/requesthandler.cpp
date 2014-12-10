@@ -62,6 +62,7 @@ const QString SCOPE_THEME = "theme";
 const QString DEFAULT_ACTION = "index";
 const QString WEBUI_ACTION = "webui";
 const QString VERSION_INFO = "version";
+const QString MAX_AGE_MONTH = "public, max-age=2592000";
 
 #define ADD_ACTION(scope, action) actions[#scope][#action] = &RequestHandler::action_##scope##_##action
 
@@ -99,6 +100,8 @@ QMap<QString, QMap<QString, RequestHandler::Action> > RequestHandler::initialize
     ADD_ACTION(command, getTorrentDlLimit);
     ADD_ACTION(command, setTorrentUpLimit);
     ADD_ACTION(command, setTorrentDlLimit);
+    ADD_ACTION(command, toggleSequentialDownload);
+    ADD_ACTION(command, toggleFirstLastPiecePrio);
     ADD_ACTION(command, delete);
     ADD_ACTION(command, deletePerm);
     ADD_ACTION(command, increasePrio);
@@ -178,12 +181,14 @@ void RequestHandler::action_public_theme()
     qDebug() << Q_FUNC_INFO << "There icon:" << url;
 
     printFile(url);
+    header(HEADER_CACHE_CONTROL, MAX_AGE_MONTH);
 }
 
 void RequestHandler::action_public_images()
 {
     const QString path = ":/Icons/" + args_.join("/");
     printFile(path);
+    header(HEADER_CACHE_CONTROL, MAX_AGE_MONTH);
 }
 
 // GET params:
@@ -421,6 +426,30 @@ void RequestHandler::action_command_setTorrentDlLimit()
 
     if (h.is_valid())
         h.set_download_limit(limit);
+}
+
+void RequestHandler::action_command_toggleSequentialDownload()
+{
+    QStringList hashes = request().posts["hashes"].split("|");
+    foreach (const QString &hash, hashes) {
+        try {
+            QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+            h.toggleSequentialDownload();
+        }
+        catch(invalid_handle&) {}
+    }
+}
+
+void RequestHandler::action_command_toggleFirstLastPiecePrio()
+{
+    QStringList hashes = request().posts["hashes"].split("|");
+    foreach (const QString &hash, hashes) {
+        try {
+            QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+            h.toggleFirstLastPiecePrio();
+        }
+        catch(invalid_handle&) {}
+    }
 }
 
 void RequestHandler::action_command_delete()

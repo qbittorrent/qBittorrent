@@ -74,6 +74,8 @@ private:
     void action_command_getTorrentDlLimit();
     void action_command_setTorrentUpLimit();
     void action_command_setTorrentDlLimit();
+    void action_command_toggleSequentialDownload();
+    void action_command_toggleFirstLastPiecePrio();
     void action_command_delete();
     void action_command_deletePerm();
     void action_command_increasePrio();

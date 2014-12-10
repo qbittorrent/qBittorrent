@@ -52,11 +52,17 @@
             ForceRecheck : function (element, ref) {
                 recheckFN();
             },
-            UploadLimit : function (element, red) {
+            UploadLimit : function (element, ref) {
                 uploadLimitFN();
             },
-            DownloadLimit : function (element, red) {
+            DownloadLimit : function (element, ref) {
                 downloadLimitFN();
+            },
+            SequentialDownload : function (element, ref) {
+                toggleSequentialDownloadFN();
+            },
+            FirstLastPiecePrio : function (element, ref) {
+                toggleFirstLastPiecePrioFN();
             }
         },
         offsets : {

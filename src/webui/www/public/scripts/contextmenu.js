@@ -127,9 +127,89 @@ var ContextMenu = new Class({
         }.bind(this));
     },
 
+    updateMenuItems: function () {
+        all_are_seq_dl = true;
+        there_are_seq_dl = false;
+        all_are_f_l_piece_prio = true;
+        there_are_f_l_piece_prio = false;
+        all_are_downloaded = true;
+        all_are_paused = true;
+        there_are_paused = false;
+
+        var h = myTable.selectedIds();
+        h.each(function(item, index){
+            tr = myTable.rows.get(item);
+
+            if (tr.getAttribute('seq_dl') != 'true')
+                all_are_seq_dl = false;
+            else
+                there_are_seq_dl = true;
+
+            if (tr.getAttribute('f_l_piece_prio') != 'true')
+                all_are_f_l_piece_prio = false;
+            else
+                there_are_f_l_piece_prio = true;
+
+            if (tr.getAttribute('downloaded') != 'true')
+                all_are_downloaded = false;
+
+            state = tr.getAttribute('state');
+            if ((state != 'pausedUP') && (state != 'pausedDL'))
+                all_are_paused = false;
+            else
+                there_are_paused = true;
+        });
+
+        show_seq_dl = true;
+
+        if (!all_are_seq_dl && there_are_seq_dl)
+            show_seq_dl = false;
+
+        show_f_l_piece_prio = true;
+
+        if (!all_are_f_l_piece_prio && there_are_f_l_piece_prio)
+            show_f_l_piece_prio = false;
+
+        if (all_are_downloaded) {
+            this.hideItem('SequentialDownload');
+            this.hideItem('FirstLastPiecePrio');
+        } else {
+            if (!show_seq_dl && show_f_l_piece_prio)
+                this.menu.getElement('a[href$=FirstLastPiecePrio]').parentNode.addClass('separator');
+            else
+                this.menu.getElement('a[href$=FirstLastPiecePrio]').parentNode.removeClass('separator');
+
+            if (show_seq_dl)
+                this.showItem('SequentialDownload');
+            else
+                this.hideItem('SequentialDownload');
+
+            if (show_f_l_piece_prio)
+                this.showItem('FirstLastPiecePrio');
+            else
+                this.hideItem('FirstLastPiecePrio');
+
+            this.setItemChecked('SequentialDownload', all_are_seq_dl);
+            this.setItemChecked('FirstLastPiecePrio', all_are_f_l_piece_prio);
+        }
+
+        if (all_are_paused) {
+            this.showItem('Start');
+            this.hideItem('Pause');
+        } else {
+            if (there_are_paused) {
+                this.showItem('Start');
+                this.showItem('Pause');
+            } else {
+                this.hideItem('Start');
+                this.showItem('Pause');
+            }
+        }
+    },
+
     //show menu
     show: function(trigger) {
-        //this.menu.fade('in');
+        this.updateMenuItems();
         this.fx.start(1);
         this.fireEvent('show');
         this.shown = true;
@@ -147,15 +227,21 @@ var ContextMenu = new Class({
         return this;
     },
 
-    //disable an item
-    disableItem: function(item) {
-        this.menu.getElements('a[href$=' + item + ']').addClass('disabled');
+    setItemChecked: function(item, checked) {
+        this.menu.getElement('a[href$=' + item + ']').firstChild.style.opacity =
+             checked ? '1' : '0';
         return this;
     },
 
-    //enable an item
-    enableItem: function(item) {
-        this.menu.getElements('a[href$=' + item + ']').removeClass('disabled');
+    //hide an item
+    hideItem: function(item) {
+        this.menu.getElement('a[href$=' + item + ']').parentNode.addClass('invisible');
+        return this;
+    },
+
+    //show an item
+    showItem: function(item) {
+        this.menu.getElement('a[href$=' + item + ']').parentNode.removeClass('invisible');
         return this;
     },
 

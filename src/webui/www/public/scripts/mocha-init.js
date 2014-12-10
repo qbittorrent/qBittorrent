@@ -1,11 +1,11 @@
 /* -----------------------------------------------------------------
 
-	ATTACH MOCHA LINK EVENTS
-	Notes: Here is where you define your windows and the events that open them.
-	If you are not using links to run Mocha methods you can remove this function.
+    ATTACH MOCHA LINK EVENTS
+    Notes: Here is where you define your windows and the events that open them.
+    If you are not using links to run Mocha methods you can remove this function.
 
-	If you need to add link events to links within windows you are creating, do
-	it in the onContentLoaded function of the new window.
+    If you need to add link events to links within windows you are creating, do
+    it in the onContentLoaded function of the new window.
 
    ----------------------------------------------------------------- */
 /* Define localStorage object for older browsers */
@@ -20,6 +20,13 @@ if (typeof localStorage == 'undefined') {
             });
         }
     }
+}
+
+function getLocalStorageItem(name, defaultVal) {
+    val = localStorage.getItem(name);
+    if (val === null || val === undefined)
+        val = defaultVal;
+    return val;
 }
 
 initializeWindows = function() {
@@ -48,6 +55,7 @@ initializeWindows = function() {
             width: 500,
             height: 300
         });
+        updateTransferList();
     });
 
     addClickEvent('preferences', function(e) {
@@ -87,6 +95,7 @@ initializeWindows = function() {
             width: 600,
             height: 130
         });
+        updateTransferList();
     });
 
     globalUploadLimitFN = function() {
@@ -122,6 +131,34 @@ initializeWindows = function() {
                 width: 424,
                 height: 80
             });
+        }
+    };
+
+    toggleSequentialDownloadFN = function() {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            new Request({
+                url: 'command/toggleSequentialDownload',
+                method: 'post',
+                data: {
+                    hashes: h.join("|")
+                }
+            }).send();
+            updateTransferList();
+        }
+    };
+
+    toggleFirstLastPiecePrioFN = function() {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            new Request({
+                url: 'command/toggleFirstLastPiecePrio',
+                method: 'post',
+                data: {
+                    hashes: h.join("|")
+                }
+            }).send();
+            updateTransferList();
         }
     };
 
@@ -164,10 +201,10 @@ initializeWindows = function() {
     deleteFN = function() {
         var h = myTable.selectedIds();
         /*if(h.length && confirm('_(Are you sure you want to delete the selected torrents from the transfer list?)')) {
-			h.each(function(item, index){
-				new Request({url: 'command/delete', method: 'post', data: {hash: item}}).send();
-			});
-		}*/
+            h.each(function(item, index){
+                new Request({url: 'command/delete', method: 'post', data: {hash: item}}).send();
+            });
+        }*/
         if (h.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
@@ -181,6 +218,7 @@ initializeWindows = function() {
                 width: 424,
                 height: 140
             });
+            updateTransferList();
         }
     };
 
@@ -201,6 +239,7 @@ initializeWindows = function() {
                     }
                 }).send();
             });
+            updateTransferList();
         }
     };
 
@@ -216,6 +255,7 @@ initializeWindows = function() {
                     }
                 }).send();
             });
+            updateTransferList();
         }
     };
 
@@ -248,6 +288,7 @@ initializeWindows = function() {
                         }
                     }).send();
                 });
+                updateTransferList();
             }
         });
 
@@ -276,6 +317,7 @@ initializeWindows = function() {
                     hashes: h.join("|")
                 }
             }).send();
+            updateTransferList();
         }
     }
 
