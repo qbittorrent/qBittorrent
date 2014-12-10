@@ -1,4 +1,3 @@
-var waitingTorrentFiles = false;
 var is_seed = true;
 var current_hash = "";
 
@@ -273,6 +272,7 @@ var filesDynTable = new Class({
     },
 });
 
+var loadTorrentFilesDataTimer;
 var loadTorrentFilesData = function() {
     if ($('prop_files').hasClass('invisible')) {
         // Tab changed, don't do anything
@@ -281,7 +281,7 @@ var loadTorrentFilesData = function() {
     var new_hash = myTable.getCurrentTorrentHash();
     if (new_hash == "") {
         fTable.removeAllRows();
-        loadTorrentFilesData.delay(1500);
+        loadTorrentFilesDataTimer = loadTorrentFilesData.delay(1500);
         return;
     }
     if (new_hash != current_hash) {
@@ -289,60 +289,60 @@ var loadTorrentFilesData = function() {
         current_hash = new_hash;
     }
     var url = 'json/propertiesFiles/' + current_hash;
-    if (!waitingTorrentFiles) {
-        waitingTorrentFiles = true;
-        var request = new Request.JSON({
-            url: url,
-            noCache: true,
-            method: 'get',
-            onFailure: function() {
-                $('error_div').set('html', '_(qBittorrent client is not reachable)');
-                waitingTorrentFiles = false;
-                loadTorrentFilesData.delay(2000);
-            },
-            onSuccess: function(files) {
-                $('error_div').set('html', '');
-                if (files) {
-                    // Update Trackers data
-                    var i = 0;
-                    files.each(function(file) {
-                        if (i == 0) {
-                            is_seed = file.is_seed;
-                        }
-                        var row = new Array();
-                        row.length = 4;
-                        row[0] = file.priority;
-                        row[1] = file.name;
-                        row[2] = friendlyUnit(file.size, false);
-                        row[3] = (file.progress * 100).round(1);
-                        if (row[3] == 100.0 && file.progress < 1.0)
-                            row[3] = 99.9
-                        row[4] = file.priority;
-                        fTable.insertRow(i, row);
-                        i++;
-                    }.bind(this));
-                    // Set global CB state
-                    if (allCBChecked()) {
-                        setCBState("checked");
+    var request = new Request.JSON({
+        url: url,
+        noCache: true,
+        method: 'get',
+        onFailure: function() {
+            $('error_div').set('html', '_(qBittorrent client is not reachable)');
+            loadTorrentFilesDataTimer = loadTorrentFilesData.delay(2000);
+        },
+        onSuccess: function(files) {
+            $('error_div').set('html', '');
+            if (files) {
+                // Update Trackers data
+                var i = 0;
+                files.each(function(file) {
+                    if (i == 0) {
+                        is_seed = file.is_seed;
                     }
-                    else {
-                        if (allCBUnchecked()) {
-                            setCBState("unchecked");
-                        }
-                        else {
-                            setCBState("partial");
-                        }
-                    }
+                    var row = new Array();
+                    row.length = 4;
+                    row[0] = file.priority;
+                    row[1] = file.name;
+                    row[2] = friendlyUnit(file.size, false);
+                    row[3] = (file.progress * 100).round(1);
+                    if (row[3] == 100.0 && file.progress < 1.0)
+                        row[3] = 99.9
+                    row[4] = file.priority;
+                    fTable.insertRow(i, row);
+                    i++;
+                }.bind(this));
+                // Set global CB state
+                if (allCBChecked()) {
+                    setCBState("checked");
                 }
                 else {
-                    fTable.removeAllRows();
+                    if (allCBUnchecked()) {
+                        setCBState("unchecked");
+                    }
+                    else {
+                        setCBState("partial");
+                    }
                 }
-                waitingTorrentFiles = false;
-                loadTorrentFilesData.delay(1500);
             }
-        }).send();
-    }
-
+            else {
+                fTable.removeAllRows();
+            }
+            loadTorrentFilesDataTimer = loadTorrentFilesData.delay(1500);
+        }
+    }).send();
 }
+
+var updateTorrentFilesData = function() {
+    clearTimeout(loadTorrentFilesDataTimer);
+    loadTorrentFilesData();
+}
+
 fTable = new filesDynTable();
 fTable.setup($('filesTable'));

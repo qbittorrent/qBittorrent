@@ -50,9 +50,9 @@ var trackersDynTable = new Class({
     },
 });
 
-var waitingTrackers = false;
 var current_hash = "";
 
+var loadTrackersDataTimer;
 var loadTrackersData = function() {
     if ($('prop_trackers').hasClass('invisible')) {
         // Tab changed, don't do anything
@@ -61,7 +61,7 @@ var loadTrackersData = function() {
     var new_hash = myTable.getCurrentTorrentHash();
     if (new_hash == "") {
         tTable.removeAllRows();
-        loadTrackersData.delay(1500);
+        loadTrackersDataTimer = loadTrackersData.delay(1500);
         return;
     }
     if (new_hash != current_hash) {
@@ -69,41 +69,41 @@ var loadTrackersData = function() {
         current_hash = new_hash;
     }
     var url = 'json/propertiesTrackers/' + current_hash;
-    if (!waitingTrackers) {
-        waitingTrackers = true;
-        var request = new Request.JSON({
-            url: url,
-            noCache: true,
-            method: 'get',
-            onFailure: function() {
-                $('error_div').set('html', '_(qBittorrent client is not reachable)');
-                waitingTrackers = false;
-                loadTrackersData.delay(2000);
-            },
-            onSuccess: function(trackers) {
-                $('error_div').set('html', '');
-                if (trackers) {
-                    // Update Trackers data
-                    trackers.each(function(tracker) {
-                        var row = new Array();
-                        row.length = 4;
-                        row[0] = tracker.url;
-                        row[1] = tracker.status;
-                        row[2] = tracker.num_peers;
-                        row[3] = tracker.msg;
-                        tTable.insertRow(row);
-                    });
-                }
-                else {
-                    tTable.removeAllRows();
-                }
-                waitingTrackers = false;
-                loadTrackersData.delay(1500);
+    var request = new Request.JSON({
+        url: url,
+        noCache: true,
+        method: 'get',
+        onFailure: function() {
+            $('error_div').set('html', '_(qBittorrent client is not reachable)');
+            loadTrackersDataTimer = loadTrackersData.delay(2000);
+        },
+        onSuccess: function(trackers) {
+            $('error_div').set('html', '');
+            if (trackers) {
+                // Update Trackers data
+                trackers.each(function(tracker) {
+                    var row = new Array();
+                    row.length = 4;
+                    row[0] = tracker.url;
+                    row[1] = tracker.status;
+                    row[2] = tracker.num_peers;
+                    row[3] = tracker.msg;
+                    tTable.insertRow(row);
+                });
             }
-        }).send();
-    }
-
+            else {
+                tTable.removeAllRows();
+            }
+            loadTrackersDataTimer = loadTrackersData.delay(1500);
+        }
+    }).send();
 }
+
+var updateTrackersData = function() {
+    clearTimeout(loadTrackersDataTimer);
+    loadTrackersData();
+}
+
 tTable = new trackersDynTable();
 tTable.setup($('trackersTable'));
 

@@ -24,6 +24,8 @@
 
 myTable = new dynamicTable();
 
+var updatePropertiesPanel = function(){};
+
 var stateToImg = function (state) {
     if (state == "pausedUP" || state == "pausedDL") {
         state = "paused";
@@ -320,22 +322,34 @@ window.addEvent('load', function () {
         tabsOnload : function() {
             MochaUI.initializeTabs('propertiesTabs');
 
+            updatePropertiesPanel = function() {
+                if (!$('prop_general').hasClass('invisible'))
+                    updateTorrentData();
+                else if (!$('prop_trackers').hasClass('invisible'))
+                    updateTrackersData();
+                else if (!$('prop_files').hasClass('invisible'))
+                    updateTorrentFilesData();
+            }
+
             $('PropGeneralLink').addEvent('click', function(e){
                 $('prop_general').removeClass("invisible");
                 $('prop_trackers').addClass("invisible");
                 $('prop_files').addClass("invisible");
+                updatePropertiesPanel();
             });
 
             $('PropTrackersLink').addEvent('click', function(e){
                 $('prop_trackers').removeClass("invisible");
                 $('prop_general').addClass("invisible");
                 $('prop_files').addClass("invisible");
+                updatePropertiesPanel();
             });
 
             $('PropFilesLink').addEvent('click', function(e){
                 $('prop_files').removeClass("invisible");
                 $('prop_general').addClass("invisible");
                 $('prop_trackers').addClass("invisible");
+                updatePropertiesPanel();
             });
         },
         column : 'mainColumn',
