@@ -1008,7 +1008,7 @@ void MainWindow::processParams(const QStringList& params) {
         else
           QBtSession::instance()->addMagnetUri(param);
       } else {
-        if (useTorrentAdditionDialog)
+        if (useTorrentAdditionDialog && QFile(param).exists())
           AddNewTorrentDialog::showTorrent(param, QString(), this);
         else
           QBtSession::instance()->addTorrent(param);
