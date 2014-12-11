@@ -220,7 +220,7 @@ var dynamicTable = new Class({
                             temptr.addClass('selected');
                         }
                         this.cur[0] = id;
-                        // TODO: Warn Properties panel
+                        updatePropertiesPanel();
                     }
                 }
                 return false;

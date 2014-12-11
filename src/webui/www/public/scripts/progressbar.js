@@ -19,7 +19,8 @@ var ProgressBar = new Class({
 				'border': '1px solid #000',
 				'width': vals.width,
 				'height': vals.height,
-				'position': 'relative'
+				'position': 'relative',
+				'margin': '0 auto'
 			}
 		});
 		obj.vals = vals;

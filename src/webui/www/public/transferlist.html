@@ -1,18 +1,17 @@
             <table class="torrentTable" cellpadding="0" cellspacing="0">
                     <thead>
                             <tr>
-                                    <th style="width: 0"></th>
-                                    <th onClick="setSortedColumn('name');" style="cursor: pointer;">_(Name)</th>
-                                    <th id='prioHeader' onClick="setSortedColumn('priority');" style="cursor: pointer;">#</th>
-                                    <th onClick="setSortedColumn('size');" style="cursor: pointer;">_(Size)</th>
-                                    <th style="width: 90px;cursor: pointer;" onClick="setSortedColumn('progress');">_(Done)</th>
-                                    <th onClick="setSortedColumn('num_seeds');" style="cursor: pointer;">_(Seeds)</th>
-                                    <th onClick="setSortedColumn('num_leechs');" style="cursor: pointer;">_(Peers)</th>
-                                    <th onClick="setSortedColumn('dlspeed');" style="cursor: pointer;">_(Down Speed)</th>
-                                    <th onClick="setSortedColumn('upspeed');" style="cursor: pointer;">_(Up Speed)</th>
-                                    <th onClick="setSortedColumn('eta');" style="cursor: pointer;">_(ETA)</th>
-                                    <th onClick="setSortedColumn('ratio');" style="cursor: pointer;">_(Ratio)</th>
-                                    
+                                    <th style="width: 16px"></th>
+                                    <th onClick="setSortedColumn('name');" style="min-width: 200px; cursor: pointer">_(Name)</th>
+                                    <th id='prioHeader' onClick="setSortedColumn('priority');" style="width: 90px; cursor: pointer">#</th>
+                                    <th onClick="setSortedColumn('size');" style="width: 100px; cursor: pointer">_(Size)</th>
+                                    <th onClick="setSortedColumn('progress');" style="width: 80px; cursor: pointer">_(Done)</th>
+                                    <th onClick="setSortedColumn('num_seeds');" style="width: 100px; cursor: pointer">_(Seeds)</th>
+                                    <th onClick="setSortedColumn('num_leechs');" style="width: 100px; cursor: pointer">_(Peers)</th>
+                                    <th onClick="setSortedColumn('dlspeed');" style="width: 100px; cursor: pointer">_(Down Speed)</th>
+                                    <th onClick="setSortedColumn('upspeed');" style="width: 100px; cursor: pointer">_(Up Speed)</th>
+                                    <th onClick="setSortedColumn('eta');" style="width: 100px; cursor: pointer">_(ETA)</th>
+                                    <th onClick="setSortedColumn('ratio');" style="width: 100px; cursor: pointer">_(Ratio)</th>
                             </tr>
                     </thead>
                     <tbody id="myTable"></tbody>

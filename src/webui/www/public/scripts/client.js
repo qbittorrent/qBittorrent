@@ -24,6 +24,8 @@
 
 myTable = new dynamicTable();
 
+var updatePropertiesPanel = function(){};
+
 var stateToImg = function (state) {
     if (state == "pausedUP" || state == "pausedDL") {
         state = "paused";
@@ -54,6 +56,7 @@ var loadTorrentsInfo = function () {
         method : 'get',
         onFailure : function () {
             $('error_div').set('html', '_(qBittorrent client is not reachable)');
+            clearTimeout(loadTorrentsInfoTimer);
             loadTorrentsInfoTimer = loadTorrentsInfo.delay(2000);
         },
         onSuccess : function (events) {
@@ -136,6 +139,7 @@ var loadTorrentsInfo = function () {
 
                 myTable.altRow();
             }
+            clearTimeout(loadTorrentsInfoTimer);
             loadTorrentsInfoTimer = loadTorrentsInfo.delay(1500);
         }
     }).send();
@@ -143,7 +147,7 @@ var loadTorrentsInfo = function () {
 
 var updateTransferList = function() {
     clearTimeout(loadTorrentsInfoTimer);
-    loadTorrentsInfoTimer = loadTorrentsInfo();
+    loadTorrentsInfo();
 }
 
 window.addEvent('load', function () {
@@ -231,6 +235,7 @@ window.addEvent('load', function () {
             method : 'get',
             onFailure : function () {
                 $('error_div').set('html', '_(qBittorrent client is not reachable)');
+                clearTimeout(loadTransferInfoTimer);
                 loadTransferInfoTimer = loadTransferInfo.delay(4000);
             },
             onSuccess : function (info) {
@@ -245,6 +250,7 @@ window.addEvent('load', function () {
                         document.title = "_(D:%1 U:%2)".replace("%1", friendlyUnit(info.dl_info_speed, true)).replace("%2", friendlyUnit(info.up_info_speed, true));
                     else
                         document.title = "_(qBittorrent web User Interface)";
+                    clearTimeout(loadTransferInfoTimer);
                     loadTransferInfoTimer = loadTransferInfo.delay(3000);
                 }
             }
@@ -253,7 +259,7 @@ window.addEvent('load', function () {
 
     var updateTransferInfo = function() {
         clearTimeout(loadTransferInfoTimer);
-        loadTransferInfoTimer = loadTransferInfo();
+        loadTransferInfo();
     }
 
     // Start fetching data now
@@ -311,11 +317,45 @@ window.addEvent('load', function () {
             bottom : 0,
             left : 0
         },
-        contentURL : 'prop-general.html',
+        contentURL : 'properties_content.html',
         require : {
-            css : ['css/Tabs.css']
+            css : ['css/Tabs.css'],
+            js : ['scripts/prop-general.js', 'scripts/prop-trackers.js', 'scripts/prop-files.js'],
         },
         tabsURL : 'properties.html',
+        tabsOnload : function() {
+            MochaUI.initializeTabs('propertiesTabs');
+
+            updatePropertiesPanel = function() {
+                if (!$('prop_general').hasClass('invisible'))
+                    updateTorrentData();
+                else if (!$('prop_trackers').hasClass('invisible'))
+                    updateTrackersData();
+                else if (!$('prop_files').hasClass('invisible'))
+                    updateTorrentFilesData();
+            }
+
+            $('PropGeneralLink').addEvent('click', function(e){
+                $('prop_general').removeClass("invisible");
+                $('prop_trackers').addClass("invisible");
+                $('prop_files').addClass("invisible");
+                updatePropertiesPanel();
+            });
+
+            $('PropTrackersLink').addEvent('click', function(e){
+                $('prop_trackers').removeClass("invisible");
+                $('prop_general').addClass("invisible");
+                $('prop_files').addClass("invisible");
+                updatePropertiesPanel();
+            });
+
+            $('PropFilesLink').addEvent('click', function(e){
+                $('prop_files').removeClass("invisible");
+                $('prop_general').addClass("invisible");
+                $('prop_trackers').addClass("invisible");
+                updatePropertiesPanel();
+            });
+        },
         column : 'mainColumn',
         height : prop_h
     });

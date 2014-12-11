@@ -58,9 +58,27 @@
 #transferList tr.over {
 	background-color: #ee6600;
 	color: #fff;
+}
+
+#myTable tr:hover,
+#properties #torrentFiles tr.over,
+#properties #trackers tr.over,
+#transferList tr.over {
 	cursor: pointer;
 }
 
 #transferList img.statusIcon {
   margin-bottom: -4px;
+}
+
+#trackers th,
+#trackers td,
+#torrentFiles th,
+#torrentFiles td,
+#transferList th,
+#transferList td {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	max-width: 300px;
 }
