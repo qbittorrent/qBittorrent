@@ -56,6 +56,7 @@ var loadTorrentsInfo = function () {
         method : 'get',
         onFailure : function () {
             $('error_div').set('html', '_(qBittorrent client is not reachable)');
+            clearTimeout(loadTorrentsInfoTimer);
             loadTorrentsInfoTimer = loadTorrentsInfo.delay(2000);
         },
         onSuccess : function (events) {
@@ -138,6 +139,7 @@ var loadTorrentsInfo = function () {
 
                 myTable.altRow();
             }
+            clearTimeout(loadTorrentsInfoTimer);
             loadTorrentsInfoTimer = loadTorrentsInfo.delay(1500);
         }
     }).send();
@@ -233,6 +235,7 @@ window.addEvent('load', function () {
             method : 'get',
             onFailure : function () {
                 $('error_div').set('html', '_(qBittorrent client is not reachable)');
+                clearTimeout(loadTransferInfoTimer);
                 loadTransferInfoTimer = loadTransferInfo.delay(4000);
             },
             onSuccess : function (info) {
@@ -247,6 +250,7 @@ window.addEvent('load', function () {
                         document.title = "_(D:%1 U:%2)".replace("%1", friendlyUnit(info.dl_info_speed, true)).replace("%2", friendlyUnit(info.up_info_speed, true));
                     else
                         document.title = "_(qBittorrent web User Interface)";
+                    clearTimeout(loadTransferInfoTimer);
                     loadTransferInfoTimer = loadTransferInfo.delay(3000);
                 }
             }
