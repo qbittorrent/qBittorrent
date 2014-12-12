@@ -45,6 +45,7 @@
 #endif
 
 #include <libtorrent/session_status.hpp>
+#include <libtorrent/session.hpp>
 
 using namespace libtorrent;
 
@@ -135,8 +136,10 @@ static const char KEY_FILE_IS_SEED[] = "is_seed";
 // TransferInfo keys
 static const char KEY_TRANSFER_DLSPEED[] = "dl_info_speed";
 static const char KEY_TRANSFER_DLDATA[] = "dl_info_data";
+static const char KEY_TRANSFER_DLRATELIMIT[] = "dl_rate_limit";
 static const char KEY_TRANSFER_UPSPEED[] = "up_info_speed";
 static const char KEY_TRANSFER_UPDATA[] = "up_info_data";
+static const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
 
 class QTorrentCompare
 {
@@ -448,9 +451,14 @@ QByteArray btjson::getTransferInfo()
 {
     CACHED_VARIABLE(QVariantMap, info, CACHE_DURATION_MS);
     session_status sessionStatus = QBtSession::instance()->getSessionStatus();
+    session_settings sessionSettings = QBtSession::instance()->getSession()->settings();
     info[KEY_TRANSFER_DLSPEED] = sessionStatus.payload_download_rate;
     info[KEY_TRANSFER_DLDATA] = static_cast<qlonglong>(sessionStatus.total_payload_download);
     info[KEY_TRANSFER_UPSPEED] = sessionStatus.payload_upload_rate;
     info[KEY_TRANSFER_UPDATA] = static_cast<qlonglong>(sessionStatus.total_payload_upload);
+    if (sessionSettings.download_rate_limit)
+        info[KEY_TRANSFER_DLRATELIMIT] = sessionSettings.download_rate_limit;
+    if (sessionSettings.upload_rate_limit)
+        info[KEY_TRANSFER_UPRATELIMIT] = sessionSettings.upload_rate_limit;
     return json::toJson(info);
 }

@@ -240,12 +240,20 @@ window.addEvent('load', function () {
             },
             onSuccess : function (info) {
                 if (info) {
-                    $("DlInfos").set('html', "_(D: %1 - T: %2)"
+                    dl_limit = "";
+                    if (info.dl_rate_limit != undefined)
+                        dl_limit = "[%1] ".replace("%1", friendlyUnit(info.dl_rate_limit, true));
+                    $("DlInfos").set('html', "%3_(D: %1 - T: %2)"
                         .replace("%1", friendlyUnit(info.dl_info_speed, true))
-                        .replace("%2", friendlyUnit(info.dl_info_data, false)));
-                    $("UpInfos").set('html', "_(U: %1 - T: %2)"
+                        .replace("%2", friendlyUnit(info.dl_info_data, false))
+                        .replace("%3", dl_limit));
+                    up_limit = "";
+                    if (info.up_rate_limit != undefined)
+                        up_limit = "[%1] ".replace("%1", friendlyUnit(info.up_rate_limit, true));
+                    $("UpInfos").set('html', "%3_(U: %1 - T: %2)"
                         .replace("%1", friendlyUnit(info.up_info_speed, true))
-                        .replace("%2", friendlyUnit(info.up_info_data, false)));
+                        .replace("%2", friendlyUnit(info.up_info_data, false))
+                        .replace("%3", up_limit));
                     if (speedInTitle)
                         document.title = "_(D:%1 U:%2)".replace("%1", friendlyUnit(info.dl_info_speed, true)).replace("%2", friendlyUnit(info.up_info_speed, true));
                     else
