@@ -45,8 +45,6 @@ AbstractRequestHandler::AbstractRequestHandler(const HttpRequest &request, const
 
 HttpResponse AbstractRequestHandler::run()
 {
-    response_ = HttpResponse();
-
     if (isBanned()) {
         status(403, "Forbidden");
         print(QObject::tr("Your IP address has been banned after too many failed authentication attempts."), CONTENT_TYPE_TXT);
