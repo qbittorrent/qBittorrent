@@ -4,7 +4,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>_(Torrent Download Speed Limiting)</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
-	<link rel="stylesheet" href="css/mocha.css" type="text/css" />
 	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
 	<script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
 	<script type="text/javascript" src="scripts/mocha-yc.js" charset="utf-8"></script>
@@ -13,7 +12,7 @@
 <body>
 <div style="width: 100%; text-align: center; margin: 0 auto;">
 <div id="dllimitSlider" class="slider">
-	<div id="dllimitUpdate" class="update">_(Download limit:) <span id="dllimitUpdatevalue" class="updatevalue">0</span> <span id="dlLimitUnit">_(KiB/s)</span></div>
+	<div id="dllimitUpdate" class="update">_(Download limit:) <input id="dllimitUpdatevalue" size="6" placeholder="∞" style="text-align: center;"> <span id="dlLimitUnit">_(KiB/s)</span></div>
 	<div class="sliderWrapper">
 		<div id="dllimitSliderknob" class="sliderknob"></div>
 		<div id="dllimitSliderarea" class="sliderarea"></div>
@@ -23,7 +22,7 @@
 <script type="text/javascript">
 	var hash = new URI().getData('hash');
 	setDlLimit = function() {
-		var limit = $("dllimitUpdatevalue").get('html').toInt() * 1024;
+		var limit = $("dllimitUpdatevalue").value.toInt() * 1024;
 		if(hash == "global") {
 			new Request({url: 'command/setGlobalDlLimit',
 				    method: 'post',

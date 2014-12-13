@@ -46,23 +46,23 @@ MochaUI.extend({
                             initialStep: up_limit.round(),
                             onChange: function(pos) {
                                 if (pos > 0) {
-                                    $('uplimitUpdatevalue').set('html', pos);
-                                    $('upLimitUnit').set('html', "_(KiB/s)");
+                                    $('uplimitUpdatevalue').value = pos;
+                                    $('upLimitUnit').style.visibility = "visible";
                                 }
                                 else {
-                                    $('uplimitUpdatevalue').set('html', '∞');
-                                    $('upLimitUnit').set('html', "");
+                                    $('uplimitUpdatevalue').value = '∞';
+                                    $('upLimitUnit').style.visibility = "hidden";
                                 }
                             }.bind(this)
                         });
                         // Set default value
                         if (up_limit == 0) {
-                            $('uplimitUpdatevalue').set('html', '∞');
-                            $('upLimitUnit').set('html', "");
+                            $('uplimitUpdatevalue').value = '∞';
+                            $('upLimitUnit').style.visibility = "hidden";
                         }
                         else {
-                            $('uplimitUpdatevalue').set('html', up_limit.round());
-                            $('upLimitUnit').set('html', "_(KiB/s)");
+                            $('uplimitUpdatevalue').value = up_limit.round();
+                            $('upLimitUnit').style.visibility = "visible";
                         }
                     }
                     else {
@@ -82,23 +82,23 @@ MochaUI.extend({
                                         initialStep: (up_limit / 1024.).round(),
                                         onChange: function(pos) {
                                             if (pos > 0) {
-                                                $('uplimitUpdatevalue').set('html', pos);
-                                                $('upLimitUnit').set('html', "_(KiB/s)");
+                                                $('uplimitUpdatevalue').value = pos;
+                                                $('upLimitUnit').style.visibility = "visible";
                                             }
                                             else {
-                                                $('uplimitUpdatevalue').set('html', '∞');
-                                                $('upLimitUnit').set('html', "");
+                                                $('uplimitUpdatevalue').value = '∞';
+                                                $('upLimitUnit').style.visibility = "hidden";
                                             }
                                         }.bind(this)
                                     });
                                     // Set default value
                                     if (up_limit == 0) {
-                                        $('uplimitUpdatevalue').set('html', '∞');
-                                        $('upLimitUnit').set('html', "");
+                                        $('uplimitUpdatevalue').value = '∞';
+                                        $('upLimitUnit').style.visibility = "hidden";
                                     }
                                     else {
-                                        $('uplimitUpdatevalue').set('html', (up_limit / 1024.).round());
-                                        $('upLimitUnit').set('html', "_(KiB/s)");
+                                        $('uplimitUpdatevalue').value = (up_limit / 1024.).round();
+                                        $('upLimitUnit').style.visibility = "visible";
                                     }
                                 }
                             }
@@ -126,7 +126,10 @@ MochaUI.extend({
                             maximum = tmp / 1024.
                         }
                         else {
-                            maximum = 1000
+                            if (hash == "global")
+                                maximum = 10000;
+                            else
+                                maximum = 1000;
                         }
                     }
                     // Get torrent download limit
@@ -141,23 +144,23 @@ MochaUI.extend({
                             initialStep: dl_limit.round(),
                             onChange: function(pos) {
                                 if (pos > 0) {
-                                    $('dllimitUpdatevalue').set('html', pos);
-                                    $('dlLimitUnit').set('html', "_(KiB/s)");
+                                    $('dllimitUpdatevalue').value = pos;
+                                    $('dlLimitUnit').style.visibility = "visible";
                                 }
                                 else {
-                                    $('dllimitUpdatevalue').set('html', '∞');
-                                    $('dlLimitUnit').set('html', "");
+                                    $('dllimitUpdatevalue').value = '∞';
+                                    $('dlLimitUnit').style.visibility = "hidden";
                                 }
                             }.bind(this)
                         });
                         // Set default value
                         if (dl_limit == 0) {
-                            $('dllimitUpdatevalue').set('html', '∞');
-                            $('dlLimitUnit').set('html', "");
+                            $('dllimitUpdatevalue').value = '∞';
+                            $('dlLimitUnit').style.visibility = "hidden";
                         }
                         else {
-                            $('dllimitUpdatevalue').set('html', dl_limit.round());
-                            $('dlLimitUnit').set('html', "_(KiB/s)");
+                            $('dllimitUpdatevalue').value = dl_limit.round();
+                            $('dlLimitUnit').style.visibility = "visible";
                         }
                     }
                     else {
@@ -177,23 +180,23 @@ MochaUI.extend({
                                         initialStep: (dl_limit / 1024.).round(),
                                         onChange: function(pos) {
                                             if (pos > 0) {
-                                                $('dllimitUpdatevalue').set('html', pos);
-                                                $('dlLimitUnit').set('html', "_(KiB/s)");
+                                                $('dllimitUpdatevalue').value = pos;
+                                                $('dlLimitUnit').style.visibility = "visible";
                                             }
                                             else {
-                                                $('dllimitUpdatevalue').set('html', '∞');
-                                                $('dlLimitUnit').set('html', "");
+                                                $('dllimitUpdatevalue').value = '∞';
+                                                $('dlLimitUnit').style.visibility = "hidden";
                                             }
                                         }.bind(this)
                                     });
                                     // Set default value
                                     if (dl_limit == 0) {
-                                        $('dllimitUpdatevalue').set('html', '∞');
-                                        $('dlLimitUnit').set('html', "");
+                                        $('dllimitUpdatevalue').value = '∞';
+                                        $('dlLimitUnit').style.visibility = "hidden";
                                     }
                                     else {
-                                        $('dllimitUpdatevalue').set('html', (dl_limit / 1024.).round());
-                                        $('dlLimitUnit').set('html', "_(KiB/s)");
+                                        $('dllimitUpdatevalue').value = (dl_limit / 1024.).round();
+                                        $('dlLimitUnit').style.visibility = "visible";
                                     }
                                 }
                             }
