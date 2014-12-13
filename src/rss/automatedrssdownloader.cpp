@@ -81,7 +81,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& m
          "<li>" + tr("Three range types for episodes are supported: ") + "</li>" + "<li><ul>"
          "<li>" + tr("Single number: <b>1x25;</b> matches episode 25 of season one") + "</li>" +
          "<li>" + tr("Normal range: <b>1x25-40;</b> matches episodes 25 through 40 of season one") + "</li>" +
-         "<li>" + tr("Infinite range: <b>1x25-;</b> matches 40 and onward episodes of season one") + "</li>" + "</ul></li></ul>";
+         "<li>" + tr("Infinite range: <b>1x25-;</b> matches episodes 25 and upward of season one") + "</li>" + "</ul></li></ul>";
   ui->lineEFilter->setToolTip(tip);
   initLabelCombobox();
   loadFeedList();
