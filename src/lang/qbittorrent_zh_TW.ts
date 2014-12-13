@@ -626,7 +626,7 @@
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="84"/>
-        <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches 40 and onward episodes of season one</source>
+        <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
