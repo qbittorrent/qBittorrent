@@ -132,263 +132,287 @@ bool userAgreesWithLegalNotice()
 }
 
 #if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
-void sigintHandler(int) {
-  signal(SIGINT, 0);
-  qDebug("Catching SIGINT, exiting cleanly");
-  qApp->exit();
+void sigintHandler(int)
+{
+    signal(SIGINT, 0);
+    qDebug("Catching SIGINT, exiting cleanly");
+    qApp->exit();
 }
 
-void sigtermHandler(int) {
-  signal(SIGTERM, 0);
-  qDebug("Catching SIGTERM, exiting cleanly");
-  qApp->exit();
+void sigtermHandler(int)
+{
+    signal(SIGTERM, 0);
+    qDebug("Catching SIGTERM, exiting cleanly");
+    qApp->exit();
 }
-void sigsegvHandler(int) {
-  signal(SIGABRT, 0);
-  signal(SIGSEGV, 0);
+
+void sigsegvHandler(int)
+{
+    signal(SIGABRT, 0);
+    signal(SIGSEGV, 0);
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
-  std::cerr << "\n\n*************************************************************\n";
-  std::cerr << "Catching SIGSEGV, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
-  std::cerr << "qBittorrent version: " << VERSION << std::endl;
-  print_stacktrace();
+    std::cerr << "\n\n*************************************************************\n";
+    std::cerr << "Catching SIGSEGV, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
+    std::cerr << "qBittorrent version: " << VERSION << std::endl;
+    print_stacktrace();
 #else
 #ifdef STACKTRACE_WIN
-  StraceDlg dlg;
-  dlg.setStacktraceString(straceWin::getBacktrace());
-  dlg.exec();
+    StraceDlg dlg;
+    dlg.setStacktraceString(straceWin::getBacktrace());
+    dlg.exec();
 #endif
 #endif
-  raise(SIGSEGV);
+    raise(SIGSEGV);
 }
-void sigabrtHandler(int) {
-  signal(SIGABRT, 0);
-  signal(SIGSEGV, 0);
+
+void sigabrtHandler(int)
+{
+    signal(SIGABRT, 0);
+    signal(SIGSEGV, 0);
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
-  std::cerr << "\n\n*************************************************************\n";
-  std::cerr << "Catching SIGABRT, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
-  std::cerr << "qBittorrent version: " << VERSION << std::endl;
-  print_stacktrace();
+    std::cerr << "\n\n*************************************************************\n";
+    std::cerr << "Catching SIGABRT, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
+    std::cerr << "qBittorrent version: " << VERSION << std::endl;
+    print_stacktrace();
 #else
 #ifdef STACKTRACE_WIN
-  StraceDlg dlg;
-  dlg.setStacktraceString(straceWin::getBacktrace());
-  dlg.exec();
+    StraceDlg dlg;
+    dlg.setStacktraceString(straceWin::getBacktrace());
+    dlg.exec();
 #endif
 #endif
-  raise(SIGABRT);
+    raise(SIGABRT);
 }
 #endif
 
 // Main
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 #if defined(Q_OS_MACX) && !defined(DISABLE_GUI)
-  if ( QSysInfo::MacintoshVersion > QSysInfo::MV_10_8 )
-  {
-    // fix Mac OS X 10.9 (mavericks) font issue
-    // https://bugreports.qt-project.org/browse/QTBUG-32789
-    QFont::insertSubstitution(".Lucida Grande UI", "Lucida Grande");
-  }
+    if (QSysInfo::MacintoshVersion > QSysInfo::MV_10_8) {
+        // fix Mac OS X 10.9 (mavericks) font issue
+        // https://bugreports.qt-project.org/browse/QTBUG-32789
+        QFont::insertSubstitution(".Lucida Grande UI", "Lucida Grande");
+    }
 #endif
-  // Create Application
-  QString uid = misc::getUserIDString();
+
+    // Create Application
+    QString uid = misc::getUserIDString();
 #ifdef DISABLE_GUI
-  bool shouldDaemonize = false;
-  for(int i=1; i<argc; i++) {
-    if(strcmp(argv[i], "-d") == 0 || strcmp(argv[i], "--daemon") == 0) {
-      shouldDaemonize = true;
-      argc--;
-      for(int j=i; j<argc; j++) {
-        argv[j] = argv[j+1];
-      }
-      i--;
-    }
-  }
-  QtSingleCoreApplication app("qBittorrent-"+uid, argc, argv);
-#else
-  SessionApplication app("qBittorrent-"+uid, argc, argv);
-#endif
-
-  // Check if qBittorrent is already running for this user
-  if (app.isRunning()) {
-    qDebug("qBittorrent is already running for this user.");
-    // Read torrents given on command line
-#ifdef Q_OS_WIN
-    DWORD pid = (DWORD)app.getRunningPid();
-    if (pid > 0) {
-      BOOL b = AllowSetForegroundWindow(pid);
-      qDebug("AllowSetForegroundWindow() returns %s", b ? "TRUE" : "FALSE");
-    }
-#endif
-    QStringList torrentCmdLine = app.arguments();
-    //Pass program parameters if any
-    QString message;
-    QFileInfo torrentPath;
-    for (int a = 1; a < torrentCmdLine.size(); ++a) {
-      if (torrentCmdLine[a].startsWith("--")) continue;
-      torrentPath.setFile(torrentCmdLine[a]);
-      if (torrentPath.exists())
-        message += torrentPath.absoluteFilePath();
-      else
-        message += torrentCmdLine[a];
-      if (a < argc-1)
-        message += "|";
-    }
-    if (!message.isEmpty()) {
-      qDebug("Passing program parameters to running instance...");
-      qDebug("Message: %s", qPrintable(message));
-      app.sendMessage(message);
-    } else { // Raise main window
-      app.sendMessage("qbt://show");
-    }
-    return 0;
-  }
-
-  srand(time(0));
-  Preferences* const pref = Preferences::instance();
-#ifndef DISABLE_GUI
-  bool no_splash = false;
-#else
-  if(shouldDaemonize && daemon(1, 0) != 0) {
-    qCritical("Something went wrong while daemonizing, exiting...");
-    return EXIT_FAILURE;
-  }
-#endif
-
-  // Load translation
-  QString locale = pref->getLocale();
-  QTranslator qtTranslator;
-  QTranslator translator;
-  if (locale.isEmpty()) {
-    locale = QLocale::system().name();
-    pref->setLocale(locale);
-  }
-  if (qtTranslator.load(
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-          QString::fromUtf8("qtbase_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
-      qtTranslator.load(
-#endif
-          QString::fromUtf8("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
-    qDebug("Qt %s locale recognized, using translation.", qPrintable(locale));
-  }else{
-    qDebug("Qt %s locale unrecognized, using default (en).", qPrintable(locale));
-  }
-  app.installTranslator(&qtTranslator);
-  if (translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)) {
-    qDebug("%s locale recognized, using translation.", qPrintable(locale));
-  }else{
-    qDebug("%s locale unrecognized, using default (en).", qPrintable(locale));
-  }
-  app.installTranslator(&translator);
-#ifndef DISABLE_GUI
-  if (locale.startsWith("ar") || locale.startsWith("he")) {
-    qDebug("Right to Left mode");
-    app.setLayoutDirection(Qt::RightToLeft);
-  } else {
-    app.setLayoutDirection(Qt::LeftToRight);
-  }
-#endif
-  app.setApplicationName(QString::fromUtf8("qBittorrent"));
-
-  // Check for executable parameters
-  if (argc > 1) {
-    if (QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--version")) {
-      std::cout << "qBittorrent " << VERSION << '\n';
-      return 0;
-    }
-    if (QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--help")) {
-      displayUsage(argv[0]);
-      return 0;
-    }
-
-    for (int i=1; i<argc; ++i) {
-#ifndef DISABLE_GUI
-      if (QString::fromLocal8Bit(argv[i]) == QString::fromUtf8("--no-splash")) {
-        no_splash = true;
-      } else {
-#endif
-        if (QString::fromLocal8Bit(argv[i]).startsWith("--webui-port=")) {
-          QStringList parts = QString::fromLocal8Bit(argv[i]).split("=");
-          if (parts.size() == 2) {
-            bool ok = false;
-            int new_port = parts.last().toInt(&ok);
-            if (ok && new_port > 0 && new_port <= 65535) {
-              Preferences::instance()->setWebUiPort(new_port);
+    bool shouldDaemonize = false;
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-d") == 0 || strcmp(argv[i], "--daemon") == 0) {
+            shouldDaemonize = true;
+            argc--;
+            for (int j = i; j < argc; j++) {
+                argv[j] = argv[j + 1];
             }
-          }
+            i--;
         }
-#ifndef DISABLE_GUI
-      }
-#endif
     }
-  }
-
-#ifndef DISABLE_GUI
-  if (pref->isSlashScreenDisabled()) {
-    no_splash = true;
-  }
-  QSplashScreen *splash = 0;
-  if (!no_splash) {
-    QPixmap splash_img(":/Icons/skin/splash.png");
-    QPainter painter(&splash_img);
-    QString version = VERSION;
-    painter.setPen(QPen(Qt::white));
-    painter.setFont(QFont("Arial", 22, QFont::Black));
-    painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
-    splash = new QSplashScreen(splash_img, Qt::WindowStaysOnTopHint);
-    QTimer::singleShot(1500, splash, SLOT(deleteLater()));
-    splash->show();
-    app.processEvents();
-  }
-#endif
-  // Set environment variable
-  if (!qputenv("QBITTORRENT", QByteArray(VERSION))) {
-    std::cerr << "Couldn't set environment variable...\n";
-  }
-
-#ifndef DISABLE_GUI
-  app.setStyleSheet("QStatusBar::item { border-width: 0; }");
+    QtSingleCoreApplication app("qBittorrent-"+uid, argc, argv);
+#else
+    SessionApplication app("qBittorrent-"+uid, argc, argv);
 #endif
 
-  if (!userAgreesWithLegalNotice()) {
-    return 0;
-  }
-#ifndef DISABLE_GUI
-  app.setQuitOnLastWindowClosed(false);
+    // Check if qBittorrent is already running for this user
+    if (app.isRunning()) {
+        qDebug("qBittorrent is already running for this user.");
+        // Read torrents given on command line
+#ifdef Q_OS_WIN
+        DWORD pid = (DWORD)app.getRunningPid();
+        if (pid > 0) {
+            BOOL b = AllowSetForegroundWindow(pid);
+            qDebug("AllowSetForegroundWindow() returns %s", b ? "TRUE" : "FALSE");
+        }
 #endif
+        QStringList torrentCmdLine = app.arguments();
+        //Pass program parameters if any
+        QString message;
+        QFileInfo torrentPath;
+        for (int a = 1; a < torrentCmdLine.size(); ++a) {
+            if (torrentCmdLine[a].startsWith("--")) continue;
+
+            torrentPath.setFile(torrentCmdLine[a]);
+            if (torrentPath.exists())
+                message += torrentPath.absoluteFilePath();
+            else
+                message += torrentCmdLine[a];
+
+            if (a < argc-1)
+                message += "|";
+        }
+
+        if (!message.isEmpty()) {
+            qDebug("Passing program parameters to running instance...");
+            qDebug("Message: %s", qPrintable(message));
+            app.sendMessage(message);
+        }
+        else { // Raise main window
+            app.sendMessage("qbt://show");
+        }
+
+        return EXIT_SUCCESS;
+    }
+
+    srand(time(0));
+    Preferences* const pref = Preferences::instance();
+#ifndef DISABLE_GUI
+    bool no_splash = false;
+#else
+    if (shouldDaemonize && daemon(1, 0) != 0) {
+        qCritical("Something went wrong while daemonizing, exiting...");
+        return EXIT_FAILURE;
+    }
+#endif
+
+    // Load translation
+    QString locale = pref->getLocale();
+    QTranslator qtTranslator;
+    QTranslator translator;
+    if (locale.isEmpty()) {
+        locale = QLocale::system().name();
+        pref->setLocale(locale);
+    }
+
+    if (qtTranslator.load(
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+            QString::fromUtf8("qtbase_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
+        qtTranslator.load(
+#endif
+            QString::fromUtf8("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
+            qDebug("Qt %s locale recognized, using translation.", qPrintable(locale));
+    }
+    else {
+        qDebug("Qt %s locale unrecognized, using default (en).", qPrintable(locale));
+    }
+    app.installTranslator(&qtTranslator);
+
+    if (translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)) {
+        qDebug("%s locale recognized, using translation.", qPrintable(locale));
+    }
+    else {
+        qDebug("%s locale unrecognized, using default (en).", qPrintable(locale));
+    }
+    app.installTranslator(&translator);
+
+#ifndef DISABLE_GUI
+    if (locale.startsWith("ar") || locale.startsWith("he")) {
+        qDebug("Right to Left mode");
+        app.setLayoutDirection(Qt::RightToLeft);
+    }
+    else {
+        app.setLayoutDirection(Qt::LeftToRight);
+    }
+#endif
+
+    app.setApplicationName(QString::fromUtf8("qBittorrent"));
+
+    // Check for executable parameters
+    if (argc > 1) {
+        if (QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--version")) {
+            std::cout << "qBittorrent " << VERSION << '\n';
+            return EXIT_SUCCESS;
+        }
+
+        if (QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--help")) {
+            displayUsage(argv[0]);
+            return EXIT_SUCCESS;
+        }
+
+        for (int i = 1; i < argc; ++i) {
+#ifndef DISABLE_GUI
+            if (QString::fromLocal8Bit(argv[i]) == QString::fromUtf8("--no-splash")) {
+                no_splash = true;
+            }
+            else {
+#endif
+                if (QString::fromLocal8Bit(argv[i]).startsWith("--webui-port=")) {
+                    QStringList parts = QString::fromLocal8Bit(argv[i]).split("=");
+                    if (parts.size() == 2) {
+                        bool ok = false;
+                        int new_port = parts.last().toInt(&ok);
+                        if (ok && new_port > 0 && new_port <= 65535) {
+                            Preferences::instance()->setWebUiPort(new_port);
+                        }
+                    }
+                }
+#ifndef DISABLE_GUI
+            }
+#endif
+        }
+    }
+
+#ifndef DISABLE_GUI
+    if (pref->isSlashScreenDisabled()) {
+        no_splash = true;
+    }
+
+    QSplashScreen *splash = 0;
+    if (!no_splash) {
+        QPixmap splash_img(":/Icons/skin/splash.png");
+        QPainter painter(&splash_img);
+        QString version = VERSION;
+        painter.setPen(QPen(Qt::white));
+        painter.setFont(QFont("Arial", 22, QFont::Black));
+        painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
+        splash = new QSplashScreen(splash_img, Qt::WindowStaysOnTopHint);
+        QTimer::singleShot(1500, splash, SLOT(deleteLater()));
+        splash->show();
+        app.processEvents();
+    }
+#endif
+
+    // Set environment variable
+    if (!qputenv("QBITTORRENT", QByteArray(VERSION))) {
+        std::cerr << "Couldn't set environment variable...\n";
+    }
+
+#ifndef DISABLE_GUI
+    app.setStyleSheet("QStatusBar::item { border-width: 0; }");
+#endif
+
+    if (!userAgreesWithLegalNotice()) {
+        return EXIT_SUCCESS;
+    }
+
+#ifndef DISABLE_GUI
+    app.setQuitOnLastWindowClosed(false);
+#endif
+
 #if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
-  signal(SIGABRT, sigabrtHandler);
-  signal(SIGTERM, sigtermHandler);
-  signal(SIGINT, sigintHandler);
-  signal(SIGSEGV, sigsegvHandler);
+    signal(SIGABRT, sigabrtHandler);
+    signal(SIGTERM, sigtermHandler);
+    signal(SIGINT, sigintHandler);
+    signal(SIGSEGV, sigsegvHandler);
 #endif
-  // Read torrents given on command line
-  QStringList torrents;
-  QStringList appArguments = app.arguments();
-  for (int i = 1; i < appArguments.size(); ++i) {
-    if (!appArguments[i].startsWith("--")) {
-      qDebug() << "Command line argument:" << appArguments[i];
-      torrents << appArguments[i];
+
+    // Read torrents given on command line
+    QStringList torrents;
+    QStringList appArguments = app.arguments();
+    for (int i = 1; i < appArguments.size(); ++i) {
+        if (!appArguments[i].startsWith("--")) {
+            qDebug() << "Command line argument:" << appArguments[i];
+            torrents << appArguments[i];
+        }
     }
-  }
 
 #ifndef DISABLE_GUI
-  MainWindow window(0, torrents);
-  QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
-                   &window, SLOT(processParams(const QString&)));
-  app.setActivationWindow(&window);
+    MainWindow window(0, torrents);
+    QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
+                     &window, SLOT(processParams(const QString&)));
+    app.setActivationWindow(&window);
 #ifdef Q_OS_MAC
-  static_cast<QMacApplication*>(&app)->setReadyToProcessEvents();
+    static_cast<QMacApplication*>(&app)->setReadyToProcessEvents();
 #endif // Q_OS_MAC
 #else
-  // Load Headless class
-  HeadlessLoader loader(torrents);
-  QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
-                   &loader, SLOT(processParams(const QString&)));
+    // Load Headless class
+    HeadlessLoader loader(torrents);
+    QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
+                     &loader, SLOT(processParams(const QString&)));
 #endif
 
-  int ret = app.exec();
-  qDebug("Application has exited");
-  return ret;
+    int ret = app.exec();
+    qDebug("Application has exited");
+    return ret;
 }
-
-
