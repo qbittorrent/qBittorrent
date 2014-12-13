@@ -59,7 +59,7 @@ public:
     std::cout << qPrintable(tr("To control qBittorrent, access the Web UI at http://localhost:%1").arg(QString::number(pref->getWebUiPort()))) << std::endl;
     std::cout << qPrintable(tr("The Web UI administrator user name is: %1").arg(pref->getWebUiUsername())) << std::endl;
     qDebug() << "Password:" << pref->getWebUiPassword();
-    if (pref->getWebUiPassword() == "32fe0bd2bb001911bb8bcfe23fc92b63") {
+    if (pref->getWebUiPassword() == "f6fdffe48c908deb0f4c3bd36c032e72") {
       std::cout << qPrintable(tr("The Web UI administrator password is still the default one: %1").arg("adminadmin")) << std::endl;
       std::cout << qPrintable(tr("This is a security risk, please consider changing your password from program preferences.")) << std::endl;
     }
