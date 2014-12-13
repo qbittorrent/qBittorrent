@@ -83,63 +83,53 @@ Q_IMPORT_PLUGIN(qico)
 #error You seem to have updated QtSingleApplication without porting our custom QtSingleApplication::getRunningPid() function. Please see previous version to understate how it works.
 #endif
 
-class UsageDisplay: public QObject {
-  Q_OBJECT
-
-public:
-  static void displayUsage(char* prg_name) {
-    std::cout << qPrintable(tr("Usage:")) << std::endl;
-    std::cout << '\t' << prg_name << " --version: " << qPrintable(tr("displays program version")) << std::endl;
+void displayUsage(char* prg_name)
+{
+    std::cout << qPrintable(QObject::tr("Usage:")) << std::endl;
+    std::cout << '\t' << prg_name << " --version: " << qPrintable(QObject::tr("displays program version")) << std::endl;
 #ifndef DISABLE_GUI
-    std::cout << '\t' << prg_name << " --no-splash: " << qPrintable(tr("disable splash screen")) << std::endl;
+    std::cout << '\t' << prg_name << " --no-splash: " << qPrintable(QObject::tr("disable splash screen")) << std::endl;
 #else
-    std::cout << '\t' << prg_name << " -d | --daemon: " << qPrintable(tr("run in daemon-mode (background)")) << std::endl;
+    std::cout << '\t' << prg_name << " -d | --daemon: " << qPrintable(QObject::tr("run in daemon-mode (background)")) << std::endl;
 #endif
-    std::cout << '\t' << prg_name << " --help: " << qPrintable(tr("displays this help message")) << std::endl;
-    std::cout << '\t' << prg_name << " --webui-port=x: " << qPrintable(tr("changes the webui port (current: %1)").arg(QString::number(Preferences::instance()->getWebUiPort()))) << std::endl;
-    std::cout << '\t' << prg_name << " " << qPrintable(tr("[files or urls]: downloads the torrents passed by the user (optional)")) << std::endl;
-  }
-};
+    std::cout << '\t' << prg_name << " --help: " << qPrintable(QObject::tr("displays this help message")) << std::endl;
+    std::cout << '\t' << prg_name << " --webui-port=x: " << qPrintable(QObject::tr("changes the webui port (current: %1)").arg(QString::number(Preferences::instance()->getWebUiPort()))) << std::endl;
+    std::cout << '\t' << prg_name << " " << qPrintable(QObject::tr("[files or urls]: downloads the torrents passed by the user (optional)")) << std::endl;
+}
 
-class LegalNotice: public QObject {
-  Q_OBJECT
-
-public:
-  static bool userAgreesWithNotice() {
+bool userAgreesWithLegalNotice()
+{
     Preferences* const pref = Preferences::instance();
     if (pref->getAcceptedLegal()) // Already accepted once
-      return true;
+        return true;
 #ifdef DISABLE_GUI
-    std::cout << std::endl << "*** " << qPrintable(tr("Legal Notice")) << " ***" << std::endl;
-    std::cout << qPrintable(tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued.")) << std::endl << std::endl;
-    std::cout << qPrintable(tr("Press %1 key to accept and continue...").arg("'y'")) << std::endl;
+    std::cout << std::endl << "*** " << qPrintable(QObject::tr("Legal Notice")) << " ***" << std::endl;
+    std::cout << qPrintable(QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued.")) << std::endl << std::endl;
+    std::cout << qPrintable(QObject::tr("Press %1 key to accept and continue...").arg("'y'")) << std::endl;
     char ret = getchar(); // Read pressed key
     if (ret == 'y' || ret == 'Y') {
-      // Save the answer
-      pref->setAcceptedLegal(true);
-      return true;
+        // Save the answer
+        pref->setAcceptedLegal(true);
+        return true;
     }
     return false;
 #else
     QMessageBox msgBox;
-    msgBox.setText(tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
-    msgBox.setWindowTitle(tr("Legal notice"));
-    msgBox.addButton(tr("Cancel"), QMessageBox::RejectRole);
-    QAbstractButton *agree_button = msgBox.addButton(tr("I Agree"), QMessageBox::AcceptRole);
+    msgBox.setText(QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
+    msgBox.setWindowTitle(QObject::tr("Legal notice"));
+    msgBox.addButton(QObject::tr("Cancel"), QMessageBox::RejectRole);
+    QAbstractButton *agree_button = msgBox.addButton(QObject::tr("I Agree"), QMessageBox::AcceptRole);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
     msgBox.move(misc::screenCenter(&msgBox));
     msgBox.exec();
     if (msgBox.clickedButton() == agree_button) {
-      // Save the answer
-      pref->setAcceptedLegal(true);
-      return true;
+        // Save the answer
+        pref->setAcceptedLegal(true);
+        return true;
     }
     return false;
 #endif
-  }
-};
-
-#include "main.moc"
+}
 
 #if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
 void sigintHandler(int) {
@@ -306,7 +296,7 @@ int main(int argc, char *argv[]) {
       return 0;
     }
     if (QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--help")) {
-      UsageDisplay::displayUsage(argv[0]);
+      displayUsage(argv[0]);
       return 0;
     }
 
@@ -359,7 +349,7 @@ int main(int argc, char *argv[]) {
   app.setStyleSheet("QStatusBar::item { border-width: 0; }");
 #endif
 
-  if (!LegalNotice::userAgreesWithNotice()) {
+  if (!userAgreesWithLegalNotice()) {
     return 0;
   }
 #ifndef DISABLE_GUI
