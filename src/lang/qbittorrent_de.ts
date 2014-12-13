@@ -392,11 +392,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="205"/>
-        <source>Save resume data interval</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../preferences/advancedsettings.h" line="230"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>Herkunftsländer der Peers auflösen (GeoIP)</translation>
@@ -441,6 +436,12 @@
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Beliebiges Interface</translation>
+    </message>
+    <message>
+        <location filename="../preferences/advancedsettings.h" line="205"/>
+        <source>Save resume data interval</source>
+        <comment>How often the fastresume file is saved.</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="267"/>
@@ -3549,18 +3550,18 @@ Sind Sie sicher, dass sie qBittorrent beenden möchten?</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../webui/abstractrequesthandler.cpp" line="53"/>
+        <location filename="../webui/abstractrequesthandler.cpp" line="52"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation type="unfinished">Ihre IP Adresse wurde nach zu vielen fehlerhaften Authentisierungversuchen gebannt.</translation>
     </message>
     <message>
-        <location filename="../webui/requesthandler.cpp" line="278"/>
+        <location filename="../webui/requesthandler.cpp" line="295"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/requesthandler.cpp" line="286"/>
+        <location filename="../webui/requesthandler.cpp" line="303"/>
         <source>I/O Error: Could not create temporary file.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4490,7 +4491,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="379"/>
         <source>Last Seen Complete</source>
-        <comment>Torrent was seen complete on 01/01/2010 08:00</comment>
+        <comment>Indicates the time when the torrent was last seen complete/whole</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4858,185 +4859,185 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../transferlistwidget.cpp" line="546"/>
+        <location filename="../transferlistwidget.cpp" line="564"/>
         <source>Column visibility</source>
         <translation>Sichtbarkeit der Spalten</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="805"/>
+        <location filename="../transferlistwidget.cpp" line="823"/>
         <source>Label</source>
         <translation>Label</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="244"/>
+        <location filename="../transferlistwidget.cpp" line="253"/>
         <source>Choose save path</source>
         <translation>Speicherort auswählen</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="468"/>
+        <location filename="../transferlistwidget.cpp" line="483"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Begrenzung der Torrent-DL-Rate</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="501"/>
+        <location filename="../transferlistwidget.cpp" line="516"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Begrenzung der Torrent-UL-Rate</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="534"/>
+        <location filename="../transferlistwidget.cpp" line="552"/>
         <source>Recheck confirmation</source>
         <translation>Überprüfe Bestätigung</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="534"/>
+        <location filename="../transferlistwidget.cpp" line="552"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
         <translation>Sind Sie sicher, daß die/der ausgewählte(n) Torrent(s) nochmal überprüft werden sollen?</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="621"/>
+        <location filename="../transferlistwidget.cpp" line="635"/>
         <source>New Label</source>
         <translation>Neues Label</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="621"/>
+        <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Label:</source>
         <translation>Label:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="626"/>
+        <location filename="../transferlistwidget.cpp" line="641"/>
         <source>Invalid label name</source>
         <translation>Ungültiger Labelname</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="626"/>
+        <location filename="../transferlistwidget.cpp" line="641"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Bitte keine Sonderzeichen im Labelname verwenden.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="652"/>
+        <location filename="../transferlistwidget.cpp" line="669"/>
         <source>Rename</source>
         <translation>Umbenennen</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="652"/>
+        <location filename="../transferlistwidget.cpp" line="669"/>
         <source>New name:</source>
         <translation>Neuer Name:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="690"/>
+        <location filename="../transferlistwidget.cpp" line="710"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Fortsetzen</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="692"/>
+        <location filename="../transferlistwidget.cpp" line="712"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Anhalten</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="694"/>
+        <location filename="../transferlistwidget.cpp" line="714"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="696"/>
+        <location filename="../transferlistwidget.cpp" line="716"/>
         <source>Preview file...</source>
         <translation>Dateivorschau ...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="698"/>
+        <location filename="../transferlistwidget.cpp" line="718"/>
         <source>Limit share ratio...</source>
         <translation>Shareverhältnis begrenzen ...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="700"/>
+        <location filename="../transferlistwidget.cpp" line="720"/>
         <source>Limit upload rate...</source>
         <translation>Uploadrate begrenzen ...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="702"/>
+        <location filename="../transferlistwidget.cpp" line="722"/>
         <source>Limit download rate...</source>
         <translation>Downloadrate begrenzen ...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="704"/>
+        <location filename="../transferlistwidget.cpp" line="724"/>
         <source>Open destination folder</source>
         <translation>Zielverzeichnis öffnen</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="706"/>
+        <location filename="../transferlistwidget.cpp" line="726"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Nach oben bewegen</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="708"/>
+        <location filename="../transferlistwidget.cpp" line="728"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Nach unten bewegen</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="710"/>
+        <location filename="../transferlistwidget.cpp" line="730"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>An den Anfang</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="712"/>
+        <location filename="../transferlistwidget.cpp" line="732"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>An das Ende</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="714"/>
+        <location filename="../transferlistwidget.cpp" line="734"/>
         <source>Set location...</source>
         <translation>Ort setzen ...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="848"/>
+        <location filename="../transferlistwidget.cpp" line="865"/>
         <source>Priority</source>
         <translation>Priorität</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="716"/>
+        <location filename="../transferlistwidget.cpp" line="736"/>
         <source>Force recheck</source>
         <translation>Erzwinge erneute Überprüfung</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="718"/>
+        <location filename="../transferlistwidget.cpp" line="738"/>
         <source>Copy magnet link</source>
         <translation>Kopiere Magnet-Link</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="720"/>
+        <location filename="../transferlistwidget.cpp" line="740"/>
         <source>Super seeding mode</source>
         <translation>Super-Seeding-Modus</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="723"/>
+        <location filename="../transferlistwidget.cpp" line="743"/>
         <source>Rename...</source>
         <translation>Umbenennen ...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="725"/>
+        <location filename="../transferlistwidget.cpp" line="745"/>
         <source>Download in sequential order</source>
         <translation>Der Reihe nach downloaden</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="728"/>
+        <location filename="../transferlistwidget.cpp" line="748"/>
         <source>Download first and last piece first</source>
         <translation>Erste und letzte Teile zuerst laden</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="806"/>
+        <location filename="../transferlistwidget.cpp" line="824"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Neu ...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="807"/>
+        <location filename="../transferlistwidget.cpp" line="825"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Zurücksetzen</translation>
@@ -5610,10 +5611,10 @@ Die Plugins wurden jedoch deaktiviert.</translation>
 <context>
     <name>fsutils</name>
     <message>
-        <location filename="../fs_utils.cpp" line="453"/>
-        <location filename="../fs_utils.cpp" line="456"/>
-        <location filename="../fs_utils.cpp" line="488"/>
-        <location filename="../fs_utils.cpp" line="500"/>
+        <location filename="../fs_utils.cpp" line="454"/>
+        <location filename="../fs_utils.cpp" line="457"/>
+        <location filename="../fs_utils.cpp" line="489"/>
+        <location filename="../fs_utils.cpp" line="501"/>
         <source>Downloads</source>
         <translation>Downloads</translation>
     </message>
@@ -5692,22 +5693,22 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation>%1 Min</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="252"/>
+        <location filename="../webui/btjson.cpp" line="306"/>
         <source>Working</source>
         <translation>Funktioniert</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="255"/>
+        <location filename="../webui/btjson.cpp" line="310"/>
         <source>Updating...</source>
         <translation>Aktualisiere ...</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="257"/>
+        <location filename="../webui/btjson.cpp" line="312"/>
         <source>Not working</source>
         <translation>Funktioniert nicht</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="257"/>
+        <location filename="../webui/btjson.cpp" line="312"/>
         <source>Not contacted yet</source>
         <translation>Noch nicht kontaktiert</translation>
     </message>

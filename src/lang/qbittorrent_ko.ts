@@ -392,11 +392,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="205"/>
-        <source>Save resume data interval</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../preferences/advancedsettings.h" line="230"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>공유자 국가 분석 (GeoIP)</translation>
@@ -441,6 +436,12 @@
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>모든 인터페이스</translation>
+    </message>
+    <message>
+        <location filename="../preferences/advancedsettings.h" line="205"/>
+        <source>Save resume data interval</source>
+        <comment>How often the fastresume file is saved.</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="267"/>
@@ -3553,18 +3554,18 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../webui/abstractrequesthandler.cpp" line="53"/>
+        <location filename="../webui/abstractrequesthandler.cpp" line="52"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation type="unfinished">인증 과정을 여러차례 실패했으므로 당신의 현재 IP 주소는 추방되었습니다.</translation>
     </message>
     <message>
-        <location filename="../webui/requesthandler.cpp" line="278"/>
+        <location filename="../webui/requesthandler.cpp" line="295"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/requesthandler.cpp" line="286"/>
+        <location filename="../webui/requesthandler.cpp" line="303"/>
         <source>I/O Error: Could not create temporary file.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4494,7 +4495,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="379"/>
         <source>Last Seen Complete</source>
-        <comment>Torrent was seen complete on 01/01/2010 08:00</comment>
+        <comment>Indicates the time when the torrent was last seen complete/whole</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4862,185 +4863,185 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../transferlistwidget.cpp" line="546"/>
+        <location filename="../transferlistwidget.cpp" line="564"/>
         <source>Column visibility</source>
         <translation>열 숨기기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="805"/>
+        <location filename="../transferlistwidget.cpp" line="823"/>
         <source>Label</source>
         <translation>라벨</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="244"/>
+        <location filename="../transferlistwidget.cpp" line="253"/>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="468"/>
+        <location filename="../transferlistwidget.cpp" line="483"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>토렌트 받기 속도 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="501"/>
+        <location filename="../transferlistwidget.cpp" line="516"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>토렌트 올리기 속도 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="534"/>
+        <location filename="../transferlistwidget.cpp" line="552"/>
         <source>Recheck confirmation</source>
         <translation>재검사 확인</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="534"/>
+        <location filename="../transferlistwidget.cpp" line="552"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
         <translation>선택한 토렌트를 재검사하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="621"/>
+        <location filename="../transferlistwidget.cpp" line="635"/>
         <source>New Label</source>
         <translation>새 라벨</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="621"/>
+        <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Label:</source>
         <translation>라벨:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="626"/>
+        <location filename="../transferlistwidget.cpp" line="641"/>
         <source>Invalid label name</source>
         <translation>잘못된 라벨 이름</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="626"/>
+        <location filename="../transferlistwidget.cpp" line="641"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>라벨 이름에 특수 문자를 사용하지 마십시오.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="652"/>
+        <location filename="../transferlistwidget.cpp" line="669"/>
         <source>Rename</source>
         <translation>이름 바꾸기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="652"/>
+        <location filename="../transferlistwidget.cpp" line="669"/>
         <source>New name:</source>
         <translation>새 이름:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="690"/>
+        <location filename="../transferlistwidget.cpp" line="710"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>시작</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="692"/>
+        <location filename="../transferlistwidget.cpp" line="712"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>정지</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="694"/>
+        <location filename="../transferlistwidget.cpp" line="714"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="696"/>
+        <location filename="../transferlistwidget.cpp" line="716"/>
         <source>Preview file...</source>
         <translation>파일 미리보기...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="698"/>
+        <location filename="../transferlistwidget.cpp" line="718"/>
         <source>Limit share ratio...</source>
         <translation>공유 비율 제한...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="700"/>
+        <location filename="../transferlistwidget.cpp" line="720"/>
         <source>Limit upload rate...</source>
         <translation>올리기 속도 제한...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="702"/>
+        <location filename="../transferlistwidget.cpp" line="722"/>
         <source>Limit download rate...</source>
         <translation>받기 속도 제한...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="704"/>
+        <location filename="../transferlistwidget.cpp" line="724"/>
         <source>Open destination folder</source>
         <translation>저장 폴더 열기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="706"/>
+        <location filename="../transferlistwidget.cpp" line="726"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>위로 이동</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="708"/>
+        <location filename="../transferlistwidget.cpp" line="728"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>아래로 이동</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="710"/>
+        <location filename="../transferlistwidget.cpp" line="730"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>최상단으로 이동</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="712"/>
+        <location filename="../transferlistwidget.cpp" line="732"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>최하단으로 이동</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="714"/>
+        <location filename="../transferlistwidget.cpp" line="734"/>
         <source>Set location...</source>
         <translation>위치 지정...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="848"/>
+        <location filename="../transferlistwidget.cpp" line="865"/>
         <source>Priority</source>
         <translation>우선순위</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="716"/>
+        <location filename="../transferlistwidget.cpp" line="736"/>
         <source>Force recheck</source>
         <translation>강제 재검사</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="718"/>
+        <location filename="../transferlistwidget.cpp" line="738"/>
         <source>Copy magnet link</source>
         <translation>마그넷 고리 복사</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="720"/>
+        <location filename="../transferlistwidget.cpp" line="740"/>
         <source>Super seeding mode</source>
         <translation>수퍼 배포 모드</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="723"/>
+        <location filename="../transferlistwidget.cpp" line="743"/>
         <source>Rename...</source>
         <translation>이름 바꾸기...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="725"/>
+        <location filename="../transferlistwidget.cpp" line="745"/>
         <source>Download in sequential order</source>
         <translation>차례대로 받기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="728"/>
+        <location filename="../transferlistwidget.cpp" line="748"/>
         <source>Download first and last piece first</source>
         <translation>첫 번째와 마지막 조각을 먼저 받음</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="806"/>
+        <location filename="../transferlistwidget.cpp" line="824"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>신규...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="807"/>
+        <location filename="../transferlistwidget.cpp" line="825"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>초기화</translation>
@@ -5614,10 +5615,10 @@ However, those plugins were disabled.</source>
 <context>
     <name>fsutils</name>
     <message>
-        <location filename="../fs_utils.cpp" line="453"/>
-        <location filename="../fs_utils.cpp" line="456"/>
-        <location filename="../fs_utils.cpp" line="488"/>
-        <location filename="../fs_utils.cpp" line="500"/>
+        <location filename="../fs_utils.cpp" line="454"/>
+        <location filename="../fs_utils.cpp" line="457"/>
+        <location filename="../fs_utils.cpp" line="489"/>
+        <location filename="../fs_utils.cpp" line="501"/>
         <source>Downloads</source>
         <translation>받기</translation>
     </message>
@@ -5696,22 +5697,22 @@ However, those plugins were disabled.</source>
         <translation>%1분</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="252"/>
+        <location filename="../webui/btjson.cpp" line="306"/>
         <source>Working</source>
         <translation>동작중</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="255"/>
+        <location filename="../webui/btjson.cpp" line="310"/>
         <source>Updating...</source>
         <translation>갱신중...</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="257"/>
+        <location filename="../webui/btjson.cpp" line="312"/>
         <source>Not working</source>
         <translation>작동 안됨</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="257"/>
+        <location filename="../webui/btjson.cpp" line="312"/>
         <source>Not contacted yet</source>
         <translation>아직 접속되지 않음</translation>
     </message>
