@@ -118,6 +118,20 @@ QMap<QString, QMap<QString, RequestHandler::Action> > RequestHandler::initialize
     return actions;
 }
 
+#define CHECK_PARAMETERS(PARAMETERS) \
+    QStringList parameters; \
+    parameters << PARAMETERS; \
+    if (parameters.size() != request().posts.size()) { \
+        status(400, "Bad Request"); \
+        return; \
+    } \
+    foreach (QString key, request().posts.keys()) { \
+        if (!parameters.contains(key, Qt::CaseInsensitive)) { \
+            status(400, "Bad Request"); \
+            return; \
+        } \
+    }
+
 void RequestHandler::action_public_index()
 {
     QString path;
@@ -262,6 +276,7 @@ void RequestHandler::action_command_shutdown()
 
 void RequestHandler::action_command_download()
 {
+    CHECK_PARAMETERS("urls");
     QString urls = request().posts["urls"];
     QStringList list = urls.split('\n');
 
@@ -309,6 +324,7 @@ void RequestHandler::action_command_upload()
 
 void RequestHandler::action_command_addTrackers()
 {
+    CHECK_PARAMETERS("hash" << "urls");
     QString hash = request().posts["hash"];
 
     if (!hash.isEmpty()) {
@@ -338,21 +354,25 @@ void RequestHandler::action_command_pauseAll()
 
 void RequestHandler::action_command_resume()
 {
+    CHECK_PARAMETERS("hash");
     QBtSession::instance()->resumeTorrent(request().posts["hash"]);
 }
 
 void RequestHandler::action_command_pause()
 {
+    CHECK_PARAMETERS("hash");
     QBtSession::instance()->pauseTorrent(request().posts["hash"]);
 }
 
 void RequestHandler::action_command_setPreferences()
 {
+    CHECK_PARAMETERS("json");
     prefjson::setPreferences(request().posts["json"]);
 }
 
 void RequestHandler::action_command_setFilePrio()
 {
+    CHECK_PARAMETERS("hash" << "id" << "priority");
     QString hash = request().posts["hash"];
     int file_id = request().posts["id"].toInt();
     int priority = request().posts["priority"].toInt();
@@ -374,6 +394,7 @@ void RequestHandler::action_command_getGlobalDlLimit()
 
 void RequestHandler::action_command_setGlobalUpLimit()
 {
+    CHECK_PARAMETERS("limit");
     qlonglong limit = request().posts["limit"].toLongLong();
     if (limit == 0) limit = -1;
 
@@ -386,6 +407,7 @@ void RequestHandler::action_command_setGlobalUpLimit()
 
 void RequestHandler::action_command_setGlobalDlLimit()
 {
+    CHECK_PARAMETERS("limit");
     qlonglong limit = request().posts["limit"].toLongLong();
     if (limit == 0) limit = -1;
 
@@ -398,6 +420,7 @@ void RequestHandler::action_command_setGlobalDlLimit()
 
 void RequestHandler::action_command_getTorrentUpLimit()
 {
+    CHECK_PARAMETERS("hash");
     QString hash = request().posts["hash"];
     QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
 
@@ -407,6 +430,7 @@ void RequestHandler::action_command_getTorrentUpLimit()
 
 void RequestHandler::action_command_getTorrentDlLimit()
 {
+    CHECK_PARAMETERS("hash");
     QString hash = request().posts["hash"];
     QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
 
@@ -416,6 +440,7 @@ void RequestHandler::action_command_getTorrentDlLimit()
 
 void RequestHandler::action_command_setTorrentUpLimit()
 {
+    CHECK_PARAMETERS("hash" << "limit");
     QString hash = request().posts["hash"];
     qlonglong limit = request().posts["limit"].toLongLong();
     if (limit == 0) limit = -1;
@@ -427,6 +452,7 @@ void RequestHandler::action_command_setTorrentUpLimit()
 
 void RequestHandler::action_command_setTorrentDlLimit()
 {
+    CHECK_PARAMETERS("hash" << "limit");
     QString hash = request().posts["hash"];
     qlonglong limit = request().posts["limit"].toLongLong();
     if (limit == 0) limit = -1;
@@ -448,6 +474,7 @@ void RequestHandler::action_command_alternativeSpeedLimitsEnabled()
 
 void RequestHandler::action_command_toggleSequentialDownload()
 {
+    CHECK_PARAMETERS("hashes");
     QStringList hashes = request().posts["hashes"].split("|");
     foreach (const QString &hash, hashes) {
         try {
@@ -460,6 +487,7 @@ void RequestHandler::action_command_toggleSequentialDownload()
 
 void RequestHandler::action_command_toggleFirstLastPiecePrio()
 {
+    CHECK_PARAMETERS("hashes");
     QStringList hashes = request().posts["hashes"].split("|");
     foreach (const QString &hash, hashes) {
         try {
@@ -472,6 +500,7 @@ void RequestHandler::action_command_toggleFirstLastPiecePrio()
 
 void RequestHandler::action_command_delete()
 {
+    CHECK_PARAMETERS("hashes");
     QStringList hashes = request().posts["hashes"].split("|");
     foreach (const QString &hash, hashes)
         QBtSession::instance()->deleteTorrent(hash, false);
@@ -479,6 +508,7 @@ void RequestHandler::action_command_delete()
 
 void RequestHandler::action_command_deletePerm()
 {
+    CHECK_PARAMETERS("hashes");
     QStringList hashes = request().posts["hashes"].split("|");
     foreach (const QString &hash, hashes)
         QBtSession::instance()->deleteTorrent(hash, true);
@@ -486,6 +516,7 @@ void RequestHandler::action_command_deletePerm()
 
 void RequestHandler::action_command_increasePrio()
 {
+    CHECK_PARAMETERS("hashes");
     QStringList hashes = request().posts["hashes"].split("|");
 
     std::priority_queue<QPair<int, QTorrentHandle>,
@@ -517,6 +548,7 @@ void RequestHandler::action_command_increasePrio()
 
 void RequestHandler::action_command_decreasePrio()
 {
+    CHECK_PARAMETERS("hashes");
     QStringList hashes = request().posts["hashes"].split("|");
 
     std::priority_queue<QPair<int, QTorrentHandle>,
@@ -549,6 +581,7 @@ void RequestHandler::action_command_decreasePrio()
 
 void RequestHandler::action_command_topPrio()
 {
+    CHECK_PARAMETERS("hashes");
     foreach (const QString &hash, request().posts["hashes"].split("|")) {
         QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
         if (h.is_valid()) h.queue_position_top();
@@ -557,6 +590,7 @@ void RequestHandler::action_command_topPrio()
 
 void RequestHandler::action_command_bottomPrio()
 {
+    CHECK_PARAMETERS("hashes");
     foreach (const QString &hash, request().posts["hashes"].split("|")) {
         QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
         if (h.is_valid()) h.queue_position_bottom();
@@ -565,6 +599,7 @@ void RequestHandler::action_command_bottomPrio()
 
 void RequestHandler::action_command_recheck()
 {
+    CHECK_PARAMETERS("hash");
     QBtSession::instance()->recheckTorrent(request().posts["hash"]);
 }
 
