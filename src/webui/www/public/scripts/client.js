@@ -25,6 +25,8 @@
 myTable = new dynamicTable();
 
 var updatePropertiesPanel = function(){};
+var updateTransferInfo = function(){};
+var updateTransferList = function(){};
 
 var stateToImg = function (state) {
     if (state == "pausedUP" || state == "pausedDL") {
@@ -42,113 +44,6 @@ var stateToImg = function (state) {
 };
 
 filter = getLocalStorageItem('selected_filter', 'all');
-
-var loadTorrentsInfoTimer;
-var loadTorrentsInfo = function () {
-    var queueing_enabled = false;
-    var url = new URI('json/torrents');
-    url.setData('filter', filter);
-    url.setData('sort', myTable.table.sortedColumn);
-    url.setData('reverse', myTable.table.reverseSort);
-    var request = new Request.JSON({
-        url : url,
-        noCache : true,
-        method : 'get',
-        onFailure : function () {
-            $('error_div').set('html', '_(qBittorrent client is not reachable)');
-            clearTimeout(loadTorrentsInfoTimer);
-            loadTorrentsInfoTimer = loadTorrentsInfo.delay(2000);
-        },
-        onSuccess : function (events) {
-            $('error_div').set('html', '');
-            if (events) {
-                // Add new torrents or update them
-                torrent_hashes = myTable.getRowIds();
-                events_hashes = new Array();
-                pos = 0;
-                events.each(function (event) {
-                    events_hashes[events_hashes.length] = event.hash;
-                    var row = new Array();
-                    var data = new Array();
-                    row.length = 10;
-                    row[0] = stateToImg(event.state);
-                    row[1] = event.name;
-                    row[2] = event.priority > -1 ? event.priority : null;
-                    data[2] = event.priority;
-                    row[3] = friendlyUnit(event.size, false);
-                    data[3] = event.size;
-                    row[4] = (event.progress * 100).round(1);
-                    if (row[4] == 100.0 && event.progress != 1.0)
-                        row[4] = 99.9;
-                    data[4] = event.progress;
-                    row[5] = event.num_seeds;
-                    if (event.num_complete != -1)
-                        row[5] += " (" + event.num_complete + ")";
-                    data[5] = event.num_seeds;
-                    row[6] = event.num_leechs;
-                    if (event.num_incomplete != -1)
-                        row[6] += " (" + event.num_incomplete + ")";
-                    data[6] = event.num_leechs;
-                    row[7] = friendlyUnit(event.dlspeed, true);
-                    data[7] = event.dlspeed;
-                    row[8] = friendlyUnit(event.upspeed, true);
-                    data[8] = event.upspeed;
-                    row[9] = friendlyDuration(event.eta);
-                    data[9] = event.eta;
-                    if (event.ratio == -1)
-                        row[10] = "∞";
-                    else
-                        row[10] = (Math.floor(100 * event.ratio) / 100).toFixed(2); //Don't round up
-                    data[10] = event.ratio;
-                    if (row[2] != null)
-                        queueing_enabled = true;
-
-                    attrs = {};
-                    attrs['downloaded'] = (event.progress == 1.0);
-                    attrs['state'] = event.state;
-                    attrs['seq_dl'] = (event.seq_dl == true);
-                    attrs['f_l_piece_prio'] = (event.f_l_piece_prio == true);
-
-                    if (!torrent_hashes.contains(event.hash)) {
-                        // New unfinished torrent
-                        torrent_hashes[torrent_hashes.length] = event.hash;
-                        //alert("Inserting row");
-                        myTable.insertRow(event.hash, row, data, attrs, pos);
-                    } else {
-                        // Update torrent data
-                        myTable.updateRow(event.hash, row, data, attrs, pos);
-                    }
-
-                    pos++;
-                });
-                // Remove deleted torrents
-                torrent_hashes.each(function (hash) {
-                    if (!events_hashes.contains(hash)) {
-                        myTable.removeRow(hash);
-                    }
-                });
-                if (queueing_enabled) {
-                    $('queueingButtons').removeClass('invisible');
-                    $('queueingMenuItems').removeClass('invisible');
-                    myTable.showPriority();
-                } else {
-                    $('queueingButtons').addClass('invisible');
-                    $('queueingMenuItems').addClass('invisible');
-                    myTable.hidePriority();
-                }
-
-                myTable.altRow();
-            }
-            clearTimeout(loadTorrentsInfoTimer);
-            loadTorrentsInfoTimer = loadTorrentsInfo.delay(1500);
-        }
-    }).send();
-};
-
-var updateTransferList = function() {
-    clearTimeout(loadTorrentsInfoTimer);
-    loadTorrentsInfo();
-}
 
 window.addEvent('load', function () {
 
@@ -226,6 +121,113 @@ window.addEvent('load', function () {
     if (!speedInTitle)
         $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
 
+    var loadTorrentsInfoTimer;
+    var loadTorrentsInfo = function () {
+        var queueing_enabled = false;
+        var url = new URI('json/torrents');
+        url.setData('filter', filter);
+        url.setData('sort', myTable.table.sortedColumn);
+        url.setData('reverse', myTable.table.reverseSort);
+        var request = new Request.JSON({
+            url : url,
+            noCache : true,
+            method : 'get',
+            onFailure : function () {
+                $('error_div').set('html', '_(qBittorrent client is not reachable)');
+                clearTimeout(loadTorrentsInfoTimer);
+                loadTorrentsInfoTimer = loadTorrentsInfo.delay(2000);
+            },
+            onSuccess : function (events) {
+                $('error_div').set('html', '');
+                if (events) {
+                    // Add new torrents or update them
+                    torrent_hashes = myTable.getRowIds();
+                    events_hashes = new Array();
+                    pos = 0;
+                    events.each(function (event) {
+                        events_hashes[events_hashes.length] = event.hash;
+                        var row = new Array();
+                        var data = new Array();
+                        row.length = 10;
+                        row[0] = stateToImg(event.state);
+                        row[1] = event.name;
+                        row[2] = event.priority > -1 ? event.priority : null;
+                        data[2] = event.priority;
+                        row[3] = friendlyUnit(event.size, false);
+                        data[3] = event.size;
+                        row[4] = (event.progress * 100).round(1);
+                        if (row[4] == 100.0 && event.progress != 1.0)
+                            row[4] = 99.9;
+                        data[4] = event.progress;
+                        row[5] = event.num_seeds;
+                        if (event.num_complete != -1)
+                            row[5] += " (" + event.num_complete + ")";
+                        data[5] = event.num_seeds;
+                        row[6] = event.num_leechs;
+                        if (event.num_incomplete != -1)
+                            row[6] += " (" + event.num_incomplete + ")";
+                        data[6] = event.num_leechs;
+                        row[7] = friendlyUnit(event.dlspeed, true);
+                        data[7] = event.dlspeed;
+                        row[8] = friendlyUnit(event.upspeed, true);
+                        data[8] = event.upspeed;
+                        row[9] = friendlyDuration(event.eta);
+                        data[9] = event.eta;
+                        if (event.ratio == -1)
+                            row[10] = "∞";
+                        else
+                            row[10] = (Math.floor(100 * event.ratio) / 100).toFixed(2); //Don't round up
+                        data[10] = event.ratio;
+                        if (row[2] != null)
+                            queueing_enabled = true;
+
+                        attrs = {};
+                        attrs['downloaded'] = (event.progress == 1.0);
+                        attrs['state'] = event.state;
+                        attrs['seq_dl'] = (event.seq_dl == true);
+                        attrs['f_l_piece_prio'] = (event.f_l_piece_prio == true);
+
+                        if (!torrent_hashes.contains(event.hash)) {
+                            // New unfinished torrent
+                            torrent_hashes[torrent_hashes.length] = event.hash;
+                            //alert("Inserting row");
+                            myTable.insertRow(event.hash, row, data, attrs, pos);
+                        } else {
+                            // Update torrent data
+                            myTable.updateRow(event.hash, row, data, attrs, pos);
+                        }
+
+                        pos++;
+                    });
+                    // Remove deleted torrents
+                    torrent_hashes.each(function (hash) {
+                        if (!events_hashes.contains(hash)) {
+                            myTable.removeRow(hash);
+                        }
+                    });
+                    if (queueing_enabled) {
+                        $('queueingButtons').removeClass('invisible');
+                        $('queueingMenuItems').removeClass('invisible');
+                        myTable.showPriority();
+                    } else {
+                        $('queueingButtons').addClass('invisible');
+                        $('queueingMenuItems').addClass('invisible');
+                        myTable.hidePriority();
+                    }
+
+                    myTable.altRow();
+                }
+                clearTimeout(loadTorrentsInfoTimer);
+                loadTorrentsInfoTimer = loadTorrentsInfo.delay(1500);
+            }
+        }).send();
+    };
+
+    updateTransferList = function() {
+        clearTimeout(loadTorrentsInfoTimer);
+        loadTorrentsInfo();
+    }
+
     var loadTransferInfoTimer;
     var loadTransferInfo = function () {
         var url = 'json/transferInfo';
@@ -263,7 +265,7 @@ window.addEvent('load', function () {
         }).send();
     };
 
-    var updateTransferInfo = function() {
+    updateTransferInfo = function() {
         clearTimeout(loadTransferInfoTimer);
         loadTransferInfo();
     }
