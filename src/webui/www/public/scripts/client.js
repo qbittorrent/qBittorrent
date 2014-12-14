@@ -49,10 +49,15 @@ window.addEvent('load', function () {
 
     var saveColumnSizes = function () {
         var filters_width = $('Filters').getSize().x;
-        var properties_height = $('propertiesPanel').getSize().y;
+        var properties_height_rel = $('propertiesPanel').getSize().y / Window.getSize().y;
         localStorage.setItem('filters_width', filters_width);
-        localStorage.setItem('properties_height', properties_height);
+        localStorage.setItem('properties_height_rel', properties_height_rel);
     }
+
+    window.addEvent('resize', function() {
+        // Resizing might takes some time.
+        saveColumnSizes.delay(200);
+    });
 
     /*MochaUI.Desktop = new MochaUI.Desktop();
     MochaUI.Desktop.desktop.setStyles({
@@ -310,9 +315,9 @@ window.addEvent('load', function () {
         onResize : saveColumnSizes,
         height : null
     });
-    var prop_h = localStorage.getItem('properties_height');
+    var prop_h = localStorage.getItem('properties_height_rel');
     if ($defined(prop_h))
-        prop_h = prop_h.toInt();
+        prop_h = prop_h.toFloat() * Window.getSize().y;
     else
         prop_h = Window.getSize().y / 2.;
     new MochaUI.Panel({
