@@ -264,6 +264,7 @@ window.addEvent('load', function () {
                         document.title = "_(D:%1 U:%2)".replace("%1", friendlyUnit(info.dl_info_speed, true)).replace("%2", friendlyUnit(info.up_info_speed, true));
                     else
                         document.title = "_(qBittorrent web User Interface)";
+                    $('DHTNodes').set('html', '_(DHT: %1 nodes)'.replace("%1", info.dht_nodes));
                     clearTimeout(loadTransferInfoTimer);
                     loadTransferInfoTimer = loadTransferInfo.delay(3000);
                 }

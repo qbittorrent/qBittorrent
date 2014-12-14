@@ -193,7 +193,8 @@ void WebApplication::translateDocument(QString& data)
     "TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget",
     "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
     "options_imp", "Preferences", "TrackersAdditionDlg", "ScanFoldersModel",
-    "PropTabBar", "TorrentModel", "downloadFromURL", "MainWindow", "misc"
+    "PropTabBar", "TorrentModel", "downloadFromURL", "MainWindow", "misc",
+    "StatusBar"
   };
   const size_t context_count = sizeof(contexts) / sizeof(contexts[0]);
   int i = 0;

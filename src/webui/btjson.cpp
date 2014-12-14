@@ -140,6 +140,7 @@ static const char KEY_TRANSFER_DLRATELIMIT[] = "dl_rate_limit";
 static const char KEY_TRANSFER_UPSPEED[] = "up_info_speed";
 static const char KEY_TRANSFER_UPDATA[] = "up_info_data";
 static const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
+static const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
 
 class QTorrentCompare
 {
@@ -450,6 +451,7 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
  *   - "up_info_data": Data uploaded this session
  *   - "dl_rate_limit": Download rate limit
  *   - "up_rate_limit": Upload rate limit
+ *   - "dht_nodes": DHT nodes connected to
  */
 QByteArray btjson::getTransferInfo()
 {
@@ -464,5 +466,6 @@ QByteArray btjson::getTransferInfo()
         info[KEY_TRANSFER_DLRATELIMIT] = sessionSettings.download_rate_limit;
     if (sessionSettings.upload_rate_limit)
         info[KEY_TRANSFER_UPRATELIMIT] = sessionSettings.upload_rate_limit;
+    info[KEY_TRANSFER_DHT_NODES] = sessionStatus.dht_nodes;
     return json::toJson(info);
 }
