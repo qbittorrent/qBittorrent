@@ -101,7 +101,7 @@ initializeWindows = function() {
     globalUploadLimitFN = function() {
         new MochaUI.Window({
             id: 'uploadLimitPage',
-            title: "_(Global Upload Speed Limiting)",
+            title: "_(Global Upload Speed Limit)",
             loadMethod: 'iframe',
             contentURL: 'uploadlimit.html?hash=global',
             scrollbars: false,
@@ -165,7 +165,7 @@ initializeWindows = function() {
     globalDownloadLimitFN = function() {
         new MochaUI.Window({
             id: 'downloadLimitPage',
-            title: "_(Global Download Speed Limiting)",
+            title: "_(Global Download Speed Limit)",
             loadMethod: 'iframe',
             contentURL: 'downloadlimit.html?hash=global',
             scrollbars: false,
