@@ -243,7 +243,7 @@ bool HttpRequestParser::parseContent(const QByteArray& data)
     while (i.hasNext())
     {
       QPair<QString, QString> pair = i.next();
-      request_.posts[pair.first] = pair.second;
+      request_.posts[pair.first.toLower()] = pair.second;
     }
 
     return true;

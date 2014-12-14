@@ -140,6 +140,8 @@ static const char KEY_TRANSFER_DLRATELIMIT[] = "dl_rate_limit";
 static const char KEY_TRANSFER_UPSPEED[] = "up_info_speed";
 static const char KEY_TRANSFER_UPDATA[] = "up_info_data";
 static const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
+static const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
+static const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
 
 class QTorrentCompare
 {
@@ -213,7 +215,7 @@ static QVariantMap toMap(const QTorrentHandle& h)
     ret[KEY_TORRENT_LEECHS] = status.num_peers - status.num_seeds;
     ret[KEY_TORRENT_NUM_INCOMPLETE] = status.num_incomplete;
     const qreal ratio = QBtSession::instance()->getRealRatio(status);
-    ret[KEY_TORRENT_RATIO] = (ratio > 100.) ? -1 : ratio;
+    ret[KEY_TORRENT_RATIO] = (ratio > QBtSession::MAX_RATIO) ? -1 : ratio;
     ret[KEY_TORRENT_STATE] = h.torrentState().toString();
     ret[KEY_TORRENT_ETA] = h.eta();
     if (h.has_metadata()) {
@@ -245,6 +247,8 @@ static QVariantMap toMap(const QTorrentHandle& h)
  *   - "ratio": Torrent share ratio
  *   - "eta": Torrent ETA
  *   - "state": Torrent state
+ *   - "seq_dl": Torrent sequential download state
+ *   - "f_l_piece_prio": Torrent first last piece priority state
  */
 QByteArray btjson::getTorrents(QString filter, QString label,
                                QString sortedColumn, bool reverse, int limit, int offset)
@@ -381,7 +385,7 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
         data[KEY_PROP_CONNECT_COUNT] = status.num_connections;
         data[KEY_PROP_CONNECT_COUNT_LIMIT] = status.connections_limit;
         const qreal ratio = QBtSession::instance()->getRealRatio(status);
-        data[KEY_PROP_RATIO] = ratio > 100. ? -1 : ratio;
+        data[KEY_PROP_RATIO] = ratio > QBtSession::MAX_RATIO ? -1 : ratio;
     }
     catch(const std::exception& e) {
         qWarning() << Q_FUNC_INFO << "Invalid torrent: " << misc::toQStringU(e.what());
@@ -446,10 +450,14 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
  *   - "dl_info_data": Data downloaded this session
  *   - "up_info_speed": Global upload rate
  *   - "up_info_data": Data uploaded this session
+ *   - "dl_rate_limit": Download rate limit
+ *   - "up_rate_limit": Upload rate limit
+ *   - "dht_nodes": DHT nodes connected to
+ *   - "connection_status": Connection status
  */
 QByteArray btjson::getTransferInfo()
 {
-    CACHED_VARIABLE(QVariantMap, info, CACHE_DURATION_MS);
+    QVariantMap info;
     session_status sessionStatus = QBtSession::instance()->getSessionStatus();
     session_settings sessionSettings = QBtSession::instance()->getSession()->settings();
     info[KEY_TRANSFER_DLSPEED] = sessionStatus.payload_download_rate;
@@ -460,5 +468,10 @@ QByteArray btjson::getTransferInfo()
         info[KEY_TRANSFER_DLRATELIMIT] = sessionSettings.download_rate_limit;
     if (sessionSettings.upload_rate_limit)
         info[KEY_TRANSFER_UPRATELIMIT] = sessionSettings.upload_rate_limit;
+    info[KEY_TRANSFER_DHT_NODES] = sessionStatus.dht_nodes;
+    if (!QBtSession::instance()->getSession()->is_listening())
+        info[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
+    else
+        info[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.has_incoming_connections ? "connected" : "firewalled";
     return json::toJson(info);
 }

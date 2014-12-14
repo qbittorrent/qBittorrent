@@ -74,6 +74,8 @@ private:
     void action_command_getTorrentDlLimit();
     void action_command_setTorrentUpLimit();
     void action_command_setTorrentDlLimit();
+    void action_command_alternativeSpeedLimitsEnabled();
+    void action_command_toggleAlternativeSpeedLimits();
     void action_command_toggleSequentialDownload();
     void action_command_toggleFirstLastPiecePrio();
     void action_command_delete();

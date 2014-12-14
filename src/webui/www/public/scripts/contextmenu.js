@@ -114,6 +114,7 @@ var ContextMenu = new Class({
         /* menu items */
         this.menu.getElements('a').each(function(item) {
             item.addEvent('click', function(e) {
+                e.preventDefault();
                 if (!item.hasClass('disabled')) {
                     this.execute(item.get('href').split('#')[1], $(this.options.element));
                     this.fireEvent('click', [item, e]);

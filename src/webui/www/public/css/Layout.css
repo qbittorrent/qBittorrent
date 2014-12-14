@@ -423,3 +423,7 @@ div.toolbox.divider { /* Have to specify div here for IE6's sake */
 	height: 16px;
 }	
 
+#desktopFooter td {
+	vertical-align: top;
+	text-align: center;
+}
