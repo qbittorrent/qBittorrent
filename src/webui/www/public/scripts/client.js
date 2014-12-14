@@ -265,6 +265,12 @@ window.addEvent('load', function () {
                     else
                         document.title = "_(qBittorrent web User Interface)";
                     $('DHTNodes').set('html', '_(DHT: %1 nodes)'.replace("%1", info.dht_nodes));
+                    if (info.connection_status == "connected")
+                        $('connectionStatus').src = 'images/skin/connected.png';
+                    else if (info.connection_status == "firewalled")
+                        $('connectionStatus').src = 'images/skin/firewalled.png';
+                    else
+                        $('connectionStatus').src = 'images/skin/disconnected.png';
                     clearTimeout(loadTransferInfoTimer);
                     loadTransferInfoTimer = loadTransferInfo.delay(3000);
                 }

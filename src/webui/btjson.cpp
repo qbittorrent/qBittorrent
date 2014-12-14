@@ -141,6 +141,7 @@ static const char KEY_TRANSFER_UPSPEED[] = "up_info_speed";
 static const char KEY_TRANSFER_UPDATA[] = "up_info_data";
 static const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
 static const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
+static const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
 
 class QTorrentCompare
 {
@@ -452,6 +453,7 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
  *   - "dl_rate_limit": Download rate limit
  *   - "up_rate_limit": Upload rate limit
  *   - "dht_nodes": DHT nodes connected to
+ *   - "connection_status": Connection status
  */
 QByteArray btjson::getTransferInfo()
 {
@@ -467,5 +469,9 @@ QByteArray btjson::getTransferInfo()
     if (sessionSettings.upload_rate_limit)
         info[KEY_TRANSFER_UPRATELIMIT] = sessionSettings.upload_rate_limit;
     info[KEY_TRANSFER_DHT_NODES] = sessionStatus.dht_nodes;
+    if (!QBtSession::instance()->getSession()->is_listening())
+        info[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
+    else
+        info[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.has_incoming_connections ? "connected" : "firewalled";
     return json::toJson(info);
 }
