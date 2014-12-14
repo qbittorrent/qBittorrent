@@ -27,6 +27,7 @@ myTable = new dynamicTable();
 var updatePropertiesPanel = function(){};
 var updateTransferInfo = function(){};
 var updateTransferList = function(){};
+var alternativeSpeedsLimit = false;
 
 var stateToImg = function (state) {
     if (state == "pausedUP" || state == "pausedDL") {
@@ -277,6 +278,40 @@ window.addEvent('load', function () {
 
     // Start fetching data now
     loadTransferInfo();
+
+    var updateAltSpeedIcon = function(enabled) {
+        if (enabled)
+            $('alternativeSpeedLimits').src = "images/slow.png";
+        else
+            $('alternativeSpeedLimits').src = "images/slow_off.png"
+    }
+
+    // Determine whether the alternative speed limits are enabled or not
+    new Request({url: 'command/alternativeSpeedLimitsEnabled',
+            method: 'get',
+            onSuccess : function (isEnabled) {
+                alternativeSpeedsLimit = !!isEnabled;
+                if (alternativeSpeedsLimit)
+                    $('alternativeSpeedLimits').src = "images/slow.png"
+            }
+    }).send();
+
+    $('alternativeSpeedLimits').addEvent('click', function() {
+        // Change icon immediately to give some feedback
+        updateAltSpeedIcon(!alternativeSpeedsLimit);
+
+        new Request({url: 'command/toggleAlternativeSpeedLimits',
+                method: 'post',
+                onComplete: function() {
+                    alternativeSpeedsLimit = !alternativeSpeedsLimit;
+                    updateTransferInfo();
+                },
+                onFailure: function() {
+                    // Restore icon in case of failure
+                    updateAltSpeedIcon(alternativeSpeedsLimit)
+                }
+        }).send();
+    });
 
     $('DlInfos').addEvent('click', globalDownloadLimitFN);
     $('UpInfos').addEvent('click', globalUploadLimitFN);

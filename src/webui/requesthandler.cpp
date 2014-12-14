@@ -100,6 +100,8 @@ QMap<QString, QMap<QString, RequestHandler::Action> > RequestHandler::initialize
     ADD_ACTION(command, getTorrentDlLimit);
     ADD_ACTION(command, setTorrentUpLimit);
     ADD_ACTION(command, setTorrentDlLimit);
+    ADD_ACTION(command, alternativeSpeedLimitsEnabled);
+    ADD_ACTION(command, toggleAlternativeSpeedLimits);
     ADD_ACTION(command, toggleSequentialDownload);
     ADD_ACTION(command, toggleFirstLastPiecePrio);
     ADD_ACTION(command, delete);
@@ -376,7 +378,10 @@ void RequestHandler::action_command_setGlobalUpLimit()
     if (limit == 0) limit = -1;
 
     QBtSession::instance()->setUploadRateLimit(limit);
-    Preferences::instance()->setGlobalUploadLimit(limit / 1024.);
+    if (Preferences::instance()->isAltBandwidthEnabled())
+        Preferences::instance()->setAltGlobalUploadLimit(limit / 1024.);
+    else
+        Preferences::instance()->setGlobalUploadLimit(limit / 1024.);
 }
 
 void RequestHandler::action_command_setGlobalDlLimit()
@@ -385,7 +390,10 @@ void RequestHandler::action_command_setGlobalDlLimit()
     if (limit == 0) limit = -1;
 
     QBtSession::instance()->setDownloadRateLimit(limit);
-    Preferences::instance()->setGlobalDownloadLimit(limit / 1024.);
+    if (Preferences::instance()->isAltBandwidthEnabled())
+        Preferences::instance()->setAltGlobalDownloadLimit(limit / 1024.);
+    else
+        Preferences::instance()->setGlobalDownloadLimit(limit / 1024.);
 }
 
 void RequestHandler::action_command_getTorrentUpLimit()
@@ -426,6 +434,16 @@ void RequestHandler::action_command_setTorrentDlLimit()
 
     if (h.is_valid())
         h.set_download_limit(limit);
+}
+
+void RequestHandler::action_command_toggleAlternativeSpeedLimits()
+{
+    QBtSession::instance()->useAlternativeSpeedsLimit(!Preferences::instance()->isAltBandwidthEnabled());
+}
+
+void RequestHandler::action_command_alternativeSpeedLimitsEnabled()
+{
+    print(QByteArray::number(Preferences::instance()->isAltBandwidthEnabled()));
 }
 
 void RequestHandler::action_command_toggleSequentialDownload()
