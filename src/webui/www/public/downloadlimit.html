@@ -31,6 +31,7 @@
                     'limit': limit
                 },
                 onComplete: function() {
+                    window.parent.updateTransferInfo();
                     window.parent.closeWindows();
                 }
             }).send();
