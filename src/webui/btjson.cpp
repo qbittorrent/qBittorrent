@@ -213,7 +213,7 @@ static QVariantMap toMap(const QTorrentHandle& h)
     ret[KEY_TORRENT_LEECHS] = status.num_peers - status.num_seeds;
     ret[KEY_TORRENT_NUM_INCOMPLETE] = status.num_incomplete;
     const qreal ratio = QBtSession::instance()->getRealRatio(status);
-    ret[KEY_TORRENT_RATIO] = (ratio > 100.) ? -1 : ratio;
+    ret[KEY_TORRENT_RATIO] = (ratio > QBtSession::MAX_RATIO) ? -1 : ratio;
     ret[KEY_TORRENT_STATE] = h.torrentState().toString();
     ret[KEY_TORRENT_ETA] = h.eta();
     if (h.has_metadata()) {
@@ -381,7 +381,7 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
         data[KEY_PROP_CONNECT_COUNT] = status.num_connections;
         data[KEY_PROP_CONNECT_COUNT_LIMIT] = status.connections_limit;
         const qreal ratio = QBtSession::instance()->getRealRatio(status);
-        data[KEY_PROP_RATIO] = ratio > 100. ? -1 : ratio;
+        data[KEY_PROP_RATIO] = ratio > QBtSession::MAX_RATIO ? -1 : ratio;
     }
     catch(const std::exception& e) {
         qWarning() << Q_FUNC_INFO << "Invalid torrent: " << misc::toQStringU(e.what());
