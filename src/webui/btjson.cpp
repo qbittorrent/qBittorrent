@@ -449,7 +449,7 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
  */
 QByteArray btjson::getTransferInfo()
 {
-    CACHED_VARIABLE(QVariantMap, info, CACHE_DURATION_MS);
+    QVariantMap info;
     session_status sessionStatus = QBtSession::instance()->getSessionStatus();
     session_settings sessionSettings = QBtSession::instance()->getSession()->settings();
     info[KEY_TRANSFER_DLSPEED] = sessionStatus.payload_download_rate;
