@@ -572,10 +572,7 @@ void Preferences::setGlobalUploadLimit(int limit) {
 }
 
 int Preferences::getAltGlobalDownloadLimit() const {
-  int ret = value("Preferences/Connection/GlobalDLLimitAlt", 10).toInt();
-  if (ret <= 0)
-    ret = 10;
-  return ret;
+  return value("Preferences/Connection/GlobalDLLimitAlt", 10).toInt();
 }
 
 void Preferences::setAltGlobalDownloadLimit(int limit) {
@@ -585,10 +582,7 @@ void Preferences::setAltGlobalDownloadLimit(int limit) {
 }
 
 int Preferences::getAltGlobalUploadLimit() const {
-  int ret = value("Preferences/Connection/GlobalUPLimitAlt", 10).toInt();
-  if (ret <= 0)
-    ret = 10;
-  return ret;
+  return value("Preferences/Connection/GlobalUPLimitAlt", 10).toInt();
 }
 
 void Preferences::setAltGlobalUploadLimit(int limit) {
