@@ -63,12 +63,10 @@ static QPair<int, int> get_file_extremity_pieces(const torrent_info& t, int file
     // Determine the first and last piece of the file
     int first_piece = floor((file.offset + 1) / (float) piece_size);
     Q_ASSERT(first_piece >= 0 && first_piece < num_pieces);
-    qDebug("First piece of the file is %d/%d", first_piece, num_pieces - 1);
 
     int num_pieces_in_file = ceil(file.size / (float) piece_size);
     int last_piece = first_piece + num_pieces_in_file - 1;
     Q_ASSERT(last_piece >= 0 && last_piece < num_pieces);
-    qDebug("last piece of the file is %d/%d", last_piece, num_pieces - 1);
 
     return qMakePair(first_piece, last_piece);
 }
