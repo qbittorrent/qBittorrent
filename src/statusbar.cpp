@@ -228,11 +228,15 @@ void StatusBar::capDownloadSpeed() {
       QBtSession::instance()->setDownloadRateLimit(-1);
       if (!alt)
         pref->setGlobalDownloadLimit(-1);
+      else
+        pref->setAltGlobalDownloadLimit(-1);
     } else {
       qDebug("Setting global download rate limit to %.1fKb/s", new_limit/1024.);
       QBtSession::instance()->setDownloadRateLimit(new_limit);
       if (!alt)
         pref->setGlobalDownloadLimit(new_limit/1024.);
+      else
+        pref->setAltGlobalDownloadLimit(new_limit/1024.);
     }
     refreshStatusBar();
   }
@@ -250,11 +254,15 @@ void StatusBar::capUploadSpeed() {
       QBtSession::instance()->setUploadRateLimit(-1);
       if (!alt)
         Preferences::instance()->setGlobalUploadLimit(-1);
+      else
+        Preferences::instance()->setAltGlobalUploadLimit(-1);
     } else {
       qDebug("Setting global upload rate limit to %.1fKb/s", new_limit/1024.);
       QBtSession::instance()->setUploadRateLimit(new_limit);
       if (!alt)
         Preferences::instance()->setGlobalUploadLimit(new_limit/1024.);
+      else
+        Preferences::instance()->setAltGlobalUploadLimit(new_limit/1024.);
     }
     refreshStatusBar();
   }
