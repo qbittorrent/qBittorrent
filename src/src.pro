@@ -4,7 +4,7 @@ CONFIG += qt thread
 
 # Windows specific configuration
 win32 {
-  include(../winconf.pri)  
+  include(../winconf.pri)
 }
 
 # Mac specific configuration
@@ -109,7 +109,8 @@ HEADERS += misc.h \
            scannedfoldersmodel.h \
            qinisettings.h \
            smtp.h \
-           dnsupdater.h
+           dnsupdater.h \
+           application.h
 
 SOURCES += main.cpp \
            downloadthread.cpp \
@@ -118,7 +119,8 @@ SOURCES += main.cpp \
            misc.cpp \
            fs_utils.cpp \
            smtp.cpp \
-           dnsupdater.cpp
+           dnsupdater.cpp \
+           application.cpp
 
 nox {
   HEADERS += headlessloader.h
