@@ -245,6 +245,8 @@ static QVariantMap toMap(const QTorrentHandle& h)
  *   - "ratio": Torrent share ratio
  *   - "eta": Torrent ETA
  *   - "state": Torrent state
+ *   - "seq_dl": Torrent sequential download state
+ *   - "f_l_piece_prio": Torrent first last piece priority state
  */
 QByteArray btjson::getTorrents(QString filter, QString label,
                                QString sortedColumn, bool reverse, int limit, int offset)
@@ -446,6 +448,8 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
  *   - "dl_info_data": Data downloaded this session
  *   - "up_info_speed": Global upload rate
  *   - "up_info_data": Data uploaded this session
+ *   - "dl_rate_limit": Download rate limit
+ *   - "up_rate_limit": Upload rate limit
  */
 QByteArray btjson::getTransferInfo()
 {
