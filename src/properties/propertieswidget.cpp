@@ -463,10 +463,13 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
 
   const QDir saveDir(h.save_path());
   const QString filename = path_items.join("/");
-  const QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
-  qDebug("Trying to open folder at %s", qPrintable(file_path));
   // Flush data
   h.flush_cache();
+
+  QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
+  if (QFile::exists(file_path + ".!qB"))
+      file_path += ".!qB";
+  qDebug("Trying to open folder at %s", qPrintable(file_path));
 
 #ifdef Q_OS_WIN
   if (containing_folder) {
