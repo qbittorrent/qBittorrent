@@ -20,8 +20,6 @@
   <file>nova/engines/piratebay.py</file>
   <file>nova/engines/torrentreactor.png</file>
   <file>nova/engines/torrentreactor.py</file>
-  <file>nova/engines/vertor.png</file>
-  <file>nova/engines/vertor.py</file>
   <file>nova3/helpers.py</file>
   <file>nova3/nova2.py</file>
   <file>nova3/nova2dl.py</file>
@@ -42,7 +40,5 @@
   <file>nova3/engines/piratebay.py</file>
   <file>nova3/engines/torrentreactor.png</file>
   <file>nova3/engines/torrentreactor.py</file>
-  <file>nova3/engines/vertor.png</file>
-  <file>nova3/engines/vertor.py</file>
 </qresource>
 </RCC>
