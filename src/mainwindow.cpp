@@ -207,6 +207,8 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   tabs->addTab(vSplitter, IconProvider::instance()->getIcon("folder-remote"), tr("Transfers"));
 
   connect(search_filter, SIGNAL(textChanged(QString)), transferList, SLOT(applyNameFilter(QString)));
+  connect(hSplitter, SIGNAL(splitterMoved(int, int)), this, SLOT(writeSettings()));
+  connect(vSplitter, SIGNAL(splitterMoved(int, int)), this, SLOT(writeSettings()));
 
   vboxLayout->addWidget(tabs);
 
