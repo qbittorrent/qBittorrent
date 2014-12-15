@@ -92,7 +92,6 @@ protected:
     QString getHashFromRow(int row) const;
     QModelIndex mapToSource(const QModelIndex &index) const;
     QModelIndex mapFromSource(const QModelIndex &index) const;
-    void saveSettings();
     bool loadSettings();
     QStringList getSelectedTorrentsHashes() const;
 
@@ -104,6 +103,7 @@ protected slots:
     void toggleSelectedTorrentsSequentialDownload() const;
     void toggleSelectedFirstLastPiecePrio() const;
     void askNewLabelForSelection();
+    void saveSettings();
 
 private:
     bool openUrl(const QString& _path) const;
