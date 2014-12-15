@@ -149,6 +149,8 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayListMenu(const QPoint &)));
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(header(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayDLHoSMenu(const QPoint &)));
+    connect(header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(saveSettings()));
+    connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
 
     editHotkey = new QShortcut(QKeySequence("F2"), this, SLOT(renameSelectedTorrent()), 0, Qt::WidgetShortcut);
     deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedTorrents()), 0, Qt::WidgetShortcut);
@@ -594,6 +596,7 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&)
         setColumnHidden(col, !isColumnHidden(col));
         if (!isColumnHidden(col) && columnWidth(col) <= 5)
             setColumnWidth(col, 100);
+        saveSettings();
     }
 }
 
