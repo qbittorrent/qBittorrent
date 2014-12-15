@@ -78,190 +78,23 @@ Q_IMPORT_PLUGIN(qico)
 #error You seem to have updated QtSingleApplication without porting our custom QtSingleApplication::getRunningPid() function. Please see previous version to understate how it works.
 #endif
 
+// Signal handlers
 #if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
-void sigintHandler(int)
-{
-    signal(SIGINT, 0);
-    qDebug("Catching SIGINT, exiting cleanly");
-    qApp->exit();
-}
-
-void sigtermHandler(int)
-{
-    signal(SIGTERM, 0);
-    qDebug("Catching SIGTERM, exiting cleanly");
-    qApp->exit();
-}
-
-void sigsegvHandler(int)
-{
-    signal(SIGABRT, 0);
-    signal(SIGSEGV, 0);
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
-    std::cerr << "\n\n*************************************************************\n";
-    std::cerr << "Catching SIGSEGV, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
-    std::cerr << "qBittorrent version: " << VERSION << std::endl;
-    print_stacktrace();
-#else
-#ifdef STACKTRACE_WIN
-    StraceDlg dlg;
-    dlg.setStacktraceString(straceWin::getBacktrace());
-    dlg.exec();
-#endif
-#endif
-    raise(SIGSEGV);
-}
-
-void sigabrtHandler(int)
-{
-    signal(SIGABRT, 0);
-    signal(SIGSEGV, 0);
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
-    std::cerr << "\n\n*************************************************************\n";
-    std::cerr << "Catching SIGABRT, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
-    std::cerr << "qBittorrent version: " << VERSION << std::endl;
-    print_stacktrace();
-#else
-#ifdef STACKTRACE_WIN
-    StraceDlg dlg;
-    dlg.setStacktraceString(straceWin::getBacktrace());
-    dlg.exec();
-#endif
-#endif
-    raise(SIGABRT);
-}
+void sigintHandler(int);
+void sigtermHandler(int);
+void sigsegvHandler(int);
+void sigabrtHandler(int);
 #endif
 
 #ifndef DISABLE_GUI
-void showSplashScreen()
-{
-    QPixmap splash_img(":/Icons/skin/splash.png");
-    QPainter painter(&splash_img);
-    QString version = VERSION;
-    painter.setPen(QPen(Qt::white));
-    painter.setFont(QFont("Arial", 22, QFont::Black));
-    painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
-    QSplashScreen *splash = new QSplashScreen(splash_img, Qt::WindowStaysOnTopHint);
-    QTimer::singleShot(1500, splash, SLOT(deleteLater()));
-    splash->show();
-    qApp->processEvents();
-}
-#endif
-
-void displayVersion()
-{
-    std::cout << qPrintable(qApp->applicationName()) << " " << VERSION << std::endl;
-}
-
-void displayUsage(const char *prg_name)
-{
-    std::cout << qPrintable(QObject::tr("Usage:")) << std::endl;
-    std::cout << '\t' << prg_name << " --version: " << qPrintable(QObject::tr("displays program version")) << std::endl;
-#ifndef DISABLE_GUI
-    std::cout << '\t' << prg_name << " --no-splash: " << qPrintable(QObject::tr("disable splash screen")) << std::endl;
+void showSplashScreen();
+void parseCommandLine(bool& showVersion, bool& showUsage, bool& noSplash, QStringList& torrents);
 #else
-    std::cout << '\t' << prg_name << " -d | --daemon: " << qPrintable(QObject::tr("run in daemon-mode (background)")) << std::endl;
+void parseCommandLine(bool& showVersion, bool& showUsage, bool& shouldDaemonize, QStringList& torrents);
 #endif
-    std::cout << '\t' << prg_name << " --help: " << qPrintable(QObject::tr("displays this help message")) << std::endl;
-    std::cout << '\t' << prg_name << " --webui-port=x: " << qPrintable(QObject::tr("changes the webui port (current: %1)").arg(QString::number(Preferences::instance()->getWebUiPort()))) << std::endl;
-    std::cout << '\t' << prg_name << " " << qPrintable(QObject::tr("[files or urls]: downloads the torrents passed by the user (optional)")) << std::endl;
-}
-
-void parseCommandLine(
-        bool& showVersion, bool& showUsage,
-#ifndef DISABLE_GUI
-        bool& noSplash,
-#else
-        bool& shouldDaemonize,
-#endif
-        QStringList& torrents
-        )
-{
-    // Default values
-    showVersion = false;
-    showUsage = false;
-#ifndef DISABLE_GUI
-    noSplash = Preferences::instance()->isSlashScreenDisabled();
-#else
-    shouldDaemonize = false;
-#endif
-    torrents.clear();
-
-    QStringList appArguments = qApp->arguments();
-
-    for (int i = 1; i < appArguments.size(); ++i) {
-        QString& arg = appArguments[i];
-
-        if (arg == "--version") {
-            showVersion = true;
-        }
-        else if (arg == "--usage") {
-            showUsage = true;
-        }
-        else if (arg.startsWith("--webui-port=")) {
-            QStringList parts = arg.split("=");
-            if (parts.size() == 2) {
-                bool ok = false;
-                int new_port = parts.last().toInt(&ok);
-                if (ok && (new_port > 0) && (new_port <= 65535))
-                    Preferences::instance()->setWebUiPort(new_port);
-            }
-        }
-#ifndef DISABLE_GUI
-        else if (arg == "--no-splash") {
-            noSplash = true;
-        }
-#else
-        else if ((arg == "-d") || (arg == "--daemon")) {
-            shouldDaemonize = true;
-        }
-#endif
-        else if (!arg.startsWith("--")) {
-            QFileInfo torrentPath;
-            torrentPath.setFile(arg);
-
-            if (torrentPath.exists())
-                torrents += torrentPath.absoluteFilePath();
-            else
-                torrents += arg;
-        }
-    }
-}
-
-bool userAgreesWithLegalNotice()
-{
-    Preferences* const pref = Preferences::instance();
-    if (pref->getAcceptedLegal()) // Already accepted once
-        return true;
-
-#ifdef DISABLE_GUI
-    std::cout << std::endl << "*** " << qPrintable(QObject::tr("Legal Notice")) << " ***" << std::endl;
-    std::cout << qPrintable(QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued.")) << std::endl << std::endl;
-    std::cout << qPrintable(QObject::tr("Press %1 key to accept and continue...").arg("'y'")) << std::endl;
-    char ret = getchar(); // Read pressed key
-    if (ret == 'y' || ret == 'Y') {
-        // Save the answer
-        pref->setAcceptedLegal(true);
-        return true;
-    }
-#else
-    QMessageBox msgBox;
-    msgBox.setText(QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
-    msgBox.setWindowTitle(QObject::tr("Legal notice"));
-    msgBox.addButton(QObject::tr("Cancel"), QMessageBox::RejectRole);
-    QAbstractButton *agree_button = msgBox.addButton(QObject::tr("I Agree"), QMessageBox::AcceptRole);
-    msgBox.show(); // Need to be shown or to moveToCenter does not work
-    msgBox.move(misc::screenCenter(&msgBox));
-    msgBox.exec();
-    if (msgBox.clickedButton() == agree_button) {
-        // Save the answer
-        pref->setAcceptedLegal(true);
-        return true;
-    }
-#endif
-
-    return false;
-}
+void displayVersion();
+void displayUsage(const char *prg_name);
+bool userAgreesWithLegalNotice();
 
 // Main
 int main(int argc, char *argv[])
@@ -364,4 +197,185 @@ int main(int argc, char *argv[])
     int ret = app.exec();
     qDebug("Application has exited");
     return ret;
+}
+
+#if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
+void sigintHandler(int)
+{
+    signal(SIGINT, 0);
+    qDebug("Catching SIGINT, exiting cleanly");
+    qApp->exit();
+}
+
+void sigtermHandler(int)
+{
+    signal(SIGTERM, 0);
+    qDebug("Catching SIGTERM, exiting cleanly");
+    qApp->exit();
+}
+
+void sigsegvHandler(int)
+{
+    signal(SIGABRT, 0);
+    signal(SIGSEGV, 0);
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+    std::cerr << "\n\n*************************************************************\n";
+    std::cerr << "Catching SIGSEGV, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
+    std::cerr << "qBittorrent version: " << VERSION << std::endl;
+    print_stacktrace();
+#else
+#ifdef STACKTRACE_WIN
+    StraceDlg dlg;
+    dlg.setStacktraceString(straceWin::getBacktrace());
+    dlg.exec();
+#endif
+#endif
+    raise(SIGSEGV);
+}
+
+void sigabrtHandler(int)
+{
+    signal(SIGABRT, 0);
+    signal(SIGSEGV, 0);
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+    std::cerr << "\n\n*************************************************************\n";
+    std::cerr << "Catching SIGABRT, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
+    std::cerr << "qBittorrent version: " << VERSION << std::endl;
+    print_stacktrace();
+#else
+#ifdef STACKTRACE_WIN
+    StraceDlg dlg;
+    dlg.setStacktraceString(straceWin::getBacktrace());
+    dlg.exec();
+#endif
+#endif
+    raise(SIGABRT);
+}
+#endif
+
+#ifndef DISABLE_GUI
+void showSplashScreen()
+{
+    QPixmap splash_img(":/Icons/skin/splash.png");
+    QPainter painter(&splash_img);
+    QString version = VERSION;
+    painter.setPen(QPen(Qt::white));
+    painter.setFont(QFont("Arial", 22, QFont::Black));
+    painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
+    QSplashScreen *splash = new QSplashScreen(splash_img, Qt::WindowStaysOnTopHint);
+    QTimer::singleShot(1500, splash, SLOT(deleteLater()));
+    splash->show();
+    qApp->processEvents();
+}
+#endif
+
+void displayVersion()
+{
+    std::cout << qPrintable(qApp->applicationName()) << " " << VERSION << std::endl;
+}
+
+void displayUsage(const char *prg_name)
+{
+    std::cout << qPrintable(QObject::tr("Usage:")) << std::endl;
+    std::cout << '\t' << prg_name << " --version: " << qPrintable(QObject::tr("displays program version")) << std::endl;
+#ifndef DISABLE_GUI
+    std::cout << '\t' << prg_name << " --no-splash: " << qPrintable(QObject::tr("disable splash screen")) << std::endl;
+#else
+    std::cout << '\t' << prg_name << " -d | --daemon: " << qPrintable(QObject::tr("run in daemon-mode (background)")) << std::endl;
+#endif
+    std::cout << '\t' << prg_name << " --help: " << qPrintable(QObject::tr("displays this help message")) << std::endl;
+    std::cout << '\t' << prg_name << " --webui-port=x: " << qPrintable(QObject::tr("changes the webui port (current: %1)").arg(QString::number(Preferences::instance()->getWebUiPort()))) << std::endl;
+    std::cout << '\t' << prg_name << " " << qPrintable(QObject::tr("[files or urls]: downloads the torrents passed by the user (optional)")) << std::endl;
+}
+
+#ifndef DISABLE_GUI
+void parseCommandLine(bool& showVersion, bool& showUsage, bool& noSplash, QStringList& torrents)
+#else
+void parseCommandLine(bool& showVersion, bool& showUsage, bool& shouldDaemonize, QStringList& torrents)
+#endif
+{
+    // Default values
+    showVersion = false;
+    showUsage = false;
+#ifndef DISABLE_GUI
+    noSplash = Preferences::instance()->isSlashScreenDisabled();
+#else
+    shouldDaemonize = false;
+#endif
+    torrents.clear();
+
+    QStringList appArguments = qApp->arguments();
+
+    for (int i = 1; i < appArguments.size(); ++i) {
+        QString& arg = appArguments[i];
+
+        if (arg == "--version") {
+            showVersion = true;
+        }
+        else if (arg == "--usage") {
+            showUsage = true;
+        }
+        else if (arg.startsWith("--webui-port=")) {
+            QStringList parts = arg.split("=");
+            if (parts.size() == 2) {
+                bool ok = false;
+                int new_port = parts.last().toInt(&ok);
+                if (ok && (new_port > 0) && (new_port <= 65535))
+                    Preferences::instance()->setWebUiPort(new_port);
+            }
+        }
+#ifndef DISABLE_GUI
+        else if (arg == "--no-splash") {
+            noSplash = true;
+        }
+#else
+        else if ((arg == "-d") || (arg == "--daemon")) {
+            shouldDaemonize = true;
+        }
+#endif
+        else if (!arg.startsWith("--")) {
+            QFileInfo torrentPath;
+            torrentPath.setFile(arg);
+
+            if (torrentPath.exists())
+                torrents += torrentPath.absoluteFilePath();
+            else
+                torrents += arg;
+        }
+    }
+}
+
+bool userAgreesWithLegalNotice()
+{
+    Preferences* const pref = Preferences::instance();
+    if (pref->getAcceptedLegal()) // Already accepted once
+        return true;
+
+#ifdef DISABLE_GUI
+    std::cout << std::endl << "*** " << qPrintable(QObject::tr("Legal Notice")) << " ***" << std::endl;
+    std::cout << qPrintable(QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued.")) << std::endl << std::endl;
+    std::cout << qPrintable(QObject::tr("Press %1 key to accept and continue...").arg("'y'")) << std::endl;
+    char ret = getchar(); // Read pressed key
+    if (ret == 'y' || ret == 'Y') {
+        // Save the answer
+        pref->setAcceptedLegal(true);
+        return true;
+    }
+#else
+    QMessageBox msgBox;
+    msgBox.setText(QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
+    msgBox.setWindowTitle(QObject::tr("Legal notice"));
+    msgBox.addButton(QObject::tr("Cancel"), QMessageBox::RejectRole);
+    QAbstractButton *agree_button = msgBox.addButton(QObject::tr("I Agree"), QMessageBox::AcceptRole);
+    msgBox.show(); // Need to be shown or to moveToCenter does not work
+    msgBox.move(misc::screenCenter(&msgBox));
+    msgBox.exec();
+    if (msgBox.clickedButton() == agree_button) {
+        // Save the answer
+        pref->setAcceptedLegal(true);
+        return true;
+    }
+#endif
+
+    return false;
 }
