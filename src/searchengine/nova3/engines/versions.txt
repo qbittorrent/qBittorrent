@@ -4,4 +4,4 @@ piratebay: 2.01
 extratorrent: 1.2
 kickasstorrents: 1.25
 btdigg: 1.23
-legittorrents: 1.02
+legittorrents: 1.03
