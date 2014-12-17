@@ -32,7 +32,7 @@ function friendlyDuration(seconds) {
     if (seconds == 0)
         return "0";
     if (seconds < 60)
-        return "< " + "QBT_TR(%1m)QBT_TR".replace("%1", "1"); //translation of "< 1m" not working
+        return "QBT_TR(< 1m)QBT_TR";
     var minutes = seconds / 60;
     if (minutes < 60)
         return "QBT_TR(%1m)QBT_TR".replace("%1", parseInt(minutes));
