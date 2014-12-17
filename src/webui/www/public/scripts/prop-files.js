@@ -148,19 +148,19 @@ var createPriorityCombo = function(id, selected_prio) {
     });
     var opt = new Element("option");
     opt.set('value', '1')
-    opt.set('html', "_(Normal)");
+    opt.set('html', "QBT_TR(Normal)QBT_TR");
     if (selected_prio <= 1)
         opt.setAttribute('selected', '');
     opt.injectInside(select);
     opt = new Element("option");
     opt.set('value', '2')
-    opt.set('html', "_(High)");
+    opt.set('html', "QBT_TR(High)QBT_TR");
     if (selected_prio == 2)
         opt.setAttribute('selected', '');
     opt.injectInside(select);
     opt = new Element("option");
     opt.set('value', '7')
-    opt.set('html', "_(Maximum)");
+    opt.set('html', "QBT_TR(Maximum)QBT_TR");
     if (selected_prio == 7)
         opt.setAttribute('selected', '');
     opt.injectInside(select);
@@ -295,7 +295,7 @@ var loadTorrentFilesData = function() {
         noCache: true,
         method: 'get',
         onFailure: function() {
-            $('error_div').set('html', '_(qBittorrent client is not reachable)');
+            $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
             clearTimeout(loadTorrentFilesDataTimer);
             loadTorrentFilesDataTimer = loadTorrentFilesData.delay(10000);
         },
