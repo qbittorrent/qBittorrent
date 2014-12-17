@@ -109,14 +109,8 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
 
 
 
-bool QtLocalPeer::isClient()
+void QtLocalPeer::startMessageProcessing()
 {
-    if (lockFile.isLocked())
-        return false;
-
-    if (!lockFile.lock(QtLP_Private::QtLockedFile::WriteLock, false))
-        return true;
-
     bool res = server->listen(socketName);
 #if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(4,5,0))
     // ### Workaround
@@ -128,6 +122,16 @@ bool QtLocalPeer::isClient()
     if (!res)
         qWarning("QtSingleCoreApplication: listen on local socket failed, %s", qPrintable(server->errorString()));
     QObject::connect(server, SIGNAL(newConnection()), SLOT(receiveConnection()));
+}
+
+bool QtLocalPeer::isClient()
+{
+    if (lockFile.isLocked())
+        return false;
+
+    if (!lockFile.lock(QtLP_Private::QtLockedFile::WriteLock, false))
+        return true;
+
     return false;
 }
 
@@ -139,12 +143,11 @@ bool QtLocalPeer::sendMessage(const QString &message, int timeout)
 
     QLocalSocket socket;
     bool connOk = false;
-    for(int i = 0; i < 2; i++) {
-        // Try twice, in case the other instance is just starting up
+    for(int i = 0; i < 4 * 10; i++) {
+        // Wait the other instance has started for 10 seconds
         socket.connectToServer(socketName);
-        connOk = socket.waitForConnected(timeout / 2);
-        if (connOk || i)
-            break;
+        connOk = socket.waitForConnected(timeout / (4 * 10));
+        if (connOk) break;
         int ms = 250;
 #if defined(Q_OS_WIN)
         Sleep(DWORD(ms));
@@ -224,12 +227,11 @@ qint64 QtLocalPeer::getRunningPid()
 
     QLocalSocket socket;
     bool connOk = false;
-    for (int i = 0; i < 2; i++) {
-        // Try twice, in case the other instance is just starting up
+    for (int i = 0; i < 4 * 10; i++) {
+        // Wait the other instance has started for 10 seconds
         socket.connectToServer(socketName);
         connOk = socket.waitForConnected(5000 / 2);
-        if (connOk || i)
-            break;
+        if (connOk) break;
         Sleep(250);
     }
     if (!connOk) return -1;

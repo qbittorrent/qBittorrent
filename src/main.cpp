@@ -403,6 +403,9 @@ int main(int argc, char *argv[])
                      &loader, SLOT(processParams(const QString &)));
 #endif
 
+    if (app.isRunning())
+        app.startMessageProcessing();
+
     int ret = app.exec();
     qDebug("Application has exited");
     return ret;

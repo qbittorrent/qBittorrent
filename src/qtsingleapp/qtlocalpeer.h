@@ -61,6 +61,7 @@ public:
     qint64 getRunningPid();
 #endif
 
+    void startMessageProcessing();
 Q_SIGNALS:
     void messageReceived(const QString &message);
 

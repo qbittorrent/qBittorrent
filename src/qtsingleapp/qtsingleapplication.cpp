@@ -271,6 +271,10 @@ QString QtSingleApplication::id() const
     return peer->applicationId();
 }
 
+void QtSingleApplication::startMessageProcessing()
+{
+    peer->startMessageProcessing();
+}
 
 /*!
    Sets the activation window of this application to \a aw. The

@@ -79,7 +79,7 @@ public:
 
     bool isRunning();
     QString id() const;
-
+    void startMessageProcessing();
     void setActivationWindow(QWidget* aw, bool activateOnMessage = true);
     QWidget* activationWindow() const;
 
