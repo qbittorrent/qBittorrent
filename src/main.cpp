@@ -88,9 +88,9 @@ void sigabrtHandler(int);
 
 #ifndef DISABLE_GUI
 void showSplashScreen();
-void parseCommandLine(bool& showVersion, bool& showUsage, bool& noSplash, QStringList& torrents);
+void parseCommandLine(QStringList& appArguments, bool& showVersion, bool& showUsage, bool& noSplash, QStringList& torrents);
 #else
-void parseCommandLine(bool& showVersion, bool& showUsage, bool& shouldDaemonize, QStringList& torrents);
+void parseCommandLine(QStringList& appArguments, bool& showVersion, bool& showUsage, bool& shouldDaemonize, QStringList& torrents);
 #endif
 void displayVersion();
 void displayUsage(const char *prg_name);
@@ -110,14 +110,25 @@ int main(int argc, char *argv[])
 #endif
     QStringList torrents;
 
+    QStringList appArguments;
+    for (int i = 0; i < argc; ++i)
+        appArguments << argv[i];
+#ifndef DISABLE_GUI
+    parseCommandLine(appArguments, showVersion, showUsage, noSplash, torrents);
+#else
+    parseCommandLine(appArguments, showVersion, showUsage, shouldDaemonize, torrents);
+#endif
+
+#ifdef DISABLE_GUI
+    // Daemonize before Application is created
+    if (shouldDaemonize && (daemon(1, 0) != 0)) {
+        qCritical("Something went wrong while daemonizing, exiting...");
+        return EXIT_FAILURE;
+    }
+#endif
+
     // Create Application
     Application app("qBittorrent-" + misc::getUserIDString(), argc, argv);
-
-#ifndef DISABLE_GUI
-    parseCommandLine(showVersion, showUsage, noSplash, torrents);
-#else
-    parseCommandLine(showVersion, showUsage, shouldDaemonize, torrents);
-#endif
 
     if (showVersion)
         displayVersion();
@@ -162,12 +173,7 @@ int main(int argc, char *argv[])
     }
 
     srand(time(0));
-#ifdef DISABLE_GUI
-    if (shouldDaemonize && (daemon(1, 0) != 0)) {
-        qCritical("Something went wrong while daemonizing, exiting...");
-        return EXIT_FAILURE;
-    }
-#else
+#ifndef DISABLE_GUI
     if (!noSplash)
         showSplashScreen();
 #endif
@@ -289,9 +295,9 @@ void displayUsage(const char *prg_name)
 }
 
 #ifndef DISABLE_GUI
-void parseCommandLine(bool& showVersion, bool& showUsage, bool& noSplash, QStringList& torrents)
+void parseCommandLine(QStringList& appArguments, bool& showVersion, bool& showUsage, bool& noSplash, QStringList& torrents)
 #else
-void parseCommandLine(bool& showVersion, bool& showUsage, bool& shouldDaemonize, QStringList& torrents)
+void parseCommandLine(QStringList& appArguments, bool& showVersion, bool& showUsage, bool& shouldDaemonize, QStringList& torrents)
 #endif
 {
     // Default values
@@ -303,8 +309,6 @@ void parseCommandLine(bool& showVersion, bool& showUsage, bool& shouldDaemonize,
     shouldDaemonize = false;
 #endif
     torrents.clear();
-
-    QStringList appArguments = qApp->arguments();
 
     for (int i = 1; i < appArguments.size(); ++i) {
         QString& arg = appArguments[i];
