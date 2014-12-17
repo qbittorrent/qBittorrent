@@ -46,7 +46,7 @@
 #if defined(Q_OS_WIN)
 #include <QLibrary>
 #include <qt_windows.h>
-typedef BOOL(WINAPI*PProcessIdToSessionId)(DWORD,DWORD*);
+typedef BOOL (WINAPI * PProcessIdToSessionId)(DWORD,DWORD*);
 static PProcessIdToSessionId pProcessIdToSessionId = 0;
 #endif
 #if defined(Q_OS_UNIX)
@@ -109,6 +109,21 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
 
 
 
+void QtLocalPeer::startMessageProcessing()
+{
+    bool res = server->listen(socketName);
+#if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(4,5,0))
+    // ### Workaround
+    if (!res && server->serverError() == QAbstractSocket::AddressInUseError) {
+        QFile::remove(QDir::cleanPath(QDir::tempPath()) + QLatin1Char('/') + socketName);
+        res = server->listen(socketName);
+    }
+#endif
+    if (!res)
+        qWarning("QtSingleCoreApplication: listen on local socket failed, %s", qPrintable(server->errorString()));
+    QObject::connect(server, SIGNAL(newConnection()), SLOT(receiveConnection()));
+}
+
 bool QtLocalPeer::isClient()
 {
     if (lockFile.isLocked())
@@ -117,17 +132,6 @@ bool QtLocalPeer::isClient()
     if (!lockFile.lock(QtLP_Private::QtLockedFile::WriteLock, false))
         return true;
 
-    bool res = server->listen(socketName);
-#if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(4,5,0))
-    // ### Workaround
-    if (!res && server->serverError() == QAbstractSocket::AddressInUseError) {
-        QFile::remove(QDir::cleanPath(QDir::tempPath())+QLatin1Char('/')+socketName);
-        res = server->listen(socketName);
-    }
-#endif
-    if (!res)
-        qWarning("QtSingleCoreApplication: listen on local socket failed, %s", qPrintable(server->errorString()));
-    QObject::connect(server, SIGNAL(newConnection()), SLOT(receiveConnection()));
     return false;
 }
 
@@ -139,12 +143,11 @@ bool QtLocalPeer::sendMessage(const QString &message, int timeout)
 
     QLocalSocket socket;
     bool connOk = false;
-    for(int i = 0; i < 2; i++) {
-        // Try twice, in case the other instance is just starting up
+    for(int i = 0; i < 4 * 10; i++) {
+        // Wait the other instance has started for 10 seconds
         socket.connectToServer(socketName);
-        connOk = socket.waitForConnected(timeout/2);
-        if (connOk || i)
-            break;
+        connOk = socket.waitForConnected(timeout / (4 * 10));
+        if (connOk) break;
         int ms = 250;
 #if defined(Q_OS_WIN)
         Sleep(DWORD(ms));
@@ -197,10 +200,11 @@ void QtLocalPeer::receiveConnection()
     QString message(QString::fromUtf8(uMsg));
 #ifdef Q_OS_WIN
     if (message == "qbt://pid") {
-      qint64 pid = GetCurrentProcessId();
-      socket->write((const char *)&pid, sizeof pid);
-    } else {
-      socket->write(ack, qstrlen(ack));
+        qint64 pid = GetCurrentProcessId();
+        socket->write((const char *)&pid, sizeof pid);
+    }
+    else {
+        socket->write(ack, qstrlen(ack));
     }
 #else
     socket->write(ack, qstrlen(ack));
@@ -210,41 +214,41 @@ void QtLocalPeer::receiveConnection()
     delete socket;
 #ifdef Q_OS_WIN
     if (message == "qbt://pid")
-      return;
+        return;
 #endif
     emit messageReceived(message); //### (might take a long time to return)
 }
 
 #ifdef Q_OS_WIN
-qint64 QtLocalPeer::getRunningPid() {
-  if (!isClient())
-      return 0;
+qint64 QtLocalPeer::getRunningPid()
+{
+    if (!isClient())
+        return 0;
 
-  QLocalSocket socket;
-  bool connOk = false;
-  for (int i = 0; i < 2; i++) {
-      // Try twice, in case the other instance is just starting up
-      socket.connectToServer(socketName);
-      connOk = socket.waitForConnected(5000/2);
-      if (connOk || i)
-          break;
-      Sleep(250);
-  }
-  if (!connOk) return -1;
+    QLocalSocket socket;
+    bool connOk = false;
+    for (int i = 0; i < 4 * 10; i++) {
+        // Wait the other instance has started for 10 seconds
+        socket.connectToServer(socketName);
+        connOk = socket.waitForConnected(5000 / 2);
+        if (connOk) break;
+        Sleep(250);
+    }
+    if (!connOk) return -1;
 
-  const char* msg = "qbt://pid";
-  QDataStream ds(&socket);
-  ds.writeBytes(msg, qstrlen(msg));
-  bool res = socket.waitForBytesWritten(5000) && socket.waitForReadyRead(5000);
-  if (!res) return -1;
+    const char* msg = "qbt://pid";
+    QDataStream ds(&socket);
+    ds.writeBytes(msg, qstrlen(msg));
+    bool res = socket.waitForBytesWritten(5000) && socket.waitForReadyRead(5000);
+    if (!res) return -1;
 
-  DWORD pid;
-  qint64 pid_size = sizeof pid;
-  while (socket.bytesAvailable() < pid_size)
-      socket.waitForReadyRead();
-  if (socket.read((char *)&pid, pid_size) < pid_size)
-      return -1;
+    DWORD pid;
+    qint64 pid_size = sizeof pid;
+    while (socket.bytesAvailable() < pid_size)
+        socket.waitForReadyRead();
+    if (socket.read((char *)&pid, pid_size) < pid_size)
+        return -1;
 
-  return pid;
+    return pid;
 }
 #endif

@@ -138,6 +138,10 @@ QString QtSingleCoreApplication::id() const
     return peer->applicationId();
 }
 
+void QtSingleCoreApplication::startMessageProcessing()
+{
+    peer->startMessageProcessing();
+}
 
 /*!
     \fn void QtSingleCoreApplication::messageReceived(const QString& message)

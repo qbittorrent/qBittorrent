@@ -61,7 +61,7 @@ class QtLocalPeer;
 #  define QT_QTSINGLEAPPLICATION_EXPORT
 #endif
 
-class QT_QTSINGLEAPPLICATION_EXPORT QtSingleApplication : public QApplication
+class QT_QTSINGLEAPPLICATION_EXPORT QtSingleApplication: public QApplication
 {
     Q_OBJECT
 
@@ -72,20 +72,20 @@ public:
     QtSingleApplication(int &argc, char **argv, Type type);
 #  if defined(Q_WS_X11)
     QtSingleApplication(Display* dpy, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
-    QtSingleApplication(Display *dpy, int &argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE cmap= 0);
+    QtSingleApplication(Display *dpy, int &argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE cmap = 0);
     QtSingleApplication(Display* dpy, const QString &appId, int argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
 #  endif // Q_WS_X11
 #endif // QT_VERSION < 0x050000
 
     bool isRunning();
     QString id() const;
-
+    void startMessageProcessing();
     void setActivationWindow(QWidget* aw, bool activateOnMessage = true);
     QWidget* activationWindow() const;
 
     // Obsolete:
     void initialize(bool dummy = true)
-        { isRunning(); Q_UNUSED(dummy) }
+    { isRunning(); Q_UNUSED(dummy) }
 #ifdef Q_OS_WIN
 #define QBT_HAS_GETCURRENTPID
     qint64 getRunningPid();

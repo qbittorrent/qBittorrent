@@ -47,7 +47,7 @@
 
 #include "qtlockedfile.h"
 
-class QtLocalPeer : public QObject
+class QtLocalPeer: public QObject
 {
     Q_OBJECT
 
@@ -56,11 +56,12 @@ public:
     bool isClient();
     bool sendMessage(const QString &message, int timeout);
     QString applicationId() const
-        { return id; }
+    { return id; }
 #ifdef Q_OS_WIN
     qint64 getRunningPid();
 #endif
 
+    void startMessageProcessing();
 Q_SIGNALS:
     void messageReceived(const QString &message);
 
