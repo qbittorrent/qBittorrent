@@ -27,7 +27,7 @@ myTable = new dynamicTable();
 var updatePropertiesPanel = function(){};
 var updateTransferInfo = function(){};
 var updateTransferList = function(){};
-var alternativeSpeedsLimit = false;
+var alternativeSpeedLimits = false;
 
 var stateToImg = function (state) {
     if (state == "pausedUP" || state == "pausedDL") {
@@ -297,25 +297,25 @@ window.addEvent('load', function () {
     new Request({url: 'command/alternativeSpeedLimitsEnabled',
             method: 'get',
             onSuccess : function (isEnabled) {
-                alternativeSpeedsLimit = !!parseInt(isEnabled);
-                if (alternativeSpeedsLimit)
+                alternativeSpeedLimits = !!parseInt(isEnabled);
+                if (alternativeSpeedLimits)
                     $('alternativeSpeedLimits').src = "images/slow.png"
             }
     }).send();
 
     $('alternativeSpeedLimits').addEvent('click', function() {
         // Change icon immediately to give some feedback
-        updateAltSpeedIcon(!alternativeSpeedsLimit);
+        updateAltSpeedIcon(!alternativeSpeedLimits);
 
         new Request({url: 'command/toggleAlternativeSpeedLimits',
                 method: 'post',
                 onComplete: function() {
-                    alternativeSpeedsLimit = !alternativeSpeedsLimit;
+                    alternativeSpeedLimits = !alternativeSpeedLimits;
                     updateTransferInfo();
                 },
                 onFailure: function() {
                     // Restore icon in case of failure
-                    updateAltSpeedIcon(alternativeSpeedsLimit)
+                    updateAltSpeedIcon(alternativeSpeedLimits)
                 }
         }).send();
     });
