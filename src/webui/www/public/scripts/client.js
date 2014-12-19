@@ -297,7 +297,7 @@ window.addEvent('load', function () {
     new Request({url: 'command/alternativeSpeedLimitsEnabled',
             method: 'get',
             onSuccess : function (isEnabled) {
-                alternativeSpeedsLimit = !!isEnabled;
+                alternativeSpeedsLimit = !!parseInt(isEnabled);
                 if (alternativeSpeedsLimit)
                     $('alternativeSpeedLimits').src = "images/slow.png"
             }
