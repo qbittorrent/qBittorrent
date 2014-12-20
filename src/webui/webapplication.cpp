@@ -187,7 +187,7 @@ QString WebApplication::generateSid()
 
 void WebApplication::translateDocument(QString& data)
 {
-  const QRegExp regex(QString::fromUtf8("_\\(([\\w\\s?!:\\/\\(\\),%µ&\\-\\.]+)\\)"));
+  const QRegExp regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR");
   const QRegExp mnemonic("\\(?&([a-zA-Z]?\\))?");
   const std::string contexts[] = {
     "TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget",

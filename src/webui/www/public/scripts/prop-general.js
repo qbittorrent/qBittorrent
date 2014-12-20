@@ -35,7 +35,7 @@ var loadTorrentData = function() {
         noCache: true,
         method: 'get',
         onFailure: function() {
-            $('error_div').set('html', '_(qBittorrent client is not reachable)');
+            $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
             clearTimeout(loadTorrentDataTimer);
             loadTorrentDataTimer = loadTorrentData.delay(10000);
         },
@@ -46,7 +46,7 @@ var loadTorrentData = function() {
                 // Update Torrent data
                 $('save_path').set('html', data.save_path);
                 temp = data.creation_date;
-                var timestamp = "_(Unknown)";
+                var timestamp = "QBT_TR(Unknown)QBT_TR";
                 if (temp != -1)
                     timestamp = new Date(data.creation_date * 1000).toISOString();
                 $('creation_date').set('html', timestamp);
@@ -54,10 +54,10 @@ var loadTorrentData = function() {
                 $('comment').set('html', data.comment);
                 $('total_uploaded').set('html', friendlyUnit(data.total_uploaded) +
                     " (" + friendlyUnit(data.total_uploaded_session) +
-                    " _(this session)" + ")");
+                    " QBT_TR(this session)QBT_TR" + ")");
                 $('total_downloaded').set('html', friendlyUnit(data.total_downloaded) +
                     " (" + friendlyUnit(data.total_downloaded_session) +
-                    " _(this session)" + ")");
+                    " QBT_TR(this session)QBT_TR" + ")");
                 $('total_wasted').set('html', data.total_wasted);
                 temp = data.up_limit;
                 $('up_limit').set('html', temp == -1 ? "∞" : temp);
@@ -65,9 +65,9 @@ var loadTorrentData = function() {
                 $('dl_limit').set('html', temp == -1 ? "∞" : temp);
                 temp = friendlyDuration(status.active_time);
                 if (status.is_seed)
-                    temp += " (" + "_(Seeded for %1)".replace("%1", status.seeding_time) + ")";
+                    temp += " (" + "QBT_TR(Seeded for %1)QBT_TR".replace("%1", status.seeding_time) + ")";
                 $('time_elapsed').set('html', temp);
-                temp = data.nb_connections + " (" + "_(%1 max)".replace("%1", status.nb_connections_limit) + ")";
+                temp = data.nb_connections + " (" + "QBT_TR(%1 max)QBT_TR".replace("%1", status.nb_connections_limit) + ")";
                 $('nb_connections').set('html', temp);
                 $('share_ratio').set('html', data.share_ratio.toFixed(2));
             }

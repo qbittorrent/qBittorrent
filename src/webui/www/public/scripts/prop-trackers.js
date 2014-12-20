@@ -75,7 +75,7 @@ var loadTrackersData = function() {
         noCache: true,
         method: 'get',
         onFailure: function() {
-            $('error_div').set('html', '_(qBittorrent client is not reachable)');
+            $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
             clearTimeout(loadTrackersDataTimer);
             loadTrackersDataTimer = loadTrackersData.delay(20000);
         },
@@ -115,7 +115,7 @@ $('addTrackersPlus').addEvent('click', function addTrackerDlg() {
     if (current_hash.length == 0) return;
     new MochaUI.Window({
         id: 'trackersPage',
-        title: "_(Trackers addition dialog)",
+        title: "QBT_TR(Trackers addition dialog)QBT_TR",
         loadMethod: 'iframe',
         contentURL: 'addtrackers.html?hash=' + current_hash,
         scrollbars: true,

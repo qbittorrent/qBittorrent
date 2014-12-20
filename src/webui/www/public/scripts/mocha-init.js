@@ -43,7 +43,7 @@ initializeWindows = function() {
         new Event(e).stop();
         new MochaUI.Window({
             id: 'downloadPage',
-            title: "_(Download from urls)",
+            title: "QBT_TR(Download from urls)QBT_TR",
             loadMethod: 'iframe',
             contentURL: 'download.html',
             scrollbars: true,
@@ -62,7 +62,7 @@ initializeWindows = function() {
         new Event(e).stop();
         new MochaUI.Window({
             id: 'preferencesPage',
-            title: "_(Options)",
+            title: "QBT_TR(Options)QBT_TR",
             loadMethod: 'xhr',
             toolbar: true,
             contentURL: 'preferences_content.html',
@@ -84,7 +84,7 @@ initializeWindows = function() {
         new Event(e).stop();
         new MochaUI.Window({
             id: 'uploadPage',
-            title: "_(Download local torrent)",
+            title: "QBT_TR(Download local torrent)QBT_TR",
             loadMethod: 'iframe',
             contentURL: 'upload.html',
             scrollbars: true,
@@ -101,7 +101,7 @@ initializeWindows = function() {
     globalUploadLimitFN = function() {
         new MochaUI.Window({
             id: 'uploadLimitPage',
-            title: "_(Global Upload Speed Limit)",
+            title: "QBT_TR(Global Upload Speed Limit)QBT_TR",
             loadMethod: 'iframe',
             contentURL: 'uploadlimit.html?hash=global',
             scrollbars: false,
@@ -120,7 +120,7 @@ initializeWindows = function() {
             var hash = h[0];
             new MochaUI.Window({
                 id: 'uploadLimitPage',
-                title: "_(Torrent Upload Speed Limiting)",
+                title: "QBT_TR(Torrent Upload Speed Limiting)QBT_TR",
                 loadMethod: 'iframe',
                 contentURL: 'uploadlimit.html?hash=' + hash,
                 scrollbars: false,
@@ -165,7 +165,7 @@ initializeWindows = function() {
     globalDownloadLimitFN = function() {
         new MochaUI.Window({
             id: 'downloadLimitPage',
-            title: "_(Global Download Speed Limit)",
+            title: "QBT_TR(Global Download Speed Limit)QBT_TR",
             loadMethod: 'iframe',
             contentURL: 'downloadlimit.html?hash=global',
             scrollbars: false,
@@ -184,7 +184,7 @@ initializeWindows = function() {
             var hash = h[0];
             new MochaUI.Window({
                 id: 'downloadLimitPage',
-                title: "_(Torrent Download Speed Limiting)",
+                title: "QBT_TR(Torrent Download Speed Limiting)QBT_TR",
                 loadMethod: 'iframe',
                 contentURL: 'downloadlimit.html?hash=' + hash,
                 scrollbars: false,
@@ -200,7 +200,7 @@ initializeWindows = function() {
 
     deleteFN = function() {
         var h = myTable.selectedIds();
-        /*if(h.length && confirm('_(Are you sure you want to delete the selected torrents from the transfer list?)')) {
+        /*if(h.length && confirm('QBT_TR(Are you sure you want to delete the selected torrents from the transfer list?)QBT_TR')) {
             h.each(function(item, index){
                 new Request({url: 'command/delete', method: 'post', data: {hash: item}}).send();
             });
@@ -208,7 +208,7 @@ initializeWindows = function() {
         if (h.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
-                title: "_(Deletion confirmation - qBittorrent)",
+                title: "QBT_TR(Deletion confirmation - qBittorrent)QBT_TR",
                 loadMethod: 'iframe',
                 contentURL: 'confirmdeletion.html?hashes=' + h.join(','),
                 scrollbars: false,
@@ -350,7 +350,7 @@ initializeWindows = function() {
         new Request({
             url: 'command/shutdown',
             onSuccess: function() {
-                document.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>_(qBittorrent has been shutdown.)</title><style type=\"text/css\">body { text-align: center; }</style></head><body><h1>_(qBittorrent has been shutdown.)</h1></body></html>");
+                document.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>QBT_TR(qBittorrent has been shutdown.)QBT_TR</title><style type=\"text/css\">body { text-align: center; }</style></head><body><h1>QBT_TR(qBittorrent has been shutdown.)QBT_TR</h1></body></html>");
                 stop();
             }
         }).send();

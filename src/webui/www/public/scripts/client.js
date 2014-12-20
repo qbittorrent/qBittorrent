@@ -139,7 +139,7 @@ window.addEvent('load', function () {
             noCache : true,
             method : 'get',
             onFailure : function () {
-                $('error_div').set('html', '_(qBittorrent client is not reachable)');
+                $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
                 clearTimeout(loadTorrentsInfoTimer);
                 loadTorrentsInfoTimer = loadTorrentsInfo.delay(2000);
             },
@@ -242,7 +242,7 @@ window.addEvent('load', function () {
             noCache : true,
             method : 'get',
             onFailure : function () {
-                $('error_div').set('html', '_(qBittorrent client is not reachable)');
+                $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
                 clearTimeout(loadTransferInfoTimer);
                 loadTransferInfoTimer = loadTransferInfo.delay(4000);
             },
@@ -261,10 +261,10 @@ window.addEvent('load', function () {
                     transfer_info += " (" + friendlyUnit(info.up_info_data, false) + ")"
                     $("UpInfos").set('html', transfer_info);
                     if (speedInTitle)
-                        document.title = "_(D:%1 U:%2)".replace("%1", friendlyUnit(info.dl_info_speed, true)).replace("%2", friendlyUnit(info.up_info_speed, true));
+                        document.title = "QBT_TR(D:%1 U:%2)QBT_TR".replace("%1", friendlyUnit(info.dl_info_speed, true)).replace("%2", friendlyUnit(info.up_info_speed, true));
                     else
-                        document.title = "_(qBittorrent web User Interface)";
-                    $('DHTNodes').set('html', '_(DHT: %1 nodes)'.replace("%1", info.dht_nodes));
+                        document.title = "QBT_TR(qBittorrent web User Interface)QBT_TR";
+                    $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR'.replace("%1", info.dht_nodes));
                     if (info.connection_status == "connected")
                         $('connectionStatus').src = 'images/skin/connected.png';
                     else if (info.connection_status == "firewalled")

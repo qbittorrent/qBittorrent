@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
-    <title>_(qBittorrent web User Interface)</title>
+    <title>QBT_TR(qBittorrent web User Interface)QBT_TR</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
     <script type="text/javascript">
@@ -31,7 +31,7 @@
             if (xhr.responseText != "") {
               $('error_msg').set('html', xhr.responseText);
             } else {
-              $('error_msg').set('html', '_(Unable to log in, qBittorrent is probably unreachable.)');
+              $('error_msg').set('html', 'QBT_TR(Unable to log in, qBittorrent is probably unreachable.)QBT_TR');
             }
           },
           onSuccess: function(text) {
@@ -39,7 +39,7 @@
               // Session started. Simply reload page.
               window.location.reload();
             } else {
-              $('error_msg').set('html', '_(Invalid Username or Password.)');
+              $('error_msg').set('html', 'QBT_TR(Invalid Username or Password.)QBT_TR');
             }
           }
         }).send();
@@ -70,15 +70,15 @@
 </head>
 <body>
 	<div id="main">
-		<h1>_(qBittorrent web User Interface)</h1>
+		<h1>QBT_TR(qBittorrent web User Interface)QBT_TR</h1>
 		<div id="logo" class="col">
 			<img src="images/qbittorrent.png" alt="qBittorrent logo"/>
 		</div>
 		<div id="formplace" class="col">
 			<form id="loginform" action="">
-				<div class="row"><label for="username">_(Name)</label><br /><input type="text" id="username" name="username" /></div>
-				<div class="row"><label for="password">_(Password)</label><br /><input type="password" id="password" name="password" /></div>
-				<div class="row"><input type="submit" id="login" value="_(Login)" /></div>
+				<div class="row"><label for="username">QBT_TR(Name)QBT_TR</label><br /><input type="text" id="username" name="username" /></div>
+				<div class="row"><label for="password">QBT_TR(Password)QBT_TR</label><br /><input type="password" id="password" name="password" /></div>
+				<div class="row"><input type="submit" id="login" value="QBT_TR(Login)QBT_TR" /></div>
 			</form>
 		</div>
 		<div id="error_msg"></div>

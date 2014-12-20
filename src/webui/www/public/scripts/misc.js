@@ -3,22 +3,22 @@
  */
 function friendlyUnit(value, isSpeed) {
     units = [
-        "_(B)",
-        "_(KiB)",
-        "_(MiB)",
-        "_(GiB)",
-        "_(TiB)",
+        "QBT_TR(B)QBT_TR",
+        "QBT_TR(KiB)QBT_TR",
+        "QBT_TR(MiB)QBT_TR",
+        "QBT_TR(GiB)QBT_TR",
+        "QBT_TR(TiB)QBT_TR",
     ];
 
     if (value < 0)
-        return "_(Unknown)";
+        return "QBT_TR(Unknown)QBT_TR";
     var i = 0;
     while (value >= 1024. && i++ < 6)
         value /= 1024.;
     var ret;
     ret = value.toFixed(1) + " " + units[i];
     if (isSpeed)
-        ret += "_(/s)";
+        ret += "QBT_TR(/s)QBT_TR";
     return ret;
 }
 
@@ -32,18 +32,18 @@ function friendlyDuration(seconds) {
     if (seconds == 0)
         return "0";
     if (seconds < 60)
-        return "< " + "_(%1m)".replace("%1", "1"); //translation of "< 1m" not working
+        return "QBT_TR(< 1m)QBT_TR";
     var minutes = seconds / 60;
     if (minutes < 60)
-        return "_(%1m)".replace("%1", parseInt(minutes));
+        return "QBT_TR(%1m)QBT_TR".replace("%1", parseInt(minutes));
     var hours = minutes / 60;
     minutes = minutes - hours * 60;
     if (hours < 24)
-        return "_(%1h %2m)".replace("%1", parseInt(hours)).replace("%2", parseInt(minutes))
+        return "QBT_TR(%1h %2m)QBT_TR".replace("%1", parseInt(hours)).replace("%2", parseInt(minutes))
     var days = hours / 24;
     hours = hours - days * 24;
     if (days < 100)
-        return "_(%1d %2h)".replace("%1", parseInt(days)).replace("%2", parseInt(hours))
+        return "QBT_TR(%1d %2h)QBT_TR".replace("%1", parseInt(days)).replace("%2", parseInt(hours))
     return "∞";
 }
 
