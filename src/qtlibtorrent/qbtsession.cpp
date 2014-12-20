@@ -505,6 +505,7 @@ void QBtSession::configureSession() {
   else
     sessionSettings.force_proxy = false;
 #endif
+  sessionSettings.no_connect_privileged_ports = false;
   qDebug() << "Settings SessionSettings";
   setSessionSettings(sessionSettings);
   // Bittorrent
