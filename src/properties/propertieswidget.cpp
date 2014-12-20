@@ -97,6 +97,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(stackedProperties, SIGNAL(currentChanged(int)), this, SLOT(loadDynamicData()));
   connect(QBtSession::instance(), SIGNAL(savePathChanged(QTorrentHandle)), this, SLOT(updateSavePath(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(metadataReceived(QTorrentHandle)), this, SLOT(updateTorrentInfos(QTorrentHandle)));
+  connect(filesList->header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(saveSettings()));
+  connect(filesList->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
+  connect(filesList->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
 
   // Downloaded pieces progress bar
   downloaded_pieces = new DownloadedPiecesBar(this);
@@ -109,14 +112,22 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(trackerUpButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionUp()));
   connect(trackerDownButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionDown()));
   horizontalLayout_trackers->insertWidget(0, trackerList);
+  connect(trackerList->header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(saveSettings()));
+  connect(trackerList->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
+  connect(trackerList->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
   // Peers list
   peersList = new PeerListWidget(this);
   peerpage_layout->addWidget(peersList);
+  connect(peersList->header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(saveSettings()));
+  connect(peersList->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
+  connect(peersList->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
   // Tab bar
   m_tabBar = new PropTabBar();
   verticalLayout->addLayout(m_tabBar);
   connect(m_tabBar, SIGNAL(tabChanged(int)), stackedProperties, SLOT(setCurrentIndex(int)));
+  connect(m_tabBar, SIGNAL(tabChanged(int)), this, SLOT(saveSettings()));
   connect(m_tabBar, SIGNAL(visibilityToggled(bool)), SLOT(setVisibility(bool)));
+  connect(m_tabBar, SIGNAL(visibilityToggled(bool)), this, SLOT(saveSettings()));
   // Dynamic data refresher
   refreshTimer = new QTimer(this);
   connect(refreshTimer, SIGNAL(timeout()), this, SLOT(loadDynamicData()));

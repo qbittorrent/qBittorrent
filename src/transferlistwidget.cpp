@@ -151,6 +151,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
     connect(header(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayDLHoSMenu(const QPoint &)));
     connect(header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(saveSettings()));
     connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
+    connect(header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
 
     editHotkey = new QShortcut(QKeySequence("F2"), this, SLOT(renameSelectedTorrent()), 0, Qt::WidgetShortcut);
     deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedTorrents()), 0, Qt::WidgetShortcut);
