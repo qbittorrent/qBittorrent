@@ -113,6 +113,12 @@ public:
     qDeleteAll(this->values());
   }
 
+  QStringList enginesAll() const {
+    QStringList engines;
+    foreach (const SupportedEngine *engine, values()) engines << engine->getName();
+    return engines;
+  }
+
   QStringList enginesEnabled() const {
     QStringList engines;
     foreach (const SupportedEngine *engine, values()) {
