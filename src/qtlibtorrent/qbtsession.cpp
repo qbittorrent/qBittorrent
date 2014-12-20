@@ -506,6 +506,7 @@ void QBtSession::configureSession() {
     sessionSettings.force_proxy = false;
 #endif
   sessionSettings.no_connect_privileged_ports = false;
+  sessionSettings.seed_choking_algorithm = session_settings::fastest_upload;
   qDebug() << "Settings SessionSettings";
   setSessionSettings(sessionSettings);
   // Bittorrent
