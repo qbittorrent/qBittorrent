@@ -121,9 +121,15 @@ int main(int argc, char *argv[])
 
 #ifdef DISABLE_GUI
     // Daemonize before Application is created
-    if (shouldDaemonize && (daemon(1, 0) != 0)) {
-        qCritical("Something went wrong while daemonizing, exiting...");
-        return EXIT_FAILURE;
+    if (shouldDaemonize) {
+        if (!Preferences::instance()->getAcceptedLegal()) {
+            qCritical("Legal notice not accepted, exiting...");
+            return EXIT_FAILURE;
+        }
+        if (daemon(1, 0) != 0) {
+            qCritical("Something went wrong while daemonizing, exiting...");
+            return EXIT_FAILURE;
+        }
     }
 #endif
 
