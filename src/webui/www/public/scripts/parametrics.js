@@ -31,7 +31,10 @@ MochaUI.extend({
                             maximum = tmp / 1024.
                         }
                         else {
-                            maximum = 1000
+                            if (hash == "global")
+                                maximum = 10000;
+                            else
+                                maximum = 1000;
                         }
                     }
                     // Get torrent upload limit
@@ -39,7 +42,7 @@ MochaUI.extend({
                     if (hash == 'global') {
                         var up_limit = maximum;
                         if (up_limit < 0) up_limit = 0;
-                        maximum = 1000;
+                        maximum = 10000;
                         var mochaSlide = new Slider($('uplimitSliderarea'), $('uplimitSliderknob'), {
                             steps: maximum,
                             offset: 0,
