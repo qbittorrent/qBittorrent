@@ -371,9 +371,9 @@ void RssFeed::downloadArticleTorrentIfMatching(RssDownloadRuleList* rules, const
   connect(QBtSession::instance(), SIGNAL(newDownloadedTorrentFromRss(QString)), article.data(), SLOT(handleTorrentDownloadSuccess(const QString&)), Qt::UniqueConnection);
   connect(article.data(), SIGNAL(articleWasRead()), SLOT(handleArticleStateChanged()), Qt::UniqueConnection);
   if (torrent_url.startsWith("magnet:", Qt::CaseInsensitive))
-    QBtSession::instance()->addMagnetSkipAddDlg(torrent_url, matching_rule->savePath(), matching_rule->label());
+    QBtSession::instance()->addMagnetSkipAddDlg(torrent_url, matching_rule->savePath(), matching_rule->label(), matching_rule->addPaused());
   else
-    QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule->savePath(), matching_rule->label(), feedCookies());
+    QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule->savePath(), matching_rule->label(), feedCookies(), matching_rule->addPaused());
 }
 
 void RssFeed::recheckRssItemsForDownload()

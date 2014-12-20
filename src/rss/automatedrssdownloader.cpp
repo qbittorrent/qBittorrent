@@ -255,6 +255,7 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
       } else {
         ui->comboLabel->setCurrentIndex(ui->comboLabel->findText(rule->label()));
       }
+      ui->comboAddPaused->setCurrentIndex(rule->addPaused());
       ui->spinIgnorePeriod->setValue(rule->ignoreDays());
       QDateTime dateTime = rule->lastMatch();
       QString lMatch = tr("Last match: ");
@@ -269,6 +270,7 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
       // New rule
       clearRuleDefinitionBox();
       ui->lineContains->setText(selection.first()->text());
+      ui->comboAddPaused->setCurrentIndex(0);
     }
     updateFieldsToolTips(ui->checkRegex->isChecked());
     // Enable
@@ -339,6 +341,7 @@ void AutomatedRssDownloader::saveEditedRule()
   else
     rule->setSavePath("");
   rule->setLabel(ui->comboLabel->currentText());
+  rule->setAddPaused(RssDownloadRule::AddPausedState(ui->comboAddPaused->currentIndex()));
   // Save new label
   if (!rule->label().isEmpty())
     Preferences::instance()->addTorrentLabel(rule->label());

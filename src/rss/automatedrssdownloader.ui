@@ -394,6 +394,42 @@
             </item>
            </layout>
           </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QLabel" name="lblAddPaused">
+              <property name="text">
+               <string>Add Paused:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboAddPaused">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <item>
+               <property name="text">
+                <string>Use global setting</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Always add paused</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Never add paused</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
          </layout>
         </widget>
        </item>

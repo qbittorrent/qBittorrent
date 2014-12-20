@@ -272,6 +272,9 @@ void QBtSession::handleDownloadFailure(QString url, QString reason) {
   const QUrl qurl = QUrl::fromEncoded(url.toUtf8());
   url_skippingDlg.removeOne(qurl);
   savepathLabel_fromurl.remove(qurl);
+#ifndef DISABLE_GUI
+  addpaused_fromurl.remove(qurl);
+#endif
 }
 
 void QBtSession::handleMagnetRedirect(const QString &url_new, const QString &url_old) {
@@ -279,10 +282,19 @@ void QBtSession::handleMagnetRedirect(const QString &url_new, const QString &url
     url_skippingDlg.removeOne(url_old);
     QPair<QString, QString> savePath_label;
     if (savepathLabel_fromurl.contains(url_old)) {
-      savePath_label = savepathLabel_fromurl.take(QUrl::fromEncoded(url_old.toUtf8()));
-      savepathLabel_fromurl.remove(url_old);
+      savePath_label = savepathLabel_fromurl.take(url_old);
     }
-    addMagnetSkipAddDlg(url_new, savePath_label.first, savePath_label.second, url_old);
+#ifndef DISABLE_GUI
+    RssDownloadRule::AddPausedState state = RssDownloadRule::USE_GLOBAL;
+    if (addpaused_fromurl.contains(url_old)) {
+      state = addpaused_fromurl.take(url_old);
+    }
+#endif
+    addMagnetSkipAddDlg(url_new, savePath_label.first, savePath_label.second,
+                    #ifndef DISABLE_GUI
+                        state,
+                    #endif
+                        url_old);
   }
   else
     addMagnetInteractive(url_new);
@@ -2913,18 +2925,49 @@ void QBtSession::addMagnetInteractive(const QString& uri)
   emit newMagnetLink(uri);
 }
 
-void QBtSession::addMagnetSkipAddDlg(const QString& uri, const QString& save_path, const QString& label, const QString &uri_old) {
+#ifndef DISABLE_GUI
+  void QBtSession::addMagnetSkipAddDlg(const QString& uri, const QString& save_path, const QString& label,
+                                       const RssDownloadRule::AddPausedState &aps, const QString &uri_old) {
+#else
+  void QBtSession::addMagnetSkipAddDlg(const QString& uri, const QString& save_path, const QString& label, const QString &uri_old) {
+#endif
   if (!save_path.isEmpty() || !label.isEmpty())
     savepathLabel_fromurl[uri] = qMakePair(fsutils::fromNativePath(save_path), label);
+
+#ifndef DISABLE_GUI
+  QString hash = misc::magnetUriToHash(uri);
+  switch (aps) {
+  case RssDownloadRule::ALWAYS_PAUSED:
+    TorrentTempData::setAddPaused(hash, true);
+    break;
+  case RssDownloadRule::NEVER_PAUSED:
+    TorrentTempData::setAddPaused(hash, false);
+    break;
+  case RssDownloadRule::USE_GLOBAL:
+  default:;
+    // Use global preferences
+  }
+#endif
+
   addMagnetUri(uri, false);
   emit newDownloadedTorrentFromRss(uri_old.isEmpty() ? uri : uri_old);
 }
 
-void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QString label, const QList<QNetworkCookie>& cookies) {
+#ifndef DISABLE_GUI
+  void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QString label,
+                                            const QList<QNetworkCookie>& cookies, const RssDownloadRule::AddPausedState &aps) {
+#else
+  void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QString label, const QList<QNetworkCookie>& cookies) {
+#endif
   //emit aboutToDownloadFromUrl(url);
   const QUrl qurl = QUrl::fromEncoded(url.toUtf8());
   if (!save_path.isEmpty() || !label.isEmpty())
     savepathLabel_fromurl[qurl] = qMakePair(fsutils::fromNativePath(save_path), label);
+
+#ifndef DISABLE_GUI
+  if (aps != RssDownloadRule::USE_GLOBAL)
+    addpaused_fromurl[qurl] = aps;
+#endif
   url_skippingDlg << qurl;
   // Launch downloader thread
   downloader->downloadTorrentUrl(url, cookies);
@@ -2952,6 +2995,31 @@ void QBtSession::processDownloadedFile(QString url, QString file_path) {
     emit newDownloadedTorrent(file_path, url);
   } else {
     url_skippingDlg.removeAt(index);
+
+#ifndef DISABLE_GUI
+    libtorrent::error_code ec;
+    // Get hash
+    libtorrent::torrent_info ti(file_path.toStdString(), ec);
+    QString hash;
+
+    if (!ec) {
+      hash = misc::toQString(ti.info_hash());
+      RssDownloadRule::AddPausedState aps = addpaused_fromurl[url];
+      addpaused_fromurl.remove(url);
+      switch (aps) {
+        case RssDownloadRule::ALWAYS_PAUSED:
+          TorrentTempData::setAddPaused(hash, true);
+          break;
+        case RssDownloadRule::NEVER_PAUSED:
+          TorrentTempData::setAddPaused(hash, false);
+          break;
+        case RssDownloadRule::USE_GLOBAL:
+        default:;
+        // Use global preferences
+      }
+    }
+#endif
+
     addTorrent(file_path, false, url, false);
     emit newDownloadedTorrentFromRss(url);
   }
