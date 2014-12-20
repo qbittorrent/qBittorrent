@@ -87,6 +87,7 @@ public slots:
     void updateAltSpeedsBtn(bool alternative);
     void updateNbTorrents();
     void shutdownCleanUp();
+    void processParams(const QStringList& params);
 
 protected slots:
     // GUI related slots
@@ -128,7 +129,6 @@ protected slots:
     void updateGUI();
     void loadPreferences(bool configure_session = true);
     void processParams(const QString& params);
-    void processParams(const QStringList& params);
     void addTorrent(QString path);
     void addUnauthenticatedTracker(const QPair<QTorrentHandle,QString> &tracker);
     void processDownloadedFiles(QString path, QString url);

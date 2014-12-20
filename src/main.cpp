@@ -74,6 +74,20 @@ Q_IMPORT_PLUGIN(qico)
 #include "misc.h"
 #include "preferences.h"
 
+class MessagesCollector : public QObject
+{
+    Q_OBJECT
+public slots:
+    void collectMessage(const QString& message)
+    {
+        messages.append(message.split("|", QString::SkipEmptyParts));
+    }
+public:
+    QStringList messages;
+};
+
+#include "main.moc"
+
 #if defined(Q_OS_WIN) && !defined(QBT_HAS_GETCURRENTPID)
 #error You seem to have updated QtSingleApplication without porting our custom QtSingleApplication::getRunningPid() function. Please see previous version to understate how it works.
 #endif
@@ -113,6 +127,10 @@ int main(int argc, char *argv[])
     // Create Application
     Application app("qBittorrent-" + misc::getUserIDString(), argc, argv);
 
+    MessagesCollector* messagesCollector = new MessagesCollector();
+    QObject::connect(&app, SIGNAL(messageReceived(const QString &)),
+                     messagesCollector, SLOT(collectMessage(const QString &)));
+
 #ifndef DISABLE_GUI
     parseCommandLine(showVersion, showUsage, noSplash, torrents);
 #else
@@ -131,9 +149,8 @@ int main(int argc, char *argv[])
         return EXIT_SUCCESS;
 
     // Set environment variable
-    if (!qputenv("QBITTORRENT", QByteArray(VERSION))) {
+    if (!qputenv("QBITTORRENT", QByteArray(VERSION)))
         std::cerr << "Couldn't set environment variable...\n";
-    }
 
     if (!userAgreesWithLegalNotice())
         return EXIT_SUCCESS;
@@ -141,6 +158,7 @@ int main(int argc, char *argv[])
     // Check if qBittorrent is already running for this user
     if (app.isRunning()) {
         qDebug("qBittorrent is already running for this user.");
+        misc::msleep(300);
 #ifdef Q_OS_WIN
         DWORD pid = (DWORD)app.getRunningPid();
         if (pid > 0) {
@@ -181,8 +199,12 @@ int main(int argc, char *argv[])
 
 #ifndef DISABLE_GUI
     MainWindow window(0, torrents);
-    QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
-                     &window, SLOT(processParams(const QString&)));
+    QObject::connect(&app, SIGNAL(messageReceived(const QString &)),
+                     &window, SLOT(processParams(const QString &)));
+    QObject::disconnect(&app, SIGNAL(messageReceived(const QString &)),
+                        messagesCollector, SLOT(collectMessage(const QString &)));
+    window.processParams(messagesCollector->messages);
+    delete messagesCollector;
     app.setActivationWindow(&window);
 #ifdef Q_OS_MAC
     static_cast<QMacApplication*>(&app)->setReadyToProcessEvents();
@@ -190,8 +212,12 @@ int main(int argc, char *argv[])
 #else
     // Load Headless class
     HeadlessLoader loader(torrents);
-    QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
-                     &loader, SLOT(processParams(const QString&)));
+    QObject::connect(&app, SIGNAL(messageReceived(const QString &)),
+                     &loader, SLOT(processParams(const QString &)));
+    QObject::disconnect(&app, SIGNAL(messageReceived(const QString &)),
+                        messagesCollector, SLOT(collectMessage(const QString &)));
+    loader.processParams(messagesCollector->messages);
+    delete messagesCollector;
 #endif
 
     int ret = app.exec();
