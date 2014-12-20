@@ -456,28 +456,50 @@ void PropertiesWidget::openFile(const QModelIndex &index) {
 }
 
 void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_folder) {
+  QString absolute_path;
   // FOLDER
+  if (PropListModel->itemType(index) == TorrentContentModelItem::FolderType) {
+    // Generate relative path to selected folder
+    QStringList path_items;
+    path_items << index.data().toString();
+    QModelIndex parent = PropListModel->parent(index);
+    while(parent.isValid()) {
+      path_items.prepend(parent.data().toString());
+      parent = PropListModel->parent(parent);
+    }
+    if (path_items.isEmpty())
+      return;
+#if !(defined(Q_OS_WIN) || (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)))
+    if (containing_folder)
+      path_items.removeLast();
+#endif
+    const QDir saveDir(h.save_path());
+    const QString relative_path = path_items.join("/");
+    absolute_path = fsutils::expandPath(saveDir.absoluteFilePath(relative_path));
+  }
+  else {
   int i = PropListModel->getFileIndex(index);
   const QDir saveDir(h.save_path());
-  const QString filename = h.filepath_at(i);
-  const QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
+  const QString relative_path = h.filepath_at(i);
+  absolute_path = fsutils::expandPath(saveDir.absoluteFilePath(relative_path));
 
 #if !(defined(Q_OS_WIN) || (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)))
   if (containing_folder)
-    file_path = fsutils::folderName(file_path);
+    absolute_path = fsutils::folderName(absolute_path);
 #endif
+  }
 
   // Flush data
   h.flush_cache();
-  if (!QFile::exists(file_path))
+  if (!QFile::exists(absolute_path))
       return;
-  qDebug("Trying to open folder at %s", qPrintable(file_path));
+  qDebug("Trying to open folder at %s", qPrintable(absolute_path));
 
 #ifdef Q_OS_WIN
   if (containing_folder) {
     // Syntax is: explorer /select, "C:\Folder1\Folder2\file_to_select"
     // Dir separators MUST be win-style slashes
-    QProcess::startDetached("explorer.exe", QStringList() << "/select," << fsutils::toNativePath(file_path));
+    QProcess::startDetached("explorer.exe", QStringList() << "/select," << fsutils::toNativePath(absolute_path));
   } else {
 #elif defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
   if (containing_folder) {
@@ -487,21 +509,21 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
     proc.waitForFinished();
     output = proc.readLine().simplified();
     if (output == "dolphin.desktop")
-      proc.startDetached("dolphin", QStringList() << "--select" << fsutils::toNativePath(file_path));
+      proc.startDetached("dolphin", QStringList() << "--select" << fsutils::toNativePath(absolute_path));
     else if (output == "nautilus-folder-handler.desktop")
-      proc.startDetached("nautilus", QStringList() << "--no-desktop" << fsutils::toNativePath(file_path));
+      proc.startDetached("nautilus", QStringList() << "--no-desktop" << fsutils::toNativePath(absolute_path));
     else if (output == "kfmclient_dir.desktop")
-      proc.startDetached("konqueror", QStringList() << "--select" << fsutils::toNativePath(file_path));
+      proc.startDetached("konqueror", QStringList() << "--select" << fsutils::toNativePath(absolute_path));
     else
-      QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(file_path).absolutePath()));
+      QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(absolute_path).absolutePath()));
   } else {
 #endif
-    if (QFile::exists(file_path)) {
+    if (QFile::exists(absolute_path)) {
       // Hack to access samba shares with QDesktopServices::openUrl
-      if (file_path.startsWith("//"))
-        QDesktopServices::openUrl(fsutils::toNativePath("file:" + file_path));
+      if (absolute_path.startsWith("//"))
+        QDesktopServices::openUrl(fsutils::toNativePath("file:" + absolute_path));
       else
-        QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
+        QDesktopServices::openUrl(QUrl::fromLocalFile(absolute_path));
     } else {
       QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
     }
