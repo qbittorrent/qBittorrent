@@ -8,11 +8,9 @@ PKGCONFIG += libtorrent-rasterbar
 DEFINES += BOOST_ASIO_DYN_LINK
 
 # Special include/libs paths (macports)
-INCLUDEPATH += /usr/include/openssl /usr/include /opt/local/include/boost /opt/local/include
+INCLUDEPATH += /usr/include /opt/local/include/boost /opt/local/include
 LIBS += -L/opt/local/lib
 
-# OpenSSL lib
-LIBS += -lssl -lcrypto
 # Boost system lib
 LIBS += -lboost_system-mt
 # Boost filesystem lib (Not needed for libtorrent >= 0.16.0)
