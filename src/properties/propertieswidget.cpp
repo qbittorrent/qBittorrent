@@ -446,29 +446,20 @@ void PropertiesWidget::openFile(const QModelIndex &index) {
 
 void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_folder) {
   // FOLDER
-  QStringList path_items;
-  path_items << index.data().toString();
-  QModelIndex parent = PropListModel->parent(index);
-  while(parent.isValid()) {
-    path_items.prepend(parent.data().toString());
-    parent = PropListModel->parent(parent);
-  }
-  if (path_items.isEmpty())
-    return;
+  int i = PropListModel->getFileIndex(index);
+  const QDir saveDir(h.save_path());
+  const QString filename = h.filepath_at(i);
+  const QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
 
 #if !(defined(Q_OS_WIN) || (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)))
   if (containing_folder)
-    path_items.removeLast();
+    file_path = fsutils::folderName(file_path);
 #endif
 
-  const QDir saveDir(h.save_path());
-  const QString filename = path_items.join("/");
   // Flush data
   h.flush_cache();
-
-  QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
-  if (QFile::exists(file_path + ".!qB"))
-      file_path += ".!qB";
+  if (!QFile::exists(file_path))
+      return;
   qDebug("Trying to open folder at %s", qPrintable(file_path));
 
 #ifdef Q_OS_WIN
