@@ -101,29 +101,34 @@ void sigsegvHandler(int);
 void sigabrtHandler(int);
 #endif
 
+struct QbtCommandLineParameters
+{
+    bool showVersion;
+    bool showHelp;
+#ifndef DISABLE_GUI
+    bool noSplash;
+#else
+    bool shouldDaemonize;
+#endif
+    int webUiPort;
+    QStringList torrents;
+};
+
+QbtCommandLineParameters parseCommandLine();
+
 #ifndef DISABLE_GUI
 void showSplashScreen();
-void parseCommandLine(bool& showVersion, bool& showUsage, bool& noSplash, QStringList& torrents);
-#else
-void parseCommandLine(bool& showVersion, bool& showUsage, bool& shouldDaemonize, QStringList& torrents);
 #endif
 void displayVersion();
 void displayUsage(const char *prg_name);
 bool userAgreesWithLegalNotice();
+void displayBadArgMessage(const QString& message);
 
 // Main
 int main(int argc, char *argv[])
 {
     // We must save it here because QApplication constructor may change it
     bool isOneArg = (argc == 2);
-    bool showVersion;
-    bool showUsage;
-#ifndef DISABLE_GUI
-    bool noSplash;
-#else
-    bool shouldDaemonize;
-#endif
-    QStringList torrents;
 
     // Create Application
     QScopedPointer<Application> app(new Application("qBittorrent-" + misc::getUserIDString(), argc, argv));
@@ -132,22 +137,40 @@ int main(int argc, char *argv[])
     QObject::connect(app.data(), SIGNAL(messageReceived(const QString &)),
                      messagesCollector, SLOT(collectMessage(const QString &)));
 
-#ifndef DISABLE_GUI
-    parseCommandLine(showVersion, showUsage, noSplash, torrents);
-#else
-    parseCommandLine(showVersion, showUsage, shouldDaemonize, torrents);
-#endif
+    const QbtCommandLineParameters params = parseCommandLine();
 
-    if (showVersion)
-        displayVersion();
+    if (params.showVersion) {
+        if (isOneArg) {
+            displayVersion();
+            return EXIT_SUCCESS;
+        }
+        else {
+            displayBadArgMessage(QObject::tr("%1 must be the single command line parameter.")
+                                 .arg(QLatin1String("-v (or --version)")));
+            return EXIT_FAILURE;
+        }
+    }
 
-    if (showUsage)
-        displayUsage(argv[0]);
+    if (params.showHelp) {
+        if (isOneArg) {
+            displayUsage(argv[0]);
+            return EXIT_SUCCESS;
+        }
+        else {
+            displayBadArgMessage(QObject::tr("%1 must be the single command line parameter.")
+                                 .arg(QLatin1String("-h (or --help)")));
+            return EXIT_FAILURE;
+        }
+    }
 
-    // If only one parameter is present and it is "--version"
-    // or "--help", program exits after printing appropriate message.
-    if (isOneArg && (showVersion || showUsage))
-        return EXIT_SUCCESS;
+    if ((params.webUiPort > 0) && (params.webUiPort <= 65535)) {
+        Preferences::instance()->setWebUiPort(params.webUiPort);
+    }
+    else {
+        displayBadArgMessage(QObject::tr("%1 must specify the correct port (1 to 65535).")
+                             .arg(QLatin1String("--webui-port")));
+        return EXIT_FAILURE;
+    }
 
     // Set environment variable
     if (!qputenv("QBITTORRENT", QByteArray(VERSION)))
@@ -158,7 +181,15 @@ int main(int argc, char *argv[])
 
     // Check if qBittorrent is already running for this user
     if (app->isRunning()) {
+#ifdef DISABLE_GUI
+        if (params.shouldDaemonize) {
+            displayBadArgMessage(QObject::tr("You cannot use %1: qBittorrent is already running for this user.")
+                                 .arg(QLatin1String("-d (or --daemon)")));
+            return EXIT_FAILURE;
+        }
+#else
         qDebug("qBittorrent is already running for this user.");
+#endif
         misc::msleep(300);
 #ifdef Q_OS_WIN
         DWORD pid = (DWORD)app->getRunningPid();
@@ -167,8 +198,8 @@ int main(int argc, char *argv[])
             qDebug("AllowSetForegroundWindow() returns %s", b ? "TRUE" : "FALSE");
         }
 #endif
-        if (!torrents.isEmpty()) {
-            QString message = torrents.join("|");
+        if (!params.torrents.isEmpty()) {
+            QString message = params.torrents.join("|");
             qDebug("Passing program parameters to running instance...");
             qDebug("Message: %s", qPrintable(message));
             app->sendMessage(message);
@@ -182,7 +213,7 @@ int main(int argc, char *argv[])
 
     srand(time(0));
 #ifdef DISABLE_GUI
-    if (shouldDaemonize) {
+    if (params.shouldDaemonize) {
         app.reset(); // Destroy current application
         if ((daemon(1, 0) == 0)) {
             app.reset(new Application("qBittorrent-" + misc::getUserIDString(), argc, argv));
@@ -197,7 +228,7 @@ int main(int argc, char *argv[])
         }
     }
 #else
-    if (!noSplash)
+    if (!(params.noSplash || Preferences::instance()->isSlashScreenDisabled()))
         showSplashScreen();
 #endif
 
@@ -209,7 +240,7 @@ int main(int argc, char *argv[])
 #endif
 
 #ifndef DISABLE_GUI
-    MainWindow window(0, torrents);
+    MainWindow window(0, params.torrents);
     QObject::connect(app.data(), SIGNAL(messageReceived(const QString &)),
                      &window, SLOT(processParams(const QString &)));
     QObject::disconnect(app.data(), SIGNAL(messageReceived(const QString &)),
@@ -222,7 +253,7 @@ int main(int argc, char *argv[])
 #endif // Q_OS_MAC
 #else
     // Load Headless class
-    HeadlessLoader loader(torrents);
+    HeadlessLoader loader(params.torrents);
     QObject::connect(app.data(), SIGNAL(messageReceived(const QString &)),
                      &loader, SLOT(processParams(const QString &)));
     QObject::disconnect(app.data(), SIGNAL(messageReceived(const QString &)),
@@ -234,6 +265,48 @@ int main(int argc, char *argv[])
     int ret = app->exec();
     qDebug("Application has exited");
     return ret;
+}
+
+QbtCommandLineParameters parseCommandLine()
+{
+    QbtCommandLineParameters result = {0};
+    QStringList appArguments = qApp->arguments();
+
+    for (int i = 1; i < appArguments.size(); ++i) {
+        const QString& arg = appArguments[i];
+
+        if ((arg == QLatin1String("-v")) || (arg == QLatin1String("--version"))) {
+            result.showVersion = true;
+        }
+        else if ((arg == QLatin1String("-h")) || (arg == QLatin1String("--help"))) {
+            result.showHelp = true;
+        }
+        else if (arg.startsWith(QLatin1String("--webui-port="))) {
+            QStringList parts = arg.split(QLatin1Char('='));
+            if (parts.size() == 2)
+                result.webUiPort = parts.last().toInt();
+        }
+#ifndef DISABLE_GUI
+        else if (arg == QLatin1String("--no-splash")) {
+            result.noSplash = true;
+        }
+#else
+        else if ((arg == QLatin1String("-d")) || (arg == QLatin1String("--daemon"))) {
+            result.shouldDaemonize = true;
+        }
+#endif
+        else {
+            QFileInfo torrentPath;
+            torrentPath.setFile(arg);
+
+            if (torrentPath.exists())
+                result.torrents += torrentPath.absoluteFilePath();
+            else
+                result.torrents += arg;
+        }
+    }
+
+    return result;
 }
 
 #if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
@@ -314,72 +387,15 @@ void displayVersion()
 void displayUsage(const char *prg_name)
 {
     std::cout << qPrintable(QObject::tr("Usage:")) << std::endl;
-    std::cout << '\t' << prg_name << " --version: " << qPrintable(QObject::tr("displays program version")) << std::endl;
+    std::cout << '\t' << prg_name << " -v | --version: " << qPrintable(QObject::tr("displays program version")) << std::endl;
 #ifndef DISABLE_GUI
     std::cout << '\t' << prg_name << " --no-splash: " << qPrintable(QObject::tr("disable splash screen")) << std::endl;
 #else
     std::cout << '\t' << prg_name << " -d | --daemon: " << qPrintable(QObject::tr("run in daemon-mode (background)")) << std::endl;
 #endif
-    std::cout << '\t' << prg_name << " --help: " << qPrintable(QObject::tr("displays this help message")) << std::endl;
+    std::cout << '\t' << prg_name << " -h | --help: " << qPrintable(QObject::tr("displays this help message")) << std::endl;
     std::cout << '\t' << prg_name << " --webui-port=x: " << qPrintable(QObject::tr("changes the webui port (current: %1)").arg(QString::number(Preferences::instance()->getWebUiPort()))) << std::endl;
     std::cout << '\t' << prg_name << " " << qPrintable(QObject::tr("[files or urls]: downloads the torrents passed by the user (optional)")) << std::endl;
-}
-
-#ifndef DISABLE_GUI
-void parseCommandLine(bool& showVersion, bool& showUsage, bool& noSplash, QStringList& torrents)
-#else
-void parseCommandLine(bool& showVersion, bool& showUsage, bool& shouldDaemonize, QStringList& torrents)
-#endif
-{
-    // Default values
-    showVersion = false;
-    showUsage = false;
-#ifndef DISABLE_GUI
-    noSplash = Preferences::instance()->isSlashScreenDisabled();
-#else
-    shouldDaemonize = false;
-#endif
-    torrents.clear();
-
-    QStringList appArguments = qApp->arguments();
-
-    for (int i = 1; i < appArguments.size(); ++i) {
-        QString& arg = appArguments[i];
-
-        if (arg == "--version") {
-            showVersion = true;
-        }
-        else if (arg == "--usage") {
-            showUsage = true;
-        }
-        else if (arg.startsWith("--webui-port=")) {
-            QStringList parts = arg.split("=");
-            if (parts.size() == 2) {
-                bool ok = false;
-                int new_port = parts.last().toInt(&ok);
-                if (ok && (new_port > 0) && (new_port <= 65535))
-                    Preferences::instance()->setWebUiPort(new_port);
-            }
-        }
-#ifndef DISABLE_GUI
-        else if (arg == "--no-splash") {
-            noSplash = true;
-        }
-#else
-        else if ((arg == "-d") || (arg == "--daemon")) {
-            shouldDaemonize = true;
-        }
-#endif
-        else if (!arg.startsWith("--")) {
-            QFileInfo torrentPath;
-            torrentPath.setFile(arg);
-
-            if (torrentPath.exists())
-                torrents += torrentPath.absoluteFilePath();
-            else
-                torrents += arg;
-        }
-    }
 }
 
 bool userAgreesWithLegalNotice()
@@ -415,4 +431,10 @@ bool userAgreesWithLegalNotice()
 #endif
 
     return false;
+}
+
+void displayBadArgMessage(const QString& message)
+{
+    std::cerr << qPrintable(QObject::tr("Bad command line: "));
+    std::cerr << qPrintable(message) << std::endl;
 }
