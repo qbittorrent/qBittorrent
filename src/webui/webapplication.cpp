@@ -81,6 +81,8 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(query, propertiesTrackers);
     ADD_ACTION(query, propertiesWebSeeds);
     ADD_ACTION(query, propertiesFiles);
+    ADD_ACTION(query, getLog);
+    ADD_ACTION(query, getPeerLog);
     ADD_ACTION(sync, maindata);
     ADD_ACTION(sync, torrent_peers);
     ADD_ACTION(command, shutdown);
@@ -268,6 +270,44 @@ void WebApplication::action_query_propertiesFiles()
 {
     CHECK_URI(1);
     print(btjson::getFilesForTorrent(args_.front()), Http::CONTENT_TYPE_JSON);
+}
+
+// GET params:
+//   - normal (bool): include normal messages (default true)
+//   - info (bool): include info messages (default true)
+//   - warning (bool): include warning messages (default true)
+//   - critical (bool): include critical messages (default true)
+//   - last_known_id (int): exclude messages with id <= 'last_known_id' (default -1)
+void WebApplication::action_query_getLog()
+{
+    CHECK_URI(0);
+    bool normal = request().gets["normal"] != "false";
+    bool info = request().gets["info"] != "false";
+    bool warning = request().gets["warning"] != "false";
+    bool critical = request().gets["critical"] != "false";
+    int lastKnownId;
+    bool ok;
+
+    lastKnownId = request().gets["last_known_id"].toInt(&ok);
+    if (!ok)
+        lastKnownId = -1;
+
+    print(btjson::getLog(normal, info, warning, critical, lastKnownId), Http::CONTENT_TYPE_JSON);
+}
+
+// GET params:
+//   - last_known_id (int): exclude messages with id <= 'last_known_id' (default -1)
+void WebApplication::action_query_getPeerLog()
+{
+    CHECK_URI(0);
+    int lastKnownId;
+    bool ok;
+
+    lastKnownId = request().gets["last_known_id"].toInt(&ok);
+    if (!ok)
+        lastKnownId = -1;
+
+    print(btjson::getPeerLog(lastKnownId), Http::CONTENT_TYPE_JSON);
 }
 
 // GET param:
