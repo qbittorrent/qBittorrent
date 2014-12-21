@@ -103,8 +103,10 @@ void sigabrtHandler(int);
 
 struct QbtCommandLineParameters
 {
-    bool showVersion;
     bool showHelp;
+#ifndef Q_OS_WIN
+    bool showVersion;
+#endif
 #ifndef DISABLE_GUI
     bool noSplash;
 #else
@@ -112,6 +114,20 @@ struct QbtCommandLineParameters
 #endif
     int webUiPort;
     QStringList torrents;
+
+    QbtCommandLineParameters()
+        : showHelp(false)
+#ifndef Q_OS_WIN
+        , showVersion(false)
+#endif
+#ifndef DISABLE_GUI
+        , noSplash(Preferences::instance()->isSplashScreenDisabled())
+#else
+        , shouldDaemonize(false)
+#endif
+        , webUiPort(Preferences::instance()->getWebUiPort())
+    {
+    }
 };
 
 QbtCommandLineParameters parseCommandLine();
@@ -120,9 +136,9 @@ QbtCommandLineParameters parseCommandLine();
 void showSplashScreen();
 #endif
 void displayVersion();
-void displayUsage(const char *prg_name);
+void displayUsage(QString prg_name = QLatin1String("qbittorrent"));
 bool userAgreesWithLegalNotice();
-void displayBadArgMessage(const QString& message);
+void displayBadArgMessage(QString message);
 
 // Main
 int main(int argc, char *argv[])
@@ -139,6 +155,7 @@ int main(int argc, char *argv[])
 
     const QbtCommandLineParameters params = parseCommandLine();
 
+#ifndef Q_OS_WIN
     if (params.showVersion) {
         if (isOneArg) {
             displayVersion();
@@ -150,6 +167,7 @@ int main(int argc, char *argv[])
             return EXIT_FAILURE;
         }
     }
+#endif
 
     if (params.showHelp) {
         if (isOneArg) {
@@ -228,7 +246,7 @@ int main(int argc, char *argv[])
         }
     }
 #else
-    if (!(params.noSplash || Preferences::instance()->isSlashScreenDisabled()))
+    if (!params.noSplash)
         showSplashScreen();
 #endif
 
@@ -269,18 +287,20 @@ int main(int argc, char *argv[])
 
 QbtCommandLineParameters parseCommandLine()
 {
-    QbtCommandLineParameters result = {0};
+    QbtCommandLineParameters result;
     QStringList appArguments = qApp->arguments();
 
     for (int i = 1; i < appArguments.size(); ++i) {
         const QString& arg = appArguments[i];
 
-        if ((arg == QLatin1String("-v")) || (arg == QLatin1String("--version"))) {
-            result.showVersion = true;
-        }
-        else if ((arg == QLatin1String("-h")) || (arg == QLatin1String("--help"))) {
+        if ((arg == QLatin1String("-h")) || (arg == QLatin1String("--help"))) {
             result.showHelp = true;
         }
+#ifndef Q_OS_WIN
+        else if ((arg == QLatin1String("-v")) || (arg == QLatin1String("--version"))) {
+            result.showVersion = true;
+        }
+#endif
         else if (arg.startsWith(QLatin1String("--webui-port="))) {
             QStringList parts = arg.split(QLatin1Char('='));
             if (parts.size() == 2)
@@ -384,18 +404,67 @@ void displayVersion()
     std::cout << qPrintable(qApp->applicationName()) << " " << VERSION << std::endl;
 }
 
-void displayUsage(const char *prg_name)
+QString makeUsage(QString prg_name)
 {
-    std::cout << qPrintable(QObject::tr("Usage:")) << std::endl;
-    std::cout << '\t' << prg_name << " -v | --version: " << qPrintable(QObject::tr("displays program version")) << std::endl;
-#ifndef DISABLE_GUI
-    std::cout << '\t' << prg_name << " --no-splash: " << qPrintable(QObject::tr("disable splash screen")) << std::endl;
-#else
-    std::cout << '\t' << prg_name << " -d | --daemon: " << qPrintable(QObject::tr("run in daemon-mode (background)")) << std::endl;
+    QString text;
+
+    text += QObject::tr("Usage:") + QLatin1Char('\n');
+#ifndef Q_OS_WIN
+    text += QLatin1Char('\t') + prg_name + QLatin1String(" (-v | --version)") + QLatin1Char('\n');
 #endif
-    std::cout << '\t' << prg_name << " -h | --help: " << qPrintable(QObject::tr("displays this help message")) << std::endl;
-    std::cout << '\t' << prg_name << " --webui-port=x: " << qPrintable(QObject::tr("changes the webui port (current: %1)").arg(QString::number(Preferences::instance()->getWebUiPort()))) << std::endl;
-    std::cout << '\t' << prg_name << " " << qPrintable(QObject::tr("[files or urls]: downloads the torrents passed by the user (optional)")) << std::endl;
+    text += QLatin1Char('\t') + prg_name + QLatin1String(" (-h | --help)") + QLatin1Char('\n');
+    text += QLatin1Char('\t') + prg_name
+            + QLatin1String(" [--webui-port=<port>]")
+#ifndef DISABLE_GUI
+            + QLatin1String(" [--no-splash]")
+#else
+            + QLatin1String(" [-d | --daemon]")
+#endif
+            + QLatin1String("[(<filename> | <url>)...]") + QLatin1Char('\n');
+    text += QObject::tr("Options:") + QLatin1Char('\n');
+#ifndef Q_OS_WIN
+    text += QLatin1String("\t-v | --version\t\t") + QObject::tr("Displays program version") + QLatin1Char('\n');
+#endif
+    text += QLatin1String("\t-h | --help\t\t") + QObject::tr("Displays this help message") + QLatin1Char('\n');
+    text += QLatin1String("\t--webui-port=<port>\t")
+            + QObject::tr("Changes the webui port (current: %1)").arg(QString::number(Preferences::instance()->getWebUiPort()))
+            + QLatin1Char('\n');
+#ifndef DISABLE_GUI
+    text += QLatin1String("\t--no-splash\t\t") + QObject::tr("Disable splash screen") + QLatin1Char('\n');
+#else
+    text += QLatin1String("\t-d | --daemon\t\t") + QObject::tr("Run in daemon-mode (background)") + QLatin1Char('\n');
+#endif
+    text += QLatin1String("\tfiles or urls\t\t") + QObject::tr("Downloads the torrents passed by the user");
+
+    return text;
+}
+
+void displayUsage(QString prg_name)
+{
+#ifndef Q_OS_WIN
+    std::cout << qPrintable(makeUsage(prg_name)) << std::endl;
+#else
+    QMessageBox msgBox(QMessageBox::Information, QObject::tr("Help"), makeUsage(prg_name), QMessageBox::Ok);
+    msgBox.show(); // Need to be shown or to moveToCenter does not work
+    msgBox.move(misc::screenCenter(&msgBox));
+    msgBox.exec();
+#endif
+}
+
+void displayBadArgMessage(QString message)
+{
+    QString help = QObject::tr("Run application with -h option to read about command line parameters.");
+#ifdef Q_OS_WIN
+    QMessageBox msgBox(QMessageBox::Critical, QObject::tr("Bad command line"),
+                       message + QLatin1Char('\n') + help, QMessageBox::Ok);
+    msgBox.show(); // Need to be shown or to moveToCenter does not work
+    msgBox.move(misc::screenCenter(&msgBox));
+    msgBox.exec();
+#else
+    std::cerr << qPrintable(QObject::tr("Bad command line: "));
+    std::cerr << qPrintable(message) << std::endl;
+    std::cerr << qPrintable(help) << std::endl;
+#endif
 }
 
 bool userAgreesWithLegalNotice()
@@ -431,10 +500,4 @@ bool userAgreesWithLegalNotice()
 #endif
 
     return false;
-}
-
-void displayBadArgMessage(const QString& message)
-{
-    std::cerr << qPrintable(QObject::tr("Bad command line: "));
-    std::cerr << qPrintable(message) << std::endl;
 }
