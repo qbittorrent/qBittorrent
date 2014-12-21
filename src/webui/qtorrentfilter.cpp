@@ -74,7 +74,8 @@ bool QTorrentFilter::isTorrentDownloading(const QTorrentHandle &h) const
             || state == QTorrentState::StalledDownloading
             || state == QTorrentState::CheckingDownloading
             || state == QTorrentState::PausedDownloading
-            || state == QTorrentState::QueuedDownloading;
+            || state == QTorrentState::QueuedDownloading
+            || state == QTorrentState::Error;
 }
 
 bool QTorrentFilter::isTorrentCompleted(const QTorrentHandle &h) const
@@ -93,7 +94,8 @@ bool QTorrentFilter::isTorrentPaused(const QTorrentHandle &h) const
     const QTorrentState state = h.torrentState();
 
     return state == QTorrentState::PausedDownloading
-            || state == QTorrentState::PausedUploading;
+            || state == QTorrentState::PausedUploading
+            || state == QTorrentState::Error;
 }
 
 bool QTorrentFilter::isTorrentActive(const QTorrentHandle &h) const
