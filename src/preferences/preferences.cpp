@@ -1952,6 +1952,14 @@ void Preferences::setRssFeedsAliases(const QStringList &rssAliases) {
   setValue("Rss/streamAlias", rssAliases);
 }
 
+int Preferences::getToolbarTextPosition() const {
+  return value("Toolbar/textPosition", -1).toInt();
+}
+
+void Preferences::setToolbarTextPosition(const int position) {
+  setValue("Toolbar/textPosition", position);
+}
+
 QList<QByteArray> Preferences::getHostNameCookies(const QString &host_name) const {
   QMap<QString, QVariant> hosts_table = value("Rss/hosts_cookies").toMap();
   if (!hosts_table.contains(host_name)) return QList<QByteArray>();

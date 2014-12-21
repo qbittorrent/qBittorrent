@@ -124,6 +124,8 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine): QMai
 #endif
     setWindowIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
 
+    addToolbarContextMenu();
+
     actionOpen->setIcon(IconProvider::instance()->getIcon("list-add"));
     actionDownload_from_URL->setIcon(IconProvider::instance()->getIcon("insert-link"));
     actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
@@ -356,6 +358,97 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine): QMai
     }
 }
 
+void MainWindow::addToolbarContextMenu()
+{
+    const Preferences* const pref = Preferences::instance();
+    toolbarMenu = new QMenu(this);
+
+    toolBar->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(toolBar, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(toolbarMenuRequested(QPoint)));
+
+    QAction *iconsOnly = new QAction(tr("Icons Only"), toolbarMenu);
+    connect(iconsOnly, SIGNAL(triggered()), this, SLOT(toolbarIconsOnly()));
+    QAction *textOnly = new QAction(tr("Text Only"), toolbarMenu);
+    connect(textOnly, SIGNAL(triggered()), this, SLOT(toolbarTextOnly()));
+    QAction *textBesideIcons = new QAction(tr("Text Alongside Icons"), toolbarMenu);
+    connect(textBesideIcons, SIGNAL(triggered()), this, SLOT(toolbarTextBeside()));
+    QAction *textUnderIcons = new QAction(tr("Text Under Icons"), toolbarMenu);
+    connect(textUnderIcons, SIGNAL(triggered()), this, SLOT(toolbarTextUnder()));
+    QAction *followSystemStyle = new QAction(tr("Follow System Style"), toolbarMenu);
+    connect(followSystemStyle, SIGNAL(triggered()), this, SLOT(toolbarFollowSystem()));
+    toolbarMenu->addAction(iconsOnly);
+    toolbarMenu->addAction(textOnly);
+    toolbarMenu->addAction(textBesideIcons);
+    toolbarMenu->addAction(textUnderIcons);
+    toolbarMenu->addAction(followSystemStyle);
+    QActionGroup *textPositionGroup = new QActionGroup(toolbarMenu);
+    textPositionGroup->addAction(iconsOnly);
+    iconsOnly->setCheckable(true);
+    textPositionGroup->addAction(textOnly);
+    textOnly->setCheckable(true);
+    textPositionGroup->addAction(textBesideIcons);
+    textBesideIcons->setCheckable(true);
+    textPositionGroup->addAction(textUnderIcons);
+    textUnderIcons->setCheckable(true);
+    textPositionGroup->addAction(followSystemStyle);
+    followSystemStyle->setCheckable(true);
+
+    const Qt::ToolButtonStyle buttonStyle = static_cast<Qt::ToolButtonStyle>(pref->getToolbarTextPosition());
+    if (buttonStyle >= Qt::ToolButtonIconOnly && buttonStyle <= Qt::ToolButtonFollowStyle)
+        toolBar->setToolButtonStyle(buttonStyle);
+    switch (buttonStyle) {
+    case Qt::ToolButtonIconOnly:
+        iconsOnly->setChecked(true);
+        break;
+    case Qt::ToolButtonTextOnly:
+        textOnly->setChecked(true);
+        break;
+    case Qt::ToolButtonTextBesideIcon:
+        textBesideIcons->setChecked(true);
+        break;
+    case Qt::ToolButtonTextUnderIcon:
+        textUnderIcons->setChecked(true);
+        break;
+    default:
+        followSystemStyle->setChecked(true);
+    }
+}
+
+void MainWindow::toolbarMenuRequested(QPoint point)
+{
+    toolbarMenu->exec(toolBar->mapToGlobal(point));
+}
+
+void MainWindow::toolbarIconsOnly()
+{
+    toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    Preferences::instance()->setToolbarTextPosition(Qt::ToolButtonIconOnly);
+}
+
+void MainWindow::toolbarTextOnly()
+{
+    toolBar->setToolButtonStyle(Qt::ToolButtonTextOnly);
+    Preferences::instance()->setToolbarTextPosition(Qt::ToolButtonTextOnly);
+}
+
+void MainWindow::toolbarTextBeside()
+{
+    toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    Preferences::instance()->setToolbarTextPosition(Qt::ToolButtonTextBesideIcon);
+}
+
+void MainWindow::toolbarTextUnder()
+{
+    toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    Preferences::instance()->setToolbarTextPosition(Qt::ToolButtonTextUnderIcon);
+}
+
+void MainWindow::toolbarFollowSystem()
+{
+    toolBar->setToolButtonStyle(Qt::ToolButtonFollowStyle);
+    Preferences::instance()->setToolbarTextPosition(Qt::ToolButtonFollowStyle);
+}
+
 void MainWindow::shutdownCleanUp()
 {
     qDebug("GUI destruction");
@@ -410,6 +503,7 @@ void MainWindow::shutdownCleanUp()
     delete switchSearchShortcut2;
     delete switchTransferShortcut;
     delete switchRSSShortcut;
+    delete toolbarMenu;
     IconProvider::drop();
     Preferences::drop();
     qDebug("Finished GUI destruction");
