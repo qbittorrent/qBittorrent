@@ -30,6 +30,7 @@
  */
 
 #include <QDebug>
+#include <QScopedPointer>
 
 #ifndef DISABLE_GUI
 #include <QFont>
@@ -125,10 +126,10 @@ int main(int argc, char *argv[])
     QStringList torrents;
 
     // Create Application
-    Application app("qBittorrent-" + misc::getUserIDString(), argc, argv);
+    QScopedPointer<Application> app(new Application("qBittorrent-" + misc::getUserIDString(), argc, argv));
 
     MessagesCollector* messagesCollector = new MessagesCollector();
-    QObject::connect(&app, SIGNAL(messageReceived(const QString &)),
+    QObject::connect(app.data(), SIGNAL(messageReceived(const QString &)),
                      messagesCollector, SLOT(collectMessage(const QString &)));
 
 #ifndef DISABLE_GUI
@@ -156,11 +157,11 @@ int main(int argc, char *argv[])
         return EXIT_SUCCESS;
 
     // Check if qBittorrent is already running for this user
-    if (app.isRunning()) {
+    if (app->isRunning()) {
         qDebug("qBittorrent is already running for this user.");
         misc::msleep(300);
 #ifdef Q_OS_WIN
-        DWORD pid = (DWORD)app.getRunningPid();
+        DWORD pid = (DWORD)app->getRunningPid();
         if (pid > 0) {
             BOOL b = AllowSetForegroundWindow(pid);
             qDebug("AllowSetForegroundWindow() returns %s", b ? "TRUE" : "FALSE");
@@ -170,10 +171,10 @@ int main(int argc, char *argv[])
             QString message = torrents.join("|");
             qDebug("Passing program parameters to running instance...");
             qDebug("Message: %s", qPrintable(message));
-            app.sendMessage(message);
+            app->sendMessage(message);
         }
         else { // Raise main window
-            app.sendMessage("qbt://show");
+            app->sendMessage("qbt://show");
         }
 
         return EXIT_SUCCESS;
@@ -181,9 +182,19 @@ int main(int argc, char *argv[])
 
     srand(time(0));
 #ifdef DISABLE_GUI
-    if (shouldDaemonize && (daemon(1, 0) != 0)) {
-        qCritical("Something went wrong while daemonizing, exiting...");
-        return EXIT_FAILURE;
+    if (shouldDaemonize) {
+        app.reset(); // Destroy current application
+        if ((daemon(1, 0) == 0)) {
+            app.reset(new Application("qBittorrent-" + misc::getUserIDString(), argc, argv));
+            if (app->isRunning()) {
+                // Another instance had time to start.
+                return EXIT_FAILURE;
+            }
+        }
+        else {
+            qCritical("Something went wrong while daemonizing, exiting...");
+            return EXIT_FAILURE;
+        }
     }
 #else
     if (!noSplash)
@@ -199,28 +210,28 @@ int main(int argc, char *argv[])
 
 #ifndef DISABLE_GUI
     MainWindow window(0, torrents);
-    QObject::connect(&app, SIGNAL(messageReceived(const QString &)),
+    QObject::connect(app.data(), SIGNAL(messageReceived(const QString &)),
                      &window, SLOT(processParams(const QString &)));
-    QObject::disconnect(&app, SIGNAL(messageReceived(const QString &)),
+    QObject::disconnect(app.data(), SIGNAL(messageReceived(const QString &)),
                         messagesCollector, SLOT(collectMessage(const QString &)));
     window.processParams(messagesCollector->messages);
     delete messagesCollector;
-    app.setActivationWindow(&window);
+    app->setActivationWindow(&window);
 #ifdef Q_OS_MAC
-    static_cast<QMacApplication*>(&app)->setReadyToProcessEvents();
+    static_cast<QMacApplication*>(app.data())->setReadyToProcessEvents();
 #endif // Q_OS_MAC
 #else
     // Load Headless class
     HeadlessLoader loader(torrents);
-    QObject::connect(&app, SIGNAL(messageReceived(const QString &)),
+    QObject::connect(app.data(), SIGNAL(messageReceived(const QString &)),
                      &loader, SLOT(processParams(const QString &)));
-    QObject::disconnect(&app, SIGNAL(messageReceived(const QString &)),
+    QObject::disconnect(app.data(), SIGNAL(messageReceived(const QString &)),
                         messagesCollector, SLOT(collectMessage(const QString &)));
     loader.processParams(messagesCollector->messages);
     delete messagesCollector;
 #endif
 
-    int ret = app.exec();
+    int ret = app->exec();
     qDebug("Application has exited");
     return ret;
 }
