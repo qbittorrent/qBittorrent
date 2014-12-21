@@ -279,7 +279,7 @@ void Preferences::setStartMinimized(bool b) {
   setValue("Preferences/General/StartMinimized", b);
 }
 
-bool Preferences::isSlashScreenDisabled() const {
+bool Preferences::isSplashScreenDisabled() const {
   return value("Preferences/General/NoSplashScreen", false).toBool();
 }
 
