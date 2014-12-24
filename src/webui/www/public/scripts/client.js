@@ -29,22 +29,26 @@ var updateTransferInfo = function(){};
 var updateTransferList = function(){};
 var alternativeSpeedLimits = false;
 
-var stateToImg = function (state) {
-    if (state == "pausedUP" || state == "pausedDL") {
-        state = "paused";
-    } else {
-        if (state == "queuedUP" || state == "queuedDL") {
-            state = "queued";
-        } else {
-            if (state == "checkingUP" || state == "checkingDL") {
-                state = "checking";
-            }
-        }
-    }
-    return 'images/skin/' + state + '.png';
-};
+selected_filter = getLocalStorageItem('selected_filter', 'all');
+selected_label = null;
 
-filter = getLocalStorageItem('selected_filter', 'all');
+var loadSelectedLabel = function () {
+    if (getLocalStorageItem('any_label', '1') == '0')
+        selected_label = getLocalStorageItem('selected_label', '');
+    else
+        selected_label = null;
+}
+loadSelectedLabel();
+
+var saveSelectedLabel = function () {
+    if (selected_label == null)
+        localStorage.setItem('any_label', '1');
+    else {
+        localStorage.setItem('any_label', '0');
+        localStorage.setItem('selected_label', selected_label);
+    }
+}
+
 
 window.addEvent('load', function () {
 
@@ -96,7 +100,7 @@ window.addEvent('load', function () {
         $("active_filter").removeClass("selectedFilter");
         $("inactive_filter").removeClass("selectedFilter");
         $(f + "_filter").addClass("selectedFilter");
-        filter = f;
+        selected_filter = f;
         localStorage.setItem('selected_filter', f);
         // Reload torrents
         if (typeof myTable.table != 'undefined')
@@ -116,7 +120,7 @@ window.addEvent('load', function () {
         loadMethod : 'xhr',
         contentURL : 'filters.html',
         onContentLoaded : function () {
-            setFilter(filter);
+            setFilter(selected_filter);
         },
         column : 'filtersColumn',
         height : 300
@@ -129,11 +133,7 @@ window.addEvent('load', function () {
 
     var loadTorrentsInfoTimer;
     var loadTorrentsInfo = function () {
-        var queueing_enabled = false;
         var url = new URI('json/torrents');
-        url.setData('filter', filter);
-        url.setData('sort', myTable.table.sortedColumn);
-        url.setData('reverse', myTable.table.reverseSort);
         var request = new Request.JSON({
             url : url,
             noCache : true,
@@ -143,84 +143,36 @@ window.addEvent('load', function () {
                 clearTimeout(loadTorrentsInfoTimer);
                 loadTorrentsInfoTimer = loadTorrentsInfo.delay(2000);
             },
-            onSuccess : function (events) {
+            onSuccess : function (response) {
                 $('error_div').set('html', '');
-                if (events) {
-                    // Add new torrents or update them
-                    torrent_hashes = myTable.getRowIds();
-                    events_hashes = new Array();
-                    pos = 0;
-                    events.each(function (event) {
-                        events_hashes[events_hashes.length] = event.hash;
-                        var row = new Array();
-                        var data = new Array();
-                        row.length = 10;
-                        row[0] = stateToImg(event.state);
-                        row[1] = event.name;
-                        row[2] = event.priority > -1 ? event.priority : null;
-                        data[2] = event.priority;
-                        row[3] = friendlyUnit(event.size, false);
-                        data[3] = event.size;
-                        row[4] = (event.progress * 100).round(1);
-                        if (row[4] == 100.0 && event.progress != 1.0)
-                            row[4] = 99.9;
-                        data[4] = event.progress;
-                        row[5] = event.num_seeds;
-                        if (event.num_complete != -1)
-                            row[5] += " (" + event.num_complete + ")";
-                        data[5] = event.num_seeds;
-                        row[6] = event.num_leechs;
-                        if (event.num_incomplete != -1)
-                            row[6] += " (" + event.num_incomplete + ")";
-                        data[6] = event.num_leechs;
-                        row[7] = friendlyUnit(event.dlspeed, true);
-                        data[7] = event.dlspeed;
-                        row[8] = friendlyUnit(event.upspeed, true);
-                        data[8] = event.upspeed;
-                        row[9] = friendlyDuration(event.eta);
-                        data[9] = event.eta;
-                        if (event.ratio == -1)
-                            row[10] = "∞";
-                        else
-                            row[10] = (Math.floor(100 * event.ratio) / 100).toFixed(2); //Don't round up
-                        data[10] = event.ratio;
-                        if (row[2] != null)
+                if (response) {
+                    var queueing_enabled = false;
+                    var torrents_hashes = new Array();
+                    for (var i = 0; i < response.length; i++) {
+                        torrents_hashes.push(response[i].hash);
+                        if (response[i].priority > -1)
                             queueing_enabled = true;
+                        myTable.updateRowData(response[i])
+                    }
 
-                        attrs = {};
-                        attrs['downloaded'] = (event.progress == 1.0);
-                        attrs['state'] = event.state;
-                        attrs['seq_dl'] = (event.seq_dl == true);
-                        attrs['f_l_piece_prio'] = (event.f_l_piece_prio == true);
+                    var keys = myTable.rows.getKeys();
+                    for (var i = 0; i < keys.length; i++) {
+                        if (!torrents_hashes.contains(keys[i]))
+                            myTable.rows.erase(keys[i]);
+                    }
 
-                        if (!torrent_hashes.contains(event.hash)) {
-                            // New unfinished torrent
-                            torrent_hashes[torrent_hashes.length] = event.hash;
-                            //alert("Inserting row");
-                            myTable.insertRow(event.hash, row, data, attrs, pos);
-                        } else {
-                            // Update torrent data
-                            myTable.updateRow(event.hash, row, data, attrs, pos);
-                        }
-
-                        pos++;
-                    });
-                    // Remove deleted torrents
-                    torrent_hashes.each(function (hash) {
-                        if (!events_hashes.contains(hash)) {
-                            myTable.removeRow(hash);
-                        }
-                    });
+                    myTable.columns['priority'].force_hide = !queueing_enabled;
+                    myTable.updateColumn('priority');
                     if (queueing_enabled) {
                         $('queueingButtons').removeClass('invisible');
                         $('queueingMenuItems').removeClass('invisible');
-                        myTable.showPriority();
-                    } else {
+                    }
+                    else {
                         $('queueingButtons').addClass('invisible');
                         $('queueingMenuItems').addClass('invisible');
-                        myTable.hidePriority();
                     }
 
+                    myTable.updateTable(true);
                     myTable.altRow();
                 }
                 clearTimeout(loadTorrentsInfoTimer);
@@ -230,8 +182,9 @@ window.addEvent('load', function () {
     };
 
     updateTransferList = function() {
+        myTable.updateTable();
         clearTimeout(loadTorrentsInfoTimer);
-        loadTorrentsInfo();
+        loadTorrentsInfoTimer = loadTorrentsInfo.delay(30);
     }
 
     var loadTransferInfoTimer;

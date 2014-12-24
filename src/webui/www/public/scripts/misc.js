@@ -16,7 +16,8 @@ function friendlyUnit(value, isSpeed) {
     while (value >= 1024. && i++ < 6)
         value /= 1024.;
     var ret;
-    ret = value.toFixed(1) + " " + units[i];
+    ret = (Math.floor(10 * value) / 10).toFixed(1) //Don't round up
+            + " " + units[i];
     if (isSpeed)
         ret += "QBT_TR(/s)QBT_TR";
     return ret;
@@ -73,3 +74,9 @@ if (!Date.prototype.toISOString) {
 
     }());
 }
+
+function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+};
