@@ -112,15 +112,15 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(trackerUpButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionUp()));
   connect(trackerDownButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionDown()));
   horizontalLayout_trackers->insertWidget(0, trackerList);
-  connect(trackerList->header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(saveSettings()));
-  connect(trackerList->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
-  connect(trackerList->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
+  connect(trackerList->header(), SIGNAL(sectionMoved(int, int, int)), trackerList, SLOT(saveSettings()));
+  connect(trackerList->header(), SIGNAL(sectionResized(int, int, int)), trackerList, SLOT(saveSettings()));
+  connect(trackerList->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), trackerList, SLOT(saveSettings()));
   // Peers list
   peersList = new PeerListWidget(this);
   peerpage_layout->addWidget(peersList);
-  connect(peersList->header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(saveSettings()));
-  connect(peersList->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
-  connect(peersList->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
+  connect(peersList->header(), SIGNAL(sectionMoved(int, int, int)), peersList, SLOT(saveSettings()));
+  connect(peersList->header(), SIGNAL(sectionResized(int, int, int)), peersList, SLOT(saveSettings()));
+  connect(peersList->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), peersList, SLOT(saveSettings()));
   // Tab bar
   m_tabBar = new PropTabBar();
   verticalLayout->addLayout(m_tabBar);
@@ -290,12 +290,14 @@ void PropertiesWidget::readSettings() {
     QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
     hSplitter->setSizes(slideSizes);
   }
+  const int current_tab = pref->getPropCurTab();
+  const bool visible = pref->getPropVisible();
+  // the following will call saveSettings but shouldn't change any state
   if (!filesList->header()->restoreState(pref->getPropFileListState())) {
     filesList->header()->resizeSection(0, 400); //Default
   }
-  const int current_tab = pref->getPropCurTab();
   m_tabBar->setCurrentIndex(current_tab);
-  if (!pref->getPropVisible()) {
+  if (!visible) {
     setVisibility(false);
   }
 }
