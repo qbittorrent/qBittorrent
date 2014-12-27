@@ -114,6 +114,7 @@ struct QBtCommandLineParameters
 #endif
     int webUiPort;
     QStringList torrents;
+    QString uknownParameter;
 
     QBtCommandLineParameters()
         : showHelp(false)
@@ -153,6 +154,12 @@ int main(int argc, char *argv[])
                      messagesCollector, SLOT(collectMessage(const QString &)));
 
     const QBtCommandLineParameters params = parseCommandLine();
+
+    if (!params.uknownParameter.isEmpty()) {
+        displayBadArgMessage(QObject::tr("%1 is an uknown command line parameter.", "--random-parameter is an uknown command line parameter.")
+                             .arg(params.uknownParameter));
+        return EXIT_FAILURE;
+    }
 
 #ifndef Q_OS_WIN
     if (params.showVersion) {
@@ -292,28 +299,37 @@ QBtCommandLineParameters parseCommandLine()
     for (int i = 1; i < appArguments.size(); ++i) {
         const QString& arg = appArguments[i];
 
-        if ((arg == QLatin1String("-h")) || (arg == QLatin1String("--help"))) {
-            result.showHelp = true;
-        }
+        if ((arg.startsWith("--") && !arg.endsWith(".torrent")) ||
+            (arg.startsWith("-") && arg.size() == 2)) {
+            //Parse known parameters
+            if ((arg == QLatin1String("-h")) || (arg == QLatin1String("--help"))) {
+                result.showHelp = true;
+            }
 #ifndef Q_OS_WIN
-        else if ((arg == QLatin1String("-v")) || (arg == QLatin1String("--version"))) {
-            result.showVersion = true;
-        }
+            else if ((arg == QLatin1String("-v")) || (arg == QLatin1String("--version"))) {
+                result.showVersion = true;
+            }
 #endif
-        else if (arg.startsWith(QLatin1String("--webui-port="))) {
-            QStringList parts = arg.split(QLatin1Char('='));
-            if (parts.size() == 2)
-                result.webUiPort = parts.last().toInt();
-        }
+            else if (arg.startsWith(QLatin1String("--webui-port="))) {
+                QStringList parts = arg.split(QLatin1Char('='));
+                if (parts.size() == 2)
+                    result.webUiPort = parts.last().toInt();
+            }
 #ifndef DISABLE_GUI
-        else if (arg == QLatin1String("--no-splash")) {
-            result.noSplash = true;
-        }
+            else if (arg == QLatin1String("--no-splash")) {
+                result.noSplash = true;
+            }
 #else
-        else if ((arg == QLatin1String("-d")) || (arg == QLatin1String("--daemon"))) {
-            result.shouldDaemonize = true;
-        }
+            else if ((arg == QLatin1String("-d")) || (arg == QLatin1String("--daemon"))) {
+                result.shouldDaemonize = true;
+            }
 #endif
+            else {
+                //Uknown argument
+                result.uknownParameter = arg;
+                break;
+            }
+        }
         else {
             QFileInfo torrentPath;
             torrentPath.setFile(arg);
