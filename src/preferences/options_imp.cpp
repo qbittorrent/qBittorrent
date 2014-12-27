@@ -524,7 +524,7 @@ void options_imp::loadOptions() {
   setLocale(pref->getLocale());
   checkAltRowColors->setChecked(pref->useAlternatingRowColors());
   checkShowSystray->setChecked(pref->systrayIntegration());
-  checkShowSplash->setChecked(!pref->isSlashScreenDisabled());
+  checkShowSplash->setChecked(!pref->isSplashScreenDisabled());
   if (checkShowSystray->isChecked()) {
     checkCloseToSystray->setChecked(pref->closeToTray());
     checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
