@@ -101,7 +101,7 @@ void sigsegvHandler(int);
 void sigabrtHandler(int);
 #endif
 
-struct QbtCommandLineParameters
+struct QBtCommandLineParameters
 {
     bool showHelp;
 #ifndef Q_OS_WIN
@@ -115,7 +115,7 @@ struct QbtCommandLineParameters
     int webUiPort;
     QStringList torrents;
 
-    QbtCommandLineParameters()
+    QBtCommandLineParameters()
         : showHelp(false)
 #ifndef Q_OS_WIN
         , showVersion(false)
@@ -130,15 +130,14 @@ struct QbtCommandLineParameters
     }
 };
 
-QbtCommandLineParameters parseCommandLine();
-
 #ifndef DISABLE_GUI
 void showSplashScreen();
 #endif
 void displayVersion();
-void displayUsage(QString prg_name = QLatin1String("qbittorrent"));
+void displayUsage(const QString &prg_name);
 bool userAgreesWithLegalNotice();
-void displayBadArgMessage(QString message);
+void displayBadArgMessage(const QString &message);
+QBtCommandLineParameters parseCommandLine();
 
 // Main
 int main(int argc, char *argv[])
@@ -153,7 +152,7 @@ int main(int argc, char *argv[])
     QObject::connect(app.data(), SIGNAL(messageReceived(const QString &)),
                      messagesCollector, SLOT(collectMessage(const QString &)));
 
-    const QbtCommandLineParameters params = parseCommandLine();
+    const QBtCommandLineParameters params = parseCommandLine();
 
 #ifndef Q_OS_WIN
     if (params.showVersion) {
@@ -285,9 +284,9 @@ int main(int argc, char *argv[])
     return ret;
 }
 
-QbtCommandLineParameters parseCommandLine()
+QBtCommandLineParameters parseCommandLine()
 {
-    QbtCommandLineParameters result;
+    QBtCommandLineParameters result;
     QStringList appArguments = qApp->arguments();
 
     for (int i = 1; i < appArguments.size(); ++i) {
@@ -404,7 +403,7 @@ void displayVersion()
     std::cout << qPrintable(qApp->applicationName()) << " " << VERSION << std::endl;
 }
 
-QString makeUsage(QString prg_name)
+QString makeUsage(const QString &prg_name)
 {
     QString text;
 
@@ -439,7 +438,7 @@ QString makeUsage(QString prg_name)
     return text;
 }
 
-void displayUsage(QString prg_name)
+void displayUsage(const QString& prg_name)
 {
 #ifndef Q_OS_WIN
     std::cout << qPrintable(makeUsage(prg_name)) << std::endl;
@@ -451,7 +450,7 @@ void displayUsage(QString prg_name)
 #endif
 }
 
-void displayBadArgMessage(QString message)
+void displayBadArgMessage(const QString& message)
 {
     QString help = QObject::tr("Run application with -h option to read about command line parameters.");
 #ifdef Q_OS_WIN
