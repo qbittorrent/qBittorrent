@@ -103,7 +103,7 @@ Preferences::Preferences() : dirty(false), lock(QReadWriteLock::Recursive) {
 #endif
 
   timer.setSingleShot(true);
-  timer.setInterval(15*60*1000);
+  timer.setInterval(5*1000);
   connect(&timer, SIGNAL(timeout()), SLOT(save()));
 }
 
@@ -177,8 +177,7 @@ void Preferences::setValue(const QString &key, const QVariant &value) {
   if (m_data.value(key) == value)
     return;
   dirty = true;
-  if (!timer.isActive())
-    timer.start();
+  timer.start();
   m_data.insert(key, value);
 }
 
