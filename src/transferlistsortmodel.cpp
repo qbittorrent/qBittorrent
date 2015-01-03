@@ -222,7 +222,7 @@ bool TransferListSortModel::matchStatusFilter(int sourceRow, const QModelIndex &
   case TorrentFilter::PAUSED:
     return (state == TorrentModelItem::STATE_PAUSED_UP || state == TorrentModelItem::STATE_PAUSED_DL);
 
-  case TorrentFilter::UNPAUSED:
+  case TorrentFilter::RESUMED:
     return (state != TorrentModelItem::STATE_PAUSED_UP && state != TorrentModelItem::STATE_PAUSED_DL);
 
   case TorrentFilter::ACTIVE:
