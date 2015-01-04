@@ -1682,7 +1682,7 @@ bool QBtSession::isFilePreviewPossible(const QString &hash) const {
   }
   const unsigned int nbFiles = h.num_files();
   for (unsigned int i=0; i<nbFiles; ++i) {
-    const QString extension = fsutils::fileExtension(h.filename_at(i));
+    const QString extension = fsutils::fileExtension(h.filepath_at(i));
     if (misc::isPreviewable(extension))
       return true;
   }

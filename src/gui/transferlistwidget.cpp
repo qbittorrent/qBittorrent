@@ -809,8 +809,14 @@ void TransferListWidget::displayListMenu(const QPoint&)
                 has_pause = true;
             }
         }
-        if (h.has_metadata() && BTSession->isFilePreviewPossible(hash) && !has_preview)
-            has_preview = true;
+        if (!has_preview) {
+            // If the torrent contains many files, don't bother checking if any
+            // of them is previewable. qBittorrent might hang while doing so.
+            if (h.num_files() > 100)
+                has_preview = true;
+            else if (h.has_metadata() && BTSession->isFilePreviewPossible(hash))
+                has_preview = true;
+        }
         first = false;
         if (has_pause && has_start && has_preview && one_not_seed) break;
     }
