@@ -56,6 +56,7 @@ public:
   void refreshStatus(libtorrent::torrent_status const& status);
   inline int columnCount() const { return NB_COLUMNS; }
   QVariant data(int column, int role = Qt::DisplayRole) const;
+  bool setLabel(const QVariant &value);
   bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
   inline QString const& hash() const { return m_hash; }
   State state() const;
@@ -112,6 +113,7 @@ private slots:
   void handleTorrentLabelChange(QString previous, QString current);
   void handleTorrentAboutToBeRemoved(const QTorrentHandle & h);
   void stateUpdated(const std::vector<libtorrent::torrent_status> &statuses);
+  void updateTorrentLabel(const QTorrentHandle &h, QString label);
 
 private:
   void beginInsertTorrent(int row);

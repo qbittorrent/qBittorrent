@@ -21,6 +21,7 @@
     <script type="text/javascript" src="scripts/misc.js"></script>
     <script type="text/javascript" src="scripts/progressbar.js"></script>
     <script type="text/javascript" src="scripts/dynamicTable.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scripts/underscore-min.js" charset="utf-8"></script>
     <script type="text/javascript" src="scripts/client.js" charset="utf-8"></script>
     <script type="text/javascript" src="scripts/contextmenu.js" charset="utf-8"></script>
 </head>
@@ -97,6 +98,11 @@
     <ul id="contextmenu">
         <li><a href="#Start"><img src="theme/media-playback-start" alt="QBT_TR(Resume)QBT_TR"/> QBT_TR(Resume)QBT_TR</a></li>
         <li><a href="#Pause"><img src="theme/media-playback-pause" alt="QBT_TR(Pause)QBT_TR"/> QBT_TR(Pause)QBT_TR</a></li>
+        <li class="separator">
+        	<a href="#Label">QBT_TR(Label >)QBT_TR</a>
+        	<ul id="labelList">
+        	</ul>
+        </li>
         <li class="separator"><a href="#Delete"><img src="theme/list-remove" alt="QBT_TR(Delete)QBT_TR"/> QBT_TR(Delete)QBT_TR</a></li>
         <li id="queueingMenuItems" class="separator">
             <a href="#priority" class="arrow-right"><span style="display: inline-block; width:16px"></span> QBT_TR(Priority)QBT_TR</a>

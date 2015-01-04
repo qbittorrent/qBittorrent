@@ -335,3 +335,24 @@ void prefjson::setPreferences(const QString& json)
   // Reload preferences
   QBtSession::instance()->configureSession();
 }
+
+
+/**
+ * Returns the list of labels in JSON format.
+ *
+ * The return value is a JSON-formatted dictionary.
+ * The dictionary keys are:
+ *   - "name": Label name
+ */
+QByteArray prefjson::getLabels()
+{
+  const Preferences* const pref = Preferences::instance();
+  QVariantMap label;
+  QVariantList label_list;
+  foreach (const QString& s, pref->getTorrentLabels()) {
+    label["name"] = s;
+    label_list << label;
+  }
+
+  return json::toJson(label_list);
+}

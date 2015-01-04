@@ -40,6 +40,7 @@ private:
 
 public:
   static QByteArray getPreferences();
+  static QByteArray getLabels();
   static void setPreferences(const QString& json);
 
 };

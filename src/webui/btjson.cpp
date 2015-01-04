@@ -101,6 +101,8 @@ static const char KEY_TORRENT_ETA[] = "eta";
 static const char KEY_TORRENT_STATE[] = "state";
 static const char KEY_TORRENT_SEQUENTIAL_DOWNLOAD[] = "seq_dl";
 static const char KEY_TORRENT_FIRST_LAST_PIECE_PRIO[] = "f_l_piece_prio";
+static const char KEY_TORRENT_LABEL[] = "label";
+
 
 // Tracker keys
 static const char KEY_TRACKER_URL[] = "url";
@@ -224,6 +226,7 @@ static QVariantMap toMap(const QTorrentHandle& h)
         if (h.first_last_piece_first())
             ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = true;
     }
+    ret[KEY_TORRENT_LABEL] = TorrentPersistentData::getLabel(h.hash());
 
     return ret;
 }
@@ -249,6 +252,7 @@ static QVariantMap toMap(const QTorrentHandle& h)
  *   - "state": Torrent state
  *   - "seq_dl": Torrent sequential download state
  *   - "f_l_piece_prio": Torrent first last piece priority state
+ *   - "label": Torrent label
  */
 QByteArray btjson::getTorrents(QString filter, QString label,
                                QString sortedColumn, bool reverse, int limit, int offset)

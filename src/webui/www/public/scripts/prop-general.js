@@ -12,6 +12,7 @@ var clearData = function() {
     $('time_elapsed').set('html', '');
     $('nb_connections').set('html', '');
     $('share_ratio').set('html', '');
+    $('label').set('html', '');
 }
 
 var loadTorrentDataTimer;
@@ -70,6 +71,7 @@ var loadTorrentData = function() {
                 temp = data.nb_connections + " (" + "QBT_TR(%1 max)QBT_TR".replace("%1", status.nb_connections_limit) + ")";
                 $('nb_connections').set('html', temp);
                 $('share_ratio').set('html', data.share_ratio.toFixed(2));
+                $('label').set('html', data.label);
             }
             else {
                 clearData();

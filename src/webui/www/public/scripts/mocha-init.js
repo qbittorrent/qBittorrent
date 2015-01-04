@@ -274,6 +274,57 @@ initializeWindows = function() {
         }
     };
 
+    newLabelFN = function() {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            new MochaUI.Window({
+                id: 'newLabelPage',
+                title: "QBT_TR(Torrent Label)QBT_TR",
+                loadMethod: 'iframe',
+                contentURL: 'newlabel.html?hashes=' + h.join(','),
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                paddingVertical: 0,
+                paddingHorizontal: 0,
+                width: 424,
+                height: 80
+            });
+        }
+    };
+
+    resetLabelFN = function() {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            h.each(function(hash, index) {
+                new Request({
+                    url: 'command/setLabel',
+                    method: 'post',
+                    data: {
+                        hash: hash,
+                        label: ''
+                    }
+                }).send();
+            });
+        }
+    };
+
+    updateLabelFN = function(label) {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            h.each(function(hash, index) {
+                new Request({
+                    url: 'command/setLabel',
+                    method: 'post',
+                    data: {
+                        hash: hash,
+                        label: label
+                    }
+                }).send();
+            });
+        }
+    };
+
     ['pause', 'resume', 'recheck'].each(function(item) {
         addClickEvent(item, function(e) {
             new Event(e).stop();

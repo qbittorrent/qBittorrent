@@ -52,6 +52,7 @@ private:
     void action_public_images();
     void action_json_torrents();
     void action_json_preferences();
+    void action_json_labels();
     void action_json_transferInfo();
     void action_json_propertiesGeneral();
     void action_json_propertiesTrackers();
@@ -85,6 +86,9 @@ private:
     void action_command_topPrio();
     void action_command_bottomPrio();
     void action_command_recheck();
+    void action_command_setLabel();
+    void action_command_addLabel();
+    void action_command_deleteLabel();
     void action_version_api();
     void action_version_api_min();
     void action_version_qbittorrent();
