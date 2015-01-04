@@ -110,7 +110,8 @@ HEADERS += misc.h \
            qinisettings.h \
            smtp.h \
            dnsupdater.h \
-           application.h
+           application.h \
+           logger.h
 
 SOURCES += main.cpp \
            downloadthread.cpp \
@@ -120,7 +121,8 @@ SOURCES += main.cpp \
            fs_utils.cpp \
            smtp.cpp \
            dnsupdater.cpp \
-           application.cpp
+           application.cpp \
+           logger.cpp
 
 nox {
   HEADERS += headlessloader.h
