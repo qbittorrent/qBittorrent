@@ -30,50 +30,81 @@
 
 #include <QListWidgetItem>
 #include <QLabel>
+#include <QDateTime>
+#include <QColor>
+#include <QPalette>
 #include "executionlog.h"
 #include "ui_executionlog.h"
-#include "qbtsession.h"
+#include "logger.h"
 #include "iconprovider.h"
 #include "loglistwidget.h"
 
 ExecutionLog::ExecutionLog(QWidget *parent) :
   QWidget(parent),
   ui(new Ui::ExecutionLog),
-  m_logList(new LogListWidget(MAX_LOG_MESSAGES)),
-  m_banList(new LogListWidget(MAX_LOG_MESSAGES))
+  m_msgList(new LogListWidget(MAX_LOG_MESSAGES)),
+  m_peerList(new LogListWidget(MAX_LOG_MESSAGES))
 {
     ui->setupUi(this);
 
     ui->tabConsole->setTabIcon(0, IconProvider::instance()->getIcon("view-calendar-journal"));
     ui->tabConsole->setTabIcon(1, IconProvider::instance()->getIcon("view-filter"));
-    ui->tabGeneral->layout()->addWidget(m_logList);
-    ui->tabBan->layout()->addWidget(m_banList);
+    ui->tabGeneral->layout()->addWidget(m_msgList);
+    ui->tabBan->layout()->addWidget(m_peerList);
 
-    const QStringList log_msgs = QBtSession::instance()->getConsoleMessages();
-    foreach (const QString& msg, log_msgs)
+    const Logger* const logger = Logger::instance();
+    foreach (const Log::Msg& msg, logger->getMessages())
       addLogMessage(msg);
-    const QStringList ban_msgs = QBtSession::instance()->getPeerBanMessages();
-    foreach (const QString& msg, ban_msgs)
-      addBanMessage(msg);
-    connect(QBtSession::instance(), SIGNAL(newConsoleMessage(QString)), SLOT(addLogMessage(QString)));
-    connect(QBtSession::instance(), SIGNAL(newBanMessage(QString)), SLOT(addBanMessage(QString)));
-    connect(m_logList, SIGNAL(logCleared()), QBtSession::instance(), SLOT(clearConsoleMessages()));
-    connect(m_banList, SIGNAL(logCleared()), QBtSession::instance(), SLOT(clearPeerBanMessages()));
+    foreach (const Log::Peer& peer, logger->getPeers())
+      addPeerMessage(peer);
+    connect(logger, SIGNAL(newLogMessage(const Log::Msg &)), SLOT(addLogMessage(const Logg:Msg &)));
+    connect(logger, SIGNAL(newLogPeer(const Log::Peer &)), SLOT(addPeerMessage(const Log::Peer &)));
 }
 
 ExecutionLog::~ExecutionLog()
 {
-  delete m_logList;
-  delete m_banList;
+  delete m_msgList;
+  delete m_peerList;
   delete ui;
 }
 
-void ExecutionLog::addLogMessage(const QString &msg)
+void ExecutionLog::addLogMessage(const Log::Msg &msg)
 {
-  m_logList->appendLine(msg);
+  QString text;
+  QDateTime time = QDateTime::fromMSecsSinceEpoch(msg.timestamp);
+  QColor color;
+
+  switch (msg.type) {
+  case Log::INFO:
+    color.setNamedColor("blue");
+    break;
+  case Log::WARNING:
+    color.setNamedColor("orange");
+    break;
+  case Log::CRITICAL:
+    color.setNamedColor("red");
+    break;
+  default:
+    color = QApplication::palette().color(QPalette::WindowText);
+  }
+
+  text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - <font color='" + color.name() + "'>" + msg.message + "</font>";
+  m_msgList->appendLine(text);
 }
 
-void ExecutionLog::addBanMessage(const QString &msg)
+void ExecutionLog::addPeerMessage(const Log::Peer& peer)
 {
-  m_banList->appendLine(msg);
+  QString text;
+  QDateTime time = QDateTime::fromMSecsSinceEpoch(peer.timestamp);
+
+  if (peer.blocked)
+#if LIBTORRENT_VERSION_NUM < 10000
+    text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - " + tr("<font color='red'>%1</font> was blocked", "x.y.z.w was blocked").arg(peer.ip);
+#else
+    text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - " + tr("<font color='red'>%1</font> was blocked %2", "x.y.z.w was blocked").arg(peer.ip).arg(peer.reason);
+#endif
+  else
+    text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(peer.ip);
+
+  m_peerList->appendLine(text);
 }

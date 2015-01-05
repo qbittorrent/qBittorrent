@@ -38,7 +38,14 @@ namespace Ui {
     class ExecutionLog;
 }
 QT_END_NAMESPACE
+class Logger;
 class LogListWidget;
+
+namespace Log
+{
+  struct Msg;
+  struct Peer;
+}
 
 class ExecutionLog : public QWidget
 {
@@ -48,15 +55,15 @@ public:
     explicit ExecutionLog(QWidget *parent = 0);
     ~ExecutionLog();
 
-public slots:
-  void addLogMessage(const QString &msg);
-  void addBanMessage(const QString &msg);
+private slots:
+  void addLogMessage(const Log::Msg &msg);
+  void addPeerMessage(const Log::Peer &peer);
 
 private:
   Ui::ExecutionLog *ui;
 
-  LogListWidget *m_logList;
-  LogListWidget *m_banList;
+  LogListWidget *m_msgList;
+  LogListWidget *m_peerList;
 };
 
 #endif // EXECUTIONLOG_H
