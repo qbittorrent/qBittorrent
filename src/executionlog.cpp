@@ -39,11 +39,11 @@
 #include "iconprovider.h"
 #include "loglistwidget.h"
 
-ExecutionLog::ExecutionLog(QWidget *parent) :
-  QWidget(parent),
-  ui(new Ui::ExecutionLog),
-  m_msgList(new LogListWidget(MAX_LOG_MESSAGES)),
-  m_peerList(new LogListWidget(MAX_LOG_MESSAGES))
+ExecutionLog::ExecutionLog(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::ExecutionLog)
+    , m_msgList(new LogListWidget(MAX_LOG_MESSAGES))
+    , m_peerList(new LogListWidget(MAX_LOG_MESSAGES))
 {
     ui->setupUi(this);
 
@@ -54,57 +54,57 @@ ExecutionLog::ExecutionLog(QWidget *parent) :
 
     const Logger* const logger = Logger::instance();
     foreach (const Log::Msg& msg, logger->getMessages())
-      addLogMessage(msg);
+        addLogMessage(msg);
     foreach (const Log::Peer& peer, logger->getPeers())
-      addPeerMessage(peer);
-    connect(logger, SIGNAL(newLogMessage(const Log::Msg &)), SLOT(addLogMessage(const Logg:Msg &)));
+        addPeerMessage(peer);
+    connect(logger, SIGNAL(newLogMessage(const Log::Msg &)), SLOT(addLogMessage(const Log::Msg &)));
     connect(logger, SIGNAL(newLogPeer(const Log::Peer &)), SLOT(addPeerMessage(const Log::Peer &)));
 }
 
 ExecutionLog::~ExecutionLog()
 {
-  delete m_msgList;
-  delete m_peerList;
-  delete ui;
+    delete m_msgList;
+    delete m_peerList;
+    delete ui;
 }
 
 void ExecutionLog::addLogMessage(const Log::Msg &msg)
 {
-  QString text;
-  QDateTime time = QDateTime::fromMSecsSinceEpoch(msg.timestamp);
-  QColor color;
+    QString text;
+    QDateTime time = QDateTime::fromMSecsSinceEpoch(msg.timestamp);
+    QColor color;
 
-  switch (msg.type) {
-  case Log::INFO:
-    color.setNamedColor("blue");
-    break;
-  case Log::WARNING:
-    color.setNamedColor("orange");
-    break;
-  case Log::CRITICAL:
-    color.setNamedColor("red");
-    break;
-  default:
-    color = QApplication::palette().color(QPalette::WindowText);
-  }
+    switch (msg.type) {
+    case Log::INFO:
+        color.setNamedColor("blue");
+        break;
+    case Log::WARNING:
+        color.setNamedColor("orange");
+        break;
+    case Log::CRITICAL:
+        color.setNamedColor("red");
+        break;
+    default:
+        color = QApplication::palette().color(QPalette::WindowText);
+    }
 
-  text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - <font color='" + color.name() + "'>" + msg.message + "</font>";
-  m_msgList->appendLine(text);
+    text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - <font color='" + color.name() + "'>" + msg.message + "</font>";
+    m_msgList->appendLine(text);
 }
 
 void ExecutionLog::addPeerMessage(const Log::Peer& peer)
 {
-  QString text;
-  QDateTime time = QDateTime::fromMSecsSinceEpoch(peer.timestamp);
+    QString text;
+    QDateTime time = QDateTime::fromMSecsSinceEpoch(peer.timestamp);
 
-  if (peer.blocked)
+    if (peer.blocked)
 #if LIBTORRENT_VERSION_NUM < 10000
-    text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - " + tr("<font color='red'>%1</font> was blocked", "x.y.z.w was blocked").arg(peer.ip);
+        text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - " + tr("<font color='red'>%1</font> was blocked", "x.y.z.w was blocked").arg(peer.ip);
 #else
-    text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - " + tr("<font color='red'>%1</font> was blocked %2", "x.y.z.w was blocked").arg(peer.ip).arg(peer.reason);
+        text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - " + tr("<font color='red'>%1</font> was blocked %2", "x.y.z.w was blocked").arg(peer.ip).arg(peer.reason);
 #endif
-  else
-    text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(peer.ip);
+    else
+        text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(peer.ip);
 
-  m_peerList->appendLine(text);
+    m_peerList->appendLine(text);
 }
