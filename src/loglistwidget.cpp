@@ -93,5 +93,4 @@ void LogListWidget::copySelection()
 
 void LogListWidget::clearLog() {
   clear();
-  emit logCleared();
 }
