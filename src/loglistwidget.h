@@ -50,9 +50,6 @@ protected slots:
   void copySelection();
   void clearLog();
 
-signals:
-  void logCleared();
-
 protected:
   void keyPressEvent(QKeyEvent *event);
 
