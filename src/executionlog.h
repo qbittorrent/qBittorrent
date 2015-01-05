@@ -43,11 +43,11 @@ class LogListWidget;
 
 namespace Log
 {
-  struct Msg;
-  struct Peer;
+    struct Msg;
+    struct Peer;
 }
 
-class ExecutionLog : public QWidget
+class ExecutionLog: public QWidget
 {
     Q_OBJECT
 
@@ -56,14 +56,14 @@ public:
     ~ExecutionLog();
 
 private slots:
-  void addLogMessage(const Log::Msg &msg);
-  void addPeerMessage(const Log::Peer &peer);
+    void addLogMessage(const Log::Msg &msg);
+    void addPeerMessage(const Log::Peer &peer);
 
 private:
-  Ui::ExecutionLog *ui;
+    Ui::ExecutionLog *ui;
 
-  LogListWidget *m_msgList;
-  LogListWidget *m_peerList;
+    LogListWidget *m_msgList;
+    LogListWidget *m_peerList;
 };
 
 #endif // EXECUTIONLOG_H
