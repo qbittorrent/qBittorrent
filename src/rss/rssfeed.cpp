@@ -41,6 +41,7 @@
 #include "rssdownloadrulelist.h"
 #include "downloadthread.h"
 #include "fs_utils.h"
+#include "logger.h"
 
 bool rssArticleDateRecentThan(const RssArticlePtr& left, const RssArticlePtr& right)
 {
@@ -367,7 +368,7 @@ void RssFeed::downloadArticleTorrentIfMatching(RssDownloadRuleList* rules, const
   rules->saveRulesToStorage();
   // Download the torrent
   const QString& torrent_url = article->torrentUrl();
-  QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(article->title()).arg(displayName()));
+  Logger::instance()->addMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(article->title()).arg(displayName()));
   connect(QBtSession::instance(), SIGNAL(newDownloadedTorrentFromRss(QString)), article.data(), SLOT(handleTorrentDownloadSuccess(const QString&)), Qt::UniqueConnection);
   connect(article.data(), SIGNAL(articleWasRead()), SLOT(handleArticleStateChanged()), Qt::UniqueConnection);
   if (torrent_url.startsWith("magnet:", Qt::CaseInsensitive))

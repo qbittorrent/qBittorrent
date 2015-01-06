@@ -39,6 +39,7 @@
 #include "speedlimitdlg.h"
 #include "iconprovider.h"
 #include "qtorrenthandle.h"
+#include "logger.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QSet>
@@ -232,7 +233,7 @@ void PeerListWidget::banSelectedPeers(const QStringList& peer_ips)
 
   foreach (const QString &ip, peer_ips) {
     qDebug("Banning peer %s...", ip.toLocal8Bit().data());
-    QBtSession::instance()->addConsoleMessage(tr("Manually banning peer %1...").arg(ip));
+    Logger::instance()->addMessage(tr("Manually banning peer %1...").arg(ip));
     QBtSession::instance()->banIP(ip);
   }
   // Refresh list

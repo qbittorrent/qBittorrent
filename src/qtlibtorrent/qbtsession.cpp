@@ -36,6 +36,7 @@
 #include <QHostAddress>
 #include <QNetworkAddressEntry>
 #include <QProcess>
+#include <QCoreApplication>
 
 #include "smtp.h"
 #include "filesystemwatcher.h"
@@ -50,6 +51,7 @@
 #include "preferences.h"
 #include "scannedfoldersmodel.h"
 #include "qtracker.h"
+#include "logger.h"
 #ifndef DISABLE_GUI
 #include "shutdownconfirm.h"
 #include "geoipmanager.h"
@@ -132,7 +134,7 @@ QBtSession::QBtSession()
   // Construct session
   s = new session(fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)), 0);
   //std::cout << "Peer ID: " << fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)).to_string() << std::endl;
-  addConsoleMessage("Peer ID: "+misc::toQString(fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)).to_string()));
+  Logger::instance()->addMessage("Peer ID: "+misc::toQString(fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)).to_string()));
 
   // Set severity level of libtorrent session
   s->set_alert_mask(alert::error_notification | alert::peer_notification | alert::port_mapping_notification | alert::storage_notification | alert::tracker_notification | alert::status_notification | alert::ip_block_notification | alert::progress_notification | alert::stats_notification);
@@ -233,15 +235,16 @@ void QBtSession::processBigRatios() {
       qDebug("Ratio: %f (limit: %f)", ratio, ratio_limit);
       Q_ASSERT(ratio_limit >= 0.f);
       if (ratio <= MAX_RATIO && ratio >= ratio_limit) {
+        Logger* const logger = Logger::instance();
         if (high_ratio_action == REMOVE_ACTION) {
-          addConsoleMessage(tr("%1 reached the maximum ratio you set.").arg(h.name()));
-          addConsoleMessage(tr("Removing torrent %1...").arg(h.name()));
+          logger->addMessage(tr("%1 reached the maximum ratio you set.").arg(h.name()));
+          logger->addMessage(tr("Removing torrent %1...").arg(h.name()));
           deleteTorrent(hash);
         } else {
           // Pause it
           if (!h.is_paused()) {
-            addConsoleMessage(tr("%1 reached the maximum ratio you set.").arg(h.name()));
-            addConsoleMessage(tr("Pausing torrent %1...").arg(h.name()));
+            logger->addMessage(tr("%1 reached the maximum ratio you set.").arg(h.name()));
+            logger->addMessage(tr("Pausing torrent %1...").arg(h.name()));
             pauseTorrent(hash);
           }
         }
@@ -408,18 +411,19 @@ void QBtSession::configureSession() {
   }
 #endif
   // * UPnP / NAT-PMP
+  Logger* const logger = Logger::instance();
   if (pref->isUPnPEnabled()) {
     enableUPnP(true);
-    addConsoleMessage(tr("UPnP / NAT-PMP support [ON]"), QString::fromUtf8("blue"));
+    logger->addMessage(tr("UPnP / NAT-PMP support [ON]"), Log::INFO);
   } else {
     enableUPnP(false);
-    addConsoleMessage(tr("UPnP / NAT-PMP support [OFF]"), QString::fromUtf8("blue"));
+    logger->addMessage(tr("UPnP / NAT-PMP support [OFF]"), Log::INFO);
   }
   // * Session settings
   session_settings sessionSettings = s->settings();
   sessionSettings.user_agent = "qBittorrent "VERSION;
   //std::cout << "HTTP user agent is " << sessionSettings.user_agent << std::endl;
-  addConsoleMessage(tr("HTTP user agent is %1").arg(misc::toQString(sessionSettings.user_agent)));
+  logger->addMessage(tr("HTTP user agent is %1").arg(misc::toQString(sessionSettings.user_agent)));
 
   sessionSettings.upnp_ignore_nonrouters = true;
   sessionSettings.use_dht_as_fallback = false;
@@ -445,9 +449,9 @@ void QBtSession::configureSession() {
   resumeDataTimer.setInterval(pref->saveResumeDataInterval() * 60 * 1000);
   sessionSettings.anonymous_mode = pref->isAnonymousModeEnabled();
   if (sessionSettings.anonymous_mode) {
-    addConsoleMessage(tr("Anonymous mode [ON]"), "blue");
+    logger->addMessage(tr("Anonymous mode [ON]"), Log::INFO);
   } else {
-    addConsoleMessage(tr("Anonymous mode [OFF]"), "blue");
+    logger->addMessage(tr("Anonymous mode [OFF]"), Log::INFO);
   }
   // Queueing System
   if (pref->isQueueingSystemEnabled()) {
@@ -530,20 +534,20 @@ void QBtSession::configureSession() {
   enableDHT(pref->isDHTEnabled());
   // * PeX
   if (PeXEnabled) {
-    addConsoleMessage(tr("PeX support [ON]"), QString::fromUtf8("blue"));
+    logger->addMessage(tr("PeX support [ON]"), Log::INFO);
   } else {
-    addConsoleMessage(tr("PeX support [OFF]"), QString::fromUtf8("red"));
+    logger->addMessage(tr("PeX support [OFF]"), Log::CRITICAL);
   }
   if (PeXEnabled != pref->isPeXEnabled()) {
-    addConsoleMessage(tr("Restart is required to toggle PeX support"), QString::fromUtf8("red"));
+    logger->addMessage(tr("Restart is required to toggle PeX support"), Log::CRITICAL);
   }
   // * LSD
   if (pref->isLSDEnabled()) {
     enableLSD(true);
-    addConsoleMessage(tr("Local Peer Discovery support [ON]"), QString::fromUtf8("blue"));
+    logger->addMessage(tr("Local Peer Discovery support [ON]"), Log::INFO);
   } else {
     enableLSD(false);
-    addConsoleMessage(tr("Local Peer Discovery support [OFF]"), QString::fromUtf8("blue"));
+    logger->addMessage(tr("Local Peer Discovery support [OFF]"), Log::INFO);
   }
   // * Encryption
   const int encryptionState = pref->getEncryptionSetting();
@@ -555,17 +559,17 @@ void QBtSession::configureSession() {
   case 0: //Enabled
     encryptionSettings.out_enc_policy = pe_settings::enabled;
     encryptionSettings.in_enc_policy = pe_settings::enabled;
-    addConsoleMessage(tr("Encryption support [ON]"), QString::fromUtf8("blue"));
+    logger->addMessage(tr("Encryption support [ON]"), Log::INFO);
     break;
   case 1: // Forced
     encryptionSettings.out_enc_policy = pe_settings::forced;
     encryptionSettings.in_enc_policy = pe_settings::forced;
-    addConsoleMessage(tr("Encryption support [FORCED]"), QString::fromUtf8("blue"));
+    logger->addMessage(tr("Encryption support [FORCED]"), Log::INFO);
     break;
   default: // Disabled
     encryptionSettings.out_enc_policy = pe_settings::disabled;
     encryptionSettings.in_enc_policy = pe_settings::disabled;
-    addConsoleMessage(tr("Encryption support [OFF]"), QString::fromUtf8("blue"));
+    logger->addMessage(tr("Encryption support [OFF]"), Log::INFO);
   }
   applyEncryptionSettings(encryptionSettings);
   // * Maximum ratio
@@ -627,12 +631,12 @@ void QBtSession::configureSession() {
       m_tracker = new QTracker(this);
     }
     if (m_tracker->start()) {
-      addConsoleMessage(tr("Embedded Tracker [ON]"), QString::fromUtf8("blue"));
+      logger->addMessage(tr("Embedded Tracker [ON]"), Log::INFO);
     } else {
-      addConsoleMessage(tr("Failed to start the embedded tracker!"), QString::fromUtf8("red"));
+      logger->addMessage(tr("Failed to start the embedded tracker!"), Log::CRITICAL);
     }
   } else {
-    addConsoleMessage(tr("Embedded Tracker [OFF]"));
+    logger->addMessage(tr("Embedded Tracker [OFF]"));
     if (m_tracker)
       delete m_tracker;
   }
@@ -680,11 +684,12 @@ void QBtSession::initWebUi() {
 #endif
 
     if (!httpServer->isListening()) {
+      Logger* const logger = Logger::instance();
       bool success = httpServer->listen(QHostAddress::Any, port);
       if (success)
-        addConsoleMessage(tr("The Web UI is listening on port %1").arg(port));
+        logger->addMessage(tr("The Web UI is listening on port %1").arg(port));
       else
-        addConsoleMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(port), "red");
+        logger->addMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(port), Log::CRITICAL);
     }
     // DynDNS
     if (pref->isDynDNSEnabled()) {
@@ -831,9 +836,9 @@ void QBtSession::deleteTorrent(const QString &hash, bool delete_local_files) {
   // Remove tracker errors
   trackersInfos.remove(hash);
   if (delete_local_files)
-    addConsoleMessage(tr("'%1' was removed from transfer list and hard disk.", "'xxx.avi' was removed...").arg(fileName));
+    Logger::instance()->addMessage(tr("'%1' was removed from transfer list and hard disk.", "'xxx.avi' was removed...").arg(fileName));
   else
-    addConsoleMessage(tr("'%1' was removed from transfer list.", "'xxx.avi' was removed...").arg(fileName));
+    Logger::instance()->addMessage(tr("'%1' was removed from transfer list.", "'xxx.avi' was removed...").arg(fileName));
   qDebug("Torrent deleted.");
 }
 
@@ -923,18 +928,19 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   Q_UNUSED(fromScanDir);
   Q_UNUSED(filePath);
   Preferences* const pref = Preferences::instance();
+  Logger* const logger = Logger::instance();
   QTorrentHandle h;
   add_torrent_params p;
   libtorrent::error_code ec;
 
   libtorrent::parse_magnet_uri(magnet_uri.toUtf8().constData(), p, ec);
   if (ec) {
-    addConsoleMessage(tr("Couldn't parse this Magnet URI: '%1'").arg(magnet_uri));
+    logger->addMessage(tr("Couldn't parse this Magnet URI: '%1'").arg(magnet_uri));
     return h;
   }
   const QString hash(misc::toQString(p.info_hash));
   if (hash.isEmpty()) {
-    addConsoleMessage(tr("'%1' is not a valid magnet URI.").arg(magnet_uri));
+    logger->addMessage(tr("'%1' is not a valid magnet URI.").arg(magnet_uri));
     return h;
   }
   const QDir torrentBackup(fsutils::BTBackupLocation());
@@ -953,7 +959,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
     QTorrentHandle h_ex = QTorrentHandle(s->find_torrent(p.info_hash));
     if (h_ex.is_valid()) {
       qDebug("/!\\ Torrent is already in download list");
-      addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(magnet_uri));
+      logger->addMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(magnet_uri));
       // Check if the torrent contains trackers or url seeds we don't know about
       // and add them
       mergeTorrents(h_ex, magnet_uri);
@@ -1036,7 +1042,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
     h.resume();
   }
   // Send torrent addition signal
-  addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(magnet_uri));
+  logger->addMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(magnet_uri));
   if (!HiddenData::hasData(hash))
     emit addedTorrent(h);
 
@@ -1047,6 +1053,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
 QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString from_url, bool resumed, bool imported) {
   QTorrentHandle h;
   Preferences* const pref = Preferences::instance();
+  Logger* const logger = Logger::instance();
 
   // Check if BT_backup directory exists
   const QDir torrentBackup(fsutils::BTBackupLocation());
@@ -1084,15 +1091,15 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       throw std::exception();
   } catch(std::exception& e) {
     if (!from_url.isNull()) {
-      addConsoleMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(from_url), QString::fromUtf8("red"));
-      addConsoleMessage(misc::toQStringU(e.what()), "red");
+      logger->addMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(from_url), Log::CRITICAL);
+      logger->addMessage(misc::toQStringU(e.what()), Log::CRITICAL);
       //emit invalidTorrent(from_url);
       fsutils::forceRemove(path);
     }else{
-      addConsoleMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(fsutils::toNativePath(path)), QString::fromUtf8("red"));
+      logger->addMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(fsutils::toNativePath(path)), Log::CRITICAL);
       //emit invalidTorrent(path);
     }
-    addConsoleMessage(tr("This file is either corrupted or this isn't a torrent."),QString::fromUtf8("red"));
+    logger->addMessage(tr("This file is either corrupted or this isn't a torrent."), Log::CRITICAL);
     if (fromScanDir) {
       // Remove file
       fsutils::forceRemove(path);
@@ -1110,9 +1117,9 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     qDebug("/!\\ Torrent is already in download list");
     // Update info Bar
     if (!from_url.isNull()) {
-      addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(from_url));
+      logger->addMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(from_url));
     }else{
-      addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(fsutils::toNativePath(path)));
+      logger->addMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(fsutils::toNativePath(path)));
     }
     // Check if the torrent contains trackers or url seeds we don't know about
     // and add them
@@ -1127,7 +1134,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
 
   // Check number of files
   if (t->num_files() < 1) {
-    addConsoleMessage(tr("Error: The torrent %1 does not contain any file.").arg(misc::toQStringU(t->name())));
+    logger->addMessage(tr("Error: The torrent %1 does not contain any file.").arg(misc::toQStringU(t->name())));
     // Delete file if temporary
     if (!from_url.isNull() || fromScanDir)
       fsutils::forceRemove(path);
@@ -1232,14 +1239,14 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   // Display console message
   if (!from_url.isNull()) {
     if (fastResume)
-      addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(from_url));
+      logger->addMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(from_url));
     else
-      addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(from_url));
+      logger->addMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(from_url));
   }else{
     if (fastResume)
-      addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(fsutils::toNativePath(path)));
+      logger->addMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(fsutils::toNativePath(path)));
     else
-      addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(fsutils::toNativePath(path)));
+      logger->addMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(fsutils::toNativePath(path)));
   }
 
   // Send torrent addition signal
@@ -1358,7 +1365,7 @@ void QBtSession::mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri)
     }
   }
   if (trackers_added)
-    addConsoleMessage(tr("Note: new trackers were added to the existing torrent."));
+    Logger::instance()->addMessage(tr("Note: new trackers were added to the existing torrent."));
 }
 
 void QBtSession::mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<torrent_info> t) {
@@ -1385,8 +1392,9 @@ void QBtSession::mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<torren
     }
   }
 
+  Logger* const logger = Logger::instance();
   if (trackers_added)
-    addConsoleMessage(tr("Note: new trackers were added to the existing torrent."));
+    logger->addMessage(tr("Note: new trackers were added to the existing torrent."));
 
   bool urlseeds_added = false;
   const QStringList old_urlseeds = h_ex.url_seeds();
@@ -1402,7 +1410,7 @@ void QBtSession::mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<torren
     }
   }
   if (urlseeds_added)
-    addConsoleMessage(tr("Note: new URL seeds were added to the existing torrent."));
+    logger->addMessage(tr("Note: new URL seeds were added to the existing torrent."));
 }
 
 void QBtSession::exportTorrentFiles(QString path) {
@@ -1557,6 +1565,7 @@ void QBtSession::saveSessionState() {
 
 // Enable DHT
 void QBtSession::enableDHT(bool b) {
+  Logger* const logger = Logger::instance();
   if (b) {
     if (!DHTEnabled) {
       try {
@@ -1568,12 +1577,12 @@ void QBtSession::enableDHT(bool b) {
         s->add_dht_router(std::make_pair(std::string("dht.transmissionbt.com"), 6881));
         s->add_dht_router(std::make_pair(std::string("dht.aelitis.com"), 6881)); // Vuze
         DHTEnabled = true;
-        addConsoleMessage(tr("DHT support [ON]"), QString::fromUtf8("blue"));
+        logger->addMessage(tr("DHT support [ON]"), Log::INFO);
         qDebug("DHT enabled");
       }
       catch(std::exception &e) {
         qDebug("Could not enable DHT, reason: %s", e.what());
-        addConsoleMessage(tr("DHT support [OFF]. Reason: %1").arg(misc::toQStringU(e.what())), QString::fromUtf8("red"));
+        logger->addMessage(tr("DHT support [OFF]. Reason: %1").arg(misc::toQStringU(e.what())), Log::CRITICAL);
       }
     }
   }
@@ -1581,7 +1590,7 @@ void QBtSession::enableDHT(bool b) {
     if (DHTEnabled) {
       DHTEnabled = false;
       s->stop_dht();
-      addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
+      logger->addMessage(tr("DHT support [OFF]"), Log::INFO);
       qDebug("DHT disabled");
     }
   }
@@ -1723,42 +1732,6 @@ void QBtSession::saveFastResumeData() {
       delete a;
     }
   }
-}
-
-#ifdef DISABLE_GUI
-void QBtSession::addConsoleMessage(QString msg, QString) {
-  emit newConsoleMessage(QDateTime::currentDateTime().toString("dd/MM/yyyy hh:mm:ss") + " - " + msg);
-#else
-void QBtSession::addConsoleMessage(QString msg, QColor color) {
-  if (consoleMessages.size() > MAX_LOG_MESSAGES) {
-    consoleMessages.removeFirst();
-  }
-  msg = "<font color='grey'>"+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - <font color='" + color.name() + "'>" + msg + "</font>";
-  consoleMessages.append(msg);
-  emit newConsoleMessage(msg);
-#endif
-}
-
-#if LIBTORRENT_VERSION_NUM < 10000
-void QBtSession::addPeerBanMessage(const QString& ip, bool blocked)
-#else
-void QBtSession::addPeerBanMessage(const QString& ip, bool blocked, const QString& blockedReason)
-#endif
-{
-    if (peerBanMessages.size() > MAX_LOG_MESSAGES) {
-        peerBanMessages.removeFirst();
-    }
-    QString msg;
-    if (blocked)
-#if LIBTORRENT_VERSION_NUM < 10000
-        msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> was blocked", "x.y.z.w was blocked").arg(ip);
-#else
-        msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> was blocked %2", "x.y.z.w was blocked").arg(ip).arg(blockedReason);
-#endif
-    else
-        msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(ip);
-    peerBanMessages.append(msg);
-    emit newBanMessage(msg);
 }
 
 bool QBtSession::isFilePreviewPossible(const QString &hash) const {
@@ -1939,19 +1912,20 @@ void QBtSession::setAppendqBExtension(bool append) {
 void QBtSession::setListeningPort(int port) {
   qDebug() << Q_FUNC_INFO << port;
   Preferences* const pref = Preferences::instance();
+  Logger* const logger = Logger::instance();
   std::pair<int,int> ports(port, port);
   libtorrent::error_code ec;
   const QString iface_name = pref->getNetworkInterface();
   const bool listen_ipv6 = pref->getListenIPv6();
   if (iface_name.isEmpty()) {
-    addConsoleMessage(tr("qBittorrent is trying to listen on any interface port: %1", "e.g: qBittorrent is trying to listen on any interface port: TCP/6881").arg(QString::number(port)), "blue");
+    logger->addMessage(tr("qBittorrent is trying to listen on any interface port: %1", "e.g: qBittorrent is trying to listen on any interface port: TCP/6881").arg(QString::number(port)), Log::INFO);
     if (listen_ipv6)
       s->listen_on(ports, ec, "::", session::listen_no_system_port);
     else
       s->listen_on(ports, ec, "0.0.0.0", session::listen_no_system_port);
 
     if (ec)
-      addConsoleMessage(tr("qBittorrent failed to listen on any interface port: %1. Reason: %2", "e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface" ).arg(QString::number(port)).arg(misc::toQStringU(ec.message())), "red");
+      logger->addMessage(tr("qBittorrent failed to listen on any interface port: %1. Reason: %2", "e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface" ).arg(QString::number(port)).arg(misc::toQStringU(ec.message())), Log::CRITICAL);
 
     return;
   }
@@ -1959,7 +1933,7 @@ void QBtSession::setListeningPort(int port) {
   const QNetworkInterface network_iface = QNetworkInterface::interfaceFromName(iface_name);
   if (!network_iface.isValid()) {
     qDebug("Invalid network interface: %s", qPrintable(iface_name));
-    addConsoleMessage(tr("The network interface defined is invalid: %1").arg(iface_name), "red");
+    logger->addMessage(tr("The network interface defined is invalid: %1").arg(iface_name), Log::CRITICAL);
     return;
   }
   QString ip;
@@ -1972,11 +1946,11 @@ void QBtSession::setListeningPort(int port) {
     s->listen_on(ports, ec, entry.ip().toString().toLatin1().constData(), session::listen_no_system_port);
     if (!ec) {
       ip = entry.ip().toString();
-      addConsoleMessage(tr("qBittorrent is trying to listen on interface %1 port: %2", "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881").arg(ip).arg(QString::number(port)), "blue");
+      logger->addMessage(tr("qBittorrent is trying to listen on interface %1 port: %2", "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881").arg(ip).arg(QString::number(port)), Log::INFO);
       return;
     }
   }
-  addConsoleMessage(tr("qBittorrent didn't find an %1 local address to listen on", "qBittorrent didn't find an IPv4 local address to listen on").arg(listen_ipv6 ? "IPv6" : "IPv4"), "red");
+  logger->addMessage(tr("qBittorrent didn't find an %1 local address to listen on", "qBittorrent didn't find an IPv4 local address to listen on").arg(listen_ipv6 ? "IPv6" : "IPv4"), Log::CRITICAL);
 }
 
 // Set download rate limit
@@ -2084,7 +2058,7 @@ void QBtSession::recursiveTorrentDownload(const QTorrentHandle &h)
         for (int i=0; i<h.num_files(); ++i) {
             const QString torrent_relpath = h.filepath_at(i);
             if (torrent_relpath.endsWith(".torrent")) {
-                addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(fsutils::toNativePath(torrent_relpath)).arg(h.name()));
+                Logger::instance()->addMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(fsutils::toNativePath(torrent_relpath)).arg(h.name()));
                 const QString torrent_fullpath = h.save_path()+"/"+torrent_relpath;
 
                 std::vector<char> buffer;
@@ -2266,7 +2240,7 @@ void QBtSession::handleTorrentFinishedAlert(libtorrent::torrent_finished_alert* 
           }
           catch(std::exception&) {
               qDebug("Caught error loading torrent");
-              addConsoleMessage(tr("Unable to decode %1 torrent file.").arg(fsutils::toNativePath(torrent_fullpath)), QString::fromUtf8("red"));
+              Logger::instance()->addMessage(tr("Unable to decode %1 torrent file.").arg(fsutils::toNativePath(torrent_fullpath)), Log::CRITICAL);
           }
         }
       }
@@ -2474,12 +2448,13 @@ void QBtSession::handleStorageMovedFailedAlert(libtorrent::storage_moved_failed_
     return;
   }
 
-  addConsoleMessage(tr("Could not move torrent: '%1'. Reason: %2").arg(h.name()).arg(misc::toQStringU(p->message())), "red");
+  Logger* const logger = Logger::instance();
+  logger->addMessage(tr("Could not move torrent: '%1'. Reason: %2").arg(h.name()).arg(misc::toQStringU(p->message())), Log::CRITICAL);
 
   QString queued = TorrentTempData::getQueuedPath(hash);
   if (!queued.isEmpty()) {
     TorrentTempData::finishMove(hash);
-    addConsoleMessage(tr("Attempting to move torrent: '%1' to path: '%2'.").arg(h.name()).arg(fsutils::toNativePath(queued)));
+    logger->addMessage(tr("Attempting to move torrent: '%1' to path: '%2'.").arg(h.name()).arg(fsutils::toNativePath(queued)));
     h.move_storage(queued);
   }
   else {
@@ -2541,8 +2516,9 @@ void QBtSession::handleFileErrorAlert(libtorrent::file_error_alert* p) {
   if (h.is_valid()) {
     h.pause();
     std::cerr << "File Error: " << p->message().c_str() << std::endl;
-    addConsoleMessage(tr("An I/O error occurred, '%1' paused.").arg(h.name()));
-    addConsoleMessage(tr("Reason: %1").arg(misc::toQStringU(p->message())));
+    Logger* const logger = Logger::instance();
+    logger->addMessage(tr("An I/O error occurred, '%1' paused.").arg(h.name()));
+    logger->addMessage(tr("Reason: %1").arg(misc::toQStringU(p->message())));
     if (h.is_valid()) {
       emit fullDiskError(h, misc::toQStringU(p->message()));
       //h.pause();
@@ -2626,14 +2602,12 @@ void QBtSession::handleTrackerWarningAlert(libtorrent::tracker_warning_alert* p)
 }
 
 void QBtSession::handlePortmapWarningAlert(libtorrent::portmap_error_alert* p) {
-  addConsoleMessage(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(misc::toQStringU(p->message())), "red");
-  //emit UPnPError(QString(p->msg().c_str()));
+  Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(misc::toQStringU(p->message())), Log::CRITICAL);
 }
 
 void QBtSession::handlePortmapAlert(libtorrent::portmap_alert* p) {
   qDebug("UPnP Success, msg: %s", p->message().c_str());
-  addConsoleMessage(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(misc::toQStringU(p->message())), "blue");
-  //emit UPnPSuccess(QString(p->msg().c_str()));
+  Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(misc::toQStringU(p->message())), Log::INFO);
 }
 
 void QBtSession::handlePeerBlockedAlert(libtorrent::peer_blocked_alert* p)
@@ -2642,7 +2616,7 @@ void QBtSession::handlePeerBlockedAlert(libtorrent::peer_blocked_alert* p)
     string ip = p->ip.to_string(ec);
 #if LIBTORRENT_VERSION_NUM < 10000
     if (!ec)
-        addPeerBanMessage(QString::fromLatin1(ip.c_str()), true);
+        Logger::instance()->addPeer(QString::fromLatin1(ip.c_str()), true);
 #else
     QString reason;
     switch (p->reason) {
@@ -2667,39 +2641,37 @@ void QBtSession::handlePeerBlockedAlert(libtorrent::peer_blocked_alert* p)
     }
 
     if (!ec)
-        addPeerBanMessage(QString::fromLatin1(ip.c_str()), true, reason);
+        Logger::instance()->addPeer(QString::fromLatin1(ip.c_str()), true, reason);
 #endif
 }
 
 void QBtSession::handlePeerBanAlert(libtorrent::peer_ban_alert* p) {
   boost::system::error_code ec;
   string ip = p->ip.address().to_string(ec);
-  if (!ec) {
-    addPeerBanMessage(QString::fromLatin1(ip.c_str()), false);
-    //emit peerBlocked(QString::fromLatin1(ip.c_str()));
-  }
+  if (!ec)
+    Logger::instance()->addPeer(QString::fromLatin1(ip.c_str()), false);
 }
 
 void QBtSession::handleFastResumeRejectedAlert(libtorrent::fastresume_rejected_alert* p) {
+  Logger* const logger = Logger::instance();
   QTorrentHandle h(p->handle);
   if (h.is_valid()) {
     qDebug("/!\\ Fast resume failed for %s, reason: %s", qPrintable(h.name()), p->message().c_str());
     if (p->error.value() == 134 && TorrentPersistentData::isSeed(h.hash()) && h.has_missing_files()) {
       const QString hash = h.hash();
       // Mismatching file size (files were probably moved
-      addConsoleMessage(tr("File sizes mismatch for torrent %1, pausing it.").arg(h.name()));
+      logger->addMessage(tr("File sizes mismatch for torrent %1, pausing it.").arg(h.name()));
       TorrentPersistentData::setErrorState(hash, true);
       pauseTorrent(hash);
     } else {
-      addConsoleMessage(tr("Fast resume data was rejected for torrent %1, checking again...").arg(h.name()), QString::fromUtf8("red"));
-      addConsoleMessage(tr("Reason: %1").arg(misc::toQStringU(p->message())));
+      logger->addMessage(tr("Fast resume data was rejected for torrent %1, checking again...").arg(h.name()), Log::CRITICAL);
+      logger->addMessage(tr("Reason: %1").arg(misc::toQStringU(p->message())));
     }
   }
 }
 
 void QBtSession::handleUrlSeedAlert(libtorrent::url_seed_alert* p) {
-  addConsoleMessage(tr("Url seed lookup failed for url: %1, message: %2").arg(misc::toQString(p->url)).arg(misc::toQStringU(p->message())), QString::fromUtf8("red"));
-  //emit urlSeedProblem(QString::fromUtf8(p->url.c_str()), QString::fromUtf8(p->msg().c_str()));
+  Logger::instance()->addMessage(tr("Url seed lookup failed for url: %1, message: %2").arg(misc::toQString(p->url)).arg(misc::toQStringU(p->message())), Log::CRITICAL);
 }
 
 void QBtSession::handleListenSucceededAlert(libtorrent::listen_succeeded_alert *p) {
@@ -2714,7 +2686,7 @@ void QBtSession::handleListenSucceededAlert(libtorrent::listen_succeeded_alert *
     proto = "TCP_SSL";
 #endif
   qDebug() << "Successfully listening on " << proto << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
-  addConsoleMessage(tr("qBittorrent is successfully listening on interface %1 port: %2/%3", "e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881").arg(p->endpoint.address().to_string(ec).c_str()).arg(proto).arg(QString::number(p->endpoint.port())), "blue");
+  Logger::instance()->addMessage(tr("qBittorrent is successfully listening on interface %1 port: %2/%3", "e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881").arg(p->endpoint.address().to_string(ec).c_str()).arg(proto).arg(QString::number(p->endpoint.port())), Log::INFO);
   // Force reannounce on all torrents because some trackers blacklist some ports
   std::vector<torrent_handle> torrents = s->get_torrents();
 
@@ -2741,7 +2713,7 @@ void QBtSession::handleListenFailedAlert(libtorrent::listen_failed_alert *p) {
     proto = "SOCKS5";
 #endif
   qDebug() << "Failed listening on " << proto << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
-  addConsoleMessage(tr("qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4", "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use").arg(p->endpoint.address().to_string(ec).c_str()).arg(proto).arg(QString::number(p->endpoint.port())).arg(misc::toQStringU(p->error.message())), "red");
+  Logger::instance()->addMessage(tr("qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4", "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use").arg(p->endpoint.address().to_string(ec).c_str()).arg(proto).arg(QString::number(p->endpoint.port())).arg(misc::toQStringU(p->error.message())), Log::CRITICAL);
 
 }
 
@@ -2774,7 +2746,7 @@ void QBtSession::handleTorrentCheckedAlert(libtorrent::torrent_checked_alert* p)
 
 void QBtSession::handleExternalIPAlert(libtorrent::external_ip_alert *p) {
   boost::system::error_code ec;
-  addConsoleMessage(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(p->external_address.to_string(ec).c_str()), "blue");
+  Logger::instance()->addMessage(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(p->external_address.to_string(ec).c_str()), Log::INFO);
 }
 
 void QBtSession::handleStateUpdateAlert(libtorrent::state_update_alert *p) {
@@ -2904,12 +2876,7 @@ QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString f
 // add it to download list
 void QBtSession::downloadFromUrl(const QString &url, const QList<QNetworkCookie>& cookies)
 {
-  addConsoleMessage(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(url)
-                  #ifndef DISABLE_GUI
-                    , QPalette::WindowText
-                  #endif
-                    );
-  //emit aboutToDownloadFromUrl(url);
+  Logger::instance()->addMessage(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(url));
   // Launch downloader thread
   downloader->downloadTorrentUrl(url, cookies);
 }
@@ -3128,13 +3095,13 @@ void QBtSession::postTorrentUpdate() {
 
 void QBtSession::handleIPFilterParsed(int ruleCount)
 {
-  addConsoleMessage(tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
+  Logger::instance()->addMessage(tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
   emit ipFilterParsed(false, ruleCount);
 }
 
 void QBtSession::handleIPFilterError()
 {
-  addConsoleMessage(tr("Error: Failed to parse the provided IP filter."), "red");
+  Logger::instance()->addMessage(tr("Error: Failed to parse the provided IP filter."), Log::CRITICAL);
   emit ipFilterParsed(true, 0);
 }
 

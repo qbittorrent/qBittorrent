@@ -40,6 +40,7 @@
 #include <QSslKey>
 #endif
 #include <QTranslator>
+#include <QCoreApplication>
 #include "jsonutils.h"
 
 prefjson::prefjson()

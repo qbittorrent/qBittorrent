@@ -31,11 +31,12 @@
 #include <QNetworkAccessManager>
 #include <QDebug>
 #include <QRegExp>
+#include <QStringList>
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 #include <QUrlQuery>
 #endif
 #include "dnsupdater.h"
-#include "qbtsession.h"
+#include "logger.h"
 
 DNSUpdater::DNSUpdater(QObject *parent) :
   QObject(parent), m_state(OK), m_service(DNS::NONE)
@@ -183,16 +184,16 @@ void DNSUpdater::ipUpdateFinished(QNetworkReply *reply)
 
 void DNSUpdater::processIPUpdateReply(const QString &reply)
 {
+  Logger* const logger = Logger::instance();
   qDebug() << Q_FUNC_INFO << reply;
   QString code = reply.split(" ").first();
   qDebug() << Q_FUNC_INFO << "Code:" << code;
   if (code == "good" || code == "nochg") {
-    QBtSession::instance()->addConsoleMessage(tr("Your dynamic DNS was successfully updated."), "green");
+    logger->addMessage(tr("Your dynamic DNS was successfully updated."), Log::INFO);
     return;
   }
   if (code == "911" || code == "dnserr") {
-    QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes."),
-                                              "red");
+    logger->addMessage(tr("Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes."), Log::CRITICAL);
     m_lastIP.clear();
     // It will retry in 30 minutes because the timer was not stopped
     return;
@@ -201,31 +202,29 @@ void DNSUpdater::processIPUpdateReply(const QString &reply)
   m_ipCheckTimer.stop();
   m_lastIP.clear();
   if (code == "nohost") {
-    QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: hostname supplied does not exist under specified account."),
-                                              "red");
+    logger->addMessage(tr("Dynamic DNS error: hostname supplied does not exist under specified account."), Log::CRITICAL);
     m_state = INVALID_CREDS;
     return;
   }
   if (code == "badauth") {
-    QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: Invalid username/password."), "red");
+    logger->addMessage(tr("Dynamic DNS error: Invalid username/password."), Log::CRITICAL);
     m_state = INVALID_CREDS;
     return;
   }
   if (code == "badagent") {
-    QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org."),
-                                              "red");
+    logger->addMessage(tr("Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org."),
+                       Log::CRITICAL);
     m_state = FATAL;
     return;
   }
   if (code == "!donator") {
-    QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.").arg("!donator"),
-                                              "red");
+    logger->addMessage(tr("Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.").arg("!donator"),
+                       Log::CRITICAL);
     m_state = FATAL;
     return;
   }
   if (code == "abuse") {
-    QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: Your username was blocked due to abuse."),
-                                              "red");
+    logger->addMessage(tr("Dynamic DNS error: Your username was blocked due to abuse."), Log::CRITICAL);
     m_state = FATAL;
     return;
   }
@@ -235,6 +234,7 @@ void DNSUpdater::updateCredentials()
 {
   if (m_state == FATAL) return;
   Preferences* const pref = Preferences::instance();
+  Logger* const logger = Logger::instance();
   bool change = false;
   // Get DNS service information
   if (m_service != pref->getDynDNSService()) {
@@ -245,8 +245,7 @@ void DNSUpdater::updateCredentials()
     m_domain = pref->getDynDomainName();
     QRegExp domain_regex("^(?:(?!\\d|-)[a-zA-Z0-9\\-]{1,63}\\.)+[a-zA-Z]{2,}$");
     if (domain_regex.indexIn(m_domain) < 0) {
-      QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: supplied domain name is invalid."),
-                                                "red");
+      logger->addMessage(tr("Dynamic DNS error: supplied domain name is invalid."), Log::CRITICAL);
       m_lastIP.clear();
       m_ipCheckTimer.stop();
       m_state = INVALID_CREDS;
@@ -257,8 +256,7 @@ void DNSUpdater::updateCredentials()
   if (m_username != pref->getDynDNSUsername()) {
     m_username = pref->getDynDNSUsername();
     if (m_username.length() < 4) {
-      QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: supplied username is too short."),
-                                                "red");
+      logger->addMessage(tr("Dynamic DNS error: supplied username is too short."), Log::CRITICAL);
       m_lastIP.clear();
       m_ipCheckTimer.stop();
       m_state = INVALID_CREDS;
@@ -269,8 +267,7 @@ void DNSUpdater::updateCredentials()
   if (m_password != pref->getDynDNSPassword()) {
     m_password = pref->getDynDNSPassword();
     if (m_password.length() < 4) {
-      QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: supplied password is too short."),
-                                                "red");
+      logger->addMessage(tr("Dynamic DNS error: supplied password is too short."), Log::CRITICAL);
       m_lastIP.clear();
       m_ipCheckTimer.stop();
       m_state = INVALID_CREDS;

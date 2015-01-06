@@ -38,6 +38,7 @@
 #include "iconprovider.h"
 #include "preferences.h"
 #include "misc.h"
+#include "logger.h"
 
 #include <libtorrent/session.hpp>
 #include <libtorrent/session_status.hpp>
@@ -149,7 +150,7 @@ void StatusBar::showRestartRequired() {
   m_bar->insertWidget(1, restartLbl);
   QFontMetrics fm(restartLbl->font());
   restartLbl->setText(fm.elidedText(restart_text, Qt::ElideRight, restartLbl->width()));
-  QBtSession::instance()->addConsoleMessage(tr("qBittorrent was just updated and needs to be restarted for the changes to be effective."), "red");
+  Logger::instance()->addMessage(tr("qBittorrent was just updated and needs to be restarted for the changes to be effective."), Log::CRITICAL);
 }
 
 void StatusBar::stopTimer() {

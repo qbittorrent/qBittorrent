@@ -38,6 +38,7 @@
 #include "qbtsession.h"
 #include "fs_utils.h"
 #include "misc.h"
+#include "logger.h"
 
 class HeadlessLoader: public QObject {
   Q_OBJECT
@@ -69,6 +70,7 @@ public slots:
   void shutdownCleanUp() {
     QBtSession::drop();
     Preferences::drop();
+    Logger::drop();
   }
 
   // Call this function to exit qBittorrent headless loader
