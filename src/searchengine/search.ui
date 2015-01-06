@@ -119,6 +119,16 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="copyURLBtn">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Copy description page URL</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
