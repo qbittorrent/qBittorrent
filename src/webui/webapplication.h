@@ -36,9 +36,9 @@
 
 struct WebSession
 {
-  const QString id;
+    const QString id;
 
-  WebSession(const QString& id): id(id) {}
+    WebSession(const QString& id): id(id) {}
 };
 
 const QString C_SID = "SID"; // name of session id cookie
@@ -49,39 +49,39 @@ class AbstractRequestHandler;
 
 class WebApplication: public QObject
 {
-  Q_OBJECT
-  Q_DISABLE_COPY(WebApplication)
+    Q_OBJECT
+    Q_DISABLE_COPY(WebApplication)
 
 public:
-  WebApplication(QObject* parent = 0);
-  virtual ~WebApplication();
+    WebApplication(QObject* parent = 0);
+    virtual ~WebApplication();
 
-  static WebApplication* instance();
+    static WebApplication* instance();
 
-  bool isBanned(const AbstractRequestHandler* _this) const;
-  int failedAttempts(const AbstractRequestHandler *_this) const;
-  void resetFailedAttempts(AbstractRequestHandler* _this);
-  void increaseFailedAttempts(AbstractRequestHandler* _this);
+    bool isBanned(const AbstractRequestHandler* _this) const;
+    int failedAttempts(const AbstractRequestHandler *_this) const;
+    void resetFailedAttempts(AbstractRequestHandler* _this);
+    void increaseFailedAttempts(AbstractRequestHandler* _this);
 
-  bool sessionStart(AbstractRequestHandler* _this);
-  bool sessionEnd(AbstractRequestHandler* _this);
-  bool sessionInitialize(AbstractRequestHandler* _this);
+    bool sessionStart(AbstractRequestHandler* _this);
+    bool sessionEnd(AbstractRequestHandler* _this);
+    bool sessionInitialize(AbstractRequestHandler* _this);
 
-  bool readFile(const QString &path, QByteArray& data, QString& type);
+    bool readFile(const QString &path, QByteArray& data, QString& type);
 
 private slots:
-  void UnbanTimerEvent();
+    void UnbanTimerEvent();
 
 private:
-  QMap<QString, WebSession*> sessions_;
-  QHash<QHostAddress, int> clientFailedAttempts_;
-  QMap<QString, QByteArray> translatedFiles_;
+    QMap<QString, WebSession*> sessions_;
+    QHash<QHostAddress, int> clientFailedAttempts_;
+    QMap<QString, QByteArray> translatedFiles_;
 
-  QString generateSid();
-  static void translateDocument(QString& data);
+    QString generateSid();
+    static void translateDocument(QString& data);
 
-  static const QStringMap CONTENT_TYPE_BY_EXT;
-  static QStringMap initializeContentTypeByExtMap();
+    static const QStringMap CONTENT_TYPE_BY_EXT;
+    static QStringMap initializeContentTypeByExtMap();
 };
 
 #endif // WEBAPPLICATION_H
