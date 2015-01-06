@@ -143,6 +143,15 @@ static const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
 static const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
 static const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
 
+static const char KEY_FULL_UPDATE[] = "full_update";
+static const char KEY_RESPONSE_ID[] = "rid";
+static const char KEY_SUFFIX_REMOVED[] = "_removed";
+
+void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData);
+void processHash(QVariantHash prevData, QVariantHash data, QVariantHash &syncData, QVariantList &removedItems);
+void processList(QVariantList prevData, QVariantList data, QVariantList &syncData, QVariantList &removedItems);
+QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantMap &lastAcceptedData,  QVariantMap &lastData);
+
 class QTorrentCompare
 {
 public:
@@ -471,4 +480,163 @@ QByteArray btjson::getTransferInfo()
     else
         info[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.has_incoming_connections ? "connected" : "firewalled";
     return json::toJson(info);
+}
+
+// Compare two structures (prevData, data) and calculate difference (syncData).
+// Structures encoded as map.
+void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
+{
+    // initialize output variable
+    syncData.clear();
+
+    QVariantList removedItems;
+    foreach (QString key, data.keys()) {
+        removedItems.clear();
+
+        switch (data[key].type()) {
+        case QVariant::Map: {
+                QVariantMap map;
+                processMap(prevData[key].toMap(), data[key].toMap(), map);
+                if (!map.isEmpty())
+                    syncData[key] = map;
+            }
+            break;
+        case QVariant::Hash: {
+                QVariantHash hash;
+                processHash(prevData[key].toHash(), data[key].toHash(), hash, removedItems);
+                if (!hash.isEmpty())
+                    syncData[key] = hash;
+                if (!removedItems.isEmpty())
+                    syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
+            }
+            break;
+        case QVariant::List: {
+                QVariantList list;
+                processList(prevData[key].toList(), data[key].toList(), list, removedItems);
+                if (!list.isEmpty())
+                    syncData[key] = list;
+                if (!removedItems.isEmpty())
+                    syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
+            }
+            break;
+        case QVariant::String:
+        case QVariant::LongLong:
+        case QMetaType::Float:
+        case QVariant::Int:
+        case QVariant::Bool:
+        case QVariant::Double:
+        case QVariant::ULongLong:
+            if (prevData[key] != data[key])
+                syncData[key] = data[key];
+            break;
+        default:
+            Q_ASSERT(0);
+        }
+    }
+}
+
+// Compare two lists of structures (prevData, data) and calculate difference (syncData, removedItems).
+// Structures encoded as map.
+// Lists are encoded as hash table (indexed by structure key value) to improve ease of searching for removed items.
+void processHash(QVariantHash prevData, QVariantHash data, QVariantHash &syncData, QVariantList &removedItems)
+{
+    // initialize output variables
+    syncData.clear();
+    removedItems.clear();
+
+    if (prevData.isEmpty()) {
+        // If list was empty before, then difference is a whole new list.
+        syncData = data;
+    }
+    else {
+        foreach (QString key, data.keys()) {
+            switch (data[key].type()) {
+            case QVariant::Map:
+                if (!prevData.contains(key)) {
+                    // new list item found - append it to syncData
+                    syncData[key] = data[key];
+                }
+                else {
+                    QVariantMap map;
+                    processMap(prevData[key].toMap(), data[key].toMap(), map);
+                    // existing list item found - remove it from prevData
+                    prevData.remove(key);
+                    if (!map.isEmpty())
+                        // changed list item found - append its changes to syncData
+                        syncData[key] = map;
+                }
+                break;
+            default:
+                Q_ASSERT(0);
+            }
+        }
+
+        if (!prevData.isEmpty()) {
+            // prevData contains only items that are missing now -
+            // put them in removedItems
+            foreach (QString s, prevData.keys())
+                removedItems << s;
+        }
+    }
+}
+
+// Compare two lists of simple value (prevData, data) and calculate difference (syncData, removedItems).
+void processList(QVariantList prevData, QVariantList data, QVariantList &syncData, QVariantList &removedItems)
+{
+    // initialize output variables
+    syncData.clear();
+    removedItems.clear();
+
+    if (prevData.isEmpty()) {
+        // If list was empty before, then difference is a whole new list.
+        syncData = data;
+    }
+    else {
+        foreach (QVariant item, data) {
+            if (!prevData.contains(item))
+                // new list item found - append it to syncData
+                syncData.append(item);
+            else
+                // unchanged list item found - remove it from prevData
+                prevData.removeOne(item);
+        }
+
+        if (!prevData.isEmpty())
+            // prevData contains only items that are missing now -
+            // put them in removedItems
+            removedItems = prevData;
+    }
+}
+
+QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantMap &lastAcceptedData,  QVariantMap &lastData)
+{
+    QVariantMap syncData;
+    bool fullUpdate = true;
+    int lastResponseId = 0;
+    if (acceptedResponseId > 0) {
+        lastResponseId = lastData[KEY_RESPONSE_ID].toInt();
+
+        if (lastResponseId == acceptedResponseId)
+            lastAcceptedData = lastData;
+
+        int lastAcceptedResponseId = lastAcceptedData[KEY_RESPONSE_ID].toInt();
+
+        if (lastAcceptedResponseId == acceptedResponseId) {
+            processMap(lastAcceptedData, data, syncData);
+            fullUpdate = false;
+        }
+    }
+
+    if (fullUpdate) {
+        lastAcceptedData.clear();
+        syncData = data;
+        syncData[KEY_FULL_UPDATE] = true;
+    }
+
+    lastResponseId = lastResponseId % 1000000 + 1;  // cycle between 1 and 1000000
+    lastData = data;
+    lastData[KEY_RESPONSE_ID] = lastResponseId;
+    syncData[KEY_RESPONSE_ID] = lastResponseId;
+
+    return syncData;
 }
