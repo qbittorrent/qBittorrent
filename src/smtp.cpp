@@ -34,7 +34,7 @@
 
 #include "smtp.h"
 #include "preferences.h"
-#include "qbtsession.h"
+#include "logger.h"
 
 #include <QTextStream>
 #ifndef QT_NO_OPENSSL
@@ -48,6 +48,7 @@
 #include <QHostInfo>
 #include <QNetworkInterface>
 #include <QCryptographicHash>
+#include <QStringList>
 
 namespace {
 const short DEFAULT_PORT = 25;
@@ -475,5 +476,5 @@ void Smtp::authLogin()
 void Smtp::logError(const QString &msg)
 {
   qDebug() << "Email Notification Error:" << msg;
-  QBtSession::instance()->addConsoleMessage("Email Notification Error: "+msg, "red");
+  Logger::instance()->addMessage(tr("Email Notification Error:") + " " + msg, Log::CRITICAL);
 }

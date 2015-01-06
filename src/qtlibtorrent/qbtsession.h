@@ -34,12 +34,6 @@
 #include <QHash>
 #include <QUrl>
 #include <QStringList>
-#ifdef DISABLE_GUI
-#include <QCoreApplication>
-#else
-#include <QApplication>
-#include <QPalette>
-#endif
 #include <QPointer>
 #include <QTimer>
 #include <QNetworkCookie>
@@ -104,8 +98,6 @@ class TorrentStatistics;
 class DNSUpdater;
 class QAlertDispatcher;
 
-const int MAX_LOG_MESSAGES = 1000;
-
 enum TorrentExportFolder {
   RegularTorrentExportFolder,
   FinishedTorrentExportFolder
@@ -141,8 +133,6 @@ public:
   bool hasDownloadingTorrents() const;
   //int getMaximumActiveDownloads() const;
   //int getMaximumActiveTorrents() const;
-  inline QStringList getConsoleMessages() const { return consoleMessages; }
-  inline QStringList getPeerBanMessages() const { return peerBanMessages; }
   inline libtorrent::session* getSession() const { return s; }
   inline bool useTemporaryFolder() const { return !defaultTempPath.isEmpty(); }
   inline QString getDefaultSavePath() const { return defaultSavePath; }
@@ -210,18 +200,6 @@ public slots:
   void enableUPnP(bool b);
   void enableLSD(bool b);
   void enableDHT(bool b);
-#ifdef DISABLE_GUI
-  void addConsoleMessage(QString msg, QString color=QString::null);
-#else
-  void addConsoleMessage(QString msg, QColor color=QApplication::palette().color(QPalette::WindowText));
-#endif
-#if LIBTORRENT_VERSION_NUM < 10000
-  void addPeerBanMessage(const QString &msg, bool blocked);
-#else
-  void addPeerBanMessage(const QString &msg, bool blocked, const QString &blockedReason = QString());
-#endif
-  void clearConsoleMessages() { consoleMessages.clear(); }
-  void clearPeerBanMessages() { peerBanMessages.clear(); }
   void processDownloadedFile(QString, QString);
 #ifndef DISABLE_GUI
   void addMagnetSkipAddDlg(const QString& uri, const QString& save_path = QString(), const QString& label = QString(),
@@ -307,8 +285,6 @@ signals:
   void torrentFinishedChecking(const QTorrentHandle& h);
   void metadataReceived(const QTorrentHandle &h);
   void savePathChanged(const QTorrentHandle &h);
-  void newConsoleMessage(const QString &msg);
-  void newBanMessage(const QString &msg);
   void alternativeSpeedsModeChanged(bool alternative);
   void recursiveTorrentDownloadPossible(const QTorrentHandle &h);
   void ipFilterParsed(bool error, int ruleCount);
@@ -334,9 +310,6 @@ private:
   DownloadThread* downloader;
   // File System
   ScanFoldersModel *m_scanFolders;
-  // Console / Log
-  QStringList consoleMessages;
-  QStringList peerBanMessages;
   // Settings
   bool preAllocateAll;
   qreal global_ratio_limit;

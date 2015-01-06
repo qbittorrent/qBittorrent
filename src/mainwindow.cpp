@@ -72,6 +72,7 @@
 #include "torrentmodel.h"
 #include "executionlog.h"
 #include "iconprovider.h"
+#include "logger.h"
 #ifndef DISABLE_GUI
 #include "autoexpandabledialog.h"
 #endif
@@ -506,6 +507,7 @@ void MainWindow::shutdownCleanUp()
     delete toolbarMenu;
     IconProvider::drop();
     Preferences::drop();
+    Logger::drop();
     qDebug("Finished GUI destruction");
 }
 
@@ -1181,7 +1183,7 @@ void MainWindow::optionsSaved()
 // Load program preferences
 void MainWindow::loadPreferences(bool configure_session)
 {
-    QBtSession::instance()->addConsoleMessage(tr("Options were saved successfully."));
+    Logger::instance()->addMessage(tr("Options were saved successfully."));
     const Preferences* const pref = Preferences::instance();
     const bool newSystrayIntegration = pref->systrayIntegration();
     actionLock_qBittorrent->setVisible(newSystrayIntegration);
