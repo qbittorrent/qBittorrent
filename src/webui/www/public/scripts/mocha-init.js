@@ -55,7 +55,7 @@ initializeWindows = function() {
             width: 500,
             height: 300
         });
-        updateTransferList();
+        updateMainData();
     });
 
     addClickEvent('preferences', function(e) {
@@ -95,7 +95,7 @@ initializeWindows = function() {
             width: 600,
             height: 130
         });
-        updateTransferList();
+        updateMainData();
     });
 
     globalUploadLimitFN = function() {
@@ -144,7 +144,7 @@ initializeWindows = function() {
                     hashes: h.join("|")
                 }
             }).send();
-            updateTransferList();
+            updateMainData();
         }
     };
 
@@ -158,7 +158,7 @@ initializeWindows = function() {
                     hashes: h.join("|")
                 }
             }).send();
-            updateTransferList();
+            updateMainData();
         }
     };
 
@@ -218,7 +218,7 @@ initializeWindows = function() {
                 width: 424,
                 height: 140
             });
-            updateTransferList();
+            updateMainData();
         }
     };
 
@@ -239,7 +239,7 @@ initializeWindows = function() {
                     }
                 }).send();
             });
-            updateTransferList();
+            updateMainData();
         }
     };
 
@@ -255,7 +255,7 @@ initializeWindows = function() {
                     }
                 }).send();
             });
-            updateTransferList();
+            updateMainData();
         }
     };
 
@@ -288,7 +288,7 @@ initializeWindows = function() {
                         }
                     }).send();
                 });
-                updateTransferList();
+                updateMainData();
             }
         });
 
@@ -317,7 +317,7 @@ initializeWindows = function() {
                     hashes: h.join("|")
                 }
             }).send();
-            updateTransferList();
+            updateMainData();
         }
     }
 
