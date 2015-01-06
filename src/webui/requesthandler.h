@@ -56,6 +56,7 @@ private:
     void action_json_propertiesGeneral();
     void action_json_propertiesTrackers();
     void action_json_propertiesFiles();
+    void action_sync_maindata();
     void action_command_shutdown();
     void action_command_download();
     void action_command_upload();

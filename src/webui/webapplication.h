@@ -33,11 +33,13 @@
 #include <QMap>
 #include <QHash>
 #include "httptypes.h"
+#include <QVariant>
 
 struct WebSession
 {
     const QString id;
-
+    QVariantMap syncMainDataLastResponse;
+    QVariantMap syncMainDataLastAcceptedResponse;
     WebSession(const QString& id): id(id) {}
 };
 
