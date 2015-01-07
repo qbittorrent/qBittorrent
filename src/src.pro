@@ -183,7 +183,8 @@ nox {
              statsdialog.cpp \
              messageboxraised.cpp \
              statusbar.cpp \
-             trackerlogin.cpp
+             trackerlogin.cpp \
+             speedlimitdlg.cpp
 
   win32 {
     HEADERS += programupdater.h
