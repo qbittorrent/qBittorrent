@@ -48,8 +48,7 @@ protected slots:
     void updateSpinValue(int val) const;
     void updateSliderValue(int val) const;
     long getSpeedLimit() const;
-    void setMaxValue(long val) const;
-    void setDefaultValue(long val) const;
+    void setupDialog(long max_slider, long val) const;
 };
 
 #endif
