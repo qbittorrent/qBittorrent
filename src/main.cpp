@@ -114,7 +114,7 @@ struct QBtCommandLineParameters
 #endif
     int webUiPort;
     QStringList torrents;
-    QString uknownParameter;
+    QString unknownParameter;
 
     QBtCommandLineParameters()
         : showHelp(false)
@@ -155,9 +155,9 @@ int main(int argc, char *argv[])
 
     const QBtCommandLineParameters params = parseCommandLine();
 
-    if (!params.uknownParameter.isEmpty()) {
-        displayBadArgMessage(QObject::tr("%1 is an uknown command line parameter.", "--random-parameter is an uknown command line parameter.")
-                             .arg(params.uknownParameter));
+    if (!params.unknownParameter.isEmpty()) {
+        displayBadArgMessage(QObject::tr("%1 is an unknown command line parameter.", "--random-parameter is an unknown command line parameter.")
+                             .arg(params.unknownParameter));
         return EXIT_FAILURE;
     }
 
@@ -325,8 +325,8 @@ QBtCommandLineParameters parseCommandLine()
             }
 #endif
             else {
-                //Uknown argument
-                result.uknownParameter = arg;
+                //Unknown argument
+                result.unknownParameter = arg;
                 break;
             }
         }
