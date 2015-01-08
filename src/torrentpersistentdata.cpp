@@ -396,6 +396,16 @@ void TorrentPersistentData::saveSeedStatus(const QString &hash, const bool seedS
   settings.setValue("torrents", all_data);
 }
 
+void TorrentPersistentData::setHasMissingFiles(const QTorrentHandle &h, bool missing) {
+  QString hash = h.hash();
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+  QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+  QHash<QString, QVariant> data = all_data[hash].toHash();
+  data["has_missing_files"] = missing;
+  all_data[hash] = data;
+  settings.setValue("torrents", all_data);
+}
+
 QString TorrentPersistentData::getSavePath(const QString &hash) {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
   const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
@@ -445,4 +455,11 @@ QString TorrentPersistentData::getMagnetUri(const QString &hash) {
   const QHash<QString, QVariant> data = all_data.value(hash).toHash();
   Q_ASSERT(data.value("is_magnet", false).toBool());
   return data.value("magnet_uri").toString();
+}
+
+bool TorrentPersistentData::getHasMissingFiles(const QTorrentHandle &h) {
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+  const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+  const QHash<QString, QVariant> data = all_data.value(h.hash()).toHash();
+  return data.value("has_missing_files").toBool();
 }

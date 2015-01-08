@@ -142,6 +142,7 @@ public:
   static void savePriority(const QString &hash, const int &queue_pos);
   static void saveSeedStatus(const QTorrentHandle &h);
   static void saveSeedStatus(const QString &hash, const bool seedStatus);
+  static void setHasMissingFiles(const QTorrentHandle &h, bool missing);
 
   // Getters
   static QString getSavePath(const QString &hash);
@@ -151,6 +152,7 @@ public:
   static bool isSeed(const QString &hash);
   static bool isMagnet(const QString &hash);
   static QString getMagnetUri(const QString &hash);
+  static bool getHasMissingFiles(const QTorrentHandle &h);
 };
 
 #endif // TORRENTPERSISTENTDATA_H

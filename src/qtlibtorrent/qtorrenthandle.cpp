@@ -511,7 +511,8 @@ void QTorrentHandle::pause() const
 {
     torrent_handle::auto_managed(false);
     torrent_handle::pause();
-    torrent_handle::save_resume_data();
+    if (!TorrentPersistentData::getHasMissingFiles(*this))
+      torrent_handle::save_resume_data();
 }
 
 void QTorrentHandle::resume() const
