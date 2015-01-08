@@ -259,7 +259,7 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle& _h)
     if (h.has_metadata()) {
       // Creation date
       lbl_creationDate->setText(h.creation_date());
-      // Pieces size
+      // Piece size
       pieceSize_lbl->setText(misc::friendlyUnit(h.piece_length()));
       // Comment
       comment_text->setHtml(misc::parseHtmlLinks(h.comment()));
