@@ -1635,7 +1635,8 @@ void QBtSession::saveTempFastResumeData() {
     try {
       if (!h.is_valid() || !h.has_metadata() /*|| h.is_seed() || h.is_paused()*/) continue;
       if (!h.need_save_resume_data()) continue;
-      if (h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking || h.has_error()) continue;
+      if (h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking || h.has_error()
+          || TorrentPersistentData::instance()->getHasMissingFiles(h.hash())) continue;
       qDebug("Saving fastresume data for %s", qPrintable(h.name()));
       h.save_resume_data();
     }catch(std::exception &e) {}
@@ -1667,6 +1668,10 @@ void QBtSession::saveFastResumeData() {
       // Actually with should save fast resume data for paused files too
       //if (h.is_paused()) continue;
       if (h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking || h.has_error()) continue;
+      if (TorrentPersistentData::instance()->getHasMissingFiles(h.hash())) {
+        TorrentPersistentData::instance()->setHasMissingFiles(h.hash(), false);
+        continue;
+      }
       h.save_resume_data();
       ++num_resume_data;
     } catch(libtorrent::invalid_handle&) {}
@@ -2548,7 +2553,7 @@ void QBtSession::handleTorrentPausedAlert(libtorrent::torrent_paused_alert* p) {
   if (p->handle.is_valid()) {
     QTorrentHandle h(p->handle);
     if (!HiddenData::hasData(h.hash())) {
-      if (!h.has_error())
+      if (!h.has_error() && !TorrentPersistentData::instance()->getHasMissingFiles(h.hash()))
         h.save_resume_data();
       emit pausedTorrent(h);
     }
@@ -2659,11 +2664,11 @@ void QBtSession::handleFastResumeRejectedAlert(libtorrent::fastresume_rejected_a
   QTorrentHandle h(p->handle);
   if (h.is_valid()) {
     qDebug("/!\\ Fast resume failed for %s, reason: %s", qPrintable(h.name()), p->message().c_str());
-    if (p->error.value() == 134 && TorrentPersistentData::instance()->isSeed(h.hash()) && h.has_missing_files()) {
+    if (p->error.value() == errors::mismatching_file_size) {
+      // Mismatching file size (files were probably moved)
       const QString hash = h.hash();
-      // Mismatching file size (files were probably moved
-      logger->addMessage(tr("File sizes mismatch for torrent %1, pausing it.").arg(h.name()));
-      TorrentPersistentData::instance()->setErrorState(hash, true);
+      logger->addMessage(tr("File sizes mismatch for torrent %1, pausing it.").arg(h.name()), Log::CRITICAL);
+      TorrentPersistentData::instance()->setHasMissingFiles(h.hash(), true);
       pauseTorrent(hash);
     } else {
       logger->addMessage(tr("Fast resume data was rejected for torrent %1, checking again...").arg(h.name()), Log::CRITICAL);

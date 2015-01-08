@@ -245,7 +245,7 @@ TorrentPersistentData::TorrentPersistentData()
     , dirty(false)
 {
     timer.setSingleShot(true);
-    timer.setInterval(5*1000);
+    timer.setInterval(5 * 1000);
     connect(&timer, SIGNAL(timeout()), SLOT(save()));
 }
 
@@ -264,12 +264,14 @@ void TorrentPersistentData::save()
     dirty = false;
 }
 
-const QVariant TorrentPersistentData::value(const QString &key, const QVariant &defaultValue) const {
+const QVariant TorrentPersistentData::value(const QString &key, const QVariant &defaultValue) const
+{
     QReadLocker locker(&lock);
     return m_data.value(key, defaultValue);
 }
 
-void TorrentPersistentData::setValue(const QString &key, const QVariant &value) {
+void TorrentPersistentData::setValue(const QString &key, const QVariant &value)
+{
     QWriteLocker locker(&lock);
     if (m_data.value(key) == value)
         return;
@@ -467,6 +469,13 @@ void TorrentPersistentData::saveSeedStatus(const QString &hash, const bool seedS
     setValue(hash, torrent);
 }
 
+void TorrentPersistentData::setHasMissingFiles(const QString& hash, bool missing)
+{
+    QHash<QString, QVariant> torrent = value(hash).toHash();
+    torrent["has_missing_files"] = missing;
+    setValue(hash, torrent);
+}
+
 QString TorrentPersistentData::getSavePath(const QString &hash) const
 {
     const QHash<QString, QVariant> torrent = value(hash).toHash();
@@ -509,4 +518,10 @@ QString TorrentPersistentData::getMagnetUri(const QString &hash) const
     const QHash<QString, QVariant> torrent = value(hash).toHash();
     Q_ASSERT(torrent.value("is_magnet", false).toBool());
     return torrent.value("magnet_uri").toString();
+}
+
+bool TorrentPersistentData::getHasMissingFiles(const QString& hash)
+{
+    QHash<QString, QVariant> torrent = value(hash).toHash();
+    return torrent.value("has_missing_files").toBool();
 }
