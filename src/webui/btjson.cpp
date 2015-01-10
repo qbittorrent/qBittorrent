@@ -218,12 +218,9 @@ static QVariantMap toMap(const QTorrentHandle& h)
     ret[KEY_TORRENT_RATIO] = (ratio > QBtSession::MAX_RATIO) ? -1 : ratio;
     ret[KEY_TORRENT_STATE] = h.torrentState().toString();
     ret[KEY_TORRENT_ETA] = h.eta();
-    if (h.has_metadata()) {
-        if (status.sequential_download)
-            ret[KEY_TORRENT_SEQUENTIAL_DOWNLOAD] = true;
-        if (h.first_last_piece_first())
-            ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = true;
-    }
+    ret[KEY_TORRENT_SEQUENTIAL_DOWNLOAD] = status.sequential_download;
+    if (h.has_metadata())
+        ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = h.first_last_piece_first();
 
     return ret;
 }

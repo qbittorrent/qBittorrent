@@ -139,22 +139,22 @@ var ContextMenu = new Class({
 
         var h = myTable.selectedIds();
         h.each(function(item, index){
-            tr = myTable.rows.get(item);
+            var data = myTable.rows.get(item).full_data;
 
-            if (tr.getAttribute('seq_dl') != 'true')
+            if (data['seq_dl'] != true)
                 all_are_seq_dl = false;
             else
                 there_are_seq_dl = true;
 
-            if (tr.getAttribute('f_l_piece_prio') != 'true')
+            if (data['f_l_piece_prio'] != true)
                 all_are_f_l_piece_prio = false;
             else
                 there_are_f_l_piece_prio = true;
 
-            if (tr.getAttribute('downloaded') != 'true')
+            if (data['progress'] != 1.0) // not downloaded
                 all_are_downloaded = false;
 
-            state = tr.getAttribute('state');
+            state = data['state'];
             if ((state != 'pausedUP') && (state != 'pausedDL'))
                 all_are_paused = false;
             else
