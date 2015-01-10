@@ -1394,7 +1394,7 @@ QString getRegValue(HKEY handle, const QString &name = QString())
         delete[] lpValueName;
 
     if (res == ERROR_SUCCESS) {
-        lpData[cBuffer] = 0;
+        lpData[cBuffer - 1] = 0;
         result = QString::fromWCharArray(lpData);
     }
     delete[] lpData;
