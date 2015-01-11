@@ -288,13 +288,14 @@ initializeWindows = function() {
                 paddingVertical: 0,
                 paddingHorizontal: 0,
                 width: 424,
-                height: 80
+                height: 150
             });
         }
     };
 
     resetLabelFN = function() {
         var h = myTable.selectedIds();
+        var label_json = JSON.stringify( { value : '' } );
         if (h.length) {
             h.each(function(hash, index) {
                 new Request({
@@ -302,14 +303,17 @@ initializeWindows = function() {
                     method: 'post',
                     data: {
                         hash: hash,
-                        label: ''
+                        label_obj: label_json
                     }
                 }).send();
             });
         }
     };
 
-    updateLabelFN = function(label) {
+    updateLabelFN = function(label_hash) {
+        var labelObj = _.findWhere( labels, { hash: label_hash } );
+        var label = _.unescape( labelObj.name );
+        var label_json = JSON.stringify( { value : label } );
         var h = myTable.selectedIds();
         if (h.length) {
             h.each(function(hash, index) {
@@ -318,7 +322,7 @@ initializeWindows = function() {
                     method: 'post',
                     data: {
                         hash: hash,
-                        label: label
+                        label_obj: label_json
                     }
                 }).send();
             });

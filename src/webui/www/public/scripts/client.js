@@ -136,31 +136,30 @@ window.addEvent('load', function () {
         $("labelFilter_" + UNLABELED_LABEL_FILTER).removeClass( "selectedFilter" );
 
         labels.each( function(label) {
-            var el = $("labelFilter_s_" + label.name );
+            var el = $("labelFilter_" + label.hash );
 
             if( el && el.removeClass ) {
                 el.removeClass( "selectedFilter" );
             }
         });
 
-        var obj;
-        if( typeof labelFilter === 'number' ) {
-            obj = $("labelFilter_" + labelFilter);
-        }
-        else {
-            obj = $("labelFilter_s_" + labelFilter);
-        }
-
+        var obj = $("labelFilter_" + labelFilter.hash);
         if( obj ) {
             obj.addClass("selectedFilter");
         }
     };
 
     setLabelFilter = function (f) {
-        labelFilter = f;
+
+        if( f == ALL_LABEL_FILTER || f == UNLABELED_LABEL_FILTER ) {
+            labelFilter = { hash: f, name: f };
+        }
+        else {
+            labelFilter = _.findWhere( labels, { hash: f } );
+        }
 
         // saving as json to preserve type (avoid number to be stored as string)
-        localStorage.setItem('selected_label_filter', JSON.stringify({ value:f }));
+        localStorage.setItem('selected_label_filter', JSON.stringify({ value : labelFilter }));
 
         // Reload torrents
         if (typeof myTable.table != 'undefined')
@@ -193,25 +192,25 @@ window.addEvent('load', function () {
     if (!speedInTitle)
         $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
 
-    var updateLabelCounter = function(label, hash) {
-        if (label && label.length > 0) {
-            if (!labelsCounter[label]) {
+    var updateLabelCounter = function(label_hash, torrent_hash) {
+        if (label_hash && label_hash.length > 0) {
+            if (!labelsCounter[label_hash]) {
                 updateLabelList = true;
-                labelsCounter[label] = [];
+                labelsCounter[label_hash] = [];
             }
 
-            if (labelsCounter[label].indexOf(hash) === -1) {
+            if (labelsCounter[label_hash].indexOf(torrent_hash) === -1) {
                 updateLabelList = true;
-                labelsCounter[label].push(hash);
+                labelsCounter[label_hash].push(torrent_hash);
             }
         }
 
         for (var l in labelsCounter) {
-            if (l == label) {
+            if (l == label_hash) {
                 continue;
             }
 
-            var idx = labelsCounter[l].indexOf(hash);
+            var idx = labelsCounter[l].indexOf(torrent_hash);
             if (idx >= 0) {
                 updateLabelList = true;
                 labelsCounter[l].splice(idx, 1);
@@ -265,10 +264,13 @@ window.addEvent('load', function () {
 
                     var pos = 0;
                     events.each(function (event) {
-                        updateLabelCounter(event.label, event.hash);
+                        event.label = _.escape( event.label );
+                        label_hash = XXH(event.label, 0xABCD).toString(16);
+
+                        updateLabelCounter(label_hash, event.hash);
                         allHashes.push( event.hash );
 
-                        if(labelFilter === UNLABELED_LABEL_FILTER)
+                        if(labelFilter.name == UNLABELED_LABEL_FILTER)
                         {
                             if(event.label != "") {
                                 myTable.removeRow(event.hash);
@@ -277,7 +279,7 @@ window.addEvent('load', function () {
                         }
                         else
                         {
-                            if(labelFilter !== ALL_LABEL_FILTER && labelFilter !== event.label) {
+                            if(labelFilter.name != ALL_LABEL_FILTER && labelFilter.name !== event.label) {
                                 myTable.removeRow(event.hash);
                                 return;
                             }
@@ -387,7 +389,7 @@ window.addEvent('load', function () {
                     var first = true;
                     labels.each(function (label) {
                     	var el = new Element('li',
-                    			{ html: '<a href="javascript:updateLabelFN(\'' + label.name + '\');">' + label.name + '</a>' } );
+                                       { html: '<a href="javascript:updateLabelFN(\'' + label.hash + '\');">' + label.name + '</a>' } );
                     	if( first ) {
                     		el.removeClass();
                     		el.addClass('separator');
@@ -479,6 +481,14 @@ window.addEvent('load', function () {
                         updateLabelList = true;
                     }
 
+                    info = _.map( info,
+                        function(a) {
+                            a.name = _.escape(a.name);
+                            a.hash = XXH(a.name, 0xABCD).toString(16);
+                            return a;
+                        }
+                    );
+
                     if( labels && !updateLabelList ) {
                         var new_labels = _.pluck(info, 'name');
                         var old_labels = _.pluck(labels, 'name');
@@ -505,17 +515,13 @@ window.addEvent('load', function () {
                     {
                         var filter_str = filter;
                         var filter_id = "labelFilter_" + filter;
-                        if( typeof filter !== 'number' ) {
-                            filter_str = '\'' + filter + '\'';
-                            filter_id = "labelFilter_s_" + filter;
-                        }
 
                         var el = new Element(
                             'li',
                             {
                                 id: filter_id,
                                 html:
-                                '<a href="#" onclick="setLabelFilter(' + filter_str + ');return false;">' +
+                                '<a href="#" onclick="setLabelFilter(\'' + filter_str + '\');return false;">' +
                                 '<img src="images/oxygen/folder-documents.png"/>' +
                                 'QBT_TR(' + text + ')QBT_TR (' + count + ')' + '</a>'
                             }
@@ -532,18 +538,20 @@ window.addEvent('load', function () {
                     labelList.appendChild( create_link(ALL_LABEL_FILTER, 'QBT_TR(All Labels)QBT_TR', all_labels) );
 
                     var unlabeled = all_labels;
-                    for( var label in labelsCounter ) {
-                        unlabeled -= labelsCounter[label].length;
+                    for( var label_hash in labelsCounter ) {
+                        if( _.findWhere(labels, { hash : label_hash }) ) {
+                            unlabeled -= labelsCounter[label_hash].length;
+                        }
                     }
                     labelList.appendChild( create_link(UNLABELED_LABEL_FILTER, 'QBT_TR(Unlabeled)QBT_TR', unlabeled) );
 
                     labels.each(function (label) {
                         var count = 0;
-                        if( labelsCounter[label.name] && labelsCounter[label.name].length )
+                        if( labelsCounter[label.hash] && labelsCounter[label.hash].length )
                         {
-                            count = labelsCounter[label.name].length;
+                            count = labelsCounter[label.hash].length;
                         }
-                        labelList.appendChild( create_link(label.name, label.name, count) );
+                        labelList.appendChild( create_link(label.hash, label.name, count) );
                     });
 
                     updateLabelFilterList();

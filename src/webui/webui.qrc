@@ -22,6 +22,7 @@
     <file>www/public/scripts/parametrics.js</file>
     <file>www/public/scripts/progressbar.js</file>
     <file>www/public/scripts/underscore-min.js</file>
+    <file>www/public/scripts/xxhash.min.lmd.js</file>
     <file>www/public/about.html</file>
     <file>www/public/addtrackers.html</file>
     <file>www/public/confirmdeletion.html</file>

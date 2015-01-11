@@ -49,6 +49,8 @@
 #include "qbtsession.h"
 #include "requesthandler.h"
 
+#include "jsonutils.h"
+
 using namespace libtorrent;
 
 static const int API_VERSION = 2;
@@ -660,14 +662,18 @@ void RequestHandler::action_command_recheck()
 void RequestHandler::action_command_setLabel()
 {
     CHECK_URI(0);
-    CHECK_PARAMETERS("hash" << "label");
+    CHECK_PARAMETERS("hash" << "label_obj");
 
     QString hash = request().posts["hash"];
-    QString label = request().posts["label"];
+    QString label_obj = request().posts["label_obj"];
 
-    if (!hash.isEmpty()) {
-        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
-        QBtSession::instance()->setLabel(h, label);
+    const QVariantMap m = json::fromJson(label_obj).toMap();
+    if( m.contains("value") ) {
+        QString label = m["value"].toString();
+        if (!hash.isEmpty()) {
+            QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+            QBtSession::instance()->setLabel(h, label);
+        }
     }
 }
 
