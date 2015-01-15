@@ -617,16 +617,10 @@ addWatchFolder = function() {
   if(new_folder.length <= 0) return;
   
   var download_here = $('new_watch_folder_dl').getProperty('checked');
-  var myinput = new Element('input');
   var i = $('watched_folders_tab').getChildren('tbody')[0].getChildren('tr').length;
-  myinput.setProperty('id', 'text_watch_'+i);
-  myinput.setProperty('type', 'text');
-  myinput.setProperty('value', new_folder);
   
-  var mycb = new Element('input');
-  mycb.setProperty('type', 'checkbox');
-  mycb.setProperty('id', 'cb_watch_'+i);
-  mycb.setProperty('checked', download_here);
+  var myinput = "<input id='text_watch_"+ i +"' type='text' value='" + new_folder + "'>";
+  var mycb = "<input id='cb_watch_"+ i +"' type='checkbox' checked='" + download_here + "'>";
   WatchedFoldersTable.push([myinput, mycb]);
   
   // Clear fields
@@ -740,14 +734,8 @@ loadPreferences = function() {
                     updateTempDirEnabled();
                     var i;
                     for(i=0; i<pref.scan_dirs.length; i+=1) {
-                      var myinput = new Element('input');
-                      myinput.setProperty('id', 'text_watch_'+i);
-                      myinput.setProperty('type', 'text');
-                      myinput.setProperty('value', pref.scan_dirs[i]);
-                      var mycb = new Element('input');
-                      mycb.setProperty('type', 'checkbox');
-                      mycb.setProperty('id', 'cb_watch_'+i);
-                      mycb.setProperty('checked', pref.download_in_scan_dirs[i]);
+                      var myinput = "<input id='text_watch_"+ i +"' type='text' value='" + pref.scan_dirs[i] + "'>";
+                      var mycb = "<input id='cb_watch_"+ i +"' type='checkbox' checked='" + pref.download_in_scan_dirs[i] + "'>";
                       WatchedFoldersTable.push([myinput, mycb]);
                     }
 
