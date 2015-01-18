@@ -145,7 +145,7 @@ void RequestHandler::action_public_index()
 
     if (!args_.isEmpty()) {
         if (args_.back() == "favicon.ico")
-            path = ":/Icons/skin/qbittorrent16.png";
+            path = ":/icons/skin/qbittorrent16.png";
         else
             path = WWW_FOLDER + args_.join("/");
     }
@@ -198,7 +198,7 @@ void RequestHandler::action_public_theme()
     }
 
 #ifdef DISABLE_GUI
-    QString url = ":/Icons/oxygen/" + args_.front() + ".png";
+    QString url = ":/icons/oxygen/" + args_.front() + ".png";
 #else
     QString url = IconProvider::instance()->getIconPath(args_.front());
 #endif
@@ -210,7 +210,7 @@ void RequestHandler::action_public_theme()
 
 void RequestHandler::action_public_images()
 {
-    const QString path = ":/Icons/" + args_.join("/");
+    const QString path = ":/icons/" + args_.join("/");
     printFile(path);
     header(HEADER_CACHE_CONTROL, MAX_AGE_MONTH);
 }

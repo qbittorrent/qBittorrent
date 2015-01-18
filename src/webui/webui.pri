@@ -2,12 +2,9 @@ INCLUDEPATH += $$PWD
 
 HEADERS += $$PWD/httpserver.h \
            $$PWD/httpconnection.h \
-           $$PWD/httprequestparser.h \
-           $$PWD/httpresponsegenerator.h \
            $$PWD/btjson.h \
            $$PWD/prefjson.h \
            $$PWD/jsonutils.h \
-           $$PWD/httptypes.h \
            $$PWD/extra_translations.h \
            $$PWD/webapplication.h \
            $$PWD/abstractrequesthandler.h \

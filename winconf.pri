@@ -43,18 +43,11 @@ CONFIG(debug, debug|release) {
 #Enable backtrace support
 CONFIG += strace_win
 
-strace_win:{
-  DEFINES += STACKTRACE_WIN
-  FORMS += stacktrace_win_dlg.ui
-  HEADERS += stacktrace_win.h \
-             stacktrace_win_dlg.h
-}
-
 win32-g++ {
-  include(winconf-mingw.pri)
+    include(winconf-mingw.pri)
 }
 else {
-  include(winconf-msvc.pri)
+    include(winconf-msvc.pri)
 }
 
 DEFINES += WITH_GEOIP_EMBEDDED
