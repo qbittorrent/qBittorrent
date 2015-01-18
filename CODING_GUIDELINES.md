@@ -43,11 +43,11 @@ if (condition) {
     //code
 }
 
-for(int a=0; a<b; ++b) {
+for (int a = 0; a < b; ++b) {
     //code
 }
 
-switch(a) {
+switch (a) {
 case 1:
     //blah
 case 2:
@@ -59,13 +59,17 @@ default:
 
 #### c. Blocks in switch's case labels ####
 ```c++
-switch (var)
+switch (var) {
 case 1: {
-    //declare local variables
-    //code
-}
-case 2:
-    //code
+        //declare local variables
+        //code
+    }
+    break;
+case 2: {
+        //declare local variables
+        //code
+    }
+    break;
 default:
     //code
 }
@@ -90,16 +94,16 @@ The `else if`/`else` must be on their own lines.
 **Most** single statement if blocks should look like this:
 ```c++
 if (condition)
-    a = a +b;
+    a = a + b;
 ```
 
-One acceptable exception to this **can be** `return` or `break` statements, provided that the test condition isn't very long. However you can choose to use the first rule instead.
+One acceptable exception to this **can be** `return`, `break` or `continue` statements, provided that the test condition isn't very long. However you can choose to use the first rule instead.
 ```c++
 a = myFunction();
-b = a*1500;
+b = a * 1500;
 
-if (b>0) return;
-c = 100/b;
+if (b > 0) return;
+c = 100 / b;
 ```
 
 #### c. Using curly braces for single statement if blocks ####
@@ -159,7 +163,7 @@ a += "b"
 
 Before and after the assignment there should be a space. One exception could be: for loops.
 ```c++
-for(int a=0; a<b; ++b) {
+for (int a=0; a<b; ++b) {
 }
 ```
 
