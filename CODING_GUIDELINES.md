@@ -7,66 +7,71 @@ If you make changes in a file that still uses another coding style, make sure th
 ```c++
 int myFunction(int a)
 {
-//code
+    //code
 }
 
-myClass::myClass(int *parent) : m_parent(parent)
+myClass::myClass(int *parent)
+    : m_parent(parent)
 {
-//initialiaze
+    //initialiaze
 }
 
 int myClass::myMethod(int a)
 {
-//code
+    //code
 }
 
 class myOtherClass
 {
 public:
-//code
+    //code
 protected:
-//code
+    //code
 private:
-//code
+    //code
 };
 
 namespace id
 {
-//code
+    //code
 }
 ```
 
 #### b. Other code blocks ####
 ```c++
 if (condition) {
-//code
+    //code
 }
 
-for(int a=0; a<b; ++b) {
-//code
+for (int a = 0; a < b; ++b) {
+    //code
 }
 
-switch(a) {
+switch (a) {
 case 1:
-//blah
+    //blah
 case 2:
-//blah
+    //blah
 default:
-//blah
+    //blah
 }
 ```
 
 #### c. Blocks in switch's case labels ####
 ```c++
-switch (var)
+switch (var) {
 case 1: {
-    //declare local variables
-    //code
-}
-case 2:
-//code
+        //declare local variables
+        //code
+    }
+    break;
+case 2: {
+        //declare local variables
+        //code
+    }
+    break;
 default:
-//code
+    //code
 }
 ```
 
@@ -74,13 +79,13 @@ default:
 #### a. Multiple tests ####
 ```c++
 if (condition) {
-  //code
+    //code
 }
 else if (condition) {
-  //code
+    //code
 }
 else {
-  //code
+    //code
 }
 ```
 The `else if`/`else` must be on their own lines.
@@ -89,16 +94,16 @@ The `else if`/`else` must be on their own lines.
 **Most** single statement if blocks should look like this:
 ```c++
 if (condition)
-    a = a +b;
+    a = a + b;
 ```
 
-One acceptable exception to this **can be** `return` or `break` statements, provided that the test condition isn't very long. However you can choose to use the first rule instead.
+One acceptable exception to this **can be** `return`, `break` or `continue` statements, provided that the test condition isn't very long. However you can choose to use the first rule instead.
 ```c++
 a = myFunction();
-b = a*1500;
+b = a * 1500;
 
-if (b>0) return;
-c = 100/b;
+if (b > 0) return;
+c = 100 / b;
 ```
 
 #### c. Using curly braces for single statement if blocks ####
@@ -116,7 +121,35 @@ Generally it will depend on the particular piece of code and would be determined
 
 UTF-8 and Unix-like line ending (LF). Unless some platform speficic files need other encodings/line endings.
 
-### 5. Misc.###
+### 5. Initialization lists.###
+Initialization lists should be vertical. This will allow for more easily readable diffs. The inilization colon should be indented and in its own line along with first argument. The rest of the arguments should be indented too and have the comma prepended.
+```c++
+myClass::myClass(int a, int b, int c, int d)
+    : priv_a(a)
+    , priv_b(b)
+    , priv_c(c)
+    , priv_d(d)
+{
+    //code
+}
+```
+
+### 6. Enums.###
+Enums should be vertical. This will allow for more easily readable diffs. The members should be indented.
+```c++
+enum days
+{
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday,
+    Sunday
+};
+```
+
+### 7. Misc.###
 
 * Line breaks for long lines with operation:
 
@@ -130,7 +163,7 @@ a += "b"
 
 Before and after the assignment there should be a space. One exception could be: for loops.
 ```c++
-for(int a=0; a<b; ++b) {
+for (int a=0; a<b; ++b) {
 }
 ```
 
@@ -140,5 +173,5 @@ for(int a=0; a<b; ++b) {
 
 * Method definitions aren't allowed in header files
 
-###6. Not covered above###
+###8. Not covered above###
 If something isn't covered above, just follow the same style the file you are editing has. If that particular detail isn't present in the file you are editing, then use whatever the rest of the project uses.

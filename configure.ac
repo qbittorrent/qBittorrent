@@ -3,6 +3,7 @@ AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AC_PROG_CC
 AC_PROG_CXX
+AC_PROG_SED
 AC_LANG(C++)
 AC_CANONICAL_HOST
 AM_INIT_AUTOMAKE
@@ -49,7 +50,7 @@ AC_ARG_ENABLE(qt-dbus,
 
 # Detect OS
 AC_MSG_CHECKING([whether OS is FreeBSD])
-AS_IF([test "x$host_os" = "x*freebsd*"],
+AS_IF([test "x$host_os" = "x*FreeBSD*"],
       [AC_MSG_RESULT([yes])
       LIBS="-lexecinfo $LIBS"],
       [AC_MSG_RESULT([no])])
@@ -172,7 +173,37 @@ AX_DEFINE_DIR([EXPAND_BINDIR], [bindir])
 AX_DEFINE_DIR([EXPAND_DATADIR], [datadir])
 AX_DEFINE_DIR([EXPAND_MANDIR], [mandir])
 
+# Original extract() function contributed by pmzqla
+# $*: Strings to parse
+# Set $DEFINES, $INCLUDES, $OTHER
+extract() {
+  if [[ -z "$*" ]]; then
+    echo "Input string required"
+    return 1
+  fi
+
+  # Convert " -" to "\n" if not between quotes
+  string=$(echo " $*" | $SED -e 's: -:\n:g' -e 's:"\(.*\)\n\(.*\)":\"\1 -\2":g' -e "s:'\(.*\)\n\(.*\)':\'\1 -\2':g")
+  SAVEIFS=$IFS
+  IFS=$(printf "\n\b")
+  for i in $string; do
+    case "$(echo "$i" | cut -c1)" in
+      '') ;;
+      D) QBT_CONF_DEFINES="$(echo $i | cut -c2-) $QBT_CONF_DEFINES";;
+      I) QBT_CONF_INCLUDES="$(echo $i | cut -c2-) $QBT_CONF_INCLUDES";;
+      *) QBT_CONF_EXTRA_CFLAGS="-$i $QBT_CONF_EXTRA_CFLAGS";;
+    esac
+  done
+  IFS=$SAVEIFS
+}
+
+extract $CPPFLAGS
+QBT_ADD_DEFINES="$QBT_ADD_DEFINES $QBT_CONF_DEFINES"
+QBT_CONF_EXTRA_CFLAGS="$QBT_CONF_EXTRA_CFLAGS $CXXFLAGS"
+
 # Substitute the values of these vars in conf.pri.in
+AC_SUBST(QBT_CONF_INCLUDES)
+AC_SUBST(QBT_CONF_EXTRA_CFLAGS)
 AC_SUBST(QBT_ADD_CONFIG)
 AC_SUBST(QBT_REMOVE_CONFIG)
 AC_SUBST(QBT_ADD_DEFINES)

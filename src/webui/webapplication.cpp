@@ -187,13 +187,14 @@ QString WebApplication::generateSid()
 
 void WebApplication::translateDocument(QString& data)
 {
-  const QRegExp regex(QString::fromUtf8("_\\(([\\w\\s?!:\\/\\(\\),%µ&\\-\\.]+)\\)"));
+  const QRegExp regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR");
   const QRegExp mnemonic("\\(?&([a-zA-Z]?\\))?");
   const std::string contexts[] = {
     "TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget",
     "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
     "options_imp", "Preferences", "TrackersAdditionDlg", "ScanFoldersModel",
-    "PropTabBar", "TorrentModel", "downloadFromURL", "MainWindow", "misc"
+    "PropTabBar", "TorrentModel", "downloadFromURL", "MainWindow", "misc",
+    "StatusBar"
   };
   const size_t context_count = sizeof(contexts) / sizeof(contexts[0]);
   int i = 0;

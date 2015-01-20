@@ -82,7 +82,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   m_contentFilerLine = new LineEdit(this);
   m_contentFilerLine->setPlaceholderText(tr("Filter files..."));
   connect(m_contentFilerLine, SIGNAL(textChanged(QString)), this, SLOT(filterText(QString)));
-  contentFilterLayout->insertWidget(1, m_contentFilerLine);
+  contentFilterLayout->insertWidget(4, m_contentFilerLine);
 
   // SIGNAL/SLOTS
   connect(filesList, SIGNAL(clicked(const QModelIndex&)), filesList, SLOT(edit(const QModelIndex&)));
@@ -97,6 +97,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(stackedProperties, SIGNAL(currentChanged(int)), this, SLOT(loadDynamicData()));
   connect(QBtSession::instance(), SIGNAL(savePathChanged(QTorrentHandle)), this, SLOT(updateSavePath(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(metadataReceived(QTorrentHandle)), this, SLOT(updateTorrentInfos(QTorrentHandle)));
+  connect(filesList->header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(saveSettings()));
+  connect(filesList->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
+  connect(filesList->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
 
   // Downloaded pieces progress bar
   downloaded_pieces = new DownloadedPiecesBar(this);
@@ -109,14 +112,22 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(trackerUpButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionUp()));
   connect(trackerDownButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionDown()));
   horizontalLayout_trackers->insertWidget(0, trackerList);
+  connect(trackerList->header(), SIGNAL(sectionMoved(int, int, int)), trackerList, SLOT(saveSettings()));
+  connect(trackerList->header(), SIGNAL(sectionResized(int, int, int)), trackerList, SLOT(saveSettings()));
+  connect(trackerList->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), trackerList, SLOT(saveSettings()));
   // Peers list
   peersList = new PeerListWidget(this);
   peerpage_layout->addWidget(peersList);
+  connect(peersList->header(), SIGNAL(sectionMoved(int, int, int)), peersList, SLOT(saveSettings()));
+  connect(peersList->header(), SIGNAL(sectionResized(int, int, int)), peersList, SLOT(saveSettings()));
+  connect(peersList->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), peersList, SLOT(saveSettings()));
   // Tab bar
   m_tabBar = new PropTabBar();
   verticalLayout->addLayout(m_tabBar);
   connect(m_tabBar, SIGNAL(tabChanged(int)), stackedProperties, SLOT(setCurrentIndex(int)));
+  connect(m_tabBar, SIGNAL(tabChanged(int)), this, SLOT(saveSettings()));
   connect(m_tabBar, SIGNAL(visibilityToggled(bool)), SLOT(setVisibility(bool)));
+  connect(m_tabBar, SIGNAL(visibilityToggled(bool)), this, SLOT(saveSettings()));
   // Dynamic data refresher
   refreshTimer = new QTimer(this);
   connect(refreshTimer, SIGNAL(timeout()), this, SLOT(loadDynamicData()));
@@ -248,7 +259,7 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle& _h)
     if (h.has_metadata()) {
       // Creation date
       lbl_creationDate->setText(h.creation_date());
-      // Pieces size
+      // Piece size
       pieceSize_lbl->setText(misc::friendlyUnit(h.piece_length()));
       // Comment
       comment_text->setHtml(misc::parseHtmlLinks(h.comment()));
@@ -279,12 +290,14 @@ void PropertiesWidget::readSettings() {
     QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
     hSplitter->setSizes(slideSizes);
   }
+  const int current_tab = pref->getPropCurTab();
+  const bool visible = pref->getPropVisible();
+  // the following will call saveSettings but shouldn't change any state
   if (!filesList->header()->restoreState(pref->getPropFileListState())) {
     filesList->header()->resizeSection(0, 400); //Default
   }
-  const int current_tab = pref->getPropCurTab();
   m_tabBar->setCurrentIndex(current_tab);
-  if (!pref->getPropVisible()) {
+  if (!visible) {
     setVisibility(false);
   }
 }
@@ -318,11 +331,12 @@ void PropertiesWidget::loadDynamicData() {
   // Refresh only if the torrent handle is valid and if visible
   if (!h.is_valid() || main_window->getCurrentTabWidget() != transferList || state != VISIBLE) return;
   try {
-    libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters
-                                                 | torrent_handle::query_distributed_copies
-                                                 | torrent_handle::query_pieces);
     // Transfer infos
     if (stackedProperties->currentIndex() == PropTabBar::MAIN_TAB) {
+      libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters
+                                                   | torrent_handle::query_distributed_copies
+                                                   | torrent_handle::query_pieces);
+
       wasted->setText(misc::friendlyUnit(status.total_failed_bytes+status.total_redundant_bytes));
       upTotal->setText(misc::friendlyUnit(status.all_time_upload) + " ("+misc::friendlyUnit(status.total_payload_upload)+" "+tr("this session")+")");
       dlTotal->setText(misc::friendlyUnit(status.all_time_download) + " ("+misc::friendlyUnit(status.total_payload_download)+" "+tr("this session")+")");
@@ -382,6 +396,9 @@ void PropertiesWidget::loadDynamicData() {
       return;
     }
     if (stackedProperties->currentIndex() == PropTabBar::FILES_TAB) {
+      libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters
+                                                   | torrent_handle::query_distributed_copies
+                                                   | torrent_handle::query_pieces);
       // Files progress
       if (h.is_valid() && status.has_metadata) {
         qDebug("Updating priorities in files tab");
@@ -441,34 +458,50 @@ void PropertiesWidget::openFile(const QModelIndex &index) {
 }
 
 void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_folder) {
+  QString absolute_path;
   // FOLDER
-  QStringList path_items;
-  path_items << index.data().toString();
-  QModelIndex parent = PropListModel->parent(index);
-  while(parent.isValid()) {
-    path_items.prepend(parent.data().toString());
-    parent = PropListModel->parent(parent);
+  if (PropListModel->itemType(index) == TorrentContentModelItem::FolderType) {
+    // Generate relative path to selected folder
+    QStringList path_items;
+    path_items << index.data().toString();
+    QModelIndex parent = PropListModel->parent(index);
+    while(parent.isValid()) {
+      path_items.prepend(parent.data().toString());
+      parent = PropListModel->parent(parent);
+    }
+    if (path_items.isEmpty())
+      return;
+#if !(defined(Q_OS_WIN) || (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)))
+    if (containing_folder)
+      path_items.removeLast();
+#endif
+    const QDir saveDir(h.save_path());
+    const QString relative_path = path_items.join("/");
+    absolute_path = fsutils::expandPath(saveDir.absoluteFilePath(relative_path));
   }
-  if (path_items.isEmpty())
-    return;
+  else {
+  int i = PropListModel->getFileIndex(index);
+  const QDir saveDir(h.save_path());
+  const QString relative_path = h.filepath_at(i);
+  absolute_path = fsutils::expandPath(saveDir.absoluteFilePath(relative_path));
 
 #if !(defined(Q_OS_WIN) || (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)))
   if (containing_folder)
-    path_items.removeLast();
+    absolute_path = fsutils::folderName(absolute_path);
 #endif
+  }
 
-  const QDir saveDir(h.save_path());
-  const QString filename = path_items.join("/");
-  const QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
-  qDebug("Trying to open folder at %s", qPrintable(file_path));
   // Flush data
   h.flush_cache();
+  if (!QFile::exists(absolute_path))
+      return;
+  qDebug("Trying to open folder at %s", qPrintable(absolute_path));
 
 #ifdef Q_OS_WIN
   if (containing_folder) {
     // Syntax is: explorer /select, "C:\Folder1\Folder2\file_to_select"
     // Dir separators MUST be win-style slashes
-    QProcess::startDetached("explorer.exe", QStringList() << "/select," << fsutils::toNativePath(file_path));
+    QProcess::startDetached("explorer.exe", QStringList() << "/select," << fsutils::toNativePath(absolute_path));
   } else {
 #elif defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
   if (containing_folder) {
@@ -478,21 +511,21 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
     proc.waitForFinished();
     output = proc.readLine().simplified();
     if (output == "dolphin.desktop")
-      proc.startDetached("dolphin", QStringList() << "--select" << fsutils::toNativePath(file_path));
+      proc.startDetached("dolphin", QStringList() << "--select" << fsutils::toNativePath(absolute_path));
     else if (output == "nautilus-folder-handler.desktop")
-      proc.startDetached("nautilus", QStringList() << "--no-desktop" << fsutils::toNativePath(file_path));
+      proc.startDetached("nautilus", QStringList() << "--no-desktop" << fsutils::toNativePath(absolute_path));
     else if (output == "kfmclient_dir.desktop")
-      proc.startDetached("konqueror", QStringList() << "--select" << fsutils::toNativePath(file_path));
+      proc.startDetached("konqueror", QStringList() << "--select" << fsutils::toNativePath(absolute_path));
     else
-      QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(file_path).absolutePath()));
+      QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(absolute_path).absolutePath()));
   } else {
 #endif
-    if (QFile::exists(file_path)) {
+    if (QFile::exists(absolute_path)) {
       // Hack to access samba shares with QDesktopServices::openUrl
-      if (file_path.startsWith("//"))
-        QDesktopServices::openUrl(fsutils::toNativePath("file:" + file_path));
+      if (absolute_path.startsWith("//"))
+        QDesktopServices::openUrl(fsutils::toNativePath("file:" + absolute_path));
       else
-        QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
+        QDesktopServices::openUrl(QUrl::fromLocalFile(absolute_path));
     } else {
       QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
     }

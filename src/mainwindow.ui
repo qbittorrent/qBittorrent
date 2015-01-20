@@ -36,14 +36,15 @@
     <property name="title">
      <string>&amp;Edit</string>
     </property>
-    <addaction name="separator"/>
     <addaction name="actionStart"/>
     <addaction name="actionPause"/>
     <addaction name="separator"/>
     <addaction name="actionDelete"/>
-    <addaction name="separator"/>
-    <addaction name="actionDecreasePriority"/>
+    <!--Dynamic separator from mainwindow.cpp-->
+    <addaction name="actionTopPriority"/>
     <addaction name="actionIncreasePriority"/>
+    <addaction name="actionDecreasePriority"/>
+    <addaction name="actionBottomPriority"/>
    </widget>
    <widget class="QMenu" name="menu_Help">
     <property name="title">
@@ -130,8 +131,11 @@
    <addaction name="separator"/>
    <addaction name="actionStart"/>
    <addaction name="actionPause"/>
+   <!--Dynamic separator from mainwindow.cpp-->
+   <addaction name="actionBottomPriority"/>
    <addaction name="actionDecreasePriority"/>
    <addaction name="actionIncreasePriority"/>
+   <addaction name="actionTopPriority"/>
    <addaction name="separator"/>
    <addaction name="actionOptions"/>
    <addaction name="actionLock_qBittorrent"/>
@@ -140,6 +144,9 @@
   <action name="actionOpen">
    <property name="text">
     <string>&amp;Add torrent file...</string>
+   </property>
+   <property name="iconText">
+    <string>Open</string>
    </property>
   </action>
   <action name="actionExit">
@@ -154,6 +161,9 @@
    <property name="text">
     <string>&amp;Options...</string>
    </property>
+   <property name="iconText">
+    <string>Options</string>
+   </property>
   </action>
   <action name="actionAbout">
    <property name="text">
@@ -164,15 +174,24 @@
    <property name="text">
     <string>&amp;Resume</string>
    </property>
+   <property name="iconText">
+    <string>Resume</string>
+   </property>
   </action>
   <action name="actionPause">
    <property name="text">
     <string>&amp;Pause</string>
    </property>
+   <property name="iconText">
+    <string>Pause</string>
+   </property>
   </action>
   <action name="actionDelete">
    <property name="text">
     <string>&amp;Delete</string>
+   </property>
+   <property name="iconText">
+    <string>Delete</string>
    </property>
   </action>
   <action name="actionWebsite">
@@ -187,6 +206,9 @@
   <action name="actionDownload_from_URL">
    <property name="text">
     <string>Add &amp;link to torrent...</string>
+   </property>
+   <property name="iconText">
+    <string>Open URL</string>
    </property>
   </action>
   <action name="actionCreate_torrent">
@@ -222,6 +244,22 @@
   <action name="actionSet_global_upload_limit">
    <property name="text">
     <string>Set global upload limit...</string>
+   </property>
+  </action>
+  <action name="actionBottomPriority">
+   <property name="text">
+    <string>Minimum priority</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionTopPriority">
+   <property name="text">
+    <string>Top priority</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionDecreasePriority">
@@ -295,6 +333,9 @@
    </property>
    <property name="toolTip">
     <string>Lock qBittorrent</string>
+   </property>
+   <property name="iconText">
+    <string>Lock</string>
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+L</string>

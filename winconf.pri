@@ -41,9 +41,7 @@ CONFIG(debug, debug|release) {
 }
 
 #Enable backtrace support
-win32-msvc* {
-  CONFIG += strace_win
-}
+CONFIG += strace_win
 
 strace_win:{
   DEFINES += STACKTRACE_WIN

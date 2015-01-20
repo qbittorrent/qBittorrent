@@ -30,9 +30,10 @@
     <file>www/public/preferences.html</file>
     <file>www/public/preferences_content.html</file>
     <file>www/public/properties.html</file>
-    <file>www/public/prop-files.html</file>
-    <file>www/public/prop-general.html</file>
-    <file>www/public/prop-trackers.html</file>
+    <file>www/public/properties_content.html</file>
+    <file>www/public/scripts/prop-general.js</file>
+    <file>www/public/scripts/prop-trackers.js</file>
+    <file>www/public/scripts/prop-files.js</file>
     <file>www/public/transferlist.html</file>
     <file>www/public/upload.html</file>
     <file>www/public/uploadlimit.html</file>

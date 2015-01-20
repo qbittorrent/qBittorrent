@@ -50,6 +50,10 @@
 #include "trackerinfos.h"
 #include "misc.h"
 
+#ifndef DISABLE_GUI
+#include "rssdownloadrule.h"
+#endif
+
 namespace libtorrent {
   struct add_torrent_params;
   struct pe_settings;
@@ -175,7 +179,14 @@ public slots:
   void setQueueingEnabled(bool enable);
   void handleDownloadFailure(QString url, QString reason);
   void handleMagnetRedirect(const QString &url_new, const QString &url_old);
-  void downloadUrlAndSkipDialog(QString url, QString save_path=QString(), QString label=QString(), const QList<QNetworkCookie>& cookies = QList<QNetworkCookie>());
+#ifndef DISABLE_GUI
+  void downloadUrlAndSkipDialog(QString url, QString save_path=QString(), QString label=QString(),
+                                const QList<QNetworkCookie>& cookies = QList<QNetworkCookie>(),
+                                const RssDownloadRule::AddPausedState &aps = RssDownloadRule::USE_GLOBAL);
+#else
+  void downloadUrlAndSkipDialog(QString url, QString save_path=QString(), QString label=QString(),
+                                const QList<QNetworkCookie>& cookies = QList<QNetworkCookie>());
+#endif
   // Session configuration - Setters
   void setListeningPort(int port);
   void setMaxConnectionsPerTorrent(int max);
@@ -204,11 +215,20 @@ public slots:
 #else
   void addConsoleMessage(QString msg, QColor color=QApplication::palette().color(QPalette::WindowText));
 #endif
-  void addPeerBanMessage(QString msg, bool from_ipfilter);
+#if LIBTORRENT_VERSION_NUM < 10000
+  void addPeerBanMessage(const QString &msg, bool blocked);
+#else
+  void addPeerBanMessage(const QString &msg, bool blocked, const QString &blockedReason = QString());
+#endif
   void clearConsoleMessages() { consoleMessages.clear(); }
   void clearPeerBanMessages() { peerBanMessages.clear(); }
   void processDownloadedFile(QString, QString);
-  void addMagnetSkipAddDlg(const QString& uri, const QString& save_path = QString(), const QString& label = QString(), const QString &uri_old = QString());
+#ifndef DISABLE_GUI
+  void addMagnetSkipAddDlg(const QString& uri, const QString& save_path = QString(), const QString& label = QString(),
+                           const RssDownloadRule::AddPausedState &aps = RssDownloadRule::USE_GLOBAL, const QString &uri_old = QString());
+#else
+   void addMagnetSkipAddDlg(const QString& uri, const QString& save_path = QString(), const QString& label = QString(), const QString &uri_old = QString());
+#endif
   void addMagnetInteractive(const QString& uri);
   void downloadFromURLList(const QStringList& urls);
   void configureSession();
@@ -301,6 +321,9 @@ private:
   libtorrent::session *s;
   QPointer<BandwidthScheduler> bd_scheduler;
   QMap<QUrl, QPair<QString, QString> > savepathLabel_fromurl; // Use QMap for compatibility with Qt < 4.7: qHash(QUrl)
+#ifndef DISABLE_GUI
+  QMap<QUrl, RssDownloadRule::AddPausedState> addpaused_fromurl;
+#endif
   QHash<QString, QHash<QString, TrackerInfos> > trackersInfos;
   QHash<QString, QString> savePathsToRemove;
   QStringList torrentsToPausedAfterChecking;

@@ -361,7 +361,11 @@
   <file>Icons/skin/tabs.gif</file>
   <file>Icons/skin/toolbox-divider.gif</file>
   <file>Icons/skin/toolbox-divider2.gif</file>
+  <file>Icons/skin/resumed.png</file>
   <file>Icons/skin/uploading.png</file>
   <file>Icons/oxygen/system-log-out.png</file>
+  <file>Icons/oxygen/go-bottom.png</file>
+  <file>Icons/oxygen/go-top.png</file>
+  <file>Icons/oxygen/checked.png</file>
 </qresource>
 </RCC>

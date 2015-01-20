@@ -39,6 +39,7 @@ const QString HEADER_SET_COOKIE = "Set-Cookie";
 const QString HEADER_CONTENT_TYPE = "Content-Type";
 const QString HEADER_CONTENT_ENCODING = "Content-Encoding";
 const QString HEADER_CONTENT_LENGTH = "Content-Length";
+const QString HEADER_CACHE_CONTROL = "Cache-Control";
 
 const QString CONTENT_TYPE_CSS = "text/css; charset=UTF-8";
 const QString CONTENT_TYPE_GIF = "image/gif";

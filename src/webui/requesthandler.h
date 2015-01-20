@@ -38,63 +38,70 @@ class WebApplication;
 class RequestHandler: public AbstractRequestHandler
 {
 public:
-  RequestHandler(
-      const HttpRequest& request, const HttpEnvironment& env,
-      WebApplication* app);
+    RequestHandler(
+        const HttpRequest& request, const HttpEnvironment& env,
+        WebApplication* app);
 
 private:
-  // Actions
-  void action_public_webui();
-  void action_public_index();
-  void action_public_login();
-  void action_public_logout();
-  void action_public_theme();
-  void action_public_images();
-  void action_json_torrents();
-  void action_json_preferences();
-  void action_json_transferInfo();
-  void action_json_propertiesGeneral();
-  void action_json_propertiesTrackers();
-  void action_json_propertiesFiles();
-  void action_command_shutdown();
-  void action_command_download();
-  void action_command_upload();
-  void action_command_addTrackers();
-  void action_command_resumeAll();
-  void action_command_pauseAll();
-  void action_command_resume();
-  void action_command_pause();
-  void action_command_setPreferences();
-  void action_command_setFilePrio();
-  void action_command_getGlobalUpLimit();
-  void action_command_getGlobalDlLimit();
-  void action_command_setGlobalUpLimit();
-  void action_command_setGlobalDlLimit();
-  void action_command_getTorrentUpLimit();
-  void action_command_getTorrentDlLimit();
-  void action_command_setTorrentUpLimit();
-  void action_command_setTorrentDlLimit();
-  void action_command_delete();
-  void action_command_deletePerm();
-  void action_command_increasePrio();
-  void action_command_decreasePrio();
-  void action_command_topPrio();
-  void action_command_bottomPrio();
-  void action_command_recheck();
+    // Actions
+    void action_public_webui();
+    void action_public_index();
+    void action_public_login();
+    void action_public_logout();
+    void action_public_theme();
+    void action_public_images();
+    void action_json_torrents();
+    void action_json_preferences();
+    void action_json_transferInfo();
+    void action_json_propertiesGeneral();
+    void action_json_propertiesTrackers();
+    void action_json_propertiesFiles();
+    void action_command_shutdown();
+    void action_command_download();
+    void action_command_upload();
+    void action_command_addTrackers();
+    void action_command_resumeAll();
+    void action_command_pauseAll();
+    void action_command_resume();
+    void action_command_pause();
+    void action_command_setPreferences();
+    void action_command_setFilePrio();
+    void action_command_getGlobalUpLimit();
+    void action_command_getGlobalDlLimit();
+    void action_command_setGlobalUpLimit();
+    void action_command_setGlobalDlLimit();
+    void action_command_getTorrentUpLimit();
+    void action_command_getTorrentDlLimit();
+    void action_command_setTorrentUpLimit();
+    void action_command_setTorrentDlLimit();
+    void action_command_alternativeSpeedLimitsEnabled();
+    void action_command_toggleAlternativeSpeedLimits();
+    void action_command_toggleSequentialDownload();
+    void action_command_toggleFirstLastPiecePrio();
+    void action_command_delete();
+    void action_command_deletePerm();
+    void action_command_increasePrio();
+    void action_command_decreasePrio();
+    void action_command_topPrio();
+    void action_command_bottomPrio();
+    void action_command_recheck();
+    void action_version_api();
+    void action_version_api_min();
+    void action_version_qbittorrent();
 
-  typedef void (RequestHandler::*Action)();
+    typedef void (RequestHandler::*Action)();
 
-  QString scope_;
-  QString action_;
-  QStringList args_;
+    QString scope_;
+    QString action_;
+    QStringList args_;
 
-  void processRequest();
+    void processRequest();
 
-  bool isPublicScope();
-  void parsePath();
+    bool isPublicScope();
+    void parsePath();
 
-  static QMap<QString, QMap<QString, Action> > initializeActions();
-  static QMap<QString, QMap<QString, Action> > actions_;
+    static QMap<QString, QMap<QString, Action> > initializeActions();
+    static QMap<QString, QMap<QString, Action> > actions_;
 };
 
 #endif // REQUESTHANDLER_H

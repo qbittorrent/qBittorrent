@@ -145,7 +145,11 @@ p, li { white-space: pre-wrap; }
            <enum>QAbstractItemView::SelectItems</enum>
           </property>
          </widget>
-         <widget class="QTextBrowser" name="textBrowser"/>
+         <widget class="HtmlBrowser" name="textBrowser">
+          <property name="openExternalLinks">
+           <bool>true</bool>
+          </property>
+         </widget>
         </widget>
        </item>
       </layout>
@@ -224,6 +228,13 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>HtmlBrowser</class>
+   <extends>QTextBrowser</extends>
+   <header>htmlbrowser.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

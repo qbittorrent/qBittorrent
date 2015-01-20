@@ -32,47 +32,52 @@
 #include "fs_utils.h"
 #include "qbtsession.h"
 #include "torrentpersistentdata.h"
+#include "qtorrentfilter.h"
 #include "jsonutils.h"
 
 #include <QDebug>
 #include <QVariant>
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+#include <QMetaType>
+#endif
 #if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
 #include <QElapsedTimer>
 #endif
 
 #include <libtorrent/session_status.hpp>
+#include <libtorrent/session.hpp>
 
 using namespace libtorrent;
 
 #if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
 
 #define CACHED_VARIABLE(VARTYPE, VAR, DUR) \
-  static VARTYPE VAR; \
-  static QElapsedTimer cacheTimer; \
-  static bool initialized = false; \
-  if (initialized && !cacheTimer.hasExpired(DUR)) \
-    return json::toJson(VAR); \
-  initialized = true; \
-  cacheTimer.start(); \
-  VAR = VARTYPE()
+    static VARTYPE VAR; \
+    static QElapsedTimer cacheTimer; \
+    static bool initialized = false; \
+    if (initialized && !cacheTimer.hasExpired(DUR)) \
+        return json::toJson(VAR); \
+    initialized = true; \
+    cacheTimer.start(); \
+    VAR = VARTYPE()
 
 #define CACHED_VARIABLE_FOR_HASH(VARTYPE, VAR, DUR, HASH) \
-  static VARTYPE VAR; \
-  static QString prev_hash; \
-  static QElapsedTimer cacheTimer; \
-  if (prev_hash == HASH && !cacheTimer.hasExpired(DUR)) \
-    return json::toJson(VAR); \
-  prev_hash = HASH; \
-  cacheTimer.start(); \
-  VAR = VARTYPE()
+    static VARTYPE VAR; \
+    static QString prev_hash; \
+    static QElapsedTimer cacheTimer; \
+    if (prev_hash == HASH && !cacheTimer.hasExpired(DUR)) \
+        return json::toJson(VAR); \
+    prev_hash = HASH; \
+    cacheTimer.start(); \
+    VAR = VARTYPE()
 
 #else
 // We don't support caching for Qt < 4.7 at the moment
 #define CACHED_VARIABLE(VARTYPE, VAR, DUR) \
-  VARTYPE VAR
+    VARTYPE VAR
 
 #define CACHED_VARIABLE_FOR_HASH(VARTYPE, VAR, DUR, HASH) \
-  VARTYPE VAR
+    VARTYPE VAR
 
 #endif
 
@@ -94,6 +99,8 @@ static const char KEY_TORRENT_NUM_INCOMPLETE[] = "num_incomplete";
 static const char KEY_TORRENT_RATIO[] = "ratio";
 static const char KEY_TORRENT_ETA[] = "eta";
 static const char KEY_TORRENT_STATE[] = "state";
+static const char KEY_TORRENT_SEQUENTIAL_DOWNLOAD[] = "seq_dl";
+static const char KEY_TORRENT_FIRST_LAST_PIECE_PRIO[] = "f_l_piece_prio";
 
 // Tracker keys
 static const char KEY_TRACKER_URL[] = "url";
@@ -129,66 +136,93 @@ static const char KEY_FILE_IS_SEED[] = "is_seed";
 // TransferInfo keys
 static const char KEY_TRANSFER_DLSPEED[] = "dl_info_speed";
 static const char KEY_TRANSFER_DLDATA[] = "dl_info_data";
+static const char KEY_TRANSFER_DLRATELIMIT[] = "dl_rate_limit";
 static const char KEY_TRANSFER_UPSPEED[] = "up_info_speed";
 static const char KEY_TRANSFER_UPDATA[] = "up_info_data";
+static const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
+static const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
+static const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
+
+class QTorrentCompare
+{
+public:
+    QTorrentCompare(QString key, bool greaterThan = false)
+        : key_(key)
+        , greaterThan_(greaterThan)
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+        , type_(QVariant::Invalid)
+#endif
+    {
+    }
+
+    bool operator()(QVariant torrent1, QVariant torrent2)
+    {
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+        if (type_ == QVariant::Invalid)
+            type_ = torrent1.toMap().value(key_).type();
+
+        switch (type_) {
+        case QVariant::Int:
+            return greaterThan_ ? torrent1.toMap().value(key_).toInt() > torrent2.toMap().value(key_).toInt()
+                   : torrent1.toMap().value(key_).toInt() < torrent2.toMap().value(key_).toInt();
+        case QVariant::LongLong:
+            return greaterThan_ ? torrent1.toMap().value(key_).toLongLong() > torrent2.toMap().value(key_).toLongLong()
+                   : torrent1.toMap().value(key_).toLongLong() < torrent2.toMap().value(key_).toLongLong();
+        case QVariant::ULongLong:
+            return greaterThan_ ? torrent1.toMap().value(key_).toULongLong() > torrent2.toMap().value(key_).toULongLong()
+                   : torrent1.toMap().value(key_).toULongLong() < torrent2.toMap().value(key_).toULongLong();
+        case QMetaType::Float:
+            return greaterThan_ ? torrent1.toMap().value(key_).toFloat() > torrent2.toMap().value(key_).toFloat()
+                   : torrent1.toMap().value(key_).toFloat() < torrent2.toMap().value(key_).toFloat();
+        case QVariant::Double:
+            return greaterThan_ ? torrent1.toMap().value(key_).toDouble() > torrent2.toMap().value(key_).toDouble()
+                   : torrent1.toMap().value(key_).toDouble() < torrent2.toMap().value(key_).toDouble();
+        default:
+            return greaterThan_ ? torrent1.toMap().value(key_).toString() > torrent2.toMap().value(key_).toString()
+                   : torrent1.toMap().value(key_).toString() < torrent2.toMap().value(key_).toString();
+        }
+#else
+        return greaterThan_ ? torrent1.toMap().value(key_) > torrent2.toMap().value(key_)
+               : torrent1.toMap().value(key_) < torrent2.toMap().value(key_);
+#endif
+    }
+
+private:
+    QString key_;
+    bool greaterThan_;
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+    QVariant::Type type_;
+#endif
+};
 
 static QVariantMap toMap(const QTorrentHandle& h)
 {
-  libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters);
+    libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters);
 
-  QVariantMap ret;
-  ret[KEY_TORRENT_HASH] =  h.hash();
-  ret[KEY_TORRENT_NAME] =  h.name();
-  ret[KEY_TORRENT_SIZE] =  static_cast<qlonglong>(status.total_wanted);
-  ret[KEY_TORRENT_PROGRESS] = h.progress(status);
-  ret[KEY_TORRENT_DLSPEED] = status.download_payload_rate;
-  ret[KEY_TORRENT_UPSPEED] = status.upload_payload_rate;
-  if (QBtSession::instance()->isQueueingEnabled() && h.queue_position(status) >= 0)
-    ret[KEY_TORRENT_PRIORITY] = h.queue_position(status);
-  else
-    ret[KEY_TORRENT_PRIORITY] = -1;
-  ret[KEY_TORRENT_SEEDS] = status.num_seeds;
-  ret[KEY_TORRENT_NUM_COMPLETE] = status.num_complete;
-  ret[KEY_TORRENT_LEECHS] = status.num_peers - status.num_seeds;
-  ret[KEY_TORRENT_NUM_INCOMPLETE] = status.num_incomplete;
-  const qreal ratio = QBtSession::instance()->getRealRatio(status);
-  ret[KEY_TORRENT_RATIO] = (ratio > 100.) ? -1 : ratio;
-  qulonglong eta = 0;
-  QString state;
-  if (h.is_paused(status)) {
-    if (h.has_error(status))
-      state = "error";
+    QVariantMap ret;
+    ret[KEY_TORRENT_HASH] =  h.hash();
+    ret[KEY_TORRENT_NAME] =  h.name();
+    ret[KEY_TORRENT_SIZE] =  static_cast<qlonglong>(status.total_wanted);
+    ret[KEY_TORRENT_PROGRESS] = h.progress(status);
+    ret[KEY_TORRENT_DLSPEED] = status.download_payload_rate;
+    ret[KEY_TORRENT_UPSPEED] = status.upload_payload_rate;
+    if (QBtSession::instance()->isQueueingEnabled() && h.queue_position(status) >= 0)
+        ret[KEY_TORRENT_PRIORITY] = h.queue_position(status);
     else
-      state = h.is_seed(status) ? "pausedUP" : "pausedDL";
-  } else {
-    if (QBtSession::instance()->isQueueingEnabled() && h.is_queued(status))
-      state = h.is_seed(status) ? "queuedUP" : "queuedDL";
-    else {
-      switch (status.state) {
-      case torrent_status::finished:
-      case torrent_status::seeding:
-        state = status.upload_payload_rate > 0 ? "uploading" : "stalledUP";
-        break;
-      case torrent_status::allocating:
-      case torrent_status::checking_files:
-      case torrent_status::queued_for_checking:
-      case torrent_status::checking_resume_data:
-        state = h.is_seed(status) ? "checkingUP" : "checkingDL";
-        break;
-      case torrent_status::downloading:
-      case torrent_status::downloading_metadata:
-        state = status.download_payload_rate > 0 ? "downloading" : "stalledDL";
-        eta = QBtSession::instance()->getETA(h.hash(), status);
-        break;
-      default:
-        qWarning("Unrecognized torrent status, should not happen!!! status was %d", h.state());
-      }
-    }
-  }
-  ret[KEY_TORRENT_ETA] = eta ? eta : MAX_ETA;
-  ret[KEY_TORRENT_STATE] =  state;
+        ret[KEY_TORRENT_PRIORITY] = -1;
+    ret[KEY_TORRENT_SEEDS] = status.num_seeds;
+    ret[KEY_TORRENT_NUM_COMPLETE] = status.num_complete;
+    ret[KEY_TORRENT_LEECHS] = status.num_peers - status.num_seeds;
+    ret[KEY_TORRENT_NUM_INCOMPLETE] = status.num_incomplete;
+    const qreal ratio = QBtSession::instance()->getRealRatio(status);
+    ret[KEY_TORRENT_RATIO] = (ratio > QBtSession::MAX_RATIO) ? -1 : ratio;
+    ret[KEY_TORRENT_STATE] = h.torrentState().toString();
+    ret[KEY_TORRENT_ETA] = h.eta();
+    ret[KEY_TORRENT_SEQUENTIAL_DOWNLOAD] = status.sequential_download;
+    if (h.has_metadata())
+        ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = h.first_last_piece_first();
 
-  return ret;
+    return ret;
 }
 
 /**
@@ -210,17 +244,41 @@ static QVariantMap toMap(const QTorrentHandle& h)
  *   - "ratio": Torrent share ratio
  *   - "eta": Torrent ETA
  *   - "state": Torrent state
+ *   - "seq_dl": Torrent sequential download state
+ *   - "f_l_piece_prio": Torrent first last piece priority state
  */
-QByteArray btjson::getTorrents()
+QByteArray btjson::getTorrents(QString filter, QString label,
+                               QString sortedColumn, bool reverse, int limit, int offset)
 {
-  CACHED_VARIABLE(QVariantList, torrent_list, CACHE_DURATION_MS);
-  std::vector<torrent_handle> torrents = QBtSession::instance()->getTorrents();
-  std::vector<torrent_handle>::const_iterator it = torrents.begin();
-  std::vector<torrent_handle>::const_iterator end = torrents.end();
-  for( ; it != end; ++it) {
-    torrent_list.append(toMap(QTorrentHandle(*it)));
-  }
-  return json::toJson(torrent_list);
+    QVariantList torrent_list;
+
+    std::vector<torrent_handle> torrents = QBtSession::instance()->getTorrents();
+    std::vector<torrent_handle>::const_iterator it = torrents.begin();
+    std::vector<torrent_handle>::const_iterator end = torrents.end();
+
+    QTorrentFilter torrentFilter(filter, label);
+    for(; it != end; ++it) {
+        QTorrentHandle torrent = QTorrentHandle(*it);
+
+        if (torrentFilter.apply(torrent))
+            torrent_list.append(toMap(torrent));
+    }
+
+    std::sort(torrent_list.begin(), torrent_list.end(), QTorrentCompare(sortedColumn, reverse));
+    int size = torrent_list.size();
+    // normalize offset
+    if (offset < 0)
+        offset = size - offset;
+    if ((offset >= size) || (offset < 0))
+        offset = 0;
+    // normalize limit
+    if (limit <= 0)
+        limit = -1; // unlimited
+
+    if ((limit > 0) || (offset > 0))
+        return json::toJson(torrent_list.mid(offset, limit));
+    else
+        return json::toJson(torrent_list);
 }
 
 /**
@@ -235,39 +293,41 @@ QByteArray btjson::getTorrents()
  */
 QByteArray btjson::getTrackersForTorrent(const QString& hash)
 {
-  CACHED_VARIABLE_FOR_HASH(QVariantList, tracker_list, CACHE_DURATION_MS, hash);
-  try {
-    QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
-    QHash<QString, TrackerInfos> trackers_data = QBtSession::instance()->getTrackersInfo(hash);
-    std::vector<announce_entry> vect_trackers = h.trackers();
-    std::vector<announce_entry>::const_iterator it = vect_trackers.begin();
-    std::vector<announce_entry>::const_iterator end = vect_trackers.end();
-    for (; it != end; ++it) {
-      QVariantMap tracker_dict;
-      const QString tracker_url = misc::toQString(it->url);
-      tracker_dict[KEY_TRACKER_URL] = tracker_url;
-      const TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
-      QString status;
-      if (it->verified)
-        status = tr("Working");
-      else {
-        if (it->updating && it->fails == 0)
-          status = tr("Updating...");
-        else
-          status = it->fails > 0 ? tr("Not working") : tr("Not contacted yet");
-      }
-      tracker_dict[KEY_TRACKER_STATUS] = status;
-      tracker_dict[KEY_TRACKER_PEERS] = static_cast<qulonglong>(trackers_data.value(tracker_url, TrackerInfos(tracker_url)).num_peers);
-      tracker_dict[KEY_TRACKER_MSG] = data.last_message.trimmed();
+    CACHED_VARIABLE_FOR_HASH(QVariantList, tracker_list, CACHE_DURATION_MS, hash);
+    try {
+        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+        QHash<QString, TrackerInfos> trackers_data = QBtSession::instance()->getTrackersInfo(hash);
+        std::vector<announce_entry> vect_trackers = h.trackers();
+        std::vector<announce_entry>::const_iterator it = vect_trackers.begin();
+        std::vector<announce_entry>::const_iterator end = vect_trackers.end();
+        for (; it != end; ++it) {
+            QVariantMap tracker_dict;
+            const QString tracker_url = misc::toQString(it->url);
+            tracker_dict[KEY_TRACKER_URL] = tracker_url;
+            const TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
+            QString status;
+            if (it->verified) {
+                status = tr("Working");
+            }
+            else {
+                if (it->updating && it->fails == 0)
+                    status = tr("Updating...");
+                else
+                    status = it->fails > 0 ? tr("Not working") : tr("Not contacted yet");
+            }
+            tracker_dict[KEY_TRACKER_STATUS] = status;
+            tracker_dict[KEY_TRACKER_PEERS] = static_cast<qulonglong>(trackers_data.value(tracker_url, TrackerInfos(tracker_url)).num_peers);
+            tracker_dict[KEY_TRACKER_MSG] = data.last_message.trimmed();
 
-      tracker_list.append(tracker_dict);
+            tracker_list.append(tracker_dict);
+        }
     }
-  } catch(const std::exception& e) {
-    qWarning() << Q_FUNC_INFO << "Invalid torrent: " << misc::toQStringU(e.what());
-    return QByteArray();
-  }
+    catch(const std::exception& e) {
+        qWarning() << Q_FUNC_INFO << "Invalid torrent: " << misc::toQStringU(e.what());
+        return QByteArray();
+    }
 
-  return json::toJson(tracker_list);
+    return json::toJson(tracker_list);
 }
 
 /**
@@ -294,41 +354,42 @@ QByteArray btjson::getTrackersForTorrent(const QString& hash)
  */
 QByteArray btjson::getPropertiesForTorrent(const QString& hash)
 {
-  CACHED_VARIABLE_FOR_HASH(QVariantMap, data, CACHE_DURATION_MS, hash);
-  try {
-    QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+    CACHED_VARIABLE_FOR_HASH(QVariantMap, data, CACHE_DURATION_MS, hash);
+    try {
+        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
 
-    libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters);
-    if (!status.has_metadata)
-      return QByteArray();
+        libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters);
+        if (!status.has_metadata)
+            return QByteArray();
 
-    // Save path
-    QString save_path = fsutils::toNativePath(TorrentPersistentData::getSavePath(hash));
-    if (save_path.isEmpty())
-      save_path = fsutils::toNativePath(h.save_path());
-    data[KEY_PROP_SAVE_PATH] = save_path;
-    data[KEY_PROP_CREATION_DATE] = h.creation_date_unix();
-    data[KEY_PROP_PIECE_SIZE] = static_cast<qlonglong>(h.piece_length());
-    data[KEY_PROP_COMMENT] = h.comment();
-    data[KEY_PROP_WASTED] = static_cast<qlonglong>(status.total_failed_bytes + status.total_redundant_bytes);
-    data[KEY_PROP_UPLOADED] = static_cast<qlonglong>(status.all_time_upload);
-    data[KEY_PROP_UPLOADED_SESSION] = static_cast<qlonglong>(status.total_payload_upload);
-    data[KEY_PROP_DOWNLOADED] = static_cast<qlonglong>(status.all_time_download);
-    data[KEY_PROP_DOWNLOADED_SESSION] = static_cast<qlonglong>(status.total_payload_download);
-    data[KEY_PROP_UP_LIMIT] = h.upload_limit() <= 0 ? -1 : h.upload_limit();
-    data[KEY_PROP_DL_LIMIT] = h.download_limit() <= 0 ? -1 : h.download_limit();
-    data[KEY_PROP_TIME_ELAPSED] = status.active_time;
-    data[KEY_PROP_SEEDING_TIME] = status.seeding_time;
-    data[KEY_PROP_CONNECT_COUNT] = status.num_connections;
-    data[KEY_PROP_CONNECT_COUNT_LIMIT] = status.connections_limit;
-    const qreal ratio = QBtSession::instance()->getRealRatio(status);
-    data[KEY_PROP_RATIO] = ratio > 100. ? -1 : ratio;
-  } catch(const std::exception& e) {
-    qWarning() << Q_FUNC_INFO << "Invalid torrent: " << misc::toQStringU(e.what());
-    return QByteArray();
-  }
+        // Save path
+        QString save_path = fsutils::toNativePath(TorrentPersistentData::getSavePath(hash));
+        if (save_path.isEmpty())
+            save_path = fsutils::toNativePath(h.save_path());
+        data[KEY_PROP_SAVE_PATH] = save_path;
+        data[KEY_PROP_CREATION_DATE] = h.creation_date_unix();
+        data[KEY_PROP_PIECE_SIZE] = static_cast<qlonglong>(h.piece_length());
+        data[KEY_PROP_COMMENT] = h.comment();
+        data[KEY_PROP_WASTED] = static_cast<qlonglong>(status.total_failed_bytes + status.total_redundant_bytes);
+        data[KEY_PROP_UPLOADED] = static_cast<qlonglong>(status.all_time_upload);
+        data[KEY_PROP_UPLOADED_SESSION] = static_cast<qlonglong>(status.total_payload_upload);
+        data[KEY_PROP_DOWNLOADED] = static_cast<qlonglong>(status.all_time_download);
+        data[KEY_PROP_DOWNLOADED_SESSION] = static_cast<qlonglong>(status.total_payload_download);
+        data[KEY_PROP_UP_LIMIT] = h.upload_limit() <= 0 ? -1 : h.upload_limit();
+        data[KEY_PROP_DL_LIMIT] = h.download_limit() <= 0 ? -1 : h.download_limit();
+        data[KEY_PROP_TIME_ELAPSED] = status.active_time;
+        data[KEY_PROP_SEEDING_TIME] = status.seeding_time;
+        data[KEY_PROP_CONNECT_COUNT] = status.num_connections;
+        data[KEY_PROP_CONNECT_COUNT_LIMIT] = status.connections_limit;
+        const qreal ratio = QBtSession::instance()->getRealRatio(status);
+        data[KEY_PROP_RATIO] = ratio > QBtSession::MAX_RATIO ? -1 : ratio;
+    }
+    catch(const std::exception& e) {
+        qWarning() << Q_FUNC_INFO << "Invalid torrent: " << misc::toQStringU(e.what());
+        return QByteArray();
+    }
 
-  return json::toJson(data);
+    return json::toJson(data);
 }
 
 /**
@@ -344,36 +405,37 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
  */
 QByteArray btjson::getFilesForTorrent(const QString& hash)
 {
-  CACHED_VARIABLE_FOR_HASH(QVariantList, file_list, CACHE_DURATION_MS, hash);
-  try {
-    QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
-    if (!h.has_metadata())
-      return QByteArray();
+    CACHED_VARIABLE_FOR_HASH(QVariantList, file_list, CACHE_DURATION_MS, hash);
+    try {
+        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+        if (!h.has_metadata())
+            return QByteArray();
 
-    const std::vector<int> priorities = h.file_priorities();
-    std::vector<size_type> fp;
-    h.file_progress(fp);
-    for (int i = 0; i < h.num_files(); ++i) {
-      QVariantMap file_dict;
-      QString fileName = h.filename_at(i);
-      if (fileName.endsWith(".!qB", Qt::CaseInsensitive))
-        fileName.chop(4);
-      file_dict[KEY_FILE_NAME] = fsutils::toNativePath(fileName);
-      const size_type size = h.filesize_at(i);
-      file_dict[KEY_FILE_SIZE] = static_cast<qlonglong>(size);
-      file_dict[KEY_FILE_PROGRESS] = (size > 0) ? (fp[i] / (double) size) : 1.;
-      file_dict[KEY_FILE_PRIORITY] = priorities[i];
-      if (i == 0)
-        file_dict[KEY_FILE_IS_SEED] = h.is_seed();
+        const std::vector<int> priorities = h.file_priorities();
+        std::vector<size_type> fp;
+        h.file_progress(fp);
+        for (int i = 0; i < h.num_files(); ++i) {
+            QVariantMap file_dict;
+            QString fileName = h.filename_at(i);
+            if (fileName.endsWith(".!qB", Qt::CaseInsensitive))
+                fileName.chop(4);
+            file_dict[KEY_FILE_NAME] = fsutils::toNativePath(fileName);
+            const size_type size = h.filesize_at(i);
+            file_dict[KEY_FILE_SIZE] = static_cast<qlonglong>(size);
+            file_dict[KEY_FILE_PROGRESS] = (size > 0) ? (fp[i] / (double) size) : 1.;
+            file_dict[KEY_FILE_PRIORITY] = priorities[i];
+            if (i == 0)
+                file_dict[KEY_FILE_IS_SEED] = h.is_seed();
 
-      file_list.append(file_dict);
+            file_list.append(file_dict);
+        }
     }
-  } catch (const std::exception& e) {
-    qWarning() << Q_FUNC_INFO << "Invalid torrent: " << misc::toQStringU(e.what());
-    return QByteArray();
-  }
+    catch (const std::exception& e) {
+        qWarning() << Q_FUNC_INFO << "Invalid torrent: " << misc::toQStringU(e.what());
+        return QByteArray();
+    }
 
-  return json::toJson(file_list);
+    return json::toJson(file_list);
 }
 
 /**
@@ -385,14 +447,28 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
  *   - "dl_info_data": Data downloaded this session
  *   - "up_info_speed": Global upload rate
  *   - "up_info_data": Data uploaded this session
+ *   - "dl_rate_limit": Download rate limit
+ *   - "up_rate_limit": Upload rate limit
+ *   - "dht_nodes": DHT nodes connected to
+ *   - "connection_status": Connection status
  */
 QByteArray btjson::getTransferInfo()
 {
-  CACHED_VARIABLE(QVariantMap, info, CACHE_DURATION_MS);
-  session_status sessionStatus = QBtSession::instance()->getSessionStatus();
-  info[KEY_TRANSFER_DLSPEED] = sessionStatus.payload_download_rate;
-  info[KEY_TRANSFER_DLDATA] = static_cast<qlonglong>(sessionStatus.total_payload_download);
-  info[KEY_TRANSFER_UPSPEED] = sessionStatus.payload_upload_rate;
-  info[KEY_TRANSFER_UPDATA] = static_cast<qlonglong>(sessionStatus.total_payload_upload);
-  return json::toJson(info);
+    QVariantMap info;
+    session_status sessionStatus = QBtSession::instance()->getSessionStatus();
+    session_settings sessionSettings = QBtSession::instance()->getSession()->settings();
+    info[KEY_TRANSFER_DLSPEED] = sessionStatus.payload_download_rate;
+    info[KEY_TRANSFER_DLDATA] = static_cast<qlonglong>(sessionStatus.total_payload_download);
+    info[KEY_TRANSFER_UPSPEED] = sessionStatus.payload_upload_rate;
+    info[KEY_TRANSFER_UPDATA] = static_cast<qlonglong>(sessionStatus.total_payload_upload);
+    if (sessionSettings.download_rate_limit)
+        info[KEY_TRANSFER_DLRATELIMIT] = sessionSettings.download_rate_limit;
+    if (sessionSettings.upload_rate_limit)
+        info[KEY_TRANSFER_UPRATELIMIT] = sessionSettings.upload_rate_limit;
+    info[KEY_TRANSFER_DHT_NODES] = sessionStatus.dht_nodes;
+    if (!QBtSession::instance()->getSession()->is_listening())
+        info[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
+    else
+        info[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.has_incoming_connections ? "connected" : "firewalled";
+    return json::toJson(info);
 }

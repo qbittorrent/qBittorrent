@@ -81,7 +81,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& m
          "<li>" + tr("Three range types for episodes are supported: ") + "</li>" + "<li><ul>"
          "<li>" + tr("Single number: <b>1x25;</b> matches episode 25 of season one") + "</li>" +
          "<li>" + tr("Normal range: <b>1x25-40;</b> matches episodes 25 through 40 of season one") + "</li>" +
-         "<li>" + tr("Infinite range: <b>1x25-;</b> matches 40 and onward episodes of season one") + "</li>" + "</ul></li></ul>";
+         "<li>" + tr("Infinite range: <b>1x25-;</b> matches episodes 25 and upward of season one") + "</li>" + "</ul></li></ul>";
   ui->lineEFilter->setToolTip(tip);
   initLabelCombobox();
   loadFeedList();
@@ -255,12 +255,22 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
       } else {
         ui->comboLabel->setCurrentIndex(ui->comboLabel->findText(rule->label()));
       }
+      ui->comboAddPaused->setCurrentIndex(rule->addPaused());
+      ui->spinIgnorePeriod->setValue(rule->ignoreDays());
+      QDateTime dateTime = rule->lastMatch();
+      QString lMatch = tr("Last match: ");
+      if (dateTime.isValid())
+        lMatch += QString::number(dateTime.daysTo(QDateTime::currentDateTime())) + tr(" days ago.");
+      else
+        lMatch += tr("Unknown");
+      ui->lblLastMatch->setText(lMatch);
       updateMustLineValidity();
       updateMustNotLineValidity();
     } else {
       // New rule
       clearRuleDefinitionBox();
       ui->lineContains->setText(selection.first()->text());
+      ui->comboAddPaused->setCurrentIndex(0);
     }
     updateFieldsToolTips(ui->checkRegex->isChecked());
     // Enable
@@ -281,6 +291,7 @@ void AutomatedRssDownloader::clearRuleDefinitionBox()
   ui->lineSavePath->clear();
   ui->comboLabel->clearEditText();
   ui->checkRegex->setChecked(false);
+  ui->spinIgnorePeriod->setValue(0);
   updateFieldsToolTips(ui->checkRegex->isChecked());
   updateMustLineValidity();
   updateMustNotLineValidity();
@@ -330,9 +341,11 @@ void AutomatedRssDownloader::saveEditedRule()
   else
     rule->setSavePath("");
   rule->setLabel(ui->comboLabel->currentText());
+  rule->setAddPaused(RssDownloadRule::AddPausedState(ui->comboAddPaused->currentIndex()));
   // Save new label
   if (!rule->label().isEmpty())
     Preferences::instance()->addTorrentLabel(rule->label());
+  rule->setIgnoreDays(ui->spinIgnorePeriod->value());
   //rule->setRssFeeds(getSelectedFeeds());
   // Save it
   m_editableRuleList->saveRule(rule);
@@ -605,7 +618,7 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
   if (ui->checkRegex->isChecked())
     tokens << text;
   else
-    tokens << text.split(QRegExp("[\\s|]"));
+    tokens << text.split("|");
   foreach (const QString &token, tokens) {
     QRegExp reg(token, Qt::CaseInsensitive, ui->checkRegex->isChecked() ? QRegExp::RegExp : QRegExp::Wildcard);
     if (!reg.isValid()) {

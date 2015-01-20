@@ -55,53 +55,55 @@ StatusBar::StatusBar(QStatusBar *bar)
   connecStatusLblIcon = new QPushButton(bar);
   connecStatusLblIcon->setFlat(true);
   connecStatusLblIcon->setFocusPolicy(Qt::NoFocus);
-  connecStatusLblIcon->setFixedWidth(32);
   connecStatusLblIcon->setCursor(Qt::PointingHandCursor);
   connecStatusLblIcon->setIcon(QIcon(":/Icons/skin/firewalled.png"));
   connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
   dlSpeedLbl = new QPushButton(bar);
-  dlSpeedLbl->setIconSize(QSize(16,16));
   dlSpeedLbl->setIcon(QIcon(":/Icons/skin/download.png"));
-  //dlSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
   connect(dlSpeedLbl, SIGNAL(clicked()), this, SLOT(capDownloadSpeed()));
   dlSpeedLbl->setFlat(true);
   dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
   dlSpeedLbl->setCursor(Qt::PointingHandCursor);
 
-  altSpeedsBtn = new QPushButton(bar);
-  altSpeedsBtn->setFixedWidth(36);
-  altSpeedsBtn->setIconSize(QSize(32,32));
-  altSpeedsBtn->setFlat(true);
-  altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
-  altSpeedsBtn->setCursor(Qt::PointingHandCursor);
-  updateAltSpeedsBtn(pref->isAltBandwidthEnabled());
-
-  connect(altSpeedsBtn, SIGNAL(clicked()), this, SLOT(toggleAlternativeSpeeds()));
-
   upSpeedLbl = new QPushButton(bar);
-  upSpeedLbl->setIconSize(QSize(16,16));
   upSpeedLbl->setIcon(QIcon(":/Icons/skin/seeding.png"));
-  //upSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
   connect(upSpeedLbl, SIGNAL(clicked()), this, SLOT(capUploadSpeed()));
   upSpeedLbl->setFlat(true);
   upSpeedLbl->setFocusPolicy(Qt::NoFocus);
   upSpeedLbl->setCursor(Qt::PointingHandCursor);
   DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), bar);
   DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+
+  altSpeedsBtn = new QPushButton(bar);
+  altSpeedsBtn->setFlat(true);
+  altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
+  altSpeedsBtn->setCursor(Qt::PointingHandCursor);
+  updateAltSpeedsBtn(pref->isAltBandwidthEnabled());
+  connect(altSpeedsBtn, SIGNAL(clicked()), this, SLOT(toggleAlternativeSpeeds()));
+
+  // Because on some platforms the default icon size is bigger
+  // and it will result in taller/fatter statusbar, even if the
+  // icons are actually 16x16
+  connecStatusLblIcon->setIconSize(QSize(16, 16));
+  dlSpeedLbl->setIconSize(QSize(16, 16));
+  upSpeedLbl->setIconSize(QSize(16, 16));
+  altSpeedsBtn->setIconSize(QSize(28, 16));
+
+  // Set to the known maximum width(plus some padding)
+  // so the speed widgets will take the rest of the space
+  connecStatusLblIcon->setMaximumWidth(16 + 6);
+  altSpeedsBtn->setMaximumWidth(28 + 6);
+
   statusSep1 = new QFrame(bar);
-  statusSep1->setFixedSize(3, dlSpeedLbl->fontMetrics().height());
   statusSep1->setFrameStyle(QFrame::VLine);
   statusSep1->setFrameShadow(QFrame::Raised);
   statusSep2 = new QFrame(bar);
-  statusSep2->setFixedSize(3, dlSpeedLbl->fontMetrics().height());
   statusSep2->setFrameStyle(QFrame::VLine);
   statusSep2->setFrameShadow(QFrame::Raised);
   statusSep3 = new QFrame(bar);
-  statusSep3->setFixedSize(3, dlSpeedLbl->fontMetrics().height());
   statusSep3->setFrameStyle(QFrame::VLine);
   statusSep3->setFrameShadow(QFrame::Raised);
   statusSep4 = new QFrame(bar);
-  statusSep4->setFixedSize(3, dlSpeedLbl->fontMetrics().height());
   statusSep4->setFrameStyle(QFrame::VLine);
   statusSep4->setFrameShadow(QFrame::Raised);
   layout->addWidget(DHTLbl);
@@ -116,11 +118,9 @@ StatusBar::StatusBar(QStatusBar *bar)
 
   bar->addPermanentWidget(container);
   container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-  //bar->setStyleSheet("QWidget {padding-top: 0; padding-bottom: 0; margin-top: 0; margin-bottom: 0;}\n");
-  container->setContentsMargins(0, 0, 0, 1);
-  bar->setContentsMargins(0, 0, 0, 0);
-  container->setFixedHeight(dlSpeedLbl->fontMetrics().height()+7);
-  bar->setFixedHeight(dlSpeedLbl->fontMetrics().height()+9);
+  bar->setStyleSheet("QWidget {margin: 0;}");
+  container->adjustSize();
+  bar->adjustSize();
   // Is DHT enabled
   DHTLbl->setVisible(pref->isDHTEnabled());
   refreshTimer = new QTimer(bar);
@@ -182,8 +182,16 @@ void StatusBar::refreshStatusBar() {
     //statusSep1->setVisible(false);
   }
   // Update speed labels
-  dlSpeedLbl->setText(tr("%1/s", "Per second").arg(misc::friendlyUnit(sessionStatus.payload_download_rate))+" ("+misc::friendlyUnit(sessionStatus.total_payload_download)+")");
-  upSpeedLbl->setText(tr("%1/s", "Per second").arg(misc::friendlyUnit(sessionStatus.payload_upload_rate))+" ("+misc::friendlyUnit(sessionStatus.total_payload_upload)+")");
+  QString speedLbl = misc::friendlyUnit(sessionStatus.payload_download_rate, true)+" ("+misc::friendlyUnit(sessionStatus.total_payload_download)+")";
+  int speedLimit = QBtSession::instance()->getSession()->settings().download_rate_limit;
+  if (speedLimit)
+    speedLbl = "["+misc::friendlyUnit(speedLimit, true)+"] " + speedLbl;
+  dlSpeedLbl->setText(speedLbl);
+  speedLimit = QBtSession::instance()->getSession()->settings().upload_rate_limit;
+  speedLbl = misc::friendlyUnit(sessionStatus.payload_upload_rate, true)+" ("+misc::friendlyUnit(sessionStatus.total_payload_upload)+")";
+  if (speedLimit)
+    speedLbl = "["+misc::friendlyUnit(speedLimit, true)+"] " + speedLbl;
+  upSpeedLbl->setText(speedLbl);
 }
 
 void StatusBar::updateAltSpeedsBtn(bool alternative) {
@@ -196,6 +204,7 @@ void StatusBar::updateAltSpeedsBtn(bool alternative) {
     altSpeedsBtn->setToolTip(tr("Click to switch to alternative speed limits"));
     altSpeedsBtn->setDown(false);
   }
+  refreshStatusBar();
 }
 
 void StatusBar::toggleAlternativeSpeeds() {
@@ -219,12 +228,17 @@ void StatusBar::capDownloadSpeed() {
       QBtSession::instance()->setDownloadRateLimit(-1);
       if (!alt)
         pref->setGlobalDownloadLimit(-1);
+      else
+        pref->setAltGlobalDownloadLimit(-1);
     } else {
       qDebug("Setting global download rate limit to %.1fKb/s", new_limit/1024.);
       QBtSession::instance()->setDownloadRateLimit(new_limit);
       if (!alt)
         pref->setGlobalDownloadLimit(new_limit/1024.);
+      else
+        pref->setAltGlobalDownloadLimit(new_limit/1024.);
     }
+    refreshStatusBar();
   }
 }
 
@@ -240,11 +254,16 @@ void StatusBar::capUploadSpeed() {
       QBtSession::instance()->setUploadRateLimit(-1);
       if (!alt)
         Preferences::instance()->setGlobalUploadLimit(-1);
+      else
+        Preferences::instance()->setAltGlobalUploadLimit(-1);
     } else {
       qDebug("Setting global upload rate limit to %.1fKb/s", new_limit/1024.);
       QBtSession::instance()->setUploadRateLimit(new_limit);
       if (!alt)
         Preferences::instance()->setGlobalUploadLimit(new_limit/1024.);
+      else
+        Preferences::instance()->setAltGlobalUploadLimit(new_limit/1024.);
     }
+    refreshStatusBar();
   }
 }

@@ -34,6 +34,7 @@
 #include <QHash>
 #include <QStringList>
 #include <vector>
+#include "preferences.h"
 
 QT_BEGIN_NAMESPACE
 class QDateTime;
@@ -65,16 +66,19 @@ public:
   static QString getOldPath(const QString &hash);
   static QString getNewPath(const QString &hash);
   static QString getQueuedPath(const QString &hash);
+  static void setAddPaused(const QString &hash, const bool &paused);
+  static bool isAddPaused(const QString &hash);
 
 private:
   struct TorrentData {
-    TorrentData(): sequential(false), seed(false) {}
+    TorrentData(): sequential(false), seed(false), add_paused(Preferences::instance()->addTorrentsInPause()) {}
     std::vector<int> files_priority;
     QStringList path_list;
     QString save_path;
     QString label;
     bool sequential;
     bool seed;
+    bool add_paused;
   };
 
   struct TorrentMoveState {

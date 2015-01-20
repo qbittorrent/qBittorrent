@@ -140,7 +140,7 @@ Sample<qreal> SpeedSample::average() const
   if (m_speedSamples.empty())
     return Sample<qreal>();
 
-  return Sample<qreal>(m_sum) * (1. / m_speedSamples.size());
+  return Sample<qreal>(m_sum) * (qreal(1.) / m_speedSamples.size());
 }
 
 void TorrentSpeedMonitor::removeSamples(const QTorrentHandle& h) {

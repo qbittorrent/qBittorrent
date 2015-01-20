@@ -1444,6 +1444,13 @@
                     </item>
                    </layout>
                   </item>
+                  <item>
+                   <widget class="QLabel" name="label_23">
+                    <property name="text">
+                     <string>Info: The password is saved unencrypted</string>
+                    </property>
+                   </widget>
+                  </item>
                  </layout>
                 </widget>
                </item>

@@ -211,7 +211,7 @@ private slots:
     spin_save_resume_data_interval.setMaximum(1440);
     spin_save_resume_data_interval.setValue(pref->saveResumeDataInterval());
     spin_save_resume_data_interval.setSuffix(tr(" m", " minutes"));
-    setRow(SAVE_RESUME_DATA_INTERVAL, tr("Save resume data interval"), &spin_save_resume_data_interval);
+    setRow(SAVE_RESUME_DATA_INTERVAL, tr("Save resume data interval", "How often the fastresume file is saved."), &spin_save_resume_data_interval);
     // Outgoing port Min
     outgoing_ports_min.setMinimum(0);
     outgoing_ports_min.setMaximum(65535);

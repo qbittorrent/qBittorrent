@@ -48,12 +48,12 @@
 
 namespace libtorrent {
 #if LIBTORRENT_VERSION_NUM < 10000
-  class big_number;
-  typedef big_number sha1_hash;
+    class big_number;
+    typedef big_number sha1_hash;
 #else
-  class sha1_hash;
+    class sha1_hash;
 #endif
-  struct lazy_entry;
+    struct lazy_entry;
 }
 
 const qlonglong MAX_ETA = 8640000;
@@ -62,58 +62,58 @@ enum shutDownAction { NO_SHUTDOWN, SHUTDOWN_COMPUTER, SUSPEND_COMPUTER, HIBERNAT
 /*  Miscellaneaous functions that can be useful */
 namespace misc
 {
-  QString toQString(const std::string &str);
-  QString toQString(const char* str);
-  QString toQStringU(const std::string &str);
-  QString toQStringU(const char* str);
-  QString toQString(const libtorrent::sha1_hash &hash);
+    QString toQString(const std::string &str);
+    QString toQString(const char* str);
+    QString toQStringU(const std::string &str);
+    QString toQStringU(const char* str);
+    QString toQString(const libtorrent::sha1_hash &hash);
 
 #ifndef DISABLE_GUI
-  void shutdownComputer(shutDownAction action=SHUTDOWN_COMPUTER);
+    void shutdownComputer(shutDownAction action = SHUTDOWN_COMPUTER);
 #endif
 
-  QString parseHtmlLinks(const QString &raw_text);
+    QString parseHtmlLinks(const QString &raw_text);
 
-  bool isUrl(const QString &s);
+    bool isUrl(const QString &s);
 
 #ifndef DISABLE_GUI
-  // Get screen center
-  QPoint screenCenter(QWidget *win);
+    // Get screen center
+    QPoint screenCenter(QWidget *win);
 #endif
-  int pythonVersion();
-  // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
-  // use Binary prefix standards from IEC 60027-2
-  // see http://en.wikipedia.org/wiki/Kilobyte
-  // value must be given in bytes
-  QString friendlyUnit(qreal val, bool is_speed = false);
-  bool isPreviewable(const QString& extension);
-  QString magnetUriToName(const QString& magnet_uri);
-  QString magnetUriToHash(const QString& magnet_uri);
-  QList<QUrl> magnetUriToTrackers(const QString& magnet_uri);
-  QString bcLinkToMagnet(QString bc_link);
-  // Take a number of seconds and return an user-friendly
-  // time duration like "1d 2h 10m".
-  QString userFriendlyDuration(qlonglong seconds);
-  QString getUserIDString();
+    int pythonVersion();
+    // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
+    // use Binary prefix standards from IEC 60027-2
+    // see http://en.wikipedia.org/wiki/Kilobyte
+    // value must be given in bytes
+    QString friendlyUnit(qreal val, bool is_speed = false);
+    bool isPreviewable(const QString& extension);
+    QString magnetUriToName(const QString& magnet_uri);
+    QString magnetUriToHash(const QString& magnet_uri);
+    QList<QUrl> magnetUriToTrackers(const QString& magnet_uri);
+    QString bcLinkToMagnet(QString bc_link);
+    // Take a number of seconds and return an user-friendly
+    // time duration like "1d 2h 10m".
+    QString userFriendlyDuration(qlonglong seconds);
+    QString getUserIDString();
 
-  // Convert functions
-  QStringList toStringList(const QList<bool> &l);
-  QList<int> intListfromStringList(const QStringList &l);
-  QList<bool> boolListfromStringList(const QStringList &l);
+    // Convert functions
+    QStringList toStringList(const QList<bool> &l);
+    QList<int> intListfromStringList(const QStringList &l);
+    QList<bool> boolListfromStringList(const QStringList &l);
 
-  QString toQString(time_t t);
-  QString accurateDoubleToString(const double &n, const int &precision);
+    QString toQString(time_t t);
+    QString accurateDoubleToString(const double &n, const int &precision);
 
 #ifndef DISABLE_GUI
-  bool naturalSort(QString left, QString right, bool& result);
+    bool naturalSort(QString left, QString right, bool& result);
 #endif
 
-  // Implements constant-time comparison to protect against timing attacks
-  // Taken from https://crackstation.net/hashing-security.htm
-  bool slowEquals(const QByteArray &a, const QByteArray &b);
-  void loadBencodedFile(const QString &filename, std::vector<char> &buffer, libtorrent::lazy_entry &entry, libtorrent::error_code &ec);
+    // Implements constant-time comparison to protect against timing attacks
+    // Taken from https://crackstation.net/hashing-security.htm
+    bool slowEquals(const QByteArray &a, const QByteArray &b);
+    void loadBencodedFile(const QString &filename, std::vector<char> &buffer, libtorrent::lazy_entry &entry, libtorrent::error_code &ec);
 
-  void msleep(unsigned long msecs);
+    void msleep(unsigned long msecs);
 }
 
 #endif

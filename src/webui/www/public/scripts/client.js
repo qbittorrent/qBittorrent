@@ -23,250 +23,359 @@
  */
 
 myTable = new dynamicTable();
-ajaxfn = function(){};
-setSortedColumn = function(index){
-  myTable.setSortedColumn(index);
-};
 
-window.addEvent('load', function(){
+var updatePropertiesPanel = function(){};
+var updateTransferInfo = function(){};
+var updateTransferList = function(){};
+var alternativeSpeedLimits = false;
 
-  var saveColumnSizes = function() {
-    var filters_width = $('Filters').getSize().x;
-    var properties_height = $('propertiesPanel').getSize().y;
-    // Save it in a cookie
-    Cookie.write('filters_width', filters_width);
-    Cookie.write('properties_height', properties_height);
-  }
+selected_filter = getLocalStorageItem('selected_filter', 'all');
+selected_label = null;
 
-  /*MochaUI.Desktop = new MochaUI.Desktop();
-  MochaUI.Desktop.desktop.setStyles({
-	'background': '#fff',
-	'visibility': 'visible'
-  });*/
-  MochaUI.Desktop.initialize();
-
-  var filt_w = Cookie.read('filters_width');
-  if($defined(filt_w))
-     filt_w =  filt_w.toInt();
-  else
-    filt_w = 120;
-  new MochaUI.Column({
-		id: 'filtersColumn',
-		placement: 'left',
-		onResize: saveColumnSizes,
-		width: filt_w,
-		resizeLimit: [100, 300]
-	});
-  new MochaUI.Column({
-		id: 'mainColumn',
-		placement: 'main',
-		width: null,
-		resizeLimit: [100, 300]
-	});
-  MochaUI.Desktop.setDesktopSize();
-  new MochaUI.Panel({
-		id: 'Filters',
-		title: 'Panel',
-		header: false,
-		padding: { top: 0, right: 0, bottom: 0, left: 0 },
-		loadMethod: 'xhr',
-		contentURL: 'filters.html',
-		column: 'filtersColumn',
-		height: 300
-	});
-  initializeWindows();
-  var r=0;
-  var waiting=false;
-  var waitingTrInfo = false;
-
-  var stateToImg = function(state){
-    if(state == "pausedUP" || state == "pausedDL") {
-	state = "paused";
-    } else {
-      if(state == "queuedUP" || state == "queuedDL") {
-        state = "queued";
-      } else {
-        if(state == "checkingUP" || state == "checkingDL") {
-          state = "checking";
-        }
-      }
-    }
-    return 'images/skin/'+state+'.png';
-  };
-  var loadTransferInfo = function() {
-    var url = 'json/transferInfo';
-    if(!waitingTrInfo) {
-      waitingTrInfo = true;
-      var request = new Request.JSON({
-                    url: url,
-                    noCache: true,
-                    method: 'get',
-                    onFailure: function() {
-                      $('error_div').set('html', '_(qBittorrent client is not reachable)');
-                      waitingTrInfo=false;
-                      loadTransferInfo.delay(4000);
-                    },
-                    onSuccess: function(info) {
-                      if(info) {
-                        $("DlInfos").set('html', "_(D: %1 - T: %2)".replace("%1", friendlyUnit(info.dl_info_speed, true))
-                                                                   .replace("%2", friendlyUnit(info.dl_info_data, false)));
-                        $("UpInfos").set('html', "_(U: %1 - T: %2)".replace("%1", friendlyUnit(info.up_info_speed, true))
-                                                                   .replace("%2", friendlyUnit(info.up_info_data, false)));
-                        waitingTrInfo=false;
-                        loadTransferInfo.delay(3000);
-                      }
-                    }
-                  }).send();
-    }
-  };
-  $('DlInfos').addEvent('click', globalDownloadLimitFN);
-  $('UpInfos').addEvent('click', globalUploadLimitFN);
-
-	var ajaxfn = function(){
-		var queueing_enabled = false;
-		var url = 'json/torrents';
-		if (!waiting){
-			waiting=true;
-			var request = new Request.JSON({
-                                url: url,
-				noCache: true,
-				method: 'get',
-				onFailure: function() {
-					$('error_div').set('html', '_(qBittorrent client is not reachable)');
-					waiting=false;
-					ajaxfn.delay(2000);
-				},
-				onSuccess: function(events) {
-					 $('error_div').set('html', '');
-					if(events){
-            // Add new torrents or update them
-            torrent_hashes = myTable.getRowIds();
-            events_hashes = new Array();
-            events.each(function(event){
-              events_hashes[events_hashes.length] = event.hash;
-                var row = new Array();
-                var data = new Array();
-                row.length = 10;
-                row[0] = stateToImg(event.state);
-                row[1] = event.name;
-                row[2] = event.priority > -1 ? event.priority : null;
-                data[2] = event.priority;
-                row[3] = friendlyUnit(event.size, false);
-                data[3] = event.size;
-                row[4] = (event.progress*100).round(1);
-                if(row[4] == 100.0 && event.progress != 1.0)
-                  row[4] = 99.9;
-                data[4] = event.progress;
-                row[5] = event.num_seeds;
-                if (event.num_complete != -1)
-                  row[5] += " (" + event.num_complete + ")";
-                data[5] = event.num_seeds;
-                row[6] = event.num_leechs;
-                if (event.num_incomplete != -1)
-                  row[6] += " (" + event.num_incomplete + ")";
-                data[6] = event.num_leechs;
-                row[7] = friendlyUnit(event.dlspeed, true);
-                data[7] = event.dlspeed;
-                row[8] = friendlyUnit(event.upspeed, true);
-                data[8] = event.upspeed;
-                row[9] = friendlyDuration(event.eta);
-                data[9] = event.eta
-                if(event.ratio == -1)
-                  row[10] = "∞";
-                else
-                  row[10] = (Math.floor(100 * event.ratio) / 100).toFixed(2); //Don't round up
-                data[10] = event.ratio;
-                if(row[2] != null)
-			queueing_enabled = true;
-               if(!torrent_hashes.contains(event.hash)) {
-                  // New unfinished torrent
-                  torrent_hashes[torrent_hashes.length] = event.hash;
-		  //alert("Inserting row");
-                  myTable.insertRow(event.hash, row, data, event.state);
-                } else {
-                  // Update torrent data
-                  myTable.updateRow(event.hash, row, data, event.state);
-                }
-            });
-            // Remove deleted torrents
-            torrent_hashes.each(function(hash){
-              if(!events_hashes.contains(hash)) {
-                myTable.removeRow(hash);
-              }
-            });
-	    if(queueing_enabled) {
-		$('queueingButtons').removeClass('invisible');
-		myTable.showPriority();
-	    } else {
-		$('queueingButtons').addClass('invisible');
-		myTable.hidePriority();
-	    }
-					}
-					waiting=false;
-					ajaxfn.delay(1500);
-				}
-			}).send();
-		}
-	};
-  new MochaUI.Panel({
-		id: 'transferList',
-		title: 'Panel',
-		header: false,
-		padding: { top: 0, right: 0, bottom: 0, left: 0 },
-		loadMethod: 'xhr',
-		contentURL: 'transferlist.html',
-    onContentLoaded: function() {
-      ajaxfn();
-    },
-		column: 'mainColumn',
-		onResize: saveColumnSizes,
-		height: null
-	});
-    var prop_h = Cookie.read('properties_height');
-    if($defined(prop_h))
-      prop_h = prop_h.toInt();
+var loadSelectedLabel = function () {
+    if (getLocalStorageItem('any_label', '1') == '0')
+        selected_label = getLocalStorageItem('selected_label', '');
     else
-      prop_h = Window.getSize().y / 2.;
+        selected_label = null;
+}
+loadSelectedLabel();
+
+var saveSelectedLabel = function () {
+    if (selected_label == null)
+        localStorage.setItem('any_label', '1');
+    else {
+        localStorage.setItem('any_label', '0');
+        localStorage.setItem('selected_label', selected_label);
+    }
+}
+
+
+window.addEvent('load', function () {
+
+    var saveColumnSizes = function () {
+        var filters_width = $('Filters').getSize().x;
+        var properties_height_rel = $('propertiesPanel').getSize().y / Window.getSize().y;
+        localStorage.setItem('filters_width', filters_width);
+        localStorage.setItem('properties_height_rel', properties_height_rel);
+    }
+
+    window.addEvent('resize', function() {
+        // Resizing might takes some time.
+        saveColumnSizes.delay(200);
+    });
+
+    /*MochaUI.Desktop = new MochaUI.Desktop();
+    MochaUI.Desktop.desktop.setStyles({
+        'background': '#fff',
+        'visibility': 'visible'
+    });*/
+    MochaUI.Desktop.initialize();
+
+    var filt_w = localStorage.getItem('filters_width');
+    if ($defined(filt_w))
+        filt_w = filt_w.toInt();
+    else
+        filt_w = 120;
+    new MochaUI.Column({
+        id : 'filtersColumn',
+        placement : 'left',
+        onResize : saveColumnSizes,
+        width : filt_w,
+        resizeLimit : [100, 300]
+    });
+    new MochaUI.Column({
+        id : 'mainColumn',
+        placement : 'main',
+        width : null,
+        resizeLimit : [100, 300]
+    });
+    MochaUI.Desktop.setDesktopSize();
+
+    setFilter = function (f) {
+        // Visually Select the right filter
+        $("all_filter").removeClass("selectedFilter");
+        $("downloading_filter").removeClass("selectedFilter");
+        $("completed_filter").removeClass("selectedFilter");
+        $("paused_filter").removeClass("selectedFilter");
+        $("active_filter").removeClass("selectedFilter");
+        $("inactive_filter").removeClass("selectedFilter");
+        $(f + "_filter").addClass("selectedFilter");
+        selected_filter = f;
+        localStorage.setItem('selected_filter', f);
+        // Reload torrents
+        if (typeof myTable.table != 'undefined')
+            updateTransferList();
+    }
+
     new MochaUI.Panel({
-		id: 'propertiesPanel',
-		title: 'Panel',
-		header: true,
-		padding: { top: 0, right: 0, bottom: 0, left: 0 },
-		contentURL: 'prop-general.html',
-		require: {
-                  css: ['css/Tabs.css']
+        id : 'Filters',
+        title : 'Panel',
+        header : false,
+        padding : {
+            top : 0,
+            right : 0,
+            bottom : 0,
+            left : 0
+        },
+        loadMethod : 'xhr',
+        contentURL : 'filters.html',
+        onContentLoaded : function () {
+            setFilter(selected_filter);
+        },
+        column : 'filtersColumn',
+        height : 300
+    });
+    initializeWindows();
+
+    var speedInTitle = localStorage.getItem('speed_in_browser_title_bar') == "true";
+    if (!speedInTitle)
+        $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
+
+    var loadTorrentsInfoTimer;
+    var loadTorrentsInfo = function () {
+        var url = new URI('json/torrents');
+        var request = new Request.JSON({
+            url : url,
+            noCache : true,
+            method : 'get',
+            onFailure : function () {
+                $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
+                clearTimeout(loadTorrentsInfoTimer);
+                loadTorrentsInfoTimer = loadTorrentsInfo.delay(2000);
+            },
+            onSuccess : function (response) {
+                $('error_div').set('html', '');
+                if (response) {
+                    var queueing_enabled = false;
+                    var torrents_hashes = new Array();
+                    for (var i = 0; i < response.length; i++) {
+                        torrents_hashes.push(response[i].hash);
+                        if (response[i].priority > -1)
+                            queueing_enabled = true;
+                        myTable.updateRowData(response[i])
+                    }
+
+                    var keys = myTable.rows.getKeys();
+                    for (var i = 0; i < keys.length; i++) {
+                        if (!torrents_hashes.contains(keys[i]))
+                            myTable.rows.erase(keys[i]);
+                    }
+
+                    myTable.columns['priority'].force_hide = !queueing_enabled;
+                    myTable.updateColumn('priority');
+                    if (queueing_enabled) {
+                        $('queueingButtons').removeClass('invisible');
+                        $('queueingMenuItems').removeClass('invisible');
+                    }
+                    else {
+                        $('queueingButtons').addClass('invisible');
+                        $('queueingMenuItems').addClass('invisible');
+                    }
+
+                    myTable.updateTable(true);
+                    myTable.altRow();
+                }
+                clearTimeout(loadTorrentsInfoTimer);
+                loadTorrentsInfoTimer = loadTorrentsInfo.delay(1500);
+            }
+        }).send();
+    };
+
+    updateTransferList = function() {
+        myTable.updateTable();
+        clearTimeout(loadTorrentsInfoTimer);
+        loadTorrentsInfoTimer = loadTorrentsInfo.delay(30);
+    }
+
+    var loadTransferInfoTimer;
+    var loadTransferInfo = function () {
+        var url = 'json/transferInfo';
+        var request = new Request.JSON({
+            url : url,
+            noCache : true,
+            method : 'get',
+            onFailure : function () {
+                $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
+                clearTimeout(loadTransferInfoTimer);
+                loadTransferInfoTimer = loadTransferInfo.delay(4000);
+            },
+            onSuccess : function (info) {
+                if (info) {
+                    var transfer_info = "";
+                    if (info.dl_rate_limit != undefined)
+                        transfer_info += "[" + friendlyUnit(info.dl_rate_limit, true) + "] ";
+                    transfer_info += friendlyUnit(info.dl_info_speed, true);
+                    transfer_info += " (" + friendlyUnit(info.dl_info_data, false) + ")"
+                    $("DlInfos").set('html', transfer_info);
+                    transfer_info = "";
+                    if (info.up_rate_limit != undefined)
+                        transfer_info += "[" + friendlyUnit(info.up_rate_limit, true) + "] ";
+                    transfer_info += friendlyUnit(info.up_info_speed, true)
+                    transfer_info += " (" + friendlyUnit(info.up_info_data, false) + ")"
+                    $("UpInfos").set('html', transfer_info);
+                    if (speedInTitle)
+                        document.title = "QBT_TR(D:%1 U:%2)QBT_TR".replace("%1", friendlyUnit(info.dl_info_speed, true)).replace("%2", friendlyUnit(info.up_info_speed, true));
+                    else
+                        document.title = "QBT_TR(qBittorrent web User Interface)QBT_TR";
+                    $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR'.replace("%1", info.dht_nodes));
+                    if (info.connection_status == "connected")
+                        $('connectionStatus').src = 'images/skin/connected.png';
+                    else if (info.connection_status == "firewalled")
+                        $('connectionStatus').src = 'images/skin/firewalled.png';
+                    else
+                        $('connectionStatus').src = 'images/skin/disconnected.png';
+                    clearTimeout(loadTransferInfoTimer);
+                    loadTransferInfoTimer = loadTransferInfo.delay(3000);
+                }
+            }
+        }).send();
+    };
+
+    updateTransferInfo = function() {
+        clearTimeout(loadTransferInfoTimer);
+        loadTransferInfo();
+    }
+
+    // Start fetching data now
+    loadTransferInfo();
+
+    var updateAltSpeedIcon = function(enabled) {
+        if (enabled)
+            $('alternativeSpeedLimits').src = "images/slow.png";
+        else
+            $('alternativeSpeedLimits').src = "images/slow_off.png"
+    }
+
+    // Determine whether the alternative speed limits are enabled or not
+    new Request({url: 'command/alternativeSpeedLimitsEnabled',
+            method: 'get',
+            onSuccess : function (isEnabled) {
+                alternativeSpeedLimits = !!parseInt(isEnabled);
+                if (alternativeSpeedLimits)
+                    $('alternativeSpeedLimits').src = "images/slow.png"
+            }
+    }).send();
+
+    $('alternativeSpeedLimits').addEvent('click', function() {
+        // Change icon immediately to give some feedback
+        updateAltSpeedIcon(!alternativeSpeedLimits);
+
+        new Request({url: 'command/toggleAlternativeSpeedLimits',
+                method: 'post',
+                onComplete: function() {
+                    alternativeSpeedLimits = !alternativeSpeedLimits;
+                    updateTransferInfo();
                 },
-                tabsURL: 'properties.html',
-		column: 'mainColumn',
-		height: prop_h
-	});
-	//ajaxfn();
-	loadTransferInfo();
+                onFailure: function() {
+                    // Restore icon in case of failure
+                    updateAltSpeedIcon(alternativeSpeedLimits)
+                }
+        }).send();
+    });
 
-	setFilter = function(f) {
-	  // Visually Select the right filter
-	  $("all_filter").removeClass("selectedFilter");
-	  $("downloading_filter").removeClass("selectedFilter");
-	  $("completed_filter").removeClass("selectedFilter");
-          $("paused_filter").removeClass("selectedFilter");
-	  $("active_filter").removeClass("selectedFilter");
-	  $("inactive_filter").removeClass("selectedFilter");
-	  $(f+"_filter").addClass("selectedFilter");
-	  myTable.setFilter(f);
-	  ajaxfn();
-	  // Remember this via Cookie
-	  Cookie.write('selected_filter', f);
-	}
+    $('DlInfos').addEvent('click', globalDownloadLimitFN);
+    $('UpInfos').addEvent('click', globalUploadLimitFN);
 
+    setSortedColumn = function (column) {
+        myTable.setSortedColumn(column);
+        updateTransferList();
+    };
+
+    $('speedInBrowserTitleBarLink').addEvent('click', function(e) {
+        speedInTitle = !speedInTitle;
+        localStorage.setItem('speed_in_browser_title_bar', speedInTitle.toString());
+        if (speedInTitle)
+            $('speedInBrowserTitleBarLink').firstChild.style.opacity = '1';
+        else
+            $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
+        updateTransferInfo();
+    });
+
+    new MochaUI.Panel({
+        id : 'transferList',
+        title : 'Panel',
+        header : false,
+        padding : {
+            top : 0,
+            right : 0,
+            bottom : 0,
+            left : 0
+        },
+        loadMethod : 'xhr',
+        contentURL : 'transferlist.html',
+        onContentLoaded : function () {
+            updateTransferList();
+        },
+        column : 'mainColumn',
+        onResize : saveColumnSizes,
+        height : null
+    });
+    var prop_h = localStorage.getItem('properties_height_rel');
+    if ($defined(prop_h))
+        prop_h = prop_h.toFloat() * Window.getSize().y;
+    else
+        prop_h = Window.getSize().y / 2.;
+    new MochaUI.Panel({
+        id : 'propertiesPanel',
+        title : 'Panel',
+        header : true,
+        padding : {
+            top : 0,
+            right : 0,
+            bottom : 0,
+            left : 0
+        },
+        contentURL : 'properties_content.html',
+        require : {
+            css : ['css/Tabs.css'],
+            js : ['scripts/prop-general.js', 'scripts/prop-trackers.js', 'scripts/prop-files.js'],
+        },
+        tabsURL : 'properties.html',
+        tabsOnload : function() {
+            MochaUI.initializeTabs('propertiesTabs');
+
+            updatePropertiesPanel = function() {
+                if (!$('prop_general').hasClass('invisible'))
+                    updateTorrentData();
+                else if (!$('prop_trackers').hasClass('invisible'))
+                    updateTrackersData();
+                else if (!$('prop_files').hasClass('invisible'))
+                    updateTorrentFilesData();
+            }
+
+            $('PropGeneralLink').addEvent('click', function(e){
+                $('prop_general').removeClass("invisible");
+                $('prop_trackers').addClass("invisible");
+                $('prop_files').addClass("invisible");
+                updatePropertiesPanel();
+            });
+
+            $('PropTrackersLink').addEvent('click', function(e){
+                $('prop_trackers').removeClass("invisible");
+                $('prop_general').addClass("invisible");
+                $('prop_files').addClass("invisible");
+                updatePropertiesPanel();
+            });
+
+            $('PropFilesLink').addEvent('click', function(e){
+                $('prop_files').removeClass("invisible");
+                $('prop_general').addClass("invisible");
+                $('prop_trackers').addClass("invisible");
+                updatePropertiesPanel();
+            });
+        },
+        column : 'mainColumn',
+        height : prop_h
+    });
 });
 
 function closeWindows() {
-  MochaUI.closeAll();
+    MochaUI.closeAll();
 }
 
-window.addEvent('keydown', function(event){
-  if (event.key == 'a' && event.control) {
-    event.stop();
-    myTable.selectAll();
-  }
+window.addEvent('keydown', function (event) {
+    if (event.key == 'a' && event.control) {
+        event.stop();
+        myTable.selectAll();
+    }
 });

@@ -376,11 +376,35 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
       case TorrentModelItem::TR_SAVE_PATH: return tr("Save path", "Torrent save path");
       case TorrentModelItem::TR_COMPLETED: return tr("Completed", "Amount of data completed (e.g. in MB)");
       case TorrentModelItem::TR_RATIO_LIMIT: return tr("Ratio Limit", "Upload share ratio limit");
-      case TorrentModelItem::TR_SEEN_COMPLETE_DATE: return tr("Last Seen Complete", "Torrent was seen complete on 01/01/2010 08:00");
+      case TorrentModelItem::TR_SEEN_COMPLETE_DATE: return tr("Last Seen Complete", "Indicates the time when the torrent was last seen complete/whole");
       case TorrentModelItem::TR_LAST_ACTIVITY: return tr("Last Activity", "Time passed since a chunk was downloaded/uploaded");
       case TorrentModelItem::TR_TOTAL_SIZE: return tr("Total Size", "i.e. Size including unwanted data");
       default:
         return QVariant();
+      }
+    }
+    else if (role == Qt::TextAlignmentRole) {
+      switch(section) {
+      case TorrentModelItem::TR_AMOUNT_DOWNLOADED:
+      case TorrentModelItem::TR_AMOUNT_UPLOADED:
+      case TorrentModelItem::TR_AMOUNT_LEFT:
+      case TorrentModelItem::TR_COMPLETED:
+      case TorrentModelItem::TR_SIZE:
+      case TorrentModelItem::TR_TOTAL_SIZE:
+      case TorrentModelItem::TR_ETA:
+      case TorrentModelItem::TR_SEEDS:
+      case TorrentModelItem::TR_PEERS:
+      case TorrentModelItem::TR_UPSPEED:
+      case TorrentModelItem::TR_DLSPEED:
+      case TorrentModelItem::TR_UPLIMIT:
+      case TorrentModelItem::TR_DLLIMIT:
+      case TorrentModelItem::TR_RATIO_LIMIT:
+      case TorrentModelItem::TR_RATIO:
+      case TorrentModelItem::TR_PRIORITY:
+      case TorrentModelItem::TR_LAST_ACTIVITY:
+        return QVariant(Qt::AlignRight | Qt::AlignVCenter);
+      default:
+        return QAbstractListModel::headerData(section, orientation, role);
       }
     }
   }

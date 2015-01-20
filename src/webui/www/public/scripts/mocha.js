@@ -163,6 +163,8 @@ MUI.extend({
 				new MUI.Require({
 					js: options.require.js,
 					onload: function(){
+						if (!$defined(options.require.onload))
+							return;
 						if (Browser.Engine.presto){
 							options.require.onload.delay(100);
 						}
@@ -235,7 +237,7 @@ MUI.extend({
 					var getTitle = new RegExp("<title>[\n\r\s]*(.*)[\n\r\s]*</title>", "gmi");
 					var error = getTitle.exec(response.responseText);
 					if (!error) error = 'Unknown';							 
-					contentContainer.set('html', '<h3>Error: ' + error[1] + '</h3>');
+					contentContainer.set('html', '<h3>Error: ' + error + '</h3>');
 					if (args.recipient == 'window'){
 						instance.hideSpinner();
 					}							
@@ -4646,7 +4648,7 @@ MUI.Column = new Class({
 				this.columnToggle();
 			}.bind(this));
 			this.resize.attach();
-			this.handleEl.setStyle('cursor', Browser.Engine.webkit ? 'col-resize' : 'e-resize').addClass('attached');
+			this.handleEl.setStyle('cursor', (Browser.Engine.webkit || Browser.Engine.gecko) ? 'col-resize' : 'e-resize').addClass('attached');
 
 			MUI.rWidth();
 			this.fireEvent('onExpand');
@@ -5102,7 +5104,7 @@ MUI.extend({
 				instance.resize.attach();
 				instance.handleEl.setStyles({
 					'display': 'block',
-					'cursor': Browser.Engine.webkit ? 'row-resize' : 'n-resize'
+					'cursor': (Browser.Engine.webkit || Browser.Engine.gecko) ? 'row-resize' : 'n-resize'
 				}).removeClass('detached');
 			} else {
 				instance.resize.detach();
@@ -5343,7 +5345,7 @@ function addResizeRight(element, min, max){
 	var instance = instances.get(element.id);
 	
 	var handle = element.getNext('.columnHandle');
-	handle.setStyle('cursor', Browser.Engine.webkit ? 'col-resize' : 'e-resize');
+	handle.setStyle('cursor', (Browser.Engine.webkit || Browser.Engine.gecko) ? 'col-resize' : 'e-resize');
 	if (!min) min = 50;
 	if (!max) max = 250;
 	if (MUI.ieLegacySupport) {
@@ -5399,7 +5401,7 @@ function addResizeLeft(element, min, max){
 	var instance = instances.get(element.id);
 
 	var handle = element.getPrevious('.columnHandle');
-	handle.setStyle('cursor', Browser.Engine.webkit ? 'col-resize' : 'e-resize');
+	handle.setStyle('cursor', (Browser.Engine.webkit || Browser.Engine.gecko) ? 'col-resize' : 'e-resize');
 	var partner = element.getPrevious('.column');
 	if (!min) min = 50;
 	if (!max) max = 250;
@@ -5441,7 +5443,7 @@ function addResizeBottom(element){
 	var instances = MUI.Panels.instances;
 	var instance = instances.get(element.id);
 	var handle = instance.handleEl;
-	handle.setStyle('cursor', Browser.Engine.webkit ? 'row-resize' : 'n-resize');
+	handle.setStyle('cursor', (Browser.Engine.webkit || Browser.Engine.gecko) ? 'row-resize' : 'n-resize');
 	partner = instance.partner;
 	min = 0;
 	max = function(){

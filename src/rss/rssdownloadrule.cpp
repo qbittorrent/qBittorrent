@@ -133,7 +133,7 @@ void RssDownloadRule::setMustNotContain(const QString &tokens)
   if (m_useRegex)
     m_mustNotContain = QStringList() << tokens;
   else
-    m_mustNotContain = tokens.split(QRegExp("[\\s|]"));
+    m_mustNotContain = tokens.split("|");
 }
 
 RssDownloadRulePtr RssDownloadRule::fromVariantHash(const QVariantHash &rule_hash)
@@ -148,6 +148,9 @@ RssDownloadRulePtr RssDownloadRule::fromVariantHash(const QVariantHash &rule_has
   rule->setEnabled(rule_hash.value("enabled", false).toBool());
   rule->setSavePath(rule_hash.value("save_path").toString());
   rule->setLabel(rule_hash.value("label_assigned").toString());
+  rule->setAddPaused(AddPausedState(rule_hash.value("add_paused").toUInt()));
+  rule->setLastMatch(rule_hash.value("last_match").toDateTime());
+  rule->setIgnoreDays(rule_hash.value("ignore_days").toInt());
   return rule;
 }
 
@@ -156,13 +159,16 @@ QVariantHash RssDownloadRule::toVariantHash() const
   QVariantHash hash;
   hash["name"] = m_name;
   hash["must_contain"] = m_mustContain.join(" ");
-  hash["must_not_contain"] = m_mustNotContain.join(" ");
+  hash["must_not_contain"] = m_mustNotContain.join("|");
   hash["save_path"] = m_savePath;
   hash["affected_feeds"] = m_rssFeeds;
   hash["enabled"] = m_enabled;
   hash["label_assigned"] = m_label;
   hash["use_regex"] = m_useRegex;
+  hash["add_paused"] = m_apstate;
   hash["episode_filter"] = m_episodeFilter;
+  hash["last_match"] = m_lastMatch;
+  hash["ignore_days"] = m_ignoreDays;
   return hash;
 }
 

@@ -194,6 +194,9 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
   QListWidgetItem *paused = new QListWidgetItem(statusFilters);
   paused->setData(Qt::DisplayRole, QVariant(tr("Paused") + " (0)"));
   paused->setData(Qt::DecorationRole, QIcon(":/Icons/skin/paused.png"));
+  QListWidgetItem *resumed = new QListWidgetItem(statusFilters);
+  resumed->setData(Qt::DisplayRole, QVariant(tr("Resumed") + " (0)"));
+  resumed->setData(Qt::DecorationRole, QIcon(":/Icons/skin/resumed.png"));
   QListWidgetItem *active = new QListWidgetItem(statusFilters);
   active->setData(Qt::DisplayRole, QVariant(tr("Active") + " (0)"));
   active->setData(Qt::DecorationRole, QIcon(":/Icons/skin/filteractive.png"));
@@ -265,6 +268,7 @@ void TransferListFiltersWidget::updateTorrentNumbers() {
   statusFilters->item(TorrentFilter::DOWNLOADING)->setData(Qt::DisplayRole, QVariant(tr("Downloading")+" ("+QString::number(report.nb_downloading)+")"));
   statusFilters->item(TorrentFilter::COMPLETED)->setData(Qt::DisplayRole, QVariant(tr("Completed")+" ("+QString::number(report.nb_seeding)+")"));
   statusFilters->item(TorrentFilter::PAUSED)->setData(Qt::DisplayRole, QVariant(tr("Paused")+" ("+QString::number(report.nb_paused)+")"));
+  statusFilters->item(TorrentFilter::RESUMED)->setData(Qt::DisplayRole, QVariant(tr("Resumed")+" ("+QString::number(report.nb_active+report.nb_inactive-report.nb_paused)+")"));
   statusFilters->item(TorrentFilter::ACTIVE)->setData(Qt::DisplayRole, QVariant(tr("Active")+" ("+QString::number(report.nb_active)+")"));
   statusFilters->item(TorrentFilter::INACTIVE)->setData(Qt::DisplayRole, QVariant(tr("Inactive")+" ("+QString::number(report.nb_inactive)+")"));
 }

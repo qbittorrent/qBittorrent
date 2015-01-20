@@ -103,7 +103,7 @@ public:
   void setCloseToTray(bool b);
   bool startMinimized() const;
   void setStartMinimized(bool b);
-  bool isSlashScreenDisabled() const;
+  bool isSplashScreenDisabled() const;
   void setSplashScreenDisabled(bool b);
   bool preventFromSuspend() const;
   void setPreventFromSuspend(bool b);
@@ -460,6 +460,8 @@ public:
   void setTransSelFilter(const int &index);
   QByteArray getTransHeaderState() const;
   void setTransHeaderState(const QByteArray &state);
+  int getToolbarTextPosition() const;
+  void setToolbarTextPosition(const int position);
 
   // Temp code.
   // See TorrentStatistics::loadStats() for details.
@@ -488,3 +490,4 @@ public:
 };
 
 #endif // PREFERENCES_H
+

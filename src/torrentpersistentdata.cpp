@@ -160,6 +160,14 @@ QString TorrentTempData::getQueuedPath(const QString &hash) {
   return i->queuedPath;
 }
 
+void TorrentTempData::setAddPaused(const QString &hash, const bool &paused) {
+  data[hash].add_paused = paused;
+}
+
+bool TorrentTempData::isAddPaused(const QString &hash) {
+  return data.value(hash).add_paused;
+}
+
 void HiddenData::addData(const QString &hash) {
   data[hash] = false;
 }

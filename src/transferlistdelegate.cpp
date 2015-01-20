@@ -61,13 +61,13 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
   case TorrentModelItem::TR_SIZE:
   case TorrentModelItem::TR_TOTAL_SIZE: {
       QItemDelegate::drawBackground(painter, opt, index);
-      opt.displayAlignment = Qt::AlignRight;
+      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
       break;
     }
   case TorrentModelItem::TR_ETA: {
       QItemDelegate::drawBackground(painter, opt, index);
-      opt.displayAlignment = Qt::AlignRight;
+      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       QItemDelegate::drawDisplay(painter, opt, option.rect, misc::userFriendlyDuration(index.data().toLongLong()));
       break;
     }
@@ -80,7 +80,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         display += " ("+QString::number(total)+")";
       }
       QItemDelegate::drawBackground(painter, opt, index);
-      opt.displayAlignment = Qt::AlignRight;
+      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
       break;
     }
@@ -133,7 +133,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
   case TorrentModelItem::TR_DLSPEED: {
       QItemDelegate::drawBackground(painter, opt, index);
       const qulonglong speed = index.data().toULongLong();
-      opt.displayAlignment = Qt::AlignRight;
+      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (.i.e per second)"));
       break;
     }
@@ -141,7 +141,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
   case TorrentModelItem::TR_DLLIMIT: {
     QItemDelegate::drawBackground(painter, opt, index);
     const qlonglong limit = index.data().toLongLong();
-    opt.displayAlignment = Qt::AlignRight;
+    opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
     QItemDelegate::drawDisplay(painter, opt, opt.rect, limit > 0 ? misc::accurateDoubleToString(limit/1024., 1) + " " + tr("KiB/s", "KiB/second (.i.e per second)") : QString::fromUtf8("∞"));
     break;
   }
@@ -162,7 +162,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
   case TorrentModelItem::TR_RATIO_LIMIT:
   case TorrentModelItem::TR_RATIO: {
       QItemDelegate::drawBackground(painter, opt, index);
-      opt.displayAlignment = Qt::AlignRight;
+      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       const qreal ratio = index.data().toDouble();
       QItemDelegate::drawDisplay(painter, opt, opt.rect,
                                  (ratio == -1 || ratio > QBtSession::MAX_RATIO) ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
@@ -170,7 +170,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     }
   case TorrentModelItem::TR_PRIORITY: {
       const int priority = index.data().toInt();
-      opt.displayAlignment = Qt::AlignRight;
+      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       if (priority >= 0)
         QItemDelegate::paint(painter, opt, index);
       else {
@@ -206,11 +206,14 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       QString elapsedString;
       long long elapsed = index.data().toLongLong();
       QItemDelegate::drawBackground(painter, opt, index);
-      opt.displayAlignment = Qt::AlignRight;
+      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       if (elapsed == 0)
         // Show '< 1m ago' when elapsed time is 0
         elapsed = 1;
-      elapsedString = tr("%1 ago", "e.g.: 1h 20m ago").arg(misc::userFriendlyDuration(elapsed));
+      if (elapsed < 0)
+        elapsedString = misc::userFriendlyDuration(elapsed);
+      else
+        elapsedString = tr("%1 ago", "e.g.: 1h 20m ago").arg(misc::userFriendlyDuration(elapsed));
       QItemDelegate::drawDisplay(painter, opt, option.rect, elapsedString);
       break;
     }

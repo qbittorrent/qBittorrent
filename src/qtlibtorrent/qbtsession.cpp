@@ -127,7 +127,7 @@ QBtSession::QBtSession()
   version << VERSION_MAJOR;
   version << VERSION_MINOR;
   version << VERSION_BUGFIX;
-  version << 0;
+  version << VERSION_BUILD;
   const QString peer_id = "qB";
   // Construct session
   s = new session(fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)), 0);
@@ -272,6 +272,9 @@ void QBtSession::handleDownloadFailure(QString url, QString reason) {
   const QUrl qurl = QUrl::fromEncoded(url.toUtf8());
   url_skippingDlg.removeOne(qurl);
   savepathLabel_fromurl.remove(qurl);
+#ifndef DISABLE_GUI
+  addpaused_fromurl.remove(qurl);
+#endif
 }
 
 void QBtSession::handleMagnetRedirect(const QString &url_new, const QString &url_old) {
@@ -279,10 +282,19 @@ void QBtSession::handleMagnetRedirect(const QString &url_new, const QString &url
     url_skippingDlg.removeOne(url_old);
     QPair<QString, QString> savePath_label;
     if (savepathLabel_fromurl.contains(url_old)) {
-      savePath_label = savepathLabel_fromurl.take(QUrl::fromEncoded(url_old.toUtf8()));
-      savepathLabel_fromurl.remove(url_old);
+      savePath_label = savepathLabel_fromurl.take(url_old);
     }
-    addMagnetSkipAddDlg(url_new, savePath_label.first, savePath_label.second, url_old);
+#ifndef DISABLE_GUI
+    RssDownloadRule::AddPausedState state = RssDownloadRule::USE_GLOBAL;
+    if (addpaused_fromurl.contains(url_old)) {
+      state = addpaused_fromurl.take(url_old);
+    }
+#endif
+    addMagnetSkipAddDlg(url_new, savePath_label.first, savePath_label.second,
+                    #ifndef DISABLE_GUI
+                        state,
+                    #endif
+                        url_old);
   }
   else
     addMagnetInteractive(url_new);
@@ -505,6 +517,8 @@ void QBtSession::configureSession() {
   else
     sessionSettings.force_proxy = false;
 #endif
+  sessionSettings.no_connect_privileged_ports = false;
+  sessionSettings.seed_choking_algorithm = session_settings::fastest_upload;
   qDebug() << "Settings SessionSettings";
   setSessionSettings(sessionSettings);
   // Bittorrent
@@ -995,7 +1009,10 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   loadTorrentSettings(h);
 
   // Load filtered files
+  bool add_paused = pref->addTorrentsInPause();
   if (!resumed) {
+    if (TorrentTempData::hasTempData(hash))
+      add_paused = TorrentTempData::isAddPaused(hash);
     loadTorrentTempData(h, savePath, true);
   }  
   if (HiddenData::hasData(hash) && pref->isQueueingSystemEnabled()) {
@@ -1014,7 +1031,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
     s->set_settings(sessionSettings);
     h.queue_position_top();
   }
-  if (!pref->addTorrentsInPause() || HiddenData::hasData(hash)) {
+  if (!add_paused || HiddenData::hasData(hash)) {
     // Start torrent because it was added in paused state
     h.resume();
   }
@@ -1182,8 +1199,12 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
 
   loadTorrentSettings(h);
 
+  bool add_paused = pref->addTorrentsInPause();
   if (!resumed) {
     qDebug("This is a NEW torrent (first time)...");
+    if (TorrentTempData::hasTempData(hash))
+      add_paused = TorrentTempData::isAddPaused(hash);
+
     loadTorrentTempData(h, savePath, false);
 
     // Append .!qB to incomplete files
@@ -1199,7 +1220,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       exportTorrentFile(h);
   }
 
-  if (!fastResume && !pref->addTorrentsInPause()) {
+  if (!fastResume && !add_paused) {
     // Start torrent because it was added in paused state
     h.resume();
   }
@@ -1718,17 +1739,26 @@ void QBtSession::addConsoleMessage(QString msg, QColor color) {
 #endif
 }
 
-void QBtSession::addPeerBanMessage(QString ip, bool from_ipfilter) {
-  if (peerBanMessages.size() > MAX_LOG_MESSAGES) {
-    peerBanMessages.removeFirst();
-  }
-  QString msg;
-  if (from_ipfilter)
-    msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> was blocked", "x.y.z.w was blocked").arg(ip);
-  else
-    msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(ip);
-  peerBanMessages.append(msg);
-  emit newBanMessage(msg);
+#if LIBTORRENT_VERSION_NUM < 10000
+void QBtSession::addPeerBanMessage(const QString& ip, bool blocked)
+#else
+void QBtSession::addPeerBanMessage(const QString& ip, bool blocked, const QString& blockedReason)
+#endif
+{
+    if (peerBanMessages.size() > MAX_LOG_MESSAGES) {
+        peerBanMessages.removeFirst();
+    }
+    QString msg;
+    if (blocked)
+#if LIBTORRENT_VERSION_NUM < 10000
+        msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> was blocked", "x.y.z.w was blocked").arg(ip);
+#else
+        msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> was blocked %2", "x.y.z.w was blocked").arg(ip).arg(blockedReason);
+#endif
+    else
+        msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(ip);
+    peerBanMessages.append(msg);
+    emit newBanMessage(msg);
 }
 
 bool QBtSession::isFilePreviewPossible(const QString &hash) const {
@@ -1739,10 +1769,7 @@ bool QBtSession::isFilePreviewPossible(const QString &hash) const {
   }
   const unsigned int nbFiles = h.num_files();
   for (unsigned int i=0; i<nbFiles; ++i) {
-    QString filename = h.filename_at(i);
-    if (filename.endsWith(".!qB"))
-      filename.chop(4);
-    const QString extension = fsutils::fileExtension(filename);
+    const QString extension = fsutils::fileExtension(h.filename_at(i));
     if (misc::isPreviewable(extension))
       return true;
   }
@@ -2609,13 +2636,39 @@ void QBtSession::handlePortmapAlert(libtorrent::portmap_alert* p) {
   //emit UPnPSuccess(QString(p->msg().c_str()));
 }
 
-void QBtSession::handlePeerBlockedAlert(libtorrent::peer_blocked_alert* p) {
-  boost::system::error_code ec;
-  string ip = p->ip.to_string(ec);
-  if (!ec) {
-    addPeerBanMessage(QString::fromLatin1(ip.c_str()), true);
-    //emit peerBlocked(QString::fromLatin1(ip.c_str()));
-  }
+void QBtSession::handlePeerBlockedAlert(libtorrent::peer_blocked_alert* p)
+{
+    boost::system::error_code ec;
+    string ip = p->ip.to_string(ec);
+#if LIBTORRENT_VERSION_NUM < 10000
+    if (!ec)
+        addPeerBanMessage(QString::fromLatin1(ip.c_str()), true);
+#else
+    QString reason;
+    switch (p->reason) {
+    case peer_blocked_alert::ip_filter:
+        reason = tr("due to IP filter.", "this peer was blocked due to ip filter.");
+        break;
+    case peer_blocked_alert::port_filter:
+        reason = tr("due to port filter.", "this peer was blocked due to port filter.");
+        break;
+    case peer_blocked_alert::i2p_mixed:
+        reason = tr("due to i2p mixed mode restrictions.", "this peer was blocked due to i2p mixed mode restrictions.");
+        break;
+    case peer_blocked_alert::privileged_ports:
+        reason = tr("because it has a low port.", "this peer was blocked because it has a low port.");
+        break;
+    case peer_blocked_alert::utp_disabled:
+        reason = tr("because μTP is disabled.", "this peer was blocked because μTP is disabled.");
+        break;
+    case peer_blocked_alert::tcp_disabled:
+        reason = tr("because TCP is disabled.", "this peer was blocked because TCP is disabled.");
+        break;
+    }
+
+    if (!ec)
+        addPeerBanMessage(QString::fromLatin1(ip.c_str()), true, reason);
+#endif
 }
 
 void QBtSession::handlePeerBanAlert(libtorrent::peer_ban_alert* p) {
@@ -2872,18 +2925,49 @@ void QBtSession::addMagnetInteractive(const QString& uri)
   emit newMagnetLink(uri);
 }
 
-void QBtSession::addMagnetSkipAddDlg(const QString& uri, const QString& save_path, const QString& label, const QString &uri_old) {
+#ifndef DISABLE_GUI
+  void QBtSession::addMagnetSkipAddDlg(const QString& uri, const QString& save_path, const QString& label,
+                                       const RssDownloadRule::AddPausedState &aps, const QString &uri_old) {
+#else
+  void QBtSession::addMagnetSkipAddDlg(const QString& uri, const QString& save_path, const QString& label, const QString &uri_old) {
+#endif
   if (!save_path.isEmpty() || !label.isEmpty())
     savepathLabel_fromurl[uri] = qMakePair(fsutils::fromNativePath(save_path), label);
+
+#ifndef DISABLE_GUI
+  QString hash = misc::magnetUriToHash(uri);
+  switch (aps) {
+  case RssDownloadRule::ALWAYS_PAUSED:
+    TorrentTempData::setAddPaused(hash, true);
+    break;
+  case RssDownloadRule::NEVER_PAUSED:
+    TorrentTempData::setAddPaused(hash, false);
+    break;
+  case RssDownloadRule::USE_GLOBAL:
+  default:;
+    // Use global preferences
+  }
+#endif
+
   addMagnetUri(uri, false);
   emit newDownloadedTorrentFromRss(uri_old.isEmpty() ? uri : uri_old);
 }
 
-void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QString label, const QList<QNetworkCookie>& cookies) {
+#ifndef DISABLE_GUI
+  void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QString label,
+                                            const QList<QNetworkCookie>& cookies, const RssDownloadRule::AddPausedState &aps) {
+#else
+  void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QString label, const QList<QNetworkCookie>& cookies) {
+#endif
   //emit aboutToDownloadFromUrl(url);
   const QUrl qurl = QUrl::fromEncoded(url.toUtf8());
   if (!save_path.isEmpty() || !label.isEmpty())
     savepathLabel_fromurl[qurl] = qMakePair(fsutils::fromNativePath(save_path), label);
+
+#ifndef DISABLE_GUI
+  if (aps != RssDownloadRule::USE_GLOBAL)
+    addpaused_fromurl[qurl] = aps;
+#endif
   url_skippingDlg << qurl;
   // Launch downloader thread
   downloader->downloadTorrentUrl(url, cookies);
@@ -2891,7 +2975,6 @@ void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QStrin
 
 // Add to Bittorrent session the downloaded torrent file
 void QBtSession::processDownloadedFile(QString url, QString file_path) {
-  Preferences* const pref = Preferences::instance();
   const int index = url_skippingDlg.indexOf(QUrl::fromEncoded(url.toUtf8()));
   if (index < 0) {
     // Add file to torrent download list
@@ -2912,10 +2995,32 @@ void QBtSession::processDownloadedFile(QString url, QString file_path) {
     emit newDownloadedTorrent(file_path, url);
   } else {
     url_skippingDlg.removeAt(index);
-    QTorrentHandle h = addTorrent(file_path, false, url, false);
-    // Pause torrent if necessary
-    if (h.is_valid() && pref->addTorrentsInPause() && pref->useAdditionDialog())
-        h.pause();
+
+#ifndef DISABLE_GUI
+    libtorrent::error_code ec;
+    // Get hash
+    libtorrent::torrent_info ti(file_path.toStdString(), ec);
+    QString hash;
+
+    if (!ec) {
+      hash = misc::toQString(ti.info_hash());
+      RssDownloadRule::AddPausedState aps = addpaused_fromurl[url];
+      addpaused_fromurl.remove(url);
+      switch (aps) {
+        case RssDownloadRule::ALWAYS_PAUSED:
+          TorrentTempData::setAddPaused(hash, true);
+          break;
+        case RssDownloadRule::NEVER_PAUSED:
+          TorrentTempData::setAddPaused(hash, false);
+          break;
+        case RssDownloadRule::USE_GLOBAL:
+        default:;
+        // Use global preferences
+      }
+    }
+#endif
+
+    addTorrent(file_path, false, url, false);
     emit newDownloadedTorrentFromRss(url);
   }
 }
@@ -3093,6 +3198,11 @@ void QBtSession::unhideMagnet(const QString &hash) {
     return;
   }
 
+  bool add_paused = pref->addTorrentsInPause();
+  if (TorrentTempData::hasTempData(hash)) {
+    add_paused = TorrentTempData::isAddPaused(hash);
+  }
+
   if (!h.has_metadata()) {
     if (pref->isQueueingSystemEnabled()) {
       //Internally decrease the queue limits to ensure that other queued items aren't started
@@ -3109,13 +3219,13 @@ void QBtSession::unhideMagnet(const QString &hash) {
         sessionSettings.active_limit = max_active;
       s->set_settings(sessionSettings);
     }
-    if (pref->addTorrentsInPause())
+    if (add_paused)
       h.pause();
   }
 
   h.queue_position_bottom();
   loadTorrentTempData(h, h.save_path(), !h.has_metadata()); //TempData are deleted by a call to TorrentPersistentData::saveTorrentPersistentData()
-  if (!pref->addTorrentsInPause())
+  if (!add_paused)
     h.resume();
   h.move_storage(save_path);
 
