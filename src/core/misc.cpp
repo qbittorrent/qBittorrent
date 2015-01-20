@@ -444,10 +444,10 @@ QString misc::getUserIDString()
 {
     QString uid = "0";
 #ifdef Q_OS_WIN
-    char buffer[UNLEN + 1] = {0};
-    DWORD buffer_len = UNLEN + 1;
-    if (!GetUserNameA(buffer, &buffer_len))
-        uid = QString(buffer);
+    WCHAR buffer[UNLEN + 1] = {0};
+    DWORD buffer_len = sizeof(buffer)/sizeof(*buffer);
+    if (GetUserNameW(buffer, &buffer_len))
+        uid = QString::fromWCharArray(buffer);
 #else
     uid = QString::number(getuid());
 #endif
