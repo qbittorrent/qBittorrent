@@ -90,10 +90,6 @@ public:
 
 #include "main.moc"
 
-#if defined(Q_OS_WIN) && !defined(QBT_HAS_GETCURRENTPID)
-#error You seem to have updated QtSingleApplication without porting our custom QtSingleApplication::getRunningPid() function. Please see previous version to understate how it works.
-#endif
-
 // Signal handlers
 #if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
 void sigintHandler(int);
@@ -217,14 +213,8 @@ int main(int argc, char *argv[])
 #else
         qDebug("qBittorrent is already running for this user.");
 #endif
+
         misc::msleep(300);
-#ifdef Q_OS_WIN
-        DWORD pid = (DWORD)app->getRunningPid();
-        if (pid > 0) {
-            BOOL b = AllowSetForegroundWindow(pid);
-            qDebug("AllowSetForegroundWindow() returns %s", b ? "TRUE" : "FALSE");
-        }
-#endif
         if (!params.torrents.isEmpty()) {
             QString message = params.torrents.join("|");
             qDebug("Passing program parameters to running instance...");

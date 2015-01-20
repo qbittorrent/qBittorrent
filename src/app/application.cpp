@@ -32,6 +32,10 @@
 #include <QLocale>
 #include <QLibraryInfo>
 #include <QSysInfo>
+#ifdef Q_OS_WIN
+#include <Windows.h>
+#include <QSharedMemory>
+#endif
 
 #if (!defined(DISABLE_GUI) && defined(Q_OS_MAC))
 #include <QFont>
@@ -41,11 +45,7 @@
 #include "preferences.h"
 
 Application::Application(const QString &id, int &argc, char **argv)
-#ifndef DISABLE_GUI
-    : SessionApplication(id, argc, argv)
-#else
-    : QtSingleCoreApplication(id, argc, argv)
-#endif
+    : BaseApplication(id, argc, argv)
 {
 #if defined(Q_OS_MACX) && !defined(DISABLE_GUI)
     if (QSysInfo::MacintoshVersion > QSysInfo::MV_10_8) {
@@ -62,6 +62,33 @@ Application::Application(const QString &id, int &argc, char **argv)
 #endif
 }
 
+#ifdef Q_OS_WIN
+bool Application::isRunning()
+{
+    bool running = BaseApplication::isRunning();
+    QSharedMemory *sharedMem = new QSharedMemory(id() + QLatin1String("-shared-memory-key"), this);
+    if (!running) {
+        // First instance creates shared memory and store PID
+        if (sharedMem->create(sizeof(DWORD)) && sharedMem->lock()) {
+            *(static_cast<DWORD*>(sharedMem->data())) = ::GetCurrentProcessId();
+            sharedMem->unlock();
+        }
+    }
+    else {
+        // Later instances attach to shared memory and retrieve PID
+        if (sharedMem->attach() && sharedMem->lock()) {
+            ::AllowSetForegroundWindow(*(static_cast<DWORD*>(sharedMem->data())));
+            sharedMem->unlock();
+        }
+    }
+
+    if (!sharedMem->isAttached())
+        qWarning() << "Failed to initialize shared memory: " << sharedMem->errorString();
+
+    return running;
+}
+#endif
+
 void Application::initializeTranslation()
 {
     Preferences* const pref = Preferences::instance();
@@ -72,10 +99,10 @@ void Application::initializeTranslation()
         pref->setLocale(locale);
     }
 
-    if (qtTranslator_.load(
+    if (m_qtTranslator.load(
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
             QString::fromUtf8("qtbase_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
-        qtTranslator_.load(
+        m_qtTranslator.load(
 #endif
             QString::fromUtf8("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
             qDebug("Qt %s locale recognized, using translation.", qPrintable(locale));
@@ -83,15 +110,15 @@ void Application::initializeTranslation()
     else {
         qDebug("Qt %s locale unrecognized, using default (en).", qPrintable(locale));
     }
-    installTranslator(&qtTranslator_);
+    installTranslator(&m_qtTranslator);
 
-    if (translator_.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)) {
+    if (m_translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)) {
         qDebug("%s locale recognized, using translation.", qPrintable(locale));
     }
     else {
         qDebug("%s locale unrecognized, using default (en).", qPrintable(locale));
     }
-    installTranslator(&translator_);
+    installTranslator(&m_translator);
 
 #ifndef DISABLE_GUI
     if (locale.startsWith("ar") || locale.startsWith("he")) {

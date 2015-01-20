@@ -35,23 +35,24 @@
 
 #ifndef DISABLE_GUI
 #include "sessionapplication.h"
+typedef SessionApplication BaseApplication;
 #else
 #include "qtsinglecoreapplication.h"
+typedef QtSingleCoreApplication BaseApplication;
 #endif
 
-class Application
-#ifndef DISABLE_GUI
-    : public SessionApplication
-#else
-    : public QtSingleCoreApplication
-#endif
+class Application : public BaseApplication
 {
 public:
     Application(const QString &id, int &argc, char **argv);
 
+#ifdef Q_OS_WIN
+    bool isRunning();
+#endif
+
 private:
-    QTranslator qtTranslator_;
-    QTranslator translator_;
+    QTranslator m_qtTranslator;
+    QTranslator m_translator;
 
     void initializeTranslation();
 };

@@ -86,10 +86,6 @@ public:
     // Obsolete:
     void initialize(bool dummy = true)
         { isRunning(); Q_UNUSED(dummy) }
-#ifdef Q_OS_WIN
-#define QBT_HAS_GETCURRENTPID
-    qint64 getRunningPid();
-#endif
 
 public Q_SLOTS:
     bool sendMessage(const QString &message, int timeout = 5000);
