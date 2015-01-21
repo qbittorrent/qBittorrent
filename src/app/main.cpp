@@ -146,7 +146,8 @@ int main(int argc, char *argv[])
     bool isOneArg = (argc == 2);
 
     // Create Application
-    QScopedPointer<Application> app(new Application("qBittorrent-" + misc::getUserIDString(), argc, argv));
+    QString appId = QLatin1String("qBittorrent-") + misc::getUserIDString();
+    QScopedPointer<Application> app(new Application(appId, argc, argv));
 
     MessagesCollector* messagesCollector = new MessagesCollector();
     QObject::connect(app.data(), SIGNAL(messageReceived(const QString &)),
@@ -210,9 +211,9 @@ int main(int argc, char *argv[])
                                  .arg(QLatin1String("-d (or --daemon)")));
             return EXIT_FAILURE;
         }
-#else
-        qDebug("qBittorrent is already running for this user.");
+        else
 #endif
+        qDebug("qBittorrent is already running for this user.");
 
         misc::msleep(300);
         if (!params.torrents.isEmpty()) {
@@ -233,7 +234,7 @@ int main(int argc, char *argv[])
     if (params.shouldDaemonize) {
         app.reset(); // Destroy current application
         if ((daemon(1, 0) == 0)) {
-            app.reset(new Application("qBittorrent-" + misc::getUserIDString(), argc, argv));
+            app.reset(new Application(appId, argc, argv));
             if (app->isRunning()) {
                 // Another instance had time to start.
                 return EXIT_FAILURE;
@@ -266,7 +267,7 @@ int main(int argc, char *argv[])
     delete messagesCollector;
     app->setActivationWindow(&window);
 #ifdef Q_OS_MAC
-    static_cast<QMacApplication*>(app.data())->setReadyToProcessEvents();
+    app->setReadyToProcessEvents();
 #endif // Q_OS_MAC
 #else
     // Load Headless class
