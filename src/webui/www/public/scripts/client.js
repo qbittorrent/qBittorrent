@@ -25,8 +25,7 @@
 myTable = new dynamicTable();
 
 var updatePropertiesPanel = function(){};
-var updateTransferInfo = function(){};
-var updateTransferList = function(){};
+var updateMainData = function(){};
 var alternativeSpeedLimits = false;
 
 selected_filter = getLocalStorageItem('selected_filter', 'all');
@@ -48,7 +47,6 @@ var saveSelectedLabel = function () {
         localStorage.setItem('selected_label', selected_label);
     }
 }
-
 
 window.addEvent('load', function () {
 
@@ -104,7 +102,7 @@ window.addEvent('load', function () {
         localStorage.setItem('selected_filter', f);
         // Reload torrents
         if (typeof myTable.table != 'undefined')
-            updateTransferList();
+            updateMainData();
     }
 
     new MochaUI.Panel({
@@ -131,113 +129,98 @@ window.addEvent('load', function () {
     if (!speedInTitle)
         $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
 
-    var loadTorrentsInfoTimer;
-    var loadTorrentsInfo = function () {
-        var url = new URI('json/torrents');
+    var syncMainDataLastResponseId = 0;
+    var serverState = {};
+
+    var syncMainDataTimer;
+    var syncMainData = function () {
+        var url = new URI('sync/maindata');
+        url.setData('rid', syncMainDataLastResponseId);
         var request = new Request.JSON({
             url : url,
             noCache : true,
             method : 'get',
             onFailure : function () {
                 $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
-                clearTimeout(loadTorrentsInfoTimer);
-                loadTorrentsInfoTimer = loadTorrentsInfo.delay(2000);
+                clearTimeout(syncMainDataTimer);
+                syncMainDataTimer = syncMainData.delay(2000);
             },
             onSuccess : function (response) {
                 $('error_div').set('html', '');
                 if (response) {
-                    var queueing_enabled = false;
-                    var torrents_hashes = new Array();
-                    for (var i = 0; i < response.length; i++) {
-                        torrents_hashes.push(response[i].hash);
-                        if (response[i].priority > -1)
-                            queueing_enabled = true;
-                        myTable.updateRowData(response[i])
+                    var full_update = (response['full_update'] == true);
+                    if (full_update)
+                        myTable.rows.erase();
+                    if (response['rid'])
+                        syncMainDataLastResponseId = response['rid'];
+                    if ('queueing' in response) {
+                        var queueing_enabled = response['queueing'];
+                        myTable.columns['priority'].force_hide = !queueing_enabled;
+                        myTable.updateColumn('priority');
+                        if (queueing_enabled) {
+                            $('queueingButtons').removeClass('invisible');
+                            $('queueingMenuItems').removeClass('invisible');
+                        }
+                        else {
+                            $('queueingButtons').addClass('invisible');
+                            $('queueingMenuItems').addClass('invisible');
+                        }
                     }
-
-                    var keys = myTable.rows.getKeys();
-                    for (var i = 0; i < keys.length; i++) {
-                        if (!torrents_hashes.contains(keys[i]))
-                            myTable.rows.erase(keys[i]);
-                    }
-
-                    myTable.columns['priority'].force_hide = !queueing_enabled;
-                    myTable.updateColumn('priority');
-                    if (queueing_enabled) {
-                        $('queueingButtons').removeClass('invisible');
-                        $('queueingMenuItems').removeClass('invisible');
-                    }
-                    else {
-                        $('queueingButtons').addClass('invisible');
-                        $('queueingMenuItems').addClass('invisible');
-                    }
-
-                    myTable.updateTable(true);
+                    if (response['torrents'])
+                        for (var key in response['torrents']) {
+                            response['torrents'][key]['hash'] = key;
+                            myTable.updateRowData(response['torrents'][key]);
+                        }
+                    myTable.updateTable(full_update);
+                    if (response['torrents_removed'])
+                        response['torrents_removed'].each(function (hash) {
+                            myTable.removeRow(hash);
+                        });
                     myTable.altRow();
+                    if (response['server_state']) {
+                        var tmp = response['server_state'];
+                        for(var key in tmp)
+                            serverState[key] = tmp[key];
+                        processServerState();
+                    }
                 }
-                clearTimeout(loadTorrentsInfoTimer);
-                loadTorrentsInfoTimer = loadTorrentsInfo.delay(1500);
+                clearTimeout(syncMainDataTimer);
+                syncMainDataTimer = syncMainData.delay(1500);
             }
         }).send();
     };
 
-    updateTransferList = function() {
+    updateMainData = function() {
         myTable.updateTable();
-        clearTimeout(loadTorrentsInfoTimer);
-        loadTorrentsInfoTimer = loadTorrentsInfo.delay(30);
+        clearTimeout(syncMainDataTimer);
+        syncMainDataTimer = syncMainData.delay(100);
     }
 
-    var loadTransferInfoTimer;
-    var loadTransferInfo = function () {
-        var url = 'json/transferInfo';
-        var request = new Request.JSON({
-            url : url,
-            noCache : true,
-            method : 'get',
-            onFailure : function () {
-                $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
-                clearTimeout(loadTransferInfoTimer);
-                loadTransferInfoTimer = loadTransferInfo.delay(4000);
-            },
-            onSuccess : function (info) {
-                if (info) {
-                    var transfer_info = "";
-                    if (info.dl_rate_limit != undefined)
-                        transfer_info += "[" + friendlyUnit(info.dl_rate_limit, true) + "] ";
-                    transfer_info += friendlyUnit(info.dl_info_speed, true);
-                    transfer_info += " (" + friendlyUnit(info.dl_info_data, false) + ")"
-                    $("DlInfos").set('html', transfer_info);
-                    transfer_info = "";
-                    if (info.up_rate_limit != undefined)
-                        transfer_info += "[" + friendlyUnit(info.up_rate_limit, true) + "] ";
-                    transfer_info += friendlyUnit(info.up_info_speed, true)
-                    transfer_info += " (" + friendlyUnit(info.up_info_data, false) + ")"
-                    $("UpInfos").set('html', transfer_info);
-                    if (speedInTitle)
-                        document.title = "QBT_TR(D:%1 U:%2)QBT_TR".replace("%1", friendlyUnit(info.dl_info_speed, true)).replace("%2", friendlyUnit(info.up_info_speed, true));
-                    else
-                        document.title = "QBT_TR(qBittorrent web User Interface)QBT_TR";
-                    $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR'.replace("%1", info.dht_nodes));
-                    if (info.connection_status == "connected")
-                        $('connectionStatus').src = 'images/skin/connected.png';
-                    else if (info.connection_status == "firewalled")
-                        $('connectionStatus').src = 'images/skin/firewalled.png';
-                    else
-                        $('connectionStatus').src = 'images/skin/disconnected.png';
-                    clearTimeout(loadTransferInfoTimer);
-                    loadTransferInfoTimer = loadTransferInfo.delay(3000);
-                }
-            }
-        }).send();
+    var processServerState = function () {
+        var transfer_info = "";
+        if (serverState.dl_rate_limit > 0)
+            transfer_info += "[" + friendlyUnit(serverState.dl_rate_limit, true) + "] ";
+        transfer_info += friendlyUnit(serverState.dl_info_speed, true);
+        transfer_info += " (" + friendlyUnit(serverState.dl_info_data, false) + ")"
+        $("DlInfos").set('html', transfer_info);
+        transfer_info = "";
+        if (serverState.up_rate_limit > 0)
+            transfer_info += "[" + friendlyUnit(serverState.up_rate_limit, true) + "] ";
+        transfer_info += friendlyUnit(serverState.up_info_speed, true)
+        transfer_info += " (" + friendlyUnit(serverState.up_info_data, false) + ")"
+        $("UpInfos").set('html', transfer_info);
+        if (speedInTitle)
+            document.title = "QBT_TR(D:%1 U:%2)QBT_TR".replace("%1", friendlyUnit(serverState.dl_info_speed, true)).replace("%2", friendlyUnit(serverState.up_info_speed, true));
+        else
+            document.title = "QBT_TR(qBittorrent web User Interface)QBT_TR";
+        $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR'.replace("%1", serverState.dht_nodes));
+        if (serverState.connection_status == "connected")
+            $('connectionStatus').src = 'images/skin/connected.png';
+        else if (serverState.connection_status == "firewalled")
+            $('connectionStatus').src = 'images/skin/firewalled.png';
+        else
+            $('connectionStatus').src = 'images/skin/disconnected.png';
     };
-
-    updateTransferInfo = function() {
-        clearTimeout(loadTransferInfoTimer);
-        loadTransferInfo();
-    }
-
-    // Start fetching data now
-    loadTransferInfo();
 
     var updateAltSpeedIcon = function(enabled) {
         if (enabled)
@@ -264,7 +247,7 @@ window.addEvent('load', function () {
                 method: 'post',
                 onComplete: function() {
                     alternativeSpeedLimits = !alternativeSpeedLimits;
-                    updateTransferInfo();
+                    updateMainData();
                 },
                 onFailure: function() {
                     // Restore icon in case of failure
@@ -278,7 +261,7 @@ window.addEvent('load', function () {
 
     setSortedColumn = function (column) {
         myTable.setSortedColumn(column);
-        updateTransferList();
+        updateMainData();
     };
 
     $('speedInBrowserTitleBarLink').addEvent('click', function(e) {
@@ -288,7 +271,7 @@ window.addEvent('load', function () {
             $('speedInBrowserTitleBarLink').firstChild.style.opacity = '1';
         else
             $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
-        updateTransferInfo();
+        updateMainData();
     });
 
     new MochaUI.Panel({
@@ -304,7 +287,7 @@ window.addEvent('load', function () {
         loadMethod : 'xhr',
         contentURL : 'transferlist.html',
         onContentLoaded : function () {
-            updateTransferList();
+            updateMainData();
         },
         column : 'mainColumn',
         onResize : saveColumnSizes,

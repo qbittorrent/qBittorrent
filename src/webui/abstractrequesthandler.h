@@ -37,53 +37,53 @@ struct WebSession;
 
 class AbstractRequestHandler
 {
-  friend class WebApplication;
+    friend class WebApplication;
 
 public:
-  AbstractRequestHandler(
-      const HttpRequest& request, const HttpEnvironment& env,
-      WebApplication* app);
+    AbstractRequestHandler(
+        const HttpRequest& request, const HttpEnvironment& env,
+        WebApplication* app);
 
-  HttpResponse run();
+    HttpResponse run();
 
 protected:
-  virtual void processRequest() = 0;
+    virtual void processRequest() = 0;
 
-  void status(uint code, const QString& text);
-  void header(const QString& name, const QString& value);
-  void print(const QString& text, const QString& type = CONTENT_TYPE_HTML);
-  void print(const QByteArray& data, const QString& type = CONTENT_TYPE_HTML);
-  void printFile(const QString& path);
+    void status(uint code, const QString& text);
+    void header(const QString& name, const QString& value);
+    void print(const QString& text, const QString& type = CONTENT_TYPE_HTML);
+    void print(const QByteArray& data, const QString& type = CONTENT_TYPE_HTML);
+    void printFile(const QString& path);
 
-  // Session management
-  bool sessionActive() const { return session_ != 0; }
-  void sessionInitialize();
-  void sessionStart();
-  void sessionEnd();
+    // Session management
+    bool sessionActive() const { return session_ != 0; }
+    void sessionInitialize();
+    void sessionStart();
+    void sessionEnd();
 
-  // Ban management
-  bool isBanned() const;
-  int failedAttempts() const;
-  void resetFailedAttempts();
-  void increaseFailedAttempts();
+    // Ban management
+    bool isBanned() const;
+    int failedAttempts() const;
+    void resetFailedAttempts();
+    void increaseFailedAttempts();
 
-  bool isAuthNeeded();
+    bool isAuthNeeded();
 
-  // save data to temporary file on disk and return its name (or empty string if fails)
-  static QString saveTmpFile(const QByteArray& data);
+    // save data to temporary file on disk and return its name (or empty string if fails)
+    static QString saveTmpFile(const QByteArray& data);
 
-  inline WebSession* session() { return session_; }
-  inline HttpRequest request() const { return request_; }
-  inline HttpEnvironment env() const { return env_; }
+    inline WebSession* session() { return session_; }
+    inline HttpRequest request() const { return request_; }
+    inline HttpEnvironment env() const { return env_; }
 
 private:
-  WebApplication* app_;
-  WebSession* session_;
-  const HttpRequest request_;
-  const HttpEnvironment env_;
-  HttpResponse response_;
+    WebApplication* app_;
+    WebSession* session_;
+    const HttpRequest request_;
+    const HttpEnvironment env_;
+    HttpResponse response_;
 
-  void print_impl(const QByteArray& data, const QString& type);
+    void print_impl(const QByteArray& data, const QString& type);
 };
 
 #endif // ABSTRACTREQUESTHANDLER_H

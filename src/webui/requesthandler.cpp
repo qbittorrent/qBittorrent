@@ -48,6 +48,7 @@
 #include "prefjson.h"
 #include "qbtsession.h"
 #include "requesthandler.h"
+#include "webapplication.h"
 
 using namespace libtorrent;
 
@@ -82,6 +83,7 @@ QMap<QString, QMap<QString, RequestHandler::Action> > RequestHandler::initialize
     ADD_ACTION(json, propertiesGeneral);
     ADD_ACTION(json, propertiesTrackers);
     ADD_ACTION(json, propertiesFiles);
+    ADD_ACTION(sync, maindata);
     ADD_ACTION(command, shutdown);
     ADD_ACTION(command, download);
     ADD_ACTION(command, upload);
@@ -259,6 +261,14 @@ void RequestHandler::action_json_propertiesFiles()
 {
     CHECK_URI(1);
     print(btjson::getFilesForTorrent(args_.front()), CONTENT_TYPE_JS);
+}
+
+// GET param:
+//   - rid (int): last response id
+void RequestHandler::action_sync_maindata()
+{
+    CHECK_URI(0);
+    print(btjson::getSyncMainData(request().gets["rid"].toInt(), session()->syncMainDataLastResponse, session()->syncMainDataLastAcceptedResponse));
 }
 
 void RequestHandler::action_version_api()

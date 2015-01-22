@@ -101,6 +101,7 @@ static const char KEY_TORRENT_ETA[] = "eta";
 static const char KEY_TORRENT_STATE[] = "state";
 static const char KEY_TORRENT_SEQUENTIAL_DOWNLOAD[] = "seq_dl";
 static const char KEY_TORRENT_FIRST_LAST_PIECE_PRIO[] = "f_l_piece_prio";
+static const char KEY_TORRENT_LABEL[] = "label";
 
 // Tracker keys
 static const char KEY_TRACKER_URL[] = "url";
@@ -142,6 +143,17 @@ static const char KEY_TRANSFER_UPDATA[] = "up_info_data";
 static const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
 static const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
 static const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
+
+static const char KEY_FULL_UPDATE[] = "full_update";
+static const char KEY_RESPONSE_ID[] = "rid";
+static const char KEY_SUFFIX_REMOVED[] = "_removed";
+
+QVariantMap getTranserInfoMap();
+QVariantMap toMap(const QTorrentHandle& h);
+void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData);
+void processHash(QVariantHash prevData, QVariantHash data, QVariantHash &syncData, QVariantList &removedItems);
+void processList(QVariantList prevData, QVariantList data, QVariantList &syncData, QVariantList &removedItems);
+QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantMap &lastAcceptedData,  QVariantMap &lastData);
 
 class QTorrentCompare
 {
@@ -195,36 +207,6 @@ private:
 #endif
 };
 
-static QVariantMap toMap(const QTorrentHandle& h)
-{
-    libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters);
-
-    QVariantMap ret;
-    ret[KEY_TORRENT_HASH] =  h.hash();
-    ret[KEY_TORRENT_NAME] =  h.name();
-    ret[KEY_TORRENT_SIZE] =  static_cast<qlonglong>(status.total_wanted);
-    ret[KEY_TORRENT_PROGRESS] = h.progress(status);
-    ret[KEY_TORRENT_DLSPEED] = status.download_payload_rate;
-    ret[KEY_TORRENT_UPSPEED] = status.upload_payload_rate;
-    if (QBtSession::instance()->isQueueingEnabled() && h.queue_position(status) >= 0)
-        ret[KEY_TORRENT_PRIORITY] = h.queue_position(status);
-    else
-        ret[KEY_TORRENT_PRIORITY] = -1;
-    ret[KEY_TORRENT_SEEDS] = status.num_seeds;
-    ret[KEY_TORRENT_NUM_COMPLETE] = status.num_complete;
-    ret[KEY_TORRENT_LEECHS] = status.num_peers - status.num_seeds;
-    ret[KEY_TORRENT_NUM_INCOMPLETE] = status.num_incomplete;
-    const qreal ratio = QBtSession::instance()->getRealRatio(status);
-    ret[KEY_TORRENT_RATIO] = (ratio > QBtSession::MAX_RATIO) ? -1 : ratio;
-    ret[KEY_TORRENT_STATE] = h.torrentState().toString();
-    ret[KEY_TORRENT_ETA] = h.eta();
-    ret[KEY_TORRENT_SEQUENTIAL_DOWNLOAD] = status.sequential_download;
-    if (h.has_metadata())
-        ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = h.first_last_piece_first();
-
-    return ret;
-}
-
 /**
  * Returns all the torrents in JSON format.
  *
@@ -257,7 +239,7 @@ QByteArray btjson::getTorrents(QString filter, QString label,
     std::vector<torrent_handle>::const_iterator end = torrents.end();
 
     QTorrentFilter torrentFilter(filter, label);
-    for(; it != end; ++it) {
+    for (; it != end; ++it) {
         QTorrentHandle torrent = QTorrentHandle(*it);
 
         if (torrentFilter.apply(torrent))
@@ -279,6 +261,76 @@ QByteArray btjson::getTorrents(QString filter, QString label,
         return json::toJson(torrent_list.mid(offset, limit));
     else
         return json::toJson(torrent_list);
+}
+
+/**
+ * The function returns the changed data from the server to synchronize with the web client.
+ * Return value is map in JSON format.
+ * Map contain the key:
+ *  - "Rid": ID response
+ * Map can contain the keys:
+ *  - "full_update": full data update flag
+ *  - "torrents": dictionary contains information about torrents.
+ *  - "torrents_removed": a list of hashes of removed torrents
+ *  - "labels": list of labels
+ *  - "labels_removed": list of removed labels
+ *  - "queueing": priority system usage flag
+ *  - "server_state": map contains information about the status of the server
+ * The keys of the 'torrents' dictionary are hashes of torrents.
+ * Each value of the 'torrents' dictionary contains map. The map can contain following keys:
+ *  - "name": Torrent name
+ *  - "size": Torrent size
+ *  - "progress: Torrent progress
+ *  - "dlspeed": Torrent download speed
+ *  - "upspeed": Torrent upload speed
+ *  - "priority": Torrent priority (-1 if queuing is disabled)
+ *  - "num_seeds": Torrent seeds connected to
+ *  - "num_complete": Torrent seeds in the swarm
+ *  - "num_leechs": Torrent leechers connected to
+ *  - "num_incomplete": Torrent leechers in the swarm
+ *  - "ratio": Torrent share ratio
+ *  - "eta": Torrent ETA
+ *  - "state": Torrent state
+ *  - "seq_dl": Torrent sequential download state
+ *  - "f_l_piece_prio": Torrent first last piece priority state
+ * Server state map may contain the following keys:
+ *  - "connection_status": conection status
+ *  - "dht_nodes": DHT nodes count
+ *  - "dl_info_data": bytes downloaded
+ *  - "dl_info_speed": download speed
+ *  - "dl_rate_limit: downlaod rate limit
+ *  - "up_info_data: bytes uploaded
+ *  - "up_info_speed: upload speed
+ *  - "up_rate_limit: upload speed limit
+ */
+QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData, QVariantMap &lastAcceptedData)
+{
+    QVariantMap data;
+
+    QVariantHash torrents;
+
+    std::vector<torrent_handle> torrentsList = QBtSession::instance()->getTorrents();
+    std::vector<torrent_handle>::const_iterator it = torrentsList.begin();
+    std::vector<torrent_handle>::const_iterator end = torrentsList.end();
+
+    for (; it != end; ++it) {
+        QTorrentHandle torrent = QTorrentHandle(*it);
+        QVariantMap map = toMap(torrent);
+        map.remove(KEY_TORRENT_HASH);
+        torrents[torrent.hash()] = map;
+    }
+
+    data["torrents"] = torrents;
+    data["queueing"] = QBtSession::instance()->isQueueingEnabled();
+
+    QVariantList labels;
+    foreach (QString s, Preferences::instance()->getTorrentLabels())
+        labels << s;
+
+    data["labels"] = labels;
+    data["server_state"] = getTranserInfoMap();
+
+    return json::toJson(generateSyncData(acceptedResponseId, data, lastAcceptedData, lastData));
 }
 
 /**
@@ -322,7 +374,7 @@ QByteArray btjson::getTrackersForTorrent(const QString& hash)
             tracker_list.append(tracker_dict);
         }
     }
-    catch(const std::exception& e) {
+    catch (const std::exception& e) {
         qWarning() << Q_FUNC_INFO << "Invalid torrent: " << misc::toQStringU(e.what());
         return QByteArray();
     }
@@ -384,7 +436,7 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
         const qreal ratio = QBtSession::instance()->getRealRatio(status);
         data[KEY_PROP_RATIO] = ratio > QBtSession::MAX_RATIO ? -1 : ratio;
     }
-    catch(const std::exception& e) {
+    catch (const std::exception& e) {
         qWarning() << Q_FUNC_INFO << "Invalid torrent: " << misc::toQStringU(e.what());
         return QByteArray();
     }
@@ -454,21 +506,214 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
  */
 QByteArray btjson::getTransferInfo()
 {
-    QVariantMap info;
+    return json::toJson(getTranserInfoMap());
+}
+
+QVariantMap getTranserInfoMap()
+{
+    QVariantMap map;
     session_status sessionStatus = QBtSession::instance()->getSessionStatus();
     session_settings sessionSettings = QBtSession::instance()->getSession()->settings();
-    info[KEY_TRANSFER_DLSPEED] = sessionStatus.payload_download_rate;
-    info[KEY_TRANSFER_DLDATA] = static_cast<qlonglong>(sessionStatus.total_payload_download);
-    info[KEY_TRANSFER_UPSPEED] = sessionStatus.payload_upload_rate;
-    info[KEY_TRANSFER_UPDATA] = static_cast<qlonglong>(sessionStatus.total_payload_upload);
-    if (sessionSettings.download_rate_limit)
-        info[KEY_TRANSFER_DLRATELIMIT] = sessionSettings.download_rate_limit;
-    if (sessionSettings.upload_rate_limit)
-        info[KEY_TRANSFER_UPRATELIMIT] = sessionSettings.upload_rate_limit;
-    info[KEY_TRANSFER_DHT_NODES] = sessionStatus.dht_nodes;
+    map[KEY_TRANSFER_DLSPEED] = sessionStatus.payload_download_rate;
+    map[KEY_TRANSFER_DLDATA] = static_cast<qlonglong>(sessionStatus.total_payload_download);
+    map[KEY_TRANSFER_UPSPEED] = sessionStatus.payload_upload_rate;
+    map[KEY_TRANSFER_UPDATA] = static_cast<qlonglong>(sessionStatus.total_payload_upload);
+    map[KEY_TRANSFER_DLRATELIMIT] = sessionSettings.download_rate_limit;
+    map[KEY_TRANSFER_UPRATELIMIT] = sessionSettings.upload_rate_limit;
+    map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dht_nodes;
     if (!QBtSession::instance()->getSession()->is_listening())
-        info[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
+        map[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
     else
-        info[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.has_incoming_connections ? "connected" : "firewalled";
-    return json::toJson(info);
+        map[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.has_incoming_connections ? "connected" : "firewalled";
+    return map;
+}
+
+QVariantMap toMap(const QTorrentHandle& h)
+{
+    libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters);
+
+    QVariantMap ret;
+    ret[KEY_TORRENT_HASH] =  h.hash();
+    ret[KEY_TORRENT_NAME] =  h.name();
+    ret[KEY_TORRENT_SIZE] =  static_cast<qlonglong>(status.total_wanted);
+    ret[KEY_TORRENT_PROGRESS] = h.progress(status);
+    ret[KEY_TORRENT_DLSPEED] = status.download_payload_rate;
+    ret[KEY_TORRENT_UPSPEED] = status.upload_payload_rate;
+    if (QBtSession::instance()->isQueueingEnabled() && h.queue_position(status) >= 0)
+        ret[KEY_TORRENT_PRIORITY] = h.queue_position(status);
+    else
+        ret[KEY_TORRENT_PRIORITY] = -1;
+    ret[KEY_TORRENT_SEEDS] = status.num_seeds;
+    ret[KEY_TORRENT_NUM_COMPLETE] = status.num_complete;
+    ret[KEY_TORRENT_LEECHS] = status.num_peers - status.num_seeds;
+    ret[KEY_TORRENT_NUM_INCOMPLETE] = status.num_incomplete;
+    const qreal ratio = QBtSession::instance()->getRealRatio(status);
+    ret[KEY_TORRENT_RATIO] = (ratio > QBtSession::MAX_RATIO) ? -1 : ratio;
+    ret[KEY_TORRENT_STATE] = h.torrentState().toString();
+    ret[KEY_TORRENT_ETA] = h.eta();
+    ret[KEY_TORRENT_SEQUENTIAL_DOWNLOAD] = status.sequential_download;
+    if (h.has_metadata())
+        ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = h.first_last_piece_first();
+    ret[KEY_TORRENT_LABEL] = TorrentPersistentData::getLabel(h.hash());
+
+    return ret;
+}
+
+// Compare two structures (prevData, data) and calculate difference (syncData).
+// Structures encoded as map.
+void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
+{
+    // initialize output variable
+    syncData.clear();
+
+    QVariantList removedItems;
+    foreach (QString key, data.keys()) {
+        removedItems.clear();
+
+        switch (data[key].type()) {
+        case QVariant::Map: {
+                QVariantMap map;
+                processMap(prevData[key].toMap(), data[key].toMap(), map);
+                if (!map.isEmpty())
+                    syncData[key] = map;
+            }
+            break;
+        case QVariant::Hash: {
+                QVariantHash hash;
+                processHash(prevData[key].toHash(), data[key].toHash(), hash, removedItems);
+                if (!hash.isEmpty())
+                    syncData[key] = hash;
+                if (!removedItems.isEmpty())
+                    syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
+            }
+            break;
+        case QVariant::List: {
+                QVariantList list;
+                processList(prevData[key].toList(), data[key].toList(), list, removedItems);
+                if (!list.isEmpty())
+                    syncData[key] = list;
+                if (!removedItems.isEmpty())
+                    syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
+            }
+            break;
+        case QVariant::String:
+        case QVariant::LongLong:
+        case QMetaType::Float:
+        case QVariant::Int:
+        case QVariant::Bool:
+        case QVariant::Double:
+        case QVariant::ULongLong:
+            if (prevData[key] != data[key])
+                syncData[key] = data[key];
+            break;
+        default:
+            Q_ASSERT(0);
+        }
+    }
+}
+
+// Compare two lists of structures (prevData, data) and calculate difference (syncData, removedItems).
+// Structures encoded as map.
+// Lists are encoded as hash table (indexed by structure key value) to improve ease of searching for removed items.
+void processHash(QVariantHash prevData, QVariantHash data, QVariantHash &syncData, QVariantList &removedItems)
+{
+    // initialize output variables
+    syncData.clear();
+    removedItems.clear();
+
+    if (prevData.isEmpty()) {
+        // If list was empty before, then difference is a whole new list.
+        syncData = data;
+    }
+    else {
+        foreach (QString key, data.keys()) {
+            switch (data[key].type()) {
+            case QVariant::Map:
+                if (!prevData.contains(key)) {
+                    // new list item found - append it to syncData
+                    syncData[key] = data[key];
+                }
+                else {
+                    QVariantMap map;
+                    processMap(prevData[key].toMap(), data[key].toMap(), map);
+                    // existing list item found - remove it from prevData
+                    prevData.remove(key);
+                    if (!map.isEmpty())
+                        // changed list item found - append its changes to syncData
+                        syncData[key] = map;
+                }
+                break;
+            default:
+                Q_ASSERT(0);
+            }
+        }
+
+        if (!prevData.isEmpty()) {
+            // prevData contains only items that are missing now -
+            // put them in removedItems
+            foreach (QString s, prevData.keys())
+                removedItems << s;
+        }
+    }
+}
+
+// Compare two lists of simple value (prevData, data) and calculate difference (syncData, removedItems).
+void processList(QVariantList prevData, QVariantList data, QVariantList &syncData, QVariantList &removedItems)
+{
+    // initialize output variables
+    syncData.clear();
+    removedItems.clear();
+
+    if (prevData.isEmpty()) {
+        // If list was empty before, then difference is a whole new list.
+        syncData = data;
+    }
+    else {
+        foreach (QVariant item, data) {
+            if (!prevData.contains(item))
+                // new list item found - append it to syncData
+                syncData.append(item);
+            else
+                // unchanged list item found - remove it from prevData
+                prevData.removeOne(item);
+        }
+
+        if (!prevData.isEmpty())
+            // prevData contains only items that are missing now -
+            // put them in removedItems
+            removedItems = prevData;
+    }
+}
+
+QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantMap &lastAcceptedData,  QVariantMap &lastData)
+{
+    QVariantMap syncData;
+    bool fullUpdate = true;
+    int lastResponseId = 0;
+    if (acceptedResponseId > 0) {
+        lastResponseId = lastData[KEY_RESPONSE_ID].toInt();
+
+        if (lastResponseId == acceptedResponseId)
+            lastAcceptedData = lastData;
+
+        int lastAcceptedResponseId = lastAcceptedData[KEY_RESPONSE_ID].toInt();
+
+        if (lastAcceptedResponseId == acceptedResponseId) {
+            processMap(lastAcceptedData, data, syncData);
+            fullUpdate = false;
+        }
+    }
+
+    if (fullUpdate) {
+        lastAcceptedData.clear();
+        syncData = data;
+        syncData[KEY_FULL_UPDATE] = true;
+    }
+
+    lastResponseId = lastResponseId % 1000000 + 1;  // cycle between 1 and 1000000
+    lastData = data;
+    lastData[KEY_RESPONSE_ID] = lastResponseId;
+    syncData[KEY_RESPONSE_ID] = lastResponseId;
+
+    return syncData;
 }
