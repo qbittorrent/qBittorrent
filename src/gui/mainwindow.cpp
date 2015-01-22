@@ -77,11 +77,10 @@
 #include "autoexpandabledialog.h"
 #endif
 #ifdef Q_OS_MAC
-#include "qmacapplication.h"
 void qt_mac_set_dock_menu(QMenu *menu);
 #endif
 #include "lineedit.h"
-#include "sessionapplication.h"
+#include "application.h"
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
 #include "programupdater.h"
 #endif
@@ -104,7 +103,11 @@ using namespace libtorrent;
 *****************************************************/
 
 // Constructor
-MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine): QMainWindow(parent), m_posInitialized(false), force_exit(false), unlockDlgShowing(false)
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , m_posInitialized(false)
+    , force_exit(false)
+    , unlockDlgShowing(false)
 #ifdef Q_OS_WIN
     , has_python(false)
 #endif
@@ -175,9 +178,6 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine): QMai
     connect(QBtSession::instance(), SIGNAL(downloadFromUrlFailure(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
     connect(QBtSession::instance(), SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
     connect(QBtSession::instance(), SIGNAL(recursiveTorrentDownloadPossible(QTorrentHandle)), this, SLOT(askRecursiveTorrentDownloadConfirmation(QTorrentHandle)));
-#ifdef Q_OS_MAC
-    connect(static_cast<QMacApplication*>(qApp), SIGNAL(newFileOpenMacEvent(QString)), this, SLOT(processParams(QString)));
-#endif
 
     qDebug("create tabWidget");
     tabs = new HidableTabWidget();
@@ -316,8 +316,6 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine): QMai
 
     // Resume unfinished torrents
     QBtSession::instance()->startUpTorrents();
-    // Add torrent given on command line
-    processParams(torrentCmdLine);
 
     // Populate the transfer list
     transferList->getSourceModel()->populate();
@@ -1105,51 +1103,12 @@ void MainWindow::on_actionOpen_triggered()
     }
 }
 
-// As program parameters, we can get paths or urls.
-// This function parse the parameters and call
-// the right addTorrent function, considering
-// the parameter type.
-void MainWindow::processParams(const QString& params_str)
+void MainWindow::activate()
 {
-    processParams(params_str.split("|", QString::SkipEmptyParts));
-}
-
-void MainWindow::processParams(const QStringList& params)
-{
-    Preferences* const pref = Preferences::instance();
-    const bool useTorrentAdditionDialog = pref->useAdditionDialog();
-    foreach (QString param, params) {
-        param = param.trimmed();
-        if (misc::isUrl(param)) {
-            QBtSession::instance()->downloadFromUrl(param);
-        }
-        else {
-            if(param.startsWith("qbt://show")) {
-                if(ui_locked)
-                    if(!unlockUI())
-                        return;
-                show();
-                activateWindow();
-                raise();
-                return; // Do not process more params
-            }
-            if (param.startsWith("bc://bt/", Qt::CaseInsensitive)) {
-                qDebug("Converting bc link to magnet link");
-                param = misc::bcLinkToMagnet(param);
-            }
-            if (param.startsWith("magnet:", Qt::CaseInsensitive)) {
-                if (useTorrentAdditionDialog)
-                    AddNewTorrentDialog::showMagnet(param, this);
-                else
-                    QBtSession::instance()->addMagnetUri(param);
-            }
-            else {
-                if (useTorrentAdditionDialog)
-                    AddNewTorrentDialog::showTorrent(param, QString(), this);
-                else
-                    QBtSession::instance()->addTorrent(param);
-            }
-        }
+    if (!ui_locked || unlockUI()) {
+        show();
+        activateWindow();
+        raise();
     }
 }
 

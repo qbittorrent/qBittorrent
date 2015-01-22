@@ -14,19 +14,8 @@ usesystemqtsingleapplication {
     }
 }
 
-!nogui {
-    macx {
-        HEADERS += $$PWD/qmacapplication.h
-        SOURCES += $$PWD/qmacapplication.cpp
-    }
-    HEADERS += $$PWD/sessionapplication.h
-    SOURCES += $$PWD/sessionapplication.cpp
-}
-
 HEADERS += $$PWD/application.h
 SOURCES += $$PWD/application.cpp
-
-nogui: HEADERS += $$PWD/headlessloader.h
 
 unix: HEADERS += $$PWD/stacktrace.h
 strace_win {

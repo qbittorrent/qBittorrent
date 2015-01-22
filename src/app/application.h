@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -34,8 +34,9 @@
 #include <QTranslator>
 
 #ifndef DISABLE_GUI
-#include "sessionapplication.h"
-typedef SessionApplication BaseApplication;
+#include "qtsingleapplication.h"
+typedef QtSingleApplication BaseApplication;
+class MainWindow;
 #else
 #include "qtsinglecoreapplication.h"
 typedef QtSingleCoreApplication BaseApplication;
@@ -43,18 +44,40 @@ typedef QtSingleCoreApplication BaseApplication;
 
 class Application : public BaseApplication
 {
+    Q_OBJECT
+
 public:
     Application(const QString &id, int &argc, char **argv);
+    ~Application();
 
-#ifdef Q_OS_WIN
+ #if (defined(Q_OS_WIN) && !defined(DISABLE_GUI))
     bool isRunning();
 #endif
+    int exec(const QStringList &params);
+    bool sendParams(const QStringList &params);
+
+protected:
+#ifndef DISABLE_GUI
+#ifdef Q_OS_MAC
+    bool event(QEvent *);
+#endif
+    bool notify(QObject* receiver, QEvent* event);
+#endif
+
+private slots:
+    void processMessage(const QString &message);
 
 private:
+    bool m_running;
+#ifndef DISABLE_GUI
+    MainWindow *m_window;
+#endif
     QTranslator m_qtTranslator;
     QTranslator m_translator;
+    QStringList m_paramsQueue;
 
     void initializeTranslation();
+    void processParams(const QStringList &params);
 };
 
 #endif // APPLICATION_H

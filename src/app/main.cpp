@@ -39,8 +39,6 @@
 #include <QPen>
 #include <QPushButton>
 #include <QSplashScreen>
-#include <QStyle>
-#include <QStyleFactory>
 #ifdef QBT_STATIC_QT
 #include <QtPlugin>
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -49,12 +47,9 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 Q_IMPORT_PLUGIN(qico)
 #endif
 #endif // QBT_STATIC_QT
-#include "mainwindow.h"
-#include "ico.h"
 #else // DISABLE_GUI
+#include <cstdio>
 #include <iostream>
-#include <stdio.h>
-#include "headlessloader.h"
 #endif // DISABLE_GUI
 
 #include "application.h"
@@ -71,24 +66,10 @@ Q_IMPORT_PLUGIN(qico)
 #include "stacktrace_win_dlg.h"
 #endif //STACKTRACE_WIN
 
-#include <stdlib.h>
+#include <cstdlib>
 #include "misc.h"
 #include "preferences.h"
 #include "logger.h"
-
-class MessagesCollector : public QObject
-{
-    Q_OBJECT
-public slots:
-    void collectMessage(const QString& message)
-    {
-        messages.append(message.split("|", QString::SkipEmptyParts));
-    }
-public:
-    QStringList messages;
-};
-
-#include "main.moc"
 
 // Signal handlers
 #if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
@@ -148,10 +129,6 @@ int main(int argc, char *argv[])
     // Create Application
     QString appId = QLatin1String("qBittorrent-") + misc::getUserIDString();
     QScopedPointer<Application> app(new Application(appId, argc, argv));
-
-    MessagesCollector* messagesCollector = new MessagesCollector();
-    QObject::connect(app.data(), SIGNAL(messageReceived(const QString &)),
-                     messagesCollector, SLOT(collectMessage(const QString &)));
 
     const QBtCommandLineParameters params = parseCommandLine();
 
@@ -216,15 +193,7 @@ int main(int argc, char *argv[])
         qDebug("qBittorrent is already running for this user.");
 
         misc::msleep(300);
-        if (!params.torrents.isEmpty()) {
-            QString message = params.torrents.join("|");
-            qDebug("Passing program parameters to running instance...");
-            qDebug("Message: %s", qPrintable(message));
-            app->sendMessage(message);
-        }
-        else { // Raise main window
-            app->sendMessage("qbt://show");
-        }
+        app->sendParams(params.torrents);
 
         return EXIT_SUCCESS;
     }
@@ -257,32 +226,7 @@ int main(int argc, char *argv[])
     signal(SIGSEGV, sigsegvHandler);
 #endif
 
-#ifndef DISABLE_GUI
-    MainWindow window(0, params.torrents);
-    QObject::connect(app.data(), SIGNAL(messageReceived(const QString &)),
-                     &window, SLOT(processParams(const QString &)));
-    QObject::disconnect(app.data(), SIGNAL(messageReceived(const QString &)),
-                        messagesCollector, SLOT(collectMessage(const QString &)));
-    window.processParams(messagesCollector->messages);
-    delete messagesCollector;
-    app->setActivationWindow(&window);
-#ifdef Q_OS_MAC
-    app->setReadyToProcessEvents();
-#endif // Q_OS_MAC
-#else
-    // Load Headless class
-    HeadlessLoader loader(params.torrents);
-    QObject::connect(app.data(), SIGNAL(messageReceived(const QString &)),
-                     &loader, SLOT(processParams(const QString &)));
-    QObject::disconnect(app.data(), SIGNAL(messageReceived(const QString &)),
-                        messagesCollector, SLOT(collectMessage(const QString &)));
-    loader.processParams(messagesCollector->messages);
-    delete messagesCollector;
-#endif
-
-    int ret = app->exec();
-    qDebug("Application has exited");
-    return ret;
+    return app->exec(params.torrents);
 }
 
 QBtCommandLineParameters parseCommandLine()

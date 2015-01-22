@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -32,10 +32,20 @@
 #include <QLocale>
 #include <QLibraryInfo>
 #include <QSysInfo>
+#ifndef DISABLE_GUI
 #ifdef Q_OS_WIN
 #include <Windows.h>
 #include <QSharedMemory>
-#endif
+#endif // Q_OS_WIN
+#ifdef Q_OS_MAC
+#include <QFileOpenEvent>
+#include <QUrl>
+#endif // Q_OS_MAC
+#include "mainwindow.h"
+#include "addnewtorrentdialog.h"
+#else // DISABLE_GUI
+#include <iostream>
+#endif // DISABLE_GUI
 
 #if (!defined(DISABLE_GUI) && defined(Q_OS_MAC))
 #include <QFont>
@@ -43,9 +53,17 @@
 
 #include "application.h"
 #include "preferences.h"
+#include "qbtsession.h"
+#include "logger.h"
+
+static const char PARAMS_SEPARATOR[] = "|";
 
 Application::Application(const QString &id, int &argc, char **argv)
     : BaseApplication(id, argc, argv)
+#ifndef DISABLE_GUI
+    , m_window(0)
+#endif
+    , m_running(false)
 {
 #if defined(Q_OS_MACX) && !defined(DISABLE_GUI)
     if (QSysInfo::MacintoshVersion > QSysInfo::MV_10_8) {
@@ -60,8 +78,118 @@ Application::Application(const QString &id, int &argc, char **argv)
     setStyleSheet("QStatusBar::item { border-width: 0; }");
     setQuitOnLastWindowClosed(false);
 #endif
+
+    connect(this, SIGNAL(messageReceived(const QString &)), SLOT(processMessage(const QString &)));
 }
 
+Application::~Application()
+{
+    qDebug() << Q_FUNC_INFO;
+    QBtSession::drop();
+    Preferences::drop();
+    Logger::drop();
+}
+
+void Application::processMessage(const QString &message)
+{
+    QStringList params = message.split(QLatin1String(PARAMS_SEPARATOR), QString::SkipEmptyParts);
+    // If Application is not running (i.e., other
+    // components are not ready) store params
+    if (m_running)
+        processParams(params);
+    else
+        m_paramsQueue.append(params);
+}
+
+bool Application::sendParams(const QStringList &params)
+{
+    return sendMessage(params.join(QLatin1String(PARAMS_SEPARATOR)));
+}
+
+// As program parameters, we can get paths or urls.
+// This function parse the parameters and call
+// the right addTorrent function, considering
+// the parameter type.
+void Application::processParams(const QStringList &params)
+{
+#ifndef DISABLE_GUI
+    if (params.isEmpty()) {
+        m_window->activate(); // show UI
+        return;
+    }
+
+    const bool useTorrentAdditionDialog = Preferences::instance()->useAdditionDialog();
+#endif
+
+    foreach (QString param, params) {
+        param = param.trimmed();
+        if (misc::isUrl(param)) {
+            QBtSession::instance()->downloadFromUrl(param);
+        }
+        else {
+            if (param.startsWith("bc://bt/", Qt::CaseInsensitive)) {
+                qDebug("Converting bc link to magnet link");
+                param = misc::bcLinkToMagnet(param);
+            }
+
+            if (param.startsWith("magnet:", Qt::CaseInsensitive)) {
+#ifndef DISABLE_GUI
+                if (useTorrentAdditionDialog)
+                    AddNewTorrentDialog::showMagnet(param, m_window);
+                else
+#endif
+                    QBtSession::instance()->addMagnetUri(param);
+            }
+            else {
+#ifndef DISABLE_GUI
+                if (useTorrentAdditionDialog)
+                    AddNewTorrentDialog::showTorrent(param, QString(), m_window);
+                else
+#endif
+                    QBtSession::instance()->addTorrent(param);
+            }
+        }
+    }
+}
+
+int Application::exec(const QStringList &params)
+{
+    // Resume unfinished torrents
+    QBtSession::instance()->startUpTorrents();
+
+#ifdef DISABLE_GUI
+    Preferences* const pref = Preferences::instance();
+    if (pref->isWebUiEnabled()) {
+        // Display some information to the user
+        std::cout << std::endl << "******** " << qPrintable(tr("Information")) << " ********" << std::endl;
+        std::cout << qPrintable(tr("To control qBittorrent, access the Web UI at http://localhost:%1").arg(QString::number(pref->getWebUiPort()))) << std::endl;
+        std::cout << qPrintable(tr("The Web UI administrator user name is: %1").arg(pref->getWebUiUsername())) << std::endl;
+        qDebug() << "Password:" << pref->getWebUiPassword();
+        if (pref->getWebUiPassword() == "f6fdffe48c908deb0f4c3bd36c032e72") {
+            std::cout << qPrintable(tr("The Web UI administrator password is still the default one: %1").arg("adminadmin")) << std::endl;
+            std::cout << qPrintable(tr("This is a security risk, please consider changing your password from program preferences.")) << std::endl;
+        }
+    }
+#else
+    m_window = new MainWindow;
+#endif
+
+    m_running = true;
+    m_paramsQueue = params + m_paramsQueue;
+    if (!m_paramsQueue.isEmpty()) {
+        processParams(m_paramsQueue);
+        m_paramsQueue.clear();
+    }
+
+    int res = BaseApplication::exec();
+#ifndef DISABLE_GUI
+    delete m_window;
+#endif
+    qDebug("Application has exited");
+    return res;
+}
+
+#ifndef DISABLE_GUI
 #ifdef Q_OS_WIN
 bool Application::isRunning()
 {
@@ -87,7 +215,42 @@ bool Application::isRunning()
 
     return running;
 }
-#endif
+#endif // Q_OS_WIN
+
+#ifdef Q_OS_MAC
+bool Application::event(QEvent *ev)
+{
+    if (ev->type() == QEvent::FileOpen) {
+        QString path = static_cast<QFileOpenEvent *>(ev)->file();
+        if (path.isEmpty())
+            // Get the url instead
+            path = static_cast<QFileOpenEvent *>(ev)->url().toString();
+        qDebug("Received a mac file open event: %s", qPrintable(path));
+        if (running_)
+            processParams(QStringList(path));
+        else
+            paramsQueue_.append(path);
+        return true;
+    }
+    else {
+        return BaseApplication::event(ev);
+    }
+}
+#endif // Q_OS_MAC
+
+bool Application::notify(QObject *receiver, QEvent *event)
+{
+    try {
+        return QApplication::notify(receiver, event);
+    }
+    catch (const std::exception &e) {
+        qCritical() << "Exception thrown:" << e.what() << ", receiver: " << receiver->objectName();
+        receiver->dumpObjectInfo();
+    }
+
+    return false;
+}
+#endif // DISABLE_GUI
 
 void Application::initializeTranslation()
 {

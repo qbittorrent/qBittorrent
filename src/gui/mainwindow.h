@@ -72,7 +72,7 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
 
 public:
     // Construct / Destruct
-    MainWindow(QWidget *parent = 0, const QStringList& torrentCmdLine = QStringList());
+    explicit MainWindow(QWidget *parent = 0);
     // Methods
     QWidget* getCurrentTabWidget() const;
     TransferListWidget* getTransferList() const { return transferList; }
@@ -87,7 +87,7 @@ public slots:
     void updateAltSpeedsBtn(bool alternative);
     void updateNbTorrents();
     void shutdownCleanUp();
-    void processParams(const QStringList& params);
+    void activate();
 
 protected slots:
     // GUI related slots
@@ -128,7 +128,6 @@ protected slots:
     void on_actionOpen_triggered();
     void updateGUI();
     void loadPreferences(bool configure_session = true);
-    void processParams(const QString& params);
     void addTorrent(QString path);
     void addUnauthenticatedTracker(const QPair<QTorrentHandle,QString> &tracker);
     void processDownloadedFiles(QString path, QString url);
