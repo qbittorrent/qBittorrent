@@ -29,7 +29,7 @@ var loadTorrentData = function() {
     }
     // Display hash
     $('torrent_hash').set('html', current_hash);
-    var url = 'json/propertiesGeneral/' + current_hash;
+    var url = 'query/propertiesGeneral/' + current_hash;
     var request = new Request.JSON({
         url: url,
         noCache: true,

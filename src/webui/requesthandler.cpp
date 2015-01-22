@@ -77,12 +77,12 @@ QMap<QString, QMap<QString, RequestHandler::Action> > RequestHandler::initialize
     ADD_ACTION(public, logout);
     ADD_ACTION(public, theme);
     ADD_ACTION(public, images);
-    ADD_ACTION(json, torrents);
-    ADD_ACTION(json, preferences);
-    ADD_ACTION(json, transferInfo);
-    ADD_ACTION(json, propertiesGeneral);
-    ADD_ACTION(json, propertiesTrackers);
-    ADD_ACTION(json, propertiesFiles);
+    ADD_ACTION(query, torrents);
+    ADD_ACTION(query, preferences);
+    ADD_ACTION(query, transferInfo);
+    ADD_ACTION(query, propertiesGeneral);
+    ADD_ACTION(query, propertiesTrackers);
+    ADD_ACTION(query, propertiesFiles);
     ADD_ACTION(sync, maindata);
     ADD_ACTION(command, shutdown);
     ADD_ACTION(command, download);
@@ -222,7 +222,7 @@ void RequestHandler::action_public_images()
 //   - reverse (bool): enable reverse sorting
 //   - limit (int): set limit number of torrents returned (if greater than 0, otherwise - unlimited)
 //   - offset (int): set offset (if less than 0 - offset from end)
-void RequestHandler::action_json_torrents()
+void RequestHandler::action_query_torrents()
 {
     CHECK_URI(0);
     const QStringMap& gets = request().gets;
@@ -233,31 +233,31 @@ void RequestHandler::action_json_torrents()
         ), CONTENT_TYPE_JS);
 }
 
-void RequestHandler::action_json_preferences()
+void RequestHandler::action_query_preferences()
 {
     CHECK_URI(0);
     print(prefjson::getPreferences(), CONTENT_TYPE_JS);
 }
 
-void RequestHandler::action_json_transferInfo()
+void RequestHandler::action_query_transferInfo()
 {
     CHECK_URI(0);
     print(btjson::getTransferInfo(), CONTENT_TYPE_JS);
 }
 
-void RequestHandler::action_json_propertiesGeneral()
+void RequestHandler::action_query_propertiesGeneral()
 {
     CHECK_URI(1);
     print(btjson::getPropertiesForTorrent(args_.front()), CONTENT_TYPE_JS);
 }
 
-void RequestHandler::action_json_propertiesTrackers()
+void RequestHandler::action_query_propertiesTrackers()
 {
     CHECK_URI(1);
     print(btjson::getTrackersForTorrent(args_.front()), CONTENT_TYPE_JS);
 }
 
-void RequestHandler::action_json_propertiesFiles()
+void RequestHandler::action_query_propertiesFiles()
 {
     CHECK_URI(1);
     print(btjson::getFilesForTorrent(args_.front()), CONTENT_TYPE_JS);

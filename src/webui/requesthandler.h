@@ -50,12 +50,12 @@ private:
     void action_public_logout();
     void action_public_theme();
     void action_public_images();
-    void action_json_torrents();
-    void action_json_preferences();
-    void action_json_transferInfo();
-    void action_json_propertiesGeneral();
-    void action_json_propertiesTrackers();
-    void action_json_propertiesFiles();
+    void action_query_torrents();
+    void action_query_preferences();
+    void action_query_transferInfo();
+    void action_query_propertiesGeneral();
+    void action_query_propertiesTrackers();
+    void action_query_propertiesFiles();
     void action_sync_maindata();
     void action_command_shutdown();
     void action_command_download();

@@ -69,7 +69,7 @@ var loadTrackersData = function() {
         tTable.removeAllRows();
         current_hash = new_hash;
     }
-    var url = 'json/propertiesTrackers/' + current_hash;
+    var url = 'query/propertiesTrackers/' + current_hash;
     var request = new Request.JSON({
         url: url,
         noCache: true,

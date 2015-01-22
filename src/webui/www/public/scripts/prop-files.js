@@ -289,7 +289,7 @@ var loadTorrentFilesData = function() {
         fTable.removeAllRows();
         current_hash = new_hash;
     }
-    var url = 'json/propertiesFiles/' + current_hash;
+    var url = 'query/propertiesFiles/' + current_hash;
     var request = new Request.JSON({
         url: url,
         noCache: true,
