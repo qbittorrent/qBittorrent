@@ -200,6 +200,11 @@ QColor TorrentModelItem::getColorByState(State state) {
   }
 }
 
+bool TorrentModelItem::setLabel(const QVariant &value)
+{
+  return setData(TR_LABEL, value, Qt::DisplayRole);
+}
+
 bool TorrentModelItem::setData(int column, const QVariant &value, int role)
 {
   qDebug() << Q_FUNC_INFO << column << value;
@@ -343,6 +348,7 @@ void TorrentModel::populate() {
   connect(QBtSession::instance(), SIGNAL(pausedTorrent(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(torrentFinishedChecking(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(stateUpdate(std::vector<libtorrent::torrent_status>)), SLOT(stateUpdated(std::vector<libtorrent::torrent_status>)));
+  connect(QBtSession::instance(), SIGNAL(updateTorrentLabel(QTorrentHandle,QString)), SLOT(updateTorrentLabel(QTorrentHandle,QString)));
 }
 
 TorrentModel::~TorrentModel() {
@@ -487,6 +493,17 @@ void TorrentModel::beginRemoveTorrent(int row)
 void TorrentModel::endRemoveTorrent()
 {
   endRemoveRows();
+}
+
+void TorrentModel::updateTorrentLabel(const QTorrentHandle &h, QString label)
+{
+  const int row = torrentRow(h.hash());
+  if( row >= 0 ) {
+    bool change = m_torrents[row]->setLabel(QVariant(label));
+    if(change) {
+      notifyTorrentChanged(row);
+    }
+  }
 }
 
 void TorrentModel::handleTorrentUpdate(const QTorrentHandle &h)

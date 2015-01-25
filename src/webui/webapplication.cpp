@@ -42,6 +42,7 @@
 #include "preferences.h"
 #include "btjson.h"
 #include "prefjson.h"
+#include "jsonutils.h"
 #include "qbtsession.h"
 #include "websessiondata.h"
 #include "webapplication.h"
@@ -110,6 +111,9 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(command, topPrio);
     ADD_ACTION(command, bottomPrio);
     ADD_ACTION(command, recheck);
+    ADD_ACTION(command, setLabel);
+    ADD_ACTION(command, addLabel);
+    ADD_ACTION(command, deleteLabel);
     ADD_ACTION(version, api);
     ADD_ACTION(version, api_min);
     ADD_ACTION(version, qbittorrent);
@@ -669,6 +673,34 @@ void WebApplication::action_command_recheck()
     CHECK_URI(0);
     CHECK_PARAMETERS("hash");
     QBtSession::instance()->recheckTorrent(request().posts["hash"]);
+}
+
+void WebApplication::action_command_setLabel()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("hash" << "label_obj");
+
+    QString hash = request().posts["hash"];
+    QString label_obj = request().posts["label_obj"];
+
+    const QVariantMap m = json::fromJson(label_obj).toMap();
+    if( m.contains("value") ) {
+        QString label = m["value"].toString();
+        if (!hash.isEmpty()) {
+            QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+            QBtSession::instance()->setLabel(h, label);
+        }
+    }
+}
+
+//todo
+void WebApplication::action_command_addLabel()
+{
+}
+
+//todo
+void WebApplication::action_command_deleteLabel()
+{
 }
 
 bool WebApplication::isPublicScope()
