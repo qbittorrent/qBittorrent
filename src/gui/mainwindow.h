@@ -48,11 +48,9 @@ class TransferListWidget;
 class TransferListFiltersWidget;
 class PropertiesWidget;
 class StatusBar;
-class consoleDlg;
 class about;
 class TorrentCreatorDlg;
 class downloadFromURL;
-class HidableTabWidget;
 class LineEdit;
 class ExecutionLog;
 class PowerManagement;
@@ -73,6 +71,7 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
 public:
     // Construct / Destruct
     explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
     // Methods
     QWidget* getCurrentTabWidget() const;
     TransferListWidget* getTransferList() const { return transferList; }
@@ -86,13 +85,10 @@ public slots:
     void downloadFromURLList(const QStringList& urls);
     void updateAltSpeedsBtn(bool alternative);
     void updateNbTorrents();
-    void shutdownCleanUp();
     void activate();
 
 protected slots:
     // GUI related slots
-    void dropEvent(QDropEvent *event);
-    void dragEnterEvent(QDragEnterEvent *event);
     void toggleVisibility(QSystemTrayIcon::ActivationReason e = QSystemTrayIcon::Trigger);
     void on_actionAbout_triggered();
     void on_actionStatistics_triggered();
@@ -144,6 +140,8 @@ protected slots:
 #endif
 
 protected:
+    void dropEvent(QDropEvent *event);
+    void dragEnterEvent(QDragEnterEvent *event);
     void closeEvent(QCloseEvent *);
     void showEvent(QShowEvent *);
     bool event(QEvent * event);
@@ -169,10 +167,9 @@ private:
     // GUI related
     bool m_posInitialized;
     QTimer *guiUpdater;
-    HidableTabWidget *tabs;
+    QTabWidget *tabs;
     StatusBar *status_bar;
     QPointer<options_imp> options;
-    QPointer<consoleDlg> console;
     QPointer<about> aboutDlg;
     QPointer<StatsDialog> statsDlg;
     QPointer<TorrentCreatorDlg> createTorrentDlg;
@@ -189,11 +186,6 @@ private:
     bool unlockDlgShowing;
     LineEdit *search_filter;
     QAction *searchFilterAct;
-    // Keyboard shortcuts
-    QShortcut *switchSearchShortcut;
-    QShortcut *switchSearchShortcut2;
-    QShortcut *switchTransferShortcut;
-    QShortcut *switchRSSShortcut;
     // Widgets
     QAction *prioSeparator;
     QAction *prioSeparatorMenu;

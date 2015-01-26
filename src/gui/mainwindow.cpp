@@ -169,6 +169,7 @@ MainWindow::MainWindow(QWidget *parent)
     QAction *clearUiLockPasswdAct = lockMenu->addAction(tr("Clear the password"));
     connect(clearUiLockPasswdAct, SIGNAL(triggered()), this, SLOT(clearUILockPassword()));
     actionLock_qBittorrent->setMenu(lockMenu);
+
     // Creating Bittorrent session
     connect(QBtSession::instance(), SIGNAL(fullDiskError(QTorrentHandle, QString)), this, SLOT(fullDiskError(QTorrentHandle, QString)));
     connect(QBtSession::instance(), SIGNAL(finishedTorrent(QTorrentHandle)), this, SLOT(finishedTorrent(QTorrentHandle)));
@@ -180,19 +181,22 @@ MainWindow::MainWindow(QWidget *parent)
     connect(QBtSession::instance(), SIGNAL(recursiveTorrentDownloadPossible(QTorrentHandle)), this, SLOT(askRecursiveTorrentDownloadConfirmation(QTorrentHandle)));
 
     qDebug("create tabWidget");
-    tabs = new HidableTabWidget();
+    tabs = new HidableTabWidget(this);
     connect(tabs, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
-    vSplitter = new QSplitter(Qt::Horizontal);
+
+    vSplitter = new QSplitter(Qt::Horizontal, this);
     //vSplitter->setChildrenCollapsible(false);
-    hSplitter = new QSplitter(Qt::Vertical);
+
+    hSplitter = new QSplitter(Qt::Vertical, this);
     hSplitter->setChildrenCollapsible(false);
     hSplitter->setContentsMargins(0, 4, 0, 0);
 
     // Name filter
-    search_filter = new LineEdit();
+    search_filter = new LineEdit(this);
     searchFilterAct = toolBar->insertWidget(actionLock_qBittorrent, search_filter);
     search_filter->setPlaceholderText(tr("Filter torrent list..."));
     search_filter->setFixedWidth(200);
+
     QWidget *spacer = new QWidget(this);
     spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     toolBar->insertWidget(searchFilterAct, spacer);
@@ -275,7 +279,7 @@ MainWindow::MainWindow(QWidget *parent)
         QTimer::singleShot(0, this, SLOT(on_actionSearch_engine_triggered()));
 
     // Auto shutdown actions
-    QActionGroup * autoShutdownGroup = new QActionGroup(this);
+    QActionGroup *autoShutdownGroup = new QActionGroup(this);
     autoShutdownGroup->setExclusive(true);
     autoShutdownGroup->addAction(actionAutoShutdown_Disabled);
     autoShutdownGroup->addAction(actionAutoExit_qBittorrent);
@@ -310,12 +314,9 @@ MainWindow::MainWindow(QWidget *parent)
     properties->readSettings();
 
     // Start watching the executable for updates
-    executable_watcher = new QFileSystemWatcher();
+    executable_watcher = new QFileSystemWatcher(this);
     connect(executable_watcher, SIGNAL(fileChanged(QString)), this, SLOT(notifyOfUpdate(QString)));
     executable_watcher->addPath(qApp->applicationFilePath());
-
-    // Resume unfinished torrents
-    QBtSession::instance()->startUpTorrents();
 
     // Populate the transfer list
     transferList->getSourceModel()->populate();
@@ -355,6 +356,16 @@ MainWindow::MainWindow(QWidget *parent)
             raise();
         }
     }
+}
+
+MainWindow::~MainWindow()
+{
+    // Save window size, columns size
+    writeSettings();
+#ifdef Q_OS_MAC
+    // Workaround to avoid bug http://bugreports.qt.nokia.com/browse/QTBUG-7305
+    setUnifiedTitleAndToolBarOnMac(false);
+#endif
 }
 
 void MainWindow::addToolbarContextMenu()
@@ -448,68 +459,6 @@ void MainWindow::toolbarFollowSystem()
     Preferences::instance()->setToolbarTextPosition(Qt::ToolButtonFollowStyle);
 }
 
-void MainWindow::shutdownCleanUp()
-{
-    qDebug("GUI destruction");
-    hide();
-    guiUpdater->stop();
-    status_bar->stopTimer();
-    m_pwr->setActivityState(false);
-    QBtSession::drop();
-    // Save window size, columns size
-    writeSettings();
-#ifdef Q_OS_MAC
-    // Workaround to avoid bug http://bugreports.qt.nokia.com/browse/QTBUG-7305
-    setUnifiedTitleAndToolBarOnMac(false);
-#endif
-    disconnect(tabs, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
-    // Delete other GUI objects
-    if (executable_watcher)
-        delete executable_watcher;
-    delete status_bar;
-    delete search_filter;
-    delete transferList;
-    delete guiUpdater;
-    if (createTorrentDlg)
-        delete createTorrentDlg;
-    if (m_executionLog)
-        delete m_executionLog;
-    if (aboutDlg)
-        delete aboutDlg;
-    if (statsDlg)
-        delete statsDlg;
-    if (options)
-        delete options;
-    if (downloadFromURLDialog)
-        delete downloadFromURLDialog;
-    if (rssWidget)
-        delete rssWidget;
-    if (searchEngine)
-        delete searchEngine;
-    delete transferListFilters;
-    delete properties;
-    delete hSplitter;
-    delete vSplitter;
-    if (systrayCreator)
-        delete systrayCreator;
-    if (systrayIcon)
-        delete systrayIcon;
-    if (myTrayIconMenu)
-        delete myTrayIconMenu;
-    delete tabs;
-    // Keyboard shortcuts
-    delete switchSearchShortcut;
-    delete switchSearchShortcut2;
-    delete switchTransferShortcut;
-    delete switchRSSShortcut;
-    delete toolbarMenu;
-    IconProvider::drop();
-    TorrentPersistentData::drop();
-    Preferences::drop();
-    Logger::drop();
-    qDebug("Finished GUI destruction");
-}
-
 void MainWindow::defineUILockPassword()
 {
     QString old_pass_md5 = Preferences::instance()->getUILockPasswordMD5();
@@ -563,8 +512,9 @@ void MainWindow::displayRSSTab(bool enable)
             tabs->setTabIcon(index_tab, IconProvider::instance()->getIcon("application-rss+xml"));
         }
     }
-    else if (rssWidget)
+    else if (rssWidget) {
         delete rssWidget;
+    }
 
 }
 
@@ -578,8 +528,9 @@ void MainWindow::displaySearchTab(bool enable)
             tabs->insertTab(1, searchEngine, IconProvider::instance()->getIcon("edit-find"), tr("Search"));
         }
     }
-    else if (searchEngine)
+    else if (searchEngine) {
         delete searchEngine;
+    }
 
 }
 
@@ -684,14 +635,16 @@ void MainWindow::createKeyboardShortcuts()
     actionOpen->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+O")));
     actionDownload_from_URL->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Shift+O")));
     actionExit->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Q")));
-    switchTransferShortcut = new QShortcut(QKeySequence("Alt+1"), this);
+
+    QShortcut *switchTransferShortcut = new QShortcut(QKeySequence("Alt+1"), this);
     connect(switchTransferShortcut, SIGNAL(activated()), this, SLOT(displayTransferTab()));
-    switchSearchShortcut = new QShortcut(QKeySequence("Alt+2"), this);
+    QShortcut *switchSearchShortcut = new QShortcut(QKeySequence("Alt+2"), this);
     connect(switchSearchShortcut, SIGNAL(activated()), this, SLOT(displaySearchTab()));
-    switchSearchShortcut2 = new QShortcut(QKeySequence("Ctrl+F"), this);
+    QShortcut *switchSearchShortcut2 = new QShortcut(QKeySequence("Ctrl+F"), this);
     connect(switchSearchShortcut2, SIGNAL(activated()), this, SLOT(displaySearchTab()));
-    switchRSSShortcut = new QShortcut(QKeySequence("Alt+3"), this);
+    QShortcut *switchRSSShortcut = new QShortcut(QKeySequence("Alt+3"), this);
     connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
+
     actionDocumentation->setShortcut(QKeySequence("F1"));
     actionOptions->setShortcut(QKeySequence(QString::fromUtf8("Alt+O")));
     actionStart->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+S")));
@@ -1147,7 +1100,7 @@ void MainWindow::loadPreferences(bool configure_session)
     const Preferences* const pref = Preferences::instance();
     const bool newSystrayIntegration = pref->systrayIntegration();
     actionLock_qBittorrent->setVisible(newSystrayIntegration);
-    if (newSystrayIntegration != (systrayIcon!=0)) {
+    if (newSystrayIntegration != (systrayIcon != 0)) {
         if (newSystrayIntegration) {
             // create the trayicon
             if (!QSystemTrayIcon::isSystemTrayAvailable()) {
@@ -1572,8 +1525,9 @@ void MainWindow::on_actionExecution_Logs_triggered(bool checked)
         int index_tab = tabs->addTab(m_executionLog, tr("Execution Log"));
         tabs->setTabIcon(index_tab, IconProvider::instance()->getIcon("view-calendar-journal"));
     }
-    else if (m_executionLog)
+    else if (m_executionLog) {
         delete m_executionLog;
+    }
     Preferences::instance()->setExecutionLogEnabled(checked);
 }
 

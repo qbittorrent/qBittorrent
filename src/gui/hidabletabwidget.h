@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -34,31 +34,27 @@
 #include <QTabWidget>
 #include <QTabBar>
 
-class HidableTabWidget : public QTabWidget {
+class HidableTabWidget : public QTabWidget
+{
 public:
-
-  void showTabBar(bool show) {
-    tabBar()->setVisible(show);
-  }
+    explicit HidableTabWidget(QWidget *parent = 0)
+        : QTabWidget(parent)
+    {
+    }
 
 protected:
-  void tabInserted(int index) {
-    QTabWidget::tabInserted(index);
-    if (count() == 1) {
-      showTabBar(false);
-    } else {
-      showTabBar(true);
+    void tabInserted(int index)
+    {
+        QTabWidget::tabInserted(index);
+        tabBar()->setVisible(count() != 1);
     }
-  }
 
-  void tabRemoved(int index) {
-    QTabWidget::tabInserted(index);
-    if (count() == 1) {
-      showTabBar(false);
-    } else {
-      showTabBar(true);
+    void tabRemoved(int index)
+    {
+        //QTabWidget::tabInserted(index);
+        QTabWidget::tabRemoved(index);
+        tabBar()->setVisible(count() != 1);
     }
-  }
 };
 
 #endif // HIDABLETABWIDGET_H

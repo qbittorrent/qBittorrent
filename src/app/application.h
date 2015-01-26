@@ -48,7 +48,6 @@ class Application : public BaseApplication
 
 public:
     Application(const QString &id, int &argc, char **argv);
-    ~Application();
 
  #if (defined(Q_OS_WIN) && !defined(DISABLE_GUI))
     bool isRunning();
@@ -66,11 +65,12 @@ protected:
 
 private slots:
     void processMessage(const QString &message);
+    void cleanup();
 
 private:
     bool m_running;
 #ifndef DISABLE_GUI
-    MainWindow *m_window;
+    QPointer<MainWindow> m_window;
 #endif
     QTranslator m_qtTranslator;
     QTranslator m_translator;

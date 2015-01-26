@@ -52,17 +52,15 @@
 #endif
 
 #include "application.h"
+#include "logger.h"
 #include "preferences.h"
 #include "qbtsession.h"
-#include "logger.h"
+#include "torrentpersistentdata.h"
 
 static const char PARAMS_SEPARATOR[] = "|";
 
 Application::Application(const QString &id, int &argc, char **argv)
     : BaseApplication(id, argc, argv)
-#ifndef DISABLE_GUI
-    , m_window(0)
-#endif
     , m_running(false)
 {
 #if defined(Q_OS_MACX) && !defined(DISABLE_GUI)
@@ -80,14 +78,7 @@ Application::Application(const QString &id, int &argc, char **argv)
 #endif
 
     connect(this, SIGNAL(messageReceived(const QString &)), SLOT(processMessage(const QString &)));
-}
-
-Application::~Application()
-{
-    qDebug() << Q_FUNC_INFO;
-    QBtSession::drop();
-    Preferences::drop();
-    Logger::drop();
+    connect(this, SIGNAL(aboutToQuit()), SLOT(cleanup()));
 }
 
 void Application::processMessage(const QString &message)
@@ -99,6 +90,17 @@ void Application::processMessage(const QString &message)
         processParams(params);
     else
         m_paramsQueue.append(params);
+}
+
+void Application::cleanup()
+{
+#ifndef DISABLE_GUI
+    delete m_window;
+#endif
+    QBtSession::drop();
+    TorrentPersistentData::drop();
+    Preferences::drop();
+    Logger::drop();
 }
 
 bool Application::sendParams(const QStringList &params)
@@ -181,12 +183,7 @@ int Application::exec(const QStringList &params)
         m_paramsQueue.clear();
     }
 
-    int res = BaseApplication::exec();
-#ifndef DISABLE_GUI
-    delete m_window;
-#endif
-    qDebug("Application has exited");
-    return res;
+    return BaseApplication::exec();
 }
 
 #ifndef DISABLE_GUI
