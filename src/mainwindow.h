@@ -36,6 +36,7 @@
 #include <QPointer>
 #include "ui_mainwindow.h"
 #include "qtorrenthandle.h"
+#include "torrentpersistentdata.h"
 #include "statsdialog.h"
 
 class QBtSession;
@@ -216,6 +217,7 @@ private:
     bool has_python;
 #endif
     QMenu* toolbarMenu;
+    TorrentPersistentData persistentData;
 
 private slots:
     void on_actionSearch_engine_triggered();

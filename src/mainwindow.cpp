@@ -63,7 +63,6 @@
 #include "preferences.h"
 #include "trackerlist.h"
 #include "peerlistwidget.h"
-#include "torrentpersistentdata.h"
 #include "transferlistfilterswidget.h"
 #include "propertieswidget.h"
 #include "statusbar.h"
@@ -668,7 +667,7 @@ void MainWindow::balloonClicked()
 // called when a torrent has finished
 void MainWindow::finishedTorrent(const QTorrentHandle& h) const
 {
-    if (TorrentPersistentData::isSeed(h.hash()))
+    if (TorrentPersistentData::instance().isSeed(h.hash()))
         showNotificationBaloon(tr("Download completion"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(h.name()));
 }
 
