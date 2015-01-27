@@ -39,6 +39,7 @@
 #include "fs_utils.h"
 #include "misc.h"
 #include "logger.h"
+#include "torrentpersistentdata.h"
 
 class HeadlessLoader: public QObject {
   Q_OBJECT
@@ -69,6 +70,7 @@ public:
 public slots:
   void shutdownCleanUp() {
     QBtSession::drop();
+    TorrentPersistentData::drop();
     Preferences::drop();
     Logger::drop();
   }

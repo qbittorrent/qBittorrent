@@ -86,7 +86,7 @@ QString QTorrentHandle::hash() const
 
 QString QTorrentHandle::name() const
 {
-    QString name = TorrentPersistentData::instance().getName(hash());
+    QString name = TorrentPersistentData::instance()->getName(hash());
     if (name.isEmpty()) {
 #if LIBTORRENT_VERSION_NUM < 10000
         name = misc::toQStringU(torrent_handle::name());
@@ -201,7 +201,7 @@ QString QTorrentHandle::save_path_parsed() const
         p = firstFileSavePath();
     }
     else {
-        p = fsutils::fromNativePath(TorrentPersistentData::instance().getSavePath(hash()));
+        p = fsutils::fromNativePath(TorrentPersistentData::instance()->getSavePath(hash()));
         if (p.isEmpty())
             p = save_path();
     }
@@ -386,7 +386,7 @@ bool QTorrentHandle::priv() const
 QString QTorrentHandle::firstFileSavePath() const
 {
     Q_ASSERT(has_metadata());
-    QString fsave_path = fsutils::fromNativePath(TorrentPersistentData::instance().getSavePath(hash()));
+    QString fsave_path = fsutils::fromNativePath(TorrentPersistentData::instance()->getSavePath(hash()));
     if (fsave_path.isEmpty())
         fsave_path = save_path();
     if (!fsave_path.endsWith("/"))
@@ -520,13 +520,14 @@ void QTorrentHandle::resume() const
         torrent_handle::clear_error();
 
     const QString torrent_hash = hash();
-    bool has_persistant_error = TorrentPersistentData::instance().hasError(torrent_hash);
-    TorrentPersistentData::instance().setErrorState(torrent_hash, false);
+    TorrentPersistentData* const TorPersistent = TorrentPersistentData::instance();
+    bool has_persistant_error = TorPersistent->hasError(torrent_hash);
+    TorPersistent->setErrorState(torrent_hash, false);
     bool temp_path_enabled = Preferences::instance()->isTempPathEnabled();
     if (has_persistant_error && temp_path_enabled) {
         // Torrent was supposed to be seeding, checking again in final destination
         qDebug("Resuming a torrent with error...");
-        const QString final_save_path = TorrentPersistentData::instance().getSavePath(torrent_hash);
+        const QString final_save_path = TorPersistent->getSavePath(torrent_hash);
         qDebug("Torrent final path is: %s", qPrintable(final_save_path));
         if (!final_save_path.isEmpty())
             move_storage(final_save_path);
@@ -691,7 +692,7 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const
     if (was_seed && !is_seed()) {
         qDebug() << "Torrent is no longer SEEDING";
         // Save seed status
-        TorrentPersistentData::instance().saveSeedStatus(*this);
+        TorrentPersistentData::instance()->saveSeedStatus(*this);
         // Move to temp folder if necessary
         const Preferences* const pref = Preferences::instance();
         if (pref->isTempPathEnabled()) {

@@ -116,5 +116,5 @@ bool QTorrentFilter::torrentHasLabel(const QTorrentHandle &h) const
     if (label_.isNull())
         return true;
     else
-        return TorrentPersistentData::instance().getLabel(h.hash()) == label_;
+        return TorrentPersistentData::instance()->getLabel(h.hash()) == label_;
 }

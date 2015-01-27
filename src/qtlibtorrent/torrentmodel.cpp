@@ -84,9 +84,9 @@ QIcon get_error_icon() {
 TorrentModelItem::TorrentModelItem(const QTorrentHandle &h)
   : m_torrent(h)
   , m_lastStatus(h.status(torrent_handle::query_accurate_download_counters))
-  , m_addedTime(TorrentPersistentData::instance().getAddedDate(h.hash()))
-  , m_label(TorrentPersistentData::instance().getLabel(h.hash()))
-  , m_name(TorrentPersistentData::instance().getName(h.hash()))
+  , m_addedTime(TorrentPersistentData::instance()->getAddedDate(h.hash()))
+  , m_label(TorrentPersistentData::instance()->getLabel(h.hash()))
+  , m_name(TorrentPersistentData::instance()->getName(h.hash()))
   , m_hash(h.hash())
 {
   if (m_name.isEmpty())
@@ -202,14 +202,14 @@ bool TorrentModelItem::setData(int column, const QVariant &value, int role)
   switch(column) {
   case TR_NAME:
     m_name = value.toString();
-    TorrentPersistentData::instance().saveName(m_torrent.hash(), m_name);
+    TorrentPersistentData::instance()->saveName(m_torrent.hash(), m_name);
     return true;
   case TR_LABEL: {
     QString new_label = value.toString();
     if (m_label != new_label) {
       QString old_label = m_label;
       m_label = new_label;
-      TorrentPersistentData::instance().saveLabel(m_torrent.hash(), new_label);
+      TorrentPersistentData::instance()->saveLabel(m_torrent.hash(), new_label);
       emit labelChanged(old_label, new_label);
     }
     return true;

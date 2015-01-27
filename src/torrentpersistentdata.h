@@ -35,6 +35,7 @@
 #include <QObject>
 #include <QStringList>
 #include <QTimer>
+#include <QReadWriteLock>
 #include <vector>
 #include "preferences.h"
 
@@ -118,7 +119,7 @@ class TorrentPersistentData: QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(TorrentPersistentData)
-    // This class stores strings w/o modifying separators
+
 public:
     enum RatioLimit
     {
@@ -126,24 +127,20 @@ public:
         NO_RATIO_LIMIT = -1
     };
 
-public:
-    TorrentPersistentData();
+    static TorrentPersistentData* instance();
+    static void drop();
     ~TorrentPersistentData();
-    void save();
 
-public:
-    static TorrentPersistentData& instance();
-
-    bool isKnownTorrent(QString hash);
-    QStringList knownTorrents();
+    bool isKnownTorrent(QString hash) const;
+    QStringList knownTorrents() const;
     void setRatioLimit(const QString &hash, const qreal &ratio);
-    qreal getRatioLimit(const QString &hash);
-    bool hasPerTorrentRatioLimit();
+    qreal getRatioLimit(const QString &hash) const;
+    bool hasPerTorrentRatioLimit() const;
     void setAddedDate(const QString &hash, const QDateTime &time);
-    QDateTime getAddedDate(const QString &hash);
+    QDateTime getAddedDate(const QString &hash) const;
     void setErrorState(const QString &hash, const bool has_error);
-    bool hasError(const QString &hash);
-    QDateTime getSeedDate(const QString &hash);
+    bool hasError(const QString &hash) const;
+    QDateTime getSeedDate(const QString &hash) const;
     void deletePersistentData(const QString &hash);
     void saveTorrentPersistentData(const QTorrentHandle &h, const QString &save_path = QString::null, const bool is_magnet = false);
 
@@ -157,25 +154,27 @@ public:
     void saveSeedStatus(const QString &hash, const bool seedStatus);
 
     // Getters
-    QString getSavePath(const QString &hash);
-    QString getLabel(const QString &hash);
-    QString getName(const QString &hash);
-    int getPriority(const QString &hash);
-    bool isSeed(const QString &hash);
-    bool isMagnet(const QString &hash);
-    QString getMagnetUri(const QString &hash);
+    QString getSavePath(const QString &hash) const;
+    QString getLabel(const QString &hash) const;
+    QString getName(const QString &hash) const;
+    int getPriority(const QString &hash) const;
+    bool isSeed(const QString &hash) const;
+    bool isMagnet(const QString &hash) const;
+    QString getMagnetUri(const QString &hash) const;
+
+public slots:
+    void save();
 
 private:
-    void markDirty();
-
-private slots:
-    void saveImpl();
-
-private:
-    QHash<QString, QVariant> all_data;
+    TorrentPersistentData();
+    static TorrentPersistentData* m_instance;
+    QHash<QString, QVariant> m_data;
     bool dirty;
     QTimer timer;
-    static TorrentPersistentData* m_instance;
+    mutable QReadWriteLock lock;
+    const QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;
+    void setValue(const QString &key, const QVariant &value);
+
 };
 
 #endif // TORRENTPERSISTENTDATA_H
