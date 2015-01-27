@@ -38,82 +38,17 @@
 #include "qbtsession.h"
 
 class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
-  Q_OBJECT
+    Q_OBJECT
+public:
+    explicit SpeedLimitDialog(QWidget *parent=0);
+    ~SpeedLimitDialog();
+    static long askSpeedLimit(bool *ok, QString title, long default_value, long max_value=10240000);
 
-  public:
-    SpeedLimitDialog(QWidget *parent=0): QDialog(parent) {
-      setupUi(this);
-      qDebug("Bandwidth allocation dialog creation");
-      // Connect to slots
-      connect(bandwidthSlider, SIGNAL(valueChanged(int)), this, SLOT(updateSpinValue(int)));
-      connect(spinBandwidth, SIGNAL(valueChanged(int)), this, SLOT(updateSliderValue(int)));
-      move(misc::screenCenter(this));
-    }
-
-    ~SpeedLimitDialog() {
-      qDebug("Deleting bandwidth allocation dialog");
-    }
-
-    // -2: if cancel
-    static long askSpeedLimit(bool *ok, QString title, long default_value, long max_value=10240000) {
-      SpeedLimitDialog dlg;
-      dlg.setWindowTitle(title);
-      dlg.setMaxValue(max_value/1024.);
-      dlg.setDefaultValue(default_value/1024.);
-      if (dlg.exec() == QDialog::Accepted) {
-        *ok = true;
-        int val = dlg.getSpeedLimit();
-        if (val <= 0)
-          return -1;
-        return val*1024;
-      } else {
-        *ok = false;
-        return -2;
-      }
-    }
-
-  protected slots:
-    void updateSpinValue(int val) const {
-      qDebug("Called updateSpinValue with %d", val);
-      if (val <= 0) {
-        spinBandwidth->setValue(0);
-        spinBandwidth->setSpecialValueText(QString::fromUtf8("∞"));
-        spinBandwidth->setSuffix(QString::fromUtf8(""));
-      }else{
-        spinBandwidth->setValue(val);
-        spinBandwidth->setSuffix(" "+tr("KiB/s"));
-      }
-    }
-
-    void updateSliderValue(int val) const {
-      if (val <= 0) {
-        spinBandwidth->setValue(0);
-        spinBandwidth->setSpecialValueText(QString::fromUtf8("∞"));
-        spinBandwidth->setSuffix(QString::fromUtf8(""));
-      }
-      bandwidthSlider->setValue(val);
-    }
-
-    long getSpeedLimit() const {
-      long val = bandwidthSlider->value();
-      if (val > 0)
-        return val;
-      return -1;
-    }
-
-    void setMaxValue(long val) const {
-      if (val > 0) {
-        bandwidthSlider->setMaximum(val);
-        spinBandwidth->setMaximum(val);
-      }
-    }
-
-    void setDefaultValue(long val) const {
-      if (val < 0) val = 0;
-      if (val > bandwidthSlider->maximum()) val = bandwidthSlider->maximum();
-      bandwidthSlider->setValue(val);
-      updateSpinValue(val);
-    }
+protected slots:
+    void updateSpinValue(int val) const;
+    void updateSliderValue(int val) const;
+    long getSpeedLimit() const;
+    void setupDialog(long max_slider, long val) const;
 };
 
 #endif
