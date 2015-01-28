@@ -33,6 +33,10 @@
 #include <QLibraryInfo>
 #include <QSysInfo>
 
+#if (!defined(DISABLE_GUI) && defined(Q_OS_MAC))
+#include <QFont>
+#endif
+
 #include "application.h"
 #include "preferences.h"
 
