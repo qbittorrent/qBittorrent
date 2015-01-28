@@ -1,30 +1,25 @@
 INCLUDEPATH += $$PWD
 
-HEADERS += $$PWD/httpserver.h \
-           $$PWD/httpconnection.h \
-           $$PWD/btjson.h \
-           $$PWD/prefjson.h \
-           $$PWD/jsonutils.h \
-           $$PWD/extra_translations.h \
-           $$PWD/webapplication.h \
-           $$PWD/abstractrequesthandler.h \
-           $$PWD/requesthandler.h \
-           $$PWD/qtorrentfilter.h
+HEADERS += \
+    $$PWD/webui.h \
+    $$PWD/btjson.h \
+    $$PWD/prefjson.h \
+    $$PWD/jsonutils.h \
+    $$PWD/extra_translations.h \
+    $$PWD/webapplication.h \
+    $$PWD/qtorrentfilter.h \
+    $$PWD/websessiondata.h \
+    $$PWD/abstractwebapplication.h
 
-SOURCES += $$PWD/httpserver.cpp \
-           $$PWD/httpconnection.cpp \
-           $$PWD/httprequestparser.cpp \
-           $$PWD/httpresponsegenerator.cpp \
-           $$PWD/btjson.cpp \
-           $$PWD/prefjson.cpp \
-           $$PWD/webapplication.cpp \
-           $$PWD/abstractrequesthandler.cpp \
-           $$PWD/requesthandler.cpp \
-           $$PWD/qtorrentfilter.cpp
+SOURCES += \
+    $$PWD/webui.cpp \
+    $$PWD/btjson.cpp \
+    $$PWD/prefjson.cpp \
+    $$PWD/webapplication.cpp \
+    $$PWD/qtorrentfilter.cpp \
+    $$PWD/abstractwebapplication.cpp
 
 # QJson JSON parser/serializer for using with Qt4
-lessThan(QT_MAJOR_VERSION, 5) {
-  include(qjson/qjson.pri)
-}
+lessThan(QT_MAJOR_VERSION, 5): include(qjson/qjson.pri)
 
 RESOURCES += $$PWD/webui.qrc

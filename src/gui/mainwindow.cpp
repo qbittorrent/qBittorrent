@@ -1185,9 +1185,6 @@ void MainWindow::loadPreferences(bool configure_session)
     IconProvider::instance()->useSystemIconTheme(pref->useSystemIconTheme());
 #endif
 
-    if (configure_session)
-        QBtSession::instance()->configureSession();
-
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     if (pref->isUpdateCheckEnabled())
         checkProgramUpdate();

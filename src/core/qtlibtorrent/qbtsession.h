@@ -90,12 +90,10 @@ namespace libtorrent {
 
 class DownloadThread;
 class FilterParserThread;
-class HttpServer;
 class BandwidthScheduler;
 class ScanFoldersModel;
 class TorrentSpeedMonitor;
 class TorrentStatistics;
-class DNSUpdater;
 class QAlertDispatcher;
 
 enum TorrentExportFolder {
@@ -209,7 +207,6 @@ public slots:
 #endif
   void addMagnetInteractive(const QString& uri);
   void downloadFromURLList(const QStringList& urls);
-  void configureSession();
   void banIP(QString ip);
   void recursiveTorrentDownload(const QTorrentHandle &h);
   void unhideMagnet(const QString &hash);
@@ -264,9 +261,9 @@ private slots:
   void mergeTorrents(QTorrentHandle& h_ex, boost::intrusive_ptr<libtorrent::torrent_info> t);
   void mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri);
   void exportTorrentFile(const QTorrentHandle &h, TorrentExportFolder folder = RegularTorrentExportFolder);
-  void initWebUi();
   void handleIPFilterParsed(int ruleCount);
   void handleIPFilterError();
+  void configureSession();
 
 signals:
   void addedTorrent(const QTorrentHandle& h);
@@ -327,8 +324,6 @@ private:
   // IP filtering
   QPointer<FilterParserThread> filterParser;
   QString filterPath;
-  // Web UI
-  QPointer<HttpServer> httpServer;
   QList<QUrl> url_skippingDlg;
   // GeoIP
 #ifndef DISABLE_GUI
@@ -344,8 +339,6 @@ private:
   libtorrent::upnp *m_upnp;
   libtorrent::natpmp *m_natpmp;
 #endif
-  // DynDNS
-  DNSUpdater *m_dynDNSUpdater;
   QAlertDispatcher* m_alertDispatcher;
   TorrentStatistics* m_torrentStatistics;
 };

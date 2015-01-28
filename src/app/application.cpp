@@ -32,6 +32,7 @@
 #include <QLocale>
 #include <QLibraryInfo>
 #include <QSysInfo>
+
 #ifndef DISABLE_GUI
 #ifdef Q_OS_WIN
 #include <Windows.h>
@@ -39,6 +40,7 @@
 #endif // Q_OS_WIN
 #ifdef Q_OS_MAC
 #include <QFileOpenEvent>
+#include <QFont>
 #include <QUrl>
 #endif // Q_OS_MAC
 #include "mainwindow.h"
@@ -47,8 +49,8 @@
 #include <iostream>
 #endif // DISABLE_GUI
 
-#if (!defined(DISABLE_GUI) && defined(Q_OS_MAC))
-#include <QFont>
+#ifndef DISABLE_WEBUI
+#include "webui.h"
 #endif
 
 #include "application.h"
@@ -90,17 +92,6 @@ void Application::processMessage(const QString &message)
         processParams(params);
     else
         m_paramsQueue.append(params);
-}
-
-void Application::cleanup()
-{
-#ifndef DISABLE_GUI
-    delete m_window;
-#endif
-    QBtSession::drop();
-    TorrentPersistentData::drop();
-    Preferences::drop();
-    Logger::drop();
 }
 
 bool Application::sendParams(const QStringList &params)
@@ -159,7 +150,12 @@ int Application::exec(const QStringList &params)
     // Resume unfinished torrents
     QBtSession::instance()->startUpTorrents();
 
+#ifndef DISABLE_WEBUI
+    m_webui = new WebUI;
+#endif
+
 #ifdef DISABLE_GUI
+#ifndef DISABLE_WEBUI
     Preferences* const pref = Preferences::instance();
     if (pref->isWebUiEnabled()) {
         // Display some information to the user
@@ -172,9 +168,10 @@ int Application::exec(const QStringList &params)
             std::cout << qPrintable(tr("This is a security risk, please consider changing your password from program preferences.")) << std::endl;
         }
     }
+#endif // DISABLE_WEBUI
 #else
     m_window = new MainWindow;
-#endif
+#endif // DISABLE_GUI
 
     m_running = true;
     m_paramsQueue = params + m_paramsQueue;
@@ -289,4 +286,18 @@ void Application::initializeTranslation()
         setLayoutDirection(Qt::LeftToRight);
     }
 #endif
+}
+
+void Application::cleanup()
+{
+#ifndef DISABLE_GUI
+    delete m_window;
+#endif
+#ifndef DISABLE_WEBUI
+    delete m_webui;
+#endif
+    QBtSession::drop();
+    TorrentPersistentData::drop();
+    Preferences::drop();
+    Logger::drop();
 }

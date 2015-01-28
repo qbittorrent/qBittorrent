@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Ishan Arora and Christophe Dumez
+ * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,20 +24,24 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
+#ifndef HTTP_IREQUESTHANDLER_H
+#define HTTP_IREQUESTHANDLER_H
 
-#ifndef HTTPRESPONSEGENERATOR_H
-#define HTTPRESPONSEGENERATOR_H
+#include "types.h"
 
-#include "httptypes.h"
+namespace Http
+{
 
-class HttpResponseGenerator
+class IRequestHandler
 {
 public:
-    static QByteArray generate(HttpResponse response);
+    virtual ~IRequestHandler() {}
+    virtual Response processRequest(const Request &request, const Environment &env) = 0;
 };
 
-#endif
+}
+
+#endif // HTTP_IREQUESTHANDLER_H
+

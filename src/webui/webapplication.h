@@ -29,61 +29,77 @@
 #ifndef WEBAPPLICATION_H
 #define WEBAPPLICATION_H
 
-#include <QObject>
-#include <QMap>
-#include <QHash>
-#include "httptypes.h"
-#include <QVariant>
+#include <QStringList>
+#include "abstractwebapplication.h"
 
-struct WebSession
+class WebApplication: public AbstractWebApplication
 {
-    const QString id;
-    QVariantMap syncMainDataLastResponse;
-    QVariantMap syncMainDataLastAcceptedResponse;
-    WebSession(const QString& id): id(id) {}
-};
-
-const QString C_SID = "SID"; // name of session id cookie
-const int BAN_TIME = 3600000; // 1 hour
-const int MAX_AUTH_FAILED_ATTEMPTS = 5;
-
-class AbstractRequestHandler;
-
-class WebApplication: public QObject
-{
-    Q_OBJECT
     Q_DISABLE_COPY(WebApplication)
 
 public:
-    WebApplication(QObject* parent = 0);
-    virtual ~WebApplication();
-
-    static WebApplication* instance();
-
-    bool isBanned(const AbstractRequestHandler* _this) const;
-    int failedAttempts(const AbstractRequestHandler *_this) const;
-    void resetFailedAttempts(AbstractRequestHandler* _this);
-    void increaseFailedAttempts(AbstractRequestHandler* _this);
-
-    bool sessionStart(AbstractRequestHandler* _this);
-    bool sessionEnd(AbstractRequestHandler* _this);
-    bool sessionInitialize(AbstractRequestHandler* _this);
-
-    bool readFile(const QString &path, QByteArray& data, QString& type);
-
-private slots:
-    void UnbanTimerEvent();
+    explicit WebApplication(QObject* parent = 0);
 
 private:
-    QMap<QString, WebSession*> sessions_;
-    QHash<QHostAddress, int> clientFailedAttempts_;
-    QMap<QString, QByteArray> translatedFiles_;
+    // Actions
+    void action_public_webui();
+    void action_public_index();
+    void action_public_login();
+    void action_public_logout();
+    void action_public_theme();
+    void action_public_images();
+    void action_query_torrents();
+    void action_query_preferences();
+    void action_query_transferInfo();
+    void action_query_propertiesGeneral();
+    void action_query_propertiesTrackers();
+    void action_query_propertiesFiles();
+    void action_sync_maindata();
+    void action_command_shutdown();
+    void action_command_download();
+    void action_command_upload();
+    void action_command_addTrackers();
+    void action_command_resumeAll();
+    void action_command_pauseAll();
+    void action_command_resume();
+    void action_command_pause();
+    void action_command_setPreferences();
+    void action_command_setFilePrio();
+    void action_command_getGlobalUpLimit();
+    void action_command_getGlobalDlLimit();
+    void action_command_setGlobalUpLimit();
+    void action_command_setGlobalDlLimit();
+    void action_command_getTorrentUpLimit();
+    void action_command_getTorrentDlLimit();
+    void action_command_setTorrentUpLimit();
+    void action_command_setTorrentDlLimit();
+    void action_command_alternativeSpeedLimitsEnabled();
+    void action_command_toggleAlternativeSpeedLimits();
+    void action_command_toggleSequentialDownload();
+    void action_command_toggleFirstLastPiecePrio();
+    void action_command_delete();
+    void action_command_deletePerm();
+    void action_command_increasePrio();
+    void action_command_decreasePrio();
+    void action_command_topPrio();
+    void action_command_bottomPrio();
+    void action_command_recheck();
+    void action_version_api();
+    void action_version_api_min();
+    void action_version_qbittorrent();
 
-    QString generateSid();
-    static void translateDocument(QString& data);
+    typedef void (WebApplication::*Action)();
 
-    static const QStringMap CONTENT_TYPE_BY_EXT;
-    static QStringMap initializeContentTypeByExtMap();
+    QString scope_;
+    QString action_;
+    QStringList args_;
+
+    void processRequest();
+
+    bool isPublicScope();
+    void parsePath();
+
+    static QMap<QString, QMap<QString, Action> > initializeActions();
+    static QMap<QString, QMap<QString, Action> > actions_;
 };
 
 #endif // WEBAPPLICATION_H

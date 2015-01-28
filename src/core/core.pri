@@ -3,7 +3,6 @@ INCLUDEPATH += $$PWD
 unix:!macx:dbus: include(qtnotify/qtnotify.pri)
 
 include(qtlibtorrent/qtlibtorrent.pri)
-include(tracker/tracker.pri)
 
 HEADERS += \
     $$PWD/misc.h \
@@ -16,10 +15,15 @@ HEADERS += \
     $$PWD/smtp.h \
     $$PWD/dnsupdater.h \
     $$PWD/logger.h \
-    $$PWD/httptypes.h \
-    $$PWD/httprequestparser.h \
-    $$PWD/httpresponsegenerator.h \
-    $$PWD/preferences.h
+    $$PWD/preferences.h \
+    $$PWD/qtracker.h \
+    $$PWD/http/irequesthandler.h \
+    $$PWD/http/connection.h \
+    $$PWD/http/requestparser.h \
+    $$PWD/http/responsegenerator.h \
+    $$PWD/http/server.h \
+    $$PWD/http/types.h \
+    $$PWD/http/responsebuilder.h
 
 SOURCES += \
     $$PWD/downloadthread.cpp \
@@ -30,6 +34,10 @@ SOURCES += \
     $$PWD/smtp.cpp \
     $$PWD/dnsupdater.cpp \
     $$PWD/logger.cpp \
-    $$PWD/httprequestparser.cpp \
-    $$PWD/httpresponsegenerator.cpp \
-    $$PWD/preferences.cpp
+    $$PWD/preferences.cpp \
+    $$PWD/qtracker.cpp \
+    $$PWD/http/connection.cpp \
+    $$PWD/http/requestparser.cpp \
+    $$PWD/http/responsegenerator.cpp \
+    $$PWD/http/server.cpp \
+    $$PWD/http/responsebuilder.cpp

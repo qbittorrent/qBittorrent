@@ -57,7 +57,6 @@
 #include "geoipmanager.h"
 #endif
 #include "torrentpersistentdata.h"
-#include "httpserver.h"
 #include "bandwidthscheduler.h"
 #include <libtorrent/version.hpp>
 #include <libtorrent/extensions/ut_metadata.hpp>
@@ -79,7 +78,6 @@
 #include <libtorrent/magnet_uri.hpp>
 #include <queue>
 #include <string.h>
-#include "dnsupdater.h"
 
 #if LIBTORRENT_VERSION_NUM < 10000
 #include <libtorrent/upnp.hpp>
@@ -117,7 +115,6 @@ QBtSession::QBtSession()
   #if LIBTORRENT_VERSION_NUM < 10000
   , m_upnp(0), m_natpmp(0)
   #endif
-  , m_dynDNSUpdater(0)
   , m_alertDispatcher(0)
 {
   BigRatioTimer = new QTimer(this);
@@ -159,6 +156,7 @@ QBtSession::QBtSession()
   connect(m_scanFolders, SIGNAL(torrentsAdded(QStringList&)), SLOT(addTorrentsFromScanFolder(QStringList&)));
   // Apply user settings to Bittorrent session
   configureSession();
+  connect(pref, SIGNAL(changed()), SLOT(configureSession()));
   // Torrent speed monitor
   m_speedMonitor = new TorrentSpeedMonitor(this);
   m_torrentStatistics = new TorrentStatistics(this, this);
@@ -191,9 +189,6 @@ QBtSession::~QBtSession() {
   delete downloader;
   if (bd_scheduler)
     delete bd_scheduler;
-  // HTTP Server
-  if (httpServer)
-    delete httpServer;
   delete m_alertDispatcher;
   delete m_torrentStatistics;
   qDebug("Deleting the session");
@@ -583,9 +578,6 @@ void QBtSession::configureSession() {
   }else{
     disableIPFilter();
   }
-  // Update Web UI
-  // Use a QTimer because the function can be called from qBtSession constructor
-  QTimer::singleShot(0, this, SLOT(initWebUi()));
   // * Proxy settings
   proxy_settings proxySettings;
   if (pref->isProxyEnabled()) {
@@ -653,64 +645,6 @@ void QBtSession::configureSession() {
     ++i;
   }
   qDebug("Session configured");
-}
-
-void QBtSession::initWebUi() {
-  Preferences* const pref = Preferences::instance();
-  if (pref->isWebUiEnabled()) {
-    const quint16 port = pref->getWebUiPort();
-
-    if (httpServer) {
-      if (httpServer->serverPort() != port) {
-        httpServer->close();
-      }
-    } else {
-      httpServer = new HttpServer(this);
-    }
-
-#ifndef QT_NO_OPENSSL
-    if (pref->isWebUiHttpsEnabled()) {
-      QSslCertificate cert(pref->getWebUiHttpsCertificate());
-      QSslKey key;
-      const QByteArray raw_key = pref->getWebUiHttpsKey();
-      key = QSslKey(raw_key, QSsl::Rsa);
-      if (!cert.isNull() && !key.isNull())
-        httpServer->enableHttps(cert, key);
-      else
-        httpServer->disableHttps();
-    } else {
-      httpServer->disableHttps();
-    }
-#endif
-
-    if (!httpServer->isListening()) {
-      Logger* const logger = Logger::instance();
-      bool success = httpServer->listen(QHostAddress::Any, port);
-      if (success)
-        logger->addMessage(tr("The Web UI is listening on port %1").arg(port));
-      else
-        logger->addMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(port), Log::CRITICAL);
-    }
-    // DynDNS
-    if (pref->isDynDNSEnabled()) {
-      if (!m_dynDNSUpdater)
-        m_dynDNSUpdater = new DNSUpdater(this);
-      else
-        m_dynDNSUpdater->updateCredentials();
-    } else {
-      if (m_dynDNSUpdater) {
-        delete m_dynDNSUpdater;
-        m_dynDNSUpdater = 0;
-      }
-    }
-  } else {
-    if (httpServer)
-      delete httpServer;
-    if (m_dynDNSUpdater) {
-      delete m_dynDNSUpdater;
-      m_dynDNSUpdater = 0;
-    }
-  }
 }
 
 void QBtSession::useAlternativeSpeedsLimit(bool alternative) {
@@ -1495,6 +1429,7 @@ void QBtSession::enableUPnP(bool b) {
     s->start_upnp();
     s->start_natpmp();
 #endif
+    // TODO: Remove dependency from WebUI
     // Use UPnP/NAT-PMP for Web UI too
     if (pref->isWebUiEnabled() && pref->useUPnPForWebUIPort()) {
       const qint16 port = pref->getWebUiPort();

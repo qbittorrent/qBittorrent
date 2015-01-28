@@ -1,8 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
- * Copyright (C) 2006  Ishan Arora <ishan@qbittorrent.org>
+ * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,72 +25,56 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
+ *
+ * Contact : chris@qbittorrent.org
  */
 
+
+#ifndef HTTP_SERVER_H
+#define HTTP_SERVER_H
+
+#include <QTcpServer>
 #ifndef QT_NO_OPENSSL
-#include <QSslSocket>
-#else
-#include <QTcpSocket>
-#endif
-#include "httpconnection.h"
-#include "httpserver.h"
-
-HttpServer::HttpServer(QObject* parent)
-  : QTcpServer(parent)
-#ifndef QT_NO_OPENSSL
-    , m_https(false)
-#endif
-{
-}
-
-HttpServer::~HttpServer()
-{
-}
-
-#ifndef QT_NO_OPENSSL
-void HttpServer::enableHttps(const QSslCertificate &certificate, const QSslKey &key)
-{
-  m_certificate = certificate;
-  m_key = key;
-  m_https = true;
-}
-
-void HttpServer::disableHttps()
-{
-  m_https = false;
-  m_certificate.clear();
-  m_key.clear();
-}
+#include <QSslCertificate>
+#include <QSslKey>
 #endif
 
+namespace Http
+{
+
+class IRequestHandler;
+class Connection;
+
+class Server : public QTcpServer
+{
+  Q_OBJECT
+  Q_DISABLE_COPY(Server)
+
+public:
+  Server(IRequestHandler *requestHandler, QObject *parent = 0);
+  ~Server();
+
+#ifndef QT_NO_OPENSSL
+  void enableHttps(const QSslCertificate &certificate, const QSslKey &key);
+  void disableHttps();
+#endif
+
+private:
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-void HttpServer::incomingConnection(qintptr socketDescriptor)
+  void incomingConnection(qintptr socketDescriptor);
 #else
-void HttpServer::incomingConnection(int socketDescriptor)
+  void incomingConnection(int socketDescriptor);
 #endif
-{
-  QTcpSocket *serverSocket;
+
+private:
+  IRequestHandler *m_requestHandler;
 #ifndef QT_NO_OPENSSL
-  if (m_https)
-    serverSocket = new QSslSocket(this);
-  else
+  bool m_https;
+  QSslCertificate m_certificate;
+  QSslKey m_key;
 #endif
-    serverSocket = new QTcpSocket(this);
-  if (serverSocket->setSocketDescriptor(socketDescriptor))
-  {
-#ifndef QT_NO_OPENSSL
-    if (m_https)
-    {
-      static_cast<QSslSocket*>(serverSocket)->setProtocol(QSsl::AnyProtocol);
-      static_cast<QSslSocket*>(serverSocket)->setPrivateKey(m_key);
-      static_cast<QSslSocket*>(serverSocket)->setLocalCertificate(m_certificate);
-      static_cast<QSslSocket*>(serverSocket)->startServerEncryption();
-    }
-#endif
-    new HttpConnection(serverSocket, this);
-  }
-  else
-  {
-    serverSocket->deleteLater();
-  }
+};
+
 }
+
+#endif // HTTP_SERVER_H

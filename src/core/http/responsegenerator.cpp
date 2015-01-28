@@ -30,11 +30,13 @@
  */
 
 #include <zlib.h>
-#include "httpresponsegenerator.h"
+#include "responsegenerator.h"
 
 bool gCompress(QByteArray data, QByteArray& dest_buffer);
 
-QByteArray HttpResponseGenerator::generate(HttpResponse response)
+using namespace Http;
+
+QByteArray ResponseGenerator::generate(Response response)
 {
   if (response.headers[HEADER_CONTENT_ENCODING] == "gzip")
   {

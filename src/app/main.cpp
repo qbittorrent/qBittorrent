@@ -49,10 +49,7 @@ Q_IMPORT_PLUGIN(qico)
 #endif // QBT_STATIC_QT
 #else // DISABLE_GUI
 #include <cstdio>
-#include <iostream>
 #endif // DISABLE_GUI
-
-#include "application.h"
 
 #ifdef Q_OS_UNIX
 #include <signal.h>
@@ -67,6 +64,8 @@ Q_IMPORT_PLUGIN(qico)
 #endif //STACKTRACE_WIN
 
 #include <cstdlib>
+#include <iostream>
+#include "application.h"
 #include "misc.h"
 #include "preferences.h"
 #include "logger.h"

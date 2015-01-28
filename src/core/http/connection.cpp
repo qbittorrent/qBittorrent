@@ -31,59 +31,60 @@
 
 #include <QTcpSocket>
 #include <QDebug>
-#include "httptypes.h"
-#include "httpserver.h"
-#include "httprequestparser.h"
-#include "httpresponsegenerator.h"
-#include "webapplication.h"
-#include "requesthandler.h"
-#include "httpconnection.h"
+#include "types.h"
+#include "requestparser.h"
+#include "responsegenerator.h"
+#include "irequesthandler.h"
+#include "connection.h"
 
-HttpConnection::HttpConnection(QTcpSocket *socket, HttpServer *httpserver)
-  : QObject(httpserver), m_socket(socket)
+using namespace Http;
+
+Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent)
+  : QObject(parent)
+  , m_socket(socket)
+  , m_requestHandler(requestHandler)
 {
   m_socket->setParent(this);
   connect(m_socket, SIGNAL(readyRead()), SLOT(read()));
   connect(m_socket, SIGNAL(disconnected()), SLOT(deleteLater()));
 }
 
-HttpConnection::~HttpConnection()
+Connection::~Connection()
 {
-  delete m_socket;
 }
 
-void HttpConnection::read()
+void Connection::read()
 {
   m_receivedData.append(m_socket->readAll());
 
-  HttpRequest request;
-  HttpRequestParser::ErrorCode err = HttpRequestParser::parse(m_receivedData, request);
+  Request request;
+  RequestParser::ErrorCode err = RequestParser::parse(m_receivedData, request);
   switch (err)
   {
-  case HttpRequestParser::IncompleteRequest:
+  case RequestParser::IncompleteRequest:
     // Partial request waiting for the rest
     break;
-  case HttpRequestParser::BadRequest:
-    write(HttpResponse(400, "Bad Request"));
+  case RequestParser::BadRequest:
+    sendResponse(Response(400, "Bad Request"));
     break;
-  case HttpRequestParser::NoError:
-    HttpEnvironment env;
+  case RequestParser::NoError:
+    Environment env;
     env.clientAddress = m_socket->peerAddress();
-    HttpResponse response = RequestHandler(request, env, WebApplication::instance()).run();
+    Response response = m_requestHandler->processRequest(request, env);
     if (acceptsGzipEncoding(request.headers["accept-encoding"]))
       response.headers[HEADER_CONTENT_ENCODING] = "gzip";
-    write(response);
+    sendResponse(response);
     break;
   }
 }
 
-void HttpConnection::write(const HttpResponse& response)
+void Connection::sendResponse(const Response &response)
 {
-  m_socket->write(HttpResponseGenerator::generate(response));
+  m_socket->write(ResponseGenerator::generate(response));
   m_socket->disconnectFromHost();
 }
 
-bool HttpConnection::acceptsGzipEncoding(const QString& encoding)
+bool Connection::acceptsGzipEncoding(const QString &encoding)
 {
   int pos = encoding.indexOf("gzip", 0, Qt::CaseInsensitive);
   if (pos == -1)

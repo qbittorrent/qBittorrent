@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,68 +26,16 @@
  * exception statement from your version.
  */
 
-#ifndef APPLICATION_H
-#define APPLICATION_H
+#ifndef WEBSESSIONDATA
+#define WEBSESSIONDATA
 
-#include <QPointer>
-#include <QStringList>
-#include <QTranslator>
+#include <QVariant>
 
-#ifndef DISABLE_GUI
-#include "qtsingleapplication.h"
-typedef QtSingleApplication BaseApplication;
-class MainWindow;
-#else
-#include "qtsinglecoreapplication.h"
-typedef QtSingleCoreApplication BaseApplication;
-#endif
-
-#ifndef DISABLE_WEBUI
-class WebUI;
-#endif
-
-class Application : public BaseApplication
+struct WebSessionData
 {
-    Q_OBJECT
-
-public:
-    Application(const QString &id, int &argc, char **argv);
-
- #if (defined(Q_OS_WIN) && !defined(DISABLE_GUI))
-    bool isRunning();
-#endif
-    int exec(const QStringList &params);
-    bool sendParams(const QStringList &params);
-
-protected:
-#ifndef DISABLE_GUI
-#ifdef Q_OS_MAC
-    bool event(QEvent *);
-#endif
-    bool notify(QObject* receiver, QEvent* event);
-#endif
-
-private slots:
-    void processMessage(const QString &message);
-    void cleanup();
-
-private:
-    bool m_running;
-
-#ifndef DISABLE_GUI
-    QPointer<MainWindow> m_window;
-#endif
-
-#ifndef DISABLE_WEBUI
-    QPointer<WebUI> m_webui;
-#endif
-
-    QTranslator m_qtTranslator;
-    QTranslator m_translator;
-    QStringList m_paramsQueue;
-
-    void initializeTranslation();
-    void processParams(const QStringList &params);
+    QVariantMap syncMainDataLastResponse;
+    QVariantMap syncMainDataLastAcceptedResponse;
 };
 
-#endif // APPLICATION_H
+#endif // WEBSESSIONDATA
+

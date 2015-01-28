@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,49 +24,32 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#ifndef QTRACKER_H
-#define QTRACKER_H
+#ifndef WEBUI_H
+#define WEBUI_H
 
-#include <QTcpServer>
-#include <QHash>
+#include <QObject>
+#include <QPointer>
 
-#include "trackerannouncerequest.h"
-#include "qpeer.h"
+namespace Http { class Server; }
+class DNSUpdater;
+class AbstractWebApplication;
 
-// static limits
-const int MAX_TORRENTS = 100;
-const int MAX_PEERS_PER_TORRENT = 1000;
-const int ANNOUNCE_INTERVAL = 1800; // 30min
-
-typedef QHash<QString, QPeer> PeerList;
-typedef QHash<QString, PeerList> TorrentList;
-
-/* Basic Bittorrent tracker implementation in Qt4 */
-/* Following http://wiki.theory.org/BitTorrent_Tracker_Protocol */
-class QTracker : public QTcpServer
+class WebUI : public QObject
 {
-  Q_OBJECT
-  Q_DISABLE_COPY(QTracker)
+    Q_OBJECT
 
 public:
-  explicit QTracker(QObject *parent = 0);
-  ~QTracker();
-  bool start();
+    explicit WebUI(QObject *parent = 0);
 
-protected slots:
-  void readRequest();
-  void handlePeerConnection();
-  void respondInvalidRequest(QTcpSocket *socket, int code, QString msg);
-  void respondToAnnounceRequest(QTcpSocket *socket, const QMap<QString, QString>& get_parameters);
-  void ReplyWithPeerList(QTcpSocket *socket, const TrackerAnnounceRequest &annonce_req);
+private slots:
+    void init();
 
 private:
-  TorrentList m_torrents;
-
+    QPointer<Http::Server> httpServer_;
+    QPointer<DNSUpdater> dynDNSUpdater_;
+    QPointer<AbstractWebApplication> webapp_;
 };
 
-#endif // QTRACKER_H
+#endif // WEBUI_H

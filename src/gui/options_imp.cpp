@@ -70,7 +70,11 @@ options_imp::options_imp(QWidget *parent):
   tabSelection->item(TAB_CONNECTION)->setIcon(IconProvider::instance()->getIcon("network-wired"));
   tabSelection->item(TAB_DOWNLOADS)->setIcon(IconProvider::instance()->getIcon("download"));
   tabSelection->item(TAB_SPEED)->setIcon(IconProvider::instance()->getIcon("chronometer"));
+#ifndef DISABLE_WEBUI
   tabSelection->item(TAB_WEBUI)->setIcon(IconProvider::instance()->getIcon("network-server"));
+#else
+  tabSelection->item(TAB_WEBUI)->setHidden(true);
+#endif
   tabSelection->item(TAB_ADVANCED)->setIcon(IconProvider::instance()->getIcon("preferences-other"));
   IpFilterRefreshBtn->setIcon(IconProvider::instance()->getIcon("view-refresh"));
 
@@ -229,6 +233,7 @@ options_imp::options_imp(QWidget *parent):
   connect(spinMaxActiveUploads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxActiveTorrents, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkIgnoreSlowTorrentsForQueueing, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+#ifndef DISABLE_WEBUI
   // Web UI tab
   connect(checkWebUi, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinWebUiPort, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
@@ -244,6 +249,7 @@ options_imp::options_imp(QWidget *parent):
   connect(domainNameTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
   connect(DNSUsernameTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
   connect(DNSPasswordTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
+#endif
   // Disable apply Button
   applyButton->setEnabled(false);
   // Tab selection mecanism

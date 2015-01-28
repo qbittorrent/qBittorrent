@@ -38,7 +38,7 @@
 #include <QDir>
 #include <QTemporaryFile>
 #include <QDebug>
-#include "httprequestparser.h"
+#include "requestparser.h"
 
 const QByteArray EOL("\r\n");
 const QByteArray EOH("\r\n\r\n");
@@ -51,19 +51,21 @@ inline QString unquoted(const QString& str)
   return str;
 }
 
-HttpRequestParser::ErrorCode HttpRequestParser::parse(const QByteArray& data, HttpRequest& request, uint maxContentLength)
+using namespace Http;
+
+RequestParser::ErrorCode RequestParser::parse(const QByteArray& data, Request& request, uint maxContentLength)
 {
-  return HttpRequestParser(maxContentLength).parseHttpRequest(data, request);
+  return RequestParser(maxContentLength).parseHttpRequest(data, request);
 }
 
-HttpRequestParser::HttpRequestParser(uint maxContentLength)
-  : maxContentLength_(maxContentLength)
+RequestParser::RequestParser(uint maxContentLength)
+  : m_maxContentLength(maxContentLength)
 {
 }
 
-HttpRequestParser::ErrorCode HttpRequestParser::parseHttpRequest(const QByteArray& data, HttpRequest& request)
+RequestParser::ErrorCode RequestParser::parseHttpRequest(const QByteArray& data, Request& request)
 {
-  request_ = HttpRequest();
+  m_request = Request();
 
   // Parse HTTP request header
   const int header_end = data.indexOf(EOH);
@@ -81,10 +83,10 @@ HttpRequestParser::ErrorCode HttpRequestParser::parseHttpRequest(const QByteArra
 
   // Parse HTTP request message
   int content_length = 0;
-  if (request_.headers.contains("content-length"))
+  if (m_request.headers.contains("content-length"))
   {
-    content_length = request_.headers["content-length"].toInt();
-    if (content_length > static_cast<int>(maxContentLength_))
+    content_length = m_request.headers["content-length"].toInt();
+    if (content_length > static_cast<int>(m_maxContentLength))
     {
       qWarning() << Q_FUNC_INFO << "bad request: message too long";
       return BadRequest;
@@ -108,20 +110,20 @@ HttpRequestParser::ErrorCode HttpRequestParser::parseHttpRequest(const QByteArra
 //  qDebug() << "HTTP Request header:";
 //  qDebug() << data.left(header_end) << "\n";
 
-  request = request_;
+  request = m_request;
   return NoError;
 }
 
-bool HttpRequestParser::parseStartingLine(const QString &line)
+bool RequestParser::parseStartingLine(const QString &line)
 {
   const QRegExp rx("^([A-Z]+)\\s+(\\S+)\\s+HTTP/\\d\\.\\d$");
 
   if (rx.indexIn(line.trimmed()) >= 0)
   {
-    request_.method = rx.cap(1);
+    m_request.method = rx.cap(1);
 
     QUrl url = QUrl::fromEncoded(rx.cap(2).toLatin1());
-    request_.path = url.path(); // Path
+    m_request.path = url.path(); // Path
 
     // Parse GET parameters
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
@@ -132,7 +134,7 @@ bool HttpRequestParser::parseStartingLine(const QString &line)
     while (i.hasNext())
     {
       QPair<QString, QString> pair = i.next();
-      request_.gets[pair.first] = pair.second;
+      m_request.gets[pair.first] = pair.second;
     }
 
     return true;
@@ -142,7 +144,7 @@ bool HttpRequestParser::parseStartingLine(const QString &line)
   return false;
 }
 
-bool HttpRequestParser::parseHeaderLine(const QString &line, QPair<QString, QString>& out)
+bool RequestParser::parseHeaderLine(const QString &line, QPair<QString, QString>& out)
 {
   int i = line.indexOf(QLatin1Char(':'));
   if (i == -1)
@@ -155,7 +157,7 @@ bool HttpRequestParser::parseHeaderLine(const QString &line, QPair<QString, QStr
   return true;
 }
 
-bool HttpRequestParser::parseHttpHeader(const QByteArray &data)
+bool RequestParser::parseHttpHeader(const QByteArray &data)
 {
   QString str = QString::fromUtf8(data);
   QStringList lines = str.trimmed().split(EOL);
@@ -191,13 +193,13 @@ bool HttpRequestParser::parseHttpHeader(const QByteArray &data)
     if (!parseHeaderLine(*it, header))
       return false;
 
-    request_.headers[header.first] = header.second;
+    m_request.headers[header.first] = header.second;
   }
 
   return true;
 }
 
-QList<QByteArray> HttpRequestParser::splitMultipartData(const QByteArray& data, const QByteArray& boundary)
+QList<QByteArray> RequestParser::splitMultipartData(const QByteArray& data, const QByteArray& boundary)
 {
   QList<QByteArray> ret;
   QByteArray sep = boundary + EOL;
@@ -223,14 +225,14 @@ QList<QByteArray> HttpRequestParser::splitMultipartData(const QByteArray& data, 
   return ret;
 }
 
-bool HttpRequestParser::parseContent(const QByteArray& data)
+bool RequestParser::parseContent(const QByteArray& data)
 {
   // Parse message content
-  qDebug() << Q_FUNC_INFO << "Content-Length: " << request_.headers["content-length"];
+  qDebug() << Q_FUNC_INFO << "Content-Length: " << m_request.headers["content-length"];
   qDebug() << Q_FUNC_INFO << "data.size(): " << data.size();
 
   // Parse url-encoded POST data
-  if (request_.headers["content-type"].startsWith("application/x-www-form-urlencoded"))
+  if (m_request.headers["content-type"].startsWith("application/x-www-form-urlencoded"))
   {
     QUrl url;
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
@@ -243,7 +245,7 @@ bool HttpRequestParser::parseContent(const QByteArray& data)
     while (i.hasNext())
     {
       QPair<QString, QString> pair = i.next();
-      request_.posts[pair.first.toLower()] = pair.second;
+      m_request.posts[pair.first.toLower()] = pair.second;
     }
 
     return true;
@@ -268,7 +270,7 @@ Content-Disposition: form-data; name=\"Upload\"
 Submit Query
 --cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5--
 **/
-  QString content_type = request_.headers["content-type"];
+  QString content_type = m_request.headers["content-type"];
   if (content_type.startsWith("multipart/form-data"))
   {
     const QRegExp boundaryRegexQuoted("boundary=\"([ \\w'()+,-\\./:=\\?]+)\"");
@@ -309,7 +311,7 @@ Submit Query
   return false;
 }
 
-bool HttpRequestParser::parseFormData(const QByteArray& data)
+bool RequestParser::parseFormData(const QByteArray& data)
 {
   // Parse form data header
   const int header_end = data.indexOf(EOH);
@@ -347,17 +349,17 @@ bool HttpRequestParser::parseFormData(const QByteArray& data)
     ufile.type = disposition["content-type"];
     ufile.data = data.mid(header_end + EOH.length());
 
-    request_.files[disposition["name"]] = ufile;
+    m_request.files[disposition["name"]] = ufile;
   }
   else
   {
-    request_.posts[disposition["name"]] = QString::fromUtf8(data.mid(header_end + EOH.length()));
+    m_request.posts[disposition["name"]] = QString::fromUtf8(data.mid(header_end + EOH.length()));
   }
 
   return true;
 }
 
-bool HttpRequestParser::parseHeaderValue(const QString& value, QStringMap& out)
+bool RequestParser::parseHeaderValue(const QString& value, QStringMap& out)
 {
   QStringList items = value.split(QLatin1Char(';'));
   out[""] = items[0];

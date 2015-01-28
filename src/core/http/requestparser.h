@@ -29,38 +29,41 @@
  * Contact : chris@qbittorrent.org
  */
 
+#ifndef HTTP_REQUESTPARSER_H
+#define HTTP_REQUESTPARSER_H
 
-#ifndef HTTPCONNECTION_H
-#define HTTPCONNECTION_H
+#include "types.h"
 
-#include <QObject>
-#include "httptypes.h"
-
-class HttpServer;
-
-QT_BEGIN_NAMESPACE
-class QTcpSocket;
-QT_END_NAMESPACE
-
-class HttpConnection : public QObject
+namespace Http
 {
-  Q_OBJECT
-  Q_DISABLE_COPY(HttpConnection)
 
+class RequestParser
+{
 public:
-  HttpConnection(QTcpSocket* socket, HttpServer* httpserver);
-  ~HttpConnection();
+  enum ErrorCode { NoError = 0, IncompleteRequest, BadRequest };
 
-private slots:
-  void read();
+  // when result != NoError parsed request is undefined
+  // Warning! Header names are converted to lower-case.
+  static ErrorCode parse(const QByteArray& data, Request& request, uint maxContentLength = 10000000 /* ~10MB */);
 
 private:
-  void write(const HttpResponse& response);
+  RequestParser(uint maxContentLength);
 
-  static bool acceptsGzipEncoding(const QString& encoding);
+  ErrorCode parseHttpRequest(const QByteArray& data, Request& request);
 
-  QTcpSocket *m_socket;
-  QByteArray m_receivedData;
+  bool parseHttpHeader(const QByteArray& data);
+  bool parseStartingLine(const QString &line);
+  bool parseContent(const QByteArray& data);
+  bool parseFormData(const QByteArray& data);
+  QList<QByteArray> splitMultipartData(const QByteArray& data, const QByteArray& boundary);
+
+  static bool parseHeaderLine(const QString& line, QPair<QString, QString>& out);
+  static bool parseHeaderValue(const QString& value, QStringMap& out);
+
+  const uint m_maxContentLength;
+  Request m_request;
 };
 
-#endif
+}
+
+#endif // HTTP_REQUESTPARSER_H

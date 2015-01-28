@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,68 +26,49 @@
  * exception statement from your version.
  */
 
-#ifndef APPLICATION_H
-#define APPLICATION_H
+#include "responsebuilder.h"
 
-#include <QPointer>
-#include <QStringList>
-#include <QTranslator>
+using namespace Http;
 
-#ifndef DISABLE_GUI
-#include "qtsingleapplication.h"
-typedef QtSingleApplication BaseApplication;
-class MainWindow;
-#else
-#include "qtsinglecoreapplication.h"
-typedef QtSingleCoreApplication BaseApplication;
-#endif
-
-#ifndef DISABLE_WEBUI
-class WebUI;
-#endif
-
-class Application : public BaseApplication
+ResponseBuilder::ResponseBuilder(QObject *parent)
+    : QObject(parent)
 {
-    Q_OBJECT
+}
 
-public:
-    Application(const QString &id, int &argc, char **argv);
+void ResponseBuilder::status(uint code, const QString &text)
+{
+    m_response.status = ResponseStatus(code, text);
+}
 
- #if (defined(Q_OS_WIN) && !defined(DISABLE_GUI))
-    bool isRunning();
-#endif
-    int exec(const QStringList &params);
-    bool sendParams(const QStringList &params);
+void ResponseBuilder::header(const QString &name, const QString &value)
+{
+    m_response.headers[name] = value;
+}
 
-protected:
-#ifndef DISABLE_GUI
-#ifdef Q_OS_MAC
-    bool event(QEvent *);
-#endif
-    bool notify(QObject* receiver, QEvent* event);
-#endif
+void ResponseBuilder::print(const QString &text, const QString &type)
+{
+    print_impl(text.toUtf8(), type);
+}
 
-private slots:
-    void processMessage(const QString &message);
-    void cleanup();
+void ResponseBuilder::print(const QByteArray &data, const QString &type)
+{
+    print_impl(data, type);
+}
 
-private:
-    bool m_running;
+void ResponseBuilder::clear()
+{
+    m_response = Response();
+}
 
-#ifndef DISABLE_GUI
-    QPointer<MainWindow> m_window;
-#endif
+Response ResponseBuilder::response() const
+{
+    return m_response;
+}
 
-#ifndef DISABLE_WEBUI
-    QPointer<WebUI> m_webui;
-#endif
+void ResponseBuilder::print_impl(const QByteArray &data, const QString &type)
+{
+    if (!m_response.headers.contains(HEADER_CONTENT_TYPE))
+        m_response.headers[HEADER_CONTENT_TYPE] = type;
 
-    QTranslator m_qtTranslator;
-    QTranslator m_translator;
-    QStringList m_paramsQueue;
-
-    void initializeTranslation();
-    void processParams(const QStringList &params);
-};
-
-#endif // APPLICATION_H
+    m_response.content += data;
+}

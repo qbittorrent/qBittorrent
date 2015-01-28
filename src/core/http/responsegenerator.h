@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Ishan Arora and Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,67 +25,25 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
+ *
+ * Contact : chris@qbittorrent.org
  */
 
-#ifndef HTTPTYPES_H
-#define HTTPTYPES_H
 
-#include <QString>
-#include <QMap>
-#include <QHostAddress>
+#ifndef HTTP_RESPONSEGENERATOR_H
+#define HTTP_RESPONSEGENERATOR_H
 
-typedef QMap<QString, QString> QStringMap;
+#include "types.h"
 
-const QString HEADER_SET_COOKIE = "Set-Cookie";
-const QString HEADER_CONTENT_TYPE = "Content-Type";
-const QString HEADER_CONTENT_ENCODING = "Content-Encoding";
-const QString HEADER_CONTENT_LENGTH = "Content-Length";
-const QString HEADER_CACHE_CONTROL = "Cache-Control";
-
-const QString CONTENT_TYPE_CSS = "text/css; charset=UTF-8";
-const QString CONTENT_TYPE_GIF = "image/gif";
-const QString CONTENT_TYPE_HTML = "text/html; charset=UTF-8";
-const QString CONTENT_TYPE_JS = "text/javascript; charset=UTF-8";
-const QString CONTENT_TYPE_PNG = "image/png";
-const QString CONTENT_TYPE_TXT = "text/plain; charset=UTF-8";
-
-struct HttpEnvironment
+namespace Http
 {
-  QHostAddress clientAddress;
+
+class ResponseGenerator
+{
+public:
+    static QByteArray generate(Response response);
 };
 
-struct UploadedFile
-{
-  QString filename; // original filename
-  QString type; // MIME type
-  QByteArray data; // File data
-};
+}
 
-struct HttpRequest
-{
-  QString method;
-  QString path;
-  QStringMap headers;
-  QStringMap gets;
-  QStringMap posts;
-  QMap<QString, UploadedFile> files;
-};
-
-struct HttpResponseStatus
-{
-  uint code;
-  QString text;
-
-  HttpResponseStatus(uint code = 200, const QString& text = "OK"): code(code), text(text) {}
-};
-
-struct HttpResponse
-{
-  HttpResponseStatus status;
-  QStringMap headers;
-  QByteArray content;
-
-  HttpResponse(uint code = 200, const QString& text = "OK"): status(code, text) {}
-};
-
-#endif // HTTPTYPES_H
+#endif // HTTP_RESPONSEGENERATOR_H

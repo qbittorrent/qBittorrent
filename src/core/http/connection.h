@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2006  Ishan Arora and Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,42 +30,42 @@
  */
 
 
-#ifndef HTTPSERVER_H
-#define HTTPSERVER_H
+#ifndef HTTP_CONNECTION_H
+#define HTTP_CONNECTION_H
 
-#include <QTcpServer>
-#ifndef QT_NO_OPENSSL
-#include <QSslCertificate>
-#include <QSslKey>
-#endif
+#include <QObject>
+#include "types.h"
 
-class HttpServer : public QTcpServer
+QT_BEGIN_NAMESPACE
+class QTcpSocket;
+QT_END_NAMESPACE
+
+namespace Http
+{
+
+class IRequestHandler;
+
+class Connection : public QObject
 {
   Q_OBJECT
-  Q_DISABLE_COPY(HttpServer)
+  Q_DISABLE_COPY(Connection)
 
 public:
-  HttpServer(QObject* parent = 0);
-  ~HttpServer();
+  Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = 0);
+  ~Connection();
 
-#ifndef QT_NO_OPENSSL
-  void enableHttps(const QSslCertificate &certificate, const QSslKey &key);
-  void disableHttps();
-#endif
+private slots:
+  void read();
 
 private:
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-  void incomingConnection(qintptr socketDescriptor);
-#else
-  void incomingConnection(int socketDescriptor);
-#endif
+  static bool acceptsGzipEncoding(const QString &encoding);
+  void sendResponse(const Response &response);
 
-private:
-#ifndef QT_NO_OPENSSL
-  bool m_https;
-  QSslCertificate m_certificate;
-  QSslKey m_key;
-#endif
+  QTcpSocket *m_socket;
+  IRequestHandler *m_requestHandler;
+  QByteArray m_receivedData;
 };
 
-#endif
+}
+
+#endif // HTTP_CONNECTION_H
