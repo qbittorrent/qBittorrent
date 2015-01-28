@@ -165,6 +165,8 @@ void Preferences::save() {
 #else
   delete settings;
 #endif
+
+  emit changed();
 }
 
 const QVariant Preferences::value(const QString &key, const QVariant &defaultValue) const {

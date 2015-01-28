@@ -33,7 +33,6 @@
 #ifndef PREFERENCES_H
 #define PREFERENCES_H
 
-
 #include <QTime>
 #include <QDateTime>
 #include <QList>
@@ -69,6 +68,9 @@ private:
   mutable QReadWriteLock lock;
   const QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;
   void setValue(const QString &key, const QVariant &value);
+
+signals:
+  void changed();
 
 public slots:
   void save();
