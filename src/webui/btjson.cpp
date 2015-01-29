@@ -146,6 +146,7 @@ static const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
 
 // Sync main data keys
 static const char KEY_SYNC_MAINDATA_QUEUEING[] = "queueing";
+static const char KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS[] = "use_alt_speed_limits";
 
 static const char KEY_FULL_UPDATE[] = "full_update";
 static const char KEY_RESPONSE_ID[] = "rid";
@@ -333,6 +334,7 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
 
     QVariantMap serverState = getTranserInfoMap();
     serverState[KEY_SYNC_MAINDATA_QUEUEING] = QBtSession::instance()->isQueueingEnabled();
+    serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = Preferences::instance()->isAltBandwidthEnabled();
     data["server_state"] = serverState;
 
     return json::toJson(generateSyncData(acceptedResponseId, data, lastAcceptedData, lastData));

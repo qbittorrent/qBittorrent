@@ -222,6 +222,11 @@ window.addEvent('load', function () {
                 $('queueingMenuItems').addClass('invisible');
             }
         }
+
+        if (alternativeSpeedLimits != serverState.use_alt_speed_limits) {
+            alternativeSpeedLimits = serverState.use_alt_speed_limits;
+            updateAltSpeedIcon(alternativeSpeedLimits);
+        }
     };
 
     var updateAltSpeedIcon = function(enabled) {
@@ -230,16 +235,6 @@ window.addEvent('load', function () {
         else
             $('alternativeSpeedLimits').src = "images/slow_off.png"
     }
-
-    // Determine whether the alternative speed limits are enabled or not
-    new Request({url: 'command/alternativeSpeedLimitsEnabled',
-            method: 'get',
-            onSuccess : function (isEnabled) {
-                alternativeSpeedLimits = !!parseInt(isEnabled);
-                if (alternativeSpeedLimits)
-                    $('alternativeSpeedLimits').src = "images/slow.png"
-            }
-    }).send();
 
     $('alternativeSpeedLimits').addEvent('click', function() {
         // Change icon immediately to give some feedback
