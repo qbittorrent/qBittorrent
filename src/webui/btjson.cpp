@@ -144,6 +144,9 @@ static const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
 static const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
 static const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
 
+// Sync main data keys
+static const char KEY_SYNC_MAINDATA_QUEUEING[] = "queueing";
+
 static const char KEY_FULL_UPDATE[] = "full_update";
 static const char KEY_RESPONSE_ID[] = "rid";
 static const char KEY_SUFFIX_REMOVED[] = "_removed";
@@ -274,8 +277,7 @@ QByteArray btjson::getTorrents(QString filter, QString label,
  *  - "torrents_removed": a list of hashes of removed torrents
  *  - "labels": list of labels
  *  - "labels_removed": list of removed labels
- *  - "queueing": priority system usage flag
- *  - "server_state": map contains information about the status of the server
+ *  - "server_state": map contains information about the state of the server
  * The keys of the 'torrents' dictionary are hashes of torrents.
  * Each value of the 'torrents' dictionary contains map. The map can contain following keys:
  *  - "name": Torrent name
@@ -302,6 +304,7 @@ QByteArray btjson::getTorrents(QString filter, QString label,
  *  - "up_info_data: bytes uploaded
  *  - "up_info_speed: upload speed
  *  - "up_rate_limit: upload speed limit
+ *  - "queueing": priority system usage flag
  */
 QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData, QVariantMap &lastAcceptedData)
 {
@@ -321,14 +324,16 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
     }
 
     data["torrents"] = torrents;
-    data["queueing"] = QBtSession::instance()->isQueueingEnabled();
 
     QVariantList labels;
     foreach (QString s, Preferences::instance()->getTorrentLabels())
         labels << s;
 
     data["labels"] = labels;
-    data["server_state"] = getTranserInfoMap();
+
+    QVariantMap serverState = getTranserInfoMap();
+    serverState[KEY_SYNC_MAINDATA_QUEUEING] = QBtSession::instance()->isQueueingEnabled();
+    data["server_state"] = serverState;
 
     return json::toJson(generateSyncData(acceptedResponseId, data, lastAcceptedData, lastData));
 }

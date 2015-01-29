@@ -27,6 +27,7 @@ myTable = new dynamicTable();
 var updatePropertiesPanel = function(){};
 var updateMainData = function(){};
 var alternativeSpeedLimits = false;
+var queueing_enabled = true;
 
 selected_filter = getLocalStorageItem('selected_filter', 'all');
 selected_label = null;
@@ -153,19 +154,6 @@ window.addEvent('load', function () {
                         myTable.rows.erase();
                     if (response['rid'])
                         syncMainDataLastResponseId = response['rid'];
-                    if ('queueing' in response) {
-                        var queueing_enabled = response['queueing'];
-                        myTable.columns['priority'].force_hide = !queueing_enabled;
-                        myTable.updateColumn('priority');
-                        if (queueing_enabled) {
-                            $('queueingButtons').removeClass('invisible');
-                            $('queueingMenuItems').removeClass('invisible');
-                        }
-                        else {
-                            $('queueingButtons').addClass('invisible');
-                            $('queueingMenuItems').addClass('invisible');
-                        }
-                    }
                     if (response['torrents'])
                         for (var key in response['torrents']) {
                             response['torrents'][key]['hash'] = key;
@@ -220,6 +208,20 @@ window.addEvent('load', function () {
             $('connectionStatus').src = 'images/skin/firewalled.png';
         else
             $('connectionStatus').src = 'images/skin/disconnected.png';
+
+        if (queueing_enabled != serverState.queueing) {
+            queueing_enabled = serverState.queueing;
+            myTable.columns['priority'].force_hide = !queueing_enabled;
+            myTable.updateColumn('priority');
+            if (queueing_enabled) {
+                $('queueingButtons').removeClass('invisible');
+                $('queueingMenuItems').removeClass('invisible');
+            }
+            else {
+                $('queueingButtons').addClass('invisible');
+                $('queueingMenuItems').addClass('invisible');
+            }
+        }
     };
 
     var updateAltSpeedIcon = function(enabled) {
