@@ -29,6 +29,8 @@ function getLocalStorageItem(name, defaultVal) {
     return val;
 }
 
+var deleteFN = function() {};
+
 initializeWindows = function() {
 
     function addClickEvent(el, fn) {

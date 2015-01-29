@@ -352,11 +352,20 @@ window.addEvent('load', function () {
 
 function closeWindows() {
     MochaUI.closeAll();
-}
+};
 
-window.addEvent('keydown', function (event) {
-    if (event.key == 'a' && event.control) {
-        event.stop();
-        myTable.selectAll();
+var keyboardEvents = new Keyboard({
+    defaultEventType: 'keydown',
+    events: {
+        'ctrl+a': function(event) {
+            myTable.selectAll();
+            event.preventDefault();
+        },
+        'delete': function(event) {
+            deleteFN();
+            event.preventDefault();
+        }
     }
 });
+
+keyboardEvents.activate();
