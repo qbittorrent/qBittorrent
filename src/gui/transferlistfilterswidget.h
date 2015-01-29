@@ -43,77 +43,80 @@ QT_END_NAMESPACE
 class TransferListWidget;
 class TorrentModelItem;
 
-class LabelFiltersList: public QListWidget {
-  Q_OBJECT
+class LabelFiltersList: public QListWidget
+{
+    Q_OBJECT
 
 private:
-  QListWidgetItem *itemHover;
+    QListWidgetItem * itemHover;
 
 public:
-  LabelFiltersList(QWidget *parent);
+    LabelFiltersList(QWidget *parent);
 
-  // Redefine addItem() to make sure the list stays sorted
-  void addItem(QListWidgetItem *it);
+    // Redefine addItem() to make sure the list stays sorted
+    void addItem(QListWidgetItem *it);
 
-  QString labelFromRow(int row) const;
-  int rowFromLabel(QString label) const;
+    QString labelFromRow(int row) const;
+    int rowFromLabel(QString label) const;
 
 signals:
-  void torrentDropped(int label_row);
+    void torrentDropped(int label_row);
 
 protected:
-  void dragMoveEvent(QDragMoveEvent *event);
-  void dropEvent(QDropEvent *event);
-  void dragLeaveEvent(QDragLeaveEvent*);
-  void setItemHover(bool hover);
+    void dragMoveEvent(QDragMoveEvent *event);
+    void dropEvent(QDropEvent *event);
+    void dragLeaveEvent(QDragLeaveEvent*);
+    void setItemHover(bool hover);
 };
 
-class StatusFiltersWidget : public QListWidget {
-  Q_OBJECT
+class StatusFiltersWidget: public QListWidget
+{
+    Q_OBJECT
 
 public:
-  StatusFiltersWidget(QWidget *parent);
+    StatusFiltersWidget(QWidget *parent);
 
 protected:
-  QSize sizeHint() const;
+    QSize sizeHint() const;
 
 private:
-  bool m_shown;
+    bool m_shown;
 };
 
-class TransferListFiltersWidget: public QFrame {
-  Q_OBJECT
+class TransferListFiltersWidget: public QFrame
+{
+    Q_OBJECT
 
 private:
-  QHash<QString, int> customLabels;
-  StatusFiltersWidget* statusFilters;
-  LabelFiltersList* labelFilters;
-  QVBoxLayout* vLayout;
-  TransferListWidget *transferList;
-  int nb_labeled;
-  int nb_torrents;
+    QHash<QString, int> customLabels;
+    StatusFiltersWidget* statusFilters;
+    LabelFiltersList* labelFilters;
+    QVBoxLayout* vLayout;
+    TransferListWidget *transferList;
+    int nb_labeled;
+    int nb_torrents;
 
 public:
-  TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList);
-  ~TransferListFiltersWidget();
+    TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList);
+    ~TransferListFiltersWidget();
 
-  StatusFiltersWidget* getStatusFilters() const;
+    StatusFiltersWidget* getStatusFilters() const;
 
-  void saveSettings() const;
-  void loadSettings();
+    void saveSettings() const;
+    void loadSettings();
 
 protected slots:
-  void updateTorrentNumbers();
-  void torrentDropped(int row);
-  void addLabel(QString& label);
-  void showLabelMenu(QPoint);
-  void removeSelectedLabel();
-  void removeUnusedLabels();
-  void applyLabelFilter(int row);
-  void torrentChangedLabel(TorrentModelItem *torrentItem, QString old_label, QString new_label);
-  void handleNewTorrent(TorrentModelItem* torrentItem);
-  void torrentAboutToBeDeleted(TorrentModelItem* torrentItem);
-  void updateStickyLabelCounters();
+    void updateTorrentNumbers();
+    void torrentDropped(int row);
+    void addLabel(QString& label);
+    void showLabelMenu(QPoint);
+    void removeSelectedLabel();
+    void removeUnusedLabels();
+    void applyLabelFilter(int row);
+    void torrentChangedLabel(TorrentModelItem *torrentItem, QString old_label, QString new_label);
+    void handleNewTorrent(TorrentModelItem* torrentItem);
+    void torrentAboutToBeDeleted(TorrentModelItem* torrentItem);
+    void updateStickyLabelCounters();
 };
 
 #endif // TRANSFERLISTFILTERSWIDGET_H
