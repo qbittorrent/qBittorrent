@@ -274,7 +274,7 @@ initializeWindows = function() {
         }
     };
 
-    ['pause', 'resume', 'recheck'].each(function(item) {
+    ['pauseAll', 'resumeAll', 'pause', 'resume', 'recheck'].each(function(item) {
         addClickEvent(item, function(e) {
             new Event(e).stop();
             var h = myTable.selectedIds();
