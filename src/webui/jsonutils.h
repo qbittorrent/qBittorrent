@@ -42,23 +42,23 @@
 
 namespace json {
 
-inline QByteArray toJson(const QVariant& var)
-{
+    inline QByteArray toJson(const QVariant& var)
+    {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-  return QJsonDocument::fromVariant(var).toJson();
+        return QJsonDocument::fromVariant(var).toJson();
 #else
-  return QJson::Serializer().serialize(var);
+        return QJson::Serializer().serialize(var);
 #endif
-}
+    }
 
-inline QVariant fromJson(const QString& json)
-{
+    inline QVariant fromJson(const QString& json)
+    {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-  return QJsonDocument::fromJson(json.toUtf8()).toVariant();
+        return QJsonDocument::fromJson(json.toUtf8()).toVariant();
 #else
-  return QJson::Parser().parse(json.toUtf8());
+        return QJson::Parser().parse(json.toUtf8());
 #endif
-}
+    }
 
 }
 
