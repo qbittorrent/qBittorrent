@@ -28,6 +28,7 @@ var updatePropertiesPanel = function(){};
 var updateMainData = function(){};
 var alternativeSpeedLimits = false;
 var queueing_enabled = true;
+var syncMainDataTimerPeriod = 1500;
 
 selected_filter = getLocalStorageItem('selected_filter', 'all');
 selected_label = null;
@@ -174,7 +175,7 @@ window.addEvent('load', function () {
                     }
                 }
                 clearTimeout(syncMainDataTimer);
-                syncMainDataTimer = syncMainData.delay(1500);
+                syncMainDataTimer = syncMainData.delay(syncMainDataTimerPeriod);
             }
         }).send();
     };
@@ -228,6 +229,10 @@ window.addEvent('load', function () {
             alternativeSpeedLimits = serverState.use_alt_speed_limits;
             updateAltSpeedIcon(alternativeSpeedLimits);
         }
+
+        syncMainDataTimerPeriod = serverState.refresh_interval;
+        if (syncMainDataTimerPeriod < 500)
+            syncMainDataTimerPeriod = 500;
     };
 
     var updateAltSpeedIcon = function(enabled) {

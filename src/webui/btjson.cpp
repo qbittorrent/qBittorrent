@@ -147,6 +147,7 @@ static const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
 // Sync main data keys
 static const char KEY_SYNC_MAINDATA_QUEUEING[] = "queueing";
 static const char KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS[] = "use_alt_speed_limits";
+static const char KEY_SYNC_MAINDATA_REFRESH_INTERVAL[] = "refresh_interval";
 
 static const char KEY_FULL_UPDATE[] = "full_update";
 static const char KEY_RESPONSE_ID[] = "rid";
@@ -306,6 +307,7 @@ QByteArray btjson::getTorrents(QString filter, QString label,
  *  - "up_info_speed: upload speed
  *  - "up_rate_limit: upload speed limit
  *  - "queueing": priority system usage flag
+ *  - "refresh_interval": torrents table refresh interval
  */
 QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData, QVariantMap &lastAcceptedData)
 {
@@ -335,6 +337,7 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
     QVariantMap serverState = getTranserInfoMap();
     serverState[KEY_SYNC_MAINDATA_QUEUEING] = QBtSession::instance()->isQueueingEnabled();
     serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = Preferences::instance()->isAltBandwidthEnabled();
+    serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = Preferences::instance()->getRefreshInterval();
     data["server_state"] = serverState;
 
     return json::toJson(generateSyncData(acceptedResponseId, data, lastAcceptedData, lastData));
@@ -610,6 +613,7 @@ void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
         case QVariant::Bool:
         case QVariant::Double:
         case QVariant::ULongLong:
+        case QVariant::UInt:
             if (prevData[key] != data[key])
                 syncData[key] = data[key];
             break;
