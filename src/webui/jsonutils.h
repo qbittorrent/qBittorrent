@@ -45,9 +45,11 @@ namespace json {
     inline QByteArray toJson(const QVariant& var)
     {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-        return QJsonDocument::fromVariant(var).toJson();
+        return QJsonDocument::fromVariant(var).toJson(QJsonDocument::Compact);
 #else
-        return QJson::Serializer().serialize(var);
+        QJson::Serializer serializer;
+        serializer.setIndentMode(QJson::IndentCompact);
+        return serializer.serialize(var);
 #endif
     }
 
