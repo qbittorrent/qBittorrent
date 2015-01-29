@@ -39,6 +39,8 @@ QTorrentFilter::QTorrentFilter(QString filter, QString label)
         type_ = Completed;
     else if (filter == "paused")
         type_ = Paused;
+    else if (filter == "resumed")
+        type_ = Resumed;
     else if (filter == "active")
         type_ = Active;
     else if (filter == "inactive")
@@ -57,6 +59,8 @@ bool QTorrentFilter::apply(const QTorrentHandle& h) const
         return isTorrentCompleted(h);
     case Paused:
         return isTorrentPaused(h);
+    case Resumed:
+        return isTorrentResumed(h);
     case Active:
         return isTorrentActive(h);
     case Inactive:
@@ -96,6 +100,14 @@ bool QTorrentFilter::isTorrentPaused(const QTorrentHandle &h) const
     return state == QTorrentState::PausedDownloading
             || state == QTorrentState::PausedUploading
             || state == QTorrentState::Error;
+}
+
+bool QTorrentFilter::isTorrentResumed(const QTorrentHandle &h) const
+{
+    const QTorrentState state = h.torrentState();
+
+    return state != QTorrentState::PausedUploading
+            && state != QTorrentState::PausedDownloading;
 }
 
 bool QTorrentFilter::isTorrentActive(const QTorrentHandle &h) const

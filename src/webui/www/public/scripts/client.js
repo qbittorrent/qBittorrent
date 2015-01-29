@@ -96,6 +96,7 @@ window.addEvent('load', function () {
         $("downloading_filter").removeClass("selectedFilter");
         $("completed_filter").removeClass("selectedFilter");
         $("paused_filter").removeClass("selectedFilter");
+        $("resumed_filter").removeClass("selectedFilter");
         $("active_filter").removeClass("selectedFilter");
         $("inactive_filter").removeClass("selectedFilter");
         $(f + "_filter").addClass("selectedFilter");

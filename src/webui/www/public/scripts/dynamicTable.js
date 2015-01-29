@@ -261,6 +261,10 @@ var dynamicTable = new Class({
                     if (!~state.indexOf('paused'))
                         return false;
                     break;
+                case 'resumed':
+                    if (~state.indexOf('paused'))
+                        return false;
+                    break;
                 case 'active':
                     if ((state != 'uploading') && (state != 'downloading'))
                         return false;

@@ -40,6 +40,7 @@ public:
         Downloading,
         Completed,
         Paused,
+        Resumed,
         Active,
         Inactive
     };
@@ -55,6 +56,7 @@ private:
     bool isTorrentDownloading(const QTorrentHandle &h) const;
     bool isTorrentCompleted(const QTorrentHandle &h) const;
     bool isTorrentPaused(const QTorrentHandle &h) const;
+    bool isTorrentResumed(const QTorrentHandle &h) const;
     bool isTorrentActive(const QTorrentHandle &h) const;
     bool isTorrentInactive(const QTorrentHandle &h) const;
     bool torrentHasLabel(const QTorrentHandle &h) const;
