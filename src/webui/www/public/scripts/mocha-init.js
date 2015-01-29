@@ -30,6 +30,8 @@ function getLocalStorageItem(name, defaultVal) {
 }
 
 var deleteFN = function() {};
+var startFN = function() {};
+var pauseFN = function() {};
 
 initializeWindows = function() {
 

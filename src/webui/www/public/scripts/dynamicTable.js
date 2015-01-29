@@ -356,6 +356,17 @@ var dynamicTable = new Class({
                             myTable.selectRow(this.hash);
                         return true;
                     });
+                    tr.addEvent('dblclick', function (e) {
+                        e.stop();
+                        myTable.selectRow(this.hash);
+                        var row = myTable.rows.get(this.hash);
+                        var state = row['full_data'].state;
+                        if (~state.indexOf('paused'))
+                            startFN();
+                        else
+                            pauseFN();
+                        return true;
+                    });
                     tr.addEvent('click', function (e) {
                         e.stop();
                         if (e.control) {
