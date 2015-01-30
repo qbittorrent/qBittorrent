@@ -1,4 +1,5 @@
 src/geoip/GeoIP.dat
+src/geoip/GeoIP.dat.gz
 src/qbittorrent
 qbittorrent.pro.user*
 conf.pri
@@ -13,6 +14,10 @@ qrc_*.cpp
 ui_*.h
 *.moc
 src/lang/qbittorrent_*.qm
+.DS_Store
+.qmake.stash
+src/qbittorrent.app
+*.dmg
 #Autotools junk
 aclocal.m4
 autom4te.cache/*
