@@ -102,6 +102,7 @@ static const char KEY_TORRENT_STATE[] = "state";
 static const char KEY_TORRENT_SEQUENTIAL_DOWNLOAD[] = "seq_dl";
 static const char KEY_TORRENT_FIRST_LAST_PIECE_PRIO[] = "f_l_piece_prio";
 static const char KEY_TORRENT_LABEL[] = "label";
+static const char KEY_TORRENT_SUPER_SEEDING[] = "super_seeding";
 
 // Tracker keys
 static const char KEY_TRACKER_URL[] = "url";
@@ -565,6 +566,7 @@ QVariantMap toMap(const QTorrentHandle& h)
     if (h.has_metadata())
         ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = h.first_last_piece_first();
     ret[KEY_TORRENT_LABEL] = TorrentPersistentData::instance()->getLabel(h.hash());
+    ret[KEY_TORRENT_SUPER_SEEDING] = status.super_seeding;
 
     return ret;
 }

@@ -166,6 +166,21 @@ initializeWindows = function() {
         }
     };
 
+    setSuperSeedingFN = function(val) {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            new Request({
+                url: 'command/setSuperSeeding',
+                method: 'post',
+                data: {
+                    value: val,
+                    hashes: h.join("|")
+                }
+            }).send();
+            updateMainData();
+        }
+    };
+
     globalDownloadLimitFN = function() {
         new MochaUI.Window({
             id: 'downloadLimitPage',
