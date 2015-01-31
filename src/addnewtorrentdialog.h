@@ -69,6 +69,7 @@ private slots:
   void renameSelectedFile();
   void setdialogPosition();
   void updateMetadata(const QTorrentHandle& h);
+  void browseButton_clicked();
 
 protected slots:
   virtual void accept();
@@ -101,6 +102,7 @@ private:
   bool m_hasRenamedFile;
   QShortcut *editHotkey;
   QByteArray m_headerState;
+  int m_oldIndex;
 };
 
 #endif // ADDNEWTORRENTDIALOG_H
