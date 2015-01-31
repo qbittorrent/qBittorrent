@@ -217,13 +217,15 @@ bool TransferListSortModel::matchStatusFilter(int sourceRow, const QModelIndex &
   case TorrentFilter::COMPLETED:
     return (state == TorrentModelItem::STATE_SEEDING || state == TorrentModelItem::STATE_STALLED_UP
             || state == TorrentModelItem::STATE_PAUSED_UP || state == TorrentModelItem::STATE_CHECKING_UP
-            || state == TorrentModelItem::STATE_QUEUED_UP);
+            || state == TorrentModelItem::STATE_PAUSED_MISSING || state == TorrentModelItem::STATE_QUEUED_UP);
 
   case TorrentFilter::PAUSED:
-    return (state == TorrentModelItem::STATE_PAUSED_UP || state == TorrentModelItem::STATE_PAUSED_DL);
+    return (state == TorrentModelItem::STATE_PAUSED_UP || state == TorrentModelItem::STATE_PAUSED_DL
+            || state == TorrentModelItem::STATE_PAUSED_MISSING);
 
   case TorrentFilter::RESUMED:
-    return (state != TorrentModelItem::STATE_PAUSED_UP && state != TorrentModelItem::STATE_PAUSED_DL);
+    return (state != TorrentModelItem::STATE_PAUSED_UP && state != TorrentModelItem::STATE_PAUSED_DL
+            && state != TorrentModelItem::STATE_PAUSED_MISSING);
 
   case TorrentFilter::ACTIVE:
     if (state == TorrentModelItem::STATE_STALLED_DL) {

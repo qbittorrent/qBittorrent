@@ -100,8 +100,12 @@ void TorrentModelItem::refreshStatus(libtorrent::torrent_status const& status) {
 TorrentModelItem::State TorrentModelItem::state() const {
   try {
     // Pause or Queued
-    if (m_torrent.is_paused(m_lastStatus))
-      return m_torrent.is_seed(m_lastStatus) ? STATE_PAUSED_UP : STATE_PAUSED_DL;
+    if (m_torrent.is_paused(m_lastStatus)) {
+      if (TorrentPersistentData::instance()->getHasMissingFiles(misc::toQString(m_lastStatus.info_hash)))
+        return STATE_PAUSED_MISSING;
+      else
+        return m_torrent.is_seed(m_lastStatus) ? STATE_PAUSED_UP : STATE_PAUSED_DL;
+    }
 
     if (m_torrent.is_queued(m_lastStatus)
         && m_lastStatus.state != torrent_status::queued_for_checking
@@ -158,6 +162,7 @@ QIcon TorrentModelItem::getIconByState(State state) {
   case STATE_QUEUED_FASTCHECK:
     return get_checking_icon();
   case STATE_INVALID:
+  case STATE_PAUSED_MISSING:
     return get_error_icon();
   default:
     Q_ASSERT(false);
@@ -178,6 +183,7 @@ QColor TorrentModelItem::getColorByState(State state) {
     return QColor(255, 165, 0); // orange
   case STATE_PAUSED_DL:
   case STATE_PAUSED_UP:
+  case STATE_PAUSED_MISSING:
     return QColor(255, 0, 0); // red
   case STATE_QUEUED_DL:
   case STATE_QUEUED_UP:
@@ -551,6 +557,7 @@ TorrentStatusReport TorrentModel::getTorrentStatusReport() const
       ++report.nb_seeding;
       break;
     case TorrentModelItem::STATE_PAUSED_UP:
+    case TorrentModelItem::STATE_PAUSED_MISSING:
       ++report.nb_paused;
     case TorrentModelItem::STATE_STALLED_UP:
     case TorrentModelItem::STATE_CHECKING_UP:

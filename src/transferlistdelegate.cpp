@@ -101,6 +101,9 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       case TorrentModelItem::STATE_PAUSED_UP:
         display = tr("Paused");
         break;
+      case TorrentModelItem::STATE_PAUSED_MISSING:
+        display = tr("Missing Files");
+        break;
       case TorrentModelItem::STATE_QUEUED_DL:
       case TorrentModelItem::STATE_QUEUED_UP:
         display = tr("Queued", "i.e. torrent is queued");
