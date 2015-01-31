@@ -3256,7 +3256,7 @@ IFS=$ac_save_IFS
 case $host_os in *\ *) host_os=`echo "$host_os" | sed 's/ /-/g'`;; esac
 
 
-am__api_version='1.14'
+am__api_version='1.15'
 
 # Find a good install program.  We prefer a C program (faster),
 # so one script is as good as another.  But avoid the broken or
@@ -3445,7 +3445,7 @@ else
 $as_echo "$as_me: WARNING: 'missing' script is too old or missing" >&2;}
 fi
 
-if test x"${install_sh}" != xset; then
+if test x"${install_sh+set}" != xset; then
   case $am_aux_dir in
   *\ * | *\	*)
     install_sh="\${SHELL} '$am_aux_dir/install-sh'" ;;
@@ -3836,8 +3836,8 @@ MAKEINFO=${MAKEINFO-"${am_missing_run}makeinfo"}
 # <http://lists.gnu.org/archive/html/automake/2012-07/msg00014.html>
 mkdir_p='$(MKDIR_P)'
 
-# We need awk for the "check" target.  The system "awk" is bad on
-# some platforms.
+# We need awk for the "check" target (and possibly the TAP driver).  The
+# system "awk" is bad on some platforms.
 # Always define AMTAR for backward compatibility.  Yes, it's still used
 # in the wild :-(  We should find a proper way to deprecate it ...
 AMTAR='$${TAR-tar}'
@@ -4445,8 +4445,6 @@ fi
 
 fi
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt4 qmake >= 4.8.0" >&5
-$as_echo_n "checking for Qt4 qmake >= 4.8.0... " >&6; }
 as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake" | $as_tr_sh`
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake" >&5
 $as_echo_n "checking for $QT_QMAKE/qmake... " >&6; }
@@ -4493,6 +4491,9 @@ fi
 
 fi
 
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt4 qmake >= 4.8.0" >&5
+$as_echo_n "checking for Qt4 qmake >= 4.8.0... " >&6; }
 if test "x$QT_QMAKE" != "x"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: $QT_QMAKE" >&5
 $as_echo "$QT_QMAKE" >&6; }
@@ -4537,8 +4538,6 @@ fi
 
 fi
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.2.0" >&5
-$as_echo_n "checking for Qt5 qmake >= 5.2.0... " >&6; }
 as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake" | $as_tr_sh`
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake" >&5
 $as_echo_n "checking for $QT_QMAKE/qmake... " >&6; }
@@ -4585,6 +4584,9 @@ fi
 
 fi
 
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.2.0" >&5
+$as_echo_n "checking for Qt5 qmake >= 5.2.0... " >&6; }
 if test "x$QT_QMAKE" != "x"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: $QT_QMAKE" >&5
 $as_echo "$QT_QMAKE" >&6; }
