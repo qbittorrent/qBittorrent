@@ -262,10 +262,10 @@ void AddNewTorrentDialog::saveSavePathHistory() const
         history_dirs << QDir(dir);
     if (!history_dirs.contains(selected_save_path)) {
         // Add save path to history
-        history << selected_save_path.absolutePath();
+        history.push_front(selected_save_path.absolutePath());
         // Limit list size
         if (history.size() > 8)
-            history.removeFirst();
+            history.pop_back();
         // Save history
         pref->setAddNewTorrentDialogPathHistory(history);
     }
