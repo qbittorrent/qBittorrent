@@ -153,10 +153,13 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
   if (!h.is_valid()) return;
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   QStringList selectedPeerIPs;
+  QStringList selectedPeerIPPort;
   foreach (const QModelIndex &index, selectedIndexes) {
     int row = m_proxyModel->mapToSource(index).row();
     QString myip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
+    QString myport = m_listModel->data(m_listModel->index(row, PeerListDelegate::PORT)).toString();
     selectedPeerIPs << myip;
+    selectedPeerIPPort << myip + ":" + myport;
   }
   // Add Peer Action
   QAction *addPeerAct = 0;
@@ -170,9 +173,9 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
   QAction *dlLimitAct = 0;
 #endif
   QAction *banAct = 0;
-  QAction *copyIPAct = 0;
+  QAction *copyPeerAct = 0;
   if (!selectedPeerIPs.isEmpty()) {
-    copyIPAct = menu.addAction(IconProvider::instance()->getIcon("edit-copy"), tr("Copy IP"));
+    copyPeerAct = menu.addAction(IconProvider::instance()->getIcon("edit-copy"), tr("Copy selected"));
     menu.addSeparator();
 #if LIBTORRENT_VERSION_NUM < 10000
     dlLimitAct = menu.addAction(QIcon(":/Icons/skin/download.png"), tr("Limit download rate..."));
@@ -213,11 +216,11 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
     banSelectedPeers(selectedPeerIPs);
     return;
   }
-  if (act == copyIPAct) {
+  if (act == copyPeerAct) {
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-    QApplication::clipboard()->setText(selectedPeerIPs.join("\r\n"));
+    QApplication::clipboard()->setText(selectedPeerIPPort.join("\r\n"));
 #else
-    QApplication::clipboard()->setText(selectedPeerIPs.join("\n"));
+    QApplication::clipboard()->setText(selectedPeerIPPort.join("\n"));
 #endif
   }
 }
