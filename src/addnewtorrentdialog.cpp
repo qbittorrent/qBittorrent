@@ -212,6 +212,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
         return false;
     }
 
+    ui->lblhash->setText(m_hash);
     setupTreeview();
     return true;
 }
@@ -247,6 +248,7 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
     HiddenData::addData(m_hash);
     QBtSession::instance()->addMagnetUri(m_url, false);
     setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
+    ui->lblhash->setText(m_hash);
 
     return true;
 }

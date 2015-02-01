@@ -137,7 +137,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0" columnstretch="0,1">
+       <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0" columnstretch="0,1">
         <item row="0" column="0">
          <widget class="QLabel" name="label">
           <property name="text">
@@ -177,6 +177,20 @@
          <widget class="QLabel" name="date_lbl">
           <property name="text">
            <string notr="true">02/03/2012 20:30</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Info Hash:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLabel" name="lblhash">
+          <property name="textInteractionFlags">
+           <set>Qt::TextSelectableByMouse</set>
           </property>
          </widget>
         </item>
