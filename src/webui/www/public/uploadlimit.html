@@ -20,10 +20,10 @@
     <div class="clear"></div>
 </div>
 <script type="text/javascript">
-    var hash = new URI().getData('hash');
+    var hashes = new URI().getData('hashes').split('|');
     setUpLimit = function() {
         var limit = $("uplimitUpdatevalue").value.toInt() * 1024;
-        if (hash == "global") {
+        if (hashes[0] == "global") {
             new Request({
                 url: 'command/setGlobalUpLimit',
                 method: 'post',
@@ -38,10 +38,10 @@
         }
         else {
             new Request({
-                url: 'command/setTorrentUpLimit',
+                url: 'command/setTorrentsUpLimit',
                 method: 'post',
                 data: {
-                    'hash': hash,
+                    'hashes': hashes.join('|'),
                     'limit': limit
                 },
                 onComplete: function() {
@@ -55,7 +55,7 @@
 </div>
 
 <script type="text/javascript">
-    MochaUI.addUpLimitSlider(hash);
+    MochaUI.addUpLimitSlider(hashes);
 </script>
 
 </body>

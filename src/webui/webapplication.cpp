@@ -94,9 +94,9 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(command, getGlobalDlLimit);
     ADD_ACTION(command, setGlobalUpLimit);
     ADD_ACTION(command, setGlobalDlLimit);
-    ADD_ACTION(command, getTorrentUpLimit);
+    ADD_ACTION(command, getTorrentsUpLimit);
     ADD_ACTION(command, getTorrentDlLimit);
-    ADD_ACTION(command, setTorrentUpLimit);
+    ADD_ACTION(command, setTorrentsUpLimit);
     ADD_ACTION(command, setTorrentDlLimit);
     ADD_ACTION(command, alternativeSpeedLimitsEnabled);
     ADD_ACTION(command, toggleAlternativeSpeedLimits);
@@ -454,15 +454,12 @@ void WebApplication::action_command_setGlobalDlLimit()
         Preferences::instance()->setGlobalDownloadLimit(limit / 1024.);
 }
 
-void WebApplication::action_command_getTorrentUpLimit()
+void WebApplication::action_command_getTorrentsUpLimit()
 {
     CHECK_URI(0);
-    CHECK_PARAMETERS("hash");
-    QString hash = request().posts["hash"];
-    QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
-
-    if (h.is_valid())
-        print(QByteArray::number(h.upload_limit()));
+    CHECK_PARAMETERS("hashes");
+    QStringList hashes = request().posts["hashes"].split("|");
+    print(btjson::getTorrentsRatesLimits(hashes, false), Http::CONTENT_TYPE_JS);
 }
 
 void WebApplication::action_command_getTorrentDlLimit()
@@ -476,17 +473,21 @@ void WebApplication::action_command_getTorrentDlLimit()
         print(QByteArray::number(h.download_limit()));
 }
 
-void WebApplication::action_command_setTorrentUpLimit()
+void WebApplication::action_command_setTorrentsUpLimit()
 {
     CHECK_URI(0);
-    CHECK_PARAMETERS("hash" << "limit");
-    QString hash = request().posts["hash"];
-    qlonglong limit = request().posts["limit"].toLongLong();
-    if (limit == 0) limit = -1;
-    QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+    CHECK_PARAMETERS("hashes" << "limit");
 
-    if (h.is_valid())
+    qlonglong limit = request().posts["limit"].toLongLong();
+    if (limit == 0)
+        limit = -1;
+
+    QStringList hashes = request().posts["hashes"].split("|");
+    foreach (const QString &hash, hashes) {
+        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+        if (h.is_valid())
         h.set_upload_limit(limit);
+    }
 }
 
 void WebApplication::action_command_setTorrentDlLimit()

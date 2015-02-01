@@ -14,7 +14,7 @@ Requires:
 
 */
 MochaUI.extend({
-    addUpLimitSlider: function(hash) {
+    addUpLimitSlider: function(hashes) {
         if ($('uplimitSliderarea')) {
             var windowOptions = MochaUI.Windows.windowOptions;
             var sliderFirst = true;
@@ -31,15 +31,15 @@ MochaUI.extend({
                             maximum = tmp / 1024.
                         }
                         else {
-                            if (hash == "global")
+                            if (hashes[0] == "global")
                                 maximum = 10000;
                             else
                                 maximum = 1000;
                         }
                     }
-                    // Get torrent upload limit
+                    // Get torrents upload limit
                     // And create slider
-                    if (hash == 'global') {
+                    if (hashes[0] == 'global') {
                         var up_limit = maximum;
                         if (up_limit < 0) up_limit = 0;
                         maximum = 10000;
@@ -69,15 +69,21 @@ MochaUI.extend({
                         }
                     }
                     else {
-                        var req = new Request({
-                            url: 'command/getTorrentUpLimit',
+                        var req = new Request.JSON({
+                            url: 'command/getTorrentsUpLimit',
+                            noCache : true,
                             method: 'post',
                             data: {
-                                hash: hash
+                                hashes: hashes.join('|')
                             },
                             onSuccess: function(data) {
                                 if (data) {
-                                    var up_limit = data.toInt();
+                                    var up_limit = data[hashes[0]];
+                                    for(var key in data)
+                                        if (up_limit != data[key]) {
+                                            up_limit = 0;
+                                            break;
+                                        }
                                     if (up_limit < 0) up_limit = 0;
                                     var mochaSlide = new Slider($('uplimitSliderarea'), $('uplimitSliderknob'), {
                                         steps: maximum,

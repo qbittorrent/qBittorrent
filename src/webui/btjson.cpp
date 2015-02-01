@@ -539,6 +539,21 @@ QVariantMap getTranserInfoMap()
     return map;
 }
 
+QByteArray btjson::getTorrentsRatesLimits(QStringList &hashes, bool downloadLimits)
+{
+    QVariantMap map;
+
+    foreach (const QString &hash, hashes) {
+        int limit = -1;
+        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+        if (h.is_valid())
+            limit = downloadLimits ? h.download_limit() : h.upload_limit();
+        map[hash] = limit;
+    }
+
+   return json::toJson(map);
+}
+
 QVariantMap toMap(const QTorrentHandle& h)
 {
     libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters);
