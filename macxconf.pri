@@ -10,8 +10,7 @@ exists($$OUT_PWD/../conf.pri) {
 }
 
 LIBS += -framework Carbon -framework IOKit
-QMAKE_CXXFLAGS += -stdlib=libc++
-QMAKE_LFLAGS += -stdlib=libc++
+CONFIG += c++11
 
 document_icon.path = Contents/Resources
 document_icon.files = mac/qBitTorrentDocument.icns
