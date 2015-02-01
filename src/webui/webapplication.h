@@ -69,9 +69,9 @@ private:
     void action_command_setGlobalUpLimit();
     void action_command_setGlobalDlLimit();
     void action_command_getTorrentsUpLimit();
-    void action_command_getTorrentDlLimit();
+    void action_command_getTorrentsDlLimit();
     void action_command_setTorrentsUpLimit();
-    void action_command_setTorrentDlLimit();
+    void action_command_setTorrentsDlLimit();
     void action_command_alternativeSpeedLimitsEnabled();
     void action_command_toggleAlternativeSpeedLimits();
     void action_command_toggleSequentialDownload();

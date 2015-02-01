@@ -118,7 +118,7 @@ MochaUI.extend({
         }
     },
 
-    addDlLimitSlider: function(hash) {
+    addDlLimitSlider: function(hashes) {
         if ($('dllimitSliderarea')) {
             var windowOptions = MochaUI.Windows.windowOptions;
             var sliderFirst = true;
@@ -135,15 +135,15 @@ MochaUI.extend({
                             maximum = tmp / 1024.
                         }
                         else {
-                            if (hash == "global")
+                            if (hashes[0] == "global")
                                 maximum = 10000;
                             else
                                 maximum = 1000;
                         }
                     }
-                    // Get torrent download limit
+                    // Get torrents download limit
                     // And create slider
-                    if (hash == "global") {
+                    if (hashes[0] == 'global') {
                         var dl_limit = maximum;
                         if (dl_limit < 0) dl_limit = 0;
                         maximum = 10000;
@@ -173,15 +173,21 @@ MochaUI.extend({
                         }
                     }
                     else {
-                        var req = new Request({
-                            url: 'command/getTorrentDlLimit',
+                        var req = new Request.JSON({
+                            url: 'command/getTorrentsDlLimit',
+                            noCache : true,
                             method: 'post',
                             data: {
-                                hash: hash
+                                hashes: hashes.join('|')
                             },
                             onSuccess: function(data) {
                                 if (data) {
-                                    var dl_limit = data.toInt();
+                                    var dl_limit = data[hashes[0]];
+                                    for(var key in data)
+                                        if (dl_limit != data[key]) {
+                                            dl_limit = 0;
+                                            break;
+                                        }
                                     if (dl_limit < 0) dl_limit = 0;
                                     var mochaSlide = new Slider($('dllimitSliderarea'), $('dllimitSliderknob'), {
                                         steps: maximum,
