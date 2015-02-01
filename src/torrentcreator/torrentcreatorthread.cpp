@@ -83,7 +83,7 @@ void TorrentCreatorThread::sendProgressSignal(int progress) {
 
 void TorrentCreatorThread::run() {
   emit updateProgress(0);
-  QString creator_str("qBittorrent "VERSION);
+  QString creator_str("qBittorrent " VERSION);
   try {
     file_storage fs;
     // Adding files to the torrent

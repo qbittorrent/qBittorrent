@@ -69,7 +69,7 @@ class about : public QDialog, private Ui::AboutDlg{
       // Set icons
       logo->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/qbittorrent22.png")));
       //Title
-      lb_name->setText(QString::fromUtf8("<b><h1>qBittorrent")+QString::fromUtf8(" "VERSION"</h1></b>"));
+      lb_name->setText(QString::fromUtf8("<b><h1>qBittorrent")+QString::fromUtf8(" " VERSION"</h1></b>"));
       // Thanks
       QString thanks_txt;
       thanks_txt += QString::fromUtf8("<p>I would first like to thank sourceforge.net for hosting qBittorrent project and for their support.</p>");

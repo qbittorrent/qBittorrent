@@ -10,6 +10,7 @@ exists($$OUT_PWD/../conf.pri) {
 }
 
 LIBS += -framework Carbon -framework IOKit
+CONFIG += c++11
 
 document_icon.path = Contents/Resources
 document_icon.files = mac/qBitTorrentDocument.icns
@@ -19,7 +20,7 @@ qt_conf.path = Contents/Resources
 qt_conf.files = mac/qt.conf
 QMAKE_BUNDLE_DATA += qt_conf
 
-qt_translations.path = Contents/MacOS/translations
+qt_translations.path = Contents/translations
 qt_translations.files = qt-translations/qt_ar.qm \
                         qt-translations/qt_bg.qm \
                         qt-translations/qt_ca.qm \
