@@ -1226,16 +1226,18 @@ public:
   }
 
 #ifdef Q_WS_WIN
-  static QString getPythonPath() {
+  static QString Preferences::getPythonPath()
+  {
     QString path = pythonSearchReg(USER);
-    if (path.isEmpty())
-      path = pythonSearchReg(SYSTEM_32BIT);
-    else return path;
+    if (!path.isEmpty())
+      return path;
 
-    if (path.isEmpty())
-      path = pythonSearchReg(SYSTEM_64BIT);
-    else return path;
+    path = pythonSearchReg(SYSTEM_32BIT);
+    if (!path.isEmpty())
+      return path;
 
+
+    path = pythonSearchReg(SYSTEM_64BIT);
     if (!path.isEmpty())
       return path;
 
@@ -1243,10 +1245,11 @@ public:
     QStringList supported_versions;
     supported_versions << "32" << "31" << "30" << "27" << "26" << "25";
     foreach (const QString &v, supported_versions) {
-      if (QFile::exists("C:/Python"+v+"/python.exe"))
-        return "C:\\Python"+v;
+      if (QFile::exists("C:/Python" + v + "/python.exe"))
+        return "C:/Python" + v;
     }
-    return QString::null;
+
+    return QString();
   }
 
   bool neverCheckFileAssoc() const {
@@ -1361,120 +1364,123 @@ public:
 
 #ifdef Q_OS_WIN
 private:
-  enum REG_SEARCH_TYPE {USER, SYSTEM_32BIT, SYSTEM_64BIT};
-  
-  static QStringList getRegSubkeys(const HKEY &handle) {
-    QStringList keys;
-    DWORD subkeys_count = 0;
-    DWORD max_subkey_len = 0;
-    long res = ::RegQueryInfoKey(handle, NULL, NULL, NULL, &subkeys_count, &max_subkey_len, NULL, NULL, NULL, NULL, NULL, NULL);
-    if (res == ERROR_SUCCESS) {
-      max_subkey_len++; //For null character
-      LPTSTR key_name = new TCHAR[max_subkey_len];
+  enum REG_SEARCH_TYPE
+  {
+    USER,
+    SYSTEM_32BIT,
+    SYSTEM_64BIT
+  };
 
-      for (uint i=0; i<subkeys_count; i++) {
-        res = ::RegEnumKeyEx(handle, 0, key_name, &max_subkey_len, NULL, NULL, NULL, NULL);
+  static QStringList getRegSubkeys(HKEY handle)
+  {
+    QStringList keys;
+
+    DWORD cSubKeys = 0;
+    DWORD cMaxSubKeyLen = 0;
+    LONG res = ::RegQueryInfoKeyW(handle, NULL, NULL, NULL, &cSubKeys, &cMaxSubKeyLen, NULL, NULL, NULL, NULL, NULL, NULL);
+
+    if (res == ERROR_SUCCESS) {
+      cMaxSubKeyLen++; // For null character
+      LPWSTR lpName = new WCHAR[cMaxSubKeyLen];
+      DWORD cName;
+
+      for (DWORD i = 0; i < cSubKeys; ++i) {
+        cName = cMaxSubKeyLen;
+        res = ::RegEnumKeyExW(handle, 0, lpName, &cName, NULL, NULL, NULL, NULL);
         if (res == ERROR_SUCCESS)
-          keys.push_back(QString::fromWCharArray(key_name));
+          keys.push_back(QString::fromWCharArray(lpName));
       }
-      delete[] key_name;
+
+      delete[] lpName;
     }
 
     return keys;
   }
 
-  static QString getRegValue(const HKEY &handle, const QString &name = QString()) {
-    QString end_result;
-    DWORD type = 0;
-    DWORD size = 0;
-    DWORD array_size = 0;
+  static QString getRegValue(HKEY handle, const QString &name = QString())
+  {
+    QString result;
 
-    LPTSTR value_name = NULL;
+    DWORD type = 0;
+    DWORD cbData = 0;
+    LPWSTR lpValueName = NULL;
     if (!name.isEmpty()) {
-      value_name = new TCHAR[name.size()+1];
-      name.toWCharArray(value_name);
-      value_name[name.size()] = '\0';
+      lpValueName = new WCHAR[name.size() + 1];
+      name.toWCharArray(lpValueName);
+      lpValueName[name.size()] = 0;
     }
 
     // Discover the size of the value
-    ::RegQueryValueEx(handle, value_name, NULL, &type, NULL, &size);
-    array_size = size / sizeof(TCHAR);
-    if (size % sizeof(TCHAR))
-      array_size++;
-    array_size++; //For null character
-    LPTSTR value = new TCHAR[array_size];
+    ::RegQueryValueExW(handle, lpValueName, NULL, &type, NULL, &cbData);
+    DWORD cBuffer = (cbData / sizeof(WCHAR)) + 1;
+    LPWSTR lpData = new WCHAR[cBuffer];
+    LONG res = ::RegQueryValueExW(handle, lpValueName, NULL, &type, (LPBYTE)lpData, &cbData);
+    if (lpValueName)
+      delete[] lpValueName;
 
-    long res = ::RegQueryValueEx(handle, value_name, NULL, &type, (LPBYTE)value, &size);
     if (res == ERROR_SUCCESS) {
-      value[array_size] = '\0';
-      end_result = QString::fromWCharArray(value);
+      lpData[cBuffer] = 0;
+      result = QString::fromWCharArray(lpData);
     }
+    delete[] lpData;
 
-    if (value_name)
-      delete[] value_name;
-    if (value)
-      delete[] value;
-
-    return end_result;
+    return result;
   }
 
-  static QString pythonSearchReg(const REG_SEARCH_TYPE type) {
-    HKEY key_handle1;
-    long res = 0;
+  static QString pythonSearchReg(const REG_SEARCH_TYPE type)
+  {
+    HKEY hkRoot;
+    if (type == USER)
+      hkRoot = HKEY_CURRENT_USER;
+    else
+      hkRoot = HKEY_LOCAL_MACHINE;
 
-    switch (type) {
-    case USER:
-      res = ::RegOpenKeyEx(HKEY_CURRENT_USER, TEXT("SOFTWARE\\Python\\PythonCore"), 0, KEY_READ, &key_handle1);
-      break;
-    case SYSTEM_32BIT:
-      res = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("SOFTWARE\\Python\\PythonCore"), 0, KEY_READ|KEY_WOW64_32KEY, &key_handle1);
-      break;
-    case SYSTEM_64BIT:
-      res = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("SOFTWARE\\Python\\PythonCore"), 0, KEY_READ|KEY_WOW64_64KEY, &key_handle1);
-      break;
-    }
+    REGSAM samDesired = KEY_READ;
+    if (type == SYSTEM_32BIT)
+      samDesired |= KEY_WOW64_32KEY;
+    else if (type == SYSTEM_64BIT)
+      samDesired |= KEY_WOW64_64KEY;
+
+    QString path;
+    LONG res = 0;
+    HKEY hkPythonCore;
+    res = ::RegOpenKeyExW(hkRoot, L"SOFTWARE\\Python\\PythonCore", 0, samDesired, &hkPythonCore);
 
     if (res == ERROR_SUCCESS) {
-      QStringList versions = getRegSubkeys(key_handle1);
+      QStringList versions = getRegSubkeys(hkPythonCore);
       qDebug("Python versions nb: %d", versions.size());
       versions.sort();
 
-      while(!versions.empty()) {
-        const QString version = versions.takeLast()+"\\InstallPath";
-        HKEY key_handle2;
-        LPTSTR subkey = new TCHAR[version.size()+1];
-        version.toWCharArray(subkey);
-        subkey[version.size()] = '\0';
+      bool found = false;
+      while(!found && !versions.empty()) {
+        const QString version = versions.takeLast() + "\\InstallPath";
+        LPWSTR lpSubkey = new WCHAR[version.size() + 1];
+        version.toWCharArray(lpSubkey);
+        lpSubkey[version.size()] = 0;
 
-        switch (type) {
-        case USER:
-          res = ::RegOpenKeyEx(key_handle1, subkey, 0, KEY_READ, &key_handle2);
-          break;
-        case SYSTEM_32BIT:
-          res = ::RegOpenKeyEx(key_handle1, subkey, 0, KEY_READ|KEY_WOW64_32KEY, &key_handle2);
-          break;
-        case SYSTEM_64BIT:
-          res = ::RegOpenKeyEx(key_handle1, subkey, 0, KEY_READ|KEY_WOW64_64KEY, &key_handle2);
-          break;
-        }
+        HKEY hkInstallPath;
+        res = ::RegOpenKeyExW(hkPythonCore, lpSubkey, 0, samDesired, &hkInstallPath);
+        delete[] lpSubkey;
 
-        delete[] subkey;
         if (res == ERROR_SUCCESS) {
           qDebug("Detected possible Python v%s location", qPrintable(version));
-          QString path = getRegValue(key_handle2);
-          ::RegCloseKey(key_handle2);
+          path = getRegValue(hkInstallPath);
+          ::RegCloseKey(hkInstallPath);
+
           if (!path.isEmpty() && QDir(path).exists("python.exe")) {
             qDebug("Found python.exe at %s", qPrintable(path));
-            ::RegCloseKey(key_handle1);
-            return path;
+            found = true;
           }
         }
-        else
-          ::RegCloseKey(key_handle2);
       }
+
+      if (!found)
+        path = QString();
+
+      ::RegCloseKey(hkPythonCore);
     }
-    ::RegCloseKey(key_handle1);
-    return QString::null;
+
+    return path;
   }
 #endif
 };
