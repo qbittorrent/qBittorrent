@@ -271,7 +271,7 @@ window.addEvent('load', function () {
             $('speedInBrowserTitleBarLink').firstChild.style.opacity = '1';
         else
             $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
-        updateMainData();
+        processServerState();
     });
 
     new MochaUI.Panel({
