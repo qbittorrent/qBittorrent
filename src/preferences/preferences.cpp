@@ -1995,3 +1995,13 @@ void Preferences::setHostNameCookies(const QString &host_name, const QList<QByte
   hosts_table.insert(host_name, raw_cookies);
   setValue("Rss/hosts_cookies", hosts_table);
 }
+
+uint Preferences::endBlockSize() const {
+  return value(QString::fromUtf8("Preferences/Advanced/EndBlockSize"), 2).toUInt();
+}
+
+void Preferences::setEndBlockSize(uint val) {
+  setValue(QString::fromUtf8("Preferences/Advanced/EndBlockSize"), val);
+}
+
+

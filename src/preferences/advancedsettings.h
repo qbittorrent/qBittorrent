@@ -22,13 +22,15 @@ enum AdvSettingsRows {DISK_CACHE, DISK_CACHE_TTL, OS_CACHE, SAVE_RESUME_DATA_INT
                     #endif
                       CONFIRM_DELETE_TORRENT, TRACKER_EXCHANGE,
                       ANNOUNCE_ALL_TRACKERS,
+                      END_BLOCK_SIZE,
                       ROW_COUNT};
 
 class AdvancedSettings: public QTableWidget {
   Q_OBJECT
 
 private:
-  QSpinBox spin_cache, spin_save_resume_data_interval, outgoing_ports_min, outgoing_ports_max, spin_list_refresh, spin_maxhalfopen, spin_tracker_port;
+  QSpinBox spin_cache, spin_save_resume_data_interval, outgoing_ports_min, outgoing_ports_max, spin_list_refresh, spin_maxhalfopen, spin_tracker_port,
+  spin_end_block_size;
   QCheckBox cb_os_cache, cb_ignore_limits_lan, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
   cb_super_seeding, cb_program_notifications, cb_tracker_status, cb_confirm_torrent_deletion,
   cb_enable_tracker_ext, cb_listen_ipv6;
@@ -71,6 +73,8 @@ public slots:
     // Disk write cache
     pref->setDiskCacheSize(spin_cache.value());
     pref->setDiskCacheTTL(spin_cache_ttl.value());
+    // End block size
+    pref->setEndBlockSize(spin_end_block_size.value());
     // Enable OS cache
     pref->setOsCache(cb_os_cache.isChecked());
     // Save resume data interval
@@ -188,6 +192,11 @@ private slots:
     spin_cache.setValue(pref->diskCacheSize());
     updateCacheSpinSuffix(spin_cache.value());
     setRow(DISK_CACHE, tr("Disk write cache size"), &spin_cache);
+    // End block size
+    spin_end_block_size.setMinimum(1);
+    spin_end_block_size.setMaximum(16);
+    spin_end_block_size.setValue(pref->endBlockSize());
+    setRow(END_BLOCK_SIZE, tr("End block size (1-16 MB)"), &spin_end_block_size);
     // Disk cache expiry
     spin_cache_ttl.setMinimum(15);
     spin_cache_ttl.setMaximum(600);

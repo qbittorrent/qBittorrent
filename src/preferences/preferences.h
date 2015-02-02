@@ -484,6 +484,10 @@ public:
   QList<QByteArray> getHostNameCookies(const QString &host_name) const;
   QList<QNetworkCookie> getHostNameQNetworkCookies(const QString& host_name) const;
   void setHostNameCookies(const QString &host_name, const QList<QByteArray> &cookies);
+
+  uint endBlockSize() const;
+  void setEndBlockSize(uint val);
 };
 
 #endif // PREFERENCES_H
+
