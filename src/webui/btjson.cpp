@@ -250,7 +250,7 @@ QByteArray btjson::getTorrents(QString filter, QString label,
     int size = torrent_list.size();
     // normalize offset
     if (offset < 0)
-        offset = size - offset;
+        offset = size + offset;
     if ((offset >= size) || (offset < 0))
         offset = 0;
     // normalize limit
