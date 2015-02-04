@@ -8,8 +8,8 @@ PKGCONFIG += libtorrent-rasterbar
 DEFINES += BOOST_ASIO_DYN_LINK
 
 # Special include/libs paths (macports)
-INCLUDEPATH += /usr/include /opt/local/include/boost /opt/local/include
-LIBS += -L/opt/local/lib
+INCLUDEPATH += /usr/local/include /usr/include /opt/local/include
+LIBS += -L/usr/local/lib -L/opt/local/lib
 
 # Boost system lib
 LIBS += -lboost_system-mt
@@ -28,7 +28,7 @@ qt_conf.path = Contents/Resources
 qt_conf.files = mac/qt.conf
 QMAKE_BUNDLE_DATA += qt_conf
 
-qt_translations.path = Contents/MacOS/translations
+qt_translations.path = Contents/translations
 qt_translations.files = qt-translations/qt_ar.qm \
                         qt-translations/qt_bg.qm \
                         qt-translations/qt_ca.qm \
