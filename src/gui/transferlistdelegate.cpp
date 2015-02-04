@@ -97,23 +97,16 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       case TorrentModelItem::STATE_ALLOCATING:
         display = tr("Allocating", "qBittorrent is allocating the files on disk");
         break;
-      case TorrentModelItem::STATE_PAUSED_DL:
-      case TorrentModelItem::STATE_PAUSED_UP:
-        display = tr("Paused");
-        break;
-      case TorrentModelItem::STATE_PAUSED_MISSING:
-        display = tr("Missing Files");
-        break;
-      case TorrentModelItem::STATE_QUEUED_DL:
-      case TorrentModelItem::STATE_QUEUED_UP:
-        display = tr("Queued", "i.e. torrent is queued");
+      case TorrentModelItem::STATE_STALLED_DL:
+        display = tr("Stalled", "Torrent is waiting for download to begin");
         break;
       case TorrentModelItem::STATE_SEEDING:
       case TorrentModelItem::STATE_STALLED_UP:
         display = tr("Seeding", "Torrent is complete and in upload-only mode");
         break;
-      case TorrentModelItem::STATE_STALLED_DL:
-        display = tr("Stalled", "Torrent is waiting for download to begin");
+      case TorrentModelItem::STATE_QUEUED_DL:
+      case TorrentModelItem::STATE_QUEUED_UP:
+        display = tr("Queued", "i.e. torrent is queued");
         break;
       case TorrentModelItem::STATE_CHECKING_DL:
       case TorrentModelItem::STATE_CHECKING_UP:
@@ -124,6 +117,13 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         break;
       case TorrentModelItem::STATE_QUEUED_FASTCHECK:
         display = tr("Checking resume data", "used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.");
+        break;
+      case TorrentModelItem::STATE_PAUSED_DL:
+      case TorrentModelItem::STATE_PAUSED_UP:
+        display = tr("Paused");
+        break;
+      case TorrentModelItem::STATE_PAUSED_MISSING:
+        display = tr("Missing Files");
         break;
       default:
          display = "";
