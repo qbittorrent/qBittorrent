@@ -47,31 +47,31 @@ class Connection;
 
 class Server : public QTcpServer
 {
-  Q_OBJECT
-  Q_DISABLE_COPY(Server)
+    Q_OBJECT
+    Q_DISABLE_COPY(Server)
 
 public:
-  Server(IRequestHandler *requestHandler, QObject *parent = 0);
-  ~Server();
+    Server(IRequestHandler *requestHandler, QObject *parent = 0);
+    ~Server();
 
 #ifndef QT_NO_OPENSSL
-  void enableHttps(const QSslCertificate &certificate, const QSslKey &key);
-  void disableHttps();
+    void enableHttps(const QSslCertificate &certificate, const QSslKey &key);
+    void disableHttps();
 #endif
 
 private:
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-  void incomingConnection(qintptr socketDescriptor);
+    void incomingConnection(qintptr socketDescriptor);
 #else
-  void incomingConnection(int socketDescriptor);
+    void incomingConnection(int socketDescriptor);
 #endif
 
 private:
-  IRequestHandler *m_requestHandler;
+    IRequestHandler *m_requestHandler;
 #ifndef QT_NO_OPENSSL
-  bool m_https;
-  QSslCertificate m_certificate;
-  QSslKey m_key;
+    bool m_https;
+    QSslCertificate m_certificate;
+    QSslKey m_key;
 #endif
 };
 

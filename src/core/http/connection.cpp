@@ -40,13 +40,13 @@
 using namespace Http;
 
 Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent)
-  : QObject(parent)
-  , m_socket(socket)
-  , m_requestHandler(requestHandler)
+    : QObject(parent)
+    , m_socket(socket)
+    , m_requestHandler(requestHandler)
 {
-  m_socket->setParent(this);
-  connect(m_socket, SIGNAL(readyRead()), SLOT(read()));
-  connect(m_socket, SIGNAL(disconnected()), SLOT(deleteLater()));
+    m_socket->setParent(this);
+    connect(m_socket, SIGNAL(readyRead()), SLOT(read()));
+    connect(m_socket, SIGNAL(disconnected()), SLOT(deleteLater()));
 }
 
 Connection::~Connection()
@@ -55,57 +55,56 @@ Connection::~Connection()
 
 void Connection::read()
 {
-  m_receivedData.append(m_socket->readAll());
+    m_receivedData.append(m_socket->readAll());
 
-  Request request;
-  RequestParser::ErrorCode err = RequestParser::parse(m_receivedData, request);
-  switch (err)
-  {
-  case RequestParser::IncompleteRequest:
-    // Partial request waiting for the rest
-    break;
-  case RequestParser::BadRequest:
-    sendResponse(Response(400, "Bad Request"));
-    break;
-  case RequestParser::NoError:
-    Environment env;
-    env.clientAddress = m_socket->peerAddress();
-    Response response = m_requestHandler->processRequest(request, env);
-    if (acceptsGzipEncoding(request.headers["accept-encoding"]))
-      response.headers[HEADER_CONTENT_ENCODING] = "gzip";
-    sendResponse(response);
-    break;
-  }
+    Request request;
+    RequestParser::ErrorCode err = RequestParser::parse(m_receivedData, request);
+    switch (err) {
+    case RequestParser::IncompleteRequest:
+        // Partial request waiting for the rest
+        break;
+    case RequestParser::BadRequest:
+        sendResponse(Response(400, "Bad Request"));
+        break;
+    case RequestParser::NoError:
+        Environment env;
+        env.clientAddress = m_socket->peerAddress();
+        Response response = m_requestHandler->processRequest(request, env);
+        if (acceptsGzipEncoding(request.headers["accept-encoding"]))
+            response.headers[HEADER_CONTENT_ENCODING] = "gzip";
+        sendResponse(response);
+        break;
+    }
 }
 
 void Connection::sendResponse(const Response &response)
 {
-  m_socket->write(ResponseGenerator::generate(response));
-  m_socket->disconnectFromHost();
+    m_socket->write(ResponseGenerator::generate(response));
+    m_socket->disconnectFromHost();
 }
 
 bool Connection::acceptsGzipEncoding(const QString &encoding)
 {
-  int pos = encoding.indexOf("gzip", 0, Qt::CaseInsensitive);
-  if (pos == -1)
-    return false;
+    int pos = encoding.indexOf("gzip", 0, Qt::CaseInsensitive);
+    if (pos == -1)
+        return false;
 
-  // Let's see if there's a qvalue of 0.0 following
-  if (encoding[pos + 4] != ';') //there isn't, so it accepts gzip anyway
+    // Let's see if there's a qvalue of 0.0 following
+    if (encoding[pos + 4] != ';') //there isn't, so it accepts gzip anyway
+        return true;
+
+    //So let's find = and the next comma
+    pos = encoding.indexOf("=", pos + 4, Qt::CaseInsensitive);
+    int comma_pos = encoding.indexOf(",", pos, Qt::CaseInsensitive);
+
+    QString value;
+    if (comma_pos == -1)
+        value = encoding.mid(pos + 1, comma_pos);
+    else
+        value = encoding.mid(pos + 1, comma_pos - (pos + 1));
+
+    if (value.toDouble() == 0.0)
+        return false;
+
     return true;
-
-  //So let's find = and the next comma
-  pos = encoding.indexOf("=", pos + 4, Qt::CaseInsensitive);
-  int comma_pos = encoding.indexOf(",", pos, Qt::CaseInsensitive);
-
-  QString value;
-  if (comma_pos == -1)
-    value = encoding.mid(pos + 1, comma_pos);
-  else
-    value = encoding.mid(pos + 1, comma_pos - (pos + 1));
-
-  if (value.toDouble() == 0.0)
-    return false;
-
-  return true;
 }

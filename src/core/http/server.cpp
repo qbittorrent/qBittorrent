@@ -39,8 +39,8 @@
 using namespace Http;
 
 Server::Server(IRequestHandler *requestHandler, QObject* parent)
-  : QTcpServer(parent)
-  , m_requestHandler(requestHandler)
+    : QTcpServer(parent)
+    , m_requestHandler(requestHandler)
 #ifndef QT_NO_OPENSSL
     , m_https(false)
 #endif
@@ -54,16 +54,16 @@ Server::~Server()
 #ifndef QT_NO_OPENSSL
 void Server::enableHttps(const QSslCertificate &certificate, const QSslKey &key)
 {
-  m_certificate = certificate;
-  m_key = key;
-  m_https = true;
+    m_certificate = certificate;
+    m_key = key;
+    m_https = true;
 }
 
 void Server::disableHttps()
 {
-  m_https = false;
-  m_certificate.clear();
-  m_key.clear();
+    m_https = false;
+    m_certificate.clear();
+    m_key.clear();
 }
 #endif
 
@@ -73,28 +73,26 @@ void Server::incomingConnection(qintptr socketDescriptor)
 void Server::incomingConnection(int socketDescriptor)
 #endif
 {
-  QTcpSocket *serverSocket;
-#ifndef QT_NO_OPENSSL
-  if (m_https)
-    serverSocket = new QSslSocket(this);
-  else
-#endif
-    serverSocket = new QTcpSocket(this);
-  if (serverSocket->setSocketDescriptor(socketDescriptor))
-  {
+    QTcpSocket *serverSocket;
 #ifndef QT_NO_OPENSSL
     if (m_https)
-    {
-      static_cast<QSslSocket*>(serverSocket)->setProtocol(QSsl::AnyProtocol);
-      static_cast<QSslSocket*>(serverSocket)->setPrivateKey(m_key);
-      static_cast<QSslSocket*>(serverSocket)->setLocalCertificate(m_certificate);
-      static_cast<QSslSocket*>(serverSocket)->startServerEncryption();
-    }
+        serverSocket = new QSslSocket(this);
+    else
 #endif
-    new Connection(serverSocket, m_requestHandler, this);
-  }
-  else
-  {
-    serverSocket->deleteLater();
-  }
+        serverSocket = new QTcpSocket(this);
+
+    if (serverSocket->setSocketDescriptor(socketDescriptor)) {
+#ifndef QT_NO_OPENSSL
+        if (m_https) {
+            static_cast<QSslSocket*>(serverSocket)->setProtocol(QSsl::AnyProtocol);
+            static_cast<QSslSocket*>(serverSocket)->setPrivateKey(m_key);
+            static_cast<QSslSocket*>(serverSocket)->setLocalCertificate(m_certificate);
+            static_cast<QSslSocket*>(serverSocket)->startServerEncryption();
+        }
+#endif
+        new Connection(serverSocket, m_requestHandler, this);
+    }
+    else {
+        serverSocket->deleteLater();
+    }
 }

@@ -40,28 +40,33 @@ namespace Http
 class RequestParser
 {
 public:
-  enum ErrorCode { NoError = 0, IncompleteRequest, BadRequest };
+    enum ErrorCode
+    {
+        NoError = 0,
+        IncompleteRequest,
+        BadRequest
+    };
 
-  // when result != NoError parsed request is undefined
-  // Warning! Header names are converted to lower-case.
-  static ErrorCode parse(const QByteArray& data, Request& request, uint maxContentLength = 10000000 /* ~10MB */);
+    // when result != NoError parsed request is undefined
+    // Warning! Header names are converted to lower-case.
+    static ErrorCode parse(const QByteArray &data, Request &request, uint maxContentLength = 10000000 /* ~10MB */);
 
 private:
-  RequestParser(uint maxContentLength);
+    RequestParser(uint maxContentLength);
 
-  ErrorCode parseHttpRequest(const QByteArray& data, Request& request);
+    ErrorCode parseHttpRequest(const QByteArray &data, Request &request);
 
-  bool parseHttpHeader(const QByteArray& data);
-  bool parseStartingLine(const QString &line);
-  bool parseContent(const QByteArray& data);
-  bool parseFormData(const QByteArray& data);
-  QList<QByteArray> splitMultipartData(const QByteArray& data, const QByteArray& boundary);
+    bool parseHttpHeader(const QByteArray &data);
+    bool parseStartingLine(const QString &line);
+    bool parseContent(const QByteArray &data);
+    bool parseFormData(const QByteArray &data);
+    QList<QByteArray> splitMultipartData(const QByteArray &data, const QByteArray &boundary);
 
-  static bool parseHeaderLine(const QString& line, QPair<QString, QString>& out);
-  static bool parseHeaderValue(const QString& value, QStringMap& out);
+    static bool parseHeaderLine(const QString &line, QPair<QString, QString> &out);
+    static bool parseHeaderValue(const QString &value, QStringMap &out);
 
-  const uint m_maxContentLength;
-  Request m_request;
+    const uint m_maxContentLength;
+    Request m_request;
 };
 
 }

@@ -74,25 +74,25 @@ namespace Http { class Server; }
 /* Following http://wiki.theory.org/BitTorrent_Tracker_Protocol */
 class QTracker : public Http::ResponseBuilder, public Http::IRequestHandler
 {
-  Q_OBJECT
-  Q_DISABLE_COPY(QTracker)
+    Q_OBJECT
+    Q_DISABLE_COPY(QTracker)
 
 public:
-  explicit QTracker(QObject *parent = 0);
-  ~QTracker();
+    explicit QTracker(QObject *parent = 0);
+    ~QTracker();
 
-  bool start();
-  Http::Response processRequest(const Http::Request &request, const Http::Environment &env);
+    bool start();
+    Http::Response processRequest(const Http::Request &request, const Http::Environment &env);
 
 private:
-  void respondToAnnounceRequest();
-  void replyWithPeerList(const TrackerAnnounceRequest &annonce_req);
+    void respondToAnnounceRequest();
+    void replyWithPeerList(const TrackerAnnounceRequest &annonce_req);
 
-  Http::Server *m_server;
-  TorrentList m_torrents;
+    Http::Server *m_server;
+    TorrentList m_torrents;
 
-  Http::Request m_request;
-  Http::Environment m_env;
+    Http::Request m_request;
+    Http::Environment m_env;
 };
 
 #endif // QTRACKER_H

@@ -38,96 +38,87 @@ using namespace Http;
 
 QByteArray ResponseGenerator::generate(Response response)
 {
-  if (response.headers[HEADER_CONTENT_ENCODING] == "gzip")
-  {
-    // A gzip seems to have 23 bytes overhead.
-    // Also "Content-Encoding: gzip\r\n" is 26 bytes long
-    // So we only benefit from gzip if the message is bigger than 23+26 = 49
-    // If the message is smaller than 49 bytes we actually send MORE data if we gzip
-    QByteArray dest_buf;
-    if ((response.content.size() > 49) && (gCompress(response.content, dest_buf)))
-    {
-      response.content = dest_buf;
+    if (response.headers[HEADER_CONTENT_ENCODING] == "gzip") {
+        // A gzip seems to have 23 bytes overhead.
+        // Also "Content-Encoding: gzip\r\n" is 26 bytes long
+        // So we only benefit from gzip if the message is bigger than 23+26 = 49
+        // If the message is smaller than 49 bytes we actually send MORE data if we gzip
+        QByteArray dest_buf;
+        if ((response.content.size() > 49) && (gCompress(response.content, dest_buf)))
+            response.content = dest_buf;
+        else
+            response.headers.remove(HEADER_CONTENT_ENCODING);
     }
-    else
-    {
-      response.headers.remove(HEADER_CONTENT_ENCODING);
-    }
-  }
 
-  if (response.content.length() > 0)
-    response.headers[HEADER_CONTENT_LENGTH] = QString::number(response.content.length());
+    if (response.content.length() > 0)
+        response.headers[HEADER_CONTENT_LENGTH] = QString::number(response.content.length());
 
-  QString ret(QLatin1String("HTTP/1.1 %1 %2\r\n%3\r\n"));
+    QString ret(QLatin1String("HTTP/1.1 %1 %2\r\n%3\r\n"));
 
-  QString header;
-  foreach (const QString& key, response.headers.keys())
-    header += QString("%1: %2\r\n").arg(key).arg(response.headers[key]);
+    QString header;
+    foreach (const QString& key, response.headers.keys())
+        header += QString("%1: %2\r\n").arg(key).arg(response.headers[key]);
 
-  ret = ret.arg(response.status.code).arg(response.status.text).arg(header);
-  
-//  qDebug() << Q_FUNC_INFO;
-//  qDebug() << "HTTP Response header:";
-//  qDebug() << ret;
-  
-  return ret.toUtf8() + response.content;
+    ret = ret.arg(response.status.code).arg(response.status.text).arg(header);
+
+    //  qDebug() << Q_FUNC_INFO;
+    //  qDebug() << "HTTP Response header:";
+    //  qDebug() << ret;
+
+    return ret.toUtf8() + response.content;
 }
 
 bool gCompress(QByteArray data, QByteArray& dest_buffer)
 {
-  static const int BUFSIZE = 128 * 1024;
-  char tmp_buf[BUFSIZE];
-  int ret;
+    static const int BUFSIZE = 128 * 1024;
+    char tmp_buf[BUFSIZE];
+    int ret;
 
-  z_stream strm;
-  strm.zalloc = Z_NULL;
-  strm.zfree = Z_NULL;
-  strm.opaque = Z_NULL;
-  strm.next_in = reinterpret_cast<unsigned char*>(data.data());
-  strm.avail_in = data.length();
-  strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
-  strm.avail_out = BUFSIZE;
+    z_stream strm;
+    strm.zalloc = Z_NULL;
+    strm.zfree = Z_NULL;
+    strm.opaque = Z_NULL;
+    strm.next_in = reinterpret_cast<unsigned char*>(data.data());
+    strm.avail_in = data.length();
+    strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
+    strm.avail_out = BUFSIZE;
 
-  //windowBits = 15+16 to enable gzip
-  //From the zlib manual: windowBits can also be greater than 15 for optional gzip encoding. Add 16 to windowBits
-  //to write a simple gzip header and trailer around the compressed data instead of a zlib wrapper.
-  ret = deflateInit2(&strm, Z_BEST_COMPRESSION, Z_DEFLATED, 15+16, 8, Z_DEFAULT_STRATEGY);
+    //windowBits = 15+16 to enable gzip
+    //From the zlib manual: windowBits can also be greater than 15 for optional gzip encoding. Add 16 to windowBits
+    //to write a simple gzip header and trailer around the compressed data instead of a zlib wrapper.
+    ret = deflateInit2(&strm, Z_BEST_COMPRESSION, Z_DEFLATED, 15 + 16, 8, Z_DEFAULT_STRATEGY);
 
-  if (ret != Z_OK)
-    return false;
-
-  while (strm.avail_in != 0)
-  {
-    ret = deflate(&strm, Z_NO_FLUSH);
     if (ret != Z_OK)
-      return false;
+        return false;
 
-    if (strm.avail_out == 0)
-    {
-      dest_buffer.append(tmp_buf, BUFSIZE);
-      strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
-      strm.avail_out = BUFSIZE;
-    }
-  }
+    while (strm.avail_in != 0) {
+        ret = deflate(&strm, Z_NO_FLUSH);
+        if (ret != Z_OK)
+            return false;
 
-  int deflate_res = Z_OK;
-  while (deflate_res == Z_OK)
-  {
-    if (strm.avail_out == 0)
-    {
-      dest_buffer.append(tmp_buf, BUFSIZE);
-      strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
-      strm.avail_out = BUFSIZE;
+        if (strm.avail_out == 0) {
+            dest_buffer.append(tmp_buf, BUFSIZE);
+            strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
+            strm.avail_out = BUFSIZE;
+        }
     }
 
-    deflate_res = deflate(&strm, Z_FINISH);
-  }
+    int deflate_res = Z_OK;
+    while (deflate_res == Z_OK) {
+        if (strm.avail_out == 0) {
+            dest_buffer.append(tmp_buf, BUFSIZE);
+            strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
+            strm.avail_out = BUFSIZE;
+        }
 
-  if (deflate_res != Z_STREAM_END)
-    return false;
+        deflate_res = deflate(&strm, Z_FINISH);
+    }
 
-  dest_buffer.append(tmp_buf, BUFSIZE - strm.avail_out);
-  deflateEnd(&strm);
+    if (deflate_res != Z_STREAM_END)
+        return false;
 
-  return true;
+    dest_buffer.append(tmp_buf, BUFSIZE - strm.avail_out);
+    deflateEnd(&strm);
+
+    return true;
 }

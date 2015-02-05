@@ -44,17 +44,17 @@
 class UnbanTimer: public QTimer
 {
 public:
-  UnbanTimer(const QHostAddress& peer_ip, QObject *parent)
-    : QTimer(parent), m_peerIp(peer_ip)
-  {
-    setSingleShot(true);
-    setInterval(BAN_TIME);
-  }
+    UnbanTimer(const QHostAddress& peer_ip, QObject *parent)
+        : QTimer(parent), m_peerIp(peer_ip)
+    {
+        setSingleShot(true);
+        setInterval(BAN_TIME);
+    }
 
-  inline const QHostAddress& peerIp() const { return m_peerIp; }
+    inline const QHostAddress& peerIp() const { return m_peerIp; }
 
 private:
-  QHostAddress m_peerIp;
+    QHostAddress m_peerIp;
 };
 
 // WebSession
@@ -79,8 +79,8 @@ struct WebSession
 // AbstractWebApplication
 
 AbstractWebApplication::AbstractWebApplication(QObject *parent)
-  : Http::ResponseBuilder(parent)
-  , session_(0)
+    : Http::ResponseBuilder(parent)
+    , session_(0)
 {
     QTimer *timer = new QTimer(this);
     timer->setInterval(60000); // 1 min.
@@ -89,7 +89,7 @@ AbstractWebApplication::AbstractWebApplication(QObject *parent)
 
 AbstractWebApplication::~AbstractWebApplication()
 {
-  // cleanup sessions data
+    // cleanup sessions data
     qDeleteAll(sessions_);
 }
 
@@ -117,10 +117,10 @@ Http::Response AbstractWebApplication::processRequest(const Http::Request &reque
 
 void AbstractWebApplication::UnbanTimerEvent()
 {
-  UnbanTimer* ubantimer = static_cast<UnbanTimer*>(sender());
-  qDebug("Ban period has expired for %s", qPrintable(ubantimer->peerIp().toString()));
-  clientFailedAttempts_.remove(ubantimer->peerIp());
-  ubantimer->deleteLater();
+    UnbanTimer* ubantimer = static_cast<UnbanTimer*>(sender());
+    qDebug("Ban period has expired for %s", qPrintable(ubantimer->peerIp().toString()));
+    clientFailedAttempts_.remove(ubantimer->peerIp());
+    ubantimer->deleteLater();
 }
 
 void AbstractWebApplication::removeInactiveSessions()
@@ -135,84 +135,74 @@ void AbstractWebApplication::removeInactiveSessions()
 
 bool AbstractWebApplication::sessionInitialize()
 {
-  static const QString SID_START = QLatin1String(C_SID) + QLatin1String("=");
+    static const QString SID_START = QLatin1String(C_SID) + QLatin1String("=");
 
-  if (session_ == 0)
-  {
-    QString cookie = request_.headers.value("cookie");
-    //qDebug() << Q_FUNC_INFO << "cookie: " << cookie;
-
-    QString sessionId;
-    int pos = cookie.indexOf(SID_START);
-    if (pos >= 0)
+    if (session_ == 0)
     {
-      pos += SID_START.length();
-      int end = cookie.indexOf(QRegExp("[,;]"), pos);
-      sessionId = cookie.mid(pos, end >= 0 ? end - pos : end);
+        QString cookie = request_.headers.value("cookie");
+        //qDebug() << Q_FUNC_INFO << "cookie: " << cookie;
+
+        QString sessionId;
+        int pos = cookie.indexOf(SID_START);
+        if (pos >= 0) {
+            pos += SID_START.length();
+            int end = cookie.indexOf(QRegExp("[,;]"), pos);
+            sessionId = cookie.mid(pos, end >= 0 ? end - pos : end);
+        }
+
+        // TODO: Additional session check
+
+        if (!sessionId.isNull()) {
+            if (sessions_.contains(sessionId)) {
+                session_ = sessions_[sessionId];
+                session_->updateTimestamp();
+                return true;
+            }
+            else {
+                qDebug() << Q_FUNC_INFO << "session does not exist!";
+            }
+        }
     }
 
-    // TODO: Additional session check
-
-    if (!sessionId.isNull())
-    {
-      if (sessions_.contains(sessionId))
-      {
-        session_ = sessions_[sessionId];
-        session_->updateTimestamp();
-        return true;
-      }
-      else
-      {
-        qDebug() << Q_FUNC_INFO << "session does not exist!";
-      }
-    }
-  }
-
-  return false;
+    return false;
 }
 
 bool AbstractWebApplication::readFile(const QString& path, QByteArray &data, QString &type)
 {
-  QString ext = "";
-  int index = path.lastIndexOf('.') + 1;
-  if (index > 0)
-    ext = path.mid(index);
+    QString ext = "";
+    int index = path.lastIndexOf('.') + 1;
+    if (index > 0)
+        ext = path.mid(index);
 
-  // find translated file in cache
-  if (translatedFiles_.contains(path))
-  {
-    data = translatedFiles_[path];
-  }
-  else
-  {
-    QFile file(path);
-    if (!file.open(QIODevice::ReadOnly))
-    {
-      qDebug("File %s was not found!", qPrintable(path));
-      return false;
+    // find translated file in cache
+    if (translatedFiles_.contains(path)) {
+        data = translatedFiles_[path];
+    }
+    else {
+        QFile file(path);
+        if (!file.open(QIODevice::ReadOnly)) {
+            qDebug("File %s was not found!", qPrintable(path));
+            return false;
+        }
+
+        data = file.readAll();
+        file.close();
+
+        // Translate the file
+        if ((ext == "html") || ((ext == "js") && !path.endsWith("excanvas-compressed.js"))) {
+            QString dataStr = QString::fromUtf8(data.constData());
+            translateDocument(dataStr);
+
+            if (path.endsWith("about.html"))
+                dataStr.replace("${VERSION}", VERSION);
+
+            data = dataStr.toUtf8();
+            translatedFiles_[path] = data; // cashing translated file
+        }
     }
 
-    data = file.readAll();
-    file.close();
-
-    // Translate the file
-    if ((ext == "html") || ((ext == "js") && !path.endsWith("excanvas-compressed.js")))
-    {
-      QString dataStr = QString::fromUtf8(data.constData());
-      translateDocument(dataStr);
-
-      if (path.endsWith("about.html"))
-      {
-        dataStr.replace("${VERSION}", VERSION);
-      }
-
-      data = dataStr.toUtf8();
-      translatedFiles_[path] = data; // cashing translated file
-    }
-  }
-
-  type = CONTENT_TYPE_BY_EXT[ext];
-  return true;
+    type = CONTENT_TYPE_BY_EXT[ext];
+    return true;
 }
 
 WebSessionData *AbstractWebApplication::session()
@@ -227,102 +217,95 @@ QString AbstractWebApplication::generateSid()
     QString sid;
 
     qsrand(QDateTime::currentDateTime().toTime_t());
-  do
-  {
-    const size_t size = 6;
-    quint32 tmp[size];
+    do {
+        const size_t size = 6;
+        quint32 tmp[size];
 
-    for (size_t i = 0; i < size; ++i)
-      tmp[i] = qrand();
+        for (size_t i = 0; i < size; ++i)
+            tmp[i] = qrand();
 
-    sid = QByteArray::fromRawData(reinterpret_cast<const char *>(tmp), sizeof(quint32) * size).toBase64();
-  }
-  while (sessions_.contains(sid));
+        sid = QByteArray::fromRawData(reinterpret_cast<const char *>(tmp), sizeof(quint32) * size).toBase64();
+    }
+    while (sessions_.contains(sid));
 
-  return sid;
+    return sid;
 }
 
 void AbstractWebApplication::translateDocument(QString& data)
 {
-  const QRegExp regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR");
-  const QRegExp mnemonic("\\(?&([a-zA-Z]?\\))?");
-  const std::string contexts[] = {
-    "TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget",
-    "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
-    "options_imp", "Preferences", "TrackersAdditionDlg", "ScanFoldersModel",
-    "PropTabBar", "TorrentModel", "downloadFromURL", "MainWindow", "misc",
-    "StatusBar"
-  };
-  const size_t context_count = sizeof(contexts) / sizeof(contexts[0]);
-  int i = 0;
-  bool found = true;
+    const QRegExp regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR");
+    const QRegExp mnemonic("\\(?&([a-zA-Z]?\\))?");
+    const std::string contexts[] = {
+        "TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget",
+        "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
+        "options_imp", "Preferences", "TrackersAdditionDlg", "ScanFoldersModel",
+        "PropTabBar", "TorrentModel", "downloadFromURL", "MainWindow", "misc",
+        "StatusBar"
+    };
+    const size_t context_count = sizeof(contexts) / sizeof(contexts[0]);
+    int i = 0;
+    bool found = true;
 
-  const QString locale = Preferences::instance()->getLocale();
-  bool isTranslationNeeded = !locale.startsWith("en") || locale.startsWith("en_AU") || locale.startsWith("en_GB");
+    const QString locale = Preferences::instance()->getLocale();
+    bool isTranslationNeeded = !locale.startsWith("en") || locale.startsWith("en_AU") || locale.startsWith("en_GB");
 
-  while(i < data.size() && found)
-  {
-    i = regex.indexIn(data, i);
-    if (i >= 0)
-    {
-      //qDebug("Found translatable string: %s", regex.cap(1).toUtf8().data());
-      QByteArray word = regex.cap(1).toUtf8();
+    while(i < data.size() && found) {
+        i = regex.indexIn(data, i);
+        if (i >= 0) {
+            //qDebug("Found translatable string: %s", regex.cap(1).toUtf8().data());
+            QByteArray word = regex.cap(1).toUtf8();
 
-      QString translation = word;
-      if (isTranslationNeeded)
-      {
-        size_t context_index = 0;
-        while ((context_index < context_count) && (translation == word))
-        {
+            QString translation = word;
+            if (isTranslationNeeded) {
+                size_t context_index = 0;
+                while ((context_index < context_count) && (translation == word)) {
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
-          translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
+                    translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
 #else
-          translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, 1);
+                    translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, 1);
 #endif
-          ++context_index;
-        }
-      }
-      // Remove keyboard shortcuts
-      translation.replace(mnemonic, "");
+                    ++context_index;
+                }
+            }
+            // Remove keyboard shortcuts
+            translation.replace(mnemonic, "");
 
-      data.replace(i, regex.matchedLength(), translation);
-      i += translation.length();
+            data.replace(i, regex.matchedLength(), translation);
+            i += translation.length();
+        }
+        else {
+            found = false; // no more translatable strings
+        }
     }
-    else
-    {
-        found = false; // no more translatable strings
-    }
-  }
 }
 
 bool AbstractWebApplication::isBanned() const
 {
-  return clientFailedAttempts_.value(env_.clientAddress, 0) >= MAX_AUTH_FAILED_ATTEMPTS;
+    return clientFailedAttempts_.value(env_.clientAddress, 0) >= MAX_AUTH_FAILED_ATTEMPTS;
 }
 
 int AbstractWebApplication::failedAttempts() const
 {
-  return clientFailedAttempts_.value(env_.clientAddress, 0);
+    return clientFailedAttempts_.value(env_.clientAddress, 0);
 }
 
 void AbstractWebApplication::resetFailedAttempts()
 {
-  clientFailedAttempts_.remove(env_.clientAddress);
+    clientFailedAttempts_.remove(env_.clientAddress);
 }
 
 void AbstractWebApplication::increaseFailedAttempts()
 {
-  const int nb_fail = clientFailedAttempts_.value(env_.clientAddress, 0) + 1;
+    const int nb_fail = clientFailedAttempts_.value(env_.clientAddress, 0) + 1;
 
-  clientFailedAttempts_[env_.clientAddress] = nb_fail;
-  if (nb_fail == MAX_AUTH_FAILED_ATTEMPTS)
-  {
-    // Max number of failed attempts reached
-    // Start ban period
-    UnbanTimer* ubantimer = new UnbanTimer(env_.clientAddress, this);
-    connect(ubantimer, SIGNAL(timeout()), SLOT(UnbanTimerEvent()));
-    ubantimer->start();
-  }
+    clientFailedAttempts_[env_.clientAddress] = nb_fail;
+    if (nb_fail == MAX_AUTH_FAILED_ATTEMPTS) {
+        // Max number of failed attempts reached
+        // Start ban period
+        UnbanTimer* ubantimer = new UnbanTimer(env_.clientAddress, this);
+        connect(ubantimer, SIGNAL(timeout()), SLOT(UnbanTimerEvent()));
+        ubantimer->start();
+    }
 }
 
 bool AbstractWebApplication::isAuthNeeded()
@@ -347,39 +330,37 @@ void AbstractWebApplication::printFile(const QString& path)
 
 bool AbstractWebApplication::sessionStart()
 {
-  if (session_ == 0)
-  {
-    session_ = new WebSession(generateSid());
-    session_->updateTimestamp();
-    sessions_[session_->id] = session_;
+    if (session_ == 0) {
+        session_ = new WebSession(generateSid());
+        session_->updateTimestamp();
+        sessions_[session_->id] = session_;
 
-    QNetworkCookie cookie(C_SID, session_->id.toUtf8());
-    cookie.setPath(QLatin1String("/"));
-    header(Http::HEADER_SET_COOKIE, cookie.toRawForm());
+        QNetworkCookie cookie(C_SID, session_->id.toUtf8());
+        cookie.setPath(QLatin1String("/"));
+        header(Http::HEADER_SET_COOKIE, cookie.toRawForm());
 
-    return true;
-  }
+        return true;
+    }
 
-  return false;
+    return false;
 }
 
 bool AbstractWebApplication::sessionEnd()
 {
-  if ((session_ != 0) && (sessions_.contains(session_->id)))
-  {
-    QNetworkCookie cookie(C_SID, session_->id.toUtf8());
-    cookie.setPath(QLatin1String("/"));
-    cookie.setExpirationDate(QDateTime::currentDateTime());
+    if ((session_ != 0) && (sessions_.contains(session_->id))) {
+        QNetworkCookie cookie(C_SID, session_->id.toUtf8());
+        cookie.setPath(QLatin1String("/"));
+        cookie.setExpirationDate(QDateTime::currentDateTime());
 
-    sessions_.remove(session_->id);
-    delete session_;
-    session_ = 0;
+        sessions_.remove(session_->id);
+        delete session_;
+        session_ = 0;
 
-    header(Http::HEADER_SET_COOKIE, cookie.toRawForm());
-    return true;
-  }
+        header(Http::HEADER_SET_COOKIE, cookie.toRawForm());
+        return true;
+    }
 
-  return false;
+    return false;
 }
 
 QString AbstractWebApplication::saveTmpFile(const QByteArray &data)
@@ -398,16 +379,16 @@ QString AbstractWebApplication::saveTmpFile(const QByteArray &data)
 
 QStringMap AbstractWebApplication::initializeContentTypeByExtMap()
 {
-  QStringMap map;
+    QStringMap map;
 
-  map["htm"] = Http::CONTENT_TYPE_HTML;
-  map["html"] = Http::CONTENT_TYPE_HTML;
-  map["css"] = Http::CONTENT_TYPE_CSS;
-  map["gif"] = Http::CONTENT_TYPE_GIF;
-  map["png"] = Http::CONTENT_TYPE_PNG;
-  map["js"] = Http::CONTENT_TYPE_JS;
+    map["htm"] = Http::CONTENT_TYPE_HTML;
+    map["html"] = Http::CONTENT_TYPE_HTML;
+    map["css"] = Http::CONTENT_TYPE_CSS;
+    map["gif"] = Http::CONTENT_TYPE_GIF;
+    map["png"] = Http::CONTENT_TYPE_PNG;
+    map["js"] = Http::CONTENT_TYPE_JS;
 
-  return map;
+    return map;
 }
 
 const QStringMap AbstractWebApplication::CONTENT_TYPE_BY_EXT = AbstractWebApplication::initializeContentTypeByExtMap();
