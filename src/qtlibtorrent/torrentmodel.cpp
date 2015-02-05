@@ -289,7 +289,7 @@ QVariant TorrentModelItem::data(int column, int role) const
   case TR_TIME_ELAPSED:
     return (role == Qt::DisplayRole) ? m_lastStatus.active_time : m_lastStatus.seeding_time;
   case TR_SAVE_PATH:
-    return fsutils::toNativePath(m_torrent.save_path_parsed());
+    return fsutils::toNativePath(m_torrent.save_path());
   case TR_COMPLETED:
     return static_cast<qlonglong>(m_lastStatus.total_wanted_done);
   case TR_RATIO_LIMIT: {
