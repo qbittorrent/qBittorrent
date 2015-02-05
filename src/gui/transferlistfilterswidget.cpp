@@ -159,7 +159,7 @@ QSize StatusFiltersWidget::sizeHint() const {
 TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList): QFrame(parent), transferList(transferList), nb_labeled(0), nb_torrents(0) {
   // Construct lists
   vLayout = new QVBoxLayout();
-  vLayout->setContentsMargins(0, 4, 0, 4);
+  vLayout->setContentsMargins(0, 4, 0, 0);
   QFont font;
   font.setBold(true);
   font.setCapitalization(QFont::SmallCaps);
