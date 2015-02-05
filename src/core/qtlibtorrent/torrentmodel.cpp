@@ -257,6 +257,9 @@ QVariant TorrentModelItem::data(int column, int role) const
   case TR_PEERS: {
     return (role == Qt::DisplayRole) ? (m_lastStatus.num_peers-m_lastStatus.num_seeds) : m_lastStatus.num_incomplete;
   }
+  case TR_SEEDSPEERS: {
+    return (m_lastStatus.num_incomplete == 0) ? -1 : float(m_lastStatus.num_complete)/m_lastStatus.num_incomplete;
+  }
   case TR_DLSPEED:
     return m_lastStatus.download_payload_rate;
   case TR_UPSPEED:
@@ -365,6 +368,7 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
       case TorrentModelItem::TR_STATUS: return tr("Status", "Torrent status (e.g. downloading, seeding, paused)");
       case TorrentModelItem::TR_SEEDS: return tr("Seeds", "i.e. full sources (often untranslated)");
       case TorrentModelItem::TR_PEERS: return tr("Peers", "i.e. partial sources (often untranslated)");
+      case TorrentModelItem::TR_SEEDSPEERS: return tr("Seeds/Peers", "Seeds/Peers ratio");
       case TorrentModelItem::TR_DLSPEED: return tr("Down Speed", "i.e: Download speed");
       case TorrentModelItem::TR_UPSPEED: return tr("Up Speed", "i.e: Upload speed");
       case TorrentModelItem::TR_RATIO: return tr("Ratio", "Share ratio");
@@ -400,6 +404,7 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
       case TorrentModelItem::TR_ETA:
       case TorrentModelItem::TR_SEEDS:
       case TorrentModelItem::TR_PEERS:
+      case TorrentModelItem::TR_SEEDSPEERS:
       case TorrentModelItem::TR_UPSPEED:
       case TorrentModelItem::TR_DLSPEED:
       case TorrentModelItem::TR_UPLIMIT:
