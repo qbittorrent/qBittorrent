@@ -424,17 +424,16 @@ void TransferListWidget::copySelectedMagnetURIs() const
     qApp->clipboard()->setText(magnet_uris.join("\n"));
 }
 
-// create list of captions from tasklist.
-void TransferListWidget::copySelectedCaptions() const
+void TransferListWidget::copySelectedNames() const
 {
-    QStringList captions;
+    QStringList torrent_names;
     const QStringList hashes = getSelectedTorrentsHashes();
     foreach (const QString &hash, hashes) {
         const QTorrentHandle h = BTSession->getTorrentHandle(hash);
         if (h.is_valid())
-            captions << h.name();
+            torrent_names << h.name();
     }
-    qApp->clipboard()->setText(captions.join("\n"));
+    qApp->clipboard()->setText(torrent_names.join("\n"));
 }
 
 void TransferListWidget::hidePriorityColumn(bool hide)
@@ -755,8 +754,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
     QAction actionCopy_magnet_link(QIcon(":/icons/magnet.png"), tr("Copy magnet link"), 0);
     connect(&actionCopy_magnet_link, SIGNAL(triggered()), this, SLOT(copySelectedMagnetURIs()));
 
-    QAction actionCopy_caption_list(IconProvider::instance()->getIcon("edit-copy"), tr("Copy name"), 0);
-    connect(&actionCopy_caption_list, SIGNAL(triggered()), this, SLOT(copySelectedCaptions()));
+    QAction actionCopy_name(IconProvider::instance()->getIcon("edit-copy"), tr("Copy name"), 0);
+    connect(&actionCopy_name, SIGNAL(triggered()), this, SLOT(copySelectedNames()));
 
     QAction actionSuper_seeding_mode(tr("Super seeding mode"), 0);
     actionSuper_seeding_mode.setCheckable(true);
@@ -890,7 +889,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
         prioMenu->addAction(&actionBottomPriority);
     }
     listMenu.addSeparator();
-    listMenu.addAction(&actionCopy_caption_list);
+    listMenu.addAction(&actionCopy_name);
     listMenu.addAction(&actionCopy_magnet_link);
     // Call menu
     QAction *act = 0;
