@@ -1,5 +1,6 @@
-#VERSION: 1.50
+#VERSION: 1.51
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
+#CONTRIBUTORS: Diego de las Heras (diegodelasheras@gmail.com)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -59,7 +60,7 @@ class mininova(object):
           self.current_item = {}
           self.td_counter = 0
           self.current_item['link']=self.url+params['href'].strip()
-        elif params['href'].startswith("/tor/"):
+        elif params['href'].startswith("/tor/") and self.current_item is not None:
           self.current_item['desc_link']=self.url+params['href'].strip()
     
     def handle_data(self, data):
