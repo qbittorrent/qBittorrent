@@ -755,7 +755,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
     QAction actionCopy_magnet_link(QIcon(":/icons/magnet.png"), tr("Copy magnet link"), 0);
     connect(&actionCopy_magnet_link, SIGNAL(triggered()), this, SLOT(copySelectedMagnetURIs()));
 
-    QAction actionCopy_caption_list(tr("Copy name"), 0);
+    QAction actionCopy_caption_list(IconProvider::instance()->getIcon("edit-copy"), tr("Copy name"), 0);
     connect(&actionCopy_caption_list, SIGNAL(triggered()), this, SLOT(copySelectedCaptions()));
 
     QAction actionSuper_seeding_mode(tr("Super seeding mode"), 0);
@@ -890,8 +890,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
         prioMenu->addAction(&actionBottomPriority);
     }
     listMenu.addSeparator();
-    listMenu.addAction(&actionCopy_magnet_link);
     listMenu.addAction(&actionCopy_caption_list);
+    listMenu.addAction(&actionCopy_magnet_link);
     // Call menu
     QAction *act = 0;
     act = listMenu.exec(QCursor::pos());
