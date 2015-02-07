@@ -1857,10 +1857,7 @@ void QBtSession::setListeningPort(int port) {
     const bool listen_ipv6 = pref->getListenIPv6();
     if (iface_name.isEmpty()) {
         logger->addMessage(tr("qBittorrent is trying to listen on any interface port: %1", "e.g: qBittorrent is trying to listen on any interface port: TCP/6881").arg(QString::number(port)), Log::INFO);
-        if (listen_ipv6)
-            s->listen_on(ports, ec, "::", session::listen_no_system_port);
-        else
-            s->listen_on(ports, ec, "0.0.0.0", session::listen_no_system_port);
+        s->listen_on(ports, ec, 0, session::listen_no_system_port);
 
         if (ec)
             logger->addMessage(tr("qBittorrent failed to listen on any interface port: %1. Reason: %2", "e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface" ).arg(QString::number(port)).arg(misc::toQStringU(ec.message())), Log::CRITICAL);
