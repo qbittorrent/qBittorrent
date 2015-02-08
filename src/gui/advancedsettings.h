@@ -9,7 +9,7 @@
 #include <QLineEdit>
 #include <QComboBox>
 #include <QNetworkInterface>
-#include <libtorrent/version.hpp>
+
 #include "core/preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};

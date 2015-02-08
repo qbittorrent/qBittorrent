@@ -38,6 +38,7 @@ QT_BEGIN_NAMESPACE
 class QNetworkReply;
 class QNetworkCookie;
 class QSslError;
+class QUrl;
 QT_END_NAMESPACE
 
 namespace Net

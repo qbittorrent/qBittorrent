@@ -31,17 +31,15 @@
 #include <QDebug>
 #include "rssmanager.h"
 #include "core/preferences.h"
-#include "qbtsession.h"
+#include "core/bittorrent/session.h"
 #include "rssfeed.h"
 #include "rssarticle.h"
 #include "rssdownloadrulelist.h"
 #include "rssparser.h"
-#include "core/downloadthread.h"
 
 static const int MSECS_PER_MIN = 60000;
 
 RssManager::RssManager():
-  m_rssDownloader(new DownloadThread(this)),
   m_downloadRules(new RssDownloadRuleList),
   m_rssParser(new RssParser(this))
 {
@@ -58,11 +56,6 @@ RssManager::~RssManager()
   saveItemsToDisk();
   saveStreamList();
   qDebug("RSSManager deleted");
-}
-
-DownloadThread* RssManager::rssDownloader() const
-{
-  return m_rssDownloader;
 }
 
 RssParser* RssManager::rssParser() const

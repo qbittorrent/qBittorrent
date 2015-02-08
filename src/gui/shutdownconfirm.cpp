@@ -34,7 +34,7 @@
 
 #include <QPushButton>
 
-ShutdownConfirmDlg::ShutdownConfirmDlg(const shutDownAction &action)
+ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutDownAction &action)
     : m_exitNow(0)
     , m_timeout(15)
     , m_action(action)
@@ -71,7 +71,7 @@ void ShutdownConfirmDlg::showEvent(QShowEvent *event)
     m_timer.start();
 }
 
-bool ShutdownConfirmDlg::askForConfirmation(const shutDownAction &action)
+bool ShutdownConfirmDlg::askForConfirmation(const ShutDownAction &action)
 {
     ShutdownConfirmDlg dlg(action);
     dlg.exec();

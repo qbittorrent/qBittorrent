@@ -1,16 +1,13 @@
-include(qtlibtorrent/qtlibtorrent.pri)
-
 HEADERS += \
+    $$PWD/types.h \
     $$PWD/misc.h \
     $$PWD/fs_utils.h \
-    $$PWD/downloadthread.h \
-    $$PWD/torrentpersistentdata.h \
+    $$PWD/tristatebool.h \
     $$PWD/filesystemwatcher.h \
-    $$PWD/scannedfoldersmodel.h \
     $$PWD/qinisettings.h \
     $$PWD/logger.h \
     $$PWD/preferences.h \
-    $$PWD/qtracker.h \
+    $$PWD/iconprovider.h \
     $$PWD/http/irequesthandler.h \
     $$PWD/http/connection.h \
     $$PWD/http/requestparser.h \
@@ -19,24 +16,68 @@ HEADERS += \
     $$PWD/http/types.h \
     $$PWD/http/responsebuilder.h \
     $$PWD/net/dnsupdater.h \
+    $$PWD/net/downloadmanager.h \
+    $$PWD/net/downloadhandler.h \
+    $$PWD/net/portforwarder.h \
     $$PWD/net/reverseresolution.h \
-    $$PWD/net/smtp.h
+    $$PWD/net/smtp.h \
+    $$PWD/bittorrent/infohash.h \
+    $$PWD/bittorrent/session.h \
+    $$PWD/bittorrent/sessionstatus.h \
+    $$PWD/bittorrent/cachestatus.h \
+    $$PWD/bittorrent/magneturi.h \
+    $$PWD/bittorrent/torrentinfo.h \
+    $$PWD/bittorrent/torrenthandle.h \
+    $$PWD/bittorrent/peerinfo.h \
+    $$PWD/bittorrent/trackerinfo.h \
+    $$PWD/bittorrent/trackerentry.h \
+    $$PWD/bittorrent/tracker.h \
+    $$PWD/bittorrent/torrentcreatorthread.h \
+    $$PWD/private/sessionimpl.h \
+    $$PWD/private/torrenthandleimpl.h \
+    $$PWD/private/portforwarderimpl.h \
+    $$PWD/private/speedmonitor.h \
+    $$PWD/private/alertdispatcher.h \
+    $$PWD/private/bandwidthscheduler.h \
+    $$PWD/private/filterparserthread.h \
+    $$PWD/private/statistics.h \
+    $$PWD/torrentfilter.h \
+    $$PWD/scanfoldersmodel.h
 
 SOURCES += \
-    $$PWD/downloadthread.cpp \
-    $$PWD/scannedfoldersmodel.cpp \
-    $$PWD/torrentpersistentdata.cpp \
-    $$PWD/filesystemwatcher.cpp \
     $$PWD/misc.cpp \
     $$PWD/fs_utils.cpp \
+    $$PWD/tristatebool.cpp \
+    $$PWD/filesystemwatcher.cpp \
     $$PWD/logger.cpp \
     $$PWD/preferences.cpp \
-    $$PWD/qtracker.cpp \
+    $$PWD/iconprovider.cpp \
     $$PWD/http/connection.cpp \
     $$PWD/http/requestparser.cpp \
     $$PWD/http/responsegenerator.cpp \
     $$PWD/http/server.cpp \
     $$PWD/http/responsebuilder.cpp \
     $$PWD/net/dnsupdater.cpp \
+    $$PWD/net/downloadmanager.cpp \
+    $$PWD/net/downloadhandler.cpp \
+    $$PWD/net/portforwarder.cpp \
     $$PWD/net/reverseresolution.cpp \
-    $$PWD/net/smtp.cpp
+    $$PWD/net/smtp.cpp \
+    $$PWD/bittorrent/session.cpp \
+    $$PWD/bittorrent/magneturi.cpp \
+    $$PWD/bittorrent/torrentinfo.cpp \
+    $$PWD/bittorrent/torrenthandle.cpp \
+    $$PWD/bittorrent/peerinfo.cpp \
+    $$PWD/bittorrent/trackerentry.cpp \
+    $$PWD/bittorrent/tracker.cpp \
+    $$PWD/bittorrent/torrentcreatorthread.cpp \
+    $$PWD/private/sessionimpl.cpp \
+    $$PWD/private/torrenthandleimpl.cpp \
+    $$PWD/private/portforwarderimpl.cpp \
+    $$PWD/private/speedmonitor.cpp \
+    $$PWD/private/alertdispatcher.cpp \
+    $$PWD/private/bandwidthscheduler.cpp \
+    $$PWD/private/filterparserthread.cpp \
+    $$PWD/private/statistics.cpp \
+    $$PWD/torrentfilter.cpp \
+    $$PWD/scanfoldersmodel.cpp

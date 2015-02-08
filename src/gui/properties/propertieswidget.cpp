@@ -40,11 +40,11 @@
 #include <QMenu>
 #include <QFileDialog>
 #include <QDesktopServices>
-#include <libtorrent/version.hpp>
+#include <QBitArray>
+
 #include "propertieswidget.h"
 #include "transferlistwidget.h"
-#include "core/torrentpersistentdata.h"
-#include "qbtsession.h"
+#include "core/bittorrent/session.h"
 #include "proplistdelegate.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodel.h"
@@ -55,20 +55,18 @@
 #include "pieceavailabilitybar.h"
 #include "core/preferences.h"
 #include "proptabbar.h"
-#include "iconprovider.h"
+#include "guiiconprovider.h"
 #include "lineedit.h"
 #include "core/fs_utils.h"
 #include "autoexpandabledialog.h"
 
-using namespace libtorrent;
-
 PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, TransferListWidget *transferList):
-  QWidget(parent), transferList(transferList), main_window(main_window) {
+  QWidget(parent), transferList(transferList), main_window(main_window), m_torrent(0) {
   setupUi(this);
 
   // Icons
-  trackerUpButton->setIcon(IconProvider::instance()->getIcon("go-up"));
-  trackerDownButton->setIcon(IconProvider::instance()->getIcon("go-down"));
+  trackerUpButton->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
+  trackerDownButton->setIcon(GuiIconProvider::instance()->getIcon("go-down"));
 
   state = VISIBLE;
 
@@ -92,11 +90,11 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(filesList, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(openDoubleClickedFile(const QModelIndex &)));
   connect(PropListModel, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(listWebSeeds, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayWebSeedListMenu(const QPoint&)));
-  connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle)), this, SLOT(loadTorrentInfos(QTorrentHandle)));
+  connect(transferList, SIGNAL(currentTorrentChanged(BitTorrent::TorrentHandle *const)), this, SLOT(loadTorrentInfos(BitTorrent::TorrentHandle *const)));
   connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(stackedProperties, SIGNAL(currentChanged(int)), this, SLOT(loadDynamicData()));
-  connect(QBtSession::instance(), SIGNAL(savePathChanged(QTorrentHandle)), this, SLOT(updateSavePath(QTorrentHandle)));
-  connect(QBtSession::instance(), SIGNAL(metadataReceived(QTorrentHandle)), this, SLOT(updateTorrentInfos(QTorrentHandle)));
+  connect(BitTorrent::Session::instance(), SIGNAL(torrentSavePathChanged(BitTorrent::TorrentHandle *const)), this, SLOT(updateSavePath(BitTorrent::TorrentHandle *const)));
+  connect(BitTorrent::Session::instance(), SIGNAL(metadataLoaded(BitTorrent::TorrentHandle *const)), this, SLOT(updateTorrentInfos(BitTorrent::TorrentHandle *const)));
   connect(filesList->header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(saveSettings()));
   connect(filesList->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
   connect(filesList->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
@@ -111,9 +109,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   trackerList = new TrackerList(this);
   connect(trackerUpButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionUp()));
   connect(trackerDownButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionDown()));
-  connect(trackerList, SIGNAL(trackersAdded(const QStringList &, const QString &)), this, SIGNAL(trackersAdded(const QStringList &, const QString &)));
-  connect(trackerList, SIGNAL(trackersRemoved(const QStringList &, const QString &)), this, SIGNAL(trackersRemoved(const QStringList &, const QString &)));
-  connect(trackerList, SIGNAL(trackerlessChange(bool, const QString &)), this, SIGNAL(trackerlessChange(bool, const QString &)));
+  connect(trackerList, SIGNAL(trackerAdded(const QString &, const QString &)), this, SIGNAL(trackerAdded(const QString &, const QString &)));
+  connect(trackerList, SIGNAL(trackerRemoved(const QString &, const QString &)), this, SIGNAL(trackerRemoved(const QString &, const QString &)));
+  connect(trackerList, SIGNAL(trackerlessStateChanged(bool, const QString &)), this, SIGNAL(trackerlessStateChanged(bool, const QString &)));
   horizontalLayout_trackers->insertWidget(0, trackerList);
   connect(trackerList->header(), SIGNAL(sectionMoved(int, int, int)), trackerList, SLOT(saveSettings()));
   connect(trackerList->header(), SIGNAL(sectionResized(int, int, int)), trackerList, SLOT(saveSettings()));
@@ -230,61 +228,56 @@ void PropertiesWidget::clear() {
   showPiecesDownloaded(false);
 }
 
-QTorrentHandle PropertiesWidget::getCurrentTorrent() const {
-  return h;
+BitTorrent::TorrentHandle *PropertiesWidget::getCurrentTorrent() const
+{
+  return m_torrent;
 }
 
-void PropertiesWidget::updateSavePath(const QTorrentHandle& _h) {
-  if (h.is_valid() && h == _h) {
-    save_path->setText(fsutils::toNativePath(h.save_path_parsed()));
+void PropertiesWidget::updateSavePath(BitTorrent::TorrentHandle *const torrent)
+{
+  if (m_torrent == torrent) {
+    save_path->setText(fsutils::toNativePath(m_torrent->savePathParsed()));
   }
 }
 
-void PropertiesWidget::loadTrackers(const QTorrentHandle &handle)
+void PropertiesWidget::loadTrackers(BitTorrent::TorrentHandle *const torrent)
 {
-    if (handle == h)
+    if (torrent == m_torrent)
         trackerList->loadTrackers();
 }
 
-void PropertiesWidget::updateTorrentInfos(const QTorrentHandle& _h) {
-  if (h.is_valid() && h == _h) {
-    loadTorrentInfos(h);
-  }
+void PropertiesWidget::updateTorrentInfos(BitTorrent::TorrentHandle *const torrent)
+{
+  if (m_torrent == torrent)
+    loadTorrentInfos(m_torrent);
 }
 
-void PropertiesWidget::loadTorrentInfos(const QTorrentHandle& _h)
+void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent)
 {
   clear();
-  h = _h;
-  if (!h.is_valid())
-    return;
+  m_torrent = torrent;
+  if (!m_torrent) return;
 
-  try {
     // Save path
-    updateSavePath(h);
+    updateSavePath(m_torrent);
     // Hash
-    hash_lbl->setText(h.hash());
+    hash_lbl->setText(m_torrent->hash());
     PropListModel->model()->clear();
-    if (h.has_metadata()) {
+    if (m_torrent->hasMetadata()) {
       // Creation date
-      lbl_creationDate->setText(h.creation_date());
+      lbl_creationDate->setText(m_torrent->creationDate().toString());
       // Piece size
-      pieceSize_lbl->setText(misc::friendlyUnit(h.piece_length()));
+      pieceSize_lbl->setText(misc::friendlyUnit(m_torrent->pieceLength()));
       // Comment
-      comment_text->setHtml(misc::parseHtmlLinks(h.comment()));
+      comment_text->setHtml(misc::parseHtmlLinks(m_torrent->comment()));
       // URL seeds
       loadUrlSeeds();
       // List files in torrent
-#if LIBTORRENT_VERSION_NUM < 10000
-      PropListModel->model()->setupModelData(h.get_torrent_info());
-#else
-      PropListModel->model()->setupModelData(*h.torrent_file());
-#endif
+      PropListModel->model()->setupModelData(m_torrent->info());
       filesList->setExpanded(PropListModel->index(0, 0), true);
       // Load file priorities
-      PropListModel->model()->updateFilesPriorities(h.file_priorities());
+      PropListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
     }
-  } catch(const invalid_handle& e) { }
   // Load dynamic data
   loadDynamicData();
 }
@@ -338,55 +331,44 @@ void PropertiesWidget::reloadPreferences() {
 
 void PropertiesWidget::loadDynamicData() {
   // Refresh only if the torrent handle is valid and if visible
-  if (!h.is_valid() || main_window->getCurrentTabWidget() != transferList || state != VISIBLE) return;
-  try {
+  if (!m_torrent || (main_window->getCurrentTabWidget() != transferList) || (state != VISIBLE)) return;
+
     // Transfer infos
     if (stackedProperties->currentIndex() == PropTabBar::MAIN_TAB) {
-      libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters
-                                                   | torrent_handle::query_distributed_copies
-                                                   | torrent_handle::query_pieces);
 
-      wasted->setText(misc::friendlyUnit(status.total_failed_bytes+status.total_redundant_bytes));
-      upTotal->setText(misc::friendlyUnit(status.all_time_upload) + " ("+misc::friendlyUnit(status.total_payload_upload)+" "+tr("this session")+")");
-      dlTotal->setText(misc::friendlyUnit(status.all_time_download) + " ("+misc::friendlyUnit(status.total_payload_download)+" "+tr("this session")+")");
-      lbl_uplimit->setText(h.upload_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.upload_limit())+tr("/s", "/second (i.e. per second)"));
-      lbl_dllimit->setText(h.download_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.download_limit())+tr("/s", "/second (i.e. per second)"));
-      QString elapsed_txt = misc::userFriendlyDuration(status.active_time);
-      if (h.is_seed(status)) {
-        elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(status.seeding_time))+")";
+      wasted->setText(misc::friendlyUnit(m_torrent->wastedSize()));
+      upTotal->setText(misc::friendlyUnit(m_torrent->totalUpload()) + " ("+misc::friendlyUnit(m_torrent->totalPayloadUpload())+" "+tr("this session")+")");
+      dlTotal->setText(misc::friendlyUnit(m_torrent->totalDownload()) + " ("+misc::friendlyUnit(m_torrent->totalPayloadDownload())+" "+tr("this session")+")");
+      lbl_uplimit->setText(m_torrent->uploadLimit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(m_torrent->uploadLimit())+tr("/s", "/second (i.e. per second)"));
+      lbl_dllimit->setText(m_torrent->downloadLimit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(m_torrent->downloadLimit())+tr("/s", "/second (i.e. per second)"));
+      QString elapsed_txt = misc::userFriendlyDuration(m_torrent->activeTime());
+      if (m_torrent->isSeed()) {
+        elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(m_torrent->seedingTime()))+")";
       }
       lbl_elapsed->setText(elapsed_txt);
-      if (status.connections_limit > 0)
-        lbl_connections->setText(QString::number(status.num_connections)+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(status.connections_limit))+")");
+      if (m_torrent->connectionsLimit() > 0)
+        lbl_connections->setText(QString::number(m_torrent->connectionsCount())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(m_torrent->connectionsLimit()))+")");
       else
-        lbl_connections->setText(QString::number(status.num_connections));
+        lbl_connections->setText(QString::number(m_torrent->connectionsLimit()));
       // Update next announce time
-      reannounce_lbl->setText(misc::userFriendlyDuration(status.next_announce.total_seconds()));
+      reannounce_lbl->setText(misc::userFriendlyDuration(m_torrent->nextAnnounce()));
       // Update ratio info
-      const qreal ratio = QBtSession::instance()->getRealRatio(status);
-      shareRatio->setText(ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
-      if (!h.is_seed(status) && status.has_metadata) {
+      const qreal ratio = m_torrent->realRatio();
+      shareRatio->setText(ratio > BitTorrent::TorrentHandle::MAX_RATIO ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
+      if (!m_torrent->isSeed() && m_torrent->hasMetadata()) {
         showPiecesDownloaded(true);
         // Downloaded pieces
-#if LIBTORRENT_VERSION_NUM < 10000
-        bitfield bf(h.get_torrent_info().num_pieces(), 0);
-#else
-        bitfield bf(h.torrent_file()->num_pieces(), 0);
-#endif
-        h.downloading_pieces(bf);
-        downloaded_pieces->setProgress(status.pieces, bf);
+        downloaded_pieces->setProgress(m_torrent->pieces(), m_torrent->downloadingPieces());
         // Pieces availability
-        if (!h.is_paused(status) && !h.is_queued(status) && !h.is_checking(status)) {
+        if (!m_torrent->isPaused() && !m_torrent->isQueued() && !m_torrent->isChecking()) {
           showPiecesAvailability(true);
-          std::vector<int> avail;
-          h.piece_availability(avail);
-          pieces_availability->setAvailability(avail);
-          avail_average_lbl->setText(misc::accurateDoubleToString(status.distributed_copies, 3));
+          pieces_availability->setAvailability(m_torrent->pieceAvailability());
+          avail_average_lbl->setText(misc::accurateDoubleToString(m_torrent->distributedCopies(), 3));
         } else {
           showPiecesAvailability(false);
         }
         // Progress
-        qreal progress = h.progress(status)*100.;
+        qreal progress = m_torrent->progress() * 100.;
         progress_lbl->setText(misc::accurateDoubleToString(progress, 1)+"%");
       } else {
         showPiecesAvailability(false);
@@ -401,20 +383,15 @@ void PropertiesWidget::loadDynamicData() {
     }
     if (stackedProperties->currentIndex() == PropTabBar::PEERS_TAB) {
       // Load peers
-      peersList->loadPeers(h);
+      peersList->loadPeers(m_torrent);
       return;
     }
     if (stackedProperties->currentIndex() == PropTabBar::FILES_TAB) {
-      libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters
-                                                   | torrent_handle::query_distributed_copies
-                                                   | torrent_handle::query_pieces);
       // Files progress
-      if (h.is_valid() && status.has_metadata) {
+      if (m_torrent->hasMetadata()) {
         qDebug("Updating priorities in files tab");
         filesList->setUpdatesEnabled(false);
-        std::vector<size_type> fp;
-        h.file_progress(fp);
-        PropListModel->model()->updateFilesProgress(fp);
+        PropListModel->model()->updateFilesProgress(m_torrent->filesProgress());
         // XXX: We don't update file priorities regularly for performance
         // reasons. This means that priorities will not be updated if
         // set from the Web UI.
@@ -422,15 +399,12 @@ void PropertiesWidget::loadDynamicData() {
         filesList->setUpdatesEnabled(true);
       }
     }
-  } catch(const invalid_handle& e) {
-    qWarning() << "Caught exception in PropertiesWidget::loadDynamicData(): " << misc::toQStringU(e.what());
-  }
 }
 
 void PropertiesWidget::loadUrlSeeds() {
   listWebSeeds->clear();
   qDebug("Loading URL seeds");
-  const QStringList hc_seeds = h.url_seeds();
+  const QStringList hc_seeds = m_torrent->urlSeeds();
   // Add url seeds
   foreach (const QString &hc_seed, hc_seeds) {
     qDebug("Loading URL seed: %s", qPrintable(hc_seed));
@@ -440,7 +414,7 @@ void PropertiesWidget::loadUrlSeeds() {
 
 void PropertiesWidget::openDoubleClickedFile(const QModelIndex &index) {
   if (!index.isValid()) return;
-  if (!h.is_valid() || !h.has_metadata()) return;
+  if (!m_torrent || !m_torrent->hasMetadata()) return;
   if (PropListModel->itemType(index) == TorrentContentModelItem::FileType)
     openFile(index);
   else
@@ -449,12 +423,12 @@ void PropertiesWidget::openDoubleClickedFile(const QModelIndex &index) {
 
 void PropertiesWidget::openFile(const QModelIndex &index) {
   int i = PropListModel->getFileIndex(index);
-  const QDir saveDir(h.save_path());
-  const QString filename = h.filepath_at(i);
+  const QDir saveDir(m_torrent->actualSavePath());
+  const QString filename = m_torrent->filePath(i);
   const QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
   qDebug("Trying to open file at %s", qPrintable(file_path));
   // Flush data
-  h.flush_cache();
+  m_torrent->flushCache();
   if (QFile::exists(file_path)) {
     if (file_path.startsWith("//"))
       QDesktopServices::openUrl(fsutils::toNativePath("file:" + file_path));
@@ -484,24 +458,24 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
     if (containing_folder)
       path_items.removeLast();
 #endif
-    const QDir saveDir(h.save_path());
+    const QDir saveDir(m_torrent->actualSavePath());
     const QString relative_path = path_items.join("/");
     absolute_path = fsutils::expandPath(saveDir.absoluteFilePath(relative_path));
   }
   else {
-  int i = PropListModel->getFileIndex(index);
-  const QDir saveDir(h.save_path());
-  const QString relative_path = h.filepath_at(i);
-  absolute_path = fsutils::expandPath(saveDir.absoluteFilePath(relative_path));
+    int i = PropListModel->getFileIndex(index);
+    const QDir saveDir(m_torrent->actualSavePath());
+    const QString relative_path = m_torrent->filePath(i);
+    absolute_path = fsutils::expandPath(saveDir.absoluteFilePath(relative_path));
 
 #if !(defined(Q_OS_WIN) || (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)))
-  if (containing_folder)
-    absolute_path = fsutils::folderName(absolute_path);
+    if (containing_folder)
+      absolute_path = fsutils::folderName(absolute_path);
 #endif
   }
 
   // Flush data
-  h.flush_cache();
+  m_torrent->flushCache();
   if (!QFile::exists(absolute_path))
       return;
   qDebug("Trying to open folder at %s", qPrintable(absolute_path));
@@ -544,8 +518,8 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
 }
 
 void PropertiesWidget::displayFilesListMenu(const QPoint&) {
-  if (!h.is_valid())
-    return;
+  if (!m_torrent) return;
+
   QModelIndexList selectedRows = filesList->selectionModel()->selectedRows(0);
   if (selectedRows.empty())
     return;
@@ -554,13 +528,13 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&) {
   QAction *actOpenContainingFolder = 0;
   QAction *actRename = 0;
   if (selectedRows.size() == 1) {
-    actOpen = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("folder-documents"), tr("Open"));
-    actOpenContainingFolder = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
-    actRename = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
+    actOpen = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("folder-documents"), tr("Open"));
+    actOpenContainingFolder = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
+    actRename = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
     myFilesLlistMenu.addSeparator();
   }
   QMenu subMenu;
-  if (!h.status(0x0).is_seeding) {
+  if (!m_torrent->isSeed()) {
     subMenu.setTitle(tr("Priority"));
     subMenu.addAction(actionNot_downloaded);
     subMenu.addAction(actionNormal);
@@ -603,20 +577,20 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&) {
 }
 
 void PropertiesWidget::displayWebSeedListMenu(const QPoint&) {
-  if (!h.is_valid())
-    return;
+  if (!m_torrent) return;
+
   QMenu seedMenu;
   QModelIndexList rows = listWebSeeds->selectionModel()->selectedRows();
-  QAction *actAdd = seedMenu.addAction(IconProvider::instance()->getIcon("list-add"), tr("New Web seed"));
+  QAction *actAdd = seedMenu.addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("New Web seed"));
   QAction *actDel = 0;
   QAction *actCpy = 0;
   QAction *actEdit = 0;
 
   if (rows.size()) {
-    actDel = seedMenu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove Web seed"));
+    actDel = seedMenu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove Web seed"));
     seedMenu.addSeparator();
-    actCpy = seedMenu.addAction(IconProvider::instance()->getIcon("edit-copy"), tr("Copy Web seed URL"));
-    actEdit = seedMenu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Edit Web seed URL"));
+    actCpy = seedMenu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy Web seed URL"));
+    actEdit = seedMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Edit Web seed URL"));
   }
 
   const QAction *act = seedMenu.exec(QCursor::pos());
@@ -654,8 +628,8 @@ void PropertiesWidget::renameSelectedFile() {
     if (PropListModel->itemType(index) == TorrentContentModelItem::FileType) {
       // File renaming
       const int file_index = PropListModel->getFileIndex(index);
-      if (!h.is_valid() || !h.has_metadata()) return;
-      QString old_name = h.filepath_at(file_index);
+      if (!m_torrent || !m_torrent->hasMetadata()) return;
+      QString old_name = m_torrent->filePath(file_index);
       if (old_name.endsWith(".!qB") && !new_name_last.endsWith(".!qB")) {
         new_name_last += ".!qB";
       }
@@ -669,12 +643,12 @@ void PropertiesWidget::renameSelectedFile() {
       }
       new_name = fsutils::expandPath(new_name);
       // Check if that name is already used
-      for (int i=0; i<h.num_files(); ++i) {
+      for (int i = 0; i < m_torrent->filesCount(); ++i) {
         if (i == file_index) continue;
 #if defined(Q_OS_UNIX) || defined(Q_WS_QWS)
-        if (h.filepath_at(i).compare(new_name, Qt::CaseSensitive) == 0) {
+        if (m_torrent->filePath(i).compare(new_name, Qt::CaseSensitive) == 0) {
 #else
-        if (h.filepath_at(i).compare(new_name, Qt::CaseInsensitive) == 0) {
+        if (m_torrent->filePath(i).compare(new_name, Qt::CaseInsensitive) == 0) {
 #endif
           // Display error message
           QMessageBox::warning(this, tr("The file could not be renamed"),
@@ -683,11 +657,11 @@ void PropertiesWidget::renameSelectedFile() {
           return;
         }
       }
-      const bool force_recheck = QFile::exists(h.save_path()+"/"+new_name);
+      const bool force_recheck = QFile::exists(m_torrent->actualSavePath() + "/" + new_name);
       qDebug("Renaming %s to %s", qPrintable(old_name), qPrintable(new_name));
-      h.rename_file(file_index, new_name);
+      m_torrent->renameFile(file_index, new_name);
       // Force recheck
-      if (force_recheck) h.force_recheck();
+      if (force_recheck) m_torrent->forceRecheck();
       // Rename if torrent files model too
       if (new_name_last.endsWith(".!qB"))
         new_name_last.chop(4);
@@ -707,9 +681,9 @@ void PropertiesWidget::renameSelectedFile() {
       QString new_path = path_items.join("/");
       if (!new_path.endsWith("/")) new_path += "/";
       // Check for overwriting
-      const int num_files = h.num_files();
+      const int num_files = m_torrent->filesCount();
       for (int i=0; i<num_files; ++i) {
-        const QString current_name = h.filepath_at(i);
+        const QString current_name = m_torrent->filePath(i);
 #if defined(Q_OS_UNIX) || defined(Q_WS_QWS)
         if (current_name.startsWith(new_path, Qt::CaseSensitive)) {
 #else
@@ -724,23 +698,23 @@ void PropertiesWidget::renameSelectedFile() {
       bool force_recheck = false;
       // Replace path in all files
       for (int i=0; i<num_files; ++i) {
-        const QString current_name = h.filepath_at(i);
+        const QString current_name = m_torrent->filePath(i);
         if (current_name.startsWith(old_path)) {
           QString new_name = current_name;
           new_name.replace(0, old_path.length(), new_path);
-          if (!force_recheck && QDir(h.save_path()).exists(new_name))
+          if (!force_recheck && QDir(m_torrent->actualSavePath()).exists(new_name))
             force_recheck = true;
           new_name = fsutils::expandPath(new_name);
           qDebug("Rename %s to %s", qPrintable(current_name), qPrintable(new_name));
-          h.rename_file(i, new_name);
+          m_torrent->renameFile(i, new_name);
         }
       }
       // Force recheck
-      if (force_recheck) h.force_recheck();
+      if (force_recheck) m_torrent->forceRecheck();
       // Rename folder in torrent files model too
       PropListModel->setData(index, new_name_last);
       // Remove old folder
-      const QDir old_folder(h.save_path()+"/"+old_path);
+      const QDir old_folder(m_torrent->actualSavePath() + "/" + old_path);
       int timeout = 10;
       while(!QDir().rmpath(old_folder.absolutePath()) && timeout > 0) {
         // XXX: We should not sleep here (freezes the UI for 1 second)
@@ -765,8 +739,8 @@ void PropertiesWidget::askWebSeed() {
                          QMessageBox::Ok);
     return;
   }
-  if (h.is_valid())
-    h.add_url_seed(url_seed);
+  if (m_torrent)
+    m_torrent->addUrlSeed(url_seed);
   // Refresh the seeds list
   loadUrlSeeds();
 }
@@ -778,10 +752,8 @@ void PropertiesWidget::deleteSelectedUrlSeeds() {
   bool change = false;
   foreach (const QListWidgetItem *item, selectedItems) {
     QString url_seed = item->text();
-    try {
-      h.remove_url_seed(url_seed);
-      change = true;
-    } catch (invalid_handle&) {}
+    m_torrent->removeUrlSeed(url_seed);
+    change = true;
   }
   if (change) {
     // Refresh list
@@ -822,31 +794,28 @@ void PropertiesWidget::editWebSeed() {
     return;
   }
 
-  try {
-    h.remove_url_seed(old_seed);
-    h.add_url_seed(new_seed);
-    loadUrlSeeds();
-  } catch (invalid_handle&) {}
+  m_torrent->removeUrlSeed(old_seed);
+  m_torrent->addUrlSeed(new_seed);
+  loadUrlSeeds();
 }
 
 bool PropertiesWidget::applyPriorities() {
   qDebug("Saving files priorities");
-  const std::vector<int> priorities = PropListModel->model()->getFilesPriorities();
+  const QVector<int> priorities = PropListModel->model()->getFilePriorities();
   // Save first/last piece first option state
-  bool first_last_piece_first = h.first_last_piece_first();
+  bool first_last_piece_first = m_torrent->hasFirstLastPiecePriority();
   // Prioritize the files
   qDebug("prioritize files: %d", priorities[0]);
-  h.prioritize_files(priorities);
+  m_torrent->prioritizeFiles(priorities);
   // Restore first/last piece first option if necessary
   if (first_last_piece_first)
-    h.prioritize_first_last_piece(true);
+    m_torrent->setFirstLastPiecePriority(true);
   return true;
 }
 
 void PropertiesWidget::filteredFilesChanged() {
-  if (h.is_valid()) {
+  if (m_torrent)
     applyPriorities();
-  }
 }
 
 void PropertiesWidget::filterText(const QString& filter) {

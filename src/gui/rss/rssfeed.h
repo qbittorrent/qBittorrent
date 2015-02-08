@@ -81,8 +81,8 @@ public:
   void recheckRssItemsForDownload();
 
 private slots:
-  void handleFinishedDownload(const QString& url, const QString &file_path);
-  void handleDownloadFailure(const QString &url, const QString& error);
+  void handleFinishedDownload(const QString &url, const QString &filePath);
+  void handleDownloadFailure(const QString &url, const QString &error);
   void handleFeedTitle(const QString& feedUrl, const QString& title);
   void handleNewArticle(const QString& feedUrl, const QVariantHash& article);
   void handleFeedParsingFinished(const QString& feedUrl, const QString& error);
@@ -93,7 +93,6 @@ private:
   void loadItemsFromDisk();
   void addArticle(const RssArticlePtr& article);
   void downloadArticleTorrentIfMatching(RssDownloadRuleList* rules, const RssArticlePtr& article);
-  QList<QNetworkCookie> feedCookies() const;
 
 private:
   RssManager* m_manager;

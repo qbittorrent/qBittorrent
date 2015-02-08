@@ -34,8 +34,9 @@
 #include <QWidget>
 #include <QPainter>
 #include <QImage>
+#include <QBitArray>
+#include <QVector>
 #include <cmath>
-#include <libtorrent/bitfield.hpp>
 
 #define BAR_HEIGHT 18
 
@@ -44,28 +45,28 @@ class DownloadedPiecesBar: public QWidget {
   Q_DISABLE_COPY(DownloadedPiecesBar)
 
 private:
-  QImage image;
+  QImage m_image;
 
   // I used values, bacause it should be possible to change colors in runtime
 
   // background color
-  int bg_color;
+  int m_bgColor;
   // border color
-  int border_color;
+  int m_borderColor;
   // complete piece color
-  int piece_color;
+  int m_pieceColor;
   // incomplete piece color
-  int piece_color_dl;
+  int m_dlPieceColor;
   // buffered 256 levels gradient from bg_color to piece_color
-  std::vector<int> piece_colors;
+  QVector<int> m_pieceColors;
 
   // last used bitfields, uses to better resize redraw
   // TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
-  libtorrent::bitfield pieces;
-  libtorrent::bitfield pieces_dl;
+  QBitArray m_pieces;
+  QBitArray m_downloadedPieces;
 
   // scale bitfield vector to float vector
-  std::vector<float> bitfieldToFloatVector(const libtorrent::bitfield &vecin, int reqSize);
+  QVector<float> bitfieldToFloatVector(const QBitArray &vecin, int reqSize);
   // mix two colors by light model, ratio <0, 1>
   int mixTwoColors(int &rgb1, int &rgb2, float ratio);
   // draw new image and replace actual image
@@ -74,7 +75,7 @@ private:
 public:
   DownloadedPiecesBar(QWidget *parent);
 
-  void setProgress(const libtorrent::bitfield &bf, const libtorrent::bitfield &bf_dl);
+  void setProgress(const QBitArray &m_pieces, const QBitArray &downloadedPieces);
   void updatePieceColors();
   void clear();
 

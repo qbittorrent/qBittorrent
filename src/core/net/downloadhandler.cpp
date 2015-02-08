@@ -33,11 +33,12 @@
 #include <QNetworkReply>
 #include <QNetworkProxy>
 #include <QNetworkCookie>
+#include <QUrl>
 #include <QDebug>
 
 #include <zlib.h>
 
-#include "fs_utils.h"
+#include "core/fs_utils.h"
 #include "downloadmanager.h"
 #include "downloadhandler.h"
 

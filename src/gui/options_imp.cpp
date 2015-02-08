@@ -45,17 +45,15 @@
 #include "core/preferences.h"
 #include "core/fs_utils.h"
 #include "advancedsettings.h"
-#include "core/scannedfoldersmodel.h"
-#include "qbtsession.h"
-#include "iconprovider.h"
+#include "core/scanfoldersmodel.h"
+#include "core/bittorrent/session.h"
+#include "guiiconprovider.h"
 #include "core/net/dnsupdater.h"
 
 #ifndef QT_NO_OPENSSL
 #include <QSslKey>
 #include <QSslCertificate>
 #endif
-
-using namespace libtorrent;
 
 // Constructor
 options_imp::options_imp(QWidget *parent):
@@ -65,18 +63,18 @@ options_imp::options_imp(QWidget *parent):
   setAttribute(Qt::WA_DeleteOnClose);
   setModal(true);
   // Icons
-  tabSelection->item(TAB_UI)->setIcon(IconProvider::instance()->getIcon("preferences-desktop"));
-  tabSelection->item(TAB_BITTORRENT)->setIcon(IconProvider::instance()->getIcon("preferences-system-network"));
-  tabSelection->item(TAB_CONNECTION)->setIcon(IconProvider::instance()->getIcon("network-wired"));
-  tabSelection->item(TAB_DOWNLOADS)->setIcon(IconProvider::instance()->getIcon("download"));
-  tabSelection->item(TAB_SPEED)->setIcon(IconProvider::instance()->getIcon("chronometer"));
+  tabSelection->item(TAB_UI)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop"));
+  tabSelection->item(TAB_BITTORRENT)->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
+  tabSelection->item(TAB_CONNECTION)->setIcon(GuiIconProvider::instance()->getIcon("network-wired"));
+  tabSelection->item(TAB_DOWNLOADS)->setIcon(GuiIconProvider::instance()->getIcon("download"));
+  tabSelection->item(TAB_SPEED)->setIcon(GuiIconProvider::instance()->getIcon("chronometer"));
 #ifndef DISABLE_WEBUI
-  tabSelection->item(TAB_WEBUI)->setIcon(IconProvider::instance()->getIcon("network-server"));
+  tabSelection->item(TAB_WEBUI)->setIcon(GuiIconProvider::instance()->getIcon("network-server"));
 #else
   tabSelection->item(TAB_WEBUI)->setHidden(true);
 #endif
-  tabSelection->item(TAB_ADVANCED)->setIcon(IconProvider::instance()->getIcon("preferences-other"));
-  IpFilterRefreshBtn->setIcon(IconProvider::instance()->getIcon("view-refresh"));
+  tabSelection->item(TAB_ADVANCED)->setIcon(GuiIconProvider::instance()->getIcon("preferences-other"));
+  IpFilterRefreshBtn->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
 
   hsplitter->setCollapsible(0, false);
   hsplitter->setCollapsible(1, false);
@@ -494,7 +492,7 @@ void options_imp::saveOptions() {
   advancedSettings->saveAdvancedSettings();
   // Assume that user changed multiple settings
   // so it's best to save immediately
-  pref->save();
+  pref->apply();
 }
 
 bool options_imp::isFilteringEnabled() const {
@@ -1250,9 +1248,9 @@ void options_imp::on_IpFilterRefreshBtn_clicked() {
   pref->setFilteringEnabled(true);
   pref->setFilter(getFilter());
   // Force refresh
-  connect(QBtSession::instance(), SIGNAL(ipFilterParsed(bool, int)), SLOT(handleIPFilterParsed(bool, int)));
+  connect(BitTorrent::Session::instance(), SIGNAL(ipFilterParsed(bool, int)), SLOT(handleIPFilterParsed(bool, int)));
   setCursor(QCursor(Qt::WaitCursor));
-  QBtSession::instance()->enableIPFilter(getFilter(), true);
+  BitTorrent::Session::instance()->enableIPFilter(getFilter(), true);
 }
 
 void options_imp::handleIPFilterParsed(bool error, int ruleCount)
@@ -1264,7 +1262,7 @@ void options_imp::handleIPFilterParsed(bool error, int ruleCount)
     QMessageBox::information(this, tr("Successfully refreshed"), tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
   }
   m_refreshingIpFilter = false;
-  disconnect(QBtSession::instance(), SIGNAL(ipFilterParsed(bool, int)), this, SLOT(handleIPFilterParsed(bool, int)));
+  disconnect(BitTorrent::Session::instance(), SIGNAL(ipFilterParsed(bool, int)), this, SLOT(handleIPFilterParsed(bool, int)));
 }
 
 QString options_imp::languageToLocalizedString(const QLocale &locale)

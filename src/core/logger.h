@@ -54,7 +54,7 @@ class Logger : public QObject
 
 public:
     static Logger* instance();
-    static void drop();
+    static void freeInstance();
     ~Logger();
 
     void addMessage(const QString &message, const Log::MsgType &type = Log::NORMAL);

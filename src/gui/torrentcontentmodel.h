@@ -36,8 +36,7 @@
 #include <QVector>
 #include <QVariant>
 
-#include <libtorrent/torrent_info.hpp>
-
+#include "core/bittorrent/torrentinfo.h"
 #include "torrentcontentmodelitem.h"
 
 class TorrentContentModelFile;
@@ -49,9 +48,9 @@ public:
   TorrentContentModel(QObject *parent = 0);
   ~TorrentContentModel();
 
-  void updateFilesProgress(const std::vector<libtorrent::size_type>& fp);
-  void updateFilesPriorities(const std::vector<int> &fprio);
-  std::vector<int> getFilesPriorities() const;
+  void updateFilesProgress(const QVector<qreal> &fp);
+  void updateFilesPriorities(const QVector<int> &fprio);
+  QVector<int> getFilePriorities() const;
   bool allFiltered() const;
   virtual int columnCount(const QModelIndex &parent=QModelIndex()) const;
   virtual bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
@@ -64,7 +63,7 @@ public:
   virtual QModelIndex parent(const QModelIndex& index) const;
   virtual int rowCount(const QModelIndex& parent = QModelIndex()) const;
   void clear();
-  void setupModelData(const libtorrent::torrent_info& t);
+  void setupModelData(const BitTorrent::TorrentInfo &info);
 
 signals:
   void filteredFilesChanged();

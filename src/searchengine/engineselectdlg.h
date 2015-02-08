@@ -34,8 +34,6 @@
 #include "ui_engineselect.h"
 #include "supportedengines.h"
 
-class DownloadThread;
-
 QT_BEGIN_NAMESPACE
 class QDropEvent;
 QT_END_NAMESPACE
@@ -44,7 +42,8 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
   Q_OBJECT
 
   private:
-    DownloadThread *downloader;
+    void downloadFromUrl(const QString &url);
+
     SupportedEngines *supported_engines;
 
   public:
@@ -66,8 +65,8 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
     void addNewEngine(QString engine_name);
     void toggleEngineState(QTreeWidgetItem*, int);
     void setRowColor(int row, QString color);
-    void processDownloadedFile(QString url, QString filePath);
-    void handleDownloadFailure(QString url, QString reason);
+    void processDownloadedFile(const QString &url, QString filePath);
+    void handleDownloadFailure(const QString &url, const QString &reason);
     void displayContextMenu(const QPoint& pos);
     void enableSelection(bool enable);
     void on_actionUninstall_triggered();

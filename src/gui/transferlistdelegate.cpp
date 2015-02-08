@@ -36,7 +36,8 @@
 #include <QPainter>
 #include "core/misc.h"
 #include "torrentmodel.h"
-#include "qbtsession.h"
+#include "core/bittorrent/session.h"
+#include "core/bittorrent/torrenthandle.h"
 
 #ifdef Q_OS_WIN
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
@@ -90,49 +91,43 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       const int state = index.data().toInt();
       QString display;
       switch(state) {
-      case TorrentModelItem::STATE_DOWNLOADING:
+      case BitTorrent::TorrentState::Downloading:
         display = tr("Downloading");
         break;
-      case TorrentModelItem::STATE_DOWNLOADING_META:
-        display = tr("Downloading metadata", "used when loading a magnet link");
-        break;
-      case TorrentModelItem::STATE_FORCED_DL:
-        display = tr("[F] Downloading", "used when the torrent is forced started. You probably shouldn't translate the F.");
-        break;
-      case TorrentModelItem::STATE_ALLOCATING:
-        display = tr("Allocating", "qBittorrent is allocating the files on disk");
-        break;
-      case TorrentModelItem::STATE_STALLED_DL:
+      case BitTorrent::TorrentState::StalledDownloading:
         display = tr("Stalled", "Torrent is waiting for download to begin");
         break;
-      case TorrentModelItem::STATE_SEEDING:
-      case TorrentModelItem::STATE_STALLED_UP:
+      case BitTorrent::TorrentState::DownloadingMetadata:
+        display = tr("Downloading metadata", "used when loading a magnet link");
+        break;
+      case BitTorrent::TorrentState::ForcedDownloading:
+        display = tr("[F] Downloading", "used when the torrent is forced started. You probably shouldn't translate the F.");
+        break;
+      case BitTorrent::TorrentState::Allocating:
+        display = tr("Allocating", "qBittorrent is allocating the files on disk");
+        break;
+      case BitTorrent::TorrentState::Uploading:
+      case BitTorrent::TorrentState::StalledUploading:
         display = tr("Seeding", "Torrent is complete and in upload-only mode");
         break;
-      case TorrentModelItem::STATE_FORCED_UP:
+      case BitTorrent::TorrentState::ForcedUploading:
         display = tr("[F] Seeding", "used when the torrent is forced started. You probably shouldn't translate the F.");
         break;
-      case TorrentModelItem::STATE_QUEUED_DL:
-      case TorrentModelItem::STATE_QUEUED_UP:
+      case BitTorrent::TorrentState::QueuedDownloading:
+      case BitTorrent::TorrentState::QueuedUploading:
         display = tr("Queued", "i.e. torrent is queued");
         break;
-      case TorrentModelItem::STATE_CHECKING_DL:
-      case TorrentModelItem::STATE_CHECKING_UP:
+      case BitTorrent::TorrentState::CheckingDownloading:
+      case BitTorrent::TorrentState::CheckingUploading:
         display = tr("Checking", "Torrent local data is being checked");
         break;
-      case TorrentModelItem::STATE_QUEUED_CHECK:
-        display = tr("Queued for checking", "i.e. torrent is queued for hash checking");
-        break;
-      case TorrentModelItem::STATE_QUEUED_FASTCHECK:
-        display = tr("Checking resume data", "used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.");
-        break;
-      case TorrentModelItem::STATE_PAUSED_DL:
+      case BitTorrent::TorrentState::PausedDownloading:
         display = tr("Paused");
         break;
-      case TorrentModelItem::STATE_PAUSED_UP:
+      case BitTorrent::TorrentState::PausedUploading:
         display = tr("Completed");
         break;
-      case TorrentModelItem::STATE_PAUSED_MISSING:
+      case BitTorrent::TorrentState::Error:
         display = tr("Missing Files");
         break;
       default:
@@ -178,13 +173,13 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       const qreal ratio = index.data().toDouble();
       QItemDelegate::drawDisplay(painter, opt, opt.rect,
-                                 (ratio == -1 || ratio > QBtSession::MAX_RATIO) ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
+                                 ((ratio == -1) || (ratio > BitTorrent::TorrentHandle::MAX_RATIO)) ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
       break;
     }
   case TorrentModelItem::TR_PRIORITY: {
       const int priority = index.data().toInt();
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-      if (priority >= 0)
+      if (priority > 0)
         QItemDelegate::paint(painter, opt, index);
       else {
         QItemDelegate::drawBackground(painter, opt, index);

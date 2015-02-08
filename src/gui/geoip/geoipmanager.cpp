@@ -183,21 +183,21 @@ const char * country_name[253] =
  "Zambia","Montenegro","Zimbabwe","Anonymous Proxy","Satellite Provider","Other","Aland Islands","Guernsey","Isle of Man","Jersey",
  "Saint Barthelemy","Saint Martin"};
 
-QString GeoIPManager::CountryISOCodeToName(const char* iso) {
-  if (iso[0] == 0) return "N/A";
+QString GeoIPManager::CountryISOCodeToName(const QString &iso) {
+  if (iso.isEmpty()) return "N/A";
+
   for (uint i = 0; i < num_countries; ++i) {
-    if (iso[0] == country_code[i][0] &&  iso[1] == country_code[i][1]) {
+    if (iso == country_code[i]) {
       return QLatin1String(country_name[i]);
     }
   }
-  qDebug("GeoIPManager: Country name resolution failed for: %c%c", iso[0], iso[1]);
+  qDebug("GeoIPManager: Country name resolution failed for: %s", qPrintable(iso));
   return "N/A";
 }
 
 // http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm
-QIcon GeoIPManager::CountryISOCodeToIcon(const char* iso) {
-  if (iso[0] == 0 || iso[0] == '!') return QIcon();
-  const QString isoStr = QString(QByteArray(iso, 2)).toLower();
-  return QIcon(":/icons/flags/"+isoStr+".png");
+QIcon GeoIPManager::CountryISOCodeToIcon(const QString &iso) {
+  if (iso.isEmpty() || (iso[0] == '!')) return QIcon();
+  return QIcon(":/icons/flags/" + iso.toLower() + ".png");
 }
 

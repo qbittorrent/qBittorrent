@@ -33,13 +33,16 @@
 #include <QNetworkReply>
 #include <QNetworkCookie>
 #include <QSslError>
+#include <QUrl>
 #include <QDebug>
 
-#include "preferences.h"
+#include "core/preferences.h"
 #include "downloadhandler.h"
 #include "downloadmanager.h"
 
 using namespace Net;
+
+QScopedPointer<DownloadManager> DownloadManager::m_instance;
 
 DownloadManager::DownloadManager(QObject *parent)
     : QObject(parent)

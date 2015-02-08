@@ -36,11 +36,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QSettings>
-#ifdef DISABLE_GUI
 #include <QCoreApplication>
-#else
-#include <QApplication>
-#endif
 #include <libtorrent/torrent_info.hpp>
 
 #ifdef Q_OS_MAC
@@ -108,17 +104,6 @@ QString fsutils::folderName(const QString& file_path) {
   if (slash_index == -1)
     return path;
   return path.left(slash_index);
-}
-
-bool fsutils::isValidTorrentFile(const QString& torrent_path) {
-  try {
-    boost::intrusive_ptr<libtorrent::torrent_info> t = new torrent_info(fsutils::toNativePath(torrent_path).toUtf8().constData());
-    if (!t->is_valid() || t->num_files() == 0)
-      return false;
-  } catch(std::exception&) {
-    return false;
-  }
-  return true;
 }
 
 /**
@@ -507,15 +492,6 @@ QString fsutils::searchEngineLocation() {
     folder = "nova3";
   const QString location = fsutils::expandPathAbs(QDesktopServicesDataLocation()
                                                + folder);
-  QDir locationDir(location);
-  if (!locationDir.exists())
-    locationDir.mkpath(locationDir.absolutePath());
-  return location;
-}
-
-QString fsutils::BTBackupLocation() {
-  const QString location = fsutils::expandPathAbs(QDesktopServicesDataLocation()
-                                           + "BT_backup");
   QDir locationDir(location);
   if (!locationDir.exists())
     locationDir.mkpath(locationDir.absolutePath());

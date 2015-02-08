@@ -50,6 +50,7 @@ private:
     QPointer<Http::Server> httpServer_;
     QPointer<Net::DNSUpdater> dynDNSUpdater_;
     QPointer<AbstractWebApplication> webapp_;
+    qint16 m_port;
 };
 
 #endif // WEBUI_H

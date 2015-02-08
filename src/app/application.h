@@ -43,9 +43,13 @@ class MainWindow;
 typedef QtSingleCoreApplication BaseApplication;
 #endif
 
+#include "core/misc.h"
+
 #ifndef DISABLE_WEBUI
 class WebUI;
 #endif
+
+namespace BitTorrent { class TorrentHandle; }
 
 class Application : public BaseApplication
 {
@@ -70,6 +74,7 @@ protected:
 
 private slots:
     void processMessage(const QString &message);
+    void torrentFinished(BitTorrent::TorrentHandle *const torrent);
     void cleanup();
 
 private:
@@ -77,6 +82,7 @@ private:
 
 #ifndef DISABLE_GUI
     QPointer<MainWindow> m_window;
+    ShutDownAction m_shutdownAct;
 #endif
 
 #ifndef DISABLE_WEBUI

@@ -32,10 +32,8 @@
 #define TRANSFERLISTWIDGET_H
 
 #include <QTreeView>
-#include <libtorrent/version.hpp>
 
-class QBtSession;
-class QTorrentHandle;
+namespace BitTorrent { class TorrentHandle; }
 class MainWindow;
 class TransferListDelegate;
 class TransferListSortModel;
@@ -52,14 +50,15 @@ class TransferListWidget: public QTreeView
     Q_OBJECT
 
 public:
-    TransferListWidget(QWidget *parent, MainWindow *main_window, QBtSession* BTSession);
+    TransferListWidget(QWidget *parent, MainWindow *main_window);
     ~TransferListWidget();
     TorrentModel* getSourceModel() const;
 
 public slots:
     void setSelectionLabel(QString label);
-    void setRefreshInterval(int t);
     void setSelectedTorrentsLocation();
+    void pauseAllTorrents();
+    void resumeAllTorrents();
     void startSelectedTorrents();
     void forceStartSelectedTorrents();
     void startVisibleTorrents();
@@ -113,13 +112,12 @@ private:
     bool openUrl(const QString& _path) const;
 
 signals:
-    void currentTorrentChanged(const QTorrentHandle &h);
+    void currentTorrentChanged(BitTorrent::TorrentHandle *const torrent);
 
 private:
     TransferListDelegate *listDelegate;
     TorrentModel *listModel;
     TransferListSortModel *nameFilterModel;
-    QBtSession* BTSession;
     MainWindow *main_window;
     QShortcut *editHotkey;
     QShortcut *deleteHotkey;

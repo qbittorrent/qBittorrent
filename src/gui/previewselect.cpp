@@ -33,16 +33,16 @@
 #include <QMessageBox>
 #include <QFile>
 
-#include <libtorrent/version.hpp>
-#include <libtorrent/session.hpp>
-
 #include "core/misc.h"
 #include "previewlistdelegate.h"
 #include "previewselect.h"
 #include "core/fs_utils.h"
 #include "core/preferences.h"
 
-PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent), h(h) {
+PreviewSelect::PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const torrent)
+    : QDialog(parent)
+    , m_torrent(torrent)
+{
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   Preferences* const pref = Preferences::instance();
@@ -58,11 +58,10 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
   previewList->header()->resizeSection(0, 200);
   previewList->setAlternatingRowColors(pref->useAlternatingRowColors());
   // Fill list in
-  std::vector<libtorrent::size_type> fp;
-  h.file_progress(fp);
-  unsigned int nbFiles = h.num_files();
-  for (unsigned int i=0; i<nbFiles; ++i) {
-    QString fileName = h.filename_at(i);
+  QVector<qreal> fp = torrent->filesProgress();
+  uint nbFiles = torrent->filesCount();
+  for (uint i = 0; i < nbFiles; ++i) {
+    QString fileName = torrent->fileName(i);
     if (fileName.endsWith(".!qB"))
       fileName.chop(4);
     QString extension = fsutils::fileExtension(fileName).toUpper();
@@ -70,8 +69,8 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
       int row = previewListModel->rowCount();
       previewListModel->insertRow(row);
       previewListModel->setData(previewListModel->index(row, NAME), QVariant(fileName));
-      previewListModel->setData(previewListModel->index(row, SIZE), QVariant((qlonglong)h.filesize_at(i)));
-      previewListModel->setData(previewListModel->index(row, PROGRESS), QVariant((double)fp[i]/h.filesize_at(i)));
+      previewListModel->setData(previewListModel->index(row, SIZE), QVariant(torrent->fileSize(i)));
+      previewListModel->setData(previewListModel->index(row, PROGRESS), QVariant(fp[i]));
       previewListModel->setData(previewListModel->index(row, FILE_INDEX), QVariant(i));
     }
   }
@@ -105,9 +104,9 @@ void PreviewSelect::on_previewButton_clicked() {
   QModelIndexList selectedIndexes = previewList->selectionModel()->selectedRows(FILE_INDEX);
   if (selectedIndexes.size() == 0) return;
   // Flush data
-  h.flush_cache();
+  m_torrent->flushCache();
 
-  QStringList absolute_paths(h.absolute_files_path());
+  QStringList absolute_paths(m_torrent->absoluteFilePaths());
   //only one file should be selected
   QString path = absolute_paths.at(selectedIndexes.at(0).data().toInt());
   // File

@@ -28,7 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "iconprovider.h"
+#include "guiiconprovider.h"
 #include "core/misc.h"
 #include "core/fs_utils.h"
 #include "torrentcontentmodel.h"
@@ -39,12 +39,12 @@
 
 namespace {
 QIcon get_directory_icon() {
-  static QIcon cached = IconProvider::instance()->getIcon("inode-directory");
+  static QIcon cached = GuiIconProvider::instance()->getIcon("inode-directory");
   return cached;
 }
 
 QIcon get_file_icon() {
-  static QIcon cached = IconProvider::instance()->getIcon("text-plain");
+  static QIcon cached = GuiIconProvider::instance()->getIcon("text-plain");
   return cached;
 }
 }
@@ -61,15 +61,14 @@ TorrentContentModel::~TorrentContentModel()
   delete m_rootItem;
 }
 
-void TorrentContentModel::updateFilesProgress(const std::vector<libtorrent::size_type>& fp)
+void TorrentContentModel::updateFilesProgress(const QVector<qreal> &fp)
 {
-  Q_ASSERT(m_filesIndex.size() == (int)fp.size());
+  Q_ASSERT(m_filesIndex.size() == fp.size());
   // XXX: Why is this necessary?
-  if (m_filesIndex.size() != (int)fp.size())
-    return;
+  if (m_filesIndex.size() != fp.size()) return;
 
   emit layoutAboutToBeChanged();
-  for (uint i = 0; i < fp.size(); ++i) {
+  for (int i = 0; i < fp.size(); ++i) {
     m_filesIndex[i]->setProgress(fp[i]);
   }
   // Update folders progress in the tree
@@ -77,7 +76,7 @@ void TorrentContentModel::updateFilesProgress(const std::vector<libtorrent::size
   emit dataChanged(index(0,0), index(rowCount(), columnCount()));
 }
 
-void TorrentContentModel::updateFilesPriorities(const std::vector<int>& fprio)
+void TorrentContentModel::updateFilesPriorities(const QVector<int> &fprio)
 {
   Q_ASSERT(m_filesIndex.size() == (int)fprio.size());
   // XXX: Why is this necessary?
@@ -85,15 +84,15 @@ void TorrentContentModel::updateFilesPriorities(const std::vector<int>& fprio)
     return;
 
   emit layoutAboutToBeChanged();
-  for (uint i = 0; i < fprio.size(); ++i) {
+  for (int i = 0; i < fprio.size(); ++i) {
     m_filesIndex[i]->setPriority(fprio[i]);
   }
   emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
 }
 
-std::vector<int> TorrentContentModel::getFilesPriorities() const
+QVector<int> TorrentContentModel::getFilePriorities() const
 {
-  std::vector<int> prio;
+  QVector<int> prio;
   prio.reserve(m_filesIndex.size());
   foreach (const TorrentContentModelFile* file, m_filesIndex) {
     prio.push_back(file->priority());
@@ -280,23 +279,22 @@ void TorrentContentModel::clear()
   endResetModel();
 }
 
-void TorrentContentModel::setupModelData(const libtorrent::torrent_info& t)
+void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
 {
   qDebug("setup model data called");
-  if (t.num_files() == 0)
+  if (info.filesCount() == 0)
     return;
 
   emit layoutAboutToBeChanged();
   // Initialize files_index array
-  qDebug("Torrent contains %d files", t.num_files());
-  m_filesIndex.reserve(t.num_files());
+  qDebug("Torrent contains %d files", info.filesCount());
+  m_filesIndex.reserve(info.filesCount());
 
   TorrentContentModelFolder* current_parent;
   // Iterate over files
-  for (int i = 0; i < t.num_files(); ++i) {
-    const libtorrent::file_entry& fentry = t.file_at(i);
+  for (int i = 0; i < info.filesCount(); ++i) {
     current_parent = m_rootItem;
-    QString path = fsutils::fromNativePath(misc::toQStringU(fentry.path));
+    QString path = fsutils::fromNativePath(info.filePath(i));
     // Iterate of parts of the path to create necessary folders
     QStringList pathFolders = path.split("/", QString::SkipEmptyParts);
     pathFolders.removeLast();
@@ -311,7 +309,7 @@ void TorrentContentModel::setupModelData(const libtorrent::torrent_info& t)
       current_parent = new_parent;
     }
     // Actually create the file
-    TorrentContentModelFile* fileItem = new TorrentContentModelFile(fentry, current_parent, i);
+    TorrentContentModelFile* fileItem = new TorrentContentModelFile(info.fileName(i), info.fileSize(i), current_parent, i);
     current_parent->appendChild(fileItem);
     m_filesIndex.push_back(fileItem);
   }
