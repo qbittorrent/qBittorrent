@@ -88,7 +88,7 @@ void ExecutionLog::addLogMessage(const Log::Msg &msg)
         color = QApplication::palette().color(QPalette::WindowText);
     }
 
-    text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - <font color='" + color.name() + "'>" + msg.message + "</font>";
+    text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - <font color='" + color.name() + "'>" + msg.message + "</font>";
     m_msgList->appendLine(text);
 }
 
@@ -99,12 +99,12 @@ void ExecutionLog::addPeerMessage(const Log::Peer& peer)
 
     if (peer.blocked)
 #if LIBTORRENT_VERSION_NUM < 10000
-        text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - " + tr("<font color='red'>%1</font> was blocked", "x.y.z.w was blocked").arg(peer.ip);
+        text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - " + tr("<font color='red'>%1</font> was blocked", "x.y.z.w was blocked").arg(peer.ip);
 #else
-        text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - " + tr("<font color='red'>%1</font> was blocked %2", "x.y.z.w was blocked").arg(peer.ip).arg(peer.reason);
+        text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - " + tr("<font color='red'>%1</font> was blocked %2", "x.y.z.w was blocked").arg(peer.ip).arg(peer.reason);
 #endif
     else
-        text = "<font color='grey'>" + time.toString("dd/MM/yyyy hh:mm:ss") + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(peer.ip);
+        text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(peer.ip);
 
     m_peerList->appendLine(text);
 }
