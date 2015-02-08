@@ -1840,7 +1840,7 @@ void Preferences::setCreateTorLastSavePath(const QString &path) {
 }
 
 QString Preferences::getCreateTorTrackers() const {
-  return value("CreateTorrent/TrackerList", QDir::homePath()).toString();
+  return value("CreateTorrent/TrackerList").toString();
 }
 
 void Preferences::setCreateTorTrackers(const QString &path) {
