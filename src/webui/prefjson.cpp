@@ -333,6 +333,6 @@ void prefjson::setPreferences(const QString& json)
     pref->setDynDNSPassword(m["dyndns_password"].toString());
   if (m.contains("dyndns_domain"))
     pref->setDynDomainName(m["dyndns_domain"].toString());
-  // Reload preferences
-  QBtSession::instance()->configureSession();
+  // Save preferences
+  pref->save();
 }

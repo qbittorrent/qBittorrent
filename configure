@@ -717,6 +717,7 @@ with_geoip_database_embedded
 with_qtsingleapplication
 enable_debug
 enable_gui
+enable_webui
 enable_qt_dbus
 with_boost
 with_boost_libdir
@@ -1367,6 +1368,7 @@ Optional Features:
   --disable-silent-rules  verbose build output (undo: "make V=0")
   --enable-debug          Enable debug build
   --disable-gui           Disable the GUI for headless running. Disables
+  --disable-webui         Disable the WebUI.
                           QtDBus and the GeoIP Database.
   --disable-qt-dbus       Disable use of QtDBus (GUI only)
 
@@ -4199,6 +4201,14 @@ else
 fi
 
 
+# Check whether --enable-webui was given.
+if test "${enable_webui+set}" = set; then :
+  enableval=$enable_webui;
+else
+  enable_webui=yes
+fi
+
+
 # Check whether --enable-qt-dbus was given.
 if test "${enable_qt_dbus+set}" = set; then :
   enableval=$enable_qt_dbus;
@@ -4370,17 +4380,34 @@ case "x$enable_gui" in #(
   "xyes") :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
-               QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG nox" ;; #(
+               QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG nogui" ;; #(
   "xno") :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
               enable_qt_dbus=no
               enable_geoip_database=no
-              QBT_ADD_CONFIG="$QBT_ADD_CONFIG nox" ;; #(
+              QBT_ADD_CONFIG="$QBT_ADD_CONFIG nogui" ;; #(
   *) :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_gui" >&5
 $as_echo "$enable_gui" >&6; }
         as_fn_error $? "Unknown option \"$enable_gui\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
+esac
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to enable the WebUI" >&5
+$as_echo_n "checking whether to enable the WebUI... " >&6; }
+case "x$enable_webui" in #(
+  "xyes") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+               QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG nowebui" ;; #(
+  "xno") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+              QBT_ADD_CONFIG="$QBT_ADD_CONFIG nowebui" ;; #(
+  *) :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_webui" >&5
+$as_echo "$enable_webui" >&6; }
+        as_fn_error $? "Unknown option \"$enable_webui\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
 esac
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether Qt5 should be enabled" >&5

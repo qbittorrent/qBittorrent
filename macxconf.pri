@@ -12,46 +12,50 @@ exists($$OUT_PWD/../conf.pri) {
 LIBS += -framework Carbon -framework IOKit
 CONFIG += c++11
 
+QT_LANG_PATH = ../dist/qt-translations
+DIST_PATH = ../dist/mac
+
 document_icon.path = Contents/Resources
-document_icon.files = mac/qBitTorrentDocument.icns
+document_icon.files = $$DIST_PATH/qBitTorrentDocument.icns
 QMAKE_BUNDLE_DATA += document_icon
 
 qt_conf.path = Contents/Resources
-qt_conf.files = mac/qt.conf
+qt_conf.files = $$DIST_PATH/qt.conf
 QMAKE_BUNDLE_DATA += qt_conf
 
 qt_translations.path = Contents/translations
-qt_translations.files = qt-translations/qt_ar.qm \
-                        qt-translations/qt_bg.qm \
-                        qt-translations/qt_ca.qm \
-                        qt-translations/qt_cs.qm \
-                        qt-translations/qt_da.qm \
-                        qt-translations/qt_de.qm \
-                        qt-translations/qt_es.qm \
-                        qt-translations/qt_fi.qm \
-                        qt-translations/qt_fr.qm \
-                        qt-translations/qt_gl.qm \
-                        qt-translations/qt_he.qm \
-                        qt-translations/qt_hu.qm \
-                        qt-translations/qt_it.qm \
-                        qt-translations/qt_ja.qm \
-                        qt-translations/qt_ko.qm \
-                        qt-translations/qt_lt.qm \
-                        qt-translations/qt_nl.qm \
-                        qt-translations/qt_pl.qm \
-                        qt-translations/qt_pt.qm \
-                        qt-translations/qt_pt_BR.qm \
-                        qt-translations/qt_ru.qm \
-                        qt-translations/qt_sk.qm \
-                        qt-translations/qt_sv.qm \
-                        qt-translations/qt_tr.qm \
-                        qt-translations/qt_uk.qm \
-                        qt-translations/qt_zh_CN.qm \
-                        qt-translations/qt_zh_TW.qm
+qt_translations.files = \
+    $$QT_LANG_PATH/qt_ar.qm \
+    $$QT_LANG_PATH/qt_bg.qm \
+    $$QT_LANG_PATH/qt_ca.qm \
+    $$QT_LANG_PATH/qt_cs.qm \
+    $$QT_LANG_PATH/qt_da.qm \
+    $$QT_LANG_PATH/qt_de.qm \
+    $$QT_LANG_PATH/qt_es.qm \
+    $$QT_LANG_PATH/qt_fi.qm \
+    $$QT_LANG_PATH/qt_fr.qm \
+    $$QT_LANG_PATH/qt_gl.qm \
+    $$QT_LANG_PATH/qt_he.qm \
+    $$QT_LANG_PATH/qt_hu.qm \
+    $$QT_LANG_PATH/qt_it.qm \
+    $$QT_LANG_PATH/qt_ja.qm \
+    $$QT_LANG_PATH/qt_ko.qm \
+    $$QT_LANG_PATH/qt_lt.qm \
+    $$QT_LANG_PATH/qt_nl.qm \
+    $$QT_LANG_PATH/qt_pl.qm \
+    $$QT_LANG_PATH/qt_pt.qm \
+    $$QT_LANG_PATH/qt_pt_BR.qm \
+    $$QT_LANG_PATH/qt_ru.qm \
+    $$QT_LANG_PATH/qt_sk.qm \
+    $$QT_LANG_PATH/qt_sv.qm \
+    $$QT_LANG_PATH/qt_tr.qm \
+    $$QT_LANG_PATH/qt_uk.qm \
+    $$QT_LANG_PATH/qt_zh_CN.qm \
+    $$QT_LANG_PATH/qt_zh_TW.qm
 QMAKE_BUNDLE_DATA += qt_translations
 
-ICON = mac/qbittorrent_mac.icns
-QMAKE_INFO_PLIST = mac/Info.plist
+ICON = $$DIST_PATH/qbittorrent_mac.icns
+QMAKE_INFO_PLIST = $$DIST_PATH/Info.plist
 
 DEFINES += WITH_GEOIP_EMBEDDED
 message("On Mac OS X, GeoIP database must be embedded.")

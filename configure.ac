@@ -42,6 +42,12 @@ AC_ARG_ENABLE(gui,
               [],
               [enable_gui=yes])
 
+AC_ARG_ENABLE(webui,
+              [AS_HELP_STRING([--disable-webui],
+                              [Disable the WebUI.])],
+              [],
+              [enable_webui=yes])
+
 AC_ARG_ENABLE(qt-dbus,
               [AS_HELP_STRING([--disable-qt-dbus],
                               [Disable use of QtDBus (GUI only)])],
@@ -78,14 +84,25 @@ AC_MSG_CHECKING([whether to enable the GUI])
 AS_CASE(["x$enable_gui"],
         ["xyes"],
                [AC_MSG_RESULT([yes])
-               QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG nox"],
+               QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG nogui"],
         ["xno"],
               [AC_MSG_RESULT([no])
               enable_qt_dbus=[no]
               enable_geoip_database=[no]
-              QBT_ADD_CONFIG="$QBT_ADD_CONFIG nox"],
+              QBT_ADD_CONFIG="$QBT_ADD_CONFIG nogui"],
         [AC_MSG_RESULT([$enable_gui])
         AC_MSG_ERROR([Unknown option "$enable_gui". Use either "yes" or "no".])])
+
+AC_MSG_CHECKING([whether to enable the WebUI])
+AS_CASE(["x$enable_webui"],
+        ["xyes"],
+               [AC_MSG_RESULT([yes])
+               QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG nowebui"],
+        ["xno"],
+              [AC_MSG_RESULT([no])
+              QBT_ADD_CONFIG="$QBT_ADD_CONFIG nowebui"],
+        [AC_MSG_RESULT([$enable_webui])
+        AC_MSG_ERROR([Unknown option "$enable_webui". Use either "yes" or "no".])])
 
 AC_MSG_CHECKING([whether Qt5 should be enabled])
 AS_CASE(["x$with_qt5"],
