@@ -162,13 +162,21 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     QItemDelegate::drawBackground(painter, opt, index);
     QItemDelegate::drawDisplay(painter, opt, opt.rect, index.data().toDateTime().toLocalTime().toString(Qt::DefaultLocaleShortDate));
     break;
+  case TorrentModelItem::TR_SEEDSPEERS: {
+      QItemDelegate::drawBackground(painter, opt, index);
+      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+      const qreal ratio = index.data().toDouble();
+      QItemDelegate::drawDisplay(painter, opt, opt.rect,
+                                 (ratio == -1) ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 3));
+      break;
+    }
   case TorrentModelItem::TR_RATIO_LIMIT:
   case TorrentModelItem::TR_RATIO: {
       QItemDelegate::drawBackground(painter, opt, index);
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       const qreal ratio = index.data().toDouble();
       QItemDelegate::drawDisplay(painter, opt, opt.rect,
-                                 (ratio == -1 || ratio > QBtSession::MAX_RATIO) ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
+                                 (ratio == -1 || ratio > QBtSession::MAX_RATIO) ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 3));
       break;
     }
   case TorrentModelItem::TR_PRIORITY: {
