@@ -108,6 +108,7 @@ protected slots:
   void addLabel(QString& label);
   void showLabelMenu(QPoint);
   void removeSelectedLabel();
+  void removeEmptyLabels();
   void applyLabelFilter(int row);
   void torrentChangedLabel(TorrentModelItem *torrentItem, QString old_label, QString new_label);
   void handleNewTorrent(TorrentModelItem* torrentItem);

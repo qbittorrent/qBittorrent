@@ -295,10 +295,13 @@ void TransferListFiltersWidget::addLabel(QString& label) {
 
 void TransferListFiltersWidget::showLabelMenu(QPoint) {
   QMenu labelMenu(labelFilters);
+  QAction *addAct = labelMenu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Add label..."));
   QAction *removeAct = 0;
+  QAction *removeEmptyAct = 0;
   if (!labelFilters->selectedItems().empty() && labelFilters->row(labelFilters->selectedItems().first()) > 1)
     removeAct = labelMenu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove label"));
-  QAction *addAct = labelMenu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Add label..."));
+  else
+    removeEmptyAct = labelMenu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove empty labels"));
   labelMenu.addSeparator();
   QAction *startAct = labelMenu.addAction(IconProvider::instance()->getIcon("media-playback-start"), tr("Resume torrents"));
   QAction *pauseAct = labelMenu.addAction(IconProvider::instance()->getIcon("media-playback-pause"), tr("Pause torrents"));
@@ -308,6 +311,10 @@ void TransferListFiltersWidget::showLabelMenu(QPoint) {
   if (act) {
     if (act == removeAct) {
       removeSelectedLabel();
+      return;
+    }
+    if (act == removeEmptyAct) {
+      removeEmptyLabels();
       return;
     }
     if (act == deleteTorrentsAct) {
@@ -358,6 +365,20 @@ void TransferListFiltersWidget::removeSelectedLabel() {
   delete labelFilters->takeItem(row);
   // Save custom labels to remember it was deleted
   Preferences::instance()->removeTorrentLabel(label);
+}
+
+void TransferListFiltersWidget::removeEmptyLabels() {
+    QStringList emptyLabels;
+    QHash<QString, int>::const_iterator i;
+    for (i = customLabels.begin(); i != customLabels.end(); ++i) {
+        if (i.value() == 0)
+            emptyLabels << i.key();
+    }
+    foreach (const QString &label, emptyLabels) {
+        customLabels.remove(label);
+        delete labelFilters->takeItem(labelFilters->rowFromLabel(label));
+        Preferences::instance()->removeTorrentLabel(label);
+    }
 }
 
 void TransferListFiltersWidget::applyLabelFilter(int row) {
