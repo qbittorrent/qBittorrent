@@ -93,9 +93,12 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         QVariant vL = left.data();
         QVariant vR = right.data();
         if (!(vL.isValid() && vR.isValid()))
-            return QSortFilterProxyModel::lessThan(left, right);
+            return lowerPositionThan(left, right);
         Q_ASSERT(vL.isValid());
         Q_ASSERT(vR.isValid());
+
+        if (vL == vR)
+            return lowerPositionThan(left, right);
 
         bool res = false;
         if (misc::naturalSort(vL.toString(), vR.toString(), res))
@@ -114,26 +117,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         return vL < vR;
     }
     else if (column == TorrentModelItem::TR_PRIORITY) {
-        const int vL = left.data().toInt();
-        const int vR = right.data().toInt();
-
-        // Seeding torrents should be sorted by their completed date instead.
-        if (vL == -1 && vR == -1) {
-            QAbstractItemModel *model = sourceModel();
-            const QDateTime dateL = model->data(model->index(left.row(), TorrentModelItem::TR_SEED_DATE)).toDateTime();
-            const QDateTime dateR = model->data(model->index(right.row(), TorrentModelItem::TR_SEED_DATE)).toDateTime();
-
-            //not valid dates should be sorted at the bottom.
-            if (!dateL.isValid()) return false;
-            if (!dateR.isValid()) return true;
-
-            return dateL < dateR;
-        }
-
-        // Seeding torrents should be at the bottom
-        if (vL == -1) return false;
-        if (vR == -1) return true;
-        return vL < vR;
+        return lowerPositionThan(left, right);
     }
     else if (column == TorrentModelItem::TR_PEERS || column == TorrentModelItem::TR_SEEDS) {
         int left_active = left.data().toInt();
@@ -142,9 +126,14 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         int right_total = right.data(Qt::UserRole).toInt();
 
         // Active peers/seeds take precedence over total peers/seeds.
-        if (left_active == right_active)
+        if (left_active == right_active) {
+            if (left_total == right_total)
+                return lowerPositionThan(left, right);
             return (left_total < right_total);
-        else return (left_active < right_active);
+        }
+        else {
+            return (left_active < right_active);
+        }
     }
     else if (column == TorrentModelItem::TR_ETA) {
         const QAbstractItemModel *model = sourceModel();
@@ -212,7 +201,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
             }
         }
         else if ((invalidL == false) && (invalidR == false)) {
-            return QSortFilterProxyModel::lessThan(left, right);
+            return lowerPositionThan(left, right);
         }
         else {
             return !invalidL;
@@ -237,7 +226,44 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         return vL < vR;
     }
 
+    if (left.data() == right.data())
+        return lowerPositionThan(left, right);
+
     return QSortFilterProxyModel::lessThan(left, right);
+}
+
+bool TransferListSortModel::lowerPositionThan(const QModelIndex &left, const QModelIndex &right) const
+{
+    const TorrentModel *model = dynamic_cast<TorrentModel*>(sourceModel());
+
+    // Sort according to TR_PRIORITY
+    const int queueL = model->data(model->index(left.row(), TorrentModelItem::TR_PRIORITY)).toInt();
+    const int queueR = model->data(model->index(right.row(), TorrentModelItem::TR_PRIORITY)).toInt();
+    if (!(queueL < 0 && queueR < 0)) {
+        if (queueL > 0 && queueR > 0)
+            return queueL < queueR;
+        else if (queueL < 0)
+            return false;
+        else
+            return true;
+    }
+
+    // Sort according to TR_SEED_DATE
+    const QDateTime dateL = model->data(model->index(left.row(), TorrentModelItem::TR_SEED_DATE)).toDateTime();
+    const QDateTime dateR = model->data(model->index(right.row(), TorrentModelItem::TR_SEED_DATE)).toDateTime();
+    if (dateL.isValid() && dateR.isValid()) {
+        if (dateL != dateR)
+            return dateL < dateR;
+    }
+    else if (dateL.isValid())
+        return false;
+    else if (dateR.isValid())
+        return true;
+
+    // Finally, sort by hash
+    const QString hashL(model->torrentHash(left.row()));
+    const QString hashR(model->torrentHash(right.row()));
+    return hashL < hashR;
 }
 
 bool TransferListSortModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
