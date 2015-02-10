@@ -297,11 +297,11 @@ void TransferListFiltersWidget::showLabelMenu(QPoint) {
   QMenu labelMenu(labelFilters);
   QAction *addAct = labelMenu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Add label..."));
   QAction *removeAct = 0;
-  QAction *removeEmptyAct = 0;
+  QAction *removeUnusedAct = 0;
   if (!labelFilters->selectedItems().empty() && labelFilters->row(labelFilters->selectedItems().first()) > 1)
     removeAct = labelMenu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove label"));
   else
-    removeEmptyAct = labelMenu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove empty labels"));
+    removeUnusedAct = labelMenu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove unused labels"));
   labelMenu.addSeparator();
   QAction *startAct = labelMenu.addAction(IconProvider::instance()->getIcon("media-playback-start"), tr("Resume torrents"));
   QAction *pauseAct = labelMenu.addAction(IconProvider::instance()->getIcon("media-playback-pause"), tr("Pause torrents"));
@@ -313,8 +313,8 @@ void TransferListFiltersWidget::showLabelMenu(QPoint) {
       removeSelectedLabel();
       return;
     }
-    if (act == removeEmptyAct) {
-      removeEmptyLabels();
+    if (act == removeUnusedAct) {
+      removeUnusedLabels();
       return;
     }
     if (act == deleteTorrentsAct) {
@@ -367,14 +367,14 @@ void TransferListFiltersWidget::removeSelectedLabel() {
   Preferences::instance()->removeTorrentLabel(label);
 }
 
-void TransferListFiltersWidget::removeEmptyLabels() {
-    QStringList emptyLabels;
+void TransferListFiltersWidget::removeUnusedLabels() {
+    QStringList unusedLabels;
     QHash<QString, int>::const_iterator i;
     for (i = customLabels.begin(); i != customLabels.end(); ++i) {
         if (i.value() == 0)
-            emptyLabels << i.key();
+            unusedLabels << i.key();
     }
-    foreach (const QString &label, emptyLabels) {
+    foreach (const QString &label, unusedLabels) {
         customLabels.remove(label);
         delete labelFilters->takeItem(labelFilters->rowFromLabel(label));
         Preferences::instance()->removeTorrentLabel(label);
