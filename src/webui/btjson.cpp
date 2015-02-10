@@ -102,6 +102,7 @@ static const char KEY_TORRENT_STATE[] = "state";
 static const char KEY_TORRENT_SEQUENTIAL_DOWNLOAD[] = "seq_dl";
 static const char KEY_TORRENT_FIRST_LAST_PIECE_PRIO[] = "f_l_piece_prio";
 static const char KEY_TORRENT_LABEL[] = "label";
+static const char KEY_TORRENT_SUPER_SEEDING[] = "super_seeding";
 
 // Tracker keys
 static const char KEY_TRACKER_URL[] = "url";
@@ -144,6 +145,11 @@ static const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
 static const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
 static const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
 
+// Sync main data keys
+static const char KEY_SYNC_MAINDATA_QUEUEING[] = "queueing";
+static const char KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS[] = "use_alt_speed_limits";
+static const char KEY_SYNC_MAINDATA_REFRESH_INTERVAL[] = "refresh_interval";
+
 static const char KEY_FULL_UPDATE[] = "full_update";
 static const char KEY_RESPONSE_ID[] = "rid";
 static const char KEY_SUFFIX_REMOVED[] = "_removed";
@@ -151,7 +157,7 @@ static const char KEY_SUFFIX_REMOVED[] = "_removed";
 QVariantMap getTranserInfoMap();
 QVariantMap toMap(const QTorrentHandle& h);
 void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData);
-void processHash(QVariantHash prevData, QVariantHash data, QVariantHash &syncData, QVariantList &removedItems);
+void processHash(QVariantHash prevData, QVariantHash data, QVariantMap &syncData, QVariantList &removedItems);
 void processList(QVariantList prevData, QVariantList data, QVariantList &syncData, QVariantList &removedItems);
 QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantMap &lastAcceptedData,  QVariantMap &lastData);
 
@@ -274,8 +280,7 @@ QByteArray btjson::getTorrents(QString filter, QString label,
  *  - "torrents_removed": a list of hashes of removed torrents
  *  - "labels": list of labels
  *  - "labels_removed": list of removed labels
- *  - "queueing": priority system usage flag
- *  - "server_state": map contains information about the status of the server
+ *  - "server_state": map contains information about the state of the server
  * The keys of the 'torrents' dictionary are hashes of torrents.
  * Each value of the 'torrents' dictionary contains map. The map can contain following keys:
  *  - "name": Torrent name
@@ -302,6 +307,8 @@ QByteArray btjson::getTorrents(QString filter, QString label,
  *  - "up_info_data: bytes uploaded
  *  - "up_info_speed: upload speed
  *  - "up_rate_limit: upload speed limit
+ *  - "queueing": priority system usage flag
+ *  - "refresh_interval": torrents table refresh interval
  */
 QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData, QVariantMap &lastAcceptedData)
 {
@@ -321,14 +328,18 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
     }
 
     data["torrents"] = torrents;
-    data["queueing"] = QBtSession::instance()->isQueueingEnabled();
 
     QVariantList labels;
     foreach (QString s, Preferences::instance()->getTorrentLabels())
         labels << s;
 
     data["labels"] = labels;
-    data["server_state"] = getTranserInfoMap();
+
+    QVariantMap serverState = getTranserInfoMap();
+    serverState[KEY_SYNC_MAINDATA_QUEUEING] = QBtSession::instance()->isQueueingEnabled();
+    serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = Preferences::instance()->isAltBandwidthEnabled();
+    serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = Preferences::instance()->getRefreshInterval();
+    data["server_state"] = serverState;
 
     return json::toJson(generateSyncData(acceptedResponseId, data, lastAcceptedData, lastData));
 }
@@ -528,6 +539,21 @@ QVariantMap getTranserInfoMap()
     return map;
 }
 
+QByteArray btjson::getTorrentsRatesLimits(QStringList &hashes, bool downloadLimits)
+{
+    QVariantMap map;
+
+    foreach (const QString &hash, hashes) {
+        int limit = -1;
+        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+        if (h.is_valid())
+            limit = downloadLimits ? h.download_limit() : h.upload_limit();
+        map[hash] = limit;
+    }
+
+   return json::toJson(map);
+}
+
 QVariantMap toMap(const QTorrentHandle& h)
 {
     libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters);
@@ -555,6 +581,7 @@ QVariantMap toMap(const QTorrentHandle& h)
     if (h.has_metadata())
         ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = h.first_last_piece_first();
     ret[KEY_TORRENT_LABEL] = TorrentPersistentData::instance()->getLabel(h.hash());
+    ret[KEY_TORRENT_SUPER_SEEDING] = status.super_seeding;
 
     return ret;
 }
@@ -579,10 +606,10 @@ void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
             }
             break;
         case QVariant::Hash: {
-                QVariantHash hash;
-                processHash(prevData[key].toHash(), data[key].toHash(), hash, removedItems);
-                if (!hash.isEmpty())
-                    syncData[key] = hash;
+                QVariantMap map;
+                processHash(prevData[key].toHash(), data[key].toHash(), map, removedItems);
+                if (!map.isEmpty())
+                    syncData[key] = map;
                 if (!removedItems.isEmpty())
                     syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
             }
@@ -603,6 +630,7 @@ void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
         case QVariant::Bool:
         case QVariant::Double:
         case QVariant::ULongLong:
+        case QVariant::UInt:
             if (prevData[key] != data[key])
                 syncData[key] = data[key];
             break;
@@ -615,7 +643,7 @@ void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
 // Compare two lists of structures (prevData, data) and calculate difference (syncData, removedItems).
 // Structures encoded as map.
 // Lists are encoded as hash table (indexed by structure key value) to improve ease of searching for removed items.
-void processHash(QVariantHash prevData, QVariantHash data, QVariantHash &syncData, QVariantList &removedItems)
+void processHash(QVariantHash prevData, QVariantHash data, QVariantMap &syncData, QVariantList &removedItems)
 {
     // initialize output variables
     syncData.clear();
@@ -623,7 +651,8 @@ void processHash(QVariantHash prevData, QVariantHash data, QVariantHash &syncDat
 
     if (prevData.isEmpty()) {
         // If list was empty before, then difference is a whole new list.
-        syncData = data;
+        foreach (QString key, data.keys())
+            syncData[key] = data[key];
     }
     else {
         foreach (QString key, data.keys()) {

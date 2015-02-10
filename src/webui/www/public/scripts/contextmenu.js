@@ -136,6 +136,7 @@ var ContextMenu = new Class({
         all_are_downloaded = true;
         all_are_paused = true;
         there_are_paused = false;
+        all_are_super_seeding = true;
 
         var h = myTable.selectedIds();
         h.each(function(item, index){
@@ -153,6 +154,8 @@ var ContextMenu = new Class({
 
             if (data['progress'] != 1.0) // not downloaded
                 all_are_downloaded = false;
+            else if (data['super_seeding'] != true)
+                all_are_super_seeding = false;
 
             state = data['state'];
             if ((state != 'pausedUP') && (state != 'pausedDL'))
@@ -174,6 +177,8 @@ var ContextMenu = new Class({
         if (all_are_downloaded) {
             this.hideItem('SequentialDownload');
             this.hideItem('FirstLastPiecePrio');
+            this.showItem('SuperSeeding');
+            this.setItemChecked('SuperSeeding', all_are_super_seeding);
         } else {
             if (!show_seq_dl && show_f_l_piece_prio)
                 this.menu.getElement('a[href$=FirstLastPiecePrio]').parentNode.addClass('separator');
@@ -192,6 +197,8 @@ var ContextMenu = new Class({
 
             this.setItemChecked('SequentialDownload', all_are_seq_dl);
             this.setItemChecked('FirstLastPiecePrio', all_are_f_l_piece_prio);
+
+            this.hideItem('SuperSeeding');
         }
 
         if (all_are_paused) {
@@ -232,6 +239,10 @@ var ContextMenu = new Class({
         this.menu.getElement('a[href$=' + item + ']').firstChild.style.opacity =
              checked ? '1' : '0';
         return this;
+    },
+
+    getItemChecked: function(item) {
+        return '0' != this.menu.getElement('a[href$=' + item + ']').firstChild.style.opacity;
     },
 
     //hide an item

@@ -37,7 +37,7 @@ var ProgressBar = new Class({
 				'text-align': 'center',
 				'left': 0,
 				'top': 0,
-				'line-height': vals.height - 2
+				'line-height': vals.height
 			}
 		});
 		obj.vals.light = new Element('div', {
@@ -52,7 +52,7 @@ var ProgressBar = new Class({
 				'text-align': 'center',
 				'left': 0,
 				'top': 0,
-				'line-height': vals.height - 2
+				'line-height': vals.height
 			}
 		});
 		obj.appendChild(obj.vals.dark);

@@ -29,6 +29,10 @@ function getLocalStorageItem(name, defaultVal) {
     return val;
 }
 
+var deleteFN = function() {};
+var startFN = function() {};
+var pauseFN = function() {};
+
 initializeWindows = function() {
 
     function addClickEvent(el, fn) {
@@ -103,7 +107,7 @@ initializeWindows = function() {
             id: 'uploadLimitPage',
             title: "QBT_TR(Global Upload Speed Limit)QBT_TR",
             loadMethod: 'iframe',
-            contentURL: 'uploadlimit.html?hash=global',
+            contentURL: 'uploadlimit.html?hashes=global',
             scrollbars: false,
             resizable: false,
             maximizable: false,
@@ -122,7 +126,7 @@ initializeWindows = function() {
                 id: 'uploadLimitPage',
                 title: "QBT_TR(Torrent Upload Speed Limiting)QBT_TR",
                 loadMethod: 'iframe',
-                contentURL: 'uploadlimit.html?hash=' + hash,
+                contentURL: 'uploadlimit.html?hashes=' + h.join("|"),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -162,12 +166,27 @@ initializeWindows = function() {
         }
     };
 
+    setSuperSeedingFN = function(val) {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            new Request({
+                url: 'command/setSuperSeeding',
+                method: 'post',
+                data: {
+                    value: val,
+                    hashes: h.join("|")
+                }
+            }).send();
+            updateMainData();
+        }
+    };
+
     globalDownloadLimitFN = function() {
         new MochaUI.Window({
             id: 'downloadLimitPage',
             title: "QBT_TR(Global Download Speed Limit)QBT_TR",
             loadMethod: 'iframe',
-            contentURL: 'downloadlimit.html?hash=global',
+            contentURL: 'downloadlimit.html?hashes=global',
             scrollbars: false,
             resizable: false,
             maximizable: false,
@@ -186,7 +205,7 @@ initializeWindows = function() {
                 id: 'downloadLimitPage',
                 title: "QBT_TR(Torrent Download Speed Limiting)QBT_TR",
                 loadMethod: 'iframe',
-                contentURL: 'downloadlimit.html?hash=' + hash,
+                contentURL: 'downloadlimit.html?hashes=' + h.join("|"),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -274,7 +293,7 @@ initializeWindows = function() {
         }
     };
 
-    ['pause', 'resume', 'recheck'].each(function(item) {
+    ['pauseAll', 'resumeAll', 'pause', 'resume', 'recheck'].each(function(item) {
         addClickEvent(item, function(e) {
             new Event(e).stop();
             var h = myTable.selectedIds();

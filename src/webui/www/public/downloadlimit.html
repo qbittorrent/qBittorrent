@@ -20,10 +20,10 @@
     <div class="clear"></div>
 </div>
 <script type="text/javascript">
-    var hash = new URI().getData('hash');
+    var hashes = new URI().getData('hashes').split('|');
     setDlLimit = function() {
         var limit = $("dllimitUpdatevalue").value.toInt() * 1024;
-        if (hash == "global") {
+        if (hashes[0] == "global") {
             new Request({
                 url: 'command/setGlobalDlLimit',
                 method: 'post',
@@ -38,10 +38,10 @@
         }
         else {
             new Request({
-                url: 'command/setTorrentDlLimit',
+                url: 'command/setTorrentsDlLimit',
                 method: 'post',
                 data: {
-                    'hash': hash,
+                    'hashes': hashes.join('|'),
                     'limit': limit
                 },
                 onComplete: function() {
@@ -55,7 +55,7 @@
 </div>
 
 <script type="text/javascript">
-    MochaUI.addDlLimitSlider(hash);
+    MochaUI.addDlLimitSlider(hashes);
 </script>
 
 </body>

@@ -27,6 +27,8 @@ myTable = new dynamicTable();
 var updatePropertiesPanel = function(){};
 var updateMainData = function(){};
 var alternativeSpeedLimits = false;
+var queueing_enabled = true;
+var syncMainDataTimerPeriod = 1500;
 
 selected_filter = getLocalStorageItem('selected_filter', 'all');
 selected_label = null;
@@ -95,6 +97,7 @@ window.addEvent('load', function () {
         $("downloading_filter").removeClass("selectedFilter");
         $("completed_filter").removeClass("selectedFilter");
         $("paused_filter").removeClass("selectedFilter");
+        $("resumed_filter").removeClass("selectedFilter");
         $("active_filter").removeClass("selectedFilter");
         $("inactive_filter").removeClass("selectedFilter");
         $(f + "_filter").addClass("selectedFilter");
@@ -153,19 +156,6 @@ window.addEvent('load', function () {
                         myTable.rows.erase();
                     if (response['rid'])
                         syncMainDataLastResponseId = response['rid'];
-                    if ('queueing' in response) {
-                        var queueing_enabled = response['queueing'];
-                        myTable.columns['priority'].force_hide = !queueing_enabled;
-                        myTable.updateColumn('priority');
-                        if (queueing_enabled) {
-                            $('queueingButtons').removeClass('invisible');
-                            $('queueingMenuItems').removeClass('invisible');
-                        }
-                        else {
-                            $('queueingButtons').addClass('invisible');
-                            $('queueingMenuItems').addClass('invisible');
-                        }
-                    }
                     if (response['torrents'])
                         for (var key in response['torrents']) {
                             response['torrents'][key]['hash'] = key;
@@ -185,7 +175,7 @@ window.addEvent('load', function () {
                     }
                 }
                 clearTimeout(syncMainDataTimer);
-                syncMainDataTimer = syncMainData.delay(1500);
+                syncMainDataTimer = syncMainData.delay(syncMainDataTimerPeriod);
             }
         }).send();
     };
@@ -220,6 +210,29 @@ window.addEvent('load', function () {
             $('connectionStatus').src = 'images/skin/firewalled.png';
         else
             $('connectionStatus').src = 'images/skin/disconnected.png';
+
+        if (queueing_enabled != serverState.queueing) {
+            queueing_enabled = serverState.queueing;
+            myTable.columns['priority'].force_hide = !queueing_enabled;
+            myTable.updateColumn('priority');
+            if (queueing_enabled) {
+                $('queueingButtons').removeClass('invisible');
+                $('queueingMenuItems').removeClass('invisible');
+            }
+            else {
+                $('queueingButtons').addClass('invisible');
+                $('queueingMenuItems').addClass('invisible');
+            }
+        }
+
+        if (alternativeSpeedLimits != serverState.use_alt_speed_limits) {
+            alternativeSpeedLimits = serverState.use_alt_speed_limits;
+            updateAltSpeedIcon(alternativeSpeedLimits);
+        }
+
+        syncMainDataTimerPeriod = serverState.refresh_interval;
+        if (syncMainDataTimerPeriod < 500)
+            syncMainDataTimerPeriod = 500;
     };
 
     var updateAltSpeedIcon = function(enabled) {
@@ -228,16 +241,6 @@ window.addEvent('load', function () {
         else
             $('alternativeSpeedLimits').src = "images/slow_off.png"
     }
-
-    // Determine whether the alternative speed limits are enabled or not
-    new Request({url: 'command/alternativeSpeedLimitsEnabled',
-            method: 'get',
-            onSuccess : function (isEnabled) {
-                alternativeSpeedLimits = !!parseInt(isEnabled);
-                if (alternativeSpeedLimits)
-                    $('alternativeSpeedLimits').src = "images/slow.png"
-            }
-    }).send();
 
     $('alternativeSpeedLimits').addEvent('click', function() {
         // Change icon immediately to give some feedback
@@ -354,11 +357,20 @@ window.addEvent('load', function () {
 
 function closeWindows() {
     MochaUI.closeAll();
-}
+};
 
-window.addEvent('keydown', function (event) {
-    if (event.key == 'a' && event.control) {
-        event.stop();
-        myTable.selectAll();
+var keyboardEvents = new Keyboard({
+    defaultEventType: 'keydown',
+    events: {
+        'ctrl+a': function(event) {
+            myTable.selectAll();
+            event.preventDefault();
+        },
+        'delete': function(event) {
+            deleteFN();
+            event.preventDefault();
+        }
     }
 });
+
+keyboardEvents.activate();
