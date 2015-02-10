@@ -111,19 +111,21 @@ void RSSImp::displayItemsListMenu(const QPoint&)
     QMenu myItemListMenu(this);
     QList<QListWidgetItem*> selectedItems = listArticles->selectedItems();
     if (selectedItems.size() > 0) {
-        bool has_attachment = false;
-        foreach (const QListWidgetItem* item, selectedItems) {
-            if (m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
-                ->getItem(item->data(Article::IdRole).toString())->hasAttachment()) {
-                has_attachment = true;
-                break;
-            }
-        }
-        if (has_attachment)
+        // Assume that all selected items have the same format for speed up
+        const QListWidgetItem* firstItem = selectedItems.at(0);
+
+        bool has_attachment = m_feedList->getRSSItemFromUrl(firstItem->data(Article::FeedUrlRole).toString())
+                ->getItem(firstItem->data(Article::IdRole).toString())->hasAttachment();
+        const QString link = m_feedList->getRSSItemFromUrl(firstItem->data(Article::FeedUrlRole).toString())
+                ->getItem(firstItem->data(Article::IdRole).toString())->link();
+        bool has_magnet_link = !link.isEmpty() && link.startsWith("magnet:", Qt::CaseInsensitive);
+
+        if (has_attachment || has_magnet_link)
             myItemListMenu.addAction(actionDownload_torrent);
-        myItemListMenu.addAction(actionOpen_news_URL);
+        if (!has_magnet_link) // link is a magnet link not a news URL
+            myItemListMenu.addAction(actionOpen_news_URL);
+        myItemListMenu.exec(QCursor::pos()); // there is always menu
     }
-    myItemListMenu.exec(QCursor::pos());
 }
 
 void RSSImp::on_actionManage_cookies_triggered()
