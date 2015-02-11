@@ -759,8 +759,6 @@ RSSImp::RSSImp(QWidget *parent):
     connect(listArticles, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
     connect(listArticles, SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(downloadSelectedTorrents()));
 
-    // Refresh all feeds
-    m_rssManager->refresh();
     // Restore sliders position
     restoreSlidersPosition();
     // Bind saveSliders slots
