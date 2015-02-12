@@ -7,9 +7,9 @@ CONFIG += link_pkgconfig
 PKGCONFIG += libtorrent-rasterbar
 DEFINES += BOOST_ASIO_DYN_LINK
 
-# Special include/libs paths (macports)
-INCLUDEPATH += /usr/local/include /usr/include /opt/local/include
-LIBS += -L/usr/local/lib -L/opt/local/lib
+# Special include/libs paths (homebrew and macports)
+INCLUDEPATH += /usr/local/include /opt/local/include /usr/include
+LIBS += -L/usr/local/lib -L/opt/local/lib -L/usr/lib
 
 # Boost system lib
 LIBS += -lboost_system-mt
@@ -27,6 +27,7 @@ QMAKE_BUNDLE_DATA += document_icon
 qt_conf.path = Contents/Resources
 qt_conf.files = mac/qt.conf
 QMAKE_BUNDLE_DATA += qt_conf
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.7
 
 qt_translations.path = Contents/translations
 qt_translations.files = qt-translations/qt_ar.qm \
