@@ -615,12 +615,14 @@ getWatchedFolders = function() {
 addWatchFolder = function() {
   var new_folder = $('new_watch_folder_txt').getProperty('value').trim();
   if(new_folder.length <= 0) return;
-  
-  var download_here = $('new_watch_folder_dl').getProperty('checked');
+
+  var checked = "";
+  if ($('new_watch_folder_dl').getProperty('checked') == true)
+      checked = "checked";
   var i = $('watched_folders_tab').getChildren('tbody')[0].getChildren('tr').length;
   
   var myinput = "<input id='text_watch_"+ i +"' type='text' value='" + new_folder + "'>";
-  var mycb = "<input id='cb_watch_"+ i +"' type='checkbox' checked='" + download_here + "'>";
+  var mycb = "<input id='cb_watch_"+ i +"' type='checkbox' " + checked + ">";
   WatchedFoldersTable.push([myinput, mycb]);
   
   // Clear fields
@@ -735,7 +737,10 @@ loadPreferences = function() {
                     var i;
                     for(i=0; i<pref.scan_dirs.length; i+=1) {
                       var myinput = "<input id='text_watch_"+ i +"' type='text' value='" + pref.scan_dirs[i] + "'>";
-                      var mycb = "<input id='cb_watch_"+ i +"' type='checkbox' checked='" + pref.download_in_scan_dirs[i] + "'>";
+                      var checked = "";
+                      if (pref.download_in_scan_dirs[i])
+                          checked = "checked";
+                      var mycb = "<input id='cb_watch_"+ i +"' type='checkbox' " + checked + ">";
                       WatchedFoldersTable.push([myinput, mycb]);
                     }
 
