@@ -101,7 +101,6 @@ protected slots:
   void updateNova();
   void selectMultipleBox(const QString &text);
   void on_enginesButton_clicked();
-  void propagateSectionResized(int index, int oldsize , int newsize);
   void saveResultsColumnsWidth();
   void downloadFinished(int exitcode, QProcess::ExitStatus);
   void fillCatCombobox();
