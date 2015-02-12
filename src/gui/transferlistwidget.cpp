@@ -424,6 +424,18 @@ void TransferListWidget::copySelectedMagnetURIs() const
     qApp->clipboard()->setText(magnet_uris.join("\n"));
 }
 
+void TransferListWidget::copySelectedNames() const
+{
+    QStringList torrent_names;
+    const QStringList hashes = getSelectedTorrentsHashes();
+    foreach (const QString &hash, hashes) {
+        const QTorrentHandle h = BTSession->getTorrentHandle(hash);
+        if (h.is_valid())
+            torrent_names << h.name();
+    }
+    qApp->clipboard()->setText(torrent_names.join("\n"));
+}
+
 void TransferListWidget::hidePriorityColumn(bool hide)
 {
     qDebug("hidePriorityColumn(%d)", hide);
@@ -741,6 +753,10 @@ void TransferListWidget::displayListMenu(const QPoint&)
     connect(&actionForce_recheck, SIGNAL(triggered()), this, SLOT(recheckSelectedTorrents()));
     QAction actionCopy_magnet_link(QIcon(":/icons/magnet.png"), tr("Copy magnet link"), 0);
     connect(&actionCopy_magnet_link, SIGNAL(triggered()), this, SLOT(copySelectedMagnetURIs()));
+
+    QAction actionCopy_name(IconProvider::instance()->getIcon("edit-copy"), tr("Copy name"), 0);
+    connect(&actionCopy_name, SIGNAL(triggered()), this, SLOT(copySelectedNames()));
+
     QAction actionSuper_seeding_mode(tr("Super seeding mode"), 0);
     actionSuper_seeding_mode.setCheckable(true);
     connect(&actionSuper_seeding_mode, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSuperSeeding()));
@@ -873,6 +889,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
         prioMenu->addAction(&actionBottomPriority);
     }
     listMenu.addSeparator();
+    listMenu.addAction(&actionCopy_name);
     listMenu.addAction(&actionCopy_magnet_link);
     // Call menu
     QAction *act = 0;
