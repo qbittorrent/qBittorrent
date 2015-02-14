@@ -30,24 +30,29 @@ var alternativeSpeedLimits = false;
 var queueing_enabled = true;
 var syncMainDataTimerPeriod = 1500;
 
-selected_filter = getLocalStorageItem('selected_filter', 'all');
-selected_label = null;
+var LABELS_ALL = 1;
+var LABELS_UNLABELLED = 2;
+
+var label_list = {};
+
+var selected_label = LABELS_ALL;
+var setLabelFilter = function(){};
+
+var selected_filter = getLocalStorageItem('selected_filter', 'all');
+var setFilter = function(){};
 
 var loadSelectedLabel = function () {
-    if (getLocalStorageItem('any_label', '1') == '0')
-        selected_label = getLocalStorageItem('selected_label', '');
-    else
-        selected_label = null;
-}
+    selected_label = getLocalStorageItem('selected_label', LABELS_ALL);
+};
 loadSelectedLabel();
 
-var saveSelectedLabel = function () {
-    if (selected_label == null)
-        localStorage.setItem('any_label', '1');
-    else {
-        localStorage.setItem('any_label', '0');
-        localStorage.setItem('selected_label', selected_label);
+function genHash(string) {
+    var hash = 0;
+    for (var i = 0; i < string.length; i++) {
+        var c = string.charCodeAt(i);
+        hash = (c + hash * 31) | 0;
     }
+    return hash;
 }
 
 window.addEvent('load', function () {
@@ -89,6 +94,14 @@ window.addEvent('load', function () {
         width : null,
         resizeLimit : [100, 300]
     });
+
+    setLabelFilter = function( hash ) {
+        selected_label = hash;
+        localStorage.setItem('selected_label', selected_label);
+        updateLabelList();
+        if (typeof myTable.table != 'undefined')
+            updateMainData();
+    };
 
     setFilter = function (f) {
         // Visually Select the right filter
@@ -148,6 +161,97 @@ window.addEvent('load', function () {
     var syncMainDataLastResponseId = 0;
     var serverState = {};
 
+    var removeTorrentFromLabelList = function( hash )
+    {
+        if( hash == null || hash == "" ) return false;
+
+        var removed = false;
+        Object.each( label_list, function( label ) {
+            if( Object.contains( label.torrents, hash ) ) {
+                removed = true;
+                label.torrents.splice( label.torrents.indexOf( hash ), 1 );
+            }
+        });
+        return removed;
+    };
+
+    var addTorrentToLabelList = function( torrent ) {
+        var label = torrent['label'];
+        if( label == null || label.length === 0 ) {
+            removeTorrentFromLabelList( torrent['hash'] );
+            return false;
+        }
+
+        var labelHash = genHash( label );
+        if( label_list[labelHash] == null ) {
+            console.log( "addTorrentToLabelList: warning, label not found. label=", label, " label_list=", label_list );
+            label_list[labelHash] = { name: label, torrents: [] };
+        }
+        if( !Object.contains(label_list[labelHash].torrents, torrent['hash'] ) ) {
+            removeTorrentFromLabelList( torrent['hash'] );
+            label_list[labelHash].torrents = label_list[labelHash].torrents.combine( [ torrent['hash'] ] );
+            return true;
+        }
+        return false;
+    };
+
+    var updateContextMenu = function () {
+        var labelList = $('contextLabelList');
+        labelList.empty();
+        labelList.appendChild(new Element('li', {html: '<a href="javascript:newLabelFN();">QBT_TR(New...)QBT_TR</a>'}));
+        labelList.appendChild(new Element('li', {html: '<a href="javascript:resetLabelFN();">QBT_TR(Reset)QBT_TR</a>'}));
+
+        var first = true;
+        Object.each(label_list, function (label) {
+            var labelHash = genHash( label.name );
+            var el = new Element('li', {html: '<a href="javascript:updateLabelFN(\'' + labelHash + '\');">' + label.name + '</a>'});
+            if (first) {
+                el.removeClass();
+                el.addClass('separator');
+                first = false;
+            }
+            labelList.appendChild(el);
+        });
+    };
+
+    var updateLabelList = function() {
+        var labelList = $( 'filterLabelList' );
+        if( !labelList ) {
+            return;
+        }
+        labelList.empty();
+
+        var create_link = function( hash, text, count )
+        {
+            var html = '<a href="#" onclick="setLabelFilter(' + hash + ');return false;">' +
+                '<img src="images/oxygen/folder-documents.png"/>' +
+                text + '(' + count + ')' + '</a>';
+
+            return new Element( 'li', { id: hash, html: html } );
+        };
+
+        var allLabels = 0;
+        Object.each( label_list, function( label ) {
+            allLabels += label.torrents.length;
+        });
+
+        var unlabelled = myTable.getRowIds().length - allLabels;
+        labelList.appendChild( create_link( LABELS_ALL, 'QBT_TR(All Labels)QBT_TR', allLabels ) );
+        labelList.appendChild( create_link( LABELS_UNLABELLED, 'QBT_TR(Unlabeled)QBT_TR', unlabelled ) );
+
+        Object.each( label_list, function( label ) {
+            var labelHash = genHash( label.name );
+            labelList.appendChild( create_link( labelHash, label.name, label.torrents.length ) );
+        } );
+
+        var childrens = labelList.childNodes;
+        for (var i in childrens) {
+            if( childrens[i].id == selected_label ) {
+                childrens[i].className = "selectedFilter";
+            }
+        }
+    };
+
     var syncMainDataTimer;
     var syncMainData = function () {
         var url = new URI('sync/maindata');
@@ -165,15 +269,26 @@ window.addEvent('load', function () {
                 $('error_div').set('html', '');
                 if (response) {
                     var full_update = (response['full_update'] == true);
-                    if (full_update)
+                    if (full_update) {
                         myTable.rows.erase();
-                    if (response['rid'])
+                        label_list = {};
+                        Object.each( response['labels'], function( label ) {
+                            var labelHash = genHash( label );
+                            label_list[ labelHash ] = { name: label, torrents: [] };
+                        } );
+                    }
+                    if (response['rid']) {
                         syncMainDataLastResponseId = response['rid'];
-                    if (response['torrents'])
+                    }
+                    if (response['torrents']) {
                         for (var key in response['torrents']) {
                             response['torrents'][key]['hash'] = key;
-                            myTable.updateRowData(response['torrents'][key]);
+                            myTable.updateRowData( response['torrents'][key] );
+                            addTorrentToLabelList( response['torrents'][key] );
                         }
+                        updateLabelList();
+                        updateContextMenu();
+                    }
                     if (response['torrents_removed'])
                         response['torrents_removed'].each(function (hash) {
                             myTable.removeRow(hash);

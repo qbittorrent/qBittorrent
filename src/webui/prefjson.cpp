@@ -396,4 +396,3 @@ void prefjson::setPreferences(const QString& json)
     // Save preferences
     pref->apply();
 }
-

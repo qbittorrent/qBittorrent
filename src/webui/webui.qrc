@@ -27,6 +27,7 @@
     <file>www/public/download.html</file>
     <file>www/public/downloadlimit.html</file>
     <file>www/public/filters.html</file>
+    <file>www/public/newlabel.html</file>
     <file>www/public/preferences.html</file>
     <file>www/public/preferences_content.html</file>
     <file>www/public/properties.html</file>

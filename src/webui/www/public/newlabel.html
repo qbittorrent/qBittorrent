@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>QBT_TR(New Label)QBT_TR</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        window.addEvent('domready', function(){
+            $('newLabel').focus();
+            $('newLabelButton').addEvent('click', function(e){
+                // check field
+                var label_str = $('newLabel').value;
+                if( label_str == null || label_str == "" ) {
+                    return false;
+                }
+                if( label_str.match("[\\\\/:?\"*<>|]") !== null ) {
+                    $('alert_div').style.display = "block";
+                    return false;
+                }
+
+                new Event(e).stop();
+                var hashes = new URI().getData('hashes');
+                var hashesList = hashes.split(',');
+                var label_json = JSON.stringify( { value : label_str } );
+
+                if (hashesList.length) {
+                    var counter = hashesList.length;
+                    hashesList.each(function(hash, index) {
+                        new Request({
+                            url: 'command/setLabel',
+                            method: 'post',
+                            data: {
+                                hash: hash,
+                                label_obj: label_json
+                            },
+                            onComplete: function() {
+                                if( --counter === 0 ) {
+                                    window.parent.document.getElementById('newLabelPage').parentNode.removeChild(window.parent.document.getElementById('newLabelPage'));
+                                }
+                            }
+                        }).send();
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<center>
+    <h1 class="vcenter">QBT_TR(Label)QBT_TR:
+    <input type="text" name="label" id="newLabel" value="" maxlength="100" />
+    </h1>
+    <div id="alert_div" style="border: 1px #ff0000 solid; display: none; color: #ff0000; background-color: #ffdee8; width: 95%;">
+        <b>QBT_TR(Invalid label name)QBT_TR</b>:
+        <br/>
+        QBT_TR(Please don't use any special characters in the label name.)QBT_TR
+        <br/>
+    </div>
+    <input type="button" value="QBT_TR(Add)QBT_TR" id="newLabelButton"/>
+</center>
+</body>
+</html>

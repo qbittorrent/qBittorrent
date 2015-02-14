@@ -39,6 +39,7 @@
 #include "core/preferences.h"
 #include "btjson.h"
 #include "prefjson.h"
+#include "jsonutils.h"
 #include "core/bittorrent/session.h"
 #include "core/bittorrent/trackerentry.h"
 #include "core/bittorrent/torrentinfo.h"
@@ -677,8 +678,9 @@ void WebApplication::action_command_setLabel()
     if( m.contains("value") ) {
         QString label = m["value"].toString();
         if (!hash.isEmpty()) {
-            QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
-            QBtSession::instance()->setLabel(h, label);
+            BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+            if (torrent)
+                torrent->setLabel(label);
         }
     }
 }
