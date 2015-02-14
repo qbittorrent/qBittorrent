@@ -94,7 +94,6 @@ class BandwidthScheduler;
 class ScanFoldersModel;
 class TorrentSpeedMonitor;
 class TorrentStatistics;
-class QAlertDispatcher;
 
 enum TorrentExportFolder {
   RegularTorrentExportFolder,
@@ -301,6 +300,8 @@ private:
   QHash<QString, QString> savePathsToRemove;
   QStringList torrentsToPausedAfterChecking;
   QTimer resumeDataTimer;
+  // Alert handling timer
+  QTimer *m_alertTimer;
   // Ratio
   QPointer<QTimer> BigRatioTimer;
   // HTTP
@@ -339,7 +340,6 @@ private:
   libtorrent::upnp *m_upnp;
   libtorrent::natpmp *m_natpmp;
 #endif
-  QAlertDispatcher* m_alertDispatcher;
   TorrentStatistics* m_torrentStatistics;
 };
 
