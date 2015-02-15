@@ -31,6 +31,7 @@
  */
 
 #include <QDebug>
+#include <QMessageBox>
 
 #include "base/preferences.h"
 #include "base/qinisettings.h"
@@ -338,6 +339,15 @@ void Feed::handleRssDownloadFinished(const QString &url, const QByteArray &data)
 void Feed::handleRssDownloadFailed(const QString &url, const QString &error)
 {
     Q_UNUSED(url);
+    if (!m_inErrorState) {
+        QMessageBox *msgBox = new QMessageBox();
+        msgBox->setAttribute(Qt::WA_DeleteOnClose);
+        msgBox->setStandardButtons(QMessageBox::Ok);
+        msgBox->setWindowTitle(tr("RSS feed error"));
+        msgBox->setText(tr("Could not download '%1' at '%2'.\nReason: %3").arg(displayName()).arg(m_url).arg(error));
+        msgBox->setIcon(QMessageBox::Warning);
+        msgBox->open();
+    }
     m_inErrorState = true;
     m_loading = false;
     m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
