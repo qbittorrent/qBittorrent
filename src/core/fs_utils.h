@@ -57,6 +57,9 @@ namespace fsutils
   bool isValidTorrentFile(const QString& path);
   bool smartRemoveEmptyFolderTree(const QString& dir_path);
   bool forceRemove(const QString& file_path);
+#ifndef DISABLE_GUI
+  void openFile(QString file_path);
+#endif
 
   /* Ported from Qt4 to drop dependency on QtGui */
   QString QDesktopServicesDataLocation();

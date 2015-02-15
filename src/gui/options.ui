@@ -310,6 +310,11 @@
                     </item>
                     <item>
                      <property name="text">
+                      <string>Open largest file</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
                       <string>No action</string>
                      </property>
                     </item>
@@ -332,6 +337,11 @@
                     <item>
                      <property name="text">
                       <string>Open destination folder</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Open largest file</string>
                      </property>
                     </item>
                     <item>

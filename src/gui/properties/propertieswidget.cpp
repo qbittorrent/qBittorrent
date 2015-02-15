@@ -443,18 +443,9 @@ void PropertiesWidget::openFile(const QModelIndex &index) {
   const QDir saveDir(h.save_path());
   const QString filename = h.filepath_at(i);
   const QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
-  qDebug("Trying to open file at %s", qPrintable(file_path));
   // Flush data
   h.flush_cache();
-  if (QFile::exists(file_path)) {
-    if (file_path.startsWith("//"))
-      QDesktopServices::openUrl(fsutils::toNativePath("file:" + file_path));
-    else
-      QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
-  }
-  else {
-    QMessageBox::warning(this, tr("I/O Error"), tr("This file does not exist yet."));
-  }
+  fsutils::openFile(file_path);
 }
 
 void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_folder) {
