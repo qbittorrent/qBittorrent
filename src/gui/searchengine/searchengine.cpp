@@ -67,7 +67,7 @@ SearchEngine::SearchEngine(MainWindow* parent)
 {
     setupUi(this);
     searchBarLayout->insertWidget(0, search_pattern);
-    connect(search_pattern, SIGNAL(returnPressed()), search_button, SLOT(click()));
+    connect(search_pattern, SIGNAL(returnPressed()), this, SLOT(startSearchEnter()));
     // Icons
     search_button->setIcon(IconProvider::instance()->getIcon("edit-find"));
     download_button->setIcon(IconProvider::instance()->getIcon("download"));
@@ -175,6 +175,11 @@ void SearchEngine::searchTextEdited(QString) {
 
 void SearchEngine::giveFocusToSearchInput() {
     search_pattern->setFocus();
+}
+
+void SearchEngine::startSearchEnter() {
+    if (search_button->text() == tr("Search"))
+        on_search_button_clicked();
 }
 
 // Function called when we click on search button

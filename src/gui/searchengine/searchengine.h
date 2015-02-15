@@ -107,6 +107,7 @@ protected slots:
   void fillCatCombobox();
   void fillEngineComboBox();
   void searchTextEdited(QString);
+  void startSearchEnter();
 
 private slots:
   void on_goToDescBtn_clicked();
