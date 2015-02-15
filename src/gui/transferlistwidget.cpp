@@ -219,7 +219,7 @@ void TransferListWidget::torrentDoubleClicked(const QModelIndex& index)
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if (!h.is_valid()) return;
     int action;
-    if (h.is_seed())
+    if (h.is_seed() || (TorrentPersistentData::instance()->getHasMissingFiles(hash) && !h.has_missing_files()))
         action = Preferences::instance()->getActionOnDblClOnTorrentFn();
     else
         action = Preferences::instance()->getActionOnDblClOnTorrentDl();
