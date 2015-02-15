@@ -21,12 +21,15 @@
     <file>www/public/scripts/mootools-1.2-more.js</file>
     <file>www/public/scripts/parametrics.js</file>
     <file>www/public/scripts/progressbar.js</file>
+    <file>www/public/scripts/underscore-min.js</file>
+    <file>www/public/scripts/xxhash.min.lmd.js</file>
     <file>www/public/about.html</file>
     <file>www/public/addtrackers.html</file>
     <file>www/public/confirmdeletion.html</file>
     <file>www/public/download.html</file>
     <file>www/public/downloadlimit.html</file>
     <file>www/public/filters.html</file>
+    <file>www/public/newlabel.html</file>
     <file>www/public/preferences.html</file>
     <file>www/public/preferences_content.html</file>
     <file>www/public/properties.html</file>
