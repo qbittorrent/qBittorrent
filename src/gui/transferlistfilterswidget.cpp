@@ -196,25 +196,25 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     // Add status filters
     QListWidgetItem *all = new QListWidgetItem(statusFilters);
     all->setData(Qt::DisplayRole, QVariant(tr("All") + " (0)"));
-    all->setData(Qt::DecorationRole, QIcon(":/Icons/skin/filterall.png"));
+    all->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterall.png"));
     QListWidgetItem *downloading = new QListWidgetItem(statusFilters);
     downloading->setData(Qt::DisplayRole, QVariant(tr("Downloading") + " (0)"));
-    downloading->setData(Qt::DecorationRole, QIcon(":/Icons/skin/downloading.png"));
+    downloading->setData(Qt::DecorationRole, QIcon(":/icons/skin/downloading.png"));
     QListWidgetItem *completed = new QListWidgetItem(statusFilters);
     completed->setData(Qt::DisplayRole, QVariant(tr("Completed") + " (0)"));
-    completed->setData(Qt::DecorationRole, QIcon(":/Icons/skin/uploading.png"));
+    completed->setData(Qt::DecorationRole, QIcon(":/icons/skin/uploading.png"));
     QListWidgetItem *resumed = new QListWidgetItem(statusFilters);
     resumed->setData(Qt::DisplayRole, QVariant(tr("Resumed") + " (0)"));
-    resumed->setData(Qt::DecorationRole, QIcon(":/Icons/skin/resumed.png"));
+    resumed->setData(Qt::DecorationRole, QIcon(":/icons/skin/resumed.png"));
     QListWidgetItem *paused = new QListWidgetItem(statusFilters);
     paused->setData(Qt::DisplayRole, QVariant(tr("Paused") + " (0)"));
-    paused->setData(Qt::DecorationRole, QIcon(":/Icons/skin/paused.png"));
+    paused->setData(Qt::DecorationRole, QIcon(":/icons/skin/paused.png"));
     QListWidgetItem *active = new QListWidgetItem(statusFilters);
     active->setData(Qt::DisplayRole, QVariant(tr("Active") + " (0)"));
-    active->setData(Qt::DecorationRole, QIcon(":/Icons/skin/filteractive.png"));
+    active->setData(Qt::DecorationRole, QIcon(":/icons/skin/filteractive.png"));
     QListWidgetItem *inactive = new QListWidgetItem(statusFilters);
     inactive->setData(Qt::DisplayRole, QVariant(tr("Inactive") + " (0)"));
-    inactive->setData(Qt::DecorationRole, QIcon(":/Icons/skin/filterinactive.png"));
+    inactive->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterinactive.png"));
 
     // SIGNAL/SLOT
     connect(statusFilters, SIGNAL(currentRowChanged(int)), transferList, SLOT(applyStatusFilter(int)));
