@@ -152,6 +152,7 @@ public slots:
   void deleteTorrent(const QString &hash, bool delete_local_files = false);
   void startUpTorrents();
   void recheckTorrent(const QString &hash);
+  void setLabel(const QTorrentHandle& h_ex, QString label);
   void useAlternativeSpeedsLimit(bool alternative);
   qlonglong getETA(const QString& hash, const libtorrent::torrent_status &status) const;
   /* Needed by Web UI */
@@ -288,6 +289,7 @@ signals:
   void metadataReceivedHidden(const QTorrentHandle &h);
   void stateUpdate(const std::vector<libtorrent::torrent_status> &statuses);
   void statsReceived(const libtorrent::stats_alert&);
+  void updateTorrentLabel(const QTorrentHandle &h, QString label);
 
 private:
   // Bittorrent

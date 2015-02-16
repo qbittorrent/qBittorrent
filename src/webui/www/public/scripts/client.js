@@ -30,6 +30,7 @@ var alternativeSpeedLimits = false;
 var queueing_enabled = true;
 var syncMainDataTimerPeriod = 1500;
 
+label_list = {};
 selected_filter = getLocalStorageItem('selected_filter', 'all');
 selected_label = null;
 
@@ -135,6 +136,90 @@ window.addEvent('load', function () {
     var syncMainDataLastResponseId = 0;
     var serverState = {};
 
+    var removeTorrentFromLabelList = function( hash )
+    {
+        if( _.isEmpty(hash) ) return false;
+
+        var removed = false;
+        _.forEach( label_list, function( label ) {
+            if( _.contains( label.torrents, hash ) ) {
+                removed = true;
+                label.torrents.splice( label.torrents.indexOf( hash ), 1 );
+            }
+        });
+        return removed;
+    };
+
+    var addTorrentToLabelList = function( torrent ) {
+        var label = torrent['label'];
+        if( label == null || label.length === 0 ) {
+            removeTorrentFromLabelList( torrent['hash'] );
+            return false;
+        }
+
+        var labelHash = XXH(label, 0xABCD).toString(16);
+        if( !_.isObject( label_list[labelHash] ) ) {
+            console.log( "addTorrentToLabelList: warning, label not found. label=", label, " label_list=", label_list );
+            label_list[labelHash] = { name: label, torrents: [] };
+        }
+        if( !_.contains(label_list[labelHash].torrents, torrent['hash'] ) ) {
+            removeTorrentFromLabelList( torrent['hash'] );
+            label_list[labelHash].torrents = _.union( label_list[labelHash].torrents, [ torrent['hash'] ] );
+            return true;
+        }
+        return false;
+    };
+
+    var updateContextMenu = function () {
+        var labelList = $('contextLabelList');
+        labelList.empty();
+        labelList.appendChild(new Element('li', {html: '<a href="javascript:newLabelFN();">QBT_TR(New...)QBT_TR</a>'}));
+        labelList.appendChild(new Element('li', {html: '<a href="javascript:resetLabelFN();">QBT_TR(Reset)QBT_TR</a>'}));
+
+        var first = true;
+        _.forEach(label_list, function (label) {
+            var labelHash = XXH(label.name, 0xABCD).toString(16);
+            var el = new Element('li', {html: '<a href="javascript:updateLabelFN(\'' + labelHash + '\');">' + label.name + '</a>'});
+            if (first) {
+                el.removeClass();
+                el.addClass('separator');
+                first = false;
+            }
+            labelList.appendChild(el);
+        });
+    };
+
+    var updateLabelList = function() {
+        var labelList = $( 'filterLabelList' );
+        if( !labelList ) {
+            return;
+        }
+        labelList.empty();
+
+        var create_link = function( hash, text, count )
+        {
+            var html = '<a href="#" onclick="setLabelFilter(' + hash + ');return false;">' +
+                '<img src="images/oxygen/folder-documents.png"/>' +
+                text + '(' + count + ')' + '</a>';
+
+            return new Element( 'li', { id: hash, html: html } );
+        };
+
+        var allLabels = 0;
+        _.forEach( label_list, function( label ) {
+            allLabels += label.torrents.length;
+        });
+
+        var unlabelled = myTable.getRowIds().length - allLabels;
+        labelList.appendChild( create_link( "ALL", 'QBT_TR(All Labels)QBT_TR', allLabels ) );
+        labelList.appendChild( create_link( "UNLABELED", 'QBT_TR(Unlabeled)QBT_TR', unlabelled ) );
+
+        _.forEach( label_list, function( label ) {
+            var labelHash = XXH(label.name, 0xABCD).toString(16);
+            labelList.appendChild( create_link( labelHash, label.name, label.torrents.length ) );
+        } );
+    };
+
     var syncMainDataTimer;
     var syncMainData = function () {
         var url = new URI('sync/maindata');
@@ -152,15 +237,26 @@ window.addEvent('load', function () {
                 $('error_div').set('html', '');
                 if (response) {
                     var full_update = (response['full_update'] == true);
-                    if (full_update)
+                    if (full_update) {
                         myTable.rows.erase();
-                    if (response['rid'])
+                        label_list = {};
+                        _.forEach( response['labels'], function( label ) {
+                            var labelHash = XXH(label, 0xABCD).toString(16);
+                            label_list[ labelHash ] = { name: label, torrents: [] };
+                        } );
+                    }
+                    if (response['rid']) {
                         syncMainDataLastResponseId = response['rid'];
-                    if (response['torrents'])
+                    }
+                    if (response['torrents']) {
                         for (var key in response['torrents']) {
                             response['torrents'][key]['hash'] = key;
-                            myTable.updateRowData(response['torrents'][key]);
+                            myTable.updateRowData( response['torrents'][key] );
+                            addTorrentToLabelList( response['torrents'][key] );
                         }
+                        updateLabelList();
+                        updateContextMenu();
+                    }
                     myTable.updateTable(full_update);
                     if (response['torrents_removed'])
                         response['torrents_removed'].each(function (hash) {
