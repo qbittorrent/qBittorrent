@@ -542,6 +542,7 @@ TorrentStatusReport TorrentModel::getTorrentStatusReport() const
       break;
     case TorrentModelItem::STATE_DOWNLOADING_META:
       ++report.nb_downloading;
+      ++report.nb_inactive;
       break;
     case TorrentModelItem::STATE_PAUSED_DL:
       ++report.nb_paused;
