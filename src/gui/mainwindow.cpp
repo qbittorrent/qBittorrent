@@ -128,6 +128,12 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
     setWindowIcon(QIcon(QString::fromUtf8(":/icons/skin/qbittorrent32.png")));
 
+    menubar->hide();
+    buttonMenu = new QToolButton();
+    buttonMenu->setText(tr("Menu"));
+    buttonMenu->setPopupMode(QToolButton::InstantPopup);
+    toolBar->addWidget(buttonMenu);
+    connect(toolBar, SIGNAL(toolButtonStyleChanged(Qt::ToolButtonStyle)), this, SLOT(toolButtonStyleChanged(Qt::ToolButtonStyle)));
     addToolbarContextMenu();
 
     actionOpen->setIcon(IconProvider::instance()->getIcon("list-add"));
@@ -149,6 +155,7 @@ MainWindow::MainWindow(QWidget *parent)
     actionIncreasePriority->setIcon(IconProvider::instance()->getIcon("go-up"));
     actionTopPriority->setIcon(IconProvider::instance()->getIcon("go-top"));
     actionLock_qBittorrent->setIcon(IconProvider::instance()->getIcon("object-locked"));
+    buttonMenu->setIcon(IconProvider::instance()->getIcon("format-justify-fill"));
     actionOptions->setIcon(IconProvider::instance()->getIcon("preferences-system"));
     actionPause->setIcon(IconProvider::instance()->getIcon("media-playback-pause"));
     actionPause_All->setIcon(IconProvider::instance()->getIcon("media-playback-pause"));
@@ -169,6 +176,13 @@ MainWindow::MainWindow(QWidget *parent)
     QAction *clearUiLockPasswdAct = lockMenu->addAction(tr("Clear the password"));
     connect(clearUiLockPasswdAct, SIGNAL(triggered()), this, SLOT(clearUILockPassword()));
     actionLock_qBittorrent->setMenu(lockMenu);
+    QMenu *menu = new QMenu(this);
+    menu->addMenu(menu_File);
+    menu->addMenu(menu_Edit);
+    menu->addMenu(menuView);
+    menu->addMenu(menu_Options);
+    menu->addMenu(menu_Help);
+    buttonMenu->setMenu(menu);
 
     // Creating Bittorrent session
     connect(QBtSession::instance(), SIGNAL(fullDiskError(QTorrentHandle, QString)), this, SLOT(fullDiskError(QTorrentHandle, QString)));
@@ -268,7 +282,6 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
     // View settings
-    actionTop_tool_bar->setChecked(pref->isToolbarDisplayed());
     actionSpeed_in_title_bar->setChecked(pref->speedInTitleBar());
     actionRSS_Reader->setChecked(pref->isRSSEnabled());
     actionSearch_engine->setChecked(pref->isSearchEnabled());
@@ -427,6 +440,11 @@ void MainWindow::addToolbarContextMenu()
 void MainWindow::toolbarMenuRequested(QPoint point)
 {
     toolbarMenu->exec(toolBar->mapToGlobal(point));
+}
+
+void MainWindow::toolButtonStyleChanged(Qt::ToolButtonStyle toolButtonStyle)
+{
+    buttonMenu->setToolButtonStyle(toolButtonStyle);
 }
 
 void MainWindow::toolbarIconsOnly()
@@ -950,17 +968,6 @@ bool MainWindow::event(QEvent * e)
         }
         break;
     }
-#ifdef Q_OS_MAC
-    case QEvent::ToolBarChange: {
-        qDebug("MAC: Received a toolbar change event!");
-        bool ret = QMainWindow::event(e);
-
-        qDebug("MAC: new toolbar visibility is %d", !actionTop_tool_bar->isChecked());
-        actionTop_tool_bar->toggle();
-        Preferences::instance()->setToolbarDisplayed(actionTop_tool_bar->isChecked());
-        return ret;
-    }
-#endif
     default:
         break;
     }
@@ -1129,15 +1136,6 @@ void MainWindow::loadPreferences(bool configure_session)
     if (newSystrayIntegration && systrayIcon)
         systrayIcon->setIcon(getSystrayIcon());
     // General
-    if (pref->isToolbarDisplayed()) {
-        toolBar->setVisible(true);
-    }
-    else {
-        // Clear search filter before hiding the top toolbar
-        search_filter->clear();
-        toolBar->setVisible(false);
-    }
-
     if (pref->preventFromSuspend()) {
         preventTimer->start(PREVENT_SUSPEND_INTERVAL);
     }
@@ -1389,13 +1387,6 @@ void MainWindow::on_actionOptions_triggered()
         options = new options_imp(this);
         connect(options, SIGNAL(status_changed()), this, SLOT(optionsSaved()));
     }
-}
-
-void MainWindow::on_actionTop_tool_bar_triggered()
-{
-    bool is_visible = static_cast<QAction*>(sender())->isChecked();
-    toolBar->setVisible(is_visible);
-    Preferences::instance()->setToolbarDisplayed(is_visible);
 }
 
 void MainWindow::on_actionSpeed_in_title_bar_triggered()

@@ -139,8 +139,6 @@ public:
     void setRandomPort(bool b);
     bool systrayIntegration() const;
     void setSystrayIntegration(bool enabled);
-    bool isToolbarDisplayed() const;
-    void setToolbarDisplayed(bool displayed);
     bool minimizeToTray() const;
     void setMinimizeToTray(bool b);
     bool closeToTray() const;

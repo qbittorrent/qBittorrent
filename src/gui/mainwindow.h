@@ -191,6 +191,7 @@ private:
     QAction *prioSeparatorMenu;
     QSplitter *hSplitter;
     QSplitter *vSplitter;
+    QToolButton* buttonMenu;
     // Search
     QPointer<SearchEngine> searchEngine;
     // RSS
@@ -212,7 +213,6 @@ private slots:
     void on_actionSearch_engine_triggered();
     void on_actionRSS_Reader_triggered();
     void on_actionSpeed_in_title_bar_triggered();
-    void on_actionTop_tool_bar_triggered();
     void on_action_Import_Torrent_triggered();
     void on_actionDonate_money_triggered();
     void on_actionExecution_Logs_triggered(bool checked);
@@ -226,6 +226,7 @@ private slots:
     void checkProgramUpdate();
 #endif
     void toolbarMenuRequested(QPoint);
+    void toolButtonStyleChanged(Qt::ToolButtonStyle);
     void toolbarIconsOnly();
     void toolbarTextOnly();
     void toolbarTextBeside();
