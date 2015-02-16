@@ -34,6 +34,7 @@
 #include <QProcess>
 #include <QSystemTrayIcon>
 #include <QPointer>
+#include <QToolButton>
 #include "ui_mainwindow.h"
 #include "qtorrenthandle.h"
 #include "statsdialog.h"
@@ -191,7 +192,7 @@ private:
     QAction *prioSeparatorMenu;
     QSplitter *hSplitter;
     QSplitter *vSplitter;
-    QToolButton* buttonMenu;
+    QToolButton *buttonMenu;
     // Search
     QPointer<SearchEngine> searchEngine;
     // RSS
@@ -213,6 +214,7 @@ private slots:
     void on_actionSearch_engine_triggered();
     void on_actionRSS_Reader_triggered();
     void on_actionSpeed_in_title_bar_triggered();
+    void on_actionStatusbar_triggered();
     void on_action_Import_Torrent_triggered();
     void on_actionDonate_money_triggered();
     void on_actionExecution_Logs_triggered(bool checked);

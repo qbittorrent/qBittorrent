@@ -139,6 +139,8 @@ public:
     void setRandomPort(bool b);
     bool systrayIntegration() const;
     void setSystrayIntegration(bool enabled);
+    bool isStatusbarDisplayed() const;
+    void setStatusbarDisplayed(bool displayed);
     bool minimizeToTray() const;
     void setMinimizeToTray(bool b);
     bool closeToTray() const;

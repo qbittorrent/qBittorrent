@@ -282,6 +282,7 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
     // View settings
+    actionStatusbar->setChecked(pref->isStatusbarDisplayed());
     actionSpeed_in_title_bar->setChecked(pref->speedInTitleBar());
     actionRSS_Reader->setChecked(pref->isRSSEnabled());
     actionSearch_engine->setChecked(pref->isSearchEnabled());
@@ -1136,6 +1137,9 @@ void MainWindow::loadPreferences(bool configure_session)
     if (newSystrayIntegration && systrayIcon)
         systrayIcon->setIcon(getSystrayIcon());
     // General
+    if (!pref->isStatusbarDisplayed())
+        Ui_MainWindow::statusBar->hide();
+
     if (pref->preventFromSuspend()) {
         preventTimer->start(PREVENT_SUSPEND_INTERVAL);
     }
@@ -1387,6 +1391,13 @@ void MainWindow::on_actionOptions_triggered()
         options = new options_imp(this);
         connect(options, SIGNAL(status_changed()), this, SLOT(optionsSaved()));
     }
+}
+
+void MainWindow::on_actionStatusbar_triggered()
+{
+    bool is_visible = static_cast<QAction*>(sender())->isChecked();
+    Ui_MainWindow::statusBar->setVisible(is_visible);
+    Preferences::instance()->setStatusbarDisplayed(is_visible);
 }
 
 void MainWindow::on_actionSpeed_in_title_bar_triggered()

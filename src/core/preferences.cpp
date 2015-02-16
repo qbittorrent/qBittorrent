@@ -273,6 +273,14 @@ void Preferences::setSystrayIntegration(bool enabled)
     setValue("Preferences/General/SystrayEnabled", enabled);
 }
 
+bool Preferences::isStatusbarDisplayed() const {
+    return value("Preferences/General/StatusbarDisplayed", true).toBool();
+}
+
+void Preferences::setStatusbarDisplayed(bool displayed) {
+    setValue("Preferences/General/StatusbarDisplayed", displayed);
+}
+
 bool Preferences::minimizeToTray() const {
     return value("Preferences/General/MinimizeToTray", false).toBool();
 }
