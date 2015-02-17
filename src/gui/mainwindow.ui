@@ -91,6 +91,7 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
+    <addaction name="actionMenubar"/>
     <addaction name="actionStatusbar"/>
     <addaction name="actionSpeed_in_title_bar"/>
     <addaction name="separator"/>
@@ -287,6 +288,17 @@
    </property>
    <property name="toolTip">
     <string>Alternative speed limits</string>
+   </property>
+  </action>
+  <action name="actionMenubar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Menu bar</string>
+   </property>
+   <property name="toolTip">
+    <string>Display menu bar</string>
    </property>
   </action>
   <action name="actionStatusbar">

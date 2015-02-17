@@ -273,6 +273,14 @@ void Preferences::setSystrayIntegration(bool enabled)
     setValue("Preferences/General/SystrayEnabled", enabled);
 }
 
+bool Preferences::isMenubarDisplayed() const {
+    return value("Preferences/General/MenubarDisplayed", true).toBool();
+}
+
+void Preferences::setMenubarDisplayed(bool displayed) {
+    setValue("Preferences/General/MenubarDisplayed", displayed);
+}
+
 bool Preferences::isStatusbarDisplayed() const {
     return value("Preferences/General/StatusbarDisplayed", true).toBool();
 }

@@ -128,11 +128,12 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
     setWindowIcon(QIcon(QString::fromUtf8(":/icons/skin/qbittorrent32.png")));
 
-    menubar->hide();
+    menubar->setVisible(pref->isMenubarDisplayed());
     buttonMenu = new QToolButton();
     buttonMenu->setText(tr("Menu"));
     buttonMenu->setPopupMode(QToolButton::InstantPopup);
-    toolBar->addWidget(buttonMenu);
+    actionMenu = toolBar->addWidget(buttonMenu);
+    actionMenu->setVisible(!pref->isMenubarDisplayed());
     connect(toolBar, SIGNAL(toolButtonStyleChanged(Qt::ToolButtonStyle)), this, SLOT(toolButtonStyleChanged(Qt::ToolButtonStyle)));
     addToolbarContextMenu();
 
@@ -282,6 +283,7 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
     // View settings
+    actionMenubar->setChecked(pref->isMenubarDisplayed());
     actionStatusbar->setChecked(pref->isStatusbarDisplayed());
     actionSpeed_in_title_bar->setChecked(pref->speedInTitleBar());
     actionRSS_Reader->setChecked(pref->isRSSEnabled());
@@ -1391,6 +1393,14 @@ void MainWindow::on_actionOptions_triggered()
         options = new options_imp(this);
         connect(options, SIGNAL(status_changed()), this, SLOT(optionsSaved()));
     }
+}
+
+void MainWindow::on_actionMenubar_triggered()
+{
+    bool is_visible = static_cast<QAction*>(sender())->isChecked();
+    menubar->setVisible(is_visible);
+    actionMenu->setVisible(!is_visible);
+    Preferences::instance()->setMenubarDisplayed(is_visible);
 }
 
 void MainWindow::on_actionStatusbar_triggered()

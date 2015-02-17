@@ -193,6 +193,7 @@ private:
     QSplitter *hSplitter;
     QSplitter *vSplitter;
     QToolButton *buttonMenu;
+    QAction *actionMenu;
     // Search
     QPointer<SearchEngine> searchEngine;
     // RSS
@@ -214,6 +215,7 @@ private slots:
     void on_actionSearch_engine_triggered();
     void on_actionRSS_Reader_triggered();
     void on_actionSpeed_in_title_bar_triggered();
+    void on_actionMenubar_triggered();
     void on_actionStatusbar_triggered();
     void on_action_Import_Torrent_triggered();
     void on_actionDonate_money_triggered();
