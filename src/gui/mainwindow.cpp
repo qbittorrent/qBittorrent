@@ -156,7 +156,7 @@ MainWindow::MainWindow(QWidget *parent)
     actionIncreasePriority->setIcon(IconProvider::instance()->getIcon("go-up"));
     actionTopPriority->setIcon(IconProvider::instance()->getIcon("go-top"));
     actionLock_qBittorrent->setIcon(IconProvider::instance()->getIcon("object-locked"));
-    buttonMenu->setIcon(IconProvider::instance()->getIcon("format-justify-fill"));
+    buttonMenu->setIcon(QIcon(QString::fromUtf8(":/icons/skin/menu.svg")));
     actionOptions->setIcon(IconProvider::instance()->getIcon("preferences-system"));
     actionPause->setIcon(IconProvider::instance()->getIcon("media-playback-pause"));
     actionPause_All->setIcon(IconProvider::instance()->getIcon("media-playback-pause"));
