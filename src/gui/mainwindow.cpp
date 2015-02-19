@@ -132,6 +132,7 @@ MainWindow::MainWindow(QWidget *parent)
     buttonMenu = new QToolButton();
     buttonMenu->setText(tr("Menu"));
     buttonMenu->setPopupMode(QToolButton::InstantPopup);
+    buttonMenu->setToolButtonStyle(Qt::ToolButtonFollowStyle);
     actionMenu = toolBar->addWidget(buttonMenu);
     actionMenu->setVisible(!pref->isMenubarDisplayed());
     connect(toolBar, SIGNAL(toolButtonStyleChanged(Qt::ToolButtonStyle)), this, SLOT(toolButtonStyleChanged(Qt::ToolButtonStyle)));
