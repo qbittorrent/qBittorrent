@@ -1,3 +1,8 @@
+* Wed Feb 22 2015 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.12
+    - OSX: Fix build to work with older machines. (sledgehammer999, Noctem)
+    - WINDOWS: Fix automatic Python download. (sledgehammer999)
+    - WINDOWS: Fix crashes due to memory corruption and improve Python registry searching. (glassez)
+
 * Wed Oct 22 2014 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.11
     - FEATURE: Allow relative torrent paths when qBittorrent is already running (pmzqla)
     - FEATURE: Make Windows icons suitable for high dpi screens (pmzqla)
