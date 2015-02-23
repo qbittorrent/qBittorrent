@@ -290,13 +290,13 @@ void Application::initializeTranslation()
 
 void Application::cleanup()
 {
-#ifndef DISABLE_GUI
-    delete m_window;
-#endif
 #ifndef DISABLE_WEBUI
     delete m_webui;
 #endif
     QBtSession::drop();
+#ifndef DISABLE_GUI
+    delete m_window;
+#endif
     TorrentPersistentData::drop();
     Preferences::drop();
     Logger::drop();
