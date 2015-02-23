@@ -43,7 +43,6 @@
 #include "torrentspeedmonitor.h"
 #include "torrentstatistics.h"
 #include "qbtsession.h"
-#include "alertdispatcher.h"
 #include "misc.h"
 #include "fs_utils.h"
 #include "downloadthread.h"
@@ -115,7 +114,6 @@ QBtSession::QBtSession()
   #if LIBTORRENT_VERSION_NUM < 10000
   , m_upnp(0), m_natpmp(0)
   #endif
-  , m_alertDispatcher(0)
 {
   BigRatioTimer = new QTimer(this);
   BigRatioTimer->setInterval(10000);
@@ -149,8 +147,12 @@ QBtSession::QBtSession()
     PeXEnabled = false;
   }
   s->add_extension(&create_smart_ban_plugin);
-  m_alertDispatcher = new QAlertDispatcher(s, this);
-  connect(m_alertDispatcher, SIGNAL(alertsReceived()), SLOT(readAlerts()));
+
+  m_alertTimer = new QTimer(this);
+  m_alertTimer->setInterval(0);
+  connect(m_alertTimer, SIGNAL(timeout()), SLOT(readAlerts()));
+  m_alertTimer->start();
+
   appendLabelToSavePath = pref->appendTorrentLabel();
   appendqBExtension = pref->useIncompleteFilesExtension();
   connect(m_scanFolders, SIGNAL(torrentsAdded(QStringList&)), SLOT(addTorrentsFromScanFolder(QStringList&)));
@@ -189,7 +191,6 @@ QBtSession::~QBtSession() {
   delete downloader;
   if (bd_scheduler)
     delete bd_scheduler;
-  delete m_alertDispatcher;
   delete m_torrentStatistics;
   qDebug("Deleting the session");
   delete s;
@@ -1609,19 +1610,20 @@ void QBtSession::saveFastResumeData() {
     } catch(libtorrent::invalid_handle&) {}
   }
   while (num_resume_data > 0) {
-    std::vector<alert*> alerts;
-    m_alertDispatcher->getPendingAlerts(alerts, 30*1000);
-    if (alerts.empty()) {
+    if (!s->wait_for_alert(seconds(30))) {
       std::cerr << " aborting with " << num_resume_data << " outstanding "
                    "torrents to save resume data for" << std::endl;
       break;
     }
 
-    for (std::vector<alert*>::const_iterator i = alerts.begin(), end = alerts.end(); i != end; ++i)
+    std::deque<alert*> alerts;
+    s->pop_alerts(&alerts);
+
+    for (std::deque<alert*>::const_iterator i = alerts.begin(), end = alerts.end(); i != end; ++i)
     {
       alert const* a = *i;
       // Saving fastresume data can fail
-      save_resume_data_failed_alert const* rda = dynamic_cast<save_resume_data_failed_alert const*>(a);
+      save_resume_data_failed_alert const* rda = alert_cast<save_resume_data_failed_alert>(a);
       if (rda) {
         --num_resume_data;
         try {
@@ -1632,7 +1634,7 @@ void QBtSession::saveFastResumeData() {
         delete a;
         continue;
       }
-      save_resume_data_alert const* rd = dynamic_cast<save_resume_data_alert const*>(a);
+      save_resume_data_alert const* rd = alert_cast<save_resume_data_alert>(a);
       if (!rd) {
         delete a;
         continue;
@@ -2046,16 +2048,26 @@ void QBtSession::sendNotificationEmail(const QTorrentHandle &h) {
 }
 
 // Read alerts sent by the Bittorrent session
-void QBtSession::readAlerts() {
+void QBtSession::readAlerts()
+{
+    typedef std::deque<alert*> alerts_t;
 
-  typedef std::vector<alert*> alerts_t;
-  alerts_t alerts;
-  m_alertDispatcher->getPendingAlertsNoWait(alerts);
+    alerts_t alerts;
+    s->pop_alerts(&alerts);
 
-  for (alerts_t::const_iterator i = alerts.begin(), end = alerts.end(); i != end; ++i) {
-    handleAlert(*i);
-    delete *i;
-  }
+    if (alerts.size() == 0) {
+        if (m_alertTimer->interval() == 0)
+            m_alertTimer->setInterval(500);
+    }
+    else {
+        if (m_alertTimer->interval() != 0)
+            m_alertTimer->setInterval(0);
+
+        for (alerts_t::const_iterator i = alerts.begin(), end = alerts.end(); i != end; ++i) {
+            handleAlert(*i);
+            delete *i;
+        }
+    }
 }
 
 void QBtSession::handleAlert(libtorrent::alert* a) {
