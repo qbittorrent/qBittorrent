@@ -899,8 +899,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
         }
     }
     hide();
-    // Save window size, columns size
-    writeSettings();
     // Accept exit
     e->accept();
     qApp->exit();
