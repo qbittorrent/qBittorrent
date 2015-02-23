@@ -2,7 +2,6 @@ INCLUDEPATH += $$PWD
 
 include(lineedit/lineedit.pri)
 include(properties/properties.pri)
-include(searchengine/searchengine.pri)
 include(rss/rss.pri)
 include(torrentcreator/torrentcreator.pri)
 include(geoip/geoip.pri)

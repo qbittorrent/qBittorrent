@@ -59,7 +59,10 @@ win32: DEFINES += NOMINMAX
 include(app/app.pri)
 include(core/core.pri)
 !nowebui: include(webui/webui.pri)
-!nogui: include(gui/gui.pri)
+!nogui {
+    include(gui/gui.pri)
+    include(searchengine/searchengine.pri)
+}
 
 # Resource files
 RESOURCES += \
