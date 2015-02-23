@@ -56,1413 +56,1676 @@
 
 Preferences* Preferences::m_instance = 0;
 
-Preferences::Preferences() : m_randomPort(rand() % 64512 + 1024), dirty(false), lock(QReadWriteLock::Recursive) {
-  QIniSettings *settings = new QIniSettings;
+Preferences::Preferences()
+    : m_randomPort(rand() % 64512 + 1024)
+    , dirty(false)
+    , lock(QReadWriteLock::Recursive)
+{
+    QIniSettings *settings = new QIniSettings;
 #ifndef Q_OS_MAC
-  QIniSettings *settings_new = new QIniSettings("qBittorrent", "qBittorrent_new");
-  QStringList keys = settings_new->allKeys();
-  bool use_new = false;
+    QIniSettings *settings_new = new QIniSettings("qBittorrent", "qBittorrent_new");
+    QStringList keys = settings_new->allKeys();
+    bool use_new = false;
 
 
-  // This means that the PC closed either due to power outage
-  // or because the disk was full. In any case the settings weren't transfered
-  // in their final position. So assume that qbittorrent_new.ini/qbittorrent_new.conf
-  // contains the most recent settings.
-  if (!keys.isEmpty()) {
-    use_new = true;
-    dirty = true;
-  }
-  else {
-    keys = settings->allKeys();
-  }
+    // This means that the PC closed either due to power outage
+    // or because the disk was full. In any case the settings weren't transfered
+    // in their final position. So assume that qbittorrent_new.ini/qbittorrent_new.conf
+    // contains the most recent settings.
+    if (!keys.isEmpty()) {
+        use_new = true;
+        dirty = true;
+    }
+    else {
+        keys = settings->allKeys();
+    }
 #else
-  QStringList keys = settings->allKeys();
+    QStringList keys = settings->allKeys();
 #endif
 
-  // Copy everything into memory. This means even keys inserted in the file manually
-  // or that we don't touch directly in this code(eg disabled by ifdef). This ensures
-  // that they will be copied over when save our settings to disk.
-  for (QStringList::const_iterator i = keys.begin(), e = keys.end(); i != e; ++i) {
+    // Copy everything into memory. This means even keys inserted in the file manually
+    // or that we don't touch directly in this code(eg disabled by ifdef). This ensures
+    // that they will be copied over when save our settings to disk.
+    for (QStringList::const_iterator i = keys.begin(), e = keys.end(); i != e; ++i) {
 #ifndef Q_OS_MAC
-    if (!use_new)
-      m_data[*i] = settings->value(*i);
-    else
-      m_data[*i] = settings_new->value(*i);
+        if (!use_new)
+            m_data[*i] = settings->value(*i);
+        else
+            m_data[*i] = settings_new->value(*i);
 #else
-    m_data[*i] = settings->value(*i);
+        m_data[*i] = settings->value(*i);
 #endif
-  }
+    }
 
-  //Ensures sync to disk before we attempt to manipulate the files from save().
-  delete settings;
+    //Ensures sync to disk before we attempt to manipulate the files from save().
+    delete settings;
 #ifndef Q_OS_MAC
-  delete settings_new;
+    delete settings_new;
 
-  if (use_new)
+    if (use_new)
+        save();
+#endif
+
+    timer.setSingleShot(true);
+    timer.setInterval(5 * 1000);
+    connect(&timer, SIGNAL(timeout()), SLOT(save()));
+}
+
+Preferences::~Preferences()
+{
     save();
-#endif
-
-  timer.setSingleShot(true);
-  timer.setInterval(5*1000);
-  connect(&timer, SIGNAL(timeout()), SLOT(save()));
 }
 
-Preferences::~Preferences() {
-  save();
-}
+Preferences * Preferences::instance()
+{
+    if (!m_instance)
+        m_instance = new Preferences;
 
-Preferences * Preferences::instance() {
-  if (!m_instance)
-    m_instance = new Preferences;
-
-  return m_instance;
+    return m_instance;
 }
 
 void Preferences::drop()
 {
-  if (m_instance) {
-    delete m_instance;
-    m_instance = 0;
-  }
+    if (m_instance) {
+        delete m_instance;
+        m_instance = 0;
+    }
 }
 
-void Preferences::save() {
-  QReadLocker locker(&lock);
+void Preferences::save()
+{
+    QReadLocker locker(&lock);
 
-  if (!dirty)
-    return;
+    if (!dirty)
+        return;
 
 #ifndef Q_OS_MAC
-  // QSettings delete the file before writing it out. This can result in problems
-  // if the disk is full or a power outage occurs. Those events might occur
-  // between deleting the file and recreating it. This is a safety measure.
-  // Write everything to qBittorrent_new.ini/qBittorrent_new.conf and if it succeeds
-  // replace qBittorrent_new.ini/qBittorrent.conf with it.
-  QIniSettings *settings = new QIniSettings("qBittorrent", "qBittorrent_new");
+    // QSettings delete the file before writing it out. This can result in problems
+    // if the disk is full or a power outage occurs. Those events might occur
+    // between deleting the file and recreating it. This is a safety measure.
+    // Write everything to qBittorrent_new.ini/qBittorrent_new.conf and if it succeeds
+    // replace qBittorrent_new.ini/qBittorrent.conf with it.
+    QIniSettings *settings = new QIniSettings("qBittorrent", "qBittorrent_new");
 #else
-  QIniSettings *settings = new QIniSettings;
+    QIniSettings *settings = new QIniSettings;
 #endif
 
-  for (QHash<QString, QVariant>::const_iterator i = m_data.begin(), e = m_data.end(); i != e; ++i) {
-    settings->setValue(i.key(), i.value());
-  }
+    for (QHash<QString, QVariant>::const_iterator i = m_data.begin(), e = m_data.end(); i != e; ++i)
+        settings->setValue(i.key(), i.value());
 
-  dirty = false;
-  locker.unlock();
+    dirty = false;
+    locker.unlock();
 
 #ifndef Q_OS_MAC
-  settings->sync(); // Important to get error status
-  if (settings->status() == QSettings::AccessError) {
+    settings->sync(); // Important to get error status
+    if (settings->status() == QSettings::AccessError) {
+        delete settings;
+        return;
+    }
+    QString new_path = settings->fileName();
     delete settings;
-    return;
-  }
-  QString new_path = settings->fileName();
-  delete settings;
-  QString final_path = new_path;
-  int index = final_path.lastIndexOf("_new", -1, Qt::CaseInsensitive);
-  final_path.remove(index, 4);
-  fsutils::forceRemove(final_path);
-  QFile::rename(new_path, final_path);
+    QString final_path = new_path;
+    int index = final_path.lastIndexOf("_new", -1, Qt::CaseInsensitive);
+    final_path.remove(index, 4);
+    fsutils::forceRemove(final_path);
+    QFile::rename(new_path, final_path);
 #else
-  delete settings;
+    delete settings;
 #endif
 
-  emit changed();
+    emit changed();
 }
 
-const QVariant Preferences::value(const QString &key, const QVariant &defaultValue) const {
-  QReadLocker locker(&lock);
-  return m_data.value(key, defaultValue);
+const QVariant Preferences::value(const QString &key, const QVariant &defaultValue) const
+{
+    QReadLocker locker(&lock);
+    return m_data.value(key, defaultValue);
 }
 
-void Preferences::setValue(const QString &key, const QVariant &value) {
-  QWriteLocker locker(&lock);
-  if (m_data.value(key) == value)
-    return;
-  dirty = true;
-  timer.start();
-  m_data.insert(key, value);
+void Preferences::setValue(const QString &key, const QVariant &value)
+{
+    QWriteLocker locker(&lock);
+    if (m_data.value(key) == value)
+        return;
+    dirty = true;
+    timer.start();
+    m_data.insert(key, value);
 }
 
 // General options
-QString Preferences::getLocale() const {
-  return value("Preferences/General/Locale").toString();
+QString Preferences::getLocale() const
+{
+    return value("Preferences/General/Locale").toString();
 }
 
-void Preferences::setLocale(const QString &locale) {
-  setValue("Preferences/General/Locale", locale);
+void Preferences::setLocale(const QString &locale)
+{
+    setValue("Preferences/General/Locale", locale);
 }
 
-bool Preferences::useProgramNotification() const {
-  return value("Preferences/General/ProgramNotification", true).toBool();
+bool Preferences::useProgramNotification() const
+{
+    return value("Preferences/General/ProgramNotification", true).toBool();
 }
 
-void Preferences::useProgramNotification(bool use) {
-  setValue("Preferences/General/ProgramNotification", use);
+void Preferences::useProgramNotification(bool use)
+{
+    setValue("Preferences/General/ProgramNotification", use);
 }
 
-bool Preferences::deleteTorrentFilesAsDefault() const {
-  return value("Preferences/General/DeleteTorrentsFilesAsDefault", false).toBool();
+bool Preferences::deleteTorrentFilesAsDefault() const
+{
+    return value("Preferences/General/DeleteTorrentsFilesAsDefault", false).toBool();
 }
 
-void Preferences::setDeleteTorrentFilesAsDefault(bool del) {
-  setValue("Preferences/General/DeleteTorrentsFilesAsDefault", del);
+void Preferences::setDeleteTorrentFilesAsDefault(bool del)
+{
+    setValue("Preferences/General/DeleteTorrentsFilesAsDefault", del);
 }
 
-bool Preferences::confirmOnExit() const {
-  return value("Preferences/General/ExitConfirm", true).toBool();
+bool Preferences::confirmOnExit() const
+{
+    return value("Preferences/General/ExitConfirm", true).toBool();
 }
 
-void Preferences::setConfirmOnExit(bool confirm) {
-  setValue("Preferences/General/ExitConfirm", confirm);
+void Preferences::setConfirmOnExit(bool confirm)
+{
+    setValue("Preferences/General/ExitConfirm", confirm);
 }
 
-bool Preferences::speedInTitleBar() const {
-  return value("Preferences/General/SpeedInTitleBar", false).toBool();
+bool Preferences::speedInTitleBar() const
+{
+    return value("Preferences/General/SpeedInTitleBar", false).toBool();
 }
 
-void Preferences::showSpeedInTitleBar(bool show) {
-  setValue("Preferences/General/SpeedInTitleBar", show);
+void Preferences::showSpeedInTitleBar(bool show)
+{
+    setValue("Preferences/General/SpeedInTitleBar", show);
 }
 
-bool Preferences::useAlternatingRowColors() const {
-  return value("Preferences/General/AlternatingRowColors", true).toBool();
+bool Preferences::useAlternatingRowColors() const
+{
+    return value("Preferences/General/AlternatingRowColors", true).toBool();
 }
 
-void Preferences::setAlternatingRowColors(bool b) {
-  setValue("Preferences/General/AlternatingRowColors", b);
+void Preferences::setAlternatingRowColors(bool b)
+{
+    setValue("Preferences/General/AlternatingRowColors", b);
 }
 
-bool Preferences::useRandomPort() const {
-  return value("Preferences/General/UseRandomPort", false).toBool();
+bool Preferences::useRandomPort() const
+{
+    return value("Preferences/General/UseRandomPort", false).toBool();
 }
 
-void Preferences::setRandomPort(bool b) {
-  setValue("Preferences/General/UseRandomPort", b);
+void Preferences::setRandomPort(bool b)
+{
+    setValue("Preferences/General/UseRandomPort", b);
 }
 
-bool Preferences::systrayIntegration() const {
-  return value("Preferences/General/SystrayEnabled", true).toBool();
+bool Preferences::systrayIntegration() const
+{
+    return value("Preferences/General/SystrayEnabled", true).toBool();
 }
 
-void Preferences::setSystrayIntegration(bool enabled) {
-  setValue("Preferences/General/SystrayEnabled", enabled);
+void Preferences::setSystrayIntegration(bool enabled)
+{
+    setValue("Preferences/General/SystrayEnabled", enabled);
 }
 
-bool Preferences::isToolbarDisplayed() const {
-  return value("Preferences/General/ToolbarDisplayed", true).toBool();
+bool Preferences::isToolbarDisplayed() const
+{
+    return value("Preferences/General/ToolbarDisplayed", true).toBool();
 }
 
-void Preferences::setToolbarDisplayed(bool displayed) {
-  setValue("Preferences/General/ToolbarDisplayed", displayed);
+void Preferences::setToolbarDisplayed(bool displayed)
+{
+    setValue("Preferences/General/ToolbarDisplayed", displayed);
 }
 
-bool Preferences::minimizeToTray() const {
-  return value("Preferences/General/MinimizeToTray", false).toBool();
+bool Preferences::minimizeToTray() const
+{
+    return value("Preferences/General/MinimizeToTray", false).toBool();
 }
 
-void Preferences::setMinimizeToTray(bool b) {
-  setValue("Preferences/General/MinimizeToTray", b);
+void Preferences::setMinimizeToTray(bool b)
+{
+    setValue("Preferences/General/MinimizeToTray", b);
 }
 
-bool Preferences::closeToTray() const {
-  return value("Preferences/General/CloseToTray", false).toBool();
+bool Preferences::closeToTray() const
+{
+    return value("Preferences/General/CloseToTray", false).toBool();
 }
 
-void Preferences::setCloseToTray(bool b) {
-  setValue("Preferences/General/CloseToTray", b);
+void Preferences::setCloseToTray(bool b)
+{
+    setValue("Preferences/General/CloseToTray", b);
 }
 
-bool Preferences::startMinimized() const {
-  return value("Preferences/General/StartMinimized", false).toBool();
+bool Preferences::startMinimized() const
+{
+    return value("Preferences/General/StartMinimized", false).toBool();
 }
 
-void Preferences::setStartMinimized(bool b) {
-  setValue("Preferences/General/StartMinimized", b);
+void Preferences::setStartMinimized(bool b)
+{
+    setValue("Preferences/General/StartMinimized", b);
 }
 
-bool Preferences::isSplashScreenDisabled() const {
-  return value("Preferences/General/NoSplashScreen", false).toBool();
+bool Preferences::isSplashScreenDisabled() const
+{
+    return value("Preferences/General/NoSplashScreen", false).toBool();
 }
 
-void Preferences::setSplashScreenDisabled(bool b) {
-  setValue("Preferences/General/NoSplashScreen", b);
+void Preferences::setSplashScreenDisabled(bool b)
+{
+    setValue("Preferences/General/NoSplashScreen", b);
 }
 
 // Preventing from system suspend while active torrents are presented.
-bool Preferences::preventFromSuspend() const {
-  return value("Preferences/General/PreventFromSuspend", false).toBool();
+bool Preferences::preventFromSuspend() const
+{
+    return value("Preferences/General/PreventFromSuspend", false).toBool();
 }
 
-void Preferences::setPreventFromSuspend(bool b) {
-  setValue("Preferences/General/PreventFromSuspend", b);
+void Preferences::setPreventFromSuspend(bool b)
+{
+    setValue("Preferences/General/PreventFromSuspend", b);
 }
 
 #ifdef Q_OS_WIN
-bool Preferences::WinStartup() const {
-  QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
-  return settings.contains("qBittorrent");
+bool Preferences::WinStartup() const
+{
+    QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
+    return settings.contains("qBittorrent");
 }
 
-void Preferences::setWinStartup(bool b) {
-  QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
-  if (b) {
-      const QString bin_path = "\"" + fsutils::toNativePath(qApp->applicationFilePath()) + "\"";
-      settings.setValue("qBittorrent", bin_path);
-  }
-  else {
-      settings.remove("qBittorrent");
-  }
+void Preferences::setWinStartup(bool b)
+{
+    QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
+    if (b) {
+        const QString bin_path = "\"" + fsutils::toNativePath(qApp->applicationFilePath()) + "\"";
+        settings.setValue("qBittorrent", bin_path);
+    }
+    else {
+        settings.remove("qBittorrent");
+    }
 }
 #endif
 
 // Downloads
-QString Preferences::getSavePath() const {
-  QString save_path = value("Preferences/Downloads/SavePath").toString();
-  if (!save_path.isEmpty())
-    return fsutils::fromNativePath(save_path);
-  return fsutils::QDesktopServicesDownloadLocation();
+QString Preferences::getSavePath() const
+{
+    QString save_path = value("Preferences/Downloads/SavePath").toString();
+    if (!save_path.isEmpty())
+        return fsutils::fromNativePath(save_path);
+    return fsutils::QDesktopServicesDownloadLocation();
 }
 
-void Preferences::setSavePath(const QString &save_path) {
-  setValue("Preferences/Downloads/SavePath", fsutils::fromNativePath(save_path));
+void Preferences::setSavePath(const QString &save_path)
+{
+    setValue("Preferences/Downloads/SavePath", fsutils::fromNativePath(save_path));
 }
 
-bool Preferences::isTempPathEnabled() const {
-  return value("Preferences/Downloads/TempPathEnabled", false).toBool();
+bool Preferences::isTempPathEnabled() const
+{
+    return value("Preferences/Downloads/TempPathEnabled", false).toBool();
 }
 
-void Preferences::setTempPathEnabled(bool enabled) {
-  setValue("Preferences/Downloads/TempPathEnabled", enabled);
+void Preferences::setTempPathEnabled(bool enabled)
+{
+    setValue("Preferences/Downloads/TempPathEnabled", enabled);
 }
 
-QString Preferences::getTempPath() const {
-  const QString temp = QDir(getSavePath()).absoluteFilePath("temp");
-  return fsutils::fromNativePath(value("Preferences/Downloads/TempPath", temp).toString());
+QString Preferences::getTempPath() const
+{
+    const QString temp = QDir(getSavePath()).absoluteFilePath("temp");
+    return fsutils::fromNativePath(value("Preferences/Downloads/TempPath", temp).toString());
 }
 
-void Preferences::setTempPath(const QString &path) {
-  setValue("Preferences/Downloads/TempPath", fsutils::fromNativePath(path));
+void Preferences::setTempPath(const QString &path)
+{
+    setValue("Preferences/Downloads/TempPath", fsutils::fromNativePath(path));
 }
 
-bool Preferences::useIncompleteFilesExtension() const {
-  return value("Preferences/Downloads/UseIncompleteExtension", false).toBool();
+bool Preferences::useIncompleteFilesExtension() const
+{
+    return value("Preferences/Downloads/UseIncompleteExtension", false).toBool();
 }
 
-void Preferences::useIncompleteFilesExtension(bool enabled) {
-  setValue("Preferences/Downloads/UseIncompleteExtension", enabled);
+void Preferences::useIncompleteFilesExtension(bool enabled)
+{
+    setValue("Preferences/Downloads/UseIncompleteExtension", enabled);
 }
 
-bool Preferences::appendTorrentLabel() const {
-  return value("Preferences/Downloads/AppendLabel", false).toBool();
+bool Preferences::appendTorrentLabel() const
+{
+    return value("Preferences/Downloads/AppendLabel", false).toBool();
 }
 
-void Preferences::setAppendTorrentLabel(bool b) {
-  setValue("Preferences/Downloads/AppendLabel", b);
+void Preferences::setAppendTorrentLabel(bool b)
+{
+    setValue("Preferences/Downloads/AppendLabel", b);
 }
 
-QString Preferences::lastLocationPath() const {
-  return fsutils::fromNativePath(value("Preferences/Downloads/LastLocationPath").toString());
+QString Preferences::lastLocationPath() const
+{
+    return fsutils::fromNativePath(value("Preferences/Downloads/LastLocationPath").toString());
 }
 
-void Preferences::setLastLocationPath(const QString &path) {
-  setValue("Preferences/Downloads/LastLocationPath", fsutils::fromNativePath(path));
+void Preferences::setLastLocationPath(const QString &path)
+{
+    setValue("Preferences/Downloads/LastLocationPath", fsutils::fromNativePath(path));
 }
 
-bool Preferences::preAllocateAllFiles() const {
-  return value("Preferences/Downloads/PreAllocation", false).toBool();
+bool Preferences::preAllocateAllFiles() const
+{
+    return value("Preferences/Downloads/PreAllocation", false).toBool();
 }
 
-void Preferences::preAllocateAllFiles(bool enabled) {
-  return setValue("Preferences/Downloads/PreAllocation", enabled);
+void Preferences::preAllocateAllFiles(bool enabled)
+{
+    return setValue("Preferences/Downloads/PreAllocation", enabled);
 }
 
-bool Preferences::useAdditionDialog() const {
-  return value("Preferences/Downloads/NewAdditionDialog", true).toBool();
+bool Preferences::useAdditionDialog() const
+{
+    return value("Preferences/Downloads/NewAdditionDialog", true).toBool();
 }
 
-void Preferences::useAdditionDialog(bool b) {
-  setValue("Preferences/Downloads/NewAdditionDialog", b);
+void Preferences::useAdditionDialog(bool b)
+{
+    setValue("Preferences/Downloads/NewAdditionDialog", b);
 }
 
-bool Preferences::additionDialogFront() const {
-  return value("Preferences/Downloads/NewAdditionDialogFront", true).toBool();
+bool Preferences::additionDialogFront() const
+{
+    return value("Preferences/Downloads/NewAdditionDialogFront", true).toBool();
 }
 
-void Preferences::additionDialogFront(bool b) {
-  setValue("Preferences/Downloads/NewAdditionDialogFront", b);
+void Preferences::additionDialogFront(bool b)
+{
+    setValue("Preferences/Downloads/NewAdditionDialogFront", b);
 }
 
-bool Preferences::addTorrentsInPause() const {
-  return value("Preferences/Downloads/StartInPause", false).toBool();
+bool Preferences::addTorrentsInPause() const
+{
+    return value("Preferences/Downloads/StartInPause", false).toBool();
 }
 
-void Preferences::addTorrentsInPause(bool b) {
-  setValue("Preferences/Downloads/StartInPause", b);
+void Preferences::addTorrentsInPause(bool b)
+{
+    setValue("Preferences/Downloads/StartInPause", b);
 }
 
-QStringList Preferences::getScanDirs() const {
-  QStringList originalList = value("Preferences/Downloads/ScanDirs").toStringList();
-  if (originalList.isEmpty())
-    return originalList;
+QStringList Preferences::getScanDirs() const
+{
+    QStringList originalList = value("Preferences/Downloads/ScanDirs").toStringList();
+    if (originalList.isEmpty())
+        return originalList;
 
-  QStringList newList;
-  foreach (const QString& s, originalList) {
-    newList << fsutils::fromNativePath(s);
-  }
-  return newList;
+    QStringList newList;
+    foreach (const QString& s, originalList)
+        newList << fsutils::fromNativePath(s);
+    return newList;
 }
 
 // This must be called somewhere with data from the model
-void Preferences::setScanDirs(const QStringList &dirs) {
-  QStringList newList;
-  if (!dirs.isEmpty()) {
-    foreach (const QString& s, dirs) {
-      newList << fsutils::fromNativePath(s);
-    }
-  }
-  setValue("Preferences/Downloads/ScanDirs", newList);
+void Preferences::setScanDirs(const QStringList &dirs)
+{
+    QStringList newList;
+    if (!dirs.isEmpty())
+        foreach (const QString& s, dirs)
+            newList << fsutils::fromNativePath(s);
+    setValue("Preferences/Downloads/ScanDirs", newList);
 }
 
-QList<bool> Preferences::getDownloadInScanDirs() const {
-  return misc::boolListfromStringList(value("Preferences/Downloads/DownloadInScanDirs").toStringList());
+QList<bool> Preferences::getDownloadInScanDirs() const
+{
+    return misc::boolListfromStringList(value("Preferences/Downloads/DownloadInScanDirs").toStringList());
 }
 
-void Preferences::setDownloadInScanDirs(const QList<bool> &list) {
-  setValue("Preferences/Downloads/DownloadInScanDirs", misc::toStringList(list));
+void Preferences::setDownloadInScanDirs(const QList<bool> &list)
+{
+    setValue("Preferences/Downloads/DownloadInScanDirs", misc::toStringList(list));
 }
 
-QString Preferences::getScanDirsLastPath() const {
-  return fsutils::fromNativePath(value("Preferences/Downloads/ScanDirsLastPath").toString());
+QString Preferences::getScanDirsLastPath() const
+{
+    return fsutils::fromNativePath(value("Preferences/Downloads/ScanDirsLastPath").toString());
 }
 
-void Preferences::setScanDirsLastPath(const QString &path) {
-  setValue("Preferences/Downloads/ScanDirsLastPath", fsutils::fromNativePath(path));
+void Preferences::setScanDirsLastPath(const QString &path)
+{
+    setValue("Preferences/Downloads/ScanDirsLastPath", fsutils::fromNativePath(path));
 }
 
-bool Preferences::isTorrentExportEnabled() const {
-  return !value("Preferences/Downloads/TorrentExportDir").toString().isEmpty();
+bool Preferences::isTorrentExportEnabled() const
+{
+    return !value("Preferences/Downloads/TorrentExportDir").toString().isEmpty();
 }
 
-QString Preferences::getTorrentExportDir() const {
-  return fsutils::fromNativePath(value("Preferences/Downloads/TorrentExportDir").toString());
+QString Preferences::getTorrentExportDir() const
+{
+    return fsutils::fromNativePath(value("Preferences/Downloads/TorrentExportDir").toString());
 }
 
-void Preferences::setTorrentExportDir(QString path) {
-  setValue("Preferences/Downloads/TorrentExportDir", fsutils::fromNativePath(path.trimmed()));
+void Preferences::setTorrentExportDir(QString path)
+{
+    setValue("Preferences/Downloads/TorrentExportDir", fsutils::fromNativePath(path.trimmed()));
 }
 
-bool Preferences::isFinishedTorrentExportEnabled() const {
-  return !value("Preferences/Downloads/FinishedTorrentExportDir").toString().isEmpty();
+bool Preferences::isFinishedTorrentExportEnabled() const
+{
+    return !value("Preferences/Downloads/FinishedTorrentExportDir").toString().isEmpty();
 }
 
-QString Preferences::getFinishedTorrentExportDir() const {
-  return fsutils::fromNativePath(value("Preferences/Downloads/FinishedTorrentExportDir").toString());
+QString Preferences::getFinishedTorrentExportDir() const
+{
+    return fsutils::fromNativePath(value("Preferences/Downloads/FinishedTorrentExportDir").toString());
 }
 
-void Preferences::setFinishedTorrentExportDir(QString path) {
-  setValue("Preferences/Downloads/FinishedTorrentExportDir", fsutils::fromNativePath(path.trimmed()));
+void Preferences::setFinishedTorrentExportDir(QString path)
+{
+    setValue("Preferences/Downloads/FinishedTorrentExportDir", fsutils::fromNativePath(path.trimmed()));
 }
 
-bool Preferences::isMailNotificationEnabled() const {
-  return value("Preferences/MailNotification/enabled", false).toBool();
+bool Preferences::isMailNotificationEnabled() const
+{
+    return value("Preferences/MailNotification/enabled", false).toBool();
 }
 
-void Preferences::setMailNotificationEnabled(bool enabled) {
-  setValue("Preferences/MailNotification/enabled", enabled);
+void Preferences::setMailNotificationEnabled(bool enabled)
+{
+    setValue("Preferences/MailNotification/enabled", enabled);
 }
 
-QString Preferences::getMailNotificationEmail() const {
-  return value("Preferences/MailNotification/email").toString();
+QString Preferences::getMailNotificationEmail() const
+{
+    return value("Preferences/MailNotification/email").toString();
 }
 
-void Preferences::setMailNotificationEmail(const QString &mail) {
-  setValue("Preferences/MailNotification/email", mail);
+void Preferences::setMailNotificationEmail(const QString &mail)
+{
+    setValue("Preferences/MailNotification/email", mail);
 }
 
-QString Preferences::getMailNotificationSMTP() const {
-  return value("Preferences/MailNotification/smtp_server", "smtp.changeme.com").toString();
+QString Preferences::getMailNotificationSMTP() const
+{
+    return value("Preferences/MailNotification/smtp_server", "smtp.changeme.com").toString();
 }
 
-void Preferences::setMailNotificationSMTP(const QString &smtp_server) {
-  setValue("Preferences/MailNotification/smtp_server", smtp_server);
+void Preferences::setMailNotificationSMTP(const QString &smtp_server)
+{
+    setValue("Preferences/MailNotification/smtp_server", smtp_server);
 }
 
-bool Preferences::getMailNotificationSMTPSSL() const {
-  return value("Preferences/MailNotification/req_ssl", false).toBool();
+bool Preferences::getMailNotificationSMTPSSL() const
+{
+    return value("Preferences/MailNotification/req_ssl", false).toBool();
 }
 
-void Preferences::setMailNotificationSMTPSSL(bool use) {
-  setValue("Preferences/MailNotification/req_ssl", use);
+void Preferences::setMailNotificationSMTPSSL(bool use)
+{
+    setValue("Preferences/MailNotification/req_ssl", use);
 }
 
-bool Preferences::getMailNotificationSMTPAuth() const {
-  return value("Preferences/MailNotification/req_auth", false).toBool();
+bool Preferences::getMailNotificationSMTPAuth() const
+{
+    return value("Preferences/MailNotification/req_auth", false).toBool();
 }
 
-void Preferences::setMailNotificationSMTPAuth(bool use) {
-  setValue("Preferences/MailNotification/req_auth", use);
+void Preferences::setMailNotificationSMTPAuth(bool use)
+{
+    setValue("Preferences/MailNotification/req_auth", use);
 }
 
-QString Preferences::getMailNotificationSMTPUsername() const {
-  return value("Preferences/MailNotification/username").toString();
+QString Preferences::getMailNotificationSMTPUsername() const
+{
+    return value("Preferences/MailNotification/username").toString();
 }
 
-void Preferences::setMailNotificationSMTPUsername(const QString &username) {
-  setValue("Preferences/MailNotification/username", username);
+void Preferences::setMailNotificationSMTPUsername(const QString &username)
+{
+    setValue("Preferences/MailNotification/username", username);
 }
 
-QString Preferences::getMailNotificationSMTPPassword() const {
-  return value("Preferences/MailNotification/password").toString();
+QString Preferences::getMailNotificationSMTPPassword() const
+{
+    return value("Preferences/MailNotification/password").toString();
 }
 
-void Preferences::setMailNotificationSMTPPassword(const QString &password) {
-  setValue("Preferences/MailNotification/password", password);
+void Preferences::setMailNotificationSMTPPassword(const QString &password)
+{
+    setValue("Preferences/MailNotification/password", password);
 }
 
-int Preferences::getActionOnDblClOnTorrentDl() const {
-  return value("Preferences/Downloads/DblClOnTorDl", 0).toInt();
+int Preferences::getActionOnDblClOnTorrentDl() const
+{
+    return value("Preferences/Downloads/DblClOnTorDl", 0).toInt();
 }
 
-void Preferences::setActionOnDblClOnTorrentDl(int act) {
-  setValue("Preferences/Downloads/DblClOnTorDl", act);
+void Preferences::setActionOnDblClOnTorrentDl(int act)
+{
+    setValue("Preferences/Downloads/DblClOnTorDl", act);
 }
 
-int Preferences::getActionOnDblClOnTorrentFn() const {
-  return value("Preferences/Downloads/DblClOnTorFn", 1).toInt();
+int Preferences::getActionOnDblClOnTorrentFn() const
+{
+    return value("Preferences/Downloads/DblClOnTorFn", 1).toInt();
 }
 
-void Preferences::setActionOnDblClOnTorrentFn(int act) {
-  setValue("Preferences/Downloads/DblClOnTorFn", act);
+void Preferences::setActionOnDblClOnTorrentFn(int act)
+{
+    setValue("Preferences/Downloads/DblClOnTorFn", act);
 }
 
 // Connection options
-int Preferences::getSessionPort() const {
-  QReadLocker locker(&lock);
-  if (useRandomPort())
-    return m_randomPort;
-  return value("Preferences/Connection/PortRangeMin", 6881).toInt();
+int Preferences::getSessionPort() const
+{
+    QReadLocker locker(&lock);
+    if (useRandomPort())
+        return m_randomPort;
+    return value("Preferences/Connection/PortRangeMin", 6881).toInt();
 }
 
-void Preferences::setSessionPort(int port) {
-  setValue("Preferences/Connection/PortRangeMin", port);
+void Preferences::setSessionPort(int port)
+{
+    setValue("Preferences/Connection/PortRangeMin", port);
 }
 
-bool Preferences::isUPnPEnabled() const {
-  return value("Preferences/Connection/UPnP", true).toBool();
+bool Preferences::isUPnPEnabled() const
+{
+    return value("Preferences/Connection/UPnP", true).toBool();
 }
 
-void Preferences::setUPnPEnabled(bool enabled) {
-  setValue("Preferences/Connection/UPnP", enabled);
+void Preferences::setUPnPEnabled(bool enabled)
+{
+    setValue("Preferences/Connection/UPnP", enabled);
 }
 
-int Preferences::getGlobalDownloadLimit() const {
-  return value("Preferences/Connection/GlobalDLLimit", -1).toInt();
+int Preferences::getGlobalDownloadLimit() const
+{
+    return value("Preferences/Connection/GlobalDLLimit", -1).toInt();
 }
 
-void Preferences::setGlobalDownloadLimit(int limit) {
-  if (limit <= 0)
-    limit = -1;
-  setValue("Preferences/Connection/GlobalDLLimit", limit);
+void Preferences::setGlobalDownloadLimit(int limit)
+{
+    if (limit <= 0)
+        limit = -1;
+    setValue("Preferences/Connection/GlobalDLLimit", limit);
 }
 
-int Preferences::getGlobalUploadLimit() const {
-  return value("Preferences/Connection/GlobalUPLimit", 50).toInt();
+int Preferences::getGlobalUploadLimit() const
+{
+    return value("Preferences/Connection/GlobalUPLimit", 50).toInt();
 }
 
-void Preferences::setGlobalUploadLimit(int limit) {
-  if (limit <= 0)
-    limit = -1;
-  setValue("Preferences/Connection/GlobalUPLimit", limit);
+void Preferences::setGlobalUploadLimit(int limit)
+{
+    if (limit <= 0)
+        limit = -1;
+    setValue("Preferences/Connection/GlobalUPLimit", limit);
 }
 
-int Preferences::getAltGlobalDownloadLimit() const {
-  return value("Preferences/Connection/GlobalDLLimitAlt", 10).toInt();
+int Preferences::getAltGlobalDownloadLimit() const
+{
+    return value("Preferences/Connection/GlobalDLLimitAlt", 10).toInt();
 }
 
-void Preferences::setAltGlobalDownloadLimit(int limit) {
-  if (limit <= 0)
-    limit = -1;
-  setValue("Preferences/Connection/GlobalDLLimitAlt", limit);
+void Preferences::setAltGlobalDownloadLimit(int limit)
+{
+    if (limit <= 0)
+        limit = -1;
+    setValue("Preferences/Connection/GlobalDLLimitAlt", limit);
 }
 
-int Preferences::getAltGlobalUploadLimit() const {
-  return value("Preferences/Connection/GlobalUPLimitAlt", 10).toInt();
+int Preferences::getAltGlobalUploadLimit() const
+{
+    return value("Preferences/Connection/GlobalUPLimitAlt", 10).toInt();
 }
 
-void Preferences::setAltGlobalUploadLimit(int limit) {
-  if (limit <= 0)
-    limit = -1;
-  setValue("Preferences/Connection/GlobalUPLimitAlt", limit);
+void Preferences::setAltGlobalUploadLimit(int limit)
+{
+    if (limit <= 0)
+        limit = -1;
+    setValue("Preferences/Connection/GlobalUPLimitAlt", limit);
 }
 
-bool Preferences::isAltBandwidthEnabled() const {
-  return value("Preferences/Connection/alt_speeds_on", false).toBool();
+bool Preferences::isAltBandwidthEnabled() const
+{
+    return value("Preferences/Connection/alt_speeds_on", false).toBool();
 }
 
-void Preferences::setAltBandwidthEnabled(bool enabled) {
-  setValue("Preferences/Connection/alt_speeds_on", enabled);
+void Preferences::setAltBandwidthEnabled(bool enabled)
+{
+    setValue("Preferences/Connection/alt_speeds_on", enabled);
 }
 
-bool Preferences::isSchedulerEnabled() const {
-  return value("Preferences/Scheduler/Enabled", false).toBool();
+bool Preferences::isSchedulerEnabled() const
+{
+    return value("Preferences/Scheduler/Enabled", false).toBool();
 }
 
-void Preferences::setSchedulerEnabled(bool enabled) {
-  setValue("Preferences/Scheduler/Enabled", enabled);
+void Preferences::setSchedulerEnabled(bool enabled)
+{
+    setValue("Preferences/Scheduler/Enabled", enabled);
 }
 
-QTime Preferences::getSchedulerStartTime() const {
-  return value("Preferences/Scheduler/start_time", QTime(8,0)).toTime();
+QTime Preferences::getSchedulerStartTime() const
+{
+    return value("Preferences/Scheduler/start_time", QTime(8,0)).toTime();
 }
 
-void Preferences::setSchedulerStartTime(const QTime &time) {
-  setValue("Preferences/Scheduler/start_time", time);
+void Preferences::setSchedulerStartTime(const QTime &time)
+{
+    setValue("Preferences/Scheduler/start_time", time);
 }
 
-QTime Preferences::getSchedulerEndTime() const {
-  return value("Preferences/Scheduler/end_time", QTime(20,0)).toTime();
+QTime Preferences::getSchedulerEndTime() const
+{
+    return value("Preferences/Scheduler/end_time", QTime(20,0)).toTime();
 }
 
-void Preferences::setSchedulerEndTime(const QTime &time) {
-  setValue("Preferences/Scheduler/end_time", time);
+void Preferences::setSchedulerEndTime(const QTime &time)
+{
+    setValue("Preferences/Scheduler/end_time", time);
 }
 
-scheduler_days Preferences::getSchedulerDays() const {
-  return (scheduler_days)value("Preferences/Scheduler/days", EVERY_DAY).toInt();
+scheduler_days Preferences::getSchedulerDays() const
+{
+    return (scheduler_days)value("Preferences/Scheduler/days", EVERY_DAY).toInt();
 }
 
-void Preferences::setSchedulerDays(scheduler_days days) {
-  setValue("Preferences/Scheduler/days", (int)days);
+void Preferences::setSchedulerDays(scheduler_days days)
+{
+    setValue("Preferences/Scheduler/days", (int)days);
 }
 
 // Proxy options
-bool Preferences::isProxyEnabled() const {
-  return getProxyType() > 0;
+bool Preferences::isProxyEnabled() const
+{
+    return getProxyType() > 0;
 }
 
-bool Preferences::isProxyAuthEnabled() const {
-  return value("Preferences/Connection/Proxy/Authentication", false).toBool();
+bool Preferences::isProxyAuthEnabled() const
+{
+    return value("Preferences/Connection/Proxy/Authentication", false).toBool();
 }
 
-void Preferences::setProxyAuthEnabled(bool enabled) {
-  setValue("Preferences/Connection/Proxy/Authentication", enabled);
+void Preferences::setProxyAuthEnabled(bool enabled)
+{
+    setValue("Preferences/Connection/Proxy/Authentication", enabled);
 }
 
-QString Preferences::getProxyIp() const {
-  return value("Preferences/Connection/Proxy/IP", "0.0.0.0").toString();
+QString Preferences::getProxyIp() const
+{
+    return value("Preferences/Connection/Proxy/IP", "0.0.0.0").toString();
 }
 
-void Preferences::setProxyIp(const QString &ip) {
-  setValue("Preferences/Connection/Proxy/IP", ip);
+void Preferences::setProxyIp(const QString &ip)
+{
+    setValue("Preferences/Connection/Proxy/IP", ip);
 }
 
-unsigned short Preferences::getProxyPort() const {
-  return value("Preferences/Connection/Proxy/Port", 8080).toInt();
+unsigned short Preferences::getProxyPort() const
+{
+    return value("Preferences/Connection/Proxy/Port", 8080).toInt();
 }
 
-void Preferences::setProxyPort(unsigned short port) {
-  setValue("Preferences/Connection/Proxy/Port", port);
+void Preferences::setProxyPort(unsigned short port)
+{
+    setValue("Preferences/Connection/Proxy/Port", port);
 }
 
-QString Preferences::getProxyUsername() const {
-  return value("Preferences/Connection/Proxy/Username").toString();
+QString Preferences::getProxyUsername() const
+{
+    return value("Preferences/Connection/Proxy/Username").toString();
 }
 
-void Preferences::setProxyUsername(const QString &username) {
-  setValue("Preferences/Connection/Proxy/Username", username);
+void Preferences::setProxyUsername(const QString &username)
+{
+    setValue("Preferences/Connection/Proxy/Username", username);
 }
 
-QString Preferences::getProxyPassword() const {
-  return value("Preferences/Connection/Proxy/Password").toString();
+QString Preferences::getProxyPassword() const
+{
+    return value("Preferences/Connection/Proxy/Password").toString();
 }
 
-void Preferences::setProxyPassword(const QString &password) {
-  setValue("Preferences/Connection/Proxy/Password", password);
+void Preferences::setProxyPassword(const QString &password)
+{
+    setValue("Preferences/Connection/Proxy/Password", password);
 }
 
-int Preferences::getProxyType() const {
-  return value("Preferences/Connection/ProxyType", 0).toInt();
+int Preferences::getProxyType() const
+{
+    return value("Preferences/Connection/ProxyType", 0).toInt();
 }
 
-void Preferences::setProxyType(int type) {
-  setValue("Preferences/Connection/ProxyType", type);
+void Preferences::setProxyType(int type)
+{
+    setValue("Preferences/Connection/ProxyType", type);
 }
 
-bool Preferences::proxyPeerConnections() const {
-  return value("Preferences/Connection/ProxyPeerConnections", false).toBool();
+bool Preferences::proxyPeerConnections() const
+{
+    return value("Preferences/Connection/ProxyPeerConnections", false).toBool();
 }
 
-void Preferences::setProxyPeerConnections(bool enabled) {
-  setValue("Preferences/Connection/ProxyPeerConnections", enabled);
+void Preferences::setProxyPeerConnections(bool enabled)
+{
+    setValue("Preferences/Connection/ProxyPeerConnections", enabled);
 }
 
 #if LIBTORRENT_VERSION_NUM >= 10000
-bool Preferences::getForceProxy() const {
-  return value("Preferences/Connection/ProxyForce", true).toBool();
+bool Preferences::getForceProxy() const
+{
+    return value("Preferences/Connection/ProxyForce", true).toBool();
 }
 
-void Preferences::setForceProxy(bool enabled) {
-  setValue("Preferences/Connection/ProxyForce", enabled);
+void Preferences::setForceProxy(bool enabled)
+{
+    setValue("Preferences/Connection/ProxyForce", enabled);
 }
 #endif
 
 // Bittorrent options
-int Preferences::getMaxConnecs() const {
-  return value("Preferences/Bittorrent/MaxConnecs", 500).toInt();
+int Preferences::getMaxConnecs() const
+{
+    return value("Preferences/Bittorrent/MaxConnecs", 500).toInt();
 }
 
-void Preferences::setMaxConnecs(int val) {
-  if (val <= 0)
-    val = -1;
-  setValue("Preferences/Bittorrent/MaxConnecs", val);
+void Preferences::setMaxConnecs(int val)
+{
+    if (val <= 0)
+        val = -1;
+    setValue("Preferences/Bittorrent/MaxConnecs", val);
 }
 
-int Preferences::getMaxConnecsPerTorrent() const {
-  return value("Preferences/Bittorrent/MaxConnecsPerTorrent", 100).toInt();
+int Preferences::getMaxConnecsPerTorrent() const
+{
+    return value("Preferences/Bittorrent/MaxConnecsPerTorrent", 100).toInt();
 }
 
-void Preferences::setMaxConnecsPerTorrent(int val) {
-  if (val <= 0)
-    val = -1;
-  setValue("Preferences/Bittorrent/MaxConnecsPerTorrent", val);
+void Preferences::setMaxConnecsPerTorrent(int val)
+{
+    if (val <= 0)
+        val = -1;
+    setValue("Preferences/Bittorrent/MaxConnecsPerTorrent", val);
 }
 
-int Preferences::getMaxUploads() const {
-  return value("Preferences/Bittorrent/MaxUploads", 8).toInt();
+int Preferences::getMaxUploads() const
+{
+    return value("Preferences/Bittorrent/MaxUploads", 8).toInt();
 }
 
-void Preferences::setMaxUploads(int val) {
-  if (val <= 0)
-    val = -1;
-  setValue("Preferences/Bittorrent/MaxUploads", val);
+void Preferences::setMaxUploads(int val)
+{
+    if (val <= 0)
+        val = -1;
+    setValue("Preferences/Bittorrent/MaxUploads", val);
 }
 
-int Preferences::getMaxUploadsPerTorrent() const {
-  return value("Preferences/Bittorrent/MaxUploadsPerTorrent", 4).toInt();
+int Preferences::getMaxUploadsPerTorrent() const
+{
+    return value("Preferences/Bittorrent/MaxUploadsPerTorrent", 4).toInt();
 }
 
-void Preferences::setMaxUploadsPerTorrent(int val) {
-  if (val <= 0)
-    val = -1;
-  setValue("Preferences/Bittorrent/MaxUploadsPerTorrent", val);
+void Preferences::setMaxUploadsPerTorrent(int val)
+{
+    if (val <= 0)
+        val = -1;
+    setValue("Preferences/Bittorrent/MaxUploadsPerTorrent", val);
 }
 
-bool Preferences::isuTPEnabled() const {
-  return value("Preferences/Bittorrent/uTP", true).toBool();
+bool Preferences::isuTPEnabled() const
+{
+    return value("Preferences/Bittorrent/uTP", true).toBool();
 }
 
-void Preferences::setuTPEnabled(bool enabled) {
-  setValue("Preferences/Bittorrent/uTP", enabled);
+void Preferences::setuTPEnabled(bool enabled)
+{
+    setValue("Preferences/Bittorrent/uTP", enabled);
 }
 
-bool Preferences::isuTPRateLimited() const {
-  return value("Preferences/Bittorrent/uTP_rate_limited", true).toBool();
+bool Preferences::isuTPRateLimited() const
+{
+    return value("Preferences/Bittorrent/uTP_rate_limited", true).toBool();
 }
 
-void Preferences::setuTPRateLimited(bool enabled) {
-  setValue("Preferences/Bittorrent/uTP_rate_limited", enabled);
+void Preferences::setuTPRateLimited(bool enabled)
+{
+    setValue("Preferences/Bittorrent/uTP_rate_limited", enabled);
 }
 
-bool Preferences::isDHTEnabled() const {
-  return value("Preferences/Bittorrent/DHT", true).toBool();
+bool Preferences::isDHTEnabled() const
+{
+    return value("Preferences/Bittorrent/DHT", true).toBool();
 }
 
-void Preferences::setDHTEnabled(bool enabled) {
-  setValue("Preferences/Bittorrent/DHT", enabled);
+void Preferences::setDHTEnabled(bool enabled)
+{
+    setValue("Preferences/Bittorrent/DHT", enabled);
 }
 
-bool Preferences::isPeXEnabled() const {
-  return value("Preferences/Bittorrent/PeX", true).toBool();
+bool Preferences::isPeXEnabled() const
+{
+    return value("Preferences/Bittorrent/PeX", true).toBool();
 }
 
-void Preferences::setPeXEnabled(bool enabled) {
-  setValue("Preferences/Bittorrent/PeX", enabled);
+void Preferences::setPeXEnabled(bool enabled)
+{
+    setValue("Preferences/Bittorrent/PeX", enabled);
 }
 
-bool Preferences::isLSDEnabled() const {
-  return value("Preferences/Bittorrent/LSD", true).toBool();
+bool Preferences::isLSDEnabled() const
+{
+    return value("Preferences/Bittorrent/LSD", true).toBool();
 }
 
-void Preferences::setLSDEnabled(bool enabled) {
-  setValue("Preferences/Bittorrent/LSD", enabled);
+void Preferences::setLSDEnabled(bool enabled)
+{
+    setValue("Preferences/Bittorrent/LSD", enabled);
 }
 
-int Preferences::getEncryptionSetting() const {
-  return value("Preferences/Bittorrent/Encryption", 0).toInt();
+int Preferences::getEncryptionSetting() const
+{
+    return value("Preferences/Bittorrent/Encryption", 0).toInt();
 }
 
-void Preferences::setEncryptionSetting(int val) {
-  setValue("Preferences/Bittorrent/Encryption", val);
+void Preferences::setEncryptionSetting(int val)
+{
+    setValue("Preferences/Bittorrent/Encryption", val);
 }
 
-qreal Preferences::getGlobalMaxRatio() const {
-  return value("Preferences/Bittorrent/MaxRatio", -1).toDouble();
+qreal Preferences::getGlobalMaxRatio() const
+{
+    return value("Preferences/Bittorrent/MaxRatio", -1).toDouble();
 }
 
-void Preferences::setGlobalMaxRatio(qreal ratio) {
-  setValue("Preferences/Bittorrent/MaxRatio", ratio);
+void Preferences::setGlobalMaxRatio(qreal ratio)
+{
+    setValue("Preferences/Bittorrent/MaxRatio", ratio);
 }
 
-int Preferences::getMaxRatioAction() const {
-  return value("Preferences/Bittorrent/MaxRatioAction", PAUSE_ACTION).toInt();
+int Preferences::getMaxRatioAction() const
+{
+    return value("Preferences/Bittorrent/MaxRatioAction", PAUSE_ACTION).toInt();
 }
 
-void Preferences::setMaxRatioAction(int act) {
-  setValue("Preferences/Bittorrent/MaxRatioAction", act);
+void Preferences::setMaxRatioAction(int act)
+{
+    setValue("Preferences/Bittorrent/MaxRatioAction", act);
 }
 
 // IP Filter
-bool Preferences::isFilteringEnabled() const {
-  return value("Preferences/IPFilter/Enabled", false).toBool();
+bool Preferences::isFilteringEnabled() const
+{
+    return value("Preferences/IPFilter/Enabled", false).toBool();
 }
 
-void Preferences::setFilteringEnabled(bool enabled) {
-  setValue("Preferences/IPFilter/Enabled", enabled);
+void Preferences::setFilteringEnabled(bool enabled)
+{
+    setValue("Preferences/IPFilter/Enabled", enabled);
 }
 
-QString Preferences::getFilter() const {
-  return fsutils::fromNativePath(value("Preferences/IPFilter/File").toString());
+QString Preferences::getFilter() const
+{
+    return fsutils::fromNativePath(value("Preferences/IPFilter/File").toString());
 }
 
-void Preferences::setFilter(const QString &path) {
-  setValue("Preferences/IPFilter/File", fsutils::fromNativePath(path));
+void Preferences::setFilter(const QString &path)
+{
+    setValue("Preferences/IPFilter/File", fsutils::fromNativePath(path));
 }
 
-QStringList Preferences::bannedIPs() const {
-  return value("Preferences/IPFilter/BannedIPs").toStringList();
+QStringList Preferences::bannedIPs() const
+{
+    return value("Preferences/IPFilter/BannedIPs").toStringList();
 }
 
-void Preferences::banIP(const QString &ip) {
-  QStringList banned_ips = value("Preferences/IPFilter/BannedIPs").toStringList();
-  if (!banned_ips.contains(ip)) {
-    banned_ips << ip;
-    setValue("Preferences/IPFilter/BannedIPs", banned_ips);
-  }
+void Preferences::banIP(const QString &ip)
+{
+    QStringList banned_ips = value("Preferences/IPFilter/BannedIPs").toStringList();
+    if (!banned_ips.contains(ip)) {
+        banned_ips << ip;
+        setValue("Preferences/IPFilter/BannedIPs", banned_ips);
+    }
 }
 
 // Search
-bool Preferences::isSearchEnabled() const {
-  return value("Preferences/Search/SearchEnabled", false).toBool();
+bool Preferences::isSearchEnabled() const
+{
+    return value("Preferences/Search/SearchEnabled", false).toBool();
 }
 
-void Preferences::setSearchEnabled(bool enabled) {
-  setValue("Preferences/Search/SearchEnabled", enabled);
+void Preferences::setSearchEnabled(bool enabled)
+{
+    setValue("Preferences/Search/SearchEnabled", enabled);
 }
 
 // Execution Log
-bool Preferences::isExecutionLogEnabled() const {
-  return value("Preferences/ExecutionLog/enabled", false).toBool();
+bool Preferences::isExecutionLogEnabled() const
+{
+    return value("Preferences/ExecutionLog/enabled", false).toBool();
 }
 
-void Preferences::setExecutionLogEnabled(bool b) {
-  setValue("Preferences/ExecutionLog/enabled", b);
+void Preferences::setExecutionLogEnabled(bool b)
+{
+    setValue("Preferences/ExecutionLog/enabled", b);
 }
 
 // Queueing system
-bool Preferences::isQueueingSystemEnabled() const {
-  return value("Preferences/Queueing/QueueingEnabled", false).toBool();
+bool Preferences::isQueueingSystemEnabled() const
+{
+    return value("Preferences/Queueing/QueueingEnabled", false).toBool();
 }
 
-void Preferences::setQueueingSystemEnabled(bool enabled) {
-  setValue("Preferences/Queueing/QueueingEnabled", enabled);
+void Preferences::setQueueingSystemEnabled(bool enabled)
+{
+    setValue("Preferences/Queueing/QueueingEnabled", enabled);
 }
 
-int Preferences::getMaxActiveDownloads() const {
-  return value("Preferences/Queueing/MaxActiveDownloads", 3).toInt();
+int Preferences::getMaxActiveDownloads() const
+{
+    return value("Preferences/Queueing/MaxActiveDownloads", 3).toInt();
 }
 
-void Preferences::setMaxActiveDownloads(int val) {
-  if (val < 0)
-    val = -1;
-  setValue("Preferences/Queueing/MaxActiveDownloads", val);
+void Preferences::setMaxActiveDownloads(int val)
+{
+    if (val < 0)
+        val = -1;
+    setValue("Preferences/Queueing/MaxActiveDownloads", val);
 }
 
-int Preferences::getMaxActiveUploads() const {
-  return value("Preferences/Queueing/MaxActiveUploads", 3).toInt();
+int Preferences::getMaxActiveUploads() const
+{
+    return value("Preferences/Queueing/MaxActiveUploads", 3).toInt();
 }
 
-void Preferences::setMaxActiveUploads(int val) {
-  if (val < 0)
-    val = -1;
-  setValue("Preferences/Queueing/MaxActiveUploads", val);
+void Preferences::setMaxActiveUploads(int val)
+{
+    if (val < 0)
+        val = -1;
+    setValue("Preferences/Queueing/MaxActiveUploads", val);
 }
 
-int Preferences::getMaxActiveTorrents() const {
-  return value("Preferences/Queueing/MaxActiveTorrents", 5).toInt();
+int Preferences::getMaxActiveTorrents() const
+{
+    return value("Preferences/Queueing/MaxActiveTorrents", 5).toInt();
 }
 
-void Preferences::setMaxActiveTorrents(int val) {
-  if (val < 0)
-    val = -1;
-  setValue("Preferences/Queueing/MaxActiveTorrents", val);
+void Preferences::setMaxActiveTorrents(int val)
+{
+    if (val < 0)
+        val = -1;
+    setValue("Preferences/Queueing/MaxActiveTorrents", val);
 }
 
-bool Preferences::ignoreSlowTorrentsForQueueing() const {
-  return value("Preferences/Queueing/IgnoreSlowTorrents", false).toBool();
+bool Preferences::ignoreSlowTorrentsForQueueing() const
+{
+    return value("Preferences/Queueing/IgnoreSlowTorrents", false).toBool();
 }
 
-void Preferences::setIgnoreSlowTorrentsForQueueing(bool ignore) {
-  setValue("Preferences/Queueing/IgnoreSlowTorrents", ignore);
+void Preferences::setIgnoreSlowTorrentsForQueueing(bool ignore)
+{
+    setValue("Preferences/Queueing/IgnoreSlowTorrents", ignore);
 }
 
-bool Preferences::isWebUiEnabled() const {
-  return value("Preferences/WebUI/Enabled", false).toBool();
+bool Preferences::isWebUiEnabled() const
+{
+    return value("Preferences/WebUI/Enabled", false).toBool();
 }
 
-void Preferences::setWebUiEnabled(bool enabled) {
-  setValue("Preferences/WebUI/Enabled", enabled);
+void Preferences::setWebUiEnabled(bool enabled)
+{
+    setValue("Preferences/WebUI/Enabled", enabled);
 }
 
-bool Preferences::isWebUiLocalAuthEnabled() const {
-  return value("Preferences/WebUI/LocalHostAuth", true).toBool();
+bool Preferences::isWebUiLocalAuthEnabled() const
+{
+    return value("Preferences/WebUI/LocalHostAuth", true).toBool();
 }
 
-void Preferences::setWebUiLocalAuthEnabled(bool enabled) {
-  setValue("Preferences/WebUI/LocalHostAuth", enabled);
+void Preferences::setWebUiLocalAuthEnabled(bool enabled)
+{
+    setValue("Preferences/WebUI/LocalHostAuth", enabled);
 }
 
-quint16 Preferences::getWebUiPort() const {
-  return value("Preferences/WebUI/Port", 8080).toInt();
+quint16 Preferences::getWebUiPort() const
+{
+    return value("Preferences/WebUI/Port", 8080).toInt();
 }
 
-void Preferences::setWebUiPort(quint16 port) {
-  setValue("Preferences/WebUI/Port", port);
+void Preferences::setWebUiPort(quint16 port)
+{
+    setValue("Preferences/WebUI/Port", port);
 }
 
-bool Preferences::useUPnPForWebUIPort() const {
-  return value("Preferences/WebUI/UseUPnP", true).toBool();
+bool Preferences::useUPnPForWebUIPort() const
+{
+    return value("Preferences/WebUI/UseUPnP", true).toBool();
 }
 
-void Preferences::setUPnPForWebUIPort(bool enabled) {
-  setValue("Preferences/WebUI/UseUPnP", enabled);
+void Preferences::setUPnPForWebUIPort(bool enabled)
+{
+    setValue("Preferences/WebUI/UseUPnP", enabled);
 }
 
-QString Preferences::getWebUiUsername() const {
-  return value("Preferences/WebUI/Username", "admin").toString();
+QString Preferences::getWebUiUsername() const
+{
+    return value("Preferences/WebUI/Username", "admin").toString();
 }
 
-void Preferences::setWebUiUsername(const QString &username) {
-  setValue("Preferences/WebUI/Username", username);
+void Preferences::setWebUiUsername(const QString &username)
+{
+    setValue("Preferences/WebUI/Username", username);
 }
 
-QString Preferences::getWebUiPassword() const {
-  QString pass_ha1 = value("Preferences/WebUI/Password_ha1").toString();
-  if (pass_ha1.isEmpty()) {
+QString Preferences::getWebUiPassword() const
+{
+    QString pass_ha1 = value("Preferences/WebUI/Password_ha1").toString();
+    if (pass_ha1.isEmpty()) {
+        QCryptographicHash md5(QCryptographicHash::Md5);
+        md5.addData("adminadmin");
+        pass_ha1 = md5.result().toHex();
+    }
+    return pass_ha1;
+}
+
+void Preferences::setWebUiPassword(const QString &new_password)
+{
+    // Do not overwrite current password with its hash
+    if (new_password == getWebUiPassword())
+        return;
+
+    // Encode to md5 and save
     QCryptographicHash md5(QCryptographicHash::Md5);
-    md5.addData("adminadmin");
-    pass_ha1 = md5.result().toHex();
-  }
-  return pass_ha1;
+    md5.addData(new_password.toLocal8Bit());
+
+    setValue("Preferences/WebUI/Password_ha1", md5.result().toHex());
 }
 
-void Preferences::setWebUiPassword(const QString &new_password) {
-  // Do not overwrite current password with its hash
-  if (new_password == getWebUiPassword())
-      return;
-
-  // Encode to md5 and save
-  QCryptographicHash md5(QCryptographicHash::Md5);
-  md5.addData(new_password.toLocal8Bit());
-
-  setValue("Preferences/WebUI/Password_ha1", md5.result().toHex());
+bool Preferences::isWebUiHttpsEnabled() const
+{
+    return value("Preferences/WebUI/HTTPS/Enabled", false).toBool();
 }
 
-bool Preferences::isWebUiHttpsEnabled() const {
-  return value("Preferences/WebUI/HTTPS/Enabled", false).toBool();
+void Preferences::setWebUiHttpsEnabled(bool enabled)
+{
+    setValue("Preferences/WebUI/HTTPS/Enabled", enabled);
 }
 
-void Preferences::setWebUiHttpsEnabled(bool enabled) {
-  setValue("Preferences/WebUI/HTTPS/Enabled", enabled);
+QByteArray Preferences::getWebUiHttpsCertificate() const
+{
+    return value("Preferences/WebUI/HTTPS/Certificate").toByteArray();
 }
 
-QByteArray Preferences::getWebUiHttpsCertificate() const {
-  return value("Preferences/WebUI/HTTPS/Certificate").toByteArray();
+void Preferences::setWebUiHttpsCertificate(const QByteArray &data)
+{
+    setValue("Preferences/WebUI/HTTPS/Certificate", data);
 }
 
-void Preferences::setWebUiHttpsCertificate(const QByteArray &data) {
-  setValue("Preferences/WebUI/HTTPS/Certificate", data);
+QByteArray Preferences::getWebUiHttpsKey() const
+{
+    return value("Preferences/WebUI/HTTPS/Key").toByteArray();
 }
 
-QByteArray Preferences::getWebUiHttpsKey() const {
-  return value("Preferences/WebUI/HTTPS/Key").toByteArray();
+void Preferences::setWebUiHttpsKey(const QByteArray &data)
+{
+    setValue("Preferences/WebUI/HTTPS/Key", data);
 }
 
-void Preferences::setWebUiHttpsKey(const QByteArray &data) {
-  setValue("Preferences/WebUI/HTTPS/Key", data);
+bool Preferences::isDynDNSEnabled() const
+{
+    return value("Preferences/DynDNS/Enabled", false).toBool();
 }
 
-bool Preferences::isDynDNSEnabled() const {
-  return value("Preferences/DynDNS/Enabled", false).toBool();
+void Preferences::setDynDNSEnabled(bool enabled)
+{
+    setValue("Preferences/DynDNS/Enabled", enabled);
 }
 
-void Preferences::setDynDNSEnabled(bool enabled) {
-  setValue("Preferences/DynDNS/Enabled", enabled);
+DNS::Service Preferences::getDynDNSService() const
+{
+    return DNS::Service(value("Preferences/DynDNS/Service", DNS::DYNDNS).toInt());
 }
 
-DNS::Service Preferences::getDynDNSService() const {
-  return DNS::Service(value("Preferences/DynDNS/Service", DNS::DYNDNS).toInt());
+void Preferences::setDynDNSService(int service)
+{
+    setValue("Preferences/DynDNS/Service", service);
 }
 
-void Preferences::setDynDNSService(int service) {
-  setValue("Preferences/DynDNS/Service", service);
+QString Preferences::getDynDomainName() const
+{
+    return value("Preferences/DynDNS/DomainName", "changeme.dyndns.org").toString();
 }
 
-QString Preferences::getDynDomainName() const {
-  return value("Preferences/DynDNS/DomainName", "changeme.dyndns.org").toString();
+void Preferences::setDynDomainName(const QString &name)
+{
+    setValue("Preferences/DynDNS/DomainName", name);
 }
 
-void Preferences::setDynDomainName(const QString &name) {
-  setValue("Preferences/DynDNS/DomainName", name);
+QString Preferences::getDynDNSUsername() const
+{
+    return value("Preferences/DynDNS/Username").toString();
 }
 
-QString Preferences::getDynDNSUsername() const {
-  return value("Preferences/DynDNS/Username").toString();
+void Preferences::setDynDNSUsername(const QString &username)
+{
+    setValue("Preferences/DynDNS/Username", username);
 }
 
-void Preferences::setDynDNSUsername(const QString &username) {
-  setValue("Preferences/DynDNS/Username", username);
+QString Preferences::getDynDNSPassword() const
+{
+    return value("Preferences/DynDNS/Password").toString();
 }
 
-QString Preferences::getDynDNSPassword() const {
-  return value("Preferences/DynDNS/Password").toString();
-}
-
-void Preferences::setDynDNSPassword(const QString &password) {
-  setValue("Preferences/DynDNS/Password", password);
+void Preferences::setDynDNSPassword(const QString &password)
+{
+    setValue("Preferences/DynDNS/Password", password);
 }
 
 // Advanced settings
-void Preferences::clearUILockPassword() {
-  setValue("Locking/password", QString());
+void Preferences::clearUILockPassword()
+{
+    setValue("Locking/password", QString());
 }
 
-QString Preferences::getUILockPasswordMD5() const {
-  return value("Locking/password").toString();
+QString Preferences::getUILockPasswordMD5() const
+{
+    return value("Locking/password").toString();
 }
 
-void Preferences::setUILockPassword(const QString &clear_password) {
-  QCryptographicHash md5(QCryptographicHash::Md5);
-  md5.addData(clear_password.toLocal8Bit());
-  QString md5_password = md5.result().toHex();
-  setValue("Locking/password", md5_password);
+void Preferences::setUILockPassword(const QString &clear_password)
+{
+    QCryptographicHash md5(QCryptographicHash::Md5);
+    md5.addData(clear_password.toLocal8Bit());
+    QString md5_password = md5.result().toHex();
+    setValue("Locking/password", md5_password);
 }
 
-bool Preferences::isUILocked() const {
-  return value("Locking/locked", false).toBool();
+bool Preferences::isUILocked() const
+{
+    return value("Locking/locked", false).toBool();
 }
 
-void Preferences::setUILocked(bool locked) {
-  return setValue("Locking/locked", locked);
+void Preferences::setUILocked(bool locked)
+{
+    return setValue("Locking/locked", locked);
 }
 
-bool Preferences::isAutoRunEnabled() const {
-  return value("AutoRun/enabled", false).toBool();
+bool Preferences::isAutoRunEnabled() const
+{
+    return value("AutoRun/enabled", false).toBool();
 }
 
-void Preferences::setAutoRunEnabled(bool enabled) {
-  return setValue("AutoRun/enabled", enabled);
+void Preferences::setAutoRunEnabled(bool enabled)
+{
+    return setValue("AutoRun/enabled", enabled);
 }
 
-QString Preferences::getAutoRunProgram() const {
-  return fsutils::fromNativePath(value("AutoRun/program").toString());
+QString Preferences::getAutoRunProgram() const
+{
+    return fsutils::fromNativePath(value("AutoRun/program").toString());
 }
 
-void Preferences::setAutoRunProgram(const QString &program) {
-  setValue("AutoRun/program", fsutils::fromNativePath(program));
+void Preferences::setAutoRunProgram(const QString &program)
+{
+    setValue("AutoRun/program", fsutils::fromNativePath(program));
 }
 
-bool Preferences::shutdownWhenDownloadsComplete() const {
-  return value("Preferences/Downloads/AutoShutDownOnCompletion", false).toBool();
+bool Preferences::shutdownWhenDownloadsComplete() const
+{
+    return value("Preferences/Downloads/AutoShutDownOnCompletion", false).toBool();
 }
 
-void Preferences::setShutdownWhenDownloadsComplete(bool shutdown) {
-  setValue("Preferences/Downloads/AutoShutDownOnCompletion", shutdown);
+void Preferences::setShutdownWhenDownloadsComplete(bool shutdown)
+{
+    setValue("Preferences/Downloads/AutoShutDownOnCompletion", shutdown);
 }
 
-bool Preferences::suspendWhenDownloadsComplete() const {
-  return value("Preferences/Downloads/AutoSuspendOnCompletion", false).toBool();
+bool Preferences::suspendWhenDownloadsComplete() const
+{
+    return value("Preferences/Downloads/AutoSuspendOnCompletion", false).toBool();
 }
 
-void Preferences::setSuspendWhenDownloadsComplete(bool suspend) {
-  setValue("Preferences/Downloads/AutoSuspendOnCompletion", suspend);
+void Preferences::setSuspendWhenDownloadsComplete(bool suspend)
+{
+    setValue("Preferences/Downloads/AutoSuspendOnCompletion", suspend);
 }
 
-bool Preferences::hibernateWhenDownloadsComplete() const {
-  return value("Preferences/Downloads/AutoHibernateOnCompletion", false).toBool();
+bool Preferences::hibernateWhenDownloadsComplete() const
+{
+    return value("Preferences/Downloads/AutoHibernateOnCompletion", false).toBool();
 }
 
-void Preferences::setHibernateWhenDownloadsComplete(bool hibernate) {
-  setValue("Preferences/Downloads/AutoHibernateOnCompletion", hibernate);
+void Preferences::setHibernateWhenDownloadsComplete(bool hibernate)
+{
+    setValue("Preferences/Downloads/AutoHibernateOnCompletion", hibernate);
 }
 
-bool Preferences::shutdownqBTWhenDownloadsComplete() const {
-  return value("Preferences/Downloads/AutoShutDownqBTOnCompletion", false).toBool();
+bool Preferences::shutdownqBTWhenDownloadsComplete() const
+{
+    return value("Preferences/Downloads/AutoShutDownqBTOnCompletion", false).toBool();
 }
 
-void Preferences::setShutdownqBTWhenDownloadsComplete(bool shutdown) {
-  setValue("Preferences/Downloads/AutoShutDownqBTOnCompletion", shutdown);
+void Preferences::setShutdownqBTWhenDownloadsComplete(bool shutdown)
+{
+    setValue("Preferences/Downloads/AutoShutDownqBTOnCompletion", shutdown);
 }
 
-uint Preferences::diskCacheSize() const {
-  uint size = value("Preferences/Downloads/DiskWriteCacheSize", 0).toUInt();
+uint Preferences::diskCacheSize() const
+{
+    uint size = value("Preferences/Downloads/DiskWriteCacheSize", 0).toUInt();
 
-  // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.
-  // These macros may not be available on compilers other than MSVC and GCC
+    // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.
+    // These macros may not be available on compilers other than MSVC and GCC
 #if !defined(_M_X64) && !defined(__amd64__)
-  //1800MiB to leave 248MiB room to the rest of program data in RAM
-  if (size > 1800)
-    size = 1800;
+    //1800MiB to leave 248MiB room to the rest of program data in RAM
+    if (size > 1800)
+        size = 1800;
 #else
-  // 4GiB
-  if (size > 4*1024)
-    size = 4*1024;
+    // 4GiB
+    if (size > 4 * 1024)
+        size = 4 * 1024;
 #endif
 
-  return size;
+    return size;
 }
 
-void Preferences::setDiskCacheSize(uint size) {
-  uint size0 = size;
+void Preferences::setDiskCacheSize(uint size)
+{
+    uint size0 = size;
 
 #if !defined(_M_X64) && !defined(__amd64__)
-  //1800MiB to leave 248MiB room to the rest of program data in RAM
-  if (size0 > 1800)
-    size0 = 1800;
+    //1800MiB to leave 248MiB room to the rest of program data in RAM
+    if (size0 > 1800)
+        size0 = 1800;
 #else
-  // 4GiB
-  if (size0 > 4*1024)
-    size0 = 4*1024;
+    // 4GiB
+    if (size0 > 4 * 1024)
+        size0 = 4 * 1024;
 #endif
 
-  setValue("Preferences/Downloads/DiskWriteCacheSize", size0);
+    setValue("Preferences/Downloads/DiskWriteCacheSize", size0);
 }
 
-uint Preferences::diskCacheTTL() const {
-  return value("Preferences/Downloads/DiskWriteCacheTTL", 60).toUInt();
+uint Preferences::diskCacheTTL() const
+{
+    return value("Preferences/Downloads/DiskWriteCacheTTL", 60).toUInt();
 }
 
-void Preferences::setDiskCacheTTL(uint ttl) {
-  setValue("Preferences/Downloads/DiskWriteCacheTTL", ttl);
+void Preferences::setDiskCacheTTL(uint ttl)
+{
+    setValue("Preferences/Downloads/DiskWriteCacheTTL", ttl);
 }
 
-bool Preferences::osCache() const {
-  return value("Preferences/Advanced/osCache", true).toBool();
+bool Preferences::osCache() const
+{
+    return value("Preferences/Advanced/osCache", true).toBool();
 }
 
-void Preferences::setOsCache(bool enable) {
-  setValue("Preferences/Advanced/osCache", enable);
+void Preferences::setOsCache(bool enable)
+{
+    setValue("Preferences/Advanced/osCache", enable);
 }
 
-uint Preferences::saveResumeDataInterval() const {
-  return value("Preferences/Downloads/SaveResumeDataInterval", 3).toUInt();
+uint Preferences::saveResumeDataInterval() const
+{
+    return value("Preferences/Downloads/SaveResumeDataInterval", 3).toUInt();
 }
 
-void Preferences::setSaveResumeDataInterval(uint m) {
-  setValue("Preferences/Downloads/SaveResumeDataInterval", m);
+void Preferences::setSaveResumeDataInterval(uint m)
+{
+    setValue("Preferences/Downloads/SaveResumeDataInterval", m);
 }
 
-uint Preferences::outgoingPortsMin() const {
-  return value("Preferences/Advanced/OutgoingPortsMin", 0).toUInt();
+uint Preferences::outgoingPortsMin() const
+{
+    return value("Preferences/Advanced/OutgoingPortsMin", 0).toUInt();
 }
 
-void Preferences::setOutgoingPortsMin(uint val) {
-  setValue("Preferences/Advanced/OutgoingPortsMin", val);
+void Preferences::setOutgoingPortsMin(uint val)
+{
+    setValue("Preferences/Advanced/OutgoingPortsMin", val);
 }
 
-uint Preferences::outgoingPortsMax() const {
-  return value("Preferences/Advanced/OutgoingPortsMax", 0).toUInt();
+uint Preferences::outgoingPortsMax() const
+{
+    return value("Preferences/Advanced/OutgoingPortsMax", 0).toUInt();
 }
 
-void Preferences::setOutgoingPortsMax(uint val) {
-  setValue("Preferences/Advanced/OutgoingPortsMax", val);
+void Preferences::setOutgoingPortsMax(uint val)
+{
+    setValue("Preferences/Advanced/OutgoingPortsMax", val);
 }
 
-bool Preferences::ignoreLimitsOnLAN() const {
-  return value("Preferences/Advanced/IgnoreLimitsLAN", true).toBool();
+bool Preferences::ignoreLimitsOnLAN() const
+{
+    return value("Preferences/Advanced/IgnoreLimitsLAN", true).toBool();
 }
 
-void Preferences::ignoreLimitsOnLAN(bool ignore) {
-  setValue("Preferences/Advanced/IgnoreLimitsLAN", ignore);
+void Preferences::ignoreLimitsOnLAN(bool ignore)
+{
+    setValue("Preferences/Advanced/IgnoreLimitsLAN", ignore);
 }
 
-bool Preferences::includeOverheadInLimits() const {
-  return value("Preferences/Advanced/IncludeOverhead", false).toBool();
+bool Preferences::includeOverheadInLimits() const
+{
+    return value("Preferences/Advanced/IncludeOverhead", false).toBool();
 }
 
-void Preferences::includeOverheadInLimits(bool include) {
-  setValue("Preferences/Advanced/IncludeOverhead", include);
+void Preferences::includeOverheadInLimits(bool include)
+{
+    setValue("Preferences/Advanced/IncludeOverhead", include);
 }
 
-bool Preferences::trackerExchangeEnabled() const {
-  return value("Preferences/Advanced/LtTrackerExchange", false).toBool();
+bool Preferences::trackerExchangeEnabled() const
+{
+    return value("Preferences/Advanced/LtTrackerExchange", false).toBool();
 }
 
-void Preferences::setTrackerExchangeEnabled(bool enable) {
-  setValue("Preferences/Advanced/LtTrackerExchange", enable);
+void Preferences::setTrackerExchangeEnabled(bool enable)
+{
+    setValue("Preferences/Advanced/LtTrackerExchange", enable);
 }
 
-bool Preferences::recheckTorrentsOnCompletion() const {
-  return value("Preferences/Advanced/RecheckOnCompletion", false).toBool();
+bool Preferences::recheckTorrentsOnCompletion() const
+{
+    return value("Preferences/Advanced/RecheckOnCompletion", false).toBool();
 }
 
-void Preferences::recheckTorrentsOnCompletion(bool recheck) {
-  setValue("Preferences/Advanced/RecheckOnCompletion", recheck);
+void Preferences::recheckTorrentsOnCompletion(bool recheck)
+{
+    setValue("Preferences/Advanced/RecheckOnCompletion", recheck);
 }
 
-unsigned int Preferences::getRefreshInterval() const {
-  return value("Preferences/General/RefreshInterval", 1500).toUInt();
+unsigned int Preferences::getRefreshInterval() const
+{
+    return value("Preferences/General/RefreshInterval", 1500).toUInt();
 }
 
-void Preferences::setRefreshInterval(uint interval) {
-  setValue("Preferences/General/RefreshInterval", interval);
+void Preferences::setRefreshInterval(uint interval)
+{
+    setValue("Preferences/General/RefreshInterval", interval);
 }
 
-bool Preferences::resolvePeerCountries() const {
-  return value("Preferences/Connection/ResolvePeerCountries", true).toBool();
+bool Preferences::resolvePeerCountries() const
+{
+    return value("Preferences/Connection/ResolvePeerCountries", true).toBool();
 }
 
-void Preferences::resolvePeerCountries(bool resolve) {
-  setValue("Preferences/Connection/ResolvePeerCountries", resolve);
+void Preferences::resolvePeerCountries(bool resolve)
+{
+    setValue("Preferences/Connection/ResolvePeerCountries", resolve);
 }
 
-bool Preferences::resolvePeerHostNames() const {
-  return value("Preferences/Connection/ResolvePeerHostNames", false).toBool();
+bool Preferences::resolvePeerHostNames() const
+{
+    return value("Preferences/Connection/ResolvePeerHostNames", false).toBool();
 }
 
-void Preferences::resolvePeerHostNames(bool resolve) {
-  setValue("Preferences/Connection/ResolvePeerHostNames", resolve);
+void Preferences::resolvePeerHostNames(bool resolve)
+{
+    setValue("Preferences/Connection/ResolvePeerHostNames", resolve);
 }
 
-int Preferences::getMaxHalfOpenConnections() const {
-  const int val = value("Preferences/Connection/MaxHalfOpenConnec", 50).toInt();
-  if (val <= 0)
-    return -1;
-  return val;
+int Preferences::getMaxHalfOpenConnections() const
+{
+    const int val = value("Preferences/Connection/MaxHalfOpenConnec", 50).toInt();
+    if (val <= 0)
+        return -1;
+    return val;
 }
 
-void Preferences::setMaxHalfOpenConnections(int value) {
-  if (value <= 0)
-    value = -1;
-  setValue("Preferences/Connection/MaxHalfOpenConnec", value);
+void Preferences::setMaxHalfOpenConnections(int value)
+{
+    if (value <= 0)
+        value = -1;
+    setValue("Preferences/Connection/MaxHalfOpenConnec", value);
 }
 
-QString Preferences::getNetworkInterface() const {
-  return value("Preferences/Connection/Interface").toString();
+QString Preferences::getNetworkInterface() const
+{
+    return value("Preferences/Connection/Interface").toString();
 }
 
-void Preferences::setNetworkInterface(const QString& iface) {
-  setValue("Preferences/Connection/Interface", iface);
+void Preferences::setNetworkInterface(const QString& iface)
+{
+    setValue("Preferences/Connection/Interface", iface);
 }
 
-QString Preferences::getNetworkInterfaceName() const {
-  return value("Preferences/Connection/InterfaceName").toString();
+QString Preferences::getNetworkInterfaceName() const
+{
+    return value("Preferences/Connection/InterfaceName").toString();
 }
 
-void Preferences::setNetworkInterfaceName(const QString& iface) {
-  setValue("Preferences/Connection/InterfaceName", iface);
+void Preferences::setNetworkInterfaceName(const QString& iface)
+{
+    setValue("Preferences/Connection/InterfaceName", iface);
 }
 
-bool Preferences::getListenIPv6() const {
-  return value("Preferences/Connection/InterfaceListenIPv6", false).toBool();
+bool Preferences::getListenIPv6() const
+{
+    return value("Preferences/Connection/InterfaceListenIPv6", false).toBool();
 }
 
-void Preferences::setListenIPv6(bool enable) {
-  setValue("Preferences/Connection/InterfaceListenIPv6", enable);
+void Preferences::setListenIPv6(bool enable)
+{
+    setValue("Preferences/Connection/InterfaceListenIPv6", enable);
 }
 
-QString Preferences::getNetworkAddress() const {
-  return value("Preferences/Connection/InetAddress").toString();
+QString Preferences::getNetworkAddress() const
+{
+    return value("Preferences/Connection/InetAddress").toString();
 }
 
-void Preferences::setNetworkAddress(const QString& addr) {
-  setValue("Preferences/Connection/InetAddress", addr);
+void Preferences::setNetworkAddress(const QString& addr)
+{
+    setValue("Preferences/Connection/InetAddress", addr);
 }
 
-bool Preferences::isAnonymousModeEnabled() const {
-  return value("Preferences/Advanced/AnonymousMode", false).toBool();
+bool Preferences::isAnonymousModeEnabled() const
+{
+    return value("Preferences/Advanced/AnonymousMode", false).toBool();
 }
 
-void Preferences::enableAnonymousMode(bool enabled) {
-  setValue("Preferences/Advanced/AnonymousMode", enabled);
+void Preferences::enableAnonymousMode(bool enabled)
+{
+    setValue("Preferences/Advanced/AnonymousMode", enabled);
 }
 
-bool Preferences::isSuperSeedingEnabled() const {
-  return value("Preferences/Advanced/SuperSeeding", false).toBool();
+bool Preferences::isSuperSeedingEnabled() const
+{
+    return value("Preferences/Advanced/SuperSeeding", false).toBool();
 }
 
-void Preferences::enableSuperSeeding(bool enabled) {
-  setValue("Preferences/Advanced/SuperSeeding", enabled);
+void Preferences::enableSuperSeeding(bool enabled)
+{
+    setValue("Preferences/Advanced/SuperSeeding", enabled);
 }
 
-bool Preferences::announceToAllTrackers() const {
-  return value("Preferences/Advanced/AnnounceToAllTrackers", false).toBool();
+bool Preferences::announceToAllTrackers() const
+{
+    return value("Preferences/Advanced/AnnounceToAllTrackers", false).toBool();
 }
 
-void Preferences::setAnnounceToAllTrackers(bool enabled) {
-  setValue("Preferences/Advanced/AnnounceToAllTrackers", enabled);
+void Preferences::setAnnounceToAllTrackers(bool enabled)
+{
+    setValue("Preferences/Advanced/AnnounceToAllTrackers", enabled);
 }
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-bool Preferences::useSystemIconTheme() const {
-  return value("Preferences/Advanced/useSystemIconTheme", true).toBool();
+bool Preferences::useSystemIconTheme() const
+{
+    return value("Preferences/Advanced/useSystemIconTheme", true).toBool();
 }
 
-void Preferences::useSystemIconTheme(bool enabled) {
-  setValue("Preferences/Advanced/useSystemIconTheme", enabled);
+void Preferences::useSystemIconTheme(bool enabled)
+{
+    setValue("Preferences/Advanced/useSystemIconTheme", enabled);
 }
 #endif
 
-QStringList Preferences::getTorrentLabels() const {
-  return value("TransferListFilters/customLabels").toStringList();
+QStringList Preferences::getTorrentLabels() const
+{
+    return value("TransferListFilters/customLabels").toStringList();
 }
 
-void Preferences::setTorrentLabels(const QStringList& labels) {
-  setValue("TransferListFilters/customLabels", labels);
+void Preferences::setTorrentLabels(const QStringList& labels)
+{
+    setValue("TransferListFilters/customLabels", labels);
 }
 
-void Preferences::addTorrentLabel(const QString& label) {
-  QStringList labels = value("TransferListFilters/customLabels").toStringList();
-  if (!labels.contains(label))
-    labels << label;
-  setValue("TransferListFilters/customLabels", labels);
+void Preferences::addTorrentLabel(const QString& label)
+{
+    QStringList labels = value("TransferListFilters/customLabels").toStringList();
+    if (!labels.contains(label))
+        labels << label;
+    setValue("TransferListFilters/customLabels", labels);
 }
 
-void Preferences::removeTorrentLabel(const QString& label) {
-  QStringList labels = value("TransferListFilters/customLabels").toStringList();
-  if (labels.contains(label))
-    labels.removeOne(label);
-  setValue("TransferListFilters/customLabels", labels);
+void Preferences::removeTorrentLabel(const QString& label)
+{
+    QStringList labels = value("TransferListFilters/customLabels").toStringList();
+    if (labels.contains(label))
+        labels.removeOne(label);
+    setValue("TransferListFilters/customLabels", labels);
 }
 
-bool Preferences::recursiveDownloadDisabled() const {
-  return value("Preferences/Advanced/DisableRecursiveDownload", false).toBool();
+bool Preferences::recursiveDownloadDisabled() const
+{
+    return value("Preferences/Advanced/DisableRecursiveDownload", false).toBool();
 }
 
-void Preferences::disableRecursiveDownload(bool disable) {
-  setValue("Preferences/Advanced/DisableRecursiveDownload", disable);
+void Preferences::disableRecursiveDownload(bool disable)
+{
+    setValue("Preferences/Advanced/DisableRecursiveDownload", disable);
 }
 
 #ifdef Q_OS_WIN
 namespace {
-enum REG_SEARCH_TYPE
-{
-    USER,
-    SYSTEM_32BIT,
-    SYSTEM_64BIT
-};
+    enum REG_SEARCH_TYPE
+    {
+        USER,
+        SYSTEM_32BIT,
+        SYSTEM_64BIT
+    };
 
-QStringList getRegSubkeys(HKEY handle)
-{
-    QStringList keys;
+    QStringList getRegSubkeys(HKEY handle)
+    {
+        QStringList keys;
 
-    DWORD cSubKeys = 0;
-    DWORD cMaxSubKeyLen = 0;
-    LONG res = ::RegQueryInfoKeyW(handle, NULL, NULL, NULL, &cSubKeys, &cMaxSubKeyLen, NULL, NULL, NULL, NULL, NULL, NULL);
+        DWORD cSubKeys = 0;
+        DWORD cMaxSubKeyLen = 0;
+        LONG res = ::RegQueryInfoKeyW(handle, NULL, NULL, NULL, &cSubKeys, &cMaxSubKeyLen, NULL, NULL, NULL, NULL, NULL, NULL);
 
-    if (res == ERROR_SUCCESS) {
-        cMaxSubKeyLen++; // For null character
-        LPWSTR lpName = new WCHAR[cMaxSubKeyLen];
-        DWORD cName;
+        if (res == ERROR_SUCCESS) {
+            cMaxSubKeyLen++; // For null character
+            LPWSTR lpName = new WCHAR[cMaxSubKeyLen];
+            DWORD cName;
 
-        for (DWORD i = 0; i < cSubKeys; ++i) {
-            cName = cMaxSubKeyLen;
-            res = ::RegEnumKeyExW(handle, 0, lpName, &cName, NULL, NULL, NULL, NULL);
-            if (res == ERROR_SUCCESS)
-                keys.push_back(QString::fromWCharArray(lpName));
+            for (DWORD i = 0; i < cSubKeys; ++i) {
+                cName = cMaxSubKeyLen;
+                res = ::RegEnumKeyExW(handle, 0, lpName, &cName, NULL, NULL, NULL, NULL);
+                if (res == ERROR_SUCCESS)
+                    keys.push_back(QString::fromWCharArray(lpName));
+            }
+
+            delete[] lpName;
         }
 
-        delete[] lpName;
+        return keys;
     }
 
-    return keys;
-}
+    QString getRegValue(HKEY handle, const QString &name = QString())
+    {
+        QString result;
 
-QString getRegValue(HKEY handle, const QString &name = QString())
-{
-    QString result;
+        DWORD type = 0;
+        DWORD cbData = 0;
+        LPWSTR lpValueName = NULL;
+        if (!name.isEmpty()) {
+            lpValueName = new WCHAR[name.size() + 1];
+            name.toWCharArray(lpValueName);
+            lpValueName[name.size()] = 0;
+        }
 
-    DWORD type = 0;
-    DWORD cbData = 0;
-    LPWSTR lpValueName = NULL;
-    if (!name.isEmpty()) {
-        lpValueName = new WCHAR[name.size() + 1];
-        name.toWCharArray(lpValueName);
-        lpValueName[name.size()] = 0;
+        // Discover the size of the value
+        ::RegQueryValueExW(handle, lpValueName, NULL, &type, NULL, &cbData);
+        DWORD cBuffer = (cbData / sizeof(WCHAR)) + 1;
+        LPWSTR lpData = new WCHAR[cBuffer];
+        LONG res = ::RegQueryValueExW(handle, lpValueName, NULL, &type, (LPBYTE)lpData, &cbData);
+        if (lpValueName)
+            delete[] lpValueName;
+
+        if (res == ERROR_SUCCESS) {
+            lpData[cBuffer - 1] = 0;
+            result = QString::fromWCharArray(lpData);
+        }
+        delete[] lpData;
+
+        return result;
     }
 
-    // Discover the size of the value
-    ::RegQueryValueExW(handle, lpValueName, NULL, &type, NULL, &cbData);
-    DWORD cBuffer = (cbData / sizeof(WCHAR)) + 1;
-    LPWSTR lpData = new WCHAR[cBuffer];
-    LONG res = ::RegQueryValueExW(handle, lpValueName, NULL, &type, (LPBYTE)lpData, &cbData);
-    if (lpValueName)
-        delete[] lpValueName;
+    QString pythonSearchReg(const REG_SEARCH_TYPE type)
+    {
+        HKEY hkRoot;
+        if (type == USER)
+            hkRoot = HKEY_CURRENT_USER;
+        else
+            hkRoot = HKEY_LOCAL_MACHINE;
 
-    if (res == ERROR_SUCCESS) {
-        lpData[cBuffer - 1] = 0;
-        result = QString::fromWCharArray(lpData);
-    }
-    delete[] lpData;
+        REGSAM samDesired = KEY_READ;
+        if (type == SYSTEM_32BIT)
+            samDesired |= KEY_WOW64_32KEY;
+        else if (type == SYSTEM_64BIT)
+            samDesired |= KEY_WOW64_64KEY;
 
-    return result;
-}
+        QString path;
+        LONG res = 0;
+        HKEY hkPythonCore;
+        res = ::RegOpenKeyExW(hkRoot, L"SOFTWARE\\Python\\PythonCore", 0, samDesired, &hkPythonCore);
 
-QString pythonSearchReg(const REG_SEARCH_TYPE type)
-{
-    HKEY hkRoot;
-    if (type == USER)
-        hkRoot = HKEY_CURRENT_USER;
-    else
-        hkRoot = HKEY_LOCAL_MACHINE;
+        if (res == ERROR_SUCCESS) {
+            QStringList versions = getRegSubkeys(hkPythonCore);
+            qDebug("Python versions nb: %d", versions.size());
+            versions.sort();
 
-    REGSAM samDesired = KEY_READ;
-    if (type == SYSTEM_32BIT)
-        samDesired |= KEY_WOW64_32KEY;
-    else if (type == SYSTEM_64BIT)
-        samDesired |= KEY_WOW64_64KEY;
+            bool found = false;
+            while(!found && !versions.empty()) {
+                const QString version = versions.takeLast() + "\\InstallPath";
+                LPWSTR lpSubkey = new WCHAR[version.size() + 1];
+                version.toWCharArray(lpSubkey);
+                lpSubkey[version.size()] = 0;
 
-    QString path;
-    LONG res = 0;
-    HKEY hkPythonCore;
-    res = ::RegOpenKeyExW(hkRoot, L"SOFTWARE\\Python\\PythonCore", 0, samDesired, &hkPythonCore);
+                HKEY hkInstallPath;
+                res = ::RegOpenKeyExW(hkPythonCore, lpSubkey, 0, samDesired, &hkInstallPath);
+                delete[] lpSubkey;
 
-    if (res == ERROR_SUCCESS) {
-        QStringList versions = getRegSubkeys(hkPythonCore);
-        qDebug("Python versions nb: %d", versions.size());
-        versions.sort();
+                if (res == ERROR_SUCCESS) {
+                    qDebug("Detected possible Python v%s location", qPrintable(version));
+                    path = getRegValue(hkInstallPath);
+                    ::RegCloseKey(hkInstallPath);
 
-        bool found = false;
-        while(!found && !versions.empty()) {
-            const QString version = versions.takeLast() + "\\InstallPath";
-            LPWSTR lpSubkey = new WCHAR[version.size() + 1];
-            version.toWCharArray(lpSubkey);
-            lpSubkey[version.size()] = 0;
-
-            HKEY hkInstallPath;
-            res = ::RegOpenKeyExW(hkPythonCore, lpSubkey, 0, samDesired, &hkInstallPath);
-            delete[] lpSubkey;
-
-            if (res == ERROR_SUCCESS) {
-                qDebug("Detected possible Python v%s location", qPrintable(version));
-                path = getRegValue(hkInstallPath);
-                ::RegCloseKey(hkInstallPath);
-
-                if (!path.isEmpty() && QDir(path).exists("python.exe")) {
-                    qDebug("Found python.exe at %s", qPrintable(path));
-                    found = true;
+                    if (!path.isEmpty() && QDir(path).exists("python.exe")) {
+                        qDebug("Found python.exe at %s", qPrintable(path));
+                        found = true;
+                    }
                 }
             }
+
+            if (!found)
+                path = QString();
+
+            ::RegCloseKey(hkPythonCore);
         }
 
-        if (!found)
-            path = QString();
-
-        ::RegCloseKey(hkPythonCore);
+        return path;
     }
-
-    return path;
-}
 
 }
 
@@ -1483,521 +1746,626 @@ QString Preferences::getPythonPath()
     // Fallback: Detect python from default locations
     QStringList supported_versions;
     supported_versions << "32" << "31" << "30" << "27" << "26" << "25";
-    foreach (const QString &v, supported_versions) {
+    foreach (const QString &v, supported_versions)
         if (QFile::exists("C:/Python" + v + "/python.exe"))
             return "C:/Python" + v;
-    }
 
     return QString();
 }
 
-bool Preferences::neverCheckFileAssoc() const {
-  return value("Preferences/Win32/NeverCheckFileAssocation", false).toBool();
+bool Preferences::neverCheckFileAssoc() const
+{
+    return value("Preferences/Win32/NeverCheckFileAssocation", false).toBool();
 }
 
-void Preferences::setNeverCheckFileAssoc(bool check) {
-  setValue("Preferences/Win32/NeverCheckFileAssocation", check);
+void Preferences::setNeverCheckFileAssoc(bool check)
+{
+    setValue("Preferences/Win32/NeverCheckFileAssocation", check);
 }
 
-bool Preferences::isTorrentFileAssocSet() {
-  QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
-  if (settings.value(".torrent/Default").toString() != "qBittorrent") {
-    qDebug(".torrent != qBittorrent");
-    return false;
-  }
+bool Preferences::isTorrentFileAssocSet()
+{
+    QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
+    if (settings.value(".torrent/Default").toString() != "qBittorrent") {
+        qDebug(".torrent != qBittorrent");
+        return false;
+    }
 
-  return true;
+    return true;
 }
 
-bool Preferences::isMagnetLinkAssocSet() {
-  QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
+bool Preferences::isMagnetLinkAssocSet()
+{
+    QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
 
-  // Check magnet link assoc
-  QRegExp exe_reg("\"([^\"]+)\".*");
-  QString shell_command = fsutils::toNativePath(settings.value("magnet/shell/open/command/Default", "").toString());
-  if (exe_reg.indexIn(shell_command) < 0)
-    return false;
-  QString assoc_exe = exe_reg.cap(1);
-  qDebug("exe: %s", qPrintable(assoc_exe));
-  if (assoc_exe.compare(fsutils::toNativePath(qApp->applicationFilePath()), Qt::CaseInsensitive) != 0)
-    return false;
+    // Check magnet link assoc
+    QRegExp exe_reg("\"([^\"]+)\".*");
+    QString shell_command = fsutils::toNativePath(settings.value("magnet/shell/open/command/Default", "").toString());
+    if (exe_reg.indexIn(shell_command) < 0)
+        return false;
+    QString assoc_exe = exe_reg.cap(1);
+    qDebug("exe: %s", qPrintable(assoc_exe));
+    if (assoc_exe.compare(fsutils::toNativePath(qApp->applicationFilePath()), Qt::CaseInsensitive) != 0)
+        return false;
 
-  return true;
+    return true;
 }
 
-void Preferences::setTorrentFileAssoc(bool set) {
-  QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
+void Preferences::setTorrentFileAssoc(bool set)
+{
+    QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
 
-  // .Torrent association
-  if (set) {
-    QString old_progid = settings.value(".torrent/Default").toString();
-    if (!old_progid.isEmpty() && (old_progid != "qBittorrent"))
-      settings.setValue(".torrent/OpenWithProgids/" + old_progid, "");
-    settings.setValue(".torrent/Default", "qBittorrent");
-  }
-  else if (isTorrentFileAssocSet()) {
-    settings.setValue(".torrent/Default", "");
-  }
+    // .Torrent association
+    if (set) {
+        QString old_progid = settings.value(".torrent/Default").toString();
+        if (!old_progid.isEmpty() && (old_progid != "qBittorrent"))
+            settings.setValue(".torrent/OpenWithProgids/" + old_progid, "");
+        settings.setValue(".torrent/Default", "qBittorrent");
+    }
+    else if (isTorrentFileAssocSet()) {
+        settings.setValue(".torrent/Default", "");
+    }
 
-  SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
+    SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
 }
 
-void Preferences::setMagnetLinkAssoc(bool set) {
-  QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
+void Preferences::setMagnetLinkAssoc(bool set)
+{
+    QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
 
-  // Magnet association
-  if (set) {
-    const QString command_str = "\""+qApp->applicationFilePath()+"\" \"%1\"";
-    const QString icon_str = "\""+qApp->applicationFilePath()+"\",1";
+    // Magnet association
+    if (set) {
+        const QString command_str = "\"" + qApp->applicationFilePath() + "\" \"%1\"";
+        const QString icon_str = "\"" + qApp->applicationFilePath() + "\",1";
 
-    settings.setValue("magnet/Default", "URL:Magnet link");
-    settings.setValue("magnet/Content Type", "application/x-magnet");
-    settings.setValue("magnet/URL Protocol", "");
-    settings.setValue("magnet/DefaultIcon/Default", fsutils::toNativePath(icon_str));
-    settings.setValue("magnet/shell/Default", "open");
-    settings.setValue("magnet/shell/open/command/Default", fsutils::toNativePath(command_str));
-  }
-  else if (isMagnetLinkAssocSet()) {
-    settings.remove("magnet");
-  }
+        settings.setValue("magnet/Default", "URL:Magnet link");
+        settings.setValue("magnet/Content Type", "application/x-magnet");
+        settings.setValue("magnet/URL Protocol", "");
+        settings.setValue("magnet/DefaultIcon/Default", fsutils::toNativePath(icon_str));
+        settings.setValue("magnet/shell/Default", "open");
+        settings.setValue("magnet/shell/open/command/Default", fsutils::toNativePath(command_str));
+    }
+    else if (isMagnetLinkAssocSet()) {
+        settings.remove("magnet");
+    }
 
-  SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
+    SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
 }
 #endif
 
-bool Preferences::isTrackerEnabled() const {
-  return value("Preferences/Advanced/trackerEnabled", false).toBool();
+bool Preferences::isTrackerEnabled() const
+{
+    return value("Preferences/Advanced/trackerEnabled", false).toBool();
 }
 
-void Preferences::setTrackerEnabled(bool enabled) {
-  setValue("Preferences/Advanced/trackerEnabled", enabled);
+void Preferences::setTrackerEnabled(bool enabled)
+{
+    setValue("Preferences/Advanced/trackerEnabled", enabled);
 }
 
-int Preferences::getTrackerPort() const {
-  return value("Preferences/Advanced/trackerPort", 9000).toInt();
+int Preferences::getTrackerPort() const
+{
+    return value("Preferences/Advanced/trackerPort", 9000).toInt();
 }
 
-void Preferences::setTrackerPort(int port) {
-  setValue("Preferences/Advanced/trackerPort", port);
+void Preferences::setTrackerPort(int port)
+{
+    setValue("Preferences/Advanced/trackerPort", port);
 }
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-bool Preferences::isUpdateCheckEnabled() const {
-  return value("Preferences/Advanced/updateCheck", true).toBool();
+bool Preferences::isUpdateCheckEnabled() const
+{
+    return value("Preferences/Advanced/updateCheck", true).toBool();
 }
 
-void Preferences::setUpdateCheckEnabled(bool enabled) {
-  setValue("Preferences/Advanced/updateCheck", enabled);
+void Preferences::setUpdateCheckEnabled(bool enabled)
+{
+    setValue("Preferences/Advanced/updateCheck", enabled);
 }
 #endif
 
-bool Preferences::confirmTorrentDeletion() const {
-  return value("Preferences/Advanced/confirmTorrentDeletion", true).toBool();
+bool Preferences::confirmTorrentDeletion() const
+{
+    return value("Preferences/Advanced/confirmTorrentDeletion", true).toBool();
 }
 
-void Preferences::setConfirmTorrentDeletion(bool enabled) {
-  setValue("Preferences/Advanced/confirmTorrentDeletion", enabled);
+void Preferences::setConfirmTorrentDeletion(bool enabled)
+{
+    setValue("Preferences/Advanced/confirmTorrentDeletion", enabled);
 }
 
-TrayIcon::Style Preferences::trayIconStyle() const {
-  return TrayIcon::Style(value("Preferences/Advanced/TrayIconStyle", TrayIcon::NORMAL).toInt());
+TrayIcon::Style Preferences::trayIconStyle() const
+{
+    return TrayIcon::Style(value("Preferences/Advanced/TrayIconStyle", TrayIcon::NORMAL).toInt());
 }
 
-void Preferences::setTrayIconStyle(TrayIcon::Style style) {
-  setValue("Preferences/Advanced/TrayIconStyle", style);
+void Preferences::setTrayIconStyle(TrayIcon::Style style)
+{
+    setValue("Preferences/Advanced/TrayIconStyle", style);
 }
 
 // Stuff that don't appear in the Options GUI but are saved
 // in the same file.
-QByteArray Preferences::getAddNewTorrentDialogState() const {
-  return value("AddNewTorrentDialog/treeHeaderState").toByteArray();
+QByteArray Preferences::getAddNewTorrentDialogState() const
+{
+    return value("AddNewTorrentDialog/treeHeaderState").toByteArray();
 }
 
-void Preferences::setAddNewTorrentDialogState(const QByteArray &state) {
-  setValue("AddNewTorrentDialog/treeHeaderState", state);
+void Preferences::setAddNewTorrentDialogState(const QByteArray &state)
+{
+    setValue("AddNewTorrentDialog/treeHeaderState", state);
 }
 
-int Preferences::getAddNewTorrentDialogPos() const {
-  return value("AddNewTorrentDialog/y", -1).toInt();
+int Preferences::getAddNewTorrentDialogPos() const
+{
+    return value("AddNewTorrentDialog/y", -1).toInt();
 }
 
-void Preferences::setAddNewTorrentDialogPos(const int &pos) {
-  setValue("AddNewTorrentDialog/y", pos);
+void Preferences::setAddNewTorrentDialogPos(const int &pos)
+{
+    setValue("AddNewTorrentDialog/y", pos);
 }
 
-int Preferences::getAddNewTorrentDialogWidth() const {
-  return value("AddNewTorrentDialog/width", -1).toInt();
+int Preferences::getAddNewTorrentDialogWidth() const
+{
+    return value("AddNewTorrentDialog/width", -1).toInt();
 }
 
-void Preferences::setAddNewTorrentDialogWidth(const int &width) {
-  setValue("AddNewTorrentDialog/width", width);
+void Preferences::setAddNewTorrentDialogWidth(const int &width)
+{
+    setValue("AddNewTorrentDialog/width", width);
 }
 
-bool Preferences::getAddNewTorrentDialogExpanded() const {
-  return value("AddNewTorrentDialog/expanded", false).toBool();
+bool Preferences::getAddNewTorrentDialogExpanded() const
+{
+    return value("AddNewTorrentDialog/expanded", false).toBool();
 }
 
-void Preferences::setAddNewTorrentDialogExpanded(const bool expanded) {
-  setValue("AddNewTorrentDialog/expanded", expanded);
+void Preferences::setAddNewTorrentDialogExpanded(const bool expanded)
+{
+    setValue("AddNewTorrentDialog/expanded", expanded);
 }
 
-QStringList Preferences::getAddNewTorrentDialogPathHistory() const {
-  return value("TorrentAdditionDlg/save_path_history").toStringList();
+QStringList Preferences::getAddNewTorrentDialogPathHistory() const
+{
+    return value("TorrentAdditionDlg/save_path_history").toStringList();
 }
 
-void Preferences::setAddNewTorrentDialogPathHistory(const QStringList &history) {
-  setValue("TorrentAdditionDlg/save_path_history", history);
+void Preferences::setAddNewTorrentDialogPathHistory(const QStringList &history)
+{
+    setValue("TorrentAdditionDlg/save_path_history", history);
 }
 
-QDateTime Preferences::getDNSLastUpd() const {
-  return value("DNSUpdater/lastUpdateTime").toDateTime();
+QDateTime Preferences::getDNSLastUpd() const
+{
+    return value("DNSUpdater/lastUpdateTime").toDateTime();
 }
 
-void Preferences::setDNSLastUpd(const QDateTime &date) {
-  setValue("DNSUpdater/lastUpdateTime", date);
+void Preferences::setDNSLastUpd(const QDateTime &date)
+{
+    setValue("DNSUpdater/lastUpdateTime", date);
 }
 
-QString Preferences::getDNSLastIP() const {
-  return value("DNSUpdater/lastIP").toString();
+QString Preferences::getDNSLastIP() const
+{
+    return value("DNSUpdater/lastIP").toString();
 }
 
-void Preferences::setDNSLastIP(const QString &ip) {
-  setValue("DNSUpdater/lastIP", ip);
+void Preferences::setDNSLastIP(const QString &ip)
+{
+    setValue("DNSUpdater/lastIP", ip);
 }
 
-bool Preferences::getAcceptedLegal() const {
-  return value("LegalNotice/Accepted", false).toBool();
+bool Preferences::getAcceptedLegal() const
+{
+    return value("LegalNotice/Accepted", false).toBool();
 }
 
-void Preferences::setAcceptedLegal(const bool accepted) {
-  setValue("LegalNotice/Accepted", accepted);
+void Preferences::setAcceptedLegal(const bool accepted)
+{
+    setValue("LegalNotice/Accepted", accepted);
 }
 
-QByteArray Preferences::getMainGeometry() const {
-  return value("MainWindow/geometry").toByteArray();
+QByteArray Preferences::getMainGeometry() const
+{
+    return value("MainWindow/geometry").toByteArray();
 }
 
-void Preferences::setMainGeometry(const QByteArray &geometry) {
-  setValue("MainWindow/geometry", geometry);
+void Preferences::setMainGeometry(const QByteArray &geometry)
+{
+    setValue("MainWindow/geometry", geometry);
 }
 
-QByteArray Preferences::getMainVSplitterState() const {
-  return value("MainWindow/vsplitterState").toByteArray();
+QByteArray Preferences::getMainVSplitterState() const
+{
+    return value("MainWindow/vsplitterState").toByteArray();
 }
 
-void Preferences::setMainVSplitterState(const QByteArray &state) {
-  setValue("MainWindow/vsplitterState", state);
+void Preferences::setMainVSplitterState(const QByteArray &state)
+{
+    setValue("MainWindow/vsplitterState", state);
 }
 
-QString Preferences::getMainLastDir() const {
-  return value("MainWindowLastDir", QDir::homePath()).toString();
+QString Preferences::getMainLastDir() const
+{
+    return value("MainWindowLastDir", QDir::homePath()).toString();
 }
 
-void Preferences::setMainLastDir(const QString &path) {
-  setValue("MainWindowLastDir", path);
+void Preferences::setMainLastDir(const QString &path)
+{
+    setValue("MainWindowLastDir", path);
 }
 
 #ifndef DISABLE_GUI
-QSize Preferences::getPrefSize(const QSize& defaultSize) const {
-  return value("Preferences/State/size", defaultSize).toSize();
+QSize Preferences::getPrefSize(const QSize& defaultSize) const
+{
+    return value("Preferences/State/size", defaultSize).toSize();
 }
 
-void Preferences::setPrefSize(const QSize &size) {
-  setValue("Preferences/State/size", size);
+void Preferences::setPrefSize(const QSize &size)
+{
+    setValue("Preferences/State/size", size);
 }
 #endif
 
-QPoint Preferences::getPrefPos() const {
-  return value("Preferences/State/pos").toPoint();
+QPoint Preferences::getPrefPos() const
+{
+    return value("Preferences/State/pos").toPoint();
 }
 
-void Preferences::setPrefPos(const QPoint &pos) {
-  setValue("Preferences/State/pos", pos);
+void Preferences::setPrefPos(const QPoint &pos)
+{
+    setValue("Preferences/State/pos", pos);
 }
 
-QStringList Preferences::getPrefHSplitterSizes() const {
-  return value("Preferences/State/hSplitterSizes").toStringList();
+QStringList Preferences::getPrefHSplitterSizes() const
+{
+    return value("Preferences/State/hSplitterSizes").toStringList();
 }
 
-void Preferences::setPrefHSplitterSizes(const QStringList &sizes) {
-  setValue("Preferences/State/hSplitterSizes", sizes);
+void Preferences::setPrefHSplitterSizes(const QStringList &sizes)
+{
+    setValue("Preferences/State/hSplitterSizes", sizes);
 }
 
-QByteArray Preferences::getPeerListState() const {
-  return value("TorrentProperties/Peers/PeerListState").toByteArray();
+QByteArray Preferences::getPeerListState() const
+{
+    return value("TorrentProperties/Peers/PeerListState").toByteArray();
 }
 
-void Preferences::setPeerListState(const QByteArray &state) {
-  setValue("TorrentProperties/Peers/PeerListState", state);
+void Preferences::setPeerListState(const QByteArray &state)
+{
+    setValue("TorrentProperties/Peers/PeerListState", state);
 }
 
-QString Preferences::getPropSplitterSizes() const {
-  return value("TorrentProperties/SplitterSizes").toString();
+QString Preferences::getPropSplitterSizes() const
+{
+    return value("TorrentProperties/SplitterSizes").toString();
 }
 
-void Preferences::setPropSplitterSizes(const QString &sizes) {
-  setValue("TorrentProperties/SplitterSizes", sizes);
+void Preferences::setPropSplitterSizes(const QString &sizes)
+{
+    setValue("TorrentProperties/SplitterSizes", sizes);
 }
 
-QByteArray Preferences::getPropFileListState() const {
-  return value("TorrentProperties/FilesListState").toByteArray();
+QByteArray Preferences::getPropFileListState() const
+{
+    return value("TorrentProperties/FilesListState").toByteArray();
 }
 
-void Preferences::setPropFileListState(const QByteArray &state) {
-  setValue("TorrentProperties/FilesListState", state);
+void Preferences::setPropFileListState(const QByteArray &state)
+{
+    setValue("TorrentProperties/FilesListState", state);
 }
 
-int Preferences::getPropCurTab() const {
-  return value("TorrentProperties/CurrentTab", -1).toInt();
+int Preferences::getPropCurTab() const
+{
+    return value("TorrentProperties/CurrentTab", -1).toInt();
 }
 
-void Preferences::setPropCurTab(const int &tab) {
-  setValue("TorrentProperties/CurrentTab", tab);
+void Preferences::setPropCurTab(const int &tab)
+{
+    setValue("TorrentProperties/CurrentTab", tab);
 }
 
-bool Preferences::getPropVisible() const {
-  return value("TorrentProperties/Visible", false).toBool();
+bool Preferences::getPropVisible() const
+{
+    return value("TorrentProperties/Visible", false).toBool();
 }
 
-void Preferences::setPropVisible(const bool visible) {
-  setValue("TorrentProperties/Visible", visible);
+void Preferences::setPropVisible(const bool visible)
+{
+    setValue("TorrentProperties/Visible", visible);
 }
 
-QByteArray Preferences::getPropTrackerListState() const {
-  return value("TorrentProperties/Trackers/TrackerListState").toByteArray();
+QByteArray Preferences::getPropTrackerListState() const
+{
+    return value("TorrentProperties/Trackers/TrackerListState").toByteArray();
 }
 
-void Preferences::setPropTrackerListState(const QByteArray &state) {
-  setValue("TorrentProperties/Trackers/TrackerListState", state);
+void Preferences::setPropTrackerListState(const QByteArray &state)
+{
+    setValue("TorrentProperties/Trackers/TrackerListState", state);
 }
 
-QByteArray Preferences::getRssGeometry() const {
-  return value("RssFeedDownloader/geometry").toByteArray();
+QByteArray Preferences::getRssGeometry() const
+{
+    return value("RssFeedDownloader/geometry").toByteArray();
 }
 
-void Preferences::setRssGeometry(const QByteArray &geometry) {
-  setValue("RssFeedDownloader/geometry", geometry);
+void Preferences::setRssGeometry(const QByteArray &geometry)
+{
+    setValue("RssFeedDownloader/geometry", geometry);
 }
 
-QByteArray Preferences::getRssHSplitterSizes() const {
-  return value("RssFeedDownloader/hsplitterSizes").toByteArray();
+QByteArray Preferences::getRssHSplitterSizes() const
+{
+    return value("RssFeedDownloader/hsplitterSizes").toByteArray();
 }
 
-void Preferences::setRssHSplitterSizes(const QByteArray &sizes) {
-  setValue("RssFeedDownloader/hsplitterSizes", sizes);
+void Preferences::setRssHSplitterSizes(const QByteArray &sizes)
+{
+    setValue("RssFeedDownloader/hsplitterSizes", sizes);
 }
 
-QStringList Preferences::getRssOpenFolders() const {
-  return value("Rss/open_folders").toStringList();
+QStringList Preferences::getRssOpenFolders() const
+{
+    return value("Rss/open_folders").toStringList();
 }
 
-void Preferences::setRssOpenFolders(const QStringList &folders) {
-  setValue("Rss/open_folders", folders);
+void Preferences::setRssOpenFolders(const QStringList &folders)
+{
+    setValue("Rss/open_folders", folders);
 }
 
-QByteArray Preferences::getRssHSplitterState() const {
-  return value("rss/splitter_h").toByteArray();
+QByteArray Preferences::getRssHSplitterState() const
+{
+    return value("rss/splitter_h").toByteArray();
 }
 
-void Preferences::setRssHSplitterState(const QByteArray &state) {
-  setValue("rss/splitter_h", state);
+void Preferences::setRssHSplitterState(const QByteArray &state)
+{
+    setValue("rss/splitter_h", state);
 }
 
-QByteArray Preferences::getRssVSplitterState() const {
-  return value("rss/splitter_v").toByteArray();
+QByteArray Preferences::getRssVSplitterState() const
+{
+    return value("rss/splitter_v").toByteArray();
 }
 
-void Preferences::setRssVSplitterState(const QByteArray &state) {
-  setValue("rss/splitter_v", state);
+void Preferences::setRssVSplitterState(const QByteArray &state)
+{
+    setValue("rss/splitter_v", state);
 }
 
-QString Preferences::getSearchColsWidth() const {
-  return value("SearchResultsColsWidth").toString();
+QString Preferences::getSearchColsWidth() const
+{
+    return value("SearchResultsColsWidth").toString();
 }
 
-void Preferences::setSearchColsWidth(const QString &width) {
-  setValue("SearchResultsColsWidth", width);
+void Preferences::setSearchColsWidth(const QString &width)
+{
+    setValue("SearchResultsColsWidth", width);
 }
 
-QStringList Preferences::getSearchEngDisabled() const {
-  return value("SearchEngines/disabledEngines").toStringList();
+QStringList Preferences::getSearchEngDisabled() const
+{
+    return value("SearchEngines/disabledEngines").toStringList();
 }
 
-void Preferences::setSearchEngDisabled(const QStringList &engines) {
-  setValue("SearchEngines/disabledEngines", engines);
+void Preferences::setSearchEngDisabled(const QStringList &engines)
+{
+    setValue("SearchEngines/disabledEngines", engines);
 }
 
-QString Preferences::getCreateTorLastAddPath() const {
-  return value("CreateTorrent/last_add_path", QDir::homePath()).toString();
+QString Preferences::getCreateTorLastAddPath() const
+{
+    return value("CreateTorrent/last_add_path", QDir::homePath()).toString();
 }
 
-void Preferences::setCreateTorLastAddPath(const QString &path) {
-  setValue("CreateTorrent/last_add_path", path);
+void Preferences::setCreateTorLastAddPath(const QString &path)
+{
+    setValue("CreateTorrent/last_add_path", path);
 }
 
-QString Preferences::getCreateTorLastSavePath() const {
-  return value("CreateTorrent/last_save_path", QDir::homePath()).toString();
+QString Preferences::getCreateTorLastSavePath() const
+{
+    return value("CreateTorrent/last_save_path", QDir::homePath()).toString();
 }
 
-void Preferences::setCreateTorLastSavePath(const QString &path) {
-  setValue("CreateTorrent/last_save_path", path);
+void Preferences::setCreateTorLastSavePath(const QString &path)
+{
+    setValue("CreateTorrent/last_save_path", path);
 }
 
-QString Preferences::getCreateTorTrackers() const {
-  return value("CreateTorrent/TrackerList").toString();
+QString Preferences::getCreateTorTrackers() const
+{
+    return value("CreateTorrent/TrackerList").toString();
 }
 
-void Preferences::setCreateTorTrackers(const QString &path) {
-  setValue("CreateTorrent/TrackerList", path);
+void Preferences::setCreateTorTrackers(const QString &path)
+{
+    setValue("CreateTorrent/TrackerList", path);
 }
 
-QByteArray Preferences::getCreateTorGeometry() const {
-  return value("CreateTorrent/dimensions").toByteArray();
+QByteArray Preferences::getCreateTorGeometry() const
+{
+    return value("CreateTorrent/dimensions").toByteArray();
 }
 
-void Preferences::setCreateTorGeometry(const QByteArray &geometry) {
-  setValue("CreateTorrent/dimensions", geometry);
+void Preferences::setCreateTorGeometry(const QByteArray &geometry)
+{
+    setValue("CreateTorrent/dimensions", geometry);
 }
 
-bool Preferences::getCreateTorIgnoreRatio() const {
-  return value("CreateTorrent/IgnoreRatio").toBool();
+bool Preferences::getCreateTorIgnoreRatio() const
+{
+    return value("CreateTorrent/IgnoreRatio").toBool();
 }
 
-void Preferences::setCreateTorIgnoreRatio(const bool ignore) {
-  setValue("CreateTorrent/IgnoreRatio", ignore);
+void Preferences::setCreateTorIgnoreRatio(const bool ignore)
+{
+    setValue("CreateTorrent/IgnoreRatio", ignore);
 }
 
-QString Preferences::getTorImportLastContentDir() const {
-  return value("TorrentImport/LastContentDir", QDir::homePath()).toString();
+QString Preferences::getTorImportLastContentDir() const
+{
+    return value("TorrentImport/LastContentDir", QDir::homePath()).toString();
 }
 
-void Preferences::setTorImportLastContentDir(const QString &path) {
-  setValue("TorrentImport/LastContentDir", path);
+void Preferences::setTorImportLastContentDir(const QString &path)
+{
+    setValue("TorrentImport/LastContentDir", path);
 }
 
-QByteArray Preferences::getTorImportGeometry() const {
-  return value("TorrentImportDlg/dimensions").toByteArray();
+QByteArray Preferences::getTorImportGeometry() const
+{
+    return value("TorrentImportDlg/dimensions").toByteArray();
 }
 
-void Preferences::setTorImportGeometry(const QByteArray &geometry) {
-  setValue("TorrentImportDlg/dimensions", geometry);
+void Preferences::setTorImportGeometry(const QByteArray &geometry)
+{
+    setValue("TorrentImportDlg/dimensions", geometry);
 }
 
-int Preferences::getTransSelFilter() const {
-  return value("TransferListFilters/selectedFilterIndex", 0).toInt();
+int Preferences::getTransSelFilter() const
+{
+    return value("TransferListFilters/selectedFilterIndex", 0).toInt();
 }
 
-void Preferences::setTransSelFilter(const int &index) {
-  setValue("TransferListFilters/selectedFilterIndex", index);
+void Preferences::setTransSelFilter(const int &index)
+{
+    setValue("TransferListFilters/selectedFilterIndex", index);
 }
 
-QByteArray Preferences::getTransHeaderState() const {
-  return value("TransferList/HeaderState").toByteArray();
+QByteArray Preferences::getTransHeaderState() const
+{
+    return value("TransferList/HeaderState").toByteArray();
 }
 
-void Preferences::setTransHeaderState(const QByteArray &state) {
-  setValue("TransferList/HeaderState", state);
+void Preferences::setTransHeaderState(const QByteArray &state)
+{
+    setValue("TransferList/HeaderState", state);
 }
 
 // Temp code.
 // See TorrentStatistics::loadStats() for details.
-QVariantHash Preferences::getStats() const {
-  return value("Stats/AllStats").toHash();
+QVariantHash Preferences::getStats() const
+{
+    return value("Stats/AllStats").toHash();
 }
 
-void Preferences::removeStats() {
-  QWriteLocker locker(&lock);
-  dirty = true;
-  if (!timer.isActive())
-    timer.start();
-  m_data.remove("Stats/AllStats");
+void Preferences::removeStats()
+{
+    QWriteLocker locker(&lock);
+    dirty = true;
+    if (!timer.isActive())
+        timer.start();
+    m_data.remove("Stats/AllStats");
 }
 
 //From old RssSettings class
-bool Preferences::isRSSEnabled() const {
-  return value("Preferences/RSS/RSSEnabled", false).toBool();
+bool Preferences::isRSSEnabled() const
+{
+    return value("Preferences/RSS/RSSEnabled", false).toBool();
 }
 
-void Preferences::setRSSEnabled(const bool enabled) {
-  setValue("Preferences/RSS/RSSEnabled", enabled);
+void Preferences::setRSSEnabled(const bool enabled)
+{
+    setValue("Preferences/RSS/RSSEnabled", enabled);
 }
 
-uint Preferences::getRSSRefreshInterval() const {
-  return value("Preferences/RSS/RSSRefresh", 5).toUInt();
+uint Preferences::getRSSRefreshInterval() const
+{
+    return value("Preferences/RSS/RSSRefresh", 5).toUInt();
 }
 
-void Preferences::setRSSRefreshInterval(const uint &interval) {
-  setValue("Preferences/RSS/RSSRefresh", interval);
+void Preferences::setRSSRefreshInterval(const uint &interval)
+{
+    setValue("Preferences/RSS/RSSRefresh", interval);
 }
 
-int Preferences::getRSSMaxArticlesPerFeed() const {
-  return value("Preferences/RSS/RSSMaxArticlesPerFeed", 50).toInt();
+int Preferences::getRSSMaxArticlesPerFeed() const
+{
+    return value("Preferences/RSS/RSSMaxArticlesPerFeed", 50).toInt();
 }
 
-void Preferences::setRSSMaxArticlesPerFeed(const int &nb) {
-  setValue("Preferences/RSS/RSSMaxArticlesPerFeed", nb);
+void Preferences::setRSSMaxArticlesPerFeed(const int &nb)
+{
+    setValue("Preferences/RSS/RSSMaxArticlesPerFeed", nb);
 }
 
-bool Preferences::isRssDownloadingEnabled() const {
-  return value("Preferences/RSS/RssDownloading", true).toBool();
+bool Preferences::isRssDownloadingEnabled() const
+{
+    return value("Preferences/RSS/RssDownloading", true).toBool();
 }
 
-void Preferences::setRssDownloadingEnabled(const bool b) {
-  setValue("Preferences/RSS/RssDownloading", b);
+void Preferences::setRssDownloadingEnabled(const bool b)
+{
+    setValue("Preferences/RSS/RssDownloading", b);
 }
 
-QStringList Preferences::getRssFeedsUrls() const {
-  return value("Rss/streamList").toStringList();
+QStringList Preferences::getRssFeedsUrls() const
+{
+    return value("Rss/streamList").toStringList();
 }
 
-void Preferences::setRssFeedsUrls(const QStringList &rssFeeds) {
-  setValue("Rss/streamList", rssFeeds);
+void Preferences::setRssFeedsUrls(const QStringList &rssFeeds)
+{
+    setValue("Rss/streamList", rssFeeds);
 }
 
-QStringList Preferences::getRssFeedsAliases() const {
-  return value("Rss/streamAlias").toStringList();
+QStringList Preferences::getRssFeedsAliases() const
+{
+    return value("Rss/streamAlias").toStringList();
 }
 
-void Preferences::setRssFeedsAliases(const QStringList &rssAliases) {
-  setValue("Rss/streamAlias", rssAliases);
+void Preferences::setRssFeedsAliases(const QStringList &rssAliases)
+{
+    setValue("Rss/streamAlias", rssAliases);
 }
 
-int Preferences::getToolbarTextPosition() const {
-  return value("Toolbar/textPosition", -1).toInt();
+int Preferences::getToolbarTextPosition() const
+{
+    return value("Toolbar/textPosition", -1).toInt();
 }
 
-void Preferences::setToolbarTextPosition(const int position) {
-  setValue("Toolbar/textPosition", position);
+void Preferences::setToolbarTextPosition(const int position)
+{
+    setValue("Toolbar/textPosition", position);
 }
 
-QList<QByteArray> Preferences::getHostNameCookies(const QString &host_name) const {
-  QMap<QString, QVariant> hosts_table = value("Rss/hosts_cookies").toMap();
-  if (!hosts_table.contains(host_name)) return QList<QByteArray>();
-  QByteArray raw_cookies = hosts_table.value(host_name).toByteArray();
-  return raw_cookies.split(':');
+QList<QByteArray> Preferences::getHostNameCookies(const QString &host_name) const
+{
+    QMap<QString, QVariant> hosts_table = value("Rss/hosts_cookies").toMap();
+    if (!hosts_table.contains(host_name)) return QList<QByteArray>();
+    QByteArray raw_cookies = hosts_table.value(host_name).toByteArray();
+    return raw_cookies.split(':');
 }
 
-QList<QNetworkCookie> Preferences::getHostNameQNetworkCookies(const QString& host_name) const {
-  QList<QNetworkCookie> cookies;
-  const QList<QByteArray> raw_cookies = getHostNameCookies(host_name);
-  foreach (const QByteArray& raw_cookie, raw_cookies) {
-    QList<QByteArray> cookie_parts = raw_cookie.split('=');
-    if (cookie_parts.size() == 2) {
-      qDebug("Loading cookie: %s = %s", cookie_parts.first().constData(), cookie_parts.last().constData());
-      cookies << QNetworkCookie(cookie_parts.first(), cookie_parts.last());
+QList<QNetworkCookie> Preferences::getHostNameQNetworkCookies(const QString& host_name) const
+{
+    QList<QNetworkCookie> cookies;
+    const QList<QByteArray> raw_cookies = getHostNameCookies(host_name);
+    foreach (const QByteArray& raw_cookie, raw_cookies) {
+        QList<QByteArray> cookie_parts = raw_cookie.split('=');
+        if (cookie_parts.size() == 2) {
+            qDebug("Loading cookie: %s = %s", cookie_parts.first().constData(), cookie_parts.last().constData());
+            cookies << QNetworkCookie(cookie_parts.first(), cookie_parts.last());
+        }
     }
-  }
-  return cookies;
+    return cookies;
 }
 
-void Preferences::setHostNameCookies(const QString &host_name, const QList<QByteArray> &cookies) {
-  QMap<QString, QVariant> hosts_table = value("Rss/hosts_cookies").toMap();
-  QByteArray raw_cookies = "";
-  foreach (const QByteArray& cookie, cookies) {
-    raw_cookies += cookie + ":";
-  }
-  if (raw_cookies.endsWith(":"))
-    raw_cookies.chop(1);
-  hosts_table.insert(host_name, raw_cookies);
-  setValue("Rss/hosts_cookies", hosts_table);
+void Preferences::setHostNameCookies(const QString &host_name, const QList<QByteArray> &cookies)
+{
+    QMap<QString, QVariant> hosts_table = value("Rss/hosts_cookies").toMap();
+    QByteArray raw_cookies = "";
+    foreach (const QByteArray& cookie, cookies)
+        raw_cookies += cookie + ":";
+    if (raw_cookies.endsWith(":"))
+        raw_cookies.chop(1);
+    hosts_table.insert(host_name, raw_cookies);
+    setValue("Rss/hosts_cookies", hosts_table);
 }
