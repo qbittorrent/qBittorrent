@@ -148,6 +148,7 @@ void Preferences::save() {
   }
 
   dirty = false;
+  locker.unlock();
 
 #ifndef Q_OS_MAC
   settings->sync(); // Important to get error status
