@@ -154,6 +154,13 @@ QBtSession::QBtSession()
   appendLabelToSavePath = pref->appendTorrentLabel();
   appendqBExtension = pref->useIncompleteFilesExtension();
   connect(m_scanFolders, SIGNAL(torrentsAdded(QStringList&)), SLOT(addTorrentsFromScanFolder(QStringList&)));
+  // Use a random port if that's what the user want
+  if (pref->useRandomPort()) {
+    const unsigned short random = rand() % USHRT_MAX + 1025;
+    setListeningPort(random);
+    // Save it so that configureSession() doesn't change it
+    pref->setSessionPort(random);
+  }
   // Apply user settings to Bittorrent session
   configureSession();
   connect(pref, SIGNAL(changed()), SLOT(configureSession()));
@@ -309,10 +316,6 @@ void QBtSession::setQueueingEnabled(bool enable) {
 void QBtSession::configureSession() {
   qDebug("Configuring session");
   Preferences* const pref = Preferences::instance();
-  if (pref->useRandomPort()) {
-    pref->setSessionPort(rand() % USHRT_MAX + 1025);
-  }
-
   const unsigned short old_listenPort = getListenPort();
   const unsigned short new_listenPort = pref->getSessionPort();
   if (old_listenPort != new_listenPort) {
