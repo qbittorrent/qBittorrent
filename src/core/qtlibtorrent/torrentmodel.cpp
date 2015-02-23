@@ -542,8 +542,10 @@ TorrentStatusReport TorrentModel::getTorrentStatusReport() const
       break;
     case TorrentModelItem::STATE_DOWNLOADING_META:
       ++report.nb_downloading;
+      ++report.nb_inactive;
       break;
     case TorrentModelItem::STATE_PAUSED_DL:
+    case TorrentModelItem::STATE_PAUSED_MISSING:
       ++report.nb_paused;
     case TorrentModelItem::STATE_STALLED_DL:
     case TorrentModelItem::STATE_CHECKING_DL:
@@ -557,7 +559,6 @@ TorrentStatusReport TorrentModel::getTorrentStatusReport() const
       ++report.nb_seeding;
       break;
     case TorrentModelItem::STATE_PAUSED_UP:
-    case TorrentModelItem::STATE_PAUSED_MISSING:
       ++report.nb_paused;
     case TorrentModelItem::STATE_STALLED_UP:
     case TorrentModelItem::STATE_CHECKING_UP:
