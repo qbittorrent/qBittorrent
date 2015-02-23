@@ -309,9 +309,6 @@ void QBtSession::setQueueingEnabled(bool enable) {
 void QBtSession::configureSession() {
   qDebug("Configuring session");
   Preferences* const pref = Preferences::instance();
-  if (pref->useRandomPort()) {
-    pref->setSessionPort(rand() % USHRT_MAX + 1025);
-  }
 
   const unsigned short old_listenPort = getListenPort();
   const unsigned short new_listenPort = pref->getSessionPort();

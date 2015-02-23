@@ -56,7 +56,7 @@
 
 Preferences* Preferences::m_instance = 0;
 
-Preferences::Preferences() : dirty(false), lock(QReadWriteLock::Recursive) {
+Preferences::Preferences() : m_randomPort(rand() % 64512 + 1024), dirty(false), lock(QReadWriteLock::Recursive) {
   QIniSettings *settings = new QIniSettings;
 #ifndef Q_OS_MAC
   QIniSettings *settings_new = new QIniSettings("qBittorrent", "qBittorrent_new");
@@ -537,6 +537,9 @@ void Preferences::setActionOnDblClOnTorrentFn(int act) {
 
 // Connection options
 int Preferences::getSessionPort() const {
+  QReadLocker locker(&lock);
+  if (useRandomPort())
+    return m_randomPort;
   return value("Preferences/Connection/PortRangeMin", 6881).toInt();
 }
 

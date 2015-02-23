@@ -63,6 +63,7 @@ private:
   explicit Preferences();
   static Preferences* m_instance;
   QHash<QString, QVariant> m_data;
+  int m_randomPort;
   bool dirty;
   QTimer timer;
   mutable QReadWriteLock lock;
