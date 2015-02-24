@@ -3,5 +3,5 @@ mininova: 1.51
 piratebay: 2.10
 extratorrent: 1.2
 kickasstorrents: 1.26
-btdigg: 1.23
+btdigg: 1.24
 legittorrents: 1.02
