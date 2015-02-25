@@ -162,7 +162,7 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tabOptionPage1">
+      <widget class="QWidget" name="tabOptionsBehaviour">
        <layout class="QVBoxLayout" name="verticalLayout_10">
         <item>
          <widget class="QScrollArea" name="scrollArea">
@@ -180,8 +180,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>458</width>
-             <height>587</height>
+             <width>475</width>
+             <height>668</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -507,7 +507,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabOptionPage2">
+      <widget class="QWidget" name="tabOptionsDownloads">
        <layout class="QVBoxLayout" name="verticalLayout_13">
         <item>
          <widget class="QScrollArea" name="scrollArea_2">
@@ -519,8 +519,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>458</width>
-             <height>905</height>
+             <width>475</width>
+             <height>1005</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1025,7 +1025,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabOptionPage3">
+      <widget class="QWidget" name="tabOptionsConnection">
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
          <widget class="QScrollArea" name="scrollArea_3">
@@ -1037,8 +1037,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>357</width>
-             <height>498</height>
+             <width>475</width>
+             <height>612</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1526,7 +1526,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_2">
+      <widget class="QWidget" name="tabOptionsSpeed">
        <layout class="QVBoxLayout" name="verticalLayout_34">
         <item>
          <widget class="QScrollArea" name="scrollArea_9">
@@ -1538,8 +1538,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>275</width>
-             <height>396</height>
+             <width>475</width>
+             <height>440</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1816,18 +1816,18 @@
                       <property name="wrapping">
                        <bool>true</bool>
                       </property>
+                      <property name="displayFormat">
+                       <string notr="true">hh:mm</string>
+                      </property>
+                      <property name="calendarPopup">
+                       <bool>false</bool>
+                      </property>
                       <property name="time">
                        <time>
                         <hour>8</hour>
                         <minute>0</minute>
                         <second>0</second>
                        </time>
-                      </property>
-                      <property name="displayFormat">
-                       <string notr="true">hh:mm</string>
-                      </property>
-                      <property name="calendarPopup">
-                       <bool>false</bool>
                       </property>
                      </widget>
                     </item>
@@ -1846,15 +1846,15 @@
                       <property name="wrapping">
                        <bool>true</bool>
                       </property>
+                      <property name="displayFormat">
+                       <string notr="true">hh:mm</string>
+                      </property>
                       <property name="time">
                        <time>
                         <hour>20</hour>
                         <minute>0</minute>
                         <second>0</second>
                        </time>
-                      </property>
-                      <property name="displayFormat">
-                       <string notr="true">hh:mm</string>
                       </property>
                      </widget>
                     </item>
@@ -1944,7 +1944,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabOptionPage4">
+      <widget class="QWidget" name="tabOptionsBitTorrent">
        <layout class="QVBoxLayout" name="verticalLayout_15">
         <item>
          <widget class="QScrollArea" name="scrollArea_4">
@@ -1956,8 +1956,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>418</width>
-             <height>442</height>
+             <width>515</width>
+             <height>422</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2298,7 +2298,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabOptionPage7">
+      <widget class="QWidget" name="tabOptionsWebUI">
        <layout class="QVBoxLayout">
         <item>
          <widget class="QScrollArea" name="scrollArea_7">
@@ -2310,8 +2310,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>330</width>
-             <height>480</height>
+             <width>475</width>
+             <height>535</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2675,7 +2675,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_3">
+      <widget class="QWidget" name="tabOptionsAdvanced">
        <layout class="QVBoxLayout" name="verticalLayout_35">
         <item>
          <widget class="QScrollArea" name="scrollArea_advanced">
@@ -2687,8 +2687,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>491</width>
+             <height>366</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
