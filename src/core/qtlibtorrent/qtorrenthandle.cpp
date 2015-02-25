@@ -182,7 +182,7 @@ bool QTorrentHandle::first_last_piece_first() const
     QPair<int, int> extremities = get_file_extremity_pieces(*t, index);
 
     return (torrent_handle::piece_priority(extremities.first) == 7)
-           && (torrent_handle::piece_priority(extremities.second) == 7);
+            && (torrent_handle::piece_priority(extremities.second) == 7);
 }
 
 QString QTorrentHandle::save_path() const
@@ -512,7 +512,7 @@ void QTorrentHandle::pause() const
     torrent_handle::auto_managed(false);
     torrent_handle::pause();
     if (!TorrentPersistentData::instance()->getHasMissingFiles(this->hash()))
-      torrent_handle::save_resume_data();
+        torrent_handle::save_resume_data();
 }
 
 void QTorrentHandle::resume() const
@@ -770,13 +770,13 @@ bool QTorrentHandle::is_queued(const libtorrent::torrent_status &status)
 bool QTorrentHandle::is_seed(const libtorrent::torrent_status &status)
 {
     return status.state == torrent_status::finished
-           || status.state == torrent_status::seeding;
+            || status.state == torrent_status::seeding;
 }
 
 bool QTorrentHandle::is_checking(const libtorrent::torrent_status &status)
 {
     return status.state == torrent_status::checking_files
-           || status.state == torrent_status::checking_resume_data;
+            || status.state == torrent_status::checking_resume_data;
 }
 
 bool QTorrentHandle::has_error(const libtorrent::torrent_status &status)

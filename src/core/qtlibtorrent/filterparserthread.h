@@ -36,8 +36,8 @@
 #include <QStringList>
 
 namespace libtorrent {
-  class session;
-  struct ip_filter;
+class session;
+struct ip_filter;
 }
 
 using namespace std;
@@ -52,31 +52,31 @@ using namespace std;
 // End of P2B stuff
 
 class FilterParserThread : public QThread  {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  FilterParserThread(QObject* parent, libtorrent::session *s);
-  ~FilterParserThread();
+    FilterParserThread(QObject* parent, libtorrent::session *s);
+    ~FilterParserThread();
 
-  int parseDATFilterFile(QString filePath, libtorrent::ip_filter& filter);
-  int parseP2PFilterFile(QString filePath, libtorrent::ip_filter& filter);
-  int getlineInStream(QDataStream& stream, string& name, char delim);
-  int parseP2BFilterFile(QString filePath, libtorrent::ip_filter& filter);
-  void processFilterFile(QString _filePath);
-  static void processFilterList(libtorrent::session *s, const QStringList& IPs);
+    int parseDATFilterFile(QString filePath, libtorrent::ip_filter& filter);
+    int parseP2PFilterFile(QString filePath, libtorrent::ip_filter& filter);
+    int getlineInStream(QDataStream& stream, string& name, char delim);
+    int parseP2BFilterFile(QString filePath, libtorrent::ip_filter& filter);
+    void processFilterFile(QString _filePath);
+    static void processFilterList(libtorrent::session *s, const QStringList& IPs);
 
 signals:
-  void IPFilterParsed(int ruleCount);
-  void IPFilterError();
+    void IPFilterParsed(int ruleCount);
+    void IPFilterError();
 
 protected:
-  QString cleanupIPAddress(QString _ip);
-  void run();
+    QString cleanupIPAddress(QString _ip);
+    void run();
 
 private:
-  libtorrent::session *s;
-  bool abort;
-  QString filePath;
+    libtorrent::session *s;
+    bool abort;
+    QString filePath;
 };
 
 #endif

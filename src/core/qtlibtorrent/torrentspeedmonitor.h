@@ -42,21 +42,21 @@ class SpeedSample;
 
 class TorrentSpeedMonitor : public QObject
 {
-  Q_OBJECT
-  Q_DISABLE_COPY(TorrentSpeedMonitor)
+    Q_OBJECT
+    Q_DISABLE_COPY(TorrentSpeedMonitor)
 
 public:
-  explicit TorrentSpeedMonitor(QBtSession* session);
-  ~TorrentSpeedMonitor();
-  qlonglong getETA(const QString &hash, const libtorrent::torrent_status &status) const;
+    explicit TorrentSpeedMonitor(QBtSession* session);
+    ~TorrentSpeedMonitor();
+    qlonglong getETA(const QString &hash, const libtorrent::torrent_status &status) const;
 
 private slots:
-  void statsReceived(const libtorrent::stats_alert& stats);
-  void removeSamples(const QTorrentHandle& h);
+    void statsReceived(const libtorrent::stats_alert& stats);
+    void removeSamples(const QTorrentHandle& h);
 
 private:
-  QHash<QString, SpeedSample> m_samples;
-  QBtSession *m_session;
+    QHash<QString, SpeedSample> m_samples;
+    QBtSession *m_session;
 };
 
 #endif // TORRENTSPEEDMONITOR_H

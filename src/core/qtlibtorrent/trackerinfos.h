@@ -35,25 +35,25 @@
 
 class TrackerInfos {
 public:
-  QString name_or_url;
-  QString last_message;
-  unsigned long num_peers;
+    QString name_or_url;
+    QString last_message;
+    unsigned long num_peers;
 
-  //TrackerInfos() {}
-  TrackerInfos(const TrackerInfos &b)
-    : name_or_url(b.name_or_url)
-    , last_message(b.last_message)
-    , num_peers(b.num_peers)
-  {
-    Q_ASSERT(!name_or_url.isEmpty());
-  }
+    //TrackerInfos() {}
+    TrackerInfos(const TrackerInfos &b)
+        : name_or_url(b.name_or_url)
+        , last_message(b.last_message)
+        , num_peers(b.num_peers)
+    {
+        Q_ASSERT(!name_or_url.isEmpty());
+    }
 
-  TrackerInfos(QString name_or_url)
-    : name_or_url(name_or_url)
-    , last_message("")
-    , num_peers(0)
-  {
-  }
+    TrackerInfos(QString name_or_url)
+        : name_or_url(name_or_url)
+        , last_message("")
+        , num_peers(0)
+    {
+    }
 };
 
 #endif // TRACKERINFOS_H

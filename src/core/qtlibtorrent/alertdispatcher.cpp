@@ -37,99 +37,99 @@
 const size_t DEFAULT_ALERTS_CAPACITY = 32;
 
 struct QAlertDispatcher::Tag {
-  Tag(QAlertDispatcher* dispatcher);
+    Tag(QAlertDispatcher* dispatcher);
 
-  QAlertDispatcher* dispatcher;
-  QMutex alerts_mutex;
+    QAlertDispatcher* dispatcher;
+    QMutex alerts_mutex;
 };
 
 QAlertDispatcher::Tag::Tag(QAlertDispatcher* dispatcher)
-  : dispatcher(dispatcher)
+    : dispatcher(dispatcher)
 {}
 
 QAlertDispatcher::QAlertDispatcher(libtorrent::session *session, QObject* parent)
-  : QObject(parent)
-  , m_session(session)
-  , current_tag(new Tag(this))
-  , event_posted(false)
+    : QObject(parent)
+    , m_session(session)
+    , current_tag(new Tag(this))
+    , event_posted(false)
 {
-  alerts.reserve(DEFAULT_ALERTS_CAPACITY);
-  m_session->set_alert_dispatch(boost::bind(&QAlertDispatcher::dispatch, current_tag, _1));
+    alerts.reserve(DEFAULT_ALERTS_CAPACITY);
+    m_session->set_alert_dispatch(boost::bind(&QAlertDispatcher::dispatch, current_tag, _1));
 }
 
 QAlertDispatcher::~QAlertDispatcher() {
-  // When QAlertDispatcher is destoyed, libtorrent still can call
-  // QAlertDispatcher::dispatch a few times after destruction. This is
-  // handled by passing a "tag". A tag is a object that references QAlertDispatch.
-  // Tag could be invalidated. So on destruction QAlertDispatcher invalidates a tag
-  // and then unsubscribes from alerts. When QAlertDispatcher::dispatch is called
-  // with invalid tag it simply discard an alert.
+    // When QAlertDispatcher is destoyed, libtorrent still can call
+    // QAlertDispatcher::dispatch a few times after destruction. This is
+    // handled by passing a "tag". A tag is a object that references QAlertDispatch.
+    // Tag could be invalidated. So on destruction QAlertDispatcher invalidates a tag
+    // and then unsubscribes from alerts. When QAlertDispatcher::dispatch is called
+    // with invalid tag it simply discard an alert.
 
-  {
-    QMutexLocker lock(&current_tag->alerts_mutex);
-    current_tag->dispatcher = 0;
-    current_tag.clear();
-  }
+    {
+        QMutexLocker lock(&current_tag->alerts_mutex);
+        current_tag->dispatcher = 0;
+        current_tag.clear();
+    }
 
-  typedef boost::function<void (std::auto_ptr<libtorrent::alert>)> dispatch_function_t;
-  m_session->set_alert_dispatch(dispatch_function_t());
+    typedef boost::function<void (std::auto_ptr<libtorrent::alert>)> dispatch_function_t;
+    m_session->set_alert_dispatch(dispatch_function_t());
 }
 
 void QAlertDispatcher::getPendingAlertsNoWait(std::vector<libtorrent::alert*>& out) {
-  Q_ASSERT(out.empty());
-  out.reserve(DEFAULT_ALERTS_CAPACITY);
+    Q_ASSERT(out.empty());
+    out.reserve(DEFAULT_ALERTS_CAPACITY);
 
-  QMutexLocker lock(&current_tag->alerts_mutex);
-  alerts.swap(out);
-  event_posted = false;
+    QMutexLocker lock(&current_tag->alerts_mutex);
+    alerts.swap(out);
+    event_posted = false;
 }
 
 void QAlertDispatcher::getPendingAlerts(std::vector<libtorrent::alert*>& out, unsigned long time) {
-  Q_ASSERT(out.empty());
-  out.reserve(DEFAULT_ALERTS_CAPACITY);
+    Q_ASSERT(out.empty());
+    out.reserve(DEFAULT_ALERTS_CAPACITY);
 
-  QMutexLocker lock(&current_tag->alerts_mutex);
+    QMutexLocker lock(&current_tag->alerts_mutex);
 
-  while (alerts.empty())
-    alerts_condvar.wait(&current_tag->alerts_mutex, time);
+    while (alerts.empty())
+        alerts_condvar.wait(&current_tag->alerts_mutex, time);
 
-  alerts.swap(out);
-  event_posted = false;
+    alerts.swap(out);
+    event_posted = false;
 }
 
 void QAlertDispatcher::dispatch(QSharedPointer<Tag> tag,
                                 std::auto_ptr<libtorrent::alert> alert_ptr) {
-  QMutexLocker lock(&(tag->alerts_mutex));
-  QAlertDispatcher* that = tag->dispatcher;
-  if (!that)
-    return;
+    QMutexLocker lock(&(tag->alerts_mutex));
+    QAlertDispatcher* that = tag->dispatcher;
+    if (!that)
+        return;
 
-  bool was_empty = that->alerts.empty();
+    bool was_empty = that->alerts.empty();
 
-  that->alerts.push_back(alert_ptr.get());
-  alert_ptr.release();
+    that->alerts.push_back(alert_ptr.get());
+    alert_ptr.release();
 
-  if (was_empty)
-    that->alerts_condvar.wakeAll();
+    if (was_empty)
+        that->alerts_condvar.wakeAll();
 
-  that->enqueueToMainThread();
+    that->enqueueToMainThread();
 
-  Q_ASSERT(that->current_tag == tag);
+    Q_ASSERT(that->current_tag == tag);
 }
 
 void QAlertDispatcher::enqueueToMainThread() {
-  if (!event_posted) {
-    event_posted = true;
-    QMetaObject::invokeMethod(this, "deliverSignal", Qt::QueuedConnection);
-  }
+    if (!event_posted) {
+        event_posted = true;
+        QMetaObject::invokeMethod(this, "deliverSignal", Qt::QueuedConnection);
+    }
 }
 
 void QAlertDispatcher::deliverSignal() {
-  emit alertsReceived();
+    emit alertsReceived();
 
-  QMutexLocker lock(&current_tag->alerts_mutex);
-  event_posted = false;
+    QMutexLocker lock(&current_tag->alerts_mutex);
+    event_posted = false;
 
-  if (!alerts.empty())
-    enqueueToMainThread();
+    if (!alerts.empty())
+        enqueueToMainThread();
 }
