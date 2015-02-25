@@ -38,88 +38,88 @@ using namespace libtorrent;
 
 namespace {
 
-  template<class T> struct Sample {
+template<class T> struct Sample {
     Sample()
-      : download()
-      , upload()
+        : download()
+        , upload()
     {}
 
     Sample(T download, T upload)
-      : download(download)
-      , upload(upload)
+        : download(download)
+        , upload(upload)
     {}
 
     template <typename U>
     explicit Sample(Sample<U> other)
-      : download(static_cast<U>(other.download))
-      , upload(static_cast<U>(other.upload))
+        : download(static_cast<U>(other.download))
+        , upload(static_cast<U>(other.upload))
     {}
 
     T download;
     T upload;
-  };
+};
 
-  template <typename T>
-  Sample<T>& operator+=(Sample<T>& lhs, Sample<T> const& rhs) {
+template <typename T>
+Sample<T>& operator+=(Sample<T>& lhs, Sample<T> const& rhs) {
     lhs.download += rhs.download;
     lhs.upload   += rhs.upload;
     return lhs;
-  }
+}
 
-  template <typename T>
-  Sample<T>& operator-=(Sample<T>& lhs, Sample<T> const& rhs) {
+template <typename T>
+Sample<T>& operator-=(Sample<T>& lhs, Sample<T> const& rhs) {
     lhs.download -= rhs.download;
     lhs.upload   -= rhs.upload;
     return lhs;
-  }
+}
 
-  template <typename T>
-  Sample<T> operator+(Sample<T> const& lhs, Sample<T> const& rhs) {
+template <typename T>
+Sample<T> operator+(Sample<T> const& lhs, Sample<T> const& rhs) {
     return Sample<T>(lhs.download + rhs.download, lhs.upload + rhs.upload);
-  }
+}
 
-  template <typename T>
-  Sample<T> operator-(Sample<T> const& lhs, Sample<T> const& rhs) {
+template <typename T>
+Sample<T> operator-(Sample<T> const& lhs, Sample<T> const& rhs) {
     return Sample<T>(lhs.download - rhs.download, lhs.upload - rhs.upload);
-  }
+}
 
-  template <typename T>
-  Sample<T> operator*(Sample<T> const& lhs, T rhs) {
+template <typename T>
+Sample<T> operator*(Sample<T> const& lhs, T rhs) {
     return Sample<T>(lhs.download * rhs, lhs.upload * rhs);
-  }
+}
 
-  template <typename T>
-  Sample<T> operator*(T lhs,Sample<T> const& rhs) {
+template <typename T>
+Sample<T> operator*(T lhs,Sample<T> const& rhs) {
     return Sample<T>(lhs * rhs.download, lhs * rhs.upload);
-  }
+}
 
-  template <typename T>
-  Sample<T> operator/(Sample<T> const& lhs, T rhs) {
+template <typename T>
+Sample<T> operator/(Sample<T> const& lhs, T rhs) {
     return Sample<T>(lhs.download / rhs, lhs.upload / rhs);
-  }
+}
 }
 
 class SpeedSample {
 
 public:
-  SpeedSample() {}
-  void addSample(Sample<int> const& item);
-  Sample<qreal> average() const;
+    SpeedSample() {}
+    void addSample(Sample<int> const& item);
+    Sample<qreal> average() const;
 
 private:
-  static const int max_samples = 30;
+    static const int max_samples = 30;
 
 private:
-  QList<Sample<int> > m_speedSamples;
-  Sample<long long> m_sum;
+    QList<Sample<int> > m_speedSamples;
+    Sample<long long> m_sum;
 };
 
 TorrentSpeedMonitor::TorrentSpeedMonitor(QBtSession* session)
-  : m_session(session)
+    : m_session(session)
 {
-  connect(m_session, SIGNAL(torrentAboutToBeRemoved(QTorrentHandle)), SLOT(removeSamples(QTorrentHandle)));
-  connect(m_session, SIGNAL(pausedTorrent(QTorrentHandle)), SLOT(removeSamples(QTorrentHandle)));
-  connect(m_session, SIGNAL(statsReceived(libtorrent::stats_alert)), SLOT(statsReceived(libtorrent::stats_alert)));
+    connect(m_session, SIGNAL(torrentAboutToBeRemoved(QTorrentHandle)), SLOT(removeSamples(QTorrentHandle)));
+    connect(m_session, SIGNAL(pausedTorrent(QTorrentHandle)), SLOT(removeSamples(QTorrentHandle)));
+    connect(m_session, SIGNAL(statsReceived(libtorrent::stats_alert)), SLOT(statsReceived(libtorrent::stats_alert)));
 }
 
 TorrentSpeedMonitor::~TorrentSpeedMonitor()
@@ -127,69 +127,69 @@ TorrentSpeedMonitor::~TorrentSpeedMonitor()
 
 void SpeedSample::addSample(Sample<int> const& item)
 {
-  m_speedSamples.push_back(item);
-  m_sum += Sample<long long>(item);
-  if (m_speedSamples.size() > max_samples) {
-    m_sum -= Sample<long long>(m_speedSamples.front());
-    m_speedSamples.pop_front();
-  }
+    m_speedSamples.push_back(item);
+    m_sum += Sample<long long>(item);
+    if (m_speedSamples.size() > max_samples) {
+        m_sum -= Sample<long long>(m_speedSamples.front());
+        m_speedSamples.pop_front();
+    }
 }
 
 Sample<qreal> SpeedSample::average() const
 {
-  if (m_speedSamples.empty())
-    return Sample<qreal>();
+    if (m_speedSamples.empty())
+        return Sample<qreal>();
 
-  return Sample<qreal>(m_sum) * (qreal(1.) / m_speedSamples.size());
+    return Sample<qreal>(m_sum) * (qreal(1.) / m_speedSamples.size());
 }
 
 void TorrentSpeedMonitor::removeSamples(const QTorrentHandle& h) {
-  try {
-    m_samples.remove(h.hash());
-  } catch(invalid_handle&) {}
+    try {
+        m_samples.remove(h.hash());
+    } catch(invalid_handle&) {}
 }
 
 qlonglong TorrentSpeedMonitor::getETA(const QString &hash, const libtorrent::torrent_status &status) const
 {
-  if (QTorrentHandle::is_paused(status))
-    return MAX_ETA;
+    if (QTorrentHandle::is_paused(status))
+        return MAX_ETA;
 
-  QHash<QString, SpeedSample>::const_iterator i = m_samples.find(hash);
-  if (i == m_samples.end())
-    return MAX_ETA;
+    QHash<QString, SpeedSample>::const_iterator i = m_samples.find(hash);
+    if (i == m_samples.end())
+        return MAX_ETA;
 
-  const Sample<qreal> speed_average = i->average();
+    const Sample<qreal> speed_average = i->average();
 
-  if (QTorrentHandle::is_seed(status)) {
-    if (!speed_average.upload)
-      return MAX_ETA;
+    if (QTorrentHandle::is_seed(status)) {
+        if (!speed_average.upload)
+            return MAX_ETA;
 
-    bool _unused;
-    qreal max_ratio = m_session->getMaxRatioPerTorrent(hash, &_unused);
-    if (max_ratio < 0)
-      return MAX_ETA;
+        bool _unused;
+        qreal max_ratio = m_session->getMaxRatioPerTorrent(hash, &_unused);
+        if (max_ratio < 0)
+            return MAX_ETA;
 
-    libtorrent::size_type realDL = status.all_time_download;
-    if (realDL <= 0)
-      realDL = status.total_wanted;
+        libtorrent::size_type realDL = status.all_time_download;
+        if (realDL <= 0)
+            realDL = status.total_wanted;
 
-    return (realDL * max_ratio - status.all_time_upload) / speed_average.upload;
-  }
+        return (realDL * max_ratio - status.all_time_upload) / speed_average.upload;
+    }
 
-  if (!speed_average.download)
-    return MAX_ETA;
+    if (!speed_average.download)
+        return MAX_ETA;
 
-  return (status.total_wanted - status.total_wanted_done) / speed_average.download;
+    return (status.total_wanted - status.total_wanted_done) / speed_average.download;
 }
 
 void TorrentSpeedMonitor::statsReceived(const stats_alert &stats)
 {
-  Q_ASSERT(stats.interval >= 1000);
+    Q_ASSERT(stats.interval >= 1000);
 
-  Sample<int> transferred(stats.transferred[stats_alert::download_payload],
-                          stats.transferred[stats_alert::upload_payload]);
+    Sample<int> transferred(stats.transferred[stats_alert::download_payload],
+            stats.transferred[stats_alert::upload_payload]);
 
-  Sample<int> normalized = Sample<int>(Sample<long long>(transferred) * 1000LL / static_cast<long long>(stats.interval));
+    Sample<int> normalized = Sample<int>(Sample<long long>(transferred) * 1000LL / static_cast<long long>(stats.interval));
 
-  m_samples[misc::toQString(stats.handle.info_hash())].addSample(normalized);
+    m_samples[misc::toQString(stats.handle.info_hash())].addSample(normalized);
 }

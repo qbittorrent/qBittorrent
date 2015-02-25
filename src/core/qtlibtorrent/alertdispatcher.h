@@ -41,40 +41,40 @@
 #include <memory>
 
 namespace libtorrent {
-  class session;
-  class alert;
+class session;
+class alert;
 }
 
 class QAlertDispatcher : public QObject {
-  Q_OBJECT
-  Q_DISABLE_COPY(QAlertDispatcher)
+    Q_OBJECT
+    Q_DISABLE_COPY(QAlertDispatcher)
 
-  struct Tag;
+    struct Tag;
 
 public:
-  QAlertDispatcher(libtorrent::session *session, QObject* parent);
-  ~QAlertDispatcher();
+    QAlertDispatcher(libtorrent::session *session, QObject* parent);
+    ~QAlertDispatcher();
 
-  void getPendingAlertsNoWait(std::vector<libtorrent::alert*>&);
-  void getPendingAlerts(std::vector<libtorrent::alert*>&, unsigned long time = ULONG_MAX);
+    void getPendingAlertsNoWait(std::vector<libtorrent::alert*>&);
+    void getPendingAlerts(std::vector<libtorrent::alert*>&, unsigned long time = ULONG_MAX);
 
 signals:
-  void alertsReceived();
+    void alertsReceived();
 
 private:
-  static void dispatch(QSharedPointer<Tag>,
-                       std::auto_ptr<libtorrent::alert>);
-  void enqueueToMainThread();
+    static void dispatch(QSharedPointer<Tag>,
+                         std::auto_ptr<libtorrent::alert>);
+    void enqueueToMainThread();
 
 private slots:
-  void deliverSignal();
+    void deliverSignal();
 
 private:
-  libtorrent::session *m_session;
-  QWaitCondition alerts_condvar;
-  std::vector<libtorrent::alert*> alerts;
-  QSharedPointer<Tag> current_tag;
-  bool event_posted;
+    libtorrent::session *m_session;
+    QWaitCondition alerts_condvar;
+    std::vector<libtorrent::alert*> alerts;
+    QSharedPointer<Tag> current_tag;
+    bool event_posted;
 };
 
 #endif // ALERTDISPATCHER_H

@@ -36,29 +36,29 @@
 #include "misc.h"
 
 class ShutdownConfirmDlg : public QMessageBox {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  ShutdownConfirmDlg(const shutDownAction &action);
-  bool shutdown() const;
+    ShutdownConfirmDlg(const shutDownAction &action);
+    bool shutdown() const;
 
-  static bool askForConfirmation(const shutDownAction &action);
+    static bool askForConfirmation(const shutDownAction &action);
 
 protected:
-  void showEvent(QShowEvent *event);
+    void showEvent(QShowEvent *event);
 
 private slots:
-  void updateSeconds();
+    void updateSeconds();
 
 private:
-  // Methods
-  void updateText();
+    // Methods
+    void updateText();
 
-  // Vars
-  QAbstractButton *exit_now;
-  QTimer timer;
-  int timeout;
-  shutDownAction action0;
+    // Vars
+    QAbstractButton *exit_now;
+    QTimer timer;
+    int timeout;
+    shutDownAction action0;
 };
 
 #endif // SHUTDOWNCONFIRM_H
