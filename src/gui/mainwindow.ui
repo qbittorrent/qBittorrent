@@ -196,7 +196,7 @@
   </action>
   <action name="actionWebsite">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../icons.qrc">
      <normaloff>:/icons/skin/qbittorrent32.png</normaloff>:/icons/skin/qbittorrent32.png</iconset>
    </property>
    <property name="text">
@@ -443,7 +443,7 @@
   </action>
  </widget>
  <resources>
-  <include location="icons.qrc"/>
+  <include location="../icons.qrc"/>
  </resources>
  <connections/>
 </ui>
