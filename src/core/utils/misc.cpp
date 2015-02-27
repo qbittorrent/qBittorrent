@@ -269,7 +269,7 @@ int Utils::Misc::pythonVersion()
     return version;
 }
 
-QString misc::pythonExecutable()
+QString Utils::Misc::pythonExecutable()
 {
 #if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
     /*
