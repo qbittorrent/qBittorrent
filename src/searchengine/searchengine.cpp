@@ -232,7 +232,7 @@ void SearchEngine::on_search_button_clicked() {
     // Changing the text of the current label
     currentSearchTab->getCurrentLabel()->setText(tr("Results")+" <i>(0)</i>:");
     // Launch search
-    searchProcess->start("python", params, QIODevice::ReadOnly);
+    searchProcess->start(Utils::Misc::pythonExecutable(), params, QIODevice::ReadOnly);
     searchTimeout->start(180000); // 3min
 }
 
@@ -272,7 +272,7 @@ void SearchEngine::downloadTorrent(QString engine_url, QString torrent_url) {
         params << engine_url;
         params << torrent_url;
         // Launch search
-        downloadProcess->start("python", params, QIODevice::ReadOnly);
+        downloadProcess->start(Utils::Misc::pythonExecutable(), params, QIODevice::ReadOnly);
     }
 }
 

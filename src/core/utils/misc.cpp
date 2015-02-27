@@ -232,6 +232,26 @@ int Utils::Misc::pythonVersion()
     static int version = -1;
     if (version < 0) {
         QProcess python_proc;
+#if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
+        /*
+         * On Unix-Like Systems python2 and python3 should always exist
+         * http://legacy.python.org/dev/peps/pep-0394/
+         */
+        python_proc.start("python3", QStringList() << "--version", QIODevice::ReadOnly);
+        if (python_proc.waitForFinished()) {
+            if (python_proc.exitCode() == 0) {
+                version = 3;
+                return 3;
+            }
+        }
+        python_proc.start("python2", QStringList() << "--version", QIODevice::ReadOnly);
+        if (python_proc.waitForFinished()) {
+            if (python_proc.exitCode() == 0) {
+                version = 2;
+                return 2;
+            }
+        }
+#else
         python_proc.start("python", QStringList() << "--version", QIODevice::ReadOnly);
         if (!python_proc.waitForFinished()) return -1;
         if (python_proc.exitCode() < 0) return -1;
@@ -244,8 +264,24 @@ int Utils::Misc::pythonVersion()
             version = 3;
         else
             version = 2;
+#endif
     }
     return version;
+}
+
+QString misc::pythonExecutable()
+{
+#if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
+    /*
+     * On Unix-Like Systems python2 and python3 should always exist
+     * http://legacy.python.org/dev/peps/pep-0394/
+     */
+    if (pythonVersion() == 3)
+        return "python3";
+    if (pythonVersion() == 2)
+        return "python2";
+#endif
+    return "python";
 }
 
 // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
