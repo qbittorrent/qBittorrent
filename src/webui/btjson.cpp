@@ -255,6 +255,7 @@ private:
  *   - "seq_dl": Torrent sequential download state
  *   - "f_l_piece_prio": Torrent first last piece priority state
  *   - "force_start": Torrent force start state
+ *   - "label": Torrent label
  */
 QByteArray btjson::getTorrents(QString filter, QString label,
                                QString sortedColumn, bool reverse, int limit, int offset)

@@ -110,6 +110,7 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(command, topPrio);
     ADD_ACTION(command, bottomPrio);
     ADD_ACTION(command, recheck);
+    ADD_ACTION(command, setLabel);
     ADD_ACTION(version, api);
     ADD_ACTION(version, api_min);
     ADD_ACTION(version, qbittorrent);
@@ -662,6 +663,24 @@ void WebApplication::action_command_recheck()
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(request().posts["hash"]);
     if (torrent)
         torrent->forceRecheck();
+}
+
+void WebApplication::action_command_setLabel()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("hash" << "label_obj");
+
+    QString hash = request().posts["hash"];
+    QString label_obj = request().posts["label_obj"];
+
+    const QVariantMap m = json::fromJson(label_obj).toMap();
+    if( m.contains("value") ) {
+        QString label = m["value"].toString();
+        if (!hash.isEmpty()) {
+            QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+            QBtSession::instance()->setLabel(h, label);
+        }
+    }
 }
 
 bool WebApplication::isPublicScope()
