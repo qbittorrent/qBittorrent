@@ -1368,8 +1368,8 @@ Optional Features:
   --disable-silent-rules  verbose build output (undo: "make V=0")
   --enable-debug          Enable debug build
   --disable-gui           Disable the GUI for headless running. Disables
-  --disable-webui         Disable the WebUI.
                           QtDBus and the GeoIP Database.
+  --disable-webui         Disable the WebUI.
   --disable-qt-dbus       Disable use of QtDBus (GUI only)
 
 Optional Packages:
@@ -3258,7 +3258,7 @@ IFS=$ac_save_IFS
 case $host_os in *\ *) host_os=`echo "$host_os" | sed 's/ /-/g'`;; esac
 
 
-am__api_version='1.15'
+am__api_version='1.14'
 
 # Find a good install program.  We prefer a C program (faster),
 # so one script is as good as another.  But avoid the broken or
@@ -3447,7 +3447,7 @@ else
 $as_echo "$as_me: WARNING: 'missing' script is too old or missing" >&2;}
 fi
 
-if test x"${install_sh+set}" != xset; then
+if test x"${install_sh}" != xset; then
   case $am_aux_dir in
   *\ * | *\	*)
     install_sh="\${SHELL} '$am_aux_dir/install-sh'" ;;
@@ -3838,8 +3838,8 @@ MAKEINFO=${MAKEINFO-"${am_missing_run}makeinfo"}
 # <http://lists.gnu.org/archive/html/automake/2012-07/msg00014.html>
 mkdir_p='$(MKDIR_P)'
 
-# We need awk for the "check" target (and possibly the TAP driver).  The
-# system "awk" is bad on some platforms.
+# We need awk for the "check" target.  The system "awk" is bad on
+# some platforms.
 # Always define AMTAR for backward compatibility.  Yes, it's still used
 # in the wild :-(  We should find a proper way to deprecate it ...
 AMTAR='$${TAR-tar}'
@@ -4639,7 +4639,7 @@ case "x$enable_qt_dbus" in #(
   "xyes") :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
-               if test "x$with_qt5" == "xyes"; then :
+               if test "x$with_qt5" = "xyes"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5DBus >= 5.2.0" >&5
 $as_echo_n "checking for Qt5DBus >= 5.2.0... " >&6; }
        if test -n "$PKG_CONFIG" && \
