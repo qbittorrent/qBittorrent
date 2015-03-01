@@ -89,7 +89,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../icons.qrc">:/icons/skin/mascot.png</pixmap>
+          <pixmap resource="icons.qrc">:/icons/skin/mascot.png</pixmap>
          </property>
         </widget>
        </item>
@@ -517,7 +517,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="../icons.qrc"/>
+  <include location="icons.qrc"/>
  </resources>
  <connections/>
 </ui>
