@@ -118,8 +118,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui_locked = pref->isUILocked();
     setWindowTitle(QString("qBittorrent %1").arg(QString::fromUtf8(VERSION)));
     displaySpeedInTitle = pref->speedInTitleBar();
-    // Clean exit on log out
-    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(shutdownCleanUp()), Qt::DirectConnection);
     // Setting icons
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (Preferences::instance()->useSystemIconTheme())
