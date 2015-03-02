@@ -190,6 +190,12 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
         return false;
     }
 
+    QFileInfo fileinfo(m_filePath);
+    if (!fileinfo.isReadable()) {
+        MessageBoxRaised::critical(0, tr("I/O Error"), tr("The torrent file cannot be read from the disk. Probably you don't have enough permissions."));
+        return false;
+    }
+
     m_hasMetadata = true;
 
     try {
