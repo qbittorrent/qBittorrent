@@ -24,6 +24,10 @@ nogui {
         DEFINES += QBT_STATIC_QT
         QTPLUGIN += qico
     }
+    CONFIG(kf5) {
+        QT += KConfigWidgets
+        DEFINES += ENABLE_KF5
+    }
     TARGET = qbittorrent
 }
 nowebui: DEFINES += DISABLE_WEBUI

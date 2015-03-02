@@ -719,6 +719,7 @@ enable_debug
 enable_gui
 enable_webui
 enable_qt_dbus
+with_kf5
 with_boost
 with_boost_libdir
 with_boost_system
@@ -1383,6 +1384,7 @@ Optional Packages:
   --with-qtsingleapplication=[system|shipped]
                           Use the shipped qtsingleapplication library or the
                           system one (default=shipped)
+  --with-kf5              Compile using KDE Frameworks 5 (default=no)
   --with-boost[=ARG]      use Boost library from a standard location
                           (ARG=yes), from the specified location (ARG=<path>),
                           or disable it (ARG=no) [ARG=yes]
@@ -3258,7 +3260,7 @@ IFS=$ac_save_IFS
 case $host_os in *\ *) host_os=`echo "$host_os" | sed 's/ /-/g'`;; esac
 
 
-am__api_version='1.14'
+am__api_version='1.15'
 
 # Find a good install program.  We prefer a C program (faster),
 # so one script is as good as another.  But avoid the broken or
@@ -3447,7 +3449,7 @@ else
 $as_echo "$as_me: WARNING: 'missing' script is too old or missing" >&2;}
 fi
 
-if test x"${install_sh}" != xset; then
+if test x"${install_sh+set}" != xset; then
   case $am_aux_dir in
   *\ * | *\	*)
     install_sh="\${SHELL} '$am_aux_dir/install-sh'" ;;
@@ -3838,8 +3840,8 @@ MAKEINFO=${MAKEINFO-"${am_missing_run}makeinfo"}
 # <http://lists.gnu.org/archive/html/automake/2012-07/msg00014.html>
 mkdir_p='$(MKDIR_P)'
 
-# We need awk for the "check" target.  The system "awk" is bad on
-# some platforms.
+# We need awk for the "check" target (and possibly the TAP driver).  The
+# system "awk" is bad on some platforms.
 # Always define AMTAR for backward compatibility.  Yes, it's still used
 # in the wild :-(  We should find a proper way to deprecate it ...
 AMTAR='$${TAR-tar}'
@@ -4214,6 +4216,15 @@ if test "${enable_qt_dbus+set}" = set; then :
   enableval=$enable_qt_dbus;
 else
   enable_qt_dbus=yes
+fi
+
+
+
+# Check whether --with-kf5 was given.
+if test "${with_kf5+set}" = set; then :
+  withval=$with_kf5;
+else
+  with_kf5=no
 fi
 
 
@@ -4693,6 +4704,21 @@ $as_echo "$enable_qt_dbus" >&6; }
         as_fn_error $? "Unknown option \"$enable_qt_dbus\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
 esac
 
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether KF55 should be enabled" >&5
+$as_echo_n "checking whether KF55 should be enabled... " >&6; }
+case "x$with_kf5" in #(
+  "xno") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; } ;; #(
+  "xyes") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+               QBT_ADD_CONFIG="$QBT_ADD_CONFIG kf5" ;; #(
+  *) :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $with_kf5" >&5
+$as_echo "$with_kf5" >&6; }
+        as_fn_error $? "Unknown option \"$with_kf5\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
+esac
 
 
 
