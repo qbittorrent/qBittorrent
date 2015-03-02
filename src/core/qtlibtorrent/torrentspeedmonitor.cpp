@@ -151,6 +151,9 @@ void TorrentSpeedMonitor::removeSamples(const QTorrentHandle& h) {
 
 qlonglong TorrentSpeedMonitor::getETA(const QString &hash, const libtorrent::torrent_status &status) const
 {
+    if (status.distributed_copies < 1)
+        return MAX_ETA;
+
     if (QTorrentHandle::is_paused(status))
         return MAX_ETA;
 
