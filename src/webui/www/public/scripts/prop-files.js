@@ -248,6 +248,10 @@ var filesDynTable = new Class({
                 });
                 td.adopt(tree_img, createDownloadedCB(id, row[i]));
                 break;
+            case 1:
+                td.set('html', row[i]);
+                td.set('title', row[i]);
+                break;
             case 3:
                 td.adopt(new ProgressBar(row[i].toFloat(), {
                     'id': 'pbf_' + id,
