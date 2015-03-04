@@ -202,31 +202,28 @@ var filesDynTable = new Class({
     updateRow: function(tr, row, id) {
         var tds = tr.getElements('td');
         for (var i = 0; i < row.length; i++) {
-            if (i == 3) {
+            switch (i) {
+            case 0:
+                if (row[i] > 0)
+                    tds[i].getChildren('input')[0].set('checked', 'checked');
+                else
+                    tds[i].getChildren('input')[0].removeProperty('checked');
+                break;
+            case 3:
                 $('pbf_' + id).setValue(row[i].toFloat());
-            }
-            else {
-                if (i == 0) {
-                    if (row[i] > 0)
-                        tds[i].getChildren('input')[0].set('checked', 'checked');
-                    else
-                        tds[i].getChildren('input')[0].removeProperty('checked')
+                break;
+            case 4:
+                if (!is_seed && row[i] > 0) {
+                    tds[i].getChildren('select').set('value', row[i]);
+                    $('comboPrio' + id).removeClass("invisible");
                 }
                 else {
-                    if (i == 4) {
-                        if (!is_seed && row[i] > 0) {
-                            tds[i].getChildren('select').set('value', row[i]);
-                            $('comboPrio' + id).removeClass("invisible");
-                        }
-                        else {
-                            if (!$('comboPrio' + id).hasClass("invisible"))
-                                $('comboPrio' + id).addClass("invisible");
-                        }
-                    }
-                    else {
-                        tds[i].set('html', row[i]);
-                    }
+                    if (!$('comboPrio' + id).hasClass("invisible"))
+                        $('comboPrio' + id).addClass("invisible");
                 }
+                break;
+            default:
+                tds[i].set('html', row[i]);
             }
         }
         return true;
@@ -243,28 +240,26 @@ var filesDynTable = new Class({
         this.rows.set(id, tr);
         for (var i = 0; i < row.length; i++) {
             var td = new Element('td');
-            if (i == 3) {
+            switch (i) {
+            case 0:
+                var tree_img = new Element('img', {
+                    src: 'images/L.gif',
+                    style: 'margin-bottom: -2px'
+                });
+                td.adopt(tree_img, createDownloadedCB(id, row[i]));
+                break;
+            case 3:
                 td.adopt(new ProgressBar(row[i].toFloat(), {
                     'id': 'pbf_' + id,
                     'width': 80
                 }));
-            }
-            else {
-                if (i == 0) {
-                    var tree_img = new Element('img', {
-                        src: 'images/L.gif',
-                        style: 'margin-bottom: -2px'
-                    });
-                    td.adopt(tree_img, createDownloadedCB(id, row[i]));
-                }
-                else {
-                    if (i == 4) {
-                        td.adopt(createPriorityCombo(id, row[i]));
-                    }
-                    else {
-                        td.set('html', row[i]);
-                    }
-                }
+                break;
+            case 4:
+                td.adopt(createPriorityCombo(id, row[i]));
+                break;
+            default:
+                td.set('html', row[i]);
+                break;
             }
             td.injectInside(tr);
         }
