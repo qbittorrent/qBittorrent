@@ -1,6 +1,10 @@
 INCLUDEPATH += $$PWD
 
-unix:!macx:dbus: include(qtnotify/qtnotify.pri)
+kf5: {
+    include (knotify/knotify.pri)
+} else {
+    unix:!macx:dbus: include(qtnotify/qtnotify.pri)
+}
 
 include(qtlibtorrent/qtlibtorrent.pri)
 
@@ -23,7 +27,8 @@ HEADERS += \
     $$PWD/http/responsegenerator.h \
     $$PWD/http/server.h \
     $$PWD/http/types.h \
-    $$PWD/http/responsebuilder.h
+    $$PWD/http/responsebuilder.h \
+    $$PWD/notifier.h
 
 SOURCES += \
     $$PWD/downloadthread.cpp \
@@ -40,4 +45,5 @@ SOURCES += \
     $$PWD/http/requestparser.cpp \
     $$PWD/http/responsegenerator.cpp \
     $$PWD/http/server.cpp \
-    $$PWD/http/responsebuilder.cpp
+    $$PWD/http/responsebuilder.cpp \
+    $$PWD/notifier.cpp

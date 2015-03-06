@@ -24,9 +24,8 @@ nogui {
         DEFINES += QBT_STATIC_QT
         QTPLUGIN += qico
     }
-    CONFIG(kf5) {
+    kf5: {
         QT += KConfigWidgets
-        DEFINES += ENABLE_KF5
     }
     TARGET = qbittorrent
 }
@@ -34,6 +33,10 @@ nowebui: DEFINES += DISABLE_WEBUI
 strace_win: DEFINES += STACKTRACE_WIN
 QT += network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+kf5: {
+    DEFINES += ENABLE_KF5
+}
 
 # Vars
 LANG_PATH = lang
