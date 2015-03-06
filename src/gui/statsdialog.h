@@ -33,7 +33,7 @@
 
 #include <QDialog>
 #include <QTimer>
-#include "qbtsession.h"
+#include "application.h"
 
 namespace Ui {
   class StatsDialog;

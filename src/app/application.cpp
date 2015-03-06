@@ -56,7 +56,6 @@
 #include "application.h"
 #include "logger.h"
 #include "preferences.h"
-#include "qbtsession.h"
 #include "torrentpersistentdata.h"
 
 static const char PARAMS_SEPARATOR[] = "|";
@@ -117,7 +116,7 @@ void Application::processParams(const QStringList &params)
     foreach (QString param, params) {
         param = param.trimmed();
         if (misc::isUrl(param)) {
-            QBtSession::instance()->downloadFromUrl(param);
+            m_btSession->downloadFromUrl(param);
         }
         else {
             if (param.startsWith("bc://bt/", Qt::CaseInsensitive)) {
@@ -131,7 +130,7 @@ void Application::processParams(const QStringList &params)
                     AddNewTorrentDialog::showMagnet(param, m_window);
                 else
 #endif
-                    QBtSession::instance()->addMagnetUri(param);
+                    m_btSession->addMagnetUri(param);
             }
             else {
 #ifndef DISABLE_GUI
@@ -139,7 +138,7 @@ void Application::processParams(const QStringList &params)
                     AddNewTorrentDialog::showTorrent(param, QString(), m_window);
                 else
 #endif
-                    QBtSession::instance()->addTorrent(param);
+                    m_btSession->addTorrent(param);
             }
         }
     }
@@ -147,8 +146,9 @@ void Application::processParams(const QStringList &params)
 
 int Application::exec(const QStringList &params)
 {
+    m_btSession = new QBtSession(this);
     // Resume unfinished torrents
-    QBtSession::instance()->startUpTorrents();
+    m_btSession->startUpTorrents();
 
 #ifndef DISABLE_WEBUI
     m_webui = new WebUI;
@@ -296,7 +296,7 @@ void Application::cleanup()
 #ifndef DISABLE_WEBUI
     delete m_webui;
 #endif
-    QBtSession::drop();
+    delete m_btSession;
     TorrentPersistentData::drop();
     Preferences::drop();
     Logger::drop();

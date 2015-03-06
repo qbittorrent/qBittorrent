@@ -48,7 +48,7 @@
 #endif
 
 #include "searchengine.h"
-#include "qbtsession.h"
+#include "application.h"
 #include "fs_utils.h"
 #include "misc.h"
 #include "preferences.h"
@@ -330,7 +330,7 @@ void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus) {
         if (parts.size() == 2) {
             QString path = parts[0];
             QString url = parts[1];
-            QBtSession::instance()->processDownloadedFile(url, path);
+            App->BtSession()->processDownloadedFile(url, path);
         }
     }
     qDebug("Deleting downloadProcess");

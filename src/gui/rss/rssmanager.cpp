@@ -31,7 +31,7 @@
 #include <QDebug>
 #include "rssmanager.h"
 #include "preferences.h"
-#include "qbtsession.h"
+#include "application.h"
 #include "rssfeed.h"
 #include "rssarticle.h"
 #include "rssdownloadrulelist.h"

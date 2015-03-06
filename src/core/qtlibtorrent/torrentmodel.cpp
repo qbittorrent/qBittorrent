@@ -32,7 +32,7 @@
 
 #include "torrentmodel.h"
 #include "torrentpersistentdata.h"
-#include "qbtsession.h"
+#include "application.h"
 #include "fs_utils.h"
 
 #include <libtorrent/session.hpp>
@@ -264,10 +264,10 @@ QVariant TorrentModelItem::data(int column, int role) const
     case TR_ETA: {
         // XXX: Is this correct?
         if (m_torrent.is_paused(m_lastStatus) || m_torrent.is_queued(m_lastStatus)) return MAX_ETA;
-        return QBtSession::instance()->getETA(m_hash, m_lastStatus);
+        return App->BtSession()->getETA(m_hash, m_lastStatus);
     }
     case TR_RATIO:
-        return QBtSession::instance()->getRealRatio(m_lastStatus);
+        return App->BtSession()->getRealRatio(m_lastStatus);
     case TR_LABEL:
         return m_label;
     case TR_ADD_DATE:
@@ -294,7 +294,7 @@ QVariant TorrentModelItem::data(int column, int role) const
         return static_cast<qlonglong>(m_lastStatus.total_wanted_done);
     case TR_RATIO_LIMIT: {
         QString hash = misc::toQString(m_lastStatus.info_hash);
-        return QBtSession::instance()->getMaxRatioPerTorrent(hash, NULL);
+        return App->BtSession()->getMaxRatioPerTorrent(hash, NULL);
     }
     case TR_SEEN_COMPLETE_DATE:
         return m_lastStatus.last_seen_complete ? QDateTime::fromTime_t(m_lastStatus.last_seen_complete) : QDateTime();
@@ -321,7 +321,7 @@ TorrentModel::TorrentModel(QObject *parent) :
 
 void TorrentModel::populate() {
     // Load the torrents
-    std::vector<torrent_handle> torrents = QBtSession::instance()->getSession()->get_torrents();
+    std::vector<torrent_handle> torrents = App->BtSession()->getSession()->get_torrents();
 
     std::vector<torrent_handle>::const_iterator it = torrents.begin();
     std::vector<torrent_handle>::const_iterator itend = torrents.end();
@@ -335,14 +335,14 @@ void TorrentModel::populate() {
     connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(forceModelRefresh()));
     m_refreshTimer.start(m_refreshInterval);
     // Listen for torrent changes
-    connect(QBtSession::instance(), SIGNAL(addedTorrent(QTorrentHandle)), SLOT(addTorrent(QTorrentHandle)));
-    connect(QBtSession::instance(), SIGNAL(torrentAboutToBeRemoved(QTorrentHandle)), SLOT(handleTorrentAboutToBeRemoved(QTorrentHandle)));
-    connect(QBtSession::instance(), SIGNAL(finishedTorrent(QTorrentHandle)), SLOT(handleFinishedTorrent(QTorrentHandle)));
-    connect(QBtSession::instance(), SIGNAL(metadataReceived(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
-    connect(QBtSession::instance(), SIGNAL(resumedTorrent(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
-    connect(QBtSession::instance(), SIGNAL(pausedTorrent(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
-    connect(QBtSession::instance(), SIGNAL(torrentFinishedChecking(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
-    connect(QBtSession::instance(), SIGNAL(stateUpdate(std::vector<libtorrent::torrent_status>)), SLOT(stateUpdated(std::vector<libtorrent::torrent_status>)));
+    connect(App->BtSession(), SIGNAL(addedTorrent(QTorrentHandle)), SLOT(addTorrent(QTorrentHandle)));
+    connect(App->BtSession(), SIGNAL(torrentAboutToBeRemoved(QTorrentHandle)), SLOT(handleTorrentAboutToBeRemoved(QTorrentHandle)));
+    connect(App->BtSession(), SIGNAL(finishedTorrent(QTorrentHandle)), SLOT(handleFinishedTorrent(QTorrentHandle)));
+    connect(App->BtSession(), SIGNAL(metadataReceived(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
+    connect(App->BtSession(), SIGNAL(resumedTorrent(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
+    connect(App->BtSession(), SIGNAL(pausedTorrent(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
+    connect(App->BtSession(), SIGNAL(torrentFinishedChecking(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
+    connect(App->BtSession(), SIGNAL(stateUpdate(std::vector<libtorrent::torrent_status>)), SLOT(stateUpdated(std::vector<libtorrent::torrent_status>)));
 }
 
 TorrentModel::~TorrentModel() {
@@ -525,7 +525,7 @@ void TorrentModel::setRefreshInterval(int refreshInterval)
 
 void TorrentModel::forceModelRefresh()
 {
-    QBtSession::instance()->postTorrentUpdate();
+    App->BtSession()->postTorrentUpdate();
 }
 
 TorrentStatusReport TorrentModel::getTorrentStatusReport() const

@@ -33,7 +33,7 @@
 #include "iconprovider.h"
 #include "rssfolder.h"
 #include "rssarticle.h"
-#include "qbtsession.h"
+#include "application.h"
 #include "rssmanager.h"
 #include "rssfeed.h"
 

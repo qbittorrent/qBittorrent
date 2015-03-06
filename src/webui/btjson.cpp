@@ -30,7 +30,7 @@
 
 #include "btjson.h"
 #include "fs_utils.h"
-#include "qbtsession.h"
+#include "application.h"
 #include "torrentpersistentdata.h"
 #include "qtorrentfilter.h"
 #include "jsonutils.h"
@@ -240,7 +240,7 @@ QByteArray btjson::getTorrents(QString filter, QString label,
 {
     QVariantList torrent_list;
 
-    std::vector<torrent_handle> torrents = QBtSession::instance()->getTorrents();
+    std::vector<torrent_handle> torrents = App->BtSession()->getTorrents();
     std::vector<torrent_handle>::const_iterator it = torrents.begin();
     std::vector<torrent_handle>::const_iterator end = torrents.end();
 
@@ -316,7 +316,7 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
 
     QVariantHash torrents;
 
-    std::vector<torrent_handle> torrentsList = QBtSession::instance()->getTorrents();
+    std::vector<torrent_handle> torrentsList = App->BtSession()->getTorrents();
     std::vector<torrent_handle>::const_iterator it = torrentsList.begin();
     std::vector<torrent_handle>::const_iterator end = torrentsList.end();
 
@@ -336,7 +336,7 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
     data["labels"] = labels;
 
     QVariantMap serverState = getTranserInfoMap();
-    serverState[KEY_SYNC_MAINDATA_QUEUEING] = QBtSession::instance()->isQueueingEnabled();
+    serverState[KEY_SYNC_MAINDATA_QUEUEING] = App->BtSession()->isQueueingEnabled();
     serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = Preferences::instance()->isAltBandwidthEnabled();
     serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = Preferences::instance()->getRefreshInterval();
     data["server_state"] = serverState;
@@ -358,8 +358,8 @@ QByteArray btjson::getTrackersForTorrent(const QString& hash)
 {
     CACHED_VARIABLE_FOR_HASH(QVariantList, tracker_list, CACHE_DURATION_MS, hash);
     try {
-        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
-        QHash<QString, TrackerInfos> trackers_data = QBtSession::instance()->getTrackersInfo(hash);
+        QTorrentHandle h = App->BtSession()->getTorrentHandle(hash);
+        QHash<QString, TrackerInfos> trackers_data = App->BtSession()->getTrackersInfo(hash);
         std::vector<announce_entry> vect_trackers = h.trackers();
         std::vector<announce_entry>::const_iterator it = vect_trackers.begin();
         std::vector<announce_entry>::const_iterator end = vect_trackers.end();
@@ -419,7 +419,7 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
 {
     CACHED_VARIABLE_FOR_HASH(QVariantMap, data, CACHE_DURATION_MS, hash);
     try {
-        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+        QTorrentHandle h = App->BtSession()->getTorrentHandle(hash);
 
         libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters);
         if (!status.has_metadata)
@@ -444,7 +444,7 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
         data[KEY_PROP_SEEDING_TIME] = status.seeding_time;
         data[KEY_PROP_CONNECT_COUNT] = status.num_connections;
         data[KEY_PROP_CONNECT_COUNT_LIMIT] = status.connections_limit;
-        const qreal ratio = QBtSession::instance()->getRealRatio(status);
+        const qreal ratio = App->BtSession()->getRealRatio(status);
         data[KEY_PROP_RATIO] = ratio > QBtSession::MAX_RATIO ? -1 : ratio;
     }
     catch (const std::exception& e) {
@@ -470,7 +470,7 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
 {
     CACHED_VARIABLE_FOR_HASH(QVariantList, file_list, CACHE_DURATION_MS, hash);
     try {
-        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+        QTorrentHandle h = App->BtSession()->getTorrentHandle(hash);
         if (!h.has_metadata())
             return QByteArray();
 
@@ -523,8 +523,8 @@ QByteArray btjson::getTransferInfo()
 QVariantMap getTranserInfoMap()
 {
     QVariantMap map;
-    session_status sessionStatus = QBtSession::instance()->getSessionStatus();
-    session_settings sessionSettings = QBtSession::instance()->getSession()->settings();
+    session_status sessionStatus = App->BtSession()->getSessionStatus();
+    session_settings sessionSettings = App->BtSession()->getSession()->settings();
     map[KEY_TRANSFER_DLSPEED] = sessionStatus.payload_download_rate;
     map[KEY_TRANSFER_DLDATA] = static_cast<qlonglong>(sessionStatus.total_payload_download);
     map[KEY_TRANSFER_UPSPEED] = sessionStatus.payload_upload_rate;
@@ -532,7 +532,7 @@ QVariantMap getTranserInfoMap()
     map[KEY_TRANSFER_DLRATELIMIT] = sessionSettings.download_rate_limit;
     map[KEY_TRANSFER_UPRATELIMIT] = sessionSettings.upload_rate_limit;
     map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dht_nodes;
-    if (!QBtSession::instance()->getSession()->is_listening())
+    if (!App->BtSession()->getSession()->is_listening())
         map[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
     else
         map[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.has_incoming_connections ? "connected" : "firewalled";
@@ -545,7 +545,7 @@ QByteArray btjson::getTorrentsRatesLimits(QStringList &hashes, bool downloadLimi
 
     foreach (const QString &hash, hashes) {
         int limit = -1;
-        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+        QTorrentHandle h = App->BtSession()->getTorrentHandle(hash);
         if (h.is_valid())
             limit = downloadLimits ? h.download_limit() : h.upload_limit();
         map[hash] = limit;
@@ -565,7 +565,7 @@ QVariantMap toMap(const QTorrentHandle& h)
     ret[KEY_TORRENT_PROGRESS] = h.progress(status);
     ret[KEY_TORRENT_DLSPEED] = status.download_payload_rate;
     ret[KEY_TORRENT_UPSPEED] = status.upload_payload_rate;
-    if (QBtSession::instance()->isQueueingEnabled() && h.queue_position(status) >= 0)
+    if (App->BtSession()->isQueueingEnabled() && h.queue_position(status) >= 0)
         ret[KEY_TORRENT_PRIORITY] = h.queue_position(status);
     else
         ret[KEY_TORRENT_PRIORITY] = -1;
@@ -573,7 +573,7 @@ QVariantMap toMap(const QTorrentHandle& h)
     ret[KEY_TORRENT_NUM_COMPLETE] = status.num_complete;
     ret[KEY_TORRENT_LEECHS] = status.num_peers - status.num_seeds;
     ret[KEY_TORRENT_NUM_INCOMPLETE] = status.num_incomplete;
-    const qreal ratio = QBtSession::instance()->getRealRatio(status);
+    const qreal ratio = App->BtSession()->getRealRatio(status);
     ret[KEY_TORRENT_RATIO] = (ratio > QBtSession::MAX_RATIO) ? -1 : ratio;
     ret[KEY_TORRENT_STATE] = h.torrentState().toString();
     ret[KEY_TORRENT_ETA] = h.eta();

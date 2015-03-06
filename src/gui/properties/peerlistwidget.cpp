@@ -237,7 +237,7 @@ void PeerListWidget::banSelectedPeers(const QStringList& peer_ips)
   foreach (const QString &ip, peer_ips) {
     qDebug("Banning peer %s...", ip.toLocal8Bit().data());
     Logger::instance()->addMessage(tr("Manually banning peer %1...").arg(ip));
-    QBtSession::instance()->banIP(ip);
+    App->BtSession()->banIP(ip);
   }
   // Refresh list
   loadPeers(m_properties->getCurrentTorrent());

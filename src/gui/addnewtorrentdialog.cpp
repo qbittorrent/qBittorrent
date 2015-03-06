@@ -35,7 +35,7 @@
 #include "torrentcontentfiltermodel.h"
 #include "preferences.h"
 #include "torrentpersistentdata.h"
-#include "qbtsession.h"
+#include "application.h"
 #include "iconprovider.h"
 #include "fs_utils.h"
 #include "autoexpandabledialog.h"
@@ -206,9 +206,9 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     }
 
     // Prevent showing the dialog if download is already present
-    if (QBtSession::instance()->getTorrentHandle(m_hash).is_valid()) {
+    if (App->BtSession()->getTorrentHandle(m_hash).is_valid()) {
         MessageBoxRaised::information(0, tr("Already in download list"), tr("Torrent is already in download list. Merging trackers."), QMessageBox::Ok);
-        QBtSession::instance()->addTorrent(m_filePath, false, m_url);;
+        App->BtSession()->addTorrent(m_filePath, false, m_url);;
         return false;
     }
 
@@ -219,7 +219,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
 
 bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
 {
-    connect(QBtSession::instance(), SIGNAL(metadataReceivedHidden(const QTorrentHandle &)), SLOT(updateMetadata(const QTorrentHandle &)));
+    connect(App->BtSession(), SIGNAL(metadataReceivedHidden(const QTorrentHandle &)), SLOT(updateMetadata(const QTorrentHandle &)));
     m_isMagnet = true;
     m_url = magnet_uri;
     m_hash = misc::magnetUriToHash(m_url);
@@ -229,9 +229,9 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
     }
 
     // Prevent showing the dialog if download is already present
-    if (QBtSession::instance()->getTorrentHandle(m_hash).is_valid()) {
+    if (App->BtSession()->getTorrentHandle(m_hash).is_valid()) {
         MessageBoxRaised::information(0, tr("Already in download list"), tr("Magnet link is already in download list. Merging trackers."), QMessageBox::Ok);
-        QBtSession::instance()->addMagnetUri(m_url, false);
+        App->BtSession()->addMagnetUri(m_url, false);
         return false;
     }
 
@@ -246,7 +246,7 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
     // Override save path
     TorrentTempData::setSavePath(m_hash, QString(QDir::tempPath() + "/" + m_hash));
     HiddenData::addData(m_hash);
-    QBtSession::instance()->addMagnetUri(m_url, false);
+    App->BtSession()->addMagnetUri(m_url, false);
     setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
     ui->lblhash->setText(m_hash);
 
@@ -590,16 +590,16 @@ void AddNewTorrentDialog::accept()
 
     // Add torrent
     if (m_isMagnet)
-        QBtSession::instance()->unhideMagnet(m_hash);
+        App->BtSession()->unhideMagnet(m_hash);
     else
-        QBtSession::instance()->addTorrent(m_filePath, false, m_url);
+        App->BtSession()->addTorrent(m_filePath, false, m_url);
 
     saveSavePathHistory();
     // Save settings
     pref->useAdditionDialog(!ui->never_show_cb->isChecked());
     if (ui->default_save_path_cb->isChecked()) {
         pref->setSavePath(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString());
-        QBtSession::instance()->setDefaultSavePath(pref->getSavePath());
+        App->BtSession()->setDefaultSavePath(pref->getSavePath());
     }
     QDialog::accept();
 }
@@ -609,7 +609,7 @@ void AddNewTorrentDialog::reject()
     if (m_isMagnet) {
         disconnect(this, SLOT(updateMetadata(const QTorrentHandle &)));
         setMetadataProgressIndicator(false);
-        QBtSession::instance()->deleteTorrent(m_hash, true);
+        App->BtSession()->deleteTorrent(m_hash, true);
     }
     QDialog::reject();
 }

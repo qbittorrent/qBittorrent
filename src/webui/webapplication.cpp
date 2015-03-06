@@ -42,7 +42,7 @@
 #include "preferences.h"
 #include "btjson.h"
 #include "prefjson.h"
-#include "qbtsession.h"
+#include "application.h"
 #include "websessiondata.h"
 #include "webapplication.h"
 
@@ -312,11 +312,11 @@ void WebApplication::action_command_download()
                 url = misc::bcLinkToMagnet(url);
             }
             else if (url.startsWith("magnet:", Qt::CaseInsensitive)) {
-                QBtSession::instance()->addMagnetSkipAddDlg(url);
+                App->BtSession()->addMagnetSkipAddDlg(url);
             }
             else {
                 qDebug("Downloading url: %s", qPrintable(url));
-                QBtSession::instance()->downloadUrlAndSkipDialog(url);
+                App->BtSession()->downloadUrlAndSkipDialog(url);
             }
         }
     }
@@ -331,7 +331,7 @@ void WebApplication::action_command_upload()
         QString filePath = saveTmpFile(torrent.data);
 
         if (!filePath.isEmpty()) {
-            QTorrentHandle h = QBtSession::instance()->addTorrent(filePath);
+            QTorrentHandle h = App->BtSession()->addTorrent(filePath);
             if (!h.is_valid()) {
                 status(415, "Internal Server Error");
                 print(QObject::tr("Error: '%1' is not a valid torrent file.\n").arg(torrent.filename), Http::CONTENT_TYPE_TXT);
@@ -354,7 +354,7 @@ void WebApplication::action_command_addTrackers()
     QString hash = request().posts["hash"];
 
     if (!hash.isEmpty()) {
-        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+        QTorrentHandle h = App->BtSession()->getTorrentHandle(hash);
 
         if (h.is_valid() && h.has_metadata()) {
             QString urls = request().posts["urls"];
@@ -371,27 +371,27 @@ void WebApplication::action_command_addTrackers()
 void WebApplication::action_command_resumeAll()
 {
     CHECK_URI(0);
-    QBtSession::instance()->resumeAllTorrents();
+    App->BtSession()->resumeAllTorrents();
 }
 
 void WebApplication::action_command_pauseAll()
 {
     CHECK_URI(0);
-    QBtSession::instance()->pauseAllTorrents();
+    App->BtSession()->pauseAllTorrents();
 }
 
 void WebApplication::action_command_resume()
 {
     CHECK_URI(0);
     CHECK_PARAMETERS("hash");
-    QBtSession::instance()->resumeTorrent(request().posts["hash"]);
+    App->BtSession()->resumeTorrent(request().posts["hash"]);
 }
 
 void WebApplication::action_command_pause()
 {
     CHECK_URI(0);
     CHECK_PARAMETERS("hash");
-    QBtSession::instance()->pauseTorrent(request().posts["hash"]);
+    App->BtSession()->pauseTorrent(request().posts["hash"]);
 }
 
 void WebApplication::action_command_setPreferences()
@@ -408,7 +408,7 @@ void WebApplication::action_command_setFilePrio()
     QString hash = request().posts["hash"];
     int file_id = request().posts["id"].toInt();
     int priority = request().posts["priority"].toInt();
-    QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+    QTorrentHandle h = App->BtSession()->getTorrentHandle(hash);
 
     if (h.is_valid() && h.has_metadata())
         h.file_priority(file_id, priority);
@@ -417,13 +417,13 @@ void WebApplication::action_command_setFilePrio()
 void WebApplication::action_command_getGlobalUpLimit()
 {
     CHECK_URI(0);
-    print(QByteArray::number(QBtSession::instance()->getSession()->settings().upload_rate_limit));
+    print(QByteArray::number(App->BtSession()->getSession()->settings().upload_rate_limit));
 }
 
 void WebApplication::action_command_getGlobalDlLimit()
 {
     CHECK_URI(0);
-    print(QByteArray::number(QBtSession::instance()->getSession()->settings().download_rate_limit));
+    print(QByteArray::number(App->BtSession()->getSession()->settings().download_rate_limit));
 }
 
 void WebApplication::action_command_setGlobalUpLimit()
@@ -433,7 +433,7 @@ void WebApplication::action_command_setGlobalUpLimit()
     qlonglong limit = request().posts["limit"].toLongLong();
     if (limit == 0) limit = -1;
 
-    QBtSession::instance()->setUploadRateLimit(limit);
+    App->BtSession()->setUploadRateLimit(limit);
     if (Preferences::instance()->isAltBandwidthEnabled())
         Preferences::instance()->setAltGlobalUploadLimit(limit / 1024.);
     else
@@ -447,7 +447,7 @@ void WebApplication::action_command_setGlobalDlLimit()
     qlonglong limit = request().posts["limit"].toLongLong();
     if (limit == 0) limit = -1;
 
-    QBtSession::instance()->setDownloadRateLimit(limit);
+    App->BtSession()->setDownloadRateLimit(limit);
     if (Preferences::instance()->isAltBandwidthEnabled())
         Preferences::instance()->setAltGlobalDownloadLimit(limit / 1024.);
     else
@@ -481,7 +481,7 @@ void WebApplication::action_command_setTorrentsUpLimit()
 
     QStringList hashes = request().posts["hashes"].split("|");
     foreach (const QString &hash, hashes) {
-        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+        QTorrentHandle h = App->BtSession()->getTorrentHandle(hash);
         if (h.is_valid())
         h.set_upload_limit(limit);
     }
@@ -498,7 +498,7 @@ void WebApplication::action_command_setTorrentsDlLimit()
 
     QStringList hashes = request().posts["hashes"].split("|");
     foreach (const QString &hash, hashes) {
-        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+        QTorrentHandle h = App->BtSession()->getTorrentHandle(hash);
         if (h.is_valid())
         h.set_download_limit(limit);
     }
@@ -507,7 +507,7 @@ void WebApplication::action_command_setTorrentsDlLimit()
 void WebApplication::action_command_toggleAlternativeSpeedLimits()
 {
     CHECK_URI(0);
-    QBtSession::instance()->useAlternativeSpeedsLimit(!Preferences::instance()->isAltBandwidthEnabled());
+    App->BtSession()->useAlternativeSpeedsLimit(!Preferences::instance()->isAltBandwidthEnabled());
 }
 
 void WebApplication::action_command_alternativeSpeedLimitsEnabled()
@@ -523,7 +523,7 @@ void WebApplication::action_command_toggleSequentialDownload()
     QStringList hashes = request().posts["hashes"].split("|");
     foreach (const QString &hash, hashes) {
         try {
-            QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+            QTorrentHandle h = App->BtSession()->getTorrentHandle(hash);
             h.toggleSequentialDownload();
         }
         catch(invalid_handle&) {}
@@ -537,7 +537,7 @@ void WebApplication::action_command_toggleFirstLastPiecePrio()
     QStringList hashes = request().posts["hashes"].split("|");
     foreach (const QString &hash, hashes) {
         try {
-            QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+            QTorrentHandle h = App->BtSession()->getTorrentHandle(hash);
             h.toggleFirstLastPiecePrio();
         }
         catch(invalid_handle&) {}
@@ -552,7 +552,7 @@ void WebApplication::action_command_setSuperSeeding()
     QStringList hashes = request().posts["hashes"].split("|");
     foreach (const QString &hash, hashes) {
         try {
-            QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+            QTorrentHandle h = App->BtSession()->getTorrentHandle(hash);
             h.super_seeding(value);
         }
         catch(invalid_handle&) {}
@@ -565,7 +565,7 @@ void WebApplication::action_command_delete()
     CHECK_PARAMETERS("hashes");
     QStringList hashes = request().posts["hashes"].split("|");
     foreach (const QString &hash, hashes)
-        QBtSession::instance()->deleteTorrent(hash, false);
+        App->BtSession()->deleteTorrent(hash, false);
 }
 
 void WebApplication::action_command_deletePerm()
@@ -574,7 +574,7 @@ void WebApplication::action_command_deletePerm()
     CHECK_PARAMETERS("hashes");
     QStringList hashes = request().posts["hashes"].split("|");
     foreach (const QString &hash, hashes)
-        QBtSession::instance()->deleteTorrent(hash, true);
+        App->BtSession()->deleteTorrent(hash, true);
 }
 
 void WebApplication::action_command_increasePrio()
@@ -590,7 +590,7 @@ void WebApplication::action_command_increasePrio()
     // Sort torrents by priority
     foreach (const QString &hash, hashes) {
         try {
-            QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+            QTorrentHandle h = App->BtSession()->getTorrentHandle(hash);
             if (!h.is_seed())
                 torrent_queue.push(qMakePair(h.queue_position(), h));
         }
@@ -623,7 +623,7 @@ void WebApplication::action_command_decreasePrio()
     // Sort torrents by priority
     foreach (const QString &hash, hashes) {
         try {
-            QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+            QTorrentHandle h = App->BtSession()->getTorrentHandle(hash);
 
             if (!h.is_seed())
                 torrent_queue.push(qMakePair(h.queue_position(), h));
@@ -649,7 +649,7 @@ void WebApplication::action_command_topPrio()
     CHECK_URI(0);
     CHECK_PARAMETERS("hashes");
     foreach (const QString &hash, request().posts["hashes"].split("|")) {
-        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+        QTorrentHandle h = App->BtSession()->getTorrentHandle(hash);
         if (h.is_valid()) h.queue_position_top();
     }
 }
@@ -659,7 +659,7 @@ void WebApplication::action_command_bottomPrio()
     CHECK_URI(0);
     CHECK_PARAMETERS("hashes");
     foreach (const QString &hash, request().posts["hashes"].split("|")) {
-        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+        QTorrentHandle h = App->BtSession()->getTorrentHandle(hash);
         if (h.is_valid()) h.queue_position_bottom();
     }
 }
@@ -668,7 +668,7 @@ void WebApplication::action_command_recheck()
 {
     CHECK_URI(0);
     CHECK_PARAMETERS("hash");
-    QBtSession::instance()->recheckTorrent(request().posts["hash"]);
+    App->BtSession()->recheckTorrent(request().posts["hash"]);
 }
 
 bool WebApplication::isPublicScope()

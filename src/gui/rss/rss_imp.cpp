@@ -39,7 +39,7 @@
 
 #include "rss_imp.h"
 #include "feedlistwidget.h"
-#include "qbtsession.h"
+#include "application.h"
 #include "cookiesdlg.h"
 #include "preferences.h"
 #include "rsssettingsdlg.h"
@@ -344,7 +344,7 @@ void RSSImp::downloadSelectedTorrents()
         QString torrentLink = article->torrentUrl();
         // Check if it is a magnet link
         if (torrentLink.startsWith("magnet:", Qt::CaseInsensitive)) {
-            QBtSession::instance()->addMagnetInteractive(torrentLink);
+            App->BtSession()->addMagnetInteractive(torrentLink);
         }
         else {
             // Load possible cookies
@@ -352,7 +352,7 @@ void RSSImp::downloadSelectedTorrents()
             QString feed_hostname = QUrl::fromEncoded(feed_url.toUtf8()).host();
             QList<QNetworkCookie> cookies = Preferences::instance()->getHostNameQNetworkCookies(feed_hostname);
             qDebug("Loaded %d cookies for RSS item\n", cookies.size());
-            QBtSession::instance()->downloadFromUrl(torrentLink, cookies);
+            App->BtSession()->downloadFromUrl(torrentLink, cookies);
         }
     }
 }

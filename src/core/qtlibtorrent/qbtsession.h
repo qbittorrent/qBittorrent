@@ -110,14 +110,9 @@ class QBtSession : public QObject {
 public:
     static const qreal MAX_RATIO;
 
-private:
-    explicit QBtSession();
-    static QBtSession* m_instance;
-
-public:
-    static QBtSession* instance();
-    static void drop();
+    explicit QBtSession(QObject *parent = 0);
     ~QBtSession();
+
     QTorrentHandle getTorrentHandle(const QString &hash) const;
     std::vector<libtorrent::torrent_handle> getTorrents() const;
     bool isFilePreviewPossible(const QString& hash) const;

@@ -86,7 +86,6 @@
 
 using namespace libtorrent;
 
-QBtSession* QBtSession::m_instance = 0;
 const qreal QBtSession::MAX_RATIO = 9999.;
 
 const int MAX_TRACKER_ERRORS = 2;
@@ -101,8 +100,9 @@ static libtorrent::sha1_hash QStringToSha1(const QString& s) {
 }
 
 // Main constructor
-QBtSession::QBtSession()
-    : m_scanFolders(ScanFoldersModel::instance(this)),
+QBtSession::QBtSession(QObject *parent)
+    : QObject(parent),
+      m_scanFolders(ScanFoldersModel::instance(this)),
       preAllocateAll(false), global_ratio_limit(-1),
       LSDEnabled(false),
       DHTEnabled(false), queueingEnabled(false),
@@ -2995,22 +2995,6 @@ void QBtSession::startUpTorrents() {
         }
     }
     qDebug("Unfinished torrents resumed");
-}
-
-QBtSession * QBtSession::instance()
-{
-    if (!m_instance) {
-        m_instance = new QBtSession;
-    }
-    return m_instance;
-}
-
-void QBtSession::drop()
-{
-    if (m_instance) {
-        delete m_instance;
-        m_instance = 0;
-    }
 }
 
 qlonglong QBtSession::getETA(const QString &hash, const libtorrent::torrent_status &status) const

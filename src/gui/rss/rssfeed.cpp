@@ -31,7 +31,7 @@
 #include <QDebug>
 #include "rssfeed.h"
 #include "rssmanager.h"
-#include "qbtsession.h"
+#include "application.h"
 #include "rssfolder.h"
 #include "preferences.h"
 #include "qinisettings.h"
@@ -369,12 +369,12 @@ void RssFeed::downloadArticleTorrentIfMatching(RssDownloadRuleList* rules, const
   // Download the torrent
   const QString& torrent_url = article->torrentUrl();
   Logger::instance()->addMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(article->title()).arg(displayName()));
-  connect(QBtSession::instance(), SIGNAL(newDownloadedTorrentFromRss(QString)), article.data(), SLOT(handleTorrentDownloadSuccess(const QString&)), Qt::UniqueConnection);
+  connect(App->BtSession(), SIGNAL(newDownloadedTorrentFromRss(QString)), article.data(), SLOT(handleTorrentDownloadSuccess(const QString&)), Qt::UniqueConnection);
   connect(article.data(), SIGNAL(articleWasRead()), SLOT(handleArticleStateChanged()), Qt::UniqueConnection);
   if (torrent_url.startsWith("magnet:", Qt::CaseInsensitive))
-    QBtSession::instance()->addMagnetSkipAddDlg(torrent_url, matching_rule->savePath(), matching_rule->label(), matching_rule->addPaused());
+    App->BtSession()->addMagnetSkipAddDlg(torrent_url, matching_rule->savePath(), matching_rule->label(), matching_rule->addPaused());
   else
-    QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule->savePath(), matching_rule->label(), feedCookies(), matching_rule->addPaused());
+    App->BtSession()->downloadUrlAndSkipDialog(torrent_url, matching_rule->savePath(), matching_rule->label(), feedCookies(), matching_rule->addPaused());
 }
 
 void RssFeed::recheckRssItemsForDownload()

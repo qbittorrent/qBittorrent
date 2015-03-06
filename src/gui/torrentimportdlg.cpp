@@ -35,7 +35,7 @@
 #include "torrentimportdlg.h"
 #include "ui_torrentimportdlg.h"
 #include "preferences.h"
-#include "qbtsession.h"
+#include "application.h"
 #include "torrentpersistentdata.h"
 #include "iconprovider.h"
 #include "fs_utils.h"
@@ -199,7 +199,7 @@ void TorrentImportDlg::importTorrent()
         TorrentTempData::setSavePath(hash, content_path);
         TorrentTempData::setSeedingMode(hash, dlg.skipFileChecking());
         qDebug("Adding the torrent to the session...");
-        QBtSession::instance()->addTorrent(torrent_path, false, QString(), false, true);
+        App->BtSession()->addTorrent(torrent_path, false, QString(), false, true);
         // Remember the last opened folder
         Preferences* const pref = Preferences::instance();
         pref->setMainLastDir(fsutils::fromNativePath(torrent_path));

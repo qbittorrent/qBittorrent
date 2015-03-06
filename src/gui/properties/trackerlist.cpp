@@ -42,7 +42,7 @@
 #include "propertieswidget.h"
 #include "trackersadditiondlg.h"
 #include "iconprovider.h"
-#include "qbtsession.h"
+#include "application.h"
 #include "preferences.h"
 #include "misc.h"
 #include "autoexpandabledialog.h"
@@ -202,19 +202,19 @@ void TrackerList::loadStickyItems(const QTorrentHandle &h) {
   QString disabled = tr("Disabled");
 
   // load DHT information
-  if (QBtSession::instance()->isDHTEnabled() && !h.priv())
+  if (App->BtSession()->isDHTEnabled() && !h.priv())
     dht_item->setText(COL_STATUS, working);
   else
     dht_item->setText(COL_STATUS, disabled);
 
   // Load PeX Information
-  if (QBtSession::instance()->isPexEnabled() && !h.priv())
+  if (App->BtSession()->isPexEnabled() && !h.priv())
     pex_item->setText(COL_STATUS, working);
   else
     pex_item->setText(COL_STATUS, disabled);
 
   // Load LSD Information
-  if (QBtSession::instance()->isLSDEnabled() && !h.priv())
+  if (App->BtSession()->isLSDEnabled() && !h.priv())
     lsd_item->setText(COL_STATUS, working);
   else
     lsd_item->setText(COL_STATUS, disabled);
@@ -252,7 +252,7 @@ void TrackerList::loadTrackers() {
   if (!h.is_valid()) return;
   loadStickyItems(h);
   // Load actual trackers information
-  QHash<QString, TrackerInfos> trackers_data = QBtSession::instance()->getTrackersInfo(h.hash());
+  QHash<QString, TrackerInfos> trackers_data = App->BtSession()->getTrackersInfo(h.hash());
   QStringList old_trackers_urls = tracker_items.keys();
   const std::vector<announce_entry> trackers = h.trackers();
   std::vector<announce_entry>::const_iterator it = trackers.begin();
