@@ -433,7 +433,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus) {
     }
     bool useNotificationBalloons = Preferences::instance()->useProgramNotification();
     if (useNotificationBalloons && mp_mainWindow->getCurrentTabWidget() != this) {
-        mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
+        mp_mainWindow->notifier()->notifySearchFinished(this);
     }
     if (exitcode) {
 #ifdef Q_OS_WIN

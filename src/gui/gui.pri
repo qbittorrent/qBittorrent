@@ -1,4 +1,4 @@
-INCLUDEPATH += $$PWD
+INCLUDEPATH += $$PWD $$PWD/notifications
 
 include(lineedit/lineedit.pri)
 include(properties/properties.pri)
@@ -6,6 +6,13 @@ include(rss/rss.pri)
 include(torrentcreator/torrentcreator.pri)
 include(geoip/geoip.pri)
 include(powermanagement/powermanagement.pri)
+
+kf5: {
+    include (notifications/knotify/knotify.pri)
+} else {
+    unix:!macx:dbus: include(notifications/qtnotify/qtnotify.pri)
+    !dbus: include (notifications/systray/systraynotify.pri)
+}
 
 HEADERS += \
     $$PWD/mainwindow.h \
@@ -41,7 +48,8 @@ HEADERS += \
     $$PWD/messageboxraised.h \
     $$PWD/torrentfilterenum.h \
     $$PWD/options_imp.h \
-    $$PWD/advancedsettings.h
+    $$PWD/advancedsettings.h \
+    $$PWD/notifications/notifier.h
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -69,7 +77,8 @@ SOURCES += \
     $$PWD/messageboxraised.cpp \
     $$PWD/statusbar.cpp \
     $$PWD/trackerlogin.cpp \
-    $$PWD/options_imp.cpp
+    $$PWD/options_imp.cpp \
+    $$PWD/notifications/notifier.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
