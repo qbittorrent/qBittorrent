@@ -929,6 +929,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
         }
     }
 
+    //abort search if any
+    if (searchEngine) delete searchEngine;
+
     hide();
     // Hide tray icon
     if (systrayIcon)
