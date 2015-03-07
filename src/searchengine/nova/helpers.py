@@ -22,7 +22,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-#VERSION: 1.34
+#VERSION: 1.40
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -55,17 +55,21 @@ def htmlentitydecode(s):
             return unichr(htmlentitydefs.name2codepoint[entity])
         return u" "  # Unknown entity: We replace with a space.
     t = re.sub(u'&(%s);' % u'|'.join(htmlentitydefs.name2codepoint), entity2char, s)
-  
+
     # Then convert numerical entities (such as &#233;)
     t = re.sub(u'&#(\d+);', lambda x: unichr(int(x.group(1))), t)
-   
+
     # Then convert hexa entities (such as &#x00E9;)
     return re.sub(u'&#x(\w+);', lambda x: unichr(int(x.group(1),16)), t)
-    
+
 def retrieve_url(url):
     """ Return the content of the url page as a string """
     req = urllib2.Request(url, headers = headers)
-    response = urllib2.urlopen(req)
+    try:
+        response = urllib2.urlopen(req)
+    except urllib2.URLError as errno:
+        print(" ".join(("Connection error:", str(errno.reason))))
+        return ""
     dat = response.read()
     # Check if it is gzipped
     if dat[:2] == '\037\213':
@@ -101,7 +105,7 @@ def download_file(url, referer=None):
         gzipper = gzip.GzipFile(fileobj=compressedstream)
         extracted_data = gzipper.read()
         dat = extracted_data
-        
+
     # Write it to a file
     file.write(dat)
     file.close()
