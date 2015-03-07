@@ -47,23 +47,15 @@ QString AutoExpandableDialog::getText(QWidget *parent, const QString &title, con
                                       Qt::InputMethodHints inputMethodHints) {
 
   AutoExpandableDialog d(parent);
-// ignore .suffix when renaming
-  QString f_find = ".";
-  int f_len = text.length();
-  int f_end = text.lastIndexOf(f_find,-1);
-// /end ignore suffix
   d.setWindowTitle(title);
   d.ui->textLabel->setText(label);
   d.ui->textEdit->setText(text);
   d.ui->textEdit->setEchoMode(mode);
   d.ui->textEdit->setInputMethodHints(inputMethodHints);
-// check for text with a '.' and select name part only
-  if (f_end > -1) {
-    d.ui->textEdit->setSelection(0,f_end);
-  }
-  else {
-// or select all text.
-      d.ui->textEdit->selectAll();
+  if (text.lastIndexOf(".",-1) > -1) {
+    d.ui->textEdit->setSelection(0,text.lastIndexOf(".",-1));
+  }  else {
+    d.ui->textEdit->selectAll();
   }
 
   bool res = d.exec();
