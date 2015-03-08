@@ -20,7 +20,7 @@ branches:
 notifications:
   email:
     on_success: change
-    on_failure: change 
+    on_failure: change
 
 before_install:
   - shopt -s expand_aliases
@@ -32,19 +32,22 @@ before_install:
   - if ! $gui; then qbtconf="$qbtconf --disable-gui"; else export "DISPLAY=:99.0" && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ; fi
   - ltconf=" --with-libgeoip=system"
 
+  - cat /etc/issue
   - echo settings
   - echo $lt_source
   - echo $ltconf
   - echo $gui
   - echo $qbtconf
 
+  - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main"
+  - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe"
   - sudo apt-get -qq update
   # Travis can stall during heavy load if these packages are installed in one step - split the command
   - sudo apt-get -qq install debhelper autoconf automake colormake libssl-dev libgeoip-dev
   # uncomment when Travis doesn't use Ubuntu 12.04 LTS, which has libtorrent 0.15.10 as package
   #- sudo apt-get -qq install libboost-dev libboost-filesystem-dev libboost-system-dev
   - sudo apt-get -qq install libboost-dev libboost-system-dev
-  - sudo apt-get -qq install libqt4-dev 
+  - sudo apt-get -qq install qtbase5-dev qt5-default
 
 install:
   #- if [[ "$lt_source" == "from_dist" ]]; then sudo apt-get -qq install libtorrent-rasterbar-dev; fi
@@ -53,7 +56,7 @@ install:
 
 script:
   - ./bootstrap.sh
-  - ./configure $qbtconf && sudo make install
-  
+  - ./configure --with-qt5 $qbtconf && sudo make install
+
 after_success:
   - if $gui ; then qbittorrent --version ; else qbittorrent-nox --version ; fi
