@@ -78,6 +78,7 @@ TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), propertie
   editHotkey = new QShortcut(QKeySequence("F2"), this, SLOT(editSelectedTracker()), 0, Qt::WidgetShortcut);
   connect(this, SIGNAL(doubleClicked(QModelIndex)), SLOT(editSelectedTracker()));
   deleteHotkey = new QShortcut(QKeySequence(QKeySequence::Delete), this, SLOT(deleteSelectedTrackers()), 0, Qt::WidgetShortcut);
+  copyHotkey = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::Key_C), this, SLOT(copyTrackerUrl()), 0, Qt::WidgetShortcut);
 
   loadSettings();
 }
@@ -85,6 +86,7 @@ TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), propertie
 TrackerList::~TrackerList() {
   delete editHotkey;
   delete deleteHotkey;
+  delete copyHotkey;
   saveSettings();
 }
 
