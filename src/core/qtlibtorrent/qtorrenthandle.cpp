@@ -660,8 +660,8 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const
                     // Hide the folder on Windows
                     qDebug() << "Hiding folder (Windows)";
                     wstring win_path =  fsutils::toNativePath(unwanted_abspath).toStdWString();
-                    DWORD dwAttrs = GetFileAttributesW(win_path.c_str());
-                    bool ret = SetFileAttributesW(win_path.c_str(), dwAttrs | FILE_ATTRIBUTE_HIDDEN);
+                    // DWORD dwAttrs = GetFileAttributesW(win_path.c_str());
+                    bool ret = SetFileAttributesW(win_path.c_str(), FILE_ATTRIBUTE_HIDDEN);
                     Q_ASSERT(ret != 0); Q_UNUSED(ret);
                 }
 #else

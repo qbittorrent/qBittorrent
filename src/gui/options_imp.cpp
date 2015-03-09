@@ -378,7 +378,7 @@ void options_imp::saveOptions() {
   pref->setSplashScreenDisabled(isSlashScreenDisabled());
   pref->setConfirmOnExit(checkProgramExitConfirm->isChecked());
   pref->setPreventFromSuspend(preventFromSuspend());
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
   pref->setWinStartup(WinStartup());
   // Windows: file association settings
   Preferences::setTorrentFileAssoc(checkAssociateTorrents->isChecked());
@@ -539,7 +539,7 @@ void options_imp::loadOptions() {
   comboTrayIcon->setCurrentIndex(pref->trayIconStyle());
   checkProgramExitConfirm->setChecked(pref->confirmOnExit());
   checkPreventFromSuspend->setChecked(pref->preventFromSuspend());
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
   checkStartup->setChecked(pref->WinStartup());
   // Windows: file association settings
   checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
@@ -978,7 +978,7 @@ bool options_imp::isSlashScreenDisabled() const {
   return !checkShowSplash->isChecked();
 }
 
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
 bool options_imp::WinStartup() const {
   return checkStartup->isChecked();
 }

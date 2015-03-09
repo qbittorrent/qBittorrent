@@ -497,6 +497,7 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
       return;
   qDebug("Trying to open folder at %s", qPrintable(absolute_path));
 
+#ifndef Q_OS_WINRT
 #ifdef Q_OS_WIN
   if (containing_folder) {
     // Syntax is: explorer /select, "C:\Folder1\Folder2\file_to_select"
@@ -531,6 +532,7 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
     }
 #if defined(Q_OS_WIN) || (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
   }
+#endif
 #endif
 }
 

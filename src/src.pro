@@ -61,7 +61,7 @@ include(core/core.pri)
 !nowebui: include(webui/webui.pri)
 !nogui {
     include(gui/gui.pri)
-    include(searchengine/searchengine.pri)
+    # include(searchengine/searchengine.pri)
 }
 
 # Resource files

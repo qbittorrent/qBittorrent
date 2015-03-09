@@ -30,7 +30,8 @@
 
 #include "scannedfoldersmodel.h"
 #include "preferences.h"
-#include "filesystemwatcher.h"
+// #include "filesystemwatcher.h"
+#include "fs_utils.h"
 
 #include <QDir>
 #include <QFileInfo>
@@ -122,22 +123,22 @@ ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &path, bool
   const QString &canonicalPath = dir.canonicalPath();
   if (findPathData(canonicalPath) != -1)
     return AlreadyInList;
-  if (!m_fsWatcher) {
-    m_fsWatcher = new FileSystemWatcher(this);
-    connect(m_fsWatcher, SIGNAL(torrentsAdded(QStringList&)), this, SIGNAL(torrentsAdded(QStringList&)));
-  }
+  // if (!m_fsWatcher) {
+    // m_fsWatcher = new FileSystemWatcher(this);
+    // connect(m_fsWatcher, SIGNAL(torrentsAdded(QStringList&)), this, SIGNAL(torrentsAdded(QStringList&)));
+  // }
   beginInsertRows(QModelIndex(), rowCount(), rowCount());
   m_pathList << new PathData(canonicalPath, download_at_path);
   endInsertRows();
   // Start scanning
-  m_fsWatcher->addPath(canonicalPath);
+  // m_fsWatcher->addPath(canonicalPath);
   return Ok;
 }
 
 void ScanFoldersModel::removePath(int row) {
   Q_ASSERT(row >= 0 && row < rowCount());
   beginRemoveRows(QModelIndex(), row, row);
-  m_fsWatcher->removePath(m_pathList.at(row)->path);
+  // m_fsWatcher->removePath(m_pathList.at(row)->path);
   m_pathList.removeAt(row);
   endRemoveRows();
 }

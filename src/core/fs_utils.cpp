@@ -328,11 +328,12 @@ long long fsutils::freeDiskSpaceOnPath(QString path) {
                                               PULARGE_INTEGER,
                                               PULARGE_INTEGER);
   GetDiskFreeSpaceEx_t
-      pGetDiskFreeSpaceEx = (GetDiskFreeSpaceEx_t)::GetProcAddress
-      (
-        ::GetModuleHandle(TEXT("kernel32.dll")),
-        "GetDiskFreeSpaceExW"
-        );
+  pGetDiskFreeSpaceEx = 0;
+      // pGetDiskFreeSpaceEx = (GetDiskFreeSpaceEx_t)::GetProcAddress
+      // (
+        // ::GetModuleHandle(TEXT("kernel32.dll")),
+        // "GetDiskFreeSpaceExW"
+        // );
   if ( pGetDiskFreeSpaceEx )
   {
     ULARGE_INTEGER bytesFree, bytesTotal;
@@ -389,7 +390,7 @@ QString fsutils::expandPathAbs(const QString& path) {
 
 QString fsutils::QDesktopServicesDataLocation() {
   QString result;
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
   LPWSTR path=new WCHAR[256];
   if (SHGetSpecialFolderPath(0, path, CSIDL_LOCAL_APPDATA, FALSE))
     result = fsutils::fromNativePath(QString::fromWCharArray(path));

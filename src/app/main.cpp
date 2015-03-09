@@ -179,6 +179,7 @@ int main(int argc, char *argv[])
     if (!userAgreesWithLegalNotice())
         return EXIT_SUCCESS;
 
+#ifndef Q_OS_WINRT
     // Check if qBittorrent is already running for this user
     if (app->isRunning()) {
 #ifdef DISABLE_GUI
@@ -196,6 +197,7 @@ int main(int argc, char *argv[])
 
         return EXIT_SUCCESS;
     }
+#endif
 
     srand(time(0));
 #ifdef DISABLE_GUI
