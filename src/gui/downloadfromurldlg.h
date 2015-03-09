@@ -80,7 +80,6 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
 
   public slots:
     void on_downloadButton_clicked() {
-      close();
       QString urls = textUrls->toPlainText();
       QStringList url_list = urls.split(QString::fromUtf8("\n"));
       QString url;
@@ -97,6 +96,7 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
         QMessageBox::critical(0, tr("No URL entered"), tr("Please type at least one URL."));
         return;
       }
+      close();
       emit urlsReadyToBeDownloaded(url_list_cleaned);
       qDebug("Emitted urlsReadytobedownloaded signal");
     }
