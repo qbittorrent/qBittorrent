@@ -150,7 +150,7 @@ protected:
 
 private:
     QIcon getSystrayIcon() const;
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
     bool addPythonPathToEnv();
     void installPython();
 
@@ -192,7 +192,7 @@ private:
     QSplitter *hSplitter;
     QSplitter *vSplitter;
     // Search
-    QPointer<SearchEngine> searchEngine;
+    // QPointer<SearchEngine> searchEngine;
     // RSS
     QPointer<RSSImp> rssWidget;
     // Execution Log

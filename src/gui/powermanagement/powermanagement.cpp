@@ -65,7 +65,7 @@ void PowerManagement::setBusy()
     if (m_busy) return;
     m_busy = true;
 
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
     SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED);
 #elif (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
     m_inhibitor->RequestBusy();
@@ -80,7 +80,7 @@ void PowerManagement::setIdle()
     if (!m_busy) return;
     m_busy = false;
 
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
     SetThreadExecutionState(ES_CONTINUOUS);
 #elif (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
     m_inhibitor->RequestIdle();

@@ -35,7 +35,9 @@
 #endif
 
 #include <QFileDialog>
+#ifndef Q_OS_WINRT
 #include <QFileSystemWatcher>
+#endif
 #include <QMessageBox>
 #include <QTimer>
 #include <QDesktopServices>
@@ -53,7 +55,10 @@
 #include "torrentcreatordlg.h"
 #include "downloadfromurldlg.h"
 #include "addnewtorrentdialog.h"
+#ifndef Q_OS_WINRT
 #include "searchengine.h"
+#endif
+#include "fs_utils.h"
 #include "rss_imp.h"
 #include "qbtsession.h"
 #include "about_imp.h"
@@ -315,9 +320,11 @@ MainWindow::MainWindow(QWidget *parent)
     properties->readSettings();
 
     // Start watching the executable for updates
+#ifndef Q_OS_WINRT
     executable_watcher = new QFileSystemWatcher(this);
     connect(executable_watcher, SIGNAL(fileChanged(QString)), this, SLOT(notifyOfUpdate(QString)));
     executable_watcher->addPath(qApp->applicationFilePath());
+#endif
 
     // Populate the transfer list
     transferList->getSourceModel()->populate();
@@ -329,7 +336,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(transferList->getSourceModel(), SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
 
     qDebug("GUI Built");
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
     if (!pref->neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet())) {
         if (QMessageBox::question(0, tr("Torrent file association"),
                                   tr("qBittorrent is not the default application to open torrent files or Magnet links.\nDo you want to associate qBittorrent to torrent files and Magnet links?"),
@@ -521,6 +528,7 @@ void MainWindow::displayRSSTab(bool enable)
 
 void MainWindow::displaySearchTab(bool enable)
 {
+#ifndef Q_OS_WINRT
     Preferences::instance()->setSearchEnabled(enable);
     if (enable) {
         // RSS tab
@@ -532,7 +540,7 @@ void MainWindow::displaySearchTab(bool enable)
     else if (searchEngine) {
         delete searchEngine;
     }
-
+#endif
 }
 
 void MainWindow::updateNbTorrents()
@@ -569,10 +577,12 @@ void MainWindow::tab_changed(int new_tab)
     else {
         searchFilterAct->setVisible(false);
     }
+#ifndef Q_OS_WINRT
     if (tabs->currentWidget() == searchEngine) {
         qDebug("Changed tab to search engine, giving focus to search input");
         searchEngine->giveFocusToSearchInput();
     }
+#endif
 }
 
 void MainWindow::writeSettings()
@@ -670,8 +680,10 @@ void MainWindow::displayTransferTab() const
 
 void MainWindow::displaySearchTab() const
 {
+#ifndef Q_OS_WINRT
     if (searchEngine)
         tabs->setCurrentWidget(searchEngine);
+#endif
 }
 
 void MainWindow::displayRSSTab() const
@@ -1417,7 +1429,7 @@ void MainWindow::on_actionRSS_Reader_triggered()
 
 void MainWindow::on_actionSearch_engine_triggered()
 {
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
     if (!has_python && actionSearch_engine->isChecked()) {
         bool res = false;
 
@@ -1599,7 +1611,7 @@ void MainWindow::checkProgramUpdate()
 }
 #endif
 
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
 bool MainWindow::addPythonPathToEnv()
 {
     if (has_python)

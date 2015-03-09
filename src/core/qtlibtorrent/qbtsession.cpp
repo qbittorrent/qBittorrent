@@ -39,7 +39,9 @@
 #include <QCoreApplication>
 
 #include "smtp.h"
+#ifndef Q_OS_WINRT
 #include "filesystemwatcher.h"
+#endif
 #include "torrentspeedmonitor.h"
 #include "torrentstatistics.h"
 #include "qbtsession.h"
@@ -199,10 +201,11 @@ QBtSession::~QBtSession() {
     qDebug("Deleting the session");
     delete s;
     qDebug("BTSession destructor OUT");
-#ifndef DISABLE_GUI
+#if !defined DISABLE_GUI && !defined Q_OS_WINRT
     if (m_shutdownAct != NO_SHUTDOWN) {
         qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
         misc::shutdownComputer(m_shutdownAct);
+
     }
 #endif
 }
@@ -2068,7 +2071,9 @@ void QBtSession::autoRunExternalProgram(const QTorrentHandle &h) {
     program.replace("%f", torrent_path);
     // Replace %n by torrent name
     program.replace("%n", h.name());
+#ifndef Q_OS_WINRT
     QProcess::startDetached(program);
+#endif
 }
 
 void QBtSession::sendNotificationEmail(const QTorrentHandle &h) {

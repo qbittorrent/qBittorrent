@@ -115,7 +115,7 @@ QString misc::toQString(const libtorrent::sha1_hash &hash)
     return QString(out);
 }
 
-#ifndef DISABLE_GUI
+#if !defined DISABLE_GUI && !defined Q_OS_WINRT
 void misc::shutdownComputer(shutDownAction action)
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
@@ -270,6 +270,9 @@ QPoint misc::screenCenter(QWidget *win)
 int misc::pythonVersion()
 {
     static int version = -1;
+#ifdef Q_OS_WINRT
+    return version;
+#else
     if (version < 0) {
         QProcess python_proc;
         python_proc.start("python", QStringList() << "--version", QIODevice::ReadOnly);
@@ -286,6 +289,7 @@ int misc::pythonVersion()
             version = 2;
     }
     return version;
+#endif
 }
 
 // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
@@ -443,6 +447,7 @@ QString misc::userFriendlyDuration(qlonglong seconds)
 QString misc::getUserIDString()
 {
     QString uid = "0";
+#ifndef Q_OS_WINRT
 #ifdef Q_OS_WIN
     WCHAR buffer[UNLEN + 1] = {0};
     DWORD buffer_len = sizeof(buffer)/sizeof(*buffer);
@@ -450,6 +455,7 @@ QString misc::getUserIDString()
         uid = QString::fromWCharArray(buffer);
 #else
     uid = QString::number(getuid());
+#endif
 #endif
     return uid;
 }

@@ -45,7 +45,7 @@
 #include <QCoreApplication>
 #endif
 
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
 #include <ShlObj.h>
 #include <winreg.h>
 #endif
@@ -334,7 +334,7 @@ void Preferences::setPreventFromSuspend(bool b)
     setValue("Preferences/General/PreventFromSuspend", b);
 }
 
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
 bool Preferences::WinStartup() const
 {
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
@@ -1606,7 +1606,7 @@ void Preferences::disableRecursiveDownload(bool disable)
     setValue("Preferences/Advanced/DisableRecursiveDownload", disable);
 }
 
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
 namespace {
     enum REG_SEARCH_TYPE
     {

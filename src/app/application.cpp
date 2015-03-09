@@ -62,7 +62,11 @@
 static const char PARAMS_SEPARATOR[] = "|";
 
 Application::Application(const QString &id, int &argc, char **argv)
+#ifndef Q_OS_WINRT
     : BaseApplication(id, argc, argv)
+#else
+    : BaseApplication(argc, argv)
+#endif
     , m_running(false)
 {
 #if defined(Q_OS_MACX) && !defined(DISABLE_GUI)
@@ -94,10 +98,12 @@ void Application::processMessage(const QString &message)
         m_paramsQueue.append(params);
 }
 
+#ifndef Q_OS_WINRT
 bool Application::sendParams(const QStringList &params)
 {
     return sendMessage(params.join(QLatin1String(PARAMS_SEPARATOR)));
 }
+#endif
 
 // As program parameters, we can get paths or urls.
 // This function parse the parameters and call
@@ -184,7 +190,7 @@ int Application::exec(const QStringList &params)
 }
 
 #ifndef DISABLE_GUI
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
 bool Application::isRunning()
 {
     bool running = BaseApplication::isRunning();

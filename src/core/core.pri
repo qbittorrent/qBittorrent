@@ -9,7 +9,6 @@ HEADERS += \
     $$PWD/fs_utils.h \
     $$PWD/downloadthread.h \
     $$PWD/torrentpersistentdata.h \
-    $$PWD/filesystemwatcher.h \
     $$PWD/scannedfoldersmodel.h \
     $$PWD/qinisettings.h \
     $$PWD/smtp.h \
@@ -24,6 +23,10 @@ HEADERS += \
     $$PWD/http/server.h \
     $$PWD/http/types.h \
     $$PWD/http/responsebuilder.h
+!winrt {
+HEADERS += \
+    $$PWD/filesystemwatcher.h \
+}
 
 SOURCES += \
     $$PWD/downloadthread.cpp \

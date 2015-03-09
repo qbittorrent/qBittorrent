@@ -32,7 +32,9 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QXmlStreamReader>
+#ifndef Q_OS_WINRT
 #include <QNetworkProxy>
+#endif
 #include <QDesktopServices>
 #include <QDebug>
 #include <QRegExp>
@@ -55,6 +57,7 @@ ProgramUpdater::ProgramUpdater(QObject *parent, bool invokedByUser) :
 {
   mp_manager = new QNetworkAccessManager(this);
   Preferences* const pref = Preferences::instance();
+#ifndef Q_OS_WINRT
   // Proxy support
   if (pref->isProxyEnabled()) {
     QNetworkProxy proxy;
@@ -76,6 +79,7 @@ ProgramUpdater::ProgramUpdater(QObject *parent, bool invokedByUser) :
     }
     mp_manager->setProxy(proxy);
   }
+#endif
 }
 
 ProgramUpdater::~ProgramUpdater() {

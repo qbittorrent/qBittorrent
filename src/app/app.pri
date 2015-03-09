@@ -9,7 +9,7 @@ usesystemqtsingleapplication {
 } else {
     nogui {
         include(qtsingleapplication/qtsinglecoreapplication.pri)
-    } else {
+    } else:!winrt {
         include(qtsingleapplication/qtsingleapplication.pri)
     }
 }

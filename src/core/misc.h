@@ -72,7 +72,7 @@ namespace misc
     QString toQStringU(const char* str);
     QString toQString(const libtorrent::sha1_hash &hash);
 
-#ifndef DISABLE_GUI
+#if !defined DISABLE_GUI && !defined Q_OS_WINRT
     void shutdownComputer(shutDownAction action = SHUTDOWN_COMPUTER);
 #endif
 

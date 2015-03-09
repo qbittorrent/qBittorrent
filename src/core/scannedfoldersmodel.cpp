@@ -30,7 +30,10 @@
 
 #include "scannedfoldersmodel.h"
 #include "preferences.h"
+#ifndef Q_OS_WINRT
 #include "filesystemwatcher.h"
+#endif
+#include "fs_utils.h"
 
 #include <QDir>
 #include <QFileInfo>
@@ -122,22 +125,28 @@ ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &path, bool
   const QString &canonicalPath = dir.canonicalPath();
   if (findPathData(canonicalPath) != -1)
     return AlreadyInList;
+#ifndef Q_OS_WINRT
   if (!m_fsWatcher) {
     m_fsWatcher = new FileSystemWatcher(this);
     connect(m_fsWatcher, SIGNAL(torrentsAdded(QStringList&)), this, SIGNAL(torrentsAdded(QStringList&)));
   }
+#endif
   beginInsertRows(QModelIndex(), rowCount(), rowCount());
   m_pathList << new PathData(canonicalPath, download_at_path);
   endInsertRows();
   // Start scanning
+#ifndef Q_OS_WINRT
   m_fsWatcher->addPath(canonicalPath);
+#endif
   return Ok;
 }
 
 void ScanFoldersModel::removePath(int row) {
   Q_ASSERT(row >= 0 && row < rowCount());
   beginRemoveRows(QModelIndex(), row, row);
+#ifndef Q_OS_WINRT
   m_fsWatcher->removePath(m_pathList.at(row)->path);
+#endif
   m_pathList.removeAt(row);
   endRemoveRows();
 }
