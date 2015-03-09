@@ -63,7 +63,7 @@ options_imp::options_imp(QWidget *parent):
   qDebug("-> Constructing Options");
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
-  setModal(true);
+  setModal(false);
   // Icons
   tabSelection->item(TAB_UI)->setIcon(IconProvider::instance()->getIcon("preferences-desktop"));
   tabSelection->item(TAB_BITTORRENT)->setIcon(IconProvider::instance()->getIcon("preferences-system-network"));
