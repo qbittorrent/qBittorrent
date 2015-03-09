@@ -55,7 +55,7 @@ TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent): QDialog(parent), creatorT
   cancelButton->setIcon(IconProvider::instance()->getIcon("dialog-cancel"));
 
   setAttribute(Qt::WA_DeleteOnClose);
-  setModal(true);
+  setModal(false);
   showProgressBar(false);
   loadTrackerList();
   // Piece sizes
