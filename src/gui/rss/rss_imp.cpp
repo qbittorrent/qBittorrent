@@ -643,8 +643,10 @@ void RSSImp::updateItemInfos(QTreeWidgetItem *item)
         return;
 
     QString name;
-    if (rss_item == m_rssManager)
+    if (rss_item == m_rssManager) {
         name = tr("Unread");
+        emit updateRSSCount(rss_item->unreadCount());
+    }
     else
         name = rss_item->displayName();
     item->setText(0, name + QString::fromUtf8("  (") + QString::number(rss_item->unreadCount()) + QString(")"));

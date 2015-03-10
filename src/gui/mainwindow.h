@@ -137,6 +137,7 @@ protected slots:
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     void handleUpdateCheckFinished(bool update_available, QString new_version, bool invokedByUser);
 #endif
+    void updateRSSTabLabel(int count);
 
 protected:
     void dropEvent(QDropEvent *event);
