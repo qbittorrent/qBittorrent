@@ -57,6 +57,9 @@ public slots:
     void deleteSelectedItems();
     void updateRefreshInterval(uint val);
 
+signals:
+    void updateRSSCount(int);
+
 private slots:
     void on_newFeedButton_clicked();
     void refreshAllFeeds();
