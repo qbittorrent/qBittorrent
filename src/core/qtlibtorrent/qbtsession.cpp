@@ -1164,7 +1164,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     }
 
     // If temporary file, remove it
-    if (!from_url.isNull() || fromScanDir)
+    if (!from_url.isNull() || fromScanDir || (pref->deleteTorrentsWhenAdded() && !fastResume))
         fsutils::forceRemove(path);
 
     // Display console message

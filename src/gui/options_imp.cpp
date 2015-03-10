@@ -162,6 +162,7 @@ options_imp::options_imp(QWidget *parent):
   connect(checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkAdditionDialogFront, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkDeleteWhenAdded, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkExportDirFin, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(textExportDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -396,6 +397,7 @@ void options_imp::saveOptions() {
   pref->useAdditionDialog(useAdditionDialog());
   pref->additionDialogFront(checkAdditionDialogFront->isChecked());
   pref->addTorrentsInPause(addTorrentsInPause());
+  pref->deleteTorrentsWhenAdded(deleteTorrentsWhenAdded());
   ScanFoldersModel::instance()->makePersistent();
   addedScanDirs.clear();
   pref->setTorrentExportDir(getTorrentExportDir());
@@ -561,6 +563,7 @@ void options_imp::loadOptions() {
   checkAdditionDialog->setChecked(pref->useAdditionDialog());
   checkAdditionDialogFront->setChecked(pref->additionDialogFront());
   checkStartPaused->setChecked(pref->addTorrentsInPause());
+  checkDeleteWhenAdded->setChecked(pref->deleteTorrentsWhenAdded());
 
   strValue = fsutils::toNativePath(pref->getTorrentExportDir());
   if (strValue.isEmpty()) {
@@ -994,6 +997,10 @@ bool options_imp::preAllocateAllFiles() const {
 
 bool options_imp::addTorrentsInPause() const {
   return checkStartPaused->isChecked();
+}
+
+bool options_imp::deleteTorrentsWhenAdded() const {
+  return checkDeleteWhenAdded->isChecked();
 }
 
 // Proxy settings

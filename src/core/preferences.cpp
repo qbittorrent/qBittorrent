@@ -459,6 +459,16 @@ void Preferences::addTorrentsInPause(bool b)
     setValue("Preferences/Downloads/StartInPause", b);
 }
 
+bool Preferences::deleteTorrentsWhenAdded() const
+{
+    return value("Preferences/Downloads/DeleteTorrentsWhenAdded", false).toBool();
+}
+
+void Preferences::deleteTorrentsWhenAdded(bool b)
+{
+    setValue("Preferences/Downloads/DeleteTorrentsWhenAdded", b);
+}
+
 QStringList Preferences::getScanDirs() const
 {
     QStringList originalList = value("Preferences/Downloads/ScanDirs").toStringList();
