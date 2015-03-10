@@ -61,7 +61,7 @@ TorrentContentModel::~TorrentContentModel()
   delete m_rootItem;
 }
 
-void TorrentContentModel::updateFilesProgress(const std::vector<libtorrent::size_type>& fp)
+void TorrentContentModel::updateFilesProgress(const std::vector<boost::int64_t>& fp)
 {
   Q_ASSERT(m_filesIndex.size() == (int)fp.size());
   // XXX: Why is this necessary?

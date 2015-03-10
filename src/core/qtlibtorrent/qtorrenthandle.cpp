@@ -132,7 +132,7 @@ bool QTorrentHandle::is_queued() const
     return is_queued(status(0x0));
 }
 
-size_type QTorrentHandle::total_size() const
+boost::int64_t QTorrentHandle::total_size() const
 {
 #if LIBTORRENT_VERSION_NUM < 10000
     return torrent_handle::get_torrent_info().total_size();
@@ -141,7 +141,7 @@ size_type QTorrentHandle::total_size() const
 #endif
 }
 
-size_type QTorrentHandle::piece_length() const
+boost::int64_t QTorrentHandle::piece_length() const
 {
 #if LIBTORRENT_VERSION_NUM < 10000
     return torrent_handle::get_torrent_info().piece_length();
@@ -227,7 +227,7 @@ QStringList QTorrentHandle::url_seeds() const
 }
 
 // get the size of the torrent without the filtered files
-size_type QTorrentHandle::actual_size() const
+boost::int64_t QTorrentHandle::actual_size() const
 {
     return status(query_accurate_download_counters).total_wanted;
 }
@@ -260,7 +260,7 @@ QString QTorrentHandle::filename_at(unsigned int index) const
     return fsutils::fileName(filepath_at(index));
 }
 
-size_type QTorrentHandle::filesize_at(unsigned int index) const
+boost::int64_t QTorrentHandle::filesize_at(unsigned int index) const
 {
 #if LIBTORRENT_VERSION_NUM < 10000
     Q_ASSERT(index < (unsigned int)torrent_handle::get_torrent_info().num_files());
@@ -436,7 +436,7 @@ bool QTorrentHandle::has_metadata() const
     return status(0x0).has_metadata;
 }
 
-void QTorrentHandle::file_progress(std::vector<size_type>& fp) const
+void QTorrentHandle::file_progress(std::vector<boost::int64_t>& fp) const
 {
     torrent_handle::file_progress(fp, torrent_handle::piece_granularity);
 }
