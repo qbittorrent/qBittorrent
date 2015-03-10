@@ -403,7 +403,7 @@ void PropertiesWidget::loadDynamicData() {
       if (h.is_valid() && status.has_metadata) {
         qDebug("Updating priorities in files tab");
         filesList->setUpdatesEnabled(false);
-        std::vector<size_type> fp;
+        std::vector<boost::int64_t> fp;
         h.file_progress(fp);
         PropListModel->model()->updateFilesProgress(fp);
         // XXX: We don't update file priorities regularly for performance

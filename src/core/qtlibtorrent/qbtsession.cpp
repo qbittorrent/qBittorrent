@@ -1529,9 +1529,9 @@ void QBtSession::enableDHT(bool b) {
 }
 
 qreal QBtSession::getRealRatio(const libtorrent::torrent_status &status) const {
-    libtorrent::size_type all_time_upload = status.all_time_upload;
-    libtorrent::size_type all_time_download = status.all_time_download;
-    libtorrent::size_type total_done = status.total_done;
+    boost::int64_t all_time_upload = status.all_time_upload;
+    boost::int64_t all_time_download = status.all_time_download;
+    boost::int64_t total_done = status.total_done;
 
     if (all_time_download < total_done) {
         // We have more data on disk than we downloaded
@@ -1759,7 +1759,7 @@ void QBtSession::setDefaultTempPath(const QString &temppath) {
 
 void QBtSession::appendqBextensionToTorrent(const QTorrentHandle &h, bool append) {
     if (!h.is_valid() || !h.has_metadata()) return;
-    std::vector<size_type> fp;
+    std::vector<boost::int64_t> fp;
     h.file_progress(fp);
     for (int i=0; i<h.num_files(); ++i) {
         if (append) {

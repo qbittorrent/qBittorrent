@@ -169,7 +169,7 @@ qlonglong TorrentSpeedMonitor::getETA(const QString &hash, const libtorrent::tor
         if (max_ratio < 0)
             return MAX_ETA;
 
-        libtorrent::size_type realDL = status.all_time_download;
+        boost::int64_t realDL = status.all_time_download;
         if (realDL <= 0)
             realDL = status.total_wanted;
 
