@@ -33,6 +33,7 @@
 
 #include "misc.h"
 #include <libtorrent/session.hpp>
+#include <libtorrent/session_status.hpp>
 #include <libtorrent/disk_io_thread.hpp>
 
 StatsDialog::StatsDialog(QWidget *parent) :   QDialog(parent), ui(new Ui::StatsDialog) {
@@ -102,7 +103,11 @@ void StatsDialog::updateUI() {
           QString("0\%")
       );
   // Disk queues
+#if LIBTORRENT_VERSION_NUM < 10000
   ui->labelQueuedJobs->setText(QString::number(cache.job_queue_length));
+#else
+  ui->labelQueuedJobs->setText(QString::number(cache.num_jobs));
+#endif
   ui->labelJobsTime->setText(QString::number(cache.average_job_time));
   ui->labelQueuedBytes->setText(misc::friendlyUnit(cache.queued_bytes));
 

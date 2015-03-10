@@ -56,7 +56,11 @@ public:
     QString getTorrentPath() const;
     QString getContentPath() const;
     bool fileRenamed() const;
+#if LIBTORRENT_VERSION_NUM < 10000
     boost::intrusive_ptr<libtorrent::torrent_info> torrent() const;
+#else
+    boost::shared_ptr<libtorrent::torrent_info> torrent() const;
+#endif
     bool skipFileChecking() const;
 
 protected slots:
@@ -79,7 +83,11 @@ private:
 
 private:
     Ui::TorrentImportDlg *ui;
+#if LIBTORRENT_VERSION_NUM < 10000
     boost::intrusive_ptr<libtorrent::torrent_info> t;
+#else
+    boost::shared_ptr<libtorrent::torrent_info> t;
+#endif
     QStringList m_filesPath;
     QString m_contentPath;
     QString m_torrentPath;

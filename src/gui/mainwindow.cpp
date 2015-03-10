@@ -90,6 +90,7 @@ void qt_mac_set_dock_menu(QMenu *menu);
 #endif
 
 #include <libtorrent/session.hpp>
+#include <libtorrent/session_status.hpp>
 
 using namespace libtorrent;
 

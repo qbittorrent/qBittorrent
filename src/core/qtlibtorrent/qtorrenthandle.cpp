@@ -164,7 +164,7 @@ bool QTorrentHandle::first_last_piece_first() const
 #if LIBTORRENT_VERSION_NUM < 10000
     torrent_info const* t = &get_torrent_info();
 #else
-    boost::intrusive_ptr<torrent_info const> t = torrent_file();
+    boost::shared_ptr<torrent_info const> t = boost::make_shared<torrent_info>(get_torrent_info());
 #endif
 
     // Get int first media file
@@ -590,7 +590,7 @@ bool QTorrentHandle::save_torrent_file(const QString& path) const
 #if LIBTORRENT_VERSION_NUM < 10000
     torrent_info const* t = &get_torrent_info();
 #else
-    boost::intrusive_ptr<torrent_info const> t = torrent_file();
+    boost::shared_ptr<torrent_info const> t = boost::make_shared<torrent_info>(get_torrent_info());
 #endif
 
     entry meta = bdecode(t->metadata().get(),
@@ -626,7 +626,7 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const
 #if LIBTORRENT_VERSION_NUM < 10000
     torrent_info const& info = torrent_handle::get_torrent_info();
 #else
-    boost::intrusive_ptr<torrent_info const> info_ptr = torrent_handle::torrent_file();
+    boost::shared_ptr<torrent_info const> info_ptr = boost::make_shared<torrent_info>(torrent_handle::get_torrent_info());
     torrent_info const& info = *info_ptr;
 #endif
     if ((int)files.size() != info.num_files()) return;
@@ -712,7 +712,7 @@ void QTorrentHandle::prioritize_first_last_piece(int file_index, bool b) const
 #if LIBTORRENT_VERSION_NUM < 10000
     torrent_info const* tf = &get_torrent_info();
 #else
-    boost::intrusive_ptr<torrent_info const> tf = torrent_file();
+    boost::shared_ptr<torrent_info const> tf = boost::make_shared<torrent_info>(get_torrent_info());
 #endif
 
     QPair<int, int> extremities = get_file_extremity_pieces(*tf, file_index);
