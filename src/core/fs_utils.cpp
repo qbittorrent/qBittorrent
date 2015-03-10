@@ -42,6 +42,7 @@
 #include <QApplication>
 #endif
 #include <libtorrent/torrent_info.hpp>
+#include <boost/make_shared.hpp>
 
 #ifdef Q_OS_MAC
 #include <CoreServices/CoreServices.h>
@@ -112,7 +113,11 @@ QString fsutils::folderName(const QString& file_path) {
 
 bool fsutils::isValidTorrentFile(const QString& torrent_path) {
   try {
+#if LIBTORRENT_VERSION_NUM < 10100
     boost::intrusive_ptr<libtorrent::torrent_info> t = new torrent_info(fsutils::toNativePath(torrent_path).toUtf8().constData());
+#else
+    boost::shared_ptr<libtorrent::torrent_info> t = boost::make_shared<libtorrent::torrent_info>(fsutils::toNativePath(torrent_path).toUtf8().constData());
+#endif
     if (!t->is_valid() || t->num_files() == 0)
       return false;
   } catch(std::exception&) {

@@ -14,6 +14,11 @@ env:
   - lt_source=from_trunk gui=true
   - lt_source=from_trunk gui=false
 
+matrix:
+  allow_failures:
+    - env: lt_source=from_trunk gui=true
+    - env: lt_source=from_trunk gui=false
+
 branches:
   except:
     - search_encoding_windows
@@ -45,7 +50,7 @@ before_install:
   - sudo apt-get -qq install debhelper autoconf automake colormake libssl-dev libgeoip-dev
   # uncomment when Travis doesn't use Ubuntu 12.04 LTS, which has libtorrent 0.15.10 as package
   #- sudo apt-get -qq install libboost-dev libboost-filesystem-dev libboost-system-dev
-  - sudo apt-get -qq install libboost-dev libboost-system-dev
+  - sudo apt-get -qq install libboost1.48-dev libboost-chrono1.48-dev libboost-system1.48-dev
   - sudo apt-get -qq install libqt4-dev
 
 install:

@@ -197,7 +197,11 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
         lazy_entry entry;
         libtorrent::error_code ec;
         misc::loadBencodedFile(m_filePath, buffer, entry, ec);
+#if LIBTORRENT_VERSION_NUM < 10100
         m_torrentInfo = new torrent_info(entry);
+#else
+        m_torrentInfo = boost::make_shared<torrent_info>(entry);
+#endif
         m_hash = misc::toQString(m_torrentInfo->info_hash());
     }
     catch(const std::exception& e) {
@@ -625,8 +629,10 @@ void AddNewTorrentDialog::updateMetadata(const QTorrentHandle &h)
 
 #if LIBTORRENT_VERSION_NUM < 10000
         m_torrentInfo = new torrent_info(h.get_torrent_info());
-#else
+#elif LIBTORRENT_VERSION_NUM < 10100
         m_torrentInfo = new torrent_info(*h.torrent_file());
+#else
+        m_torrentInfo = boost::make_shared<torrent_info>(h.torrent_file());
 #endif
 
         // Good to go

@@ -185,7 +185,11 @@ void TorrentImportDlg::importTorrent()
     TorrentImportDlg dlg;
     if (dlg.exec()) {
         qDebug() << "Loading the torrent file...";
+#if LIBTORRENT_VERSION_NUM < 10100
         boost::intrusive_ptr<libtorrent::torrent_info> t = dlg.torrent();
+#else
+        boost::shared_ptr<libtorrent::torrent_info> t = dlg.torrent();
+#endif
         if (!t->is_valid())
             return;
         QString torrent_path = dlg.getTorrentPath();
@@ -218,7 +222,11 @@ void TorrentImportDlg::loadTorrent(const QString &torrent_path)
         lazy_entry entry;
         libtorrent::error_code ec;
         misc::loadBencodedFile(torrent_path, buffer, entry, ec);
+#if LIBTORRENT_VERSION_NUM < 10100
         t = new torrent_info(entry);
+#else
+        t = boost::make_shared<torrent_info>(entry);
+#endif
         if (!t->is_valid() || t->num_files() == 0)
             throw std::exception();
     }
@@ -249,7 +257,11 @@ bool TorrentImportDlg::fileRenamed() const
 }
 
 
+#if LIBTORRENT_VERSION_NUM < 10100
 boost::intrusive_ptr<libtorrent::torrent_info> TorrentImportDlg::torrent() const
+#else
+boost::shared_ptr<libtorrent::torrent_info> TorrentImportDlg::torrent() const
+#endif
 {
     return t;
 }

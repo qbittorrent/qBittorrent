@@ -54,7 +54,7 @@ using namespace libtorrent;
 // name starts with a .
 bool file_filter(std::string const& f)
 {
-        if (filename(f)[0] == '.') return false;
+        if (fsutils::fileName(misc::toQStringU(f))[0] == '.') return false;
         return true;
 }
 
