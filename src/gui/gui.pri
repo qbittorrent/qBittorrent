@@ -41,7 +41,8 @@ HEADERS += \
     $$PWD/messageboxraised.h \
     $$PWD/torrentfilterenum.h \
     $$PWD/options_imp.h \
-    $$PWD/advancedsettings.h
+    $$PWD/advancedsettings.h \
+    $$PWD/signalblocker.h
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -69,7 +70,8 @@ SOURCES += \
     $$PWD/messageboxraised.cpp \
     $$PWD/statusbar.cpp \
     $$PWD/trackerlogin.cpp \
-    $$PWD/options_imp.cpp
+    $$PWD/options_imp.cpp \
+    $$PWD/signalblocker.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h

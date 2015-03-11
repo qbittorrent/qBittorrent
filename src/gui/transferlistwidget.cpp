@@ -64,6 +64,7 @@
 #include "fs_utils.h"
 #include "autoexpandabledialog.h"
 #include "transferlistsortmodel.h"
+#include "signalblocker.h"
 
 using namespace libtorrent;
 
@@ -960,6 +961,7 @@ void TransferListWidget::saveSettings()
 
 bool TransferListWidget::loadSettings()
 {
+    SignalBlocker blocker(header());
     bool ok = header()->restoreState(Preferences::instance()->getTransHeaderState());
     if (!ok)
         header()->resizeSection(0, 200); // Default

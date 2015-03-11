@@ -59,6 +59,7 @@
 #include "lineedit.h"
 #include "fs_utils.h"
 #include "autoexpandabledialog.h"
+#include "signalblocker.h"
 
 using namespace libtorrent;
 
@@ -292,7 +293,7 @@ void PropertiesWidget::readSettings() {
   }
   const int current_tab = pref->getPropCurTab();
   const bool visible = pref->getPropVisible();
-  // the following will call saveSettings but shouldn't change any state
+  SignalBlocker blocker(filesList->header());
   if (!filesList->header()->restoreState(pref->getPropFileListState())) {
     filesList->header()->resizeSection(0, 400); //Default
   }
