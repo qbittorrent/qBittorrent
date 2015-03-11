@@ -14,6 +14,11 @@ exists($$OUT_PWD/../conf.pri) {
     QT += dbus
 }
 
+# /usr/include is used by default, explicit specifying
+# makes clashes between KF5 and KDE4 headers installed into
+# the same prefix /usr
+INCLUDEPATH -= "/usr/include"
+
 QMAKE_CXXFLAGS += -Wformat -Wformat-security
 !haiku {
     QMAKE_LFLAGS_APP += -rdynamic
