@@ -19,7 +19,7 @@ TorrentStatistics::TorrentStatistics(QBtSession* session, QObject* parent)
 {
     loadStats();
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(gatherStats()));
-    m_timer.start(60 * 1000);
+    // m_timer.start(60 * 1000);
 }
 
 TorrentStatistics::~TorrentStatistics() {

@@ -58,7 +58,7 @@ using namespace libtorrent;
     if (initialized && !cacheTimer.hasExpired(DUR)) \
         return json::toJson(VAR); \
     initialized = true; \
-    cacheTimer.start(); \
+    // cacheTimer.start(); \
     VAR = VARTYPE()
 
 #define CACHED_VARIABLE_FOR_HASH(VARTYPE, VAR, DUR, HASH) \
@@ -68,7 +68,7 @@ using namespace libtorrent;
     if (prev_hash == HASH && !cacheTimer.hasExpired(DUR)) \
         return json::toJson(VAR); \
     prev_hash = HASH; \
-    cacheTimer.start(); \
+    // cacheTimer.start(); \
     VAR = VARTYPE()
 
 #else

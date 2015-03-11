@@ -131,7 +131,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   // Dynamic data refresher
   refreshTimer = new QTimer(this);
   connect(refreshTimer, SIGNAL(timeout()), this, SLOT(loadDynamicData()));
-  refreshTimer->start(3000); // 3sec
+  // refreshTimer->start(3000); // 3sec
   editHotkeyFile = new QShortcut(QKeySequence("F2"), filesList, 0, 0, Qt::WidgetShortcut);
   connect(editHotkeyFile, SIGNAL(activated()), SLOT(renameSelectedFile()));
   editHotkeyWeb = new QShortcut(QKeySequence("F2"), listWebSeeds, 0, 0, Qt::WidgetShortcut);

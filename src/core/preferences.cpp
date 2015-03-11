@@ -188,7 +188,7 @@ void Preferences::setValue(const QString &key, const QVariant &value)
     if (m_data.value(key) == value)
         return;
     dirty = true;
-    timer.start();
+//    timer.start();
     m_data.insert(key, value);
 }
 
@@ -2260,8 +2260,8 @@ void Preferences::removeStats()
 {
     QWriteLocker locker(&lock);
     dirty = true;
-    if (!timer.isActive())
-        timer.start();
+    // if (!timer.isActive())
+        // timer.start();
     m_data.remove("Stats/AllStats");
 }
 

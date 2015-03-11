@@ -59,6 +59,8 @@
 #include "qbtsession.h"
 #include "torrentpersistentdata.h"
 
+#include <QMessageBox>
+
 static const char PARAMS_SEPARATOR[] = "|";
 
 Application::Application(const QString &id, int &argc, char **argv)
@@ -79,7 +81,7 @@ Application::Application(const QString &id, int &argc, char **argv)
     setQuitOnLastWindowClosed(false);
 #endif
 
-    connect(this, SIGNAL(messageReceived(const QString &)), SLOT(processMessage(const QString &)));
+    //connect(this, SIGNAL(messageReceived(const QString &)), SLOT(processMessage(const QString &)));
     connect(this, SIGNAL(aboutToQuit()), SLOT(cleanup()));
 }
 
@@ -135,7 +137,7 @@ void Application::processParams(const QStringList &params)
 #endif
                     QBtSession::instance()->addMagnetUri(param);
             }
-            else {
+            else if (!param.startsWith("-ServerName:")) {
 #ifndef DISABLE_GUI
                 if (useTorrentAdditionDialog)
                     AddNewTorrentDialog::showTorrent(param, QString(), m_window);

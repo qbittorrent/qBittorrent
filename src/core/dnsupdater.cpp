@@ -51,7 +51,7 @@ DNSUpdater::DNSUpdater(QObject *parent) :
   // Start IP checking timer
   m_ipCheckTimer.setInterval(IP_CHECK_INTERVAL_MS);
   connect(&m_ipCheckTimer, SIGNAL(timeout()), SLOT(checkPublicIP()));
-  m_ipCheckTimer.start();
+  // m_ipCheckTimer.start();
 
   // Check lastUpdate to avoid flooding
   if (!m_lastIPCheckTime.isValid() ||
@@ -278,7 +278,7 @@ void DNSUpdater::updateCredentials()
 
   if (m_state == INVALID_CREDS && change) {
     m_state = OK; // Try again
-    m_ipCheckTimer.start();
+    // m_ipCheckTimer.start();
     checkPublicIP();
   }
 }

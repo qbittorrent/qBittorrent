@@ -168,7 +168,7 @@ QBtSession::QBtSession()
     connect(downloader, SIGNAL(magnetRedirect(QString, QString)), SLOT(handleMagnetRedirect(QString, QString)));
     // Regular saving of fastresume data
     connect(&resumeDataTimer, SIGNAL(timeout()), SLOT(saveTempFastResumeData()));
-    resumeDataTimer.start(pref->saveResumeDataInterval() * 60 * 1000);
+    // resumeDataTimer.start(pref->saveResumeDataInterval() * 60 * 1000);
     qDebug("* BTSession constructed");
 }
 
@@ -376,7 +376,7 @@ void QBtSession::configureSession() {
             bd_scheduler = new BandwidthScheduler(this);
             connect(bd_scheduler, SIGNAL(switchToAlternativeMode(bool)), this, SLOT(useAlternativeSpeedsLimit(bool)));
         }
-        bd_scheduler->start();
+        // bd_scheduler->start();
     } else {
         delete bd_scheduler;
     }
@@ -1977,7 +1977,7 @@ void QBtSession::updateRatioTimer()
         if (BigRatioTimer->isActive())
             BigRatioTimer->stop();
     } else if (!BigRatioTimer->isActive()) {
-        BigRatioTimer->start();
+        // BigRatioTimer->start();
     }
 }
 

@@ -45,7 +45,7 @@ StatsDialog::StatsDialog(QWidget *parent) :   QDialog(parent), ui(new Ui::StatsD
   t = new QTimer(this);
   t->setInterval(1500);
   connect(t, SIGNAL(timeout()), SLOT(updateUI()));
-  t->start();
+  // t->start();
   show();
 }
 

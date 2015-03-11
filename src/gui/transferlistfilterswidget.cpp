@@ -217,7 +217,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     inactive->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterinactive.png"));
 
     // SIGNAL/SLOT
-    connect(statusFilters, SIGNAL(currentRowChanged(int)), transferList, SLOT(applyStatusFilter(int)));
+    //connect(statusFilters, SIGNAL(currentRowChanged(int)), transferList, SLOT(applyStatusFilter(int)));
     connect(transferList->getSourceModel(), SIGNAL(modelRefreshed()), SLOT(updateTorrentNumbers()));
     connect(transferList->getSourceModel(), SIGNAL(torrentAdded(TorrentModelItem*)), SLOT(handleNewTorrent(TorrentModelItem*)));
     connect(labelFilters, SIGNAL(currentRowChanged(int)), this, SLOT(applyLabelFilter(int)));

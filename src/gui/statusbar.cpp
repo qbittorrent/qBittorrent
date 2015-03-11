@@ -127,7 +127,7 @@ StatusBar::StatusBar(QStatusBar *bar)
   refreshTimer = new QTimer(bar);
   refreshStatusBar();
   connect(refreshTimer, SIGNAL(timeout()), this, SLOT(refreshStatusBar()));
-  refreshTimer->start(1500);
+  // refreshTimer->start(1500);
 }
 
 StatusBar::~StatusBar() {

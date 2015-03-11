@@ -251,12 +251,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(preventTimer, SIGNAL(timeout()), SLOT(checkForActiveTorrents()));
 
     // Configure BT session according to options
-    loadPreferences(false);
+//    loadPreferences(false);
 
     // Start connection checking timer
     guiUpdater = new QTimer(this);
-    connect(guiUpdater, SIGNAL(timeout()), this, SLOT(updateGUI()));
-    guiUpdater->start(2000);
+//    connect(guiUpdater, SIGNAL(timeout()), this, SLOT(updateGUI()));
+//    guiUpdater->start(2000);
     // Accept drag 'n drops
     setAcceptDrops(true);
     createKeyboardShortcuts();
@@ -1115,7 +1115,7 @@ void MainWindow::loadPreferences(bool configure_session)
                     systrayCreator = new QTimer(this);
                     connect(systrayCreator, SIGNAL(timeout()), this, SLOT(createSystrayDelayed()));
                     systrayCreator->setSingleShot(true);
-                    systrayCreator->start(2000);
+                    // systrayCreator->start(2000);
                     qDebug("Info: System tray is unavailable, trying again later.");
                 }
                 else {
@@ -1146,7 +1146,7 @@ void MainWindow::loadPreferences(bool configure_session)
     }
 
     if (pref->preventFromSuspend()) {
-        preventTimer->start(PREVENT_SUSPEND_INTERVAL);
+        // preventTimer->start(PREVENT_SUSPEND_INTERVAL);
     }
     else {
         preventTimer->stop();
@@ -1311,7 +1311,7 @@ void MainWindow::downloadFromURLList(const QStringList& url_list)
 
 void MainWindow::createSystrayDelayed()
 {
-    static int timeout = 20;
+    static int timeout = 0;
     if (QSystemTrayIcon::isSystemTrayAvailable()) {
         // Ok, systray integration is now supported
         // Create systray icon
@@ -1321,7 +1321,7 @@ void MainWindow::createSystrayDelayed()
     else {
         if (timeout) {
             // Retry a bit later
-            systrayCreator->start(2000);
+            // systrayCreator->start(2000);
             --timeout;
         }
         else {
@@ -1500,8 +1500,8 @@ void MainWindow::handleUpdateCheckFinished(bool update_available, QString new_ve
     actionCheck_for_updates->setText(tr("Check for updates"));
     actionCheck_for_updates->setToolTip(tr("Check for program updates"));
     // Don't bother the user again in this session if he chose to ignore the update
-    if (Preferences::instance()->isUpdateCheckEnabled() && answer == QMessageBox::Yes)
-        programUpdateTimer.start();
+    // if (Preferences::instance()->isUpdateCheckEnabled() && answer == QMessageBox::Yes)
+        // programUpdateTimer.start();
 }
 #endif
 

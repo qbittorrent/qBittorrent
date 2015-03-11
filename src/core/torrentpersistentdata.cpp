@@ -276,7 +276,7 @@ void TorrentPersistentData::setValue(const QString &key, const QVariant &value)
     if (m_data.value(key) == value)
         return;
     dirty = true;
-    timer.start();
+    // timer.start();
     m_data.insert(key, value);
 }
 
@@ -375,7 +375,7 @@ void TorrentPersistentData::deletePersistentData(const QString &hash)
     if (m_data.contains(hash)) {
         m_data.remove(hash);
         dirty = true;
-        timer.start();
+        // timer.start();
     }
 }
 

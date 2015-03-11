@@ -63,7 +63,7 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(const shutDownAction &action): exit_now(N
 
 void ShutdownConfirmDlg::showEvent(QShowEvent *event) {
     QMessageBox::showEvent(event);
-    timer.start();
+    // timer.start();
 }
 
 bool ShutdownConfirmDlg::askForConfirmation(const shutDownAction &action) {
