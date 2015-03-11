@@ -139,7 +139,7 @@ void Application::processParams(const QStringList &params)
 #endif
                     QBtSession::instance()->addMagnetUri(param);
             }
-            else {
+            else if (!param.startsWith("-ServerName:")) {
 #ifndef DISABLE_GUI
                 if (useTorrentAdditionDialog)
                     AddNewTorrentDialog::showTorrent(param, QString(), m_window);

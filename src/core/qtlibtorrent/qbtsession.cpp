@@ -582,9 +582,9 @@ void QBtSession::configureSession() {
     setGlobalMaxRatio(pref->getGlobalMaxRatio());
     updateRatioTimer();
     // Ip Filter
-    FilterParserThread::processFilterList(s, pref->bannedIPs());
+    //FilterParserThread::processFilterList(s, pref->bannedIPs());
     if (pref->isFilteringEnabled()) {
-        enableIPFilter(pref->getFilter());
+        //enableIPFilter(pref->getFilter());
     }else{
         disableIPFilter();
     }

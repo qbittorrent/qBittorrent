@@ -176,8 +176,8 @@ int main(int argc, char *argv[])
     if (!qputenv("QBITTORRENT", QByteArray(VERSION)))
         std::cerr << "Couldn't set environment variable...\n";
 
-    if (!userAgreesWithLegalNotice())
-        return EXIT_SUCCESS;
+    //if (!userAgreesWithLegalNotice())
+        //return EXIT_SUCCESS;
 
 #ifndef Q_OS_WINRT
     // Check if qBittorrent is already running for this user
