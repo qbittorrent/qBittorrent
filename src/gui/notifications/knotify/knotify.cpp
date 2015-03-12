@@ -77,6 +77,8 @@ void KNotify::showTorrentFinishedNotification(const QString &title, const QStrin
         if(context->widget) {
             notification->setWidget(context->widget);
         }
+
+        notification->setActions(QStringList(tr("Open", "Open a torrent, either the single file or root directory")));
         m_activeNotifications.insert(notification, context->torrent);
         connect(notification, SIGNAL(closed()), this, SLOT(notificationClosed()));
         connect(notification, SIGNAL(activated(unsigned )), this, SLOT(torrentFinishedNotificationActivated(unsigned )));
