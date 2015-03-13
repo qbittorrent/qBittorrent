@@ -105,10 +105,7 @@ void QAlertDispatcher::dispatch(QSharedPointer<Tag> tag,
         return;
 
     bool was_empty = that->alerts.empty();
-
-    that->alerts.push_back(alert_ptr.get());
-    alert_ptr.release();
-
+    that->alerts.push_back(alert_ptr.release());
     if (was_empty)
         that->alerts_condvar.wakeAll();
 
