@@ -2,15 +2,19 @@ language:
   - cpp
 
 env:
-  # use libtorrent 0.15.10
-  # uncomment when Travis doesn't use Ubuntu 12.04 LTS, which has libtorrent 0.15.10 as package
-  #- lt_source=from_dist gui=true
-  #- lt_source=from_dist gui=false
-  # use libtorrent 0.16.X from RC_0_16 svn branch
-  - lt_source=from_svnRC_0_16 gui=true
-  - lt_source=from_svnRC_0_16 gui=false
-  - lt_source=from_svnRC_1_0 gui=true
-  - lt_source=from_svnRC_1_0 gui=false
+  matrix:
+    # use libtorrent 0.15.10
+    # uncomment when Travis doesn't use Ubuntu 12.04 LTS, which has libtorrent 0.15.10 as package
+    #- lt_source=from_dist gui=true
+    #- lt_source=from_dist gui=false
+    # use libtorrent 0.16.X from RC_0_16 svn branch
+    - lt_source=from_svnRC_0_16 gui=true
+    - lt_source=from_svnRC_0_16 gui=false
+    - lt_source=from_svnRC_1_0 gui=true
+    - lt_source=from_svnRC_1_0 gui=false
+  global:
+    - secure: "jsPZRwIZDLKza6wfy5ob0cAFVqEb3y0lIzpGNmwpcmxDlK0oqMxybKFIxcq+jFECsvVokZ2s7mP5wkUjhLlu4ksZNI86kdYMhwzIgaTDTHkKRwTEZKvNKEZgDvH7jV0IySRnSwI7LTbWGd4BJlhX6F5GSo+gRnuLxDwjckRc1fI="
+    - coverity_branch: coverity_scan
 
 branches:
   except:
@@ -20,9 +24,12 @@ branches:
 notifications:
   email:
     on_success: change
-    on_failure: change 
+    on_failure: change
 
 before_install:
+  # allow specific build for coverity, others will stop
+  - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ] && ! [[ "$lt_source" == "from_svnRC_1_0" && "$gui" == "true" ]]; then exit ; fi
+
   - shopt -s expand_aliases
   - alias sudo="sudo "
   # Using nprocs/2 sometimes may fail (gcc is killed by system), just use two threads
@@ -45,7 +52,7 @@ before_install:
   # uncomment when Travis doesn't use Ubuntu 12.04 LTS, which has libtorrent 0.15.10 as package
   #- sudo apt-get -qq install libboost-dev libboost-filesystem-dev libboost-system-dev
   - sudo apt-get -qq install libboost-dev libboost-system-dev
-  - sudo apt-get -qq install libqt4-dev 
+  - sudo apt-get -qq install libqt4-dev
 
 install:
   #- if [[ "$lt_source" == "from_dist" ]]; then sudo apt-get -qq install libtorrent-rasterbar-dev; fi
@@ -53,8 +60,19 @@ install:
   - if [[ "$lt_source" == "from_svnRC_1_0" ]]; then cd .. && svn co svn://svn.code.sf.net/p/libtorrent/code/branches/RC_1_0 ./libtorrent && (cd libtorrent && ./autotool.sh && ./configure $ltconf && sudo make install) && sudo ldconfig /usr/local/lib && cd $TRAVIS_BUILD_DIR ; fi
 
 script:
-  - ./bootstrap.sh
-  - ./configure $qbtconf && sudo make install
-  
+  - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ]; then exit ; fi # skip normal build when coverity is active
+  - ./bootstrap.sh && ./configure $qbtconf
+  - sudo make install
+
 after_success:
   - if $gui ; then qbittorrent --version ; else qbittorrent-nox --version ; fi
+
+addons:
+  coverity_scan:
+    project:
+      name: Chocobo1/qBittorrent
+      description: "Build submitted via Travis CI"
+    build_command_prepend: "./bootstrap.sh && ./configure"
+    build_command: make
+    branch_pattern: $coverity_branch
+    notification_email: Chocobo1@users.noreply.github.com
