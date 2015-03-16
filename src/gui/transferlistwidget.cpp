@@ -328,16 +328,16 @@ void TransferListWidget::deleteSelectedTorrents()
 void TransferListWidget::deleteVisibleTorrents()
 {
     if (nameFilterModel->rowCount() <= 0) return;
-    QTorrentHandle torrent = BTSession->getTorrentHandle(getHashFromRow(0));
-    bool delete_local_files = false;
-    if (Preferences::instance()->confirmTorrentDeletion() &&
-        !DeletionConfirmationDlg::askForDeletionConfirmation(delete_local_files, nameFilterModel->rowCount(), torrent.name()))
-        return;
     QStringList hashes;
     for (int i = 0; i<nameFilterModel->rowCount(); ++i) {
         const int row = mapToSource(nameFilterModel->index(i, 0)).row();
         hashes << getHashFromRow(row);
     }
+    QTorrentHandle torrent = BTSession->getTorrentHandle(hashes[0]);
+    bool delete_local_files = false;
+    if (Preferences::instance()->confirmTorrentDeletion() &&
+        !DeletionConfirmationDlg::askForDeletionConfirmation(delete_local_files, hashes.size(), torrent.name()))
+        return;
     foreach (const QString &hash, hashes)
         BTSession->deleteTorrent(hash, delete_local_files);
 }
