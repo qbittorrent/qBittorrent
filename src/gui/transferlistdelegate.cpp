@@ -56,6 +56,8 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
   switch(index.column()) {
   case TorrentModelItem::TR_AMOUNT_DOWNLOADED:
   case TorrentModelItem::TR_AMOUNT_UPLOADED:
+  case TorrentModelItem::TR_AMOUNT_DOWNLOADED_SESSION:
+  case TorrentModelItem::TR_AMOUNT_UPLOADED_SESSION:
   case TorrentModelItem::TR_AMOUNT_LEFT:
   case TorrentModelItem::TR_COMPLETED:
   case TorrentModelItem::TR_SIZE:

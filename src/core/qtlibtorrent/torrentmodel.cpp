@@ -284,6 +284,10 @@ QVariant TorrentModelItem::data(int column, int role) const
         return static_cast<qlonglong>(m_lastStatus.all_time_download);
     case TR_AMOUNT_UPLOADED:
         return static_cast<qlonglong>(m_lastStatus.all_time_upload);
+    case TR_AMOUNT_DOWNLOADED_SESSION:
+        return static_cast<qlonglong>(m_lastStatus.total_payload_download);
+    case TR_AMOUNT_UPLOADED_SESSION:
+        return static_cast<qlonglong>(m_lastStatus.total_payload_upload);
     case TR_AMOUNT_LEFT:
         return static_cast<qlonglong>(m_lastStatus.total_wanted - m_lastStatus.total_wanted_done);
     case TR_TIME_ELAPSED:
@@ -377,6 +381,8 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
             case TorrentModelItem::TR_UPLIMIT: return tr("Up Limit", "i.e: Upload limit");
             case TorrentModelItem::TR_AMOUNT_DOWNLOADED: return tr("Downloaded", "Amount of data downloaded (e.g. in MB)");
             case TorrentModelItem::TR_AMOUNT_UPLOADED: return tr("Uploaded", "Amount of data uploaded (e.g. in MB)");
+            case TorrentModelItem::TR_AMOUNT_DOWNLOADED_SESSION: return tr("Session Download", "Amount of data downloaded since program open (e.g. in MB)");
+            case TorrentModelItem::TR_AMOUNT_UPLOADED_SESSION: return tr("Session Upload", "Amount of data uploaded since program open (e.g. in MB)");
             case TorrentModelItem::TR_AMOUNT_LEFT: return tr("Remaining", "Amount of data left to download (e.g. in MB)");
             case TorrentModelItem::TR_TIME_ELAPSED: return tr("Time Active", "Time (duration) the torrent is active (not paused)");
             case TorrentModelItem::TR_SAVE_PATH: return tr("Save path", "Torrent save path");
@@ -393,6 +399,8 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
             switch(section) {
             case TorrentModelItem::TR_AMOUNT_DOWNLOADED:
             case TorrentModelItem::TR_AMOUNT_UPLOADED:
+            case TorrentModelItem::TR_AMOUNT_DOWNLOADED_SESSION:
+            case TorrentModelItem::TR_AMOUNT_UPLOADED_SESSION:
             case TorrentModelItem::TR_AMOUNT_LEFT:
             case TorrentModelItem::TR_COMPLETED:
             case TorrentModelItem::TR_SIZE:
