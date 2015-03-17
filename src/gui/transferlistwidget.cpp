@@ -48,7 +48,7 @@
 #include <queue>
 
 #include "transferlistwidget.h"
-#include "qbtsession.h"
+#include "application.h"
 #include "torrentpersistentdata.h"
 #include "transferlistdelegate.h"
 #include "previewselect.h"

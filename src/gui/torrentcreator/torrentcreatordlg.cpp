@@ -39,7 +39,7 @@
 #include "preferences.h"
 #include "torrentcreatorthread.h"
 #include "iconprovider.h"
-#include "qbtsession.h"
+#include "application.h"
 
 const uint NB_PIECES_MIN = 1200;
 const uint NB_PIECES_MAX = 2200;
@@ -166,7 +166,7 @@ void TorrentCreatorDlg::handleCreationSuccess(QString path, QString branch_path)
     TorrentTempData::setSeedingMode(hash, true);
     emit torrent_to_seed(path);
     if (checkIgnoreShareLimits->isChecked())
-      QBtSession::instance()->setMaxRatioPerTorrent(hash, -1);
+      App->BtSession()->setMaxRatioPerTorrent(hash, -1);
   }
   QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully:")+" "+fsutils::toNativePath(path));
   close();

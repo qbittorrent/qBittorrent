@@ -46,7 +46,7 @@
 #include "fs_utils.h"
 #include "advancedsettings.h"
 #include "scannedfoldersmodel.h"
-#include "qbtsession.h"
+#include "application.h"
 #include "iconprovider.h"
 #include "dnsupdater.h"
 
@@ -1250,9 +1250,9 @@ void options_imp::on_IpFilterRefreshBtn_clicked() {
   pref->setFilteringEnabled(true);
   pref->setFilter(getFilter());
   // Force refresh
-  connect(QBtSession::instance(), SIGNAL(ipFilterParsed(bool, int)), SLOT(handleIPFilterParsed(bool, int)));
+  connect(App->BtSession(), SIGNAL(ipFilterParsed(bool, int)), SLOT(handleIPFilterParsed(bool, int)));
   setCursor(QCursor(Qt::WaitCursor));
-  QBtSession::instance()->enableIPFilter(getFilter(), true);
+  App->BtSession()->enableIPFilter(getFilter(), true);
 }
 
 void options_imp::handleIPFilterParsed(bool error, int ruleCount)
@@ -1264,7 +1264,7 @@ void options_imp::handleIPFilterParsed(bool error, int ruleCount)
     QMessageBox::information(this, tr("Successfully refreshed"), tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
   }
   m_refreshingIpFilter = false;
-  disconnect(QBtSession::instance(), SIGNAL(ipFilterParsed(bool, int)), this, SLOT(handleIPFilterParsed(bool, int)));
+  disconnect(App->BtSession(), SIGNAL(ipFilterParsed(bool, int)), this, SLOT(handleIPFilterParsed(bool, int)));
 }
 
 QString options_imp::languageToLocalizedString(const QLocale &locale)

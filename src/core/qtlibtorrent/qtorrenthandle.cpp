@@ -40,6 +40,7 @@
 #include "preferences.h"
 #include "qtorrenthandle.h"
 #include "torrentpersistentdata.h"
+#include "application.h"
 #include "qbtsession.h"
 #include <libtorrent/version.hpp>
 #include <libtorrent/magnet_uri.hpp>
@@ -453,7 +454,7 @@ QTorrentState QTorrentHandle::torrentState() const
             state = is_seed(s) ? QTorrentState::PausedUploading : QTorrentState::PausedDownloading;
     }
     else {
-        if (QBtSession::instance()->isQueueingEnabled() && is_queued(s)) {
+        if (App->BtSession()->isQueueingEnabled() && is_queued(s)) {
             state = is_seed(s) ? QTorrentState::QueuedUploading : QTorrentState::QueuedDownloading;
         }
         else {
@@ -484,7 +485,7 @@ QTorrentState QTorrentHandle::torrentState() const
 qulonglong QTorrentHandle::eta() const
 {
     libtorrent::torrent_status s = status(torrent_handle::query_accurate_download_counters);
-    return QBtSession::instance()->getETA(hash(), s);
+    return App->BtSession()->getETA(hash(), s);
 }
 
 void QTorrentHandle::toggleSequentialDownload()

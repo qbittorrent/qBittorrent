@@ -33,7 +33,7 @@
 #include <QFontMetrics>
 #include <QDebug>
 
-#include "qbtsession.h"
+#include "application.h"
 #include "speedlimitdlg.h"
 #include "iconprovider.h"
 #include "preferences.h"
@@ -47,7 +47,7 @@ StatusBar::StatusBar(QStatusBar *bar)
   : m_bar(bar)
 {
   Preferences* const pref = Preferences::instance();
-  connect(QBtSession::instance(), SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
+  connect(App->BtSession(), SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
   container = new QWidget(bar);
   layout = new QHBoxLayout(container);
   layout->setContentsMargins(0,0,0,0);
@@ -159,8 +159,8 @@ void StatusBar::stopTimer() {
 
 void StatusBar::refreshStatusBar() {
   // Update connection status
-  const libtorrent::session_status sessionStatus = QBtSession::instance()->getSessionStatus();
-  if (!QBtSession::instance()->getSession()->is_listening()) {
+  const libtorrent::session_status sessionStatus = App->BtSession()->getSessionStatus();
+  if (!App->BtSession()->getSession()->is_listening()) {
     connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/icons/skin/disconnected.png")));
     connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection Status:")+QString::fromUtf8("</b><br>")+tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
   } else {
@@ -174,7 +174,7 @@ void StatusBar::refreshStatusBar() {
     }
   }
   // Update Number of DHT nodes
-  if (QBtSession::instance()->isDHTEnabled()) {
+  if (App->BtSession()->isDHTEnabled()) {
     DHTLbl->setVisible(true);
     //statusSep1->setVisible(true);
     DHTLbl->setText(tr("DHT: %1 nodes").arg(QString::number(sessionStatus.dht_nodes)));
@@ -184,11 +184,11 @@ void StatusBar::refreshStatusBar() {
   }
   // Update speed labels
   QString speedLbl = misc::friendlyUnit(sessionStatus.payload_download_rate, true)+" ("+misc::friendlyUnit(sessionStatus.total_payload_download)+")";
-  int speedLimit = QBtSession::instance()->getSession()->settings().download_rate_limit;
+  int speedLimit = App->BtSession()->getSession()->settings().download_rate_limit;
   if (speedLimit)
     speedLbl = "["+misc::friendlyUnit(speedLimit, true)+"] " + speedLbl;
   dlSpeedLbl->setText(speedLbl);
-  speedLimit = QBtSession::instance()->getSession()->settings().upload_rate_limit;
+  speedLimit = App->BtSession()->getSession()->settings().upload_rate_limit;
   speedLbl = misc::friendlyUnit(sessionStatus.payload_upload_rate, true)+" ("+misc::friendlyUnit(sessionStatus.total_payload_upload)+")";
   if (speedLimit)
     speedLbl = "["+misc::friendlyUnit(speedLimit, true)+"] " + speedLbl;
@@ -214,26 +214,26 @@ void StatusBar::toggleAlternativeSpeeds() {
     pref->setSchedulerEnabled(false);
     m_bar->showMessage(tr("Manual change of rate limits mode. The scheduler is disabled."), 5000);
   }
-  QBtSession::instance()->useAlternativeSpeedsLimit(!pref->isAltBandwidthEnabled());
+  App->BtSession()->useAlternativeSpeedsLimit(!pref->isAltBandwidthEnabled());
 }
 
 void StatusBar::capDownloadSpeed() {
   bool ok = false;
-  int cur_limit = QBtSession::instance()->getSession()->settings().download_rate_limit;
+  int cur_limit = App->BtSession()->getSession()->settings().download_rate_limit;
   long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), cur_limit);
   if (ok) {
     Preferences* const pref = Preferences::instance();
     bool alt = pref->isAltBandwidthEnabled();
     if (new_limit <= 0) {
       qDebug("Setting global download rate limit to Unlimited");
-      QBtSession::instance()->setDownloadRateLimit(-1);
+      App->BtSession()->setDownloadRateLimit(-1);
       if (!alt)
         pref->setGlobalDownloadLimit(-1);
       else
         pref->setAltGlobalDownloadLimit(-1);
     } else {
       qDebug("Setting global download rate limit to %.1fKb/s", new_limit/1024.);
-      QBtSession::instance()->setDownloadRateLimit(new_limit);
+      App->BtSession()->setDownloadRateLimit(new_limit);
       if (!alt)
         pref->setGlobalDownloadLimit(new_limit/1024.);
       else
@@ -245,21 +245,21 @@ void StatusBar::capDownloadSpeed() {
 
 void StatusBar::capUploadSpeed() {
   bool ok = false;
-  int cur_limit = QBtSession::instance()->getSession()->settings().upload_rate_limit;
+  int cur_limit = App->BtSession()->getSession()->settings().upload_rate_limit;
   long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), cur_limit);
   if (ok) {
     Preferences* const pref = Preferences::instance();
     bool alt = pref->isAltBandwidthEnabled();
     if (new_limit <= 0) {
       qDebug("Setting global upload rate limit to Unlimited");
-      QBtSession::instance()->setUploadRateLimit(-1);
+      App->BtSession()->setUploadRateLimit(-1);
       if (!alt)
         Preferences::instance()->setGlobalUploadLimit(-1);
       else
         Preferences::instance()->setAltGlobalUploadLimit(-1);
     } else {
       qDebug("Setting global upload rate limit to %.1fKb/s", new_limit/1024.);
-      QBtSession::instance()->setUploadRateLimit(new_limit);
+      App->BtSession()->setUploadRateLimit(new_limit);
       if (!alt)
         Preferences::instance()->setGlobalUploadLimit(new_limit/1024.);
       else

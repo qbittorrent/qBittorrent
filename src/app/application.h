@@ -47,6 +47,11 @@ typedef QtSingleCoreApplication BaseApplication;
 class WebUI;
 #endif
 
+class Application;
+#define App (static_cast<Application *>(QCoreApplication::instance()))
+// Application component includes (for easy access)
+#include "qbtsession.h"
+
 class Application : public BaseApplication
 {
     Q_OBJECT
@@ -59,6 +64,8 @@ public:
 #endif
     int exec(const QStringList &params);
     bool sendParams(const QStringList &params);
+
+    inline QBtSession *BtSession() { return m_btSession; }
 
 protected:
 #ifndef DISABLE_GUI
@@ -86,6 +93,8 @@ private:
     QTranslator m_qtTranslator;
     QTranslator m_translator;
     QStringList m_paramsQueue;
+
+    QBtSession *m_btSession;
 
     void initializeTranslation();
     void processParams(const QStringList &params);

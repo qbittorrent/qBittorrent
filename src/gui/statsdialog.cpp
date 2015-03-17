@@ -39,7 +39,7 @@ StatsDialog::StatsDialog(QWidget *parent) :   QDialog(parent), ui(new Ui::StatsD
   ui->setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   connect(ui->buttonOK, SIGNAL(clicked()), SLOT(close()));
-  session = QBtSession::instance();
+  session = App->BtSession();
   updateUI();
   t = new QTimer(this);
   t->setInterval(1500);

@@ -30,7 +30,7 @@
 
 #include "prefjson.h"
 #include "preferences.h"
-#include "qbtsession.h"
+#include "application.h"
 #include "scannedfoldersmodel.h"
 #include "fs_utils.h"
 
@@ -182,7 +182,7 @@ void prefjson::setPreferences(const QString& json)
       foreach (const QString &old_folder, old_folders) {
         // Update deleted folders
         if (!new_folders.contains(old_folder)) {
-          QBtSession::instance()->getScanFoldersModel()->removePath(old_folder);
+          App->BtSession()->getScanFoldersModel()->removePath(old_folder);
         }
       }
       int i = 0;
@@ -190,7 +190,7 @@ void prefjson::setPreferences(const QString& json)
         qDebug("New watched folder: %s", qPrintable(new_folder));
         // Update new folders
         if (!old_folders.contains(fsutils::fromNativePath(new_folder))) {
-          QBtSession::instance()->getScanFoldersModel()->addPath(new_folder, download_at_path.at(i));
+          App->BtSession()->getScanFoldersModel()->addPath(new_folder, download_at_path.at(i));
         }
         ++i;
       }

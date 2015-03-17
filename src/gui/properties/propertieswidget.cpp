@@ -44,7 +44,7 @@
 #include "propertieswidget.h"
 #include "transferlistwidget.h"
 #include "torrentpersistentdata.h"
-#include "qbtsession.h"
+#include "application.h"
 #include "proplistdelegate.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodel.h"
@@ -95,8 +95,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle)), this, SLOT(loadTorrentInfos(QTorrentHandle)));
   connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(stackedProperties, SIGNAL(currentChanged(int)), this, SLOT(loadDynamicData()));
-  connect(QBtSession::instance(), SIGNAL(savePathChanged(QTorrentHandle)), this, SLOT(updateSavePath(QTorrentHandle)));
-  connect(QBtSession::instance(), SIGNAL(metadataReceived(QTorrentHandle)), this, SLOT(updateTorrentInfos(QTorrentHandle)));
+  connect(App->BtSession(), SIGNAL(savePathChanged(QTorrentHandle)), this, SLOT(updateSavePath(QTorrentHandle)));
+  connect(App->BtSession(), SIGNAL(metadataReceived(QTorrentHandle)), this, SLOT(updateTorrentInfos(QTorrentHandle)));
   connect(filesList->header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(saveSettings()));
   connect(filesList->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
   connect(filesList->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
@@ -354,7 +354,7 @@ void PropertiesWidget::loadDynamicData() {
       // Update next announce time
       reannounce_lbl->setText(misc::userFriendlyDuration(status.next_announce.total_seconds()));
       // Update ratio info
-      const qreal ratio = QBtSession::instance()->getRealRatio(status);
+      const qreal ratio = App->BtSession()->getRealRatio(status);
       shareRatio->setText(ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
       if (!h.is_seed(status) && status.has_metadata) {
         showPiecesDownloaded(true);
