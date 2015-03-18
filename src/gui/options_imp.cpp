@@ -1202,7 +1202,7 @@ void options_imp::on_addScanFolderButton_clicked()
     const QString dir = QFileDialog::getExistingDirectory(this, tr("Add directory to scan"),
                                                           Utils::Fs::toNativePath(Utils::Fs::folderName(pref->getScanDirsLastPath())));
     if (!dir.isEmpty()) {
-        const ScanFoldersModel::PathStatus status = ScanFoldersModel::instance()->addPath(dir, false);
+        const ScanFoldersModel::PathStatus status = ScanFoldersModel::instance()->addPath(dir, true, "");
         QString error;
         switch (status) {
         case ScanFoldersModel::AlreadyInList:
