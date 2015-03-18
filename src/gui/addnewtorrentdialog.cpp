@@ -567,7 +567,30 @@ void AddNewTorrentDialog::accept()
 
     Preferences* const pref = Preferences::instance();
     // Save Temporary data about torrent
-    QString save_path = ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString();
+    QString save_path = ui->save_path_combo->currentText();
+
+    if (QDir::isAbsolutePath(save_path) == false) {
+        MessageBoxRaised::warning(this, tr("Invalid download path"),
+                                  tr("The download path you entered is invalid. Please enter a different path"),
+                                  QMessageBox::Ok);
+        return;
+    }
+
+    save_path = QDir::cleanPath(save_path);
+    save_path = fsutils::fromNativePath(save_path);
+
+    QStringList folders = save_path.split("/", QString::KeepEmptyParts);
+    folders.removeFirst(); // Removes empty string on unix and drive letter on windows
+    foreach (const QString folder, folders) {
+        std::cout << folder.toStdString() << " ";
+        if (fsutils::isValidFileSystemName(folder) == false) {
+            MessageBoxRaised::warning(this, tr("Invalid download path"),
+                                      tr("The download path you entered is invalid. Please enter a different path"),
+                                      QMessageBox::Ok);
+            return;
+        }
+    }
+
     TorrentTempData::setSavePath(m_hash, save_path);
     if (ui->skip_check_cb->isChecked())
         // TODO: Check if destination actually exists
@@ -598,7 +621,7 @@ void AddNewTorrentDialog::accept()
     // Save settings
     pref->useAdditionDialog(!ui->never_show_cb->isChecked());
     if (ui->default_save_path_cb->isChecked()) {
-        pref->setSavePath(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString());
+        pref->setSavePath(save_path);
         QBtSession::instance()->setDefaultSavePath(pref->getSavePath());
     }
     QDialog::accept();
