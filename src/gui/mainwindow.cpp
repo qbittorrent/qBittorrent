@@ -1220,21 +1220,21 @@ void MainWindow::updateGUI()
         html += "qBittorrent";
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/download.png'/>&nbsp;" + tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(misc::accurateDoubleToString(QBtSession::instance()->getPayloadDownloadRate() / 1024., 1));
+        html += "<img src=':/icons/skin/download.png'/>&nbsp;" + tr("DL speed: ", "e.g: Download speed: 10 KiB/s") + misc::friendlyUnit(QBtSession::instance()->getPayloadDownloadRate(), true);
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/seeding.png'/>&nbsp;" + tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(misc::accurateDoubleToString(QBtSession::instance()->getPayloadUploadRate() / 1024., 1));
+        html += "<img src=':/icons/skin/seeding.png'/>&nbsp;" + tr("UP speed: ", "e.g: Upload speed: 10 KiB/s") + misc::friendlyUnit(QBtSession::instance()->getPayloadUploadRate(), true);
         html += "</div>";
 #else
         // OSes such as Windows do not support html here
-        QString html = tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(misc::accurateDoubleToString(QBtSession::instance()->getPayloadDownloadRate() / 1024., 1));
+        QString html = tr("DL speed: ", "e.g: Download speed: 10 KiB/s") + misc::friendlyUnit(QBtSession::instance()->getPayloadDownloadRate(), true);
         html += "\n";
-        html += tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(misc::accurateDoubleToString(QBtSession::instance()->getPayloadUploadRate() / 1024., 1));
+        html += tr("UP speed: ", "e.g: Upload speed: 10 KiB/s") + misc::friendlyUnit(QBtSession::instance()->getPayloadUploadRate(), true);
 #endif
         systrayIcon->setToolTip(html); // tray icon
     }
     if (displaySpeedInTitle)
-        setWindowTitle(tr("[D: %1/s, U: %2/s] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version").arg(misc::friendlyUnit(QBtSession::instance()->getSessionStatus().payload_download_rate)).arg(misc::friendlyUnit(QBtSession::instance()->getSessionStatus().payload_upload_rate)).arg(QString::fromUtf8(VERSION)));
+        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version").arg(misc::friendlyUnit(QBtSession::instance()->getPayloadDownloadRate(), true)).arg(misc::friendlyUnit(QBtSession::instance()->getPayloadUploadRate(), true)).arg(QString::fromUtf8(VERSION)));
 }
 
 void MainWindow::showNotificationBaloon(QString title, QString msg) const
