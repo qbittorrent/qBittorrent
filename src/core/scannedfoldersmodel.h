@@ -54,12 +54,13 @@ public:
 
   // TODO: removePaths(); singular version becomes private helper functions;
   // also: remove functions should take modelindexes
-  PathStatus addPath(const QString &path, bool download_at_path);
+  PathStatus addPath(const QString &path, bool download_at_path, const QString &download_path);
   void removePath(int row);
   bool removePath(const QString &path);
   PathStatus setDownloadAtPath(int row, bool downloadAtPath);
 
   bool downloadInTorrentFolder(const QString &filePath) const;
+  QString downloadPathTorrentFolder(const QString &filePath) const;
   void makePersistent();
 
 signals:
