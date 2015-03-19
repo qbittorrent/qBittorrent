@@ -1220,16 +1220,16 @@ void MainWindow::updateGUI()
         html += "qBittorrent";
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/download.png'/>&nbsp;" + tr("DL speed: ", "e.g: Download speed: 10 KiB/s") + misc::friendlyUnit(QBtSession::instance()->getPayloadDownloadRate(), true);
+        html += "<img src=':/icons/skin/download.png'/>&nbsp;" + tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(misc::friendlyUnit(QBtSession::instance()->getPayloadDownloadRate(), true));
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/seeding.png'/>&nbsp;" + tr("UP speed: ", "e.g: Upload speed: 10 KiB/s") + misc::friendlyUnit(QBtSession::instance()->getPayloadUploadRate(), true);
+        html += "<img src=':/icons/skin/seeding.png'/>&nbsp;" + tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(misc::friendlyUnit(QBtSession::instance()->getPayloadUploadRate(), true));
         html += "</div>";
 #else
         // OSes such as Windows do not support html here
-        QString html = tr("DL speed: ", "e.g: Download speed: 10 KiB/s") + misc::friendlyUnit(QBtSession::instance()->getPayloadDownloadRate(), true);
+        QString html = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(misc::friendlyUnit(QBtSession::instance()->getPayloadDownloadRate(), true));
         html += "\n";
-        html += tr("UP speed: ", "e.g: Upload speed: 10 KiB/s") + misc::friendlyUnit(QBtSession::instance()->getPayloadUploadRate(), true);
+        html += tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(misc::friendlyUnit(QBtSession::instance()->getPayloadUploadRate(), true));
 #endif
         systrayIcon->setToolTip(html); // tray icon
     }
