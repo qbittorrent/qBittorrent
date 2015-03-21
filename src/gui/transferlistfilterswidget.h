@@ -38,6 +38,7 @@ QT_BEGIN_NAMESPACE
 class QListWidgetItem;
 class QVBoxLayout;
 class QDragMoveEvent;
+class QLabel;
 QT_END_NAMESPACE
 
 class TransferListWidget;
@@ -45,7 +46,18 @@ class TorrentModelItem;
 class QTorrentHandle;
 class DownloadThread;
 
-class LabelFiltersList: public QListWidget
+class FiltersBase: public QListWidget
+{
+    Q_OBJECT
+
+public:
+    FiltersBase(QWidget *parent);
+
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
+};
+
+class LabelFiltersList: public FiltersBase
 {
     Q_OBJECT
 
@@ -71,21 +83,18 @@ protected:
     void setItemHover(bool hover);
 };
 
-class StatusFiltersWidget: public QListWidget
+class StatusFiltersWidget: public FiltersBase
 {
     Q_OBJECT
 
 public:
     StatusFiltersWidget(QWidget *parent);
 
-protected:
-    QSize sizeHint() const;
-
 private:
     bool m_shown;
 };
 
-class TrackerFiltersList: public QListWidget
+class TrackerFiltersList: public FiltersBase
 {
     Q_OBJECT
 
@@ -127,6 +136,8 @@ private:
     TransferListWidget *transferList;
     int nb_labeled;
     int nb_torrents;
+    //for use in resizeEvent()
+    QLabel *torrentsLabel;
 
 public:
     TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList);
@@ -140,6 +151,9 @@ public:
 public slots:
     void addTracker(const QString &tracker, const QString &hash);
     void removeTracker(const QString &tracker, const QString &hash);
+
+protected:
+    virtual void resizeEvent(QResizeEvent *event);
 
 protected slots:
     void updateTorrentNumbers();

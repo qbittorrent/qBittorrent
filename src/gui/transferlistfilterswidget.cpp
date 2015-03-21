@@ -51,16 +51,38 @@
 #include "downloadthread.h"
 #include "logger.h"
 
-LabelFiltersList::LabelFiltersList(QWidget *parent): QListWidget(parent)
+FiltersBase::FiltersBase(QWidget *parent)
+    : QListWidget(parent)
 {
-    itemHover = 0;
-    // Accept drop
-    setAcceptDrops(true);
-    setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
     setStyleSheet("QListWidget { background: transparent; border: 0 }");
 #if defined(Q_OS_MAC)
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
+}
+
+QSize FiltersBase::sizeHint() const
+{
+    QSize size = QListWidget::sizeHint();
+    // Height should be exactly the height of the content
+    size.setHeight((sizeHintForRow(0) * count()) + (2 * frameWidth()) + 6);
+    return size;
+}
+
+QSize FiltersBase::minimumSizeHint() const
+{
+    QSize size = QListWidget::minimumSizeHint();
+    // Minimum height should be exactly the sticky labels height
+    size.setHeight((sizeHintForRow(0) * 2) + (2 * frameWidth()) + 6);
+    return size;
+}
+
+LabelFiltersList::LabelFiltersList(QWidget *parent)
+    : FiltersBase(parent)
+{
+    itemHover = 0;
+    // Accept drop
+    setAcceptDrops(true);
+    setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 }
 
 void LabelFiltersList::addItem(QListWidgetItem *it)
@@ -69,10 +91,12 @@ void LabelFiltersList::addItem(QListWidgetItem *it)
     for (int i = 2; i<count(); ++i) {
         if (item(i)->text().localeAwareCompare(it->text()) >= 0) {
             insertItem(i, it);
+            updateGeometry();
             return;
         }
     }
     QListWidget::addItem(it);
+    updateGeometry();
 }
 
 QString LabelFiltersList::labelFromRow(int row) const
@@ -150,33 +174,21 @@ void LabelFiltersList::setItemHover(bool hover)
     }
 }
 
-StatusFiltersWidget::StatusFiltersWidget(QWidget *parent): QListWidget(parent), m_shown(false)
+StatusFiltersWidget::StatusFiltersWidget(QWidget *parent)
+    : FiltersBase(parent)
+    , m_shown(false)
 {
     setUniformItemSizes(true);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     // Height is fixed (sizeHint().height() is used)
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    setStyleSheet("QListWidget { background: transparent; border: 0 }");
-#if defined(Q_OS_MAC)
-    setAttribute(Qt::WA_MacShowFocusRect, false);
-#endif
 }
 
-QSize StatusFiltersWidget::sizeHint() const
-{
-    QSize size = QListWidget::sizeHint();
-    // Height should be exactly the height of the content
-    size.setHeight(contentsSize().height() + 2 * frameWidth() + 6);
-    return size;
-}
-
-TrackerFiltersList::TrackerFiltersList(QWidget *parent): QListWidget(parent), m_downloader(new DownloadThread(this))
+TrackerFiltersList::TrackerFiltersList(QWidget *parent)
+    : FiltersBase(parent)
+    , m_downloader(new DownloadThread(this))
 {
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
-    setStyleSheet("QListWidget { background: transparent; border: 0 }");
-#if defined(Q_OS_MAC)
-    setAttribute(Qt::WA_MacShowFocusRect, false);
-#endif
     QListWidgetItem *allTrackers = new QListWidgetItem(this);
     allTrackers->setData(Qt::DisplayRole, QVariant(tr("All trackers (0)")));
     allTrackers->setData(Qt::DecorationRole, IconProvider::instance()->getIcon("network-server"));
@@ -387,7 +399,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     QFont font;
     font.setBold(true);
     font.setCapitalization(QFont::SmallCaps);
-    QLabel *torrentsLabel = new QLabel(tr("Torrents"));
+    torrentsLabel = new QLabel(tr("Torrents"));
     torrentsLabel->setIndent(2);
     torrentsLabel->setFont(font);
     vLayout->addWidget(torrentsLabel);
@@ -476,6 +488,13 @@ TransferListFiltersWidget::~TransferListFiltersWidget()
     delete labelFilters;
     delete trackerFilters;
     delete vLayout;
+}
+
+void TransferListFiltersWidget::resizeEvent(QResizeEvent *event)
+{
+    int height = event->size().height();
+    int minHeight = statusFilters->height() + (3 * torrentsLabel->height());
+    trackerFilters->setMinimumHeight((height - minHeight) / 2);
 }
 
 StatusFiltersWidget* TransferListFiltersWidget::getStatusFilters() const
@@ -639,6 +658,7 @@ void TransferListFiltersWidget::removeSelectedLabel()
     applyLabelFilter(0);
     // Un display filter
     delete labelFilters->takeItem(row);
+    labelFilters->updateGeometry();
     // Save custom labels to remember it was deleted
     Preferences::instance()->removeTorrentLabel(label);
 }
@@ -655,6 +675,8 @@ void TransferListFiltersWidget::removeUnusedLabels()
         delete labelFilters->takeItem(labelFilters->rowFromLabel(label));
         Preferences::instance()->removeTorrentLabel(label);
     }
+    if (!unusedLabels.empty())
+        labelFilters->updateGeometry();
 }
 
 void TransferListFiltersWidget::applyLabelFilter(int row)
