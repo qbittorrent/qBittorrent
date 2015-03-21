@@ -39,6 +39,7 @@
 #include <QNetworkCookie>
 
 #include <libtorrent/version.hpp>
+#include <libtorrent/session_settings.hpp>
 
 #include "qtorrenthandle.h"
 #include "trackerinfos.h"
@@ -258,7 +259,11 @@ private slots:
     void saveTempFastResumeData();
     void sendNotificationEmail(const QTorrentHandle &h);
     void autoRunExternalProgram(const QTorrentHandle &h);
+#if LIBTORRENT_VERSION_NUM < 10000
     void mergeTorrents(QTorrentHandle& h_ex, boost::intrusive_ptr<libtorrent::torrent_info> t);
+#else
+    void mergeTorrents(QTorrentHandle& h_ex, boost::shared_ptr<libtorrent::torrent_info> t);
+#endif
     void mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri);
     void exportTorrentFile(const QTorrentHandle &h, TorrentExportFolder folder = RegularTorrentExportFolder);
     void handleIPFilterParsed(int ruleCount);

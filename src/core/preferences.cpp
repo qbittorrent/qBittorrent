@@ -45,7 +45,7 @@
 #include <QCoreApplication>
 #endif
 
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
 #include <ShlObj.h>
 #include <winreg.h>
 #endif
@@ -188,7 +188,7 @@ void Preferences::setValue(const QString &key, const QVariant &value)
     if (m_data.value(key) == value)
         return;
     dirty = true;
-    timer.start();
+//    timer.start();
     m_data.insert(key, value);
 }
 
@@ -334,7 +334,7 @@ void Preferences::setPreventFromSuspend(bool b)
     setValue("Preferences/General/PreventFromSuspend", b);
 }
 
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
 bool Preferences::WinStartup() const
 {
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
@@ -1606,7 +1606,7 @@ void Preferences::disableRecursiveDownload(bool disable)
     setValue("Preferences/Advanced/DisableRecursiveDownload", disable);
 }
 
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
 namespace {
     enum REG_SEARCH_TYPE
     {
@@ -2260,8 +2260,8 @@ void Preferences::removeStats()
 {
     QWriteLocker locker(&lock);
     dirty = true;
-    if (!timer.isActive())
-        timer.start();
+    // if (!timer.isActive())
+        // timer.start();
     m_data.remove("Stats/AllStats");
 }
 

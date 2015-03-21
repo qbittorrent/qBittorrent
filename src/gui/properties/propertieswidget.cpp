@@ -131,7 +131,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   // Dynamic data refresher
   refreshTimer = new QTimer(this);
   connect(refreshTimer, SIGNAL(timeout()), this, SLOT(loadDynamicData()));
-  refreshTimer->start(3000); // 3sec
+  // refreshTimer->start(3000); // 3sec
   editHotkeyFile = new QShortcut(QKeySequence("F2"), filesList, 0, 0, Qt::WidgetShortcut);
   connect(editHotkeyFile, SIGNAL(activated()), SLOT(renameSelectedFile()));
   editHotkeyWeb = new QShortcut(QKeySequence("F2"), listWebSeeds, 0, 0, Qt::WidgetShortcut);
@@ -403,7 +403,7 @@ void PropertiesWidget::loadDynamicData() {
       if (h.is_valid() && status.has_metadata) {
         qDebug("Updating priorities in files tab");
         filesList->setUpdatesEnabled(false);
-        std::vector<size_type> fp;
+        std::vector<boost::int64_t> fp;
         h.file_progress(fp);
         PropListModel->model()->updateFilesProgress(fp);
         // XXX: We don't update file priorities regularly for performance
@@ -497,6 +497,7 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
       return;
   qDebug("Trying to open folder at %s", qPrintable(absolute_path));
 
+#ifndef Q_OS_WINRT
 #ifdef Q_OS_WIN
   if (containing_folder) {
     // Syntax is: explorer /select, "C:\Folder1\Folder2\file_to_select"
@@ -531,6 +532,7 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
     }
 #if defined(Q_OS_WIN) || (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
   }
+#endif
 #endif
 }
 

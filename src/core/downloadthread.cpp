@@ -227,6 +227,7 @@ void DownloadThread::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal) 
 }
 
 void DownloadThread::applyProxySettings() {
+#ifndef Q_OS_WINRT
   QNetworkProxy proxy;
   const Preferences* const pref = Preferences::instance();
   if (pref->isProxyEnabled()) {
@@ -252,6 +253,7 @@ void DownloadThread::applyProxySettings() {
     proxy.setType(QNetworkProxy::NoProxy);
   }
   m_networkManager.setProxy(proxy);
+#endif
 }
 
 QString DownloadThread::errorCodeToString(QNetworkReply::NetworkError status) {

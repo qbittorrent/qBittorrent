@@ -132,7 +132,7 @@ bool QTorrentHandle::is_queued() const
     return is_queued(status(0x0));
 }
 
-size_type QTorrentHandle::total_size() const
+boost::int64_t QTorrentHandle::total_size() const
 {
 #if LIBTORRENT_VERSION_NUM < 10000
     return torrent_handle::get_torrent_info().total_size();
@@ -141,7 +141,7 @@ size_type QTorrentHandle::total_size() const
 #endif
 }
 
-size_type QTorrentHandle::piece_length() const
+boost::int64_t QTorrentHandle::piece_length() const
 {
 #if LIBTORRENT_VERSION_NUM < 10000
     return torrent_handle::get_torrent_info().piece_length();
@@ -164,7 +164,7 @@ bool QTorrentHandle::first_last_piece_first() const
 #if LIBTORRENT_VERSION_NUM < 10000
     torrent_info const* t = &get_torrent_info();
 #else
-    boost::intrusive_ptr<torrent_info const> t = torrent_file();
+    boost::shared_ptr<torrent_info const> t = boost::make_shared<torrent_info>(get_torrent_info());
 #endif
 
     // Get int first media file
@@ -227,7 +227,7 @@ QStringList QTorrentHandle::url_seeds() const
 }
 
 // get the size of the torrent without the filtered files
-size_type QTorrentHandle::actual_size() const
+boost::int64_t QTorrentHandle::actual_size() const
 {
     return status(query_accurate_download_counters).total_wanted;
 }
@@ -260,7 +260,7 @@ QString QTorrentHandle::filename_at(unsigned int index) const
     return fsutils::fileName(filepath_at(index));
 }
 
-size_type QTorrentHandle::filesize_at(unsigned int index) const
+boost::int64_t QTorrentHandle::filesize_at(unsigned int index) const
 {
 #if LIBTORRENT_VERSION_NUM < 10000
     Q_ASSERT(index < (unsigned int)torrent_handle::get_torrent_info().num_files());
@@ -436,7 +436,7 @@ bool QTorrentHandle::has_metadata() const
     return status(0x0).has_metadata;
 }
 
-void QTorrentHandle::file_progress(std::vector<size_type>& fp) const
+void QTorrentHandle::file_progress(std::vector<boost::int64_t>& fp) const
 {
     torrent_handle::file_progress(fp, torrent_handle::piece_granularity);
 }
@@ -590,7 +590,7 @@ bool QTorrentHandle::save_torrent_file(const QString& path) const
 #if LIBTORRENT_VERSION_NUM < 10000
     torrent_info const* t = &get_torrent_info();
 #else
-    boost::intrusive_ptr<torrent_info const> t = torrent_file();
+    boost::shared_ptr<torrent_info const> t = boost::make_shared<torrent_info>(get_torrent_info());
 #endif
 
     entry meta = bdecode(t->metadata().get(),
@@ -626,7 +626,7 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const
 #if LIBTORRENT_VERSION_NUM < 10000
     torrent_info const& info = torrent_handle::get_torrent_info();
 #else
-    boost::intrusive_ptr<torrent_info const> info_ptr = torrent_handle::torrent_file();
+    boost::shared_ptr<torrent_info const> info_ptr = boost::make_shared<torrent_info>(torrent_handle::get_torrent_info());
     torrent_info const& info = *info_ptr;
 #endif
     if ((int)files.size() != info.num_files()) return;
@@ -660,8 +660,8 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const
                     // Hide the folder on Windows
                     qDebug() << "Hiding folder (Windows)";
                     wstring win_path =  fsutils::toNativePath(unwanted_abspath).toStdWString();
-                    DWORD dwAttrs = GetFileAttributesW(win_path.c_str());
-                    bool ret = SetFileAttributesW(win_path.c_str(), dwAttrs | FILE_ATTRIBUTE_HIDDEN);
+                    // DWORD dwAttrs = GetFileAttributesW(win_path.c_str());
+                    bool ret = SetFileAttributesW(win_path.c_str(), FILE_ATTRIBUTE_HIDDEN);
                     Q_ASSERT(ret != 0); Q_UNUSED(ret);
                 }
 #else
@@ -712,7 +712,7 @@ void QTorrentHandle::prioritize_first_last_piece(int file_index, bool b) const
 #if LIBTORRENT_VERSION_NUM < 10000
     torrent_info const* tf = &get_torrent_info();
 #else
-    boost::intrusive_ptr<torrent_info const> tf = torrent_file();
+    boost::shared_ptr<torrent_info const> tf = boost::make_shared<torrent_info>(get_torrent_info());
 #endif
 
     QPair<int, int> extremities = get_file_extremity_pieces(*tf, file_index);

@@ -333,7 +333,7 @@ void TorrentModel::populate() {
     }
     // Refresh timer
     connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(forceModelRefresh()));
-    m_refreshTimer.start(m_refreshInterval);
+    // m_refreshTimer.start(m_refreshInterval);
     // Listen for torrent changes
     connect(QBtSession::instance(), SIGNAL(addedTorrent(QTorrentHandle)), SLOT(addTorrent(QTorrentHandle)));
     connect(QBtSession::instance(), SIGNAL(torrentAboutToBeRemoved(QTorrentHandle)), SLOT(handleTorrentAboutToBeRemoved(QTorrentHandle)));
@@ -519,7 +519,7 @@ void TorrentModel::setRefreshInterval(int refreshInterval)
     if (m_refreshInterval != refreshInterval) {
         m_refreshInterval = refreshInterval;
         m_refreshTimer.stop();
-        m_refreshTimer.start(m_refreshInterval);
+        // m_refreshTimer.start(m_refreshInterval);
     }
 }
 

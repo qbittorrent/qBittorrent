@@ -35,7 +35,7 @@
 #endif
 
 #include <QFileDialog>
-#include <QFileSystemWatcher>
+// #include <QFileSystemWatcher>
 #include <QMessageBox>
 #include <QTimer>
 #include <QDesktopServices>
@@ -53,7 +53,8 @@
 #include "torrentcreatordlg.h"
 #include "downloadfromurldlg.h"
 #include "addnewtorrentdialog.h"
-#include "searchengine.h"
+// #include "searchengine.h"
+#include "fs_utils.h"
 #include "rss_imp.h"
 #include "qbtsession.h"
 #include "about_imp.h"
@@ -90,6 +91,7 @@ void qt_mac_set_dock_menu(QMenu *menu);
 #endif
 
 #include <libtorrent/session.hpp>
+#include <libtorrent/session_status.hpp>
 
 using namespace libtorrent;
 
@@ -249,12 +251,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(preventTimer, SIGNAL(timeout()), SLOT(checkForActiveTorrents()));
 
     // Configure BT session according to options
-    loadPreferences(false);
+//    loadPreferences(false);
 
     // Start connection checking timer
     guiUpdater = new QTimer(this);
-    connect(guiUpdater, SIGNAL(timeout()), this, SLOT(updateGUI()));
-    guiUpdater->start(2000);
+//    connect(guiUpdater, SIGNAL(timeout()), this, SLOT(updateGUI()));
+//    guiUpdater->start(2000);
     // Accept drag 'n drops
     setAcceptDrops(true);
     createKeyboardShortcuts();
@@ -314,9 +316,9 @@ MainWindow::MainWindow(QWidget *parent)
     properties->readSettings();
 
     // Start watching the executable for updates
-    executable_watcher = new QFileSystemWatcher(this);
-    connect(executable_watcher, SIGNAL(fileChanged(QString)), this, SLOT(notifyOfUpdate(QString)));
-    executable_watcher->addPath(qApp->applicationFilePath());
+    // executable_watcher = new QFileSystemWatcher(this);
+    // connect(executable_watcher, SIGNAL(fileChanged(QString)), this, SLOT(notifyOfUpdate(QString)));
+    // executable_watcher->addPath(qApp->applicationFilePath());
 
     // Populate the transfer list
     transferList->getSourceModel()->populate();
@@ -328,7 +330,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(transferList->getSourceModel(), SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
 
     qDebug("GUI Built");
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
     if (!pref->neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet())) {
         if (QMessageBox::question(0, tr("Torrent file association"),
                                   tr("qBittorrent is not the default application to open torrent files or Magnet links.\nDo you want to associate qBittorrent to torrent files and Magnet links?"),
@@ -520,6 +522,7 @@ void MainWindow::displayRSSTab(bool enable)
 
 void MainWindow::displaySearchTab(bool enable)
 {
+#ifndef Q_OS_WINRT
     Preferences::instance()->setSearchEnabled(enable);
     if (enable) {
         // RSS tab
@@ -531,7 +534,7 @@ void MainWindow::displaySearchTab(bool enable)
     else if (searchEngine) {
         delete searchEngine;
     }
-
+#endif
 }
 
 void MainWindow::updateNbTorrents()
@@ -568,10 +571,12 @@ void MainWindow::tab_changed(int new_tab)
     else {
         searchFilterAct->setVisible(false);
     }
+#ifndef Q_OS_WINRT
     if (tabs->currentWidget() == searchEngine) {
         qDebug("Changed tab to search engine, giving focus to search input");
         searchEngine->giveFocusToSearchInput();
     }
+#endif
 }
 
 void MainWindow::writeSettings()
@@ -669,8 +674,10 @@ void MainWindow::displayTransferTab() const
 
 void MainWindow::displaySearchTab() const
 {
+#ifndef Q_OS_WINRT
     if (searchEngine)
         tabs->setCurrentWidget(searchEngine);
+#endif
 }
 
 void MainWindow::displayRSSTab() const
@@ -1108,7 +1115,7 @@ void MainWindow::loadPreferences(bool configure_session)
                     systrayCreator = new QTimer(this);
                     connect(systrayCreator, SIGNAL(timeout()), this, SLOT(createSystrayDelayed()));
                     systrayCreator->setSingleShot(true);
-                    systrayCreator->start(2000);
+                    // systrayCreator->start(2000);
                     qDebug("Info: System tray is unavailable, trying again later.");
                 }
                 else {
@@ -1139,7 +1146,7 @@ void MainWindow::loadPreferences(bool configure_session)
     }
 
     if (pref->preventFromSuspend()) {
-        preventTimer->start(PREVENT_SUSPEND_INTERVAL);
+        // preventTimer->start(PREVENT_SUSPEND_INTERVAL);
     }
     else {
         preventTimer->stop();
@@ -1304,7 +1311,7 @@ void MainWindow::downloadFromURLList(const QStringList& url_list)
 
 void MainWindow::createSystrayDelayed()
 {
-    static int timeout = 20;
+    static int timeout = 0;
     if (QSystemTrayIcon::isSystemTrayAvailable()) {
         // Ok, systray integration is now supported
         // Create systray icon
@@ -1314,7 +1321,7 @@ void MainWindow::createSystrayDelayed()
     else {
         if (timeout) {
             // Retry a bit later
-            systrayCreator->start(2000);
+            // systrayCreator->start(2000);
             --timeout;
         }
         else {
@@ -1416,7 +1423,7 @@ void MainWindow::on_actionRSS_Reader_triggered()
 
 void MainWindow::on_actionSearch_engine_triggered()
 {
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
     if (!has_python && actionSearch_engine->isChecked()) {
         bool res = false;
 
@@ -1493,8 +1500,8 @@ void MainWindow::handleUpdateCheckFinished(bool update_available, QString new_ve
     actionCheck_for_updates->setText(tr("Check for updates"));
     actionCheck_for_updates->setToolTip(tr("Check for program updates"));
     // Don't bother the user again in this session if he chose to ignore the update
-    if (Preferences::instance()->isUpdateCheckEnabled() && answer == QMessageBox::Yes)
-        programUpdateTimer.start();
+    // if (Preferences::instance()->isUpdateCheckEnabled() && answer == QMessageBox::Yes)
+        // programUpdateTimer.start();
 }
 #endif
 
@@ -1598,7 +1605,7 @@ void MainWindow::checkProgramUpdate()
 }
 #endif
 
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && !defined Q_OS_WINRT
 bool MainWindow::addPythonPathToEnv()
 {
     if (has_python)

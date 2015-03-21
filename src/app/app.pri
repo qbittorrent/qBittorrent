@@ -10,7 +10,7 @@ usesystemqtsingleapplication {
     nogui {
         include(qtsingleapplication/qtsinglecoreapplication.pri)
     } else {
-        include(qtsingleapplication/qtsingleapplication.pri)
+        # include(qtsingleapplication/qtsingleapplication.pri)
     }
 }
 

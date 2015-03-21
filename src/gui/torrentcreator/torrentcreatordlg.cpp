@@ -152,9 +152,18 @@ void TorrentCreatorDlg::handleCreationSuccess(QString path, QString branch_path)
   setCursor(QCursor(Qt::ArrowCursor));
   if (checkStartSeeding->isChecked()) {
     // Create save path temp data
+#if LIBTORRENT_VERSION_NUM < 10000
     boost::intrusive_ptr<torrent_info> t;
+#else
+    boost::shared_ptr<torrent_info> t;
+#endif
     try {
+#if LIBTORRENT_VERSION_NUM < 10000
       t = new torrent_info(fsutils::toNativePath(path).toUtf8().data());
+#else
+      t = boost::make_shared<torrent_info>(fsutils::toNativePath(path).toUtf8().data());
+#endif
+
     } catch(std::exception&) {
       QMessageBox::critical(0, tr("Torrent creation"), tr("Created torrent file is invalid. It won't be added to download list."));
       return;

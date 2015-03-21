@@ -33,10 +33,11 @@
 #include <QPointer>
 #include <QStringList>
 #include <QTranslator>
+#include <QApplication>
 
 #ifndef DISABLE_GUI
-#include "qtsingleapplication.h"
-typedef QtSingleApplication BaseApplication;
+// #include "qtsingleapplication.h"
+typedef QApplication BaseApplication;
 class MainWindow;
 #else
 #include "qtsinglecoreapplication.h"
@@ -54,11 +55,13 @@ class Application : public BaseApplication
 public:
     Application(const QString &id, int &argc, char **argv);
 
- #if (defined(Q_OS_WIN) && !defined(DISABLE_GUI))
+ #if (defined(Q_OS_WIN) && !defined(Q_OS_WINRT) && !defined(DISABLE_GUI))
     bool isRunning();
 #endif
     int exec(const QStringList &params);
+#ifndef Q_OS_WINRT
     bool sendParams(const QStringList &params);
+#endif
 
 protected:
 #ifndef DISABLE_GUI

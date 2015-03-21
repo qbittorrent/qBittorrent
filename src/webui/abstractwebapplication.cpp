@@ -304,7 +304,7 @@ void AbstractWebApplication::increaseFailedAttempts()
         // Start ban period
         UnbanTimer* ubantimer = new UnbanTimer(env_.clientAddress, this);
         connect(ubantimer, SIGNAL(timeout()), SLOT(UnbanTimerEvent()));
-        ubantimer->start();
+        // ubantimer->start();
     }
 }
 

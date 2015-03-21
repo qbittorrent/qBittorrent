@@ -58,7 +58,7 @@ using namespace libtorrent;
     if (initialized && !cacheTimer.hasExpired(DUR)) \
         return json::toJson(VAR); \
     initialized = true; \
-    cacheTimer.start(); \
+    // cacheTimer.start(); \
     VAR = VARTYPE()
 
 #define CACHED_VARIABLE_FOR_HASH(VARTYPE, VAR, DUR, HASH) \
@@ -68,7 +68,7 @@ using namespace libtorrent;
     if (prev_hash == HASH && !cacheTimer.hasExpired(DUR)) \
         return json::toJson(VAR); \
     prev_hash = HASH; \
-    cacheTimer.start(); \
+    // cacheTimer.start(); \
     VAR = VARTYPE()
 
 #else
@@ -475,7 +475,7 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
             return QByteArray();
 
         const std::vector<int> priorities = h.file_priorities();
-        std::vector<size_type> fp;
+        std::vector<boost::int64_t> fp;
         h.file_progress(fp);
         for (int i = 0; i < h.num_files(); ++i) {
             QVariantMap file_dict;
@@ -483,7 +483,7 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
             if (fileName.endsWith(".!qB", Qt::CaseInsensitive))
                 fileName.chop(4);
             file_dict[KEY_FILE_NAME] = fsutils::toNativePath(fileName);
-            const size_type size = h.filesize_at(i);
+            const boost::int64_t size = h.filesize_at(i);
             file_dict[KEY_FILE_SIZE] = static_cast<qlonglong>(size);
             file_dict[KEY_FILE_PROGRESS] = (size > 0) ? (fp[i] / (double) size) : 1.;
             file_dict[KEY_FILE_PRIORITY] = priorities[i];

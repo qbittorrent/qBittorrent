@@ -9,7 +9,7 @@ HEADERS += \
     $$PWD/fs_utils.h \
     $$PWD/downloadthread.h \
     $$PWD/torrentpersistentdata.h \
-    $$PWD/filesystemwatcher.h \
+    # $$PWD/filesystemwatcher.h \
     $$PWD/scannedfoldersmodel.h \
     $$PWD/qinisettings.h \
     $$PWD/smtp.h \

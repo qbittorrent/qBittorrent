@@ -176,9 +176,10 @@ int main(int argc, char *argv[])
     if (!qputenv("QBITTORRENT", QByteArray(VERSION)))
         std::cerr << "Couldn't set environment variable...\n";
 
-    if (!userAgreesWithLegalNotice())
-        return EXIT_SUCCESS;
+//    if (!userAgreesWithLegalNotice())
+//        return EXIT_SUCCESS;
 
+#ifndef Q_OS_WINRT
     // Check if qBittorrent is already running for this user
     if (app->isRunning()) {
 #ifdef DISABLE_GUI
@@ -196,6 +197,7 @@ int main(int argc, char *argv[])
 
         return EXIT_SUCCESS;
     }
+#endif
 
     srand(time(0));
 #ifdef DISABLE_GUI
@@ -214,8 +216,8 @@ int main(int argc, char *argv[])
         }
     }
 #else
-    if (!params.noSplash)
-        showSplashScreen();
+//    if (!params.noSplash)
+//        showSplashScreen();
 #endif
 
 #if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
@@ -233,8 +235,10 @@ QBtCommandLineParameters parseCommandLine()
     QBtCommandLineParameters result;
     QStringList appArguments = qApp->arguments();
 
-    for (int i = 1; i < appArguments.size(); ++i) {
+    for (int i = 0; i < appArguments.size(); ++i) {
         const QString& arg = appArguments[i];
+        qDebug("arg %s %d", qPrintable(arg), appArguments.size());
+        QMessageBox::information(0, QObject::tr(""), arg);
 
         if ((arg.startsWith("--") && !arg.endsWith(".torrent")) ||
             (arg.startsWith("-") && arg.size() == 2)) {
@@ -441,8 +445,8 @@ bool userAgreesWithLegalNotice()
     msgBox.setWindowTitle(QObject::tr("Legal notice"));
     msgBox.addButton(QObject::tr("Cancel"), QMessageBox::RejectRole);
     QAbstractButton *agree_button = msgBox.addButton(QObject::tr("I Agree"), QMessageBox::AcceptRole);
-    msgBox.show(); // Need to be shown or to moveToCenter does not work
-    msgBox.move(misc::screenCenter(&msgBox));
+    //msgBox.show(); // Need to be shown or to moveToCenter does not work
+    //msgBox.move(misc::screenCenter(&msgBox));
     msgBox.exec();
     if (msgBox.clickedButton() == agree_button) {
         // Save the answer

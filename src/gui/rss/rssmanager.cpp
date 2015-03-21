@@ -47,7 +47,7 @@ RssManager::RssManager():
 {
   connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(refresh()));
   m_refreshInterval = Preferences::instance()->getRSSRefreshInterval();
-  m_refreshTimer.start(m_refreshInterval * MSECS_PER_MIN);
+  // m_refreshTimer.start(m_refreshInterval * MSECS_PER_MIN);
 }
 
 RssManager::~RssManager()
@@ -74,7 +74,7 @@ void RssManager::updateRefreshInterval(uint val)
 {
   if (m_refreshInterval != val) {
     m_refreshInterval = val;
-    m_refreshTimer.start(m_refreshInterval*60000);
+    // m_refreshTimer.start(m_refreshInterval*60000);
     qDebug("New RSS refresh interval is now every %dmin", m_refreshInterval);
   }
 }
