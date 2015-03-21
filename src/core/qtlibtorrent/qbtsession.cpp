@@ -1276,76 +1276,95 @@ void QBtSession::loadTorrentTempData(QTorrentHandle &h, QString savePath, bool m
         TorrentPersistentData::instance()->saveTorrentPersistentData(h, fsutils::fromNativePath(savePath), magnet);
 }
 
-void QBtSession::mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri)
+void QBtSession::mergeTorrents(const QTorrentHandle &h, const QString &magnet_uri)
 {
-    QString hash = h_ex.hash();
-    QList<QUrl> new_trackers = misc::magnetUriToTrackers(magnet_uri);
-    bool trackers_added = false;
-    foreach (const QUrl& new_tracker, new_trackers) {
-        bool found = false;
-        std::vector<announce_entry> existing_trackers = h_ex.trackers();
-        foreach (const announce_entry& existing_tracker, existing_trackers) {
-            if (new_tracker == QUrl(existing_tracker.url.c_str())) {
-                found = true;
-                break;
-            }
-        }
+    QStringList trackers;
+    QStringList urlSeeds;
+    add_torrent_params p;
+    boost::system::error_code ec;
 
-        if (!found) {
-            h_ex.add_tracker(announce_entry(new_tracker.toString().toStdString()));
-            trackers_added = true;
-            emit trackerAdded(new_tracker.toString(), hash);
-        }
-    }
-    if (trackers_added)
-        Logger::instance()->addMessage(tr("Note: new trackers were added to the existing torrent."));
+    parse_magnet_uri(magnet_uri.toUtf8().constData(), p, ec);
+
+    for (std::vector<std::string>::const_iterator i = p.trackers.begin(), e = p.trackers.end(); i != e; ++i)
+        trackers.push_back(misc::toQStringU(*i));
+
+#if LIBTORRENT_VERSION_NUM >= 10000
+    for (std::vector<std::string>::const_iterator i = p.url_seeds.begin(), e = p.url_seeds.end(); i != e; ++i)
+        urlSeeds.push_back(misc::toQStringU(*i));
+#endif
+
+    mergeTorrents_impl(h, trackers, urlSeeds);
 }
 
-void QBtSession::mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<torrent_info> t) {
-    // Check if the torrent contains trackers or url seeds we don't know about
-    // and add them
-    QString hash = h_ex.hash();
-    if (!h_ex.is_valid()) return;
-    std::vector<announce_entry> existing_trackers = h_ex.trackers();
-    std::vector<announce_entry> new_trackers = t->trackers();
-    bool trackers_added = false;
-    foreach (const announce_entry& new_tracker, new_trackers) {
-        std::string new_tracker_url = new_tracker.url;
-        // Check if existing torrent has this tracker
+void QBtSession::mergeTorrents(const QTorrentHandle &h, const boost::intrusive_ptr<torrent_info> t) {
+    QStringList trackers;
+    QStringList urlSeeds;
+
+    foreach (const announce_entry& newTracker, t->trackers())
+        trackers.append(misc::toQStringU(newTracker.url));
+
+    foreach (const web_seed_entry& newUrlSeed, t->web_seeds())
+        urlSeeds.append(misc::toQStringU(newUrlSeed.url));
+
+    mergeTorrents_impl(h, trackers, urlSeeds);
+}
+
+void QBtSession::mergeTorrents_impl(const QTorrentHandle &h, const QStringList &trackers, const QStringList &urlSeeds)
+{
+    if (!h.is_valid())
+        return;
+
+    QString hash = h.hash();
+    QString name = h.name();
+    QStringList addedTrackers;
+    const std::vector<announce_entry> existingTrackers = h.trackers();
+    const QStringList existingUrlSeeds = h.url_seeds();
+
+    foreach (const QString &tracker, trackers) {
+        QUrl trackerUrl(tracker);
         bool found = false;
-        foreach (const announce_entry& existing_tracker, existing_trackers) {
-            if (QUrl(new_tracker_url.c_str()) == QUrl(existing_tracker.url.c_str())) {
+
+        foreach (const announce_entry &existingTracker, existingTrackers) {
+            QUrl existingTrackerUrl(misc::toQStringU(existingTracker.url));
+            if (trackerUrl == existingTrackerUrl) {
                 found = true;
                 break;
             }
         }
 
         if (!found) {
-            h_ex.add_tracker(announce_entry(new_tracker_url));
-            trackers_added = true;
-            emit trackerAdded(new_tracker_url.c_str(), hash);
+            h.add_tracker(announce_entry(tracker.toUtf8().constData()));
+            addedTrackers.append(tracker);
+            Logger::instance()->addMessage(tr("Tracker '%1' was added to torrent '%2'").arg(tracker).arg(name));
         }
     }
 
-    Logger* const logger = Logger::instance();
-    if (trackers_added)
-        logger->addMessage(tr("Note: new trackers were added to the existing torrent."));
+    if (!addedTrackers.empty())
+        emit trackersAdded(addedTrackers, hash);
 
-    bool urlseeds_added = false;
-    const QStringList old_urlseeds = h_ex.url_seeds();
-    std::vector<web_seed_entry> new_urlseeds = t->web_seeds();
+    if (existingTrackers.empty() && !h.trackers().empty())
+        emit trackerlessChange(false, hash);
 
-    std::vector<web_seed_entry>::iterator it = new_urlseeds.begin();
-    std::vector<web_seed_entry>::iterator itend = new_urlseeds.end();
-    for ( ; it != itend; ++it) {
-        const QString new_url = misc::toQString(it->url.c_str());
-        if (!old_urlseeds.contains(new_url)) {
-            urlseeds_added = true;
-            h_ex.add_url_seed(new_url);
+    foreach (const QString &urlSeed, urlSeeds) {
+        QUrl urlSeedUrl(urlSeed);
+        bool found = false;
+
+        foreach (const QString &existingUrlSeed, existingUrlSeeds) {
+            QUrl existingUrlSeedUrl(existingUrlSeed);
+            if (urlSeedUrl == existingUrlSeedUrl) {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            h.add_url_seed(urlSeed);
+            Logger::instance()->addMessage(tr("URL seed '%1' was added to torrent '%2'").arg(urlSeed).arg(name));
         }
     }
-    if (urlseeds_added)
-        logger->addMessage(tr("Note: new URL seeds were added to the existing torrent."));
+
+    h.force_reannounce();
+    emit reloadTrackersAndUrlSeeds(h);
 }
 
 void QBtSession::exportTorrentFiles(QString path) {
@@ -3140,4 +3159,12 @@ void QBtSession::unhideMagnet(const QString &hash) {
     h.move_storage(save_path);
 
     emit addedTorrent(h);
+}
+
+
+void QBtSession::addTrackersAndUrlSeeds(const QString &hash, const QStringList &trackers, const QStringList& urlSeeds)
+{
+    QTorrentHandle h = getTorrentHandle(hash);
+    if (h.is_valid())
+        mergeTorrents_impl(h, trackers, urlSeeds);
 }

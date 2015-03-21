@@ -214,9 +214,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(search_filter, SIGNAL(textChanged(QString)), transferList, SLOT(applyNameFilter(QString)));
     connect(hSplitter, SIGNAL(splitterMoved(int, int)), this, SLOT(writeSettings()));
     connect(vSplitter, SIGNAL(splitterMoved(int, int)), this, SLOT(writeSettings()));
-    connect(properties, SIGNAL(trackerAdded(const QString&, const QString&)), transferListFilters, SLOT(addTracker(const QString&, const QString&)));
-    connect(properties, SIGNAL(trackerRemoved(const QString&, const QString&)), transferListFilters, SLOT(removeTracker(const QString&, const QString&)));
-    connect(QBtSession::instance(), SIGNAL(trackerAdded(const QString&, const QString&)), transferListFilters, SLOT(addTracker(const QString&, const QString&)));
+    connect(properties, SIGNAL(trackersAdded(const QStringList &, const QString &)), transferListFilters, SLOT(addTrackers(const QStringList &, const QString &)));
+    connect(properties, SIGNAL(trackersRemoved(const QStringList &, const QString &)), transferListFilters, SLOT(removeTrackers(const QStringList &, const QString &)));
+    connect(properties, SIGNAL(trackerlessChange(bool, const QString &)), transferListFilters, SLOT(changeTrackerless(bool, const QString &)));
+    connect(QBtSession::instance(), SIGNAL(trackersAdded(const QStringList &, const QString &)), transferListFilters, SLOT(addTrackers(const QStringList &, const QString &)));
+    connect(QBtSession::instance(), SIGNAL(trackerlessChange(bool, const QString &)), transferListFilters, SLOT(changeTrackerless(bool, const QString &)));
+    connect(QBtSession::instance(), SIGNAL(reloadTrackersAndUrlSeeds(const QTorrentHandle &)), properties, SLOT(loadTrackers(const QTorrentHandle &)));
 
     vboxLayout->addWidget(tabs);
 

@@ -210,6 +210,7 @@ public slots:
     void banIP(QString ip);
     void recursiveTorrentDownload(const QTorrentHandle &h);
     void unhideMagnet(const QString &hash);
+    void addTrackersAndUrlSeeds(const QString &hash, const QStringList &trackers, const QStringList& urlSeeds);
 
 private:
     void applyEncryptionSettings(libtorrent::pe_settings se);
@@ -258,8 +259,9 @@ private slots:
     void saveTempFastResumeData();
     void sendNotificationEmail(const QTorrentHandle &h);
     void autoRunExternalProgram(const QTorrentHandle &h);
-    void mergeTorrents(QTorrentHandle& h_ex, boost::intrusive_ptr<libtorrent::torrent_info> t);
-    void mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri);
+    void mergeTorrents(const QTorrentHandle &h, const boost::intrusive_ptr<libtorrent::torrent_info> t);
+    void mergeTorrents(const QTorrentHandle &h, const QString &magnet_uri);
+    void mergeTorrents_impl(const QTorrentHandle &h, const QStringList &trackers, const QStringList& urlSeeds);
     void exportTorrentFile(const QTorrentHandle &h, TorrentExportFolder folder = RegularTorrentExportFolder);
     void handleIPFilterParsed(int ruleCount);
     void handleIPFilterError();
@@ -288,7 +290,9 @@ signals:
     void metadataReceivedHidden(const QTorrentHandle &h);
     void stateUpdate(const std::vector<libtorrent::torrent_status> &statuses);
     void statsReceived(const libtorrent::stats_alert&);
-    void trackerAdded(const QString &tracker, const QString &hash);
+    void trackersAdded(const QStringList &trackers, const QString &hash);
+    void trackerlessChange(bool trackerless, const QString &hash);
+    void reloadTrackersAndUrlSeeds(const QTorrentHandle &h);
 
 private:
     // Bittorrent

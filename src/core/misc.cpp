@@ -389,22 +389,6 @@ QString misc::magnetUriToName(const QString& magnet_uri)
     return toQStringU(p.name);
 }
 
-QList<QUrl> misc::magnetUriToTrackers(const QString& magnet_uri)
-{
-    QList<QUrl> trackers;
-    add_torrent_params p;
-    error_code ec;
-    parse_magnet_uri(magnet_uri.toUtf8().constData(), p, ec);
-
-    if (ec)
-        return trackers;
-
-    for (std::vector<std::string>::const_iterator i = p.trackers.begin(), e = p.trackers.end(); i != e; ++i)
-        trackers.push_back(QUrl(toQStringU(*i)));
-
-    return trackers;
-}
-
 QString misc::magnetUriToHash(const QString& magnet_uri)
 {
     add_torrent_params p;

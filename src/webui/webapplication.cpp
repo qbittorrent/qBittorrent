@@ -354,17 +354,9 @@ void WebApplication::action_command_addTrackers()
     QString hash = request().posts["hash"];
 
     if (!hash.isEmpty()) {
-        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
-
-        if (h.is_valid() && h.has_metadata()) {
-            QString urls = request().posts["urls"];
-            QStringList list = urls.split('\n');
-
-            foreach (const QString& url, list) {
-                announce_entry e(url.toStdString());
-                h.add_tracker(e);
-            }
-        }
+        QString urls = request().posts["urls"];
+        QStringList list = urls.split('\n');
+        QBtSession::instance()->addTrackersAndUrlSeeds(hash, list, QStringList());
     }
 }
 

@@ -260,7 +260,7 @@ void TrackerFiltersList::addItem(const QTorrentHandle& handle)
     QString hash = handle.hash();
     std::vector<libtorrent::announce_entry> trackers = handle.trackers();
     for (std::vector<libtorrent::announce_entry>::iterator i = trackers.begin(), e = trackers.end(); i != e; ++i)
-        addItem(misc::toQString(i->url), hash);
+        addItem(misc::toQStringU(i->url), hash);
 
     //Check for trackerless torrent
     if (trackers.size() == 0)
@@ -306,7 +306,7 @@ void TrackerFiltersList::removeItem(const QTorrentHandle& handle)
     QString hash = handle.hash();
     std::vector<libtorrent::announce_entry> trackers = handle.trackers();
     for (std::vector<libtorrent::announce_entry>::iterator i = trackers.begin(), e = trackers.end(); i != e; ++i)
-        removeItem(misc::toQString(i->url), hash);
+        removeItem(misc::toQStringU(i->url), hash);
 
     //Check for trackerless torrent
     if (trackers.size() == 0)
@@ -359,6 +359,14 @@ void TrackerFiltersList::handleFavicoFailure(const QString& url, const QString& 
     // that.
     Logger::instance()->addMessage(tr("Couldn't download favico for url `%1`. Reason: `%2`").arg(url).arg(error),
                                    Log::WARNING);
+}
+
+void TrackerFiltersList::changeTrackerless(bool trackerless, const QString &hash)
+{
+    if (trackerless)
+        addItem("", hash);
+    else
+        removeItem("", hash);
 }
 
 QString TrackerFiltersList::trackerFromRow(int row) const
@@ -556,14 +564,21 @@ void TransferListFiltersWidget::addLabel(QString& label)
     Preferences::instance()->addTorrentLabel(label);
 }
 
-void TransferListFiltersWidget::addTracker(const QString &tracker, const QString &hash)
+void TransferListFiltersWidget::addTrackers(const QStringList &trackers, const QString &hash)
 {
-    trackerFilters->addItem(tracker, hash);
+    foreach (const QString &tracker, trackers)
+        trackerFilters->addItem(tracker, hash);
 }
 
-void TransferListFiltersWidget::removeTracker(const QString &tracker, const QString &hash)
+void TransferListFiltersWidget::removeTrackers(const QStringList &trackers, const QString &hash)
 {
-    trackerFilters->removeItem(tracker, hash);
+    foreach (const QString &tracker, trackers)
+        trackerFilters->removeItem(tracker, hash);
+}
+
+void TransferListFiltersWidget::changeTrackerless(bool trackerless, const QString &hash)
+{
+    trackerFilters->changeTrackerless(trackerless, hash);
 }
 
 void TransferListFiltersWidget::showLabelMenu(QPoint)

@@ -113,6 +113,7 @@ public:
 public slots:
     void handleFavicoDownload(const QString &url, const QString &filePath);
     void handleFavicoFailure(const QString &url, const QString &reason);
+    void changeTrackerless(bool trackerless, const QString &hash);
 
 private:
     QHash<QString, QStringList> m_trackers;
@@ -149,8 +150,9 @@ public:
     void loadSettings();
 
 public slots:
-    void addTracker(const QString &tracker, const QString &hash);
-    void removeTracker(const QString &tracker, const QString &hash);
+    void addTrackers(const QStringList &trackers, const QString &hash);
+    void removeTrackers(const QStringList &trackers, const QString &hash);
+    void changeTrackerless(bool trackerless, const QString &hash);
 
 protected:
     virtual void resizeEvent(QResizeEvent *event);
