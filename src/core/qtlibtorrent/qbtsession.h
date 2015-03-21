@@ -288,6 +288,7 @@ signals:
     void metadataReceivedHidden(const QTorrentHandle &h);
     void stateUpdate(const std::vector<libtorrent::torrent_status> &statuses);
     void statsReceived(const libtorrent::stats_alert&);
+    void trackerAdded(const QString &tracker, const QString &hash);
 
 private:
     // Bittorrent

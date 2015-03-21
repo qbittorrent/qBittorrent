@@ -42,6 +42,8 @@ QT_END_NAMESPACE
 
 class TransferListWidget;
 class TorrentModelItem;
+class QTorrentHandle;
+class DownloadThread;
 
 class LabelFiltersList: public QListWidget
 {
@@ -83,6 +85,35 @@ private:
     bool m_shown;
 };
 
+class TrackerFiltersList: public QListWidget
+{
+    Q_OBJECT
+
+public:
+    TrackerFiltersList(QWidget *parent);
+    ~TrackerFiltersList();
+
+    // Redefine addItem() to make sure the list stays sorted
+    void addItem(const QString &tracker, const QString &hash);
+    void addItem(const QTorrentHandle &handle);
+    void removeItem(const QString &tracker, const QString &hash);
+    void removeItem(const QTorrentHandle &handle);
+    void setTorrentCount(int all);
+    QStringList getHashes(int row);
+
+public slots:
+    void handleFavicoDownload(const QString &url, const QString &filePath);
+    void handleFavicoFailure(const QString &url, const QString &reason);
+
+private:
+    QHash<QString, QStringList> m_trackers;
+    QString trackerFromRow(int row) const;
+    int rowFromTracker(const QString &tracker) const;
+    QString getHost(const QString &trakcer) const;
+    DownloadThread *m_downloader;
+    QStringList m_iconPaths;
+};
+
 class TransferListFiltersWidget: public QFrame
 {
     Q_OBJECT
@@ -91,6 +122,7 @@ private:
     QHash<QString, int> customLabels;
     StatusFiltersWidget* statusFilters;
     LabelFiltersList* labelFilters;
+    TrackerFiltersList* trackerFilters;
     QVBoxLayout* vLayout;
     TransferListWidget *transferList;
     int nb_labeled;
@@ -105,14 +137,20 @@ public:
     void saveSettings() const;
     void loadSettings();
 
+public slots:
+    void addTracker(const QString &tracker, const QString &hash);
+    void removeTracker(const QString &tracker, const QString &hash);
+
 protected slots:
     void updateTorrentNumbers();
     void torrentDropped(int row);
     void addLabel(QString& label);
     void showLabelMenu(QPoint);
+    void showTrackerMenu(QPoint);
     void removeSelectedLabel();
     void removeUnusedLabels();
     void applyLabelFilter(int row);
+    void applyTrackerFilter(int row);
     void torrentChangedLabel(TorrentModelItem *torrentItem, QString old_label, QString new_label);
     void handleNewTorrent(TorrentModelItem* torrentItem);
     void torrentAboutToBeDeleted(TorrentModelItem* torrentItem);

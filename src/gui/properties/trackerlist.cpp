@@ -300,14 +300,19 @@ void TrackerList::loadTrackers() {
 void TrackerList::askForTrackers() {
   QTorrentHandle h = properties->getCurrentTorrent();
   if (!h.is_valid()) return;
+  QString hash = h.hash();
   QStringList trackers = TrackersAdditionDlg::askForTrackers(h);
   if (!trackers.empty()) {
+    if (h.trackers().empty())
+      emit trackerRemoved("", hash);
+
     for (int i=0; i<trackers.count(); i++) {
       const QString& tracker = trackers[i];
       if (tracker.trimmed().isEmpty()) continue;
       announce_entry url(tracker.toStdString());
       url.tier = (topLevelItemCount() - NB_STICKY_ITEM) + i;
       h.add_tracker(url);
+      emit trackerAdded(tracker, hash);
     }
     // Reannounce to new trackers
     if (!h.is_paused())
@@ -336,6 +341,7 @@ void TrackerList::deleteSelectedTrackers() {
     clear();
     return;
   }
+  QString hash = h.hash();
   QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
   if (selected_items.isEmpty()) return;
   QStringList urls_to_remove;
@@ -344,6 +350,7 @@ void TrackerList::deleteSelectedTrackers() {
     urls_to_remove << tracker_url;
     tracker_items.remove(tracker_url);
     delete item;
+    emit trackerRemoved(tracker_url, hash);
   }
   // Iterate of trackers and remove selected ones
   std::vector<announce_entry> remaining_trackers;
@@ -357,6 +364,8 @@ void TrackerList::deleteSelectedTrackers() {
     }
   }
   h.replace_trackers(remaining_trackers);
+  if (remaining_trackers.empty())
+      emit trackerAdded("", hash);
   if (!h.is_paused())
     h.force_reannounce();
   // Reload Trackers
@@ -366,6 +375,7 @@ void TrackerList::deleteSelectedTrackers() {
 void TrackerList::editSelectedTracker() {
   try {
     QTorrentHandle h = properties->getCurrentTorrent();
+    QString hash = h.hash();
 
     QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
     if (selected_items.isEmpty())
@@ -402,6 +412,8 @@ void TrackerList::editSelectedTracker() {
         new_entry.tier = it->tier;
         match = true;
         *it = new_entry;
+        emit trackerRemoved(tracker_url.toString(), hash);
+        emit trackerAdded(new_tracker_url.toString(), hash);
       }
     }
 

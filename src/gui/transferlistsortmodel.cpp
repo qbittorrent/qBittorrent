@@ -36,6 +36,8 @@
 TransferListSortModel::TransferListSortModel(QObject *parent)
   : QSortFilterProxyModel(parent)
   , filter0(TorrentFilter::ALL)
+  , labelFilterEnabled(false)
+  , trackerFilterEnabled(false)
 {}
 
 void TransferListSortModel::setStatusFilter(const TorrentFilter::TorrentFilter &filter) {
@@ -45,7 +47,7 @@ void TransferListSortModel::setStatusFilter(const TorrentFilter::TorrentFilter &
   }
 }
 
-void TransferListSortModel::setLabelFilter(QString const& label) {
+void TransferListSortModel::setLabelFilter(const QString &label) {
   if (!labelFilterEnabled || labelFilter != label) {
     labelFilterEnabled = true;
     labelFilter = label;
@@ -57,6 +59,22 @@ void TransferListSortModel::disableLabelFilter() {
   if (labelFilterEnabled) {
     labelFilterEnabled = false;
     labelFilter = QString();
+    invalidateFilter();
+  }
+}
+
+void TransferListSortModel::setTrackerFilter(const QStringList &hashes) {
+  if (!trackerFilterEnabled || trackerFilter != hashes) {
+    trackerFilterEnabled = true;
+    trackerFilter = hashes;
+    invalidateFilter();
+  }
+}
+
+void TransferListSortModel::disableTrackerFilter() {
+  if (trackerFilterEnabled) {
+    trackerFilterEnabled = false;
+    trackerFilter = QStringList();
     invalidateFilter();
   }
 }
@@ -197,6 +215,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
 bool TransferListSortModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const {
   return matchStatusFilter(sourceRow, sourceParent)
       && matchLabelFilter(sourceRow, sourceParent)
+      && matchTrackerFilter(sourceRow, sourceParent)
       && QSortFilterProxyModel::filterAcceptsRow(sourceRow, sourceParent);
 }
 
@@ -257,4 +276,15 @@ bool TransferListSortModel::matchLabelFilter(int sourceRow, const QModelIndex &s
     return false;
 
   return model->index(sourceRow, TorrentModelItem::TR_LABEL, sourceParent).data().toString() == labelFilter;
+}
+
+bool TransferListSortModel::matchTrackerFilter(int sourceRow, const QModelIndex &sourceParent) const {
+  if (!trackerFilterEnabled)
+    return true;
+
+  TorrentModel *model = qobject_cast<TorrentModel *>(sourceModel());
+  if (!model)
+    return false;
+
+  return trackerFilter.contains(model->torrentHash(sourceRow));
 }

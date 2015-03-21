@@ -59,6 +59,7 @@ public:
     bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
     inline QString const& hash() const { return m_hash; }
     State state() const;
+    QTorrentHandle torrentHandle() const;
 
 signals:
     void labelChanged(QString previous, QString current);

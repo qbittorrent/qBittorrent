@@ -60,6 +60,10 @@ public:
   TrackerList(PropertiesWidget *properties);
   ~TrackerList();
 
+signals:
+  void trackerAdded(const QString &tracker, const QString &hash);
+  void trackerRemoved(const QString &tracker, const QString &hash);
+
 protected:
   QList<QTreeWidgetItem*> getSelectedTrackerItems() const;
 

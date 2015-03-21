@@ -111,6 +111,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   trackerList = new TrackerList(this);
   connect(trackerUpButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionUp()));
   connect(trackerDownButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionDown()));
+  connect(trackerList, SIGNAL(trackerAdded(const QString&, const QString&)), this, SIGNAL(trackerAdded(const QString&, const QString&)));
+  connect(trackerList, SIGNAL(trackerRemoved(const QString&, const QString&)), this, SIGNAL(trackerRemoved(const QString&, const QString&)));
   horizontalLayout_trackers->insertWidget(0, trackerList);
   connect(trackerList->header(), SIGNAL(sectionMoved(int, int, int)), trackerList, SLOT(saveSettings()));
   connect(trackerList->header(), SIGNAL(sectionResized(int, int, int)), trackerList, SLOT(saveSettings()));

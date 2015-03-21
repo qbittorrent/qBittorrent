@@ -312,6 +312,11 @@ QVariant TorrentModelItem::data(int column, int role) const
     }
 }
 
+QTorrentHandle TorrentModelItem::torrentHandle() const
+{
+    return m_torrent;
+}
+
 // TORRENT MODEL
 
 TorrentModel::TorrentModel(QObject *parent) :

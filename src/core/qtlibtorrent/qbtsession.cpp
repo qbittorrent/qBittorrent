@@ -1278,6 +1278,7 @@ void QBtSession::loadTorrentTempData(QTorrentHandle &h, QString savePath, bool m
 
 void QBtSession::mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri)
 {
+    QString hash = h_ex.hash();
     QList<QUrl> new_trackers = misc::magnetUriToTrackers(magnet_uri);
     bool trackers_added = false;
     foreach (const QUrl& new_tracker, new_trackers) {
@@ -1293,6 +1294,7 @@ void QBtSession::mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri)
         if (!found) {
             h_ex.add_tracker(announce_entry(new_tracker.toString().toStdString()));
             trackers_added = true;
+            emit trackerAdded(new_tracker.toString(), hash);
         }
     }
     if (trackers_added)
@@ -1302,6 +1304,7 @@ void QBtSession::mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri)
 void QBtSession::mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<torrent_info> t) {
     // Check if the torrent contains trackers or url seeds we don't know about
     // and add them
+    QString hash = h_ex.hash();
     if (!h_ex.is_valid()) return;
     std::vector<announce_entry> existing_trackers = h_ex.trackers();
     std::vector<announce_entry> new_trackers = t->trackers();
@@ -1320,6 +1323,7 @@ void QBtSession::mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<torren
         if (!found) {
             h_ex.add_tracker(announce_entry(new_tracker_url));
             trackers_added = true;
+            emit trackerAdded(new_tracker_url.c_str(), hash);
         }
     }
 

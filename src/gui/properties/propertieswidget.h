@@ -69,6 +69,10 @@ public:
   PeerListWidget* getPeerList() const { return peersList; }
   QTreeView* getFilesList() const { return filesList; }
 
+signals:
+  void trackerAdded(const QString &tracker, const QString &hash);
+  void trackerRemoved(const QString &tracker, const QString &hash);
+
 protected:
   QPushButton* getButtonFromIndex(int index);
   bool applyPriorities();
