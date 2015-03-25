@@ -61,9 +61,6 @@ class LabelFiltersList: public FiltersBase
 {
     Q_OBJECT
 
-private:
-    QListWidgetItem * itemHover;
-
 public:
     LabelFiltersList(QWidget *parent);
 
@@ -72,15 +69,6 @@ public:
 
     QString labelFromRow(int row) const;
     int rowFromLabel(QString label) const;
-
-signals:
-    void torrentDropped(int label_row);
-
-protected:
-    void dragMoveEvent(QDragMoveEvent *event);
-    void dropEvent(QDropEvent *event);
-    void dragLeaveEvent(QDragLeaveEvent*);
-    void setItemHover(bool hover);
 };
 
 class StatusFiltersWidget: public FiltersBase
@@ -89,9 +77,6 @@ class StatusFiltersWidget: public FiltersBase
 
 public:
     StatusFiltersWidget(QWidget *parent);
-
-private:
-    bool m_shown;
 };
 
 class TrackerFiltersList: public FiltersBase
@@ -159,7 +144,6 @@ protected:
 
 protected slots:
     void updateTorrentNumbers();
-    void torrentDropped(int row);
     void addLabel(QString& label);
     void showLabelMenu(QPoint);
     void showTrackerMenu(QPoint);

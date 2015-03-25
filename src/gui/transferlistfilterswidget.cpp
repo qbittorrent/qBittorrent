@@ -35,7 +35,7 @@
 #include <QIcon>
 #include <QVBoxLayout>
 #include <QMenu>
-#include <QDragMoveEvent>
+#include <QResizeEvent>
 #include <QMessageBox>
 #include <QLabel>
 
@@ -79,9 +79,6 @@ QSize FiltersBase::minimumSizeHint() const
 LabelFiltersList::LabelFiltersList(QWidget *parent)
     : FiltersBase(parent)
 {
-    itemHover = 0;
-    // Accept drop
-    setAcceptDrops(true);
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 }
 
@@ -117,66 +114,8 @@ int LabelFiltersList::rowFromLabel(QString label) const
     return -1;
 }
 
-void LabelFiltersList::dragMoveEvent(QDragMoveEvent *event)
-{
-    if (itemAt(event->pos()) && row(itemAt(event->pos())) > 0) {
-        if (itemHover) {
-            if (itemHover != itemAt(event->pos())) {
-                setItemHover(false);
-                itemHover = itemAt(event->pos());
-                setItemHover(true);
-            }
-        }
-        else {
-            itemHover = itemAt(event->pos());
-            setItemHover(true);
-        }
-        event->acceptProposedAction();
-    }
-    else {
-        if (itemHover)
-            setItemHover(false);
-        event->ignore();
-    }
-}
-
-void LabelFiltersList::dropEvent(QDropEvent *event)
-{
-    qDebug("Drop Event in labels list");
-    if (itemAt(event->pos()))
-        emit torrentDropped(row(itemAt(event->pos())));
-    event->ignore();
-    setItemHover(false);
-    // Select current item again
-    currentItem()->setSelected(true);
-}
-
-void LabelFiltersList::dragLeaveEvent(QDragLeaveEvent*)
-{
-    if (itemHover)
-        setItemHover(false);
-    // Select current item again
-    currentItem()->setSelected(true);
-}
-
-void LabelFiltersList::setItemHover(bool hover)
-{
-    Q_ASSERT(itemHover);
-    if (hover) {
-        itemHover->setData(Qt::DecorationRole, IconProvider::instance()->getIcon("folder-documents.png"));
-        itemHover->setSelected(true);
-        //setCurrentItem(itemHover);
-    }
-    else {
-        itemHover->setData(Qt::DecorationRole, IconProvider::instance()->getIcon("inode-directory.png"));
-        //itemHover->setSelected(false);
-        itemHover = 0;
-    }
-}
-
 StatusFiltersWidget::StatusFiltersWidget(QWidget *parent)
     : FiltersBase(parent)
-    , m_shown(false)
 {
     setUniformItemSizes(true);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -460,7 +399,6 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     connect(transferList->getSourceModel(), SIGNAL(modelRefreshed()), SLOT(updateTorrentNumbers()));
     connect(transferList->getSourceModel(), SIGNAL(torrentAdded(TorrentModelItem*)), SLOT(handleNewTorrent(TorrentModelItem*)));
     connect(labelFilters, SIGNAL(currentRowChanged(int)), this, SLOT(applyLabelFilter(int)));
-    connect(labelFilters, SIGNAL(torrentDropped(int)), this, SLOT(torrentDropped(int)));
     connect(trackerFilters, SIGNAL(currentRowChanged(int)), this, SLOT(applyTrackerFilter(int)));
     connect(transferList->getSourceModel(), SIGNAL(torrentAboutToBeRemoved(TorrentModelItem*)), SLOT(torrentAboutToBeDeleted(TorrentModelItem*)));
     connect(transferList->getSourceModel(), SIGNAL(torrentChangedLabel(TorrentModelItem*,QString,QString)), SLOT(torrentChangedLabel(TorrentModelItem*, QString, QString)));
@@ -541,15 +479,6 @@ void TransferListFiltersWidget::updateTorrentNumbers()
     statusFilters->item(TorrentFilter::RESUMED)->setData(Qt::DisplayRole, QVariant(tr("Resumed") + " (" + QString::number(report.nb_active + report.nb_inactive - report.nb_paused) + ")"));
     statusFilters->item(TorrentFilter::ACTIVE)->setData(Qt::DisplayRole, QVariant(tr("Active") + " (" + QString::number(report.nb_active) + ")"));
     statusFilters->item(TorrentFilter::INACTIVE)->setData(Qt::DisplayRole, QVariant(tr("Inactive") + " (" + QString::number(report.nb_inactive) + ")"));
-}
-
-void TransferListFiltersWidget::torrentDropped(int row)
-{
-    Q_ASSERT(row > 0);
-    if (row == 1)
-        transferList->setSelectionLabel("");
-    else
-        transferList->setSelectionLabel(labelFilters->labelFromRow(row));
 }
 
 void TransferListFiltersWidget::addLabel(QString& label)
