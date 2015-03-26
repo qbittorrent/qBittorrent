@@ -15,11 +15,11 @@ LangString inst_firewall ${LANG_SPANISHINTERNATIONAL} "Añadir regla al Firewall
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_SPANISHINTERNATIONAL} "Añadiendo regla al Firewall de Windows"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
-LangString inst_warning ${LANG_SPANISHINTERNATIONAL} "qBittorrent se esta ejecutando. Cierrelo antes de continuar."
+LangString inst_warning ${LANG_SPANISHINTERNATIONAL} "qBittorrent se está ejecutando. Ciérrelo antes de continuar."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
-LangString inst_unist ${LANG_SPANISHINTERNATIONAL} "Desinstalando version previa."
+LangString inst_unist ${LANG_SPANISHINTERNATIONAL} "Desinstalando la versión anterior."
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
-LangString launch_qbt ${LANG_SPANISHINTERNATIONAL} "Launch qBittorrent."
+LangString launch_qbt ${LANG_SPANISHINTERNATIONAL} "Iniciar qBittorrent."
 
 
 ;------------------------------------
@@ -42,8 +42,8 @@ LangString remove_firewallinfo ${LANG_SPANISHINTERNATIONAL} "Quitando regla del 
 ;LangString remove_cache ${LANG_ENGLISH} "Remove torrents and cached data"
 LangString remove_cache ${LANG_SPANISHINTERNATIONAL} "Eliminar torrents y datos en cache"
 ;LangString uninst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before uninstalling."
-LangString uninst_warning ${LANG_SPANISHINTERNATIONAL} "qBittorrent se esta ejecutando. Cierrelo antes de continuar."
+LangString uninst_warning ${LANG_SPANISHINTERNATIONAL} "qBittorrent se está ejecutando. Ciérrelo antes de continuar."
 ;LangString uninst_tor_warn ${LANG_ENGLISH} "Not removing .torrent association. It is associated with:"
-LangString uninst_tor_warn ${LANG_SPANISHINTERNATIONAL} "Manteniendo asociación de archivos torrent. Estan asociados con:"
+LangString uninst_tor_warn ${LANG_SPANISHINTERNATIONAL} "Manteniendo asociación de archivos .torrent. Estan asociados con:"
 ;LangString uninst_mag_warn ${LANG_ENGLISH} "Not removing magnet association. It is associated with:"
 LangString uninst_mag_warn ${LANG_SPANISHINTERNATIONAL} "Manteniendo asociación de enlaces magnet. Estan asociados con:"
