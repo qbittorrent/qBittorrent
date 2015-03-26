@@ -187,7 +187,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     hSplitter = new QSplitter(Qt::Vertical, this);
     hSplitter->setChildrenCollapsible(false);
+#ifndef Q_OS_WIN
     hSplitter->setContentsMargins(0, 4, 0, 0);
+#endif
 
     // Name filter
     search_filter = new LineEdit(this);

@@ -171,7 +171,11 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
 {
     // Construct lists
     vLayout = new QVBoxLayout();
+#ifdef Q_OS_WIN
+    vLayout->setContentsMargins(0, 1, 0, 0);
+#else
     vLayout->setContentsMargins(0, 4, 0, 0);
+#endif
     QFont font;
     font.setBold(true);
     font.setCapitalization(QFont::SmallCaps);
