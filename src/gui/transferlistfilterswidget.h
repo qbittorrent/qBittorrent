@@ -35,9 +35,7 @@
 #include <QFrame>
 
 QT_BEGIN_NAMESPACE
-class QListWidgetItem;
-class QVBoxLayout;
-class QDragMoveEvent;
+class QResizeEvent;
 class QLabel;
 QT_END_NAMESPACE
 
@@ -51,24 +49,19 @@ class FiltersBase: public QListWidget
     Q_OBJECT
 
 public:
-    FiltersBase(QWidget *parent);
+    FiltersBase(QWidget *parent, TransferListWidget *transferList);
 
-    QSize sizeHint() const;
-    QSize minimumSizeHint() const;
-};
+    virtual QSize sizeHint() const;
+    virtual QSize minimumSizeHint() const;
 
-class LabelFiltersList: public FiltersBase
-{
-    Q_OBJECT
+protected:
+    TransferListWidget *transferList;
 
-public:
-    LabelFiltersList(QWidget *parent);
-
-    // Redefine addItem() to make sure the list stays sorted
-    void addItem(QListWidgetItem *it);
-
-    QString labelFromRow(int row) const;
-    int rowFromLabel(QString label) const;
+private slots:
+    virtual void showMenu(QPoint) = 0;
+    virtual void applyFilter(int row) = 0;
+    virtual void handleNewTorrent(TorrentModelItem* torrentItem) = 0;
+    virtual void torrentAboutToBeDeleted(TorrentModelItem* torrentItem) = 0;
 };
 
 class StatusFiltersWidget: public FiltersBase
@@ -76,7 +69,52 @@ class StatusFiltersWidget: public FiltersBase
     Q_OBJECT
 
 public:
-    StatusFiltersWidget(QWidget *parent);
+    StatusFiltersWidget(QWidget *parent, TransferListWidget *transferList);
+    ~StatusFiltersWidget();
+
+private slots:
+    void updateTorrentNumbers();
+
+private:
+    // These 4 methods are virtual slots in the base class.
+    // No need to redeclare them here as slots.
+    virtual void showMenu(QPoint);
+    virtual void applyFilter(int row);
+    virtual void handleNewTorrent(TorrentModelItem*);
+    virtual void torrentAboutToBeDeleted(TorrentModelItem*);
+};
+
+class LabelFiltersList: public FiltersBase
+{
+    Q_OBJECT
+
+public:
+    LabelFiltersList(QWidget *parent, TransferListWidget *transferList);
+    ~LabelFiltersList();
+
+private slots:
+    // Redefine addItem() to make sure the list stays sorted
+    void addItem(QString &label, bool hasTorrent);
+    void removeItem(const QString &label);
+    void removeSelectedLabel();
+    void removeUnusedLabels();
+    void torrentChangedLabel(TorrentModelItem *torrentItem, QString old_label, QString new_label);
+
+
+private:
+    // These 4 methods are virtual slots in the base class.
+    // No need to redeclare them here as slots.
+    virtual void showMenu(QPoint);
+    virtual void applyFilter(int row);
+    virtual void handleNewTorrent(TorrentModelItem* torrentItem);
+    virtual void torrentAboutToBeDeleted(TorrentModelItem* torrentItem);
+    QString labelFromRow(int row) const;
+    int rowFromLabel(const QString &label) const;
+
+private:
+    QHash<QString, int> m_labels;
+    int m_totalTorrents;
+    int m_totalLabeled;
 };
 
 class TrackerFiltersList: public FiltersBase
@@ -84,55 +122,43 @@ class TrackerFiltersList: public FiltersBase
     Q_OBJECT
 
 public:
-    TrackerFiltersList(QWidget *parent);
+    TrackerFiltersList(QWidget *parent, TransferListWidget *transferList);
     ~TrackerFiltersList();
 
     // Redefine addItem() to make sure the list stays sorted
     void addItem(const QString &tracker, const QString &hash);
-    void addItem(const QTorrentHandle &handle);
     void removeItem(const QString &tracker, const QString &hash);
-    void removeItem(const QTorrentHandle &handle);
-    void setTorrentCount(int all);
-    QStringList getHashes(int row);
-
-public slots:
-    void handleFavicoDownload(const QString &url, const QString &filePath);
-    void handleFavicoFailure(const QString &url, const QString &reason);
     void changeTrackerless(bool trackerless, const QString &hash);
 
+private slots:
+    void handleFavicoDownload(const QString &url, const QString &filePath);
+    void handleFavicoFailure(const QString &url, const QString &reason);
+
 private:
-    QHash<QString, QStringList> m_trackers;
+    // These 4 methods are virtual slots in the base class.
+    // No need to redeclare them here as slots.
+    virtual void showMenu(QPoint);
+    virtual void applyFilter(int row);
+    virtual void handleNewTorrent(TorrentModelItem* torrentItem);
+    virtual void torrentAboutToBeDeleted(TorrentModelItem* torrentItem);
     QString trackerFromRow(int row) const;
     int rowFromTracker(const QString &tracker) const;
     QString getHost(const QString &trakcer) const;
+    QStringList getHashes(int row);
+
+private:
+    QHash<QString, QStringList> m_trackers;
     DownloadThread *m_downloader;
     QStringList m_iconPaths;
+    int m_totalTorrents;
 };
 
 class TransferListFiltersWidget: public QFrame
 {
     Q_OBJECT
 
-private:
-    QHash<QString, int> customLabels;
-    StatusFiltersWidget* statusFilters;
-    LabelFiltersList* labelFilters;
-    TrackerFiltersList* trackerFilters;
-    QVBoxLayout* vLayout;
-    TransferListWidget *transferList;
-    int nb_labeled;
-    int nb_torrents;
-    //for use in resizeEvent()
-    QLabel *torrentsLabel;
-
 public:
     TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList);
-    ~TransferListFiltersWidget();
-
-    StatusFiltersWidget* getStatusFilters() const;
-
-    void saveSettings() const;
-    void loadSettings();
 
 public slots:
     void addTrackers(const QStringList &trackers, const QString &hash);
@@ -142,19 +168,11 @@ public slots:
 protected:
     virtual void resizeEvent(QResizeEvent *event);
 
-protected slots:
-    void updateTorrentNumbers();
-    void addLabel(QString& label);
-    void showLabelMenu(QPoint);
-    void showTrackerMenu(QPoint);
-    void removeSelectedLabel();
-    void removeUnusedLabels();
-    void applyLabelFilter(int row);
-    void applyTrackerFilter(int row);
-    void torrentChangedLabel(TorrentModelItem *torrentItem, QString old_label, QString new_label);
-    void handleNewTorrent(TorrentModelItem* torrentItem);
-    void torrentAboutToBeDeleted(TorrentModelItem* torrentItem);
-    void updateStickyLabelCounters();
+private:
+    StatusFiltersWidget *statusFilters;
+    TrackerFiltersList *trackerFilters;
+    //for use in resizeEvent()
+    QLabel *torrentsLabel;
 };
 
 #endif // TRANSFERLISTFILTERSWIDGET_H

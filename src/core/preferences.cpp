@@ -1583,16 +1583,18 @@ void Preferences::setTorrentLabels(const QStringList& labels)
 void Preferences::addTorrentLabel(const QString& label)
 {
     QStringList labels = value("TransferListFilters/customLabels").toStringList();
-    if (!labels.contains(label))
-        labels << label;
+    if (labels.contains(label))
+        return;
+    labels << label;
     setValue("TransferListFilters/customLabels", labels);
 }
 
 void Preferences::removeTorrentLabel(const QString& label)
 {
     QStringList labels = value("TransferListFilters/customLabels").toStringList();
-    if (labels.contains(label))
-        labels.removeOne(label);
+    if (!labels.contains(label))
+        return;
+    labels.removeOne(label);
     setValue("TransferListFilters/customLabels", labels);
 }
 
