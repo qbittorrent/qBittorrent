@@ -35,7 +35,7 @@
 #include <QVariant>
 
 namespace prio {
-enum FilePriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7, MIXED=-1};
+enum FilePriority {IGNORED=0, NORMAL=1, HIGH=6, MAXIMUM=7, MIXED=-1};
 }
 
 class TorrentContentModelFolder;
