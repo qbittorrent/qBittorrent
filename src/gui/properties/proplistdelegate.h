@@ -42,6 +42,7 @@
 #include <QApplication>
 #include "misc.h"
 #include "propertieswidget.h"
+#include "torrentcontentmodelitem.h"
 
 #ifdef Q_OS_WIN
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
@@ -109,16 +110,16 @@ public:
       QItemDelegate::drawBackground(painter, opt, index);
       QString text = "";
       switch(index.data().toInt()) {
-      case -1:
+      case prio::MIXED:
         text = tr("Mixed", "Mixed (priorities");
         break;
-      case 0:
+      case prio::IGNORED:
         text = tr("Not downloaded");
         break;
-      case 2:
+      case prio::HIGH:
         text = tr("High", "High (priority)");
         break;
-      case 7:
+      case prio::MAXIMUM:
         text = tr("Maximum", "Maximum (priority)");
         break;
       default:
@@ -139,10 +140,10 @@ public:
     QComboBox *combobox = static_cast<QComboBox*>(editor);
     // Set combobox index
     switch(index.data().toInt()) {
-    case 2:
+    case prio::HIGH:
       combobox->setCurrentIndex(1);
       break;
-    case 7:
+    case prio::MAXIMUM:
       combobox->setCurrentIndex(2);
       break;
     default:
@@ -177,13 +178,13 @@ public slots:
     qDebug("PropListDelegate: setModelData(%d)", value);
     switch(value)  {
     case 1:
-      model->setData(index, 2); // HIGH
+      model->setData(index, prio::HIGH);
       break;
     case 2:
-      model->setData(index, 7); // MAX
+      model->setData(index, prio::MAXIMUM);
       break;
     default:
-      model->setData(index, 1); // NORMAL
+      model->setData(index, prio::NORMAL);
     }
     emit filteredFilesChanged();
   }
