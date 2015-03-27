@@ -36,7 +36,7 @@
 
 QT_BEGIN_NAMESPACE
 class QResizeEvent;
-class QLabel;
+class QCheckBox;
 QT_END_NAMESPACE
 
 class TransferListWidget;
@@ -53,6 +53,9 @@ public:
 
     virtual QSize sizeHint() const;
     virtual QSize minimumSizeHint() const;
+
+public slots:
+    void toggleFilter(bool checked);
 
 protected:
     TransferListWidget *transferList;
@@ -172,7 +175,7 @@ private:
     StatusFiltersWidget *statusFilters;
     TrackerFiltersList *trackerFilters;
     //for use in resizeEvent()
-    QLabel *torrentsLabel;
+    QCheckBox *trackerLabel;
 };
 
 #endif // TRANSFERLISTFILTERSWIDGET_H

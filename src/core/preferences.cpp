@@ -2231,6 +2231,36 @@ void Preferences::setTorImportGeometry(const QByteArray &geometry)
     setValue("TorrentImportDlg/dimensions", geometry);
 }
 
+bool Preferences::getStatusFilterState() const
+{
+    return value("TransferListFilters/statusFilterState", true).toBool();
+}
+
+void Preferences::setStatusFilterState(const bool checked)
+{
+    setValue("TransferListFilters/statusFilterState", checked);
+}
+
+bool Preferences::getLabelFilterState() const
+{
+    return value("TransferListFilters/labelFilterState", true).toBool();
+}
+
+void Preferences::setLabelFilterState(const bool checked)
+{
+    setValue("TransferListFilters/labelFilterState", checked);
+}
+
+bool Preferences::getTrackerFilterState() const
+{
+    return value("TransferListFilters/trackerFilterState", true).toBool();
+}
+
+void Preferences::setTrackerFilterState(const bool checked)
+{
+    setValue("TransferListFilters/trackerFilterState", checked);
+}
+
 int Preferences::getTransSelFilter() const
 {
     return value("TransferListFilters/selectedFilterIndex", 0).toInt();

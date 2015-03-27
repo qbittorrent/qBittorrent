@@ -37,7 +37,7 @@
 #include <QMenu>
 #include <QResizeEvent>
 #include <QMessageBox>
-#include <QLabel>
+#include <QCheckBox>
 
 #include "transferlistdelegate.h"
 #include "transferlistwidget.h"
@@ -84,6 +84,15 @@ QSize FiltersBase::minimumSizeHint() const
     return size;
 }
 
+void FiltersBase::toggleFilter(bool checked)
+{
+    setVisible(checked);
+    if (checked)
+        applyFilter(currentRow());
+    else
+        applyFilter(0);
+}
+
 StatusFiltersWidget::StatusFiltersWidget(QWidget *parent, TransferListWidget *transferList)
     : FiltersBase(parent, transferList)
 {
@@ -117,7 +126,9 @@ StatusFiltersWidget::StatusFiltersWidget(QWidget *parent, TransferListWidget *tr
     inactive->setData(Qt::DisplayRole, QVariant(tr("Inactive") + " (0)"));
     inactive->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterinactive.png"));
 
-    setCurrentRow(Preferences::instance()->getTransSelFilter(), QItemSelectionModel::SelectCurrent);
+    const Preferences* const pref = Preferences::instance();
+    setCurrentRow(pref->getTransSelFilter(), QItemSelectionModel::SelectCurrent);
+    toggleFilter(pref->getStatusFilterState());
 }
 
 StatusFiltersWidget::~StatusFiltersWidget()
@@ -164,11 +175,13 @@ LabelFiltersList::LabelFiltersList(QWidget *parent, TransferListWidget *transfer
     noLabel->setData(Qt::DisplayRole, QVariant(tr("Unlabeled (0)")));
     noLabel->setData(Qt::DecorationRole, IconProvider::instance()->getIcon("inode-directory"));
 
-    QStringList labelList = Preferences::instance()->getTorrentLabels();
+    const Preferences* const pref = Preferences::instance();
+    QStringList labelList = pref->getTorrentLabels();
     for (int i=0; i < labelList.size(); ++i)
         addItem(labelList[i], false);
 
     setCurrentRow(0, QItemSelectionModel::SelectCurrent);
+    toggleFilter(pref->getLabelFilterState());
 }
 
 LabelFiltersList::~LabelFiltersList()
@@ -257,7 +270,6 @@ void LabelFiltersList::removeSelectedLabel()
     m_labels.remove(label);
     // Select first label
     setCurrentRow(0, QItemSelectionModel::SelectCurrent);
-    applyFilter(0);
     // Un display filter
     delete takeItem(labelRow);
     transferList->removeLabelFromRows(label);
@@ -412,6 +424,7 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
     setCurrentRow(0, QItemSelectionModel::SelectCurrent);
     connect(m_downloader, SIGNAL(downloadFinished(QString, QString)), SLOT(handleFavicoDownload(QString, QString)));
     connect(m_downloader, SIGNAL(downloadFailure(QString, QString)), SLOT(handleFavicoFailure(QString, QString)));
+    toggleFilter(Preferences::instance()->getTrackerFilterState());
 }
 
 TrackerFiltersList::~TrackerFiltersList()
@@ -449,14 +462,14 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
     if (host == "") {
         trackerItem->setText(tr("Trackerless (%1)").arg(tmp.size()));
         if (currentRow() == 1)
-            emit currentRowChanged(1);
+            applyFilter(1);
         return;
     }
 
     trackerItem->setText(tr("%1 (%2)", "openbittorrent.com (10)").arg(host).arg(tmp.size()));
     if (exists) {
         if (currentRow() == rowFromTracker(host))
-            emit currentRowChanged(currentRow());
+            applyFilter(currentRow());
         return;
     }
 
@@ -507,7 +520,7 @@ void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
 
     m_trackers.insert(host, tmp);
     if (currentRow() == row)
-        emit currentRowChanged(row);
+        applyFilter(row);
 }
 
 void TrackerFiltersList::changeTrackerless(bool trackerless, const QString &hash)
@@ -577,7 +590,7 @@ void TrackerFiltersList::applyFilter(int row)
 {
     if (row == 0)
         transferList->applyTrackerFilterAll();
-    else
+    else if (isVisible())
         transferList->applyTrackerFilter(getHashes(row));
 }
 
@@ -653,41 +666,50 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     : QFrame(parent)
     , statusFilters(0)
     , trackerFilters(0)
-    , torrentsLabel(0)
+    , trackerLabel(0)
 {
+    Preferences* const pref = Preferences::instance();
     // Construct lists
     QVBoxLayout *vLayout = new QVBoxLayout(this);
     vLayout->setContentsMargins(0, 4, 0, 0);
     QFont font;
     font.setBold(true);
     font.setCapitalization(QFont::SmallCaps);
-    torrentsLabel = new QLabel(tr("Torrents"), this);
-    torrentsLabel->setIndent(2);
-    torrentsLabel->setFont(font);
-    vLayout->addWidget(torrentsLabel);
+    QCheckBox * statusLabel = new QCheckBox(tr("Status"), this);
+    statusLabel->setChecked(pref->getStatusFilterState());
+    statusLabel->setFont(font);
+    vLayout->addWidget(statusLabel);
     statusFilters = new StatusFiltersWidget(this, transferList);
     vLayout->addWidget(statusFilters);
-    QLabel *labelsLabel = new QLabel(tr("Labels"), this);
-    labelsLabel->setIndent(2);
-    labelsLabel->setFont(font);
-    vLayout->addWidget(labelsLabel);
+    QCheckBox *labelLabel = new QCheckBox(tr("Labels"), this);
+    labelLabel->setChecked(pref->getLabelFilterState());
+    labelLabel->setFont(font);
+    vLayout->addWidget(labelLabel);
     LabelFiltersList *labelFilters = new LabelFiltersList(this, transferList);
     vLayout->addWidget(labelFilters);
-    QLabel *trackersLabel = new QLabel(tr("Trackers"), this);
-    trackersLabel->setIndent(2);
-    trackersLabel->setFont(font);
-    vLayout->addWidget(trackersLabel);
+    trackerLabel = new QCheckBox(tr("Trackers"), this);
+    trackerLabel->setChecked(pref->getTrackerFilterState());
+    trackerLabel->setFont(font);
+    vLayout->addWidget(trackerLabel);
     trackerFilters = new TrackerFiltersList(this, transferList);
     vLayout->addWidget(trackerFilters);
     setLayout(vLayout);
     setContentsMargins(0,0,0,0);
     vLayout->setSpacing(2);
+    vLayout->addStretch();
+
+    connect(statusLabel, SIGNAL(toggled(bool)), statusFilters, SLOT(toggleFilter(bool)));
+    connect(statusLabel, SIGNAL(toggled(bool)), pref, SLOT(setStatusFilterState(const bool)));
+    connect(labelLabel, SIGNAL(toggled(bool)), labelFilters, SLOT(toggleFilter(bool)));
+    connect(labelLabel, SIGNAL(toggled(bool)), pref, SLOT(setLabelFilterState(const bool)));
+    connect(trackerLabel, SIGNAL(toggled(bool)), trackerFilters, SLOT(toggleFilter(bool)));
+    connect(trackerLabel, SIGNAL(toggled(bool)), pref, SLOT(setTrackerFilterState(const bool)));
 }
 
 void TransferListFiltersWidget::resizeEvent(QResizeEvent *event)
 {
     int height = event->size().height();
-    int minHeight = statusFilters->height() + (3 * torrentsLabel->height());
+    int minHeight = statusFilters->height() + (3 * trackerLabel->height());
     trackerFilters->setMinimumHeight((height - minHeight) / 2);
 }
 
