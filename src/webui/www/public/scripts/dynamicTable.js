@@ -60,6 +60,7 @@ var dynamicTable = new Class({
             this.newColumn('upspeed', 'width: 100px; cursor: pointer', 'QBT_TR(Up Speed)QBT_TR');
             this.newColumn('eta', 'width: 100px; cursor: pointer', 'QBT_TR(ETA)QBT_TR');
             this.newColumn('ratio', 'width: 100px; cursor: pointer', 'QBT_TR(Ratio)QBT_TR');
+            this.newColumn('label', 'width: 100px; cursor: pointer', 'QBT_TR(Label)QBT_TR');
 
             this.columns['state_icon'].onclick = '';
             this.columns['state_icon'].dataProperties[0] = 'state';
@@ -275,10 +276,13 @@ var dynamicTable = new Class({
                     break;
             }
 
-            if (labelName == null)
+            if (labelName == LABELS_ALL && row['full_data'].label.length > 0)
                 return true;
 
-            if (labelName != row['full_data'].label)
+            if (labelName == LABELS_UNLABELLED && row['full_data'].label.length === 0)
+                return true;
+
+            if (labelName != genHash( row['full_data'].label) )
                 return false;
 
             return true;
