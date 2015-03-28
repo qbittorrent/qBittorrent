@@ -419,6 +419,12 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
     QListWidgetItem *noTracker = new QListWidgetItem(this);
     noTracker->setData(Qt::DisplayRole, QVariant(tr("Trackerless (0)")));
     noTracker->setData(Qt::DecorationRole, IconProvider::instance()->getIcon("network-server"));
+    QListWidgetItem *errorTracker = new QListWidgetItem(this);
+    errorTracker->setData(Qt::DisplayRole, QVariant(tr("Error (0)")));
+    errorTracker->setData(Qt::DecorationRole, style()->standardIcon(QStyle::SP_MessageBoxCritical));
+    QListWidgetItem *warningTracker = new QListWidgetItem(this);
+    warningTracker->setData(Qt::DisplayRole, QVariant(tr("Warning (0)")));
+    warningTracker->setData(Qt::DecorationRole, style()->standardIcon(QStyle::SP_MessageBoxWarning));
     m_trackers.insert("", QStringList());
 
     setCurrentRow(0, QItemSelectionModel::SelectCurrent);
@@ -473,8 +479,8 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         return;
     }
 
-    Q_ASSERT(count() >= 2);
-    for (int i = 2; i<count(); ++i) {
+    Q_ASSERT(count() >= 4);
+    for (int i = 4; i<count(); ++i) {
         bool less = false;
         if (!(misc::naturalSort(host, item(i)->text(), less)))
             less = (host.localeAwareCompare(item(i)->text()) < 0);
@@ -500,6 +506,8 @@ void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
     tmp.removeAll(hash);
 
     if (host != "") {
+        // Remove from 'Error' and 'Warning' view
+        trackerSuccess(hash, tracker);
         row = rowFromTracker(host);
         trackerItem = item(row);
         if (tmp.empty()) {
@@ -529,6 +537,62 @@ void TrackerFiltersList::changeTrackerless(bool trackerless, const QString &hash
         addItem("", hash);
     else
         removeItem("", hash);
+}
+
+void TrackerFiltersList::trackerSuccess(const QString &hash, const QString &tracker)
+{
+    QStringList errored = m_errors.value(hash);
+    QStringList warned = m_warnings.value(hash);
+
+    if (errored.contains(tracker)) {
+        errored.removeAll(tracker);
+        if (errored.empty()) {
+            m_errors.remove(hash);
+            item(2)->setText(tr("Error (%1)").arg(m_errors.size()));
+            if (currentRow() == 2)
+                applyFilter(2);
+        }
+    }
+
+    if (warned.contains(tracker)) {
+        warned.removeAll(tracker);
+        if (warned.empty()) {
+            m_warnings.remove(hash);
+            item(3)->setText(tr("Warning (%1)").arg(m_warnings.size()));
+            if (currentRow() == 3)
+                applyFilter(3);
+        }
+    }
+}
+
+void TrackerFiltersList::trackerError(const QString &hash, const QString &tracker)
+{
+    QStringList trackers = m_errors.value(hash);
+
+    if (trackers.contains(tracker))
+        return;
+
+    trackers.append(tracker);
+    m_errors.insert(hash, trackers);
+    item(2)->setText(tr("Error (%1)").arg(m_errors.size()));
+
+    if (currentRow() == 2)
+        applyFilter(2);
+}
+
+void TrackerFiltersList::trackerWarning(const QString &hash, const QString &tracker)
+{
+    QStringList trackers = m_warnings.value(hash);
+
+    if (trackers.contains(tracker))
+        return;
+
+    trackers.append(tracker);
+    m_warnings.insert(hash, trackers);
+    item(3)->setText(tr("Warning (%1)").arg(m_warnings.size()));
+
+    if (currentRow() == 3)
+        applyFilter(3);
 }
 
 void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString& filePath)
@@ -637,7 +701,7 @@ QString TrackerFiltersList::trackerFromRow(int row) const
 int TrackerFiltersList::rowFromTracker(const QString &tracker) const
 {
     Q_ASSERT(!tracker.isEmpty());
-    for (int i = 2; i<count(); ++i)
+    for (int i = 4; i<count(); ++i)
         if (tracker == trackerFromRow(i)) return i;
     return -1;
 }
@@ -658,6 +722,10 @@ QStringList TrackerFiltersList::getHashes(int row)
 {
     if (row == 1)
         return m_trackers.value("");
+    else if (row == 2)
+        return m_errors.keys();
+    else if (row == 3)
+        return m_warnings.keys();
     else
         return m_trackers.value(trackerFromRow(row));
 }
@@ -704,6 +772,9 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     connect(labelLabel, SIGNAL(toggled(bool)), pref, SLOT(setLabelFilterState(const bool)));
     connect(trackerLabel, SIGNAL(toggled(bool)), trackerFilters, SLOT(toggleFilter(bool)));
     connect(trackerLabel, SIGNAL(toggled(bool)), pref, SLOT(setTrackerFilterState(const bool)));
+    connect(this, SIGNAL(trackerSuccess(const QString &, const QString &)), trackerFilters, SLOT(trackerSuccess(const QString &, const QString &)));
+    connect(this, SIGNAL(trackerError(const QString &, const QString &)), trackerFilters, SLOT(trackerError(const QString &, const QString &)));
+    connect(this, SIGNAL(trackerWarning(const QString &, const QString &)), trackerFilters, SLOT(trackerWarning(const QString &, const QString &)));
 }
 
 void TransferListFiltersWidget::resizeEvent(QResizeEvent *event)

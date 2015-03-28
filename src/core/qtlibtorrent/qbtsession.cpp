@@ -2516,18 +2516,21 @@ void QBtSession::handleTrackerErrorAlert(libtorrent::tracker_error_alert* p) {
     // Level: fatal
     QTorrentHandle h(p->handle);
     if (h.is_valid()) {
+        const QString hash = h.hash();
         // Authentication
         if (p->status_code != 401) {
             qDebug("Received a tracker error for %s: %s", p->url.c_str(), p->msg.c_str());
             const QString tracker_url = misc::toQString(p->url);
-            QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
+            QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(hash, QHash<QString, TrackerInfos>());
             TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
             data.last_message = misc::toQStringU(p->msg);
             trackers_data.insert(tracker_url, data);
-            trackersInfos[h.hash()] = trackers_data;
-        } else {
+            trackersInfos[hash] = trackers_data;
+        }
+        else {
             emit trackerAuthenticationRequired(h);
         }
+        emit trackerError(hash, misc::toQStringU(p->url));
     }
 }
 
@@ -2536,13 +2539,15 @@ void QBtSession::handleTrackerReplyAlert(libtorrent::tracker_reply_alert* p) {
     if (h.is_valid()) {
         qDebug("Received a tracker reply from %s (Num_peers=%d)", p->url.c_str(), p->num_peers);
         // Connection was successful now. Remove possible old errors
-        QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
+        const QString hash = h.hash();
+        QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(hash, QHash<QString, TrackerInfos>());
         const QString tracker_url = misc::toQString(p->url);
         TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
         data.last_message = ""; // Reset error/warning message
         data.num_peers = p->num_peers;
         trackers_data.insert(tracker_url, data);
-        trackersInfos[h.hash()] = trackers_data;
+        trackersInfos[hash] = trackers_data;
+        emit trackerSuccess(hash, misc::toQStringU(p->url));
     }
 }
 
@@ -2550,13 +2555,15 @@ void QBtSession::handleTrackerWarningAlert(libtorrent::tracker_warning_alert* p)
     const QTorrentHandle h(p->handle);
     if (h.is_valid()) {
         // Connection was successful now but there is a warning message
-        QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
+        const QString hash = h.hash();
+        QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(hash, QHash<QString, TrackerInfos>());
         const QString tracker_url = misc::toQString(p->url);
         TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
         data.last_message = misc::toQStringU(p->msg); // Store warning message
         trackers_data.insert(tracker_url, data);
-        trackersInfos[h.hash()] = trackers_data;
+        trackersInfos[hash] = trackers_data;
         qDebug("Received a tracker warning from %s: %s", p->url.c_str(), p->msg.c_str());
+        emit trackerWarning(hash, misc::toQStringU(p->url));
     }
 }
 

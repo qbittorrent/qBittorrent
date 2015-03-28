@@ -274,7 +274,9 @@ signals:
     void resumedTorrent(const QTorrentHandle& h);
     void finishedTorrent(const QTorrentHandle& h);
     void fullDiskError(const QTorrentHandle& h, QString msg);
-    void trackerError(const QString &hash, QString time, QString msg);
+    void trackerSuccess(const QString &hash, const QString &tracker);
+    void trackerError(const QString &hash, const QString &tracker);
+    void trackerWarning(const QString &hash, const QString &tracker);
     void trackerAuthenticationRequired(const QTorrentHandle& h);
     void newDownloadedTorrent(QString path, QString url);
     void newDownloadedTorrentFromRss(QString url);

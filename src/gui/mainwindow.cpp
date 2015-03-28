@@ -220,6 +220,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(QBtSession::instance(), SIGNAL(trackersAdded(const QStringList &, const QString &)), transferListFilters, SLOT(addTrackers(const QStringList &, const QString &)));
     connect(QBtSession::instance(), SIGNAL(trackerlessChange(bool, const QString &)), transferListFilters, SLOT(changeTrackerless(bool, const QString &)));
     connect(QBtSession::instance(), SIGNAL(reloadTrackersAndUrlSeeds(const QTorrentHandle &)), properties, SLOT(loadTrackers(const QTorrentHandle &)));
+    connect(QBtSession::instance(), SIGNAL(trackerSuccess(const QString &, const QString &)), transferListFilters, SIGNAL(trackerSuccess(const QString &, const QString &)));
+    connect(QBtSession::instance(), SIGNAL(trackerError(const QString &, const QString &)), transferListFilters, SIGNAL(trackerError(const QString &, const QString &)));
+    connect(QBtSession::instance(), SIGNAL(trackerWarning(const QString &, const QString &)), transferListFilters, SIGNAL(trackerWarning(const QString &, const QString &)));
 
     vboxLayout->addWidget(tabs);
 
