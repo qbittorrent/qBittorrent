@@ -40,8 +40,13 @@
 #include "qtorrenthandle.h"
 
 struct TorrentStatusReport {
-    TorrentStatusReport(): nb_downloading(0), nb_seeding(0), nb_active(0), nb_inactive(0), nb_paused(0) {}
-    uint nb_downloading; uint nb_seeding; uint nb_active; uint nb_inactive; uint nb_paused;
+    TorrentStatusReport();
+    uint nb_downloading;
+    uint nb_seeding;
+    uint nb_completed;
+    uint nb_active;
+    uint nb_inactive;
+    uint nb_paused;
 };
 
 class TorrentModelItem : public QObject {

@@ -70,6 +70,11 @@ QIcon get_stalled_uploading_icon() {
     return cached;
 }
 
+QIcon get_completed_icon() {
+    static QIcon cached = QIcon(":/icons/skin/completed.png");
+    return cached;
+}
+
 QIcon get_checking_icon() {
     static QIcon cached = QIcon(":/icons/skin/checking.png");
     return cached;
@@ -79,6 +84,16 @@ QIcon get_error_icon() {
     static QIcon cached = QIcon(":/icons/skin/error.png");
     return cached;
 }
+}
+
+TorrentStatusReport::TorrentStatusReport()
+    : nb_downloading(0)
+    , nb_seeding(0)
+    , nb_completed(0)
+    , nb_active(0)
+    , nb_inactive(0)
+    , nb_paused(0)
+{
 }
 
 TorrentModelItem::TorrentModelItem(const QTorrentHandle &h)
@@ -151,8 +166,9 @@ QIcon TorrentModelItem::getIconByState(State state) {
     case STATE_SEEDING:
         return get_uploading_icon();
     case STATE_PAUSED_DL:
-    case STATE_PAUSED_UP:
         return get_paused_icon();
+    case STATE_PAUSED_UP:
+        return get_completed_icon();
     case STATE_QUEUED_DL:
     case STATE_QUEUED_UP:
         return get_queued_icon();
@@ -549,6 +565,7 @@ TorrentStatusReport TorrentModel::getTorrentStatusReport() const
             ++report.nb_downloading;
             break;
         case TorrentModelItem::STATE_PAUSED_DL:
+        case TorrentModelItem::STATE_PAUSED_MISSING:
             ++report.nb_paused;
         case TorrentModelItem::STATE_STALLED_DL:
         case TorrentModelItem::STATE_CHECKING_DL:
@@ -560,17 +577,16 @@ TorrentStatusReport TorrentModel::getTorrentStatusReport() const
         case TorrentModelItem::STATE_SEEDING:
             ++report.nb_active;
             ++report.nb_seeding;
+            ++report.nb_completed;
             break;
-        case TorrentModelItem::STATE_PAUSED_UP:
-        case TorrentModelItem::STATE_PAUSED_MISSING:
-            ++report.nb_paused;
         case TorrentModelItem::STATE_STALLED_UP:
         case TorrentModelItem::STATE_CHECKING_UP:
-        case TorrentModelItem::STATE_QUEUED_UP: {
+        case TorrentModelItem::STATE_QUEUED_UP:
             ++report.nb_seeding;
+        case TorrentModelItem::STATE_PAUSED_UP:
+            ++report.nb_completed;
             ++report.nb_inactive;
             break;
-        }
         default:
             break;
         }

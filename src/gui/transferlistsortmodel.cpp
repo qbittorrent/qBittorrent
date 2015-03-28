@@ -231,16 +231,20 @@ bool TransferListSortModel::matchStatusFilter(int sourceRow, const QModelIndex &
   case TorrentFilter::DOWNLOADING:
     return (state == TorrentModelItem::STATE_DOWNLOADING || state == TorrentModelItem::STATE_STALLED_DL
             || state == TorrentModelItem::STATE_PAUSED_DL || state == TorrentModelItem::STATE_CHECKING_DL
-            || state == TorrentModelItem::STATE_QUEUED_DL || state == TorrentModelItem::STATE_DOWNLOADING_META);
+            || state == TorrentModelItem::STATE_QUEUED_DL || state == TorrentModelItem::STATE_DOWNLOADING_META
+            || state == TorrentModelItem::STATE_PAUSED_MISSING);
+
+  case TorrentFilter::SEEDING:
+    return (state == TorrentModelItem::STATE_SEEDING || state == TorrentModelItem::STATE_STALLED_UP
+            || state == TorrentModelItem::STATE_CHECKING_UP || state == TorrentModelItem::STATE_QUEUED_UP);
 
   case TorrentFilter::COMPLETED:
     return (state == TorrentModelItem::STATE_SEEDING || state == TorrentModelItem::STATE_STALLED_UP
             || state == TorrentModelItem::STATE_PAUSED_UP || state == TorrentModelItem::STATE_CHECKING_UP
-            || state == TorrentModelItem::STATE_PAUSED_MISSING || state == TorrentModelItem::STATE_QUEUED_UP);
+            || state == TorrentModelItem::STATE_QUEUED_UP);
 
   case TorrentFilter::PAUSED:
-    return (state == TorrentModelItem::STATE_PAUSED_UP || state == TorrentModelItem::STATE_PAUSED_DL
-            || state == TorrentModelItem::STATE_PAUSED_MISSING);
+    return (state == TorrentModelItem::STATE_PAUSED_DL || state == TorrentModelItem::STATE_PAUSED_MISSING);
 
   case TorrentFilter::RESUMED:
     return (state != TorrentModelItem::STATE_PAUSED_UP && state != TorrentModelItem::STATE_PAUSED_DL

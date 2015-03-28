@@ -105,25 +105,28 @@ StatusFiltersWidget::StatusFiltersWidget(QWidget *parent, TransferListWidget *tr
 
     // Add status filters
     QListWidgetItem *all = new QListWidgetItem(this);
-    all->setData(Qt::DisplayRole, QVariant(tr("All") + " (0)"));
+    all->setData(Qt::DisplayRole, QVariant(tr("All (0)", "this is for the status filter")));
     all->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterall.png"));
     QListWidgetItem *downloading = new QListWidgetItem(this);
-    downloading->setData(Qt::DisplayRole, QVariant(tr("Downloading") + " (0)"));
+    downloading->setData(Qt::DisplayRole, QVariant(tr("Downloading (0)")));
     downloading->setData(Qt::DecorationRole, QIcon(":/icons/skin/downloading.png"));
+    QListWidgetItem *seeding = new QListWidgetItem(this);
+    seeding->setData(Qt::DisplayRole, QVariant(tr("Seeding (0)")));
+    seeding->setData(Qt::DecorationRole, QIcon(":/icons/skin/uploading.png"));
     QListWidgetItem *completed = new QListWidgetItem(this);
-    completed->setData(Qt::DisplayRole, QVariant(tr("Completed") + " (0)"));
-    completed->setData(Qt::DecorationRole, QIcon(":/icons/skin/uploading.png"));
+    completed->setData(Qt::DisplayRole, QVariant(tr("Completed (0)")));
+    completed->setData(Qt::DecorationRole, QIcon(":/icons/skin/completed.png"));
     QListWidgetItem *resumed = new QListWidgetItem(this);
-    resumed->setData(Qt::DisplayRole, QVariant(tr("Resumed") + " (0)"));
+    resumed->setData(Qt::DisplayRole, QVariant(tr("Resumed (0)")));
     resumed->setData(Qt::DecorationRole, QIcon(":/icons/skin/resumed.png"));
     QListWidgetItem *paused = new QListWidgetItem(this);
-    paused->setData(Qt::DisplayRole, QVariant(tr("Paused") + " (0)"));
+    paused->setData(Qt::DisplayRole, QVariant(tr("Paused (0)")));
     paused->setData(Qt::DecorationRole, QIcon(":/icons/skin/paused.png"));
     QListWidgetItem *active = new QListWidgetItem(this);
-    active->setData(Qt::DisplayRole, QVariant(tr("Active") + " (0)"));
+    active->setData(Qt::DisplayRole, QVariant(tr("Active (0)")));
     active->setData(Qt::DecorationRole, QIcon(":/icons/skin/filteractive.png"));
     QListWidgetItem *inactive = new QListWidgetItem(this);
-    inactive->setData(Qt::DisplayRole, QVariant(tr("Inactive") + " (0)"));
+    inactive->setData(Qt::DisplayRole, QVariant(tr("Inactive (0)")));
     inactive->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterinactive.png"));
 
     const Preferences* const pref = Preferences::instance();
@@ -141,9 +144,10 @@ void StatusFiltersWidget::updateTorrentNumbers()
     const TorrentStatusReport report = transferList->getSourceModel()->getTorrentStatusReport();
     item(TorrentFilter::ALL)->setData(Qt::DisplayRole, QVariant(tr("All (%1)").arg(report.nb_active + report.nb_inactive)));
     item(TorrentFilter::DOWNLOADING)->setData(Qt::DisplayRole, QVariant(tr("Downloading (%1)").arg(report.nb_downloading)));
-    item(TorrentFilter::COMPLETED)->setData(Qt::DisplayRole, QVariant(tr("Completed (%1)").arg(report.nb_seeding)));
+    item(TorrentFilter::SEEDING)->setData(Qt::DisplayRole, QVariant(tr("Seeding (%1)").arg(report.nb_seeding)));
+    item(TorrentFilter::COMPLETED)->setData(Qt::DisplayRole, QVariant(tr("Completed (%1)").arg(report.nb_completed)));
     item(TorrentFilter::PAUSED)->setData(Qt::DisplayRole, QVariant(tr("Paused (%1)").arg(report.nb_paused)));
-    item(TorrentFilter::RESUMED)->setData(Qt::DisplayRole, QVariant(tr("Resumed (%1)").arg(report.nb_active + report.nb_inactive - report.nb_paused)));
+    item(TorrentFilter::RESUMED)->setData(Qt::DisplayRole, QVariant(tr("Resumed (%1)").arg(report.nb_downloading + report.nb_seeding)));
     item(TorrentFilter::ACTIVE)->setData(Qt::DisplayRole, QVariant(tr("Active (%1)").arg(report.nb_active)));
     item(TorrentFilter::INACTIVE)->setData(Qt::DisplayRole, QVariant(tr("Inactive (%1)").arg(report.nb_inactive)));
 }
