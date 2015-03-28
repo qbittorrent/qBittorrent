@@ -74,6 +74,7 @@
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/session.hpp>
+#include <libtorrent/session_status.hpp>
 #include <libtorrent/ip_filter.hpp>
 #include <libtorrent/magnet_uri.hpp>
 #include <queue>
@@ -479,7 +480,12 @@ void QBtSession::configureSession() {
         setQueueingEnabled(false);
     }
     // Outgoing ports
+#if LIBTORRENT_VERSION_NUM < 10100
     sessionSettings.outgoing_ports = std::make_pair(pref->outgoingPortsMin(), pref->outgoingPortsMax());
+#else
+    sessionSettings.outgoing_port = pref->outgoingPortsMin();
+    sessionSettings.num_outgoing_ports = pref->outgoingPortsMax() - pref->outgoingPortsMin();
+#endif
     // Ignore limits on LAN
     qDebug() << "Ignore limits on LAN" << pref->ignoreLimitsOnLAN();
     sessionSettings.ignore_limits_on_local_network = pref->ignoreLimitsOnLAN();
@@ -1009,7 +1015,11 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     Q_ASSERT(!misc::isUrl(path));
 
     qDebug("Adding %s to download list", qPrintable(path));
+#if LIBTORRENT_VERSION_NUM < 10100
     boost::intrusive_ptr<torrent_info> t;
+#else
+    boost::shared_ptr<torrent_info> t;
+#endif
     try {
         qDebug() << "Loading torrent at" << path;
         // Getting torrent file informations
@@ -1017,7 +1027,11 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
         lazy_entry entry;
         libtorrent::error_code ec;
         misc::loadBencodedFile(path, buffer, entry, ec);
+#if LIBTORRENT_VERSION_NUM < 10100
         t = new torrent_info(entry);
+#else
+        t = boost::make_shared<torrent_info>(entry);
+#endif
         if (!t->is_valid())
             throw std::exception();
     } catch(std::exception& e) {
@@ -1299,7 +1313,11 @@ void QBtSession::mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri)
         Logger::instance()->addMessage(tr("Note: new trackers were added to the existing torrent."));
 }
 
+#if LIBTORRENT_VERSION_NUM < 10100
 void QBtSession::mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<torrent_info> t) {
+#else
+void QBtSession::mergeTorrents(QTorrentHandle &h_ex, boost::shared_ptr<torrent_info> t) {
+#endif
     // Check if the torrent contains trackers or url seeds we don't know about
     // and add them
     if (!h_ex.is_valid()) return;
@@ -1529,9 +1547,9 @@ void QBtSession::enableDHT(bool b) {
 }
 
 qreal QBtSession::getRealRatio(const libtorrent::torrent_status &status) const {
-    libtorrent::size_type all_time_upload = status.all_time_upload;
-    libtorrent::size_type all_time_download = status.all_time_download;
-    libtorrent::size_type total_done = status.total_done;
+    boost::int64_t all_time_upload = status.all_time_upload;
+    boost::int64_t all_time_download = status.all_time_download;
+    boost::int64_t total_done = status.total_done;
 
     if (all_time_download < total_done) {
         // We have more data on disk than we downloaded
@@ -1759,7 +1777,7 @@ void QBtSession::setDefaultTempPath(const QString &temppath) {
 
 void QBtSession::appendqBextensionToTorrent(const QTorrentHandle &h, bool append) {
     if (!h.is_valid() || !h.has_metadata()) return;
-    std::vector<size_type> fp;
+    std::vector<boost::int64_t> fp;
     h.file_progress(fp);
     for (int i=0; i<h.num_files(); ++i) {
         if (append) {
@@ -2000,7 +2018,11 @@ void QBtSession::recursiveTorrentDownload(const QTorrentHandle &h)
                 lazy_entry entry;
                 libtorrent::error_code ec;
                 misc::loadBencodedFile(torrent_fullpath, buffer, entry, ec);
+#if LIBTORRENT_VERSION_NUM < 10100
                 boost::intrusive_ptr<torrent_info> t = new torrent_info(entry);
+#else
+                boost::shared_ptr<torrent_info> t = boost::make_shared<torrent_info>(entry);
+#endif
                 const QString sub_hash = misc::toQString(t->info_hash());
                 // Passing the save path along to the sub torrent file
                 TorrentTempData::setSavePath(sub_hash, h.save_path());
@@ -2167,7 +2189,11 @@ void QBtSession::handleTorrentFinishedAlert(libtorrent::torrent_finished_alert* 
                         lazy_entry entry;
                         libtorrent::error_code ec;
                         misc::loadBencodedFile(torrent_fullpath, buffer, entry, ec);
+#if LIBTORRENT_VERSION_NUM < 10100
                         boost::intrusive_ptr<torrent_info> t = new torrent_info(entry);
+#else
+                        boost::shared_ptr<torrent_info> t = boost::make_shared<torrent_info>(entry);
+#endif
                         if (t->is_valid()) {
                             qDebug("emitting recursiveTorrentDownloadPossible()");
                             emit recursiveTorrentDownloadPossible(h);
@@ -2648,9 +2674,13 @@ void QBtSession::handleListenFailedAlert(libtorrent::listen_failed_alert *p) {
     else if (p->sock_type == listen_failed_alert::socks5)
         proto = "SOCKS5";
 #endif
+#if LIBTORRENT_VERSION_NUM < 10100
     qDebug() << "Failed listening on " << proto << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
     Logger::instance()->addMessage(tr("qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4", "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use").arg(p->endpoint.address().to_string(ec).c_str()).arg(proto).arg(QString::number(p->endpoint.port())).arg(misc::toQStringU(p->error.message())), Log::CRITICAL);
-
+#else
+    qDebug() << "Failed listening on " << proto << p->interface.c_str();
+    Logger::instance()->addMessage(tr("qBittorrent failed listening on interface %1 port: %2. Reason: %3", "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use").arg(p->interface.c_str()).arg(proto).arg(misc::toQStringU(p->error.message())), Log::CRITICAL);
+#endif
 }
 
 void QBtSession::handleTorrentCheckedAlert(libtorrent::torrent_checked_alert* p) {

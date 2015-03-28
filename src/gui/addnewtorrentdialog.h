@@ -36,6 +36,7 @@
 #include <QUrl>
 
 #include <libtorrent/torrent_info.hpp>
+#include <libtorrent/version.hpp>
 #include "qtorrenthandle.h"
 
 QT_BEGIN_NAMESPACE
@@ -97,7 +98,11 @@ private:
     QString m_filePath;
     QString m_url;
     QString m_hash;
+#if LIBTORRENT_VERSION_NUM < 10100
     boost::intrusive_ptr<libtorrent::torrent_info> m_torrentInfo;
+#else
+    boost::shared_ptr<libtorrent::torrent_info> m_torrentInfo;
+#endif
     QStringList m_filesPath;
     bool m_hasRenamedFile;
     QShortcut *editHotkey;

@@ -3,6 +3,7 @@
 #include <QDateTime>
 
 #include <libtorrent/session.hpp>
+#include <libtorrent/session_status.hpp>
 
 #include "qbtsession.h"
 #include "qinisettings.h"

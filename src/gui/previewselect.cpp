@@ -58,7 +58,7 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
   previewList->header()->resizeSection(0, 200);
   previewList->setAlternatingRowColors(pref->useAlternatingRowColors());
   // Fill list in
-  std::vector<libtorrent::size_type> fp;
+  std::vector<boost::int64_t> fp;
   h.file_progress(fp);
   unsigned int nbFiles = h.num_files();
   for (unsigned int i=0; i<nbFiles; ++i) {

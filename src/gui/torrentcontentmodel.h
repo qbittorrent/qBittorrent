@@ -49,7 +49,7 @@ public:
   TorrentContentModel(QObject *parent = 0);
   ~TorrentContentModel();
 
-  void updateFilesProgress(const std::vector<libtorrent::size_type>& fp);
+  void updateFilesProgress(const std::vector<boost::int64_t>& fp);
   void updateFilesPriorities(const std::vector<int> &fprio);
   std::vector<int> getFilesPriorities() const;
   bool allFiltered() const;
