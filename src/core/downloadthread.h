@@ -42,35 +42,34 @@ QT_BEGIN_NAMESPACE
 class QNetworkAccessManager;
 QT_END_NAMESPACE
 
-class DownloadThread : public QObject {
-  Q_OBJECT
+class DownloadThread : public QObject
+{
+    Q_OBJECT
 
 public:
-  DownloadThread(QObject* parent = 0);
-  QNetworkReply* downloadUrl(const QString &url, const QList<QNetworkCookie>& cookies = QList<QNetworkCookie>());
-  void downloadTorrentUrl(const QString &url, const QList<QNetworkCookie>& cookies = QList<QNetworkCookie>());
-  //void setProxy(QString IP, int port, QString username, QString password);
+    DownloadThread(QObject *parent = 0);
+    QNetworkReply *downloadUrl(const QString &url, const QList<QNetworkCookie> &cookies = QList<QNetworkCookie>());
+    void downloadTorrentUrl(const QString &url, const QList<QNetworkCookie> &cookies = QList<QNetworkCookie>());
 
 signals:
-  void downloadFinished(const QString &url, const QString &file_path);
-  void downloadFailure(const QString &url, const QString &reason);
-  void magnetRedirect(const QString &url_new, const QString &url_old);
+    void downloadFinished(const QString &url, const QString &file_path);
+    void downloadFailure(const QString &url, const QString &reason);
+    void magnetRedirect(const QString &url_new, const QString &url_old);
 
 private slots:
-  void processDlFinished(QNetworkReply* reply);
-  void checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal);
+    void processDlFinished(QNetworkReply *reply);
+    void checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal);
 #ifndef QT_NO_OPENSSL
-  void ignoreSslErrors(QNetworkReply*,const QList<QSslError>&);
+    void ignoreSslErrors(QNetworkReply *,const QList<QSslError> &);
 #endif
 
 private:
-  static QByteArray gUncompress(Bytef *inData, size_t len);
-  QString errorCodeToString(QNetworkReply::NetworkError status);
-  void applyProxySettings();
+    static QByteArray gUncompress(Bytef *inData, size_t len);
+    QString errorCodeToString(QNetworkReply::NetworkError status);
+    void applyProxySettings();
 
-private:
-  QNetworkAccessManager m_networkManager;
-  QHash<QString, QString> m_redirectMapping;
+    QNetworkAccessManager m_networkManager;
+    QHash<QString, QString> m_redirectMapping;
 
 };
 
