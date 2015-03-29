@@ -62,6 +62,8 @@ FiltersBase::FiltersBase(QWidget *parent, TransferListWidget *transferList)
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setContextMenuPolicy(Qt::CustomContextMenu);
 
+    setIconSize(QSize(16, 16));
+
     connect(this, SIGNAL(customContextMenuRequested(QPoint)), SLOT(showMenu(QPoint)));
     connect(this, SIGNAL(currentRowChanged(int)), SLOT(applyFilter(int)));
     connect(transferList->getSourceModel(), SIGNAL(torrentAdded(TorrentModelItem*)), SLOT(handleNewTorrent(TorrentModelItem*)));
