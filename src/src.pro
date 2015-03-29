@@ -110,6 +110,7 @@ TRANSLATIONS = \
     $$LANG_PATH/qbittorrent_be.ts \
     $$LANG_PATH/qbittorrent_eu.ts \
     $$LANG_PATH/qbittorrent_he.ts \
-    $$LANG_PATH/qbittorrent_vi.ts
+    $$LANG_PATH/qbittorrent_vi.ts \
+    $$LANG_PATH/qbittorrent_hi_IN.ts
 
 DESTDIR = .

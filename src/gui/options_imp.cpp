@@ -1309,6 +1309,7 @@ QString options_imp::languageToLocalizedString(const QLocale &locale)
   case QLocale::Russian: return QString::fromUtf8("Русский");
   case QLocale::Japanese: return QString::fromUtf8("日本語");
   case QLocale::Hebrew: return QString::fromUtf8("עברית");
+  case QLocale::Hindi: return QString::fromUtf8("हिन्दी, हिंदी");
   case QLocale::Arabic: return QString::fromUtf8("عربي");
   case QLocale::Georgian: return QString::fromUtf8("ქართული");
   case QLocale::Byelorussian: return QString::fromUtf8("Беларуская");
