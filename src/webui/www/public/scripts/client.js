@@ -184,7 +184,7 @@ window.addEvent('load', function () {
     updateMainData = function() {
         myTable.updateTable();
         clearTimeout(syncMainDataTimer);
-        syncMainDataTimer = syncMainData.delay(100);
+        syncMainDataTimer = syncMainData.delay(1000);
     }
 
     var processServerState = function () {
