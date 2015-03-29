@@ -35,6 +35,8 @@ QTorrentFilter::QTorrentFilter(QString filter, QString label)
 {
     if (filter == "downloading")
         type_ = Downloading;
+    else if (filter == "seeding")
+        type_ = Seeding;
     else if (filter == "completed")
         type_ = Completed;
     else if (filter == "paused")
@@ -55,6 +57,8 @@ bool QTorrentFilter::apply(const QTorrentHandle& h) const
     switch (type_) {
     case Downloading:
         return isTorrentDownloading(h);
+    case Seeding:
+        return isTorrentSeeding(h);
     case Completed:
         return isTorrentCompleted(h);
     case Paused:
@@ -82,6 +86,16 @@ bool QTorrentFilter::isTorrentDownloading(const QTorrentHandle &h) const
             || state == QTorrentState::Error;
 }
 
+bool QTorrentFilter::isTorrentSeeding(const QTorrentHandle &h) const
+{
+    const QTorrentState state = h.torrentState();
+
+    return state == QTorrentState::Uploading
+            || state == QTorrentState::StalledUploading
+            || state == QTorrentState::CheckingUploading
+            || state == QTorrentState::QueuedUploading;
+}
+
 bool QTorrentFilter::isTorrentCompleted(const QTorrentHandle &h) const
 {
     const QTorrentState state = h.torrentState();
@@ -97,8 +111,7 @@ bool QTorrentFilter::isTorrentPaused(const QTorrentHandle &h) const
 {
     const QTorrentState state = h.torrentState();
 
-    return state == QTorrentState::PausedDownloading
-            || state == QTorrentState::PausedUploading
+    return state == QTorrentState::PausedUploading
             || state == QTorrentState::Error;
 }
 

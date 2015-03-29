@@ -213,7 +213,7 @@ void WebApplication::action_public_images()
 }
 
 // GET params:
-//   - filter (string): all, downloading, completed, paused, resumed, active, inactive
+//   - filter (string): all, downloading, seeding, completed, paused, resumed, active, inactive
 //   - label (string): torrent label for filtering by it (empty string means "unlabeled"; no "label" param presented means "any label")
 //   - sort (string): name of column for sorting by its value
 //   - reverse (bool): enable reverse sorting
