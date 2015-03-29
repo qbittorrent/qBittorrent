@@ -190,15 +190,17 @@ QColor TorrentModelItem::getColorByState(State state) {
     switch (state) {
     case STATE_DOWNLOADING:
     case STATE_DOWNLOADING_META:
-        return QColor(0, 128, 0); // green
+        return QColor(34, 139, 34); // Forest Green
     case STATE_ALLOCATING:
     case STATE_STALLED_DL:
     case STATE_STALLED_UP:
-        return QColor(128, 128, 128); // grey
+        return QColor(0, 0, 0); // Black
     case STATE_SEEDING:
-        return QColor(255, 165, 0); // orange
+        return QColor(65, 105, 225); // Royal Blue
     case STATE_PAUSED_DL:
+        return QColor(250, 128, 114); // Salmon
     case STATE_PAUSED_UP:
+        return QColor(0, 0, 139); // Dark Blue
     case STATE_PAUSED_MISSING:
         return QColor(255, 0, 0); // red
     case STATE_QUEUED_DL:
@@ -207,7 +209,7 @@ QColor TorrentModelItem::getColorByState(State state) {
     case STATE_CHECKING_DL:
     case STATE_QUEUED_CHECK:
     case STATE_QUEUED_FASTCHECK:
-        return QColor(128, 128, 128); // grey
+        return QColor(0, 128, 128); // Teal
     case STATE_INVALID:
         return QColor(255, 0, 0); // red
     default:
