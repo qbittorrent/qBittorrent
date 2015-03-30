@@ -453,7 +453,7 @@ void TrackerList::showTrackerListMenu(QPoint) {
   QAction *editAct = 0;
   if (!getSelectedTrackerItems().isEmpty()) {
     delAct = menu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove tracker"));
-    copyAct = menu.addAction(IconProvider::instance()->getIcon("edit-copy"), tr("Copy tracker url"));
+    copyAct = menu.addAction(IconProvider::instance()->getIcon("edit-copy"), tr("Copy tracker URL"));
     editAct = menu.addAction(IconProvider::instance()->getIcon("edit-rename"),tr("Edit selected tracker URL"));
   }
 #if LIBTORRENT_VERSION_NUM >= 10000

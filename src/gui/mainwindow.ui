@@ -143,7 +143,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
    <property name="text">
-    <string>&amp;Add torrent file...</string>
+    <string>&amp;Add Torrent File...</string>
    </property>
    <property name="iconText">
     <string>Open</string>
@@ -205,7 +205,7 @@
   </action>
   <action name="actionDownload_from_URL">
    <property name="text">
-    <string>Add &amp;link to torrent...</string>
+    <string>Add Torrent &amp;Link...</string>
    </property>
    <property name="iconText">
     <string>Open URL</string>

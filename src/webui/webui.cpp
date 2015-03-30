@@ -76,7 +76,7 @@ void WebUI::init()
             if (success)
                 logger->addMessage(tr("The Web UI is listening on port %1").arg(port));
             else
-                logger->addMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(port), Log::CRITICAL);
+                logger->addMessage(tr("Web UI Error - Unable to bind Web UI to port %1").arg(port), Log::CRITICAL);
         }
 
         // DynDNS

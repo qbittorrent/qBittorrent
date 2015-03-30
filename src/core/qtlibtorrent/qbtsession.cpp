@@ -131,7 +131,7 @@ QBtSession::QBtSession()
     // Construct session
     s = new session(fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)), 0);
     //std::cout << "Peer ID: " << fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)).to_string() << std::endl;
-    Logger::instance()->addMessage("Peer ID: "+misc::toQString(fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)).to_string()));
+    Logger::instance()->addMessage(tr("Peer ID: ")+misc::toQString(fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)).to_string()));
 
     // Set severity level of libtorrent session
     s->set_alert_mask(alert::error_notification | alert::peer_notification | alert::port_mapping_notification | alert::storage_notification | alert::tracker_notification | alert::status_notification | alert::ip_block_notification | alert::progress_notification | alert::stats_notification);
@@ -414,8 +414,8 @@ void QBtSession::configureSession() {
     // * Session settings
     session_settings sessionSettings = s->settings();
     sessionSettings.user_agent = "qBittorrent " VERSION;
-    //std::cout << "HTTP user agent is " << sessionSettings.user_agent << std::endl;
-    logger->addMessage(tr("HTTP user agent is %1").arg(misc::toQString(sessionSettings.user_agent)));
+    //std::cout << "HTTP User-Agent is " << sessionSettings.user_agent << std::endl;
+    logger->addMessage(tr("HTTP User-Agent is %1").arg(misc::toQString(sessionSettings.user_agent)));
 
     sessionSettings.upnp_ignore_nonrouters = true;
     sessionSettings.use_dht_as_fallback = false;
@@ -2621,7 +2621,7 @@ void QBtSession::handleFastResumeRejectedAlert(libtorrent::fastresume_rejected_a
 }
 
 void QBtSession::handleUrlSeedAlert(libtorrent::url_seed_alert* p) {
-    Logger::instance()->addMessage(tr("Url seed lookup failed for url: %1, message: %2").arg(misc::toQString(p->url)).arg(misc::toQStringU(p->message())), Log::CRITICAL);
+    Logger::instance()->addMessage(tr("URL seed lookup failed for url: %1, message: %2").arg(misc::toQString(p->url)).arg(misc::toQStringU(p->message())), Log::CRITICAL);
 }
 
 void QBtSession::handleListenSucceededAlert(libtorrent::listen_succeeded_alert *p) {
