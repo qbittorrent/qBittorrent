@@ -290,12 +290,12 @@ void WebApplication::action_version_qbittorrent()
 void WebApplication::action_command_shutdown()
 {
     qDebug() << "Shutdown request from Web UI";
+    CHECK_URI(0);
+
     // Special case handling for shutdown, we
     // need to reply to the Web UI before
     // actually shutting down.
-
-    CHECK_URI(0);
-    QTimer::singleShot(0, qApp, SLOT(quit()));
+    QTimer::singleShot(100, qApp, SLOT(quit()));
 }
 
 void WebApplication::action_command_download()
