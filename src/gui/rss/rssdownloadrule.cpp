@@ -42,28 +42,49 @@ RssDownloadRule::RssDownloadRule(): m_enabled(false), m_useRegex(false)
 {
 }
 
-bool RssDownloadRule::matches(const QString &article_title) const
+bool RssDownloadRule::matches(const QString &articleTitle, const bool useRegex,
+                              const QString &mustContain,
+                              const QString &mustNotContain,
+                              const QString &episodeFilter)
 {
-    foreach (const QString& token, m_mustContain) {
+    QStringList mustContainList;
+    QStringList mustNotContainList;
+    if (useRegex) {
+        mustContainList << mustContain;
+        mustNotContainList << mustNotContain;
+    }
+    else {
+        mustContainList = mustContain.split(" ");
+        mustNotContainList = mustNotContain.split("|");
+    }
+    return matches(articleTitle, useRegex, mustContainList, mustNotContainList, episodeFilter);
+}
+
+bool RssDownloadRule::matches(const QString &articleTitle, const bool useRegex,
+                              const QStringList &mustContain,
+                              const QStringList &mustNotContain,
+                              const QString &episodeFilter)
+{
+    foreach (const QString& token, mustContain) {
         if (!token.isEmpty()) {
-            QRegExp reg(token, Qt::CaseInsensitive, m_useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
-            if (reg.indexIn(article_title) < 0)
+            QRegExp reg(token, Qt::CaseInsensitive, useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
+            if (reg.indexIn(articleTitle) < 0)
                 return false;
         }
     }
     qDebug("Checking not matching tokens");
     // Checking not matching
-    foreach (const QString& token, m_mustNotContain) {
+    foreach (const QString& token, mustNotContain) {
         if (!token.isEmpty()) {
-            QRegExp reg(token, Qt::CaseInsensitive, m_useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
-            if (reg.indexIn(article_title) > -1)
+            QRegExp reg(token, Qt::CaseInsensitive, useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
+            if (reg.indexIn(articleTitle) > -1)
                 return false;
         }
     }
-    if (!m_episodeFilter.isEmpty()) {
+    if (!episodeFilter.isEmpty()) {
         qDebug("Checking episode filter");
         QRegExp f("(^\\d{1,4})x(.*;$)");
-        int pos = f.indexIn(m_episodeFilter);
+        int pos = f.indexIn(episodeFilter);
         if (pos < 0)
             return false;
 
@@ -84,7 +105,7 @@ bool RssDownloadRule::matches(const QString &article_title) const
                     int epOurs = ep.left(ep.size() - 1).toInt();
 
                     // Extract partial match from article and ocmpare as digits
-                    pos = reg.indexIn(article_title);
+                    pos = reg.indexIn(articleTitle);
                     if (pos != -1) {
                         int epTheirs = reg.cap(1).toInt();
                         if (epTheirs >= epOurs)
@@ -101,7 +122,7 @@ bool RssDownloadRule::matches(const QString &article_title) const
                     int epOursLast = range.last().toInt();
 
                     // Extract partial match from article and ocmpare as digits
-                    pos = reg.indexIn(article_title);
+                    pos = reg.indexIn(articleTitle);
                     if (pos != -1) {
                         int epTheirs = reg.cap(1).toInt();
                         if (epOursFirst <= epTheirs && epOursLast >= epTheirs)
@@ -111,13 +132,18 @@ bool RssDownloadRule::matches(const QString &article_title) const
             }
             else { // Single number
                 QRegExp reg(expStr + ep + "\\D", Qt::CaseInsensitive);
-                if (reg.indexIn(article_title) != -1)
+                if (reg.indexIn(articleTitle) != -1)
                     return true;
             }
         }
         return false;
     }
     return true;
+}
+
+bool RssDownloadRule::matches(const QString &articleTitle) const
+{
+    return matches(articleTitle, m_useRegex, m_mustContain, m_mustNotContain, m_episodeFilter);
 }
 
 void RssDownloadRule::setMustContain(const QString &tokens)

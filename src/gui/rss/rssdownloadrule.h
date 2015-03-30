@@ -56,7 +56,11 @@ public:
     explicit RssDownloadRule();
     static RssDownloadRulePtr fromVariantHash(const QVariantHash &rule_hash);
     QVariantHash toVariantHash() const;
-    bool matches(const QString &article_title) const;
+    bool matches(const QString &articleTitle) const;
+    static bool matches(const QString &articleTitle, const bool useRegex,
+                        const QString &mustContain, const QString &mustNotContain, const QString &episodeFilter);
+    static bool matches(const QString &articleTitle, const bool useRegex,
+                        const QStringList &mustContain, const QStringList &mustNotContain, const QString &episodeFilter);
     void setMustContain(const QString &tokens);
     void setMustNotContain(const QString &tokens);
     inline QStringList rssFeeds() const { return m_rssFeeds; }

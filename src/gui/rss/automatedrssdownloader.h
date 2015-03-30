@@ -83,6 +83,7 @@ private slots:
     void updateMustLineValidity();
     void updateMustNotLineValidity();
     void onFinished(int result);
+    void testRule();
 
 private:
     RssDownloadRulePtr getCurrentRule() const;

@@ -119,6 +119,16 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& m
     deleteHotkey = new QShortcut(QKeySequence(QKeySequence::Delete), ui->listRules, 0, 0, Qt::WidgetShortcut);
     ok = connect(deleteHotkey, SIGNAL(activated()), SLOT(on_removeRuleBtn_clicked()));
     Q_ASSERT(ok);
+
+    ok = connect(ui->lineContains, SIGNAL(textEdited(QString)), SLOT(testRule()));
+    Q_ASSERT(ok);
+    ok = connect(ui->lineNotContains, SIGNAL(textEdited(QString)), SLOT(testRule()));
+    Q_ASSERT(ok);
+    ok = connect(ui->lineEFilter, SIGNAL(textEdited(QString)), SLOT(testRule()));
+    Q_ASSERT(ok);
+    ok = connect(ui->testRule, SIGNAL(textEdited(QString)), SLOT(testRule()));
+    Q_ASSERT(ok);
+
     updateRuleDefinitionBox();
     updateFeedList();
 }
@@ -646,4 +656,24 @@ void AutomatedRssDownloader::onFinished(int result)
     m_ruleList->replace(m_editableRuleList);
     m_ruleList->saveRulesToStorage();
     saveSettings();
+}
+
+void AutomatedRssDownloader::testRule()
+{
+    if (ui->testRule->text().isEmpty()) {
+        ui->testRule->setStyleSheet("");
+        ui->lblTestState->setPixmap(QPixmap());
+        return;
+    }
+
+    bool matches = RssDownloadRule::matches(ui->testRule->text(), ui->checkRegex->isChecked(),
+                                            ui->lineContains->text(), ui->lineNotContains->text(), ui->lineEFilter->text());
+    if (matches) {
+        ui->testRule->setStyleSheet("QLineEdit { color: green; }");
+        ui->lblTestState->setPixmap(IconProvider::instance()->getIcon("checked").pixmap(16, 16));
+    }
+    else {
+        ui->testRule->setStyleSheet("QLineEdit { color: red; }");
+        ui->lblTestState->setPixmap(QPixmap());
+    }
 }
