@@ -113,7 +113,7 @@ class about : public QDialog, private Ui::AboutDlg{
           <li><u>Russian:</u> Nick Khazov (m2k3d0n at users.sourceforge.net), Alexey Morsov (samurai@ricom.ru), Nick Tiskov Dayman(daymansmail (at) gmail (dot) com), Dmitry DmitryKX(Transifex) and kraleksandr kraleksandr(Transifex)</li>\
           <li><u>Serbian:</u> Anaximandar Milet (anaximandar@operamail.com)</li>\
           <li><u>Slovak:</u>  helix84</li>\
-          <li><u>Spanish:</u> Alfredo Monclús (alfrix), Francisco Luque Contreras (frannoe@ya.com) and José Antonio Moray moray33(Transifex)</li>\
+          <li><u>Spanish:</u> Alfredo Monclús (alfrix), Francisco Luque Contreras (frannoe@ya.com), José Antonio Moray moray33(Transifex) and Diego de las Heras(Transifex)</li>\
           <li><u>Swedish:</u> Daniel Nylander (po@danielnylander.se) and Emil Hammarberg Ooglogput(Transifex)</li>\
           <li><u>Turkish:</u> Hasan YILMAZ (iletisim@hedefturkce.com) and Erdem Bingöl (erdem84@gmail.com)</li>\
           <li><u>Ukrainian:</u> Oleh Prypin (blaxpirit@gmail.com)</li>\
