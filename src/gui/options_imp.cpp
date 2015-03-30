@@ -1187,9 +1187,9 @@ void options_imp::on_browseFilterButton_clicked() {
   QDir filterDir(filter_path);
   QString ipfilter;
   if (!filter_path.isEmpty() && filterDir.exists()) {
-    ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), filterDir.absolutePath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
+    ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an IP filter file"), filterDir.absolutePath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
   } else {
-    ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), QDir::homePath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
+    ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an IP filter file"), QDir::homePath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
   }
   if (!ipfilter.isNull())
     textFilterPath->setText(Utils::Fs::toNativePath(ipfilter));

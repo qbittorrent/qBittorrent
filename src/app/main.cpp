@@ -376,7 +376,7 @@ QString makeUsage(const QString &prg_name)
 #endif
     text += QLatin1String("\t-h | --help\t\t") + QObject::tr("Displays this help message") + QLatin1Char('\n');
     text += QLatin1String("\t--webui-port=<port>\t")
-            + QObject::tr("Changes the webui port (current: %1)").arg(QString::number(Preferences::instance()->getWebUiPort()))
+            + QObject::tr("Changes the Web UI port (current: %1)").arg(QString::number(Preferences::instance()->getWebUiPort()))
             + QLatin1Char('\n');
 #ifndef DISABLE_GUI
     text += QLatin1String("\t--no-splash\t\t") + QObject::tr("Disable splash screen") + QLatin1Char('\n');

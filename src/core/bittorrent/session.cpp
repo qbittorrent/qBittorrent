@@ -163,7 +163,7 @@ Session::Session(QObject *parent)
     // Construct session
     libt::fingerprint fingerprint(PEER_ID, VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_BUILD);
     m_nativeSession = new libt::session(fingerprint, 0);
-    Logger::instance()->addMessage("Peer ID: " + Utils::String::fromStdString(fingerprint.to_string()));
+    Logger::instance()->addMessage(tr("Peer ID: ") + Utils::String::fromStdString(fingerprint.to_string()));
 
     m_nativeSession->set_alert_dispatch(boost::bind(&Session::dispatchAlerts, this, _1));
 
@@ -363,8 +363,8 @@ void Session::setSessionSettings()
 
     libt::session_settings sessionSettings = m_nativeSession->settings();
     sessionSettings.user_agent = "qBittorrent " VERSION;
-    //std::cout << "HTTP user agent is " << sessionSettings.user_agent << std::endl;
-    logger->addMessage(tr("HTTP user agent is %1").arg(Utils::String::fromStdString(sessionSettings.user_agent)));
+    //std::cout << "HTTP User-Agent is " << sessionSettings.user_agent << std::endl;
+    logger->addMessage(tr("HTTP User-Agent is %1").arg(Utils::String::fromStdString(sessionSettings.user_agent)));
 
     sessionSettings.upnp_ignore_nonrouters = true;
     sessionSettings.use_dht_as_fallback = false;
@@ -2257,7 +2257,7 @@ void Session::handlePeerBanAlert(libt::peer_ban_alert *p)
 
 void Session::handleUrlSeedAlert(libt::url_seed_alert *p)
 {
-    Logger::instance()->addMessage(tr("Url seed lookup failed for url: %1, message: %2").arg(Utils::String::fromStdString(p->url)).arg(Utils::String::fromStdString(p->message())), Log::CRITICAL);
+    Logger::instance()->addMessage(tr("URL seed lookup failed for url: %1, message: %2").arg(Utils::String::fromStdString(p->url)).arg(Utils::String::fromStdString(p->message())), Log::CRITICAL);
 }
 
 void Session::handleListenSucceededAlert(libt::listen_succeeded_alert *p)

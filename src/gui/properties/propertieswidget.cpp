@@ -737,14 +737,14 @@ void PropertiesWidget::openSelectedFile() {
 void PropertiesWidget::askWebSeed() {
   bool ok;
   // Ask user for a new url seed
-  const QString url_seed = AutoExpandableDialog::getText(this, tr("New url seed", "New HTTP source"),
-                                                 tr("New url seed:"), QLineEdit::Normal,
+  const QString url_seed = AutoExpandableDialog::getText(this, tr("New URL seed", "New HTTP source"),
+                                                 tr("New URL seed:"), QLineEdit::Normal,
                                                  QString::fromUtf8("http://www."), &ok);
   if (!ok) return;
   qDebug("Adding %s web seed", qPrintable(url_seed));
   if (!listWebSeeds->findItems(url_seed, Qt::MatchFixedString).empty()) {
     QMessageBox::warning(this, "qBittorrent",
-                         tr("This url seed is already in the list."),
+                         tr("This URL seed is already in the list."),
                          QMessageBox::Ok);
     return;
   }
@@ -795,7 +795,7 @@ void PropertiesWidget::editWebSeed() {
 
   if (!listWebSeeds->findItems(new_seed, Qt::MatchFixedString).empty()) {
     QMessageBox::warning(this, tr("qBittorrent"),
-                         tr("This url seed is already in the list."),
+                         tr("This URL seed is already in the list."),
                          QMessageBox::Ok);
     return;
   }

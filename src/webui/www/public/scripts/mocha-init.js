@@ -47,7 +47,7 @@ initializeWindows = function() {
         new Event(e).stop();
         new MochaUI.Window({
             id: 'downloadPage',
-            title: "QBT_TR(Download from urls)QBT_TR",
+            title: "QBT_TR(Download from URLs)QBT_TR",
             loadMethod: 'iframe',
             contentURL: 'download.html',
             scrollbars: true,
