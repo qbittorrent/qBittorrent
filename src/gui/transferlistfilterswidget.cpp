@@ -149,7 +149,7 @@ void StatusFiltersWidget::updateTorrentNumbers()
     item(TorrentFilter::SEEDING)->setData(Qt::DisplayRole, QVariant(tr("Seeding (%1)").arg(report.nb_seeding)));
     item(TorrentFilter::COMPLETED)->setData(Qt::DisplayRole, QVariant(tr("Completed (%1)").arg(report.nb_completed)));
     item(TorrentFilter::PAUSED)->setData(Qt::DisplayRole, QVariant(tr("Paused (%1)").arg(report.nb_paused)));
-    item(TorrentFilter::RESUMED)->setData(Qt::DisplayRole, QVariant(tr("Resumed (%1)").arg(report.nb_downloading + report.nb_seeding)));
+    item(TorrentFilter::RESUMED)->setData(Qt::DisplayRole, QVariant(tr("Resumed (%1)").arg(report.nb_downloading + report.nb_seeding - report.nb_paused)));
     item(TorrentFilter::ACTIVE)->setData(Qt::DisplayRole, QVariant(tr("Active (%1)").arg(report.nb_active)));
     item(TorrentFilter::INACTIVE)->setData(Qt::DisplayRole, QVariant(tr("Inactive (%1)").arg(report.nb_inactive)));
 }
