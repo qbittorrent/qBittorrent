@@ -1,7 +1,5 @@
 INCLUDEPATH += $$PWD
 
-unix:!macx:dbus: include(qtnotify/qtnotify.pri)
-
 include(qtlibtorrent/qtlibtorrent.pri)
 
 HEADERS += \
