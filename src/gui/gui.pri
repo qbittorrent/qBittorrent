@@ -6,6 +6,7 @@ include(rss/rss.pri)
 include(torrentcreator/torrentcreator.pri)
 include(geoip/geoip.pri)
 include(powermanagement/powermanagement.pri)
+unix:!macx:dbus: include(qtnotify/qtnotify.pri)
 
 HEADERS += \
     $$PWD/mainwindow.h \
@@ -41,7 +42,9 @@ HEADERS += \
     $$PWD/messageboxraised.h \
     $$PWD/torrentfilterenum.h \
     $$PWD/options_imp.h \
-    $$PWD/advancedsettings.h
+    $$PWD/advancedsettings.h \
+    $$PWD/shutdownconfirm.h \
+    $$PWD/torrentmodel.h
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -69,7 +72,9 @@ SOURCES += \
     $$PWD/messageboxraised.cpp \
     $$PWD/statusbar.cpp \
     $$PWD/trackerlogin.cpp \
-    $$PWD/options_imp.cpp
+    $$PWD/options_imp.cpp \
+    $$PWD/shutdownconfirm.cpp \
+    $$PWD/torrentmodel.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
