@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2011  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -35,7 +35,8 @@
 #include <QTimer>
 #include "misc.h"
 
-class ShutdownConfirmDlg : public QMessageBox {
+class ShutdownConfirmDlg : public QMessageBox
+{
     Q_OBJECT
 
 public:
@@ -43,6 +44,9 @@ public:
     bool shutdown() const;
 
     static bool askForConfirmation(const shutDownAction &action);
+
+    QAbstractButton *getExit_now() const;
+    void setExit_now(QAbstractButton *value);
 
 protected:
     void showEvent(QShowEvent *event);
@@ -55,10 +59,10 @@ private:
     void updateText();
 
     // Vars
-    QAbstractButton *exit_now;
-    QTimer timer;
-    int timeout;
-    shutDownAction action0;
+    QAbstractButton *m_exitNow;
+    QTimer m_timer;
+    int m_timeout;
+    shutDownAction m_action;
 };
 
 #endif // SHUTDOWNCONFIRM_H
