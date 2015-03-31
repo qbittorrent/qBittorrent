@@ -42,45 +42,46 @@ class RssArticle;
 typedef QSharedPointer<RssArticle> RssArticlePtr;
 
 // Item of a rss stream, single information
-class RssArticle : public QObject {
-  Q_OBJECT
+class RssArticle: public QObject
+{
+    Q_OBJECT
 
 public:
-  RssArticle(RssFeed* parent, const QString& guid);
-  // Accessors
-  bool hasAttachment() const;
-  const QString& guid() const;
-  RssFeed* parent() const;
-  const QString& title() const;
-  const QString& author() const;
-  const QString& torrentUrl() const;
-  const QString& link() const;
-  QString description() const;
-  const QDateTime& date() const;
-  bool isRead() const;
-  // Setters
-  void markAsRead();
-  // Serialization
-  QVariantHash toHash() const;
+    RssArticle(RssFeed* parent, const QString& guid);
+    // Accessors
+    bool hasAttachment() const;
+    const QString& guid() const;
+    RssFeed* parent() const;
+    const QString& title() const;
+    const QString& author() const;
+    const QString& torrentUrl() const;
+    const QString& link() const;
+    QString description() const;
+    const QDateTime& date() const;
+    bool isRead() const;
+    // Setters
+    void markAsRead();
+    // Serialization
+    QVariantHash toHash() const;
 
 signals:
-  void articleWasRead();
+    void articleWasRead();
 
 public slots:
-  void handleTorrentDownloadSuccess(const QString& url);
+    void handleTorrentDownloadSuccess(const QString& url);
 
-  friend RssArticlePtr hashToRssArticle(RssFeed* parent, const QVariantHash& hash);
+    friend RssArticlePtr hashToRssArticle(RssFeed* parent, const QVariantHash& hash);
 
 private:
-  RssFeed* m_parent;
-  QString m_guid;
-  QString m_title;
-  QString m_torrentUrl;
-  QString m_link;
-  QString m_description;
-  QDateTime m_date;
-  QString m_author;
-  bool m_read;
+    RssFeed* m_parent;
+    QString m_guid;
+    QString m_title;
+    QString m_torrentUrl;
+    QString m_link;
+    QString m_description;
+    QDateTime m_date;
+    QString m_author;
+    bool m_read;
 };
 
 RssArticlePtr hashToRssArticle(RssFeed* parent, const QVariantHash& hash);

@@ -38,31 +38,31 @@
 
 class RssDownloadRuleList
 {
-  Q_DISABLE_COPY(RssDownloadRuleList)
+    Q_DISABLE_COPY(RssDownloadRuleList)
 
 public:
-  RssDownloadRuleList();
-  RssDownloadRulePtr findMatchingRule(const QString &feed_url, const QString &article_title) const;
-  // Operators
-  void saveRule(const RssDownloadRulePtr &rule);
-  void removeRule(const QString &name);
-  void renameRule(const QString &old_name, const QString &new_name);
-  RssDownloadRulePtr getRule(const QString &name) const;
-  inline QStringList ruleNames() const { return m_rules.keys(); }
-  inline bool isEmpty() const { return m_rules.isEmpty(); }
-  void saveRulesToStorage();
-  bool serialize(const QString& path);
-  bool unserialize(const QString& path);
-  void replace(RssDownloadRuleList* other);
+    RssDownloadRuleList();
+    RssDownloadRulePtr findMatchingRule(const QString &feed_url, const QString &article_title) const;
+    // Operators
+    void saveRule(const RssDownloadRulePtr &rule);
+    void removeRule(const QString &name);
+    void renameRule(const QString &old_name, const QString &new_name);
+    RssDownloadRulePtr getRule(const QString &name) const;
+    inline QStringList ruleNames() const { return m_rules.keys(); }
+    inline bool isEmpty() const { return m_rules.isEmpty(); }
+    void saveRulesToStorage();
+    bool serialize(const QString& path);
+    bool unserialize(const QString& path);
+    void replace(RssDownloadRuleList* other);
 
 private:
-  void loadRulesFromStorage();
-  void loadRulesFromVariantHash(const QVariantHash& l);
-  QVariantHash toVariantHash() const;
+    void loadRulesFromStorage();
+    void loadRulesFromVariantHash(const QVariantHash& l);
+    QVariantHash toVariantHash() const;
 
 private:
-  QHash<QString, RssDownloadRulePtr> m_rules;
-  QHash<QString, QStringList> m_feedRules;
+    QHash<QString, RssDownloadRulePtr> m_rules;
+    QHash<QString, QStringList> m_feedRules;
 
 };
 

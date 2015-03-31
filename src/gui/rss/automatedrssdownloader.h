@@ -39,7 +39,7 @@
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
-class AutomatedRssDownloader;
+    class AutomatedRssDownloader;
 }
 QT_END_NAMESPACE
 
@@ -50,54 +50,54 @@ QT_BEGIN_NAMESPACE
 class QListWidgetItem;
 QT_END_NAMESPACE
 
-class AutomatedRssDownloader : public QDialog
+class AutomatedRssDownloader: public QDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  explicit AutomatedRssDownloader(const QWeakPointer<RssManager>& manager, QWidget *parent = 0);
-  ~AutomatedRssDownloader();
-  bool isRssDownloaderEnabled() const;
+    explicit AutomatedRssDownloader(const QWeakPointer<RssManager>& manager, QWidget *parent = 0);
+    ~AutomatedRssDownloader();
+    bool isRssDownloaderEnabled() const;
 
 protected slots:
-  void loadSettings();
-  void saveSettings();
-  void loadRulesList();
-  void handleFeedCheckStateChange(QListWidgetItem* feed_item);
-  void updateRuleDefinitionBox();
-  void clearRuleDefinitionBox();
-  void saveEditedRule();
-  void loadFeedList();
-  void updateFeedList();
+    void loadSettings();
+    void saveSettings();
+    void loadRulesList();
+    void handleFeedCheckStateChange(QListWidgetItem* feed_item);
+    void updateRuleDefinitionBox();
+    void clearRuleDefinitionBox();
+    void saveEditedRule();
+    void loadFeedList();
+    void updateFeedList();
 
 private slots:
-  void displayRulesListMenu(const QPoint& pos);
-  void on_addRuleBtn_clicked();
-  void on_removeRuleBtn_clicked();
-  void on_browseSP_clicked();
-  void on_exportBtn_clicked();
-  void on_importBtn_clicked();
-  void renameSelectedRule();
-  void updateMatchingArticles();
-  void updateFieldsToolTips(bool regex);
-  void updateMustLineValidity();
-  void updateMustNotLineValidity();
-  void onFinished(int result);
+    void displayRulesListMenu(const QPoint& pos);
+    void on_addRuleBtn_clicked();
+    void on_removeRuleBtn_clicked();
+    void on_browseSP_clicked();
+    void on_exportBtn_clicked();
+    void on_importBtn_clicked();
+    void renameSelectedRule();
+    void updateMatchingArticles();
+    void updateFieldsToolTips(bool regex);
+    void updateMustLineValidity();
+    void updateMustNotLineValidity();
+    void onFinished(int result);
 
 private:
-  RssDownloadRulePtr getCurrentRule() const;
-  void initLabelCombobox();
-  void addFeedArticlesToTree(const RssFeedPtr& feed, const QStringList& articles);
+    RssDownloadRulePtr getCurrentRule() const;
+    void initLabelCombobox();
+    void addFeedArticlesToTree(const RssFeedPtr& feed, const QStringList& articles);
 
 private:
-  Ui::AutomatedRssDownloader *ui;
-  QWeakPointer<RssManager> m_manager;
-  QListWidgetItem* m_editedRule;
-  RssDownloadRuleList *m_ruleList;
-  RssDownloadRuleList *m_editableRuleList;
-  QRegExpValidator *m_episodeValidator;
-  QShortcut *editHotkey;
-  QShortcut *deleteHotkey;
+    Ui::AutomatedRssDownloader *ui;
+    QWeakPointer<RssManager> m_manager;
+    QListWidgetItem* m_editedRule;
+    RssDownloadRuleList *m_ruleList;
+    RssDownloadRuleList *m_editableRuleList;
+    QRegExpValidator *m_episodeValidator;
+    QShortcut *editHotkey;
+    QShortcut *deleteHotkey;
 };
 
 #endif // AUTOMATEDRSSDOWNLOADER_H

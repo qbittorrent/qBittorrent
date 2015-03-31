@@ -39,7 +39,7 @@ namespace Ui {
 }
 QT_END_NAMESPACE
 
-class RssSettingsDlg : public QDialog
+class RssSettingsDlg: public QDialog
 {
     Q_OBJECT
 

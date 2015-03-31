@@ -48,28 +48,29 @@ typedef QList<RssFilePtr> RssFileList;
 /**
  * Parent interface for RssFolder and RssFeed.
  */
-class RssFile {
+class RssFile
+{
 public:
-  virtual ~RssFile() {}
+    virtual ~RssFile() {}
 
-  virtual uint unreadCount() const = 0;
-  virtual QString displayName() const = 0;
-  virtual QString id() const = 0;
-  virtual QIcon icon() const = 0;
-  virtual void rename(const QString &new_name) = 0;
-  virtual void markAsRead() = 0;
-  virtual RssFolder* parent() const = 0;
-  virtual void setParent(RssFolder* parent) = 0;
-  virtual bool refresh() = 0;
-  virtual RssArticleList articleListByDateDesc() const = 0;
-  virtual RssArticleList unreadArticleListByDateDesc() const = 0;
-  virtual void removeAllSettings() = 0;
-  virtual void saveItemsToDisk() = 0;
-  virtual void recheckRssItemsForDownload() = 0;
-  QStringList pathHierarchy() const;
+    virtual uint unreadCount() const = 0;
+    virtual QString displayName() const = 0;
+    virtual QString id() const = 0;
+    virtual QIcon icon() const = 0;
+    virtual void rename(const QString &new_name) = 0;
+    virtual void markAsRead() = 0;
+    virtual RssFolder* parent() const = 0;
+    virtual void setParent(RssFolder* parent) = 0;
+    virtual bool refresh() = 0;
+    virtual RssArticleList articleListByDateDesc() const = 0;
+    virtual RssArticleList unreadArticleListByDateDesc() const = 0;
+    virtual void removeAllSettings() = 0;
+    virtual void saveItemsToDisk() = 0;
+    virtual void recheckRssItemsForDownload() = 0;
+    QStringList pathHierarchy() const;
 
 protected:
-  uint m_unreadCount;
+    uint m_unreadCount;
 };
 
 #endif // RSSFILE_H

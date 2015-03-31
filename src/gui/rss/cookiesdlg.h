@@ -39,7 +39,7 @@ namespace Ui {
 }
 QT_END_NAMESPACE
 
-class CookiesDlg : public QDialog
+class CookiesDlg: public QDialog
 {
     Q_OBJECT
 
@@ -49,7 +49,7 @@ public:
     QList<QByteArray> getCookies() const;
     static QList<QByteArray> askForCookies(QWidget *parent, const QList<QByteArray> &raw_cookies, bool *ok);
 
-  protected slots:
+protected slots:
     void on_add_btn_clicked();
     void on_del_btn_clicked();
 

@@ -32,26 +32,27 @@
 #include "ui_rsssettingsdlg.h"
 #include "preferences.h"
 
-RssSettingsDlg::RssSettingsDlg(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::RssSettingsDlg)
+RssSettingsDlg::RssSettingsDlg(QWidget *parent):
+    QDialog(parent),
+    ui(new Ui::RssSettingsDlg)
 {
-  ui->setupUi(this);
-  // Load settings
-  const Preferences* const pref = Preferences::instance();
-  ui->spinRSSRefresh->setValue(pref->getRSSRefreshInterval());
-  ui->spinRSSMaxArticlesPerFeed->setValue(pref->getRSSMaxArticlesPerFeed());
+    ui->setupUi(this);
+    // Load settings
+    const Preferences* const pref = Preferences::instance();
+    ui->spinRSSRefresh->setValue(pref->getRSSRefreshInterval());
+    ui->spinRSSMaxArticlesPerFeed->setValue(pref->getRSSMaxArticlesPerFeed());
 }
 
 RssSettingsDlg::~RssSettingsDlg()
 {
-  qDebug("Deleting the RSS settings dialog");
-  delete ui;
+    qDebug("Deleting the RSS settings dialog");
+    delete ui;
 }
 
-void RssSettingsDlg::on_buttonBox_accepted() {
-  // Save settings
-  Preferences* const pref = Preferences::instance();
-  pref->setRSSRefreshInterval(ui->spinRSSRefresh->value());
-  pref->setRSSMaxArticlesPerFeed(ui->spinRSSMaxArticlesPerFeed->value());
+void RssSettingsDlg::on_buttonBox_accepted()
+{
+    // Save settings
+    Preferences* const pref = Preferences::instance();
+    pref->setRSSRefreshInterval(ui->spinRSSRefresh->value());
+    pref->setRSSMaxArticlesPerFeed(ui->spinRSSMaxArticlesPerFeed->value());
 }

@@ -41,127 +41,127 @@
 static const int MSECS_PER_MIN = 60000;
 
 RssManager::RssManager():
-  m_rssDownloader(new DownloadThread(this)),
-  m_downloadRules(new RssDownloadRuleList),
-  m_rssParser(new RssParser(this))
+    m_rssDownloader(new DownloadThread(this)),
+    m_downloadRules(new RssDownloadRuleList),
+    m_rssParser(new RssParser(this))
 {
-  connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(refresh()));
-  m_refreshInterval = Preferences::instance()->getRSSRefreshInterval();
-  m_refreshTimer.start(m_refreshInterval * MSECS_PER_MIN);
+    connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(refresh()));
+    m_refreshInterval = Preferences::instance()->getRSSRefreshInterval();
+    m_refreshTimer.start(m_refreshInterval * MSECS_PER_MIN);
 }
 
 RssManager::~RssManager()
 {
-  qDebug("Deleting RSSManager...");
-  delete m_downloadRules;
-  delete m_rssParser;
-  saveItemsToDisk();
-  saveStreamList();
-  qDebug("RSSManager deleted");
+    qDebug("Deleting RSSManager...");
+    delete m_downloadRules;
+    delete m_rssParser;
+    saveItemsToDisk();
+    saveStreamList();
+    qDebug("RSSManager deleted");
 }
 
 DownloadThread* RssManager::rssDownloader() const
 {
-  return m_rssDownloader;
+    return m_rssDownloader;
 }
 
 RssParser* RssManager::rssParser() const
 {
-  return m_rssParser;
+    return m_rssParser;
 }
 
 void RssManager::updateRefreshInterval(uint val)
 {
-  if (m_refreshInterval != val) {
-    m_refreshInterval = val;
-    m_refreshTimer.start(m_refreshInterval*60000);
-    qDebug("New RSS refresh interval is now every %dmin", m_refreshInterval);
-  }
+    if (m_refreshInterval != val) {
+        m_refreshInterval = val;
+        m_refreshTimer.start(m_refreshInterval * 60000);
+        qDebug("New RSS refresh interval is now every %dmin", m_refreshInterval);
+    }
 }
 
 void RssManager::loadStreamList()
 {
-  const Preferences* const pref = Preferences::instance();
-  const QStringList streamsUrl = pref->getRssFeedsUrls();
-  const QStringList aliases =  pref->getRssFeedsAliases();
-  if (streamsUrl.size() != aliases.size()) {
-    std::cerr << "Corrupted Rss list, not loading it\n";
-    return;
-  }
-  uint i = 0;
-  qDebug() << Q_FUNC_INFO << streamsUrl;
-  foreach (QString s, streamsUrl) {
-    QStringList path = s.split("\\", QString::SkipEmptyParts);
-    if (path.empty()) continue;
-    const QString feed_url = path.takeLast();
-    qDebug() << "Feed URL:" << feed_url;
-    // Create feed path (if it does not exists)
-    RssFolder* feed_parent = this;
-    foreach (const QString &folder_name, path) {
-      qDebug() << "Adding parent folder:" << folder_name;
-      feed_parent = feed_parent->addFolder(folder_name).data();
+    const Preferences* const pref = Preferences::instance();
+    const QStringList streamsUrl = pref->getRssFeedsUrls();
+    const QStringList aliases =  pref->getRssFeedsAliases();
+    if (streamsUrl.size() != aliases.size()) {
+        std::cerr << "Corrupted Rss list, not loading it\n";
+        return;
     }
-    // Create feed
-    qDebug() << "Adding feed to parent folder";
-    RssFeedPtr stream = feed_parent->addStream(this, feed_url);
-    const QString& alias = aliases[i];
-    if (!alias.isEmpty()) {
-      stream->rename(alias);
+    uint i = 0;
+    qDebug() << Q_FUNC_INFO << streamsUrl;
+    foreach (QString s, streamsUrl) {
+        QStringList path = s.split("\\", QString::SkipEmptyParts);
+        if (path.empty()) continue;
+        const QString feed_url = path.takeLast();
+        qDebug() << "Feed URL:" << feed_url;
+        // Create feed path (if it does not exists)
+        RssFolder* feed_parent = this;
+        foreach (const QString &folder_name, path) {
+            qDebug() << "Adding parent folder:" << folder_name;
+            feed_parent = feed_parent->addFolder(folder_name).data();
+        }
+        // Create feed
+        qDebug() << "Adding feed to parent folder";
+        RssFeedPtr stream = feed_parent->addStream(this, feed_url);
+        const QString& alias = aliases[i];
+        if (!alias.isEmpty())
+            stream->rename(alias);
+        ++i;
     }
-    ++i;
-  }
-  qDebug("NB RSS streams loaded: %d", streamsUrl.size());
+    qDebug("NB RSS streams loaded: %d", streamsUrl.size());
 }
 
 void RssManager::forwardFeedContentChanged(const QString& url)
 {
-  emit feedContentChanged(url);
+    emit feedContentChanged(url);
 }
 
 void RssManager::forwardFeedInfosChanged(const QString& url, const QString& displayName, uint unreadCount)
 {
-  emit feedInfosChanged(url, displayName, unreadCount);
+    emit feedInfosChanged(url, displayName, unreadCount);
 }
 
 void RssManager::forwardFeedIconChanged(const QString& url, const QString& iconPath)
 {
-  emit feedIconChanged(url, iconPath);
+    emit feedIconChanged(url, iconPath);
 }
 
 void RssManager::moveFile(const RssFilePtr& file, const RssFolderPtr& destinationFolder)
 {
-  RssFolder* src_folder = file->parent();
-  if (destinationFolder != src_folder) {
-    // Remove reference in old folder
-    src_folder->takeChild(file->id());
-    // add to new Folder
-    destinationFolder->addFile(file);
-  } else {
-    qDebug("Nothing to move, same destination folder");
-  }
+    RssFolder* src_folder = file->parent();
+    if (destinationFolder != src_folder) {
+        // Remove reference in old folder
+        src_folder->takeChild(file->id());
+        // add to new Folder
+        destinationFolder->addFile(file);
+    }
+    else {
+        qDebug("Nothing to move, same destination folder");
+    }
 }
 
 void RssManager::saveStreamList() const
 {
-  QStringList streamsUrl;
-  QStringList aliases;
-  RssFeedList streams = getAllFeeds();
-  foreach (const RssFeedPtr& stream, streams) {
-    // This backslash has nothing to do with path handling
-    QString stream_path = stream->pathHierarchy().join("\\");
-    if (stream_path.isNull())
-      stream_path = "";
-    qDebug("Saving stream path: %s", qPrintable(stream_path));
-    streamsUrl << stream_path;
-    aliases << stream->displayName();
-  }
-  Preferences* const pref = Preferences::instance();
-  pref->setRssFeedsUrls(streamsUrl);
-  pref->setRssFeedsAliases(aliases);
+    QStringList streamsUrl;
+    QStringList aliases;
+    RssFeedList streams = getAllFeeds();
+    foreach (const RssFeedPtr& stream, streams) {
+        // This backslash has nothing to do with path handling
+        QString stream_path = stream->pathHierarchy().join("\\");
+        if (stream_path.isNull())
+            stream_path = "";
+        qDebug("Saving stream path: %s", qPrintable(stream_path));
+        streamsUrl << stream_path;
+        aliases << stream->displayName();
+    }
+    Preferences* const pref = Preferences::instance();
+    pref->setRssFeedsUrls(streamsUrl);
+    pref->setRssFeedsAliases(aliases);
 }
 
 RssDownloadRuleList* RssManager::downloadRules() const
 {
-  Q_ASSERT(m_downloadRules);
-  return m_downloadRules;
+    Q_ASSERT(m_downloadRules);
+    return m_downloadRules;
 }

@@ -31,10 +31,11 @@
 #include "rssfile.h"
 #include "rssfolder.h"
 
-QStringList RssFile::pathHierarchy() const {
-  QStringList path;
-  if (parent())
-    path << parent()->pathHierarchy();
-  path << id();
-  return path;
+QStringList RssFile::pathHierarchy() const
+{
+    QStringList path;
+    if (parent())
+        path << parent()->pathHierarchy();
+    path << id();
+    return path;
 }

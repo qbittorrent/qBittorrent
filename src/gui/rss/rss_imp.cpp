@@ -154,8 +154,7 @@ void RSSImp::askNewFolder()
     }
     else {
         rss_parent = m_rssManager;
-    }
-    bool ok;
+    } bool ok;
     QString new_name = AutoExpandableDialog::getText(this, tr("Please choose a folder name"), tr("Folder name:"), QLineEdit::Normal, tr("New folder"), &ok);
     if (!ok)
         return;
@@ -570,7 +569,7 @@ void RSSImp::refreshTextBrowser()
         html += "<div style='background-color: #efefef;'><b>" + tr("Author: ") + "</b>" + article->author() + "</div>";
     html += "</div>";
     html += "<div style='margin-left: 5px; margin-right: 5px;'>";
-    if(Qt::mightBeRichText(article->description())) {
+    if (Qt::mightBeRichText(article->description())) {
         html += article->description();
     }
     else {
@@ -679,7 +678,7 @@ void RSSImp::onFeedContentChanged(const QString& url)
     qDebug() << Q_FUNC_INFO << url;
     QTreeWidgetItem *item = m_feedList->getTreeItemFromUrl(url);
     // If the feed is selected, update the displayed news
-    if (m_feedList->currentItem() == item ) {
+    if (m_feedList->currentItem() == item) {
         populateArticleList(item);
     }
     else {
@@ -753,7 +752,7 @@ RSSImp::RSSImp(QWidget *parent):
     connect(actionOpen_news_URL, SIGNAL(triggered()), this, SLOT(openSelectedArticlesUrls()));
     connect(actionDownload_torrent, SIGNAL(triggered()), this, SLOT(downloadSelectedTorrents()));
 
-    connect(m_feedList, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(populateArticleList(QTreeWidgetItem*)));
+    connect(m_feedList, SIGNAL(currentItemChanged(QTreeWidgetItem *,QTreeWidgetItem*)), this, SLOT(populateArticleList(QTreeWidgetItem*)));
     connect(m_feedList, SIGNAL(foldersAltered(QList<QTreeWidgetItem*>)), this, SLOT(updateItemsInfos(QList<QTreeWidgetItem*>)));
 
     connect(listArticles, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));

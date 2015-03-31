@@ -31,20 +31,20 @@ HtmlBrowser::~HtmlBrowser()
 
 QVariant HtmlBrowser::loadResource(int type, const QUrl &name)
 {
-    if(type == QTextDocument::ImageResource) {
+    if (type == QTextDocument::ImageResource) {
         QUrl url(name);
-        if(url.scheme().isEmpty())
+        if (url.scheme().isEmpty())
             url.setScheme("http");
 
         QIODevice *dev = m_diskCache->data(url);
-        if(dev != 0) {
+        if (dev != 0) {
             qDebug() << "HtmlBrowser::loadResource() cache " << url.toString();
             QByteArray res = dev->readAll();
             delete dev;
             return res;
         }
 
-        if(!m_activeRequests.contains(url)) {
+        if (!m_activeRequests.contains(url)) {
             m_activeRequests.insert(url, true);
             qDebug() << "HtmlBrowser::loadResource() get " << url.toString();
             QNetworkRequest req(url);
@@ -62,7 +62,7 @@ void HtmlBrowser::resourceLoaded(QNetworkReply *reply)
 {
     m_activeRequests.remove(reply->request().url());
 
-    if(reply->error() == QNetworkReply::NoError && reply->size() > 0) {
+    if (reply->error() == QNetworkReply::NoError && reply->size() > 0) {
         qDebug() << "HtmlBrowser::resourceLoaded() save " << reply->request().url().toString();
     }
     else {
@@ -79,7 +79,7 @@ void HtmlBrowser::resourceLoaded(QNetworkReply *reply)
         metaData.setLastModified(QDateTime::currentDateTime());
         metaData.setExpirationDate(QDateTime::currentDateTime().addDays(1));
         QIODevice *dev = m_diskCache->prepare(metaData);
-        if(!dev)
+        if (!dev)
             return;
         QApplication::style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32, 32).save(dev, "PNG");
         m_diskCache->insert(dev);
