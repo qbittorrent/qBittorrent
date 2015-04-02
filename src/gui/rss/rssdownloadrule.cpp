@@ -38,7 +38,7 @@
 #include "rssarticle.h"
 #include "fs_utils.h"
 
-RssDownloadRule::RssDownloadRule(): m_enabled(false), m_useRegex(false)
+RssDownloadRule::RssDownloadRule(): m_enabled(false), m_useRegex(false), m_apstate(USE_GLOBAL)
 {
 }
 
