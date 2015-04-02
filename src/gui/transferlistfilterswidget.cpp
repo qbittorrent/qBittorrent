@@ -610,7 +610,7 @@ void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString&
     QListWidgetItem *trackerItem = item(rowFromTracker(host));
     QIcon icon(filePath);
     //Detect a non-decodable icon
-    bool invalid = icon.pixmap(icon.availableSizes().first()).isNull();
+    bool invalid = icon.isNull() || icon.availableSizes().isEmpty() || icon.pixmap(icon.availableSizes().first()).isNull();
     if (invalid) {
         if (url.endsWith(".ico", Qt::CaseInsensitive)) {
             Logger::instance()->addMessage(tr("Couldn't decode favico for url `%1`. Trying to download favico in PNG format.").arg(url),
