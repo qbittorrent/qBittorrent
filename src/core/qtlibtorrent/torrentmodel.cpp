@@ -192,8 +192,9 @@ QIcon TorrentModelItem::getIconByState(State state) {
 
 QColor TorrentModelItem::getColorByState(State state) {
 #ifdef ENABLE_KF5
-	KColorScheme kActiveColors (QPalette::Active);
-	KColorScheme kInactiveColors (QPalette::Inactive);
+    KColorScheme kActiveColors (QPalette::Active);
+    KColorScheme kInactiveColors (QPalette::Inactive);
+    bool isColorSchemeLight = kActiveColors.background(KColorScheme::NormalBackground).color().lightnessF() > 0.5;
 #endif
     switch (state) {
     case STATE_DOWNLOADING:
@@ -218,12 +219,20 @@ QColor TorrentModelItem::getColorByState(State state) {
         return QColor(65, 105, 225); // Royal Blue
 #endif
     case STATE_PAUSED_DL:
+#ifdef ENABLE_KF5
+        return kInactiveColors.foreground(KColorScheme::PositiveText).color();
+#else
         return QColor(250, 128, 114); // Salmon
+#endif
     case STATE_PAUSED_UP:
+#ifdef ENABLE_KF5
+        return kInactiveColors.foreground(KColorScheme::PositiveText).color();
+#else
         return QColor(0, 0, 139); // Dark Blue
+#endif
     case STATE_PAUSED_MISSING:
 #ifdef ENABLE_KF5
-		return kActiveColors.foreground(KColorScheme::NegativeText).color();
+        return kActiveColors.foreground(KColorScheme::NeutralText).color();
 #else
         return QColor(255, 0, 0); // red
 #endif
