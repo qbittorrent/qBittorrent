@@ -213,7 +213,7 @@ void WebApplication::action_public_images()
 }
 
 // GET params:
-//   - filter (string): all, downloading, completed, paused, resumed, active, inactive
+//   - filter (string): all, downloading, seeding, completed, paused, resumed, active, inactive
 //   - label (string): torrent label for filtering by it (empty string means "unlabeled"; no "label" param presented means "any label")
 //   - sort (string): name of column for sorting by its value
 //   - reverse (bool): enable reverse sorting
@@ -354,17 +354,9 @@ void WebApplication::action_command_addTrackers()
     QString hash = request().posts["hash"];
 
     if (!hash.isEmpty()) {
-        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
-
-        if (h.is_valid() && h.has_metadata()) {
-            QString urls = request().posts["urls"];
-            QStringList list = urls.split('\n');
-
-            foreach (const QString& url, list) {
-                announce_entry e(url.toStdString());
-                h.add_tracker(e);
-            }
-        }
+        QString urls = request().posts["urls"];
+        QStringList list = urls.split('\n');
+        QBtSession::instance()->addTrackersAndUrlSeeds(hash, list, QStringList());
     }
 }
 

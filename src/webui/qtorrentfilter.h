@@ -38,6 +38,7 @@ public:
     {
         All,
         Downloading,
+        Seeding,
         Completed,
         Paused,
         Resumed,
@@ -54,6 +55,7 @@ private:
     QString label_;
 
     bool isTorrentDownloading(const QTorrentHandle &h) const;
+    bool isTorrentSeeding(const QTorrentHandle &h) const;
     bool isTorrentCompleted(const QTorrentHandle &h) const;
     bool isTorrentPaused(const QTorrentHandle &h) const;
     bool isTorrentResumed(const QTorrentHandle &h) const;

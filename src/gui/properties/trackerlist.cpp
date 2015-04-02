@@ -300,21 +300,10 @@ void TrackerList::loadTrackers() {
 void TrackerList::askForTrackers() {
   QTorrentHandle h = properties->getCurrentTorrent();
   if (!h.is_valid()) return;
+  QString hash = h.hash();
   QStringList trackers = TrackersAdditionDlg::askForTrackers(h);
-  if (!trackers.empty()) {
-    for (int i=0; i<trackers.count(); i++) {
-      const QString& tracker = trackers[i];
-      if (tracker.trimmed().isEmpty()) continue;
-      announce_entry url(tracker.toStdString());
-      url.tier = (topLevelItemCount() - NB_STICKY_ITEM) + i;
-      h.add_tracker(url);
-    }
-    // Reannounce to new trackers
-    if (!h.is_paused())
-      h.force_reannounce();
-    // Reload tracker list
-    loadTrackers();
-  }
+  QBtSession::instance()->addTrackersAndUrlSeeds(hash, trackers, QStringList());
+  loadTrackers();
 }
 
 void TrackerList::copyTrackerUrl() {
@@ -336,6 +325,7 @@ void TrackerList::deleteSelectedTrackers() {
     clear();
     return;
   }
+  QString hash = h.hash();
   QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
   if (selected_items.isEmpty()) return;
   QStringList urls_to_remove;
@@ -357,6 +347,10 @@ void TrackerList::deleteSelectedTrackers() {
     }
   }
   h.replace_trackers(remaining_trackers);
+  if (!urls_to_remove.empty())
+      emit trackersRemoved(urls_to_remove, hash);
+  if (remaining_trackers.empty())
+      emit trackerlessChange(true, hash);
   if (!h.is_paused())
     h.force_reannounce();
   // Reload Trackers
@@ -366,6 +360,7 @@ void TrackerList::deleteSelectedTrackers() {
 void TrackerList::editSelectedTracker() {
   try {
     QTorrentHandle h = properties->getCurrentTorrent();
+    QString hash = h.hash();
 
     QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
     if (selected_items.isEmpty())
@@ -397,11 +392,13 @@ void TrackerList::editSelectedTracker() {
         return;
       }
 
-      if (tracker_url == QUrl(misc::toQString(it->url)) && !match) {
-        announce_entry new_entry(new_tracker_url.toString().toStdString());
+      if (tracker_url == QUrl(misc::toQStringU(it->url)) && !match) {
+        announce_entry new_entry(new_tracker_url.toString().toUtf8().constData());
         new_entry.tier = it->tier;
         match = true;
         *it = new_entry;
+        emit trackersRemoved(QStringList(tracker_url.toString()), hash);
+        emit trackersAdded(QStringList(new_tracker_url.toString()), hash);
       }
     }
 

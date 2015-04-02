@@ -56,6 +56,8 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
   switch(index.column()) {
   case TorrentModelItem::TR_AMOUNT_DOWNLOADED:
   case TorrentModelItem::TR_AMOUNT_UPLOADED:
+  case TorrentModelItem::TR_AMOUNT_DOWNLOADED_SESSION:
+  case TorrentModelItem::TR_AMOUNT_UPLOADED_SESSION:
   case TorrentModelItem::TR_AMOUNT_LEFT:
   case TorrentModelItem::TR_COMPLETED:
   case TorrentModelItem::TR_SIZE:
@@ -119,8 +121,10 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         display = tr("Checking resume data", "used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.");
         break;
       case TorrentModelItem::STATE_PAUSED_DL:
-      case TorrentModelItem::STATE_PAUSED_UP:
         display = tr("Paused");
+        break;
+      case TorrentModelItem::STATE_PAUSED_UP:
+        display = tr("Completed");
         break;
       case TorrentModelItem::STATE_PAUSED_MISSING:
         display = tr("Missing Files");

@@ -89,7 +89,6 @@ namespace misc
     bool isPreviewable(const QString& extension);
     QString magnetUriToName(const QString& magnet_uri);
     QString magnetUriToHash(const QString& magnet_uri);
-    QList<QUrl> magnetUriToTrackers(const QString& magnet_uri);
     QString bcLinkToMagnet(QString bc_link);
     // Take a number of seconds and return an user-friendly
     // time duration like "1d 2h 10m".

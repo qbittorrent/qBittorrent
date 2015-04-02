@@ -1583,16 +1583,18 @@ void Preferences::setTorrentLabels(const QStringList& labels)
 void Preferences::addTorrentLabel(const QString& label)
 {
     QStringList labels = value("TransferListFilters/customLabels").toStringList();
-    if (!labels.contains(label))
-        labels << label;
+    if (labels.contains(label))
+        return;
+    labels << label;
     setValue("TransferListFilters/customLabels", labels);
 }
 
 void Preferences::removeTorrentLabel(const QString& label)
 {
     QStringList labels = value("TransferListFilters/customLabels").toStringList();
-    if (labels.contains(label))
-        labels.removeOne(label);
+    if (!labels.contains(label))
+        return;
+    labels.removeOne(label);
     setValue("TransferListFilters/customLabels", labels);
 }
 
@@ -2227,6 +2229,36 @@ QByteArray Preferences::getTorImportGeometry() const
 void Preferences::setTorImportGeometry(const QByteArray &geometry)
 {
     setValue("TorrentImportDlg/dimensions", geometry);
+}
+
+bool Preferences::getStatusFilterState() const
+{
+    return value("TransferListFilters/statusFilterState", true).toBool();
+}
+
+void Preferences::setStatusFilterState(const bool checked)
+{
+    setValue("TransferListFilters/statusFilterState", checked);
+}
+
+bool Preferences::getLabelFilterState() const
+{
+    return value("TransferListFilters/labelFilterState", true).toBool();
+}
+
+void Preferences::setLabelFilterState(const bool checked)
+{
+    setValue("TransferListFilters/labelFilterState", checked);
+}
+
+bool Preferences::getTrackerFilterState() const
+{
+    return value("TransferListFilters/trackerFilterState", true).toBool();
+}
+
+void Preferences::setTrackerFilterState(const bool checked)
+{
+    setValue("TransferListFilters/trackerFilterState", checked);
 }
 
 int Preferences::getTransSelFilter() const

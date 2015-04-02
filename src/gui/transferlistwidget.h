@@ -84,6 +84,8 @@ public slots:
     void applyStatusFilter(int f);
     void applyLabelFilterAll();
     void applyLabelFilter(QString label);
+    void applyTrackerFilterAll();
+    void applyTrackerFilter(const QStringList &hashes);
     void previewFile(QString filePath);
     void removeLabelFromRows(QString label);
     void renameSelectedTorrent();

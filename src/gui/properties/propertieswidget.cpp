@@ -111,6 +111,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   trackerList = new TrackerList(this);
   connect(trackerUpButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionUp()));
   connect(trackerDownButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionDown()));
+  connect(trackerList, SIGNAL(trackersAdded(const QStringList &, const QString &)), this, SIGNAL(trackersAdded(const QStringList &, const QString &)));
+  connect(trackerList, SIGNAL(trackersRemoved(const QStringList &, const QString &)), this, SIGNAL(trackersRemoved(const QStringList &, const QString &)));
+  connect(trackerList, SIGNAL(trackerlessChange(bool, const QString &)), this, SIGNAL(trackerlessChange(bool, const QString &)));
   horizontalLayout_trackers->insertWidget(0, trackerList);
   connect(trackerList->header(), SIGNAL(sectionMoved(int, int, int)), trackerList, SLOT(saveSettings()));
   connect(trackerList->header(), SIGNAL(sectionResized(int, int, int)), trackerList, SLOT(saveSettings()));
@@ -235,6 +238,12 @@ void PropertiesWidget::updateSavePath(const QTorrentHandle& _h) {
   if (h.is_valid() && h == _h) {
     save_path->setText(fsutils::toNativePath(h.save_path_parsed()));
   }
+}
+
+void PropertiesWidget::loadTrackers(const QTorrentHandle &handle)
+{
+    if (handle == h)
+        trackerList->loadTrackers();
 }
 
 void PropertiesWidget::updateTorrentInfos(const QTorrentHandle& _h) {

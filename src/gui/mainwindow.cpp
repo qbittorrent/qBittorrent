@@ -115,8 +115,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui_locked = pref->isUILocked();
     setWindowTitle(QString("qBittorrent %1").arg(QString::fromUtf8(VERSION)));
     displaySpeedInTitle = pref->speedInTitleBar();
-    // Clean exit on log out
-    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(shutdownCleanUp()), Qt::DirectConnection);
     // Setting icons
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (Preferences::instance()->useSystemIconTheme())
@@ -213,6 +211,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(search_filter, SIGNAL(textChanged(QString)), transferList, SLOT(applyNameFilter(QString)));
     connect(hSplitter, SIGNAL(splitterMoved(int, int)), this, SLOT(writeSettings()));
     connect(vSplitter, SIGNAL(splitterMoved(int, int)), this, SLOT(writeSettings()));
+    connect(properties, SIGNAL(trackersAdded(const QStringList &, const QString &)), transferListFilters, SLOT(addTrackers(const QStringList &, const QString &)));
+    connect(properties, SIGNAL(trackersRemoved(const QStringList &, const QString &)), transferListFilters, SLOT(removeTrackers(const QStringList &, const QString &)));
+    connect(properties, SIGNAL(trackerlessChange(bool, const QString &)), transferListFilters, SLOT(changeTrackerless(bool, const QString &)));
+    connect(QBtSession::instance(), SIGNAL(trackersAdded(const QStringList &, const QString &)), transferListFilters, SLOT(addTrackers(const QStringList &, const QString &)));
+    connect(QBtSession::instance(), SIGNAL(trackerlessChange(bool, const QString &)), transferListFilters, SLOT(changeTrackerless(bool, const QString &)));
+    connect(QBtSession::instance(), SIGNAL(reloadTrackersAndUrlSeeds(const QTorrentHandle &)), properties, SLOT(loadTrackers(const QTorrentHandle &)));
+    connect(QBtSession::instance(), SIGNAL(trackerSuccess(const QString &, const QString &)), transferListFilters, SIGNAL(trackerSuccess(const QString &, const QString &)));
+    connect(QBtSession::instance(), SIGNAL(trackerError(const QString &, const QString &)), transferListFilters, SIGNAL(trackerError(const QString &, const QString &)));
+    connect(QBtSession::instance(), SIGNAL(trackerWarning(const QString &, const QString &)), transferListFilters, SIGNAL(trackerWarning(const QString &, const QString &)));
 
     vboxLayout->addWidget(tabs);
 

@@ -95,6 +95,7 @@ window.addEvent('load', function () {
         // Visually Select the right filter
         $("all_filter").removeClass("selectedFilter");
         $("downloading_filter").removeClass("selectedFilter");
+        $("seeding_filter").removeClass("selectedFilter");
         $("completed_filter").removeClass("selectedFilter");
         $("paused_filter").removeClass("selectedFilter");
         $("resumed_filter").removeClass("selectedFilter");

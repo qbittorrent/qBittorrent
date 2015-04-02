@@ -938,6 +938,16 @@ void TransferListWidget::applyLabelFilter(QString label)
     nameFilterModel->setLabelFilter(label);
 }
 
+void TransferListWidget::applyTrackerFilterAll()
+{
+    nameFilterModel->disableTrackerFilter();
+}
+
+void TransferListWidget::applyTrackerFilter(const QStringList &hashes)
+{
+    nameFilterModel->setTrackerFilter(hashes);
+}
+
 void TransferListWidget::applyNameFilter(const QString& name)
 {
     nameFilterModel->setFilterRegExp(QRegExp(QRegExp::escape(name), Qt::CaseInsensitive));

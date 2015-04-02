@@ -74,6 +74,11 @@ QIcon get_stalled_uploading_icon() {
     return cached;
 }
 
+QIcon get_completed_icon() {
+    static QIcon cached = QIcon(":/icons/skin/completed.png");
+    return cached;
+}
+
 QIcon get_checking_icon() {
     static QIcon cached = QIcon(":/icons/skin/checking.png");
     return cached;
@@ -83,6 +88,16 @@ QIcon get_error_icon() {
     static QIcon cached = QIcon(":/icons/skin/error.png");
     return cached;
 }
+}
+
+TorrentStatusReport::TorrentStatusReport()
+    : nb_downloading(0)
+    , nb_seeding(0)
+    , nb_completed(0)
+    , nb_active(0)
+    , nb_inactive(0)
+    , nb_paused(0)
+{
 }
 
 TorrentModelItem::TorrentModelItem(const QTorrentHandle &h)
@@ -155,8 +170,9 @@ QIcon TorrentModelItem::getIconByState(State state) {
     case STATE_SEEDING:
         return get_uploading_icon();
     case STATE_PAUSED_DL:
-    case STATE_PAUSED_UP:
         return get_paused_icon();
+    case STATE_PAUSED_UP:
+        return get_completed_icon();
     case STATE_QUEUED_DL:
     case STATE_QUEUED_UP:
         return get_queued_icon();
@@ -185,7 +201,7 @@ QColor TorrentModelItem::getColorByState(State state) {
 #ifdef ENABLE_KF5
 		return kActiveColors.foreground(KColorScheme::PositiveText).color();
 #else
-        return QColor(0, 128, 0); // green
+        return QColor(34, 139, 34); // Forest Green
 #endif
     case STATE_ALLOCATING:
     case STATE_STALLED_DL:
@@ -193,16 +209,18 @@ QColor TorrentModelItem::getColorByState(State state) {
 #ifdef ENABLE_KF5
 		return kInactiveColors.foreground(KColorScheme::InactiveText).color();
 #else
-        return QColor(128, 128, 128); // grey
+        return QColor(0, 0, 0); // Black
 #endif
     case STATE_SEEDING:
 #ifdef ENABLE_KF5
 		return kActiveColors.foreground(KColorScheme::NeutralText).color();
 #else
-        return QColor(255, 165, 0); // orange
+        return QColor(65, 105, 225); // Royal Blue
 #endif
     case STATE_PAUSED_DL:
+        return QColor(250, 128, 114); // Salmon
     case STATE_PAUSED_UP:
+        return QColor(0, 0, 139); // Dark Blue
     case STATE_PAUSED_MISSING:
 #ifdef ENABLE_KF5
 		return kActiveColors.foreground(KColorScheme::NegativeText).color();
@@ -218,7 +236,7 @@ QColor TorrentModelItem::getColorByState(State state) {
 #ifdef ENABLE_KF5
 		return kInactiveColors.foreground(KColorScheme::ActiveText).color();
 #else
-        return QColor(128, 128, 128); // grey
+        return QColor(0, 128, 128); // Teal
 #endif
     case STATE_INVALID:
 #ifdef ENABLE_KF5
@@ -320,6 +338,10 @@ QVariant TorrentModelItem::data(int column, int role) const
         return static_cast<qlonglong>(m_lastStatus.all_time_download);
     case TR_AMOUNT_UPLOADED:
         return static_cast<qlonglong>(m_lastStatus.all_time_upload);
+    case TR_AMOUNT_DOWNLOADED_SESSION:
+        return static_cast<qlonglong>(m_lastStatus.total_payload_download);
+    case TR_AMOUNT_UPLOADED_SESSION:
+        return static_cast<qlonglong>(m_lastStatus.total_payload_upload);
     case TR_AMOUNT_LEFT:
         return static_cast<qlonglong>(m_lastStatus.total_wanted - m_lastStatus.total_wanted_done);
     case TR_TIME_ELAPSED:
@@ -346,6 +368,11 @@ QVariant TorrentModelItem::data(int column, int role) const
     default:
         return QVariant();
     }
+}
+
+QTorrentHandle TorrentModelItem::torrentHandle() const
+{
+    return m_torrent;
 }
 
 // TORRENT MODEL
@@ -413,6 +440,8 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
             case TorrentModelItem::TR_UPLIMIT: return tr("Up Limit", "i.e: Upload limit");
             case TorrentModelItem::TR_AMOUNT_DOWNLOADED: return tr("Downloaded", "Amount of data downloaded (e.g. in MB)");
             case TorrentModelItem::TR_AMOUNT_UPLOADED: return tr("Uploaded", "Amount of data uploaded (e.g. in MB)");
+            case TorrentModelItem::TR_AMOUNT_DOWNLOADED_SESSION: return tr("Session Download", "Amount of data downloaded since program open (e.g. in MB)");
+            case TorrentModelItem::TR_AMOUNT_UPLOADED_SESSION: return tr("Session Upload", "Amount of data uploaded since program open (e.g. in MB)");
             case TorrentModelItem::TR_AMOUNT_LEFT: return tr("Remaining", "Amount of data left to download (e.g. in MB)");
             case TorrentModelItem::TR_TIME_ELAPSED: return tr("Time Active", "Time (duration) the torrent is active (not paused)");
             case TorrentModelItem::TR_SAVE_PATH: return tr("Save path", "Torrent save path");
@@ -429,6 +458,8 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
             switch(section) {
             case TorrentModelItem::TR_AMOUNT_DOWNLOADED:
             case TorrentModelItem::TR_AMOUNT_UPLOADED:
+            case TorrentModelItem::TR_AMOUNT_DOWNLOADED_SESSION:
+            case TorrentModelItem::TR_AMOUNT_UPLOADED_SESSION:
             case TorrentModelItem::TR_AMOUNT_LEFT:
             case TorrentModelItem::TR_COMPLETED:
             case TorrentModelItem::TR_SIZE:
@@ -580,6 +611,7 @@ TorrentStatusReport TorrentModel::getTorrentStatusReport() const
             ++report.nb_downloading;
             break;
         case TorrentModelItem::STATE_PAUSED_DL:
+        case TorrentModelItem::STATE_PAUSED_MISSING:
             ++report.nb_paused;
         case TorrentModelItem::STATE_STALLED_DL:
         case TorrentModelItem::STATE_CHECKING_DL:
@@ -591,17 +623,16 @@ TorrentStatusReport TorrentModel::getTorrentStatusReport() const
         case TorrentModelItem::STATE_SEEDING:
             ++report.nb_active;
             ++report.nb_seeding;
+            ++report.nb_completed;
             break;
-        case TorrentModelItem::STATE_PAUSED_UP:
-        case TorrentModelItem::STATE_PAUSED_MISSING:
-            ++report.nb_paused;
         case TorrentModelItem::STATE_STALLED_UP:
         case TorrentModelItem::STATE_CHECKING_UP:
-        case TorrentModelItem::STATE_QUEUED_UP: {
+        case TorrentModelItem::STATE_QUEUED_UP:
             ++report.nb_seeding;
+        case TorrentModelItem::STATE_PAUSED_UP:
+            ++report.nb_completed;
             ++report.nb_inactive;
             break;
-        }
         default:
             break;
         }

@@ -31,7 +31,18 @@
 #ifndef TORRENTFILTERENUM_H
 #define TORRENTFILTERENUM_H
 
-namespace TorrentFilter {
-    enum TorrentFilter {ALL, DOWNLOADING, COMPLETED, RESUMED, PAUSED, ACTIVE, INACTIVE};
+namespace TorrentFilter
+{
+    enum TorrentFilter
+    {
+        ALL,
+        DOWNLOADING,
+        SEEDING,
+        COMPLETED,
+        RESUMED,
+        PAUSED,
+        ACTIVE,
+        INACTIVE
+    };
 }
 #endif // TORRENTFILTERENUM_H

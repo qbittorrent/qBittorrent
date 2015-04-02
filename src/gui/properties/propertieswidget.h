@@ -69,6 +69,11 @@ public:
   PeerListWidget* getPeerList() const { return peersList; }
   QTreeView* getFilesList() const { return filesList; }
 
+signals:
+  void trackersAdded(const QStringList &trackers, const QString &hash);
+  void trackersRemoved(const QStringList &trackers, const QString &hash);
+  void trackerlessChange(bool trackerless, const QString &hash);
+
 protected:
   QPushButton* getButtonFromIndex(int index);
   bool applyPriorities();
@@ -97,6 +102,7 @@ public slots:
   void reloadPreferences();
   void openDoubleClickedFile(const QModelIndex &);
   void updateSavePath(const QTorrentHandle& h);
+  void loadTrackers(const QTorrentHandle &handle);
 
 private:
   void openFile(const QModelIndex &index);

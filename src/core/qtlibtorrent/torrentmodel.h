@@ -40,8 +40,13 @@
 #include "qtorrenthandle.h"
 
 struct TorrentStatusReport {
-    TorrentStatusReport(): nb_downloading(0), nb_seeding(0), nb_active(0), nb_inactive(0), nb_paused(0) {}
-    uint nb_downloading; uint nb_seeding; uint nb_active; uint nb_inactive; uint nb_paused;
+    TorrentStatusReport();
+    uint nb_downloading;
+    uint nb_seeding;
+    uint nb_completed;
+    uint nb_active;
+    uint nb_inactive;
+    uint nb_paused;
 };
 
 class TorrentModelItem : public QObject {
@@ -49,7 +54,7 @@ class TorrentModelItem : public QObject {
 
 public:
     enum State {STATE_DOWNLOADING, STATE_DOWNLOADING_META, STATE_ALLOCATING, STATE_STALLED_DL, STATE_SEEDING, STATE_STALLED_UP, STATE_QUEUED_DL, STATE_QUEUED_UP, STATE_CHECKING_UP, STATE_CHECKING_DL, STATE_QUEUED_CHECK, STATE_QUEUED_FASTCHECK, STATE_PAUSED_DL, STATE_PAUSED_UP, STATE_PAUSED_MISSING, STATE_INVALID};
-    enum Column {TR_NAME, TR_PRIORITY, TR_SIZE, TR_TOTAL_SIZE, TR_PROGRESS, TR_STATUS, TR_SEEDS, TR_PEERS, TR_DLSPEED, TR_UPSPEED, TR_ETA, TR_RATIO, TR_LABEL, TR_ADD_DATE, TR_SEED_DATE, TR_TRACKER, TR_DLLIMIT, TR_UPLIMIT, TR_AMOUNT_DOWNLOADED, TR_AMOUNT_UPLOADED, TR_AMOUNT_LEFT, TR_TIME_ELAPSED, TR_SAVE_PATH, TR_COMPLETED, TR_RATIO_LIMIT, TR_SEEN_COMPLETE_DATE, TR_LAST_ACTIVITY, NB_COLUMNS};
+    enum Column {TR_NAME, TR_PRIORITY, TR_SIZE, TR_TOTAL_SIZE, TR_PROGRESS, TR_STATUS, TR_SEEDS, TR_PEERS, TR_DLSPEED, TR_UPSPEED, TR_ETA, TR_RATIO, TR_LABEL, TR_ADD_DATE, TR_SEED_DATE, TR_TRACKER, TR_DLLIMIT, TR_UPLIMIT, TR_AMOUNT_DOWNLOADED, TR_AMOUNT_UPLOADED, TR_AMOUNT_LEFT, TR_TIME_ELAPSED, TR_SAVE_PATH, TR_COMPLETED, TR_RATIO_LIMIT, TR_SEEN_COMPLETE_DATE, TR_LAST_ACTIVITY, TR_AMOUNT_DOWNLOADED_SESSION, TR_AMOUNT_UPLOADED_SESSION, NB_COLUMNS};
 
 public:
     TorrentModelItem(const QTorrentHandle& h);
@@ -59,6 +64,7 @@ public:
     bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
     inline QString const& hash() const { return m_hash; }
     State state() const;
+    QTorrentHandle torrentHandle() const;
 
 signals:
     void labelChanged(QString previous, QString current);

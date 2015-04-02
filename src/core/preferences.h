@@ -500,6 +500,9 @@ public:
     void setTorImportLastContentDir(const QString &path);
     QByteArray getTorImportGeometry() const;
     void setTorImportGeometry(const QByteArray &geometry);
+    bool getStatusFilterState() const;
+    bool getLabelFilterState() const;
+    bool getTrackerFilterState() const;
     int getTransSelFilter() const;
     void setTransSelFilter(const int &index);
     QByteArray getTransHeaderState() const;
@@ -528,6 +531,11 @@ public:
     QList<QByteArray> getHostNameCookies(const QString &host_name) const;
     QList<QNetworkCookie> getHostNameQNetworkCookies(const QString& host_name) const;
     void setHostNameCookies(const QString &host_name, const QList<QByteArray> &cookies);
+
+public slots:
+    void setStatusFilterState(bool checked);
+    void setLabelFilterState(bool checked);
+    void setTrackerFilterState(bool checked);
 };
 
 #endif // PREFERENCES_H
