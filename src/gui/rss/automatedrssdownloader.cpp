@@ -523,6 +523,7 @@ void AutomatedRssDownloader::updateMatchingArticles()
     return;
   const QHash<QString, RssFeedPtr> all_feeds = manager->getAllFeedsAsHash();
 
+  saveEditedRule();
   foreach (const QListWidgetItem *rule_item, ui->listRules->selectedItems()) {
     RssDownloadRulePtr rule = m_editableRuleList->getRule(rule_item->text());
     if (!rule) continue;
