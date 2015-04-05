@@ -18,6 +18,12 @@ AC_ARG_WITH(qt4,
             [],
             [with_qt4=no])
 
+AC_ARG_WITH(libtorrent-rasterbar0.16,
+            [AS_HELP_STRING([--with-libtorrent-rasterbar0.16],
+                            [Compile using libtorrent-rasterbar 0.16.x series (default=no)])],
+            [],
+            [with_libtorrent_rasterbar0_16=no])
+
 AC_ARG_WITH(geoip-database-embedded,
             [AS_HELP_STRING([--with-geoip-database-embedded],
                             [Embed the GeoIP database in the qBittorrent executable (please follow instructions in src/geoip/README) (default=no)])],
@@ -169,6 +175,23 @@ AS_IF([test "x$BOOST_SYSTEM_LIB" = "x"],
       [AC_MSG_NOTICE([Boost.System LIB: $BOOST_SYSTEM_LIB])
       LIBS="$BOOST_SYSTEM_LIB $LIBS"])
 
+AC_MSG_CHECKING([whether to compile using libtorrent-raser 0.16.x])
+AS_CASE(["x$with_libtorrent_rasterbar0_16"],
+        ["xno"],
+              [AC_MSG_RESULT([no])
+              PKG_CHECK_MODULES(libtorrent,
+                               [libtorrent-rasterbar >= 1.0.0],
+                               [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
+                               LIBS="$libtorrent_LIBS $LIBS"])],
+        ["xyes"],
+               [AC_MSG_RESULT([yes])
+               PKG_CHECK_MODULES(libtorrent,
+                                [libtorrent-rasterbar >= 0.16.0],
+                                [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
+                                LIBS="$libtorrent_LIBS $LIBS"])],
+        [AC_MSG_RESULT([$with_libtorrent_rasterbar0_16])
+        AC_MSG_ERROR([Unknown option "$with_libtorrent_rasterbar0_16". Use either "yes" or "no".])])
+
 AC_MSG_CHECKING([whether to embed the GeoIP database])
 AS_CASE(["x$with_geoip_database_embedded"],
         ["xno"],
@@ -195,11 +218,6 @@ PKG_CHECK_MODULES(zlib,
                  [zlib],
                  [CPPFLAGS="$zlib_CFLAGS $CPPFLAGS"
                  LIBS="$zlib_LIBS $LIBS"])
-
-PKG_CHECK_MODULES(libtorrent,
-                 [libtorrent-rasterbar >= 0.16.0],
-                 [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
-                 LIBS="$libtorrent_LIBS $LIBS"])
 
 # These are required because autoconf doesn't expand these **particular**
 # vars automatically. And qmake cannot autoexpand them.
