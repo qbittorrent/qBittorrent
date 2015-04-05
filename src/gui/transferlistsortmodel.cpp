@@ -227,6 +227,15 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
 
         return vL < vR;
     }
+    else if (column == TorrentModelItem::TR_RATIO_LIMIT) {
+        const qreal vL = left.data().toDouble();
+        const qreal vR = right.data().toDouble();
+
+        if (vL == -1) return false;
+        if (vR == -1) return true;
+
+        return vL < vR;
+    }
 
     return QSortFilterProxyModel::lessThan(left, right);
 }
