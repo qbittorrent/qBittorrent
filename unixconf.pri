@@ -44,6 +44,10 @@ nogui:systemd {
     menuicon.path = $$PREFIX/share/applications/
     INSTALLS += menuicon
 
+    appdata.files = $$DIST_PATH/qBittorrent.appdata.xml
+    appdata.path = $$PREFIX/share/appdata/
+    INSTALLS += appdata
+
     icon16.files = $$DIST_PATH/menuicons/16x16/apps/qbittorrent.png
     icon16.path = $$PREFIX/share/icons/hicolor/16x16/apps/
     icon22.files = $$DIST_PATH/menuicons/22x22/apps/qbittorrent.png
