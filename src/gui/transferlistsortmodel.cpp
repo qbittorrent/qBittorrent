@@ -34,261 +34,275 @@
 #include "misc.h"
 
 TransferListSortModel::TransferListSortModel(QObject *parent)
-  : QSortFilterProxyModel(parent)
-  , filter0(TorrentFilter::ALL)
-  , labelFilterEnabled(false)
-  , trackerFilterEnabled(false)
-{}
-
-void TransferListSortModel::setStatusFilter(const TorrentFilter::TorrentFilter &filter) {
-  if (filter != filter0) {
-    filter0 = filter;
-    invalidateFilter();
-  }
+    : QSortFilterProxyModel(parent)
+    , filter0(TorrentFilter::ALL)
+    , labelFilterEnabled(false)
+    , trackerFilterEnabled(false)
+{
 }
 
-void TransferListSortModel::setLabelFilter(const QString &label) {
-  if (!labelFilterEnabled || labelFilter != label) {
-    labelFilterEnabled = true;
-    labelFilter = label;
-    invalidateFilter();
-  }
-}
-
-void TransferListSortModel::disableLabelFilter() {
-  if (labelFilterEnabled) {
-    labelFilterEnabled = false;
-    labelFilter = QString();
-    invalidateFilter();
-  }
-}
-
-void TransferListSortModel::setTrackerFilter(const QStringList &hashes) {
-  if (!trackerFilterEnabled || trackerFilter != hashes) {
-    trackerFilterEnabled = true;
-    trackerFilter = hashes;
-    invalidateFilter();
-  }
-}
-
-void TransferListSortModel::disableTrackerFilter() {
-  if (trackerFilterEnabled) {
-    trackerFilterEnabled = false;
-    trackerFilter = QStringList();
-    invalidateFilter();
-  }
-}
-
-bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const {
-  const int column  = sortColumn();
-
-  if (column == TorrentModelItem::TR_NAME) {
-    QVariant vL = left.data();
-    QVariant vR = right.data();
-    if (!(vL.isValid() && vR.isValid()))
-      return QSortFilterProxyModel::lessThan(left, right);
-    Q_ASSERT(vL.isValid());
-    Q_ASSERT(vR.isValid());
-
-    bool res = false;
-    if (misc::naturalSort(vL.toString(), vR.toString(), res))
-      return res;
-
-    return QSortFilterProxyModel::lessThan(left, right);
-  }
-  else if (column == TorrentModelItem::TR_ADD_DATE || column == TorrentModelItem::TR_SEED_DATE || column == TorrentModelItem::TR_SEEN_COMPLETE_DATE) {
-    QDateTime vL = left.data().toDateTime();
-    QDateTime vR = right.data().toDateTime();
-
-    //not valid dates should be sorted at the bottom.
-    if (!vL.isValid()) return false;
-    if (!vR.isValid()) return true;
-
-    return vL < vR;
-  }
-  else if (column == TorrentModelItem::TR_PRIORITY) {
-    const int vL = left.data().toInt();
-    const int vR = right.data().toInt();
-
-    // Seeding torrents should be sorted by their completed date instead.
-    if (vL == -1 && vR == -1) {
-      QAbstractItemModel *model = sourceModel();
-      const QDateTime dateL = model->data(model->index(left.row(), TorrentModelItem::TR_SEED_DATE)).toDateTime();
-      const QDateTime dateR = model->data(model->index(right.row(), TorrentModelItem::TR_SEED_DATE)).toDateTime();
-
-      //not valid dates should be sorted at the bottom.
-      if (!dateL.isValid()) return false;
-      if (!dateR.isValid()) return true;
-
-      return dateL < dateR;
+void TransferListSortModel::setStatusFilter(const TorrentFilter::TorrentFilter &filter)
+{
+    if (filter != filter0) {
+        filter0 = filter;
+        invalidateFilter();
     }
+}
 
-    // Seeding torrents should be at the bottom
-    if (vL == -1) return false;
-    if (vR == -1) return true;
-    return vL < vR;
-  }
-  else if (column == TorrentModelItem::TR_PEERS || column == TorrentModelItem::TR_SEEDS) {
-    int left_active = left.data().toInt();
-    int left_total = left.data(Qt::UserRole).toInt();
-    int right_active = right.data().toInt();
-    int right_total = right.data(Qt::UserRole).toInt();
-
-    // Active peers/seeds take precedence over total peers/seeds.
-    if (left_active == right_active)
-      return (left_total < right_total);
-    else return (left_active < right_active);
-  }
-  else if (column == TorrentModelItem::TR_ETA) {
-    const QAbstractItemModel *model = sourceModel();
-    const int prioL = model->data(model->index(left.row(), TorrentModelItem::TR_PRIORITY)).toInt();
-    const int prioR = model->data(model->index(right.row(), TorrentModelItem::TR_PRIORITY)).toInt();
-    const qlonglong etaL = left.data().toLongLong();
-    const qlonglong etaR = right.data().toLongLong();
-    const bool ascend = (sortOrder() == Qt::AscendingOrder);
-    const bool invalidL = (etaL < 0 || etaL >= MAX_ETA);
-    const bool invalidR = (etaR < 0 || etaR >= MAX_ETA);
-    const bool seedingL = (prioL < 0);
-    const bool seedingR = (prioR < 0);
-    bool activeL;
-    bool activeR;
-
-    switch (model->data(model->index(left.row(), TorrentModelItem::TR_STATUS)).toInt()) {
-    case TorrentModelItem::STATE_DOWNLOADING:
-    case TorrentModelItem::STATE_DOWNLOADING_META:
-    case TorrentModelItem::STATE_STALLED_DL:
-    case TorrentModelItem::STATE_SEEDING:
-    case TorrentModelItem::STATE_STALLED_UP:
-      activeL = true;
-      break;
-    default:
-      activeL = false;
+void TransferListSortModel::setLabelFilter(const QString &label)
+{
+    if (!labelFilterEnabled || labelFilter != label) {
+        labelFilterEnabled = true;
+        labelFilter = label;
+        invalidateFilter();
     }
+}
 
-    switch (model->data(model->index(right.row(), TorrentModelItem::TR_STATUS)).toInt()) {
-    case TorrentModelItem::STATE_DOWNLOADING:
-    case TorrentModelItem::STATE_DOWNLOADING_META:
-    case TorrentModelItem::STATE_STALLED_DL:
-    case TorrentModelItem::STATE_SEEDING:
-    case TorrentModelItem::STATE_STALLED_UP:
-      activeR = true;
-      break;
-    default:
-      activeR = false;
+void TransferListSortModel::disableLabelFilter()
+{
+    if (labelFilterEnabled) {
+        labelFilterEnabled = false;
+        labelFilter = QString();
+        invalidateFilter();
     }
+}
 
-    // Sorting rules prioritized.
-    // 1. Active torrents at the top
-    // 2. Seeding torrents at the bottom
-    // 3. Torrents with invalid ETAs at the bottom
-
-    if (activeL != activeR) return activeL;
-    if (seedingL != seedingR) {
-      if (seedingL) return !ascend;
-      else return ascend;
+void TransferListSortModel::setTrackerFilter(const QStringList &hashes)
+{
+    if (!trackerFilterEnabled || trackerFilter != hashes) {
+        trackerFilterEnabled = true;
+        trackerFilter = hashes;
+        invalidateFilter();
     }
+}
 
-    if (invalidL && invalidR) {
+void TransferListSortModel::disableTrackerFilter()
+{
+    if (trackerFilterEnabled) {
+        trackerFilterEnabled = false;
+        trackerFilter = QStringList();
+        invalidateFilter();
+    }
+}
 
-      if (seedingL) { //Both seeding
-        QDateTime dateL = model->data(model->index(left.row(), TorrentModelItem::TR_SEED_DATE)).toDateTime();
-        QDateTime dateR = model->data(model->index(right.row(), TorrentModelItem::TR_SEED_DATE)).toDateTime();
+bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
+{
+    const int column  = sortColumn();
+
+    if (column == TorrentModelItem::TR_NAME) {
+        QVariant vL = left.data();
+        QVariant vR = right.data();
+        if (!(vL.isValid() && vR.isValid()))
+            return QSortFilterProxyModel::lessThan(left, right);
+        Q_ASSERT(vL.isValid());
+        Q_ASSERT(vR.isValid());
+
+        bool res = false;
+        if (misc::naturalSort(vL.toString(), vR.toString(), res))
+            return res;
+
+        return QSortFilterProxyModel::lessThan(left, right);
+    }
+    else if (column == TorrentModelItem::TR_ADD_DATE || column == TorrentModelItem::TR_SEED_DATE || column == TorrentModelItem::TR_SEEN_COMPLETE_DATE) {
+        QDateTime vL = left.data().toDateTime();
+        QDateTime vR = right.data().toDateTime();
 
         //not valid dates should be sorted at the bottom.
-        if (!dateL.isValid()) return false;
-        if (!dateR.isValid()) return true;
+        if (!vL.isValid()) return false;
+        if (!vR.isValid()) return true;
 
-        return dateL < dateR;
-      }
-      else
-        return prioL < prioR;
+        return vL < vR;
     }
-    else if ((invalidL == false) && (invalidR == false))
-      return QSortFilterProxyModel::lessThan(left, right);
-    else
-      return !invalidL;
-  }
+    else if (column == TorrentModelItem::TR_PRIORITY) {
+        const int vL = left.data().toInt();
+        const int vR = right.data().toInt();
 
-  return QSortFilterProxyModel::lessThan(left, right);
-}
+        // Seeding torrents should be sorted by their completed date instead.
+        if (vL == -1 && vR == -1) {
+            QAbstractItemModel *model = sourceModel();
+            const QDateTime dateL = model->data(model->index(left.row(), TorrentModelItem::TR_SEED_DATE)).toDateTime();
+            const QDateTime dateR = model->data(model->index(right.row(), TorrentModelItem::TR_SEED_DATE)).toDateTime();
 
-bool TransferListSortModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const {
-  return matchStatusFilter(sourceRow, sourceParent)
-      && matchLabelFilter(sourceRow, sourceParent)
-      && matchTrackerFilter(sourceRow, sourceParent)
-      && QSortFilterProxyModel::filterAcceptsRow(sourceRow, sourceParent);
-}
+            //not valid dates should be sorted at the bottom.
+            if (!dateL.isValid()) return false;
+            if (!dateR.isValid()) return true;
 
-bool TransferListSortModel::matchStatusFilter(int sourceRow, const QModelIndex &sourceParent) const {
-  if (filter0 == TorrentFilter::ALL)
-    return true;
-  QAbstractItemModel *model = sourceModel();
-  if (!model) return false;
-  QModelIndex index = model->index(sourceRow, TorrentModelItem::TR_STATUS, sourceParent);
-  TorrentModelItem::State state = (TorrentModelItem::State)index.data().toInt();
+            return dateL < dateR;
+        }
 
-  switch (filter0) {
-  case TorrentFilter::DOWNLOADING:
-    return (state == TorrentModelItem::STATE_DOWNLOADING || state == TorrentModelItem::STATE_STALLED_DL
-            || state == TorrentModelItem::STATE_PAUSED_DL || state == TorrentModelItem::STATE_CHECKING_DL
-            || state == TorrentModelItem::STATE_QUEUED_DL || state == TorrentModelItem::STATE_DOWNLOADING_META
-            || state == TorrentModelItem::STATE_PAUSED_MISSING);
+        // Seeding torrents should be at the bottom
+        if (vL == -1) return false;
+        if (vR == -1) return true;
+        return vL < vR;
+    }
+    else if (column == TorrentModelItem::TR_PEERS || column == TorrentModelItem::TR_SEEDS) {
+        int left_active = left.data().toInt();
+        int left_total = left.data(Qt::UserRole).toInt();
+        int right_active = right.data().toInt();
+        int right_total = right.data(Qt::UserRole).toInt();
 
-  case TorrentFilter::SEEDING:
-    return (state == TorrentModelItem::STATE_SEEDING || state == TorrentModelItem::STATE_STALLED_UP
-            || state == TorrentModelItem::STATE_CHECKING_UP || state == TorrentModelItem::STATE_QUEUED_UP);
+        // Active peers/seeds take precedence over total peers/seeds.
+        if (left_active == right_active)
+            return (left_total < right_total);
+        else return (left_active < right_active);
+    }
+    else if (column == TorrentModelItem::TR_ETA) {
+        const QAbstractItemModel *model = sourceModel();
+        const int prioL = model->data(model->index(left.row(), TorrentModelItem::TR_PRIORITY)).toInt();
+        const int prioR = model->data(model->index(right.row(), TorrentModelItem::TR_PRIORITY)).toInt();
+        const qlonglong etaL = left.data().toLongLong();
+        const qlonglong etaR = right.data().toLongLong();
+        const bool ascend = (sortOrder() == Qt::AscendingOrder);
+        const bool invalidL = (etaL < 0 || etaL >= MAX_ETA);
+        const bool invalidR = (etaR < 0 || etaR >= MAX_ETA);
+        const bool seedingL = (prioL < 0);
+        const bool seedingR = (prioR < 0);
+        bool activeL;
+        bool activeR;
 
-  case TorrentFilter::COMPLETED:
-    return (state == TorrentModelItem::STATE_SEEDING || state == TorrentModelItem::STATE_STALLED_UP
-            || state == TorrentModelItem::STATE_PAUSED_UP || state == TorrentModelItem::STATE_CHECKING_UP
-            || state == TorrentModelItem::STATE_QUEUED_UP);
+        switch (model->data(model->index(left.row(), TorrentModelItem::TR_STATUS)).toInt()) {
+        case TorrentModelItem::STATE_DOWNLOADING:
+        case TorrentModelItem::STATE_DOWNLOADING_META:
+        case TorrentModelItem::STATE_STALLED_DL:
+        case TorrentModelItem::STATE_SEEDING:
+        case TorrentModelItem::STATE_STALLED_UP:
+            activeL = true;
+            break;
+        default:
+            activeL = false;
+        }
 
-  case TorrentFilter::PAUSED:
-    return (state == TorrentModelItem::STATE_PAUSED_DL || state == TorrentModelItem::STATE_PAUSED_MISSING);
+        switch (model->data(model->index(right.row(), TorrentModelItem::TR_STATUS)).toInt()) {
+        case TorrentModelItem::STATE_DOWNLOADING:
+        case TorrentModelItem::STATE_DOWNLOADING_META:
+        case TorrentModelItem::STATE_STALLED_DL:
+        case TorrentModelItem::STATE_SEEDING:
+        case TorrentModelItem::STATE_STALLED_UP:
+            activeR = true;
+            break;
+        default:
+            activeR = false;
+        }
 
-  case TorrentFilter::RESUMED:
-    return (state != TorrentModelItem::STATE_PAUSED_UP && state != TorrentModelItem::STATE_PAUSED_DL
-            && state != TorrentModelItem::STATE_PAUSED_MISSING);
+        // Sorting rules prioritized.
+        // 1. Active torrents at the top
+        // 2. Seeding torrents at the bottom
+        // 3. Torrents with invalid ETAs at the bottom
 
-  case TorrentFilter::ACTIVE:
-    if (state == TorrentModelItem::STATE_STALLED_DL) {
-      const qulonglong up_speed = model->index(sourceRow, TorrentModelItem::TR_UPSPEED, sourceParent).data().toULongLong();
-      return (up_speed > 0);
+        if (activeL != activeR) return activeL;
+        if (seedingL != seedingR) {
+            if (seedingL) return !ascend;
+            else return ascend;
+        }
+
+        if (invalidL && invalidR) {
+
+            if (seedingL) { //Both seeding
+                QDateTime dateL = model->data(model->index(left.row(), TorrentModelItem::TR_SEED_DATE)).toDateTime();
+                QDateTime dateR = model->data(model->index(right.row(), TorrentModelItem::TR_SEED_DATE)).toDateTime();
+
+                //not valid dates should be sorted at the bottom.
+                if (!dateL.isValid()) return false;
+                if (!dateR.isValid()) return true;
+
+                return dateL < dateR;
+            }
+            else {
+                return prioL < prioR;
+            }
+        }
+        else if ((invalidL == false) && (invalidR == false)) {
+            return QSortFilterProxyModel::lessThan(left, right);
+        }
+        else {
+            return !invalidL;
+        }
     }
 
-    return (state == TorrentModelItem::STATE_DOWNLOADING || state == TorrentModelItem::STATE_SEEDING);
+    return QSortFilterProxyModel::lessThan(left, right);
+}
 
-  case TorrentFilter::INACTIVE:
-    if (state == TorrentModelItem::STATE_STALLED_DL) {
-      const qulonglong up_speed = model->index(sourceRow, TorrentModelItem::TR_UPSPEED, sourceParent).data().toULongLong();
-      return !(up_speed > 0);
+bool TransferListSortModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+{
+    return matchStatusFilter(sourceRow, sourceParent)
+           && matchLabelFilter(sourceRow, sourceParent)
+           && matchTrackerFilter(sourceRow, sourceParent)
+           && QSortFilterProxyModel::filterAcceptsRow(sourceRow, sourceParent);
+}
+
+bool TransferListSortModel::matchStatusFilter(int sourceRow, const QModelIndex &sourceParent) const
+{
+    if (filter0 == TorrentFilter::ALL)
+        return true;
+    QAbstractItemModel *model = sourceModel();
+    if (!model) return false;
+    QModelIndex index = model->index(sourceRow, TorrentModelItem::TR_STATUS, sourceParent);
+    TorrentModelItem::State state = (TorrentModelItem::State)index.data().toInt();
+
+    switch (filter0) {
+    case TorrentFilter::DOWNLOADING:
+        return (state == TorrentModelItem::STATE_DOWNLOADING || state == TorrentModelItem::STATE_STALLED_DL
+                || state == TorrentModelItem::STATE_PAUSED_DL || state == TorrentModelItem::STATE_CHECKING_DL
+                || state == TorrentModelItem::STATE_QUEUED_DL || state == TorrentModelItem::STATE_DOWNLOADING_META
+                || state == TorrentModelItem::STATE_PAUSED_MISSING);
+
+    case TorrentFilter::SEEDING:
+        return (state == TorrentModelItem::STATE_SEEDING || state == TorrentModelItem::STATE_STALLED_UP
+                || state == TorrentModelItem::STATE_CHECKING_UP || state == TorrentModelItem::STATE_QUEUED_UP);
+
+    case TorrentFilter::COMPLETED:
+        return (state == TorrentModelItem::STATE_SEEDING || state == TorrentModelItem::STATE_STALLED_UP
+                || state == TorrentModelItem::STATE_PAUSED_UP || state == TorrentModelItem::STATE_CHECKING_UP
+                || state == TorrentModelItem::STATE_QUEUED_UP);
+
+    case TorrentFilter::PAUSED:
+        return (state == TorrentModelItem::STATE_PAUSED_DL || state == TorrentModelItem::STATE_PAUSED_MISSING);
+
+    case TorrentFilter::RESUMED:
+        return (state != TorrentModelItem::STATE_PAUSED_UP && state != TorrentModelItem::STATE_PAUSED_DL
+                && state != TorrentModelItem::STATE_PAUSED_MISSING);
+
+    case TorrentFilter::ACTIVE:
+        if (state == TorrentModelItem::STATE_STALLED_DL) {
+            const qulonglong up_speed = model->index(sourceRow, TorrentModelItem::TR_UPSPEED, sourceParent).data().toULongLong();
+            return (up_speed > 0);
+        }
+
+        return (state == TorrentModelItem::STATE_DOWNLOADING || state == TorrentModelItem::STATE_SEEDING);
+
+    case TorrentFilter::INACTIVE:
+        if (state == TorrentModelItem::STATE_STALLED_DL) {
+            const qulonglong up_speed = model->index(sourceRow, TorrentModelItem::TR_UPSPEED, sourceParent).data().toULongLong();
+            return !(up_speed > 0);
+        }
+
+        return (state != TorrentModelItem::STATE_DOWNLOADING && state != TorrentModelItem::STATE_SEEDING);
+
+    default:
+        return false;
     }
-
-    return (state != TorrentModelItem::STATE_DOWNLOADING && state != TorrentModelItem::STATE_SEEDING);
-
-  default:
-    return false;
-  }
 }
 
-bool TransferListSortModel::matchLabelFilter(int sourceRow, const QModelIndex &sourceParent) const {
-  if (!labelFilterEnabled)
-    return true;
+bool TransferListSortModel::matchLabelFilter(int sourceRow, const QModelIndex &sourceParent) const
+{
+    if (!labelFilterEnabled)
+        return true;
 
-  QAbstractItemModel *model = sourceModel();
-  if (!model)
-    return false;
+    QAbstractItemModel *model = sourceModel();
+    if (!model)
+        return false;
 
-  return model->index(sourceRow, TorrentModelItem::TR_LABEL, sourceParent).data().toString() == labelFilter;
+    return model->index(sourceRow, TorrentModelItem::TR_LABEL, sourceParent).data().toString() == labelFilter;
 }
 
-bool TransferListSortModel::matchTrackerFilter(int sourceRow, const QModelIndex &sourceParent) const {
-  if (!trackerFilterEnabled)
-    return true;
+bool TransferListSortModel::matchTrackerFilter(int sourceRow, const QModelIndex &sourceParent) const
+{
+    if (!trackerFilterEnabled)
+        return true;
 
-  TorrentModel *model = qobject_cast<TorrentModel *>(sourceModel());
-  if (!model)
-    return false;
+    TorrentModel *model = qobject_cast<TorrentModel *>(sourceModel());
+    if (!model)
+        return false;
 
-  return trackerFilter.contains(model->torrentHash(sourceRow));
+    return trackerFilter.contains(model->torrentHash(sourceRow));
 }
