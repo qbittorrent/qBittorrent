@@ -269,7 +269,7 @@ AC_OUTPUT(conf.pri)
 AC_MSG_NOTICE([Running qmake to generate the makefile...])
 CONFDIR="$( cd "$( dirname "$0" )" && pwd )"
 
-$QT_QMAKE [$CONFDIR]/qbittorrent.pro
+$QT_QMAKE -r [$CONFDIR]/qbittorrent.pro
 
 ret="$?"
 
