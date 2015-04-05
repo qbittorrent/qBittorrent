@@ -4229,7 +4229,7 @@ else
 $as_echo "no" >&6; }
 fi
 
-# Require 0.26 pkg-config
+# Require 0.23 pkg-config
 
 
 
@@ -4338,7 +4338,7 @@ fi
 
 fi
 if test -n "$PKG_CONFIG"; then
-	_pkg_min_version=0.26
+	_pkg_min_version=0.23
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
 $as_echo_n "checking pkg-config is at least version $_pkg_min_version... " >&6; }
 	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then

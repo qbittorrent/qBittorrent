@@ -61,8 +61,8 @@ AS_IF([test "x$host_os" = "x*FreeBSD*"],
       LIBS="-lexecinfo $LIBS"],
       [AC_MSG_RESULT([no])])
 
-# Require 0.26 pkg-config
-PKG_PROG_PKG_CONFIG([0.26])
+# Require 0.23 pkg-config
+PKG_PROG_PKG_CONFIG([0.23])
 AS_IF([test "x$PKG_CONFIG" = "x"],
       [AC_MSG_ERROR([Could not find pkg-config])])
 
