@@ -42,6 +42,12 @@ AC_ARG_ENABLE(gui,
               [],
               [enable_gui=yes])
 
+AC_ARG_ENABLE(systemd,
+              [AS_HELP_STRING([--enable-systemd],
+                              [Install the systemd service file (GUI only).])],
+              [],
+              [enable_systemd=no])
+
 AC_ARG_ENABLE(webui,
               [AS_HELP_STRING([--disable-webui],
                               [Disable the WebUI.])],
@@ -84,6 +90,7 @@ AC_MSG_CHECKING([whether to enable the GUI])
 AS_CASE(["x$enable_gui"],
         ["xyes"],
                [AC_MSG_RESULT([yes])
+               enable_systemd=[no]
                QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG nogui"],
         ["xno"],
               [AC_MSG_RESULT([no])
@@ -92,6 +99,17 @@ AS_CASE(["x$enable_gui"],
               QBT_ADD_CONFIG="$QBT_ADD_CONFIG nogui"],
         [AC_MSG_RESULT([$enable_gui])
         AC_MSG_ERROR([Unknown option "$enable_gui". Use either "yes" or "no".])])
+
+AC_MSG_CHECKING([whether to install the systemd service file])
+AS_CASE(["x$enable_systemd"],
+        ["xyes"],
+               [AC_MSG_RESULT([yes])
+               QBT_ADD_CONFIG="$QBT_ADD_CONFIG systemd"],
+        ["xno"],
+              [AC_MSG_RESULT([no])
+              QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG systemd"],
+        [AC_MSG_RESULT([$enable_systemd])
+        AC_MSG_ERROR([Unknown option "$enable_systemd". Use either "yes" or "no".])])
 
 AC_MSG_CHECKING([whether to enable the WebUI])
 AS_CASE(["x$enable_webui"],

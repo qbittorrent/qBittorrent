@@ -717,6 +717,7 @@ with_geoip_database_embedded
 with_qtsingleapplication
 enable_debug
 enable_gui
+enable_systemd
 enable_webui
 enable_qt_dbus
 with_boost
@@ -1369,6 +1370,7 @@ Optional Features:
   --enable-debug          Enable debug build
   --disable-gui           Disable the GUI for headless running. Disables
                           QtDBus and the GeoIP Database.
+  --enable-systemd        Install the systemd service file (GUI only).
   --disable-webui         Disable the WebUI.
   --disable-qt-dbus       Disable use of QtDBus (GUI only)
 
@@ -4201,6 +4203,14 @@ else
 fi
 
 
+# Check whether --enable-systemd was given.
+if test "${enable_systemd+set}" = set; then :
+  enableval=$enable_systemd;
+else
+  enable_systemd=no
+fi
+
+
 # Check whether --enable-webui was given.
 if test "${enable_webui+set}" = set; then :
   enableval=$enable_webui;
@@ -4380,6 +4390,7 @@ case "x$enable_gui" in #(
   "xyes") :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
+               enable_systemd=no
                QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG nogui" ;; #(
   "xno") :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -4391,6 +4402,23 @@ $as_echo "no" >&6; }
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_gui" >&5
 $as_echo "$enable_gui" >&6; }
         as_fn_error $? "Unknown option \"$enable_gui\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
+esac
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to install the systemd service file" >&5
+$as_echo_n "checking whether to install the systemd service file... " >&6; }
+case "x$enable_systemd" in #(
+  "xyes") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+               QBT_ADD_CONFIG="$QBT_ADD_CONFIG systemd" ;; #(
+  "xno") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+              QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG systemd" ;; #(
+  *) :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_systemd" >&5
+$as_echo "$enable_systemd" >&6; }
+        as_fn_error $? "Unknown option \"$enable_systemd\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
 esac
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to enable the WebUI" >&5

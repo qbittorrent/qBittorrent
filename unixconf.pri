@@ -31,6 +31,13 @@ INSTALLS += man
 
 DIST_PATH = ../dist/unix
 
+# Systemd Service file
+nogui:systemd {
+    systemdService.files = $$DIST_PATH/systemd/qbittorrent-nox.service
+    systemdService.path = $$PREFIX/lib/systemd/system/
+    INSTALLS += systemdService
+}
+
 # Menu Icon
 !nogui {
     menuicon.files = icons/qBittorrent.desktop
