@@ -218,6 +218,15 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
             return !invalidL;
         }
     }
+    else if (column == TorrentModelItem::TR_LAST_ACTIVITY) {
+        const qlonglong vL = left.data().toLongLong();
+        const qlonglong vR = right.data().toLongLong();
+
+        if (vL == -1) return false;
+        if (vR == -1) return true;
+
+        return vL < vR;
+    }
 
     return QSortFilterProxyModel::lessThan(left, right);
 }
