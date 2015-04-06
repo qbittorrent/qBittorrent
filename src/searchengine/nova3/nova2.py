@@ -26,7 +26,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 
-#VERSION: 1.24
+#VERSION: 1.40
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -37,14 +37,14 @@
 #
 # Licence: BSD
 
-import sys
-import threading
-import os
-import glob
 import urllib.parse
+from os import path, cpu_count
+from glob import glob
+from sys import argv
+from multiprocessing import Pool
 
 THREADED = True
-CATEGORIES = ('all', 'movies', 'tv', 'music', 'games', 'anime', 'software', 'pictures', 'books')
+CATEGORIES = {'all', 'movies', 'tv', 'music', 'games', 'anime', 'software', 'pictures', 'books'}
 
 ################################################################################
 # Every engine should have a "search" method taking
@@ -54,105 +54,124 @@ CATEGORIES = ('all', 'movies', 'tv', 'music', 'games', 'anime', 'software', 'pic
 # As a convention, try to list results by decrasing number of seeds or similar
 ################################################################################
 
-supported_engines = []
+def initialize_engines():
+    """ Import available engines
 
-engines = glob.glob(os.path.join(os.path.dirname(__file__), 'engines','*.py'))
-for engine in engines:
-	e = engine.split(os.sep)[-1][:-3]
-	if len(e.strip()) == 0: continue
-	if e.startswith('_'): continue
-	try:
-		exec("from engines.%s import %s"%(e,e))
-		supported_engines.append(e)
-	except:
-		pass
+        Return list of available engines
+    """
+    supported_engines = []
 
-def engineToXml(short_name):
-	xml = "<%s>\n"%short_name
-	exec("search_engine = %s()"%short_name, globals())
-	xml += "<name>%s</name>\n"%search_engine.name
-	xml += "<url>%s</url>\n"%search_engine.url
-	xml += "<categories>"
-	if hasattr(search_engine, 'supported_categories'):
-		supported_categories = list(search_engine.supported_categories.keys())
-		supported_categories.remove('all')
-		xml += " ".join(supported_categories)
-	xml += "</categories>\n"
-	xml += "</%s>\n"%short_name
-	return xml
+    engines = glob(path.join(path.dirname(__file__), 'engines', '*.py'))
+    for engine in engines:
+        engi = path.basename(engine).split('.')[0].strip()
+        if len(engi) == 0 or engi.startswith('_'):
+            continue
+        try:
+            #import engines.[engine]
+            engine_module = __import__(".".join(("engines", engi)))
+            #get low-level module
+            engine_module = getattr(engine_module, engi)
+            #bind class name
+            globals()[engi] = getattr(engine_module, engi)
+            supported_engines.append(engi)
+        except:
+            pass
 
-def displayCapabilities():
-	"""
-	Display capabilities in XML format
-	<capabilities>
-	  <engine_short_name>
-	    <name>long name</name>
-	    <url>http://example.com</url>
-	    <categories>movies music games</categories>
-	  </engine_short_name>
-	</capabilities>
-	"""
-	xml = "<capabilities>"
-	for short_name in supported_engines:
-		xml += engineToXml(short_name)
-	xml += "</capabilities>"
-	print(xml)
+    return supported_engines
 
-class EngineLauncher(threading.Thread):
-	def __init__(self, engine, what, cat='all'):
-		threading.Thread.__init__(self)
-		self.engine = engine
-		self.what = what
-		self.cat = cat
-	def run(self):
-		if hasattr(self.engine, 'supported_categories'):
-			if self.cat == 'all' or self.cat in list(self.engine.supported_categories.keys()):
-				self.engine.search(self.what, self.cat)
-		elif self.cat == 'all':
-				self.engine.search(self.what)
+def engines_to_xml(supported_engines):
+    """ Generates xml for supported engines """
+    tab = " " * 4
 
-if __name__ == '__main__':
-	if len(sys.argv) < 2:
-		raise SystemExit('./nova2.py [all|engine1[,engine2]*] <category> <keywords>\navailable engines: %s'%
-				(','.join(supported_engines)))
+    for short_name in supported_engines:
+        search_engine = globals()[short_name]()
 
-	if len(sys.argv) == 2:
-		if sys.argv[1] == "--capabilities":
-			displayCapabilities()
-			sys.exit(0)
-		else:
-			raise SystemExit('./nova.py [all|engine1[,engine2]*] <category> <keywords>\navailable engines: %s'%
-					(','.join(supported_engines)))
+        supported_categories = ""
+        if hasattr(search_engine, "supported_categories"):
+            supported_categories = " ".join((key for key in search_engine.supported_categories.keys()
+                                             if key is not "all"))
 
-	engines_list = [e.lower() for e in sys.argv[1].strip().split(',')]
+        yield  "".join((tab, "<", short_name, ">\n",
+                        tab, tab, "<name>", search_engine.name, "</name>\n",
+                        tab, tab, "<url>", search_engine.url, "</url>\n",
+                        tab, tab, "<categories>", supported_categories, "</categories>\n",
+                        tab, "</", short_name, ">\n"))
 
-	if 'all' in engines_list:
-		engines_list = supported_engines
-		
-	cat = sys.argv[2].lower()
-	
-	if cat not in CATEGORIES:
-		raise SystemExit('Invalid category!')
-	
-	what = urllib.parse.quote(' '.join(sys.argv[3:]))
-	
-	threads = []
-	for engine in engines_list:
-		try:
-			if THREADED:
-				exec("l = EngineLauncher(%s(), what, cat)"%engine)
-				threads.append(l)
-				l.start()
-			else:
-				exec("e = %s()"%engine)
-				if hasattr(engine, 'supported_categories'):
-					if cat == 'all' or cat in list(e.supported_categories.keys()):
-						e.search(what, cat)
-				elif self.cat == 'all':
-						e.search(what)
-						engine().search(what, cat)
-		except:
-			pass
-	if THREADED:
-		for t in threads:
-			t.join()
+def displayCapabilities(supported_engines):
+    """
+    Display capabilities in XML format
+    <capabilities>
+      <engine_short_name>
+        <name>long name</name>
+        <url>http://example.com</url>
+        <categories>movies music games</categories>
+      </engine_short_name>
+    </capabilities>
+    """
+    xml = "".join(("<capabilities>\n",
+                   "".join(engines_to_xml(supported_engines)),
+                   "</capabilities>"))
+    print(xml)
+
+def run_search(engine_list):
+    """ Run search in engine
+
+        @retval False if any exceptions occured
+        @retval True  otherwise
+    """
+    engine, what, cat = engine_list
+    try:
+        engine = engine()
+        #avoid exceptions due to invalid category
+        if hasattr(engine, 'supported_categories'):
+            cat = cat if cat in engine.supported_categories else "all"
+            engine.search(what, cat)
+        else:
+            engine.search(what)
+        return True
+    except:
+        return False
+
+def main(args):
+    supported_engines = initialize_engines()
+
+    if not args:
+        raise SystemExit("./nova2.py [all|engine1[,engine2]*] <category> <keywords>\n"
+                         "available engines: %s" % (','.join(supported_engines)))
+
+    elif args[0] == "--capabilities":
+        displayCapabilities(supported_engines)
+        return
+
+    elif len(args) < 3:
+        raise SystemExit("./nova2.py [all|engine1[,engine2]*] <category> <keywords>\n"
+                         "available engines: %s" % (','.join(supported_engines)))
+
+    engines_list = set(e.lower() for e in args[0].strip().split(','))
+
+    if 'all' in engines_list:
+        engines_list = supported_engines
+    else:
+        #discard un-supported engines
+        engines_list = [engine for engine in engines_list
+                        if engine in supported_engines]
+
+    if not engines_list:
+        #engine list is empty. Nothing to do here
+        return
+
+    cat = args[1].lower()
+
+    if cat not in CATEGORIES:
+        raise SystemExit(" - ".join(('Invalid category', cat)))
+
+    what = urllib.parse.quote(' '.join(args[2:]))
+
+    if THREADED:
+        with Pool(min(len(engines_list), cpu_count())) as pool:
+            pool.map(run_search, ([globals()[engine], what, cat] for engine in engines_list))
+    else:
+        _ = [run_search([globals()[engine], what, cat]) for engine in engines_list]
+
+if __name__ == "__main__":
+    main(argv[1:])
