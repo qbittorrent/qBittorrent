@@ -1,4 +1,4 @@
-#VERSION: 1.2
+#VERSION: 2.0
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -25,92 +25,135 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-
+from HTMLParser import HTMLParser
+from httplib import HTTPConnection as http
+#qBt
 from novaprinter import prettyPrinter
-from helpers import retrieve_url, download_file
-import sgmllib
-import re
+from helpers import download_file
 
 class extratorrent(object):
-  url = 'http://extratorrent.cc'
-  name = 'extratorrent'
-  supported_categories = {'all': '', 'movies': '4', 'tv': '8', 'music': '5', 'games': '3', 'anime': '1', 'software': '7', 'books': '2', 'pictures': '6'}
+    """ Search engine class """
+    url = 'http://extratorrent.cc'
+    name = 'ExtraTorrent'
+    supported_categories = {'all'       : '0',
+                            'movies'    : '4',
+                            'tv'        : '8',
+                            'music'     : '5',
+                            'games'     : '3',
+                            'anime'     : '1',
+                            'software'  : '7',
+                            'books'     : '2',
+                            'pictures'  : '6'}
 
-  def __init__(self):
-    self.results = []
-    self.parser = self.SimpleSGMLParser(self.results, self.url)
+    def download_torrent(self, info):
+        """ Downloader """
+        print(download_file(info))
 
-  def download_torrent(self, info):
-    print download_file(info)
+    class MyHtmlParseWithBlackJack(HTMLParser):
+        """ Parser class """
+        def __init__(self, list_searches, url):
+            HTMLParser.__init__(self)
+            self.url = url
+            self.list_searches = list_searches
+            self.current_item = None
+            self.cur_item_name = None
+            self.pending_size = False
+            self.next_queries = True
+            self.pending_next_queries = False
 
-  class SimpleSGMLParser(sgmllib.SGMLParser):
-    def __init__(self, results, url, *args):
-      sgmllib.SGMLParser.__init__(self)
-      self.url = url
-      self.td_counter = None
-      self.current_item = None
-      self.start_name = False
-      self.results = results
-      
-    def start_a(self, attr):
-      params = dict(attr)
-      #print params
-      if params.has_key('href') and params['href'].startswith("/torrent_download/"):
-        self.current_item = {}
-        self.td_counter = 0
-        self.start_name = False
-        torrent_id = '/'.join(params['href'].split('/')[2:])
-        self.current_item['link']=self.url+'/download/'+torrent_id
-      elif params.has_key('href') and params['href'].startswith("/torrent/") and params['href'].endswith(".html"):
-        self.current_item['desc_link'] = self.url + params['href'].strip()
-        self.start_name = True
-    
-    def handle_data(self, data):
-      if self.td_counter == 2:
-        if not self.current_item.has_key('name') and self.start_name:
-          self.current_item['name'] = data.strip()
-      elif self.td_counter == 3:
-        if not self.current_item.has_key('size'):
-          self.current_item['size'] = ''
-        self.current_item['size']+= data.replace("&nbsp;", " ").strip()
-      elif self.td_counter == 4:
-        if not self.current_item.has_key('seeds'):
-          self.current_item['seeds'] = ''
-        self.current_item['seeds']+= data.strip()
-      elif self.td_counter == 5:
-        if not self.current_item.has_key('leech'):
-          self.current_item['leech'] = ''
-        self.current_item['leech']+= data.strip()
-      
-    def start_td(self,attr):
-        if isinstance(self.td_counter,int):
-          self.td_counter += 1
-          if self.td_counter > 5:
-            self.td_counter = None
-            # Display item
+        def handle_starttag(self, tag, attrs):
             if self.current_item:
-              self.current_item['engine_url'] = self.url
-              if not self.current_item['seeds'].isdigit():
-                self.current_item['seeds'] = 0
-              if not self.current_item['leech'].isdigit():
-                self.current_item['leech'] = 0
-              prettyPrinter(self.current_item)
-              self.results.append('a')
+                if tag == "a":
+                    params = dict(attrs)
+                    link = params['href']
 
-  def search(self, what, cat='all'):
-    ret = []
-    i = 1
-    while True and i<11:
-      results = []
-      parser = self.SimpleSGMLParser(results, self.url)
-      dat = retrieve_url(self.url+'/advanced_search/?with=%s&s_cat=%s&page=%d'%(what, self.supported_categories[cat], i))
-      results_re = re.compile('(?s)<table class="tl"><thead>.*')
-      for match in results_re.finditer(dat):
-        res_tab = match.group(0)
-        parser.feed(res_tab)
+                    if not link.startswith("/torrent"):
+                        return
+
+                    if link[8] == "/":
+                        #description
+                        self.current_item["desc_link"] = "".join((self.url, link))
+                        #remove view at the beginning
+                        self.current_item["name"] = params["title"][5:]
+                        self.pending_size = True
+                    elif link[8] == "_":
+                        #download link
+                        link = link.replace("torrent_", "", 1)
+                        self.current_item["link"] = "".join((self.url, link))
+
+                elif tag == "td":
+                    if self.pending_size:
+                        self.cur_item_name = "size"
+                        self.current_item["size"] = ""
+                        self.pending_size = False
+
+                    for attr in attrs:
+                        if attr[0] == "class":
+                            if attr[1][0] == "s":
+                                self.cur_item_name = "seeds"
+                                self.current_item["seeds"] = ""
+                            elif attr[1][0] == "l":
+                                self.cur_item_name = "leech"
+                                self.current_item["leech"] = ""
+                        break
+
+
+            elif tag == "tr":
+                for attr in attrs:
+                    if attr[0] == "class" and attr[1].startswith("tl"):
+                        self.current_item = dict()
+                        self.current_item["engine_url"] = self.url
+                        break
+
+            elif self.pending_next_queries:
+                if tag == "a":
+                    params = dict(attrs)
+                    self.list_searches.append(params['href'])
+                    if params["title"] == "10":
+                        self.pending_next_queries = False
+                else:
+                    self.pending_next_queries = False
+
+            elif self.next_queries:
+                if tag == "b" and ("class", "pager_no_link") in attrs:
+                    self.next_queries = False
+                    self.pending_next_queries = True
+
+        def handle_data(self, data):
+            if self.cur_item_name:
+                temp = self.current_item[self.cur_item_name]
+                self.current_item[self.cur_item_name] = " ".join((temp, data))
+                #Due to utf-8 we need to handle data two times if there is space
+                if not self.cur_item_name == "size":
+                    self.cur_item_name = None
+
+        def handle_endtag(self, tag):
+            if self.current_item:
+                if tag == "tr":
+                    prettyPrinter(self.current_item)
+                    self.current_item = None
+
+    def search(self, what, cat="all"):
+        """ Performs search """
+        connection = http("extratorrent.cc")
+
+        query = "".join(("/search/?new=1&search=", what, "&s_cat=", self.supported_categories[cat]))
+
+        connection.request("GET", query)
+        response = connection.getresponse()
+        if response.status != 200:
+            return
+
+        list_searches = []
+        parser = self.MyHtmlParseWithBlackJack(list_searches, self.url)
+        parser.feed(response.read().decode('utf-8'))
         parser.close()
-        break
-      if len(results) <= 0:
-        break
-      i += 1
-      
+
+        for search_query in list_searches:
+            connection.request("GET", search_query)
+            response = connection.getresponse()
+            parser.feed(response.read().decode('utf-8'))
+            parser.close()
+
+        connection.close()
+        return

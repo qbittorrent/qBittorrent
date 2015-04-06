@@ -1,4 +1,4 @@
-#VERSION: 1.51
+#VERSION: 2.00
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 #CONTRIBUTORS: Diego de las Heras (diegodelasheras@gmail.com)
 
@@ -26,90 +26,124 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+from html.parser import HTMLParser
+from http.client import HTTPConnection as http
 from novaprinter import prettyPrinter
-from helpers import retrieve_url, download_file
-import sgmllib3
-import re
+from helpers import download_file
 
 class mininova(object):
-  # Mandatory properties
-  url = 'http://www.mininova.org'
-  name = 'Mininova'
-  supported_categories = {'all': '0', 'movies': '4', 'tv': '8', 'music': '5', 'games': '3', 'anime': '1', 'software': '7', 'pictures': '6', 'books': '2'}
+    """ Search engine class """
+    url = 'http://www.mininova.org'
+    name = 'Mininova'
+    supported_categories = {'all'       : '0',
+                            'movies'    : '4',
+                            'tv'        : '8',
+                            'music'     : '5',
+                            'games'     : '3',
+                            'anime'     : '1',
+                            'software'  : '7',
+                            'pictures'  : '6',
+                            'books'     : '2'}
 
-  def __init__(self):
-    self.results = []
-    self.parser = self.SimpleSGMLParser(self.results, self.url)
+    def download_torrent(self, info):
+        print(download_file(info))
 
-  def download_torrent(self, info):
-    print(download_file(info))
+    class MyHtmlParseWithBlackJack(HTMLParser):
+        """ Parser class """
+        def __init__(self, list_searches, url):
+            HTMLParser.__init__(self)
+            self.list_searches = list_searches
+            self.url = url
+            self.table_results = False
+            self.current_item = None
+            self.cur_item_name = None
+            self.next_queries = True
 
-  class SimpleSGMLParser(sgmllib3.SGMLParser):
-    def __init__(self, results, url, *args):
-      sgmllib3.SGMLParser.__init__(self)
-      self.url = url
-      self.td_counter = None
-      self.current_item = None
-      self.results = results
-      
-    def start_a(self, attr):
-      params = dict(attr)
-      #print params
-      if 'href' in params:
-        if params['href'].startswith("/get/"):
-          self.current_item = {}
-          self.td_counter = 0
-          self.current_item['link']=self.url+params['href'].strip()
-        elif params['href'].startswith("/tor/") and self.current_item is not None:
-          self.current_item['desc_link']=self.url+params['href'].strip()
-    
-    def handle_data(self, data):
-      if self.td_counter == 0:
-        if 'name' not in self.current_item:
-          self.current_item['name'] = ''
-        self.current_item['name']+= data
-      elif self.td_counter == 1:
-        if 'size' not in self.current_item:
-          self.current_item['size'] = ''
-        self.current_item['size']+= data.strip()
-      elif self.td_counter == 2:
-        if 'seeds' not in self.current_item:
-          self.current_item['seeds'] = ''
-        self.current_item['seeds']+= data.strip()
-      elif self.td_counter == 3:
-        if 'leech' not in self.current_item:
-          self.current_item['leech'] = ''
-        self.current_item['leech']+= data.strip()
-      
-    def start_td(self,attr):
-        if isinstance(self.td_counter,int):
-          self.td_counter += 1
-          if self.td_counter > 4:
-            self.td_counter = None
-            # Display item
-            if self.current_item:
-              self.current_item['engine_url'] = self.url
-              if not self.current_item['seeds'].isdigit():
-                self.current_item['seeds'] = 0
-              if not self.current_item['leech'].isdigit():
-                self.current_item['leech'] = 0
-              prettyPrinter(self.current_item)
-              self.results.append('a')
+        def handle_starttag_tr(self, _):
+            """ Handler of tr start tag """
+            self.current_item = dict()
 
-  def search(self, what, cat='all'):
-    ret = []
-    i = 1
-    while True and i<11:
-      results = []
-      parser = self.SimpleSGMLParser(results, self.url)
-      dat = retrieve_url(self.url+'/search/%s/%s/seeds/%d'%(what, self.supported_categories[cat], i))
-      results_re = re.compile('(?s)<h1>Search results for.*')
-      for match in results_re.finditer(dat):
-        res_tab = match.group(0)
-        parser.feed(res_tab)
+        def handle_starttag_a(self, attrs):
+            """ Handler of a start tag """
+            params = dict(attrs)
+            link = params["href"]
+
+            if link.startswith("/get/"):
+                #download link
+                self.current_item["link"] = "".join((self.url, link))
+            elif link.startswith("/tor/"):
+                #description
+                self.current_item["desc_link"] = "".join((self.url, link))
+                self.cur_item_name = "name"
+                self.current_item["name"] = ""
+            elif self.next_queries and link.startswith("/search"):
+                if params["title"].startswith("Page"):
+                    self.list_searches.append(link)
+
+        def handle_starttag_td(self, attrs):
+            """ Handler of td start tag """
+            if ("align", "right") in attrs:
+                if not "size" in self.current_item.keys():
+                    self.cur_item_name = "size"
+                    self.current_item["size"] = ""
+
+        def handle_starttag_span(self, attrs):
+            """ Handler of span start tag """
+            if ("class", "g") in attrs:
+                self.cur_item_name = "seeds"
+                self.current_item["seeds"] = ""
+            elif ("class", "b") in attrs:
+                self.cur_item_name = "leech"
+                self.current_item["leech"] = ""
+
+        def handle_starttag(self, tag, attrs):
+            """ Parser's start tag handler """
+            if self.table_results:
+                dispatcher = getattr(self, "_".join(("handle_starttag", tag)), None)
+                if dispatcher:
+                    dispatcher(attrs)
+
+            elif tag == "table":
+                self.table_results = ("class", "maintable") in attrs
+
+        def handle_endtag(self, tag):
+            """ Parser's end tag handler """
+            if tag == "tr" and self.current_item:
+                self.current_item["engine_url"] = self.url
+                prettyPrinter(self.current_item)
+                self.current_item = None
+            elif self.cur_item_name:
+                if tag == "a" or tag == "span":
+                    self.cur_item_name = None
+
+        def handle_data(self, data):
+            """ Parser's data handler """
+            if self.cur_item_name:
+                temp = self.current_item[self.cur_item_name]
+                self.current_item[self.cur_item_name] = " ".join((temp, data))
+
+    def search(self, what, cat="all"):
+        """ Performs search """
+        connection = http("www.mininova.org")
+
+        query = "/".join(("/search", what, self.supported_categories[cat], "seeds"))
+
+        connection.request("GET", query)
+        response = connection.getresponse()
+        if response.status != 200:
+            return
+
+        list_searches = []
+        parser = self.MyHtmlParseWithBlackJack(list_searches, self.url)
+        parser.feed(response.read().decode('utf-8'))
         parser.close()
-        break
-      if len(results) <= 0:
-        break
-      i += 1
-      
+
+        parser.next_queries = False
+        for search_query in list_searches:
+            connection.request("GET", search_query)
+            response = connection.getresponse()
+            parser.feed(response.read().decode('utf-8'))
+            parser.close()
+
+        connection.close()
+        return
