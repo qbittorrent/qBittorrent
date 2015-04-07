@@ -1220,7 +1220,7 @@ void MainWindow::updateGUI()
 {
     // update global informations
     if (systrayIcon) {
-#if defined(Q_OS_UNIX)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
         QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";
         html += "qBittorrent";
         html += "</div>";
