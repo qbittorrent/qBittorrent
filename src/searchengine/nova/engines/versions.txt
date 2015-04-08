@@ -1,5 +1,5 @@
 extratorrent: 1.2
-torrentreactor: 1.35
+torrentreactor: 1.36
 mininova: 2.00
 piratebay: 2.11
 extratorrent: 2.0
