@@ -1,4 +1,4 @@
-#VERSION: 1.35
+#VERSION: 1.36
 #AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 #              Bruno Barbieri (brunorex@gmail.com)
@@ -32,11 +32,11 @@ from helpers import download_file
 from urllib import parse
 from html.parser import HTMLParser
 from http.client import HTTPConnection as http
-import re
+from re import compile as re_compile
 
 class torrentreactor(object):
     url = 'http://www.torrentreactor.net'
-    name = 'TorrentReactor.Net'
+    name = 'TorrentReactor'
     supported_categories = {'all': '', 'movies': '5', 'tv': '8', 'music': '6', 'games': '3', 'anime': '1', 'software': '2'}
 
     def download_torrent(self, info):
@@ -50,6 +50,7 @@ class torrentreactor(object):
             self.results = results
             self.id = None
             self.url = url
+            self.torrents_matcher = re_compile("/torrents/\d+.*")
             self.dispatcher = { 'a' : self.start_a, 'td' : self.start_td }
 
         def handle_starttag(self, tag, attrs):
@@ -58,7 +59,7 @@ class torrentreactor(object):
 
         def start_a(self, attr):
             params = dict(attr)
-            if re.match("/torrents/\d+.*", params['href']):
+            if self.torrents_matcher.match(params['href']):
                 self.current_item = {}
                 self.current_item['desc_link'] = self.url+params['href'].strip()
             elif 'torrentreactor.net/download.php' in params['href']:
