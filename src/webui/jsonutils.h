@@ -30,7 +30,7 @@
 #define JSONUTILS_H
 
 #include <QVariant>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
@@ -44,7 +44,7 @@ namespace json {
 
     inline QByteArray toJson(const QVariant& var)
     {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
         return QJsonDocument::fromVariant(var).toJson(QJsonDocument::Compact);
 #else
         QJson::Serializer serializer;
@@ -55,7 +55,7 @@ namespace json {
 
     inline QVariant fromJson(const QString& json)
     {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
         return QJsonDocument::fromJson(json.toUtf8()).toVariant();
 #else
         return QJson::Parser().parse(json.toUtf8());
