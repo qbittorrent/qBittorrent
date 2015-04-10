@@ -19,7 +19,9 @@ SOURCES += \
     $$PWD/qtorrentfilter.cpp \
     $$PWD/abstractwebapplication.cpp
 
-# QJson JSON parser/serializer for using with Qt4
-lessThan(QT_MAJOR_VERSION, 5): include(qjson/qjson.pri)
+# QJson JSON parser/serializer for using with Qt < 5.5
+lessThan(QT_MAJOR_VERSION, 6) {
+    lessThan(QT_MAJOR_VERSION, 5)|lessThan(QT_MINOR_VERSION, 5): include(qjson/qjson.pri)
+}
 
 RESOURCES += $$PWD/webui.qrc
