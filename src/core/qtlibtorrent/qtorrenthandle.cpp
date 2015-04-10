@@ -243,6 +243,8 @@ bool QTorrentHandle::has_filtered_pieces() const
 
 int QTorrentHandle::num_files() const
 {
+    if (!has_metadata())
+        return -1;
 #if LIBTORRENT_VERSION_NUM < 10000
     return torrent_handle::get_torrent_info().num_files();
 #else
