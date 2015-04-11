@@ -712,7 +712,7 @@ ac_user_opts='
 enable_option_checking
 enable_dependency_tracking
 enable_silent_rules
-with_qt4
+with_qt5
 with_libtorrent_rasterbar0_16
 with_geoip_database_embedded
 with_qtsingleapplication
@@ -1378,7 +1378,7 @@ Optional Features:
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
-  --with-qt4              Compile using Qt4 (default=no)
+  --with-qt5              Compile using Qt5 (default=no)
   --with-libtorrent-rasterbar0.16
                           Compile using libtorrent-rasterbar 0.16.x series
                           (default=no)
@@ -1418,7 +1418,7 @@ Some influential environment variables:
               directories to add to pkg-config's search path
   PKG_CONFIG_LIBDIR
               path overriding pkg-config's built-in search path
-  QT_QMAKE    value of host_bins for Qt5Core >= 5.2.0, overriding pkg-config
+  QT_QMAKE    value of moc_location for QtCore >= 4.8.0, overriding pkg-config
   libtorrent_CFLAGS
               C compiler flags for libtorrent, overriding pkg-config
   libtorrent_LIBS
@@ -4165,11 +4165,11 @@ fi
 # Define --wth-* and --enable-* arguments
 
 
-# Check whether --with-qt4 was given.
-if test "${with_qt4+set}" = set; then :
-  withval=$with_qt4;
+# Check whether --with-qt5 was given.
+if test "${with_qt5+set}" = set; then :
+  withval=$with_qt5;
 else
-  with_qt4=no
+  with_qt5=no
 fi
 
 
@@ -4451,106 +4451,13 @@ $as_echo "$enable_webui" >&6; }
         as_fn_error $? "Unknown option \"$enable_webui\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
 esac
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether Qt4 should be enabled" >&5
-$as_echo_n "checking whether Qt4 should be enabled... " >&6; }
-case "x$with_qt4" in #(
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether Qt5 should be enabled" >&5
+$as_echo_n "checking whether Qt5 should be enabled... " >&6; }
+case "x$with_qt5" in #(
   "xno") :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
               if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.2.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.2.0") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-
-if test -n "$QT_QMAKE"; then
-    pkg_cv_QT_QMAKE="$QT_QMAKE"
- elif test -n "$PKG_CONFIG"; then
-    if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.2.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.2.0") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-  pkg_cv_QT_QMAKE=`$PKG_CONFIG --variable="host_bins" "Qt5Core >= 5.2.0" 2>/dev/null`
-		      test "x$?" != "x0" && pkg_failed=yes
-else
-  pkg_failed=yes
-fi
- else
-    pkg_failed=untried
-fi
-QT_QMAKE=$pkg_cv_QT_QMAKE
-
-if test "x$QT_QMAKE" = x""; then :
-
-fi
-
-fi
-
-as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake" >&5
-$as_echo_n "checking for $QT_QMAKE/qmake... " >&6; }
-if eval \${$as_ac_File+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  test "$cross_compiling" = yes &&
-  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
-if test -r "$QT_QMAKE/qmake"; then
-  eval "$as_ac_File=yes"
-else
-  eval "$as_ac_File=no"
-fi
-fi
-eval ac_res=\$$as_ac_File
-	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
-$as_echo "$ac_res" >&6; }
-if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
-  QT_QMAKE="$QT_QMAKE/qmake"
-else
-  as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake-qt5" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake-qt5" >&5
-$as_echo_n "checking for $QT_QMAKE/qmake-qt5... " >&6; }
-if eval \${$as_ac_File+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  test "$cross_compiling" = yes &&
-  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
-if test -r "$QT_QMAKE/qmake-qt5"; then
-  eval "$as_ac_File=yes"
-else
-  eval "$as_ac_File=no"
-fi
-fi
-eval ac_res=\$$as_ac_File
-	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
-$as_echo "$ac_res" >&6; }
-if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
-  QT_QMAKE="$QT_QMAKE/qmake-qt5"
-else
-  QT_QMAKE=""
-fi
-
-
-fi
-
-
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.2.0" >&5
-$as_echo_n "checking for Qt5 qmake >= 5.2.0... " >&6; }
-if test "x$QT_QMAKE" != "x"; then :
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $QT_QMAKE" >&5
-$as_echo "$QT_QMAKE" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
-$as_echo "not found" >&6; }
-
-fi
- ;; #(
-  "xyes") :
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-$as_echo "yes" >&6; }
-               if test -n "$PKG_CONFIG" && \
     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"QtCore >= 4.8.0\""; } >&5
   ($PKG_CONFIG --exists --print-errors "QtCore >= 4.8.0") 2>&5
   ac_status=$?
@@ -4664,10 +4571,103 @@ $as_echo "not found" >&6; }
 
 fi
  ;; #(
+  "xyes") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+               if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.2.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.2.0") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+
+if test -n "$QT_QMAKE"; then
+    pkg_cv_QT_QMAKE="$QT_QMAKE"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.2.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.2.0") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QT_QMAKE=`$PKG_CONFIG --variable="host_bins" "Qt5Core >= 5.2.0" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+QT_QMAKE=$pkg_cv_QT_QMAKE
+
+if test "x$QT_QMAKE" = x""; then :
+
+fi
+
+fi
+
+as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake" >&5
+$as_echo_n "checking for $QT_QMAKE/qmake... " >&6; }
+if eval \${$as_ac_File+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  test "$cross_compiling" = yes &&
+  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
+if test -r "$QT_QMAKE/qmake"; then
+  eval "$as_ac_File=yes"
+else
+  eval "$as_ac_File=no"
+fi
+fi
+eval ac_res=\$$as_ac_File
+	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+$as_echo "$ac_res" >&6; }
+if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+  QT_QMAKE="$QT_QMAKE/qmake"
+else
+  as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake-qt5" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake-qt5" >&5
+$as_echo_n "checking for $QT_QMAKE/qmake-qt5... " >&6; }
+if eval \${$as_ac_File+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  test "$cross_compiling" = yes &&
+  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
+if test -r "$QT_QMAKE/qmake-qt5"; then
+  eval "$as_ac_File=yes"
+else
+  eval "$as_ac_File=no"
+fi
+fi
+eval ac_res=\$$as_ac_File
+	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+$as_echo "$ac_res" >&6; }
+if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+  QT_QMAKE="$QT_QMAKE/qmake-qt5"
+else
+  QT_QMAKE=""
+fi
+
+
+fi
+
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.2.0" >&5
+$as_echo_n "checking for Qt5 qmake >= 5.2.0... " >&6; }
+if test "x$QT_QMAKE" != "x"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $QT_QMAKE" >&5
+$as_echo "$QT_QMAKE" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+$as_echo "not found" >&6; }
+
+fi
+ ;; #(
   *) :
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $with_qt4" >&5
-$as_echo "$with_qt4" >&6; }
-        as_fn_error $? "Unknown option \"$with_qt4\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $with_qt5" >&5
+$as_echo "$with_qt5" >&6; }
+        as_fn_error $? "Unknown option \"$with_qt5\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
 esac
 if test "x$QT_QMAKE" = "x"; then :
   as_fn_error $? "Could not find qmake" "$LINENO" 5
