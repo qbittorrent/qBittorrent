@@ -601,6 +601,8 @@ EXPAND_BINDIR
 EXPAND_PREFIX
 zlib_LIBS
 zlib_CFLAGS
+qjson_LIBS
+qjson_CFLAGS
 libtorrent_LIBS
 libtorrent_CFLAGS
 BOOST_SYSTEM_LIB
@@ -716,6 +718,7 @@ with_qt5
 with_libtorrent_rasterbar0_16
 with_geoip_database_embedded
 with_qtsingleapplication
+with_qjson
 enable_debug
 enable_gui
 enable_systemd
@@ -742,6 +745,8 @@ PKG_CONFIG_LIBDIR
 QT_QMAKE
 libtorrent_CFLAGS
 libtorrent_LIBS
+qjson_CFLAGS
+qjson_LIBS
 zlib_CFLAGS
 zlib_LIBS'
 
@@ -1389,6 +1394,9 @@ Optional Packages:
   --with-qtsingleapplication=[system|shipped]
                           Use the shipped qtsingleapplication library or the
                           system one (default=shipped)
+  --with-qjson=[system|shipped]
+                          Use the shipped qjson library or the system one
+                          (default=shipped) (Qt4 only
   --with-boost[=ARG]      use Boost library from a standard location
                           (ARG=yes), from the specified location (ARG=<path>),
                           or disable it (ARG=no) [ARG=yes]
@@ -1423,6 +1431,9 @@ Some influential environment variables:
               C compiler flags for libtorrent, overriding pkg-config
   libtorrent_LIBS
               linker flags for libtorrent, overriding pkg-config
+  qjson_CFLAGS
+              C compiler flags for qjson, overriding pkg-config
+  qjson_LIBS  linker flags for qjson, overriding pkg-config
   zlib_CFLAGS C compiler flags for zlib, overriding pkg-config
   zlib_LIBS   linker flags for zlib, overriding pkg-config
 
@@ -4200,6 +4211,15 @@ else
 fi
 
 
+
+# Check whether --with-qjson was given.
+if test "${with_qjson+set}" = set; then :
+  withval=$with_qjson;
+else
+  with_qjson=shipped
+fi
+
+
 # Check whether --enable-debug was given.
 if test "${enable_debug+set}" = set; then :
   enableval=$enable_debug;
@@ -5506,6 +5526,118 @@ $as_echo "system" >&6; }
 $as_echo "$with_qtsingleapplication" >&6; }
         as_fn_error $? "Unknown option \"$with_qtsingleapplication\". Use either \"system\" or \"shipped\"." "$LINENO" 5 ;;
 esac
+
+if test "x$with_qt5" = "xno"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking which qjson to use" >&5
+$as_echo_n "checking which qjson to use... " >&6; }
+      case "x$with_qjson" in #(
+  "xshipped") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: shipped" >&5
+$as_echo "shipped" >&6; }
+                         QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG usesystemqjson" ;; #(
+  "xsystem") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: system" >&5
+$as_echo "system" >&6; }
+
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for qjson" >&5
+$as_echo_n "checking for qjson... " >&6; }
+
+if test -n "$qjson_CFLAGS"; then
+    pkg_cv_qjson_CFLAGS="$qjson_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"QJson >= 0.8.1\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "QJson >= 0.8.1") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_qjson_CFLAGS=`$PKG_CONFIG --cflags "QJson >= 0.8.1" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$qjson_LIBS"; then
+    pkg_cv_qjson_LIBS="$qjson_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"QJson >= 0.8.1\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "QJson >= 0.8.1") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_qjson_LIBS=`$PKG_CONFIG --libs "QJson >= 0.8.1" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        qjson_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "QJson >= 0.8.1" 2>&1`
+        else
+	        qjson_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "QJson >= 0.8.1" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$qjson_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (QJson >= 0.8.1) were not met:
+
+$qjson_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables qjson_CFLAGS
+and qjson_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details." "$LINENO" 5
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables qjson_CFLAGS
+and qjson_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details" "$LINENO" 5; }
+else
+	qjson_CFLAGS=$pkg_cv_qjson_CFLAGS
+	qjson_LIBS=$pkg_cv_qjson_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	CPPFLAGS="$qjson_CFLAGS $CPPFLAGS"
+                                          LIBS="$qjson_LIBS $LIBS"
+fi
+                         QBT_ADD_CONFIG="$QBT_ADD_CONFIG usesystemqjson" ;; #(
+  *) :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $with_qjson" >&5
+$as_echo "$with_qjson" >&6; }
+              as_fn_error $? "Unknown option \"$with_qjson\". Use either \"system\" or \"shipped\"." "$LINENO" 5 ;;
+esac
+
+fi
 
 
 pkg_failed=no

@@ -50,7 +50,7 @@
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
-#include "webui.h"
+#include "../webui/webui.h"
 #endif
 
 #include "application.h"

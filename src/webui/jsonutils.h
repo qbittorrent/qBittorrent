@@ -36,8 +36,13 @@
 #include <QJsonArray>
 #else
 #include <QString>
+#ifndef USE_SYSTEM_QJSON
 #include "qjson/parser.h"
 #include "qjson/serializer.h"
+#else // USE_SYSTEM_QJSON
+#include <qjson/parser.h>
+#include <qjson/serializer.h>
+#endif // USE_SYSTEM_QJSON
 #endif
 
 namespace json {

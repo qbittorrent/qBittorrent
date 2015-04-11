@@ -1,5 +1,3 @@
-INCLUDEPATH += $$PWD
-
 HEADERS += \
     $$PWD/webui.h \
     $$PWD/btjson.h \
@@ -20,6 +18,9 @@ SOURCES += \
     $$PWD/abstractwebapplication.cpp
 
 # QJson JSON parser/serializer for using with Qt4
-lessThan(QT_MAJOR_VERSION, 5): include(qjson/qjson.pri)
+lessThan(QT_MAJOR_VERSION, 5) {
+    !usesystemqjson: include(qjson/qjson.pri)
+    else: DEFINES += USE_SYSTEM_QJSON
+}
 
 RESOURCES += $$PWD/webui.qrc
