@@ -121,10 +121,12 @@ private:
     unsigned long nb_search_results;
     SupportedEngines *supported_engines;
     QTimer *searchTimeout;
-    QPointer<SearchTab> currentSearchTab;
+    QPointer<SearchTab> currentSearchTab; // Selected tab
+    QPointer<SearchTab> activeSearchTab; // Tab with running search
     QList<QPointer<SearchTab> > all_tab; // To store all tabs
     const SearchCategories full_cat_names;
     MainWindow *mp_mainWindow;
+    inline void allTabsSetActiveState(bool);
 };
 
 #endif
