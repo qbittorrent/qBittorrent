@@ -1,5 +1,5 @@
-src/geoip/GeoIP.dat
-src/geoip/GeoIP.dat.gz
+src/gui/geoip/GeoIP.dat
+src/gui/geoip/GeoIP.dat.gz
 src/qbittorrent
 qbittorrent.pro.user*
 conf.pri
