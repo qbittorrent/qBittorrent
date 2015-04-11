@@ -28,10 +28,9 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 from novaprinter import prettyPrinter
-from helpers import download_file
+from helpers import download_file, retrieve_url
 from urllib import parse
 from html.parser import HTMLParser
-from http.client import HTTPConnection as http
 from re import compile as re_compile
 
 class torrentreactor(object):
@@ -100,23 +99,13 @@ class torrentreactor(object):
     def search(self, what, cat='all'):
         i = 0
         dat = ''
-        connection = http("www.torrentreactor.net")
 
-        while True and i<11:
+        while i < 11:
             results = []
             parser = self.SimpleHTMLParser(results, self.url)
-            query = '/torrents-search/%s/%d?sort=seeders.desc&type=all&period=none&categories=%s'%(what, (i*35), self.supported_categories[cat])
-            connection.request("GET", query)
-            response = connection.getresponse()
-            if response.status != 200:
-                break
-
-            dat = response.read().decode('utf-8')
-
+            dat = retrieve_url('%s/torrent-search/%s/%s?sort=seeders.desc&type=all&period=none&categories=%s'%(self.url, what, (i*35), self.supported_categories[cat]))
             parser.feed(dat)
             parser.close()
             if len(results) <= 0:
                 break
             i += 1
-
-        connection.close()

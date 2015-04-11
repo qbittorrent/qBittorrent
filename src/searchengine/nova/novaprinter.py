@@ -37,7 +37,7 @@ def prettyPrinter(dictionary):
         outtext = "|".join((outtext, dictionary["desc_link"]))
 
     with open(1, 'w', encoding='utf-8', closefd=False) as utf8_stdout:
-        utf8_stdout.write("".join((outtext, "\n")))
+        utf8_stdout.write(unicode("".join((outtext, "\n"))))
 
 def anySizeToBytes(size_string):
     """

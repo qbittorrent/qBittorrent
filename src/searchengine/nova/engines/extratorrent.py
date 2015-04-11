@@ -60,6 +60,7 @@ class extratorrent(object):
             self.pending_size = False
             self.next_queries = True
             self.pending_next_queries = False
+            self.next_queries_set = set()
 
         def handle_starttag(self, tag, attrs):
             if self.current_item:
@@ -74,7 +75,7 @@ class extratorrent(object):
                         #description
                         self.current_item["desc_link"] = "".join((self.url, link))
                         #remove view at the beginning
-                        self.current_item["name"] = params["title"][5:]
+                        self.current_item["name"] = params["title"][5:].replace("&amp;", "&")
                         self.pending_size = True
                     elif link[8] == "_":
                         #download link
@@ -108,7 +109,10 @@ class extratorrent(object):
             elif self.pending_next_queries:
                 if tag == "a":
                     params = dict(attrs)
+                    if params["title"] in self.next_queries_set:
+                        return
                     self.list_searches.append(params['href'])
+                    self.next_queries_set.add(params["title"])
                     if params["title"] == "10":
                         self.pending_next_queries = False
                 else:

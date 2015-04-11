@@ -68,12 +68,11 @@ class mininova(object):
             params = dict(attrs)
             link = params["href"]
 
-            if link.startswith("/get/"):
-                #download link
-                self.current_item["link"] = "".join((self.url, link))
-            elif link.startswith("/tor/"):
+            if link.startswith("/tor/"):
                 #description
                 self.current_item["desc_link"] = "".join((self.url, link))
+                #get download link from description by id
+                self.current_item["link"] = "".join((self.url, "/get/", link[5:-2]))
                 self.cur_item_name = "name"
                 self.current_item["name"] = ""
             elif self.next_queries and link.startswith("/search"):
@@ -83,7 +82,7 @@ class mininova(object):
         def handle_starttag_td(self, attrs):
             """ Handler of td start tag """
             if ("align", "right") in attrs:
-                if not "size" in self.current_item.keys():
+                if not "size" in self.current_item:
                     self.cur_item_name = "size"
                     self.current_item["size"] = ""
 
@@ -113,7 +112,7 @@ class mininova(object):
                 prettyPrinter(self.current_item)
                 self.current_item = None
             elif self.cur_item_name:
-                if tag == "a" or tag == "span":
+                if tag == "a" or tag == "td":
                     self.cur_item_name = None
 
         def handle_data(self, data):
