@@ -157,7 +157,7 @@ static const char KEY_SUFFIX_REMOVED[] = "_removed";
 QVariantMap getTranserInfoMap();
 QVariantMap toMap(const QTorrentHandle& h);
 void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData);
-void processHash(QVariantMap prevData, QVariantMap data, QVariantMap &syncData, QVariantList &removedItems);
+void processHash(QVariantHash prevData, QVariantHash data, QVariantMap &syncData, QVariantList &removedItems);
 void processList(QVariantList prevData, QVariantList data, QVariantList &syncData, QVariantList &removedItems);
 QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantMap &lastAcceptedData,  QVariantMap &lastData);
 
@@ -314,7 +314,7 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
 {
     QVariantMap data;
 
-    QVariantMap torrents;
+    QVariantHash torrents;
 
     std::vector<torrent_handle> torrentsList = QBtSession::instance()->getTorrents();
     std::vector<torrent_handle>::const_iterator it = torrentsList.begin();
@@ -600,7 +600,14 @@ void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
         switch (data[key].type()) {
         case QVariant::Map: {
                 QVariantMap map;
-                processHash(prevData[key].toMap(), data[key].toMap(), map, removedItems);
+                processMap(prevData[key].toMap(), data[key].toMap(), map);
+                if (!map.isEmpty())
+                    syncData[key] = map;
+            }
+            break;
+        case QVariant::Hash: {
+                QVariantMap map;
+                processHash(prevData[key].toHash(), data[key].toHash(), map, removedItems);
                 if (!map.isEmpty())
                     syncData[key] = map;
                 if (!removedItems.isEmpty())
@@ -636,7 +643,7 @@ void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
 // Compare two lists of structures (prevData, data) and calculate difference (syncData, removedItems).
 // Structures encoded as map.
 // Lists are encoded as hash table (indexed by structure key value) to improve ease of searching for removed items.
-void processHash(QVariantMap prevData, QVariantMap data, QVariantMap &syncData, QVariantList &removedItems)
+void processHash(QVariantHash prevData, QVariantHash data, QVariantMap &syncData, QVariantList &removedItems)
 {
     // initialize output variables
     syncData.clear();
