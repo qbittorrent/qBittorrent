@@ -1,4 +1,4 @@
-#VERSION: 2.13
+#VERSION: 2.14
 #AUTHORS: Diego de las Heras (diegodelasheras@gmail.com)
 
 # Redistribution and use in source and binary forms, with or without
@@ -105,7 +105,7 @@ class torrentz(object):
         while i < 6:
             results_list = []
             # "what" is already urlencoded
-            html = retrieve_url(self.url + '/any?f=%s&p=%d' % (what, i))
+            html = retrieve_url('%s/any?f=%s&p=%d' % (self.url, what, i))
             parser = self.MyHtmlParser(results_list, self.url, trackers)
             parser.feed(html)
             parser.close()

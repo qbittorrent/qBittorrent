@@ -117,6 +117,8 @@ def displayCapabilities(supported_engines):
 def run_search(engine_list):
     """ Run search in engine
 
+        @param engine_list List with engine, query and category
+
         @retval False if any exceptions occured
         @retval True  otherwise
     """
@@ -149,6 +151,7 @@ def main(args):
         raise SystemExit("./nova2.py [all|engine1[,engine2]*] <category> <keywords>\n"
                          "available engines: %s" % (','.join(supported_engines)))
 
+    #get only unique engines with set
     engines_list = set(e.lower() for e in args[0].strip().split(','))
 
     if 'all' in engines_list:
@@ -170,10 +173,11 @@ def main(args):
     what = urllib.quote(' '.join(args[2:]))
 
     if THREADED:
+        #child process spawning is controlled min(number of searches, number of cpu)
         pool = Pool(min(len(engines_list), cpu_count()))
         pool.map(run_search, ([globals()[engine], what, cat] for engine in engines_list))
     else:
-        _ = [run_search([globals()[engine], what, cat]) for engine in engines_list]
+        map(run_search, ([globals()[engine], what, cat] for engine in engines_list))
 
 if __name__ == "__main__":
     main(argv[1:])
