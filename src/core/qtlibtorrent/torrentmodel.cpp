@@ -29,6 +29,8 @@
  */
 
 #include <QDebug>
+#include <QApplication>
+#include <QPalette>
 
 #include "torrentmodel.h"
 #include "torrentpersistentdata.h"
@@ -83,6 +85,14 @@ QIcon get_checking_icon() {
 QIcon get_error_icon() {
     static QIcon cached = QIcon(":/icons/skin/error.png");
     return cached;
+}
+
+bool isDarkTheme()
+{
+    QPalette pal = QApplication::palette();
+    // QPalette::Base is used for the background of the Treeview
+    QColor color = pal.color(QPalette::Active, QPalette::Base);
+    return (color.lightness() < 127);
 }
 }
 
@@ -187,6 +197,7 @@ QIcon TorrentModelItem::getIconByState(State state) {
 }
 
 QColor TorrentModelItem::getColorByState(State state) {
+    bool dark = isDarkTheme();
     switch (state) {
     case STATE_DOWNLOADING:
     case STATE_DOWNLOADING_META:
@@ -194,13 +205,22 @@ QColor TorrentModelItem::getColorByState(State state) {
     case STATE_ALLOCATING:
     case STATE_STALLED_DL:
     case STATE_STALLED_UP:
-        return QColor(0, 0, 0); // Black
+        if (!dark)
+            return QColor(0, 0, 0); // Black
+        else
+            return QColor(255, 255, 255); // White
     case STATE_SEEDING:
-        return QColor(65, 105, 225); // Royal Blue
+        if (!dark)
+            return QColor(65, 105, 225); // Royal Blue
+        else
+            return QColor(100, 149, 237); // Cornflower Blue
     case STATE_PAUSED_DL:
         return QColor(250, 128, 114); // Salmon
     case STATE_PAUSED_UP:
-        return QColor(0, 0, 139); // Dark Blue
+        if (!dark)
+            return QColor(0, 0, 139); // Dark Blue
+        else
+            return QColor(65, 105, 225); // Royal Blue
     case STATE_PAUSED_MISSING:
         return QColor(255, 0, 0); // red
     case STATE_QUEUED_DL:
