@@ -157,7 +157,7 @@ public slots:
     /* Needed by Web UI */
     void pauseAllTorrents();
     void pauseTorrent(const QString &hash);
-    void resumeTorrent(const QString &hash);
+    void resumeTorrent(const QString &hash, const bool force = false);
     void resumeAllTorrents();
     /* End Web UI */
     void preAllocateAllFiles(bool b);

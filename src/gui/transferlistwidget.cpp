@@ -282,6 +282,13 @@ void TransferListWidget::startSelectedTorrents()
         BTSession->resumeTorrent(hash);
 }
 
+void TransferListWidget::forceStartSelectedTorrents()
+{
+    const QStringList hashes = getSelectedTorrentsHashes();
+    foreach (const QString &hash, hashes)
+        BTSession->resumeTorrent(hash, true);
+}
+
 void TransferListWidget::startVisibleTorrents()
 {
     QStringList hashes;
@@ -725,6 +732,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
     // Create actions
     QAction actionStart(IconProvider::instance()->getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), 0);
     connect(&actionStart, SIGNAL(triggered()), this, SLOT(startSelectedTorrents()));
+    QAction actionForceStart(tr("Force Resume", "Force Resume/start the torrent"), 0);
+    connect(&actionForceStart, SIGNAL(triggered()), this, SLOT(forceStartSelectedTorrents()));
     QAction actionPause(IconProvider::instance()->getIcon("media-playback-pause"), tr("Pause", "Pause the torrent"), 0);
     connect(&actionPause, SIGNAL(triggered()), this, SLOT(pauseSelectedTorrents()));
     QAction actionDelete(IconProvider::instance()->getIcon("edit-delete"), tr("Delete", "Delete the torrent"), 0);
@@ -753,10 +762,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
     connect(&actionForce_recheck, SIGNAL(triggered()), this, SLOT(recheckSelectedTorrents()));
     QAction actionCopy_magnet_link(QIcon(":/icons/magnet.png"), tr("Copy magnet link"), 0);
     connect(&actionCopy_magnet_link, SIGNAL(triggered()), this, SLOT(copySelectedMagnetURIs()));
-
     QAction actionCopy_name(IconProvider::instance()->getIcon("edit-copy"), tr("Copy name"), 0);
     connect(&actionCopy_name, SIGNAL(triggered()), this, SLOT(copySelectedNames()));
-
     QAction actionSuper_seeding_mode(tr("Super seeding mode"), 0);
     actionSuper_seeding_mode.setCheckable(true);
     connect(&actionSuper_seeding_mode, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSuperSeeding()));
@@ -771,13 +778,14 @@ void TransferListWidget::displayListMenu(const QPoint&)
     // End of actions
     QMenu listMenu(this);
     // Enable/disable pause/start action given the DL state
-    bool has_pause = false, has_start = false, has_preview = false;
+    bool has_pause = false, has_start = false, has_force = false, has_preview = false;
     bool all_same_super_seeding = true;
     bool super_seeding_mode = false;
     bool all_same_sequential_download_mode = true, all_same_prio_firstlast = true;
     bool sequential_download_mode = false, prioritize_first_last = false;
     bool one_has_metadata = false, one_not_seed = false;
     bool first = true;
+    bool forced = false;
     QTorrentHandle h;
     qDebug("Displaying menu");
     foreach (const QModelIndex &index, selectedIndexes) {
@@ -788,6 +796,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
         if (!h.is_valid()) continue;
         if (h.has_metadata())
             one_has_metadata = true;
+        forced = h.is_forced();
         if (!h.is_seed()) {
             one_not_seed = true;
             if (h.has_metadata()) {
@@ -818,8 +827,26 @@ void TransferListWidget::displayListMenu(const QPoint&)
                 listMenu.addAction(&actionStart);
                 has_start = true;
             }
+            if (!has_force) {
+                listMenu.addAction(&actionForceStart);
+                has_force = true;
+            }
         }
         else {
+
+            if (!forced) {
+                if (!has_force) {
+                    listMenu.addAction(&actionForceStart);
+                    has_force = true;
+                }
+            }
+            else {
+                if (!has_start) {
+                    listMenu.addAction(&actionStart);
+                    has_start = true;
+                }
+            }
+
             if (!has_pause) {
                 listMenu.addAction(&actionPause);
                 has_pause = true;
@@ -828,7 +855,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
         if (h.has_metadata() && BTSession->isFilePreviewPossible(hash) && !has_preview)
             has_preview = true;
         first = false;
-        if (has_pause && has_start && has_preview && one_not_seed) break;
+        if (has_pause && has_start && has_force && has_preview && one_not_seed) break;
     }
     listMenu.addSeparator();
     listMenu.addAction(&actionDelete);

@@ -163,8 +163,10 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         switch (model->data(model->index(left.row(), TorrentModelItem::TR_STATUS)).toInt()) {
         case TorrentModelItem::STATE_DOWNLOADING:
         case TorrentModelItem::STATE_DOWNLOADING_META:
+        case TorrentModelItem::STATE_FORCED_DL:
         case TorrentModelItem::STATE_STALLED_DL:
         case TorrentModelItem::STATE_SEEDING:
+        case TorrentModelItem::STATE_FORCED_UP:
         case TorrentModelItem::STATE_STALLED_UP:
             activeL = true;
             break;
@@ -175,8 +177,10 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         switch (model->data(model->index(right.row(), TorrentModelItem::TR_STATUS)).toInt()) {
         case TorrentModelItem::STATE_DOWNLOADING:
         case TorrentModelItem::STATE_DOWNLOADING_META:
+        case TorrentModelItem::STATE_FORCED_DL:
         case TorrentModelItem::STATE_STALLED_DL:
         case TorrentModelItem::STATE_SEEDING:
+        case TorrentModelItem::STATE_FORCED_UP:
         case TorrentModelItem::STATE_STALLED_UP:
             activeR = true;
             break;
@@ -262,16 +266,17 @@ bool TransferListSortModel::matchStatusFilter(int sourceRow, const QModelIndex &
         return (state == TorrentModelItem::STATE_DOWNLOADING || state == TorrentModelItem::STATE_STALLED_DL
                 || state == TorrentModelItem::STATE_PAUSED_DL || state == TorrentModelItem::STATE_CHECKING_DL
                 || state == TorrentModelItem::STATE_QUEUED_DL || state == TorrentModelItem::STATE_DOWNLOADING_META
-                || state == TorrentModelItem::STATE_PAUSED_MISSING);
+                || state == TorrentModelItem::STATE_PAUSED_MISSING || state == TorrentModelItem::STATE_FORCED_DL);
 
     case TorrentFilter::SEEDING:
         return (state == TorrentModelItem::STATE_SEEDING || state == TorrentModelItem::STATE_STALLED_UP
-                || state == TorrentModelItem::STATE_CHECKING_UP || state == TorrentModelItem::STATE_QUEUED_UP);
+                || state == TorrentModelItem::STATE_CHECKING_UP || state == TorrentModelItem::STATE_QUEUED_UP
+                || state == TorrentModelItem::STATE_FORCED_UP);
 
     case TorrentFilter::COMPLETED:
         return (state == TorrentModelItem::STATE_SEEDING || state == TorrentModelItem::STATE_STALLED_UP
                 || state == TorrentModelItem::STATE_PAUSED_UP || state == TorrentModelItem::STATE_CHECKING_UP
-                || state == TorrentModelItem::STATE_QUEUED_UP);
+                || state == TorrentModelItem::STATE_QUEUED_UP || state == TorrentModelItem::STATE_FORCED_UP);
 
     case TorrentFilter::PAUSED:
         return (state == TorrentModelItem::STATE_PAUSED_DL || state == TorrentModelItem::STATE_PAUSED_MISSING);
@@ -286,7 +291,8 @@ bool TransferListSortModel::matchStatusFilter(int sourceRow, const QModelIndex &
             return (up_speed > 0);
         }
 
-        return (state == TorrentModelItem::STATE_DOWNLOADING || state == TorrentModelItem::STATE_SEEDING);
+        return (state == TorrentModelItem::STATE_DOWNLOADING || state == TorrentModelItem::STATE_SEEDING
+                || state == TorrentModelItem::STATE_FORCED_DL || state == TorrentModelItem::STATE_FORCED_UP);
 
     case TorrentFilter::INACTIVE:
         if (state == TorrentModelItem::STATE_STALLED_DL) {
@@ -294,7 +300,8 @@ bool TransferListSortModel::matchStatusFilter(int sourceRow, const QModelIndex &
             return !(up_speed > 0);
         }
 
-        return (state != TorrentModelItem::STATE_DOWNLOADING && state != TorrentModelItem::STATE_SEEDING);
+        return (state != TorrentModelItem::STATE_DOWNLOADING && state != TorrentModelItem::STATE_SEEDING
+                && state != TorrentModelItem::STATE_FORCED_DL && state != TorrentModelItem::STATE_FORCED_UP);
 
     default:
         return false;

@@ -130,12 +130,13 @@ public:
     qulonglong eta() const;
     void toggleSequentialDownload();
     void toggleFirstLastPiecePrio();
+    bool is_forced() const;
 
     //
     // Setters
     //
     void pause() const;
-    void resume() const;
+    void resume(const bool force = false) const;
     void remove_url_seed(const QString& seed) const;
     void add_url_seed(const QString& seed) const;
     void set_tracker_login(const QString& username, const QString& password) const;
@@ -159,6 +160,7 @@ public:
     static bool has_error(const libtorrent::torrent_status &status);
     static float progress(const libtorrent::torrent_status &status);
     static QString filepath_at(const libtorrent::torrent_info &info, unsigned int index);
+    static bool is_forced(const libtorrent::torrent_status &status);
 
 private:
     void prioritize_first_last_piece(int file_index, bool b) const;
