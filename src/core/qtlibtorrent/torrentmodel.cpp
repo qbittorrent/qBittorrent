@@ -148,10 +148,16 @@ TorrentModelItem::State TorrentModelItem::state() const {
         case torrent_status::downloading_metadata:
             return STATE_DOWNLOADING_META;
         case torrent_status::downloading:
-            return m_lastStatus.download_payload_rate > 0 ? STATE_DOWNLOADING : STATE_STALLED_DL;
+            if (!m_torrent.is_forced(m_lastStatus))
+                return m_lastStatus.download_payload_rate > 0 ? STATE_DOWNLOADING : STATE_STALLED_DL;
+            else
+                return STATE_FORCED_DL;
         case torrent_status::finished:
         case torrent_status::seeding:
-            return m_lastStatus.upload_payload_rate > 0 ? STATE_SEEDING : STATE_STALLED_UP;
+            if (!m_torrent.is_forced(m_lastStatus))
+                return m_lastStatus.upload_payload_rate > 0 ? STATE_SEEDING : STATE_STALLED_UP;
+            else
+                return STATE_FORCED_UP;
         case torrent_status::queued_for_checking:
             return STATE_QUEUED_CHECK;
         case torrent_status::checking_resume_data:
@@ -170,6 +176,7 @@ QIcon TorrentModelItem::getIconByState(State state) {
     switch (state) {
     case STATE_DOWNLOADING:
     case STATE_DOWNLOADING_META:
+    case STATE_FORCED_DL:
         return get_downloading_icon();
     case STATE_ALLOCATING:
     case STATE_STALLED_DL:
@@ -177,6 +184,7 @@ QIcon TorrentModelItem::getIconByState(State state) {
     case STATE_STALLED_UP:
         return get_stalled_uploading_icon();
     case STATE_SEEDING:
+    case STATE_FORCED_UP:
         return get_uploading_icon();
     case STATE_PAUSED_DL:
         return get_paused_icon();
@@ -204,6 +212,7 @@ QColor TorrentModelItem::getColorByState(State state) {
     switch (state) {
     case STATE_DOWNLOADING:
     case STATE_DOWNLOADING_META:
+    case STATE_FORCED_DL:
         return QColor(34, 139, 34); // Forest Green
     case STATE_ALLOCATING:
     case STATE_STALLED_DL:
@@ -213,6 +222,7 @@ QColor TorrentModelItem::getColorByState(State state) {
         else
             return QColor(255, 255, 255); // White
     case STATE_SEEDING:
+    case STATE_FORCED_UP:
         if (!dark)
             return QColor(65, 105, 225); // Royal Blue
         else
@@ -596,6 +606,7 @@ TorrentStatusReport TorrentModel::getTorrentStatusReport() const
     for ( ; it != itend; ++it) {
         switch((*it)->state()) {
         case TorrentModelItem::STATE_DOWNLOADING:
+        case TorrentModelItem::STATE_FORCED_DL:
             ++report.nb_active;
             ++report.nb_downloading;
             break;
@@ -613,6 +624,7 @@ TorrentStatusReport TorrentModel::getTorrentStatusReport() const
             break;
         }
         case TorrentModelItem::STATE_SEEDING:
+        case TorrentModelItem::STATE_FORCED_UP:
             ++report.nb_active;
             ++report.nb_seeding;
             ++report.nb_completed;
@@ -690,8 +702,10 @@ bool TorrentModel::inhibitSystem()
         switch((*it)->data(TorrentModelItem::TR_STATUS).toInt()) {
         case TorrentModelItem::STATE_DOWNLOADING:
         case TorrentModelItem::STATE_DOWNLOADING_META:
+        case TorrentModelItem::STATE_FORCED_DL:
         case TorrentModelItem::STATE_STALLED_DL:
         case TorrentModelItem::STATE_SEEDING:
+        case TorrentModelItem::STATE_FORCED_UP:
         case TorrentModelItem::STATE_STALLED_UP:
             return true;
         default:
