@@ -116,6 +116,9 @@ TorrentModelItem::TorrentModelItem(const QTorrentHandle &h)
 {
     if (m_name.isEmpty())
         m_name = h.name();
+    // If name is empty show the hash. This happens when magnet isn't retrieved.
+    if (m_name.isEmpty())
+        m_name = h.hash();
 }
 
 void TorrentModelItem::refreshStatus(libtorrent::torrent_status const& status) {
@@ -544,6 +547,11 @@ void TorrentModel::handleTorrentUpdate(const QTorrentHandle &h)
 {
     const int row = torrentRow(h.hash());
     if (row >= 0) {
+        // This line changes the torrent name when magnet is retrieved.
+        // When magnet link is added, "dn" parameter is used as name, but when metadata is retrieved
+        // we change the name with the retrieved torrent name.
+        m_torrents[row]->setData(TorrentModelItem::TR_NAME, h.name(), Qt::DisplayRole);
+
         m_torrents[row]->refreshStatus(h.status(torrent_handle::query_accurate_download_counters));
         notifyTorrentChanged(row);
     }
