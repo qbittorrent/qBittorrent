@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,54 +28,39 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef DNSUPDATER_H
-#define DNSUPDATER_H
+#ifndef NET_REVERSERESOLUTION_H
+#define NET_REVERSERESOLUTION_H
 
+#include <QCache>
+#include <QHostInfo>
 #include <QObject>
-#include <QHostAddress>
-#include <QNetworkReply>
-#include <QDateTime>
-#include <QTimer>
-#include "preferences.h"
+#include <QString>
 
-/*!
- * Based on http://www.dyndns.com/developers/specs/
- */
-class DNSUpdater : public QObject
+namespace Net
 {
-  Q_OBJECT
-public:
-  explicit DNSUpdater(QObject *parent = 0);
-  ~DNSUpdater();
-  static QUrl getRegistrationUrl(int service);
 
-public slots:
-  void updateCredentials();
+class ReverseResolution : public QObject
+{
+    Q_OBJECT
+    Q_DISABLE_COPY(ReverseResolution)
+
+public:
+    explicit ReverseResolution(QObject *parent = 0);
+    ~ReverseResolution();
+
+    void resolve(const QString &ip);
+
+signals:
+    void ipResolved(const QString &ip, const QString &hostname);
 
 private slots:
-  void checkPublicIP();
-  void ipRequestFinished(QNetworkReply* reply);
-  void updateDNSService();
-  void ipUpdateFinished(QNetworkReply* reply);
+    void hostResolved(const QHostInfo &host);
 
 private:
-  QUrl getUpdateUrl() const;
-  void processIPUpdateReply(const QString &reply);
-
-private:
-  QHostAddress m_lastIP;
-  QDateTime m_lastIPCheckTime;
-  QTimer m_ipCheckTimer;
-  int m_state;
-  // Service creds
-  DNS::Service m_service;
-  QString m_domain;
-  QString m_username;
-  QString m_password;
-
-private:
-  static const int IP_CHECK_INTERVAL_MS = 1800000; // 30 min
-  enum State { OK, INVALID_CREDS, FATAL };
+    QHash<int /* LookupID */, QString /* IP */> m_lookups;
+    QCache<QString /* IP */, QString /* HostName */> m_cache;
 };
 
-#endif // DNSUPDATER_H
+}
+
+#endif // NET_REVERSERESOLUTION_H

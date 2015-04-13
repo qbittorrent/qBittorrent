@@ -22,7 +22,6 @@ HEADERS += \
     $$PWD/torrentcontenttreeview.h \
     $$PWD/deletionconfirmationdlg.h \
     $$PWD/statusbar.h \
-    $$PWD/reverseresolution.h \
     $$PWD/ico.h \
     $$PWD/speedlimitdlg.h \
     $$PWD/about_imp.h \

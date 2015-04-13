@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -28,14 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef REVERSERESOLUTION_H
-#define REVERSERESOLUTION_H
-
-#include <QList>
-#include <QCache>
 #include <QDebug>
-#include <QHostInfo>
-#include "misc.h"
 
 #include <boost/version.hpp>
 #if BOOST_VERSION < 103500
@@ -44,62 +37,56 @@
 #include <boost/asio/ip/tcp.hpp>
 #endif
 
+#include "reverseresolution.h"
+
 const int CACHE_SIZE = 500;
 
-class ReverseResolution: public QObject {
-  Q_OBJECT
-  Q_DISABLE_COPY(ReverseResolution)
+using namespace Net;
 
-public:
-  explicit ReverseResolution(QObject* parent): QObject(parent) {
+static inline bool isUsefulHostName(const QString &hostname, const QString &ip)
+{
+    return (!hostname.isEmpty() && hostname != ip);
+}
+
+ReverseResolution::ReverseResolution(QObject *parent)
+    : QObject(parent)
+{
     m_cache.setMaxCost(CACHE_SIZE);
-  }
+}
 
-  ~ReverseResolution() {
+ReverseResolution::~ReverseResolution()
+{
     qDebug("Deleting host name resolver...");
-  }
+}
 
-  void resolve(const QString &ip) {
+void ReverseResolution::resolve(const QString &ip)
+{
     if (m_cache.contains(ip)) {
-      const QString& hostname = *m_cache.object(ip);
-      qDebug() << "Resolved host name using cache: " << ip << " -> " << hostname;
-      if (isUsefulHostName(hostname, ip))
-        emit ip_resolved(ip, hostname);
-      return;
+        const QString &hostname = *m_cache.object(ip);
+        qDebug() << "Resolved host name using cache: " << ip << " -> " << hostname;
+        if (isUsefulHostName(hostname, ip))
+            emit ipResolved(ip, hostname);
     }
-    // Actually resolve the ip
-    m_lookups.insert(QHostInfo::lookupHost(ip, this, SLOT(hostResolved(QHostInfo))), ip);
-  }
+    else {
+        // Actually resolve the ip
+        m_lookups.insert(QHostInfo::lookupHost(ip, this, SLOT(hostResolved(QHostInfo))), ip);
+    }
+}
 
-signals:
-  void ip_resolved(const QString &ip, const QString &hostname);
-
-private slots:
-  void hostResolved(const QHostInfo& host) {
-    const QString& ip = m_lookups.take(host.lookupId());
+void ReverseResolution::hostResolved(const QHostInfo &host)
+{
+    const QString &ip = m_lookups.take(host.lookupId());
     Q_ASSERT(!ip.isNull());
 
     if (host.error() != QHostInfo::NoError) {
-      qDebug() << "DNS Reverse resolution error: " << host.errorString();
-      return;
+        qDebug() << "DNS Reverse resolution error: " << host.errorString();
+        return;
     }
 
-    const QString& hostname = host.hostName();
+    const QString &hostname = host.hostName();
 
     qDebug() << Q_FUNC_INFO << ip << QString("->") << hostname;
     m_cache.insert(ip, new QString(hostname));
     if (isUsefulHostName(hostname, ip))
-      emit ip_resolved(ip, hostname);
-  }
-
-private:
-  static inline bool isUsefulHostName(const QString& hostname, const QString& ip) {
-    return (!hostname.isEmpty() && hostname != ip);
-  }
-
-  QHash<int /* LookupID */, QString /* IP */> m_lookups;
-  QCache<QString /* IP */, QString /* HostName */> m_cache;
-};
-
-
-#endif // REVERSERESOLUTION_H
+        emit ipResolved(ip, hostname);
+}

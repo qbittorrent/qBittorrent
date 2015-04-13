@@ -31,7 +31,7 @@
 #include "peerlistwidget.h"
 #include "peerlistdelegate.h"
 #include "peerlistsortmodel.h"
-#include "reverseresolution.h"
+#include "core/net/reverseresolution.h"
 #include "preferences.h"
 #include "propertieswidget.h"
 #include "geoipmanager.h"
@@ -126,8 +126,8 @@ void PeerListWidget::updatePeerHostNameResolutionState()
 {
   if (Preferences::instance()->resolvePeerHostNames()) {
     if (!m_resolver) {
-      m_resolver = new ReverseResolution(this);
-      connect(m_resolver, SIGNAL(ip_resolved(QString,QString)), SLOT(handleResolved(QString,QString)));
+      m_resolver = new Net::ReverseResolution(this);
+      connect(m_resolver, SIGNAL(ipResolved(QString,QString)), SLOT(handleResolved(QString,QString)));
       loadPeers(m_properties->getCurrentTorrent(), true);
     }
   } else {

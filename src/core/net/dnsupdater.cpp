@@ -38,6 +38,8 @@
 #include "dnsupdater.h"
 #include "logger.h"
 
+using namespace Net;
+
 DNSUpdater::DNSUpdater(QObject *parent) :
   QObject(parent), m_state(OK), m_service(DNS::NONE)
 {

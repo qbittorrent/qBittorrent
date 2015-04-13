@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2011  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -50,6 +50,9 @@ class QTcpSocket;
 class QTextCodec;
 QT_END_NAMESPACE
 
+namespace Net
+{
+
 class Smtp : public QObject {
   Q_OBJECT
 
@@ -96,4 +99,7 @@ private:
   QString username;
   QString password;
 };
+
+}
+
 #endif

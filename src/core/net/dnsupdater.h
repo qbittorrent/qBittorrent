@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Bittorrent Client using Qt4 and libtorrent.
+ * Copyright (C) 2011  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,32 +24,63 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
+ *
+ * Contact : chris@qbittorrent.org
  */
 
-#ifndef WEBUI_H
-#define WEBUI_H
+#ifndef DNSUPDATER_H
+#define DNSUPDATER_H
 
 #include <QObject>
-#include <QPointer>
+#include <QHostAddress>
+#include <QNetworkReply>
+#include <QDateTime>
+#include <QTimer>
+#include "preferences.h"
 
-namespace Http { class Server; }
-namespace Net {class DNSUpdater; }
-class AbstractWebApplication;
-
-class WebUI : public QObject
+namespace Net
 {
-    Q_OBJECT
 
+/*!
+ * Based on http://www.dyndns.com/developers/specs/
+ */
+class DNSUpdater : public QObject
+{
+  Q_OBJECT
 public:
-    explicit WebUI(QObject *parent = 0);
+  explicit DNSUpdater(QObject *parent = 0);
+  ~DNSUpdater();
+  static QUrl getRegistrationUrl(int service);
+
+public slots:
+  void updateCredentials();
 
 private slots:
-    void init();
+  void checkPublicIP();
+  void ipRequestFinished(QNetworkReply* reply);
+  void updateDNSService();
+  void ipUpdateFinished(QNetworkReply* reply);
 
 private:
-    QPointer<Http::Server> httpServer_;
-    QPointer<Net::DNSUpdater> dynDNSUpdater_;
-    QPointer<AbstractWebApplication> webapp_;
+  QUrl getUpdateUrl() const;
+  void processIPUpdateReply(const QString &reply);
+
+private:
+  QHostAddress m_lastIP;
+  QDateTime m_lastIPCheckTime;
+  QTimer m_ipCheckTimer;
+  int m_state;
+  // Service creds
+  DNS::Service m_service;
+  QString m_domain;
+  QString m_username;
+  QString m_password;
+
+private:
+  static const int IP_CHECK_INTERVAL_MS = 1800000; // 30 min
+  enum State { OK, INVALID_CREDS, FATAL };
 };
 
-#endif // WEBUI_H
+}
+
+#endif // DNSUPDATER_H
