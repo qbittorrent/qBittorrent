@@ -66,9 +66,9 @@ Q_IMPORT_PLUGIN(qico)
 #include <cstdlib>
 #include <iostream>
 #include "application.h"
-#include "misc.h"
-#include "preferences.h"
-#include "logger.h"
+#include "core/misc.h"
+#include "core/preferences.h"
+#include "core/logger.h"
 
 // Signal handlers
 #if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)

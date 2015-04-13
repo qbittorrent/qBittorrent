@@ -5,8 +5,8 @@
 #include <libtorrent/session.hpp>
 
 #include "qbtsession.h"
-#include "qinisettings.h"
-#include "preferences.h"
+#include "core/qinisettings.h"
+#include "core/preferences.h"
 
 TorrentStatistics::TorrentStatistics(QBtSession* session, QObject* parent)
     : QObject(parent)
@@ -69,7 +69,7 @@ void TorrentStatistics::loadStats() {
     // Don't forget to remove:
     // 1. Preferences::getStats()
     // 2. Preferences::removeStats()
-    // 3. #include "preferences.h"
+    // 3. #include "core/preferences.h"
     Preferences* const pref = Preferences::instance();
     QIniSettings s("qBittorrent", "qBittorrent-data");
     QVariantHash v = pref->getStats();

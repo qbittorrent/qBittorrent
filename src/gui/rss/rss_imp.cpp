@@ -41,7 +41,7 @@
 #include "feedlistwidget.h"
 #include "qbtsession.h"
 #include "cookiesdlg.h"
-#include "preferences.h"
+#include "core/preferences.h"
 #include "rsssettingsdlg.h"
 #include "rssmanager.h"
 #include "rssfolder.h"

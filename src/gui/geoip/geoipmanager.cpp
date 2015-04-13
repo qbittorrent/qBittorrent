@@ -64,7 +64,7 @@
 #include <QFile>
 #include <QChar>
 
-#include "fs_utils.h"
+#include "core/fs_utils.h"
 #include <libtorrent/session.hpp>
 
 using namespace libtorrent;

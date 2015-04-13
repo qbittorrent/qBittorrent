@@ -37,11 +37,11 @@
 #include <QFile>
 #include <QUrl>
 #include "iconprovider.h"
-#include "misc.h"
+#include "core/misc.h"
 #include "ui_trackersadditiondlg.h"
-#include "downloadthread.h"
+#include "core/downloadthread.h"
 #include "qtorrenthandle.h"
-#include "fs_utils.h"
+#include "core/fs_utils.h"
 
 class TrackersAdditionDlg : public QDialog, private Ui::TrackersAdditionDlg{
   Q_OBJECT

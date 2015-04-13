@@ -26,7 +26,7 @@
  * exception statement from your version.
  */
 
-#include "torrentpersistentdata.h"
+#include "core/torrentpersistentdata.h"
 #include "qtorrentfilter.h"
 
 QTorrentFilter::QTorrentFilter(QString filter, QString label)

@@ -33,15 +33,15 @@
 #include "rssmanager.h"
 #include "qbtsession.h"
 #include "rssfolder.h"
-#include "preferences.h"
-#include "qinisettings.h"
+#include "core/preferences.h"
+#include "core/qinisettings.h"
 #include "rssarticle.h"
 #include "rssparser.h"
-#include "misc.h"
+#include "core/misc.h"
 #include "rssdownloadrulelist.h"
-#include "downloadthread.h"
-#include "fs_utils.h"
-#include "logger.h"
+#include "core/downloadthread.h"
+#include "core/fs_utils.h"
+#include "core/logger.h"
 
 bool rssArticleDateRecentThan(const RssArticlePtr& left, const RssArticlePtr& right)
 {

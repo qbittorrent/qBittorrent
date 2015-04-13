@@ -35,11 +35,11 @@
 #include <QDir>
 #include <QByteArray>
 #include <math.h>
-#include "fs_utils.h"
-#include "misc.h"
-#include "preferences.h"
+#include "core/fs_utils.h"
+#include "core/misc.h"
+#include "core/preferences.h"
 #include "qtorrenthandle.h"
-#include "torrentpersistentdata.h"
+#include "core/torrentpersistentdata.h"
 #include "qbtsession.h"
 #include <libtorrent/version.hpp>
 #include <libtorrent/magnet_uri.hpp>

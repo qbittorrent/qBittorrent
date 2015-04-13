@@ -31,7 +31,7 @@
 #include "statsdialog.h"
 #include "ui_statsdialog.h"
 
-#include "misc.h"
+#include "core/misc.h"
 #include <libtorrent/session.hpp>
 #include <libtorrent/disk_io_thread.hpp>
 

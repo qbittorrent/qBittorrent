@@ -29,7 +29,7 @@
  */
 
 #include "iconprovider.h"
-#include "preferences.h"
+#include "core/preferences.h"
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
 #include <QDir>

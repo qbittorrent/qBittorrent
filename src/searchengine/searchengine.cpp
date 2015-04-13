@@ -49,9 +49,9 @@
 
 #include "searchengine.h"
 #include "qbtsession.h"
-#include "fs_utils.h"
-#include "misc.h"
-#include "preferences.h"
+#include "core/fs_utils.h"
+#include "core/misc.h"
+#include "core/preferences.h"
 #include "searchlistdelegate.h"
 #include "mainwindow.h"
 #include "iconprovider.h"

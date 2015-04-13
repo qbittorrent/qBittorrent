@@ -39,24 +39,24 @@
 #include <QCoreApplication>
 
 #include "core/net/smtp.h"
-#include "filesystemwatcher.h"
+#include "core/filesystemwatcher.h"
 #include "torrentspeedmonitor.h"
 #include "torrentstatistics.h"
 #include "qbtsession.h"
 #include "alertdispatcher.h"
-#include "misc.h"
-#include "fs_utils.h"
-#include "downloadthread.h"
+#include "core/misc.h"
+#include "core/fs_utils.h"
+#include "core/downloadthread.h"
 #include "filterparserthread.h"
-#include "preferences.h"
-#include "scannedfoldersmodel.h"
-#include "qtracker.h"
-#include "logger.h"
+#include "core/preferences.h"
+#include "core/scannedfoldersmodel.h"
+#include "core/qtracker.h"
+#include "core/logger.h"
 #ifndef DISABLE_GUI
 #include "shutdownconfirm.h"
 #include "geoipmanager.h"
 #endif
-#include "torrentpersistentdata.h"
+#include "core/torrentpersistentdata.h"
 #include "bandwidthscheduler.h"
 #include <libtorrent/version.hpp>
 #include <libtorrent/extensions/ut_metadata.hpp>

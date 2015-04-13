@@ -42,7 +42,7 @@
 
 #include "qtorrenthandle.h"
 #include "trackerinfos.h"
-#include "misc.h"
+#include "core/misc.h"
 
 #ifndef DISABLE_GUI
 #include "rssdownloadrule.h"

@@ -33,8 +33,8 @@
  */
 
 #include "smtp.h"
-#include "preferences.h"
-#include "logger.h"
+#include "core/preferences.h"
+#include "core/logger.h"
 
 #include <QTextStream>
 #ifndef QT_NO_OPENSSL

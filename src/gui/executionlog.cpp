@@ -35,7 +35,7 @@
 #include <QPalette>
 #include "executionlog.h"
 #include "ui_executionlog.h"
-#include "logger.h"
+#include "core/logger.h"
 #include "iconprovider.h"
 #include "loglistwidget.h"
 

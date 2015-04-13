@@ -37,12 +37,12 @@
 #include "automatedrssdownloader.h"
 #include "ui_automatedrssdownloader.h"
 #include "rssdownloadrulelist.h"
-#include "preferences.h"
+#include "core/preferences.h"
 #include "rssmanager.h"
 #include "rssfeed.h"
 #include "iconprovider.h"
 #include "autoexpandabledialog.h"
-#include "fs_utils.h"
+#include "core/fs_utils.h"
 
 AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& manager, QWidget *parent) :
   QDialog(parent),

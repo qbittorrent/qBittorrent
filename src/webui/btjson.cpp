@@ -29,9 +29,9 @@
  */
 
 #include "btjson.h"
-#include "fs_utils.h"
+#include "core/fs_utils.h"
 #include "qbtsession.h"
-#include "torrentpersistentdata.h"
+#include "core/torrentpersistentdata.h"
 #include "qtorrentfilter.h"
 #include "jsonutils.h"
 

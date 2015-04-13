@@ -36,9 +36,9 @@
 #include "qbtsession.h"
 #include "speedlimitdlg.h"
 #include "iconprovider.h"
-#include "preferences.h"
-#include "misc.h"
-#include "logger.h"
+#include "core/preferences.h"
+#include "core/misc.h"
+#include "core/logger.h"
 
 #include <libtorrent/session.hpp>
 #include <libtorrent/session_status.hpp>

@@ -29,9 +29,9 @@
  */
 
 #include "engineselectdlg.h"
-#include "downloadthread.h"
-#include "fs_utils.h"
-#include "misc.h"
+#include "core/downloadthread.h"
+#include "core/fs_utils.h"
+#include "core/misc.h"
 #include "ico.h"
 #include "searchengine.h"
 #include "pluginsource.h"

@@ -29,8 +29,8 @@
  */
 
 #include "iconprovider.h"
-#include "misc.h"
-#include "fs_utils.h"
+#include "core/misc.h"
+#include "core/fs_utils.h"
 #include "torrentcontentmodel.h"
 #include "torrentcontentmodelitem.h"
 #include "torrentcontentmodelfolder.h"

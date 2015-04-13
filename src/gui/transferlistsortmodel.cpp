@@ -31,7 +31,7 @@
 #include "transferlistsortmodel.h"
 
 #include "torrentmodel.h"
-#include "misc.h"
+#include "core/misc.h"
 
 TransferListSortModel::TransferListSortModel(QObject *parent)
     : QSortFilterProxyModel(parent)

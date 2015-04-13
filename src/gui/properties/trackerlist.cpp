@@ -43,8 +43,8 @@
 #include "trackersadditiondlg.h"
 #include "iconprovider.h"
 #include "qbtsession.h"
-#include "preferences.h"
-#include "misc.h"
+#include "core/preferences.h"
+#include "core/misc.h"
 #include "autoexpandabledialog.h"
 
 using namespace libtorrent;

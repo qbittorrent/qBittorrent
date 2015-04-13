@@ -36,7 +36,7 @@
 #include <QUrlQuery>
 #endif
 #include "dnsupdater.h"
-#include "logger.h"
+#include "core/logger.h"
 
 using namespace Net;
 

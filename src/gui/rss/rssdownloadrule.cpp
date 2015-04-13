@@ -33,10 +33,10 @@
 #include <QDir>
 
 #include "rssdownloadrule.h"
-#include "preferences.h"
+#include "core/preferences.h"
 #include "rssfeed.h"
 #include "rssarticle.h"
-#include "fs_utils.h"
+#include "core/fs_utils.h"
 
 RssDownloadRule::RssDownloadRule(): m_enabled(false), m_useRegex(false), m_apstate(USE_GLOBAL)
 {

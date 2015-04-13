@@ -4,7 +4,7 @@
 #include <QTimer>
 #include <QTime>
 #include <QDateTime>
-#include "preferences.h"
+#include "core/preferences.h"
 #include <iostream>
 
 

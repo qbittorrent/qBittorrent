@@ -1,5 +1,3 @@
-INCLUDEPATH += $$PWD
-
 include(qtlibtorrent/qtlibtorrent.pri)
 
 HEADERS += \

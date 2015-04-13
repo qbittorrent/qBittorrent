@@ -49,7 +49,7 @@
 
 #include "mainwindow.h"
 #include "transferlistwidget.h"
-#include "misc.h"
+#include "core/misc.h"
 #include "torrentcreatordlg.h"
 #include "downloadfromurldlg.h"
 #include "addnewtorrentdialog.h"
@@ -60,10 +60,10 @@
 #include "trackerlogin.h"
 #include "options_imp.h"
 #include "speedlimitdlg.h"
-#include "preferences.h"
+#include "core/preferences.h"
 #include "trackerlist.h"
 #include "peerlistwidget.h"
-#include "torrentpersistentdata.h"
+#include "core/torrentpersistentdata.h"
 #include "transferlistfilterswidget.h"
 #include "propertieswidget.h"
 #include "statusbar.h"
@@ -72,7 +72,7 @@
 #include "torrentmodel.h"
 #include "executionlog.h"
 #include "iconprovider.h"
-#include "logger.h"
+#include "core/logger.h"
 #ifndef DISABLE_GUI
 #include "autoexpandabledialog.h"
 #endif
@@ -86,7 +86,7 @@ void qt_mac_set_dock_menu(QMenu *menu);
 #endif
 #include "powermanagement.h"
 #ifdef Q_OS_WIN
-#include "downloadthread.h"
+#include "core/downloadthread.h"
 #endif
 
 #include <libtorrent/session.hpp>

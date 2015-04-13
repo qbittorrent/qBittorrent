@@ -36,7 +36,7 @@
 #include <QNetworkReply>
 #include <QDateTime>
 #include <QTimer>
-#include "preferences.h"
+#include "core/preferences.h"
 
 namespace Net
 {

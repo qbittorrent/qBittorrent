@@ -32,14 +32,14 @@
 #include "peerlistdelegate.h"
 #include "peerlistsortmodel.h"
 #include "core/net/reverseresolution.h"
-#include "preferences.h"
+#include "core/preferences.h"
 #include "propertieswidget.h"
 #include "geoipmanager.h"
 #include "peeraddition.h"
 #include "speedlimitdlg.h"
 #include "iconprovider.h"
 #include "qtorrenthandle.h"
-#include "logger.h"
+#include "core/logger.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QSet>
