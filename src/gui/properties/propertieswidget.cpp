@@ -43,7 +43,7 @@
 #include <libtorrent/version.hpp>
 #include "propertieswidget.h"
 #include "transferlistwidget.h"
-#include "torrentpersistentdata.h"
+#include "core/torrentpersistentdata.h"
 #include "qbtsession.h"
 #include "proplistdelegate.h"
 #include "torrentcontentfiltermodel.h"
@@ -53,11 +53,11 @@
 #include "mainwindow.h"
 #include "downloadedpiecesbar.h"
 #include "pieceavailabilitybar.h"
-#include "preferences.h"
+#include "core/preferences.h"
 #include "proptabbar.h"
 #include "iconprovider.h"
 #include "lineedit.h"
-#include "fs_utils.h"
+#include "core/fs_utils.h"
 #include "autoexpandabledialog.h"
 
 using namespace libtorrent;

@@ -34,7 +34,7 @@
 #include <QStyleOptionViewItemV2>
 #include <QApplication>
 #include <QPainter>
-#include "misc.h"
+#include "core/misc.h"
 #include "torrentmodel.h"
 #include "qbtsession.h"
 

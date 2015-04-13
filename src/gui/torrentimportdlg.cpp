@@ -34,11 +34,11 @@
 
 #include "torrentimportdlg.h"
 #include "ui_torrentimportdlg.h"
-#include "preferences.h"
+#include "core/preferences.h"
 #include "qbtsession.h"
-#include "torrentpersistentdata.h"
+#include "core/torrentpersistentdata.h"
 #include "iconprovider.h"
-#include "fs_utils.h"
+#include "core/fs_utils.h"
 
 using namespace libtorrent;
 

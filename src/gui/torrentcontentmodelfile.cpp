@@ -30,8 +30,8 @@
 
 #include "torrentcontentmodelfile.h"
 #include "torrentcontentmodelfolder.h"
-#include "fs_utils.h"
-#include "misc.h"
+#include "core/fs_utils.h"
+#include "core/misc.h"
 
 TorrentContentModelFile::TorrentContentModelFile(const libtorrent::file_entry& f,
                                                  TorrentContentModelFolder* parent,

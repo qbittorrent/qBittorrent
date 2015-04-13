@@ -39,8 +39,8 @@
 #include <QStringList>
 
 #include "programupdater.h"
-#include "fs_utils.h"
-#include "preferences.h"
+#include "core/fs_utils.h"
+#include "core/preferences.h"
 
 #ifdef Q_OS_MAC
 const QUrl RSS_URL("http://sourceforge.net/projects/qbittorrent/rss?path=/qbittorrent-mac");

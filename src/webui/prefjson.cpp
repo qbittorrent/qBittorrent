@@ -29,10 +29,10 @@
  */
 
 #include "prefjson.h"
-#include "preferences.h"
+#include "core/preferences.h"
 #include "qbtsession.h"
-#include "scannedfoldersmodel.h"
-#include "fs_utils.h"
+#include "core/scannedfoldersmodel.h"
+#include "core/fs_utils.h"
 
 #include <libtorrent/version.hpp>
 #ifndef QT_NO_OPENSSL

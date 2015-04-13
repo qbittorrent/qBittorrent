@@ -31,7 +31,7 @@
 #include <QList>
 
 #include "qbtsession.h"
-#include "misc.h"
+#include "core/misc.h"
 #include "torrentspeedmonitor.h"
 
 using namespace libtorrent;

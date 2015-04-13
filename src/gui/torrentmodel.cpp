@@ -33,9 +33,9 @@
 #include <QPalette>
 
 #include "torrentmodel.h"
-#include "torrentpersistentdata.h"
+#include "core/torrentpersistentdata.h"
 #include "qbtsession.h"
-#include "fs_utils.h"
+#include "core/fs_utils.h"
 
 #include <libtorrent/session.hpp>
 

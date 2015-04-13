@@ -30,13 +30,13 @@
 
 #include <QDebug>
 #include "rssmanager.h"
-#include "preferences.h"
+#include "core/preferences.h"
 #include "qbtsession.h"
 #include "rssfeed.h"
 #include "rssarticle.h"
 #include "rssdownloadrulelist.h"
 #include "rssparser.h"
-#include "downloadthread.h"
+#include "core/downloadthread.h"
 
 static const int MSECS_PER_MIN = 60000;
 

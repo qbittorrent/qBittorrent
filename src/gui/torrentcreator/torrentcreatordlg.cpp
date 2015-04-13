@@ -32,11 +32,11 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-#include "torrentpersistentdata.h"
+#include "core/torrentpersistentdata.h"
 #include "torrentcreatordlg.h"
-#include "fs_utils.h"
-#include "misc.h"
-#include "preferences.h"
+#include "core/fs_utils.h"
+#include "core/misc.h"
+#include "core/preferences.h"
 #include "torrentcreatorthread.h"
 #include "iconprovider.h"
 #include "qbtsession.h"

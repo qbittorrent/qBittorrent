@@ -33,7 +33,7 @@
 
 #include <QMessageBox>
 #include <QTimer>
-#include "misc.h"
+#include "core/misc.h"
 
 class ShutdownConfirmDlg : public QMessageBox
 {

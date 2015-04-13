@@ -37,9 +37,9 @@
 // TODO: Drop GUI dependency!
 #include "iconprovider.h"
 #endif
-#include "misc.h"
-#include "fs_utils.h"
-#include "preferences.h"
+#include "core/misc.h"
+#include "core/fs_utils.h"
+#include "core/preferences.h"
 #include "btjson.h"
 #include "prefjson.h"
 #include "qbtsession.h"

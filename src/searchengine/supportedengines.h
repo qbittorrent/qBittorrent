@@ -41,8 +41,8 @@
 #include <QApplication>
 #include <QDebug>
 
-#include "fs_utils.h"
-#include "preferences.h"
+#include "core/fs_utils.h"
+#include "core/preferences.h"
 
 class SearchCategories: public QObject, public QHash<QString, QString> {
   Q_OBJECT

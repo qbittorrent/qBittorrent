@@ -54,10 +54,10 @@
 #endif
 
 #include "application.h"
-#include "logger.h"
-#include "preferences.h"
+#include "core/logger.h"
+#include "core/preferences.h"
 #include "qbtsession.h"
-#include "torrentpersistentdata.h"
+#include "core/torrentpersistentdata.h"
 
 static const char PARAMS_SEPARATOR[] = "|";
 

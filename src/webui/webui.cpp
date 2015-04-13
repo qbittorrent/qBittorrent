@@ -27,11 +27,11 @@
  */
 
 #include "webui.h"
-#include "http/server.h"
+#include "core/http/server.h"
 #include "webapplication.h"
 #include "core/net/dnsupdater.h"
-#include "preferences.h"
-#include "logger.h"
+#include "core/preferences.h"
+#include "core/logger.h"
 
 WebUI::WebUI(QObject *parent) : QObject(parent)
 {

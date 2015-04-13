@@ -41,15 +41,15 @@
 
 #include "transferlistdelegate.h"
 #include "transferlistwidget.h"
-#include "preferences.h"
+#include "core/preferences.h"
 #include "torrentmodel.h"
 #include "iconprovider.h"
-#include "fs_utils.h"
+#include "core/fs_utils.h"
 #include "autoexpandabledialog.h"
 #include "torrentfilterenum.h"
-#include "misc.h"
-#include "downloadthread.h"
-#include "logger.h"
+#include "core/misc.h"
+#include "core/downloadthread.h"
+#include "core/logger.h"
 
 FiltersBase::FiltersBase(QWidget *parent, TransferListWidget *transferList)
     : QListWidget(parent)

@@ -42,10 +42,10 @@
 #include <libtorrent/version.hpp>
 
 #include "options_imp.h"
-#include "preferences.h"
-#include "fs_utils.h"
+#include "core/preferences.h"
+#include "core/fs_utils.h"
 #include "advancedsettings.h"
-#include "scannedfoldersmodel.h"
+#include "core/scannedfoldersmodel.h"
 #include "qbtsession.h"
 #include "iconprovider.h"
 #include "core/net/dnsupdater.h"

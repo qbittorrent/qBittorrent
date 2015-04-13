@@ -41,8 +41,8 @@
 #include <QDir>
 
 #include "torrentcreatorthread.h"
-#include "fs_utils.h"
-#include "misc.h"
+#include "core/fs_utils.h"
+#include "core/misc.h"
 
 #include <boost/bind.hpp>
 #include <iostream>

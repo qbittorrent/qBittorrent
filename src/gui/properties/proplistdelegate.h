@@ -40,7 +40,7 @@
 #include <QPainter>
 #include <QProgressBar>
 #include <QApplication>
-#include "misc.h"
+#include "core/misc.h"
 #include "propertieswidget.h"
 
 #ifdef Q_OS_WIN

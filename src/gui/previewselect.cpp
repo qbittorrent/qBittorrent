@@ -36,11 +36,11 @@
 #include <libtorrent/version.hpp>
 #include <libtorrent/session.hpp>
 
-#include "misc.h"
+#include "core/misc.h"
 #include "previewlistdelegate.h"
 #include "previewselect.h"
-#include "fs_utils.h"
-#include "preferences.h"
+#include "core/fs_utils.h"
+#include "core/preferences.h"
 
 PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent), h(h) {
   setupUi(this);
