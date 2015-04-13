@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2011  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -88,6 +88,8 @@ QByteArray determineFQDN()
   return hostname.toLocal8Bit();
 }
 } // namespace
+
+using namespace Net;
 
 Smtp::Smtp(QObject *parent): QObject(parent),
   state(Init), use_ssl(false) {

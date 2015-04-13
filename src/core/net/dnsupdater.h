@@ -38,6 +38,9 @@
 #include <QTimer>
 #include "preferences.h"
 
+namespace Net
+{
+
 /*!
  * Based on http://www.dyndns.com/developers/specs/
  */
@@ -77,5 +80,7 @@ private:
   static const int IP_CHECK_INTERVAL_MS = 1800000; // 30 min
   enum State { OK, INVALID_CREDS, FATAL };
 };
+
+}
 
 #endif // DNSUPDATER_H

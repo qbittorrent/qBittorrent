@@ -10,8 +10,6 @@ HEADERS += \
     $$PWD/filesystemwatcher.h \
     $$PWD/scannedfoldersmodel.h \
     $$PWD/qinisettings.h \
-    $$PWD/smtp.h \
-    $$PWD/dnsupdater.h \
     $$PWD/logger.h \
     $$PWD/preferences.h \
     $$PWD/qtracker.h \
@@ -21,7 +19,10 @@ HEADERS += \
     $$PWD/http/responsegenerator.h \
     $$PWD/http/server.h \
     $$PWD/http/types.h \
-    $$PWD/http/responsebuilder.h
+    $$PWD/http/responsebuilder.h \
+    $$PWD/net/dnsupdater.h \
+    $$PWD/net/reverseresolution.h \
+    $$PWD/net/smtp.h
 
 SOURCES += \
     $$PWD/downloadthread.cpp \
@@ -29,8 +30,6 @@ SOURCES += \
     $$PWD/torrentpersistentdata.cpp \
     $$PWD/misc.cpp \
     $$PWD/fs_utils.cpp \
-    $$PWD/smtp.cpp \
-    $$PWD/dnsupdater.cpp \
     $$PWD/logger.cpp \
     $$PWD/preferences.cpp \
     $$PWD/qtracker.cpp \
@@ -38,4 +37,7 @@ SOURCES += \
     $$PWD/http/requestparser.cpp \
     $$PWD/http/responsegenerator.cpp \
     $$PWD/http/server.cpp \
-    $$PWD/http/responsebuilder.cpp
+    $$PWD/http/responsebuilder.cpp \
+    $$PWD/net/dnsupdater.cpp \
+    $$PWD/net/reverseresolution.cpp \
+    $$PWD/net/smtp.cpp

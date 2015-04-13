@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,40 +24,44 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
+ *
+ * Contact : chris@qbittorrent.org
  */
 
-#ifndef WEBUI_H
-#define WEBUI_H
+#ifndef NET_REVERSERESOLUTION_H
+#define NET_REVERSERESOLUTION_H
 
+#include <QCache>
 #include <QObject>
-#include <QPointer>
 
-namespace Http
-{
-    class Server;
-}
+QT_BEGIN_NAMESPACE
+class QHostInfo;
+class QString;
+QT_END_NAMESPACE
 
 namespace Net
 {
-    class DNSUpdater;
+    class ReverseResolution : public QObject
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY(ReverseResolution)
+
+    public:
+        explicit ReverseResolution(QObject *parent = 0);
+        ~ReverseResolution();
+
+        void resolve(const QString &ip);
+
+    signals:
+        void ipResolved(const QString &ip, const QString &hostname);
+
+    private slots:
+        void hostResolved(const QHostInfo &host);
+
+    private:
+        QHash<int /* LookupID */, QString /* IP */> m_lookups;
+        QCache<QString /* IP */, QString /* HostName */> m_cache;
+    };
 }
 
-class AbstractWebApplication;
-
-class WebUI : public QObject
-{
-    Q_OBJECT
-
-public:
-    explicit WebUI(QObject *parent = 0);
-
-private slots:
-    void init();
-
-private:
-    QPointer<Http::Server> httpServer_;
-    QPointer<Net::DNSUpdater> dynDNSUpdater_;
-    QPointer<AbstractWebApplication> webapp_;
-};
-
-#endif // WEBUI_H
+#endif // NET_REVERSERESOLUTION_H

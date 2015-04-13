@@ -29,7 +29,7 @@
 #include "webui.h"
 #include "http/server.h"
 #include "webapplication.h"
-#include "dnsupdater.h"
+#include "core/net/dnsupdater.h"
 #include "preferences.h"
 #include "logger.h"
 
@@ -82,7 +82,7 @@ void WebUI::init()
         // DynDNS
         if (pref->isDynDNSEnabled()) {
             if (!dynDNSUpdater_)
-                dynDNSUpdater_ = new DNSUpdater(this);
+                dynDNSUpdater_ = new Net::DNSUpdater(this);
             else
                 dynDNSUpdater_->updateCredentials();
         }

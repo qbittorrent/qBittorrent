@@ -48,7 +48,7 @@
 #include "scannedfoldersmodel.h"
 #include "qbtsession.h"
 #include "iconprovider.h"
-#include "dnsupdater.h"
+#include "core/net/dnsupdater.h"
 
 #ifndef QT_NO_OPENSSL
 #include <QSslKey>
@@ -1239,7 +1239,7 @@ void options_imp::on_btnWebUiKey_clicked() {
 }
 
 void options_imp::on_registerDNSBtn_clicked() {
-  QDesktopServices::openUrl(DNSUpdater::getRegistrationUrl(comboDNSService->currentIndex()));
+  QDesktopServices::openUrl(Net::DNSUpdater::getRegistrationUrl(comboDNSService->currentIndex()));
 }
 
 void options_imp::on_IpFilterRefreshBtn_clicked() {

@@ -38,7 +38,7 @@
 #include <QProcess>
 #include <QCoreApplication>
 
-#include "smtp.h"
+#include "core/net/smtp.h"
 #include "filesystemwatcher.h"
 #include "torrentspeedmonitor.h"
 #include "torrentstatistics.h"
@@ -2046,7 +2046,7 @@ void QBtSession::sendNotificationEmail(const QTorrentHandle &h) {
     content += tr("The torrent was downloaded in %1.", "The torrent was downloaded in 1 hour and 20 seconds").arg(misc::userFriendlyDuration(status.active_time)) + "\n\n\n";
     content += tr("Thank you for using qBittorrent.") + "\n";
     // Send the notification email
-    Smtp *sender = new Smtp(this);
+    Net::Smtp *sender = new Net::Smtp(this);
     sender->sendMail("notification@qbittorrent.org", Preferences::instance()->getMailNotificationEmail(), tr("[qBittorrent] %1 has finished downloading").arg(h.name()), content);
 }
 

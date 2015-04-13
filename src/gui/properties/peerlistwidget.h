@@ -37,9 +37,13 @@
 #include <QSet>
 #include <libtorrent/version.hpp>
 
+namespace Net
+{
+    class ReverseResolution;
+}
+
 class PeerListDelegate;
 class PeerListSortModel;
-class ReverseResolution;
 class PropertiesWidget;
 class QTorrentHandle;
 
@@ -103,7 +107,7 @@ private:
   QHash<QString, QStandardItem*> m_peerItems;
   QHash<QString, boost::asio::ip::tcp::endpoint> m_peerEndpoints;
   QSet<QString> m_missingFlags;
-  QPointer<ReverseResolution> m_resolver;
+  QPointer<Net::ReverseResolution> m_resolver;
   PropertiesWidget *m_properties;
   bool m_displayFlags;
 };
