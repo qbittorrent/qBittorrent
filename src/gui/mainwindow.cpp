@@ -369,8 +369,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    // Save window size, columns size
-    writeSettings();
 #ifdef Q_OS_MAC
     // Workaround to avoid bug http://bugreports.qt.nokia.com/browse/QTBUG-7305
     setUnifiedTitleAndToolBarOnMac(false);
@@ -590,6 +588,25 @@ void MainWindow::writeSettings()
     // Splitter size
     pref->setMainVSplitterState(vSplitter->saveState());
     properties->saveSettings();
+}
+
+void MainWindow::cleanup()
+{
+    writeSettings();
+
+    delete executable_watcher;
+    guiUpdater->stop();
+    if (systrayCreator)
+        systrayCreator->stop();
+    if (preventTimer)
+        preventTimer->stop();
+    programUpdateTimer.stop();
+    delete search_filter;
+    delete searchFilterAct;
+    delete tabs; // this seems enough to also delete all contained widgets
+    delete status_bar;
+    delete m_pwr;
+    delete toolbarMenu;
 }
 
 void MainWindow::readSettings()

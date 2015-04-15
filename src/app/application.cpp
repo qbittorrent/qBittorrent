@@ -37,6 +37,7 @@
 #ifdef Q_OS_WIN
 #include <Windows.h>
 #include <QSharedMemory>
+#include <QSessionManager>
 #endif // Q_OS_WIN
 #ifdef Q_OS_MAC
 #include <QFileOpenEvent>
@@ -77,7 +78,10 @@ Application::Application(const QString &id, int &argc, char **argv)
 #ifndef DISABLE_GUI
     setStyleSheet("QStatusBar::item { border-width: 0; }");
     setQuitOnLastWindowClosed(false);
-#endif
+#ifdef Q_OS_WIN
+    connect(this, SIGNAL(commitDataRequest(QSessionManager &)), this, SLOT(shutdownCleanup(QSessionManager &)), Qt::DirectConnection);
+#endif // Q_OS_WIN
+#endif // DISABLE_GUI
 
     connect(this, SIGNAL(messageReceived(const QString &)), SLOT(processMessage(const QString &)));
     connect(this, SIGNAL(aboutToQuit()), SLOT(cleanup()));
@@ -286,11 +290,69 @@ void Application::initializeTranslation()
 #endif
 }
 
+#if (!defined(DISABLE_GUI) && defined(Q_OS_WIN))
+void Application::shutdownCleanup(QSessionManager &manager)
+{
+    // This is only needed for a special case on Windows XP.
+    // (but is called for every Windows version)
+    // If a process takes too much time to exit during OS
+    // shutdown, the OS presents a dialog to the user.
+    // That dialog tells the user that qbt is blocking the
+    // shutdown, it shows a progress bar and it offers
+    // a "Terminate Now" button for the user. However,
+    // after the progress bar has reached 100% another button
+    // is offered to the user reading "Cancel". With this the
+    // user can cancel the **OS** shutdown. If we don't do
+    // the cleanup by handling the commitDataRequest() signal
+    // and the user clicks "Cancel", it will result in qbt being
+    // killed and the shutdown proceeding instead. Apparently
+    // aboutToQuit() is emitted too late in the shutdown process.
+    cleanup();
+
+    // According to the qt docs we shouldn't call quit() inside a slot.
+    // aboutToQuit() is never emitted if the user hits "Cancel" in
+    // the above dialog.
+    QTimer::singleShot(0, qApp, SLOT(quit()));
+}
+#endif
+
 void Application::cleanup()
 {
 #ifndef DISABLE_GUI
-    delete m_window;
-#endif
+#ifdef Q_OS_WIN
+    // cleanup() can be called multiple times during shutdown. We only need it once.
+    static bool alreadyDone = false;
+
+    if (alreadyDone)
+        return;
+    alreadyDone = true;
+#endif // Q_OS_WIN
+
+    // Hide the window and not leave it on screen as
+    // unresponsive. Also for Windows take the WinId
+    // after it's hidden, because hide() may cause a
+    // WinId change.
+    m_window->hide();
+
+#ifdef Q_OS_WIN
+    typedef BOOL (WINAPI *PSHUTDOWNBRCREATE)(HWND, LPCWSTR);
+    PSHUTDOWNBRCREATE shutdownBRCreate = (PSHUTDOWNBRCREATE)::GetProcAddress(::GetModuleHandleW(L"User32.dll"), "ShutdownBlockReasonCreate");
+    // Only available on Vista+
+    if (shutdownBRCreate)
+        shutdownBRCreate((HWND)m_window->effectiveWinId(), tr("Saving torrent progress...").toStdWString().c_str());
+#endif // Q_OS_WIN
+
+    // Do manual cleanup in MainWindow to force widgets
+    // to save their Preferences, stop all timers and
+    // delete as many widgets as possible to leave only
+    // a 'shell' MainWindow.
+    // We need a valid window handle for Windows Vista+
+    // otherwise the system shutdown will continue even
+    // though we created a ShutdownBlockReason
+    m_window->cleanup();
+
+#endif // DISABLE_GUI
+
 #ifndef DISABLE_WEBUI
     delete m_webui;
 #endif
@@ -298,4 +360,15 @@ void Application::cleanup()
     TorrentPersistentData::drop();
     Preferences::drop();
     Logger::drop();
+#ifndef DISABLE_GUI
+#ifdef Q_OS_WIN
+    typedef BOOL (WINAPI *PSHUTDOWNBRDESTROY)(HWND);
+    PSHUTDOWNBRDESTROY shutdownBRDestroy = (PSHUTDOWNBRDESTROY)::GetProcAddress(::GetModuleHandleW(L"User32.dll"), "ShutdownBlockReasonDestroy");
+    // Only available on Vista+
+    if (shutdownBRDestroy)
+        shutdownBRDestroy((HWND)m_window->effectiveWinId());
+#endif // Q_OS_WIN
+    delete m_window;
+#endif
+
 }
