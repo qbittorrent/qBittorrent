@@ -171,6 +171,13 @@ int Application::exec(const QStringList &params)
 #endif // DISABLE_WEBUI
 #else
     m_window = new MainWindow;
+#ifdef Q_OS_WIN
+    typedef BOOL (WINAPI *PSHUTDOWNBRCREATE)(HWND, LPCWSTR);
+    PSHUTDOWNBRCREATE shutdownBRCreate = (PSHUTDOWNBRCREATE)::GetProcAddress(::GetModuleHandleW(L"User32.dll"), "ShutdownBlockReasonCreate");
+    // Only available on Vista+
+    if (shutdownBRCreate)
+        shutdownBRCreate(m_window->effectiveWinId(), tr("Saving torrent progress...").toStdWString().c_str());
+#endif // Q_OS_WIN
 #endif // DISABLE_GUI
 
     m_running = true;
@@ -291,7 +298,14 @@ void Application::initializeTranslation()
 void Application::cleanup()
 {
 #ifndef DISABLE_GUI
-    delete m_window;
+    // Sync preferences and leave an empty 'shell' window.
+    // We need a valid window handle for Windows Vista+
+    // otherwise the system shutdown will continue even
+    // though we had created a ShutdownBlockReason (see exec())
+    m_window->writeSettings();
+    QObjectList ch = m_window->children();
+    foreach (QObject *child, ch)
+        delete child;
 #endif
 #ifndef DISABLE_WEBUI
     delete m_webui;
@@ -300,4 +314,15 @@ void Application::cleanup()
     TorrentPersistentData::drop();
     Preferences::drop();
     Logger::drop();
+#ifndef DISABLE_GUI
+#ifdef Q_OS_WIN
+    typedef BOOL (WINAPI *PSHUTDOWNBRDESTROY)(HWND);
+    PSHUTDOWNBRDESTROY shutdownBRDestroy = (PSHUTDOWNBRDESTROY)::GetProcAddress(::GetModuleHandleW(L"User32.dll"), "ShutdownBlockReasonDestroy");
+    // Only available on Vista+
+    if (shutdownBRDestroy)
+        shutdownBRDestroy(m_window->effectiveWinId());
+#endif // Q_OS_WIN
+    delete m_window;
+#endif
+
 }
