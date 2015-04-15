@@ -35,33 +35,35 @@
 #include <QStringList>
 #include "torrentfilterenum.h"
 
-class TransferListSortModel : public QSortFilterProxyModel {
-  Q_OBJECT
+class TransferListSortModel: public QSortFilterProxyModel
+{
+    Q_OBJECT
 
 public:
-  TransferListSortModel(QObject *parent = 0);
+    TransferListSortModel(QObject *parent = 0);
 
-  void setStatusFilter(const TorrentFilter::TorrentFilter &filter);
-  void setLabelFilter(const QString &label);
-  void disableLabelFilter();
-  void setTrackerFilter(const QStringList &hashes);
-  void disableTrackerFilter();
-
-private:
-  bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
-  bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
-
-  bool matchStatusFilter(int sourceRow, const QModelIndex &sourceParent) const;
-  bool matchLabelFilter(int sourceRow, const QModelIndex &sourceParent) const;
-  bool matchTrackerFilter(int sourceRow, const QModelIndex &sourceParent) const;
+    void setStatusFilter(const TorrentFilter::TorrentFilter &filter);
+    void setLabelFilter(const QString &label);
+    void disableLabelFilter();
+    void setTrackerFilter(const QStringList &hashes);
+    void disableTrackerFilter();
 
 private:
-  TorrentFilter::TorrentFilter filter0;
+    bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
+    bool lowerPositionThan(const QModelIndex &left, const QModelIndex &right) const;
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 
-  bool labelFilterEnabled;
-  QString labelFilter;
-  bool trackerFilterEnabled;
-  QStringList trackerFilter;
+    bool matchStatusFilter(int sourceRow, const QModelIndex &sourceParent) const;
+    bool matchLabelFilter(int sourceRow, const QModelIndex &sourceParent) const;
+    bool matchTrackerFilter(int sourceRow, const QModelIndex &sourceParent) const;
+
+private:
+    TorrentFilter::TorrentFilter filter0;
+
+    bool labelFilterEnabled;
+    QString labelFilter;
+    bool trackerFilterEnabled;
+    QStringList trackerFilter;
 };
 
 #endif // TRANSFERLISTSORTMODEL_H
