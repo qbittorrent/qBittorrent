@@ -103,6 +103,7 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(command, toggleSequentialDownload);
     ADD_ACTION(command, toggleFirstLastPiecePrio);
     ADD_ACTION(command, setSuperSeeding);
+    ADD_ACTION(command, setForceStart);
     ADD_ACTION(command, delete);
     ADD_ACTION(command, deletePerm);
     ADD_ACTION(command, increasePrio);
@@ -548,6 +549,19 @@ void WebApplication::action_command_setSuperSeeding()
             h.super_seeding(value);
         }
         catch(invalid_handle&) {}
+    }
+}
+
+void WebApplication::action_command_setForceStart()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("hashes" << "value");
+    bool value = request().posts["value"] == "true";
+    QStringList hashes = request().posts["hashes"].split("|");
+    foreach (const QString &hash, hashes) {
+        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+        if (h.is_valid())
+            QBtSession::instance()->resumeTorrent(hash, value);
     }
 }
 
