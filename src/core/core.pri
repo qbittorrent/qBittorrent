@@ -26,6 +26,7 @@ SOURCES += \
     $$PWD/downloadthread.cpp \
     $$PWD/scannedfoldersmodel.cpp \
     $$PWD/torrentpersistentdata.cpp \
+    $$PWD/filesystemwatcher.cpp \
     $$PWD/misc.cpp \
     $$PWD/fs_utils.cpp \
     $$PWD/logger.cpp \

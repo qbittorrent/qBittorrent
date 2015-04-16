@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2010  Christian Kandeler, Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -37,44 +37,53 @@
 
 class FileSystemWatcher;
 
-class ScanFoldersModel : public QAbstractTableModel {
-  Q_OBJECT
-  Q_DISABLE_COPY(ScanFoldersModel)
+class ScanFoldersModel : public QAbstractTableModel
+{
+    Q_OBJECT
+    Q_DISABLE_COPY(ScanFoldersModel)
 
 public:
-  enum PathStatus { Ok, DoesNotExist, CannotRead, CannotWrite, AlreadyInList };
-  static ScanFoldersModel *instance(QObject *parent = 0);
-  virtual ~ScanFoldersModel();
+    enum PathStatus
+    {
+        Ok,
+        DoesNotExist,
+        CannotRead,
+        CannotWrite,
+        AlreadyInList
+    };
 
-  virtual int rowCount(const QModelIndex & parent = QModelIndex()) const;
-  virtual int columnCount(const QModelIndex &parent = QModelIndex()) const;
-  virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-  virtual QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
-  virtual Qt::ItemFlags flags(const QModelIndex &index) const;
+    static ScanFoldersModel *instance(QObject *parent = 0);
+    virtual ~ScanFoldersModel();
 
-  // TODO: removePaths(); singular version becomes private helper functions;
-  // also: remove functions should take modelindexes
-  PathStatus addPath(const QString &path, bool download_at_path);
-  void removePath(int row);
-  bool removePath(const QString &path);
-  PathStatus setDownloadAtPath(int row, bool downloadAtPath);
+    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    virtual int columnCount(const QModelIndex &parent = QModelIndex()) const;
+    virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+    virtual QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
+    virtual Qt::ItemFlags flags(const QModelIndex &index) const;
 
-  bool downloadInTorrentFolder(const QString &filePath) const;
-  void makePersistent();
+    // TODO: removePaths(); singular version becomes private helper functions;
+    // also: remove functions should take modelindexes
+    PathStatus addPath(const QString &path, bool downloadAtPath);
+    void removePath(int row);
+    bool removePath(const QString &path);
+    PathStatus setDownloadAtPath(int row, bool downloadAtPath);
+
+    bool downloadInTorrentFolder(const QString &filePath) const;
+    void makePersistent();
 
 signals:
-  // The absolute paths of new torrent files in the scanned directories.
-  void torrentsAdded(QStringList &pathList);
+    // The absolute paths of new torrent files in the scanned directories.
+    void torrentsAdded(QStringList &pathList);
 
 private:
-  explicit ScanFoldersModel(QObject *parent);
-  virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
-  static ScanFoldersModel *m_instance;
-  class PathData;
-  int findPathData(const QString &path) const;
+    explicit ScanFoldersModel(QObject *parent = 0);
+    virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+    static ScanFoldersModel *m_instance;
+    class PathData;
+    int findPathData(const QString &path) const;
 
-  QList<PathData*> m_pathList;
-  FileSystemWatcher *m_fsWatcher;
+    QList<PathData*> m_pathList;
+    FileSystemWatcher *m_fsWatcher;
 };
 
 #endif // SCANNEDFOLDERSMODEL_H
