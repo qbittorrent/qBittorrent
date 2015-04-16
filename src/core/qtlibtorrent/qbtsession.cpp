@@ -817,10 +817,10 @@ void QBtSession::pauseTorrent(const QString &hash) {
     }
 }
 
-void QBtSession::resumeTorrent(const QString &hash) {
+void QBtSession::resumeTorrent(const QString &hash, const bool force) {
     QTorrentHandle h = getTorrentHandle(hash);
-    if (h.is_paused()) {
-        h.resume();
+    if (h.is_paused() || (h.is_forced() != force)) {
+        h.resume(force);
         emit resumedTorrent(h);
     }
 }

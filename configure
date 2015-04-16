@@ -601,6 +601,8 @@ EXPAND_BINDIR
 EXPAND_PREFIX
 zlib_LIBS
 zlib_CFLAGS
+qjson_LIBS
+qjson_CFLAGS
 libtorrent_LIBS
 libtorrent_CFLAGS
 BOOST_SYSTEM_LIB
@@ -712,10 +714,11 @@ ac_user_opts='
 enable_option_checking
 enable_dependency_tracking
 enable_silent_rules
-with_qt4
+with_qt5
 with_libtorrent_rasterbar0_16
 with_geoip_database_embedded
 with_qtsingleapplication
+with_qjson
 enable_debug
 enable_gui
 enable_systemd
@@ -743,6 +746,8 @@ PKG_CONFIG_LIBDIR
 QT_QMAKE
 libtorrent_CFLAGS
 libtorrent_LIBS
+qjson_CFLAGS
+qjson_LIBS
 zlib_CFLAGS
 zlib_LIBS'
 
@@ -1379,7 +1384,7 @@ Optional Features:
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
-  --with-qt4              Compile using Qt4 (default=no)
+  --with-qt5              Compile using Qt5 (default=no)
   --with-libtorrent-rasterbar0.16
                           Compile using libtorrent-rasterbar 0.16.x series
                           (default=no)
@@ -1390,6 +1395,9 @@ Optional Packages:
   --with-qtsingleapplication=[system|shipped]
                           Use the shipped qtsingleapplication library or the
                           system one (default=shipped)
+  --with-qjson=[system|shipped]
+                          Use the shipped qjson library or the system one
+                          (default=shipped) (Qt4 only
   --with-kf5              Compile using KDE Frameworks 5 (default=no)
   --with-boost[=ARG]      use Boost library from a standard location
                           (ARG=yes), from the specified location (ARG=<path>),
@@ -1420,11 +1428,14 @@ Some influential environment variables:
               directories to add to pkg-config's search path
   PKG_CONFIG_LIBDIR
               path overriding pkg-config's built-in search path
-  QT_QMAKE    value of host_bins for Qt5Core >= 5.2.0, overriding pkg-config
+  QT_QMAKE    value of moc_location for QtCore >= 4.8.0, overriding pkg-config
   libtorrent_CFLAGS
               C compiler flags for libtorrent, overriding pkg-config
   libtorrent_LIBS
               linker flags for libtorrent, overriding pkg-config
+  qjson_CFLAGS
+              C compiler flags for qjson, overriding pkg-config
+  qjson_LIBS  linker flags for qjson, overriding pkg-config
   zlib_CFLAGS C compiler flags for zlib, overriding pkg-config
   zlib_LIBS   linker flags for zlib, overriding pkg-config
 
@@ -4167,11 +4178,11 @@ fi
 # Define --wth-* and --enable-* arguments
 
 
-# Check whether --with-qt4 was given.
-if test "${with_qt4+set}" = set; then :
-  withval=$with_qt4;
+# Check whether --with-qt5 was given.
+if test "${with_qt5+set}" = set; then :
+  withval=$with_qt5;
 else
-  with_qt4=no
+  with_qt5=no
 fi
 
 
@@ -4199,6 +4210,15 @@ if test "${with_qtsingleapplication+set}" = set; then :
   withval=$with_qtsingleapplication;
 else
   with_qtsingleapplication=shipped
+fi
+
+
+
+# Check whether --with-qjson was given.
+if test "${with_qjson+set}" = set; then :
+  withval=$with_qjson;
+else
+  with_qjson=shipped
 fi
 
 
@@ -4462,106 +4482,13 @@ $as_echo "$enable_webui" >&6; }
         as_fn_error $? "Unknown option \"$enable_webui\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
 esac
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether Qt4 should be enabled" >&5
-$as_echo_n "checking whether Qt4 should be enabled... " >&6; }
-case "x$with_qt4" in #(
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether Qt5 should be enabled" >&5
+$as_echo_n "checking whether Qt5 should be enabled... " >&6; }
+case "x$with_qt5" in #(
   "xno") :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
               if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.2.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.2.0") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-
-if test -n "$QT_QMAKE"; then
-    pkg_cv_QT_QMAKE="$QT_QMAKE"
- elif test -n "$PKG_CONFIG"; then
-    if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.2.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.2.0") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-  pkg_cv_QT_QMAKE=`$PKG_CONFIG --variable="host_bins" "Qt5Core >= 5.2.0" 2>/dev/null`
-		      test "x$?" != "x0" && pkg_failed=yes
-else
-  pkg_failed=yes
-fi
- else
-    pkg_failed=untried
-fi
-QT_QMAKE=$pkg_cv_QT_QMAKE
-
-if test "x$QT_QMAKE" = x""; then :
-
-fi
-
-fi
-
-as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake" >&5
-$as_echo_n "checking for $QT_QMAKE/qmake... " >&6; }
-if eval \${$as_ac_File+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  test "$cross_compiling" = yes &&
-  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
-if test -r "$QT_QMAKE/qmake"; then
-  eval "$as_ac_File=yes"
-else
-  eval "$as_ac_File=no"
-fi
-fi
-eval ac_res=\$$as_ac_File
-	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
-$as_echo "$ac_res" >&6; }
-if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
-  QT_QMAKE="$QT_QMAKE/qmake"
-else
-  as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake-qt5" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake-qt5" >&5
-$as_echo_n "checking for $QT_QMAKE/qmake-qt5... " >&6; }
-if eval \${$as_ac_File+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  test "$cross_compiling" = yes &&
-  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
-if test -r "$QT_QMAKE/qmake-qt5"; then
-  eval "$as_ac_File=yes"
-else
-  eval "$as_ac_File=no"
-fi
-fi
-eval ac_res=\$$as_ac_File
-	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
-$as_echo "$ac_res" >&6; }
-if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
-  QT_QMAKE="$QT_QMAKE/qmake-qt5"
-else
-  QT_QMAKE=""
-fi
-
-
-fi
-
-
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.2.0" >&5
-$as_echo_n "checking for Qt5 qmake >= 5.2.0... " >&6; }
-if test "x$QT_QMAKE" != "x"; then :
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $QT_QMAKE" >&5
-$as_echo "$QT_QMAKE" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
-$as_echo "not found" >&6; }
-
-fi
- ;; #(
-  "xyes") :
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-$as_echo "yes" >&6; }
-               if test -n "$PKG_CONFIG" && \
     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"QtCore >= 4.8.0\""; } >&5
   ($PKG_CONFIG --exists --print-errors "QtCore >= 4.8.0") 2>&5
   ac_status=$?
@@ -4675,10 +4602,103 @@ $as_echo "not found" >&6; }
 
 fi
  ;; #(
+  "xyes") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+               if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.2.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.2.0") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+
+if test -n "$QT_QMAKE"; then
+    pkg_cv_QT_QMAKE="$QT_QMAKE"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.2.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.2.0") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QT_QMAKE=`$PKG_CONFIG --variable="host_bins" "Qt5Core >= 5.2.0" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+QT_QMAKE=$pkg_cv_QT_QMAKE
+
+if test "x$QT_QMAKE" = x""; then :
+
+fi
+
+fi
+
+as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake" >&5
+$as_echo_n "checking for $QT_QMAKE/qmake... " >&6; }
+if eval \${$as_ac_File+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  test "$cross_compiling" = yes &&
+  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
+if test -r "$QT_QMAKE/qmake"; then
+  eval "$as_ac_File=yes"
+else
+  eval "$as_ac_File=no"
+fi
+fi
+eval ac_res=\$$as_ac_File
+	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+$as_echo "$ac_res" >&6; }
+if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+  QT_QMAKE="$QT_QMAKE/qmake"
+else
+  as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake-qt5" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake-qt5" >&5
+$as_echo_n "checking for $QT_QMAKE/qmake-qt5... " >&6; }
+if eval \${$as_ac_File+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  test "$cross_compiling" = yes &&
+  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
+if test -r "$QT_QMAKE/qmake-qt5"; then
+  eval "$as_ac_File=yes"
+else
+  eval "$as_ac_File=no"
+fi
+fi
+eval ac_res=\$$as_ac_File
+	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+$as_echo "$ac_res" >&6; }
+if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+  QT_QMAKE="$QT_QMAKE/qmake-qt5"
+else
+  QT_QMAKE=""
+fi
+
+
+fi
+
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.2.0" >&5
+$as_echo_n "checking for Qt5 qmake >= 5.2.0... " >&6; }
+if test "x$QT_QMAKE" != "x"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $QT_QMAKE" >&5
+$as_echo "$QT_QMAKE" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+$as_echo "not found" >&6; }
+
+fi
+ ;; #(
   *) :
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $with_qt4" >&5
-$as_echo "$with_qt4" >&6; }
-        as_fn_error $? "Unknown option \"$with_qt4\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $with_qt5" >&5
+$as_echo "$with_qt5" >&6; }
+        as_fn_error $? "Unknown option \"$with_qt5\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
 esac
 if test "x$QT_QMAKE" = "x"; then :
   as_fn_error $? "Could not find qmake" "$LINENO" 5
@@ -5532,6 +5552,118 @@ $as_echo "system" >&6; }
 $as_echo "$with_qtsingleapplication" >&6; }
         as_fn_error $? "Unknown option \"$with_qtsingleapplication\". Use either \"system\" or \"shipped\"." "$LINENO" 5 ;;
 esac
+
+if test "x$with_qt5" = "xno"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking which qjson to use" >&5
+$as_echo_n "checking which qjson to use... " >&6; }
+      case "x$with_qjson" in #(
+  "xshipped") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: shipped" >&5
+$as_echo "shipped" >&6; }
+                         QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG usesystemqjson" ;; #(
+  "xsystem") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: system" >&5
+$as_echo "system" >&6; }
+
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for qjson" >&5
+$as_echo_n "checking for qjson... " >&6; }
+
+if test -n "$qjson_CFLAGS"; then
+    pkg_cv_qjson_CFLAGS="$qjson_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"QJson >= 0.8.1\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "QJson >= 0.8.1") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_qjson_CFLAGS=`$PKG_CONFIG --cflags "QJson >= 0.8.1" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$qjson_LIBS"; then
+    pkg_cv_qjson_LIBS="$qjson_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"QJson >= 0.8.1\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "QJson >= 0.8.1") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_qjson_LIBS=`$PKG_CONFIG --libs "QJson >= 0.8.1" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        qjson_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "QJson >= 0.8.1" 2>&1`
+        else
+	        qjson_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "QJson >= 0.8.1" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$qjson_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (QJson >= 0.8.1) were not met:
+
+$qjson_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables qjson_CFLAGS
+and qjson_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details." "$LINENO" 5
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables qjson_CFLAGS
+and qjson_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details" "$LINENO" 5; }
+else
+	qjson_CFLAGS=$pkg_cv_qjson_CFLAGS
+	qjson_LIBS=$pkg_cv_qjson_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	CPPFLAGS="$qjson_CFLAGS $CPPFLAGS"
+                                          LIBS="$qjson_LIBS $LIBS"
+fi
+                         QBT_ADD_CONFIG="$QBT_ADD_CONFIG usesystemqjson" ;; #(
+  *) :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $with_qjson" >&5
+$as_echo "$with_qjson" >&6; }
+              as_fn_error $? "Unknown option \"$with_qjson\". Use either \"system\" or \"shipped\"." "$LINENO" 5 ;;
+esac
+
+fi
 
 
 pkg_failed=no

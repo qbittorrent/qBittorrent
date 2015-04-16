@@ -12,11 +12,11 @@ AM_INIT_AUTOMAKE
 
 # Define --wth-* and --enable-* arguments
 
-AC_ARG_WITH(qt4,
-            [AS_HELP_STRING([--with-qt4],
-                            [Compile using Qt4 (default=no)])],
+AC_ARG_WITH(qt5,
+            [AS_HELP_STRING([--with-qt5],
+                            [Compile using Qt5 (default=no)])],
             [],
-            [with_qt4=no])
+            [with_qt5=no])
 
 AC_ARG_WITH(libtorrent-rasterbar0.16,
             [AS_HELP_STRING([--with-libtorrent-rasterbar0.16],
@@ -35,6 +35,12 @@ AC_ARG_WITH(qtsingleapplication,
                             [Use the shipped qtsingleapplication library or the system one (default=shipped)])],
             [],
             [with_qtsingleapplication=shipped])
+
+AC_ARG_WITH(qjson,
+            [AS_HELP_STRING([--with-qjson=@<:@system|shipped@:>@],
+                            [Use the shipped qjson library or the system one (default=shipped) (Qt4 only])],
+            [],
+            [with_qjson=shipped])
 
 AC_ARG_ENABLE(debug,
               [AS_HELP_STRING([--enable-debug],
@@ -134,16 +140,16 @@ AS_CASE(["x$enable_webui"],
         [AC_MSG_RESULT([$enable_webui])
         AC_MSG_ERROR([Unknown option "$enable_webui". Use either "yes" or "no".])])
 
-AC_MSG_CHECKING([whether Qt4 should be enabled])
-AS_CASE(["x$with_qt4"],
+AC_MSG_CHECKING([whether Qt5 should be enabled])
+AS_CASE(["x$with_qt5"],
         ["xno"],
               [AC_MSG_RESULT([no])
-              FIND_QT5()],
+              FIND_QT4()],
         ["xyes"],
                [AC_MSG_RESULT([yes])
-               FIND_QT4()],
-        [AC_MSG_RESULT([$with_qt4])
-        AC_MSG_ERROR([Unknown option "$with_qt4". Use either "yes" or "no".])])
+               FIND_QT5()],
+        [AC_MSG_RESULT([$with_qt5])
+        AC_MSG_ERROR([Unknown option "$with_qt5". Use either "yes" or "no".])])
 AS_IF([test "x$QT_QMAKE" = "x"],
       [AC_MSG_ERROR([Could not find qmake])
       ])
@@ -228,6 +234,23 @@ AS_CASE(["x$with_qtsingleapplication"],
                   QBT_ADD_CONFIG="$QBT_ADD_CONFIG usesystemqtsingleapplication"],
         [AC_MSG_RESULT([$with_qtsingleapplication])
         AC_MSG_ERROR([Unknown option "$with_qtsingleapplication". Use either "system" or "shipped".])])
+
+AS_IF([test "x$with_qt5" = "xno"],
+      [AC_MSG_CHECKING([which qjson to use])
+      AS_CASE(["x$with_qjson"],
+              ["xshipped"],
+                         [AC_MSG_RESULT([shipped])
+                         QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG usesystemqjson"],
+              ["xsystem"],
+                         [AC_MSG_RESULT([system])
+                         PKG_CHECK_MODULES(qjson,
+                                          [QJson >= 0.8.1],
+                                          [CPPFLAGS="$qjson_CFLAGS $CPPFLAGS"
+                                          LIBS="$qjson_LIBS $LIBS"])
+                         QBT_ADD_CONFIG="$QBT_ADD_CONFIG usesystemqjson"],
+              [AC_MSG_RESULT([$with_qjson])
+              AC_MSG_ERROR([Unknown option "$with_qjson". Use either "system" or "shipped".])])
+     ])
 
 PKG_CHECK_MODULES(zlib,
                  [zlib],
