@@ -367,6 +367,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    // Save window size, columns size
+    writeSettings();
 #ifdef Q_OS_MAC
     // Workaround to avoid bug http://bugreports.qt.nokia.com/browse/QTBUG-7305
     setUnifiedTitleAndToolBarOnMac(false);

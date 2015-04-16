@@ -86,7 +86,6 @@ public slots:
     void updateAltSpeedsBtn(bool alternative);
     void updateNbTorrents();
     void activate();
-    void writeSettings();
 
 protected slots:
     // GUI related slots
@@ -97,6 +96,7 @@ protected slots:
     void on_actionWebsite_triggered() const;
     void on_actionBugReport_triggered() const;
     void balloonClicked();
+    void writeSettings();
     void readSettings();
     void on_actionExit_triggered();
     void createTrayIcon();
