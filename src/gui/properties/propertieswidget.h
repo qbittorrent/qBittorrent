@@ -92,6 +92,7 @@ protected slots:
   void showPiecesDownloaded(bool show);
   void showPiecesAvailability(bool show);
   void renameSelectedFile();
+  void openSelectedFile();
 
 public slots:
   void setVisibility(bool visible);
@@ -126,6 +127,7 @@ private:
   QShortcut *editHotkeyFile;
   QShortcut *editHotkeyWeb;
   QShortcut *deleteHotkeyWeb;
+  QShortcut *openHotkeyFile;
 
 private slots:
   void filterText(const QString& filter);
