@@ -78,6 +78,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_listModel->setHeaderData(PeerListDelegate::TOT_DOWN, Qt::Horizontal, tr("Downloaded", "i.e: total data downloaded"));
     m_listModel->setHeaderData(PeerListDelegate::TOT_UP, Qt::Horizontal, tr("Uploaded", "i.e: total data uploaded"));
     m_listModel->setHeaderData(PeerListDelegate::RELEVANCE, Qt::Horizontal, tr("Relevance", "i.e: How relevant this peer is to us. How many pieces it has that we don't."));
+    m_listModel->setHeaderData(PeerListDelegate::DOWNLOADING_PIECE, Qt::Horizontal, tr("Files", "i.e. files that are being downloaded right now"));
     // Proxy model to support sorting without actually altering the underlying model
     m_proxyModel = new PeerListSortModel();
     m_proxyModel->setDynamicSortFilter(true);
@@ -337,6 +338,10 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, BitTorrent::TorrentHan
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_DOWN), peer.totalDownload());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_UP), peer.totalUpload());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::RELEVANCE), peer.relevance());
+    QStringList downloadingFiles(torrent->info().filesForPiece(peer.downloadingPieceIndex()));
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWNLOADING_PIECE), downloadingFiles.join(QLatin1String(";")));
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWNLOADING_PIECE), downloadingFiles.join(QLatin1String("\n")), Qt::ToolTipRole);
+
     return m_listModel->item(row, PeerListDelegate::IP);
 }
 
@@ -364,6 +369,9 @@ void PeerListWidget::updatePeer(const QString &ip, BitTorrent::TorrentHandle *co
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_DOWN), peer.totalDownload());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_UP), peer.totalUpload());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::RELEVANCE), peer.relevance());
+    QStringList downloadingFiles(torrent->info().filesForPiece(peer.downloadingPieceIndex()));
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWNLOADING_PIECE), downloadingFiles.join(QLatin1String(";")));
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWNLOADING_PIECE), downloadingFiles.join(QLatin1String("\n")), Qt::ToolTipRole);
 }
 
 void PeerListWidget::handleResolved(const QString &ip, const QString &hostname)
