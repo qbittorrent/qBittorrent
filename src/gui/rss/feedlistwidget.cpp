@@ -31,7 +31,7 @@
 #include "feedlistwidget.h"
 #include "rssmanager.h"
 #include "rssfeed.h"
-#include "iconprovider.h"
+#include "guiiconprovider.h"
 
 FeedListWidget::FeedListWidget(QWidget *parent, const RssManagerPtr& rssmanager): QTreeWidget(parent), m_rssManager(rssmanager) {
   setContextMenuPolicy(Qt::CustomContextMenu);
@@ -41,7 +41,7 @@ FeedListWidget::FeedListWidget(QWidget *parent, const RssManagerPtr& rssmanager)
   headerItem()->setText(0, tr("RSS feeds"));
   m_unreadStickyItem = new QTreeWidgetItem(this);
   m_unreadStickyItem->setText(0, tr("Unread") + QString::fromUtf8("  (") + QString::number(rssmanager->unreadCount())+ QString(")"));
-  m_unreadStickyItem->setData(0,Qt::DecorationRole, IconProvider::instance()->getIcon("mail-folder-inbox"));
+  m_unreadStickyItem->setData(0,Qt::DecorationRole, GuiIconProvider::instance()->getIcon("mail-folder-inbox"));
   itemAdded(m_unreadStickyItem, rssmanager);
   connect(this, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), SLOT(updateCurrentFeed(QTreeWidgetItem*)));
   setCurrentItem(m_unreadStickyItem);

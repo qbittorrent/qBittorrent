@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -39,25 +39,11 @@
 #include <QFile>
 #include <QDir>
 #include <QUrl>
-#ifndef DISABLE_GUI
-#include <QIcon>
-#endif
 
-#include <libtorrent/version.hpp>
-#include <libtorrent/error_code.hpp>
-
-namespace libtorrent {
-#if LIBTORRENT_VERSION_NUM < 10000
-    class big_number;
-    typedef big_number sha1_hash;
-#else
-    class sha1_hash;
-#endif
-    struct lazy_entry;
-}
+namespace BitTorrent { class TorrentHandle; }
 
 const qlonglong MAX_ETA = 8640000;
-enum shutDownAction { NO_SHUTDOWN, SHUTDOWN_COMPUTER, SUSPEND_COMPUTER, HIBERNATE_COMPUTER };
+enum ShutDownAction { NO_SHUTDOWN, SHUTDOWN_COMPUTER, SUSPEND_COMPUTER, HIBERNATE_COMPUTER };
 
 /*  Miscellaneaous functions that can be useful */
 namespace misc
@@ -66,10 +52,12 @@ namespace misc
     QString toQString(const char* str);
     QString toQStringU(const std::string &str);
     QString toQStringU(const char* str);
-    QString toQString(const libtorrent::sha1_hash &hash);
+
+    void autoRunExternalProgram(QString program, BitTorrent::TorrentHandle *const torrent);
+    void sendNotificationEmail(const QString &email, BitTorrent::TorrentHandle *const torrent);
 
 #ifndef DISABLE_GUI
-    void shutdownComputer(shutDownAction action = SHUTDOWN_COMPUTER);
+    void shutdownComputer(ShutDownAction action = SHUTDOWN_COMPUTER);
 #endif
 
     QString parseHtmlLinks(const QString &raw_text);
@@ -87,8 +75,7 @@ namespace misc
     // value must be given in bytes
     QString friendlyUnit(qreal val, bool is_speed = false);
     bool isPreviewable(const QString& extension);
-    QString magnetUriToName(const QString& magnet_uri);
-    QString magnetUriToHash(const QString& magnet_uri);
+
     QString bcLinkToMagnet(QString bc_link);
     // Take a number of seconds and return an user-friendly
     // time duration like "1d 2h 10m".
@@ -110,8 +97,6 @@ namespace misc
     // Implements constant-time comparison to protect against timing attacks
     // Taken from https://crackstation.net/hashing-security.htm
     bool slowEquals(const QByteArray &a, const QByteArray &b);
-    void loadBencodedFile(const QString &filename, std::vector<char> &buffer, libtorrent::lazy_entry &entry, libtorrent::error_code &ec);
-
     void msleep(unsigned long msecs);
 }
 

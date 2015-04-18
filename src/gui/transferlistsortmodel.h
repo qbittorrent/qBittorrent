@@ -33,7 +33,7 @@
 
 #include <QSortFilterProxyModel>
 #include <QStringList>
-#include "torrentfilterenum.h"
+#include "core/torrentfilter.h"
 
 class TransferListSortModel: public QSortFilterProxyModel
 {
@@ -42,28 +42,20 @@ class TransferListSortModel: public QSortFilterProxyModel
 public:
     TransferListSortModel(QObject *parent = 0);
 
-    void setStatusFilter(const TorrentFilter::TorrentFilter &filter);
-    void setLabelFilter(const QString &label);
-    void disableLabelFilter();
-    void setTrackerFilter(const QStringList &hashes);
-    void disableTrackerFilter();
+  void setStatusFilter(TorrentFilter::Type filter);
+  void setLabelFilter(const QString &label);
+  void disableLabelFilter();
+  void setTrackerFilter(const QStringList &hashes);
+  void disableTrackerFilter();
 
 private:
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
     bool lowerPositionThan(const QModelIndex &left, const QModelIndex &right) const;
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
-
-    bool matchStatusFilter(int sourceRow, const QModelIndex &sourceParent) const;
-    bool matchLabelFilter(int sourceRow, const QModelIndex &sourceParent) const;
-    bool matchTrackerFilter(int sourceRow, const QModelIndex &sourceParent) const;
+    bool matchFilter(int sourceRow, const QModelIndex &sourceParent) const;
 
 private:
-    TorrentFilter::TorrentFilter filter0;
-
-    bool labelFilterEnabled;
-    QString labelFilter;
-    bool trackerFilterEnabled;
-    QStringList trackerFilter;
+    TorrentFilter m_filter;
 };
 
 #endif // TRANSFERLISTSORTMODEL_H

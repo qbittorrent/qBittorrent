@@ -33,7 +33,7 @@
 
 #include <QItemDelegate>
 #include <QPainter>
-#include "misc.h"
+#include "core/misc.h"
 
 class PeerListDelegate: public QItemDelegate {
   Q_OBJECT

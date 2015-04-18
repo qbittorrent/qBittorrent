@@ -35,7 +35,7 @@
 #include <QTemporaryFile>
 #include <QTimer>
 
-#include "preferences.h"
+#include "core/preferences.h"
 #include "websessiondata.h"
 #include "abstractwebapplication.h"
 

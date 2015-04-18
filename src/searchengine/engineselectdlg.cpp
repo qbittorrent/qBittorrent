@@ -29,13 +29,14 @@
  */
 
 #include "engineselectdlg.h"
-#include "downloadthread.h"
-#include "fs_utils.h"
-#include "misc.h"
+#include "core/net/downloadmanager.h"
+#include "core/net/downloadhandler.h"
+#include "core/fs_utils.h"
+#include "core/misc.h"
 #include "ico.h"
 #include "searchengine.h"
 #include "pluginsource.h"
-#include "iconprovider.h"
+#include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
 #include <QProcess>
 #include <QHeaderView>
@@ -55,12 +56,9 @@ engineSelectDlg::engineSelectDlg(QWidget *parent, SupportedEngines *supported_en
   pluginsTree->header()->resizeSection(0, 170);
   pluginsTree->header()->resizeSection(1, 220);
   pluginsTree->hideColumn(ENGINE_ID);
-  actionUninstall->setIcon(IconProvider::instance()->getIcon("list-remove"));
+  actionUninstall->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
   connect(actionEnable, SIGNAL(toggled(bool)), this, SLOT(enableSelection(bool)));
   connect(pluginsTree, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayContextMenu(const QPoint&)));
-  downloader = new DownloadThread(this);
-  connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
-  connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
   loadSupportedSearchEngines();
   connect(supported_engines, SIGNAL(newSupportedEngine(QString)), this, SLOT(addNewEngine(QString)));
   connect(pluginsTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(toggleEngineState(QTreeWidgetItem*, int)));
@@ -70,8 +68,6 @@ engineSelectDlg::engineSelectDlg(QWidget *parent, SupportedEngines *supported_en
 engineSelectDlg::~engineSelectDlg() {
   qDebug("Destroying engineSelectDlg");
   emit enginesChanged();
-  qDebug("Before deleting downloader");
-  delete downloader;
   qDebug("Engine plugins dialog destroyed");
 }
 
@@ -82,7 +78,7 @@ void engineSelectDlg::dropEvent(QDropEvent *event) {
     qDebug("dropped %s", qPrintable(file));
     if (misc::isUrl(file)) {
       setCursor(QCursor(Qt::WaitCursor));
-      downloader->downloadUrl(file);
+      downloadFromUrl(file);
       continue;
     }
     if (file.endsWith(".py", Qt::CaseInsensitive)) {
@@ -109,7 +105,7 @@ void engineSelectDlg::dragEnterEvent(QDragEnterEvent *event) {
 void engineSelectDlg::on_updateButton_clicked() {
   // Download version file from update server on sourceforge
   setCursor(QCursor(Qt::WaitCursor));
-  downloader->downloadUrl(QString(UPDATE_URL)+"versions.txt");
+  downloadFromUrl(QString(UPDATE_URL) + "versions.txt");
 }
 
 void engineSelectDlg::toggleEngineState(QTreeWidgetItem *item, int) {
@@ -315,7 +311,7 @@ void engineSelectDlg::addNewEngine(QString engine_name) {
       item->setData(ENGINE_NAME, Qt::DecorationRole, QVariant(QIcon(iconPath)));
     } else {
       // Icon is missing, we must download it
-      downloader->downloadUrl(engine->getUrl()+"/favicon.ico");
+      downloadFromUrl(engine->getUrl() + "/favicon.ico");
     }
   }
 }
@@ -346,7 +342,7 @@ void engineSelectDlg::askForPluginUrl() {
   }
 
   setCursor(QCursor(Qt::WaitCursor));
-  downloader->downloadUrl(url);
+  downloadFromUrl(url);
 }
 
 void engineSelectDlg::askForLocalPlugin() {
@@ -392,8 +388,8 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file) {
       qDebug("Plugin: %s is outdated", qPrintable(plugin_name));
       // Downloading update
       setCursor(QCursor(Qt::WaitCursor));
-      downloader->downloadUrl(UPDATE_URL+plugin_name+".py");
-      //downloader->downloadUrl(UPDATE_URL+plugin_name+".png");
+      downloadFromUrl(UPDATE_URL + plugin_name + ".py");
+//      downloadFromUrl(UPDATE_URL + plugin_name + ".png");
       updated = true;
     }else {
       qDebug("Plugin: %s is up to date", qPrintable(plugin_name));
@@ -409,7 +405,14 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file) {
   return file_correct;
 }
 
-void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
+void engineSelectDlg::downloadFromUrl(const QString &url)
+{
+    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(url);
+    connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
+    connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
+}
+
+void engineSelectDlg::processDownloadedFile(const QString &url, QString filePath) {
   filePath = fsutils::fromNativePath(filePath);
   setCursor(QCursor(Qt::ArrowCursor));
   qDebug("engineSelectDlg received %s", qPrintable(url));
@@ -452,7 +455,7 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
   }
 }
 
-void engineSelectDlg::handleDownloadFailure(QString url, QString reason) {
+void engineSelectDlg::handleDownloadFailure(const QString &url, const QString &reason) {
   setCursor(QCursor(Qt::ArrowCursor));
   if (url.endsWith("favicon.ico", Qt::CaseInsensitive)) {
     qDebug("Could not download favicon: %s, reason: %s", qPrintable(url), qPrintable(reason));

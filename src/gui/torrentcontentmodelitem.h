@@ -34,8 +34,6 @@
 #include <QList>
 #include <QVariant>
 
-#include <libtorrent/torrent_info.hpp>
-
 namespace prio {
 enum FilePriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7, MIXED=-1};
 }
@@ -58,9 +56,7 @@ public:
   void setName(const QString& name);
 
   qulonglong size() const;
-  qulonglong totalDone() const;
-
-  float progress() const;
+  qreal progress() const;
 
   int priority() const;
   virtual void setPriority(int new_prio, bool update_parent = true) = 0;
@@ -77,7 +73,7 @@ protected:
   QString m_name;
   qulonglong m_size;
   int m_priority;
-  qulonglong m_totalDone;
+  qreal m_progress;
 };
 
 #endif // TORRENTCONTENTMODELITEM_H

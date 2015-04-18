@@ -37,12 +37,12 @@
 #include "automatedrssdownloader.h"
 #include "ui_automatedrssdownloader.h"
 #include "rssdownloadrulelist.h"
-#include "preferences.h"
+#include "core/preferences.h"
 #include "rssmanager.h"
 #include "rssfeed.h"
-#include "iconprovider.h"
+#include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
-#include "fs_utils.h"
+#include "core/fs_utils.h"
 
 AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& manager, QWidget *parent) :
   QDialog(parent),
@@ -51,8 +51,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& m
 {
   ui->setupUi(this);
   // Icons
-  ui->removeRuleBtn->setIcon(IconProvider::instance()->getIcon("list-remove"));
-  ui->addRuleBtn->setIcon(IconProvider::instance()->getIcon("list-add"));
+  ui->removeRuleBtn->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
+  ui->addRuleBtn->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
 
   // Ui Settings
   ui->listRules->setSortingEnabled(true);
@@ -436,17 +436,17 @@ void AutomatedRssDownloader::displayRulesListMenu(const QPoint &pos)
 {
   Q_UNUSED(pos);
   QMenu menu;
-  QAction *addAct = menu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Add new rule..."));
+  QAction *addAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("Add new rule..."));
   QAction *delAct = 0;
   QAction *renameAct = 0;
   const QList<QListWidgetItem*> selection = ui->listRules->selectedItems();
   if (!selection.isEmpty()) {
     if (selection.count() == 1) {
-      delAct = menu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Delete rule"));
+      delAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Delete rule"));
       menu.addSeparator();
-      renameAct = menu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Rename rule..."));
+      renameAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename rule..."));
     } else {
-      delAct = menu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Delete selected rules"));
+      delAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Delete selected rules"));
     }
   }
   QAction *act = menu.exec(QCursor::pos());
@@ -557,7 +557,7 @@ void AutomatedRssDownloader::addFeedArticlesToTree(const RssFeedPtr& feed, const
     QFont f = treeFeedItem->font(0);
     f.setBold(true);
     treeFeedItem->setFont(0, f);
-    treeFeedItem->setData(0, Qt::DecorationRole, IconProvider::instance()->getIcon("inode-directory"));
+    treeFeedItem->setData(0, Qt::DecorationRole, GuiIconProvider::instance()->getIcon("inode-directory"));
     treeFeedItem->setData(0, Qt::UserRole, feed->url());
     ui->treeMatchingArticles->addTopLevelItem(treeFeedItem);
   }
@@ -606,7 +606,7 @@ void AutomatedRssDownloader::updateMustLineValidity()
     ui->lbl_must_stat->setPixmap(QPixmap());
   } else {
     ui->lineContains->setStyleSheet("QLineEdit { color: #ff0000; }");
-    ui->lbl_must_stat->setPixmap(IconProvider::instance()->getIcon("task-attention").pixmap(16, 16));
+    ui->lbl_must_stat->setPixmap(GuiIconProvider::instance()->getIcon("task-attention").pixmap(16, 16));
   }
 }
 
@@ -631,7 +631,7 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
     ui->lbl_mustnot_stat->setPixmap(QPixmap());
   } else {
     ui->lineNotContains->setStyleSheet("QLineEdit { color: #ff0000; }");
-    ui->lbl_mustnot_stat->setPixmap(IconProvider::instance()->getIcon("task-attention").pixmap(16, 16));
+    ui->lbl_mustnot_stat->setPixmap(GuiIconProvider::instance()->getIcon("task-attention").pixmap(16, 16));
   }
 }
 

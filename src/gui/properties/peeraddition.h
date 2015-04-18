@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -34,72 +34,62 @@
 #include <QDialog>
 #include <QRegExp>
 #include <QMessageBox>
-#include <QHostAddress>
+
+#include "core/bittorrent/peerinfo.h"
 #include "ui_peer.h"
 
-#include <libtorrent/socket.hpp>
-#include <libtorrent/address.hpp>
-
-#include <boost/version.hpp>
-#if BOOST_VERSION < 103500
-#include <libtorrent/asio/ip/tcp.hpp>
-#else
-#include <boost/asio/ip/tcp.hpp>
-#endif
-
-class PeerAdditionDlg: public QDialog, private Ui::addPeerDialog {
-  Q_OBJECT
+class PeerAdditionDlg: public QDialog, private Ui::addPeerDialog
+{
+    Q_OBJECT
 
 public:
-  PeerAdditionDlg(QWidget *parent=0): QDialog(parent) {
-    setupUi(this);
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(validateInput()));
-  }
-
-  ~PeerAdditionDlg() {}
-
-  QString getIP() const {
-    QHostAddress ip(lineIP->text());
-    if (!ip.isNull()) {
-      // QHostAddress::toString() cleans up the IP for libtorrent
-      return ip.toString();
+    PeerAdditionDlg(QWidget *parent=0)
+        : QDialog(parent)
+    {
+        setupUi(this);
+        connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+        connect(buttonBox, SIGNAL(accepted()), this, SLOT(validateInput()));
     }
-    return QString();
-  }
 
-  unsigned short getPort() const {
-    return spinPort->value();
-  }
-
-  static libtorrent::asio::ip::tcp::endpoint askForPeerEndpoint() {
-    libtorrent::asio::ip::tcp::endpoint ep;
-    PeerAdditionDlg dlg;
-    if (dlg.exec() == QDialog::Accepted) {
-      QString ip = dlg.getIP();
-      boost::system::error_code ec;
-      libtorrent::address addr = libtorrent::address::from_string(qPrintable(ip), ec);
-      if (ec) {
-        qDebug("Unable to parse the provided IP: %s", qPrintable(ip));
-        return ep;
-      }
-      qDebug("Provided IP is correct");
-      ep = libtorrent::asio::ip::tcp::endpoint(addr, dlg.getPort());
+    ~PeerAdditionDlg()
+    {
     }
-    return ep;
-  }
+
+    QHostAddress getAddress() const
+    {
+        return QHostAddress(lineIP->text());
+    }
+
+    ushort getPort() const
+    {
+        return spinPort->value();
+    }
+
+    static BitTorrent::PeerAddress askForPeerAddress()
+    {
+        BitTorrent::PeerAddress addr;
+
+        PeerAdditionDlg dlg;
+        if (dlg.exec() == QDialog::Accepted) {
+            addr.ip = dlg.getAddress();
+            if (addr.ip.isNull())
+                qDebug("Unable to parse the provided IP.");
+            else
+                qDebug("Provided IP is correct");
+            addr.port = dlg.getPort();
+        }
+
+        return addr;
+    }
 
 
 protected slots:
-  void validateInput() {
-    if (getIP().isEmpty()) {
-      QMessageBox::warning(this, tr("Invalid IP"),
-                           tr("The IP you provided is invalid."),
-                           QMessageBox::Ok);
-    } else {
-      accept();
+    void validateInput() {
+        if (getAddress().isNull())
+            QMessageBox::warning(this, tr("Invalid IP"), tr("The IP you provided is invalid."), QMessageBox::Ok);
+        else
+            accept();
     }
-  }
 };
 
 #endif // PEERADDITION_H

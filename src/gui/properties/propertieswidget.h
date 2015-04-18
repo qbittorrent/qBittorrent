@@ -34,7 +34,7 @@
 #include <QShortcut>
 #include <QWidget>
 #include "ui_propertieswidget.h"
-#include "qtorrenthandle.h"
+#include "core/bittorrent/torrenthandle.h"
 
 
 class TransferListWidget;
@@ -64,23 +64,23 @@ public:
 public:
   PropertiesWidget(QWidget *parent, MainWindow* main_window, TransferListWidget *transferList);
   ~PropertiesWidget();
-  QTorrentHandle getCurrentTorrent() const;
+  BitTorrent::TorrentHandle *getCurrentTorrent() const;
   TrackerList* getTrackerList() const { return trackerList; }
   PeerListWidget* getPeerList() const { return peersList; }
   QTreeView* getFilesList() const { return filesList; }
 
 signals:
-  void trackersAdded(const QStringList &trackers, const QString &hash);
-  void trackersRemoved(const QStringList &trackers, const QString &hash);
-  void trackerlessChange(bool trackerless, const QString &hash);
+  void trackerAdded(const QString &tracker, const QString &hash);
+  void trackerRemoved(const QString &tracker, const QString &hash);
+  void trackerlessStateChanged(bool trackerless, const QString &hash);
 
 protected:
   QPushButton* getButtonFromIndex(int index);
   bool applyPriorities();
 
 protected slots:
-  void loadTorrentInfos(const QTorrentHandle &h);
-  void updateTorrentInfos(const QTorrentHandle &h);
+  void loadTorrentInfos(BitTorrent::TorrentHandle *const torrent);
+  void updateTorrentInfos(BitTorrent::TorrentHandle *const torrent);
   void loadUrlSeeds();
   void askWebSeed();
   void deleteSelectedUrlSeeds();
@@ -101,8 +101,8 @@ public slots:
   void saveSettings();
   void reloadPreferences();
   void openDoubleClickedFile(const QModelIndex &);
-  void updateSavePath(const QTorrentHandle& h);
-  void loadTrackers(const QTorrentHandle &handle);
+  void updateSavePath(BitTorrent::TorrentHandle *const torrent);
+  void loadTrackers(BitTorrent::TorrentHandle *const torrent);
 
 private:
   void openFile(const QModelIndex &index);
@@ -111,7 +111,7 @@ private:
 private:
   TransferListWidget *transferList;
   MainWindow *main_window;
-  QTorrentHandle h;
+  BitTorrent::TorrentHandle *m_torrent;
   QTimer *refreshTimer;
   SlideState state;
   TorrentContentFilterModel *PropListModel;

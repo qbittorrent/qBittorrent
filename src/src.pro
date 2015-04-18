@@ -16,7 +16,7 @@ os2: include(../os2conf.pri)
 
 nogui {
     QT -= gui
-    DEFINES += DISABLE_GUI
+    DEFINES += DISABLE_GUI DISABLE_COUNTRIES_RESOLUTION
     TARGET = qbittorrent-nox
 } else {
     QT += xml
@@ -55,6 +55,8 @@ DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 DEFINES += BOOST_FILESYSTEM_VERSION=2
 
 win32: DEFINES += NOMINMAX
+
+INCLUDEPATH += $$PWD
 
 include(app/app.pri)
 include(core/core.pri)

@@ -48,13 +48,14 @@
 #endif
 
 #include "searchengine.h"
-#include "qbtsession.h"
-#include "fs_utils.h"
-#include "misc.h"
-#include "preferences.h"
+#include "core/bittorrent/session.h"
+#include "core/fs_utils.h"
+#include "core/misc.h"
+#include "core/preferences.h"
 #include "searchlistdelegate.h"
 #include "mainwindow.h"
-#include "iconprovider.h"
+#include "addnewtorrentdialog.h"
+#include "guiiconprovider.h"
 #include "lineedit.h"
 
 #define SEARCHHISTORY_MAXSIZE 50
@@ -69,10 +70,10 @@ SearchEngine::SearchEngine(MainWindow* parent)
     searchBarLayout->insertWidget(0, search_pattern);
     connect(search_pattern, SIGNAL(returnPressed()), search_button, SLOT(click()));
     // Icons
-    search_button->setIcon(IconProvider::instance()->getIcon("edit-find"));
-    download_button->setIcon(IconProvider::instance()->getIcon("download"));
-    goToDescBtn->setIcon(IconProvider::instance()->getIcon("application-x-mswinurl"));
-    enginesButton->setIcon(IconProvider::instance()->getIcon("preferences-system-network"));
+    search_button->setIcon(GuiIconProvider::instance()->getIcon("edit-find"));
+    download_button->setIcon(GuiIconProvider::instance()->getIcon("download"));
+    goToDescBtn->setIcon(GuiIconProvider::instance()->getIcon("application-x-mswinurl"));
+    enginesButton->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
     tabWidget->setTabsClosable(true);
     connect(tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
     // Boolean initialization
@@ -329,8 +330,11 @@ void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus) {
         QStringList parts = line.split(' ');
         if (parts.size() == 2) {
             QString path = parts[0];
-            QString url = parts[1];
-            QBtSession::instance()->processDownloadedFile(url, path);
+
+            if (Preferences::instance()->useAdditionDialog())
+                AddNewTorrentDialog::show(path, mp_mainWindow);
+            else
+                BitTorrent::Session::instance()->addTorrent(path);
         }
     }
     qDebug("Deleting downloadProcess");

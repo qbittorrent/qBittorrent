@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -27,8 +27,6 @@
  *
  * Contact : chris@qbittorrent.org
  */
-
-#include "misc.h"
 
 #include <cmath>
 
@@ -71,14 +69,9 @@ const int UNLEN = 256;
 #endif
 #endif // DISABLE_GUI
 
-#if LIBTORRENT_VERSION_NUM < 10000
-#include <libtorrent/peer_id.hpp>
-#else
-#include <libtorrent/sha1_hash.hpp>
-#endif
-#include <libtorrent/magnet_uri.hpp>
-
-using namespace libtorrent;
+#include "core/bittorrent/torrenthandle.h"
+#include "core/net/smtp.h"
+#include "misc.h"
 
 static struct { const char *source; const char *comment; } units[] = {
     QT_TRANSLATE_NOOP3("misc", "B", "bytes"),
@@ -108,15 +101,8 @@ QString misc::toQStringU(const char* str)
     return QString::fromUtf8(str);
 }
 
-QString misc::toQString(const libtorrent::sha1_hash &hash)
-{
-    char out[41];
-    libtorrent::to_hex((char const*)&hash[0], libtorrent::sha1_hash::size, out);
-    return QString(out);
-}
-
 #ifndef DISABLE_GUI
-void misc::shutdownComputer(shutDownAction action)
+void misc::shutdownComputer(ShutDownAction action)
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
     // Use dbus to power off / suspend the system
@@ -378,28 +364,6 @@ QString misc::bcLinkToMagnet(QString bc_link)
     return magnet;
 }
 
-QString misc::magnetUriToName(const QString& magnet_uri)
-{
-    add_torrent_params p;
-    error_code ec;
-    parse_magnet_uri(magnet_uri.toUtf8().constData(), p, ec);
-
-    if (ec)
-        return QString::null;
-    return toQStringU(p.name);
-}
-
-QString misc::magnetUriToHash(const QString& magnet_uri)
-{
-    add_torrent_params p;
-    error_code ec;
-    parse_magnet_uri(magnet_uri.toUtf8().constData(), p, ec);
-
-    if (ec)
-        return QString::null;
-    return toQString(p.info_hash);
-}
-
 // Take a number of seconds and return an user-friendly
 // time duration like "1d 2h 10m".
 QString misc::userFriendlyDuration(qlonglong seconds)
@@ -624,18 +588,6 @@ bool misc::slowEquals(const QByteArray &a, const QByteArray &b)
     return (diff == 0);
 }
 
-void misc::loadBencodedFile(const QString &filename, std::vector<char> &buffer, libtorrent::lazy_entry &entry, libtorrent::error_code &ec)
-{
-    QFile file(filename);
-    if (!file.open(QIODevice::ReadOnly)) return;
-    const qint64 content_size = file.bytesAvailable();
-    if (content_size <= 0) return;
-    buffer.resize(content_size);
-    file.read(&buffer[0], content_size);
-    // bdecode
-    lazy_bdecode(&buffer[0], &buffer[0] + buffer.size(), entry, ec);
-}
-
 namespace {
 //  Trick to get a portable sleep() function
 class SleeperThread: public QThread {
@@ -650,4 +602,34 @@ public:
 void misc::msleep(unsigned long msecs)
 {
     SleeperThread::msleep(msecs);
+}
+
+
+void misc::autoRunExternalProgram(QString program, BitTorrent::TorrentHandle *const torrent)
+{
+    if (program.isEmpty()) return;
+
+    // Replace %f by torrent path
+    program.replace("%f", torrent->savePathParsed());
+    // Replace %n by torrent name
+    program.replace("%n", torrent->name());
+
+    QProcess::startDetached(program);
+}
+
+void misc::sendNotificationEmail(const QString &email, BitTorrent::TorrentHandle *const torrent)
+{
+    // Prepare mail content
+    QString content = QObject::tr("Torrent name: %1").arg(torrent->name()) + "\n";
+    content += QObject::tr("Torrent size: %1").arg(misc::friendlyUnit(torrent->wantedSize())) + "\n";
+    content += QObject::tr("Save path: %1").arg(torrent->savePath()) + "\n\n";
+    content += QObject::tr("The torrent was downloaded in %1.",
+                  "The torrent was downloaded in 1 hour and 20 seconds")
+            .arg(misc::userFriendlyDuration(torrent->activeTime())) + "\n\n\n";
+    content += QObject::tr("Thank you for using qBittorrent.") + "\n";
+
+    // Send the notification email
+    Net::Smtp *sender = new Net::Smtp;
+    sender->sendMail("notification@qbittorrent.org", email, QObject::tr(
+                         "[qBittorrent] %1 has finished downloading").arg(torrent->name()), content);
 }

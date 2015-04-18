@@ -41,8 +41,8 @@ QT_END_NAMESPACE
 
 class TransferListWidget;
 class TorrentModelItem;
-class QTorrentHandle;
-class DownloadThread;
+
+namespace BitTorrent { class TorrentHandle; }
 
 class FiltersBase: public QListWidget
 {
@@ -158,7 +158,6 @@ private:
     QHash<QString, QStringList> m_trackers;
     QHash<QString, QStringList> m_errors;
     QHash<QString, QStringList> m_warnings;
-    DownloadThread *m_downloader;
     QStringList m_iconPaths;
     int m_totalTorrents;
 };
@@ -171,9 +170,14 @@ public:
     TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList);
 
 public slots:
-    void addTrackers(const QStringList &trackers, const QString &hash);
-    void removeTrackers(const QStringList &trackers, const QString &hash);
+    void addTracker(BitTorrent::TorrentHandle *const torrent, const QString &tracker);
+    void addTracker(const QString &tracker, const QString &hash);
+    void removeTracker(const QString &tracker, const QString &hash);
     void changeTrackerless(bool trackerless, const QString &hash);
+    void changeTrackerless(BitTorrent::TorrentHandle *const torrent, bool trackerless);
+    void trackerSuccess(BitTorrent::TorrentHandle *const torrent, const QString &tracker);
+    void trackerWarning(BitTorrent::TorrentHandle *const torrent, const QString &tracker);
+    void trackerError(BitTorrent::TorrentHandle *const torrent, const QString &tracker);
 
 signals:
     void trackerSuccess(const QString &hash, const QString &tracker);

@@ -1,0 +1,66 @@
+#include <QTime>
+#include <QDateTime>
+
+#include "core/preferences.h"
+#include "bandwidthscheduler.h"
+
+BandwidthScheduler::BandwidthScheduler(QObject *parent)
+    : QTimer(parent)
+{
+    Q_ASSERT(Preferences::instance()->isSchedulerEnabled());
+    // Signal shot, we call start() again manually
+    setSingleShot(true);
+    // Connect Signals/Slots
+    connect(this, SIGNAL(timeout()), this, SLOT(start()));
+}
+
+void BandwidthScheduler::start()
+{
+    const Preferences* const pref = Preferences::instance();
+    Q_ASSERT(pref->isSchedulerEnabled());
+    bool alt_bw_enabled = pref->isAltBandwidthEnabled();
+
+    QTime start = pref->getSchedulerStartTime();
+    QTime end = pref->getSchedulerEndTime();
+    QTime now = QTime::currentTime();
+    int sched_days = pref->getSchedulerDays();
+    int day = QDateTime::currentDateTime().toLocalTime().date().dayOfWeek();
+    bool new_mode = false;
+    bool reverse = false;
+
+    if (start > end) {
+        QTime temp = start;
+        start = end;
+        end = temp;
+        reverse = true;
+    }
+
+    if ((start <= now) && (end >= now)) {
+        switch(sched_days) {
+        case EVERY_DAY:
+            new_mode = true;
+            break;
+        case WEEK_ENDS:
+            if ((day == 6) || (day == 7))
+                new_mode = true;
+            break;
+        case WEEK_DAYS:
+            if ((day != 6) && (day != 7))
+                new_mode = true;
+            break;
+        default:
+            if (day == (sched_days - 2))
+                new_mode = true;
+        }
+    }
+
+    if (reverse)
+        new_mode = !new_mode;
+
+    if (new_mode != alt_bw_enabled)
+        emit switchToAlternativeMode(new_mode);
+
+    // Timeout regularly to accomodate for external system clock changes
+    // eg from the user or from a timesync utility
+    QTimer::start(1500);
+}

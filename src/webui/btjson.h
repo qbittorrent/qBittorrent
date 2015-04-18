@@ -35,8 +35,6 @@
 #include <QString>
 #include <QVariant>
 
-class QTorrentHandle;
-
 class btjson
 {
     Q_DECLARE_TR_FUNCTIONS(misc)

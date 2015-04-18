@@ -34,7 +34,7 @@
 #include <QDialog>
 #include <QList>
 #include "ui_preview.h"
-#include "qtorrenthandle.h"
+#include "core/bittorrent/torrenthandle.h"
 
 class PreviewListDelegate;
 
@@ -49,7 +49,7 @@ public:
   enum PreviewColumn { NAME, SIZE, PROGRESS, FILE_INDEX, NB_COLUMNS };
 
 public:
-  PreviewSelect(QWidget* parent, QTorrentHandle h);
+  PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const torrent);
   ~PreviewSelect();
 
 signals:
@@ -62,8 +62,7 @@ protected slots:
 private:
   QStandardItemModel *previewListModel;
   PreviewListDelegate *listDelegate;
-  QTorrentHandle h;
-
+  BitTorrent::TorrentHandle *const m_torrent;
 };
 
 #endif

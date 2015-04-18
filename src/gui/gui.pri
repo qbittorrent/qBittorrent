@@ -3,9 +3,9 @@ INCLUDEPATH += $$PWD
 include(lineedit/lineedit.pri)
 include(properties/properties.pri)
 include(rss/rss.pri)
-include(torrentcreator/torrentcreator.pri)
 include(geoip/geoip.pri)
 include(powermanagement/powermanagement.pri)
+unix:!macx:dbus: include(qtnotify/qtnotify.pri)
 
 HEADERS += \
     $$PWD/mainwindow.h \
@@ -21,7 +21,6 @@ HEADERS += \
     $$PWD/torrentcontenttreeview.h \
     $$PWD/deletionconfirmationdlg.h \
     $$PWD/statusbar.h \
-    $$PWD/reverseresolution.h \
     $$PWD/ico.h \
     $$PWD/speedlimitdlg.h \
     $$PWD/about_imp.h \
@@ -32,16 +31,18 @@ HEADERS += \
     $$PWD/hidabletabwidget.h \
     $$PWD/torrentimportdlg.h \
     $$PWD/executionlog.h \
-    $$PWD/iconprovider.h \
+    $$PWD/guiiconprovider.h \
     $$PWD/updownratiodlg.h \
     $$PWD/loglistwidget.h \
     $$PWD/addnewtorrentdialog.h \
     $$PWD/autoexpandabledialog.h \
     $$PWD/statsdialog.h \
     $$PWD/messageboxraised.h \
-    $$PWD/torrentfilterenum.h \
     $$PWD/options_imp.h \
-    $$PWD/advancedsettings.h
+    $$PWD/advancedsettings.h \
+    $$PWD/shutdownconfirm.h \
+    $$PWD/torrentmodel.h \
+    $$PWD/torrentcreatordlg.h
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -60,7 +61,7 @@ SOURCES += \
     $$PWD/executionlog.cpp \
     $$PWD/speedlimitdlg.cpp \
     $$PWD/previewselect.cpp \
-    $$PWD/iconprovider.cpp \
+    $$PWD/guiiconprovider.cpp \
     $$PWD/updownratiodlg.cpp \
     $$PWD/loglistwidget.cpp \
     $$PWD/addnewtorrentdialog.cpp \
@@ -69,7 +70,10 @@ SOURCES += \
     $$PWD/messageboxraised.cpp \
     $$PWD/statusbar.cpp \
     $$PWD/trackerlogin.cpp \
-    $$PWD/options_imp.cpp
+    $$PWD/options_imp.cpp \
+    $$PWD/shutdownconfirm.cpp \
+    $$PWD/torrentmodel.cpp \
+    $$PWD/torrentcreatordlg.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
@@ -90,6 +94,7 @@ FORMS += \
     $$PWD/addnewtorrentdialog.ui \
     $$PWD/autoexpandabledialog.ui \
     $$PWD/statsdialog.ui \
-    $$PWD/options.ui
+    $$PWD/options.ui \
+    $$PWD/createtorrent.ui
 
 RESOURCES += $$PWD/about.qrc

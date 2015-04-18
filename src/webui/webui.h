@@ -33,7 +33,7 @@
 #include <QPointer>
 
 namespace Http { class Server; }
-class DNSUpdater;
+namespace Net {class DNSUpdater; }
 class AbstractWebApplication;
 
 class WebUI : public QObject
@@ -48,8 +48,9 @@ private slots:
 
 private:
     QPointer<Http::Server> httpServer_;
-    QPointer<DNSUpdater> dynDNSUpdater_;
+    QPointer<Net::DNSUpdater> dynDNSUpdater_;
     QPointer<AbstractWebApplication> webapp_;
+    qint16 m_port;
 };
 
 #endif // WEBUI_H

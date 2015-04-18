@@ -52,7 +52,7 @@ Logger * Logger::instance()
     return m_instance;
 }
 
-void Logger::drop()
+void Logger::freeInstance()
 {
     if (m_instance) {
         delete m_instance;
