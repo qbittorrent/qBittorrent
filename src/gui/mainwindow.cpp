@@ -906,11 +906,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
         }
     }
     hide();
-    if (systrayIcon)
-        // Hide tray icon
-        systrayIcon->hide();
-    // Save window size, columns size
-    writeSettings();
     // Accept exit
     e->accept();
     qApp->exit();
