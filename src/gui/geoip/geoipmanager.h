@@ -43,8 +43,8 @@ class GeoIPManager : public QObject {
 
 public:
   static void loadDatabase(libtorrent::session *s);
-  static QIcon CountryISOCodeToIcon(const char* iso);
-  static QString CountryISOCodeToName(const char* iso);
+  static QIcon CountryISOCodeToIcon(const QString &iso);
+  static QString CountryISOCodeToName(const QString &iso);
 
 private:
   static QString geoipFolder(bool embedded=false);

@@ -12,8 +12,10 @@
 #endif
 #endif
 
-#include "fs_utils.h"
-#include "misc.h"
+#include "core/preferences.h"
+#include "core/bittorrent/torrentinfo.h"
+#include "core/bittorrent/magneturi.h"
+#include "filesystemwatcher.h"
 
 #ifndef CIFS_MAGIC_NUMBER
 #define CIFS_MAGIC_NUMBER 0xFF534D42
@@ -29,8 +31,6 @@
 
 const int WATCH_INTERVAL = 10000; // 10 sec
 const int MAX_PARTIAL_RETRIES = 5;
-
-#include "filesystemwatcher.h"
 
 FileSystemWatcher::FileSystemWatcher(QObject *parent)
     : QFileSystemWatcher(parent)
@@ -149,7 +149,7 @@ void FileSystemWatcher::processPartialTorrents()
         if (!QFile::exists(torrentPath)) {
             m_partialTorrents.remove(torrentPath);
         }
-        else if (fsutils::isValidTorrentFile(torrentPath)) {
+        else if (BitTorrent::TorrentInfo::loadFromFile(torrentPath).isValid()) {
             noLongerPartial << torrentPath;
             m_partialTorrents.remove(torrentPath);
         }
@@ -197,11 +197,11 @@ void FileSystemWatcher::addTorrentsFromDir(const QDir &dir, QStringList &torrent
         if (fileAbsPath.endsWith(".magnet")) {
             QFile f(fileAbsPath);
             if (f.open(QIODevice::ReadOnly)
-                && !misc::magnetUriToHash(QString::fromLocal8Bit(f.readAll())).isEmpty()) {
+                && !BitTorrent::MagnetUri(QString::fromLocal8Bit(f.readAll())).isValid()) {
                 torrents << fileAbsPath;
             }
         }
-        else if (fsutils::isValidTorrentFile(fileAbsPath)) {
+        else if (BitTorrent::TorrentInfo::loadFromFile(fileAbsPath).isValid()) {
             torrents << fileAbsPath;
         }
         else if (!m_partialTorrents.contains(fileAbsPath)) {

@@ -25,7 +25,7 @@ public:
     void removePath(const QString &path);
 
 signals:
-    void torrentsAdded(QStringList &pathList);
+    void torrentsAdded(const QStringList &pathList);
 
 protected slots:
     void scanLocalFolder(QString path);

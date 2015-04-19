@@ -40,10 +40,10 @@ class ShutdownConfirmDlg : public QMessageBox
     Q_OBJECT
 
 public:
-    ShutdownConfirmDlg(const shutDownAction &action);
+    ShutdownConfirmDlg(const ShutDownAction &action);
     bool shutdown() const;
 
-    static bool askForConfirmation(const shutDownAction &action);
+    static bool askForConfirmation(const ShutDownAction &action);
 
     QAbstractButton *getExit_now() const;
     void setExit_now(QAbstractButton *value);
@@ -62,7 +62,7 @@ private:
     QAbstractButton *m_exitNow;
     QTimer m_timer;
     int m_timeout;
-    shutDownAction m_action;
+    ShutDownAction m_action;
 };
 
 #endif // SHUTDOWNCONFIRM_H

@@ -32,41 +32,39 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-#include "core/torrentpersistentdata.h"
 #include "torrentcreatordlg.h"
 #include "core/fs_utils.h"
 #include "core/misc.h"
 #include "core/preferences.h"
-#include "torrentcreatorthread.h"
-#include "iconprovider.h"
-#include "qbtsession.h"
+#include "guiiconprovider.h"
+#include "core/bittorrent/session.h"
+#include "core/bittorrent/torrentinfo.h"
+#include "core/bittorrent/torrentcreatorthread.h"
 
 const uint NB_PIECES_MIN = 1200;
 const uint NB_PIECES_MAX = 2200;
 
-using namespace libtorrent;
-
-TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent): QDialog(parent), creatorThread(0) {
+TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent): QDialog(parent), m_creatorThread(0) {
   setupUi(this);
   // Icons
-  addFile_button->setIcon(IconProvider::instance()->getIcon("document-new"));
-  addFolder_button->setIcon(IconProvider::instance()->getIcon("folder-new"));
-  createButton->setIcon(IconProvider::instance()->getIcon("document-save"));
-  cancelButton->setIcon(IconProvider::instance()->getIcon("dialog-cancel"));
+  addFile_button->setIcon(GuiIconProvider::instance()->getIcon("document-new"));
+  addFolder_button->setIcon(GuiIconProvider::instance()->getIcon("folder-new"));
+  createButton->setIcon(GuiIconProvider::instance()->getIcon("document-save"));
+  cancelButton->setIcon(GuiIconProvider::instance()->getIcon("dialog-cancel"));
 
   setAttribute(Qt::WA_DeleteOnClose);
   setModal(true);
   showProgressBar(false);
   loadTrackerList();
   // Piece sizes
-  m_piece_sizes << 32 << 64 << 128 << 256 << 512 << 1024 << 2048 << 4096;
+  m_pieceSizes << 32 << 64 << 128 << 256 << 512 << 1024 << 2048 << 4096;
   loadSettings();
   show();
 }
 
 TorrentCreatorDlg::~TorrentCreatorDlg() {
-  if (creatorThread)
-    delete creatorThread;
+  if (m_creatorThread)
+    delete m_creatorThread;
 }
 
 void TorrentCreatorDlg::on_addFolder_button_clicked() {
@@ -96,7 +94,7 @@ void TorrentCreatorDlg::on_addFile_button_clicked() {
 }
 
 int TorrentCreatorDlg::getPieceSize() const {
-  return m_piece_sizes.at(comboPieceSize->currentIndex())*1024;
+  return m_pieceSizes.at(comboPieceSize->currentIndex())*1024;
 }
 
 // Main function that create a .torrent file
@@ -132,11 +130,11 @@ void TorrentCreatorDlg::on_createButton_clicked() {
   QStringList url_seeds = URLSeeds_list->toPlainText().split("\n");
   QString comment = txt_comment->toPlainText();
   // Create the creator thread
-  creatorThread = new TorrentCreatorThread(this);
-  connect(creatorThread, SIGNAL(creationSuccess(QString, QString)), this, SLOT(handleCreationSuccess(QString, QString)));
-  connect(creatorThread, SIGNAL(creationFailure(QString)), this, SLOT(handleCreationFailure(QString)));
-  connect(creatorThread, SIGNAL(updateProgress(int)), this, SLOT(updateProgressBar(int)));
-  creatorThread->create(input, destination, trackers, url_seeds, comment, check_private->isChecked(), getPieceSize());
+  m_creatorThread = new BitTorrent::TorrentCreatorThread(this);
+  connect(m_creatorThread, SIGNAL(creationSuccess(QString, QString)), this, SLOT(handleCreationSuccess(QString, QString)));
+  connect(m_creatorThread, SIGNAL(creationFailure(QString)), this, SLOT(handleCreationFailure(QString)));
+  connect(m_creatorThread, SIGNAL(updateProgress(int)), this, SLOT(updateProgressBar(int)));
+  m_creatorThread->create(input, destination, trackers, url_seeds, comment, check_private->isChecked(), getPieceSize());
 }
 
 void TorrentCreatorDlg::handleCreationFailure(QString msg) {
@@ -152,33 +150,31 @@ void TorrentCreatorDlg::handleCreationSuccess(QString path, QString branch_path)
   setCursor(QCursor(Qt::ArrowCursor));
   if (checkStartSeeding->isChecked()) {
     // Create save path temp data
-    boost::intrusive_ptr<torrent_info> t;
-    try {
-      t = new torrent_info(fsutils::toNativePath(path).toUtf8().data());
-    } catch(std::exception&) {
+    BitTorrent::TorrentInfo t = BitTorrent::TorrentInfo::loadFromFile(fsutils::toNativePath(path));
+    if (!t.isValid()) {
       QMessageBox::critical(0, tr("Torrent creation"), tr("Created torrent file is invalid. It won't be added to download list."));
       return;
     }
-    QString hash = misc::toQString(t->info_hash());
-    QString save_path = branch_path;
-    TorrentTempData::setSavePath(hash, save_path);
-    // Enable seeding mode (do not recheck the files)
-    TorrentTempData::setSeedingMode(hash, true);
-    emit torrent_to_seed(path);
-    if (checkIgnoreShareLimits->isChecked())
-      QBtSession::instance()->setMaxRatioPerTorrent(hash, -1);
+
+    BitTorrent::AddTorrentParams params;
+    params.savePath = branch_path;
+    params.skipChecking = true;
+    params.ignoreShareRatio = checkIgnoreShareLimits->isChecked();
+
+    BitTorrent::Session::instance()->addTorrent(t, params);
   }
+
   QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully:")+" "+fsutils::toNativePath(path));
   close();
 }
 
 void TorrentCreatorDlg::on_cancelButton_clicked() {
   // End torrent creation thread
-  if (creatorThread && creatorThread->isRunning()) {
-    creatorThread->abortCreation();
-    creatorThread->terminate();
+  if (m_creatorThread && m_creatorThread->isRunning()) {
+    m_creatorThread->abortCreation();
+    m_creatorThread->terminate();
     // Wait for termination
-    creatorThread->wait();
+    m_creatorThread->wait();
   }
   // Close the dialog
   close();
@@ -227,7 +223,7 @@ void TorrentCreatorDlg::updateOptimalPieceSize()
   int i = 0;
   qulonglong nb_pieces = 0;
   do {
-    nb_pieces = (double)torrent_size/(m_piece_sizes.at(i)*1024.);
+    nb_pieces = (double)torrent_size/(m_pieceSizes.at(i)*1024.);
     qDebug("nb_pieces=%lld with piece_size=%s", nb_pieces, qPrintable(comboPieceSize->itemText(i)));
     if (nb_pieces <= NB_PIECES_MIN) {
       if (i > 1)
@@ -239,7 +235,7 @@ void TorrentCreatorDlg::updateOptimalPieceSize()
       break;
     }
     ++i;
-  }while(i<(m_piece_sizes.size()-1));
+  }while(i<(m_pieceSizes.size()-1));
   comboPieceSize->setCurrentIndex(i);
 }
 

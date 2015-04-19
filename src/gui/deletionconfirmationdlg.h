@@ -35,7 +35,7 @@
 #include <QPushButton>
 #include "ui_confirmdeletiondlg.h"
 #include "core/preferences.h"
-#include "iconprovider.h"
+#include "guiiconprovider.h"
 #include "core/misc.h"
 
 class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
@@ -49,9 +49,9 @@ class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
     else
       label->setText(tr("Are you sure you want to delete these %1 torrents from the transfer list?", "Are you sure you want to delete these 5 torrents from the transfer list?").arg(QString::number(size)));
     // Icons
-    lbl_warn->setPixmap(IconProvider::instance()->getIcon("dialog-warning").pixmap(lbl_warn->height()));
+    lbl_warn->setPixmap(GuiIconProvider::instance()->getIcon("dialog-warning").pixmap(lbl_warn->height()));
     lbl_warn->setFixedWidth(lbl_warn->height());
-    rememberBtn->setIcon(IconProvider::instance()->getIcon("object-locked"));
+    rememberBtn->setIcon(GuiIconProvider::instance()->getIcon("object-locked"));
 
     move(misc::screenCenter(this));
     checkPermDelete->setChecked(Preferences::instance()->deleteTorrentFilesAsDefault());

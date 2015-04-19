@@ -29,8 +29,8 @@
  */
 
 #include "rssparser.h"
-#include "core/downloadthread.h"
 #include "core/fs_utils.h"
+
 #include <QDebug>
 #include <QFile>
 #include <QRegExp>

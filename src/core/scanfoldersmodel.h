@@ -28,8 +28,8 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef SCANNEDFOLDERSMODEL_H
-#define SCANNEDFOLDERSMODEL_H
+#ifndef SCANFOLDERSMODEL_H
+#define SCANFOLDERSMODEL_H
 
 #include <QAbstractTableModel>
 #include <QList>
@@ -55,14 +55,15 @@ public:
         AlreadyInList
     };
 
-    static ScanFoldersModel *instance(QObject *parent = 0);
-    virtual ~ScanFoldersModel();
+    static bool initInstance(QObject *parent = 0);
+    static void freeInstance();
+    static ScanFoldersModel *instance();
 
-    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    virtual int columnCount(const QModelIndex &parent = QModelIndex()) const;
-    virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-    virtual QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
-    virtual Qt::ItemFlags flags(const QModelIndex &index) const;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
 
     // TODO: removePaths(); singular version becomes private helper functions;
     // also: remove functions should take modelindexes
@@ -74,12 +75,14 @@ public:
     bool downloadInTorrentFolder(const QString &filePath) const;
     void makePersistent();
 
-signals:
-    // The absolute paths of new torrent files in the scanned directories.
-    void torrentsAdded(QStringList &pathList);
+private slots:
+    void configure();
+    void addTorrentsToSession(const QStringList &pathList);
 
 private:
     explicit ScanFoldersModel(QObject *parent = 0);
+    ~ScanFoldersModel();
+
     virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
     static ScanFoldersModel *m_instance;
     class PathData;
@@ -89,4 +92,4 @@ private:
     FileSystemWatcher *m_fsWatcher;
 };
 
-#endif // SCANNEDFOLDERSMODEL_H
+#endif // SCANFOLDERSMODEL_H

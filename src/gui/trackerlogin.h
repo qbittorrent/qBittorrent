@@ -34,20 +34,24 @@
 #include <QDialog>
 
 #include "ui_login.h"
-#include "qtorrenthandle.h"
+
+namespace BitTorrent
+{
+    class TorrentHandle;
+}
 
 class trackerLogin : public QDialog, private Ui::authentication{
   Q_OBJECT
 
   private:
-    QTorrentHandle h;
+    BitTorrent::TorrentHandle *const m_torrent;
 
   public:
-    trackerLogin(QWidget *parent, QTorrentHandle h);
+    trackerLogin(QWidget *parent, BitTorrent::TorrentHandle *const torrent);
     ~trackerLogin();
 
   signals:
-    void trackerLoginCancelled(QPair<QTorrentHandle,QString> tracker);
+    void trackerLoginCancelled(QPair<BitTorrent::TorrentHandle *const, QString> tracker);
 
   public slots:
     void on_loginButton_clicked();

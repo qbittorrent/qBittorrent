@@ -38,7 +38,8 @@
 #include "fs_utils.h"
 #include "preferences.h"
 #include "filesystemwatcher.h"
-#include "scannedfoldersmodel.h"
+#include "bittorrent/session.h"
+#include "scanfoldersmodel.h"
 
 namespace
 {
@@ -67,11 +68,26 @@ public:
 
 ScanFoldersModel *ScanFoldersModel::m_instance = 0;
 
-ScanFoldersModel *ScanFoldersModel::instance(QObject *parent)
+bool ScanFoldersModel::initInstance(QObject *parent)
 {
-    //Q_ASSERT(!parent != !m_instance);
-    if (!m_instance)
+    if (!m_instance) {
         m_instance = new ScanFoldersModel(parent);
+        return true;
+    }
+
+    return false;
+}
+
+void ScanFoldersModel::freeInstance()
+{
+    if (m_instance) {
+        delete m_instance;
+        m_instance = 0;
+    }
+}
+
+ScanFoldersModel *ScanFoldersModel::instance()
+{
     return m_instance;
 }
 
@@ -79,6 +95,8 @@ ScanFoldersModel::ScanFoldersModel(QObject *parent)
     : QAbstractTableModel(parent)
     , m_fsWatcher(0)
 {
+    configure();
+    connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
 }
 
 ScanFoldersModel::~ScanFoldersModel()
@@ -153,7 +171,7 @@ ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &path, bool
 
     if (!m_fsWatcher) {
         m_fsWatcher = new FileSystemWatcher(this);
-        connect(m_fsWatcher, SIGNAL(torrentsAdded(QStringList&)), this, SIGNAL(torrentsAdded(QStringList&)));
+        connect(m_fsWatcher, SIGNAL(torrentsAdded(const QStringList &)), this, SLOT(addTorrentsToSession(const QStringList  &)));
     }
 
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
@@ -230,4 +248,48 @@ void ScanFoldersModel::makePersistent()
 
     pref->setScanDirs(paths);
     pref->setDownloadInScanDirs(downloadInFolderInfo);
+}
+
+void ScanFoldersModel::configure()
+{
+    Preferences *const pref = Preferences::instance();
+
+    int i = 0;
+    QList<bool> downloadInDirList = pref->getDownloadInScanDirs();
+    foreach (const QString &dir, pref->getScanDirs()) {
+        bool downloadInDir = downloadInDirList.value(i, false);
+        addPath(dir, downloadInDir);
+        ++i;
+    }
+}
+
+void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
+{
+    foreach (const QString &file, pathList) {
+        qDebug("File %s added", qPrintable(file));
+        if (file.endsWith(".magnet")) {
+            QFile f(file);
+            if (f.open(QIODevice::ReadOnly)) {
+                BitTorrent::Session::instance()->addTorrent(QString::fromLocal8Bit(f.readAll()));
+                f.remove();
+            }
+            else {
+                qDebug("Failed to open magnet file: %s", qPrintable(f.errorString()));
+            }
+        }
+        else {
+            BitTorrent::AddTorrentParams params;
+            if (downloadInTorrentFolder(file))
+                params.savePath = QFileInfo(file).dir().path();
+
+            BitTorrent::TorrentInfo torrentInfo = BitTorrent::TorrentInfo::loadFromFile(file);
+            if (torrentInfo.isValid()) {
+                BitTorrent::Session::instance()->addTorrent(torrentInfo, params);
+                fsutils::forceRemove(file);
+            }
+            else {
+                qDebug("Ignoring incomplete torrent file: %s", qPrintable(file));
+            }
+        }
+    }
 }

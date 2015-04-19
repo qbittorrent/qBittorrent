@@ -35,8 +35,8 @@
 #include <QDialog>
 #include <QUrl>
 
-#include <libtorrent/torrent_info.hpp>
-#include "qtorrenthandle.h"
+#include "core/bittorrent/infohash.h"
+#include "core/bittorrent/torrentinfo.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -54,8 +54,7 @@ class AddNewTorrentDialog: public QDialog
 public:
     ~AddNewTorrentDialog();
 
-    static void showTorrent(const QString& torrent_path, const QString& from_url, QWidget *parent = 0);
-    static void showMagnet(const QString& torrent_link, QWidget *parent = 0);
+    static void show(QString source, QWidget *parent = 0);
 
 protected:
     void showEvent(QShowEvent *event);
@@ -68,8 +67,11 @@ private slots:
     void relayout();
     void renameSelectedFile();
     void setdialogPosition();
-    void updateMetadata(const QTorrentHandle& h);
+    void updateMetadata(const BitTorrent::TorrentInfo &info);
     void browseButton_clicked();
+    void handleDownloadFailed(const QString &url, const QString &reason);
+    void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
+    void handleDownloadFinished(const QString &url, const QString &filePath);
 
 protected slots:
     virtual void accept();
@@ -77,7 +79,7 @@ protected slots:
 
 private:
     explicit AddNewTorrentDialog(QWidget *parent = 0);
-    bool loadTorrent(const QString& torrent_path, const QString& from_url);
+    bool loadTorrent(const QString& torrent_path);
     bool loadMagnet(const QString& magnet_uri);
     void loadSavePathHistory();
     void saveSavePathHistory() const;
@@ -92,14 +94,10 @@ private:
     Ui::AddNewTorrentDialog *ui;
     TorrentContentFilterModel *m_contentModel;
     PropListDelegate *m_contentDelegate;
-    bool m_isMagnet;
     bool m_hasMetadata;
     QString m_filePath;
-    QString m_url;
-    QString m_hash;
-    boost::intrusive_ptr<libtorrent::torrent_info> m_torrentInfo;
-    QStringList m_filesPath;
-    bool m_hasRenamedFile;
+    BitTorrent::InfoHash m_hash;
+    BitTorrent::TorrentInfo m_torrentInfo;
     QShortcut *editHotkey;
     QByteArray m_headerState;
     int m_oldIndex;

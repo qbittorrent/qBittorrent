@@ -30,24 +30,21 @@
 
 #include "torrentcontentmodelfile.h"
 #include "torrentcontentmodelfolder.h"
-#include "core/fs_utils.h"
-#include "core/misc.h"
 
-TorrentContentModelFile::TorrentContentModelFile(const libtorrent::file_entry& f,
-                                                 TorrentContentModelFolder* parent,
-                                                 int file_index)
+TorrentContentModelFile::TorrentContentModelFile(const QString &fileName, qulonglong fileSize,
+                                                 TorrentContentModelFolder* parent, int file_index)
   : TorrentContentModelItem(parent)
   , m_fileIndex(file_index)
 {
   Q_ASSERT(parent);
 
-  m_name = fsutils::fileName(misc::toQStringU(f.path.c_str()));
+  m_name = fileName;
 
   // Do not display incomplete extensions
   if (m_name.endsWith(".!qB"))
     m_name.chop(4);
 
-  m_size = (qulonglong)f.size;
+  m_size = fileSize;
 }
 
 int TorrentContentModelFile::fileIndex() const
@@ -69,8 +66,8 @@ void TorrentContentModelFile::setPriority(int new_prio, bool update_parent)
     m_parentItem->updatePriority();
 }
 
-void TorrentContentModelFile::setProgress(qulonglong done)
+void TorrentContentModelFile::setProgress(qreal progress)
 {
-  m_totalDone = done;
-  Q_ASSERT(m_totalDone <= m_size);
+  m_progress = progress;
+  Q_ASSERT(m_progress <= 1.);
 }

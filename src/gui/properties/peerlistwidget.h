@@ -35,7 +35,6 @@
 #include <QHash>
 #include <QPointer>
 #include <QSet>
-#include <libtorrent/version.hpp>
 
 namespace Net
 {
@@ -45,7 +44,6 @@ namespace Net
 class PeerListDelegate;
 class PeerListSortModel;
 class PropertiesWidget;
-class QTorrentHandle;
 
 QT_BEGIN_NAMESPACE
 class QSortFilterProxyModel;
@@ -53,18 +51,14 @@ class QStandardItem;
 class QStandardItemModel;
 QT_END_NAMESPACE
 
-namespace libtorrent
+namespace BitTorrent
 {
-    struct peer_info;
-    struct torrent_status;
-}
 
-#include <boost/version.hpp>
-#if BOOST_VERSION < 103500
-#include <libtorrent/asio/ip/tcp.hpp>
-#else
-#include <boost/asio/ip/tcp.hpp>
-#endif
+class TorrentHandle;
+class PeerInfo;
+struct PeerAddress;
+
+}
 
 class PeerListWidget : public QTreeView {
   Q_OBJECT
@@ -74,9 +68,9 @@ public:
   ~PeerListWidget();
 
 public slots:
-  void loadPeers(const QTorrentHandle &h, bool force_hostname_resolution = false);
-  QStandardItem*  addPeer(const QString& ip, const libtorrent::torrent_status &status, const libtorrent::peer_info& peer);
-  void updatePeer(const QString& ip, const libtorrent::torrent_status &status, const libtorrent::peer_info& peer);
+  void loadPeers(BitTorrent::TorrentHandle *const torrent, bool force_hostname_resolution = false);
+  QStandardItem *addPeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer);
+  void updatePeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer);
   void handleResolved(const QString &ip, const QString &hostname);
   void updatePeerHostNameResolutionState();
   void updatePeerCountryResolutionState();
@@ -86,26 +80,19 @@ protected slots:
   void loadSettings();
   void saveSettings() const;
   void showPeerListMenu(const QPoint&);
-
-#if LIBTORRENT_VERSION_NUM < 10000
-  void limitUpRateSelectedPeers(const QStringList& peer_ips);
-  void limitDlRateSelectedPeers(const QStringList& peer_ips);
-#endif
-
   void banSelectedPeers(const QStringList& peer_ips);
   void handleSortColumnChanged(int col);
 
 private:
-  static QString getConnectionString(const libtorrent::peer_info &peer);
-  static void getFlags(const libtorrent::peer_info& peer, QString& flags, QString& tooltip);
-  double getPeerRelevance(const libtorrent::torrent_status &status, const libtorrent::peer_info &peer);
+  static void getFlags(const BitTorrent::PeerInfo &peer, QString &flags, QString &tooltip);
+  qreal getPeerRelevance(const QBitArray &allPieces, const QBitArray &peerPieces);
 
 private:
   QStandardItemModel *m_listModel;
   PeerListDelegate *m_listDelegate;
   PeerListSortModel *m_proxyModel;
   QHash<QString, QStandardItem*> m_peerItems;
-  QHash<QString, boost::asio::ip::tcp::endpoint> m_peerEndpoints;
+  QHash<QString, BitTorrent::PeerAddress> m_peerAddresses;
   QSet<QString> m_missingFlags;
   QPointer<Net::ReverseResolution> m_resolver;
   PropertiesWidget *m_properties;

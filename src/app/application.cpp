@@ -32,8 +32,10 @@
 #include <QLocale>
 #include <QLibraryInfo>
 #include <QSysInfo>
+#include <QProcess>
 
 #ifndef DISABLE_GUI
+#include "gui/guiiconprovider.h"
 #ifdef Q_OS_WIN
 #include <Windows.h>
 #include <QSharedMemory>
@@ -46,26 +48,38 @@
 #endif // Q_OS_MAC
 #include "mainwindow.h"
 #include "addnewtorrentdialog.h"
+#include "shutdownconfirm.h"
 #else // DISABLE_GUI
 #include <iostream>
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
-#include "../webui/webui.h"
+#include "webui/webui.h"
 #endif
 
 #include "application.h"
 #include "core/logger.h"
 #include "core/preferences.h"
-#include "qbtsession.h"
-#include "core/torrentpersistentdata.h"
+#include "core/misc.h"
+#include "core/iconprovider.h"
+#include "core/scanfoldersmodel.h"
+#include "core/net/smtp.h"
+#include "core/net/downloadmanager.h"
+#include "core/bittorrent/session.h"
+#include "core/bittorrent/torrenthandle.h"
 
 static const char PARAMS_SEPARATOR[] = "|";
 
 Application::Application(const QString &id, int &argc, char **argv)
     : BaseApplication(id, argc, argv)
     , m_running(false)
+#ifndef DISABLE_GUI
+    , m_shutdownAct(NO_SHUTDOWN)
+#endif
 {
+    Logger::initInstance();
+    Preferences::initInstance();
+
 #if defined(Q_OS_MACX) && !defined(DISABLE_GUI)
     if (QSysInfo::MacintoshVersion > QSysInfo::MV_10_8) {
         // fix Mac OS X 10.9 (mavericks) font issue
@@ -85,6 +99,8 @@ Application::Application(const QString &id, int &argc, char **argv)
 
     connect(this, SIGNAL(messageReceived(const QString &)), SLOT(processMessage(const QString &)));
     connect(this, SIGNAL(aboutToQuit()), SLOT(cleanup()));
+
+    Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(VERSION));
 }
 
 void Application::processMessage(const QString &message)
@@ -96,6 +112,87 @@ void Application::processMessage(const QString &message)
         processParams(params);
     else
         m_paramsQueue.append(params);
+}
+
+void Application::sendNotificationEmail(BitTorrent::TorrentHandle *const torrent)
+{
+    // Prepare mail content
+    QString content = QObject::tr("Torrent name: %1").arg(torrent->name()) + "\n";
+    content += QObject::tr("Torrent size: %1").arg(misc::friendlyUnit(torrent->wantedSize())) + "\n";
+    content += QObject::tr("Save path: %1").arg(torrent->savePath()) + "\n\n";
+    content += QObject::tr("The torrent was downloaded in %1.",
+                  "The torrent was downloaded in 1 hour and 20 seconds")
+            .arg(misc::userFriendlyDuration(torrent->activeTime())) + "\n\n\n";
+    content += QObject::tr("Thank you for using qBittorrent.") + "\n";
+
+    // Send the notification email
+    Net::Smtp *sender = new Net::Smtp;
+    sender->sendMail("notification@qbittorrent.org",
+                     Preferences::instance()->getMailNotificationEmail(),
+                     QObject::tr("[qBittorrent] %1 has finished downloading").arg(torrent->name()),
+                     content);
+}
+
+void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
+{
+    Preferences *const pref = Preferences::instance();
+
+    // AutoRun program
+    if (pref->isAutoRunEnabled()) {
+        QString program = pref->getAutoRunProgram().trimmed();
+        // Replace %f by torrent path
+        program.replace("%f", torrent->savePathParsed());
+        // Replace %n by torrent name
+        program.replace("%n", torrent->name());
+        QProcess::startDetached(program);
+    }
+
+    // Mail notification
+    if (pref->isMailNotificationEnabled())
+        sendNotificationEmail(torrent);
+}
+
+void Application::allTorrentsFinished()
+{
+    Preferences *const pref = Preferences::instance();
+
+#ifndef DISABLE_GUI
+    bool will_shutdown = (pref->shutdownWhenDownloadsComplete()
+                          || pref->shutdownqBTWhenDownloadsComplete()
+                          || pref->suspendWhenDownloadsComplete()
+                          || pref->hibernateWhenDownloadsComplete());
+
+    // Auto-Shutdown
+    if (will_shutdown) {
+        bool suspend = pref->suspendWhenDownloadsComplete();
+        bool hibernate = pref->hibernateWhenDownloadsComplete();
+        bool shutdown = pref->shutdownWhenDownloadsComplete();
+
+        // Confirm shutdown
+        ShutDownAction action = NO_SHUTDOWN;
+        if (suspend)
+            action = SUSPEND_COMPUTER;
+        else if (hibernate)
+            action = HIBERNATE_COMPUTER;
+        else if (shutdown)
+            action = SHUTDOWN_COMPUTER;
+
+        if (!ShutdownConfirmDlg::askForConfirmation(action)) return;
+
+        // Actually shut down
+        if (suspend || hibernate || shutdown) {
+            qDebug("Preparing for auto-shutdown because all downloads are complete!");
+            // Disabling it for next time
+            pref->setShutdownWhenDownloadsComplete(false);
+            pref->setSuspendWhenDownloadsComplete(false);
+            pref->setHibernateWhenDownloadsComplete(false);
+            // Make sure preferences are synced before exiting
+            m_shutdownAct = action;
+        }
+        qDebug("Exiting the application");
+        exit();
+    }
+#endif // DISABLE_GUI
 }
 
 bool Application::sendParams(const QStringList &params)
@@ -114,45 +211,32 @@ void Application::processParams(const QStringList &params)
         m_window->activate(); // show UI
         return;
     }
-
-    const bool useTorrentAdditionDialog = Preferences::instance()->useAdditionDialog();
 #endif
 
     foreach (QString param, params) {
         param = param.trimmed();
-        if (misc::isUrl(param)) {
-            QBtSession::instance()->downloadFromUrl(param);
-        }
-        else {
-            if (param.startsWith("bc://bt/", Qt::CaseInsensitive)) {
-                qDebug("Converting bc link to magnet link");
-                param = misc::bcLinkToMagnet(param);
-            }
-
-            if (param.startsWith("magnet:", Qt::CaseInsensitive)) {
 #ifndef DISABLE_GUI
-                if (useTorrentAdditionDialog)
-                    AddNewTorrentDialog::showMagnet(param, m_window);
-                else
+        if (Preferences::instance()->useAdditionDialog())
+            AddNewTorrentDialog::show(param, m_window);
+        else
 #endif
-                    QBtSession::instance()->addMagnetUri(param);
-            }
-            else {
-#ifndef DISABLE_GUI
-                if (useTorrentAdditionDialog)
-                    AddNewTorrentDialog::showTorrent(param, QString(), m_window);
-                else
-#endif
-                    QBtSession::instance()->addTorrent(param);
-            }
-        }
+            BitTorrent::Session::instance()->addTorrent(param);
     }
 }
 
 int Application::exec(const QStringList &params)
 {
-    // Resume unfinished torrents
-    QBtSession::instance()->startUpTorrents();
+    Net::DownloadManager::initInstance();
+#ifdef DISABLE_GUI
+    IconProvider::initInstance();
+#else
+    GuiIconProvider::initInstance();
+#endif
+    BitTorrent::Session::initInstance();
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentFinished(BitTorrent::TorrentHandle *const)), SLOT(torrentFinished(BitTorrent::TorrentHandle *const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(allTorrentsFinished()), SLOT(allTorrentsFinished()));
+
+    ScanFoldersModel::initInstance(this);
 
 #ifndef DISABLE_WEBUI
     m_webui = new WebUI;
@@ -293,6 +377,8 @@ void Application::initializeTranslation()
 #if (!defined(DISABLE_GUI) && defined(Q_OS_WIN))
 void Application::shutdownCleanup(QSessionManager &manager)
 {
+    Q_UNUSED(manager);
+
     // This is only needed for a special case on Windows XP.
     // (but is called for every Windows version)
     // If a process takes too much time to exit during OS
@@ -356,10 +442,13 @@ void Application::cleanup()
 #ifndef DISABLE_WEBUI
     delete m_webui;
 #endif
-    QBtSession::drop();
-    TorrentPersistentData::drop();
-    Preferences::drop();
-    Logger::drop();
+
+    ScanFoldersModel::freeInstance();
+    BitTorrent::Session::freeInstance();
+    Preferences::freeInstance();
+    Logger::freeInstance();
+    IconProvider::freeInstance();
+    Net::DownloadManager::freeInstance();
 #ifndef DISABLE_GUI
 #ifdef Q_OS_WIN
     typedef BOOL (WINAPI *PSHUTDOWNBRDESTROY)(HWND);
@@ -369,6 +458,9 @@ void Application::cleanup()
         shutdownBRDestroy((HWND)m_window->effectiveWinId());
 #endif // Q_OS_WIN
     delete m_window;
+    if (m_shutdownAct != NO_SHUTDOWN) {
+        qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
+        misc::shutdownComputer(m_shutdownAct);
+    }
 #endif
-
 }

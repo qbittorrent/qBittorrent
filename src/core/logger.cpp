@@ -44,15 +44,18 @@ Logger::Logger()
 
 Logger::~Logger() {}
 
-Logger * Logger::instance()
+Logger *Logger::instance()
 {
-    if (!m_instance)
-        m_instance = new Logger;
-
     return m_instance;
 }
 
-void Logger::drop()
+void Logger::initInstance()
+{
+    if (!m_instance)
+        m_instance = new Logger;
+}
+
+void Logger::freeInstance()
 {
     if (m_instance) {
         delete m_instance;

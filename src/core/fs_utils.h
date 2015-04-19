@@ -46,7 +46,6 @@ namespace fsutils
   QString folderName(const QString& file_path);
   qint64 computePathSize(const QString& path);
   bool sameFiles(const QString& path1, const QString& path2);
-  QString updateLabelInSavePath(const QString &defaultSavePath, const QString &save_path, const QString& old_label, const QString& new_label);
   QString toValidFileSystemName(QString filename);
   bool isValidFileSystemName(const QString& filename);
   long long freeDiskSpaceOnPath(QString path);
@@ -54,7 +53,6 @@ namespace fsutils
   bool sameFileNames(const QString& first, const QString& second);
   QString expandPath(const QString& path);
   QString expandPathAbs(const QString& path);
-  bool isValidTorrentFile(const QString& path);
   bool smartRemoveEmptyFolderTree(const QString& dir_path);
   bool forceRemove(const QString& file_path);
 
@@ -64,7 +62,6 @@ namespace fsutils
   QString QDesktopServicesDownloadLocation();
   /* End of Qt4 code */
   QString searchEngineLocation();
-  QString BTBackupLocation();
   QString cacheLocation();
 
 }

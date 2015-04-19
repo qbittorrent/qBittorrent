@@ -1,6 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,59 +25,38 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#ifndef FILTERPARSERTHREAD_H
-#define FILTERPARSERTHREAD_H
+#ifndef GUIICONPROVIDER_H
+#define GUIICONPROVIDER_H
 
-#include <QThread>
-#include <QDataStream>
-#include <QStringList>
+#include "core/iconprovider.h"
 
-namespace libtorrent {
-class session;
-struct ip_filter;
-}
+class QIcon;
 
-using namespace std;
-
-// P2B Stuff
-#include <string.h>
-#ifdef Q_OS_WIN
-#include <Winsock2.h>
-#else
-#include <arpa/inet.h>
-#endif
-// End of P2B stuff
-
-class FilterParserThread : public QThread  {
+class GuiIconProvider : public IconProvider
+{
+    Q_DISABLE_COPY(GuiIconProvider)
     Q_OBJECT
 
 public:
-    FilterParserThread(QObject* parent, libtorrent::session *s);
-    ~FilterParserThread();
+    static void initInstance();
+    static GuiIconProvider *instance();
 
-    int parseDATFilterFile(QString filePath, libtorrent::ip_filter& filter);
-    int parseP2PFilterFile(QString filePath, libtorrent::ip_filter& filter);
-    int getlineInStream(QDataStream& stream, string& name, char delim);
-    int parseP2BFilterFile(QString filePath, libtorrent::ip_filter& filter);
-    void processFilterFile(QString _filePath);
-    static void processFilterList(libtorrent::session *s, const QStringList& IPs);
+    QIcon getIcon(const QString &iconId);
+    QString getIconPath(const QString &iconId);
 
-signals:
-    void IPFilterParsed(int ruleCount);
-    void IPFilterError();
-
-protected:
-    QString cleanupIPAddress(QString _ip);
-    void run();
+private slots:
+    void configure();
 
 private:
-    libtorrent::session *s;
-    bool abort;
-    QString filePath;
+    explicit GuiIconProvider(QObject *parent = 0);
+    ~GuiIconProvider();
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    QIcon generateDifferentSizes(const QIcon &icon);
+
+    bool m_useSystemTheme;
+#endif
 };
 
-#endif
+#endif // GUIICONPROVIDER_H

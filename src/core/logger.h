@@ -53,9 +53,9 @@ class Logger : public QObject
     Q_DISABLE_COPY(Logger)
 
 public:
-    static Logger* instance();
-    static void drop();
-    ~Logger();
+    static void initInstance();
+    static void freeInstance();
+    static Logger *instance();
 
     void addMessage(const QString &message, const Log::MsgType &type = Log::NORMAL);
 #if LIBTORRENT_VERSION_NUM < 10000
@@ -72,6 +72,8 @@ signals:
 
 private:
     Logger();
+    ~Logger();
+
     static Logger* m_instance;
     QVector<Log::Msg> m_messages;
     QVector<Log::Peer> m_peers;

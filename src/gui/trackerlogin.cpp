@@ -28,17 +28,18 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "core/bittorrent/torrenthandle.h"
 #include "trackerlogin.h"
 
-trackerLogin::trackerLogin(QWidget *parent, QTorrentHandle h)
+trackerLogin::trackerLogin(QWidget *parent, BitTorrent::TorrentHandle *const torrent)
   : QDialog(parent)
-  , h(h)
+  , m_torrent(torrent)
 {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   login_logo->setPixmap(QPixmap(QString::fromUtf8(":/icons/oxygen/encrypted.png")));
-  tracker_url->setText(h.current_tracker());
-  connect(this, SIGNAL(trackerLoginCancelled(QPair<QTorrentHandle,QString>)), parent, SLOT(addUnauthenticatedTracker(QPair<QTorrentHandle,QString>)));
+  tracker_url->setText(torrent->currentTracker());
+  connect(this, SIGNAL(trackerLoginCancelled(QPair<BitTorrent::TorrentHandle *const, QString>)), parent, SLOT(addUnauthenticatedTracker(QPair<BitTorrent::TorrentHandle *const, QString>)));
   show();
 }
 
@@ -46,12 +47,12 @@ trackerLogin::~trackerLogin() {}
 
 void trackerLogin::on_loginButton_clicked() {
   // login
-  h.set_tracker_login(lineUsername->text(), linePasswd->text());
+  m_torrent->setTrackerLogin(lineUsername->text(), linePasswd->text());
   close();
 }
 
 void trackerLogin::on_cancelButton_clicked() {
   // Emit a signal to GUI to stop asking for authentication
-  emit trackerLoginCancelled(QPair<QTorrentHandle,QString>(h, h.current_tracker()));
+  emit trackerLoginCancelled(QPair<BitTorrent::TorrentHandle *const, QString>(m_torrent, m_torrent->currentTracker()));
   close();
 }

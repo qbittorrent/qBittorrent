@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -27,8 +27,6 @@
  *
  * Contact : chris@qbittorrent.org
  */
-
-#include "misc.h"
 
 #include <cmath>
 
@@ -71,14 +69,7 @@ const int UNLEN = 256;
 #endif
 #endif // DISABLE_GUI
 
-#if LIBTORRENT_VERSION_NUM < 10000
-#include <libtorrent/peer_id.hpp>
-#else
-#include <libtorrent/sha1_hash.hpp>
-#endif
-#include <libtorrent/magnet_uri.hpp>
-
-using namespace libtorrent;
+#include "misc.h"
 
 static struct { const char *source; const char *comment; } units[] = {
     QT_TRANSLATE_NOOP3("misc", "B", "bytes"),
@@ -88,35 +79,8 @@ static struct { const char *source; const char *comment; } units[] = {
     QT_TRANSLATE_NOOP3("misc", "TiB", "tebibytes (1024 gibibytes)")
 };
 
-QString misc::toQString(const std::string &str)
-{
-    return QString::fromLocal8Bit(str.c_str());
-}
-
-QString misc::toQString(const char* str)
-{
-    return QString::fromLocal8Bit(str);
-}
-
-QString misc::toQStringU(const std::string &str)
-{
-    return QString::fromUtf8(str.c_str());
-}
-
-QString misc::toQStringU(const char* str)
-{
-    return QString::fromUtf8(str);
-}
-
-QString misc::toQString(const libtorrent::sha1_hash &hash)
-{
-    char out[41];
-    libtorrent::to_hex((char const*)&hash[0], libtorrent::sha1_hash::size, out);
-    return QString(out);
-}
-
 #ifndef DISABLE_GUI
-void misc::shutdownComputer(shutDownAction action)
+void misc::shutdownComputer(ShutDownAction action)
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
     // Use dbus to power off / suspend the system
@@ -378,28 +342,6 @@ QString misc::bcLinkToMagnet(QString bc_link)
     return magnet;
 }
 
-QString misc::magnetUriToName(const QString& magnet_uri)
-{
-    add_torrent_params p;
-    error_code ec;
-    parse_magnet_uri(magnet_uri.toUtf8().constData(), p, ec);
-
-    if (ec)
-        return QString::null;
-    return toQStringU(p.name);
-}
-
-QString misc::magnetUriToHash(const QString& magnet_uri)
-{
-    add_torrent_params p;
-    error_code ec;
-    parse_magnet_uri(magnet_uri.toUtf8().constData(), p, ec);
-
-    if (ec)
-        return QString::null;
-    return toQString(p.info_hash);
-}
-
 // Take a number of seconds and return an user-friendly
 // time duration like "1d 2h 10m".
 QString misc::userFriendlyDuration(qlonglong seconds)
@@ -530,11 +472,6 @@ QString misc::parseHtmlLinks(const QString &raw_text)
     return result;
 }
 
-QString misc::toQString(time_t t)
-{
-    return QDateTime::fromTime_t(t).toString(Qt::DefaultLocaleLongDate);
-}
-
 #ifndef DISABLE_GUI
 bool misc::naturalSort(QString left, QString right, bool &result)   // uses lessThan comparison
 { // Return value indicates if functions was successful
@@ -622,18 +559,6 @@ bool misc::slowEquals(const QByteArray &a, const QByteArray &b)
         diff |= a[i] ^ b[i];
 
     return (diff == 0);
-}
-
-void misc::loadBencodedFile(const QString &filename, std::vector<char> &buffer, libtorrent::lazy_entry &entry, libtorrent::error_code &ec)
-{
-    QFile file(filename);
-    if (!file.open(QIODevice::ReadOnly)) return;
-    const qint64 content_size = file.bytesAvailable();
-    if (content_size <= 0) return;
-    buffer.resize(content_size);
-    file.read(&buffer[0], content_size);
-    // bdecode
-    lazy_bdecode(&buffer[0], &buffer[0] + buffer.size(), entry, ec);
 }
 
 namespace {

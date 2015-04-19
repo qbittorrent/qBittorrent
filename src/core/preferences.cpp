@@ -116,15 +116,18 @@ Preferences::~Preferences()
     save();
 }
 
-Preferences * Preferences::instance()
+Preferences *Preferences::instance()
 {
-    if (!m_instance)
-        m_instance = new Preferences;
-
     return m_instance;
 }
 
-void Preferences::drop()
+void Preferences::initInstance()
+{
+    if (!m_instance)
+        m_instance = new Preferences;
+}
+
+void Preferences::freeInstance()
 {
     if (m_instance) {
         delete m_instance;
@@ -132,12 +135,11 @@ void Preferences::drop()
     }
 }
 
-void Preferences::save()
+bool Preferences::save()
 {
     QReadLocker locker(&lock);
 
-    if (!dirty)
-        return;
+    if (!dirty) return false;
 
 #ifndef Q_OS_MAC
     // QSettings delete the file before writing it out. This can result in problems
@@ -160,7 +162,7 @@ void Preferences::save()
     settings->sync(); // Important to get error status
     if (settings->status() == QSettings::AccessError) {
         delete settings;
-        return;
+        return false;
     }
     QString new_path = settings->fileName();
     delete settings;
@@ -173,7 +175,7 @@ void Preferences::save()
     delete settings;
 #endif
 
-    emit changed();
+    return true;
 }
 
 const QVariant Preferences::value(const QString &key, const QVariant &defaultValue) const
@@ -950,12 +952,12 @@ void Preferences::setGlobalMaxRatio(qreal ratio)
     setValue("Preferences/Bittorrent/MaxRatio", ratio);
 }
 
-int Preferences::getMaxRatioAction() const
+MaxRatioAction Preferences::getMaxRatioAction() const
 {
-    return value("Preferences/Bittorrent/MaxRatioAction", PAUSE_ACTION).toInt();
+    return value("Preferences/Bittorrent/MaxRatioAction", MaxRatioAction::Pause).toInt();
 }
 
-void Preferences::setMaxRatioAction(int act)
+void Preferences::setMaxRatioAction(MaxRatioAction act)
 {
     setValue("Preferences/Bittorrent/MaxRatioAction", act);
 }
@@ -2476,4 +2478,10 @@ void Preferences::setHostNameCookies(const QString &host_name, const QList<QByte
         raw_cookies.chop(1);
     hosts_table.insert(host_name, raw_cookies);
     setValue("Rss/hosts_cookies", hosts_table);
+}
+
+void Preferences::apply()
+{
+    if (save())
+        emit changed();
 }

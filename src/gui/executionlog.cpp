@@ -36,7 +36,7 @@
 #include "executionlog.h"
 #include "ui_executionlog.h"
 #include "core/logger.h"
-#include "iconprovider.h"
+#include "guiiconprovider.h"
 #include "loglistwidget.h"
 
 ExecutionLog::ExecutionLog(QWidget *parent)
@@ -47,8 +47,8 @@ ExecutionLog::ExecutionLog(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->tabConsole->setTabIcon(0, IconProvider::instance()->getIcon("view-calendar-journal"));
-    ui->tabConsole->setTabIcon(1, IconProvider::instance()->getIcon("view-filter"));
+    ui->tabConsole->setTabIcon(0, GuiIconProvider::instance()->getIcon("view-calendar-journal"));
+    ui->tabConsole->setTabIcon(1, GuiIconProvider::instance()->getIcon("view-filter"));
     ui->tabGeneral->layout()->addWidget(m_msgList);
     ui->tabBan->layout()->addWidget(m_peerList);
 

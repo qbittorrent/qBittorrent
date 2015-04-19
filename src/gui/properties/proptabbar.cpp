@@ -34,7 +34,7 @@
 #include <QKeySequence>
 
 #include "proptabbar.h"
-#include "iconprovider.h"
+#include "guiiconprovider.h"
 
 PropTabBar::PropTabBar(QWidget *parent) :
   QHBoxLayout(parent), m_currentIndex(-1)
@@ -42,24 +42,24 @@ PropTabBar::PropTabBar(QWidget *parent) :
   setSpacing(2);
   m_btnGroup = new QButtonGroup(this);
   // General tab
-  QPushButton *main_infos_button = new QPushButton(IconProvider::instance()->getIcon("document-properties"), tr("General"), parent);
+  QPushButton *main_infos_button = new QPushButton(GuiIconProvider::instance()->getIcon("document-properties"), tr("General"), parent);
   main_infos_button->setShortcut(QKeySequence(QString::fromUtf8("Alt+P")));
   addWidget(main_infos_button);
   m_btnGroup->addButton(main_infos_button, MAIN_TAB);
   // Trackers tab
-  QPushButton *trackers_button = new QPushButton(IconProvider::instance()->getIcon("network-server"), tr("Trackers"), parent);
+  QPushButton *trackers_button = new QPushButton(GuiIconProvider::instance()->getIcon("network-server"), tr("Trackers"), parent);
   addWidget(trackers_button);
   m_btnGroup->addButton(trackers_button, TRACKERS_TAB);
   // Peers tab
-  QPushButton *peers_button = new QPushButton(IconProvider::instance()->getIcon("edit-find-user"), tr("Peers"), parent);
+  QPushButton *peers_button = new QPushButton(GuiIconProvider::instance()->getIcon("edit-find-user"), tr("Peers"), parent);
   addWidget(peers_button);
   m_btnGroup->addButton(peers_button, PEERS_TAB);
   // URL seeds tab
-  QPushButton *urlseeds_button = new QPushButton(IconProvider::instance()->getIcon("network-server"), tr("HTTP Sources"), parent);
+  QPushButton *urlseeds_button = new QPushButton(GuiIconProvider::instance()->getIcon("network-server"), tr("HTTP Sources"), parent);
   addWidget(urlseeds_button);
   m_btnGroup->addButton(urlseeds_button, URLSEEDS_TAB);
   // Files tab
-  QPushButton *files_button = new QPushButton(IconProvider::instance()->getIcon("inode-directory"), tr("Content"), parent);
+  QPushButton *files_button = new QPushButton(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Content"), parent);
   addWidget(files_button);
   m_btnGroup->addButton(files_button, FILES_TAB);
   // Spacer

@@ -36,11 +36,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QSettings>
-#ifdef DISABLE_GUI
 #include <QCoreApplication>
-#else
-#include <QApplication>
-#endif
 #include <libtorrent/torrent_info.hpp>
 
 #ifdef Q_OS_MAC
@@ -108,17 +104,6 @@ QString fsutils::folderName(const QString& file_path) {
   if (slash_index == -1)
     return path;
   return path.left(slash_index);
-}
-
-bool fsutils::isValidTorrentFile(const QString& torrent_path) {
-  try {
-    boost::intrusive_ptr<libtorrent::torrent_info> t = new torrent_info(fsutils::toNativePath(torrent_path).toUtf8().constData());
-    if (!t->is_valid() || t->num_files() == 0)
-      return false;
-  } catch(std::exception&) {
-    return false;
-  }
-  return true;
 }
 
 /**
@@ -231,38 +216,6 @@ bool fsutils::sameFiles(const QString& path1, const QString& path2) {
   }
   f1.close(); f2.close();
   return same;
-}
-
-QString fsutils::updateLabelInSavePath(const QString& defaultSavePath, const QString& save_path, const QString& old_label, const QString& new_label) {
-  if (old_label == new_label) return fsutils::fromNativePath(save_path);
-  QString defaultPath = fsutils::fromNativePath(defaultSavePath);
-  QString path = fsutils::fromNativePath(save_path);
-  qDebug("UpdateLabelInSavePath(%s, %s, %s)", qPrintable(path), qPrintable(old_label), qPrintable(new_label));
-  if (!path.startsWith(defaultPath)) return path;
-  QString new_save_path = path;
-  new_save_path.remove(defaultPath);
-  QStringList path_parts = new_save_path.split("/", QString::SkipEmptyParts);
-  if (path_parts.empty()) {
-    if (!new_label.isEmpty())
-      path_parts << new_label;
-  } else {
-    if (old_label.isEmpty() || path_parts.first() != old_label) {
-      if (path_parts.first() != new_label)
-        path_parts.prepend(new_label);
-    } else {
-      if (new_label.isEmpty()) {
-        path_parts.removeAt(0);
-      } else {
-        if (path_parts.first() != new_label)
-          path_parts.replace(0, new_label);
-      }
-    }
-  }
-  new_save_path = defaultPath;
-  if (!new_save_path.endsWith("/")) new_save_path += "/";
-  new_save_path += path_parts.join("/");
-  qDebug("New save path is %s", qPrintable(new_save_path));
-  return new_save_path;
 }
 
 QString fsutils::toValidFileSystemName(QString filename) {
@@ -507,15 +460,6 @@ QString fsutils::searchEngineLocation() {
     folder = "nova3";
   const QString location = fsutils::expandPathAbs(QDesktopServicesDataLocation()
                                                + folder);
-  QDir locationDir(location);
-  if (!locationDir.exists())
-    locationDir.mkpath(locationDir.absolutePath());
-  return location;
-}
-
-QString fsutils::BTBackupLocation() {
-  const QString location = fsutils::expandPathAbs(QDesktopServicesDataLocation()
-                                           + "BT_backup");
   QDir locationDir(location);
   if (!locationDir.exists())
     locationDir.mkpath(locationDir.absolutePath());

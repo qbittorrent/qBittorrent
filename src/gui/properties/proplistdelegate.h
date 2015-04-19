@@ -154,8 +154,8 @@ public:
   QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &/* option */, const QModelIndex &index) const {
     if (index.column() != PRIORITY) return 0;
     if (properties) {
-      QTorrentHandle h = properties->getCurrentTorrent();
-      if (!h.is_valid() || !h.has_metadata() || h.status(0x0).is_seeding)
+      BitTorrent::TorrentHandle *const torrent = properties->getCurrentTorrent();
+      if (!torrent || !torrent->hasMetadata() || torrent->isSeed())
         return 0;
     }
     if (index.data().toInt() <= 0) {

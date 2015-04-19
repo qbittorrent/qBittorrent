@@ -68,7 +68,6 @@ Q_IMPORT_PLUGIN(qico)
 #include "application.h"
 #include "core/misc.h"
 #include "core/preferences.h"
-#include "core/logger.h"
 
 // Signal handlers
 #if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
@@ -120,8 +119,6 @@ QBtCommandLineParameters parseCommandLine();
 // Main
 int main(int argc, char *argv[])
 {
-    //Initialize logger singleton here to avoid threading issues
-    Logger::instance()->addMessage(QObject::tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(VERSION));
     // We must save it here because QApplication constructor may change it
     bool isOneArg = (argc == 2);
 

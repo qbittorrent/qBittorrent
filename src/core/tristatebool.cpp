@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,55 +24,37 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#ifndef CREATE_TORRENT_IMP_H
-#define CREATE_TORRENT_IMP_H
+#include "tristatebool.h"
 
-#include "ui_createtorrent.h"
+TriStateBool::TriStateBool()
+    : m_value(Undefined)
+{
+}
 
-class TorrentCreatorThread;
+TriStateBool::TriStateBool(bool b)
+{
+    m_value = (b ? True : False);
+}
 
-class TorrentCreatorDlg : public QDialog, private Ui::createTorrentDialog{
-  Q_OBJECT
+TriStateBool::TriStateBool(TriStateBool::ValueType value)
+    : m_value(Undefined)
+{
+    switch (value) {
+    case Undefined:
+    case True:
+    case False:
+        m_value = value;
+    }
+}
 
-public:
-  TorrentCreatorDlg(QWidget *parent = 0);
-  ~TorrentCreatorDlg();
-  int getPieceSize() const;
+TriStateBool::operator bool() const
+{
+    return (m_value == True);
+}
 
-signals:
-  void torrent_to_seed(QString path);
-
-public slots:
-  void updateProgressBar(int progress);
-  void on_cancelButton_clicked();
-
-protected slots:
-  void on_createButton_clicked();
-  void on_addFile_button_clicked();
-  void on_addFolder_button_clicked();
-  void handleCreationFailure(QString msg);
-  void handleCreationSuccess(QString path, QString branch_path);
-  void setInteractionEnabled(bool enabled);
-  void showProgressBar(bool show);
-  void on_checkAutoPieceSize_clicked(bool checked);
-  void updateOptimalPieceSize();
-  void saveTrackerList();
-  void loadTrackerList();
-
-protected:
-  void closeEvent(QCloseEvent *event);
-
-private:
-  void saveSettings();
-  void loadSettings();
-
-private:
-  TorrentCreatorThread *creatorThread;
-  QList<int> m_piece_sizes;
-};
-
-#endif
+TriStateBool::operator ValueType() const
+{
+    return m_value;
+}
