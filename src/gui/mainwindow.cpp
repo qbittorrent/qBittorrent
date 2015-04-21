@@ -316,6 +316,20 @@ MainWindow::MainWindow(QWidget *parent)
             activateWindow();
             raise();
         }
+        else {
+            create();
+        }
+    }
+    else {
+        // Make sure the Window is visible if we don't have a tray icon
+        if (pref->startMinimized()) {
+            showMinimized();
+        }
+        else {
+            show();
+            activateWindow();
+            raise();
+        }
     }
 
     properties->readSettings();
@@ -351,18 +365,6 @@ MainWindow::MainWindow(QWidget *parent)
 #ifdef Q_OS_MAC
     qt_mac_set_dock_menu(getTrayIconMenu());
 #endif
-
-    // Make sure the Window is visible if we don't have a tray icon
-    if (!systrayIcon) {
-        if (pref->startMinimized()) {
-            showMinimized();
-        }
-        else {
-            show();
-            activateWindow();
-            raise();
-        }
-    }
 }
 
 MainWindow::~MainWindow()
@@ -882,6 +884,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
         e->accept();
         return;
     }
+
     if (pref->confirmOnExit() && QBtSession::instance()->hasActiveTorrents()) {
         if (e->spontaneous() || force_exit) {
             if (!isVisible())
@@ -905,12 +908,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
                 Preferences::instance()->setConfirmOnExit(false);
         }
     }
+
     hide();
+    // Hide tray icon
     if (systrayIcon)
-        // Hide tray icon
         systrayIcon->hide();
-    // Save window size, columns size
-    writeSettings();
     // Accept exit
     e->accept();
     qApp->exit();
