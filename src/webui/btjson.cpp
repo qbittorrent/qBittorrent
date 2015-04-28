@@ -739,6 +739,17 @@ QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantM
     if (fullUpdate) {
         lastAcceptedData.clear();
         syncData = data;
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0) && QT_VERSION < QT_VERSION_CHECK(5, 5, 0))
+        // QJsonDocument::fromVariant() supports QVariantHash only
+        // since Qt5.5, so manually convert data["torrents"]
+        QVariantMap torrentsMap;
+        QVariantHash torrents = data["torrents"].toHash();
+        foreach (const QString &key, torrents.keys())
+            torrentsMap[key] = torrents[key];
+        syncData["torrents"] = torrentsMap;
+#endif
+
         syncData[KEY_FULL_UPDATE] = true;
     }
 
