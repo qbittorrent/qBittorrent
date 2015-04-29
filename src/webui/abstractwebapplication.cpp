@@ -95,6 +95,7 @@ AbstractWebApplication::~AbstractWebApplication()
 
 Http::Response AbstractWebApplication::processRequest(const Http::Request &request, const Http::Environment &env)
 {
+    session_ = 0;
     request_ = request;
     env_ = env;
 
