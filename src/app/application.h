@@ -35,6 +35,9 @@
 #include <QTranslator>
 
 #ifndef DISABLE_GUI
+#ifdef Q_OS_WIN
+#include <QSessionManager>
+#endif
 #include "qtsingleapplication.h"
 typedef QtSingleApplication BaseApplication;
 class MainWindow;
@@ -71,6 +74,11 @@ protected:
 private slots:
     void processMessage(const QString &message);
     void cleanup();
+#ifndef DISABLE_GUI
+#ifdef Q_OS_WIN
+    void shutdownCleanup(QSessionManager &manager);
+#endif
+#endif
 
 private:
     bool m_running;

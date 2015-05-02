@@ -77,6 +77,12 @@ Application::Application(const QString &id, int &argc, char **argv)
 #ifndef DISABLE_GUI
     setStyleSheet("QStatusBar::item { border-width: 0; }");
     setQuitOnLastWindowClosed(false);
+#ifdef Q_OS_WIN
+    // This shuold be the right signal to manage the interaction with QSessionManager in case of system shutdown
+    // This could also leave qbt in the limbo if shutdown is canceled. In this case I cannot call quit() from within
+    // shutdownCleanup() SLOT (clearly stated on QT docs) so I will need some watchdog stuff.
+    connect(this, SIGNAL(commitDataRequest(QSessionManager &)), this, SLOT(shutdownCleanup(QSessionManager &)), Qt::DirectConnection);
+#endif // Q_OS_WIN
 #endif
 
     connect(this, SIGNAL(messageReceived(const QString &)), SLOT(processMessage(const QString &)));
@@ -288,14 +294,73 @@ void Application::initializeTranslation()
 
 void Application::cleanup()
 {
+    // we could now reach this function from multiple point and multiple times
+    // this is a way to protect from multiple execution
+    static bool alreadyDone = false;
+    
+    if (alreadyDone)
+        return;
+		
+    alreadyDone = true;
+
 #ifndef DISABLE_GUI
-    delete m_window;
+    m_window->hide();
+
+#ifdef Q_OS_WIN
+    // Based on QT documentation, the return value of effectiveWinId() call could be different along the program
+    // execution so this stuff has to be executed in a point where that value will hopefully not change anymore
+    typedef BOOL (WINAPI *PSHUTDOWNBRCREATE)(HWND, LPCWSTR);
+    PSHUTDOWNBRCREATE shutdownBRCreate = (PSHUTDOWNBRCREATE)::GetProcAddress(::GetModuleHandleW(L"User32.dll"), "ShutdownBlockReasonCreate");
+    // Only available on Vista+
+    if (shutdownBRCreate)
+        shutdownBRCreate((HWND)(m_window->effectiveWinId()), tr("Saving torrent progress...").toStdWString().c_str());
+#endif
+
+    // definitely having the main window delete (as a whole or on children basis) here
+    // generates some strange interaction (my feel points on event queue management and pendig
+    // events...)
+    // It is better to investigate further but, in the meanwhile, let me propose another way...
+    
+    // I guess you previously put the delete stuff here because you do not want the gui
+    // to re-trigger instantiation of stuff you dropped here below.
+    // Maybe it is enough to disconnect all and postpone the delete...
+    disconnect(0, 0, m_window, 0);
+    disconnect(m_window, 0, 0, 0);
 #endif
 #ifndef DISABLE_WEBUI
+    // is this following the same considerations about m_window?
     delete m_webui;
 #endif
+    // this is used to emulate long cleanup.
+//    Sleep(60000);
     QBtSession::drop();
     TorrentPersistentData::drop();
     Preferences::drop();
     Logger::drop();
+
+#ifndef DISABLE_GUI
+    // the delete will automatically remove the blocking reason too
+    delete m_window;
+#endif
 }
+
+#ifndef DISABLE_GUI
+#ifdef Q_OS_WIN
+// this protects the cleanup function in case the PC shutdown is issued while qBittorrent is still running
+void Application::shutdownCleanup(QSessionManager &manager) {
+    // Just informing the user about the possible delay and continuing stopping qbt.
+    // In this case, as far as the OS still offer you to cancel the shutdown, a limbo condition could
+    // be trggered (if you choose to cancel then the aboutToQuit and quit signals are not emitted)
+    // and a watchdog stuff is needed
+    manager.allowsInteraction();
+    cleanup();
+    manager.release();
+
+    // QT docs says: "You should not exit the application within this signal. Instead, the session manager
+    //                may or may not do this afterwards, depending on the context."
+    // I read this only as a suggestion but, in order to be safe, let's do in this other way...
+    QTimer::singleShot(0, qApp, SLOT(quit()));
+}
+#endif
+#endif
+
