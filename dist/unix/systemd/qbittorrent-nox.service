@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=forking
 User=1000
-ExecStart=qbittorrent-nox -d
+ExecStart=/usr/bin/qbittorrent-nox -d
 
 [Install]
 WantedBy=multi-user.target
