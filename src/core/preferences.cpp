@@ -1076,7 +1076,11 @@ void Preferences::setIgnoreSlowTorrentsForQueueing(bool ignore)
 
 bool Preferences::isWebUiEnabled() const
 {
+#ifdef DISABLE_GUI
+    return true;
+#else
     return value("Preferences/WebUI/Enabled", false).toBool();
+#endif
 }
 
 void Preferences::setWebUiEnabled(bool enabled)

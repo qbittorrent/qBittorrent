@@ -1,6 +1,7 @@
 src/gui/geoip/GeoIP.dat
 src/gui/geoip/GeoIP.dat.gz
 src/qbittorrent
+src/qbittorrent-nox
 qbittorrent.pro.user*
 conf.pri
 Makefile
