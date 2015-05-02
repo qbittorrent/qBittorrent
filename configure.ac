@@ -56,7 +56,7 @@ AC_ARG_ENABLE(gui,
 
 AC_ARG_ENABLE(systemd,
               [AS_HELP_STRING([--enable-systemd],
-                              [Install the systemd service file (GUI only).])],
+                              [Install the systemd service file (headless only).])],
               [],
               [enable_systemd=no])
 

@@ -1376,7 +1376,7 @@ Optional Features:
   --enable-debug          Enable debug build
   --disable-gui           Disable the GUI for headless running. Disables
                           QtDBus and the GeoIP Database.
-  --enable-systemd        Install the systemd service file (GUI only).
+  --enable-systemd        Install the systemd service file (headless only).
   --disable-webui         Disable the WebUI.
   --disable-qt-dbus       Disable use of QtDBus (GUI only)
 
