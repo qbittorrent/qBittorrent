@@ -600,7 +600,9 @@ void MainWindow::cleanup()
         systrayCreator->stop();
     if (preventTimer)
         preventTimer->stop();
+#if (defined(Q_OS_WIN) || defined(Q_OS_MAC))
     programUpdateTimer.stop();
+#endif
     delete search_filter;
     delete searchFilterAct;
     delete tabs; // this seems enough to also delete all contained widgets
