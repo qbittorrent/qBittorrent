@@ -1377,7 +1377,7 @@ QMenu* MainWindow::getTrayIconMenu()
     myTrayIconMenu->addAction(actionToggleVisibility);
     myTrayIconMenu->addSeparator();
     myTrayIconMenu->addAction(actionOpen);
-    //myTrayIconMenu->addAction(actionDownload_from_URL);
+    myTrayIconMenu->addAction(actionDownload_from_URL);
     myTrayIconMenu->addSeparator();
     const bool isAltBWEnabled = Preferences::instance()->isAltBandwidthEnabled();
     updateAltSpeedsBtn(isAltBWEnabled);
