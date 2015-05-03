@@ -41,7 +41,7 @@
 #include <QUrl>
 #include "core/types.h"
 
-/*  Miscellaneaous functions that can be useful */
+/*  Miscellaneous functions that can be useful */
 
 namespace Utils
 {

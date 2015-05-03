@@ -296,7 +296,7 @@ RssArticleList RssFeed::unreadArticleListByDateDesc() const
   return unread_news;
 }
 
-// download the icon from the adress
+// download the icon from the address
 QString RssFeed::iconUrl() const
 {
   // XXX: This works for most sites but it is not perfect

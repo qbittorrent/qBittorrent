@@ -52,7 +52,7 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
 
   const int maxElement = *std::max_element(vecin.begin(), vecin.end());
 
-  // qMax bacause in normalization we don't want divide by 0
+  // qMax because in normalization we don't want divide by 0
   // if maxElement == 0 check will be disabled please enable this line:
   // const int maxElement = qMax(*std::max_element(avail.begin(), avail.end()), 1);
 

@@ -1028,7 +1028,7 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
 
         adjustLimits();
 
-        // use common 2nd step of torrent adddition
+        // use common 2nd step of torrent addition
         libt::add_torrent_alert *alert = new libt::add_torrent_alert(handle, libt::add_torrent_params(), libt::error_code());
         m_addingTorrents.insert(hash, AddTorrentData(params));
         handleAddTorrentAlert(alert);
@@ -1187,7 +1187,7 @@ bool Session::loadMetadata(const QString &magnetUri)
     InfoHash hash = magnet.hash();
     QString name = magnet.name();
 
-    // We should not add tarrent if it already
+    // We should not add torrent if it already
     // processed or adding to session
     if (m_torrents.contains(hash)) return false;
     if (m_addingTorrents.contains(hash)) return false;

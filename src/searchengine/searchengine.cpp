@@ -229,7 +229,7 @@ void SearchEngine::on_search_button_clicked() {
     no_search_results = true;
     nb_search_results = 0;
     search_result_line_truncated.clear();
-    //on change le texte du label courrant
+    // Changing the text of the current label
     currentSearchTab->getCurrentLabel()->setText(tr("Results")+" <i>(0)</i>:");
     // Launch search
     searchProcess->start("python", params, QIODevice::ReadOnly);

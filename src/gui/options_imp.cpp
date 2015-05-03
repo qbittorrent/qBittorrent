@@ -251,7 +251,7 @@ options_imp::options_imp(QWidget *parent):
 #endif
   // Disable apply Button
   applyButton->setEnabled(false);
-  // Tab selection mecanism
+  // Tab selection mechanism
   connect(tabSelection, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
   // Load Advanced settings
   QVBoxLayout *adv_layout = new QVBoxLayout();

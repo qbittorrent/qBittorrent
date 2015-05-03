@@ -546,7 +546,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&) {
   }
   // Call menu
   const QAction *act = myFilesLlistMenu.exec(QCursor::pos());
-  // The selected torrent might have dissapeared during exec()
+  // The selected torrent might have disappeared during exec()
   // from the current view thus leaving invalid indices.
   const QModelIndex index = *(selectedRows.begin());
   if (!index.isValid())

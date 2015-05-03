@@ -293,11 +293,11 @@ QByteArray btjson::getTorrents(QString filter, QString label,
  *  - "seq_dl": Torrent sequential download state
  *  - "f_l_piece_prio": Torrent first last piece priority state
  * Server state map may contain the following keys:
- *  - "connection_status": conection status
+ *  - "connection_status": connection status
  *  - "dht_nodes": DHT nodes count
  *  - "dl_info_data": bytes downloaded
  *  - "dl_info_speed": download speed
- *  - "dl_rate_limit: downlaod rate limit
+ *  - "dl_rate_limit: download rate limit
  *  - "up_info_data: bytes uploaded
  *  - "up_info_speed: upload speed
  *  - "up_rate_limit: upload speed limit

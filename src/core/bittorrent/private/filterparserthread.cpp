@@ -76,11 +76,11 @@ int FilterParserThread::parseDATFilterFile(QString m_filePath, libt::ip_filter &
         // Ignoring commented lines
         if (line.startsWith('#') || line.startsWith("//")) continue;
 
-        // Line should be splitted by commas
+        // Line should be split by commas
         QList<QByteArray> partsList = line.split(',');
         const uint nbElem = partsList.size();
 
-        // IP Range should be splitted by a dash
+        // IP Range should be split by a dash
         QList<QByteArray> IPs = partsList.first().split('-');
         if (IPs.size() != 2) {
             qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
@@ -168,7 +168,7 @@ int FilterParserThread::parseP2PFilterFile(QString m_filePath, libt::ip_filter &
         // Ignoring commented lines
         if (line.startsWith('#') || line.startsWith("//")) continue;
 
-        // Line is splitted by :
+        // Line is split by :
         QList<QByteArray> partsList = line.split(':');
         if (partsList.size() < 2) {
             qDebug("p2p file: line %d is malformed.", nbLine);
@@ -292,7 +292,7 @@ int FilterParserThread::parseP2BFilterFile(QString m_filePath, libt::ip_filter &
             }
 
             // Network byte order to Host byte order
-            // asio address_v4 contructor expects it
+            // asio address_v4 constructor expects it
             // that way
             libt::address_v4 first(ntohl(start));
             libt::address_v4 last(ntohl(end));
@@ -342,7 +342,7 @@ int FilterParserThread::parseP2BFilterFile(QString m_filePath, libt::ip_filter &
             }
 
             // Network byte order to Host byte order
-            // asio address_v4 contructor expects it
+            // asio address_v4 constructor expects it
             // that way
             libt::address_v4 first(ntohl(start));
             libt::address_v4 last(ntohl(end));

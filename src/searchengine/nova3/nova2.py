@@ -51,7 +51,7 @@ CATEGORIES = {'all', 'movies', 'tv', 'music', 'games', 'anime', 'software', 'pic
 # a space-free string as parameter (ex. "family+guy")
 # it should call prettyPrinter() with a dict as parameter.
 # The keys in the dict must be: link,name,size,seeds,leech,engine_url
-# As a convention, try to list results by decrasing number of seeds or similar
+# As a convention, try to list results by decreasing number of seeds or similar
 ################################################################################
 
 def initialize_engines():
@@ -118,7 +118,7 @@ def run_search(engine_list):
 
         @param engine_list List with engine, query and category
 
-        @retval False if any exceptions occured
+        @retval False if any exceptions occurred
         @retval True  otherwise
     """
     engine, what, cat = engine_list

@@ -83,7 +83,7 @@ void StatsDialog::updateUI() {
   ui->labelTotalBuf->setText(Utils::Misc::friendlyUnit(cs.totalUsedBuffers() * 16 * 1024));
   // Disk overload (100%) equivalent
   // From lt manual: disk_write_queue and disk_read_queue are the number of peers currently waiting on a disk write or disk read
-  // to complete before it receives or sends any more data on the socket. It'a a metric of how disk bound you are.
+  // to complete before it receives or sends any more data on the socket. It's a metric of how disk bound you are.
 
   // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
   quint32 peers = 0;

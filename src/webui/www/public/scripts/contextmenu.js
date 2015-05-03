@@ -263,7 +263,7 @@ var ContextMenu = new Class({
         return this;
     },
 
-    //diable the entire menu
+    //disable the entire menu
     disable: function() {
         this.options.disabled = true;
         return this;

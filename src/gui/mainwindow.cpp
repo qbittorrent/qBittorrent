@@ -1281,7 +1281,7 @@ void MainWindow::createSystrayDelayed()
             // support systray icon
             delete systrayCreator;
             // Disable it in program preferences to
-            // avoid trying at earch startup
+            // avoid trying at each startup
             Preferences::instance()->setSystrayIntegration(false);
         }
     }

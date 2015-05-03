@@ -471,7 +471,7 @@ Qt::ItemFlags TorrentModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
         return 0;
-    // Explicitely mark as editable
+    // Explicitly mark as editable
     return QAbstractListModel::flags(index) | Qt::ItemIsEditable;
 }
 

@@ -113,7 +113,7 @@ void DNSUpdater::ipRequestFinished(QNetworkReply *reply)
             }
         }
         else {
-            qWarning() << Q_FUNC_INFO << "Regular expression failed ot capture the IP address";
+            qWarning() << Q_FUNC_INFO << "Regular expression failed to capture the IP address";
         }
     }
     // Clean up
@@ -182,7 +182,7 @@ void DNSUpdater::ipUpdateFinished(QNetworkReply *reply)
         qWarning() << Q_FUNC_INFO << "Error:" << reply->errorString();
     }
     else {
-        // Pase reply
+        // Parse reply
         processIPUpdateReply(reply->readAll());
     }
     // Clean up

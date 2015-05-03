@@ -46,7 +46,7 @@ class DownloadedPiecesBar: public QWidget {
 private:
   QImage m_image;
 
-  // I used values, bacause it should be possible to change colors in runtime
+  // I used values, because it should be possible to change colors in runtime
 
   // background color
   int m_bgColor;
