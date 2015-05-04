@@ -180,14 +180,8 @@ signals:
     void trackerError(const QString &hash, const QString &tracker);
     void trackerWarning(const QString &hash, const QString &tracker);
 
-protected:
-    virtual void resizeEvent(QResizeEvent *event);
-
 private:
-    StatusFiltersWidget *statusFilters;
     TrackerFiltersList *trackerFilters;
-    //for use in resizeEvent()
-    QCheckBox *trackerLabel;
 };
 
 #endif // TRANSFERLISTFILTERSWIDGET_H

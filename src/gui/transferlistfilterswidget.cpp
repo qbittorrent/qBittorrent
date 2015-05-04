@@ -35,9 +35,9 @@
 #include <QIcon>
 #include <QVBoxLayout>
 #include <QMenu>
-#include <QResizeEvent>
 #include <QMessageBox>
 #include <QCheckBox>
+#include <QScrollArea>
 
 #include "transferlistdelegate.h"
 #include "transferlistwidget.h"
@@ -72,17 +72,18 @@ FiltersBase::FiltersBase(QWidget *parent, TransferListWidget *transferList)
 
 QSize FiltersBase::sizeHint() const
 {
-    QSize size = QListWidget::sizeHint();
+    QSize size;
     // Height should be exactly the height of the content
     size.setHeight((sizeHintForRow(0) * count()) + (2 * frameWidth()) + 6);
+    // Width should be exactly the height of the content
+    size.setWidth(sizeHintForColumn(0) + (2 * frameWidth()));
     return size;
 }
 
 QSize FiltersBase::minimumSizeHint() const
 {
-    QSize size = QListWidget::minimumSizeHint();
-    // Minimum height should be exactly the sticky labels height
-    size.setHeight((sizeHintForRow(0) * 2) + (2 * frameWidth()) + 6);
+    QSize size = sizeHint();
+    size.setWidth(6);
     return size;
 }
 
@@ -738,39 +739,62 @@ QStringList TrackerFiltersList::getHashes(int row)
 
 TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList)
     : QFrame(parent)
-    , statusFilters(0)
     , trackerFilters(0)
-    , trackerLabel(0)
 {
     Preferences* const pref = Preferences::instance();
+
     // Construct lists
     QVBoxLayout *vLayout = new QVBoxLayout(this);
-    vLayout->setContentsMargins(0, 4, 0, 0);
+    QScrollArea *scroll = new QScrollArea(this);
+    QFrame *frame = new QFrame(scroll);
+    QVBoxLayout *frameLayout = new QVBoxLayout(frame);
     QFont font;
     font.setBold(true);
     font.setCapitalization(QFont::SmallCaps);
+
+    frame->setFrameShadow(QFrame::Plain);
+    frame->setFrameShape(QFrame::NoFrame);
+    scroll->setFrameShadow(QFrame::Plain);
+    scroll->setFrameShape(QFrame::NoFrame);
+    scroll->setStyleSheet("QFrame { background: transparent; }");
+    scroll->setWidgetResizable(true);
+    scroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    vLayout->setContentsMargins(0, 4, 0, 0);
+    frameLayout->setContentsMargins(0, 4, 0, 0);
+    frameLayout->setSpacing(2);
+
+    frame->setLayout(frameLayout);
+    scroll->setWidget(frame);
+    vLayout->addWidget(scroll);
+    setLayout(vLayout);
+    setContentsMargins(0,0,0,0);
+
     QCheckBox * statusLabel = new QCheckBox(tr("Status"), this);
     statusLabel->setChecked(pref->getStatusFilterState());
     statusLabel->setFont(font);
-    vLayout->addWidget(statusLabel);
-    statusFilters = new StatusFiltersWidget(this, transferList);
-    vLayout->addWidget(statusFilters);
+    frameLayout->addWidget(statusLabel);
+
+    StatusFiltersWidget *statusFilters = new StatusFiltersWidget(this, transferList);
+    frameLayout->addWidget(statusFilters);
+
     QCheckBox *labelLabel = new QCheckBox(tr("Labels"), this);
     labelLabel->setChecked(pref->getLabelFilterState());
     labelLabel->setFont(font);
-    vLayout->addWidget(labelLabel);
+    frameLayout->addWidget(labelLabel);
+
     LabelFiltersList *labelFilters = new LabelFiltersList(this, transferList);
-    vLayout->addWidget(labelFilters);
-    trackerLabel = new QCheckBox(tr("Trackers"), this);
+    frameLayout->addWidget(labelFilters);
+
+    QCheckBox *trackerLabel = new QCheckBox(tr("Trackers"), this);
     trackerLabel->setChecked(pref->getTrackerFilterState());
     trackerLabel->setFont(font);
-    vLayout->addWidget(trackerLabel);
+    frameLayout->addWidget(trackerLabel);
+
     trackerFilters = new TrackerFiltersList(this, transferList);
-    vLayout->addWidget(trackerFilters);
-    setLayout(vLayout);
-    setContentsMargins(0,0,0,0);
-    vLayout->setSpacing(2);
-    vLayout->addStretch();
+    frameLayout->addWidget(trackerFilters);
+
+    frameLayout->addStretch();
 
     connect(statusLabel, SIGNAL(toggled(bool)), statusFilters, SLOT(toggleFilter(bool)));
     connect(statusLabel, SIGNAL(toggled(bool)), pref, SLOT(setStatusFilterState(const bool)));
@@ -781,13 +805,6 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     connect(this, SIGNAL(trackerSuccess(const QString &, const QString &)), trackerFilters, SLOT(trackerSuccess(const QString &, const QString &)));
     connect(this, SIGNAL(trackerError(const QString &, const QString &)), trackerFilters, SLOT(trackerError(const QString &, const QString &)));
     connect(this, SIGNAL(trackerWarning(const QString &, const QString &)), trackerFilters, SLOT(trackerWarning(const QString &, const QString &)));
-}
-
-void TransferListFiltersWidget::resizeEvent(QResizeEvent *event)
-{
-    int height = event->size().height();
-    int minHeight = statusFilters->height() + (3 * trackerLabel->height());
-    trackerFilters->setMinimumHeight((height - minHeight) / 2);
 }
 
 void TransferListFiltersWidget::addTrackers(const QStringList &trackers, const QString &hash)
