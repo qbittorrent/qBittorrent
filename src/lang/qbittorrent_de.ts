@@ -2320,7 +2320,7 @@ Soll qBittorrent wirklich beendet werden?</translation>
     <message>
         <location filename="../gui/options.ui" line="1687"/>
         <source>Alternative Global Rate Limits</source>
-        <translation>Alternative  globale Verhältnisbegrenzung</translation>
+        <translation>Alternative globale Verhältnisbegrenzung</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1793"/>
@@ -2534,7 +2534,7 @@ Soll qBittorrent wirklich beendet werden?</translation>
         <location filename="../gui/options.ui" line="412"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>qBittorrent in den Benachrichtigungsbereich schliessen</translation>
+        <translation>qBittorrent in den Benachrichtigungsbereich schließen</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="421"/>
@@ -2579,7 +2579,7 @@ Soll qBittorrent wirklich beendet werden?</translation>
     <message>
         <location filename="../gui/options.ui" line="393"/>
         <source>Show qBittorrent in notification area</source>
-        <translation>qBittorrent im Notification Bereich anzeigen</translation>
+        <translation>qBittorrent im Benachrichtigungsbereich anzeigen</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="452"/>
@@ -3587,7 +3587,7 @@ Soll qBittorrent wirklich beendet werden?</translation>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1886"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
-        <translation>qBittorrent konnte auf keinem Inferface Ports lauschen: %1. Grund: %2</translation>
+        <translation>qBittorrent konnte auf keinem Interface Ports lauschen: %1. Grund: %2</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1907"/>
@@ -3796,7 +3796,7 @@ Soll qBittorrent wirklich beendet werden?</translation>
 No further notices will be issued.</source>
         <translation>qBittorrent ist ein Filesharing Programm. Sobald ein Torrent im Programm läuft wird der Inhalt auch anderen durch Upload zur Verfügung gestellt.
 
-Selbstverständlich geschieht dieses Teilen jeglicher Inhalte auf eigene Verantwortung und es erfolgt auch kein weiterer Hinweis disbezüglich.</translation>
+Selbstverständlich geschieht dieses Teilen jeglicher Inhalte auf eigene Verantwortung und es erfolgt auch kein weiterer Hinweis diesbezüglich.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="431"/>
@@ -4219,7 +4219,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/searchtab.cpp" line="56"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation>Dateigrösse</translation>
+        <translation>Dateigröße</translation>
     </message>
     <message>
         <location filename="../searchengine/searchtab.cpp" line="57"/>
@@ -4368,7 +4368,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/statsdialog.ui" line="184"/>
         <source>Average time in queue (ms):</source>
-        <translation>Durschnittliche Zeit in der Warteschlange (ms):</translation>
+        <translation>Durchschnittliche Zeit in der Warteschlange (ms):</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="191"/>
@@ -4630,7 +4630,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="53"/>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translation>Dieser Assistent wird Ihnen helfen einen Torrent der bereits heruntergeladen wurde über qBittorrent zu verteilen.</translation>
+        <translation>Dieser Assistent wird Ihnen helfen einen Torrent, der bereits heruntergeladen wurde, über qBittorrent zu verteilen.</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="65"/>
@@ -4807,13 +4807,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="440"/>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Heruntergeladen (Sitzung)</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="441"/>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Hochgeladen (Sitzung)</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="442"/>
