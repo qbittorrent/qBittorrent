@@ -28,14 +28,14 @@
 
 #include <QString>
 
-#include "core/misc.h"
+#include "core/utils/misc.h"
 #include "core/utils/string.h"
 #include "trackerentry.h"
 
 using namespace BitTorrent;
 
 TrackerEntry::TrackerEntry(const QString &url)
-    : m_nativeEntry(libtorrent::announce_entry(String::toStdString(url)))
+    : m_nativeEntry(libtorrent::announce_entry(Utils::String::toStdString(url)))
 {
 }
 
@@ -51,7 +51,7 @@ TrackerEntry::TrackerEntry(const TrackerEntry &other)
 
 QString TrackerEntry::url() const
 {
-    return String::fromStdString(m_nativeEntry.url);
+    return Utils::String::fromStdString(m_nativeEntry.url);
 }
 
 int TrackerEntry::tier() const

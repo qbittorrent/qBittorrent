@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2012  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -28,43 +28,44 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef FS_UTILS_H
-#define FS_UTILS_H
-
-#include <QString>
+#ifndef UTILS_FS_H
+#define UTILS_FS_H
 
 /**
  * Utility functions related to file system.
  */
-namespace fsutils
+
+#include <QString>
+
+namespace Utils
 {
+    namespace Fs
+    {
+        QString toNativePath(const QString& path);
+        QString fromNativePath(const QString& path);
+        QString fileExtension(const QString& filename);
+        QString fileName(const QString& file_path);
+        QString folderName(const QString& file_path);
+        qint64 computePathSize(const QString& path);
+        bool sameFiles(const QString& path1, const QString& path2);
+        QString toValidFileSystemName(QString filename);
+        bool isValidFileSystemName(const QString& filename);
+        qlonglong freeDiskSpaceOnPath(QString path);
+        QString branchPath(const QString& file_path, QString* removed = 0);
+        bool sameFileNames(const QString& first, const QString& second);
+        QString expandPath(const QString& path);
+        QString expandPathAbs(const QString& path);
+        bool smartRemoveEmptyFolderTree(const QString& dir_path);
+        bool forceRemove(const QString& file_path);
 
-  QString toNativePath(const QString& path);
-  QString fromNativePath(const QString& path);
-  QString fileExtension(const QString& filename);
-  QString fileName(const QString& file_path);
-  QString folderName(const QString& file_path);
-  qint64 computePathSize(const QString& path);
-  bool sameFiles(const QString& path1, const QString& path2);
-  QString toValidFileSystemName(QString filename);
-  bool isValidFileSystemName(const QString& filename);
-  long long freeDiskSpaceOnPath(QString path);
-  QString branchPath(const QString& file_path, QString* removed = 0);
-  bool sameFileNames(const QString& first, const QString& second);
-  QString expandPath(const QString& path);
-  QString expandPathAbs(const QString& path);
-  bool smartRemoveEmptyFolderTree(const QString& dir_path);
-  bool forceRemove(const QString& file_path);
-
-  /* Ported from Qt4 to drop dependency on QtGui */
-  QString QDesktopServicesDataLocation();
-  QString QDesktopServicesCacheLocation();
-  QString QDesktopServicesDownloadLocation();
-  /* End of Qt4 code */
-  QString searchEngineLocation();
-  QString cacheLocation();
-
+        /* Ported from Qt4 to drop dependency on QtGui */
+        QString QDesktopServicesDataLocation();
+        QString QDesktopServicesCacheLocation();
+        QString QDesktopServicesDownloadLocation();
+        /* End of Qt4 code */
+        QString searchEngineLocation();
+        QString cacheLocation();
+    }
 }
 
-#endif // FS_UTILS_H
-
+#endif // UTILS_FS_H

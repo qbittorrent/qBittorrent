@@ -30,7 +30,8 @@
 
 #include <QStringList>
 
-#include "core/misc.h"
+#include "core/types.h"
+#include "core/utils/string.h"
 #include "core/bittorrent/torrenthandle.h"
 #include "torrentmodel.h"
 #include "transferlistsortmodel.h"
@@ -81,7 +82,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
             return lowerPositionThan(left, right);
 
         bool res = false;
-        if (misc::naturalSort(vL.toString(), vR.toString(), res))
+        if (Utils::String::naturalSort(vL.toString(), vR.toString(), res))
             return res;
 
         return QSortFilterProxyModel::lessThan(left, right);

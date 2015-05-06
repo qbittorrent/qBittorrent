@@ -28,8 +28,8 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef MISC_H
-#define MISC_H
+#ifndef UTILS_MISC_H
+#define UTILS_MISC_H
 
 #include <vector>
 #include <QString>
@@ -39,57 +39,43 @@
 #include <QFile>
 #include <QDir>
 #include <QUrl>
-
-namespace BitTorrent { class TorrentHandle; }
-
-const qlonglong MAX_ETA = 8640000;
-enum ShutDownAction { NO_SHUTDOWN, SHUTDOWN_COMPUTER, SUSPEND_COMPUTER, HIBERNATE_COMPUTER };
+#include "core/types.h"
 
 /*  Miscellaneaous functions that can be useful */
-namespace misc
+
+namespace Utils
 {
+    namespace Misc
+    {
+        QString parseHtmlLinks(const QString &raw_text);
+        bool isUrl(const QString &s);
 
 #ifndef DISABLE_GUI
-    void shutdownComputer(ShutDownAction action = SHUTDOWN_COMPUTER);
+        void shutdownComputer(ShutdownAction action);
+        // Get screen center
+        QPoint screenCenter(QWidget *win);
 #endif
+        int pythonVersion();
+        // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
+        // use Binary prefix standards from IEC 60027-2
+        // see http://en.wikipedia.org/wiki/Kilobyte
+        // value must be given in bytes
+        QString friendlyUnit(qreal val, bool is_speed = false);
+        bool isPreviewable(const QString& extension);
 
-    QString parseHtmlLinks(const QString &raw_text);
+        QString bcLinkToMagnet(QString bc_link);
+        // Take a number of seconds and return an user-friendly
+        // time duration like "1d 2h 10m".
+        QString userFriendlyDuration(qlonglong seconds);
+        QString getUserIDString();
 
-    bool isUrl(const QString &s);
+        // Convert functions
+        QStringList toStringList(const QList<bool> &l);
+        QList<int> intListfromStringList(const QStringList &l);
+        QList<bool> boolListfromStringList(const QStringList &l);
 
-#ifndef DISABLE_GUI
-    // Get screen center
-    QPoint screenCenter(QWidget *win);
-#endif
-    int pythonVersion();
-    // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
-    // use Binary prefix standards from IEC 60027-2
-    // see http://en.wikipedia.org/wiki/Kilobyte
-    // value must be given in bytes
-    QString friendlyUnit(qreal val, bool is_speed = false);
-    bool isPreviewable(const QString& extension);
-
-    QString bcLinkToMagnet(QString bc_link);
-    // Take a number of seconds and return an user-friendly
-    // time duration like "1d 2h 10m".
-    QString userFriendlyDuration(qlonglong seconds);
-    QString getUserIDString();
-
-    // Convert functions
-    QStringList toStringList(const QList<bool> &l);
-    QList<int> intListfromStringList(const QStringList &l);
-    QList<bool> boolListfromStringList(const QStringList &l);
-
-    QString accurateDoubleToString(const double &n, const int &precision);
-
-#ifndef DISABLE_GUI
-    bool naturalSort(QString left, QString right, bool& result);
-#endif
-
-    // Implements constant-time comparison to protect against timing attacks
-    // Taken from https://crackstation.net/hashing-security.htm
-    bool slowEquals(const QByteArray &a, const QByteArray &b);
-    void msleep(unsigned long msecs);
+        void msleep(unsigned long msecs);
+    }
 }
 
 #endif

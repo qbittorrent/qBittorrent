@@ -40,7 +40,8 @@
 #include <QPainter>
 #include <QProgressBar>
 #include <QApplication>
-#include "core/misc.h"
+#include "core/utils/misc.h"
+#include "core/utils/string.h"
 #include "propertieswidget.h"
 
 #ifdef Q_OS_WIN
@@ -75,14 +76,14 @@ public:
     switch(index.column()) {
     case PCSIZE:
       QItemDelegate::drawBackground(painter, opt, index);
-      QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
+      QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
       break;
     case PROGRESS:{
       if (index.data().toDouble() >= 0) {
         QStyleOptionProgressBarV2 newopt;
         qreal progress = index.data().toDouble()*100.;
         newopt.rect = opt.rect;
-        newopt.text = ((progress == 100.0) ? QString("100%") : misc::accurateDoubleToString(progress, 1) + "%");
+        newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
         newopt.progress = (int)progress;
         newopt.maximum = 100;
         newopt.minimum = 0;

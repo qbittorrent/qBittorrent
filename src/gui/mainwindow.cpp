@@ -49,7 +49,7 @@
 
 #include "mainwindow.h"
 #include "transferlistwidget.h"
-#include "core/misc.h"
+#include "core/utils/misc.h"
 #include "torrentcreatordlg.h"
 #include "downloadfromurldlg.h"
 #include "addnewtorrentdialog.h"
@@ -874,7 +874,7 @@ void MainWindow::showEvent(QShowEvent *e)
 
     // Make sure the window is initially centered
     if (!m_posInitialized) {
-        move(misc::screenCenter(this));
+        move(Utils::Misc::screenCenter(this));
         m_posInitialized = true;
     }
 }
@@ -1045,9 +1045,9 @@ void MainWindow::on_actionOpen_triggered()
     }
 
     // Save last dir to remember it
-    QStringList top_dir = fsutils::fromNativePath(pathsList.at(0)).split("/");
+    QStringList top_dir = Utils::Fs::fromNativePath(pathsList.at(0)).split("/");
     top_dir.removeLast();
-    pref->setMainLastDir(fsutils::fromNativePath(top_dir.join("/")));
+    pref->setMainLastDir(Utils::Fs::fromNativePath(top_dir.join("/")));
 }
 
 void MainWindow::activate()
@@ -1186,21 +1186,21 @@ void MainWindow::updateGUI()
         html += "qBittorrent";
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/download.png'/>&nbsp;" + tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(misc::friendlyUnit(status.payloadDownloadRate(), true));
+        html += "<img src=':/icons/skin/download.png'/>&nbsp;" + tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true));
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/seeding.png'/>&nbsp;" + tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(misc::friendlyUnit(status.payloadUploadRate(), true));
+        html += "<img src=':/icons/skin/seeding.png'/>&nbsp;" + tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true));
         html += "</div>";
 #else
         // OSes such as Windows do not support html here
-        QString html = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(misc::friendlyUnit(status.payloadDownloadRate(), true));
+        QString html = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true));
         html += "\n";
-        html += tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(misc::friendlyUnit(status.payloadUploadRate(), true));
+        html += tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true));
 #endif
         systrayIcon->setToolTip(html); // tray icon
     }
     if (displaySpeedInTitle)
-        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version").arg(misc::friendlyUnit(status.payloadDownloadRate(), true)).arg(misc::friendlyUnit(status.payloadUploadRate(), true)).arg(QString::fromUtf8(VERSION)));
+        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true)).arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true)).arg(QString::fromUtf8(VERSION)));
 }
 
 void MainWindow::showNotificationBaloon(QString title, QString msg) const
@@ -1377,7 +1377,7 @@ void MainWindow::on_actionSearch_engine_triggered()
         bool res = false;
 
         // Check if python is already in PATH
-        if (misc::pythonVersion() > 0)
+        if (Utils::Misc::pythonVersion() > 0)
             res = true;
         else
             res = addPythonPathToEnv();
@@ -1567,7 +1567,7 @@ bool MainWindow::addPythonPathToEnv()
             path_envar = "";
         path_envar = python_path + ";" + path_envar;
         qDebug("New PATH envvar is: %s", qPrintable(path_envar));
-        qputenv("PATH", fsutils::toNativePath(path_envar).toLocal8Bit());
+        qputenv("PATH", Utils::Fs::toNativePath(path_envar).toLocal8Bit());
         return true;
     }
     return false;
@@ -1590,7 +1590,7 @@ void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePa
     QProcess installer;
     qDebug("Launching Python installer in passive mode...");
 
-    installer.start("msiexec.exe /passive /i " + fsutils::toNativePath(filePath) + ".msi");
+    installer.start("msiexec.exe /passive /i " + Utils::Fs::toNativePath(filePath) + ".msi");
     // Wait for setup to complete
     installer.waitForFinished();
 
@@ -1598,7 +1598,7 @@ void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePa
     qDebug("Installer stderr: %s", installer.readAllStandardError().data());
     qDebug("Setup should be complete!");
     // Delete temp file
-    fsutils::forceRemove(filePath);
+    Utils::Fs::forceRemove(filePath);
     // Reload search engine
     has_python = addPythonPathToEnv();
     if (has_python) {

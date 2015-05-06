@@ -37,13 +37,13 @@
 #include <QFile>
 #include <QUrl>
 #include "guiiconprovider.h"
-#include "core/misc.h"
+#include "core/utils/misc.h"
 #include "ui_trackersadditiondlg.h"
 #include "core/net/downloadmanager.h"
 #include "core/net/downloadhandler.h"
 #include "core/bittorrent/trackerentry.h"
 #include "core/bittorrent/torrenthandle.h"
-#include "core/fs_utils.h"
+#include "core/utils/fs.h"
 
 class TrackersAdditionDlg : public QDialog, private Ui::TrackersAdditionDlg{
   Q_OBJECT
@@ -80,7 +80,7 @@ public slots:
       QMessageBox::warning(this, tr("I/O Error"), tr("Error while trying to open the downloaded file."), QMessageBox::Ok);
       setCursor(Qt::ArrowCursor);
       uTorrentListButton->setEnabled(true);
-      fsutils::forceRemove(path);
+      Utils::Fs::forceRemove(path);
       return;
     }
 
@@ -109,7 +109,7 @@ public slots:
     }
     // Clean up
     list_file.close();
-    fsutils::forceRemove(path);
+    Utils::Fs::forceRemove(path);
     //To restore the cursor ...
     setCursor(Qt::ArrowCursor);
     uTorrentListButton->setEnabled(true);

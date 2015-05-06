@@ -30,17 +30,18 @@
  * Contact : hammered999@gmail.com
  */
 
+#include "core/types.h"
 #include "shutdownconfirm.h"
 
 #include <QPushButton>
 
-ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutDownAction &action)
+ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
     : m_exitNow(0)
     , m_timeout(15)
     , m_action(action)
 {
     // Title and button
-    if (m_action == NO_SHUTDOWN) {
+    if (m_action == ShutdownAction::None) {
         setWindowTitle(tr("Exit confirmation"));
         m_exitNow = addButton(tr("Exit now"), QMessageBox::AcceptRole);
     }
@@ -62,7 +63,7 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutDownAction &action)
     connect(&m_timer, SIGNAL(m_timeout()), this, SLOT(updateSeconds()));
     show();
     // Move to center
-    move(misc::screenCenter(this));
+    move(Utils::Misc::screenCenter(this));
 }
 
 void ShutdownConfirmDlg::showEvent(QShowEvent *event)
@@ -71,7 +72,7 @@ void ShutdownConfirmDlg::showEvent(QShowEvent *event)
     m_timer.start();
 }
 
-bool ShutdownConfirmDlg::askForConfirmation(const ShutDownAction &action)
+bool ShutdownConfirmDlg::askForConfirmation(const ShutdownAction &action)
 {
     ShutdownConfirmDlg dlg(action);
     dlg.exec();
@@ -104,16 +105,16 @@ void ShutdownConfirmDlg::updateText()
     QString text;
 
     switch (m_action) {
-    case NO_SHUTDOWN:
+    case ShutdownAction::None:
         text = tr("qBittorrent will now exit unless you cancel within the next %1 seconds.").arg(QString::number(m_timeout));
         break;
-    case SHUTDOWN_COMPUTER:
+    case ShutdownAction::Shutdown:
         text = tr("The computer will now be switched off unless you cancel within the next %1 seconds.").arg(QString::number(m_timeout));
         break;
-    case SUSPEND_COMPUTER:
+    case ShutdownAction::Suspend:
         text = tr("The computer will now go to sleep mode unless you cancel within the next %1 seconds.").arg(QString::number(m_timeout));
         break;
-    case HIBERNATE_COMPUTER:
+    case ShutdownAction::Hibernate:
         text = tr("The computer will now go to hibernation mode unless you cancel within the next %1 seconds.").arg(QString::number(m_timeout));
         break;
     }

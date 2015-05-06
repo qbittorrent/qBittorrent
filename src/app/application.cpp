@@ -60,7 +60,7 @@
 #include "application.h"
 #include "core/logger.h"
 #include "core/preferences.h"
-#include "core/misc.h"
+#include "core/utils/misc.h"
 #include "core/iconprovider.h"
 #include "core/scanfoldersmodel.h"
 #include "core/net/smtp.h"
@@ -74,7 +74,7 @@ Application::Application(const QString &id, int &argc, char **argv)
     : BaseApplication(id, argc, argv)
     , m_running(false)
 #ifndef DISABLE_GUI
-    , m_shutdownAct(NO_SHUTDOWN)
+    , m_shutdownAct(ShutdownAction::None)
 #endif
 {
     Logger::initInstance();
@@ -118,11 +118,11 @@ void Application::sendNotificationEmail(BitTorrent::TorrentHandle *const torrent
 {
     // Prepare mail content
     QString content = QObject::tr("Torrent name: %1").arg(torrent->name()) + "\n";
-    content += QObject::tr("Torrent size: %1").arg(misc::friendlyUnit(torrent->wantedSize())) + "\n";
+    content += QObject::tr("Torrent size: %1").arg(Utils::Misc::friendlyUnit(torrent->wantedSize())) + "\n";
     content += QObject::tr("Save path: %1").arg(torrent->savePath()) + "\n\n";
     content += QObject::tr("The torrent was downloaded in %1.",
                   "The torrent was downloaded in 1 hour and 20 seconds")
-            .arg(misc::userFriendlyDuration(torrent->activeTime())) + "\n\n\n";
+            .arg(Utils::Misc::userFriendlyDuration(torrent->activeTime())) + "\n\n\n";
     content += QObject::tr("Thank you for using qBittorrent.") + "\n";
 
     // Send the notification email
@@ -169,13 +169,13 @@ void Application::allTorrentsFinished()
         bool shutdown = pref->shutdownWhenDownloadsComplete();
 
         // Confirm shutdown
-        ShutDownAction action = NO_SHUTDOWN;
+        ShutdownAction action = ShutdownAction::None;
         if (suspend)
-            action = SUSPEND_COMPUTER;
+            action = ShutdownAction::Suspend;
         else if (hibernate)
-            action = HIBERNATE_COMPUTER;
+            action = ShutdownAction::Hibernate;
         else if (shutdown)
-            action = SHUTDOWN_COMPUTER;
+            action = ShutdownAction::Shutdown;
 
         if (!ShutdownConfirmDlg::askForConfirmation(action)) return;
 
@@ -458,9 +458,9 @@ void Application::cleanup()
         shutdownBRDestroy((HWND)m_window->effectiveWinId());
 #endif // Q_OS_WIN
     delete m_window;
-    if (m_shutdownAct != NO_SHUTDOWN) {
+    if (m_shutdownAct != ShutdownAction::None) {
         qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
-        misc::shutdownComputer(m_shutdownAct);
+        Utils::Misc::shutdownComputer(m_shutdownAct);
     }
 #endif
 }

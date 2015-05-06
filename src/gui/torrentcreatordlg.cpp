@@ -33,8 +33,8 @@
 #include <QMessageBox>
 
 #include "torrentcreatordlg.h"
-#include "core/fs_utils.h"
-#include "core/misc.h"
+#include "core/utils/fs.h"
+#include "core/utils/misc.h"
 #include "core/preferences.h"
 #include "guiiconprovider.h"
 #include "core/bittorrent/session.h"
@@ -73,7 +73,7 @@ void TorrentCreatorDlg::on_addFolder_button_clicked() {
   QString dir = QFileDialog::getExistingDirectory(this, tr("Select a folder to add to the torrent"), last_path, QFileDialog::ShowDirsOnly);
   if (!dir.isEmpty()) {
     pref->setCreateTorLastAddPath(dir);
-    textInputPath->setText(fsutils::toNativePath(dir));
+    textInputPath->setText(Utils::Fs::toNativePath(dir));
     // Update piece size
     if (checkAutoPieceSize->isChecked())
       updateOptimalPieceSize();
@@ -85,8 +85,8 @@ void TorrentCreatorDlg::on_addFile_button_clicked() {
   QString last_path = pref->getCreateTorLastAddPath();
   QString file = QFileDialog::getOpenFileName(this, tr("Select a file to add to the torrent"), last_path);
   if (!file.isEmpty()) {
-    pref->setCreateTorLastAddPath(fsutils::branchPath(file));
-    textInputPath->setText(fsutils::toNativePath(file));
+    pref->setCreateTorLastAddPath(Utils::Fs::branchPath(file));
+    textInputPath->setText(Utils::Fs::toNativePath(file));
     // Update piece size
     if (checkAutoPieceSize->isChecked())
       updateOptimalPieceSize();
@@ -99,7 +99,7 @@ int TorrentCreatorDlg::getPieceSize() const {
 
 // Main function that create a .torrent file
 void TorrentCreatorDlg::on_createButton_clicked() {
-  QString input = fsutils::fromNativePath(textInputPath->text()).trimmed();
+  QString input = Utils::Fs::fromNativePath(textInputPath->text()).trimmed();
   if (input.endsWith("/"))
     input.chop(1);
   if (input.isEmpty()) {
@@ -115,7 +115,7 @@ void TorrentCreatorDlg::on_createButton_clicked() {
 
   QString destination = QFileDialog::getSaveFileName(this, tr("Select destination torrent file"), last_path, tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if (!destination.isEmpty()) {
-    pref->setCreateTorLastSavePath(fsutils::branchPath(destination));
+    pref->setCreateTorLastSavePath(Utils::Fs::branchPath(destination));
     if (!destination.toUpper().endsWith(".TORRENT"))
       destination += QString::fromUtf8(".torrent");
   } else {
@@ -150,7 +150,7 @@ void TorrentCreatorDlg::handleCreationSuccess(QString path, QString branch_path)
   setCursor(QCursor(Qt::ArrowCursor));
   if (checkStartSeeding->isChecked()) {
     // Create save path temp data
-    BitTorrent::TorrentInfo t = BitTorrent::TorrentInfo::loadFromFile(fsutils::toNativePath(path));
+    BitTorrent::TorrentInfo t = BitTorrent::TorrentInfo::loadFromFile(Utils::Fs::toNativePath(path));
     if (!t.isValid()) {
       QMessageBox::critical(0, tr("Torrent creation"), tr("Created torrent file is invalid. It won't be added to download list."));
       return;
@@ -164,7 +164,7 @@ void TorrentCreatorDlg::handleCreationSuccess(QString path, QString branch_path)
     BitTorrent::Session::instance()->addTorrent(t, params);
   }
 
-  QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully:")+" "+fsutils::toNativePath(path));
+  QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully:")+" "+Utils::Fs::toNativePath(path));
   close();
 }
 
@@ -217,7 +217,7 @@ void TorrentCreatorDlg::on_checkAutoPieceSize_clicked(bool checked)
 
 void TorrentCreatorDlg::updateOptimalPieceSize()
 {
-  qint64 torrent_size = fsutils::computePathSize(textInputPath->text());
+  qint64 torrent_size = Utils::Fs::computePathSize(textInputPath->text());
   qDebug("Torrent size is %lld", torrent_size);
   if (torrent_size < 0) return;
   int i = 0;

@@ -37,7 +37,8 @@
 #include <QModelIndex>
 #include <QPainter>
 #include <QApplication>
-#include "core/misc.h"
+#include "core/utils/misc.h"
+#include "core/utils/string.h"
 #include "previewselect.h"
 
 #ifdef Q_OS_WIN
@@ -63,13 +64,13 @@ class PreviewListDelegate: public QItemDelegate {
       switch(index.column()) {
         case PreviewSelect::SIZE:
           QItemDelegate::drawBackground(painter, opt, index);
-          QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
+          QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
           break;
         case PreviewSelect::PROGRESS:{
           QStyleOptionProgressBarV2 newopt;
           qreal progress = index.data().toDouble()*100.;
           newopt.rect = opt.rect;
-          newopt.text = ((progress == 100.0) ? QString("100%") : misc::accurateDoubleToString(progress, 1) + "%");
+          newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
           newopt.progress = (int)progress;
           newopt.maximum = 100;
           newopt.minimum = 0;

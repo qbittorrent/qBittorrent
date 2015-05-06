@@ -45,6 +45,7 @@ public:\
 
 #define END_SCOPED_ENUM ; };
 
+const qlonglong MAX_ETA = 8640000;
 
 BEGIN_SCOPED_ENUM(MaxRatioAction)
 {
@@ -57,6 +58,15 @@ BEGIN_SCOPED_ENUM(TorrentExportFolder)
 {
     Regular,
     Finished
+}
+END_SCOPED_ENUM
+
+BEGIN_SCOPED_ENUM(ShutdownAction)
+{
+    None,
+    Shutdown,
+    Suspend,
+    Hibernate
 }
 END_SCOPED_ENUM
 

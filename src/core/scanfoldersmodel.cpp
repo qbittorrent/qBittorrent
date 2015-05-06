@@ -34,8 +34,8 @@
 #include <QStringList>
 #include <QTemporaryFile>
 
-#include "misc.h"
-#include "fs_utils.h"
+#include "utils/misc.h"
+#include "utils/fs.h"
 #include "preferences.h"
 #include "filesystemwatcher.h"
 #include "bittorrent/session.h"
@@ -122,7 +122,7 @@ QVariant ScanFoldersModel::data(const QModelIndex &index, int role) const
 
     const PathData *pathData = m_pathList.at(index.row());
     if ((index.column() == PathColumn) && (role == Qt::DisplayRole))
-        return fsutils::toNativePath(pathData->path);
+        return Utils::Fs::toNativePath(pathData->path);
 
     if ((index.column() == DownloadAtTorrentColumn) && (role == Qt::CheckStateRole))
         return (pathData->downloadAtPath ? Qt::Checked : Qt::Unchecked);
@@ -230,7 +230,7 @@ bool ScanFoldersModel::downloadInTorrentFolder(const QString &filePath) const
 int ScanFoldersModel::findPathData(const QString &path) const
 {
     for (int i = 0; i < m_pathList.count(); ++i)
-        if (m_pathList.at(i)->path == fsutils::fromNativePath(path))
+        if (m_pathList.at(i)->path == Utils::Fs::fromNativePath(path))
             return i;
 
     return -1;
@@ -285,7 +285,7 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
             BitTorrent::TorrentInfo torrentInfo = BitTorrent::TorrentInfo::loadFromFile(file);
             if (torrentInfo.isValid()) {
                 BitTorrent::Session::instance()->addTorrent(torrentInfo, params);
-                fsutils::forceRemove(file);
+                Utils::Fs::forceRemove(file);
             }
             else {
                 qDebug("Ignoring incomplete torrent file: %s", qPrintable(file));

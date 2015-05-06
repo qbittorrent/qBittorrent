@@ -34,7 +34,8 @@
 #include <QStyleOptionViewItemV2>
 #include <QApplication>
 #include <QPainter>
-#include "core/misc.h"
+#include "core/utils/misc.h"
+#include "core/utils/string.h"
 #include "torrentmodel.h"
 #include "core/bittorrent/session.h"
 #include "core/bittorrent/torrenthandle.h"
@@ -65,13 +66,13 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
   case TorrentModelItem::TR_TOTAL_SIZE: {
       QItemDelegate::drawBackground(painter, opt, index);
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-      QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
+      QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
       break;
     }
   case TorrentModelItem::TR_ETA: {
       QItemDelegate::drawBackground(painter, opt, index);
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-      QItemDelegate::drawDisplay(painter, opt, option.rect, misc::userFriendlyDuration(index.data().toLongLong()));
+      QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::userFriendlyDuration(index.data().toLongLong()));
       break;
     }
   case TorrentModelItem::TR_SEEDS:
@@ -142,7 +143,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       QItemDelegate::drawBackground(painter, opt, index);
       const qulonglong speed = index.data().toULongLong();
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-      QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (.i.e per second)"));
+      QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed)+tr("/s", "/second (.i.e per second)"));
       break;
     }
   case TorrentModelItem::TR_UPLIMIT:
@@ -150,15 +151,15 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     QItemDelegate::drawBackground(painter, opt, index);
     const qlonglong limit = index.data().toLongLong();
     opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-    QItemDelegate::drawDisplay(painter, opt, opt.rect, limit > 0 ? misc::accurateDoubleToString(limit/1024., 1) + " " + tr("KiB/s", "KiB/second (.i.e per second)") : QString::fromUtf8("∞"));
+    QItemDelegate::drawDisplay(painter, opt, opt.rect, limit > 0 ? Utils::String::fromDouble(limit/1024., 1) + " " + tr("KiB/s", "KiB/second (.i.e per second)") : QString::fromUtf8("∞"));
     break;
   }
   case TorrentModelItem::TR_TIME_ELAPSED: {
     QItemDelegate::drawBackground(painter, opt, index);
-    QString txt = misc::userFriendlyDuration(index.data().toLongLong());
+    QString txt = Utils::Misc::userFriendlyDuration(index.data().toLongLong());
     qlonglong seeding_time = index.data(Qt::UserRole).toLongLong();
     if (seeding_time > 0)
-      txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(seeding_time))+")";
+      txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(Utils::Misc::userFriendlyDuration(seeding_time))+")";
     QItemDelegate::drawDisplay(painter, opt, opt.rect, txt);
     break;
   }
@@ -173,7 +174,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       const qreal ratio = index.data().toDouble();
       QItemDelegate::drawDisplay(painter, opt, opt.rect,
-                                 ((ratio == -1) || (ratio > BitTorrent::TorrentHandle::MAX_RATIO)) ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
+                                 ((ratio == -1) || (ratio > BitTorrent::TorrentHandle::MAX_RATIO)) ? QString::fromUtf8("∞") : Utils::String::fromDouble(ratio, 2));
       break;
     }
   case TorrentModelItem::TR_PRIORITY: {
@@ -191,7 +192,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       QStyleOptionProgressBarV2 newopt;
       qreal progress = index.data().toDouble()*100.;
       newopt.rect = opt.rect;
-      newopt.text = ((progress == 100.0) ? QString("100%") : misc::accurateDoubleToString(progress, 1) + "%");
+      newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
       newopt.progress = (int)progress;
       newopt.maximum = 100;
       newopt.minimum = 0;
@@ -219,9 +220,9 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         // Show '< 1m ago' when elapsed time is 0
         elapsed = 1;
       if (elapsed < 0)
-        elapsedString = misc::userFriendlyDuration(elapsed);
+        elapsedString = Utils::Misc::userFriendlyDuration(elapsed);
       else
-        elapsedString = tr("%1 ago", "e.g.: 1h 20m ago").arg(misc::userFriendlyDuration(elapsed));
+        elapsedString = tr("%1 ago", "e.g.: 1h 20m ago").arg(Utils::Misc::userFriendlyDuration(elapsed));
       QItemDelegate::drawDisplay(painter, opt, option.rect, elapsedString);
       break;
     }

@@ -35,7 +35,7 @@
 
 #include "core/bittorrent/session.h"
 #include "core/torrentfilter.h"
-#include "core/fs_utils.h"
+#include "core/utils/fs.h"
 #include "torrentmodel.h"
 
 namespace {

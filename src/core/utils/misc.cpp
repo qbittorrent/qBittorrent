@@ -28,8 +28,6 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <cmath>
-
 #include <QUrl>
 #include <QDir>
 #include <QFileInfo>
@@ -38,7 +36,6 @@
 #include <QDebug>
 #include <QProcess>
 #include <QSettings>
-#include <QLocale>
 #include <QThread>
 
 #ifdef DISABLE_GUI
@@ -69,6 +66,7 @@ const int UNLEN = 256;
 #endif
 #endif // DISABLE_GUI
 
+#include "core/utils/string.h"
 #include "misc.h"
 
 static struct { const char *source; const char *comment; } units[] = {
@@ -80,16 +78,16 @@ static struct { const char *source; const char *comment; } units[] = {
 };
 
 #ifndef DISABLE_GUI
-void misc::shutdownComputer(ShutDownAction action)
+void Utils::Misc::shutdownComputer(ShutdownAction action)
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
     // Use dbus to power off / suspend the system
-    if (action != SHUTDOWN_COMPUTER) {
+    if (action != ShutdownAction::Shutdown) {
         // Some recent systems use systemd's logind
         QDBusInterface login1Iface("org.freedesktop.login1", "/org/freedesktop/login1",
                                    "org.freedesktop.login1.Manager", QDBusConnection::systemBus());
         if (login1Iface.isValid()) {
-            if (action == SUSPEND_COMPUTER)
+            if (action == ShutdownAction::Suspend)
                 login1Iface.call("Suspend", false);
             else
                 login1Iface.call("Hibernate", false);
@@ -99,7 +97,7 @@ void misc::shutdownComputer(ShutDownAction action)
         QDBusInterface upowerIface("org.freedesktop.UPower", "/org/freedesktop/UPower",
                                    "org.freedesktop.UPower", QDBusConnection::systemBus());
         if (upowerIface.isValid()) {
-            if (action == SUSPEND_COMPUTER)
+            if (action == ShutdownAction::Suspend)
                 upowerIface.call("Suspend");
             else
                 upowerIface.call("Hibernate");
@@ -109,7 +107,7 @@ void misc::shutdownComputer(ShutDownAction action)
         QDBusInterface halIface("org.freedesktop.Hal", "/org/freedesktop/Hal/devices/computer",
                                 "org.freedesktop.Hal.Device.SystemPowerManagement",
                                 QDBusConnection::systemBus());
-        if (action == SUSPEND_COMPUTER)
+        if (action == ShutdownAction::Suspend)
             halIface.call("Suspend", 5);
         else
             halIface.call("Hibernate");
@@ -138,7 +136,7 @@ void misc::shutdownComputer(ShutDownAction action)
 #endif
 #ifdef Q_OS_MAC
     AEEventID EventToSend;
-    if (action != SHUTDOWN_COMPUTER)
+    if (action != ShutdownAction::Shutdown)
         EventToSend = kAESleep;
     else
         EventToSend = kAEShutDown;
@@ -193,9 +191,9 @@ void misc::shutdownComputer(ShutDownAction action)
     if (GetLastError() != ERROR_SUCCESS)
         return;
 
-    if (action == SUSPEND_COMPUTER)
+    if (action == ShutdownAction::Suspend)
         SetSuspendState(false, false, false);
-    else if (action == HIBERNATE_COMPUTER)
+    else if (action == ShutdownAction::Hibernate)
         SetSuspendState(true, false, false);
     else
         InitiateSystemShutdownA(0, QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
@@ -210,7 +208,7 @@ void misc::shutdownComputer(ShutDownAction action)
 
 #ifndef DISABLE_GUI
 // Get screen center
-QPoint misc::screenCenter(QWidget *win)
+QPoint Utils::Misc::screenCenter(QWidget *win)
 {
     int scrn = 0;
     const QWidget *w = win->window();
@@ -231,7 +229,7 @@ QPoint misc::screenCenter(QWidget *win)
  * Detects the version of python by calling
  * "python --version" and parsing the output.
  */
-int misc::pythonVersion()
+int Utils::Misc::pythonVersion()
 {
     static int version = -1;
     if (version < 0) {
@@ -257,7 +255,7 @@ int misc::pythonVersion()
 // see http://en.wikipedia.org/wiki/Kilobyte
 // value must be given in bytes
 // to send numbers instead of strings with suffixes
-QString misc::friendlyUnit(qreal val, bool is_speed)
+QString Utils::Misc::friendlyUnit(qreal val, bool is_speed)
 {
     if (val < 0)
         return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
@@ -268,13 +266,13 @@ QString misc::friendlyUnit(qreal val, bool is_speed)
     if (i == 0)
         ret = QString::number((long)val) + " " + QCoreApplication::translate("misc", units[0].source, units[0].comment);
     else
-        ret = accurateDoubleToString(val, 1) + " " + QCoreApplication::translate("misc", units[i].source, units[i].comment);
+        ret = Utils::String::fromDouble(val, 1) + " " + QCoreApplication::translate("misc", units[i].source, units[i].comment);
     if (is_speed)
         ret += QCoreApplication::translate("misc", "/s", "per second");
     return ret;
 }
 
-bool misc::isPreviewable(const QString& extension)
+bool Utils::Misc::isPreviewable(const QString& extension)
 {
     static QSet<QString> multimedia_extensions;
     if (multimedia_extensions.empty()) {
@@ -327,7 +325,7 @@ bool misc::isPreviewable(const QString& extension)
     return multimedia_extensions.contains(extension.toUpper());
 }
 
-QString misc::bcLinkToMagnet(QString bc_link)
+QString Utils::Misc::bcLinkToMagnet(QString bc_link)
 {
     QByteArray raw_bc = bc_link.toUtf8();
     raw_bc = raw_bc.mid(8); // skip bc://bt/
@@ -344,7 +342,7 @@ QString misc::bcLinkToMagnet(QString bc_link)
 
 // Take a number of seconds and return an user-friendly
 // time duration like "1d 2h 10m".
-QString misc::userFriendlyDuration(qlonglong seconds)
+QString Utils::Misc::userFriendlyDuration(qlonglong seconds)
 {
     if (seconds < 0 || seconds >= MAX_ETA)
         return QString::fromUtf8("∞");
@@ -366,7 +364,7 @@ QString misc::userFriendlyDuration(qlonglong seconds)
     return QString::fromUtf8("∞");
 }
 
-QString misc::getUserIDString()
+QString Utils::Misc::getUserIDString()
 {
     QString uid = "0";
 #ifdef Q_OS_WIN
@@ -380,7 +378,7 @@ QString misc::getUserIDString()
     return uid;
 }
 
-QStringList misc::toStringList(const QList<bool> &l)
+QStringList Utils::Misc::toStringList(const QList<bool> &l)
 {
     QStringList ret;
     foreach (const bool &b, l)
@@ -388,7 +386,7 @@ QStringList misc::toStringList(const QList<bool> &l)
     return ret;
 }
 
-QList<int> misc::intListfromStringList(const QStringList &l)
+QList<int> Utils::Misc::intListfromStringList(const QStringList &l)
 {
     QList<int> ret;
     foreach (const QString &s, l)
@@ -396,7 +394,7 @@ QList<int> misc::intListfromStringList(const QStringList &l)
     return ret;
 }
 
-QList<bool> misc::boolListfromStringList(const QStringList &l)
+QList<bool> Utils::Misc::boolListfromStringList(const QStringList &l)
 {
     QList<bool> ret;
     foreach (const QString &s, l)
@@ -404,14 +402,14 @@ QList<bool> misc::boolListfromStringList(const QStringList &l)
     return ret;
 }
 
-bool misc::isUrl(const QString &s)
+bool Utils::Misc::isUrl(const QString &s)
 {
     const QString scheme = QUrl(s).scheme();
     QRegExp is_url("http[s]?|ftp", Qt::CaseInsensitive);
     return is_url.exactMatch(scheme);
 }
 
-QString misc::parseHtmlLinks(const QString &raw_text)
+QString Utils::Misc::parseHtmlLinks(const QString &raw_text)
 {
     QString result = raw_text;
     static QRegExp reURL(
@@ -472,107 +470,20 @@ QString misc::parseHtmlLinks(const QString &raw_text)
     return result;
 }
 
-#ifndef DISABLE_GUI
-bool misc::naturalSort(QString left, QString right, bool &result)   // uses lessThan comparison
-{ // Return value indicates if functions was successful
-  // result argument will contain actual comparison result if function was successful
-    int posL = 0;
-    int posR = 0;
-    do {
-        for (;; ) {
-            if (posL == left.size() || posR == right.size())
-                return false; // No data
-
-            QChar leftChar = left.at(posL);
-            QChar rightChar = right.at(posR);
-            bool leftCharIsDigit = leftChar.isDigit();
-            bool rightCharIsDigit = rightChar.isDigit();
-            if (leftCharIsDigit != rightCharIsDigit)
-                return false; // Digit positions mismatch
-
-            if (leftCharIsDigit)
-                break; // Both are digit, break this loop and compare numbers
-
-            if (leftChar != rightChar)
-                return false; // Strings' subsets before digit do not match
-
-            ++posL;
-            ++posR;
-        }
-
-        QString temp;
-        while (posL < left.size()) {
-            if (left.at(posL).isDigit())
-                temp += left.at(posL);
-            else
-                break;
-            posL++;
-        }
-        int numL = temp.toInt();
-        temp.clear();
-
-        while (posR < right.size()) {
-            if (right.at(posR).isDigit())
-                temp += right.at(posR);
-            else
-                break;
-            posR++;
-        }
-        int numR = temp.toInt();
-
-        if (numL != numR) {
-            result = (numL < numR);
-            return true;
-        }
-
-        // Strings + digits do match and we haven't hit string end
-        // Do another round
-
-    } while (true);
-
-    return false;
-}
-#endif
-
-// to send numbers instead of strings with suffixes
-QString misc::accurateDoubleToString(const double &n, const int &precision)
+namespace
 {
-    /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
-    ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 The problem manifests when
-    ** the number has more digits after the decimal than we want AND the digit after
-    ** our 'wanted' is >= 5. In this case our last digit gets rounded up. So for each
-    ** precision we add an extra 0 behind 1 in the below algorithm. */
-
-    double prec = std::pow(10.0, precision);
-    return QLocale::system().toString(std::floor(n * prec) / prec, 'f', precision);
-}
-
-// Implements constant-time comparison to protect against timing attacks
-// Taken from https://crackstation.net/hashing-security.htm
-bool misc::slowEquals(const QByteArray &a, const QByteArray &b)
-{
-    int lengthA = a.length();
-    int lengthB = b.length();
-
-    int diff = lengthA ^ lengthB;
-    for(int i = 0; i < lengthA && i < lengthB; i++)
-        diff |= a[i] ^ b[i];
-
-    return (diff == 0);
-}
-
-namespace {
-//  Trick to get a portable sleep() function
-class SleeperThread: public QThread {
-public:
-    static void msleep(unsigned long msecs)
+    //  Trick to get a portable sleep() function
+    class SleeperThread : public QThread
     {
-        QThread::msleep(msecs);
-    }
-};
+    public:
+        static void msleep(unsigned long msecs)
+        {
+            QThread::msleep(msecs);
+        }
+    };
 }
 
-void misc::msleep(unsigned long msecs)
+void Utils::Misc::msleep(unsigned long msecs)
 {
     SleeperThread::msleep(msecs);
 }

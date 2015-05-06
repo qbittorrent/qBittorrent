@@ -34,8 +34,8 @@
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/magnet_uri.hpp>
 
-#include "core/misc.h"
-#include "core/fs_utils.h"
+#include "core/utils/misc.h"
+#include "core/utils/fs.h"
 #include "core/utils/string.h"
 #include "infohash.h"
 #include "trackerentry.h"
@@ -64,7 +64,7 @@ TorrentInfo TorrentInfo::loadFromFile(const QString &path, QString &error)
 {
     error.clear();
     libt::error_code ec;
-    TorrentInfo info(new libt::torrent_info(String::toStdString(fsutils::toNativePath(path)), ec));
+    TorrentInfo info(new libt::torrent_info(Utils::String::toStdString(Utils::Fs::toNativePath(path)), ec));
     if (ec) {
         error = QString::fromUtf8(ec.message().c_str());
         qDebug("Cannot load .torrent file: %s", qPrintable(error));
@@ -93,7 +93,7 @@ InfoHash TorrentInfo::hash() const
 QString TorrentInfo::name() const
 {
     if (!isValid()) return QString();
-    return String::fromStdString(m_nativeInfo->name());
+    return Utils::String::fromStdString(m_nativeInfo->name());
 }
 
 QDateTime TorrentInfo::creationDate() const
@@ -106,13 +106,13 @@ QDateTime TorrentInfo::creationDate() const
 QString TorrentInfo::creator() const
 {
     if (!isValid()) return QString();
-    return String::fromStdString(m_nativeInfo->creator());
+    return Utils::String::fromStdString(m_nativeInfo->creator());
 }
 
 QString TorrentInfo::comment() const
 {
     if (!isValid()) return QString();
-    return String::fromStdString(m_nativeInfo->comment());
+    return Utils::String::fromStdString(m_nativeInfo->comment());
 }
 
 bool TorrentInfo::isPrivate() const
@@ -148,7 +148,7 @@ int TorrentInfo::piecesCount() const
 QString TorrentInfo::filePath(int index) const
 {
     if (!isValid()) return QString();
-    return fsutils::fromNativePath(String::fromStdString(m_nativeInfo->files().file_path(index)));
+    return Utils::Fs::fromNativePath(Utils::String::fromStdString(m_nativeInfo->files().file_path(index)));
 }
 
 QStringList TorrentInfo::filePaths() const
@@ -162,13 +162,13 @@ QStringList TorrentInfo::filePaths() const
 
 QString TorrentInfo::fileName(int index) const
 {
-    return fsutils::fileName(filePath(index));
+    return Utils::Fs::fileName(filePath(index));
 }
 
 QString TorrentInfo::origFilePath(int index) const
 {
     if (!isValid()) return QString();
-    return fsutils::fromNativePath(String::fromStdString(m_nativeInfo->orig_files().file_path(index)));
+    return Utils::Fs::fromNativePath(Utils::String::fromStdString(m_nativeInfo->orig_files().file_path(index)));
 }
 
 qlonglong TorrentInfo::fileSize(int index) const
@@ -215,13 +215,13 @@ QByteArray TorrentInfo::metadata() const
 QString TorrentInfo::toMagnetUri() const
 {
     if (!isValid()) return QString();
-    return String::fromStdString(libt::make_magnet_uri(*m_nativeInfo));
+    return Utils::String::fromStdString(libt::make_magnet_uri(*m_nativeInfo));
 }
 
 void TorrentInfo::renameFile(uint index, const QString &newPath)
 {
     if (!isValid()) return;
-    m_nativeInfo->rename_file(index, String::toStdString(newPath));
+    m_nativeInfo->rename_file(index, Utils::String::toStdString(newPath));
 }
 
 boost::intrusive_ptr<libtorrent::torrent_info> TorrentInfo::nativeInfo() const

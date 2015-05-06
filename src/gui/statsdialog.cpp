@@ -31,7 +31,8 @@
 #include "statsdialog.h"
 #include "ui_statsdialog.h"
 
-#include "core/misc.h"
+#include "core/utils/misc.h"
+#include "core/utils/string.h"
 #include "core/bittorrent/session.h"
 #include "core/bittorrent/sessionstatus.h"
 #include "core/bittorrent/cachestatus.h"
@@ -65,21 +66,21 @@ void StatsDialog::updateUI() {
   // Alltime DL/UL
   quint64 atd = BitTorrent::Session::instance()->getAlltimeDL();
   quint64 atu = BitTorrent::Session::instance()->getAlltimeUL();
-  ui->labelAlltimeDL->setText(misc::friendlyUnit(atd));
-  ui->labelAlltimeUL->setText(misc::friendlyUnit(atu));
+  ui->labelAlltimeDL->setText(Utils::Misc::friendlyUnit(atd));
+  ui->labelAlltimeUL->setText(Utils::Misc::friendlyUnit(atu));
   // Total waste (this session)
-  ui->labelWaste->setText(misc::friendlyUnit(ss.totalWasted()));
+  ui->labelWaste->setText(Utils::Misc::friendlyUnit(ss.totalWasted()));
   // Global ratio
   ui->labelGlobalRatio->setText(
         ( atd > 0 && atu > 0 ) ?
-          misc::accurateDoubleToString((qreal)atu / (qreal)atd, 2) :
+          Utils::String::fromDouble((qreal)atu / (qreal)atd, 2) :
           "-"
           );
   // Cache hits
   qreal readRatio = cs.readRatio();
-  ui->labelCacheHits->setText((readRatio >= 0) ? misc::accurateDoubleToString(100 * readRatio, 2) : "-");
+  ui->labelCacheHits->setText((readRatio >= 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "-");
   // Buffers size
-  ui->labelTotalBuf->setText(misc::friendlyUnit(cs.totalUsedBuffers() * 16 * 1024));
+  ui->labelTotalBuf->setText(Utils::Misc::friendlyUnit(cs.totalUsedBuffers() * 16 * 1024));
   // Disk overload (100%) equivalent
   // From lt manual: disk_write_queue and disk_read_queue are the number of peers currently waiting on a disk write or disk read
   // to complete before it receives or sends any more data on the socket. It'a a metric of how disk bound you are.
@@ -90,15 +91,15 @@ void StatsDialog::updateUI() {
     peers += torrent->peersCount();
 
   ui->labelWriteStarve->setText(QString("%1%").arg(((ss.diskWriteQueue() > 0) && (peers > 0))
-                                                  ? misc::accurateDoubleToString((100. * ss.diskWriteQueue()) / peers, 2)
+                                                  ? Utils::String::fromDouble((100. * ss.diskWriteQueue()) / peers, 2)
                                                   : "0"));
   ui->labelReadStarve->setText(QString("%1%").arg(((ss.diskReadQueue() > 0) && (peers > 0))
-                                                  ? misc::accurateDoubleToString((100. * ss.diskReadQueue()) / peers, 2)
+                                                  ? Utils::String::fromDouble((100. * ss.diskReadQueue()) / peers, 2)
                                                   : "0"));
   // Disk queues
   ui->labelQueuedJobs->setText(QString::number(cs.jobQueueLength()));
   ui->labelJobsTime->setText(QString::number(cs.averageJobTime()));
-  ui->labelQueuedBytes->setText(misc::friendlyUnit(cs.queuedBytes()));
+  ui->labelQueuedBytes->setText(Utils::Misc::friendlyUnit(cs.queuedBytes()));
 
   // Total connected peers
   ui->labelPeers->setText(QString::number(ss.peersCount()));

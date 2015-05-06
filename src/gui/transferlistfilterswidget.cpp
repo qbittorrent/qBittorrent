@@ -44,14 +44,15 @@
 #include "core/preferences.h"
 #include "torrentmodel.h"
 #include "guiiconprovider.h"
-#include "core/fs_utils.h"
+#include "core/utils/fs.h"
+#include "core/utils/string.h"
 #include "autoexpandabledialog.h"
 #include "core/torrentfilter.h"
 #include "core/bittorrent/trackerentry.h"
 #include "core/bittorrent/session.h"
 #include "core/net/downloadmanager.h"
 #include "core/net/downloadhandler.h"
-#include "core/misc.h"
+#include "core/utils/misc.h"
 #include "core/logger.h"
 
 FiltersBase::FiltersBase(QWidget *parent, TransferListWidget *transferList)
@@ -202,7 +203,7 @@ void LabelFiltersList::addItem(QString &label, bool hasTorrent)
 {
     int labelCount = 0;
     QListWidgetItem *labelItem = 0;
-    label = fsutils::toValidFileSystemName(label.trimmed());
+    label = Utils::Fs::toValidFileSystemName(label.trimmed());
     item(0)->setText(tr("All (%1)", "this is for the label filter").arg(m_totalTorrents));
 
     if (label.isEmpty()) {
@@ -235,7 +236,7 @@ void LabelFiltersList::addItem(QString &label, bool hasTorrent)
     Q_ASSERT(count() >= 2);
     for (int i = 2; i<count(); ++i) {
         bool less = false;
-        if (!(misc::naturalSort(label, item(i)->text(), less)))
+        if (!(Utils::String::naturalSort(label, item(i)->text(), less)))
             less = (label.localeAwareCompare(item(i)->text()) < 0);
         if (less) {
             insertItem(i, labelItem);
@@ -357,7 +358,7 @@ void LabelFiltersList::showMenu(QPoint)
             invalid = false;
             label = AutoExpandableDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, label, &ok);
             if (ok && !label.isEmpty()) {
-                if (fsutils::isValidFileSystemName(label)) {
+                if (Utils::Fs::isValidFileSystemName(label)) {
                     addItem(label, false);
                 }
                 else {
@@ -445,7 +446,7 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
 TrackerFiltersList::~TrackerFiltersList()
 {
     foreach (const QString &iconPath, m_iconPaths)
-        fsutils::forceRemove(iconPath);
+        Utils::Fs::forceRemove(iconPath);
 }
 
 void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
@@ -493,7 +494,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
     Q_ASSERT(count() >= 4);
     for (int i = 4; i<count(); ++i) {
         bool less = false;
-        if (!(misc::naturalSort(host, item(i)->text(), less)))
+        if (!(Utils::String::naturalSort(host, item(i)->text(), less)))
             less = (host.localeAwareCompare(item(i)->text()) < 0);
         if (less) {
             insertItem(i, trackerItem);
@@ -633,7 +634,7 @@ void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString&
         else {
             Logger::instance()->addMessage(tr("Couldn't decode favico for url `%1`.").arg(url), Log::WARNING);
         }
-        fsutils::forceRemove(filePath);
+        Utils::Fs::forceRemove(filePath);
     }
     else {
         trackerItem->setData(Qt::DecorationRole, QVariant(QIcon(filePath)));

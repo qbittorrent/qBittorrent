@@ -33,17 +33,17 @@
 
 #include <QMessageBox>
 #include <QTimer>
-#include "core/misc.h"
+#include "core/utils/misc.h"
 
 class ShutdownConfirmDlg : public QMessageBox
 {
     Q_OBJECT
 
 public:
-    ShutdownConfirmDlg(const ShutDownAction &action);
+    ShutdownConfirmDlg(const ShutdownAction &action);
     bool shutdown() const;
 
-    static bool askForConfirmation(const ShutDownAction &action);
+    static bool askForConfirmation(const ShutdownAction &action);
 
     QAbstractButton *getExit_now() const;
     void setExit_now(QAbstractButton *value);
@@ -62,7 +62,7 @@ private:
     QAbstractButton *m_exitNow;
     QTimer m_timer;
     int m_timeout;
-    ShutDownAction m_action;
+    ShutdownAction m_action;
 };
 
 #endif // SHUTDOWNCONFIRM_H

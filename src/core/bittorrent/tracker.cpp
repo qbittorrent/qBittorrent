@@ -65,8 +65,8 @@ libtorrent::entry Peer::toEntry(bool noPeerId) const
 {
     libtorrent::entry::dictionary_type peerMap;
     if (!noPeerId)
-        peerMap["id"] = libtorrent::entry(String::toStdString(peerId));
-    peerMap["ip"] = libtorrent::entry(String::toStdString(ip));
+        peerMap["id"] = libtorrent::entry(Utils::String::toStdString(peerId));
+    peerMap["ip"] = libtorrent::entry(Utils::String::toStdString(ip));
     peerMap["port"] = libtorrent::entry(port);
 
     return libtorrent::entry(peerMap);

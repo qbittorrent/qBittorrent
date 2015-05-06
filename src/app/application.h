@@ -50,7 +50,7 @@ QT_END_NAMESPACE
 typedef QtSingleCoreApplication BaseApplication;
 #endif
 
-#include "core/misc.h"
+#include "core/utils/misc.h"
 
 #ifndef DISABLE_WEBUI
 class WebUI;
@@ -96,7 +96,7 @@ private:
 
 #ifndef DISABLE_GUI
     QPointer<MainWindow> m_window;
-    ShutDownAction m_shutdownAct;
+    ShutdownAction m_shutdownAct;
 #endif
 
 #ifndef DISABLE_WEBUI

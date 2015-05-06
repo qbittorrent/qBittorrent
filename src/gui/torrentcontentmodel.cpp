@@ -32,8 +32,8 @@
 #include <QIcon>
 
 #include "guiiconprovider.h"
-#include "core/misc.h"
-#include "core/fs_utils.h"
+#include "core/utils/misc.h"
+#include "core/utils/fs.h"
 #include "torrentcontentmodel.h"
 #include "torrentcontentmodelitem.h"
 #include "torrentcontentmodelfolder.h"
@@ -296,7 +296,7 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
   // Iterate over files
   for (int i = 0; i < info.filesCount(); ++i) {
     current_parent = m_rootItem;
-    QString path = fsutils::fromNativePath(info.filePath(i));
+    QString path = Utils::Fs::fromNativePath(info.filePath(i));
     // Iterate of parts of the path to create necessary folders
     QStringList pathFolders = path.split("/", QString::SkipEmptyParts);
     pathFolders.removeLast();

@@ -49,8 +49,8 @@
 
 #include "searchengine.h"
 #include "core/bittorrent/session.h"
-#include "core/fs_utils.h"
-#include "core/misc.h"
+#include "core/utils/fs.h"
+#include "core/utils/misc.h"
 #include "core/preferences.h"
 #include "searchlistdelegate.h"
 #include "mainwindow.h"
@@ -217,7 +217,7 @@ void SearchEngine::on_search_button_clicked() {
     // Getting checked search engines
     QStringList params;
     search_stopped = false;
-    params << fsutils::toNativePath(fsutils::searchEngineLocation() + "/nova2.py");
+    params << Utils::Fs::toNativePath(Utils::Fs::searchEngineLocation() + "/nova2.py");
     if (selectedEngine() == "all") params << supported_engines->enginesAll().join(",");
     else if (selectedEngine() == "enabled") params << supported_engines->enginesEnabled().join(",");
     else if (selectedEngine() == "multi") params << supported_engines->enginesEnabled().join(",");
@@ -255,7 +255,7 @@ void SearchEngine::saveResultsColumnsWidth() {
 void SearchEngine::downloadTorrent(QString engine_url, QString torrent_url) {
     if (torrent_url.startsWith("bc://bt/", Qt::CaseInsensitive)) {
         qDebug("Converting bc link to magnet link");
-        torrent_url = misc::bcLinkToMagnet(torrent_url);
+        torrent_url = Utils::Misc::bcLinkToMagnet(torrent_url);
     }
     qDebug() << Q_FUNC_INFO << torrent_url;
     if (torrent_url.startsWith("magnet:")) {
@@ -268,7 +268,7 @@ void SearchEngine::downloadTorrent(QString engine_url, QString torrent_url) {
         connect(downloadProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(downloadFinished(int,QProcess::ExitStatus)));
         downloaders << downloadProcess;
         QStringList params;
-        params << fsutils::toNativePath(fsutils::searchEngineLocation() + "/nova2dl.py");
+        params << Utils::Fs::toNativePath(Utils::Fs::searchEngineLocation() + "/nova2dl.py");
         params << engine_url;
         params << torrent_url;
         // Launch search
@@ -323,16 +323,16 @@ void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus) {
 
 static void removePythonScriptIfExists(const QString& script_path)
 {
-    fsutils::forceRemove(script_path);
-    fsutils::forceRemove(script_path + "c");
+    Utils::Fs::forceRemove(script_path);
+    Utils::Fs::forceRemove(script_path + "c");
 }
 
 // Update nova.py search plugin if necessary
 void SearchEngine::updateNova() {
     qDebug("Updating nova");
     // create nova directory if necessary
-    QDir search_dir(fsutils::searchEngineLocation());
-    QString nova_folder = misc::pythonVersion() >= 3 ? "nova3" : "nova";
+    QDir search_dir(Utils::Fs::searchEngineLocation());
+    QString nova_folder = Utils::Misc::pythonVersion() >= 3 ? "nova3" : "nova";
     QFile package_file(search_dir.absoluteFilePath("__init__.py"));
     package_file.open(QIODevice::WriteOnly | QIODevice::Text);
     package_file.close();
@@ -382,7 +382,7 @@ void SearchEngine::updateNova() {
         removePythonScriptIfExists(filePath);
         QFile::copy(":/"+nova_folder+"/sgmllib3.py", filePath);
     }
-    QDir destDir(QDir(fsutils::searchEngineLocation()).absoluteFilePath("engines"));
+    QDir destDir(QDir(Utils::Fs::searchEngineLocation()).absoluteFilePath("engines"));
     QDir shipped_subDir(":/"+nova_folder+"/engines/");
     QStringList files = shipped_subDir.entryList();
     foreach (const QString &file, files) {

@@ -1,7 +1,5 @@
 HEADERS += \
     $$PWD/types.h \
-    $$PWD/misc.h \
-    $$PWD/fs_utils.h \
     $$PWD/tristatebool.h \
     $$PWD/filesystemwatcher.h \
     $$PWD/qinisettings.h \
@@ -38,13 +36,13 @@ HEADERS += \
     $$PWD/bittorrent/private/bandwidthscheduler.h \
     $$PWD/bittorrent/private/filterparserthread.h \
     $$PWD/bittorrent/private/statistics.h \
+    $$PWD/utils/fs.h \
+    $$PWD/utils/misc.h \
     $$PWD/utils/string.h \
     $$PWD/torrentfilter.h \
     $$PWD/scanfoldersmodel.h
 
 SOURCES += \
-    $$PWD/misc.cpp \
-    $$PWD/fs_utils.cpp \
     $$PWD/tristatebool.cpp \
     $$PWD/filesystemwatcher.cpp \
     $$PWD/logger.cpp \
@@ -76,6 +74,8 @@ SOURCES += \
     $$PWD/bittorrent/private/bandwidthscheduler.cpp \
     $$PWD/bittorrent/private/filterparserthread.cpp \
     $$PWD/bittorrent/private/statistics.cpp \
+    $$PWD/utils/fs.cpp \
+    $$PWD/utils/misc.cpp \
     $$PWD/utils/string.cpp \
     $$PWD/torrentfilter.cpp \
     $$PWD/scanfoldersmodel.cpp

@@ -43,7 +43,7 @@
 
 #include "options_imp.h"
 #include "core/preferences.h"
-#include "core/fs_utils.h"
+#include "core/utils/fs.h"
 #include "advancedsettings.h"
 #include "core/scanfoldersmodel.h"
 #include "core/bittorrent/session.h"
@@ -545,14 +545,14 @@ void options_imp::loadOptions() {
 #endif
   // End General preferences
   // Downloads preferences
-  textSavePath->setText(fsutils::toNativePath(pref->getSavePath()));
+  textSavePath->setText(Utils::Fs::toNativePath(pref->getSavePath()));
   if (pref->isTempPathEnabled()) {
     // enable
     checkTempFolder->setChecked(true);
   } else {
     checkTempFolder->setChecked(false);
   }
-  textTempPath->setText(fsutils::toNativePath(pref->getTempPath()));
+  textTempPath->setText(Utils::Fs::toNativePath(pref->getTempPath()));
   checkAppendLabel->setChecked(pref->appendTorrentLabel());
   checkAppendqB->setChecked(pref->useIncompleteFilesExtension());
   checkPreallocateAll->setChecked(pref->preAllocateAllFiles());
@@ -560,7 +560,7 @@ void options_imp::loadOptions() {
   checkAdditionDialogFront->setChecked(pref->additionDialogFront());
   checkStartPaused->setChecked(pref->addTorrentsInPause());
 
-  strValue = fsutils::toNativePath(pref->getTorrentExportDir());
+  strValue = Utils::Fs::toNativePath(pref->getTorrentExportDir());
   if (strValue.isEmpty()) {
     // Disable
     checkExportDir->setChecked(false);
@@ -570,7 +570,7 @@ void options_imp::loadOptions() {
     textExportDir->setText(strValue);
   }
 
-  strValue = fsutils::toNativePath(pref->getFinishedTorrentExportDir());
+  strValue = Utils::Fs::toNativePath(pref->getFinishedTorrentExportDir());
   if (strValue.isEmpty()) {
     // Disable
     checkExportDirFin->setChecked(false);
@@ -735,7 +735,7 @@ void options_imp::loadOptions() {
   // Misc preferences
   // * IP Filter
   checkIPFilter->setChecked(pref->isFilteringEnabled());
-  textFilterPath->setText(fsutils::toNativePath(pref->getFilter()));
+  textFilterPath->setText(Utils::Fs::toNativePath(pref->getFilter()));
   // End IP Filter
   // Queueing system preferences
   checkEnableQueueing->setChecked(pref->isQueueingSystemEnabled());
@@ -850,13 +850,13 @@ qreal options_imp::getMaxRatio() const {
 QString options_imp::getSavePath() const {
   if (textSavePath->text().trimmed().isEmpty()) {
     QString save_path = Preferences::instance()->getSavePath();
-    textSavePath->setText(fsutils::toNativePath(save_path));
+    textSavePath->setText(Utils::Fs::toNativePath(save_path));
   }
-  return fsutils::expandPathAbs(textSavePath->text());
+  return Utils::Fs::expandPathAbs(textSavePath->text());
 }
 
 QString options_imp::getTempPath() const {
-  return fsutils::expandPathAbs(textTempPath->text());
+  return Utils::Fs::expandPathAbs(textTempPath->text());
 }
 
 bool options_imp::isTempPathEnabled() const {
@@ -1051,13 +1051,13 @@ void options_imp::setLocale(const QString &localeStr) {
 
 QString options_imp::getTorrentExportDir() const {
   if (checkExportDir->isChecked())
-    return fsutils::expandPathAbs(textExportDir->text());
+    return Utils::Fs::expandPathAbs(textExportDir->text());
   return QString();
 }
 
 QString options_imp::getFinishedTorrentExportDir() const {
   if (checkExportDirFin->isChecked())
-    return fsutils::expandPathAbs(textExportDirFin->text());
+    return Utils::Fs::expandPathAbs(textExportDirFin->text());
   return QString();
 }
 
@@ -1078,7 +1078,7 @@ int options_imp::getActionOnDblClOnTorrentFn() const {
 void options_imp::on_addScanFolderButton_clicked() {
   Preferences* const pref = Preferences::instance();
   const QString dir = QFileDialog::getExistingDirectory(this, tr("Add directory to scan"),
-                                                        fsutils::toNativePath(fsutils::folderName(pref->getScanDirsLastPath())));
+                                                        Utils::Fs::toNativePath(Utils::Fs::folderName(pref->getScanDirsLastPath())));
   if (!dir.isEmpty()) {
     const ScanFoldersModel::PathStatus status = ScanFoldersModel::instance()->addPath(dir, false);
     QString error;
@@ -1120,7 +1120,7 @@ void options_imp::handleScanFolderViewSelectionChanged() {
 
 QString options_imp::askForExportDir(const QString& currentExportPath)
 {
-  QDir currentExportDir(fsutils::expandPathAbs(currentExportPath));
+  QDir currentExportDir(Utils::Fs::expandPathAbs(currentExportPath));
   QString dir;
   if (!currentExportPath.isEmpty() && currentExportDir.exists()) {
     dir = QFileDialog::getExistingDirectory(this, tr("Choose export directory"), currentExportDir.absolutePath());
@@ -1133,17 +1133,17 @@ QString options_imp::askForExportDir(const QString& currentExportPath)
 void options_imp::on_browseExportDirButton_clicked() {
   const QString newExportDir = askForExportDir(textExportDir->text());
   if (!newExportDir.isNull())
-    textExportDir->setText(fsutils::toNativePath(newExportDir));
+    textExportDir->setText(Utils::Fs::toNativePath(newExportDir));
 }
 
 void options_imp::on_browseExportDirFinButton_clicked() {
   const QString newExportDir = askForExportDir(textExportDirFin->text());
   if (!newExportDir.isNull())
-    textExportDirFin->setText(fsutils::toNativePath(newExportDir));
+    textExportDirFin->setText(Utils::Fs::toNativePath(newExportDir));
 }
 
 void options_imp::on_browseFilterButton_clicked() {
-  const QString filter_path = fsutils::expandPathAbs(textFilterPath->text());
+  const QString filter_path = Utils::Fs::expandPathAbs(textFilterPath->text());
   QDir filterDir(filter_path);
   QString ipfilter;
   if (!filter_path.isEmpty() && filterDir.exists()) {
@@ -1152,12 +1152,12 @@ void options_imp::on_browseFilterButton_clicked() {
     ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), QDir::homePath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
   }
   if (!ipfilter.isNull())
-    textFilterPath->setText(fsutils::toNativePath(ipfilter));
+    textFilterPath->setText(Utils::Fs::toNativePath(ipfilter));
 }
 
 // Display dialog to choose save dir
 void options_imp::on_browseSaveDirButton_clicked() {
-  const QString save_path = fsutils::expandPathAbs(textSavePath->text());
+  const QString save_path = Utils::Fs::expandPathAbs(textSavePath->text());
   QDir saveDir(save_path);
   QString dir;
   if (!save_path.isEmpty() && saveDir.exists()) {
@@ -1166,11 +1166,11 @@ void options_imp::on_browseSaveDirButton_clicked() {
     dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
   }
   if (!dir.isNull())
-    textSavePath->setText(fsutils::toNativePath(dir));
+    textSavePath->setText(Utils::Fs::toNativePath(dir));
 }
 
 void options_imp::on_browseTempDirButton_clicked() {
-  const QString temp_path = fsutils::expandPathAbs(textTempPath->text());
+  const QString temp_path = Utils::Fs::expandPathAbs(textTempPath->text());
   QDir tempDir(temp_path);
   QString dir;
   if (!temp_path.isEmpty() && tempDir.exists()) {
@@ -1179,12 +1179,12 @@ void options_imp::on_browseTempDirButton_clicked() {
     dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
   }
   if (!dir.isNull())
-    textTempPath->setText(fsutils::toNativePath(dir));
+    textTempPath->setText(Utils::Fs::toNativePath(dir));
 }
 
 // Return Filter object to apply to BT session
 QString options_imp::getFilter() const {
-  return fsutils::fromNativePath(textFilterPath->text());
+  return Utils::Fs::fromNativePath(textFilterPath->text());
 }
 
 // Web UI

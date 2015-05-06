@@ -38,7 +38,7 @@
 #include "speedlimitdlg.h"
 #include "guiiconprovider.h"
 #include "core/preferences.h"
-#include "core/misc.h"
+#include "core/utils/misc.h"
 #include "core/logger.h"
 
 StatusBar::StatusBar(QStatusBar *bar)
@@ -181,15 +181,15 @@ void StatusBar::refreshStatusBar() {
     //statusSep1->setVisible(false);
   }
   // Update speed labels
-  QString speedLbl = misc::friendlyUnit(sessionStatus.payloadDownloadRate(), true)+" ("+misc::friendlyUnit(sessionStatus.totalPayloadDownload())+")";
+  QString speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate(), true)+" ("+Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload())+")";
   int speedLimit = BitTorrent::Session::instance()->downloadRateLimit();
   if (speedLimit)
-    speedLbl = "["+misc::friendlyUnit(speedLimit, true)+"] " + speedLbl;
+    speedLbl = "["+Utils::Misc::friendlyUnit(speedLimit, true)+"] " + speedLbl;
   dlSpeedLbl->setText(speedLbl);
   speedLimit = BitTorrent::Session::instance()->uploadRateLimit();
-  speedLbl = misc::friendlyUnit(sessionStatus.payloadUploadRate(), true)+" ("+misc::friendlyUnit(sessionStatus.totalPayloadUpload())+")";
+  speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate(), true)+" ("+Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload())+")";
   if (speedLimit)
-    speedLbl = "["+misc::friendlyUnit(speedLimit, true)+"] " + speedLbl;
+    speedLbl = "["+Utils::Misc::friendlyUnit(speedLimit, true)+"] " + speedLbl;
   upSpeedLbl->setText(speedLbl);
 }
 

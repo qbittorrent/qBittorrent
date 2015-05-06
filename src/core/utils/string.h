@@ -33,11 +33,21 @@
 #include <string>
 
 class QString;
+class QByteArray;
 
-namespace String
+namespace Utils
 {
-    QString fromStdString(const std::string &str);
-    std::string toStdString(const QString &str);
+    namespace String
+    {
+        QString fromStdString(const std::string &str);
+        std::string toStdString(const QString &str);
+        bool naturalSort(QString left, QString right, bool &result);
+        QString fromDouble(double n, int precision);
+
+        // Implements constant-time comparison to protect against timing attacks
+        // Taken from https://crackstation.net/hashing-security.htm
+        bool slowEquals(const QByteArray &a, const QByteArray &b);
+    }
 }
 
 #endif // UTILS_STRING_H

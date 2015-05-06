@@ -33,10 +33,10 @@
 #include <QMessageBox>
 #include <QFile>
 
-#include "core/misc.h"
+#include "core/utils/misc.h"
 #include "previewlistdelegate.h"
 #include "previewselect.h"
-#include "core/fs_utils.h"
+#include "core/utils/fs.h"
 #include "core/preferences.h"
 
 PreviewSelect::PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const torrent)
@@ -64,8 +64,8 @@ PreviewSelect::PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const t
     QString fileName = torrent->fileName(i);
     if (fileName.endsWith(".!qB"))
       fileName.chop(4);
-    QString extension = fsutils::fileExtension(fileName).toUpper();
-    if (misc::isPreviewable(extension)) {
+    QString extension = Utils::Fs::fileExtension(fileName).toUpper();
+    if (Utils::Misc::isPreviewable(extension)) {
       int row = previewListModel->rowCount();
       previewListModel->insertRow(row);
       previewListModel->setData(previewListModel->index(row, NAME), QVariant(fileName));

@@ -42,7 +42,7 @@
 #include "rssfeed.h"
 #include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
-#include "core/fs_utils.h"
+#include "core/utils/fs.h"
 
 AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& manager, QWidget *parent) :
   QDialog(parent),
@@ -247,7 +247,7 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
       else
         ui->lineEFilter->clear();
       ui->saveDiffDir_check->setChecked(!rule->savePath().isEmpty());
-      ui->lineSavePath->setText(fsutils::toNativePath(rule->savePath()));
+      ui->lineSavePath->setText(Utils::Fs::toNativePath(rule->savePath()));
       ui->checkRegex->setChecked(rule->useRegex());
       if (rule->label().isEmpty()) {
         ui->comboLabel->setCurrentIndex(-1);
@@ -398,7 +398,7 @@ void AutomatedRssDownloader::on_browseSP_clicked()
 {
   QString save_path = QFileDialog::getExistingDirectory(this, tr("Destination directory"), QDir::homePath());
   if (!save_path.isEmpty())
-    ui->lineSavePath->setText(fsutils::toNativePath(save_path));
+    ui->lineSavePath->setText(Utils::Fs::toNativePath(save_path));
 }
 
 void AutomatedRssDownloader::on_exportBtn_clicked()

@@ -37,11 +37,11 @@
 #include "core/qinisettings.h"
 #include "rssarticle.h"
 #include "rssparser.h"
-#include "core/misc.h"
+#include "core/utils/misc.h"
 #include "rssdownloadrulelist.h"
 #include "core/net/downloadmanager.h"
 #include "core/net/downloadhandler.h"
-#include "core/fs_utils.h"
+#include "core/utils/fs.h"
 #include "core/logger.h"
 
 bool rssArticleDateRecentThan(const RssArticlePtr& left, const RssArticlePtr& right)
@@ -78,7 +78,7 @@ RssFeed::RssFeed(RssManager* manager, RssFolder* parent, const QString& url):
 RssFeed::~RssFeed()
 {
   if (!m_icon.startsWith(":/") && QFile::exists(m_icon))
-    fsutils::forceRemove(m_icon);
+    Utils::Fs::forceRemove(m_icon);
 }
 
 void RssFeed::saveItemsToDisk()

@@ -45,7 +45,7 @@
 #include "core/bittorrent/peerinfo.h"
 #include "core/bittorrent/trackerentry.h"
 #include "core/preferences.h"
-#include "core/misc.h"
+#include "core/utils/misc.h"
 #include "autoexpandabledialog.h"
 
 TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), properties(properties) {

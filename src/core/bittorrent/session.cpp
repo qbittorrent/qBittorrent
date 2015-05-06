@@ -66,8 +66,8 @@ using namespace BitTorrent;
 #include "geoipmanager.h"
 #endif
 
-#include "core/misc.h"
-#include "core/fs_utils.h"
+#include "core/utils/misc.h"
+#include "core/utils/fs.h"
 #include "core/utils/string.h"
 #include "core/logger.h"
 #include "core/preferences.h"
@@ -163,7 +163,7 @@ Session::Session(QObject *parent)
     // Construct session
     libt::fingerprint fingerprint(PEER_ID, VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_BUILD);
     m_nativeSession = new libt::session(fingerprint, 0);
-    Logger::instance()->addMessage("Peer ID: " + String::fromStdString(fingerprint.to_string()));
+    Logger::instance()->addMessage("Peer ID: " + Utils::String::fromStdString(fingerprint.to_string()));
 
     m_nativeSession->set_alert_dispatch(boost::bind(&Session::dispatchAlerts, this, _1));
 
@@ -318,12 +318,12 @@ Session *Session::instance()
 
 void Session::loadState()
 {
-    const QString statePath = fsutils::cacheLocation() + QLatin1String("/ses_state");
+    const QString statePath = Utils::Fs::cacheLocation() + QLatin1String("/ses_state");
     if (!QFile::exists(statePath)) return;
 
     if (QFile(statePath).size() == 0) {
         // Remove empty invalid state file
-        fsutils::forceRemove(statePath);
+        Utils::Fs::forceRemove(statePath);
         return;
     }
 
@@ -343,7 +343,7 @@ void Session::saveState()
 {
     qDebug("Saving session state to disk...");
 
-    const QString state_path = fsutils::cacheLocation() + QLatin1String("/ses_state");
+    const QString state_path = Utils::Fs::cacheLocation() + QLatin1String("/ses_state");
     libt::entry session_state;
     m_nativeSession->save_state(session_state);
     std::vector<char> out;
@@ -364,7 +364,7 @@ void Session::setSessionSettings()
     libt::session_settings sessionSettings = m_nativeSession->settings();
     sessionSettings.user_agent = "qBittorrent " VERSION;
     //std::cout << "HTTP user agent is " << sessionSettings.user_agent << std::endl;
-    logger->addMessage(tr("HTTP user agent is %1").arg(String::fromStdString(sessionSettings.user_agent)));
+    logger->addMessage(tr("HTTP user agent is %1").arg(Utils::String::fromStdString(sessionSettings.user_agent)));
 
     sessionSettings.upnp_ignore_nonrouters = true;
     sessionSettings.use_dht_as_fallback = false;
@@ -422,7 +422,7 @@ void Session::setSessionSettings()
     // IP address to announce to trackers
     QString announce_ip = pref->getNetworkAddress();
     if (!announce_ip.isEmpty())
-        sessionSettings.announce_ip = String::toStdString(announce_ip);
+        sessionSettings.announce_ip = Utils::String::toStdString(announce_ip);
     // Super seeding
     sessionSettings.strict_super_seeding = pref->isSuperSeedingEnabled();
     // * Max Half-open connections
@@ -668,13 +668,13 @@ void Session::configure()
     libt::proxy_settings proxySettings;
     if (pref->isProxyEnabled()) {
         qDebug("Enabling P2P proxy");
-        proxySettings.hostname = String::toStdString(pref->getProxyIp());
+        proxySettings.hostname = Utils::String::toStdString(pref->getProxyIp());
         qDebug("hostname is %s", proxySettings.hostname.c_str());
         proxySettings.port = pref->getProxyPort();
         qDebug("port is %d", proxySettings.port);
         if (pref->isProxyAuthEnabled()) {
-            proxySettings.username = String::toStdString(pref->getProxyUsername());
-            proxySettings.password = String::toStdString(pref->getProxyPassword());
+            proxySettings.username = Utils::String::toStdString(pref->getProxyUsername());
+            proxySettings.password = Utils::String::toStdString(pref->getProxyPassword());
             qDebug("username is %s", proxySettings.username.c_str());
             qDebug("password is %s", proxySettings.password.c_str());
         }
@@ -780,7 +780,7 @@ void Session::handleDownloadFinished(const QString &url, const QString &filePath
 {
     emit downloadFromUrlFinished(url);
     addTorrent_impl(m_downloadedTorrents.take(url), MagnetUri(), TorrentInfo::loadFromFile(filePath));
-    fsutils::forceRemove(filePath); // remove temporary file
+    Utils::Fs::forceRemove(filePath); // remove temporary file
 }
 
 void Session::changeSpeedLimitMode(bool alternative)
@@ -870,8 +870,8 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
         // Remove unwanted and incomplete files
         foreach (const QString &unwantedFile, unwantedFiles) {
             qDebug("Removing unwanted file: %s", qPrintable(unwantedFile));
-            fsutils::forceRemove(unwantedFile);
-            const QString parentFolder = fsutils::branchPath(unwantedFile);
+            Utils::Fs::forceRemove(unwantedFile);
+            const QString parentFolder = Utils::Fs::branchPath(unwantedFile);
             qDebug("Attempt to remove parent folder (if empty): %s", qPrintable(parentFolder));
             QDir().rmpath(parentFolder);
         }
@@ -883,7 +883,7 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
     filters << QString("%1.*").arg(torrent->hash());
     const QStringList files = resumeDataDir.entryList(filters, QDir::Files, QDir::Unsorted);
     foreach (const QString &file, files)
-        fsutils::forceRemove(resumeDataDir.absoluteFilePath(file));
+        Utils::Fs::forceRemove(resumeDataDir.absoluteFilePath(file));
 
     if (deleteLocalFiles)
         Logger::instance()->addMessage(tr("'%1' was removed from transfer list and hard disk.", "'xxx.avi' was removed...").arg(torrent->name()));
@@ -1038,10 +1038,10 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
 
     if (source.startsWith("bc://bt/", Qt::CaseInsensitive)) {
         qDebug("Converting bc link to magnet link");
-        source = misc::bcLinkToMagnet(source);
+        source = Utils::Misc::bcLinkToMagnet(source);
     }
 
-    if (misc::isUrl(source)) {
+    if (Utils::Misc::isUrl(source)) {
         Logger::instance()->addMessage(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));
         // Launch downloader
         Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, 10485760 /* 10MB */);
@@ -1164,7 +1164,7 @@ bool Session::addTorrent_impl(const AddTorrentData &addData, const MagnetUri &ma
             savePath += "/";
     }
 
-    p.save_path = String::toStdString(fsutils::toNativePath(savePath));
+    p.save_path = Utils::String::toStdString(Utils::Fs::toNativePath(savePath));
     // Check if save path exists, creating it otherwise
     if (!QDir(savePath).exists())
         QDir().mkpath(savePath);
@@ -1214,7 +1214,7 @@ bool Session::loadMetadata(const QString &magnetUri)
 #endif
 
     QString savePath = QString("%1/%2").arg(QDir::tempPath()).arg(hash);
-    p.save_path = String::toStdString(fsutils::toNativePath(savePath));
+    p.save_path = Utils::String::toStdString(Utils::Fs::toNativePath(savePath));
     // Check if save path exists, creating it otherwise
     if (!QDir(savePath).exists())
         QDir().mkpath(savePath);
@@ -1253,7 +1253,7 @@ void Session::exportTorrentFile(TorrentHandle *const torrent, TorrentExportFolde
     QDir exportPath(folder == TorrentExportFolder::Regular ? Preferences::instance()->getTorrentExportDir() : Preferences::instance()->getFinishedTorrentExportDir());
     if (exportPath.exists() || exportPath.mkpath(exportPath.absolutePath())) {
         QString newTorrentPath = exportPath.absoluteFilePath(torrentFilename);
-        if (QFile::exists(newTorrentPath) && fsutils::sameFiles(torrentPath, newTorrentPath)) {
+        if (QFile::exists(newTorrentPath) && Utils::Fs::sameFiles(torrentPath, newTorrentPath)) {
             // Append hash to torrent name to make it unique
             newTorrentPath = exportPath.absoluteFilePath(torrent->name() + "-" + torrentFilename);
         }
@@ -1285,7 +1285,7 @@ void Session::exportTorrentFiles(QString path)
         if (QFile::exists(srcPath)) {
             QString dstPath = exportDir.absoluteFilePath(QString("%1.torrent").arg(torrent->name()));
             if (QFile::exists(dstPath)) {
-                if (!fsutils::sameFiles(srcPath, dstPath)) {
+                if (!Utils::Fs::sameFiles(srcPath, dstPath)) {
                     dstPath = exportDir.absoluteFilePath(QString("%1-%2.torrent").arg(torrent->name()).arg(torrent->hash()));
                 }
                 else {
@@ -1375,7 +1375,7 @@ void Session::enableDHT(bool enable)
             }
             catch(std::exception &e) {
                 qDebug("Could not enable DHT, reason: %s", e.what());
-                logger->addMessage(tr("DHT support [OFF]. Reason: %1").arg(String::fromStdString(e.what())), Log::CRITICAL);
+                logger->addMessage(tr("DHT support [OFF]. Reason: %1").arg(Utils::String::fromStdString(e.what())), Log::CRITICAL);
             }
         }
     }
@@ -1442,7 +1442,7 @@ void Session::setDefaultSavePath(const QString &path)
 {
     if (path.isEmpty()) return;
 
-    QString defaultSavePath = fsutils::fromNativePath(path);
+    QString defaultSavePath = Utils::Fs::fromNativePath(path);
     if (!defaultSavePath.endsWith("/"))
         defaultSavePath += "/";
     if (m_defaultSavePath != defaultSavePath) {
@@ -1457,7 +1457,7 @@ void Session::setDefaultTempPath(const QString &path)
     QString tempPath;
 
     if (!path.isEmpty()) {
-        tempPath = fsutils::fromNativePath(path);
+        tempPath = Utils::Fs::fromNativePath(path);
         if (!tempPath.endsWith("/"))
             tempPath += "/";
     }
@@ -1506,7 +1506,7 @@ void Session::setListeningPort(int port)
         m_nativeSession->listen_on(ports, ec, 0, libt::session::listen_no_system_port);
 
         if (ec)
-            logger->addMessage(tr("qBittorrent failed to listen on any interface port: %1. Reason: %2", "e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface" ).arg(QString::number(port)).arg(String::fromStdString(ec.message())), Log::CRITICAL);
+            logger->addMessage(tr("qBittorrent failed to listen on any interface port: %1. Reason: %2", "e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface" ).arg(QString::number(port)).arg(Utils::String::fromStdString(ec.message())), Log::CRITICAL);
 
         return;
     }
@@ -1716,7 +1716,7 @@ void Session::handleTorrentFinished(TorrentHandle *const torrent)
             }
             else {
                 qDebug("Caught error loading torrent");
-                Logger::instance()->addMessage(tr("Unable to decode %1 torrent file.").arg(fsutils::toNativePath(torrentFullpath)), Log::CRITICAL);
+                Logger::instance()->addMessage(tr("Unable to decode %1 torrent file.").arg(Utils::Fs::toNativePath(torrentFullpath)), Log::CRITICAL);
             }
         }
     }
@@ -1773,7 +1773,7 @@ bool Session::hasPerTorrentRatioLimit() const
 
 void Session::initResumeFolder()
 {
-    m_resumeFolderPath = fsutils::expandPathAbs(fsutils::QDesktopServicesDataLocation() + RESUME_FOLDER);
+    m_resumeFolderPath = Utils::Fs::expandPathAbs(Utils::Fs::QDesktopServicesDataLocation() + RESUME_FOLDER);
     QDir resumeFolderDir(m_resumeFolderPath);
     if (resumeFolderDir.exists() || resumeFolderDir.mkpath(resumeFolderDir.absolutePath())) {
         m_resumeFolderLock.setFileName(resumeFolderDir.absoluteFilePath("session.lock"));
@@ -1795,9 +1795,9 @@ void Session::enableIPFilter(const QString &filterPath, bool force)
         connect(m_filterParser.data(), SIGNAL(IPFilterParsed(int)), SLOT(handleIPFilterParsed(int)));
         connect(m_filterParser.data(), SIGNAL(IPFilterError()), SLOT(handleIPFilterError()));
     }
-    if (m_filterPath.isEmpty() || m_filterPath != fsutils::fromNativePath(filterPath) || force) {
-        m_filterPath = fsutils::fromNativePath(filterPath);
-        m_filterParser->processFilterFile(fsutils::fromNativePath(filterPath));
+    if (m_filterPath.isEmpty() || m_filterPath != Utils::Fs::fromNativePath(filterPath) || force) {
+        m_filterPath = Utils::Fs::fromNativePath(filterPath);
+        m_filterParser->processFilterFile(Utils::Fs::fromNativePath(filterPath));
     }
 }
 
@@ -1824,7 +1824,7 @@ void Session::recursiveTorrentDownload(const InfoHash &hash)
             Logger::instance()->addMessage(
                         tr("Recursive download of file %1 embedded in torrent %2"
                            , "Recursive download of test.torrent embedded in torrent test2")
-                        .arg(fsutils::toNativePath(torrentRelpath)).arg(torrent->name()));
+                        .arg(Utils::Fs::toNativePath(torrentRelpath)).arg(torrent->name()));
             const QString torrentFullpath = torrent->savePath() + "/" + torrentRelpath;
 
             AddTorrentParams params;
@@ -1857,18 +1857,18 @@ void Session::setProxySettings(libt::proxy_settings proxySettings)
     QString proxy_str;
     switch(proxySettings.type) {
     case libt::proxy_settings::http_pw:
-        proxy_str = QString("http://%1:%2@%3:%4").arg(String::fromStdString(proxySettings.username)).arg(String::fromStdString(proxySettings.password))
-                .arg(String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
+        proxy_str = QString("http://%1:%2@%3:%4").arg(Utils::String::fromStdString(proxySettings.username)).arg(Utils::String::fromStdString(proxySettings.password))
+                .arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
         break;
     case libt::proxy_settings::http:
-        proxy_str = QString("http://%1:%2").arg(String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
+        proxy_str = QString("http://%1:%2").arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
         break;
     case libt::proxy_settings::socks5:
-        proxy_str = QString("%1:%2").arg(String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
+        proxy_str = QString("%1:%2").arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
         break;
     case libt::proxy_settings::socks5_pw:
-        proxy_str = QString("%1:%2@%3:%4").arg(String::fromStdString(proxySettings.username)).arg(String::fromStdString(proxySettings.password))
-                .arg(String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
+        proxy_str = QString("%1:%2@%3:%4").arg(Utils::String::fromStdString(proxySettings.username)).arg(Utils::String::fromStdString(proxySettings.password))
+                .arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
         break;
     default:
         qDebug("Disabling HTTP communications proxy");
@@ -1930,11 +1930,11 @@ void Session::startUpTorrents()
                 qDebug("Starting up torrent %s ...", qPrintable(hash));
                 if (!addTorrent_impl(resumeData, MagnetUri(), TorrentInfo::loadFromFile(filePath), data))
                     logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
-                                       .arg(fsutils::toNativePath(hash)), Log::CRITICAL);
+                                       .arg(Utils::Fs::toNativePath(hash)), Log::CRITICAL);
             }
             else {
                 logger->addMessage(tr("Unable to resume torrent '%1': torrent file not found.", "e.g: Unable to resume torrent 'hash': torrent file not found.")
-                                   .arg(fsutils::toNativePath(hash)), Log::CRITICAL);
+                                   .arg(Utils::Fs::toNativePath(hash)), Log::CRITICAL);
             }
         }
     }
@@ -2074,7 +2074,7 @@ void Session::handleAlert(libt::alert *a)
         }
     }
     catch (std::exception &exc) {
-        qWarning() << "Caught exception in readAlerts(): " << String::fromStdString(exc.what());
+        qWarning() << "Caught exception in readAlerts(): " << Utils::String::fromStdString(exc.what());
     }
 }
 
@@ -2090,7 +2090,7 @@ void Session::handleAddTorrentAlert(libtorrent::add_torrent_alert *p)
     Logger *const logger = Logger::instance();
     if (p->error) {
         qDebug("/!\\ Error: Failed to add torrent!");
-        QString msg = String::fromStdString(p->message());
+        QString msg = Utils::String::fromStdString(p->message());
         logger->addMessage(tr("Couldn't add torrent. Reason: %1").arg(msg), Log::WARNING);
         emit addTorrentFailed(msg);
         return;
@@ -2166,7 +2166,7 @@ void Session::handleTorrentDeletedAlert(libt::torrent_deleted_alert *p)
         qDebug("A torrent was deleted from the hard disk, attempting to remove the root folder too...");
         const QString dirpath = m_savePathsToRemove.take(p->info_hash);
         qDebug() << "Removing save path: " << dirpath << "...";
-        bool ok = fsutils::smartRemoveEmptyFolderTree(dirpath);
+        bool ok = Utils::Fs::smartRemoveEmptyFolderTree(dirpath);
         Q_UNUSED(ok);
         qDebug() << "Folder was removed: " << ok;
     }
@@ -2194,7 +2194,7 @@ void Session::handleFileErrorAlert(libt::file_error_alert *p)
     // NOTE: Check this function!
     TorrentHandle *const torrent = m_torrents.value(p->handle.info_hash());
     if (torrent) {
-        QString msg = String::fromStdString(p->message());
+        QString msg = Utils::String::fromStdString(p->message());
         Logger::instance()->addMessage(tr("An I/O error occurred, '%1' paused. %2")
                            .arg(torrent->name()).arg(msg));
         emit fullDiskError(torrent, msg);
@@ -2203,13 +2203,13 @@ void Session::handleFileErrorAlert(libt::file_error_alert *p)
 
 void Session::handlePortmapWarningAlert(libt::portmap_error_alert *p)
 {
-    Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(String::fromStdString(p->message())), Log::CRITICAL);
+    Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(Utils::String::fromStdString(p->message())), Log::CRITICAL);
 }
 
 void Session::handlePortmapAlert(libt::portmap_alert *p)
 {
     qDebug("UPnP Success, msg: %s", p->message().c_str());
-    Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(String::fromStdString(p->message())), Log::INFO);
+    Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(Utils::String::fromStdString(p->message())), Log::INFO);
 }
 
 void Session::handlePeerBlockedAlert(libt::peer_blocked_alert *p)
@@ -2257,7 +2257,7 @@ void Session::handlePeerBanAlert(libt::peer_ban_alert *p)
 
 void Session::handleUrlSeedAlert(libt::url_seed_alert *p)
 {
-    Logger::instance()->addMessage(tr("Url seed lookup failed for url: %1, message: %2").arg(String::fromStdString(p->url)).arg(String::fromStdString(p->message())), Log::CRITICAL);
+    Logger::instance()->addMessage(tr("Url seed lookup failed for url: %1, message: %2").arg(Utils::String::fromStdString(p->url)).arg(Utils::String::fromStdString(p->message())), Log::CRITICAL);
 }
 
 void Session::handleListenSucceededAlert(libt::listen_succeeded_alert *p)
@@ -2304,7 +2304,7 @@ void Session::handleListenFailedAlert(libt::listen_failed_alert *p)
                 tr("qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4",
                    "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use")
                 .arg(p->endpoint.address().to_string(ec).c_str()).arg(proto).arg(QString::number(p->endpoint.port()))
-                .arg(String::fromStdString(p->error.message())), Log::CRITICAL);
+                .arg(Utils::String::fromStdString(p->error.message())), Log::CRITICAL);
 }
 
 void Session::handleExternalIPAlert(libt::external_ip_alert *p)
@@ -2367,10 +2367,10 @@ bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out)
     if ((fast.type() != libt::lazy_entry::dict_t) && !ec) return false;
 
     out.addedTime = QDateTime::fromTime_t(fast.dict_find_int_value("qBt-addedTime"));
-    out.savePath = fsutils::fromNativePath(QString::fromUtf8(fast.dict_find_string_value("qBt-savePath").c_str()));
-    out.ratioLimit = QString::fromUtf8(fast.dict_find_string_value("qBt-ratioLimit").c_str()).toDouble();
-    out.label = QString::fromUtf8(fast.dict_find_string_value("qBt-label").c_str());
-    out.name = QString::fromUtf8(fast.dict_find_string_value("qBt-name").c_str());
+    out.savePath = Utils::Fs::fromNativePath(Utils::String::fromStdString(fast.dict_find_string_value("qBt-savePath")));
+    out.ratioLimit = Utils::String::fromStdString(fast.dict_find_string_value("qBt-ratioLimit")).toDouble();
+    out.label = Utils::String::fromStdString(fast.dict_find_string_value("qBt-label"));
+    out.name = Utils::String::fromStdString(fast.dict_find_string_value("qBt-name"));
     out.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
     out.disableTempPath = fast.dict_find_int_value("qBt-tempPathDisabled");
 
@@ -2384,7 +2384,7 @@ bool Session::writeResumeDataFile(TorrentHandle *const torrent, const libt::entr
     QStringList filters(QString("%1.fastresume.*").arg(torrent->hash()));
     const QStringList files = resumeDataDir.entryList(filters, QDir::Files, QDir::Unsorted);
     foreach (const QString &file, files)
-        fsutils::forceRemove(resumeDataDir.absoluteFilePath(file));
+        Utils::Fs::forceRemove(resumeDataDir.absoluteFilePath(file));
 
     QString filename = QString("%1.fastresume.%2").arg(torrent->hash()).arg(torrent->queuePosition());
     QString filepath = resumeDataDir.absoluteFilePath(filename);

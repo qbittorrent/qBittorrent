@@ -28,6 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "core/utils/string.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodel.h"
 
@@ -95,7 +96,7 @@ bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIn
     rightType = m_model->itemType(m_model->index(right.row(), 0, right.parent()));
     if (leftType == rightType) {
       bool res = false;
-      if (misc::naturalSort(vL.toString(), vR.toString(), res))
+      if (Utils::String::naturalSort(vL.toString(), vR.toString(), res))
         return res;
       return QSortFilterProxyModel::lessThan(left, right);
     }

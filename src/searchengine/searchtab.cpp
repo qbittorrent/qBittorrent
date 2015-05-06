@@ -36,7 +36,7 @@
 
 #include "searchtab.h"
 #include "searchlistdelegate.h"
-#include "core/misc.h"
+#include "core/utils/misc.h"
 #include "searchengine.h"
 #include "core/preferences.h"
 

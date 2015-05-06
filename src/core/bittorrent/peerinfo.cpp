@@ -202,7 +202,7 @@ PeerAddress PeerInfo::address() const
 
 QString PeerInfo::client() const
 {
-    return String::fromStdString(m_nativeInfo.client);
+    return Utils::String::fromStdString(m_nativeInfo.client);
 }
 
 

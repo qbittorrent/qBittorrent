@@ -50,8 +50,8 @@
 #include <winreg.h>
 #endif
 
-#include "misc.h"
-#include "fs_utils.h"
+#include "core/utils/fs.h"
+#include "core/utils/misc.h"
 
 
 Preferences* Preferences::m_instance = 0;
@@ -169,7 +169,7 @@ bool Preferences::save()
     QString final_path = new_path;
     int index = final_path.lastIndexOf("_new", -1, Qt::CaseInsensitive);
     final_path.remove(index, 4);
-    fsutils::forceRemove(final_path);
+    Utils::Fs::forceRemove(final_path);
     QFile::rename(new_path, final_path);
 #else
     delete settings;
@@ -347,7 +347,7 @@ void Preferences::setWinStartup(bool b)
 {
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     if (b) {
-        const QString bin_path = "\"" + fsutils::toNativePath(qApp->applicationFilePath()) + "\"";
+        const QString bin_path = "\"" + Utils::Fs::toNativePath(qApp->applicationFilePath()) + "\"";
         settings.setValue("qBittorrent", bin_path);
     }
     else {
@@ -361,13 +361,13 @@ QString Preferences::getSavePath() const
 {
     QString save_path = value("Preferences/Downloads/SavePath").toString();
     if (!save_path.isEmpty())
-        return fsutils::fromNativePath(save_path);
-    return fsutils::QDesktopServicesDownloadLocation();
+        return Utils::Fs::fromNativePath(save_path);
+    return Utils::Fs::QDesktopServicesDownloadLocation();
 }
 
 void Preferences::setSavePath(const QString &save_path)
 {
-    setValue("Preferences/Downloads/SavePath", fsutils::fromNativePath(save_path));
+    setValue("Preferences/Downloads/SavePath", Utils::Fs::fromNativePath(save_path));
 }
 
 bool Preferences::isTempPathEnabled() const
@@ -383,12 +383,12 @@ void Preferences::setTempPathEnabled(bool enabled)
 QString Preferences::getTempPath() const
 {
     const QString temp = QDir(getSavePath()).absoluteFilePath("temp");
-    return fsutils::fromNativePath(value("Preferences/Downloads/TempPath", temp).toString());
+    return Utils::Fs::fromNativePath(value("Preferences/Downloads/TempPath", temp).toString());
 }
 
 void Preferences::setTempPath(const QString &path)
 {
-    setValue("Preferences/Downloads/TempPath", fsutils::fromNativePath(path));
+    setValue("Preferences/Downloads/TempPath", Utils::Fs::fromNativePath(path));
 }
 
 bool Preferences::useIncompleteFilesExtension() const
@@ -413,12 +413,12 @@ void Preferences::setAppendTorrentLabel(bool b)
 
 QString Preferences::lastLocationPath() const
 {
-    return fsutils::fromNativePath(value("Preferences/Downloads/LastLocationPath").toString());
+    return Utils::Fs::fromNativePath(value("Preferences/Downloads/LastLocationPath").toString());
 }
 
 void Preferences::setLastLocationPath(const QString &path)
 {
-    setValue("Preferences/Downloads/LastLocationPath", fsutils::fromNativePath(path));
+    setValue("Preferences/Downloads/LastLocationPath", Utils::Fs::fromNativePath(path));
 }
 
 bool Preferences::preAllocateAllFiles() const
@@ -469,7 +469,7 @@ QStringList Preferences::getScanDirs() const
 
     QStringList newList;
     foreach (const QString& s, originalList)
-        newList << fsutils::fromNativePath(s);
+        newList << Utils::Fs::fromNativePath(s);
     return newList;
 }
 
@@ -479,28 +479,28 @@ void Preferences::setScanDirs(const QStringList &dirs)
     QStringList newList;
     if (!dirs.isEmpty())
         foreach (const QString& s, dirs)
-            newList << fsutils::fromNativePath(s);
+            newList << Utils::Fs::fromNativePath(s);
     setValue("Preferences/Downloads/ScanDirs", newList);
 }
 
 QList<bool> Preferences::getDownloadInScanDirs() const
 {
-    return misc::boolListfromStringList(value("Preferences/Downloads/DownloadInScanDirs").toStringList());
+    return Utils::Misc::boolListfromStringList(value("Preferences/Downloads/DownloadInScanDirs").toStringList());
 }
 
 void Preferences::setDownloadInScanDirs(const QList<bool> &list)
 {
-    setValue("Preferences/Downloads/DownloadInScanDirs", misc::toStringList(list));
+    setValue("Preferences/Downloads/DownloadInScanDirs", Utils::Misc::toStringList(list));
 }
 
 QString Preferences::getScanDirsLastPath() const
 {
-    return fsutils::fromNativePath(value("Preferences/Downloads/ScanDirsLastPath").toString());
+    return Utils::Fs::fromNativePath(value("Preferences/Downloads/ScanDirsLastPath").toString());
 }
 
 void Preferences::setScanDirsLastPath(const QString &path)
 {
-    setValue("Preferences/Downloads/ScanDirsLastPath", fsutils::fromNativePath(path));
+    setValue("Preferences/Downloads/ScanDirsLastPath", Utils::Fs::fromNativePath(path));
 }
 
 bool Preferences::isTorrentExportEnabled() const
@@ -510,12 +510,12 @@ bool Preferences::isTorrentExportEnabled() const
 
 QString Preferences::getTorrentExportDir() const
 {
-    return fsutils::fromNativePath(value("Preferences/Downloads/TorrentExportDir").toString());
+    return Utils::Fs::fromNativePath(value("Preferences/Downloads/TorrentExportDir").toString());
 }
 
 void Preferences::setTorrentExportDir(QString path)
 {
-    setValue("Preferences/Downloads/TorrentExportDir", fsutils::fromNativePath(path.trimmed()));
+    setValue("Preferences/Downloads/TorrentExportDir", Utils::Fs::fromNativePath(path.trimmed()));
 }
 
 bool Preferences::isFinishedTorrentExportEnabled() const
@@ -525,12 +525,12 @@ bool Preferences::isFinishedTorrentExportEnabled() const
 
 QString Preferences::getFinishedTorrentExportDir() const
 {
-    return fsutils::fromNativePath(value("Preferences/Downloads/FinishedTorrentExportDir").toString());
+    return Utils::Fs::fromNativePath(value("Preferences/Downloads/FinishedTorrentExportDir").toString());
 }
 
 void Preferences::setFinishedTorrentExportDir(QString path)
 {
-    setValue("Preferences/Downloads/FinishedTorrentExportDir", fsutils::fromNativePath(path.trimmed()));
+    setValue("Preferences/Downloads/FinishedTorrentExportDir", Utils::Fs::fromNativePath(path.trimmed()));
 }
 
 bool Preferences::isMailNotificationEnabled() const
@@ -975,12 +975,12 @@ void Preferences::setFilteringEnabled(bool enabled)
 
 QString Preferences::getFilter() const
 {
-    return fsutils::fromNativePath(value("Preferences/IPFilter/File").toString());
+    return Utils::Fs::fromNativePath(value("Preferences/IPFilter/File").toString());
 }
 
 void Preferences::setFilter(const QString &path)
 {
-    setValue("Preferences/IPFilter/File", fsutils::fromNativePath(path));
+    setValue("Preferences/IPFilter/File", Utils::Fs::fromNativePath(path));
 }
 
 QStringList Preferences::bannedIPs() const
@@ -1275,12 +1275,12 @@ void Preferences::setAutoRunEnabled(bool enabled)
 
 QString Preferences::getAutoRunProgram() const
 {
-    return fsutils::fromNativePath(value("AutoRun/program").toString());
+    return Utils::Fs::fromNativePath(value("AutoRun/program").toString());
 }
 
 void Preferences::setAutoRunProgram(const QString &program)
 {
-    setValue("AutoRun/program", fsutils::fromNativePath(program));
+    setValue("AutoRun/program", Utils::Fs::fromNativePath(program));
 }
 
 bool Preferences::shutdownWhenDownloadsComplete() const
@@ -1788,12 +1788,12 @@ bool Preferences::isMagnetLinkAssocSet()
 
     // Check magnet link assoc
     QRegExp exe_reg("\"([^\"]+)\".*");
-    QString shell_command = fsutils::toNativePath(settings.value("magnet/shell/open/command/Default", "").toString());
+    QString shell_command = Utils::Fs::toNativePath(settings.value("magnet/shell/open/command/Default", "").toString());
     if (exe_reg.indexIn(shell_command) < 0)
         return false;
     QString assoc_exe = exe_reg.cap(1);
     qDebug("exe: %s", qPrintable(assoc_exe));
-    if (assoc_exe.compare(fsutils::toNativePath(qApp->applicationFilePath()), Qt::CaseInsensitive) != 0)
+    if (assoc_exe.compare(Utils::Fs::toNativePath(qApp->applicationFilePath()), Qt::CaseInsensitive) != 0)
         return false;
 
     return true;
@@ -1829,9 +1829,9 @@ void Preferences::setMagnetLinkAssoc(bool set)
         settings.setValue("magnet/Default", "URL:Magnet link");
         settings.setValue("magnet/Content Type", "application/x-magnet");
         settings.setValue("magnet/URL Protocol", "");
-        settings.setValue("magnet/DefaultIcon/Default", fsutils::toNativePath(icon_str));
+        settings.setValue("magnet/DefaultIcon/Default", Utils::Fs::toNativePath(icon_str));
         settings.setValue("magnet/shell/Default", "open");
-        settings.setValue("magnet/shell/open/command/Default", fsutils::toNativePath(command_str));
+        settings.setValue("magnet/shell/open/command/Default", Utils::Fs::toNativePath(command_str));
     }
     else if (isMagnetLinkAssocSet()) {
         settings.remove("magnet");

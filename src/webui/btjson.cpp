@@ -29,8 +29,8 @@
  */
 
 #include "btjson.h"
-#include "core/misc.h"
-#include "core/fs_utils.h"
+#include "core/utils/misc.h"
+#include "core/utils/fs.h"
 #include "core/preferences.h"
 #include "core/bittorrent/session.h"
 #include "core/bittorrent/sessionstatus.h"
@@ -411,7 +411,7 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
     if (!torrent->hasMetadata())
         return QByteArray();
 
-    data[KEY_PROP_SAVE_PATH] = fsutils::toNativePath(torrent->savePath());
+    data[KEY_PROP_SAVE_PATH] = Utils::Fs::toNativePath(torrent->savePath());
     data[KEY_PROP_CREATION_DATE] = torrent->creationDate().toTime_t();
     data[KEY_PROP_PIECE_SIZE] = torrent->pieceLength();
     data[KEY_PROP_COMMENT] = torrent->comment();
@@ -462,7 +462,7 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
         QString fileName = torrent->filePath(i);
         if (fileName.endsWith(".!qB", Qt::CaseInsensitive))
             fileName.chop(4);
-        file_dict[KEY_FILE_NAME] = fsutils::toNativePath(fileName);
+        file_dict[KEY_FILE_NAME] = Utils::Fs::toNativePath(fileName);
         const qlonglong size = torrent->fileSize(i);
         file_dict[KEY_FILE_SIZE] = size;
         file_dict[KEY_FILE_PROGRESS] = fp[i];

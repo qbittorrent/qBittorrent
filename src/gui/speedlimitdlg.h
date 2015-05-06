@@ -34,7 +34,7 @@
 #include <QDialog>
 #include <QList>
 #include "ui_bandwidth_limit.h"
-#include "core/misc.h"
+#include "core/utils/misc.h"
 #include "core/bittorrent/session.h"
 
 class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {

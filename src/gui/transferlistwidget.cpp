@@ -57,7 +57,7 @@
 #include "deletionconfirmationdlg.h"
 #include "propertieswidget.h"
 #include "guiiconprovider.h"
-#include "core/fs_utils.h"
+#include "core/utils/fs.h"
 #include "autoexpandabledialog.h"
 #include "transferlistsortmodel.h"
 
@@ -255,7 +255,7 @@ void TransferListWidget::setSelectedTorrentsLocation()
             BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
             if (!torrent) continue;
 
-            torrent->move(fsutils::expandPathAbs(dir));
+            torrent->move(Utils::Fs::expandPathAbs(dir));
             main_window->getProperties()->updateSavePath(torrent);
         }
     }
@@ -622,7 +622,7 @@ void TransferListWidget::askNewLabelForSelection()
         invalid = false;
         const QString label = AutoExpandableDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, "", &ok).trimmed();
         if (ok && !label.isEmpty()) {
-            if (fsutils::isValidFileSystemName(label)) {
+            if (Utils::Fs::isValidFileSystemName(label)) {
                 setSelectionLabel(label);
             }
             else {
@@ -635,10 +635,10 @@ void TransferListWidget::askNewLabelForSelection()
 
 bool TransferListWidget::openUrl(const QString &_path) const
 {
-    const QString path = fsutils::fromNativePath(_path);
+    const QString path = Utils::Fs::fromNativePath(_path);
     // Hack to access samba shares with QDesktopServices::openUrl
     if (path.startsWith("//"))
-        return QDesktopServices::openUrl(fsutils::toNativePath("file:" + path));
+        return QDesktopServices::openUrl(Utils::Fs::toNativePath("file:" + path));
     else
         return QDesktopServices::openUrl(QUrl::fromLocalFile(path));
 }

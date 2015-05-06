@@ -38,7 +38,7 @@
 #include "core/bittorrent/infohash.h"
 #include "core/bittorrent/session.h"
 #include "guiiconprovider.h"
-#include "core/fs_utils.h"
+#include "core/utils/fs.h"
 
 TorrentImportDlg::TorrentImportDlg(QWidget *parent):
     QDialog(parent),
@@ -73,15 +73,15 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
 {
     const QString default_dir = Preferences::instance()->getTorImportLastContentDir();
     bool multifile = (m_torrentInfo.filesCount() > 1);
-    QString filePath = fsutils::fromNativePath(m_torrentInfo.filePath(0));
+    QString filePath = Utils::Fs::fromNativePath(m_torrentInfo.filePath(0));
     if (!multifile && (filePath.indexOf('/') != -1))
         multifile = true;
 
     if (!multifile) {
         // Single file torrent
-        const QString file_name = fsutils::fileName(filePath);
+        const QString file_name = Utils::Fs::fileName(filePath);
         qDebug("Torrent has only one file: %s", qPrintable(file_name));
-        QString extension = fsutils::fileExtension(file_name);
+        QString extension = Utils::Fs::fileExtension(file_name);
         qDebug("File extension is : %s", qPrintable(extension));
         QString filter;
         if (!extension.isEmpty()) {
@@ -96,7 +96,7 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
             return;
         }
         // Update display
-        ui->lineContent->setText(fsutils::toNativePath(m_contentPath));
+        ui->lineContent->setText(Utils::Fs::toNativePath(m_contentPath));
         // Check file size
         const qint64 file_size = QFile(m_contentPath).size();
         if (m_torrentInfo.fileSize(0) == file_size) {
@@ -130,16 +130,16 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
             return;
         }
         // Update the display
-        ui->lineContent->setText(fsutils::toNativePath(m_contentPath));
+        ui->lineContent->setText(Utils::Fs::toNativePath(m_contentPath));
         bool size_mismatch = false;
         QDir content_dir(m_contentPath);
         content_dir.cdUp();
         // Check file sizes
         for (int i = 0; i < m_torrentInfo.filesCount(); ++i) {
             const QString rel_path = m_torrentInfo.filePath(i);
-            if (QFile(fsutils::expandPath(content_dir.absoluteFilePath(rel_path))).size() != m_torrentInfo.fileSize(i)) {
+            if (QFile(Utils::Fs::expandPath(content_dir.absoluteFilePath(rel_path))).size() != m_torrentInfo.fileSize(i)) {
                 qDebug("%s is %lld",
-                       qPrintable(fsutils::expandPath(content_dir.absoluteFilePath(rel_path))), (long long int) QFile(fsutils::expandPath(content_dir.absoluteFilePath(rel_path))).size());
+                       qPrintable(Utils::Fs::expandPath(content_dir.absoluteFilePath(rel_path))), (long long int) QFile(Utils::Fs::expandPath(content_dir.absoluteFilePath(rel_path))).size());
                 qDebug("%s is %lld",
                        qPrintable(rel_path), (long long int)m_torrentInfo.fileSize(i));
                 size_mismatch = true;
@@ -204,8 +204,8 @@ void TorrentImportDlg::importTorrent()
         BitTorrent::Session::instance()->addTorrent(torrentInfo, params);
         // Remember the last opened folder
         Preferences* const pref = Preferences::instance();
-        pref->setMainLastDir(fsutils::fromNativePath(torrentPath));
-        pref->setTorImportLastContentDir(fsutils::fromNativePath(contentPath));
+        pref->setMainLastDir(Utils::Fs::fromNativePath(torrentPath));
+        pref->setTorImportLastContentDir(Utils::Fs::fromNativePath(contentPath));
         return;
     }
     qDebug() << Q_FUNC_INFO << "EXIT";
@@ -223,7 +223,7 @@ void TorrentImportDlg::loadTorrent(const QString &torrentPath)
     }
     else {
         // Update display
-        ui->lineTorrent->setText(fsutils::toNativePath(torrentPath));
+        ui->lineTorrent->setText(Utils::Fs::toNativePath(torrentPath));
         ui->browseContentBtn->setEnabled(true);
         // Load the file names
         initializeFilesPath();

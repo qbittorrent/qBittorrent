@@ -39,7 +39,7 @@
 #include <QStringList>
 
 #include "programupdater.h"
-#include "core/fs_utils.h"
+#include "core/utils/fs.h"
 #include "core/preferences.h"
 
 #ifdef Q_OS_MAC
@@ -122,7 +122,7 @@ void ProgramUpdater::rssDownloadFinished(QNetworkReply *reply)
       } else if (xml.isEndElement()) {
         if (in_item && xml.name() == "title") {
           in_title = false;
-          const QString ext = fsutils::fileExtension(item_title).toUpper();
+          const QString ext = Utils::Fs::fileExtension(item_title).toUpper();
           qDebug("Found an update with file extension: %s", qPrintable(ext));
           if (ext == FILE_EXT) {
             qDebug("The last update available is %s", qPrintable(item_title));

@@ -48,10 +48,10 @@ MagnetUri::MagnetUri(const QString &url)
 
     m_valid = true;
     m_hash = m_addTorrentParams.info_hash;
-    m_name = String::fromStdString(m_addTorrentParams.name);
+    m_name = Utils::String::fromStdString(m_addTorrentParams.name);
 
     foreach (const std::string &tracker, m_addTorrentParams.trackers)
-        m_trackers.append(String::fromStdString(tracker));
+        m_trackers.append(Utils::String::fromStdString(tracker));
 
 #if LIBTORRENT_VERSION_NUM >= 10000
     foreach (const std::string &urlSeed, m_addTorrentParams.url_seeds)

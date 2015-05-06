@@ -33,8 +33,9 @@
 #include <queue>
 #include <vector>
 #include "core/iconprovider.h"
-#include "core/misc.h"
-#include "core/fs_utils.h"
+#include "core/utils/misc.h"
+#include "core/utils/fs.h"
+#include "core/utils/string.h"
 #include "core/preferences.h"
 #include "btjson.h"
 #include "prefjson.h"
@@ -164,8 +165,8 @@ void WebApplication::action_public_login()
     md5.addData(request().posts["password"].toLocal8Bit());
     QString pass = md5.result().toHex();
 
-    bool equalUser = misc::slowEquals(request().posts["username"].toUtf8(), pref->getWebUiUsername().toUtf8());
-    bool equalPass = misc::slowEquals(pass.toUtf8(), pref->getWebUiPassword().toUtf8());
+    bool equalUser = Utils::String::slowEquals(request().posts["username"].toUtf8(), pref->getWebUiUsername().toUtf8());
+    bool equalPass = Utils::String::slowEquals(pass.toUtf8(), pref->getWebUiPassword().toUtf8());
 
     if (equalUser && equalPass) {
         sessionStart();
@@ -303,7 +304,7 @@ void WebApplication::action_command_download()
         if (!url.isEmpty()) {
             if (url.startsWith("bc://bt/", Qt::CaseInsensitive)) {
                 qDebug("Converting bc link to magnet link");
-                url = misc::bcLinkToMagnet(url);
+                url = Utils::Misc::bcLinkToMagnet(url);
             }
 
             BitTorrent::Session::instance()->addTorrent(url);
@@ -332,7 +333,7 @@ void WebApplication::action_command_upload()
                 }
             }
             // Clean up
-            fsutils::forceRemove(filePath);
+            Utils::Fs::forceRemove(filePath);
         }
         else {
             qWarning() << "I/O Error: Could not create temporary file";

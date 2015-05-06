@@ -45,11 +45,11 @@
 #include <Windows.h>
 #endif
 
-#include "core/fs_utils.h"
-#include "core/misc.h"
 #include "core/logger.h"
 #include "core/preferences.h"
 #include "core/utils/string.h"
+#include "core/utils/fs.h"
+#include "core/utils/misc.h"
 #include "session.h"
 #include "peerinfo.h"
 #include "trackerentry.h"
@@ -186,7 +186,7 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_state(TorrentState::Unknown)
     , m_name(data.name)
     , m_addedTime(data.resumed ? data.addedTime : QDateTime::currentDateTime())
-    , m_savePath(fsutils::toNativePath(data.savePath))
+    , m_savePath(Utils::Fs::toNativePath(data.savePath))
     , m_label(data.label)
     , m_hasSeedStatus(data.resumed ? data.hasSeedStatus : false)
     , m_ratioLimit(data.resumed ? data.ratioLimit : (data.ignoreShareRatio ? NO_RATIO_LIMIT : USE_GLOBAL_RATIO))
@@ -230,7 +230,7 @@ QString TorrentHandle::name() const
 #if LIBTORRENT_VERSION_NUM < 10000
         name = m_nativeName;
 #else
-        name = String::fromStdString(m_nativeStatus.name);
+        name = Utils::String::fromStdString(m_nativeStatus.name);
 #endif
     }
 
@@ -293,12 +293,12 @@ qlonglong TorrentHandle::wastedSize() const
 
 QString TorrentHandle::currentTracker() const
 {
-    return String::fromStdString(m_nativeStatus.current_tracker);
+    return Utils::String::fromStdString(m_nativeStatus.current_tracker);
 }
 
 QString TorrentHandle::savePath() const
 {
-    return fsutils::fromNativePath(m_savePath);
+    return Utils::Fs::fromNativePath(m_savePath);
 }
 
 QString TorrentHandle::rootPath() const
@@ -318,13 +318,13 @@ QString TorrentHandle::nativeActualSavePath() const
 #if LIBTORRENT_VERSION_NUM < 10000
     return m_nativeSavePath;
 #else
-    return String::fromStdString(m_nativeStatus.save_path);
+    return Utils::String::fromStdString(m_nativeStatus.save_path);
 #endif
 }
 
 QString TorrentHandle::actualSavePath() const
 {
-    return fsutils::fromNativePath(nativeActualSavePath());
+    return Utils::Fs::fromNativePath(nativeActualSavePath());
 }
 
 QList<TrackerEntry> TorrentHandle::trackers() const
@@ -437,7 +437,7 @@ bool TorrentHandle::addUrlSeed(const QUrl &urlSeed)
     QList<QUrl> seeds = urlSeeds();
     if (seeds.contains(urlSeed)) return false;
 
-    SAFE_CALL_BOOL(add_url_seed, String::toStdString(urlSeed.toString()));
+    SAFE_CALL_BOOL(add_url_seed, Utils::String::toStdString(urlSeed.toString()));
 }
 
 bool TorrentHandle::removeUrlSeed(const QUrl &urlSeed)
@@ -445,13 +445,13 @@ bool TorrentHandle::removeUrlSeed(const QUrl &urlSeed)
     QList<QUrl> seeds = urlSeeds();
     if (!seeds.contains(urlSeed)) return false;
 
-    SAFE_CALL_BOOL(remove_url_seed, String::toStdString(urlSeed.toString()));
+    SAFE_CALL_BOOL(remove_url_seed, Utils::String::toStdString(urlSeed.toString()));
 }
 
 bool TorrentHandle::connectPeer(const PeerAddress &peerAddress)
 {
     libt::error_code ec;
-    libt::address addr = libt::address::from_string(String::toStdString(peerAddress.ip.toString()), ec);
+    libt::address addr = libt::address::from_string(Utils::String::toStdString(peerAddress.ip.toString()), ec);
     if (ec) return false;
 
     libt::asio::ip::tcp::endpoint ep(addr, peerAddress.port);
@@ -479,7 +479,7 @@ QString TorrentHandle::savePathParsed() const
     else
         p = savePath();
 
-    return fsutils::toNativePath(p);
+    return Utils::Fs::toNativePath(p);
 }
 
 int TorrentHandle::filesCount() const
@@ -544,7 +544,7 @@ QString TorrentHandle::filePath(int index) const
 QString TorrentHandle::fileName(int index) const
 {
     if (!hasMetadata()) return  QString();
-    return fsutils::fileName(filePath(index));
+    return Utils::Fs::fileName(filePath(index));
 }
 
 qlonglong TorrentHandle::fileSize(int index) const
@@ -561,7 +561,7 @@ QStringList TorrentHandle::absoluteFilePaths() const
     QDir saveDir(actualSavePath());
     QStringList res;
     for (int i = 0; i < filesCount(); ++i)
-        res << fsutils::expandPathAbs(saveDir.absoluteFilePath(filePath(i)));
+        res << Utils::Fs::expandPathAbs(saveDir.absoluteFilePath(filePath(i)));
     return res;
 }
 
@@ -577,7 +577,7 @@ QStringList TorrentHandle::absoluteFilePathsUnwanted() const
     int count = static_cast<int>(fp.size());
     for (int i = 0; i < count; ++i) {
         if (fp[i] == 0) {
-            const QString path = fsutils::expandPathAbs(saveDir.absoluteFilePath(filePath(i)));
+            const QString path = Utils::Fs::expandPathAbs(saveDir.absoluteFilePath(filePath(i)));
             if (path.contains(".unwanted"))
                 res << path;
         }
@@ -720,8 +720,8 @@ bool TorrentHandle::hasFirstLastPiecePriority() const
     bool found = false;
     int count = static_cast<int>(fp.size());
     for (int i = 0; i < count; ++i) {
-        const QString ext = fsutils::fileExtension(filePath(i));
-        if (misc::isPreviewable(ext) && (fp[i] > 0)) {
+        const QString ext = Utils::Fs::fileExtension(filePath(i));
+        if (Utils::Misc::isPreviewable(ext) && (fp[i] > 0)) {
             extremities = fileExtremityPieces(i);
             found = true;
             break;
@@ -824,7 +824,7 @@ int TorrentHandle::queuePosition() const
 
 QString TorrentHandle::error() const
 {
-    return String::fromStdString(m_nativeStatus.error);
+    return Utils::String::fromStdString(m_nativeStatus.error);
 }
 
 qlonglong TorrentHandle::totalDownload() const
@@ -1114,7 +1114,7 @@ void TorrentHandle::move(QString path)
     // even if new path same as default.
     m_useDefaultSavePath = false;
 
-    path = fsutils::toNativePath(path);
+    path = Utils::Fs::toNativePath(path);
     if (path == savePath()) return;
 
     if (!useTempPath()) {
@@ -1183,8 +1183,8 @@ void TorrentHandle::setFirstLastPiecePriority(bool b)
     int nbfiles = static_cast<int>(fp.size());
     for (int index = 0; index < nbfiles; ++index) {
         const QString path = filePath(index);
-        const QString ext = fsutils::fileExtension(path);
-        if (misc::isPreviewable(ext) && (fp[index] > 0)) {
+        const QString ext = Utils::Fs::fileExtension(path);
+        if (Utils::Misc::isPreviewable(ext) && (fp[index] > 0)) {
             qDebug() << "File" << path << "is previewable, toggle downloading of first/last pieces first";
             // Determine the priority to set
             int prio = b ? 7 : fp[index];
@@ -1258,7 +1258,7 @@ void TorrentHandle::setTrackerLogin(const QString &username, const QString &pass
 void TorrentHandle::renameFile(int index, const QString &name)
 {
     qDebug() << Q_FUNC_INFO << index << name;
-    SAFE_CALL(rename_file, index, String::toStdString(fsutils::toNativePath(name)));
+    SAFE_CALL(rename_file, index, Utils::String::toStdString(Utils::Fs::toNativePath(name)));
 }
 
 bool TorrentHandle::saveTorrentFile(const QString &path)
@@ -1307,7 +1307,7 @@ void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
         return;
     }
 
-    QString newPath = String::fromStdString(p->path);
+    QString newPath = Utils::String::fromStdString(p->path);
     if (newPath != m_newPath) {
         qWarning("TorrentHandleImpl::handleStorageMoved(): New path doesn't match a path in a queue.");
         return;
@@ -1328,7 +1328,7 @@ void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
     }
 
     // Attempt to remove old folder if empty
-    QDir oldSaveDir(fsutils::fromNativePath(m_oldPath));
+    QDir oldSaveDir(Utils::Fs::fromNativePath(m_oldPath));
     if ((oldSaveDir != QDir(m_session->defaultSavePath())) && (oldSaveDir != QDir(m_session->tempPath()))) {
         qDebug("Attempting to remove %s", qPrintable(m_oldPath));
         QDir().rmpath(m_oldPath);
@@ -1348,7 +1348,7 @@ void TorrentHandle::handleStorageMovedFailedAlert(libtorrent::storage_moved_fail
     }
 
     Logger::instance()->addMessage(tr("Could not move torrent: '%1'. Reason: %2")
-                                   .arg(name()).arg(String::fromStdString(p->message())), Log::CRITICAL);
+                                   .arg(name()).arg(Utils::String::fromStdString(p->message())), Log::CRITICAL);
 
     m_newPath.clear();
     if (!m_queuedPath.isEmpty()) {
@@ -1364,7 +1364,7 @@ void TorrentHandle::handleStorageMovedFailedAlert(libtorrent::storage_moved_fail
 
 void TorrentHandle::handleTrackerReplyAlert(libtorrent::tracker_reply_alert *p)
 {
-    QString trackerUrl = String::fromStdString(p->url);
+    QString trackerUrl = Utils::String::fromStdString(p->url);
     qDebug("Received a tracker reply from %s (Num_peers = %d)", qPrintable(trackerUrl), p->num_peers);
     // Connection was successful now. Remove possible old errors
     m_trackerInfos[trackerUrl].lastMessage.clear(); // Reset error/warning message
@@ -1375,8 +1375,8 @@ void TorrentHandle::handleTrackerReplyAlert(libtorrent::tracker_reply_alert *p)
 
 void TorrentHandle::handleTrackerWarningAlert(libtorrent::tracker_warning_alert *p)
 {
-    QString trackerUrl = String::fromStdString(p->url);
-    QString message = String::fromStdString(p->msg);
+    QString trackerUrl = Utils::String::fromStdString(p->url);
+    QString message = Utils::String::fromStdString(p->msg);
     qDebug("Received a tracker warning for %s: %s", qPrintable(trackerUrl), qPrintable(message));
     // Connection was successful now but there is a warning message
     m_trackerInfos[trackerUrl].lastMessage = message; // Store warning message
@@ -1386,8 +1386,8 @@ void TorrentHandle::handleTrackerWarningAlert(libtorrent::tracker_warning_alert 
 
 void TorrentHandle::handleTrackerErrorAlert(libtorrent::tracker_error_alert *p)
 {
-    QString trackerUrl = String::fromStdString(p->url);
-    QString message = String::fromStdString(p->msg);
+    QString trackerUrl = Utils::String::fromStdString(p->url);
+    QString message = Utils::String::fromStdString(p->msg);
     qDebug("Received a tracker error for %s: %s", qPrintable(trackerUrl), qPrintable(message));
     m_trackerInfos[trackerUrl].lastMessage = message;
 
@@ -1487,13 +1487,13 @@ void TorrentHandle::handleFastResumeRejectedAlert(libtorrent::fastresume_rejecte
     }
     else {
         logger->addMessage(tr("Fast resume data was rejected for torrent %1. Reason: %2. Checking again...")
-                           .arg(name()).arg(String::fromStdString(p->message())), Log::CRITICAL);
+                           .arg(name()).arg(Utils::String::fromStdString(p->message())), Log::CRITICAL);
     }
 }
 
 void TorrentHandle::handleFileRenamedAlert(libtorrent::file_renamed_alert *p)
 {
-    QString newName = fsutils::fromNativePath(String::fromStdString(p->name));
+    QString newName = Utils::Fs::fromNativePath(Utils::String::fromStdString(p->name));
 
     // TODO: Check this!
     if (filesCount() > 1) {
@@ -1573,7 +1573,7 @@ void TorrentHandle::adjustSavePath()
         QString defaultSavePath = m_session->defaultSavePath();
         if (m_session->useAppendLabelToSavePath() && !m_label.isEmpty())
             defaultSavePath +=  QString("%1/").arg(m_label);
-        defaultSavePath = fsutils::toNativePath(defaultSavePath);
+        defaultSavePath = Utils::Fs::toNativePath(defaultSavePath);
         if (m_savePath != defaultSavePath) {
             if (!useTempPath()) {
                 moveStorage(defaultSavePath);
@@ -1702,7 +1702,7 @@ void TorrentHandle::adjustActualSavePath()
         qDebug("Moving torrent to its temp save path: %s", qPrintable(path));
     }
 
-    moveStorage(fsutils::toNativePath(path));
+    moveStorage(Utils::Fs::toNativePath(path));
 }
 
 libtorrent::torrent_handle TorrentHandle::nativeHandle() const
@@ -1764,8 +1764,8 @@ void TorrentHandle::updateStatus(const libtorrent::torrent_status &nativeStatus)
     m_nativeStatus = nativeStatus;
 #if LIBTORRENT_VERSION_NUM < 10000
     try {
-        m_nativeName = String::fromStdString(m_nativeHandle.name());
-        m_nativeSavePath = fsutils::fromNativePath(String::fromStdString(m_nativeHandle.save_path()));
+        m_nativeName = Utils::String::fromStdString(m_nativeHandle.name());
+        m_nativeSavePath = Utils::Fs::fromNativePath(Utils::String::fromStdString(m_nativeHandle.save_path()));
     }
     catch (std::exception &exc) {
         qDebug("torrent_handle method inside TorrentHandleImpl::updateStatus() throws exception: %s", exc.what());
@@ -1835,11 +1835,11 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
         // Move unwanted files to a .unwanted subfolder
         if (priorities[i] == 0) {
             QString oldAbsPath = QDir(spath).absoluteFilePath(filepath);
-            QString parentAbsPath = fsutils::branchPath(oldAbsPath);
+            QString parentAbsPath = Utils::Fs::branchPath(oldAbsPath);
             // Make sure the file does not already exists
             if (QDir(parentAbsPath).dirName() != ".unwanted") {
                 QString unwantedAbsPath = parentAbsPath + "/.unwanted";
-                QString newAbsPath = unwantedAbsPath + "/" + fsutils::fileName(filepath);
+                QString newAbsPath = unwantedAbsPath + "/" + Utils::Fs::fileName(filepath);
                 qDebug() << "Unwanted path is" << unwantedAbsPath;
                 if (QFile::exists(newAbsPath)) {
                     qWarning() << "File" << newAbsPath << "already exists at destination.";
@@ -1852,25 +1852,25 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
                 if (created) {
                     // Hide the folder on Windows
                     qDebug() << "Hiding folder (Windows)";
-                    std::wstring winPath =  fsutils::toNativePath(unwantedAbsPath).toStdWString();
+                    std::wstring winPath =  Utils::Fs::toNativePath(unwantedAbsPath).toStdWString();
                     DWORD dwAttrs = ::GetFileAttributesW(winPath.c_str());
                     bool ret = ::SetFileAttributesW(winPath.c_str(), dwAttrs | FILE_ATTRIBUTE_HIDDEN);
                     Q_ASSERT(ret != 0); Q_UNUSED(ret);
                 }
 #endif
-                QString parentPath = fsutils::branchPath(filepath);
+                QString parentPath = Utils::Fs::branchPath(filepath);
                 if (!parentPath.isEmpty() && !parentPath.endsWith("/"))
                     parentPath += "/";
-                renameFile(i, parentPath + ".unwanted/" + fsutils::fileName(filepath));
+                renameFile(i, parentPath + ".unwanted/" + Utils::Fs::fileName(filepath));
             }
         }
 
         // Move wanted files back to their original folder
         if (priorities[i] > 0) {
-            QString parentRelPath = fsutils::branchPath(filepath);
+            QString parentRelPath = Utils::Fs::branchPath(filepath);
             if (QDir(parentRelPath).dirName() == ".unwanted") {
-                QString oldName = fsutils::fileName(filepath);
-                QString newRelPath = fsutils::branchPath(parentRelPath);
+                QString oldName = Utils::Fs::fileName(filepath);
+                QString newRelPath = Utils::Fs::branchPath(parentRelPath);
                 if (newRelPath.isEmpty())
                     renameFile(i, oldName);
                 else
