@@ -38,6 +38,13 @@
 #include "qtsingleapplication.h"
 typedef QtSingleApplication BaseApplication;
 class MainWindow;
+
+#ifdef Q_OS_WIN
+QT_BEGIN_NAMESPACE
+class QSessionManager;
+QT_END_NAMESPACE
+#endif // Q_OS_WIN
+
 #else
 #include "qtsinglecoreapplication.h"
 typedef QtSingleCoreApplication BaseApplication;
@@ -71,6 +78,9 @@ protected:
 private slots:
     void processMessage(const QString &message);
     void cleanup();
+#if (!defined(DISABLE_GUI) && defined(Q_OS_WIN))
+    void shutdownCleanup(QSessionManager &manager);
+#endif
 
 private:
     bool m_running;

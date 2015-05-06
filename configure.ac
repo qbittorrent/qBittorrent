@@ -56,7 +56,7 @@ AC_ARG_ENABLE(gui,
 
 AC_ARG_ENABLE(systemd,
               [AS_HELP_STRING([--enable-systemd],
-                              [Install the systemd service file (GUI only).])],
+                              [Install the systemd service file (headless only).])],
               [],
               [enable_systemd=no])
 
@@ -301,6 +301,8 @@ AC_SUBST(QBT_ADD_DEFINES)
 AC_SUBST(QBT_REMOVE_DEFINES)
 
 AC_OUTPUT(conf.pri)
+AS_IF([test "x$enable_systemd" = "xyes"],
+      [AC_OUTPUT(dist/unix/systemd/qbittorrent-nox.service)])
 
 
 

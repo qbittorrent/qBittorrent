@@ -87,6 +87,7 @@ public slots:
     void updateAltSpeedsBtn(bool alternative);
     void updateNbTorrents();
     void activate();
+    void cleanup();
 
 protected slots:
     // GUI related slots
