@@ -1,6 +1,7 @@
-#VERSION: 1.53
+#VERSION: 2.10
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
+#              Arthur (custparasite@gmx.se)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -26,95 +27,149 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+from HTMLParser import HTMLParser
+from httplib import HTTPSConnection as https
+#qBt
 from novaprinter import prettyPrinter
-import sgmllib
-from helpers import retrieve_url, download_file
-
-PREVIOUS_IDS = set()
+from helpers import download_file
 
 class piratebay(object):
-	url = 'https://thepiratebay.se'
-	name = 'The Pirate Bay'
-	supported_categories = {'all': '0', 'movies': '200', 'music': '100', 'games': '400', 'software': '300'}
+    """ Search engine class """
+    url = 'https://thepiratebay.se'
+    name = 'The Pirate Bay'
+    supported_categories = {'all': '0', 'music': '100', 'movies': '200', 'games': '400', 'software': '300'}
 
-	def __init__(self):
-		self.results = []
-		self.parser = self.SimpleSGMLParser(self.results, self.url)
+    def download_torrent(self, info):
+        """ Downloader """
+        print(download_file(info))
 
-	def download_torrent(self, info):
-		print download_file(info)
+    class MyHtmlParseWithBlackJack(HTMLParser):
+        """ Parser class """
+        def __init__(self, list_searches, url):
+            HTMLParser.__init__(self)
+            self.list_searches = list_searches
+            self.url = url
+            self.current_item = None
+            self.save_item = None
+            self.result_table = False #table with results is found
+            self.result_tbody = False
+            self.add_query = True
+            self.result_query = False
 
-	class SimpleSGMLParser(sgmllib.SGMLParser):
-		def __init__(self, results, url, *args):
-			sgmllib.SGMLParser.__init__(self)
-			self.td_counter = None
-			self.current_item = None
-			self.results = results
-			self.url = url
-			self.code = 0
-			self.in_name = None
+        def handle_start_tag_default(self, attrs):
+            """ Default handler for start tag dispatcher """
+            pass
 
-		def start_a(self, attr):
-			params = dict(attr)
-			if params['href'].startswith('/torrent/'):
-				self.current_item = {}
-				self.td_counter = 0
-				self.current_item['desc_link'] = self.url + params['href'].strip()
-				self.in_name = True
-				self.current_item['id'] = params['href'].split('/')[2]
-			elif params['href'].startswith('magnet:'):
-				self.current_item['link']=params['href'].strip()
-				self.in_name = False
+        def handle_start_tag_a(self, attrs):
+            """ Handler for start tag a """
+            params = dict(attrs)
+            link = params["href"]
+            if link.startswith("/torrent"):
+                self.current_item["desc_link"] = "".join((self.url, link))
+                self.save_item = "name"
+            elif link.startswith("magnet"):
+                self.current_item["link"] = link
 
-		def handle_data(self, data):
-			if self.td_counter == 0:
-				if self.in_name:
-					if not self.current_item.has_key('name'):
-						self.current_item['name'] = ''
-					self.current_item['name']+= data.strip()
-				else:
-					#Parse size
-					if 'Size' in data:
-						self.current_item['size'] = data[data.index("Size")+5:]
-						self.current_item['size'] = self.current_item['size'][:self.current_item['size'].index(',')]
-			elif self.td_counter == 1:
-				if not self.current_item.has_key('seeds'):
-					self.current_item['seeds'] = ''
-				self.current_item['seeds']+= data.strip()
-			elif self.td_counter == 2:
-				if not self.current_item.has_key('leech'):
-					self.current_item['leech'] = ''
-				self.current_item['leech']+= data.strip()
+        def handle_start_tag_font(self, attrs):
+            """ Handler for start tag font """
+            for attr in attrs:
+                if attr[1] == "detDesc":
+                    self.save_item = "size"
+                    break
 
-		def start_td(self,attr):
-			if isinstance(self.td_counter,int):
-				self.td_counter += 1
-				if self.td_counter > 3:
-					self.td_counter = None
-					# Display item
-					if self.current_item:
-						if self.current_item['id'] in PREVIOUS_IDS:
-							self.results = []
-							self.reset()
-							return
-						self.current_item['engine_url'] = self.url
-						if not self.current_item['seeds'].isdigit():
-							self.current_item['seeds'] = 0
-						if not self.current_item['leech'].isdigit():
-							self.current_item['leech'] = 0
-						prettyPrinter(self.current_item)
-						PREVIOUS_IDS.add(self.current_item['id'])
-						self.results.append('a')
-	def search(self, what, cat='all'):
-		ret = []
-		i = 0
-		order = 'se'
-		while True and i<11:
-			results = []
-			parser = self.SimpleSGMLParser(results, self.url)
-			dat = retrieve_url(self.url+'/search/%s/%d/7/%s' % (what, i, self.supported_categories[cat]))
-			parser.feed(dat)
-			parser.close()
-			if len(results) <= 0:
-				break
-			i += 1
+        def handle_start_tag_td(self, attrs):
+            """ Handler for start tag td """
+            for attr in attrs:
+                if attr[1] == "right":
+                    if "seeds" in self.current_item.keys():
+                        self.save_item = "leech"
+                    else:
+                        self.save_item = "seeds"
+                    break
+
+        def handle_starttag(self, tag, attrs):
+            """ Parser's start tag handler """
+            if self.current_item:
+                dispatcher = getattr(self, "_".join(("handle_start_tag", tag)), self.handle_start_tag_default)
+                dispatcher(attrs)
+
+            elif self.result_tbody:
+                if tag == "tr":
+                    self.current_item = {"engine_url" : self.url}
+
+            elif tag == "table":
+                self.result_table = "searchResult" == attrs[0][1]
+
+            elif self.add_query:
+                if self.result_query and tag == "a":
+                    if len(self.list_searches) < 10:
+                        self.list_searches.append(attrs[0][1])
+                    else:
+                        self.add_query = False
+                        self.result_query = False
+                elif tag == "div":
+                    self.result_query = "center" == attrs[0][1]
+
+
+        def handle_endtag(self, tag):
+            """ Parser's end tag handler """
+            if self.result_tbody:
+                if tag == "tr":
+                    prettyPrinter(self.current_item)
+                    self.current_item = None
+                elif tag == "font":
+                    self.save_item = None
+                elif tag == "table":
+                    self.result_table = self.result_tbody = False
+
+            elif self.result_table:
+                if tag == "thead":
+                    self.result_tbody = True
+                elif tag == "table":
+                    self.result_table = self.result_tbody = False
+
+            elif self.add_query and self.result_query:
+                if tag == "div":
+                    self.add_query = self.result_query = False
+
+        def handle_data(self, data):
+            """ Parser's data handler """
+            if self.save_item == "size":
+                temp_data = data.split()
+                if "Size" in temp_data:
+                    self.current_item[self.save_item] = temp_data[2]
+                elif "ULed" in temp_data:
+                    temp_string = self.current_item[self.save_item]
+                    self.current_item[self.save_item] = " ".join((temp_string, temp_data[0][:-1]))
+            elif self.save_item:
+                self.current_item[self.save_item] = data
+                self.save_item = None
+
+
+    def search(self, what, cat='all'):
+        """ Performs search """
+        connection = https("thepiratebay.se")
+
+        #prepare query. 7 is filtering by seeders
+        cat = cat.lower()
+        query = "/".join(("/search", what, "0", "7", self.supported_categories[cat]))
+
+        connection.request("GET", query)
+        response = connection.getresponse()
+        if response.status != 200:
+            return
+
+        list_searches = []
+        parser = self.MyHtmlParseWithBlackJack(list_searches, self.url)
+        parser.feed(response.read().decode('utf-8'))
+        parser.close()
+
+        parser.add_query = False
+        for search_query in list_searches:
+            connection.request("GET", search_query)
+            response = connection.getresponse()
+            parser.feed(response.read().decode('utf-8'))
+            parser.close()
+
+        connection.close()
+        return

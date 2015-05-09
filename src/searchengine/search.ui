@@ -20,6 +20,9 @@
       <widget class="QComboBox" name="comboCategory"/>
      </item>
      <item>
+      <widget class="QComboBox" name="selectEngine"/>
+     </item>
+     <item>
       <widget class="QPushButton" name="search_button">
        <property name="maximumSize">
         <size>

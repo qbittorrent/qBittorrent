@@ -1,0 +1,7 @@
+core.eol=lf
+* text eol=lf
+*.zip binary
+*.png binary
+*.ico binary
+*.qm binary
+*.icns binary

@@ -1,0 +1,69 @@
+<table class="torrentTable" cellpadding="0" cellspacing="0" style="-webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;">
+    <thead>
+        <tr id="torrentTableHeader">
+        </tr>
+    </thead>
+    <tbody id="myTable"></tbody>
+</table>
+
+<script type="text/javascript">
+
+    //create a context menu
+    var context_menu = new ContextMenu({
+        targets : '.menu-target',
+        menu : 'contextmenu',
+        actions : {
+            Delete : function (element, ref) {
+                deleteFN();
+            },
+            DeleteHD : function (element, ref) {
+                deleteHDFN();
+            },
+            Start : function (element, ref) {
+                startFN();
+            },
+            Pause : function (element, ref) {
+                pauseFN();
+            },
+            prioTop : function (element, ref) {
+                setPriorityFN('topPrio');
+            },
+            prioUp : function (element, ref) {
+                setPriorityFN('increasePrio');
+            },
+            prioDown : function (element, ref) {
+                setPriorityFN('decreasePrio');
+            },
+            prioBottom : function (element, ref) {
+                setPriorityFN('bottomPrio');
+            },
+            ForceRecheck : function (element, ref) {
+                recheckFN();
+            },
+            UploadLimit : function (element, ref) {
+                uploadLimitFN();
+            },
+            DownloadLimit : function (element, ref) {
+                downloadLimitFN();
+            },
+            SequentialDownload : function (element, ref) {
+                toggleSequentialDownloadFN();
+            },
+            FirstLastPiecePrio : function (element, ref) {
+                toggleFirstLastPiecePrioFN();
+            },
+            SuperSeeding : function (element, ref) {
+                setSuperSeedingFN(!ref.getItemChecked('SuperSeeding'));
+            },
+            ForceStart : function (element, ref) {
+                setForceStartFN(!ref.getItemChecked('ForceStart'));
+            }
+        },
+        offsets : {
+            x : -15,
+            y : 2
+        }
+    });
+
+    myTable.setup('myTable', context_menu);
+</script>

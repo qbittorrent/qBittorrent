@@ -1,0 +1,66 @@
+/*
+
+Tabs.css for Mocha UI
+
+Theme: Default
+
+Copyright:
+	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	
+License:
+	MIT-style license.
+
+Required by:
+	Tabs.js
+ 
+*/
+
+/* Toolbar Tabs */
+
+.toolbarTabs {	
+	padding: 0 5px 2px 2px;
+	background: url(../images/skin/tabs.gif) repeat-x;
+	background-position: left -70px;
+	overflow: visible;
+}
+
+.tab-menu {	
+	padding-top: 1px;
+	list-style:	none;
+	margin: 0;
+	padding: 0;
+	line-height: 16px;
+	font-size: 11px;
+}
+
+.tab-menu li {
+	display: block;
+	float: left;
+	margin:	0 0 5px 0;
+	cursor: pointer;	
+	background: url(../images/skin/tabs.gif) repeat-x;
+	background-position: left -35px;
+}
+
+.tab-menu li.selected {
+	background: url(../images/skin/tabs.gif) repeat-x;
+	background-position: left 0;
+}
+
+.tab-menu li a {
+	display: block;
+	margin-left: 8px;
+	padding: 6px 15px 5px 9px;
+	text-align: center;
+	font-weight: normal;
+	color: #181818;
+	background: url(../images/skin/tabs.gif) repeat-x;
+	background-position: right -35px;	
+}
+
+.tab-menu li.selected a {
+	color: #181818;
+	font-weight: bold;	
+	background: url(../images/skin/tabs.gif) repeat-x;
+	background-position: right 0;
+}

@@ -1,4 +1,4 @@
-#VERSION: 1.24
+#VERSION: 1.26
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without

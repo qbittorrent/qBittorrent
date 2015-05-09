@@ -1,5 +1,7 @@
-src/geoip/GeoIP.dat
+src/gui/geoip/GeoIP.dat
+src/gui/geoip/GeoIP.dat.gz
 src/qbittorrent
+src/qbittorrent-nox
 qbittorrent.pro.user*
 conf.pri
 Makefile
@@ -13,6 +15,10 @@ qrc_*.cpp
 ui_*.h
 *.moc
 src/lang/qbittorrent_*.qm
+.DS_Store
+.qmake.stash
+src/qbittorrent.app
+*.dmg
 #Autotools junk
 aclocal.m4
 autom4te.cache/*

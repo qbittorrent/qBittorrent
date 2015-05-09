@@ -1,4 +1,4 @@
-#VERSION: 1.02
+#VERSION: 1.03
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -28,7 +28,7 @@
 
 from novaprinter import prettyPrinter
 from helpers import retrieve_url, download_file
-import sgmllib
+import sgmllib3 as sgmllib
 import re
 
 class legittorrents(object):

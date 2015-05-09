@@ -41,7 +41,6 @@
 #include "searchtab.h"
 #include "supportedengines.h"
 
-class DownloadThread;
 class SearchEngine;
 class MainWindow;
 class LineEdit;
@@ -61,6 +60,7 @@ public:
   SearchEngine(MainWindow *mp_mainWindow);
   ~SearchEngine();
   QString selectedCategory() const;
+  QString selectedEngine() const;
 
   static qreal getPluginVersion(QString filePath) {
     QFile plugin(filePath);
@@ -99,18 +99,14 @@ protected slots:
   void readSearchOutput();
   void searchStarted();
   void updateNova();
+  void selectMultipleBox(const QString &text);
   void on_enginesButton_clicked();
   void propagateSectionResized(int index, int oldsize , int newsize);
   void saveResultsColumnsWidth();
   void downloadFinished(int exitcode, QProcess::ExitStatus);
   void fillCatCombobox();
+  void fillEngineComboBox();
   void searchTextEdited(QString);
-#ifdef Q_OS_WIN
-  bool addPythonPathToEnv();
-  void installPython();
-  void pythonDownloadSuccess(QString url, QString file_path);
-  void pythonDownloadFailure(QString url, QString error);
-#endif
 
 private slots:
   void on_goToDescBtn_clicked();
@@ -130,9 +126,6 @@ private:
   QList<QPointer<SearchTab> > all_tab; // To store all tabs
   const SearchCategories full_cat_names;
   MainWindow *mp_mainWindow;
-#ifdef Q_OS_WIN
-  bool has_python;
-#endif
 };
 
 #endif
