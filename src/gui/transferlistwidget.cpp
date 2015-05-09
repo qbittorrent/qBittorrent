@@ -852,7 +852,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
                 has_pause = true;
             }
         }
-        if (h.has_metadata() && BTSession->isFilePreviewPossible(hash) && !has_preview)
+        if (h.has_metadata() && !has_preview)
             has_preview = true;
         first = false;
         if (has_pause && has_start && has_force && has_preview && one_not_seed) break;

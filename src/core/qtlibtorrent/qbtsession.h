@@ -120,7 +120,6 @@ public:
     ~QBtSession();
     QTorrentHandle getTorrentHandle(const QString &hash) const;
     std::vector<libtorrent::torrent_handle> getTorrents() const;
-    bool isFilePreviewPossible(const QString& hash) const;
     qreal getPayloadDownloadRate() const;
     qreal getPayloadUploadRate() const;
     libtorrent::session_status getSessionStatus() const;
