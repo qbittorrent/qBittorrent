@@ -65,7 +65,7 @@
     </property>
     <widget class="QMenu" name="menuAuto_Shutdown_on_downloads_completion">
      <property name="title">
-      <string>&amp;When Downloads Done</string>
+      <string>On Downloads &amp;Done</string>
      </property>
      <addaction name="actionAutoShutdown_Disabled"/>
      <addaction name="actionAutoExit_qBittorrent"/>
@@ -376,7 +376,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Execution &amp;Log</string>
+    <string>&amp;Log</string>
    </property>
    <property name="toolTip">
     <string>Execution Log</string>
