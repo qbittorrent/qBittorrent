@@ -559,6 +559,9 @@ void TrackerFiltersList::trackerSuccess(const QString &hash, const QString &trac
             if (currentRow() == 2)
                 applyFilter(2);
         }
+        else {
+            m_errors.insert(hash, errored);
+        }
     }
 
     if (warned.contains(tracker)) {
@@ -568,6 +571,9 @@ void TrackerFiltersList::trackerSuccess(const QString &hash, const QString &trac
             item(3)->setText(tr("Warning (%1)").arg(m_warnings.size()));
             if (currentRow() == 3)
                 applyFilter(3);
+        }
+        else {
+            m_warnings.insert(hash, warned);
         }
     }
 }
