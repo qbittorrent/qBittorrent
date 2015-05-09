@@ -718,6 +718,10 @@ QString TrackerFiltersList::getHost(const QString &trakcer) const
     QUrl url(trakcer);
     QString longHost = url.host();
     QString tld = url.topLevelDomain();
+    // We get empty tld when it is invalid or an IPv4/IPv6 address,
+    // so just return the full host
+    if (tld.isEmpty())
+        return longHost;
     // We want the domain + tld. Subdomains should be disregarded
     int index = longHost.lastIndexOf('.', -(tld.size() + 1));
     if (index == -1)
