@@ -1396,7 +1396,7 @@ Optional Packages:
                           system one (default=shipped)
   --with-qjson=[system|shipped]
                           Use the shipped qjson library or the system one
-                          (default=shipped) (Qt4 only
+                          (default=shipped) (Qt4 only)
   --with-boost[=ARG]      use Boost library from a standard location
                           (ARG=yes), from the specified location (ARG=<path>),
                           or disable it (ARG=no) [ARG=yes]
