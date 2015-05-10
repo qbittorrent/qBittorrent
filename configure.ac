@@ -38,7 +38,7 @@ AC_ARG_WITH(qtsingleapplication,
 
 AC_ARG_WITH(qjson,
             [AS_HELP_STRING([--with-qjson=@<:@system|shipped@:>@],
-                            [Use the shipped qjson library or the system one (default=shipped) (Qt4 only])],
+                            [Use the shipped qjson library or the system one (default=shipped) (Qt4 only)])],
             [],
             [with_qjson=shipped])
 
