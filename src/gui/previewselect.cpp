@@ -59,8 +59,8 @@ PreviewSelect::PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const t
   previewList->setAlternatingRowColors(pref->useAlternatingRowColors());
   // Fill list in
   QVector<qreal> fp = torrent->filesProgress();
-  uint nbFiles = torrent->filesCount();
-  for (uint i = 0; i < nbFiles; ++i) {
+  int nbFiles = torrent->filesCount();
+  for (int i = 0; i < nbFiles; ++i) {
     QString fileName = torrent->fileName(i);
     if (fileName.endsWith(".!qB"))
       fileName.chop(4);
