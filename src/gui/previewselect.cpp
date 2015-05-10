@@ -60,8 +60,8 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
   // Fill list in
   std::vector<libtorrent::size_type> fp;
   h.file_progress(fp);
-  unsigned int nbFiles = h.num_files();
-  for (unsigned int i=0; i<nbFiles; ++i) {
+  int nbFiles = h.num_files();
+  for (int i=0; i<nbFiles; ++i) {
     QString fileName = h.filename_at(i);
     if (fileName.endsWith(".!qB"))
       fileName.chop(4);

@@ -732,8 +732,8 @@ void QTorrentHandle::prioritize_first_last_piece(bool b) const
 {
     if (!has_metadata()) return;
     // Download first and last pieces first for all media files in the torrent
-    const uint nbfiles = num_files();
-    for (uint index = 0; index < nbfiles; ++index) {
+    const int nbfiles = num_files();
+    for (int index = 0; index < nbfiles; ++index) {
         const QString path = filepath_at(index);
         const QString ext = fsutils::fileExtension(path);
         if (misc::isPreviewable(ext) && torrent_handle::file_priority(index) > 0) {
