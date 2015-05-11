@@ -251,15 +251,15 @@ AX_DEFINE_DIR([EXPAND_MANDIR], [mandir])
 
 # Original extract() function contributed by pmzqla
 # $*: Strings to parse
-# Set $DEFINES, $INCLUDES, $OTHER
+# Set $QBT_CONF_DEFINES, $QBT_CONF_INCLUDES, $QBT_CONF_EXTRA_CFLAGS
 extract() {
   if [[ -z "$*" ]]; then
     echo "Input string required"
     return 1
   fi
 
-  # Convert " -" to "\n" if not between quotes
-  string=$(echo " $*" | $SED -e 's: -:\n:g' -e 's:"\(.*\)\n\(.*\)":\"\1 -\2":g' -e "s:'\(.*\)\n\(.*\)':\'\1 -\2':g")
+  # Convert " -" to "\n" if not between quotes and remove possible leading white spaces
+  string=$(echo " $*" | $SED -e 's: -:\n:g' -e 's:"\(.*\)\n\(.*\)":\"\1 -\2":g' -e "s:'\(.*\)\n\(.*\)':\'\1 -\2':g" -e 's/^[[:space:]]*//')
   SAVEIFS=$IFS
   IFS=$(printf "\n\b")
   for i in $string; do
