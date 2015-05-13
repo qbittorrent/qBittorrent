@@ -26,7 +26,7 @@ AC_ARG_WITH(libtorrent-rasterbar0.16,
 
 AC_ARG_WITH(geoip-database-embedded,
             [AS_HELP_STRING([--with-geoip-database-embedded],
-                            [Embed the GeoIP database in the qBittorrent executable (please follow instructions in src/geoip/README) (default=no)])],
+                            [Embed the GeoIP database in the qBittorrent executable (please follow instructions in src/gui/geoip/README) (default=no)])],
             [],
             [with_geoip_database_embedded=no])
 

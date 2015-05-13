@@ -1390,7 +1390,7 @@ Optional Packages:
   --with-geoip-database-embedded
                           Embed the GeoIP database in the qBittorrent
                           executable (please follow instructions in
-                          src/geoip/README) (default=no)
+                          src/gui/geoip/README) (default=no)
   --with-qtsingleapplication=[system|shipped]
                           Use the shipped qtsingleapplication library or the
                           system one (default=shipped)
