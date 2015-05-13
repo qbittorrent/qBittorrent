@@ -113,11 +113,10 @@ options_imp::options_imp(QWidget *parent):
   if (!QSystemTrayIcon::isSystemTrayAvailable()) {
     checkShowSystray->setChecked(false);
     checkShowSystray->setEnabled(false);
+    label_trayIconStyle->setVisible(false);
+    comboTrayIcon->setVisible(false);
   }
-#if (!defined(Q_OS_UNIX) || defined(Q_OS_MAC))
-  label_trayIconStyle->setVisible(false);
-  comboTrayIcon->setVisible(false);
-#endif
+
 #if defined(QT_NO_OPENSSL)
   checkWebUiHttps->setVisible(false);
 #endif
@@ -270,7 +269,7 @@ options_imp::options_imp(QWidget *parent):
 
   // Adapt size
   show();
-  loadWindowState();  
+  loadWindowState();
 }
 
 void options_imp::initializeLanguageCombo()
@@ -281,7 +280,7 @@ void options_imp::initializeLanguageCombo()
   foreach (QString lang_file, lang_files) {
     QString localeStr = lang_file.mid(12); // remove "qbittorrent_"
     localeStr.chop(3); // Remove ".qm"
-    QLocale locale(localeStr);    
+    QLocale locale(localeStr);
     QString language_name = languageToLocalizedString(locale);
     comboI18n->addItem(/*QIcon(":/icons/flags/"+country+".png"), */language_name, localeStr);
     qDebug() << "Supported locale:" << localeStr;
@@ -790,7 +789,7 @@ void options_imp::loadOptions() {
   domainNameTxt->setText(pref->getDynDomainName());
   DNSUsernameTxt->setText(pref->getDynDNSUsername());
   DNSPasswordTxt->setText(pref->getDynDNSPassword());
-  // End Web UI  
+  // End Web UI
 }
 
 // return min & max ports
