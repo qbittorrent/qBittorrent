@@ -370,7 +370,7 @@ MainWindow::MainWindow(QWidget *parent)
         const QString prefUiStyle = pref->getUiStyle();
         if (QStyleFactory::keys().indexOf(prefUiStyle) >= 0) {
             ((QApplication*)QApplication::instance())->setStyle(prefUiStyle);
-            currUiStyle = prefUiStyle;
+            setCurrUiStyle(prefUiStyle);
         } else {
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
             const QString deftUiStyle = "Plastique";
