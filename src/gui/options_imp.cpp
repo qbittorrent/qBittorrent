@@ -186,6 +186,8 @@ options_imp::options_imp(QWidget *parent):
   connect(checkUPnP, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkUploadLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkDownloadLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkUploadLimitAlt, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkDownloadLimitAlt, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinUploadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinDownloadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinUploadLimitAlt, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
@@ -422,8 +424,9 @@ void options_imp::saveOptions() {
   pref->setuTPEnabled(checkuTP->isChecked());
   pref->setuTPRateLimited(checkLimituTPConnections->isChecked());
   pref->includeOverheadInLimits(checkLimitTransportOverhead->isChecked());
-  pref->setAltGlobalDownloadLimit(spinDownloadLimitAlt->value());
-  pref->setAltGlobalUploadLimit(spinUploadLimitAlt->value());
+  const QPair<int, int> alt_down_up_limit = getAltGlobalBandwidthLimits();
+  pref->setAltGlobalDownloadLimit(alt_down_up_limit.first);
+  pref->setAltGlobalUploadLimit(alt_down_up_limit.second);
   pref->setSchedulerEnabled(check_schedule->isChecked());
   pref->setSchedulerStartTime(schedule_from->time());
   pref->setSchedulerEndTime(schedule_to->time());
@@ -626,8 +629,29 @@ void options_imp::loadOptions() {
     checkUploadLimit->setChecked(false);
     spinUploadLimit->setEnabled(false);
   }
-  spinUploadLimitAlt->setValue(pref->getAltGlobalUploadLimit());
-  spinDownloadLimitAlt->setValue(pref->getAltGlobalDownloadLimit());
+
+  intValue = pref->getAltGlobalDownloadLimit();
+  if (intValue > 0) {
+    // Enabled
+    checkDownloadLimitAlt->setChecked(true);
+    spinDownloadLimitAlt->setEnabled(true);
+    spinDownloadLimitAlt->setValue(intValue);
+  } else {
+    // Disabled
+    checkDownloadLimitAlt->setChecked(false);
+    spinDownloadLimitAlt->setEnabled(false);
+  }
+  intValue = pref->getAltGlobalUploadLimit();
+  if (intValue != -1) {
+    // Enabled
+    checkUploadLimitAlt->setChecked(true);
+    spinUploadLimitAlt->setEnabled(true);
+    spinUploadLimitAlt->setValue(intValue);
+  } else {
+    // Disabled
+    checkUploadLimitAlt->setChecked(false);
+    spinUploadLimitAlt->setEnabled(false);
+  }
   // Options
   checkuTP->setChecked(pref->isuTPEnabled());
   checkLimituTPConnections->setChecked(pref->isuTPRateLimited());
@@ -827,6 +851,19 @@ QPair<int,int> options_imp::getGlobalBandwidthLimits() const {
   }
   if (checkUploadLimit->isChecked()) {
     UP = spinUploadLimit->value();
+  }
+  return qMakePair(DL, UP);
+}
+
+// Return alternate Download & Upload limits in kbps
+// [download,upload]
+QPair<int,int> options_imp::getAltGlobalBandwidthLimits() const {
+  int DL = -1, UP = -1;
+  if (checkDownloadLimitAlt->isChecked()) {
+    DL = spinDownloadLimitAlt->value();
+  }
+  if (checkUploadLimitAlt->isChecked()) {
+    UP = spinUploadLimitAlt->value();
   }
   return qMakePair(DL, UP);
 }
