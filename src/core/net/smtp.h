@@ -52,54 +52,74 @@ QT_END_NAMESPACE
 
 namespace Net
 {
+    class Smtp : public QObject
+    {
+        Q_OBJECT
 
-class Smtp : public QObject {
-  Q_OBJECT
+    public:
+        Smtp(QObject *parent = 0);
+        ~Smtp();
 
-public:
-  Smtp(QObject *parent = 0);
-  ~Smtp();
-  void sendMail(const QString &from, const QString &to, const QString &subject, const QString &body);
+        void sendMail(const QString &m_from, const QString &to, const QString &subject, const QString &body);
 
-private slots:
-  void readyRead();
+    private slots:
+        void readyRead();
 
-private:
-  QByteArray encode_mime_header(const QString& key, const QString& value, QTextCodec* latin1, const QByteArray& prefix=QByteArray());
-  void ehlo();
-  void helo();
-  void parseEhloResponse(const QByteArray& code, bool continued, const QString& line);
-  void authenticate();
-  void startTLS();
-  void authCramMD5(const QByteArray& challenge = QByteArray());
-  void authPlain();
-  void authLogin();
-  void logError(const QString &msg);
+    private:
+        enum States
+        {
+            Rcpt,
+            EhloSent,
+            HeloSent,
+            EhloDone,
+            EhloGreetReceived,
+            AuthRequestSent,
+            AuthSent,
+            AuthUsernameSent,
+            Authenticated,
+            StartTLSSent,
+            Data,
+            Init,
+            Body,
+            Quit,
+            Close
+        };
 
-private:
-  enum states { Rcpt, EhloSent, HeloSent, EhloDone, EhloGreetReceived, AuthRequestSent, AuthSent,
-                AuthUsernameSent, Authenticated, StartTLSSent, Data, Init, Body, Quit, Close };
-  enum AuthType { AuthPlain, AuthLogin, AuthCramMD5 };
+        enum AuthType
+        {
+            AuthPlain,
+            AuthLogin,
+            AuthCramMD5
+        };
 
-private:
-  QByteArray message;
+        QByteArray encodeMimeHeader(const QString &key, const QString &value, QTextCodec *latin1, const QByteArray &prefix = QByteArray());
+        void ehlo();
+        void helo();
+        void parseEhloResponse(const QByteArray &code, bool continued, const QString &line);
+        void authenticate();
+        void startTLS();
+        void authCramMD5(const QByteArray &challenge = QByteArray());
+        void authPlain();
+        void authLogin();
+        void logError(const QString &msg);
+
+        QByteArray m_message;
 #ifndef QT_NO_OPENSSL
-  QSslSocket *socket;
+        QSslSocket *m_socket;
 #else
-  QTcpSocket *socket;
+        QTcpSocket *m_socket;
 #endif
-  QString from;
-  QString rcpt;
-  QString response;
-  int state;
-  QHash<QString, QString> extensions;
-  QByteArray buffer;
-  bool use_ssl;
-  AuthType authType;
-  QString username;
-  QString password;
-};
-
+        QString m_from;
+        QString m_rcpt;
+        QString m_response;
+        int m_state;
+        QHash<QString, QString> m_extensions;
+        QByteArray m_buffer;
+        bool m_useSsl;
+        AuthType m_authType;
+        QString m_username;
+        QString m_password;
+    };
 }
 
 #endif

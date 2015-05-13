@@ -37,59 +37,57 @@ typedef QMap<QString, QString> QStringMap;
 
 namespace Http
 {
+    const QString HEADER_SET_COOKIE = "Set-Cookie";
+    const QString HEADER_CONTENT_TYPE = "Content-Type";
+    const QString HEADER_CONTENT_ENCODING = "Content-Encoding";
+    const QString HEADER_CONTENT_LENGTH = "Content-Length";
+    const QString HEADER_CACHE_CONTROL = "Cache-Control";
 
-const QString HEADER_SET_COOKIE = "Set-Cookie";
-const QString HEADER_CONTENT_TYPE = "Content-Type";
-const QString HEADER_CONTENT_ENCODING = "Content-Encoding";
-const QString HEADER_CONTENT_LENGTH = "Content-Length";
-const QString HEADER_CACHE_CONTROL = "Cache-Control";
+    const QString CONTENT_TYPE_CSS = "text/css; charset=UTF-8";
+    const QString CONTENT_TYPE_GIF = "image/gif";
+    const QString CONTENT_TYPE_HTML = "text/html; charset=UTF-8";
+    const QString CONTENT_TYPE_JS = "text/javascript; charset=UTF-8";
+    const QString CONTENT_TYPE_PNG = "image/png";
+    const QString CONTENT_TYPE_TXT = "text/plain; charset=UTF-8";
 
-const QString CONTENT_TYPE_CSS = "text/css; charset=UTF-8";
-const QString CONTENT_TYPE_GIF = "image/gif";
-const QString CONTENT_TYPE_HTML = "text/html; charset=UTF-8";
-const QString CONTENT_TYPE_JS = "text/javascript; charset=UTF-8";
-const QString CONTENT_TYPE_PNG = "image/png";
-const QString CONTENT_TYPE_TXT = "text/plain; charset=UTF-8";
+    struct Environment
+    {
+        QHostAddress clientAddress;
+    };
 
-struct Environment
-{
-    QHostAddress clientAddress;
-};
+    struct UploadedFile
+    {
+        QString filename; // original filename
+        QString type; // MIME type
+        QByteArray data; // File data
+    };
 
-struct UploadedFile
-{
-    QString filename; // original filename
-    QString type; // MIME type
-    QByteArray data; // File data
-};
+    struct Request
+    {
+        QString method;
+        QString path;
+        QStringMap headers;
+        QStringMap gets;
+        QStringMap posts;
+        QMap<QString, UploadedFile> files;
+    };
 
-struct Request
-{
-    QString method;
-    QString path;
-    QStringMap headers;
-    QStringMap gets;
-    QStringMap posts;
-    QMap<QString, UploadedFile> files;
-};
+    struct ResponseStatus
+    {
+        uint code;
+        QString text;
 
-struct ResponseStatus
-{
-    uint code;
-    QString text;
+        ResponseStatus(uint code = 200, const QString& text = "OK"): code(code), text(text) {}
+    };
 
-    ResponseStatus(uint code = 200, const QString& text = "OK"): code(code), text(text) {}
-};
+    struct Response
+    {
+        ResponseStatus status;
+        QStringMap headers;
+        QByteArray content;
 
-struct Response
-{
-    ResponseStatus status;
-    QStringMap headers;
-    QByteArray content;
-
-    Response(uint code = 200, const QString& text = "OK"): status(code, text) {}
-};
-
+        Response(uint code = 200, const QString& text = "OK"): status(code, text) {}
+    };
 }
 
 #endif // HTTP_TYPES_H
