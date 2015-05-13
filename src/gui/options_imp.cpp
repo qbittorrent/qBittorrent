@@ -61,7 +61,8 @@ using namespace libtorrent;
 
 // Constructor
 options_imp::options_imp(QWidget *parent):
-  QDialog(parent), m_refreshingIpFilter(false) {
+  QDialog(parent), m_refreshingIpFilter(false),
+  prevUiStyle(getCurrUiStyle()), currUiStyle(prevUiStyle) {
   qDebug("-> Constructing Options");
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
@@ -354,14 +355,9 @@ QSize options_imp::sizeFittingScreen() const {
   return size();
 }
 
-void options_imp::setUiStyle(const QString &uiStyle, bool userChoice) const {
+void options_imp::applyUiStyle(const QString &uiStyle) const {
   // switch to this style
   ((QApplication*)QApplication::instance())->setStyle(uiStyle);
-  // save UI style preference
-  if (userChoice) {
-      Preferences::instance()->setUiStyle(uiStyle);
-      ((MainWindow*)parent())->setCurrUiStyle(uiStyle);
-  }
 }
 
 void options_imp::saveOptions() {
@@ -390,6 +386,10 @@ void options_imp::saveOptions() {
   pref->setSplashScreenDisabled(isSlashScreenDisabled());
   pref->setConfirmOnExit(checkProgramExitConfirm->isChecked());
   pref->setPreventFromSuspend(preventFromSuspend());
+  if (currUiStyle != prevUiStyle) {
+    setCurrUiStyle(currUiStyle);
+    pref->setUiStyle(currUiStyle); // style is already applied in UI
+  }
 #ifdef Q_OS_WIN
   pref->setWinStartup(WinStartup());
   // Windows: file association settings
@@ -558,12 +558,11 @@ void options_imp::loadOptions() {
   checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
 #endif
   { // initialize UI Style combobox
-    const QString currUiStyle = ((MainWindow*)parent())->getCurrUiStyle();
     foreach (const QString &key, QStyleFactory::keys()) {
       comboUiStyle->addItem(key);
       if (key == currUiStyle) {
         comboUiStyle->setCurrentIndex(comboUiStyle->count()-1);
-        setUiStyle(key, false/*userChoice*/);
+        applyUiStyle(key);
       }
     }
     connect(comboUiStyle, SIGNAL(currentIndexChanged(const QString &)), SLOT(uiStyleComboChanged(const QString &)));
@@ -953,6 +952,7 @@ void options_imp::closeEvent(QCloseEvent *e) {
 }
 
 void options_imp::on_buttonBox_rejected() {
+  applyUiStyle(prevUiStyle); // revert UI selection
   setAttribute(Qt::WA_DeleteOnClose);
   reject();
 }
@@ -966,7 +966,9 @@ void options_imp::enableApplyButton() {
 }
 
 void options_imp::uiStyleComboChanged(const QString &uiStyle) {
-  setUiStyle(uiStyle, true/*userChoice*/);
+  applyUiStyle(uiStyle);
+  currUiStyle = uiStyle;
+  enableApplyButton();
 }
 
 void options_imp::enableProxy(int index) {
@@ -1399,4 +1401,12 @@ bool options_imp::schedTimesOk() {
   }
 
   return true;
+}
+
+const QString& options_imp::getCurrUiStyle() const {
+  return (((MainWindow*)parent())->getCurrUiStyle());
+}
+
+void options_imp::setCurrUiStyle(const QString& uiStyle) const {
+  ((MainWindow*)parent())->setCurrUiStyle(uiStyle);
 }

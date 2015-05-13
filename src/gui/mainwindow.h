@@ -77,8 +77,8 @@ public:
     TransferListWidget* getTransferList() const { return transferList; }
     QMenu* getTrayIconMenu();
     PropertiesWidget *getProperties() const { return properties; }
-    QString getCurrUiStyle() const { return currUiStyle; }
-    void setCurrUiStyle(const QString newUiStyle) { currUiStyle = newUiStyle; }
+    const QString& getCurrUiStyle() const { return currUiStyle; }
+    void setCurrUiStyle(const QString& newUiStyle) { currUiStyle = newUiStyle; }
 
 public slots:
     void trackerAuthenticationRequired(const QTorrentHandle& h);

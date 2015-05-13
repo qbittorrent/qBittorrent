@@ -150,18 +150,22 @@ private:
   QString webUiUsername() const;
   QString webUiPassword() const;
   QSize sizeFittingScreen() const;
-  void setUiStyle(const QString &uiStyle, bool userChoice) const;
+  void applyUiStyle(const QString &uiStyle) const;
 
 private:
   void setSslKey(const QByteArray &key, bool interactive = true);
   void setSslCertificate(const QByteArray &cert, bool interactive = true);
   bool schedTimesOk();
+  const QString& getCurrUiStyle() const;
+  void setCurrUiStyle(const QString& uiStyle) const;
 
 private:
   QButtonGroup choiceLanguage;
   QAbstractButton *applyButton;
   AdvancedSettings *advancedSettings;
   QList<QString> addedScanDirs;
+  QString prevUiStyle;
+  QString currUiStyle;
   // SSL Cert / key
   QByteArray m_sslCert, m_sslKey;
 
