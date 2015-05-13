@@ -35,7 +35,6 @@
 #include <QSystemTrayIcon>
 #include <QPointer>
 #include "ui_mainwindow.h"
-#include "mainwindow.h"
 #include "qtorrenthandle.h"
 #include "statsdialog.h"
 
