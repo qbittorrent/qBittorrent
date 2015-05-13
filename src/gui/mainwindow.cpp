@@ -1588,6 +1588,10 @@ void MainWindow::checkForActiveTorrents()
 QIcon MainWindow::getSystrayIcon() const
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    if (Preferences::instance()->useSystemIconTheme())
+        return QIcon::fromTheme("qbittorrent");
+#endif
+
     TrayIcon::Style style = Preferences::instance()->trayIconStyle();
     switch(style) {
     case TrayIcon::MONO_DARK:
@@ -1597,18 +1601,11 @@ QIcon MainWindow::getSystrayIcon() const
     default:
         break;
     }
-#endif
-    QIcon icon;
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    if (Preferences::instance()->useSystemIconTheme())
-        icon = QIcon::fromTheme("qbittorrent");
 
-#endif
-    if (icon.isNull()) {
-        icon.addFile(":/icons/skin/qbittorrent22.png", QSize(22, 22));
-        icon.addFile(":/icons/skin/qbittorrent16.png", QSize(16, 16));
-        icon.addFile(":/icons/skin/qbittorrent32.png", QSize(32, 32));
-    }
+    QIcon icon;
+    icon.addFile(":/icons/skin/qbittorrent16.png");
+    icon.addFile(":/icons/skin/qbittorrent22.png");
+    icon.addFile(":/icons/skin/qbittorrent32.png");
     return icon;
 }
 
