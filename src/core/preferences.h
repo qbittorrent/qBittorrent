@@ -509,6 +509,8 @@ public:
     void setTransHeaderState(const QByteArray &state);
     int getToolbarTextPosition() const;
     void setToolbarTextPosition(const int position);
+    QString getUiStyle();
+    void setUiStyle(const QString uiStyle);
 
     // Temp code.
     // See TorrentStatistics::loadStats() for details.

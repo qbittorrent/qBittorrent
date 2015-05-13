@@ -66,6 +66,7 @@ private slots:
   void on_buttonBox_rejected();
   void applySettings(QAbstractButton* button);
   void enableApplyButton();
+  void uiStyleComboChanged(const QString &uiStyle);
   void changePage(QListWidgetItem*, QListWidgetItem*);
   void loadWindowState();
   void saveWindowState() const;
@@ -149,6 +150,7 @@ private:
   QString webUiUsername() const;
   QString webUiPassword() const;
   QSize sizeFittingScreen() const;
+  void setUiStyle(const QString &uiStyle, bool userChoice) const;
 
 private:
   void setSslKey(const QByteArray &key, bool interactive = true);

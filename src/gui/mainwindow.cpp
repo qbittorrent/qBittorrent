@@ -46,6 +46,7 @@
 #include <QScrollBar>
 #include <QMimeData>
 #include <QCryptographicHash>
+#include <QStyleFactory>
 
 #include "mainwindow.h"
 #include "transferlistwidget.h"
@@ -365,6 +366,21 @@ MainWindow::MainWindow(QWidget *parent)
 #ifdef Q_OS_MAC
     qt_mac_set_dock_menu(getTrayIconMenu());
 #endif
+    { // uiStyle: initialize it for the whole app
+        const QString prefUiStyle = pref->getUiStyle();
+        if (QStyleFactory::keys().indexOf(prefUiStyle) >= 0) {
+            ((QApplication*)QApplication::instance())->setStyle(prefUiStyle);
+            currUiStyle = prefUiStyle;
+        } else {
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+            const QString deftUiStyle = "Plastique";
+#else
+            const QString deftUiStyle = "Fusion";
+#endif
+            ((QApplication*)QApplication::instance())->setStyle(deftUiStyle);
+            setCurrUiStyle(deftUiStyle);
+        }
+    }
 }
 
 MainWindow::~MainWindow()

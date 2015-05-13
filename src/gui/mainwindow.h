@@ -35,6 +35,7 @@
 #include <QSystemTrayIcon>
 #include <QPointer>
 #include "ui_mainwindow.h"
+#include "mainwindow.h"
 #include "qtorrenthandle.h"
 #include "statsdialog.h"
 
@@ -77,6 +78,8 @@ public:
     TransferListWidget* getTransferList() const { return transferList; }
     QMenu* getTrayIconMenu();
     PropertiesWidget *getProperties() const { return properties; }
+    QString getCurrUiStyle() const { return currUiStyle; }
+    void setCurrUiStyle(const QString newUiStyle) { currUiStyle = newUiStyle; }
 
 public slots:
     void trackerAuthenticationRequired(const QTorrentHandle& h);
@@ -208,6 +211,7 @@ private:
     bool has_python;
 #endif
     QMenu* toolbarMenu;
+    QString currUiStyle; // QStyle doesn't know its name, so we need to store it here
 
 private slots:
     void on_actionSearch_engine_triggered();

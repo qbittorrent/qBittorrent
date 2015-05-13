@@ -37,6 +37,7 @@
 #include <QDesktopWidget>
 #include <QTranslator>
 #include <QDesktopServices>
+#include <QStyleFactory>
 #include <QDebug>
 
 #include <libtorrent/version.hpp>
@@ -49,6 +50,7 @@
 #include "qbtsession.h"
 #include "iconprovider.h"
 #include "dnsupdater.h"
+#include "mainwindow.h"
 
 #ifndef QT_NO_OPENSSL
 #include <QSslKey>
@@ -352,6 +354,16 @@ QSize options_imp::sizeFittingScreen() const {
   return size();
 }
 
+void options_imp::setUiStyle(const QString &uiStyle, bool userChoice) const {
+  // switch to this style
+  ((QApplication*)QApplication::instance())->setStyle(uiStyle);
+  // save UI style preference
+  if (userChoice) {
+      Preferences::instance()->setUiStyle(uiStyle);
+      ((MainWindow*)parent())->setCurrUiStyle(uiStyle);
+  }
+}
+
 void options_imp::saveOptions() {
   applyButton->setEnabled(false);
   Preferences* const pref = Preferences::instance();
@@ -545,6 +557,17 @@ void options_imp::loadOptions() {
   checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
   checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
 #endif
+  { // initialize UI Style combobox
+    const QString currUiStyle = ((MainWindow*)parent())->getCurrUiStyle();
+    foreach (const QString &key, QStyleFactory::keys()) {
+      comboUiStyle->addItem(key);
+      if (key == currUiStyle) {
+        comboUiStyle->setCurrentIndex(comboUiStyle->count()-1);
+        setUiStyle(key, false/*userChoice*/);
+      }
+    }
+    connect(comboUiStyle, SIGNAL(currentIndexChanged(const QString &)), SLOT(uiStyleComboChanged(const QString &)));
+  }
   // End General preferences
   // Downloads preferences
   textSavePath->setText(fsutils::toNativePath(pref->getSavePath()));
@@ -940,6 +963,10 @@ bool options_imp::useAdditionDialog() const {
 
 void options_imp::enableApplyButton() {
   applyButton->setEnabled(true);
+}
+
+void options_imp::uiStyleComboChanged(const QString &uiStyle) {
+  setUiStyle(uiStyle, true/*userChoice*/);
 }
 
 void options_imp::enableProxy(int index) {
