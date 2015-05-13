@@ -1397,7 +1397,7 @@ Optional Packages:
                           system one (default=shipped)
   --with-qjson=[system|shipped]
                           Use the shipped qjson library or the system one
-                          (default=shipped) (Qt4 only
+                          (default=shipped) (Qt4 only)
   --with-kf5              Compile using KDE Frameworks 5 (default=no)
   --with-boost[=ARG]      use Boost library from a standard location
                           (ARG=yes), from the specified location (ARG=<path>),
@@ -4274,7 +4274,7 @@ fi
 # Detect OS
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether OS is FreeBSD" >&5
 $as_echo_n "checking whether OS is FreeBSD... " >&6; }
-if test "x$host_os" = "x*FreeBSD*"; then :
+if expr "$host_os" : ".*freebsd.*" > /dev/null; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
       LIBS="-lexecinfo $LIBS"
@@ -5827,15 +5827,15 @@ _ACEOF
 
 # Original extract() function contributed by pmzqla
 # $*: Strings to parse
-# Set $DEFINES, $INCLUDES, $OTHER
+# Set $QBT_CONF_DEFINES, $QBT_CONF_INCLUDES, $QBT_CONF_EXTRA_CFLAGS
 extract() {
   if [ -z "$*" ]; then
     echo "Input string required"
     return 1
   fi
 
-  # Convert " -" to "\n" if not between quotes
-  string=$(echo " $*" | $SED -e 's: -:\n:g' -e 's:"\(.*\)\n\(.*\)":\"\1 -\2":g' -e "s:'\(.*\)\n\(.*\)':\'\1 -\2':g")
+  # Convert " -" to "\n" if not between quotes and remove possible leading white spaces
+  string=$(echo " $*" | $SED -e 's: -:\n:g' -e 's:"\(.*\)\n\(.*\)":\"\1 -\2":g' -e "s:'\(.*\)\n\(.*\)':\'\1 -\2':g" -e 's/^[:space:]*//')
   SAVEIFS=$IFS
   IFS=$(printf "\n\b")
   for i in $string; do

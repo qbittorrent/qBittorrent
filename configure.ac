@@ -38,7 +38,7 @@ AC_ARG_WITH(qtsingleapplication,
 
 AC_ARG_WITH(qjson,
             [AS_HELP_STRING([--with-qjson=@<:@system|shipped@:>@],
-                            [Use the shipped qjson library or the system one (default=shipped) (Qt4 only])],
+                            [Use the shipped qjson library or the system one (default=shipped) (Qt4 only)])],
             [],
             [with_qjson=shipped])
 
@@ -80,7 +80,7 @@ AC_ARG_WITH(kf5,
 
 # Detect OS
 AC_MSG_CHECKING([whether OS is FreeBSD])
-AS_IF([test "x$host_os" = "x*FreeBSD*"],
+AS_IF([expr "$host_os" : ".*freebsd.*" > /dev/null],
       [AC_MSG_RESULT([yes])
       LIBS="-lexecinfo $LIBS"],
       [AC_MSG_RESULT([no])])
@@ -266,15 +266,15 @@ AX_DEFINE_DIR([EXPAND_MANDIR], [mandir])
 
 # Original extract() function contributed by pmzqla
 # $*: Strings to parse
-# Set $DEFINES, $INCLUDES, $OTHER
+# Set $QBT_CONF_DEFINES, $QBT_CONF_INCLUDES, $QBT_CONF_EXTRA_CFLAGS
 extract() {
   if [[ -z "$*" ]]; then
     echo "Input string required"
     return 1
   fi
 
-  # Convert " -" to "\n" if not between quotes
-  string=$(echo " $*" | $SED -e 's: -:\n:g' -e 's:"\(.*\)\n\(.*\)":\"\1 -\2":g' -e "s:'\(.*\)\n\(.*\)':\'\1 -\2':g")
+  # Convert " -" to "\n" if not between quotes and remove possible leading white spaces
+  string=$(echo " $*" | $SED -e 's: -:\n:g' -e 's:"\(.*\)\n\(.*\)":\"\1 -\2":g' -e "s:'\(.*\)\n\(.*\)':\'\1 -\2':g" -e 's/^[[:space:]]*//')
   SAVEIFS=$IFS
   IFS=$(printf "\n\b")
   for i in $string; do

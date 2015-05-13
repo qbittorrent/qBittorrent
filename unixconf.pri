@@ -46,35 +46,35 @@ nogui:systemd {
 # Menu Icon
 !nogui {
     menuicon.files = icons/qBittorrent.desktop
-    menuicon.path = $$PREFIX/share/applications/
+    menuicon.path = $$DATADIR/applications/
     INSTALLS += menuicon
 
     appdata.files = $$DIST_PATH/qBittorrent.appdata.xml
-    appdata.path = $$PREFIX/share/appdata/
+    appdata.path = $$DATADIR/appdata/
     INSTALLS += appdata
 
     icon16.files = $$DIST_PATH/menuicons/16x16/apps/qbittorrent.png
-    icon16.path = $$PREFIX/share/icons/hicolor/16x16/apps/
+    icon16.path = $$DATADIR/icons/hicolor/16x16/apps/
     icon22.files = $$DIST_PATH/menuicons/22x22/apps/qbittorrent.png
-    icon22.path = $$PREFIX/share/icons/hicolor/22x22/apps/
+    icon22.path = $$DATADIR/icons/hicolor/22x22/apps/
     icon24.files = $$DIST_PATH/menuicons/24x24/apps/qbittorrent.png
-    icon24.path = $$PREFIX/share/icons/hicolor/24x24/apps/
+    icon24.path = $$DATADIR/icons/hicolor/24x24/apps/
     icon32.files = $$DIST_PATH/menuicons/32x32/apps/qbittorrent.png
-    icon32.path = $$PREFIX/share/icons/hicolor/32x32/apps/
+    icon32.path = $$DATADIR/icons/hicolor/32x32/apps/
     icon36.files = $$DIST_PATH/menuicons/36x36/apps/qbittorrent.png
-    icon36.path = $$PREFIX/share/icons/hicolor/36x36/apps/
+    icon36.path = $$DATADIR/icons/hicolor/36x36/apps/
     icon48.files = $$DIST_PATH/menuicons/48x48/apps/qbittorrent.png
-    icon48.path = $$PREFIX/share/icons/hicolor/48x48/apps/
+    icon48.path = $$DATADIR/icons/hicolor/48x48/apps/
     icon64.files = $$DIST_PATH/menuicons/64x64/apps/qbittorrent.png
-    icon64.path = $$PREFIX/share/icons/hicolor/64x64/apps/
+    icon64.path = $$DATADIR/icons/hicolor/64x64/apps/
     icon72.files = $$DIST_PATH/menuicons/72x72/apps/qbittorrent.png
-    icon72.path = $$PREFIX/share/icons/hicolor/72x72/apps/
+    icon72.path = $$DATADIR/icons/hicolor/72x72/apps/
     icon96.files = $$DIST_PATH/menuicons/96x96/apps/qbittorrent.png
-    icon96.path = $$PREFIX/share/icons/hicolor/96x96/apps/
+    icon96.path = $$DATADIR/icons/hicolor/96x96/apps/
     icon128.files = $$DIST_PATH/menuicons/128x128/apps/qbittorrent.png
-    icon128.path = $$PREFIX/share/icons/hicolor/128x128/apps/
+    icon128.path = $$DATADIR/icons/hicolor/128x128/apps/
     icon192.files = $$DIST_PATH/menuicons/192x192/apps/qbittorrent.png
-    icon192.path = $$PREFIX/share/icons/hicolor/192x192/apps/
+    icon192.path = $$DATADIR/icons/hicolor/192x192/apps/
     INSTALLS += \
         icon16 \
         icon22 \
@@ -89,7 +89,7 @@ nogui:systemd {
         icon192
 
     pixmap.files = $$DIST_PATH/menuicons/128x128/apps/qbittorrent.png
-    pixmap.path = $$PREFIX/share/pixmaps/
+    pixmap.path = $$DATADIR/pixmaps/
     INSTALLS += pixmap
 }
 

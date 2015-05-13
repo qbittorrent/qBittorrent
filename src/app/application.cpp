@@ -222,10 +222,10 @@ bool Application::event(QEvent *ev)
             // Get the url instead
             path = static_cast<QFileOpenEvent *>(ev)->url().toString();
         qDebug("Received a mac file open event: %s", qPrintable(path));
-        if (running_)
+        if (m_running)
             processParams(QStringList(path));
         else
-            paramsQueue_.append(path);
+            m_paramsQueue.append(path);
         return true;
     }
     else {

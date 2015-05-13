@@ -73,6 +73,7 @@ include(core/core.pri)
 }
 
 # Resource files
+QMAKE_RESOURCE_FLAGS += -compress 9 -threshold 5
 RESOURCES += \
     icons.qrc \
     lang.qrc
