@@ -5294,8 +5294,8 @@ $as_echo "$as_me: Boost.System LIB: $BOOST_SYSTEM_LIB" >&6;}
       LIBS="$BOOST_SYSTEM_LIB $LIBS"
 fi
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to compile using libtorrent-raser 0.16.x" >&5
-$as_echo_n "checking whether to compile using libtorrent-raser 0.16.x... " >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to compile using libtorrent-rasterbar 0.16.x" >&5
+$as_echo_n "checking whether to compile using libtorrent-rasterbar 0.16.x... " >&6; }
 case "x$with_libtorrent_rasterbar0_16" in #(
   "xno") :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
