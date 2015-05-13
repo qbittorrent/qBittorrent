@@ -103,6 +103,7 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(command, toggleSequentialDownload);
     ADD_ACTION(command, toggleFirstLastPiecePrio);
     ADD_ACTION(command, setSuperSeeding);
+    ADD_ACTION(command, setForceStart);
     ADD_ACTION(command, delete);
     ADD_ACTION(command, deletePerm);
     ADD_ACTION(command, increasePrio);
@@ -551,6 +552,19 @@ void WebApplication::action_command_setSuperSeeding()
     }
 }
 
+void WebApplication::action_command_setForceStart()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("hashes" << "value");
+    bool value = request().posts["value"] == "true";
+    QStringList hashes = request().posts["hashes"].split("|");
+    foreach (const QString &hash, hashes) {
+        QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+        if (h.is_valid())
+            QBtSession::instance()->resumeTorrent(hash, value);
+    }
+}
+
 void WebApplication::action_command_delete()
 {
     CHECK_URI(0);
@@ -573,6 +587,12 @@ void WebApplication::action_command_increasePrio()
 {
     CHECK_URI(0);
     CHECK_PARAMETERS("hashes");
+
+    if (!Preferences::instance()->isQueueingSystemEnabled()) {
+        status(403, "Torrent queueing must be enabled");
+        return;
+    }
+
     QStringList hashes = request().posts["hashes"].split("|");
 
     std::priority_queue<QPair<int, QTorrentHandle>,
@@ -606,6 +626,12 @@ void WebApplication::action_command_decreasePrio()
 {
     CHECK_URI(0);
     CHECK_PARAMETERS("hashes");
+
+    if (!Preferences::instance()->isQueueingSystemEnabled()) {
+        status(403, "Torrent queueing must be enabled");
+        return;
+    }
+
     QStringList hashes = request().posts["hashes"].split("|");
 
     std::priority_queue<QPair<int, QTorrentHandle>,
@@ -640,6 +666,12 @@ void WebApplication::action_command_topPrio()
 {
     CHECK_URI(0);
     CHECK_PARAMETERS("hashes");
+
+    if (!Preferences::instance()->isQueueingSystemEnabled()) {
+        status(403, "Torrent queueing must be enabled");
+        return;
+    }
+
     foreach (const QString &hash, request().posts["hashes"].split("|")) {
         QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
         if (h.is_valid()) h.queue_position_top();
@@ -650,6 +682,12 @@ void WebApplication::action_command_bottomPrio()
 {
     CHECK_URI(0);
     CHECK_PARAMETERS("hashes");
+
+    if (!Preferences::instance()->isQueueingSystemEnabled()) {
+        status(403, "Torrent queueing must be enabled");
+        return;
+    }
+
     foreach (const QString &hash, request().posts["hashes"].split("|")) {
         QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
         if (h.is_valid()) h.queue_position_bottom();

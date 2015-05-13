@@ -243,6 +243,8 @@ bool QTorrentHandle::has_filtered_pieces() const
 
 int QTorrentHandle::num_files() const
 {
+    if (!has_metadata())
+        return -1;
 #if LIBTORRENT_VERSION_NUM < 10000
     return torrent_handle::get_torrent_info().num_files();
 #else
@@ -503,6 +505,11 @@ void QTorrentHandle::toggleFirstLastPiecePrio()
         prioritize_first_last_piece(!first_last_piece_first());
 }
 
+bool QTorrentHandle::is_forced() const
+{
+   return is_forced(status(0x0));
+}
+
 //
 // Setters
 //
@@ -515,10 +522,11 @@ void QTorrentHandle::pause() const
         torrent_handle::save_resume_data();
 }
 
-void QTorrentHandle::resume() const
+void QTorrentHandle::resume(const bool force) const
 {
     if (has_error())
         torrent_handle::clear_error();
+    torrent_handle::set_upload_mode(false);
 
     const QString torrent_hash = hash();
     TorrentPersistentData* const TorPersistent = TorrentPersistentData::instance();
@@ -533,7 +541,7 @@ void QTorrentHandle::resume() const
         if (!final_save_path.isEmpty())
             move_storage(final_save_path);
     }
-    torrent_handle::auto_managed(true);
+    torrent_handle::auto_managed(!force);
     torrent_handle::resume();
     if (has_persistant_error && temp_path_enabled)
         // Force recheck
@@ -799,6 +807,11 @@ QString QTorrentHandle::filepath_at(const libtorrent::torrent_info &info, unsign
 {
     return fsutils::fromNativePath(misc::toQStringU(info.files().file_path(index)));
 
+}
+
+bool QTorrentHandle::is_forced(const libtorrent::torrent_status &status)
+{
+    return !status.paused && !status.auto_managed;
 }
 
 

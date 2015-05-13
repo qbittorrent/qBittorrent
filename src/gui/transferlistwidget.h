@@ -61,6 +61,7 @@ public slots:
     void setRefreshInterval(int t);
     void setSelectedTorrentsLocation();
     void startSelectedTorrents();
+    void forceStartSelectedTorrents();
     void startVisibleTorrents();
     void pauseSelectedTorrents();
     void pauseVisibleTorrents();

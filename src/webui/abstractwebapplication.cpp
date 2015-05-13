@@ -95,6 +95,7 @@ AbstractWebApplication::~AbstractWebApplication()
 
 Http::Response AbstractWebApplication::processRequest(const Http::Request &request, const Http::Environment &env)
 {
+    session_ = 0;
     request_ = request;
     env_ = env;
 
@@ -269,6 +270,10 @@ void AbstractWebApplication::translateDocument(QString& data)
             }
             // Remove keyboard shortcuts
             translation.replace(mnemonic, "");
+
+            // Use HTML code for quotes to prevent issues with JS
+            translation.replace("'", "&#39;");
+            translation.replace("\"", "&#34;");
 
             data.replace(i, regex.matchedLength(), translation);
             i += translation.length();

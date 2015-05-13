@@ -96,6 +96,9 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       case TorrentModelItem::STATE_DOWNLOADING_META:
         display = tr("Downloading metadata", "used when loading a magnet link");
         break;
+      case TorrentModelItem::STATE_FORCED_DL:
+        display = tr("[F] Downloading", "used when the torrent is forced started. You probably shouldn't translate the F.");
+        break;
       case TorrentModelItem::STATE_ALLOCATING:
         display = tr("Allocating", "qBittorrent is allocating the files on disk");
         break;
@@ -105,6 +108,9 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       case TorrentModelItem::STATE_SEEDING:
       case TorrentModelItem::STATE_STALLED_UP:
         display = tr("Seeding", "Torrent is complete and in upload-only mode");
+        break;
+      case TorrentModelItem::STATE_FORCED_UP:
+        display = tr("[F] Seeding", "used when the torrent is forced started. You probably shouldn't translate the F.");
         break;
       case TorrentModelItem::STATE_QUEUED_DL:
       case TorrentModelItem::STATE_QUEUED_UP:

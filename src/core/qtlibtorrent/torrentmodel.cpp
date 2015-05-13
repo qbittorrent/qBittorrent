@@ -29,6 +29,8 @@
  */
 
 #include <QDebug>
+#include <QApplication>
+#include <QPalette>
 
 #include "torrentmodel.h"
 #include "torrentpersistentdata.h"
@@ -84,6 +86,14 @@ QIcon get_error_icon() {
     static QIcon cached = QIcon(":/icons/skin/error.png");
     return cached;
 }
+
+bool isDarkTheme()
+{
+    QPalette pal = QApplication::palette();
+    // QPalette::Base is used for the background of the Treeview
+    QColor color = pal.color(QPalette::Active, QPalette::Base);
+    return (color.lightness() < 127);
+}
 }
 
 TorrentStatusReport::TorrentStatusReport()
@@ -106,6 +116,9 @@ TorrentModelItem::TorrentModelItem(const QTorrentHandle &h)
 {
     if (m_name.isEmpty())
         m_name = h.name();
+    // If name is empty show the hash. This happens when magnet isn't retrieved.
+    if (m_name.isEmpty())
+        m_name = h.hash();
 }
 
 void TorrentModelItem::refreshStatus(libtorrent::torrent_status const& status) {
@@ -135,10 +148,16 @@ TorrentModelItem::State TorrentModelItem::state() const {
         case torrent_status::downloading_metadata:
             return STATE_DOWNLOADING_META;
         case torrent_status::downloading:
-            return m_lastStatus.download_payload_rate > 0 ? STATE_DOWNLOADING : STATE_STALLED_DL;
+            if (!m_torrent.is_forced(m_lastStatus))
+                return m_lastStatus.download_payload_rate > 0 ? STATE_DOWNLOADING : STATE_STALLED_DL;
+            else
+                return STATE_FORCED_DL;
         case torrent_status::finished:
         case torrent_status::seeding:
-            return m_lastStatus.upload_payload_rate > 0 ? STATE_SEEDING : STATE_STALLED_UP;
+            if (!m_torrent.is_forced(m_lastStatus))
+                return m_lastStatus.upload_payload_rate > 0 ? STATE_SEEDING : STATE_STALLED_UP;
+            else
+                return STATE_FORCED_UP;
         case torrent_status::queued_for_checking:
             return STATE_QUEUED_CHECK;
         case torrent_status::checking_resume_data:
@@ -157,6 +176,7 @@ QIcon TorrentModelItem::getIconByState(State state) {
     switch (state) {
     case STATE_DOWNLOADING:
     case STATE_DOWNLOADING_META:
+    case STATE_FORCED_DL:
         return get_downloading_icon();
     case STATE_ALLOCATING:
     case STATE_STALLED_DL:
@@ -164,6 +184,7 @@ QIcon TorrentModelItem::getIconByState(State state) {
     case STATE_STALLED_UP:
         return get_stalled_uploading_icon();
     case STATE_SEEDING:
+    case STATE_FORCED_UP:
         return get_uploading_icon();
     case STATE_PAUSED_DL:
         return get_paused_icon();
@@ -187,20 +208,32 @@ QIcon TorrentModelItem::getIconByState(State state) {
 }
 
 QColor TorrentModelItem::getColorByState(State state) {
+    bool dark = isDarkTheme();
     switch (state) {
     case STATE_DOWNLOADING:
     case STATE_DOWNLOADING_META:
+    case STATE_FORCED_DL:
         return QColor(34, 139, 34); // Forest Green
     case STATE_ALLOCATING:
     case STATE_STALLED_DL:
     case STATE_STALLED_UP:
-        return QColor(0, 0, 0); // Black
+        if (!dark)
+            return QColor(0, 0, 0); // Black
+        else
+            return QColor(255, 255, 255); // White
     case STATE_SEEDING:
-        return QColor(65, 105, 225); // Royal Blue
+    case STATE_FORCED_UP:
+        if (!dark)
+            return QColor(65, 105, 225); // Royal Blue
+        else
+            return QColor(100, 149, 237); // Cornflower Blue
     case STATE_PAUSED_DL:
         return QColor(250, 128, 114); // Salmon
     case STATE_PAUSED_UP:
-        return QColor(0, 0, 139); // Dark Blue
+        if (!dark)
+            return QColor(0, 0, 139); // Dark Blue
+        else
+            return QColor(65, 105, 225); // Royal Blue
     case STATE_PAUSED_MISSING:
         return QColor(255, 0, 0); // red
     case STATE_QUEUED_DL:
@@ -524,6 +557,11 @@ void TorrentModel::handleTorrentUpdate(const QTorrentHandle &h)
 {
     const int row = torrentRow(h.hash());
     if (row >= 0) {
+        // This line changes the torrent name when magnet is retrieved.
+        // When magnet link is added, "dn" parameter is used as name, but when metadata is retrieved
+        // we change the name with the retrieved torrent name.
+        m_torrents[row]->setData(TorrentModelItem::TR_NAME, h.name(), Qt::DisplayRole);
+
         m_torrents[row]->refreshStatus(h.status(torrent_handle::query_accurate_download_counters));
         notifyTorrentChanged(row);
     }
@@ -568,6 +606,7 @@ TorrentStatusReport TorrentModel::getTorrentStatusReport() const
     for ( ; it != itend; ++it) {
         switch((*it)->state()) {
         case TorrentModelItem::STATE_DOWNLOADING:
+        case TorrentModelItem::STATE_FORCED_DL:
             ++report.nb_active;
             ++report.nb_downloading;
             break;
@@ -585,6 +624,7 @@ TorrentStatusReport TorrentModel::getTorrentStatusReport() const
             break;
         }
         case TorrentModelItem::STATE_SEEDING:
+        case TorrentModelItem::STATE_FORCED_UP:
             ++report.nb_active;
             ++report.nb_seeding;
             ++report.nb_completed;
@@ -662,8 +702,10 @@ bool TorrentModel::inhibitSystem()
         switch((*it)->data(TorrentModelItem::TR_STATUS).toInt()) {
         case TorrentModelItem::STATE_DOWNLOADING:
         case TorrentModelItem::STATE_DOWNLOADING_META:
+        case TorrentModelItem::STATE_FORCED_DL:
         case TorrentModelItem::STATE_STALLED_DL:
         case TorrentModelItem::STATE_SEEDING:
+        case TorrentModelItem::STATE_FORCED_UP:
         case TorrentModelItem::STATE_STALLED_UP:
             return true;
         default:

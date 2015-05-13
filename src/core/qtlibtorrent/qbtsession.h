@@ -120,7 +120,6 @@ public:
     ~QBtSession();
     QTorrentHandle getTorrentHandle(const QString &hash) const;
     std::vector<libtorrent::torrent_handle> getTorrents() const;
-    bool isFilePreviewPossible(const QString& hash) const;
     qreal getPayloadDownloadRate() const;
     qreal getPayloadUploadRate() const;
     libtorrent::session_status getSessionStatus() const;
@@ -157,7 +156,7 @@ public slots:
     /* Needed by Web UI */
     void pauseAllTorrents();
     void pauseTorrent(const QString &hash);
-    void resumeTorrent(const QString &hash);
+    void resumeTorrent(const QString &hash, const bool force = false);
     void resumeAllTorrents();
     /* End Web UI */
     void preAllocateAllFiles(bool b);

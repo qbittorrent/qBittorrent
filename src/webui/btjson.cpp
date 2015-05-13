@@ -103,6 +103,7 @@ static const char KEY_TORRENT_SEQUENTIAL_DOWNLOAD[] = "seq_dl";
 static const char KEY_TORRENT_FIRST_LAST_PIECE_PRIO[] = "f_l_piece_prio";
 static const char KEY_TORRENT_LABEL[] = "label";
 static const char KEY_TORRENT_SUPER_SEEDING[] = "super_seeding";
+static const char KEY_TORRENT_FORCE_START[] = "force_start";
 
 // Tracker keys
 static const char KEY_TRACKER_URL[] = "url";
@@ -234,6 +235,7 @@ private:
  *   - "state": Torrent state
  *   - "seq_dl": Torrent sequential download state
  *   - "f_l_piece_prio": Torrent first last piece priority state
+ *   - "force_start": Torrent force start state
  */
 QByteArray btjson::getTorrents(QString filter, QString label,
                                QString sortedColumn, bool reverse, int limit, int offset)
@@ -582,6 +584,7 @@ QVariantMap toMap(const QTorrentHandle& h)
         ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = h.first_last_piece_first();
     ret[KEY_TORRENT_LABEL] = TorrentPersistentData::instance()->getLabel(h.hash());
     ret[KEY_TORRENT_SUPER_SEEDING] = status.super_seeding;
+    ret[KEY_TORRENT_FORCE_START] = h.is_forced(status);
 
     return ret;
 }
@@ -736,6 +739,17 @@ QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantM
     if (fullUpdate) {
         lastAcceptedData.clear();
         syncData = data;
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0) && QT_VERSION < QT_VERSION_CHECK(5, 5, 0))
+        // QJsonDocument::fromVariant() supports QVariantHash only
+        // since Qt5.5, so manually convert data["torrents"]
+        QVariantMap torrentsMap;
+        QVariantHash torrents = data["torrents"].toHash();
+        foreach (const QString &key, torrents.keys())
+            torrentsMap[key] = torrents[key];
+        syncData["torrents"] = torrentsMap;
+#endif
+
         syncData[KEY_FULL_UPDATE] = true;
     }
 

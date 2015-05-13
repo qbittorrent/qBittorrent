@@ -817,10 +817,10 @@ void QBtSession::pauseTorrent(const QString &hash) {
     }
 }
 
-void QBtSession::resumeTorrent(const QString &hash) {
+void QBtSession::resumeTorrent(const QString &hash, const bool force) {
     QTorrentHandle h = getTorrentHandle(hash);
-    if (h.is_paused()) {
-        h.resume();
+    if (h.is_paused() || (h.is_forced() != force)) {
+        h.resume(force);
         emit resumedTorrent(h);
     }
 }
@@ -1692,21 +1692,6 @@ void QBtSession::saveFastResumeData() {
             delete a;
         }
     }
-}
-
-bool QBtSession::isFilePreviewPossible(const QString &hash) const {
-    // See if there are supported files in the torrent
-    const QTorrentHandle h = getTorrentHandle(hash);
-    if (!h.is_valid() || !h.has_metadata()) {
-        return false;
-    }
-    const unsigned int nbFiles = h.num_files();
-    for (unsigned int i=0; i<nbFiles; ++i) {
-        const QString extension = fsutils::fileExtension(h.filename_at(i));
-        if (misc::isPreviewable(extension))
-            return true;
-    }
-    return false;
 }
 
 void QBtSession::addTorrentsFromScanFolder(QStringList &pathList)

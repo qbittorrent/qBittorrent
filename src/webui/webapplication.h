@@ -77,6 +77,7 @@ private:
     void action_command_toggleSequentialDownload();
     void action_command_toggleFirstLastPiecePrio();
     void action_command_setSuperSeeding();
+    void action_command_setForceStart();
     void action_command_delete();
     void action_command_deletePerm();
     void action_command_increasePrio();

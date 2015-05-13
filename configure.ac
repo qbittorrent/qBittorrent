@@ -18,6 +18,12 @@ AC_ARG_WITH(qt5,
             [],
             [with_qt5=no])
 
+AC_ARG_WITH(libtorrent-rasterbar0.16,
+            [AS_HELP_STRING([--with-libtorrent-rasterbar0.16],
+                            [Compile using libtorrent-rasterbar 0.16.x series (default=no)])],
+            [],
+            [with_libtorrent_rasterbar0_16=no])
+
 AC_ARG_WITH(geoip-database-embedded,
             [AS_HELP_STRING([--with-geoip-database-embedded],
                             [Embed the GeoIP database in the qBittorrent executable (please follow instructions in src/geoip/README) (default=no)])],
@@ -30,6 +36,12 @@ AC_ARG_WITH(qtsingleapplication,
             [],
             [with_qtsingleapplication=shipped])
 
+AC_ARG_WITH(qjson,
+            [AS_HELP_STRING([--with-qjson=@<:@system|shipped@:>@],
+                            [Use the shipped qjson library or the system one (default=shipped) (Qt4 only)])],
+            [],
+            [with_qjson=shipped])
+
 AC_ARG_ENABLE(debug,
               [AS_HELP_STRING([--enable-debug],
                               [Enable debug build])],
@@ -41,6 +53,12 @@ AC_ARG_ENABLE(gui,
                               [Disable the GUI for headless running. Disables QtDBus and the GeoIP Database.])],
               [],
               [enable_gui=yes])
+
+AC_ARG_ENABLE(systemd,
+              [AS_HELP_STRING([--enable-systemd],
+                              [Install the systemd service file (headless only).])],
+              [],
+              [enable_systemd=no])
 
 AC_ARG_ENABLE(webui,
               [AS_HELP_STRING([--disable-webui],
@@ -56,13 +74,13 @@ AC_ARG_ENABLE(qt-dbus,
 
 # Detect OS
 AC_MSG_CHECKING([whether OS is FreeBSD])
-AS_IF([test "x$host_os" = "x*FreeBSD*"],
+AS_IF([expr "$host_os" : ".*freebsd.*" > /dev/null],
       [AC_MSG_RESULT([yes])
       LIBS="-lexecinfo $LIBS"],
       [AC_MSG_RESULT([no])])
 
-# Require 0.26 pkg-config
-PKG_PROG_PKG_CONFIG([0.26])
+# Require 0.23 pkg-config
+PKG_PROG_PKG_CONFIG([0.23])
 AS_IF([test "x$PKG_CONFIG" = "x"],
       [AC_MSG_ERROR([Could not find pkg-config])])
 
@@ -84,6 +102,7 @@ AC_MSG_CHECKING([whether to enable the GUI])
 AS_CASE(["x$enable_gui"],
         ["xyes"],
                [AC_MSG_RESULT([yes])
+               enable_systemd=[no]
                QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG nogui"],
         ["xno"],
               [AC_MSG_RESULT([no])
@@ -92,6 +111,17 @@ AS_CASE(["x$enable_gui"],
               QBT_ADD_CONFIG="$QBT_ADD_CONFIG nogui"],
         [AC_MSG_RESULT([$enable_gui])
         AC_MSG_ERROR([Unknown option "$enable_gui". Use either "yes" or "no".])])
+
+AC_MSG_CHECKING([whether to install the systemd service file])
+AS_CASE(["x$enable_systemd"],
+        ["xyes"],
+               [AC_MSG_RESULT([yes])
+               QBT_ADD_CONFIG="$QBT_ADD_CONFIG systemd"],
+        ["xno"],
+              [AC_MSG_RESULT([no])
+              QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG systemd"],
+        [AC_MSG_RESULT([$enable_systemd])
+        AC_MSG_ERROR([Unknown option "$enable_systemd". Use either "yes" or "no".])])
 
 AC_MSG_CHECKING([whether to enable the WebUI])
 AS_CASE(["x$enable_webui"],
@@ -151,6 +181,23 @@ AS_IF([test "x$BOOST_SYSTEM_LIB" = "x"],
       [AC_MSG_NOTICE([Boost.System LIB: $BOOST_SYSTEM_LIB])
       LIBS="$BOOST_SYSTEM_LIB $LIBS"])
 
+AC_MSG_CHECKING([whether to compile using libtorrent-raser 0.16.x])
+AS_CASE(["x$with_libtorrent_rasterbar0_16"],
+        ["xno"],
+              [AC_MSG_RESULT([no])
+              PKG_CHECK_MODULES(libtorrent,
+                               [libtorrent-rasterbar >= 1.0.0],
+                               [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
+                               LIBS="$libtorrent_LIBS $LIBS"])],
+        ["xyes"],
+               [AC_MSG_RESULT([yes])
+               PKG_CHECK_MODULES(libtorrent,
+                                [libtorrent-rasterbar >= 0.16.0],
+                                [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
+                                LIBS="$libtorrent_LIBS $LIBS"])],
+        [AC_MSG_RESULT([$with_libtorrent_rasterbar0_16])
+        AC_MSG_ERROR([Unknown option "$with_libtorrent_rasterbar0_16". Use either "yes" or "no".])])
+
 AC_MSG_CHECKING([whether to embed the GeoIP database])
 AS_CASE(["x$with_geoip_database_embedded"],
         ["xno"],
@@ -173,15 +220,27 @@ AS_CASE(["x$with_qtsingleapplication"],
         [AC_MSG_RESULT([$with_qtsingleapplication])
         AC_MSG_ERROR([Unknown option "$with_qtsingleapplication". Use either "system" or "shipped".])])
 
+AS_IF([test "x$with_qt5" = "xno"],
+      [AC_MSG_CHECKING([which qjson to use])
+      AS_CASE(["x$with_qjson"],
+              ["xshipped"],
+                         [AC_MSG_RESULT([shipped])
+                         QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG usesystemqjson"],
+              ["xsystem"],
+                         [AC_MSG_RESULT([system])
+                         PKG_CHECK_MODULES(qjson,
+                                          [QJson >= 0.8.1],
+                                          [CPPFLAGS="$qjson_CFLAGS $CPPFLAGS"
+                                          LIBS="$qjson_LIBS $LIBS"])
+                         QBT_ADD_CONFIG="$QBT_ADD_CONFIG usesystemqjson"],
+              [AC_MSG_RESULT([$with_qjson])
+              AC_MSG_ERROR([Unknown option "$with_qjson". Use either "system" or "shipped".])])
+     ])
+
 PKG_CHECK_MODULES(zlib,
                  [zlib],
                  [CPPFLAGS="$zlib_CFLAGS $CPPFLAGS"
                  LIBS="$zlib_LIBS $LIBS"])
-
-PKG_CHECK_MODULES(libtorrent,
-                 [libtorrent-rasterbar >= 0.16.0],
-                 [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
-                 LIBS="$libtorrent_LIBS $LIBS"])
 
 # These are required because autoconf doesn't expand these **particular**
 # vars automatically. And qmake cannot autoexpand them.
@@ -192,15 +251,15 @@ AX_DEFINE_DIR([EXPAND_MANDIR], [mandir])
 
 # Original extract() function contributed by pmzqla
 # $*: Strings to parse
-# Set $DEFINES, $INCLUDES, $OTHER
+# Set $QBT_CONF_DEFINES, $QBT_CONF_INCLUDES, $QBT_CONF_EXTRA_CFLAGS
 extract() {
   if [[ -z "$*" ]]; then
     echo "Input string required"
     return 1
   fi
 
-  # Convert " -" to "\n" if not between quotes
-  string=$(echo " $*" | $SED -e 's: -:\n:g' -e 's:"\(.*\)\n\(.*\)":\"\1 -\2":g' -e "s:'\(.*\)\n\(.*\)':\'\1 -\2':g")
+  # Convert " -" to "\n" if not between quotes and remove possible leading white spaces
+  string=$(echo " $*" | $SED -e 's: -:\n:g' -e 's:"\(.*\)\n\(.*\)":\"\1 -\2":g' -e "s:'\(.*\)\n\(.*\)':\'\1 -\2':g" -e 's/^[[:space:]]*//')
   SAVEIFS=$IFS
   IFS=$(printf "\n\b")
   for i in $string; do
@@ -227,13 +286,15 @@ AC_SUBST(QBT_ADD_DEFINES)
 AC_SUBST(QBT_REMOVE_DEFINES)
 
 AC_OUTPUT(conf.pri)
+AS_IF([test "x$enable_systemd" = "xyes"],
+      [AC_OUTPUT(dist/unix/systemd/qbittorrent-nox.service)])
 
 
 
 AC_MSG_NOTICE([Running qmake to generate the makefile...])
 CONFDIR="$( cd "$( dirname "$0" )" && pwd )"
 
-$QT_QMAKE [$CONFDIR]/qbittorrent.pro
+$QT_QMAKE -r [$CONFDIR]/qbittorrent.pro
 
 ret="$?"
 
