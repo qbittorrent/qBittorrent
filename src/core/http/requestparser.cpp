@@ -79,9 +79,8 @@ RequestParser::ErrorCode RequestParser::parseHttpRequest(const QByteArray& data,
     }
 
     // Parse HTTP request message
-    int content_length = 0;
     if (m_request.headers.contains("content-length")) {
-        content_length = m_request.headers["content-length"].toInt();
+        int content_length = m_request.headers["content-length"].toInt();
         if (content_length > static_cast<int>(m_maxContentLength)) {
             qWarning() << Q_FUNC_INFO << "bad request: message too long";
             return BadRequest;

@@ -1253,9 +1253,9 @@ void QBtSession::loadTorrentTempData(QTorrentHandle &h, QString savePath, bool m
 
             // Update file names
             const QStringList files_path = TorrentTempData::getFilesPath(hash);
-            bool force_recheck = false;
             QDir  base_dir(h.save_path());
             if (files_path.size() == h.num_files()) {
+                bool force_recheck = false;
                 for (int i=0; i<h.num_files(); ++i) {
                     const QString &path = files_path.at(i);
                     if (!force_recheck && base_dir.exists(path))
@@ -2209,15 +2209,7 @@ void QBtSession::handleTorrentFinishedAlert(libtorrent::torrent_finished_alert* 
             qDebug("Emitting finishedTorrent() signal");
             emit finishedTorrent(h);
             qDebug("Received finished alert for %s", qPrintable(h.name()));
-#ifndef DISABLE_GUI
-            bool will_shutdown = (pref->shutdownWhenDownloadsComplete() ||
-                                  pref->shutdownqBTWhenDownloadsComplete() ||
-                                  pref->suspendWhenDownloadsComplete() ||
-                                  pref->hibernateWhenDownloadsComplete())
-                    && !hasDownloadingTorrents();
-#else
-            bool will_shutdown = false;
-#endif
+
             // AutoRun program
             if (pref->isAutoRunEnabled())
                 autoRunExternalProgram(h);
@@ -2227,8 +2219,15 @@ void QBtSession::handleTorrentFinishedAlert(libtorrent::torrent_finished_alert* 
             // Mail notification
             if (pref->isMailNotificationEnabled())
                 sendNotificationEmail(h);
+
 #ifndef DISABLE_GUI
             // Auto-Shutdown
+            bool will_shutdown = (pref->shutdownWhenDownloadsComplete() ||
+                                  pref->shutdownqBTWhenDownloadsComplete() ||
+                                  pref->suspendWhenDownloadsComplete() ||
+                                  pref->hibernateWhenDownloadsComplete())
+                    && !hasDownloadingTorrents();
+
             if (will_shutdown) {
                 bool suspend = pref->suspendWhenDownloadsComplete();
                 bool hibernate = pref->hibernateWhenDownloadsComplete();
