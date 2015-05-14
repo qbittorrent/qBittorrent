@@ -110,11 +110,11 @@ void SearchEngine::fillCatCombobox() {
 
 void SearchEngine::fillEngineComboBox() {
     selectEngine->clear();
-    selectEngine->addItem("All enabled", QVariant("enabled"));
-    selectEngine->addItem("All engines", QVariant("all"));
+    selectEngine->addItem(tr("All enabled"), QVariant("enabled"));
+    selectEngine->addItem(tr("All engines"), QVariant("all"));
     foreach (QString engi, supported_engines->enginesEnabled())
         selectEngine->addItem(engi, QVariant(engi));
-    selectEngine->addItem("Multiple...", QVariant("multi"));
+    selectEngine->addItem(tr("Multiple..."), QVariant("multi"));
 }
 
 QString SearchEngine::selectedCategory() const {
@@ -159,7 +159,7 @@ void SearchEngine::tab_changed(int t)
 }
 
 void SearchEngine::selectMultipleBox(const QString &text) {
-    if (text == "Multiple...") on_enginesButton_clicked();
+    if (text == tr("Multiple...")) on_enginesButton_clicked();
 }
 
 void SearchEngine::on_enginesButton_clicked() {
