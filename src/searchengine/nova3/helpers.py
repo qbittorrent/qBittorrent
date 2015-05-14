@@ -36,7 +36,7 @@ import socks
 import re
 
 # Some sites blocks default python User-agent
-user_agent = 'Mozilla/5.0'
+user_agent = 'Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0'
 headers    = {'User-Agent': user_agent}
 # SOCKS5 Proxy support
 if "sock_proxy" in os.environ and len(os.environ["sock_proxy"].strip()) > 0:

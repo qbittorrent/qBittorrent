@@ -191,9 +191,8 @@ QNetworkReply* DownloadThread::downloadUrl(const QString &url, const QList<QNetw
   qDebug("url is %s", qPrintable(url));
   const QUrl qurl = QUrl::fromEncoded(url.toUtf8());
   QNetworkRequest request(qurl);
-  // Spoof Firefox 3.5 user agent to avoid
-  // Web server banning
-  request.setRawHeader("User-Agent", "Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5");
+  // Spoof Firefox 38 user agent to avoid web server banning
+  request.setRawHeader("User-Agent", "Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0");
   qDebug("Downloading %s...", request.url().toEncoded().data());
   qDebug("%d cookies for this URL", m_networkManager.cookieJar()->cookiesForUrl(url).size());
   for (int i=0; i<m_networkManager.cookieJar()->cookiesForUrl(url).size(); ++i) {
