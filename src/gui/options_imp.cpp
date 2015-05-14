@@ -50,7 +50,6 @@
 #include "qbtsession.h"
 #include "iconprovider.h"
 #include "dnsupdater.h"
-#include "mainwindow.h"
 #include "application.h"
 
 #ifndef QT_NO_OPENSSL
