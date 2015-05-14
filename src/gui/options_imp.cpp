@@ -529,16 +529,20 @@ void options_imp::loadOptions() {
   const Preferences* const pref = Preferences::instance();
   setLocale(pref->getLocale());
   checkAltRowColors->setChecked(pref->useAlternatingRowColors());
-  checkShowSystray->setChecked(pref->systrayIntegration());
+
   checkShowSplash->setChecked(!pref->isSplashScreenDisabled());
-  if (checkShowSystray->isChecked()) {
-    checkCloseToSystray->setChecked(pref->closeToTray());
-    checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
-    checkStartMinimized->setChecked(pref->startMinimized());
-  }
-  comboTrayIcon->setCurrentIndex(pref->trayIconStyle());
+  checkStartMinimized->setChecked(pref->startMinimized());
   checkProgramExitConfirm->setChecked(pref->confirmOnExit());
+
+  checkShowSystray->setChecked(pref->systrayIntegration());
+  if (checkShowSystray->isChecked()) {
+    checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
+    checkCloseToSystray->setChecked(pref->closeToTray());
+    comboTrayIcon->setCurrentIndex(pref->trayIconStyle());
+  }
+
   checkPreventFromSuspend->setChecked(pref->preventFromSuspend());
+
 #ifdef Q_OS_WIN
   checkStartup->setChecked(pref->WinStartup());
   // Windows: file association settings
