@@ -301,7 +301,7 @@ void Application::initializeUiStyle() {
         setStyle(prefUiStyle);
         currUiStyle = prefUiStyle;
     } else { // preference not set, or chosen style not found on the system
-        currUiStyle = "System Default";
+        currUiStyle = tr("System Default");
     }
     // cascaded style sheets if set earlier would have prevented us from reading the system default style name
     setStyleSheet("QStatusBar::item { border-width: 0; margin: 0; }");

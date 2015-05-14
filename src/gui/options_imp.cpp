@@ -358,7 +358,7 @@ QSize options_imp::sizeFittingScreen() const {
 
 void options_imp::applyUiStyle(const QString &uiStyle) const {
   // switch to this style (also may be string shown in the combobox)
-  if (!uiStyle.startsWith("System Default"))
+  if (!uiStyle.startsWith(tr("System Default")))
     myApp()->setStyle(uiStyle);
   else
     myApp()->setStyle(myApp()->getDeftUiStyle());
@@ -562,7 +562,7 @@ void options_imp::loadOptions() {
   checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
 #endif
   { // initialize UI Style combobox
-    comboUiStyle->addItem(QString("System Default (%1)").arg(myApp()->getDeftUiStyle()));
+    comboUiStyle->addItem(QString("%1 (%2)").arg(tr("System Default")).arg(myApp()->getDeftUiStyle()));
     foreach (const QString &key, QStyleFactory::keys()) {
       comboUiStyle->addItem(key);
       if (key == currUiStyle) {
@@ -971,10 +971,10 @@ void options_imp::enableApplyButton() {
 
 void options_imp::uiStyleComboChanged(const QString &uiStyle) {
   applyUiStyle(uiStyle);
-  if (!uiStyle.startsWith("System Default"))
+  if (!uiStyle.startsWith(tr("System Default")))
     currUiStyle = uiStyle;
   else
-    currUiStyle = "System Default";
+    currUiStyle = tr("System Default");
   enableApplyButton();
 }
 
