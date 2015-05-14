@@ -51,6 +51,7 @@
 #include "iconprovider.h"
 #include "dnsupdater.h"
 #include "mainwindow.h"
+#include "application.h"
 
 #ifndef QT_NO_OPENSSL
 #include <QSslKey>
@@ -62,7 +63,7 @@ using namespace libtorrent;
 // Constructor
 options_imp::options_imp(QWidget *parent):
   QDialog(parent), m_refreshingIpFilter(false),
-  prevUiStyle(getCurrUiStyle()), currUiStyle(prevUiStyle) {
+  prevUiStyle(myApp()->getCurrUiStyle()), currUiStyle(prevUiStyle) {
   qDebug("-> Constructing Options");
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
@@ -356,8 +357,11 @@ QSize options_imp::sizeFittingScreen() const {
 }
 
 void options_imp::applyUiStyle(const QString &uiStyle) const {
-  // switch to this style
-  ((QApplication*)QApplication::instance())->setStyle(uiStyle);
+  // switch to this style (also may be string shown in the combobox)
+  if (!uiStyle.startsWith("System Default"))
+    myApp()->setStyle(uiStyle);
+  else
+    myApp()->setStyle(myApp()->getDeftUiStyle());
 }
 
 void options_imp::saveOptions() {
@@ -387,7 +391,7 @@ void options_imp::saveOptions() {
   pref->setConfirmOnExit(checkProgramExitConfirm->isChecked());
   pref->setPreventFromSuspend(preventFromSuspend());
   if (currUiStyle != prevUiStyle) {
-    setCurrUiStyle(currUiStyle);
+    myApp()->setCurrUiStyle(currUiStyle);
     pref->setUiStyle(currUiStyle); // style is already applied in UI
   }
 #ifdef Q_OS_WIN
@@ -558,11 +562,11 @@ void options_imp::loadOptions() {
   checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
 #endif
   { // initialize UI Style combobox
+    comboUiStyle->addItem(QString("System Default (%1)").arg(myApp()->getDeftUiStyle()));
     foreach (const QString &key, QStyleFactory::keys()) {
       comboUiStyle->addItem(key);
       if (key == currUiStyle) {
         comboUiStyle->setCurrentIndex(comboUiStyle->count()-1);
-        applyUiStyle(key);
       }
     }
     connect(comboUiStyle, SIGNAL(currentIndexChanged(const QString &)), SLOT(uiStyleComboChanged(const QString &)));
@@ -967,7 +971,10 @@ void options_imp::enableApplyButton() {
 
 void options_imp::uiStyleComboChanged(const QString &uiStyle) {
   applyUiStyle(uiStyle);
-  currUiStyle = uiStyle;
+  if (!uiStyle.startsWith("System Default"))
+    currUiStyle = uiStyle;
+  else
+    currUiStyle = "System Default";
   enableApplyButton();
 }
 
@@ -1403,10 +1410,7 @@ bool options_imp::schedTimesOk() {
   return true;
 }
 
-const QString& options_imp::getCurrUiStyle() const {
-  return (((MainWindow*)parent())->getCurrUiStyle());
+Application* options_imp::myApp() {
+  return (Application*)qApp;
 }
 
-void options_imp::setCurrUiStyle(const QString& uiStyle) const {
-  ((MainWindow*)parent())->setCurrUiStyle(uiStyle);
-}

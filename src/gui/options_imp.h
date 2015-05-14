@@ -37,6 +37,7 @@
 enum DoubleClickAction {TOGGLE_PAUSE, OPEN_DEST, NO_ACTION};
 
 class AdvancedSettings;
+class Application;
 
 QT_BEGIN_NAMESPACE
 class QCloseEvent;
@@ -156,8 +157,7 @@ private:
   void setSslKey(const QByteArray &key, bool interactive = true);
   void setSslCertificate(const QByteArray &cert, bool interactive = true);
   bool schedTimesOk();
-  const QString& getCurrUiStyle() const;
-  void setCurrUiStyle(const QString& uiStyle) const;
+  static Application* myApp();
 
 private:
   QButtonGroup choiceLanguage;
