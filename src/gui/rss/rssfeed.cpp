@@ -118,7 +118,6 @@ void RssFeed::loadItemsFromDisk()
 }
 
 void RssFeed::addArticle(const RssArticlePtr& article) {
-  int lbIndex = -1;
   int max_articles = Preferences::instance()->getRSSMaxArticlesPerFeed();
 
   if (!m_articles.contains(article->guid())) {
@@ -132,7 +131,7 @@ void RssFeed::addArticle(const RssArticlePtr& article) {
     // Insertion sort
     RssArticleList::Iterator lowerBound = qLowerBound(m_articlesByDate.begin(), m_articlesByDate.end(), article, rssArticleDateRecentThan);
     m_articlesByDate.insert(lowerBound, article);
-    lbIndex = m_articlesByDate.indexOf(article);
+    int lbIndex = m_articlesByDate.indexOf(article);
     if (m_articlesByDate.size() > max_articles) {
       RssArticlePtr oldestArticle = m_articlesByDate.takeLast();
       m_articles.remove(oldestArticle->guid());

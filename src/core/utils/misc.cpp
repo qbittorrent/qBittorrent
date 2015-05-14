@@ -145,9 +145,7 @@ void Utils::Misc::shutdownComputer(ShutdownAction action)
     AppleEvent eventReply = {typeNull, NULL};
     AppleEvent appleEventToSend = {typeNull, NULL};
 
-    OSStatus error = noErr;
-
-    error = AECreateDesc(typeProcessSerialNumber, &kPSNOfSystemProcess,
+    OSStatus error = AECreateDesc(typeProcessSerialNumber, &kPSNOfSystemProcess,
                          sizeof(kPSNOfSystemProcess), &targetDesc);
 
     if (error != noErr)
