@@ -58,7 +58,7 @@ var loadTorrentData = function() {
                 $('total_downloaded').set('html', friendlyUnit(data.total_downloaded) +
                     " (" + friendlyUnit(data.total_downloaded_session) +
                     " QBT_TR(this session)QBT_TR" + ")");
-                $('total_wasted').set('html', data.total_wasted);
+                $('total_wasted').set('html', friendlyUnit(data.total_wasted));
                 temp = data.up_limit;
                 $('up_limit').set('html', temp == -1 ? "∞" : temp);
                 temp = data.dl_limit;
