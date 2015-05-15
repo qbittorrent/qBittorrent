@@ -120,6 +120,11 @@ options_imp::options_imp(QWidget *parent)
         comboTrayIcon->setVisible(false);
     }
 
+#ifdef Q_OS_MAC
+    checkMinimizeToSysTray->setVisible(false);
+    checkCloseToSystray->setVisible(false);
+#endif
+
 #if defined(QT_NO_OPENSSL)
     checkWebUiHttps->setVisible(false);
 #endif
