@@ -1,7 +1,8 @@
-#VERSION: 2.10
+#VERSION: 2.11
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 #              Arthur (custparasite@gmx.se)
+#              Diego de las Heras (diegodelasheras@gmail.com)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -35,7 +36,7 @@ from helpers import download_file
 
 class piratebay(object):
     """ Search engine class """
-    url = 'https://thepiratebay.se'
+    url = 'https://thepiratebay.gd'
     name = 'The Pirate Bay'
     supported_categories = {'all': '0', 'music': '100', 'movies': '200', 'games': '400', 'software': '300'}
 
@@ -69,6 +70,9 @@ class piratebay(object):
                 self.save_item = "name"
             elif link.startswith("magnet"):
                 self.current_item["link"] = link
+                # end of the 'name' item
+                self.current_item['name'] = self.current_item['name'].strip()
+                self.save_item = None
 
         def handle_start_tag_font(self, attrs):
             """ Handler for start tag font """
@@ -110,7 +114,6 @@ class piratebay(object):
                 elif tag == "div":
                     self.result_query = "center" == attrs[0][1]
 
-
         def handle_endtag(self, tag):
             """ Parser's end tag handler """
             if self.result_tbody:
@@ -134,21 +137,29 @@ class piratebay(object):
 
         def handle_data(self, data):
             """ Parser's data handler """
-            if self.save_item == "size":
-                temp_data = data.split()
-                if "Size" in temp_data:
-                    self.current_item[self.save_item] = temp_data[2]
-                elif "ULed" in temp_data:
-                    temp_string = self.current_item[self.save_item]
-                    self.current_item[self.save_item] = " ".join((temp_string, temp_data[0][:-1]))
-            elif self.save_item:
-                self.current_item[self.save_item] = data
-                self.save_item = None
+            if self.save_item:
+                if self.save_item == "size":
+                    temp_data = data.split()
+                    if "Size" in temp_data:
+                        self.current_item[self.save_item] = temp_data[2]
+                    elif "ULed" in temp_data:
+                        temp_string = self.current_item[self.save_item]
+                        self.current_item[self.save_item] = " ".join((temp_string, temp_data[0][:-1]))
+
+                elif self.save_item == "name":
+                    # names with special characters like '&' are splitted in several pieces
+                    if 'name' not in self.current_item:
+                        self.current_item['name'] = ''
+                    self.current_item['name'] += data
+
+                else:
+                    self.current_item[self.save_item] = data
+                    self.save_item = None
 
 
     def search(self, what, cat='all'):
         """ Performs search """
-        connection = https("thepiratebay.se")
+        connection = https("thepiratebay.gd")
 
         #prepare query. 7 is filtering by seeders
         cat = cat.lower()
