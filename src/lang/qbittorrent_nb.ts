@@ -3619,7 +3619,7 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2050"/>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation>[qBittorrent] %1 har gjordt seg ferdig med å laste ned</translation>
+        <translation>[qBittorrent] %1 har gjort seg ferdig med å laste ned</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2464"/>
@@ -3794,7 +3794,7 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation>qBittorrent er et fildelingsprogram. Når du kjører en torrent, vil dens data bli gjordt tilgjengelig for andre gjennom opplasting. Innhold som du deler er ene og alene ditt ansvar.
+        <translation>qBittorrent er et fildelingsprogram. Når du kjører en torrent, vil dens data bli gjort tilgjengelig for andre gjennom opplasting. Innhold som du deler er ene og alene ditt ansvar.
 
 Ingen flere notiser vil bli gitt.</translation>
     </message>
