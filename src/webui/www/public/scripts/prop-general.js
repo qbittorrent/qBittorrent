@@ -63,11 +63,10 @@ var loadTorrentData = function() {
                 $('up_limit').set('html', temp == -1 ? "∞" : temp);
                 temp = data.dl_limit;
                 $('dl_limit').set('html', temp == -1 ? "∞" : temp);
-                temp = friendlyDuration(status.active_time);
-                if (status.is_seed)
-                    temp += " (" + "QBT_TR(Seeded for %1)QBT_TR".replace("%1", status.seeding_time) + ")";
+                temp = friendlyDuration(data.time_elapsed) +
+                    " (" + "QBT_TR(Seeded for %1)QBT_TR".replace("%1", friendlyDuration(data.seeding_time)) + ")";
                 $('time_elapsed').set('html', temp);
-                temp = data.nb_connections + " (" + "QBT_TR(%1 max)QBT_TR".replace("%1", status.nb_connections_limit) + ")";
+                temp = data.nb_connections + " (" + "QBT_TR(%1 max)QBT_TR".replace("%1", data.nb_connections_limit) + ")";
                 $('nb_connections').set('html', temp);
                 $('share_ratio').set('html', data.share_ratio.toFixed(2));
             }
