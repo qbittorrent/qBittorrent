@@ -92,6 +92,7 @@ QByteArray prefjson::getPreferences()
   data["up_limit"] = pref->getGlobalUploadLimit();
   data["max_connec"] = pref->getMaxConnecs();
   data["max_connec_per_torrent"] = pref->getMaxConnecsPerTorrent();
+  data["max_uploads"] = pref->getMaxUploads();
   data["max_uploads_per_torrent"] = pref->getMaxUploadsPerTorrent();
   data["enable_utp"] = pref->isuTPEnabled();
   data["limit_utp_rate"] = pref->isuTPRateLimited();
@@ -243,6 +244,8 @@ void prefjson::setPreferences(const QString& json)
     pref->setMaxConnecs(m["max_connec"].toInt());
   if (m.contains("max_connec_per_torrent"))
     pref->setMaxConnecsPerTorrent(m["max_connec_per_torrent"].toInt());
+  if (m.contains("max_uploads"))
+    pref->setMaxUploads(m["max_uploads"].toInt());
   if (m.contains("max_uploads_per_torrent"))
     pref->setMaxUploadsPerTorrent(m["max_uploads_per_torrent"].toInt());
   if (m.contains("enable_utp"))

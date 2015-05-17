@@ -25,6 +25,13 @@
   </tr>
   <tr>
   <td>
+    <input type="checkbox" id="max_uploads_checkbox" onClick="updateMaxUploadsEnabled();"/>
+    <label for="max_uploads_checkbox">QBT_TR(Global maximum number of upload slots:)QBT_TR</label>
+  </td>
+  <td><input type="text" id="max_uploads_value" style="width: 4em;"/></td>
+  </tr>
+  <tr>
+  <td>
     <input type="checkbox" id="max_uploads_per_torrent_checkbox" onClick="updateMaxUploadsPerTorrentEnabled();"/>
     <label for="max_uploads_per_torrent_checkbox">QBT_TR(Maximum number of upload slots per torrent:)QBT_TR</label>
   </td>
@@ -445,6 +452,14 @@ updateMaxConnecPerTorrentEnabled = function() {
   }
 }
 
+updateMaxUploadsEnabled = function() {
+  if($('max_uploads_checkbox').getProperty('checked')) {
+    $('max_uploads_value').setProperty('disabled', false);
+  } else {
+    $('max_uploads_value').setProperty('disabled', true);
+  }
+}
+
 updateMaxUploadsPerTorrentEnabled = function() {
   if($('max_uploads_per_torrent_checkbox').getProperty('checked')) {
     $('max_uploads_per_torrent_value').setProperty('disabled', false);
@@ -707,6 +722,15 @@ loadPreferences = function() {
                       $('max_connec_per_torrent_value').setProperty('value', max_connec_per_torrent);
                     }
                     updateMaxConnecPerTorrentEnabled();
+                    var max_uploads = pref.max_uploads.toInt();
+                    if(max_uploads <= 0) {
+                      $('max_uploads_checkbox').setProperty('checked', false);
+                      $('max_uploads_value').setProperty('value', 8);
+                    } else {
+                      $('max_uploads_checkbox').setProperty('checked', true);
+                      $('max_uploads_value').setProperty('value', max_uploads);
+                    }
+                    updateMaxUploadsEnabled();
                     var max_uploads_per_torrent = pref.max_uploads_per_torrent.toInt();
                     if(max_uploads_per_torrent <= 0) {
                       $('max_uploads_per_torrent_checkbox').setProperty('checked', false);
@@ -888,6 +912,16 @@ applyPreferences = function() {
   }
   settings.set('max_connec_per_torrent', max_connec_per_torrent);
   
+  var max_uploads = -1;
+  if($('max_uploads_checkbox').getProperty('checked')) {
+    max_uploads = $('max_uploads_value').getProperty('value').toInt();
+    if(max_uploads <= 0) {
+      alert("QBT_TR(Global number of upload slots limit must be greater than 0 or disabled.)QBT_TR");
+      return;
+    }
+  }
+  settings.set('max_uploads', max_uploads);
+
   var max_uploads_per_torrent = -1;
   if($('max_uploads_per_torrent_checkbox').getProperty('checked')) {
     max_uploads_per_torrent = $('max_uploads_per_torrent_value').getProperty('value').toInt();
