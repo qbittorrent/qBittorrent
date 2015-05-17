@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
     <title>QBT_TR(qBittorrent web User Interface)QBT_TR</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
     <script type="text/javascript">
       window.onload = function() {
@@ -21,7 +21,7 @@
 
       function submitLoginForm() {
         new Request({
-          url: '/login',
+          url: 'login',
           method: 'post',
           data: $('loginform').toQueryString(),
           onComplete: function() {

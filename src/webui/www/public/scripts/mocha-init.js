@@ -371,7 +371,7 @@ initializeWindows = function() {
     addClickEvent('logout', function(e) {
         new Event(e).stop();
         new Request({
-            url: '/logout',
+            url: 'logout',
             method: 'get',
             onSuccess: function() {
                 window.location.reload();
