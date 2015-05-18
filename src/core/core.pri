@@ -37,6 +37,7 @@ HEADERS += \
     $$PWD/bittorrent/private/filterparserthread.h \
     $$PWD/bittorrent/private/statistics.h \
     $$PWD/utils/fs.h \
+    $$PWD/utils/gzip.h \
     $$PWD/utils/misc.h \
     $$PWD/utils/string.h \
     $$PWD/unicodestrings.h \
@@ -76,6 +77,7 @@ SOURCES += \
     $$PWD/bittorrent/private/filterparserthread.cpp \
     $$PWD/bittorrent/private/statistics.cpp \
     $$PWD/utils/fs.cpp \
+    $$PWD/utils/gzip.cpp \
     $$PWD/utils/misc.cpp \
     $$PWD/utils/string.cpp \
     $$PWD/torrentfilter.cpp \

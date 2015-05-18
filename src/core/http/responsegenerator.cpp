@@ -29,10 +29,8 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <zlib.h>
+#include "core/utils/gzip.h"
 #include "responsegenerator.h"
-
-bool gCompress(QByteArray data, QByteArray& dest_buffer);
 
 using namespace Http;
 
@@ -44,7 +42,7 @@ QByteArray ResponseGenerator::generate(Response response)
         // So we only benefit from gzip if the message is bigger than 23+26 = 49
         // If the message is smaller than 49 bytes we actually send MORE data if we gzip
         QByteArray dest_buf;
-        if ((response.content.size() > 49) && (gCompress(response.content, dest_buf)))
+        if ((response.content.size() > 49) && (Utils::Gzip::compress(response.content, dest_buf)))
             response.content = dest_buf;
         else
             response.headers.remove(HEADER_CONTENT_ENCODING);
@@ -66,59 +64,4 @@ QByteArray ResponseGenerator::generate(Response response)
     //  qDebug() << ret;
 
     return ret.toUtf8() + response.content;
-}
-
-bool gCompress(QByteArray data, QByteArray& dest_buffer)
-{
-    static const int BUFSIZE = 128 * 1024;
-    char tmp_buf[BUFSIZE];
-    int ret;
-
-    z_stream strm;
-    strm.zalloc = Z_NULL;
-    strm.zfree = Z_NULL;
-    strm.opaque = Z_NULL;
-    strm.next_in = reinterpret_cast<unsigned char*>(data.data());
-    strm.avail_in = data.length();
-    strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
-    strm.avail_out = BUFSIZE;
-
-    //windowBits = 15+16 to enable gzip
-    //From the zlib manual: windowBits can also be greater than 15 for optional gzip encoding. Add 16 to windowBits
-    //to write a simple gzip header and trailer around the compressed data instead of a zlib wrapper.
-    ret = deflateInit2(&strm, Z_BEST_COMPRESSION, Z_DEFLATED, 15 + 16, 8, Z_DEFAULT_STRATEGY);
-
-    if (ret != Z_OK)
-        return false;
-
-    while (strm.avail_in != 0) {
-        ret = deflate(&strm, Z_NO_FLUSH);
-        if (ret != Z_OK)
-            return false;
-
-        if (strm.avail_out == 0) {
-            dest_buffer.append(tmp_buf, BUFSIZE);
-            strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
-            strm.avail_out = BUFSIZE;
-        }
-    }
-
-    int deflate_res = Z_OK;
-    while (deflate_res == Z_OK) {
-        if (strm.avail_out == 0) {
-            dest_buffer.append(tmp_buf, BUFSIZE);
-            strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
-            strm.avail_out = BUFSIZE;
-        }
-
-        deflate_res = deflate(&strm, Z_FINISH);
-    }
-
-    if (deflate_res != Z_STREAM_END)
-        return false;
-
-    dest_buffer.append(tmp_buf, BUFSIZE - strm.avail_out);
-    deflateEnd(&strm);
-
-    return true;
 }

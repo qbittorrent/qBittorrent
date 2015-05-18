@@ -36,15 +36,13 @@
 #include <QUrl>
 #include <QDebug>
 
-#include <zlib.h>
-
 #include "core/utils/fs.h"
+#include "core/utils/gzip.h"
 #include "core/utils/misc.h"
 #include "downloadmanager.h"
 #include "downloadhandler.h"
 
 static QString errorCodeToString(QNetworkReply::NetworkError status);
-static QByteArray gUncompress(Bytef *inData, uInt len);
 
 using namespace Net;
 
@@ -143,7 +141,7 @@ bool DownloadHandler::saveToFile(QString &filePath)
         QByteArray replyData = m_reply->readAll();
         if (m_reply->rawHeader("Content-Encoding") == "gzip") {
             // uncompress gzip reply
-            replyData = gUncompress(reinterpret_cast<unsigned char*>(replyData.data()), static_cast<uInt>(replyData.length()));
+            Utils::Gzip::uncompress(replyData, replyData);
         }
         tmpfile->write(replyData);
         tmpfile->close();
@@ -235,56 +233,4 @@ QString errorCodeToString(QNetworkReply::NetworkError status)
     default:
         return QObject::tr("Unknown error");
     }
-}
-
-QByteArray gUncompress(Bytef *inData, uInt len)
-{
-    if (len <= 4) {
-        qWarning("gUncompress: Input data is truncated");
-        return QByteArray();
-    }
-
-    QByteArray result;
-
-    z_stream strm;
-    static const int CHUNK_SIZE = 1024;
-    char out[CHUNK_SIZE];
-
-    /* allocate inflate state */
-    strm.zalloc = Z_NULL;
-    strm.zfree = Z_NULL;
-    strm.opaque = Z_NULL;
-    strm.avail_in = len;
-    strm.next_in = inData;
-
-    const int windowBits = 15;
-    const int ENABLE_ZLIB_GZIP = 32;
-
-    int ret = inflateInit2(&strm, windowBits | ENABLE_ZLIB_GZIP); // gzip decoding
-    if (ret != Z_OK)
-        return QByteArray();
-
-    // run inflate()
-    do {
-        strm.avail_out = CHUNK_SIZE;
-        strm.next_out = reinterpret_cast<unsigned char*>(out);
-
-        ret = inflate(&strm, Z_NO_FLUSH);
-        Q_ASSERT(ret != Z_STREAM_ERROR); // state not clobbered
-
-        switch (ret) {
-        case Z_NEED_DICT:
-        case Z_DATA_ERROR:
-        case Z_MEM_ERROR:
-            (void) inflateEnd(&strm);
-            return QByteArray();
-        }
-
-        result.append(out, CHUNK_SIZE - strm.avail_out);
-    }
-    while (!strm.avail_out);
-
-    // clean up and return
-    inflateEnd(&strm);
-    return result;
 }
