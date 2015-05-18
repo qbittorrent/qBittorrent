@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,37 +27,51 @@
  * exception statement from your version.
  */
 
-#ifndef GUIICONPROVIDER_H
-#define GUIICONPROVIDER_H
+#ifndef NET_GEOIPMANAGER_H
+#define NET_GEOIPMANAGER_H
 
-#include "core/iconprovider.h"
+#include <QObject>
+#include <QCache>
 
-class QIcon;
+class QHostAddress;
+class QString;
 
-class GuiIconProvider : public IconProvider
+class GeoIPDatabase;
+
+namespace Net
 {
-    Q_DISABLE_COPY(GuiIconProvider)
-    Q_OBJECT
+    class GeoIPManager : public QObject
+    {
+        Q_OBJECT
 
-public:
-    static void initInstance();
-    static GuiIconProvider *instance();
+    public:
+        static void initInstance();
+        static void freeInstance();
+        static GeoIPManager *instance();
 
-    QIcon getIcon(const QString &iconId);
-    QIcon getFlagIcon(const QString &countryIsoCode);
-    QString getIconPath(const QString &iconId);
+        QString lookup(const QHostAddress &hostAddr) const;
 
-private slots:
-    void configure();
+        static QString CountryName(const QString &countryISOCode);
 
-private:
-    explicit GuiIconProvider(QObject *parent = 0);
-    ~GuiIconProvider();
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    QIcon generateDifferentSizes(const QIcon &icon);
+    private slots:
+        void configure();
+        void downloadFinished(const QString &url, QByteArray data);
+        void downloadFailed(const QString &url, const QString &reason);
 
-    bool m_useSystemTheme;
-#endif
-};
+    private:
+        GeoIPManager();
+        ~GeoIPManager();
 
-#endif // GUIICONPROVIDER_H
+        void loadDatabase();
+        void manageDatabaseUpdate();
+        void downloadDatabaseFile();
+
+        bool m_enabled;
+        GeoIPDatabase *m_geoIPDatabase;
+        mutable QCache<QHostAddress, QString> m_cache;
+
+        static GeoIPManager *m_instance;
+    };
+}
+
+#endif // NET_GEOIPMANAGER_H

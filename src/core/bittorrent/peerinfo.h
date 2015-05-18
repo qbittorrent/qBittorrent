@@ -89,7 +89,9 @@ namespace BitTorrent
         qlonglong totalDownload() const;
         QBitArray pieces() const;
         QString connectionType() const;
+#ifndef DISABLE_COUNTRIES_RESOLUTION
         QString country() const;
+#endif
 
     private:
         libtorrent::peer_info m_nativeInfo;

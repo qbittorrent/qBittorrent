@@ -65,6 +65,7 @@
 #include "core/scanfoldersmodel.h"
 #include "core/net/smtp.h"
 #include "core/net/downloadmanager.h"
+#include "core/net/geoipmanager.h"
 #include "core/bittorrent/session.h"
 #include "core/bittorrent/torrenthandle.h"
 
@@ -232,10 +233,14 @@ int Application::exec(const QStringList &params)
 #else
     GuiIconProvider::initInstance();
 #endif
+
     BitTorrent::Session::initInstance();
     connect(BitTorrent::Session::instance(), SIGNAL(torrentFinished(BitTorrent::TorrentHandle *const)), SLOT(torrentFinished(BitTorrent::TorrentHandle *const)));
     connect(BitTorrent::Session::instance(), SIGNAL(allTorrentsFinished()), SLOT(allTorrentsFinished()));
 
+#ifndef DISABLE_COUNTRIES_RESOLUTION
+    Net::GeoIPManager::initInstance();
+#endif
     ScanFoldersModel::initInstance(this);
 
 #ifndef DISABLE_WEBUI
@@ -446,6 +451,9 @@ void Application::cleanup()
 
     ScanFoldersModel::freeInstance();
     BitTorrent::Session::freeInstance();
+#ifndef DISABLE_COUNTRIES_RESOLUTION
+    Net::GeoIPManager::freeInstance();
+#endif
     Preferences::freeInstance();
     Logger::freeInstance();
     IconProvider::freeInstance();

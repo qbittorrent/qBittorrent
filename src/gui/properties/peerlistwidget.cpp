@@ -42,7 +42,7 @@
 #include "core/preferences.h"
 #include "core/logger.h"
 #include "propertieswidget.h"
-#include "geoipmanager.h"
+#include "core/net/geoipmanager.h"
 #include "peersadditiondlg.h"
 #include "speedlimitdlg.h"
 #include "guiiconprovider.h"
@@ -303,10 +303,10 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, BitTorrent::TorrentHan
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::PORT), peer.address().port);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP_HIDDEN), ip);
   if (m_displayFlags) {
-    const QIcon ico = GeoIPManager::CountryISOCodeToIcon(peer.country());
+    const QIcon ico = GuiIconProvider::instance()->getFlagIcon(peer.country());
     if (!ico.isNull()) {
       m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), ico, Qt::DecorationRole);
-      const QString country_name = GeoIPManager::CountryISOCodeToName(peer.country());
+      const QString country_name = Net::GeoIPManager::CountryName(peer.country());
       m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), country_name, Qt::ToolTipRole);
     } else {
       m_missingFlags.insert(ip);
@@ -331,10 +331,10 @@ void PeerListWidget::updatePeer(const QString &ip, BitTorrent::TorrentHandle *co
   QStandardItem *item = m_peerItems.value(ip);
   int row = item->row();
   if (m_displayFlags) {
-    const QIcon ico = GeoIPManager::CountryISOCodeToIcon(peer.country());
+    const QIcon ico = GuiIconProvider::instance()->getFlagIcon(peer.country());
     if (!ico.isNull()) {
       m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), ico, Qt::DecorationRole);
-      const QString country_name = GeoIPManager::CountryISOCodeToName(peer.country());
+      const QString country_name = Net::GeoIPManager::CountryName(peer.country());
       m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), country_name, Qt::ToolTipRole);
       m_missingFlags.remove(ip);
     }

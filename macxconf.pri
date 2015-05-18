@@ -56,6 +56,3 @@ QMAKE_BUNDLE_DATA += qt_translations
 
 ICON = $$DIST_PATH/qbittorrent_mac.icns
 QMAKE_INFO_PLIST = $$DIST_PATH/Info.plist
-
-DEFINES += WITH_GEOIP_EMBEDDED
-message("On Mac OS X, GeoIP database must be embedded.")

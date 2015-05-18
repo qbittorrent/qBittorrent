@@ -50,9 +50,6 @@ struct SessionPrivate
     virtual bool isTempPathEnabled() const = 0;
     virtual bool isAppendExtensionEnabled() const = 0;
     virtual bool useAppendLabelToSavePath() const = 0;
-#ifndef DISABLE_COUNTRIES_RESOLUTION
-    virtual bool isResolveCountriesEnabled() const = 0;
-#endif
     virtual QString defaultSavePath() const = 0;
     virtual QString tempPath() const = 0;
     virtual qreal globalMaxRatio() const = 0;

@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,35 +24,37 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#ifndef GEOIPMANAGER_H
-#define GEOIPMANAGER_H
+#ifndef GEOIPDATABASE_H
+#define GEOIPDATABASE_H
 
-#include <QString>
-#include <QIcon>
+#include <QtGlobal>
 
-namespace libtorrent {
-  class session;
-}
+class QHostAddress;
+class QString;
+class QByteArray;
+class QDateTime;
 
-class GeoIPManager : public QObject {
-  Q_OBJECT
+struct GeoIPData;
 
+class GeoIPDatabase
+{
 public:
-  static void loadDatabase(libtorrent::session *s);
-  static QIcon CountryISOCodeToIcon(const QString &iso);
-  static QString CountryISOCodeToName(const QString &iso);
+    static GeoIPDatabase *load(const QString &filename, QString &error);
+    static GeoIPDatabase *load(const QByteArray &data, QString &error);
+
+    ~GeoIPDatabase();
+
+    QString type() const;
+    quint16 ipVersion() const;
+    QDateTime buildEpoch() const;
+    QString lookup(const QHostAddress &hostAddr) const;
 
 private:
-  static QString geoipFolder(bool embedded=false);
-  static QString geoipDBpath(bool embedded=false);
-#ifdef WITH_GEOIP_EMBEDDED
-  static void exportEmbeddedDb();
-#endif
+    GeoIPDatabase(GeoIPData *geoIPData);
+
+    GeoIPData *m_geoIPData;
 };
 
-
-#endif // GEOIP_H
+#endif // GEOIPDATABASE_H

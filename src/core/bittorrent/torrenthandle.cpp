@@ -205,10 +205,6 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
 {
     initialize();
 
-#ifndef DISABLE_COUNTRIES_RESOLUTION
-    resolveCountries(m_session->isResolveCountriesEnabled());
-#endif
-
     if (!data.resumed) {
         setSequentialDownload(data.sequential);
         if (hasMetadata()) {
@@ -1644,13 +1640,6 @@ void TorrentHandle::handleAppendExtensionToggled()
         removeExtensionsFromIncompleteFiles();
 }
 
-#ifndef DISABLE_COUNTRIES_RESOLUTION
-void TorrentHandle::handleResolveCountriesToggled()
-{
-    resolveCountries(m_session->isResolveCountriesEnabled());
-}
-#endif
-
 void TorrentHandle::handleAlert(libtorrent::alert *a)
 {
     switch (a->type()) {
@@ -1863,11 +1852,6 @@ void TorrentHandle::flushCache()
 QString TorrentHandle::toMagnetUri() const
 {
     return Utils::String::fromStdString(libt::make_magnet_uri(m_nativeHandle));
-}
-
-void TorrentHandle::resolveCountries(bool b)
-{
-    SAFE_CALL(resolve_countries, b);
 }
 
 void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)

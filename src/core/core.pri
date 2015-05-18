@@ -16,9 +16,11 @@ HEADERS += \
     $$PWD/net/dnsupdater.h \
     $$PWD/net/downloadmanager.h \
     $$PWD/net/downloadhandler.h \
+    $$PWD/net/geoipmanager.h \
     $$PWD/net/portforwarder.h \
     $$PWD/net/reverseresolution.h \
     $$PWD/net/smtp.h \
+    $$PWD/net/private/geoipdatabase.h \
     $$PWD/bittorrent/infohash.h \
     $$PWD/bittorrent/session.h \
     $$PWD/bittorrent/sessionstatus.h \
@@ -58,9 +60,11 @@ SOURCES += \
     $$PWD/net/dnsupdater.cpp \
     $$PWD/net/downloadmanager.cpp \
     $$PWD/net/downloadhandler.cpp \
+    $$PWD/net/geoipmanager.cpp \
     $$PWD/net/portforwarder.cpp \
     $$PWD/net/reverseresolution.cpp \
     $$PWD/net/smtp.cpp \
+    $$PWD/net/private/geoipdatabase.cpp \
     $$PWD/bittorrent/infohash.cpp \
     $$PWD/bittorrent/session.cpp \
     $$PWD/bittorrent/sessionstatus.cpp \

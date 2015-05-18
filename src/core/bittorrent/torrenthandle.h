@@ -316,9 +316,6 @@ namespace BitTorrent
         void handleDefaultSavePathChanged();
         void handleTempPathChanged();
         void handleAppendExtensionToggled();
-    #ifndef DISABLE_COUNTRIES_RESOLUTION
-        void handleResolveCountriesToggled();
-    #endif
 
         void handleStorageMovedAlert(libtorrent::storage_moved_alert *p);
         void handleStorageMovedFailedAlert(libtorrent::storage_moved_failed_alert *p);
@@ -341,7 +338,6 @@ namespace BitTorrent
         bool useTempPath() const;
         QString nativeActualSavePath() const;
 
-        void resolveCountries(bool b);
         void adjustSavePath();
         void adjustActualSavePath();
         void adjustActualSavePath_impl();

@@ -24,12 +24,6 @@ AC_ARG_WITH(libtorrent-rasterbar0.16,
             [],
             [with_libtorrent_rasterbar0_16=no])
 
-AC_ARG_WITH(geoip-database-embedded,
-            [AS_HELP_STRING([--with-geoip-database-embedded],
-                            [Embed the GeoIP database in the qBittorrent executable (please follow instructions in src/gui/geoip/README) (default=no)])],
-            [],
-            [with_geoip_database_embedded=no])
-
 AC_ARG_WITH(qtsingleapplication,
             [AS_HELP_STRING([--with-qtsingleapplication=@<:@system|shipped@:>@],
                             [Use the shipped qtsingleapplication library or the system one (default=shipped)])],
@@ -197,17 +191,6 @@ AS_CASE(["x$with_libtorrent_rasterbar0_16"],
                                 LIBS="$libtorrent_LIBS $LIBS"])],
         [AC_MSG_RESULT([$with_libtorrent_rasterbar0_16])
         AC_MSG_ERROR([Unknown option "$with_libtorrent_rasterbar0_16". Use either "yes" or "no".])])
-
-AC_MSG_CHECKING([whether to embed the GeoIP database])
-AS_CASE(["x$with_geoip_database_embedded"],
-        ["xno"],
-              [AC_MSG_RESULT([no])
-              QBT_REMOVE_DEFINES="$QBT_REMOVE_DEFINES WITH_GEOIP_EMBEDDED"],
-        ["xyes"],
-               [AC_MSG_RESULT([yes])
-               QBT_ADD_DEFINES="$QBT_ADD_DEFINES WITH_GEOIP_EMBEDDED"],
-        [AC_MSG_RESULT([$with_geoip_database_embedded])
-        AC_MSG_ERROR([Unknown option "$with_geoip_database_embedded". Use either "yes" or "no".])])
 
 AC_MSG_CHECKING([which qtsingleapplication to use])
 AS_CASE(["x$with_qtsingleapplication"],
