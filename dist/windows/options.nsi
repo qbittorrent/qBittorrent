@@ -19,7 +19,7 @@ XPStyle on
 !define CSIDL_APPDATA '0x1A' ;Application Data path
 !define CSIDL_LOCALAPPDATA '0x1C' ;Local Application Data path
 
-!define PROG_VERSION "3.2.0"
+!define PROG_VERSION "3.3.0"
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_FUNCTION PageFinishRun
 !define MUI_FINISHPAGE_RUN_TEXT $(launch_qbt)
@@ -33,7 +33,7 @@ OutFile "qbittorrent_${PROG_VERSION}_setup.exe"
 ;Installer Version Information
 VIAddVersionKey "ProductName" "qBittorrent"
 VIAddVersionKey "CompanyName" "The qBittorrent project"
-VIAddVersionKey "LegalCopyright" "Copyright ©2006-2014 The qBittorrent project"
+VIAddVersionKey "LegalCopyright" "Copyright ©2006-2015 The qBittorrent project"
 VIAddVersionKey "FileDescription" "qBittorrent - A Bittorrent Client"
 VIAddVersionKey "FileVersion" "${PROG_VERSION}"
 
