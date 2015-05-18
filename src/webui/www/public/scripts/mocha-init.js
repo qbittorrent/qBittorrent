@@ -305,10 +305,21 @@ initializeWindows = function() {
                     }
                 }).send();
             });
+            updateMainData();
         }
     };
 
-    ['pauseAll', 'resumeAll', 'pause', 'resume', 'recheck'].each(function(item) {
+    ['pauseAll', 'resumeAll'].each(function(item) {
+        addClickEvent(item, function(e) {
+            new Event(e).stop();
+            new Request({
+                url: 'command/' + item
+            }).send();
+            updateMainData();
+        });
+    });
+
+    ['pause', 'resume', 'recheck'].each(function(item) {
         addClickEvent(item, function(e) {
             new Event(e).stop();
             var h = myTable.selectedIds();
@@ -324,13 +335,6 @@ initializeWindows = function() {
                 });
                 updateMainData();
             }
-        });
-
-        addClickEvent(item + 'All', function(e) {
-            new Event(e).stop();
-            new Request({
-                url: 'command/' + item + 'all'
-            }).send();
         });
     });
 
@@ -371,7 +375,7 @@ initializeWindows = function() {
     addClickEvent('logout', function(e) {
         new Event(e).stop();
         new Request({
-            url: '/logout',
+            url: 'logout',
             method: 'get',
             onSuccess: function() {
                 window.location.reload();
