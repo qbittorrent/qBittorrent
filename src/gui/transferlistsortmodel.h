@@ -51,6 +51,7 @@ public:
 private:
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
     bool lowerPositionThan(const QModelIndex &left, const QModelIndex &right) const;
+    bool dateLessThan(const int dateColumn, const QModelIndex &left, const QModelIndex &right) const;
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 
     bool matchStatusFilter(int sourceRow, const QModelIndex &sourceParent) const;
