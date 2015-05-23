@@ -350,10 +350,14 @@ ul.filterList li:hover a {
 	line-height: 20px;
 }
 
+#trackersTable {
+	line-height: 25px;
+}
+
 #addTrackersPlus {
 	width: 16px;
 	cursor: pointer;
-	vertical-align: middle;
+	margin-bottom: -3px;
 }
 
 .torrentTable th {
@@ -366,6 +370,19 @@ ul.filterList li:hover a {
 
 .torrentTable thead tr {
 	background-color: #eee;
+}
+
+#prop_general {
+	padding: 2px;
+}
+
+#watched_folders_tab {
+	border-collapse: collapse;
+}
+
+#watched_folders_tab td, #watched_folders_tab th {
+	padding: 2px 4px;
+	border: 1px solid black;
 }
 
 /*
