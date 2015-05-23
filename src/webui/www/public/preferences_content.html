@@ -222,7 +222,7 @@
   <legend>QBT_TR(IP Filtering)QBT_TR</legend>
   <input type="checkbox" id="ipfilter_enabled_checkbox" onclick="updateFilterSettings();"/>
   <label for="ipfilter_enabled_checkbox">QBT_TR(IP Filtering)QBT_TR</label><br/>
-  <label for="ipfilter_text">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR</label>
+  <label for="ipfilter_text" style="margin-left: 20px;">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR</label>
   <input type="text" id="ipfilter_text"/>
 </fieldset>
 </div>
@@ -255,11 +255,11 @@
     <label for="peer_proxy_auth_checkbox">QBT_TR(Authentication)QBT_TR</label><br/>
     
     <div class="formRow">
-    <label for="peer_proxy_username_text" style="margin-left: 20px;" class="leftLabelSmall">QBT_TR(Username:)QBT_TR</label>
+    <label for="peer_proxy_username_text" class="leftLabelLarge">QBT_TR(Username:)QBT_TR</label>
     <input type="text" id="peer_proxy_username_text" />
     </div>
     <div class="formRow">
-    <label for="peer_proxy_password_text" style="margin-left: 20px;" class="leftLabelSmall">QBT_TR(Password:)QBT_TR</label>
+    <label for="peer_proxy_password_text" class="leftLabelLarge">QBT_TR(Password:)QBT_TR</label>
     <input type="password" id="peer_proxy_password_text" />
     </div>
 </fieldset>
@@ -321,11 +321,11 @@
   <input type="checkbox" id="use_https_checkbox" onclick="updateHttpsSettings();" />
   <label for="use_https_checkbox">QBT_TR(Use HTTPS instead of HTTP)QBT_TR</label><br/>
   <div class="formRow">
-  <label for="ssl_key_textarea" style="margin-left: 20px;" class="leftLabelSmall">QBT_TR(Key:)QBT_TR</label>
+  <label for="ssl_key_textarea" style="margin-left: 20px;">QBT_TR(Key:)QBT_TR</label>
   <textarea id="ssl_key_textarea" rows="5" cols="70"></textarea>
   </div>
   <div class="formRow">
-  <label for="ssl_cert_textarea" style="margin-left: 20px;" class="leftLabelSmall">QBT_TR(Certificate:)QBT_TR</label>
+  <label for="ssl_cert_textarea" style="margin-left: 20px;">QBT_TR(Certificate:)QBT_TR</label>
   <textarea id="ssl_cert_textarea" rows="5" cols="70"></textarea>
   </div>
   <div style="padding-left: 10px;"><a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts>Information about certificates</a></div>
