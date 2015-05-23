@@ -241,7 +241,7 @@ void AbstractWebApplication::translateDocument(QString& data)
         "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
         "options_imp", "Preferences", "TrackersAdditionDlg", "ScanFoldersModel",
         "PropTabBar", "TorrentModel", "downloadFromURL", "MainWindow", "misc",
-        "StatusBar"
+        "StatusBar", "AboutDlg", "about", "PeerListWidget"
     };
     const size_t context_count = sizeof(contexts) / sizeof(contexts[0]);
     int i = 0;
