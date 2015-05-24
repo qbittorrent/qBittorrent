@@ -1791,7 +1791,7 @@ Gostaria de associar o qBittorrent para arquivos torrent e links magnéticos?</t
     <message>
         <location filename="../gui/mainwindow.cpp" line="650"/>
         <source>Download completion</source>
-        <translation>Completação de download</translation>
+        <translation>Download concluído</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="650"/>
