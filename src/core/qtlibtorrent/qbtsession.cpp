@@ -1552,36 +1552,21 @@ void QBtSession::enableDHT(bool b) {
 }
 
 qreal QBtSession::getRealRatio(const libtorrent::torrent_status &status) const {
-    libtorrent::size_type all_time_upload = status.all_time_upload;
-    libtorrent::size_type all_time_download = status.all_time_download;
-    libtorrent::size_type total_done = status.total_done;
+    libtorrent::size_type upload = status.all_time_upload;
+    // special case for a seeder who lost its stats, also assume nobody will import a 99% done torrent
+    libtorrent::size_type download = (status.all_time_download < status.total_done * 0.01) ? status.total_done : status.all_time_download;
 
-    if (all_time_download < total_done) {
-        // We have more data on disk than we downloaded
-        // either because the user imported the file
-        // or because of crash the download histroy was lost.
-        // Otherwise will get weird ratios
-        // eg when downloaded 1KB and uploaded 700MB of a
-        // 700MB torrent.
-        all_time_download = total_done;
-    }
+    if (download == 0)
+        return (upload == 0) ? 0.0 : MAX_RATIO;
 
-    if (all_time_download == 0) {
-        if (all_time_upload == 0)
-            return 0.0;
-        return MAX_RATIO+1;
-    }
-
-    qreal ratio = all_time_upload / (float) all_time_download;
-    Q_ASSERT(ratio >= 0.);
-    if (ratio > MAX_RATIO)
-        ratio = MAX_RATIO;
-    return ratio;
+    qreal ratio = upload / (qreal) download;
+    Q_ASSERT(ratio >= 0.0);
+    return (ratio > MAX_RATIO) ? MAX_RATIO : ratio;
 }
 
 // Called periodically
 void QBtSession::saveTempFastResumeData() {
-    std::vector<torrent_handle> torrents =  s->get_torrents();
+    std::vector<torrent_handle> torrents = s->get_torrents();
 
     std::vector<torrent_handle>::iterator torrentIT = torrents.begin();
     std::vector<torrent_handle>::iterator torrentITend = torrents.end();
