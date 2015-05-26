@@ -911,10 +911,10 @@ void MainWindow::closeEvent(QCloseEvent *e)
             QMessageBox confirmBox(QMessageBox::Question, tr("Exiting qBittorrent"),
                                    tr("Some files are currently transferring.\nAre you sure you want to quit qBittorrent?"),
                                    QMessageBox::NoButton, this);
-            QPushButton *noBtn = confirmBox.addButton(tr("No"), QMessageBox::NoRole);
-            QPushButton *yesBtn = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
-            QPushButton *alwaysBtn = confirmBox.addButton(tr("Always"), QMessageBox::YesRole);
-            confirmBox.setDefaultButton(yesBtn);
+            QPushButton *noBtn = confirmBox.addButton(tr("&No"), QMessageBox::NoRole);
+            QPushButton *yesBtn = confirmBox.addButton(tr("&Yes"), QMessageBox::YesRole);
+            QPushButton *alwaysBtn = confirmBox.addButton(tr("&Always Yes"), QMessageBox::YesRole);
+            confirmBox.setDefaultButton(noBtn);
             confirmBox.exec();
             if (!confirmBox.clickedButton() || confirmBox.clickedButton() == noBtn) {
                 // Cancel exit
@@ -922,9 +922,10 @@ void MainWindow::closeEvent(QCloseEvent *e)
                 force_exit = false;
                 return;
             }
-            if (confirmBox.clickedButton() == alwaysBtn)
+            if (confirmBox.clickedButton() == alwaysBtn) {
                 // Remember choice
                 Preferences::instance()->setConfirmOnExit(false);
+            }
         }
     }
 
