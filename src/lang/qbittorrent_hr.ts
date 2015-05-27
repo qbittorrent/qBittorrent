@@ -5477,8 +5477,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message utf8="true">
         <location filename="../gui/about_imp.h" line="56"/>
-        <source>Copyright ©2006-2013 The qBittorrent project</source>
-        <translation>Sva prava pridržana ©2006-2013 qBittorrent projekt</translation>
+        <source>Copyright ©2006-2015 The qBittorrent project</source>
+        <translation>Sva prava pridržana ©2006-2015 qBittorrent projekt</translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="58"/>
