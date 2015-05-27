@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2013  Nick Tiskov
+ * Copyright (C) 2015  Nick Tiskov
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
