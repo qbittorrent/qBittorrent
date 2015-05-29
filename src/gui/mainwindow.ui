@@ -51,9 +51,6 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="actionDocumentation"/>
-    <addaction name="actionWebsite"/>
-    <addaction name="actionBugReport"/>
-    <addaction name="separator"/>
     <addaction name="actionCheck_for_updates"/>
     <addaction name="separator"/>
     <addaction name="actionDonate_money"/>
@@ -198,15 +195,6 @@
     <string>Delete</string>
    </property>
   </action>
-  <action name="actionWebsite">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/icons/skin/qbittorrent32.png</normaloff>:/icons/skin/qbittorrent32.png</iconset>
-   </property>
-   <property name="text">
-    <string>Visit &amp;Website</string>
-   </property>
-  </action>
   <action name="actionDownload_from_URL">
    <property name="text">
     <string>Add Torrent &amp;Link...</string>
@@ -218,11 +206,6 @@
   <action name="actionCreate_torrent">
    <property name="text">
     <string>Torrent &amp;Creator</string>
-   </property>
-  </action>
-  <action name="actionBugReport">
-   <property name="text">
-    <string>Report a &amp;Bug</string>
    </property>
   </action>
   <action name="actionSet_upload_limit">
