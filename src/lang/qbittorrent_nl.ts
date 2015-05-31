@@ -5316,7 +5316,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/transferlistwidget.cpp" line="737"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Pauzerene</translation>
+        <translation>Pauzeren</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="739"/>
