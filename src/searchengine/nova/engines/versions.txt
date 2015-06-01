@@ -5,4 +5,4 @@ extratorrent: 1.2
 kickasstorrents: 1.26
 btdigg: 1.24
 legittorrents: 1.02
-torrentz: 2.12
+torrentz: 2.13
