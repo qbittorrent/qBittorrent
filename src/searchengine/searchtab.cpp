@@ -110,7 +110,7 @@ bool SearchTab::loadColWidthResultsList() {
   if (line.isEmpty())
     return false;
   QStringList width_list = line.split(' ');
-  if (width_list.size() < SearchListModel->columnCount())
+  if (width_list.size() > SearchListModel->columnCount())
     return false;
   unsigned int listSize = width_list.size();
   for (unsigned int i=0; i<listSize; ++i) {
