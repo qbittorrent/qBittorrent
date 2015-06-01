@@ -200,10 +200,11 @@ window.addEvent('load', function () {
         transfer_info += friendlyUnit(serverState.up_info_speed, true)
         transfer_info += " (" + friendlyUnit(serverState.up_info_data, false) + ")"
         $("UpInfos").set('html', transfer_info);
-        if (speedInTitle)
-            document.title = "QBT_TR(D:%1 U:%2)QBT_TR".replace("%1", friendlyUnit(serverState.dl_info_speed, true)).replace("%2", friendlyUnit(serverState.up_info_speed, true));
-        else
-            document.title = "QBT_TR(qBittorrent web User Interface)QBT_TR";
+        if (speedInTitle) {
+            document.title = "QBT_TR([D:%1 U:%2])QBT_TR".replace("%1", friendlyUnit(serverState.dl_info_speed, true)).replace("%2", friendlyUnit(serverState.up_info_speed, true));
+            document.title += " qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR";
+        }else
+            document.title = "qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR";
         $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR'.replace("%1", serverState.dht_nodes));
         if (serverState.connection_status == "connected")
             $('connectionStatus').src = 'images/skin/connected.png';
