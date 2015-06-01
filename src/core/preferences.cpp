@@ -297,7 +297,7 @@ void Preferences::setMinimizeToTray(bool b)
 
 bool Preferences::closeToTray() const
 {
-    return value("Preferences/General/CloseToTray", false).toBool();
+    return value("Preferences/General/CloseToTray", true).toBool();
 }
 
 void Preferences::setCloseToTray(bool b)
@@ -629,7 +629,7 @@ int Preferences::getSessionPort() const
     QReadLocker locker(&lock);
     if (useRandomPort())
         return m_randomPort;
-    return value("Preferences/Connection/PortRangeMin", 6881).toInt();
+    return value("Preferences/Connection/PortRangeMin", 8999).toInt();
 }
 
 void Preferences::setSessionPort(int port)
@@ -860,7 +860,7 @@ void Preferences::setMaxConnecsPerTorrent(int val)
 
 int Preferences::getMaxUploads() const
 {
-    return value("Preferences/Bittorrent/MaxUploads", 8).toInt();
+    return value("Preferences/Bittorrent/MaxUploads", -1).toInt();
 }
 
 void Preferences::setMaxUploads(int val)
@@ -872,7 +872,7 @@ void Preferences::setMaxUploads(int val)
 
 int Preferences::getMaxUploadsPerTorrent() const
 {
-    return value("Preferences/Bittorrent/MaxUploadsPerTorrent", 4).toInt();
+    return value("Preferences/Bittorrent/MaxUploadsPerTorrent", -1).toInt();
 }
 
 void Preferences::setMaxUploadsPerTorrent(int val)
@@ -1022,7 +1022,7 @@ void Preferences::setExecutionLogEnabled(bool b)
 // Queueing system
 bool Preferences::isQueueingSystemEnabled() const
 {
-    return value("Preferences/Queueing/QueueingEnabled", false).toBool();
+    return value("Preferences/Queueing/QueueingEnabled", true).toBool();
 }
 
 void Preferences::setQueueingSystemEnabled(bool enabled)
@@ -1481,7 +1481,7 @@ void Preferences::resolvePeerHostNames(bool resolve)
 
 int Preferences::getMaxHalfOpenConnections() const
 {
-    const int val = value("Preferences/Connection/MaxHalfOpenConnec", 50).toInt();
+    const int val = value("Preferences/Connection/MaxHalfOpenConnec", 20).toInt();
     if (val <= 0)
         return -1;
     return val;
@@ -1556,7 +1556,7 @@ void Preferences::enableSuperSeeding(bool enabled)
 
 bool Preferences::announceToAllTrackers() const
 {
-    return value("Preferences/Advanced/AnnounceToAllTrackers", false).toBool();
+    return value("Preferences/Advanced/AnnounceToAllTrackers", true).toBool();
 }
 
 void Preferences::setAnnounceToAllTrackers(bool enabled)
