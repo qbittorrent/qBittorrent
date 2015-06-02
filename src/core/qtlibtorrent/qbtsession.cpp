@@ -631,14 +631,18 @@ void QBtSession::configureSession() {
     }
     // * Scan dirs
     const QStringList scan_dirs = pref->getScanDirs();
+    QStringList download_paths = pref->getDownloadPathsInScanDir();
     QList<bool> downloadInDirList = pref->getDownloadInScanDirs();
     while(scan_dirs.size() > downloadInDirList.size()) {
-        downloadInDirList << false;
+        downloadInDirList << true;
+    }
+    while(scan_dirs.size() > download_paths.size()) {
+      download_paths << "";
     }
     int i = 0;
     foreach (const QString &dir, scan_dirs) {
-        qDebug() << "Adding scan dir" << dir << downloadInDirList.at(i);
-        m_scanFolders->addPath(dir, downloadInDirList.at(i));
+        qDebug() << "Adding scan dir" << dir << downloadInDirList.at(i) << "download to" << download_paths.at(i);
+        m_scanFolders->addPath(dir, downloadInDirList.at(i), download_paths.at(i));
         ++i;
     }
     qDebug("Session configured");
@@ -2803,7 +2807,9 @@ QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString f
             if (fromScanDir && m_scanFolders->downloadInTorrentFolder(filePath)) {
                 savePath = QFileInfo(filePath).dir().path();
             } else {
-                savePath = defaultSavePath;
+                savePath = m_scanFolders->downloadPathTorrentFolder(filePath);
+                if (savePath.isEmpty())
+                    savePath = defaultSavePath;
             }
         }
         if (!fromScanDir && appendLabelToSavePath) {

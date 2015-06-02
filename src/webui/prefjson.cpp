@@ -62,6 +62,11 @@ QByteArray prefjson::getPreferences()
     l << fsutils::toNativePath(s);
   }
   data["scan_dirs"] = l;
+  QVariantList l2;
+  foreach (const QString& s, pref->getDownloadPathsInScanDir()) {
+    l2 << fsutils::toNativePath(s);
+  }
+  data["download_paths"] = l2;
   QVariantList var_list;
   foreach (bool b, pref->getDownloadInScanDirs()) {
     var_list << b;
@@ -169,7 +174,7 @@ void prefjson::setPreferences(const QString& json)
     pref->setTempPathEnabled(m["temp_path_enabled"].toBool());
   if (m.contains("temp_path"))
     pref->setTempPath(m["temp_path"].toString());
-  if (m.contains("scan_dirs") && m.contains("download_in_scan_dirs")) {
+  if (m.contains("scan_dirs") && m.contains("download_in_scan_dirs") && m.contains("download_paths")) {
     QVariantList download_at_path_tmp = m["download_in_scan_dirs"].toList();
     QList<bool> download_at_path;
     foreach (QVariant var, download_at_path_tmp) {
@@ -177,9 +182,11 @@ void prefjson::setPreferences(const QString& json)
     }
     QStringList old_folders = pref->getScanDirs();
     QStringList new_folders = m["scan_dirs"].toStringList();
+    QStringList download_paths = m["download_paths"].toStringList();
     if (download_at_path.size() == new_folders.size()) {
       pref->setScanDirs(new_folders);
       pref->setDownloadInScanDirs(download_at_path);
+      pref->setDownloadPathsInScanDir(download_paths);
       foreach (const QString &old_folder, old_folders) {
         // Update deleted folders
         if (!new_folders.contains(old_folder)) {
@@ -191,7 +198,7 @@ void prefjson::setPreferences(const QString& json)
         qDebug("New watched folder: %s", qPrintable(new_folder));
         // Update new folders
         if (!old_folders.contains(fsutils::fromNativePath(new_folder))) {
-          QBtSession::instance()->getScanFoldersModel()->addPath(new_folder, download_at_path.at(i));
+          QBtSession::instance()->getScanFoldersModel()->addPath(new_folder, download_at_path.at(i), download_paths.at(i));
         }
         ++i;
       }
