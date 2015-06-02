@@ -904,12 +904,12 @@ void MainWindow::closeEvent(QCloseEvent *e)
         return;
     }
 
-    if (pref->confirmOnExit() && QBtSession::instance()->hasActiveTorrents()) {
+    if (pref->confirmOnExit()) {
         if (e->spontaneous() || force_exit) {
             if (!isVisible())
                 show();
-            QMessageBox confirmBox(QMessageBox::Question, tr("Exiting qBittorrent"),
-                                   tr("Some files are currently transferring.\nAre you sure you want to quit qBittorrent?"),
+            QMessageBox confirmBox(QMessageBox::Question, tr("qBittorrent"),
+                                   tr("Are you sure you want to exit qBittorrent?"),
                                    QMessageBox::NoButton, this);
             QPushButton *noBtn = confirmBox.addButton(tr("No"), QMessageBox::NoRole);
             QPushButton *yesBtn = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);

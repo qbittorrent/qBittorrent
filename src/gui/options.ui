@@ -380,7 +380,7 @@
                <item>
                 <widget class="QCheckBox" name="checkProgramExitConfirm">
                  <property name="text">
-                  <string>Ask for program exit confirmation</string>
+                  <string>Confirmation on exit</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
