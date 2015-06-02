@@ -36,17 +36,19 @@
 #include <QColor>
 #include <QDebug>
 #include <QUrl>
-#include "trackerlist.h"
-#include "propertieswidget.h"
-#include "trackersadditiondlg.h"
-#include "guiiconprovider.h"
+#include <QMessageBox>
+
 #include "core/bittorrent/session.h"
 #include "core/bittorrent/torrenthandle.h"
 #include "core/bittorrent/peerinfo.h"
 #include "core/bittorrent/trackerentry.h"
 #include "core/preferences.h"
 #include "core/utils/misc.h"
+#include "propertieswidget.h"
+#include "trackersadditiondlg.h"
+#include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
+#include "trackerlist.h"
 
 TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), properties(properties) {
   // Graphical settings

@@ -32,64 +32,29 @@
 #define PEERADDITION_H
 
 #include <QDialog>
-#include <QRegExp>
-#include <QMessageBox>
-
-#include "core/bittorrent/peerinfo.h"
 #include "ui_peer.h"
 
-class PeerAdditionDlg: public QDialog, private Ui::addPeerDialog
+class QHostAddress;
+
+namespace BitTorrent
+{
+    struct PeerAddress;
+}
+
+class PeerAdditionDlg : public QDialog, private Ui::addPeerDialog
 {
     Q_OBJECT
 
 public:
-    PeerAdditionDlg(QWidget *parent=0)
-        : QDialog(parent)
-    {
-        setupUi(this);
-        connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-        connect(buttonBox, SIGNAL(accepted()), this, SLOT(validateInput()));
-    }
+    PeerAdditionDlg(QWidget *parent = 0);
 
-    ~PeerAdditionDlg()
-    {
-    }
+    QHostAddress getAddress() const;
+    ushort getPort() const;
 
-    QHostAddress getAddress() const
-    {
-        return QHostAddress(lineIP->text());
-    }
-
-    ushort getPort() const
-    {
-        return spinPort->value();
-    }
-
-    static BitTorrent::PeerAddress askForPeerAddress()
-    {
-        BitTorrent::PeerAddress addr;
-
-        PeerAdditionDlg dlg;
-        if (dlg.exec() == QDialog::Accepted) {
-            addr.ip = dlg.getAddress();
-            if (addr.ip.isNull())
-                qDebug("Unable to parse the provided IP.");
-            else
-                qDebug("Provided IP is correct");
-            addr.port = dlg.getPort();
-        }
-
-        return addr;
-    }
-
+    static BitTorrent::PeerAddress askForPeerAddress();
 
 protected slots:
-    void validateInput() {
-        if (getAddress().isNull())
-            QMessageBox::warning(this, tr("Invalid IP"), tr("The IP you provided is invalid."), QMessageBox::Ok);
-        else
-            accept();
-    }
+    void validateInput();
 };
 
 #endif // PEERADDITION_H

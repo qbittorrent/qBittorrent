@@ -28,28 +28,30 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "addnewtorrentdialog.h"
-#include "ui_addnewtorrentdialog.h"
-#include "proplistdelegate.h"
-#include "torrentcontentmodel.h"
-#include "torrentcontentfiltermodel.h"
-#include "core/preferences.h"
-#include "core/net/downloadmanager.h"
-#include "core/net/downloadhandler.h"
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/magneturi.h"
-#include "core/bittorrent/torrentinfo.h"
-#include "guiiconprovider.h"
-#include "core/utils/fs.h"
-#include "autoexpandabledialog.h"
-#include "messageboxraised.h"
-
 #include <QDebug>
 #include <QString>
 #include <QFile>
 #include <QUrl>
 #include <QMenu>
 #include <QFileDialog>
+
+#include "core/preferences.h"
+#include "core/net/downloadmanager.h"
+#include "core/net/downloadhandler.h"
+#include "core/bittorrent/session.h"
+#include "core/bittorrent/magneturi.h"
+#include "core/bittorrent/torrentinfo.h"
+#include "core/bittorrent/torrenthandle.h"
+#include "core/utils/fs.h"
+#include "core/utils/misc.h"
+#include "guiiconprovider.h"
+#include "autoexpandabledialog.h"
+#include "messageboxraised.h"
+#include "ui_addnewtorrentdialog.h"
+#include "proplistdelegate.h"
+#include "torrentcontentmodel.h"
+#include "torrentcontentfiltermodel.h"
+#include "addnewtorrentdialog.h"
 
 AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
     : QDialog(parent)

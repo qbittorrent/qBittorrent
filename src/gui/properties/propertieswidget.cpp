@@ -42,9 +42,11 @@
 #include <QDesktopServices>
 #include <QBitArray>
 
-#include "propertieswidget.h"
-#include "transferlistwidget.h"
 #include "core/bittorrent/session.h"
+#include "core/preferences.h"
+#include "core/utils/fs.h"
+#include "core/utils/misc.h"
+#include "core/utils/string.h"
 #include "proplistdelegate.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodel.h"
@@ -53,13 +55,12 @@
 #include "mainwindow.h"
 #include "downloadedpiecesbar.h"
 #include "pieceavailabilitybar.h"
-#include "core/preferences.h"
 #include "proptabbar.h"
 #include "guiiconprovider.h"
 #include "lineedit.h"
-#include "core/utils/fs.h"
-#include "core/utils/string.h"
+#include "transferlistwidget.h"
 #include "autoexpandabledialog.h"
+#include "propertieswidget.h"
 
 PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, TransferListWidget *transferList):
   QWidget(parent), transferList(transferList), main_window(main_window), m_torrent(0) {

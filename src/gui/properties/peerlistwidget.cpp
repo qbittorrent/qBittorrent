@@ -28,26 +28,27 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "peerlistwidget.h"
-#include "peerlistdelegate.h"
-#include "peerlistsortmodel.h"
-#include "core/net/reverseresolution.h"
-#include "core/preferences.h"
-#include "propertieswidget.h"
-#include "geoipmanager.h"
-#include "peeraddition.h"
-#include "speedlimitdlg.h"
-#include "guiiconprovider.h"
-#include "core/bittorrent/torrenthandle.h"
-#include "core/bittorrent/peerinfo.h"
-#include "core/logger.h"
-
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QSet>
 #include <QHeaderView>
 #include <QMenu>
 #include <QClipboard>
+#include <QMessageBox>
+
+#include "core/net/reverseresolution.h"
+#include "core/bittorrent/torrenthandle.h"
+#include "core/bittorrent/peerinfo.h"
+#include "core/preferences.h"
+#include "core/logger.h"
+#include "propertieswidget.h"
+#include "geoipmanager.h"
+#include "peeraddition.h"
+#include "speedlimitdlg.h"
+#include "guiiconprovider.h"
+#include "peerlistdelegate.h"
+#include "peerlistsortmodel.h"
+#include "peerlistwidget.h"
 
 PeerListWidget::PeerListWidget(PropertiesWidget *parent):
   QTreeView(parent), m_properties(parent), m_displayFlags(false)

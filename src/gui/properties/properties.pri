@@ -17,8 +17,11 @@ HEADERS += $$PWD/propertieswidget.h \
            $$PWD/proptabbar.h
 
 SOURCES += $$PWD/propertieswidget.cpp \
+           $$PWD/proplistdelegate.cpp \
            $$PWD/peerlistwidget.cpp \
            $$PWD/trackerlist.cpp \
            $$PWD/proptabbar.cpp \
            $$PWD/downloadedpiecesbar.cpp \
+           $$PWD/peeraddition.cpp \
+           $$PWD/trackersadditiondlg.cpp \
            $$PWD/pieceavailabilitybar.cpp

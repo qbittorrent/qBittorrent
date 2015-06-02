@@ -28,46 +28,54 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef PROPLISTDELEGATE_H
-#define PROPLISTDELEGATE_H
+#include <QRegExp>
+#include <QMessageBox>
 
-#include <QItemDelegate>
+#include "core/bittorrent/peerinfo.h"
+#include "peeraddition.h"
 
-class QPainter;
-class QModelIndex;
-class QStyleOptionViewItem;
-class QAbstractItemModel;
-class PropertiesWidget;
-
-// Defines for properties list columns
-enum PropColumn
+PeerAdditionDlg::PeerAdditionDlg(QWidget *parent)
+    : QDialog(parent)
 {
-    NAME,
-    PCSIZE,
-    PROGRESS,
-    PRIORITY
-};
+    setupUi(this);
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(validateInput()));
+}
 
-class PropListDelegate : public QItemDelegate
+QHostAddress PeerAdditionDlg::getAddress() const
 {
-    Q_OBJECT
+    return QHostAddress(lineIP->text());
+}
 
-public:
-    PropListDelegate(PropertiesWidget *properties = 0, QObject *parent = 0);
 
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    void setEditorData(QWidget *editor, const QModelIndex &index) const;
-    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &/* option */, const QModelIndex &index) const;
+ushort PeerAdditionDlg::getPort() const
+{
+    return spinPort->value();
+}
 
-public slots:
-    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
-    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &/* index */) const;
 
-signals:
-    void filteredFilesChanged() const;
+BitTorrent::PeerAddress PeerAdditionDlg::askForPeerAddress()
+{
+    BitTorrent::PeerAddress addr;
 
-private:
-    PropertiesWidget *m_properties;
-};
+    PeerAdditionDlg dlg;
+    if (dlg.exec() == QDialog::Accepted) {
+        addr.ip = dlg.getAddress();
+        if (addr.ip.isNull())
+            qDebug("Unable to parse the provided IP.");
+        else
+            qDebug("Provided IP is correct");
+        addr.port = dlg.getPort();
+    }
 
-#endif
+    return addr;
+}
+
+
+void PeerAdditionDlg::validateInput()
+{
+    if (getAddress().isNull())
+        QMessageBox::warning(this, tr("Invalid IP"), tr("The IP you provided is invalid."), QMessageBox::Ok);
+    else
+        accept();
+}
