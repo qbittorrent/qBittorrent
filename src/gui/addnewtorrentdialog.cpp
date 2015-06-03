@@ -538,26 +538,21 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint&)
     // Call menu
     QAction *act = myFilesLlistMenu.exec(QCursor::pos());
     if (act) {
-        if (act == actRename) {
+        if (act == actRename)
             renameSelectedFile();
-        }
         else {
             int prio = prio::NORMAL;
-            if (act == ui->actionHigh) {
+            if (act == ui->actionHigh)
                 prio = prio::HIGH;
+            else if (act == ui->actionMaximum)
+                prio = prio::MAXIMUM;
+            else if (act == ui->actionNot_downloaded)
+                prio = prio::IGNORED;
             }
-            else {
-                if (act == ui->actionMaximum)
-                    prio = prio::MAXIMUM;
-                else
-                    if (act == ui->actionNot_downloaded)
-                        prio = prio::IGNORED;
-            }
-            qDebug("Setting files priority");
-            foreach (const QModelIndex &index, selectedRows) {
-                qDebug("Setting priority(%d) for file at row %d", prio, index.row());
-                m_contentModel->setData(m_contentModel->index(index.row(), PRIORITY, index.parent()), prio);
-            }
+        qDebug("Setting files priority");
+        foreach (const QModelIndex &index, selectedRows) {
+            qDebug("Setting priority(%d) for file at row %d", prio, index.row());
+            m_contentModel->setData(m_contentModel->index(index.row(), PRIORITY, index.parent()), prio);
         }
     }
 }
