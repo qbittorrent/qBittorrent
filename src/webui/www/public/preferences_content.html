@@ -25,6 +25,13 @@
   </tr>
   <tr>
   <td>
+    <input type="checkbox" id="max_uploads_checkbox" onClick="updateMaxUploadsEnabled();"/>
+    <label for="max_uploads_checkbox">QBT_TR(Global maximum number of upload slots:)QBT_TR</label>
+  </td>
+  <td><input type="text" id="max_uploads_value" style="width: 4em;"/></td>
+  </tr>
+  <tr>
+  <td>
     <input type="checkbox" id="max_uploads_per_torrent_checkbox" onClick="updateMaxUploadsPerTorrentEnabled();"/>
     <label for="max_uploads_per_torrent_checkbox">QBT_TR(Maximum number of upload slots per torrent:)QBT_TR</label>
   </td>
@@ -222,7 +229,7 @@
   <legend>QBT_TR(IP Filtering)QBT_TR</legend>
   <input type="checkbox" id="ipfilter_enabled_checkbox" onclick="updateFilterSettings();"/>
   <label for="ipfilter_enabled_checkbox">QBT_TR(IP Filtering)QBT_TR</label><br/>
-  <label for="ipfilter_text">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR</label>
+  <label for="ipfilter_text" style="margin-left: 20px;">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR</label>
   <input type="text" id="ipfilter_text"/>
 </fieldset>
 </div>
@@ -255,11 +262,11 @@
     <label for="peer_proxy_auth_checkbox">QBT_TR(Authentication)QBT_TR</label><br/>
     
     <div class="formRow">
-    <label for="peer_proxy_username_text" style="margin-left: 20px;" class="leftLabelSmall">QBT_TR(Username:)QBT_TR</label>
+    <label for="peer_proxy_username_text" class="leftLabelLarge">QBT_TR(Username:)QBT_TR</label>
     <input type="text" id="peer_proxy_username_text" />
     </div>
     <div class="formRow">
-    <label for="peer_proxy_password_text" style="margin-left: 20px;" class="leftLabelSmall">QBT_TR(Password:)QBT_TR</label>
+    <label for="peer_proxy_password_text" class="leftLabelLarge">QBT_TR(Password:)QBT_TR</label>
     <input type="password" id="peer_proxy_password_text" />
     </div>
 </fieldset>
@@ -321,11 +328,11 @@
   <input type="checkbox" id="use_https_checkbox" onclick="updateHttpsSettings();" />
   <label for="use_https_checkbox">QBT_TR(Use HTTPS instead of HTTP)QBT_TR</label><br/>
   <div class="formRow">
-  <label for="ssl_key_textarea" style="margin-left: 20px;" class="leftLabelSmall">QBT_TR(Key:)QBT_TR</label>
+  <label for="ssl_key_textarea" style="margin-left: 20px;">QBT_TR(Key:)QBT_TR</label>
   <textarea id="ssl_key_textarea" rows="5" cols="70"></textarea>
   </div>
   <div class="formRow">
-  <label for="ssl_cert_textarea" style="margin-left: 20px;" class="leftLabelSmall">QBT_TR(Certificate:)QBT_TR</label>
+  <label for="ssl_cert_textarea" style="margin-left: 20px;">QBT_TR(Certificate:)QBT_TR</label>
   <textarea id="ssl_cert_textarea" rows="5" cols="70"></textarea>
   </div>
   <div style="padding-left: 10px;"><a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts>Information about certificates</a></div>
@@ -442,6 +449,14 @@ updateMaxConnecPerTorrentEnabled = function() {
     $('max_connec_per_torrent_value').setProperty('disabled', false);
   } else {
     $('max_connec_per_torrent_value').setProperty('disabled', true);
+  }
+}
+
+updateMaxUploadsEnabled = function() {
+  if($('max_uploads_checkbox').getProperty('checked')) {
+    $('max_uploads_value').setProperty('disabled', false);
+  } else {
+    $('max_uploads_value').setProperty('disabled', true);
   }
 }
 
@@ -707,6 +722,15 @@ loadPreferences = function() {
                       $('max_connec_per_torrent_value').setProperty('value', max_connec_per_torrent);
                     }
                     updateMaxConnecPerTorrentEnabled();
+                    var max_uploads = pref.max_uploads.toInt();
+                    if(max_uploads <= 0) {
+                      $('max_uploads_checkbox').setProperty('checked', false);
+                      $('max_uploads_value').setProperty('value', 8);
+                    } else {
+                      $('max_uploads_checkbox').setProperty('checked', true);
+                      $('max_uploads_value').setProperty('value', max_uploads);
+                    }
+                    updateMaxUploadsEnabled();
                     var max_uploads_per_torrent = pref.max_uploads_per_torrent.toInt();
                     if(max_uploads_per_torrent <= 0) {
                       $('max_uploads_per_torrent_checkbox').setProperty('checked', false);
@@ -888,6 +912,16 @@ applyPreferences = function() {
   }
   settings.set('max_connec_per_torrent', max_connec_per_torrent);
   
+  var max_uploads = -1;
+  if($('max_uploads_checkbox').getProperty('checked')) {
+    max_uploads = $('max_uploads_value').getProperty('value').toInt();
+    if(max_uploads <= 0) {
+      alert("QBT_TR(Global number of upload slots limit must be greater than 0 or disabled.)QBT_TR");
+      return;
+    }
+  }
+  settings.set('max_uploads', max_uploads);
+
   var max_uploads_per_torrent = -1;
   if($('max_uploads_per_torrent_checkbox').getProperty('checked')) {
     max_uploads_per_torrent = $('max_uploads_per_torrent_value').getProperty('value').toInt();
