@@ -194,7 +194,7 @@ bool AbstractWebApplication::readFile(const QString& path, QByteArray &data, QSt
             QString dataStr = QString::fromUtf8(data.constData());
             translateDocument(dataStr);
 
-            if (path.endsWith("about.html"))
+            if (path.endsWith("about.html") || path.endsWith("index.html") || path.endsWith("client.js"))
                 dataStr.replace("${VERSION}", VERSION);
 
             data = dataStr.toUtf8();
@@ -241,7 +241,7 @@ void AbstractWebApplication::translateDocument(QString& data)
         "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
         "options_imp", "Preferences", "TrackersAdditionDlg", "ScanFoldersModel",
         "PropTabBar", "TorrentModel", "downloadFromURL", "MainWindow", "misc",
-        "StatusBar"
+        "StatusBar", "AboutDlg", "about", "PeerListWidget"
     };
     const size_t context_count = sizeof(contexts) / sizeof(contexts[0]);
     int i = 0;

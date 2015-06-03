@@ -363,7 +363,7 @@ initializeWindows = function() {
         new Event(e).stop();
         new MochaUI.Window({
             id: 'aboutpage',
-            title: 'About',
+            title: 'QBT_TR(About)QBT_TR',
             loadMethod: 'xhr',
             contentURL: 'about.html',
             width: 650,

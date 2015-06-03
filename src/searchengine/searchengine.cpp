@@ -110,11 +110,11 @@ void SearchEngine::fillCatCombobox() {
 
 void SearchEngine::fillEngineComboBox() {
     selectEngine->clear();
-    selectEngine->addItem("All enabled", QVariant("enabled"));
-    selectEngine->addItem("All engines", QVariant("all"));
+    selectEngine->addItem(tr("All enabled"), QVariant("enabled"));
+    selectEngine->addItem(tr("All engines"), QVariant("all"));
     foreach (QString engi, supported_engines->enginesEnabled())
         selectEngine->addItem(engi, QVariant(engi));
-    selectEngine->addItem("Multiple...", QVariant("multi"));
+    selectEngine->addItem(tr("Multiple..."), QVariant("multi"));
 }
 
 QString SearchEngine::selectedCategory() const {
@@ -159,7 +159,7 @@ void SearchEngine::tab_changed(int t)
 }
 
 void SearchEngine::selectMultipleBox(const QString &text) {
-    if (text == "Multiple...") on_enginesButton_clicked();
+    if (text == tr("Multiple...")) on_enginesButton_clicked();
 }
 
 void SearchEngine::on_enginesButton_clicked() {
@@ -206,7 +206,7 @@ void SearchEngine::on_search_button_clicked() {
     }
     // Tab Addition
     currentSearchTab = new SearchTab(this);
-    connect(currentSearchTab->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(propagateSectionResized(int,int,int)));
+    connect(currentSearchTab->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveResultsColumnsWidth()));
     all_tab.append(currentSearchTab);
     QString tabName = pattern;
     tabName.replace(QRegExp("&{1}"), "&&");
@@ -235,41 +235,20 @@ void SearchEngine::on_search_button_clicked() {
     searchTimeout->start(180000); // 3min
 }
 
-void SearchEngine::propagateSectionResized(int index, int , int newsize) {
-    foreach (SearchTab * tab, all_tab) {
-        tab->getCurrentTreeView()->setColumnWidth(index, newsize);
-    }
-    saveResultsColumnsWidth();
-}
-
 void SearchEngine::saveResultsColumnsWidth() {
-    if (all_tab.size() > 0) {
-        QTreeView* treeview = all_tab.first()->getCurrentTreeView();
-        Preferences* const pref = Preferences::instance();
-        QStringList width_list;
-        QStringList new_width_list;
-        short nbColumns = all_tab.first()->getCurrentSearchListModel()->columnCount();
-
-        QString line = pref->getSearchColsWidth();
-        if (!line.isEmpty()) {
-            width_list = line.split(' ');
-        }
-
-        for (short i=0; i<nbColumns; ++i) {
-            if (treeview->columnWidth(i)<1 && width_list.size() == nbColumns && width_list.at(i).toInt()>=1) {
-                // load the former width
-                new_width_list << width_list.at(i);
-            } else if (treeview->columnWidth(i)>=1) {
-                // usual case, save the current width
-                new_width_list << QString::number(treeview->columnWidth(i));
-            } else {
-                // default width
-                treeview->resizeColumnToContents(i);
-                new_width_list << QString::number(treeview->columnWidth(i));
-            }
-        }
-        pref->setSearchColsWidth(new_width_list.join(" "));
+    if (all_tab.isEmpty())
+        return;
+    QTreeView* treeview = all_tab.first()->getCurrentTreeView();
+    Preferences* const pref = Preferences::instance();
+    QStringList new_width_list;
+    short nbColumns = all_tab.first()->getCurrentSearchListModel()->columnCount();
+    for (short i=0; i<nbColumns; ++i) {
+        if (treeview->columnWidth(i) > 0)
+            new_width_list << QString::number(treeview->columnWidth(i));
     }
+    // Don't save the width of the last column (auto column width)
+    new_width_list.removeLast();
+    pref->setSearchColsWidth(new_width_list.join(" "));
 }
 
 void SearchEngine::downloadTorrent(QString engine_url, QString torrent_url) {

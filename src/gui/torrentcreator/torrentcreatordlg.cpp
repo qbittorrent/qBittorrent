@@ -197,6 +197,7 @@ void TorrentCreatorDlg::setInteractionEnabled(bool enabled)
   URLSeeds_list->setEnabled(enabled);
   txt_comment->setEnabled(enabled);
   comboPieceSize->setEnabled(enabled);
+  checkAutoPieceSize->setEnabled(enabled);
   check_private->setEnabled(enabled);
   checkStartSeeding->setEnabled(enabled);
   createButton->setEnabled(enabled);
