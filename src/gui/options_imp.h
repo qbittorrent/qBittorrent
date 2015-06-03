@@ -118,6 +118,7 @@ private:
   int getPort() const;
   bool isUPnPEnabled() const;
   QPair<int,int> getGlobalBandwidthLimits() const;
+  QPair<int,int> getAltGlobalBandwidthLimits() const;
   // Bittorrent options
   int getMaxConnecs() const;
   int getMaxConnecsPerTorrent() const;
