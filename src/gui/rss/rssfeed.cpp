@@ -66,7 +66,7 @@ RssFeed::RssFeed(RssManager* manager, RssFolder* parent, const QString& url):
   connect(manager->rssParser(), SIGNAL(feedParsingFinished(QString,QString)), SLOT(handleFeedParsingFinished(QString,QString)));
 
   // Download the RSS Feed icon
-  Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(iconUrl());
+  Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(iconUrl(), true);
   connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleFinishedDownload(QString, QString)));
   connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
   m_iconUrl = handler->url();
@@ -167,7 +167,7 @@ bool RssFeed::refresh()
   }
   m_loading = true;
   // Download the RSS again
-  Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(m_url);
+  Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(m_url, true);
   connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleFinishedDownload(QString, QString)));
   connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
   m_url = handler->url(); // sync URL encoding

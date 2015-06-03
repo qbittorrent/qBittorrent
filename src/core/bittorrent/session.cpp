@@ -1049,7 +1049,7 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
     if (Utils::Misc::isUrl(source)) {
         Logger::instance()->addMessage(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));
         // Launch downloader
-        Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, 10485760 /* 10MB */);
+        Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, true, 10485760 /* 10MB */, true);
         connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleDownloadFinished(QString, QString)));
         connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleDownloadFailed(QString, QString)));
         connect(handler, SIGNAL(redirectedToMagnet(QString, QString)), this, SLOT(handleRedirectedToMagnet(QString, QString)));

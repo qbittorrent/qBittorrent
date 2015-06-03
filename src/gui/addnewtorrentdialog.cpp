@@ -135,7 +135,7 @@ void AddNewTorrentDialog::show(QString source, QWidget *parent)
 
     if (Utils::Misc::isUrl(source)) {
         // Launch downloader
-        Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, 10485760 /* 10MB */);
+        Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, true, 10485760 /* 10MB */, true);
         connect(handler, SIGNAL(downloadFinished(QString, QString)), dlg, SLOT(handleDownloadFinished(QString, QString)));
         connect(handler, SIGNAL(downloadFailed(QString, QString)), dlg, SLOT(handleDownloadFailed(QString, QString)));
         connect(handler, SIGNAL(redirectedToMagnet(QString, QString)), dlg, SLOT(handleRedirectedToMagnet(QString, QString)));
