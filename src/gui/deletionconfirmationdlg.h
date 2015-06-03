@@ -32,6 +32,7 @@
 #define DELETIONCONFIRMATIONDLG_H
 
 #include <QDialog>
+#include <QPushButton>
 #include "ui_confirmdeletiondlg.h"
 #include "preferences.h"
 #include "iconprovider.h"
@@ -55,7 +56,7 @@ class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
     move(misc::screenCenter(this));
     checkPermDelete->setChecked(Preferences::instance()->deleteTorrentFilesAsDefault());
     connect(checkPermDelete, SIGNAL(clicked()), this, SLOT(updateRememberButtonState()));
-    buttonBox->setFocus();
+    buttonBox->button(QDialogButtonBox::Cancel)->setFocus();
   }
 
   bool shouldDeleteLocalFiles() const {

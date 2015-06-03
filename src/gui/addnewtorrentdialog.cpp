@@ -87,6 +87,8 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
     editHotkey = new QShortcut(QKeySequence("F2"), ui->content_tree, 0, 0, Qt::WidgetShortcut);
     connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedFile()));
     connect(ui->content_tree, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedFile()));
+
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setFocus();
 }
 
 AddNewTorrentDialog::~AddNewTorrentDialog()
