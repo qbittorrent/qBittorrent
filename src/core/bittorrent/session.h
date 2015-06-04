@@ -113,6 +113,7 @@ namespace BitTorrent
         QString savePath;
         bool disableTempPath; // e.g. for imported torrents
         bool sequential;
+        TriStateBool addForced;
         TriStateBool addPaused;
         QVector<int> filePriorities; // used if TorrentInfo is set
         bool ignoreShareRatio;

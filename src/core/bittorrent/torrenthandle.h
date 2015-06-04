@@ -91,8 +91,9 @@ namespace BitTorrent
         bool disableTempPath;
         bool sequential;
         bool hasSeedStatus;
-        // for new torrents
+        TriStateBool addForced;
         TriStateBool addPaused;
+        // for new torrents
         QVector<int> filePriorities;
         bool ignoreShareRatio;
         // for resumed torrents
