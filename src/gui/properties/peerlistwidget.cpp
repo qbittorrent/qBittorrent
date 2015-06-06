@@ -43,7 +43,7 @@
 #include "core/logger.h"
 #include "propertieswidget.h"
 #include "geoipmanager.h"
-#include "peeraddition.h"
+#include "peersadditiondlg.h"
 #include "speedlimitdlg.h"
 #include "guiiconprovider.h"
 #include "peerlistdelegate.h"
@@ -159,7 +159,10 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
     QString myip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
     QString myport = m_listModel->data(m_listModel->index(row, PeerListDelegate::PORT)).toString();
     selectedPeerIPs << myip;
-    selectedPeerIPPort << myip + ":" + myport;
+    if (myip.indexOf(".") == -1) // IPv6
+        selectedPeerIPPort << "[" + myip + "]:" + myport;
+    else // IPv4
+        selectedPeerIPPort << myip + ":" + myport;
   }
   // Add Peer Action
   QAction *addPeerAct = 0;
@@ -179,16 +182,22 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
   QAction *act = menu.exec(QCursor::pos());
   if (act == 0) return;
   if (act == addPeerAct) {
-    BitTorrent::PeerAddress addr = PeerAdditionDlg::askForPeerAddress();
-    if (!addr.ip.isNull()) {
-      if (torrent->connectPeer(addr))
-        QMessageBox::information(0, tr("Peer addition"), tr("The peer was added to this torrent."));
-      else
-        QMessageBox::critical(0, tr("Peer addition"), tr("The peer could not be added to this torrent."));
+    QList<BitTorrent::PeerAddress> peersList = PeersAdditionDlg::askForPeers();
+    int peerCount = 0;
+    foreach (const BitTorrent::PeerAddress &addr, peersList) {
+        if (torrent->connectPeer(addr)) {
+            qDebug("Adding peer %s...", qPrintable(addr.ip.toString()));
+            Logger::instance()->addMessage(tr("Manually adding peer %1...").arg(addr.ip.toString()));
+            peerCount++;
+        }
+        else {
+            Logger::instance()->addMessage(tr("The peer %1 could not be added to this torrent.").arg(addr.ip.toString()), Log::WARNING);
+        }
     }
-    else {
-      qDebug("No peer was added");
-    }
+    if (peerCount < peersList.length())
+        QMessageBox::information(0, tr("Peer addition"), tr("Some peers could not be added. Check the Log for details."));
+    else if (peerCount > 0)
+        QMessageBox::information(0, tr("Peer addition"), tr("The peers were added to this torrent."));
     return;
   }
   if (act == banAct) {
