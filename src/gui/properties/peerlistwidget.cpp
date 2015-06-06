@@ -35,7 +35,7 @@
 #include "preferences.h"
 #include "propertieswidget.h"
 #include "geoipmanager.h"
-#include "peeraddition.h"
+#include "peersadditiondlg.h"
 #include "speedlimitdlg.h"
 #include "iconprovider.h"
 #include "qtorrenthandle.h"
@@ -159,7 +159,10 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
     QString myip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
     QString myport = m_listModel->data(m_listModel->index(row, PeerListDelegate::PORT)).toString();
     selectedPeerIPs << myip;
-    selectedPeerIPPort << myip + ":" + myport;
+    if (myip.length() > 15) // IPv6
+        selectedPeerIPPort << "[" + myip + "]:" + myport;
+    else // IPv4
+        selectedPeerIPPort << myip + ":" + myport;
   }
   // Add Peer Action
   QAction *addPeerAct = 0;
@@ -189,16 +192,21 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
   QAction *act = menu.exec(QCursor::pos());
   if (act == 0) return;
   if (act == addPeerAct) {
-    boost::asio::ip::tcp::endpoint ep = PeerAdditionDlg::askForPeerEndpoint();
-    if (ep != boost::asio::ip::tcp::endpoint()) {
-      try {
-        h.connect_peer(ep);
-        QMessageBox::information(0, tr("Peer addition"), tr("The peer was added to this torrent."));
-      } catch(std::exception) {
-        QMessageBox::critical(0, tr("Peer addition"), tr("The peer could not be added to this torrent."));
-      }
-    } else {
-      qDebug("No peer was added");
+    QMap<QString, int> endpoints = PeersAdditionDlg::askForPeersEndpoints();
+    if (!endpoints.isEmpty()) {
+        QMap<QString, int>::const_iterator i = endpoints.constBegin();
+        while (i != endpoints.constEnd()) {
+            try {
+                libtorrent::address addr = libtorrent::address::from_string(qPrintable(i.key()));
+                h.connect_peer( libtorrent::asio::ip::tcp::endpoint(addr, i.value()) );
+                qDebug("Adding peer %s...", qPrintable(i.key()));
+                Logger::instance()->addMessage(tr("Manually adding peer %1...").arg(i.key()));
+            } catch(std::exception) {
+                QMessageBox::critical(0, tr("Peer addition"), tr("The peer %1 could not be added to this torrent.").arg(i.key()));
+            }
+            ++i;
+        }
+        QMessageBox::information(0, tr("Peer addition"), tr("The peers were added to this torrent."));
     }
     return;
   }
