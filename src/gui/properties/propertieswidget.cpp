@@ -142,6 +142,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(listWebSeeds, SIGNAL(doubleClicked(QModelIndex)), SLOT(editWebSeed()));
   deleteHotkeyWeb = new QShortcut(QKeySequence(QKeySequence::Delete), listWebSeeds, 0, 0, Qt::WidgetShortcut);
   connect(deleteHotkeyWeb, SIGNAL(activated()), SLOT(deleteSelectedUrlSeeds()));
+  openHotkeyFile = new QShortcut(QKeySequence("Return"), filesList, 0, 0, Qt::WidgetShortcut);
+  connect(openHotkeyFile, SIGNAL(activated()), SLOT(openSelectedFile()));
 }
 
 PropertiesWidget::~PropertiesWidget() {
@@ -157,6 +159,7 @@ PropertiesWidget::~PropertiesWidget() {
   delete editHotkeyFile;
   delete editHotkeyWeb;
   delete deleteHotkeyWeb;
+  delete openHotkeyFile;
   qDebug() << Q_FUNC_INFO << "EXIT";
 }
 
@@ -749,6 +752,13 @@ void PropertiesWidget::renameSelectedFile() {
       }
     }
   }
+}
+
+void PropertiesWidget::openSelectedFile() {
+  const QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(0);
+  if (selectedIndexes.size() != 1)
+    return;
+  openDoubleClickedFile(selectedIndexes.first());
 }
 
 void PropertiesWidget::askWebSeed() {
