@@ -760,7 +760,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     QVBoxLayout *frameLayout = new QVBoxLayout(frame);
     QFont font;
     font.setBold(true);
-    font.setCapitalization(QFont::SmallCaps);
+    font.setCapitalization(QFont::AllUppercase);
 
     frame->setFrameShadow(QFrame::Plain);
     frame->setFrameShape(QFrame::NoFrame);
