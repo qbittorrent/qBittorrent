@@ -1631,6 +1631,11 @@ void Session::handleTorrentSavePathChanged(TorrentHandle *const torrent)
     emit torrentSavePathChanged(torrent);
 }
 
+void Session::handleTorrentLabelChanged(TorrentHandle *const torrent, const QString &oldLabel)
+{
+    emit torrentLabelChanged(torrent, oldLabel);
+}
+
 void Session::handleTorrentTrackersAdded(TorrentHandle *const torrent, const QList<TrackerEntry> &newTrackers)
 {
     foreach (const TrackerEntry &newTracker, newTrackers)

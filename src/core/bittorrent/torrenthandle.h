@@ -241,6 +241,7 @@ namespace BitTorrent
         QDateTime completedTime() const;
         int timeSinceUpload() const;
         int timeSinceDownload() const;
+        int timeSinceActivity() const;
         int downloadLimit() const;
         int uploadLimit() const;
         bool superSeeding() const;

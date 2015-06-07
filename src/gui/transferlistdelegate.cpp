@@ -56,27 +56,27 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
   QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
   painter->save();
   switch(index.column()) {
-  case TorrentModelItem::TR_AMOUNT_DOWNLOADED:
-  case TorrentModelItem::TR_AMOUNT_UPLOADED:
-  case TorrentModelItem::TR_AMOUNT_DOWNLOADED_SESSION:
-  case TorrentModelItem::TR_AMOUNT_UPLOADED_SESSION:
-  case TorrentModelItem::TR_AMOUNT_LEFT:
-  case TorrentModelItem::TR_COMPLETED:
-  case TorrentModelItem::TR_SIZE:
-  case TorrentModelItem::TR_TOTAL_SIZE: {
+  case TorrentModel::TR_AMOUNT_DOWNLOADED:
+  case TorrentModel::TR_AMOUNT_UPLOADED:
+  case TorrentModel::TR_AMOUNT_DOWNLOADED_SESSION:
+  case TorrentModel::TR_AMOUNT_UPLOADED_SESSION:
+  case TorrentModel::TR_AMOUNT_LEFT:
+  case TorrentModel::TR_COMPLETED:
+  case TorrentModel::TR_SIZE:
+  case TorrentModel::TR_TOTAL_SIZE: {
       QItemDelegate::drawBackground(painter, opt, index);
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
       break;
     }
-  case TorrentModelItem::TR_ETA: {
+  case TorrentModel::TR_ETA: {
       QItemDelegate::drawBackground(painter, opt, index);
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::userFriendlyDuration(index.data().toLongLong()));
       break;
     }
-  case TorrentModelItem::TR_SEEDS:
-  case TorrentModelItem::TR_PEERS: {
+  case TorrentModel::TR_SEEDS:
+  case TorrentModel::TR_PEERS: {
       QString display = QString::number(index.data().toLongLong());
       qlonglong total = index.data(Qt::UserRole).toLongLong();
       if (total > 0) {
@@ -88,7 +88,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
       break;
     }
-  case TorrentModelItem::TR_STATUS: {
+  case TorrentModel::TR_STATUS: {
       const int state = index.data().toInt();
       QString display;
       switch(state) {
@@ -138,23 +138,23 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
       break;
     }
-  case TorrentModelItem::TR_UPSPEED:
-  case TorrentModelItem::TR_DLSPEED: {
+  case TorrentModel::TR_UPSPEED:
+  case TorrentModel::TR_DLSPEED: {
       QItemDelegate::drawBackground(painter, opt, index);
       const qulonglong speed = index.data().toULongLong();
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed)+tr("/s", "/second (.i.e per second)"));
       break;
     }
-  case TorrentModelItem::TR_UPLIMIT:
-  case TorrentModelItem::TR_DLLIMIT: {
+  case TorrentModel::TR_UPLIMIT:
+  case TorrentModel::TR_DLLIMIT: {
     QItemDelegate::drawBackground(painter, opt, index);
     const qlonglong limit = index.data().toLongLong();
     opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
     QItemDelegate::drawDisplay(painter, opt, opt.rect, limit > 0 ? Utils::String::fromDouble(limit/1024., 1) + " " + tr("KiB/s", "KiB/second (.i.e per second)") : QString::fromUtf8("∞"));
     break;
   }
-  case TorrentModelItem::TR_TIME_ELAPSED: {
+  case TorrentModel::TR_TIME_ELAPSED: {
     QItemDelegate::drawBackground(painter, opt, index);
     QString txt = Utils::Misc::userFriendlyDuration(index.data().toLongLong());
     qlonglong seeding_time = index.data(Qt::UserRole).toLongLong();
@@ -163,13 +163,13 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     QItemDelegate::drawDisplay(painter, opt, opt.rect, txt);
     break;
   }
-  case TorrentModelItem::TR_ADD_DATE:
-  case TorrentModelItem::TR_SEED_DATE:
+  case TorrentModel::TR_ADD_DATE:
+  case TorrentModel::TR_SEED_DATE:
     QItemDelegate::drawBackground(painter, opt, index);
     QItemDelegate::drawDisplay(painter, opt, opt.rect, index.data().toDateTime().toLocalTime().toString(Qt::DefaultLocaleShortDate));
     break;
-  case TorrentModelItem::TR_RATIO_LIMIT:
-  case TorrentModelItem::TR_RATIO: {
+  case TorrentModel::TR_RATIO_LIMIT:
+  case TorrentModel::TR_RATIO: {
       QItemDelegate::drawBackground(painter, opt, index);
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       const qreal ratio = index.data().toDouble();
@@ -177,7 +177,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
                                  ((ratio == -1) || (ratio > BitTorrent::TorrentHandle::MAX_RATIO)) ? QString::fromUtf8("∞") : Utils::String::fromDouble(ratio, 2));
       break;
     }
-  case TorrentModelItem::TR_PRIORITY: {
+  case TorrentModel::TR_PRIORITY: {
       const int priority = index.data().toInt();
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       if (priority > 0)
@@ -188,7 +188,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       }
       break;
     }
-  case TorrentModelItem::TR_PROGRESS: {
+  case TorrentModel::TR_PROGRESS: {
       QStyleOptionProgressBarV2 newopt;
       qreal progress = index.data().toDouble()*100.;
       newopt.rect = opt.rect;
@@ -211,7 +211,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
 #endif
       break;
     }
-  case TorrentModelItem::TR_LAST_ACTIVITY: {
+  case TorrentModel::TR_LAST_ACTIVITY: {
       QString elapsedString;
       long long elapsed = index.data().toLongLong();
       QItemDelegate::drawBackground(painter, opt, index);

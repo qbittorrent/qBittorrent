@@ -59,6 +59,7 @@ struct SessionPrivate
 
     virtual void handleTorrentRatioLimitChanged(BitTorrent::TorrentHandle *const torrent) = 0;
     virtual void handleTorrentSavePathChanged(BitTorrent::TorrentHandle *const torrent) = 0;
+    virtual void handleTorrentLabelChanged(BitTorrent::TorrentHandle *const torrent, const QString &oldLabel) = 0;
     virtual void handleTorrentMetadataReceived(BitTorrent::TorrentHandle *const torrent) = 0;
     virtual void handleTorrentPaused(BitTorrent::TorrentHandle *const torrent) = 0;
     virtual void handleTorrentResumed(BitTorrent::TorrentHandle *const torrent) = 0;

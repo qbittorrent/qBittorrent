@@ -50,6 +50,7 @@
 #include "core/torrentfilter.h"
 #include "core/bittorrent/trackerentry.h"
 #include "core/bittorrent/session.h"
+#include "core/bittorrent/torrenthandle.h"
 #include "core/net/downloadmanager.h"
 #include "core/net/downloadhandler.h"
 #include "core/utils/misc.h"
@@ -70,8 +71,9 @@ FiltersBase::FiltersBase(QWidget *parent, TransferListWidget *transferList)
 
     connect(this, SIGNAL(customContextMenuRequested(QPoint)), SLOT(showMenu(QPoint)));
     connect(this, SIGNAL(currentRowChanged(int)), SLOT(applyFilter(int)));
-    connect(transferList->getSourceModel(), SIGNAL(torrentAdded(TorrentModelItem*)), SLOT(handleNewTorrent(TorrentModelItem*)));
-    connect(transferList->getSourceModel(), SIGNAL(torrentAboutToBeRemoved(TorrentModelItem*)), SLOT(torrentAboutToBeDeleted(TorrentModelItem*)));
+
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentAdded(BitTorrent::TorrentHandle *const)), SLOT(handleNewTorrent(BitTorrent::TorrentHandle *const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const)), SLOT(torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const)));
 }
 
 QSize FiltersBase::sizeHint() const
@@ -165,9 +167,9 @@ void StatusFiltersWidget::applyFilter(int row)
     transferList->applyStatusFilter(row);
 }
 
-void StatusFiltersWidget::handleNewTorrent(TorrentModelItem*) {}
+void StatusFiltersWidget::handleNewTorrent(BitTorrent::TorrentHandle *const) {}
 
-void StatusFiltersWidget::torrentAboutToBeDeleted(TorrentModelItem*) {}
+void StatusFiltersWidget::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const) {}
 
 LabelFiltersList::LabelFiltersList(QWidget *parent, TransferListWidget *transferList)
     : FiltersBase(parent, transferList)
@@ -175,7 +177,8 @@ LabelFiltersList::LabelFiltersList(QWidget *parent, TransferListWidget *transfer
     , m_totalLabeled(0)
 {
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    connect(transferList->getSourceModel(), SIGNAL(torrentChangedLabel(TorrentModelItem*,QString,QString)), SLOT(torrentChangedLabel(TorrentModelItem*, QString, QString)));
+
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentLabelChanged(BitTorrent::TorrentHandle *const, QString)), SLOT(torrentChangedLabel(BitTorrent::TorrentHandle *const, QString)));
 
     // Add Label filters
     QListWidgetItem *allLabels = new QListWidgetItem(this);
@@ -309,12 +312,12 @@ void LabelFiltersList::removeUnusedLabels()
         updateGeometry();
 }
 
-void LabelFiltersList::torrentChangedLabel(TorrentModelItem *torrentItem, QString old_label, QString new_label)
+void LabelFiltersList::torrentChangedLabel(BitTorrent::TorrentHandle *const torrent, const QString &oldLabel)
 {
-    Q_UNUSED(torrentItem);
-    qDebug("Torrent label changed from %s to %s", qPrintable(old_label), qPrintable(new_label));
-    removeItem(old_label);
-    addItem(new_label, true);
+    qDebug("Torrent label changed from %s to %s", qPrintable(oldLabel), qPrintable(torrent->label()));
+    removeItem(oldLabel);
+    QString newLabel = torrent->label();
+    addItem(newLabel, true);
 }
 
 void LabelFiltersList::showMenu(QPoint)
@@ -384,21 +387,22 @@ void LabelFiltersList::applyFilter(int row)
     }
 }
 
-void LabelFiltersList::handleNewTorrent(TorrentModelItem* torrentItem)
+void LabelFiltersList::handleNewTorrent(BitTorrent::TorrentHandle *const torrent)
 {
+    Q_ASSERT(torrent);
     ++m_totalTorrents;
-    QString label = torrentItem->data(TorrentModelItem::TR_LABEL).toString();
+    QString label = torrent->label();
     addItem(label, true);
+    // FIXME: Drop this confusion.
     // labelFilters->addItem() may have changed the label, update the model accordingly.
-    torrentItem->setData(TorrentModelItem::TR_LABEL, label);
+    torrent->setLabel(label);
 }
 
-void LabelFiltersList::torrentAboutToBeDeleted(TorrentModelItem* torrentItem)
+void LabelFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const torrent)
 {
+    Q_ASSERT(torrent);
     --m_totalTorrents;
-    Q_ASSERT(torrentItem);
-    QString label = torrentItem->data(TorrentModelItem::TR_LABEL).toString();
-    removeItem(label);
+    removeItem(torrent->label());
 }
 
 QString LabelFiltersList::labelFromRow(int row) const
@@ -681,11 +685,10 @@ void TrackerFiltersList::applyFilter(int row)
         transferList->applyTrackerFilter(getHashes(row));
 }
 
-void TrackerFiltersList::handleNewTorrent(TorrentModelItem* torrentItem)
+void TrackerFiltersList::handleNewTorrent(BitTorrent::TorrentHandle *const torrent)
 {
-    BitTorrent::TorrentHandle *const handle = torrentItem->torrentHandle();
-    QString hash = handle->hash();
-    QList<BitTorrent::TrackerEntry> trackers = handle->trackers();
+    QString hash = torrent->hash();
+    QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
     foreach (const BitTorrent::TrackerEntry &tracker, trackers)
         addItem(tracker.url(), hash);
 
@@ -696,11 +699,10 @@ void TrackerFiltersList::handleNewTorrent(TorrentModelItem* torrentItem)
     item(0)->setText(tr("All (%1)", "this is for the tracker filter").arg(++m_totalTorrents));
 }
 
-void TrackerFiltersList::torrentAboutToBeDeleted(TorrentModelItem* torrentItem)
+void TrackerFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const torrent)
 {
-    BitTorrent::TorrentHandle *const handle = torrentItem->torrentHandle();
-    QString hash = handle->hash();
-    QList<BitTorrent::TrackerEntry> trackers = handle->trackers();
+    QString hash = torrent->hash();
+    QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
     foreach (const BitTorrent::TrackerEntry &tracker, trackers)
         removeItem(tracker.url(), hash);
 

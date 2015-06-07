@@ -97,7 +97,6 @@ public slots:
   void saveSettings();
   void reloadPreferences();
   void openDoubleClickedFile(const QModelIndex &);
-  void updateSavePath(BitTorrent::TorrentHandle *const torrent);
   void loadTrackers(BitTorrent::TorrentHandle *const torrent);
 
 private:
@@ -126,6 +125,7 @@ private:
 
 private slots:
   void filterText(const QString& filter);
+  void updateSavePath(BitTorrent::TorrentHandle *const torrent);
 };
 
 #endif // PROPERTIESWIDGET_H

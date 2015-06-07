@@ -95,12 +95,10 @@ public slots:
     void renameSelectedTorrent();
 
 protected:
-    int getRowFromHash(QString hash) const;
-    QString getHashFromRow(int row) const;
     QModelIndex mapToSource(const QModelIndex &index) const;
     QModelIndex mapFromSource(const QModelIndex &index) const;
     bool loadSettings();
-    QStringList getSelectedTorrentsHashes() const;
+    QList<BitTorrent::TorrentHandle *> getSelectedTorrents() const;
 
 protected slots:
     void torrentDoubleClicked(const QModelIndex& index);
