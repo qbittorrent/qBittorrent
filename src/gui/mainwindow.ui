@@ -29,7 +29,7 @@
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -40,7 +40,6 @@
     <addaction name="actionPause"/>
     <addaction name="separator"/>
     <addaction name="actionDelete"/>
-    <!--Dynamic separator from mainwindow.cpp-->
     <addaction name="actionTopPriority"/>
     <addaction name="actionIncreasePriority"/>
     <addaction name="actionDecreasePriority"/>
@@ -132,7 +131,6 @@
    <addaction name="separator"/>
    <addaction name="actionStart"/>
    <addaction name="actionPause"/>
-   <!--Dynamic separator from mainwindow.cpp-->
    <addaction name="actionBottomPriority"/>
    <addaction name="actionDecreasePriority"/>
    <addaction name="actionIncreasePriority"/>
@@ -318,11 +316,11 @@
    <property name="text">
     <string>L&amp;ock qBittorrent</string>
    </property>
-   <property name="toolTip">
-    <string>Lock qBittorrent</string>
-   </property>
    <property name="iconText">
     <string>Lock</string>
+   </property>
+   <property name="toolTip">
+    <string>Lock qBittorrent</string>
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+L</string>
