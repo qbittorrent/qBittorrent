@@ -38,7 +38,7 @@
 
 #include "propertieswidget.h"
 
-enum TrackerListColumn {COL_TIER, COL_URL, COL_STATUS, COL_PEERS, COL_MSG};
+enum TrackerListColumn {COL_TIER, COL_URL, COL_STATUS, COL_RECEIVED, COL_SEEDS, COL_PEERS, COL_DOWNLOADED, COL_MSG};
 #define NB_STICKY_ITEM 3
 
 namespace BitTorrent
