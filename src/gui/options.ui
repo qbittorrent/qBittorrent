@@ -539,6 +539,13 @@
                <property name="bottomMargin">
                 <number>9</number>
                </property>
+               <item row="2" column="0">
+                <widget class="QCheckBox" name="checkDeleteWhenAdded">
+                 <property name="text">
+                  <string comment="The .torrent file will be deleted when added">Delete .torrent files when added</string>
+                 </property>
+                </widget>
+               </item>
                <item row="1" column="0">
                 <widget class="QCheckBox" name="checkStartPaused">
                  <property name="text">

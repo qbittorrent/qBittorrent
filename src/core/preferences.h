@@ -177,6 +177,8 @@ public:
     void additionDialogFront(bool b);
     bool addTorrentsInPause() const;
     void addTorrentsInPause(bool b);
+    bool deleteTorrentsWhenAdded() const;
+    void deleteTorrentsWhenAdded(bool b);
     QStringList getScanDirs() const;
     void setScanDirs(const QStringList &dirs);
     QList<bool> getDownloadInScanDirs() const;
