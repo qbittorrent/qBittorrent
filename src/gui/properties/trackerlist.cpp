@@ -68,16 +68,19 @@ TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), propertie
   header << "#";
   header << tr("URL");
   header << tr("Status");
+  header << tr("Received");
+  header << tr("Seeds");
   header << tr("Peers");
+  header << tr("Downloaded");
   header << tr("Message");
   setHeaderItem(new QTreeWidgetItem(header));
-  dht_item = new QTreeWidgetItem(QStringList() << "" << "** [DHT] **");
+  dht_item = new QTreeWidgetItem(QStringList() << "" << "** [DHT] **" << "" << "" << "0" << "0" << "0");
   insertTopLevelItem(0, dht_item);
   setRowColor(0, QColor("grey"));
-  pex_item = new QTreeWidgetItem(QStringList() << "" << "** [PeX] **");
+  pex_item = new QTreeWidgetItem(QStringList() << "" << "** [PeX] **" << "" << "" << "0" << "0" << "0");
   insertTopLevelItem(1, pex_item);
   setRowColor(1, QColor("grey"));
-  lsd_item = new QTreeWidgetItem(QStringList() << "" << "** [LSD] **");
+  lsd_item = new QTreeWidgetItem(QStringList() << "" << "** [LSD] **" << "" << "" << "0" << "0" << "0");
   insertTopLevelItem(2, lsd_item);
   setRowColor(2, QColor("grey"));
   editHotkey = new QShortcut(QKeySequence("F2"), this, SLOT(editSelectedTracker()), 0, Qt::WidgetShortcut);
@@ -202,13 +205,13 @@ void TrackerList::moveSelectionDown() {
 void TrackerList::clear() {
   qDeleteAll(tracker_items.values());
   tracker_items.clear();
-  dht_item->setText(COL_PEERS, "");
+  dht_item->setText(COL_RECEIVED, "");
   dht_item->setText(COL_STATUS, "");
   dht_item->setText(COL_MSG, "");
-  pex_item->setText(COL_PEERS, "");
+  pex_item->setText(COL_RECEIVED, "");
   pex_item->setText(COL_STATUS, "");
   pex_item->setText(COL_MSG, "");
-  lsd_item->setText(COL_PEERS, "");
+  lsd_item->setText(COL_RECEIVED, "");
   lsd_item->setText(COL_STATUS, "");
   lsd_item->setText(COL_MSG, "");
 }
@@ -253,9 +256,9 @@ void TrackerList::loadStickyItems(BitTorrent::TorrentHandle *const torrent) {
     if (peer.fromPeX())
       ++nb_pex;
   }
-  dht_item->setText(COL_PEERS, QString::number(nb_dht));
-  pex_item->setText(COL_PEERS, QString::number(nb_pex));
-  lsd_item->setText(COL_PEERS, QString::number(nb_lsd));
+  dht_item->setText(COL_RECEIVED, QString::number(nb_dht));
+  pex_item->setText(COL_RECEIVED, QString::number(nb_pex));
+  lsd_item->setText(COL_RECEIVED, QString::number(nb_lsd));
 }
 
 void TrackerList::loadTrackers() {
@@ -299,8 +302,18 @@ void TrackerList::loadTrackers() {
         item->setText(COL_MSG, "");
         break;
     }
+    item->setText(COL_RECEIVED, QString::number(data.numPeers));
 
-    item->setText(COL_PEERS, QString::number(trackers_data.value(trackerUrl).numPeers));
+#if LIBTORRENT_VERSION_NUM >= 10000
+    item->setText(COL_SEEDS, QString::number(entry.nativeEntry().scrape_complete > 0 ? entry.nativeEntry().scrape_complete : 0));
+    item->setText(COL_PEERS, QString::number(entry.nativeEntry().scrape_incomplete > 0 ? entry.nativeEntry().scrape_incomplete : 0));
+    item->setText(COL_DOWNLOADED, QString::number(entry.nativeEntry().scrape_downloaded > 0 ? entry.nativeEntry().scrape_downloaded : 0));
+#else
+    item->setText(COL_SEEDS, "0");
+    item->setText(COL_PEERS, "0");
+    item->setText(COL_DOWNLOADED, "0");
+#endif
+
   }
   // Remove old trackers
   foreach (const QString &tracker, old_trackers_urls) {
