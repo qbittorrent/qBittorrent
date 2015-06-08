@@ -1387,8 +1387,15 @@ void Preferences::setSaveResumeDataInterval(uint m)
     setValue("Preferences/Downloads/SaveResumeDataInterval", m);
 }
 
-uint Preferences::outgoingPortsMin() const
-{
+uint Preferences::pruneCount() const {
+    return value("Preferences/Advanced/pruneCount", 0).toUInt();
+}
+
+void Preferences::setPruneCount(uint n) {
+    setValue("Preferences/Advanced/pruneCount", n);
+}
+
+uint Preferences::outgoingPortsMin() const {
     return value("Preferences/Advanced/OutgoingPortsMin", 0).toUInt();
 }
 

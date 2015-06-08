@@ -213,9 +213,34 @@ void QBtSession::preAllocateAllFiles(bool b) {
 void QBtSession::processBigRatios() {
     qDebug("Process big ratios...");
     std::vector<torrent_handle> torrents = s->get_torrents();
+    std::vector<torrent_handle>::iterator torrentIT;
+    std::vector<torrent_handle>::iterator torrentITend;
+    Preferences* const pref = Preferences::instance();
 
-    std::vector<torrent_handle>::iterator torrentIT = torrents.begin();
-    std::vector<torrent_handle>::iterator torrentITend = torrents.end();
+    if (pref->pruneCount() && torrents.size() > pref->pruneCount()) {
+        Logger* const logger = Logger::instance();
+        uint remove = torrents.size() - pref->pruneCount();
+        torrentIT = torrents.begin();
+        torrentITend = torrents.end();
+        std::priority_queue<QPair<qint64, QTorrentHandle>, std::vector<QPair<qint64, QTorrentHandle> >, std::greater<QPair<qint64, QTorrentHandle> > > torrent_queue;
+        // Sort torrents by add date
+        for ( ; torrentIT != torrentITend; ++torrentIT) {
+            const QTorrentHandle h(*torrentIT);
+            torrent_queue.push(qMakePair(TorrentPersistentData::instance()->getAddedDate(h.hash()).toMSecsSinceEpoch(), h));
+        }
+        // Remove oldest torrents
+        for (uint i = 0; i < remove; ++i) {
+            const QTorrentHandle h = torrent_queue.top().second;
+            logger->addMessage(tr("Reached the maximum torrent list size."));
+            logger->addMessage(tr("Removing torrent %1...").arg(h.name()));
+            deleteTorrent(h.hash());
+            torrent_queue.pop();
+        }
+    }
+
+    torrents = s->get_torrents();
+    torrentIT = torrents.begin();
+    torrentITend = torrents.end();
     for ( ; torrentIT != torrentITend; ++torrentIT) {
         const QTorrentHandle h(*torrentIT);
         if (!h.is_valid()) continue;

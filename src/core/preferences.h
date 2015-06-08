@@ -361,6 +361,8 @@ public:
     void setOsCache(bool enable);
     uint saveResumeDataInterval() const;
     void setSaveResumeDataInterval(uint m);
+    uint pruneCount() const;
+    void setPruneCount(uint);
     uint outgoingPortsMin() const;
     void setOutgoingPortsMin(uint val);
     uint outgoingPortsMax() const;
