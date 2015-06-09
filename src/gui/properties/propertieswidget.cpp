@@ -524,8 +524,14 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
     output = proc.readLine().simplified();
     if (output == "dolphin.desktop")
       proc.startDetached("dolphin", QStringList() << "--select" << fsutils::toNativePath(absolute_path));
-    else if (output == "nautilus-folder-handler.desktop")
+    else if (output == "caja-folder-handler.desktop")
+      proc.startDetached("caja", QStringList() << "--no-desktop" << fsutils::toNativePath(absolute_path));
+    else if (output == "nautilus.desktop")
       proc.startDetached("nautilus", QStringList() << "--no-desktop" << fsutils::toNativePath(absolute_path));
+    else if (output == "org.gnome.Nautilus.desktop")
+      proc.startDetached("nautilus", QStringList() << "--no-desktop" << fsutils::toNativePath(absolute_path));
+    else if (output == "nemo.desktop")
+      proc.startDetached("nemo", QStringList() << "--no-desktop" << fsutils::toNativePath(absolute_path));
     else if (output == "kfmclient_dir.desktop")
       proc.startDetached("konqueror", QStringList() << "--select" << fsutils::toNativePath(absolute_path));
     else
