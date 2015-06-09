@@ -7,3 +7,4 @@ kickasstorrents: 1.26
 btdigg: 1.23
 torrentz: 2.14
 legittorrents: 1.04
+demonoid: 1.1

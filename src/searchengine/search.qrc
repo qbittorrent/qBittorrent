@@ -8,6 +8,8 @@
   <file>nova/socks.py</file>
   <file>nova/engines/btdigg.png</file>
   <file>nova/engines/btdigg.py</file>
+  <file>nova/engines/demonoid.png</file>
+  <file>nova/engines/demonoid.py</file>
   <file>nova/engines/extratorrent.png</file>
   <file>nova/engines/extratorrent.py</file>
   <file>nova/engines/kickasstorrents.png</file>
@@ -30,6 +32,8 @@
   <file>nova3/socks.py</file>
   <file>nova3/engines/btdigg.png</file>
   <file>nova3/engines/btdigg.py</file>
+  <file>nova3/engines/demonoid.png</file>
+  <file>nova3/engines/demonoid.py</file>
   <file>nova3/engines/extratorrent.png</file>
   <file>nova3/engines/extratorrent.py</file>
   <file>nova3/engines/kickasstorrents.png</file>
