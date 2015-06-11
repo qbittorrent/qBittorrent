@@ -231,9 +231,32 @@ void TransferListWidget::torrentDoubleClicked(const QModelIndex& index)
         else
             h.pause();
         break;
-    case OPEN_DEST:
+    case OPEN_DEST: {
         const QString path = h.root_path();
         openUrl(path);
+        break;
+    }
+    case OPEN_LARGEST: {
+        boost::intrusive_ptr<libtorrent::torrent_info> t;
+#if LIBTORRENT_VERSION_NUM < 10000
+        t = new torrent_info(h.get_torrent_info());
+#else
+        t = new torrent_info(*h.torrent_file());
+#endif
+        size_type s = -1;
+        QString filename;
+        for (int i = 0; i < t->num_files(); ++i) {
+            const libtorrent::file_entry& fentry = t->file_at(i);
+            if (fentry.size > s) {
+                filename = misc::toQStringU(fentry.path);
+                s = fentry.size;
+            }
+        }
+        const QDir saveDir(h.save_path());
+        const QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
+        fsutils::openFile(file_path);
+        break;
+    }
     }
 }
 

@@ -34,7 +34,7 @@
 #include "ui_options.h"
 
 // actions on double-click on torrents
-enum DoubleClickAction {TOGGLE_PAUSE, OPEN_DEST, NO_ACTION};
+enum DoubleClickAction {TOGGLE_PAUSE, OPEN_DEST, OPEN_LARGEST, NO_ACTION};
 
 class AdvancedSettings;
 

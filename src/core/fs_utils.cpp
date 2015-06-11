@@ -40,6 +40,8 @@
 #include <QCoreApplication>
 #else
 #include <QApplication>
+#include <QDesktopServices>
+#include <QMessageBox>
 #endif
 #include <libtorrent/torrent_info.hpp>
 
@@ -63,9 +65,7 @@
 #endif
 
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
-#include <QDesktopServices>
-#else
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 #include <QStandardPaths>
 #endif
 #endif
@@ -381,6 +381,21 @@ QString fsutils::expandPathAbs(const QString& path) {
 
   return ret;
 }
+
+#ifndef DISABLE_GUI
+void fsutils::openFile(QString file_path) {
+  qDebug("Trying to open file at %s", qPrintable(file_path));
+  if (QFile::exists(file_path)) {
+    if (file_path.startsWith("//"))
+      QDesktopServices::openUrl(fsutils::toNativePath("file:" + file_path));
+    else
+      QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
+  }
+  else {
+    QMessageBox::warning(0, QObject::tr("I/O Error"), QObject::tr("This file does not exist yet."));
+  }
+}
+#endif
 
 QString fsutils::QDesktopServicesDataLocation() {
   QString result;
