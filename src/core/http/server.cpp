@@ -38,7 +38,7 @@
 
 using namespace Http;
 
-Server::Server(IRequestHandler *requestHandler, QObject* parent)
+Server::Server(IRequestHandler *requestHandler, QObject *parent)
     : QTcpServer(parent)
     , m_requestHandler(requestHandler)
 #ifndef QT_NO_OPENSSL

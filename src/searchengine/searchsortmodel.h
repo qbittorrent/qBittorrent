@@ -2,7 +2,7 @@
 #define SEARCHSORTMODEL_H
 
 #include <QSortFilterProxyModel>
-#include "misc.h"
+#include "core/utils/string.h"
 
 class SearchSortModel : public QSortFilterProxyModel {
   Q_OBJECT
@@ -23,7 +23,7 @@ protected:
       Q_ASSERT(vR.isValid());
 
       bool res = false;
-      if (misc::naturalSort(vL.toString(), vR.toString(), res))
+      if (Utils::String::naturalSort(vL.toString(), vR.toString(), res))
         return res;
 
       return QSortFilterProxyModel::lessThan(left, right);

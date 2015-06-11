@@ -28,28 +28,25 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <cmath>
 #include "pieceavailabilitybar.h"
-
-//#include <QDebug>
 
 PieceAvailabilityBar::PieceAvailabilityBar(QWidget *parent) :
   QWidget(parent)
 {
   setFixedHeight(BAR_HEIGHT);
 
-  bg_color = 0xffffff;
-  border_color = palette().color(QPalette::Dark).rgb();
-  piece_color = 0x0000ff;
+  m_bgColor = 0xffffff;
+  m_borderColor = palette().color(QPalette::Dark).rgb();
+  m_pieceColor = 0x0000ff;
 
   updatePieceColors();
 }
 
-std::vector<float> PieceAvailabilityBar::intToFloatVector(const std::vector<int> &vecin, int reqSize)
+QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin, int reqSize)
 {
-  std::vector<float> result(reqSize, 0.0);
-
-  if (vecin.empty())
-    return result;
+  QVector<float> result(reqSize, 0.0);
+  if (vecin.isEmpty()) return result;
 
   const float ratio = vecin.size() / (float)reqSize;
 
@@ -162,27 +159,27 @@ void PieceAvailabilityBar::updateImage()
   //  qDebug() << "updateImageAv";
   QImage image2(width() - 2, 1, QImage::Format_RGB888);
 
-  if (pieces.empty()) {
+  if (m_pieces.empty()) {
     image2.fill(0xffffff);
-    image = image2;
+    m_image = image2;
     update();
     return;
   }
 
-  std::vector<float> scaled_pieces = intToFloatVector(pieces, image2.width());
+  QVector<float> scaled_pieces = intToFloatVector(m_pieces, image2.width());
 
   // filling image
-  for (unsigned int x = 0; x < scaled_pieces.size(); ++x)
+  for (int x = 0; x < scaled_pieces.size(); ++x)
   {
     float pieces2_val = scaled_pieces.at(x);
-    image2.setPixel(x, 0, piece_colors[pieces2_val * 255]);
+    image2.setPixel(x, 0, m_pieceColors[pieces2_val * 255]);
   }
-  image = image2;
+  m_image = image2;
 }
 
-void PieceAvailabilityBar::setAvailability(const std::vector<int>& avail)
+void PieceAvailabilityBar::setAvailability(const QVector<int> &avail)
 {
-  pieces = std::vector<int>(avail);
+  m_pieces = avail;
 
   updateImage();
   update();
@@ -190,16 +187,16 @@ void PieceAvailabilityBar::setAvailability(const std::vector<int>& avail)
 
 void PieceAvailabilityBar::updatePieceColors()
 {
-  piece_colors = std::vector<int>(256);
+  m_pieceColors = QVector<int>(256);
   for (int i = 0; i < 256; ++i) {
     float ratio = (i / 255.0);
-    piece_colors[i] = mixTwoColors(bg_color, piece_color, ratio);
+    m_pieceColors[i] = mixTwoColors(m_bgColor, m_pieceColor, ratio);
   }
 }
 
 void PieceAvailabilityBar::clear()
 {
-  image = QImage();
+  m_image = QImage();
   update();
 }
 
@@ -207,29 +204,29 @@ void PieceAvailabilityBar::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   QRect imageRect(1, 1, width() - 2, height() - 2);
-  if (image.isNull())
+  if (m_image.isNull())
   {
     painter.setBrush(Qt::white);
     painter.drawRect(imageRect);
   }
   else
   {
-    if (image.width() != imageRect.width())
+    if (m_image.width() != imageRect.width())
       updateImage();
-    painter.drawImage(imageRect, image);
+    painter.drawImage(imageRect, m_image);
   }
   QPainterPath border;
   border.addRect(0, 0, width() - 1, height() - 1);
 
-  painter.setPen(border_color);
+  painter.setPen(m_borderColor);
   painter.drawPath(border);
 }
 
 void PieceAvailabilityBar::setColors(int background, int border, int available)
 {
-  bg_color = background;
-  border_color = border;
-  piece_color = available;
+  m_bgColor = background;
+  m_borderColor = border;
+  m_pieceColor = available;
 
   updatePieceColors();
   updateImage();

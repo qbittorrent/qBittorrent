@@ -33,14 +33,12 @@
 
 namespace Http
 {
-
-class IRequestHandler
-{
-public:
-    virtual ~IRequestHandler() {}
-    virtual Response processRequest(const Request &request, const Environment &env) = 0;
-};
-
+    class IRequestHandler
+    {
+    public:
+        virtual ~IRequestHandler() {}
+        virtual Response processRequest(const Request &request, const Environment &env) = 0;
+    };
 }
 
 #endif // HTTP_IREQUESTHANDLER_H

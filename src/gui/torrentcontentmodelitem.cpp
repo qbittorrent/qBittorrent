@@ -28,8 +28,8 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "misc.h"
-#include "fs_utils.h"
+#include "core/utils/misc.h"
+#include "core/utils/fs.h"
 #include "torrentcontentmodelitem.h"
 #include "torrentcontentmodelfolder.h"
 #include <QDebug>
@@ -38,7 +38,7 @@ TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder* pare
   : m_parentItem(parent)
   , m_size(0)
   , m_priority(prio::NORMAL)
-  , m_totalDone(0)
+  , m_progress(0)
 {
 }
 
@@ -65,21 +65,14 @@ qulonglong TorrentContentModelItem::size() const
   return m_size;
 }
 
-qulonglong TorrentContentModelItem::totalDone() const
+qreal TorrentContentModelItem::progress() const
 {
-  Q_ASSERT(!isRootItem());
-  return m_totalDone;
-}
+    Q_ASSERT(!isRootItem());
+    if (m_priority == prio::IGNORED) return 0;
 
-float TorrentContentModelItem::progress() const
-{
-  Q_ASSERT(!isRootItem());
-  if (m_priority == prio::IGNORED)
-    return 0;
+    if (m_size > 0) return m_progress;
 
-  if (m_size > 0)
-    return m_totalDone / (double) m_size;
-  return 1;
+    return 1;
 }
 
 int TorrentContentModelItem::priority() const

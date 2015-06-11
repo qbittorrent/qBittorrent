@@ -66,9 +66,8 @@ Q_IMPORT_PLUGIN(qico)
 #include <cstdlib>
 #include <iostream>
 #include "application.h"
-#include "misc.h"
-#include "preferences.h"
-#include "logger.h"
+#include "core/utils/misc.h"
+#include "core/preferences.h"
 
 // Signal handlers
 #if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
@@ -120,13 +119,11 @@ QBtCommandLineParameters parseCommandLine();
 // Main
 int main(int argc, char *argv[])
 {
-    //Initialize logger singleton here to avoid threading issues
-    Logger::instance()->addMessage(QObject::tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(VERSION));
     // We must save it here because QApplication constructor may change it
     bool isOneArg = (argc == 2);
 
     // Create Application
-    QString appId = QLatin1String("qBittorrent-") + misc::getUserIDString();
+    QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString();
     QScopedPointer<Application> app(new Application(appId, argc, argv));
 
     const QBtCommandLineParameters params = parseCommandLine();
@@ -191,7 +188,7 @@ int main(int argc, char *argv[])
 #endif
         qDebug("qBittorrent is already running for this user.");
 
-        misc::msleep(300);
+        Utils::Misc::msleep(300);
         app->sendParams(params.torrents);
 
         return EXIT_SUCCESS;
@@ -398,7 +395,7 @@ void displayUsage(const QString& prg_name)
 #else
     QMessageBox msgBox(QMessageBox::Information, QObject::tr("Help"), makeUsage(prg_name), QMessageBox::Ok);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
-    msgBox.move(misc::screenCenter(&msgBox));
+    msgBox.move(Utils::Misc::screenCenter(&msgBox));
     msgBox.exec();
 #endif
 }
@@ -410,7 +407,7 @@ void displayBadArgMessage(const QString& message)
     QMessageBox msgBox(QMessageBox::Critical, QObject::tr("Bad command line"),
                        message + QLatin1Char('\n') + help, QMessageBox::Ok);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
-    msgBox.move(misc::screenCenter(&msgBox));
+    msgBox.move(Utils::Misc::screenCenter(&msgBox));
     msgBox.exec();
 #else
     std::cerr << qPrintable(QObject::tr("Bad command line: "));
@@ -442,7 +439,7 @@ bool userAgreesWithLegalNotice()
     msgBox.addButton(QObject::tr("Cancel"), QMessageBox::RejectRole);
     QAbstractButton *agree_button = msgBox.addButton(QObject::tr("I Agree"), QMessageBox::AcceptRole);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
-    msgBox.move(misc::screenCenter(&msgBox));
+    msgBox.move(Utils::Misc::screenCenter(&msgBox));
     msgBox.exec();
     if (msgBox.clickedButton() == agree_button) {
         // Save the answer

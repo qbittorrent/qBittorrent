@@ -41,40 +41,38 @@
 
 namespace Http
 {
+    class IRequestHandler;
+    class Connection;
 
-class IRequestHandler;
-class Connection;
+    class Server : public QTcpServer
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY(Server)
 
-class Server : public QTcpServer
-{
-    Q_OBJECT
-    Q_DISABLE_COPY(Server)
+    public:
+        Server(IRequestHandler *requestHandler, QObject *parent = 0);
+        ~Server();
 
-public:
-    Server(IRequestHandler *requestHandler, QObject *parent = 0);
-    ~Server();
+    #ifndef QT_NO_OPENSSL
+        void enableHttps(const QSslCertificate &certificate, const QSslKey &key);
+        void disableHttps();
+    #endif
 
-#ifndef QT_NO_OPENSSL
-    void enableHttps(const QSslCertificate &certificate, const QSslKey &key);
-    void disableHttps();
-#endif
+    private:
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        void incomingConnection(qintptr socketDescriptor);
+    #else
+        void incomingConnection(int socketDescriptor);
+    #endif
 
-private:
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    void incomingConnection(qintptr socketDescriptor);
-#else
-    void incomingConnection(int socketDescriptor);
-#endif
-
-private:
-    IRequestHandler *m_requestHandler;
-#ifndef QT_NO_OPENSSL
-    bool m_https;
-    QSslCertificate m_certificate;
-    QSslKey m_key;
-#endif
-};
-
+    private:
+        IRequestHandler *m_requestHandler;
+    #ifndef QT_NO_OPENSSL
+        bool m_https;
+        QSslCertificate m_certificate;
+        QSslKey m_key;
+    #endif
+    };
 }
 
 #endif // HTTP_SERVER_H

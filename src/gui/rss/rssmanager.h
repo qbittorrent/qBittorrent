@@ -36,7 +36,6 @@
 
 #include "rssfolder.h"
 
-class DownloadThread;
 class RssDownloadRuleList;
 class RssParser;
 
@@ -50,7 +49,6 @@ public:
   RssManager();
   virtual ~RssManager();
 
-  DownloadThread* rssDownloader() const;
   RssParser* rssParser() const;
   RssDownloadRuleList* downloadRules() const;
 
@@ -71,7 +69,6 @@ signals:
 private:
   QTimer m_refreshTimer;
   uint m_refreshInterval;
-  DownloadThread* m_rssDownloader;
   RssDownloadRuleList* m_downloadRules;
   RssParser* m_rssParser;
 };

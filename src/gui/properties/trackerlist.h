@@ -37,11 +37,15 @@
 #include <QClipboard>
 
 #include <libtorrent/version.hpp>
-#include "qtorrenthandle.h"
 #include "propertieswidget.h"
 
 enum TrackerListColumn {COL_TIER, COL_URL, COL_STATUS, COL_PEERS, COL_MSG};
 #define NB_STICKY_ITEM 3
+
+namespace BitTorrent
+{
+    class TorrentHandle;
+}
 
 class TrackerList: public QTreeWidget {
   Q_OBJECT
@@ -60,11 +64,6 @@ public:
   TrackerList(PropertiesWidget *properties);
   ~TrackerList();
 
-signals:
-  void trackersAdded(const QStringList &trackers, const QString &hash);
-  void trackersRemoved(const QStringList &trackers, const QString &hash);
-  void trackerlessChange(bool trackerless, const QString &hash);
-
 protected:
   QList<QTreeWidgetItem*> getSelectedTrackerItems() const;
 
@@ -75,7 +74,7 @@ public slots:
   void moveSelectionDown();
 
   void clear();
-  void loadStickyItems(const QTorrentHandle &h);
+  void loadStickyItems(BitTorrent::TorrentHandle *const torrent);
   void loadTrackers();
   void askForTrackers();
   void copyTrackerUrl();

@@ -28,28 +28,25 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <cmath>
 #include "downloadedpiecesbar.h"
-
-//#include <QDebug>
 
 DownloadedPiecesBar::DownloadedPiecesBar(QWidget *parent): QWidget(parent)
 {
   setFixedHeight(BAR_HEIGHT);
 
-  bg_color = 0xffffff;
-  border_color = palette().color(QPalette::Dark).rgb();
-  piece_color = 0x0000ff;
-  piece_color_dl = 0x00d000;
+  m_bgColor = 0xffffff;
+  m_borderColor = palette().color(QPalette::Dark).rgb();
+  m_pieceColor = 0x0000ff;
+  m_dlPieceColor = 0x00d000;
 
   updatePieceColors();
 }
 
-std::vector<float> DownloadedPiecesBar::bitfieldToFloatVector(const libtorrent::bitfield &vecin, int reqSize)
+QVector<float> DownloadedPiecesBar::bitfieldToFloatVector(const QBitArray &vecin, int reqSize)
 {
-  std::vector<float> result(reqSize, 0.0);
-
-  if (vecin.empty())
-    return result;
+  QVector<float> result(reqSize, 0.0);
+  if (vecin.isEmpty()) return result;
 
   const float ratio = vecin.size() / (float)reqSize;
 
@@ -154,18 +151,18 @@ void DownloadedPiecesBar::updateImage()
   //  qDebug() << "updateImage";
   QImage image2(width() - 2, 1, QImage::Format_RGB888);
 
-  if (pieces.empty()) {
+  if (m_pieces.isEmpty()) {
     image2.fill(0xffffff);
-    image = image2;
+    m_image = image2;
     update();
     return;
   }
 
-  std::vector<float> scaled_pieces = bitfieldToFloatVector(pieces, image2.width());
-  std::vector<float> scaled_pieces_dl = bitfieldToFloatVector(pieces_dl, image2.width());
+  QVector<float> scaled_pieces = bitfieldToFloatVector(m_pieces, image2.width());
+  QVector<float> scaled_pieces_dl = bitfieldToFloatVector(m_downloadedPieces, image2.width());
 
   // filling image
-  for (unsigned int x = 0; x < scaled_pieces.size(); ++x)
+  for (int x = 0; x < scaled_pieces.size(); ++x)
   {
     float pieces2_val = scaled_pieces.at(x);
     float pieces2_val_dl = scaled_pieces_dl.at(x);
@@ -174,23 +171,23 @@ void DownloadedPiecesBar::updateImage()
       float fill_ratio = pieces2_val + pieces2_val_dl;
       float ratio = pieces2_val_dl / fill_ratio;
 
-      int mixedColor = mixTwoColors(piece_color, piece_color_dl, ratio);
-      mixedColor = mixTwoColors(bg_color, mixedColor, fill_ratio);
+      int mixedColor = mixTwoColors(m_pieceColor, m_dlPieceColor, ratio);
+      mixedColor = mixTwoColors(m_bgColor, mixedColor, fill_ratio);
 
       image2.setPixel(x, 0, mixedColor);
     }
     else
     {
-      image2.setPixel(x, 0, piece_colors[pieces2_val * 255]);
+      image2.setPixel(x, 0, m_pieceColors[pieces2_val * 255]);
     }
   }
-  image = image2;
+  m_image = image2;
 }
 
-void DownloadedPiecesBar::setProgress(const libtorrent::bitfield &bf, const libtorrent::bitfield &bf_dl)
+void DownloadedPiecesBar::setProgress(const QBitArray &pieces, const QBitArray &downloadedPieces)
 {
-  pieces = libtorrent::bitfield(bf);
-  pieces_dl = libtorrent::bitfield(bf_dl);
+  m_pieces = pieces;
+  m_downloadedPieces = downloadedPieces;
 
   updateImage();
   update();
@@ -198,16 +195,16 @@ void DownloadedPiecesBar::setProgress(const libtorrent::bitfield &bf, const libt
 
 void DownloadedPiecesBar::updatePieceColors()
 {
-  piece_colors = std::vector<int>(256);
+  m_pieceColors = QVector<int>(256);
   for (int i = 0; i < 256; ++i) {
     float ratio = (i / 255.0);
-    piece_colors[i] = mixTwoColors(bg_color, piece_color, ratio);
+    m_pieceColors[i] = mixTwoColors(m_bgColor, m_pieceColor, ratio);
   }
 }
 
 void DownloadedPiecesBar::clear()
 {
-  image = QImage();
+  m_image = QImage();
   update();
 }
 
@@ -215,30 +212,30 @@ void DownloadedPiecesBar::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   QRect imageRect(1, 1, width() - 2, height() - 2);
-  if (image.isNull())
+  if (m_image.isNull())
   {
     painter.setBrush(Qt::white);
     painter.drawRect(imageRect);
   }
   else
   {
-    if (image.width() != imageRect.width())
+    if (m_image.width() != imageRect.width())
       updateImage();
-    painter.drawImage(imageRect, image);
+    painter.drawImage(imageRect, m_image);
   }
   QPainterPath border;
   border.addRect(0, 0, width() - 1, height() - 1);
 
-  painter.setPen(border_color);
+  painter.setPen(m_borderColor);
   painter.drawPath(border);
 }
 
 void DownloadedPiecesBar::setColors(int background, int border, int complete, int incomplete)
 {
-  bg_color = background;
-  border_color = border;
-  piece_color = complete;
-  piece_color_dl = incomplete;
+  m_bgColor = background;
+  m_borderColor = border;
+  m_pieceColor = complete;
+  m_dlPieceColor = incomplete;
 
   updatePieceColors();
   updateImage();

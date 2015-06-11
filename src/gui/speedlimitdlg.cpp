@@ -37,7 +37,7 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent): QDialog(parent)
     // Connect to slots
     connect(bandwidthSlider, SIGNAL(valueChanged(int)), this, SLOT(updateSpinValue(int)));
     connect(spinBandwidth, SIGNAL(valueChanged(int)), this, SLOT(updateSliderValue(int)));
-    move(misc::screenCenter(this));
+    move(Utils::Misc::screenCenter(this));
 }
 
 SpeedLimitDialog::~SpeedLimitDialog()

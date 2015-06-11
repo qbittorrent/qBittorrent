@@ -36,13 +36,12 @@
 class TorrentContentModelFile : public TorrentContentModelItem
 {
 public:
-  TorrentContentModelFile(const libtorrent::file_entry& f,
-                          TorrentContentModelFolder* parent,
-                          int file_index);
+  TorrentContentModelFile(const QString &fileName, qulonglong fileSize,
+                          TorrentContentModelFolder* parent, int file_index);
 
   int fileIndex() const;
   void setPriority(int new_prio, bool update_parent = true);
-  void setProgress(qulonglong done);
+  void setProgress(qreal progress);
   ItemType itemType() const { return FileType; }
 
 private:

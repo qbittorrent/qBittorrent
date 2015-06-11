@@ -37,13 +37,11 @@
 
 namespace Http
 {
-
-class ResponseGenerator
-{
-public:
-    static QByteArray generate(Response response);
-};
-
+    class ResponseGenerator
+    {
+    public:
+        static QByteArray generate(Response response);
+    };
 }
 
 #endif // HTTP_RESPONSEGENERATOR_H

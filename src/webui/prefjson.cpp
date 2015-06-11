@@ -29,16 +29,15 @@
  */
 
 #include "prefjson.h"
-#include "preferences.h"
-#include "qbtsession.h"
-#include "scannedfoldersmodel.h"
-#include "fs_utils.h"
+#include "core/preferences.h"
+#include "core/scanfoldersmodel.h"
+#include "core/utils/fs.h"
 
-#include <libtorrent/version.hpp>
 #ifndef QT_NO_OPENSSL
 #include <QSslCertificate>
 #include <QSslKey>
 #endif
+#include <QStringList>
 #include <QTranslator>
 #include <QCoreApplication>
 #include "jsonutils.h"
@@ -54,12 +53,12 @@ QByteArray prefjson::getPreferences()
   // UI
   data["locale"] = pref->getLocale();
   // Downloads
-  data["save_path"] = fsutils::toNativePath(pref->getSavePath());
+  data["save_path"] = Utils::Fs::toNativePath(pref->getSavePath());
   data["temp_path_enabled"] = pref->isTempPathEnabled();
-  data["temp_path"] = fsutils::toNativePath(pref->getTempPath());
+  data["temp_path"] = Utils::Fs::toNativePath(pref->getTempPath());
   QVariantList l;
   foreach (const QString& s, pref->getScanDirs()) {
-    l << fsutils::toNativePath(s);
+    l << Utils::Fs::toNativePath(s);
   }
   data["scan_dirs"] = l;
   QVariantList var_list;
@@ -68,7 +67,7 @@ QByteArray prefjson::getPreferences()
   }
   data["download_in_scan_dirs"] = var_list;
   data["export_dir_enabled"] = pref->isTorrentExportEnabled();
-  data["export_dir"] = fsutils::toNativePath(pref->getTorrentExportDir());
+  data["export_dir"] = Utils::Fs::toNativePath(pref->getTorrentExportDir());
   data["mail_notification_enabled"] = pref->isMailNotificationEnabled();
   data["mail_notification_email"] = pref->getMailNotificationEmail();
   data["mail_notification_smtp"] = pref->getMailNotificationSMTP();
@@ -77,7 +76,7 @@ QByteArray prefjson::getPreferences()
   data["mail_notification_username"] = pref->getMailNotificationSMTPUsername();
   data["mail_notification_password"] = pref->getMailNotificationSMTPPassword();
   data["autorun_enabled"] = pref->isAutoRunEnabled();
-  data["autorun_program"] = fsutils::toNativePath(pref->getAutoRunProgram());
+  data["autorun_program"] = Utils::Fs::toNativePath(pref->getAutoRunProgram());
   data["preallocate_all"] = pref->preAllocateAllFiles();
   data["queueing_enabled"] = pref->isQueueingSystemEnabled();
   data["max_active_downloads"] = pref->getMaxActiveDownloads();
@@ -123,7 +122,7 @@ QByteArray prefjson::getPreferences()
   data["proxy_password"] = pref->getProxyPassword();
   // IP Filter
   data["ip_filter_enabled"] = pref->isFilteringEnabled();
-  data["ip_filter_path"] = fsutils::toNativePath(pref->getFilter());
+  data["ip_filter_path"] = Utils::Fs::toNativePath(pref->getFilter());
   // Web UI
   data["web_ui_port"] = pref->getWebUiPort();
   data["web_ui_username"] = pref->getWebUiUsername();
@@ -183,15 +182,15 @@ void prefjson::setPreferences(const QString& json)
       foreach (const QString &old_folder, old_folders) {
         // Update deleted folders
         if (!new_folders.contains(old_folder)) {
-          QBtSession::instance()->getScanFoldersModel()->removePath(old_folder);
+          ScanFoldersModel::instance()->removePath(old_folder);
         }
       }
       int i = 0;
       foreach (const QString &new_folder, new_folders) {
         qDebug("New watched folder: %s", qPrintable(new_folder));
         // Update new folders
-        if (!old_folders.contains(fsutils::fromNativePath(new_folder))) {
-          QBtSession::instance()->getScanFoldersModel()->addPath(new_folder, download_at_path.at(i));
+        if (!old_folders.contains(Utils::Fs::fromNativePath(new_folder))) {
+          ScanFoldersModel::instance()->addPath(new_folder, download_at_path.at(i));
         }
         ++i;
       }
@@ -337,5 +336,5 @@ void prefjson::setPreferences(const QString& json)
   if (m.contains("dyndns_domain"))
     pref->setDynDomainName(m["dyndns_domain"].toString());
   // Save preferences
-  pref->save();
+  pref->apply();
 }

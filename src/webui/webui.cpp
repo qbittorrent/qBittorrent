@@ -26,14 +26,17 @@
  * exception statement from your version.
  */
 
-#include "webui.h"
-#include "http/server.h"
+#include "core/preferences.h"
+#include "core/logger.h"
+#include "core/http/server.h"
+#include "core/net/dnsupdater.h"
+#include "core/net/portforwarder.h"
 #include "webapplication.h"
-#include "dnsupdater.h"
-#include "preferences.h"
-#include "logger.h"
+#include "webui.h"
 
-WebUI::WebUI(QObject *parent) : QObject(parent)
+WebUI::WebUI(QObject *parent)
+    : QObject(parent)
+    , m_port(0)
 {
     init();
     connect(Preferences::instance(), SIGNAL(changed()), SLOT(init()));
@@ -46,9 +49,13 @@ void WebUI::init()
 
     if (pref->isWebUiEnabled()) {
         const quint16 port = pref->getWebUiPort();
+        if (m_port != port) {
+            Net::PortForwarder::instance()->deletePort(port);
+            m_port = port;
+        }
 
         if (httpServer_) {
-            if (httpServer_->serverPort() != port)
+            if (httpServer_->serverPort() != m_port)
                 httpServer_->close();
         }
         else {
@@ -72,17 +79,17 @@ void WebUI::init()
 #endif
 
         if (!httpServer_->isListening()) {
-            bool success = httpServer_->listen(QHostAddress::Any, port);
+            bool success = httpServer_->listen(QHostAddress::Any, m_port);
             if (success)
-                logger->addMessage(tr("The Web UI is listening on port %1").arg(port));
+                logger->addMessage(tr("The Web UI is listening on port %1").arg(m_port));
             else
-                logger->addMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(port), Log::CRITICAL);
+                logger->addMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(m_port), Log::CRITICAL);
         }
 
         // DynDNS
         if (pref->isDynDNSEnabled()) {
             if (!dynDNSUpdater_)
-                dynDNSUpdater_ = new DNSUpdater(this);
+                dynDNSUpdater_ = new Net::DNSUpdater(this);
             else
                 dynDNSUpdater_->updateCredentials();
         }
@@ -90,6 +97,12 @@ void WebUI::init()
             if (dynDNSUpdater_)
                 delete dynDNSUpdater_;
         }
+
+        // Use UPnP/NAT-PMP for Web UI
+        if (pref->useUPnPForWebUIPort())
+            Net::PortForwarder::instance()->addPort(m_port);
+        else
+            Net::PortForwarder::instance()->deletePort(m_port);
     }
     else {
         if (httpServer_)
@@ -98,5 +111,6 @@ void WebUI::init()
             delete webapp_;
         if (dynDNSUpdater_)
             delete dynDNSUpdater_;
+        Net::PortForwarder::instance()->deletePort(m_port);
     }
 }

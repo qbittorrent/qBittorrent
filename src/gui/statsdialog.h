@@ -33,7 +33,6 @@
 
 #include <QDialog>
 #include <QTimer>
-#include "qbtsession.h"
 
 namespace Ui {
   class StatsDialog;
@@ -51,7 +50,6 @@ private slots:
 
 private:
   Ui::StatsDialog *ui;
-  QBtSession* session;
   QTimer* t;
 };
 

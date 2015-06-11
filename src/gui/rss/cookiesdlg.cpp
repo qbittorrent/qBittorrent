@@ -30,7 +30,7 @@
 
 #include "cookiesdlg.h"
 #include "ui_cookiesdlg.h"
-#include "iconprovider.h"
+#include "guiiconprovider.h"
 
 #include <QNetworkCookie>
 
@@ -42,8 +42,8 @@ CookiesDlg::CookiesDlg(QWidget *parent, const QList<QByteArray> &raw_cookies) :
 {
   ui->setupUi(this);
   // Icons
-  ui->add_btn->setIcon(IconProvider::instance()->getIcon("list-add"));
-  ui->del_btn->setIcon(IconProvider::instance()->getIcon("list-remove"));
+  ui->add_btn->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
+  ui->del_btn->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
 
   ui->infos_lbl->setText(tr("Common keys for cookies are : '%1', '%2'.\nYou should get this information from your Web browser preferences.").arg("uid").arg("pass"));
   foreach (const QByteArray &raw_cookie, raw_cookies) {

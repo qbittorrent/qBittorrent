@@ -42,30 +42,28 @@ QT_END_NAMESPACE
 
 namespace Http
 {
+    class IRequestHandler;
 
-class IRequestHandler;
+    class Connection : public QObject
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY(Connection)
 
-class Connection : public QObject
-{
-    Q_OBJECT
-    Q_DISABLE_COPY(Connection)
+    public:
+        Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = 0);
+        ~Connection();
 
-public:
-    Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = 0);
-    ~Connection();
+    private slots:
+        void read();
 
-private slots:
-    void read();
+    private:
+        static bool acceptsGzipEncoding(const QString &encoding);
+        void sendResponse(const Response &response);
 
-private:
-    static bool acceptsGzipEncoding(const QString &encoding);
-    void sendResponse(const Response &response);
-
-    QTcpSocket *m_socket;
-    IRequestHandler *m_requestHandler;
-    QByteArray m_receivedData;
-};
-
+        QTcpSocket *m_socket;
+        IRequestHandler *m_requestHandler;
+        QByteArray m_receivedData;
+    };
 }
 
 #endif // HTTP_CONNECTION_H

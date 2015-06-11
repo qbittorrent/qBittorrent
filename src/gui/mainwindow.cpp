@@ -49,21 +49,22 @@
 
 #include "mainwindow.h"
 #include "transferlistwidget.h"
-#include "misc.h"
+#include "core/utils/misc.h"
 #include "torrentcreatordlg.h"
 #include "downloadfromurldlg.h"
 #include "addnewtorrentdialog.h"
 #include "searchengine.h"
 #include "rss_imp.h"
-#include "qbtsession.h"
+#include "core/bittorrent/session.h"
+#include "core/bittorrent/sessionstatus.h"
+#include "core/bittorrent/torrenthandle.h"
 #include "about_imp.h"
 #include "trackerlogin.h"
 #include "options_imp.h"
 #include "speedlimitdlg.h"
-#include "preferences.h"
+#include "core/preferences.h"
 #include "trackerlist.h"
 #include "peerlistwidget.h"
-#include "torrentpersistentdata.h"
 #include "transferlistfilterswidget.h"
 #include "propertieswidget.h"
 #include "statusbar.h"
@@ -71,11 +72,9 @@
 #include "torrentimportdlg.h"
 #include "torrentmodel.h"
 #include "executionlog.h"
-#include "iconprovider.h"
-#include "logger.h"
-#ifndef DISABLE_GUI
+#include "guiiconprovider.h"
+#include "core/logger.h"
 #include "autoexpandabledialog.h"
-#endif
 #ifdef Q_OS_MAC
 void qt_mac_set_dock_menu(QMenu *menu);
 #endif
@@ -86,12 +85,9 @@ void qt_mac_set_dock_menu(QMenu *menu);
 #endif
 #include "powermanagement.h"
 #ifdef Q_OS_WIN
-#include "downloadthread.h"
+#include "core/net/downloadmanager.h"
+#include "core/net/downloadhandler.h"
 #endif
-
-#include <libtorrent/session.hpp>
-
-using namespace libtorrent;
 
 #define TIME_TRAY_BALLOON 5000
 #define PREVENT_SUSPEND_INTERVAL 60000
@@ -128,32 +124,32 @@ MainWindow::MainWindow(QWidget *parent)
 
     addToolbarContextMenu();
 
-    actionOpen->setIcon(IconProvider::instance()->getIcon("list-add"));
-    actionDownload_from_URL->setIcon(IconProvider::instance()->getIcon("insert-link"));
+    actionOpen->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
+    actionDownload_from_URL->setIcon(GuiIconProvider::instance()->getIcon("insert-link"));
     actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/seeding.png")));
     actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/download.png")));
     actionSet_global_upload_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/seeding.png")));
     actionSet_global_download_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/download.png")));
-    actionCreate_torrent->setIcon(IconProvider::instance()->getIcon("document-edit"));
-    actionAbout->setIcon(IconProvider::instance()->getIcon("help-about"));
-    actionStatistics->setIcon(IconProvider::instance()->getIcon("view-statistics"));
-    actionBugReport->setIcon(IconProvider::instance()->getIcon("tools-report-bug"));
-    actionDecreasePriority->setIcon(IconProvider::instance()->getIcon("go-down"));
-    actionBottomPriority->setIcon(IconProvider::instance()->getIcon("go-bottom"));
-    actionDelete->setIcon(IconProvider::instance()->getIcon("list-remove"));
-    actionDocumentation->setIcon(IconProvider::instance()->getIcon("help-contents"));
-    actionDonate_money->setIcon(IconProvider::instance()->getIcon("wallet-open"));
-    actionExit->setIcon(IconProvider::instance()->getIcon("application-exit"));
-    actionIncreasePriority->setIcon(IconProvider::instance()->getIcon("go-up"));
-    actionTopPriority->setIcon(IconProvider::instance()->getIcon("go-top"));
-    actionLock_qBittorrent->setIcon(IconProvider::instance()->getIcon("object-locked"));
-    actionOptions->setIcon(IconProvider::instance()->getIcon("preferences-system"));
-    actionPause->setIcon(IconProvider::instance()->getIcon("media-playback-pause"));
-    actionPause_All->setIcon(IconProvider::instance()->getIcon("media-playback-pause"));
-    actionStart->setIcon(IconProvider::instance()->getIcon("media-playback-start"));
-    actionStart_All->setIcon(IconProvider::instance()->getIcon("media-playback-start"));
-    action_Import_Torrent->setIcon(IconProvider::instance()->getIcon("document-import"));
-    menuAuto_Shutdown_on_downloads_completion->setIcon(IconProvider::instance()->getIcon("application-exit"));
+    actionCreate_torrent->setIcon(GuiIconProvider::instance()->getIcon("document-edit"));
+    actionAbout->setIcon(GuiIconProvider::instance()->getIcon("help-about"));
+    actionStatistics->setIcon(GuiIconProvider::instance()->getIcon("view-statistics"));
+    actionBugReport->setIcon(GuiIconProvider::instance()->getIcon("tools-report-bug"));
+    actionDecreasePriority->setIcon(GuiIconProvider::instance()->getIcon("go-down"));
+    actionBottomPriority->setIcon(GuiIconProvider::instance()->getIcon("go-bottom"));
+    actionDelete->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
+    actionDocumentation->setIcon(GuiIconProvider::instance()->getIcon("help-contents"));
+    actionDonate_money->setIcon(GuiIconProvider::instance()->getIcon("wallet-open"));
+    actionExit->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
+    actionIncreasePriority->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
+    actionTopPriority->setIcon(GuiIconProvider::instance()->getIcon("go-top"));
+    actionLock_qBittorrent->setIcon(GuiIconProvider::instance()->getIcon("object-locked"));
+    actionOptions->setIcon(GuiIconProvider::instance()->getIcon("preferences-system"));
+    actionPause->setIcon(GuiIconProvider::instance()->getIcon("media-playback-pause"));
+    actionPause_All->setIcon(GuiIconProvider::instance()->getIcon("media-playback-pause"));
+    actionStart->setIcon(GuiIconProvider::instance()->getIcon("media-playback-start"));
+    actionStart_All->setIcon(GuiIconProvider::instance()->getIcon("media-playback-start"));
+    action_Import_Torrent->setIcon(GuiIconProvider::instance()->getIcon("document-import"));
+    menuAuto_Shutdown_on_downloads_completion->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
 
     QMenu *startAllMenu = new QMenu(this);
     startAllMenu->addAction(actionStart_All);
@@ -169,14 +165,13 @@ MainWindow::MainWindow(QWidget *parent)
     actionLock_qBittorrent->setMenu(lockMenu);
 
     // Creating Bittorrent session
-    connect(QBtSession::instance(), SIGNAL(fullDiskError(QTorrentHandle, QString)), this, SLOT(fullDiskError(QTorrentHandle, QString)));
-    connect(QBtSession::instance(), SIGNAL(finishedTorrent(QTorrentHandle)), this, SLOT(finishedTorrent(QTorrentHandle)));
-    connect(QBtSession::instance(), SIGNAL(trackerAuthenticationRequired(QTorrentHandle)), this, SLOT(trackerAuthenticationRequired(QTorrentHandle)));
-    connect(QBtSession::instance(), SIGNAL(newDownloadedTorrent(QString, QString)), this, SLOT(processDownloadedFiles(QString, QString)));
-    connect(QBtSession::instance(), SIGNAL(newMagnetLink(QString)), this, SLOT(processNewMagnetLink(QString)));
-    connect(QBtSession::instance(), SIGNAL(downloadFromUrlFailure(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
-    connect(QBtSession::instance(), SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
-    connect(QBtSession::instance(), SIGNAL(recursiveTorrentDownloadPossible(QTorrentHandle)), this, SLOT(askRecursiveTorrentDownloadConfirmation(QTorrentHandle)));
+    connect(BitTorrent::Session::instance(), SIGNAL(fullDiskError(BitTorrent::TorrentHandle *const, QString)), this, SLOT(fullDiskError(BitTorrent::TorrentHandle *const, QString)));
+    connect(BitTorrent::Session::instance(), SIGNAL(addTorrentFailed(const QString &)), this, SLOT(addTorrentFailed(const QString &)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentFinished(BitTorrent::TorrentHandle *const)), this, SLOT(finishedTorrent(BitTorrent::TorrentHandle *const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(trackerAuthenticationRequired(BitTorrent::TorrentHandle *const)), this, SLOT(trackerAuthenticationRequired(BitTorrent::TorrentHandle *const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(downloadFromUrlFailed(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
+    connect(BitTorrent::Session::instance(), SIGNAL(speedLimitModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
+    connect(BitTorrent::Session::instance(), SIGNAL(recursiveTorrentDownloadPossible(BitTorrent::TorrentHandle *const)), this, SLOT(askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHandle *const)));
 
     qDebug("create tabWidget");
     tabs = new HidableTabWidget(this);
@@ -200,7 +195,7 @@ MainWindow::MainWindow(QWidget *parent)
     toolBar->insertWidget(searchFilterAct, spacer);
 
     // Transfer List tab
-    transferList = new TransferListWidget(hSplitter, this, QBtSession::instance());
+    transferList = new TransferListWidget(hSplitter, this);
     properties = new PropertiesWidget(hSplitter, this, transferList);
     transferListFilters = new TransferListFiltersWidget(vSplitter, transferList);
     hSplitter->addWidget(transferList);
@@ -209,20 +204,18 @@ MainWindow::MainWindow(QWidget *parent)
     vSplitter->addWidget(hSplitter);
     vSplitter->setCollapsible(0, true);
     vSplitter->setCollapsible(1, false);
-    tabs->addTab(vSplitter, IconProvider::instance()->getIcon("folder-remote"), tr("Transfers"));
+    tabs->addTab(vSplitter, GuiIconProvider::instance()->getIcon("folder-remote"), tr("Transfers"));
 
     connect(search_filter, SIGNAL(textChanged(QString)), transferList, SLOT(applyNameFilter(QString)));
     connect(hSplitter, SIGNAL(splitterMoved(int, int)), this, SLOT(writeSettings()));
     connect(vSplitter, SIGNAL(splitterMoved(int, int)), this, SLOT(writeSettings()));
-    connect(properties, SIGNAL(trackersAdded(const QStringList &, const QString &)), transferListFilters, SLOT(addTrackers(const QStringList &, const QString &)));
-    connect(properties, SIGNAL(trackersRemoved(const QStringList &, const QString &)), transferListFilters, SLOT(removeTrackers(const QStringList &, const QString &)));
-    connect(properties, SIGNAL(trackerlessChange(bool, const QString &)), transferListFilters, SLOT(changeTrackerless(bool, const QString &)));
-    connect(QBtSession::instance(), SIGNAL(trackersAdded(const QStringList &, const QString &)), transferListFilters, SLOT(addTrackers(const QStringList &, const QString &)));
-    connect(QBtSession::instance(), SIGNAL(trackerlessChange(bool, const QString &)), transferListFilters, SLOT(changeTrackerless(bool, const QString &)));
-    connect(QBtSession::instance(), SIGNAL(reloadTrackersAndUrlSeeds(const QTorrentHandle &)), properties, SLOT(loadTrackers(const QTorrentHandle &)));
-    connect(QBtSession::instance(), SIGNAL(trackerSuccess(const QString &, const QString &)), transferListFilters, SIGNAL(trackerSuccess(const QString &, const QString &)));
-    connect(QBtSession::instance(), SIGNAL(trackerError(const QString &, const QString &)), transferListFilters, SIGNAL(trackerError(const QString &, const QString &)));
-    connect(QBtSession::instance(), SIGNAL(trackerWarning(const QString &, const QString &)), transferListFilters, SIGNAL(trackerWarning(const QString &, const QString &)));
+    connect(BitTorrent::Session::instance(), SIGNAL(trackersChanged(BitTorrent::TorrentHandle *const)), properties, SLOT(loadTrackers(BitTorrent::TorrentHandle *const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(trackersAdded(BitTorrent::TorrentHandle *const, const QList<BitTorrent::TrackerEntry> &)), transferListFilters, SLOT(addTrackers(BitTorrent::TorrentHandle *const, const QList<BitTorrent::TrackerEntry> &)));
+    connect(BitTorrent::Session::instance(), SIGNAL(trackersRemoved(BitTorrent::TorrentHandle *const, const QList<BitTorrent::TrackerEntry> &)), transferListFilters, SLOT(removeTrackers(BitTorrent::TorrentHandle *const, const QList<BitTorrent::TrackerEntry> &)));
+    connect(BitTorrent::Session::instance(), SIGNAL(trackerlessStateChanged(BitTorrent::TorrentHandle *const, bool)), transferListFilters, SLOT(changeTrackerless(BitTorrent::TorrentHandle *const, bool)));
+    connect(BitTorrent::Session::instance(), SIGNAL(trackerSuccess(BitTorrent::TorrentHandle *const, const QString &)), transferListFilters, SLOT(trackerSuccess(BitTorrent::TorrentHandle *const, const QString &)));
+    connect(BitTorrent::Session::instance(), SIGNAL(trackerError(BitTorrent::TorrentHandle *const, const QString &)), transferListFilters, SLOT(trackerError(BitTorrent::TorrentHandle *const, const QString &)));
+    connect(BitTorrent::Session::instance(), SIGNAL(trackerWarning(BitTorrent::TorrentHandle *const, const QString &)), transferListFilters, SLOT(trackerWarning(BitTorrent::TorrentHandle *const, const QString &)));
 
     vboxLayout->addWidget(tabs);
 
@@ -231,9 +224,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Transfer list slots
     connect(actionStart, SIGNAL(triggered()), transferList, SLOT(startSelectedTorrents()));
-    connect(actionStart_All, SIGNAL(triggered()), QBtSession::instance(), SLOT(resumeAllTorrents()));
+    connect(actionStart_All, SIGNAL(triggered()), transferList, SLOT(resumeAllTorrents()));
     connect(actionPause, SIGNAL(triggered()), transferList, SLOT(pauseSelectedTorrents()));
-    connect(actionPause_All, SIGNAL(triggered()), QBtSession::instance(), SLOT(pauseAllTorrents()));
+    connect(actionPause_All, SIGNAL(triggered()), transferList, SLOT(pauseAllTorrents()));
     connect(actionDelete, SIGNAL(triggered()), transferList, SLOT(deleteSelectedTorrents()));
     connect(actionTopPriority, SIGNAL(triggered()), transferList, SLOT(topPrioSelectedTorrents()));
     connect(actionIncreasePriority, SIGNAL(triggered()), transferList, SLOT(increasePrioSelectedTorrents()));
@@ -258,10 +251,8 @@ MainWindow::MainWindow(QWidget *parent)
     // Configure BT session according to options
     loadPreferences(false);
 
-    // Start connection checking timer
-    guiUpdater = new QTimer(this);
-    connect(guiUpdater, SIGNAL(timeout()), this, SLOT(updateGUI()));
-    guiUpdater->start(2000);
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentsUpdated()), this, SLOT(updateGUI()));
+
     // Accept drag 'n drops
     setAcceptDrops(true);
     createKeyboardShortcuts();
@@ -516,7 +507,7 @@ void MainWindow::displayRSSTab(bool enable)
         if (!rssWidget) {
             rssWidget = new RSSImp(tabs);
             int index_tab = tabs->addTab(rssWidget, tr("RSS"));
-            tabs->setTabIcon(index_tab, IconProvider::instance()->getIcon("application-rss+xml"));
+            tabs->setTabIcon(index_tab, GuiIconProvider::instance()->getIcon("application-rss+xml"));
         }
     }
     else if (rssWidget) {
@@ -532,7 +523,7 @@ void MainWindow::displaySearchTab(bool enable)
         // RSS tab
         if (!searchEngine) {
             searchEngine = new SearchEngine(this);
-            tabs->insertTab(1, searchEngine, IconProvider::instance()->getIcon("edit-find"), tr("Search"));
+            tabs->insertTab(1, searchEngine, GuiIconProvider::instance()->getIcon("edit-find"), tr("Search"));
         }
     }
     else if (searchEngine) {
@@ -595,7 +586,6 @@ void MainWindow::cleanup()
     writeSettings();
 
     delete executable_watcher;
-    guiUpdater->stop();
     if (systrayCreator)
         systrayCreator->stop();
     if (preventTimer)
@@ -643,18 +633,21 @@ void MainWindow::balloonClicked()
     activateWindow();
 }
 
-// called when a torrent has finished
-void MainWindow::finishedTorrent(const QTorrentHandle& h) const
+void MainWindow::addTorrentFailed(const QString &error) const
 {
-    if (TorrentPersistentData::instance()->isSeed(h.hash()))
-        showNotificationBaloon(tr("Download completion"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(h.name()));
+    showNotificationBaloon(tr("Error"), tr("Failed to add torrent: %1").arg(error));
+}
+
+// called when a torrent has finished
+void MainWindow::finishedTorrent(BitTorrent::TorrentHandle *const torrent) const
+{
+    showNotificationBaloon(tr("Download completion"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
 }
 
 // Notification when disk is full
-void MainWindow::fullDiskError(const QTorrentHandle& h, QString msg) const
+void MainWindow::fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const
 {
-    if (!h.is_valid()) return;
-    showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occurred for torrent %1.\n Reason: %2", "e.g: An error occurred for torrent xxx.avi.\n Reason: disk is full.").arg(h.name()).arg(msg));
+    showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occurred for torrent %1.\n Reason: %2", "e.g: An error occurred for torrent xxx.avi.\n Reason: disk is full.").arg(torrent->name()).arg(msg));
 }
 
 void MainWindow::createKeyboardShortcuts()
@@ -709,28 +702,21 @@ void MainWindow::displayRSSTab() const
 
 // End of keyboard shortcuts slots
 
-void MainWindow::askRecursiveTorrentDownloadConfirmation(const QTorrentHandle &h)
+void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHandle *const torrent)
 {
     Preferences* const pref = Preferences::instance();
     if (pref->recursiveDownloadDisabled()) return;
     // Get Torrent name
-    QString torrent_name;
-    try {
-        torrent_name = h.name();
-    } catch(invalid_handle&) {
-        return;
-    }
+    QString torrent_name = torrent->name();
     QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent %1 contains torrent files, do you want to proceed with their download?").arg(torrent_name));
     QPushButton *yes = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
     /*QPushButton *no = */ confirmBox.addButton(tr("No"), QMessageBox::NoRole);
     QPushButton *never = confirmBox.addButton(tr("Never"), QMessageBox::NoRole);
     confirmBox.exec();
-    if (confirmBox.clickedButton() == 0) return;
-    if (confirmBox.clickedButton() == yes) {
-        QBtSession::instance()->recursiveTorrentDownload(h);
-        return;
-    }
-    if (confirmBox.clickedButton() == never)
+
+    if (confirmBox.clickedButton() == yes)
+        BitTorrent::Session::instance()->recursiveTorrentDownload(torrent->hash());
+    else if (confirmBox.clickedButton() == never)
         pref->disableRecursiveDownload();
 }
 
@@ -744,11 +730,11 @@ void MainWindow::on_actionSet_global_upload_limit_triggered()
 {
     qDebug("actionSet_global_upload_limit_triggered");
     bool ok;
-    int cur_limit = QBtSession::instance()->getSession()->settings().upload_rate_limit;
+    int cur_limit = BitTorrent::Session::instance()->uploadRateLimit();
     const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), cur_limit);
     if (ok) {
         qDebug("Setting global upload rate limit to %.1fKb/s", new_limit / 1024.);
-        QBtSession::instance()->setUploadRateLimit(new_limit);
+        BitTorrent::Session::instance()->setUploadRateLimit(new_limit);
         if (new_limit <= 0)
             Preferences::instance()->setGlobalUploadLimit(-1);
         else
@@ -760,11 +746,11 @@ void MainWindow::on_actionSet_global_download_limit_triggered()
 {
     qDebug("actionSet_global_download_limit_triggered");
     bool ok;
-    int cur_limit = QBtSession::instance()->getSession()->settings().download_rate_limit;
+    int cur_limit = BitTorrent::Session::instance()->downloadRateLimit();
     const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), cur_limit);
     if (ok) {
         qDebug("Setting global download rate limit to %.1fKb/s", new_limit / 1024.);
-        QBtSession::instance()->setDownloadRateLimit(new_limit);
+        BitTorrent::Session::instance()->setDownloadRateLimit(new_limit);
         if (new_limit <= 0)
             Preferences::instance()->setGlobalDownloadLimit(-1);
         else
@@ -888,7 +874,7 @@ void MainWindow::showEvent(QShowEvent *e)
 
     // Make sure the window is initially centered
     if (!m_posInitialized) {
-        move(misc::screenCenter(this));
+        move(Utils::Misc::screenCenter(this));
         m_posInitialized = true;
     }
 }
@@ -904,7 +890,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
         return;
     }
 
-    if (pref->confirmOnExit() && QBtSession::instance()->hasActiveTorrents()) {
+    if (pref->confirmOnExit() && BitTorrent::Session::instance()->hasActiveTorrents()) {
         if (e->spontaneous() || force_exit) {
             if (!isVisible())
                 show();
@@ -944,13 +930,10 @@ void MainWindow::closeEvent(QCloseEvent *e)
 // Display window to create a torrent
 void MainWindow::on_actionCreate_torrent_triggered()
 {
-    if (createTorrentDlg) {
+    if (createTorrentDlg)
         createTorrentDlg->setFocus();
-    }
-    else {
+    else
         createTorrentDlg = new TorrentCreatorDlg(this);
-        connect(createTorrentDlg, SIGNAL(torrent_to_seed(QString)), this, SLOT(addTorrent(QString)));
-    }
 }
 
 bool MainWindow::event(QEvent * e)
@@ -1018,33 +1001,15 @@ void MainWindow::dropEvent(QDropEvent *event)
     else {
         files = event->mimeData()->text().split(QString::fromUtf8("\n"));
     }
+
     // Add file to download list
-    Preferences* const pref = Preferences::instance();
-    const bool useTorrentAdditionDialog = pref->useAdditionDialog();
+    const bool useTorrentAdditionDialog = Preferences::instance()->useAdditionDialog();
     foreach (QString file, files) {
         qDebug("Dropped file %s on download list", qPrintable(file));
-        if (misc::isUrl(file)) {
-            QBtSession::instance()->downloadFromUrl(file);
-            continue;
-        }
-        // Bitcomet or Magnet link
-        if (file.startsWith("bc://bt/", Qt::CaseInsensitive)) {
-            qDebug("Converting bc link to magnet link");
-            file = misc::bcLinkToMagnet(file);
-        }
-        if (file.startsWith("magnet:", Qt::CaseInsensitive)) {
-            if (useTorrentAdditionDialog)
-                AddNewTorrentDialog::showMagnet(file, this);
-            else
-                QBtSession::instance()->addMagnetUri(file);
-        }
-        else {
-            // Local file
-            if (useTorrentAdditionDialog)
-                AddNewTorrentDialog::showTorrent(file, QString(), this);
-            else
-                QBtSession::instance()->addTorrent(file);
-        }
+        if (useTorrentAdditionDialog)
+            AddNewTorrentDialog::show(file, this);
+        else
+            BitTorrent::Session::instance()->addTorrent(file);
     }
 }
 
@@ -1070,22 +1035,22 @@ void MainWindow::on_actionOpen_triggered()
     Preferences* const pref = Preferences::instance();
     // Open File Open Dialog
     // Note: it is possible to select more than one file
-    const QStringList pathsList = QFileDialog::getOpenFileNames(0,
-                                                                tr("Open Torrent Files"), pref->getMainLastDir(),
-                                                                tr("Torrent Files") + QString::fromUtf8(" (*.torrent)"));
-    if (!pathsList.empty()) {
-        const uint listSize = pathsList.size();
-        for (uint i = 0; i<listSize; ++i) {
-            if (pref->useAdditionDialog())
-                AddNewTorrentDialog::showTorrent(pathsList.at(i), QString(), this);
-            else
-                QBtSession::instance()->addTorrent(pathsList.at(i));
-        }
-        // Save last dir to remember it
-        QStringList top_dir = fsutils::fromNativePath(pathsList.at(0)).split("/");
-        top_dir.removeLast();
-        pref->setMainLastDir(fsutils::fromNativePath(top_dir.join("/")));
+    const QStringList pathsList =
+            QFileDialog::getOpenFileNames(0, tr("Open Torrent Files"), pref->getMainLastDir(),
+                                          tr("Torrent Files") + QString::fromUtf8(" (*.torrent)"));
+    const bool useTorrentAdditionDialog = Preferences::instance()->useAdditionDialog();
+    foreach (QString file, pathsList) {
+        qDebug("Dropped file %s on download list", qPrintable(file));
+        if (useTorrentAdditionDialog)
+            AddNewTorrentDialog::show(file, this);
+        else
+            BitTorrent::Session::instance()->addTorrent(file);
     }
+
+    // Save last dir to remember it
+    QStringList top_dir = Utils::Fs::fromNativePath(pathsList.at(0)).split("/");
+    top_dir.removeLast();
+    pref->setMainLastDir(Utils::Fs::fromNativePath(top_dir.join("/")));
 }
 
 void MainWindow::activate()
@@ -1095,29 +1060,6 @@ void MainWindow::activate()
         activateWindow();
         raise();
     }
-}
-
-void MainWindow::addTorrent(QString path)
-{
-    QBtSession::instance()->addTorrent(path);
-}
-
-void MainWindow::processDownloadedFiles(QString path, QString url)
-{
-    Preferences* const pref = Preferences::instance();
-    if (pref->useAdditionDialog())
-        AddNewTorrentDialog::showTorrent(path, url, this);
-    else
-        QBtSession::instance()->addTorrent(path, false, url);
-}
-
-void MainWindow::processNewMagnetLink(const QString& link)
-{
-    Preferences* const pref = Preferences::instance();
-    if (pref->useAdditionDialog())
-        AddNewTorrentDialog::showMagnet(link, this);
-    else
-        QBtSession::instance()->addMagnetUri(link);
 }
 
 void MainWindow::optionsSaved()
@@ -1178,8 +1120,6 @@ void MainWindow::loadPreferences(bool configure_session)
         m_pwr->setActivityState(false);
     }
 
-    const uint new_refreshInterval = pref->getRefreshInterval();
-    transferList->setRefreshInterval(new_refreshInterval);
     transferList->setAlternatingRowColors(pref->useAlternatingRowColors());
     properties->getFilesList()->setAlternatingRowColors(pref->useAlternatingRowColors());
     properties->getTrackerList()->setAlternatingRowColors(pref->useAlternatingRowColors());
@@ -1212,11 +1152,6 @@ void MainWindow::loadPreferences(bool configure_session)
     // Torrent properties
     properties->reloadPreferences();
 
-    // Icon provider
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    IconProvider::instance()->useSystemIconTheme(pref->useSystemIconTheme());
-#endif
-
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     if (pref->isUpdateCheckEnabled())
         checkProgramUpdate();
@@ -1227,7 +1162,7 @@ void MainWindow::loadPreferences(bool configure_session)
     qDebug("GUI settings loaded");
 }
 
-void MainWindow::addUnauthenticatedTracker(const QPair<QTorrentHandle,QString> &tracker)
+void MainWindow::addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle *const, QString> &tracker)
 {
     // Trackers whose authentication was cancelled
     if (unauthenticated_trackers.indexOf(tracker) < 0)
@@ -1235,16 +1170,18 @@ void MainWindow::addUnauthenticatedTracker(const QPair<QTorrentHandle,QString> &
 }
 
 // Called when a tracker requires authentication
-void MainWindow::trackerAuthenticationRequired(const QTorrentHandle& h)
+void MainWindow::trackerAuthenticationRequired(BitTorrent::TorrentHandle *const torrent)
 {
-    if (unauthenticated_trackers.indexOf(QPair<QTorrentHandle,QString>(h, h.current_tracker())) < 0)
+    if (unauthenticated_trackers.indexOf(QPair<BitTorrent::TorrentHandle *const, QString>(torrent, torrent->currentTracker())) < 0)
         // Tracker login
-        new trackerLogin(this, h);
+        new trackerLogin(this, torrent);
 }
 
 // Check connection status and display right icon
 void MainWindow::updateGUI()
 {
+    BitTorrent::SessionStatus status = BitTorrent::Session::instance()->status();
+
     // update global informations
     if (systrayIcon) {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
@@ -1252,21 +1189,21 @@ void MainWindow::updateGUI()
         html += "qBittorrent";
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/download.png'/>&nbsp;" + tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(misc::friendlyUnit(QBtSession::instance()->getPayloadDownloadRate(), true));
+        html += "<img src=':/icons/skin/download.png'/>&nbsp;" + tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true));
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/seeding.png'/>&nbsp;" + tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(misc::friendlyUnit(QBtSession::instance()->getPayloadUploadRate(), true));
+        html += "<img src=':/icons/skin/seeding.png'/>&nbsp;" + tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true));
         html += "</div>";
 #else
         // OSes such as Windows do not support html here
-        QString html = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(misc::friendlyUnit(QBtSession::instance()->getPayloadDownloadRate(), true));
+        QString html = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true));
         html += "\n";
-        html += tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(misc::friendlyUnit(QBtSession::instance()->getPayloadUploadRate(), true));
+        html += tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true));
 #endif
         systrayIcon->setToolTip(html); // tray icon
     }
     if (displaySpeedInTitle)
-        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version").arg(misc::friendlyUnit(QBtSession::instance()->getPayloadDownloadRate(), true)).arg(misc::friendlyUnit(QBtSession::instance()->getPayloadUploadRate(), true)).arg(QString::fromUtf8(VERSION)));
+        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true)).arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true)).arg(QString::fromUtf8(VERSION)));
 }
 
 void MainWindow::showNotificationBaloon(QString title, QString msg) const
@@ -1305,26 +1242,16 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const
 
 void MainWindow::downloadFromURLList(const QStringList& url_list)
 {
-    Preferences* const pref = Preferences::instance();
-    const bool useTorrentAdditionDialog = pref->useAdditionDialog();
+    const bool useTorrentAdditionDialog = Preferences::instance()->useAdditionDialog();
     foreach (QString url, url_list) {
-        if (url.startsWith("bc://bt/", Qt::CaseInsensitive)) {
-            qDebug("Converting bc link to magnet link");
-            url = misc::bcLinkToMagnet(url);
-        }
         if ((url.size() == 40 && !url.contains(QRegExp("[^0-9A-Fa-f]")))
             || (url.size() == 32 && !url.contains(QRegExp("[^2-7A-Za-z]"))))
             url = "magnet:?xt=urn:btih:" + url;
-        if (url.startsWith("magnet:", Qt::CaseInsensitive)) {
-            if (useTorrentAdditionDialog)
-                AddNewTorrentDialog::showMagnet(url, this);
-            else
-                QBtSession::instance()->addMagnetUri(url);
-        }
-        else if (url.startsWith("http://", Qt::CaseInsensitive) || url.startsWith("https://", Qt::CaseInsensitive)
-                 || url.startsWith("ftp://", Qt::CaseInsensitive)) {
-            QBtSession::instance()->downloadFromUrl(url);
-        }
+
+        if (useTorrentAdditionDialog)
+            AddNewTorrentDialog::show(url, this);
+        else
+            BitTorrent::Session::instance()->addTorrent(url);
     }
 }
 
@@ -1453,7 +1380,7 @@ void MainWindow::on_actionSearch_engine_triggered()
         bool res = false;
 
         // Check if python is already in PATH
-        if (misc::pythonVersion() > 0)
+        if (Utils::Misc::pythonVersion() > 0)
             res = true;
         else
             res = addPythonPathToEnv();
@@ -1552,7 +1479,7 @@ void MainWindow::on_actionExecution_Logs_triggered(bool checked)
         Q_ASSERT(!m_executionLog);
         m_executionLog = new ExecutionLog(tabs);
         int index_tab = tabs->addTab(m_executionLog, tr("Execution Log"));
-        tabs->setTabIcon(index_tab, IconProvider::instance()->getIcon("view-calendar-journal"));
+        tabs->setTabIcon(index_tab, GuiIconProvider::instance()->getIcon("view-calendar-journal"));
     }
     else if (m_executionLog) {
         delete m_executionLog;
@@ -1586,7 +1513,7 @@ void MainWindow::on_actionAutoShutdown_system_toggled(bool enabled)
 
 void MainWindow::checkForActiveTorrents()
 {
-    m_pwr->setActivityState(transferList->getSourceModel()->inhibitSystem());
+    m_pwr->setActivityState(BitTorrent::Session::instance()->hasActiveTorrents());
 }
 
 QIcon MainWindow::getSystrayIcon() const
@@ -1640,7 +1567,7 @@ bool MainWindow::addPythonPathToEnv()
             path_envar = "";
         path_envar = python_path + ";" + path_envar;
         qDebug("New PATH envvar is: %s", qPrintable(path_envar));
-        qputenv("PATH", fsutils::toNativePath(path_envar).toLocal8Bit());
+        qputenv("PATH", Utils::Fs::toNativePath(path_envar).toLocal8Bit());
         return true;
     }
     return false;
@@ -1650,21 +1577,20 @@ void MainWindow::installPython()
 {
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
-    DownloadThread *pydownloader = new DownloadThread(this);
-    connect(pydownloader, SIGNAL(downloadFinished(QString,QString)), this, SLOT(pythonDownloadSuccess(QString,QString)));
-    connect(pydownloader, SIGNAL(downloadFailure(QString,QString)), this, SLOT(pythonDownloadFailure(QString,QString)));
-    pydownloader->downloadUrl("http://python.org/ftp/python/2.7.3/python-2.7.3.msi");
+    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl("http://python.org/ftp/python/2.7.3/python-2.7.3.msi");
+    connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(pythonDownloadSuccess(QString, QString)));
+    connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(pythonDownloadFailure(QString, QString)));
 }
 
-void MainWindow::pythonDownloadSuccess(QString url, QString file_path)
+void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePath)
 {
+    Q_UNUSED(url)
     setCursor(QCursor(Qt::ArrowCursor));
-    Q_UNUSED(url);
-    QFile::rename(file_path, file_path + ".msi");
+    QFile::rename(filePath, filePath + ".msi");
     QProcess installer;
     qDebug("Launching Python installer in passive mode...");
 
-    installer.start("msiexec.exe /passive /i " + fsutils::toNativePath(file_path) + ".msi");
+    installer.start("msiexec.exe /passive /i " + Utils::Fs::toNativePath(filePath) + ".msi");
     // Wait for setup to complete
     installer.waitForFinished();
 
@@ -1672,21 +1598,19 @@ void MainWindow::pythonDownloadSuccess(QString url, QString file_path)
     qDebug("Installer stderr: %s", installer.readAllStandardError().data());
     qDebug("Setup should be complete!");
     // Delete temp file
-    fsutils::forceRemove(file_path);
+    Utils::Fs::forceRemove(filePath);
     // Reload search engine
     has_python = addPythonPathToEnv();
     if (has_python) {
         actionSearch_engine->setChecked(true);
         displaySearchTab(true);
     }
-    sender()->deleteLater();
 }
 
-void MainWindow::pythonDownloadFailure(QString url, QString error)
+void MainWindow::pythonDownloadFailure(const QString &url, const QString &error)
 {
-    Q_UNUSED(url);
+    Q_UNUSED(url)
     setCursor(QCursor(Qt::ArrowCursor));
     QMessageBox::warning(this, tr("Download error"), tr("Python setup could not be downloaded, reason: %1.\nPlease install it manually.").arg(error));
-    sender()->deleteLater();
 }
 #endif

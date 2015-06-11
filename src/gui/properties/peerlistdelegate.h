@@ -33,7 +33,8 @@
 
 #include <QItemDelegate>
 #include <QPainter>
-#include "misc.h"
+#include "core/utils/misc.h"
+#include "core/utils/string.h"
 
 class PeerListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -54,21 +55,21 @@ public:
     case TOT_DOWN:
     case TOT_UP:
       QItemDelegate::drawBackground(painter, opt, index);
-      QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
+      QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
       break;
     case DOWN_SPEED:
     case UP_SPEED:{
       QItemDelegate::drawBackground(painter, opt, index);
       qreal speed = index.data().toDouble();
       if (speed > 0.0)
-        QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (i.e. per second)"));
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed)+tr("/s", "/second (i.e. per second)"));
       break;
     }
     case PROGRESS:
     case RELEVANCE:{
       QItemDelegate::drawBackground(painter, opt, index);
       qreal progress = index.data().toDouble();
-      QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::accurateDoubleToString(progress*100.0, 1)+"%");
+      QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::String::fromDouble(progress*100.0, 1)+"%");
       break;
     }
     default:
