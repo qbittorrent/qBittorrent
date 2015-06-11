@@ -47,14 +47,16 @@
 #include <QTemporaryFile>
 #include <QMimeData>
 
-enum EngineColumns {ENGINE_NAME, ENGINE_URL, ENGINE_STATE, ENGINE_ID};
+enum EngineColumns {ENGINE_NAME, ENGINE_VERSION, ENGINE_URL, ENGINE_STATE, ENGINE_ID};
 const QString UPDATE_URL = QString("https://raw.github.com/qbittorrent/qBittorrent/master/src/searchengine/") + (Utils::Misc::pythonVersion() >= 3 ? "nova3" : "nova") + "/engines/";
 
 engineSelectDlg::engineSelectDlg(QWidget *parent, SupportedEngines *supported_engines) : QDialog(parent), supported_engines(supported_engines) {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
-  pluginsTree->header()->resizeSection(0, 170);
-  pluginsTree->header()->resizeSection(1, 220);
+  pluginsTree->setRootIsDecorated(false);
+  pluginsTree->header()->resizeSection(0, 160);
+  pluginsTree->header()->resizeSection(1, 80);
+  pluginsTree->header()->resizeSection(2, 200);
   pluginsTree->hideColumn(ENGINE_ID);
   actionUninstall->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
   connect(actionEnable, SIGNAL(toggled(bool)), this, SLOT(enableSelection(bool)));
@@ -266,11 +268,12 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
       return;
     }
   }
-  // Install was successful, remove backup
+  // Install was successful, remove backup and update plugin version
   if (update) {
     Utils::Fs::forceRemove(dest_path+".bak");
-  }
-  if (update) {
+    qreal version = SearchEngine::getPluginVersion(Utils::Fs::searchEngineLocation() + "/engines/" + plugin_name + ".py");
+    QTreeWidgetItem *item = findItemWithID(plugin_name);
+    item->setText(ENGINE_VERSION, QString::number(version, 'f', 2));
     QMessageBox::information(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin was successfully updated.", "%1 is the name of the search engine").arg(plugin_name));
     return;
   } else {
@@ -314,6 +317,9 @@ void engineSelectDlg::addNewEngine(QString engine_name) {
       downloadFromUrl(engine->getUrl() + "/favicon.ico");
     }
   }
+  // Load version
+  qreal version = SearchEngine::getPluginVersion(Utils::Fs::searchEngineLocation() + "/engines/" + engine->getName() + ".py");
+  item->setText(ENGINE_VERSION, QString::number(version, 'f', 2));
 }
 
 void engineSelectDlg::on_installButton_clicked() {
