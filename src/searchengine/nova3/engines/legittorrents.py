@@ -1,4 +1,4 @@
-#VERSION: 1.03
+#VERSION: 1.04
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -35,10 +35,6 @@ class legittorrents(object):
   url = 'http://www.legittorrents.info'
   name = 'legittorrents'
   supported_categories = {'all': '', 'movies': '1', 'tv': '13', 'music': '2', 'games': '3', 'anime': '5', 'books': '6'}
-
-  def __init__(self):
-    self.results = []
-    self.parser = self.SimpleSGMLParser(self.results, self.url)
 
   def download_torrent(self, info):
     print(download_file(info))
