@@ -1636,7 +1636,7 @@ namespace {
 
             for (DWORD i = 0; i < cSubKeys; ++i) {
                 cName = cMaxSubKeyLen;
-                res = ::RegEnumKeyExW(handle, 0, lpName, &cName, NULL, NULL, NULL, NULL);
+                res = ::RegEnumKeyExW(handle, i, lpName, &cName, NULL, NULL, NULL, NULL);
                 if (res == ERROR_SUCCESS)
                     keys.push_back(QString::fromWCharArray(lpName));
             }
@@ -1751,7 +1751,7 @@ QString Preferences::getPythonPath()
 
     // Fallback: Detect python from default locations
     QStringList supported_versions;
-    supported_versions << "32" << "31" << "30" << "27" << "26" << "25";
+    supported_versions << "34" << "33" << "32" << "31" << "30" << "27" << "26" << "25";
     foreach (const QString &v, supported_versions)
         if (QFile::exists("C:/Python" + v + "/python.exe"))
             return "C:/Python" + v;
