@@ -1,4 +1,4 @@
-#VERSION: 1.03
+#VERSION: 1.05
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -33,7 +33,7 @@ import re
 
 class legittorrents(object):
   url = 'http://www.legittorrents.info'
-  name = 'legittorrents'
+  name = 'Legit Torrents'
   supported_categories = {'all': '', 'movies': '1', 'tv': '13', 'music': '2', 'games': '3', 'anime': '5', 'books': '6'}
 
   def download_torrent(self, info):
