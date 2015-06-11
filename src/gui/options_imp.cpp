@@ -37,6 +37,7 @@
 #include <QDesktopWidget>
 #include <QTranslator>
 #include <QDesktopServices>
+#include <QStyleFactory>
 #include <QDebug>
 
 #include <libtorrent/version.hpp>
@@ -49,6 +50,7 @@
 #include "qbtsession.h"
 #include "iconprovider.h"
 #include "dnsupdater.h"
+#include "application.h"
 
 #ifndef QT_NO_OPENSSL
 #include <QSslKey>
@@ -59,7 +61,8 @@ using namespace libtorrent;
 
 // Constructor
 options_imp::options_imp(QWidget *parent):
-  QDialog(parent), m_refreshingIpFilter(false) {
+  QDialog(parent), m_refreshingIpFilter(false),
+  prevUiStyle(myApp()->getCurrUiStyle()), currUiStyle(prevUiStyle) {
   qDebug("-> Constructing Options");
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
@@ -353,6 +356,14 @@ QSize options_imp::sizeFittingScreen() const {
   return size();
 }
 
+void options_imp::applyUiStyle(const QString &uiStyle) const {
+  // switch to this style (also may be string shown in the combobox)
+  if (!uiStyle.startsWith(tr("System Default")))
+    myApp()->setStyle(uiStyle);
+  else
+    myApp()->setStyle(myApp()->getDeftUiStyle());
+}
+
 void options_imp::saveOptions() {
   applyButton->setEnabled(false);
   Preferences* const pref = Preferences::instance();
@@ -379,6 +390,10 @@ void options_imp::saveOptions() {
   pref->setSplashScreenDisabled(isSlashScreenDisabled());
   pref->setConfirmOnExit(checkProgramExitConfirm->isChecked());
   pref->setPreventFromSuspend(preventFromSuspend());
+  if (currUiStyle != prevUiStyle) {
+    myApp()->setCurrUiStyle(currUiStyle);
+    pref->setUiStyle(currUiStyle); // style is already applied in UI
+  }
 #ifdef Q_OS_WIN
   pref->setWinStartup(WinStartup());
   // Windows: file association settings
@@ -551,6 +566,16 @@ void options_imp::loadOptions() {
   checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
   checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
 #endif
+  { // initialize UI Style combobox
+    comboUiStyle->addItem(QString("%1 (%2)").arg(tr("System Default")).arg(myApp()->getDeftUiStyle()));
+    foreach (const QString &key, QStyleFactory::keys()) {
+      comboUiStyle->addItem(key);
+      if (key == currUiStyle) {
+        comboUiStyle->setCurrentIndex(comboUiStyle->count()-1);
+      }
+    }
+    connect(comboUiStyle, SIGNAL(currentIndexChanged(const QString &)), SLOT(uiStyleComboChanged(const QString &)));
+  }
   // End General preferences
   // Downloads preferences
   textSavePath->setText(fsutils::toNativePath(pref->getSavePath()));
@@ -970,6 +995,7 @@ void options_imp::closeEvent(QCloseEvent *e) {
 }
 
 void options_imp::on_buttonBox_rejected() {
+  applyUiStyle(prevUiStyle); // revert UI selection
   setAttribute(Qt::WA_DeleteOnClose);
   reject();
 }
@@ -980,6 +1006,15 @@ bool options_imp::useAdditionDialog() const {
 
 void options_imp::enableApplyButton() {
   applyButton->setEnabled(true);
+}
+
+void options_imp::uiStyleComboChanged(const QString &uiStyle) {
+  applyUiStyle(uiStyle);
+  if (!uiStyle.startsWith(tr("System Default")))
+    currUiStyle = uiStyle;
+  else
+    currUiStyle = tr("System Default");
+  enableApplyButton();
 }
 
 void options_imp::enableProxy(int index) {
@@ -1413,3 +1448,8 @@ bool options_imp::schedTimesOk() {
 
   return true;
 }
+
+Application* options_imp::myApp() {
+  return (Application*)qApp;
+}
+

@@ -2444,6 +2444,16 @@ void Preferences::setToolbarTextPosition(const int position)
     setValue("Toolbar/textPosition", position);
 }
 
+QString Preferences::getUiStyle()
+{
+    return value("Prefereces/UI/style", "").toString();
+}
+
+void Preferences::setUiStyle(const QString uiStyle)
+{
+    setValue("Prefereces/UI/style", uiStyle);
+}
+
 QList<QByteArray> Preferences::getHostNameCookies(const QString &host_name) const
 {
     QMap<QString, QVariant> hosts_table = value("Rss/hosts_cookies").toMap();

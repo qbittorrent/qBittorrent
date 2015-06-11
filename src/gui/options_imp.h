@@ -37,6 +37,7 @@
 enum DoubleClickAction {TOGGLE_PAUSE, OPEN_DEST, NO_ACTION};
 
 class AdvancedSettings;
+class Application;
 
 QT_BEGIN_NAMESPACE
 class QCloseEvent;
@@ -66,6 +67,7 @@ private slots:
   void on_buttonBox_rejected();
   void applySettings(QAbstractButton* button);
   void enableApplyButton();
+  void uiStyleComboChanged(const QString &uiStyle);
   void changePage(QListWidgetItem*, QListWidgetItem*);
   void loadWindowState();
   void saveWindowState() const;
@@ -150,17 +152,21 @@ private:
   QString webUiUsername() const;
   QString webUiPassword() const;
   QSize sizeFittingScreen() const;
+  void applyUiStyle(const QString &uiStyle) const;
 
 private:
   void setSslKey(const QByteArray &key, bool interactive = true);
   void setSslCertificate(const QByteArray &cert, bool interactive = true);
   bool schedTimesOk();
+  static Application* myApp();
 
 private:
   QButtonGroup choiceLanguage;
   QAbstractButton *applyButton;
   AdvancedSettings *advancedSettings;
   QList<QString> addedScanDirs;
+  QString prevUiStyle;
+  QString currUiStyle;
   // SSL Cert / key
   QByteArray m_sslCert, m_sslKey;
 

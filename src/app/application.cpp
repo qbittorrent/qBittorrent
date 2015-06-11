@@ -39,6 +39,7 @@
 #include <QSharedMemory>
 #include <QSessionManager>
 #endif // Q_OS_WIN
+#include <QStyleFactory>
 #ifdef Q_OS_MAC
 #include <QFileOpenEvent>
 #include <QFont>
@@ -76,7 +77,7 @@ Application::Application(const QString &id, int &argc, char **argv)
     setApplicationName("qBittorrent");
     initializeTranslation();
 #ifndef DISABLE_GUI
-    setStyleSheet("QStatusBar::item { border-width: 0; }");
+    initializeUiStyle();
     setQuitOnLastWindowClosed(false);
 #ifdef Q_OS_WIN
     connect(this, SIGNAL(commitDataRequest(QSessionManager &)), this, SLOT(shutdownCleanup(QSessionManager &)), Qt::DirectConnection);
@@ -289,6 +290,23 @@ void Application::initializeTranslation()
     }
 #endif
 }
+
+#ifndef DISABLE_GUI
+void Application::initializeUiStyle() {
+    // system default style name
+    deftUiStyle = style()->objectName();
+    // preferred style
+    const QString prefUiStyle = Preferences::instance()->getUiStyle();
+    if (QStyleFactory::keys().indexOf(prefUiStyle) >= 0) {
+        setStyle(prefUiStyle);
+        currUiStyle = prefUiStyle;
+    } else { // preference not set, or chosen style not found on the system
+        currUiStyle = tr("System Default");
+    }
+    // cascaded style sheets if set earlier would have prevented us from reading the system default style name
+    setStyleSheet("QStatusBar::item { border-width: 0; margin: 0; }");
+}
+#endif // DISABLE_GUI
 
 #if (!defined(DISABLE_GUI) && defined(Q_OS_WIN))
 void Application::shutdownCleanup(QSessionManager &manager)

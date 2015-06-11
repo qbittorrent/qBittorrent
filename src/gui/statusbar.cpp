@@ -119,7 +119,6 @@ StatusBar::StatusBar(QStatusBar *bar)
 
   bar->addPermanentWidget(container);
   container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-  bar->setStyleSheet("QWidget {margin: 0;}");
   container->adjustSize();
   bar->adjustSize();
   // Is DHT enabled

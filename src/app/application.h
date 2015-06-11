@@ -66,6 +66,9 @@ public:
 #endif
     int exec(const QStringList &params);
     bool sendParams(const QStringList &params);
+    const QString& getDeftUiStyle() const { return deftUiStyle; }
+    const QString& getCurrUiStyle() const { return currUiStyle; }
+    void setCurrUiStyle(const QString& newUiStyle) { currUiStyle = newUiStyle; }
 
 protected:
 #ifndef DISABLE_GUI
@@ -96,8 +99,13 @@ private:
     QTranslator m_qtTranslator;
     QTranslator m_translator;
     QStringList m_paramsQueue;
+    QString     deftUiStyle;
+    QString     currUiStyle; // QStyle doesn't know its name, so we need to store it here
 
     void initializeTranslation();
+#ifndef DISABLE_GUI
+    void initializeUiStyle();
+#endif // DISABLE_GUI
     void processParams(const QStringList &params);
 };
 
