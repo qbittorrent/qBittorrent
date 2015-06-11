@@ -1,10 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-#
-
-#VERSION: 1.23
+#VERSION: 1.25
 #AUTHORS: BTDigg team (research@btdigg.org)
-#
+
 #                    GNU GENERAL PUBLIC LICENSE
 #                       Version 3, 29 June 2007
 #
