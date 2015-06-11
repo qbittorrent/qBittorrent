@@ -1,0 +1,40 @@
+[Global]
+IconName=qbittorrent
+Name=qBitTorrent
+Comment=Torrent Client
+
+[Context/download]
+Name=Downloads
+Comment=Downloads notifications
+
+[Context/error]
+Name=Errors
+Comment=Errors notifications
+
+[Context/search]
+Name=Search
+Comment=Search notifications
+
+[Event/downloadfinished]
+Name=Download finished
+Comment=Your download has completed
+Contexts=download
+Action=Popup
+
+[Event/ioerror]
+Name=I/O error
+Comment=An I/O error occured for a torrent
+Contexts=error
+Action=Popup|Taskbar
+
+[Event/urlerror]
+Name=Url download error
+Comment=Couldn't download file
+Contexts=error
+Action=Popup|Taskbar
+
+[Event/searchfinished]
+Name=Search finished
+Comment=Search has finished
+Contexts=search
+Action=Popup

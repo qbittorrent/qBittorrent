@@ -39,6 +39,10 @@
 
 #include <libtorrent/session.hpp>
 
+#ifdef ENABLE_KF5
+	#include <KF5/KConfigWidgets/KColorScheme>
+#endif
+
 using namespace libtorrent;
 
 namespace {
@@ -208,46 +212,88 @@ QIcon TorrentModelItem::getIconByState(State state) {
 }
 
 QColor TorrentModelItem::getColorByState(State state) {
+#ifdef ENABLE_KF5
+    KColorScheme kActiveColors (QPalette::Active);
+    KColorScheme kInactiveColors (QPalette::Inactive);
+    KColorScheme kDisabledColors (QPalette::Disabled);
+#else
     bool dark = isDarkTheme();
+#endif
     switch (state) {
     case STATE_DOWNLOADING:
     case STATE_DOWNLOADING_META:
     case STATE_FORCED_DL:
+#ifdef ENABLE_KF5
+		return kActiveColors.foreground(KColorScheme::PositiveText).color();
+#else
         return QColor(34, 139, 34); // Forest Green
+#endif
     case STATE_ALLOCATING:
     case STATE_STALLED_DL:
     case STATE_STALLED_UP:
+#ifdef ENABLE_KF5
+		return kInactiveColors.foreground(KColorScheme::InactiveText).color();
+#else
         if (!dark)
             return QColor(0, 0, 0); // Black
         else
             return QColor(255, 255, 255); // White
+#endif
     case STATE_SEEDING:
     case STATE_FORCED_UP:
+#ifdef ENABLE_KF5
+		return kActiveColors.foreground(KColorScheme::NeutralText).color();
+#else
         if (!dark)
             return QColor(65, 105, 225); // Royal Blue
         else
             return QColor(100, 149, 237); // Cornflower Blue
+#endif
     case STATE_PAUSED_DL:
+#ifdef ENABLE_KF5
+        return kDisabledColors.foreground(KColorScheme::PositiveText).color();
+#else
         return QColor(250, 128, 114); // Salmon
+#endif
     case STATE_PAUSED_UP:
+#ifdef ENABLE_KF5
+        return kDisabledColors.foreground(KColorScheme::PositiveText).color();
+#else
         if (!dark)
             return QColor(0, 0, 139); // Dark Blue
         else
             return QColor(65, 105, 225); // Royal Blue
+#endif
     case STATE_PAUSED_MISSING:
+#ifdef ENABLE_KF5
+        return kActiveColors.foreground(KColorScheme::NeutralText).color();
+#else
         return QColor(255, 0, 0); // red
+#endif
     case STATE_QUEUED_DL:
     case STATE_QUEUED_UP:
     case STATE_CHECKING_UP:
     case STATE_CHECKING_DL:
     case STATE_QUEUED_CHECK:
     case STATE_QUEUED_FASTCHECK:
+#ifdef ENABLE_KF5
+		return kInactiveColors.foreground(KColorScheme::ActiveText).color();
+#else
         return QColor(0, 128, 128); // Teal
+#endif
     case STATE_INVALID:
+#ifdef ENABLE_KF5
+		return kInactiveColors.foreground(KColorScheme::NegativeText).color();
+#else
         return QColor(255, 0, 0); // red
+#endif
     default:
         Q_ASSERT(false);
+#ifdef ENABLE_KF5
+		return kActiveColors.foreground(KColorScheme::NegativeText).color();
+#else
         return QColor(255, 0, 0); // red
+#endif
     }
 }
 

@@ -37,6 +37,7 @@
 #include "ui_mainwindow.h"
 #include "qtorrenthandle.h"
 #include "statsdialog.h"
+#include "notifier.h"
 
 class QBtSession;
 class downloadFromURL;
@@ -77,11 +78,11 @@ public:
     TransferListWidget* getTransferList() const { return transferList; }
     QMenu* getTrayIconMenu();
     PropertiesWidget *getProperties() const { return properties; }
+    Notifier* notifier();
 
 public slots:
     void trackerAuthenticationRequired(const QTorrentHandle& h);
     void setTabText(int index, QString text) const;
-    void showNotificationBaloon(QString title, QString msg) const;
     void downloadFromURLList(const QStringList& urls);
     void updateAltSpeedsBtn(bool alternative);
     void updateNbTorrents();
@@ -177,6 +178,7 @@ private:
     QPointer<downloadFromURL> downloadFromURLDialog;
     QPointer<QSystemTrayIcon> systrayIcon;
     QPointer<QTimer> systrayCreator;
+    Notifier* m_notifier;
     QPointer<QMenu> myTrayIconMenu;
     TransferListWidget *transferList;
     TransferListFiltersWidget *transferListFilters;
