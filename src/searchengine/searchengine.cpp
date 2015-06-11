@@ -321,7 +321,7 @@ void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus) {
     delete downloadProcess;
 }
 
-static void removePythonScriptIfExists(const QString& script_path)
+static inline void removePythonScriptIfExists(const QString& script_path)
 {
     Utils::Fs::forceRemove(script_path);
     Utils::Fs::forceRemove(script_path + "c");
@@ -339,6 +339,8 @@ void SearchEngine::updateNova() {
     if (!search_dir.exists("engines")) {
         search_dir.mkdir("engines");
     }
+    Utils::Fs::removeDirRecursive(search_dir.absoluteFilePath("__pycache__"));
+
     QFile package_file2(search_dir.absolutePath() + "/engines/__init__.py");
     package_file2.open(QIODevice::WriteOnly | QIODevice::Text);
     package_file2.close();
@@ -376,13 +378,13 @@ void SearchEngine::updateNova() {
         removePythonScriptIfExists(filePath);
         QFile::copy(":/"+nova_folder+"/fix_encoding.py", filePath);
     }
-
-    if (nova_folder == "nova3") {
+    else if (nova_folder == "nova3") {
         filePath = search_dir.absoluteFilePath("sgmllib3.py");
         removePythonScriptIfExists(filePath);
         QFile::copy(":/"+nova_folder+"/sgmllib3.py", filePath);
     }
     QDir destDir(QDir(Utils::Fs::searchEngineLocation()).absoluteFilePath("engines"));
+    Utils::Fs::removeDirRecursive(destDir.absoluteFilePath("__pycache__"));
     QDir shipped_subDir(":/"+nova_folder+"/engines/");
     QStringList files = shipped_subDir.entryList();
     foreach (const QString &file, files) {

@@ -179,6 +179,27 @@ bool Utils::Fs::forceRemove(const QString& file_path)
 }
 
 /**
+ * Removes directory and its content recursively.
+ *
+ */
+void Utils::Fs::removeDirRecursive(const QString& dirName) {
+    QDir dir(dirName);
+
+    if (!dir.exists()) return;
+
+    Q_FOREACH(QFileInfo info, dir.entryInfoList(QDir::NoDotAndDotDot |
+                                                QDir::System |
+                                                QDir::Hidden |
+                                                QDir::AllDirs |
+                                                QDir::Files, QDir::DirsFirst)) {
+        if (info.isDir()) removeDirRecursive(info.absoluteFilePath());
+        else forceRemove(info.absoluteFilePath());
+    }
+
+    dir.rmdir(dirName);
+}
+
+/**
  * Returns the size of a file.
  * If the file is a folder, it will compute its size based on its content.
  *
