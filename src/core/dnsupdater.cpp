@@ -76,7 +76,7 @@ void DNSUpdater::checkPublicIP()
   m_lastIPCheckTime = QDateTime::currentDateTime();
   QNetworkRequest request;
   request.setUrl(QUrl("http://checkip.dyndns.org"));
-  request.setRawHeader("User-Agent", "qBittorrent/" VERSION" chris@qbittorrent.org");
+  request.setRawHeader("User-Agent", "qBittorrent/" VERSION);
   manager->get(request);
 }
 
@@ -123,7 +123,7 @@ void DNSUpdater::updateDNSService()
   m_lastIPCheckTime = QDateTime::currentDateTime();
   QNetworkRequest request;
   request.setUrl(getUpdateUrl());
-  request.setRawHeader("User-Agent", "qBittorrent/" VERSION" chris@qbittorrent.org");
+  request.setRawHeader("User-Agent", "qBittorrent/" VERSION);
   manager->get(request);
 }
 
