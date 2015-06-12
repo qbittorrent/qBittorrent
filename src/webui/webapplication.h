@@ -52,6 +52,7 @@ private:
     void action_query_transferInfo();
     void action_query_propertiesGeneral();
     void action_query_propertiesTrackers();
+    void action_query_propertiesWebSeeds();
     void action_query_propertiesFiles();
     void action_sync_maindata();
     void action_command_shutdown();

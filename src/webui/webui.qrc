@@ -33,6 +33,7 @@
     <file>www/public/properties_content.html</file>
     <file>www/public/scripts/prop-general.js</file>
     <file>www/public/scripts/prop-trackers.js</file>
+    <file>www/public/scripts/prop-webseeds.js</file>
     <file>www/public/scripts/prop-files.js</file>
     <file>www/public/transferlist.html</file>
     <file>www/public/upload.html</file>
