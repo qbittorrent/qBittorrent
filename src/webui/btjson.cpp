@@ -110,6 +110,9 @@ static const char KEY_TRACKER_STATUS[] = "status";
 static const char KEY_TRACKER_MSG[] = "msg";
 static const char KEY_TRACKER_PEERS[] = "num_peers";
 
+// Web seed keys
+static const char KEY_WEBSEED_URL[] = "url";
+
 // Torrent keys (Properties)
 static const char KEY_PROP_SAVE_PATH[] = "save_path";
 static const char KEY_PROP_CREATION_DATE[] = "creation_date";
@@ -375,6 +378,31 @@ QByteArray btjson::getTrackersForTorrent(const QString& hash)
     }
 
     return json::toJson(tracker_list);
+}
+
+/**
+ * Returns the web seeds for a torrent in JSON format.
+ *
+ * The return value is a JSON-formatted list of dictionaries.
+ * The dictionary keys are:
+ *   - "url": Web seed URL
+ */
+QByteArray btjson::getWebSeedsForTorrent(const QString& hash)
+{
+    CACHED_VARIABLE_FOR_HASH(QVariantList, webSeedList, CACHE_DURATION_MS, hash);
+    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    if (!torrent) {
+        qWarning() << Q_FUNC_INFO << "Invalid torrent " << qPrintable(hash);
+        return QByteArray();
+    }
+
+    foreach (const QUrl &webseed, torrent->urlSeeds()) {
+        QVariantMap webSeedDict;
+        webSeedDict[KEY_WEBSEED_URL] = webseed.toString();
+        webSeedList.append(webSeedDict);
+    }
+
+    return json::toJson(webSeedList);
 }
 
 /**

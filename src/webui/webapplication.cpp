@@ -76,6 +76,7 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(query, transferInfo);
     ADD_ACTION(query, propertiesGeneral);
     ADD_ACTION(query, propertiesTrackers);
+    ADD_ACTION(query, propertiesWebSeeds);
     ADD_ACTION(query, propertiesFiles);
     ADD_ACTION(sync, maindata);
     ADD_ACTION(command, shutdown);
@@ -247,6 +248,12 @@ void WebApplication::action_query_propertiesTrackers()
 {
     CHECK_URI(1);
     print(btjson::getTrackersForTorrent(args_.front()), Http::CONTENT_TYPE_JS);
+}
+
+void WebApplication::action_query_propertiesWebSeeds()
+{
+    CHECK_URI(1);
+    print(btjson::getWebSeedsForTorrent(args_.front()), Http::CONTENT_TYPE_JS);
 }
 
 void WebApplication::action_query_propertiesFiles()
