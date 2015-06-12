@@ -916,12 +916,18 @@ int TorrentHandle::incompleteCount() const
 
 QDateTime TorrentHandle::lastSeenComplete() const
 {
-    return QDateTime::fromTime_t(m_nativeStatus.last_seen_complete);
+    if (m_nativeStatus.last_seen_complete > 0)
+        return QDateTime::fromTime_t(m_nativeStatus.last_seen_complete);
+    else
+        return QDateTime();
 }
 
 QDateTime TorrentHandle::completedTime() const
 {
-    return QDateTime::fromTime_t(m_nativeStatus.completed_time);
+    if (m_nativeStatus.completed_time > 0)
+        return QDateTime::fromTime_t(m_nativeStatus.completed_time);
+    else
+        return QDateTime();
 }
 
 int TorrentHandle::timeSinceUpload() const
