@@ -206,7 +206,8 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     if (!data.resumed) {
         if (hasMetadata()) {
             setFirstLastPiecePriority(data.sequential);
-            appendExtensionsToIncompleteFiles();
+            if (m_session->isAppendExtensionEnabled())
+                appendExtensionsToIncompleteFiles();
         }
     }
 }
@@ -1556,7 +1557,8 @@ void TorrentHandle::handleMetadataReceivedAlert(libt::metadata_received_alert *p
     Q_UNUSED(p);
     qDebug("Metadata received for torrent %s.", qPrintable(name()));
     updateStatus();
-    appendExtensionsToIncompleteFiles();
+    if (m_session->isAppendExtensionEnabled())
+        appendExtensionsToIncompleteFiles();
     m_session->handleTorrentMetadataReceived(this);
 
     if (isPaused()) {
@@ -1695,6 +1697,14 @@ void TorrentHandle::removeExtensionsFromIncompleteFiles()
 }
 
 void TorrentHandle::adjustActualSavePath()
+{
+    if (!isMoveInProgress())
+        adjustActualSavePath_impl();
+    else
+        m_moveStorageTriggers.append(boost::bind(&TorrentHandle::adjustActualSavePath_impl, this));
+}
+
+void TorrentHandle::adjustActualSavePath_impl()
 {
     QString path;
     if (!useTempPath()) {
