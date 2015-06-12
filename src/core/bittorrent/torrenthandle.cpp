@@ -1692,6 +1692,14 @@ void TorrentHandle::removeExtensionsFromIncompleteFiles()
 
 void TorrentHandle::adjustActualSavePath()
 {
+    if (!isMoveInProgress())
+        adjustActualSavePath_impl();
+    else
+        m_moveStorageTriggers.append(boost::bind(&TorrentHandle::adjustActualSavePath_impl, this));
+}
+
+void TorrentHandle::adjustActualSavePath_impl()
+{
     QString path;
     if (!useTempPath()) {
         // Disabling temp dir

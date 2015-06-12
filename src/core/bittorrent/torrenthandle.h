@@ -333,6 +333,7 @@ namespace BitTorrent
         void resolveCountries(bool b);
         void adjustSavePath();
         void adjustActualSavePath();
+        void adjustActualSavePath_impl();
         void moveStorage(const QString &newPath);
         void appendExtensionsToIncompleteFiles();
         void removeExtensionsFromIncompleteFiles();
