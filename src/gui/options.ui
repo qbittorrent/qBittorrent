@@ -1068,7 +1068,7 @@
                       <number>65535</number>
                      </property>
                      <property name="value">
-                      <number>6881</number>
+                      <number>8999</number>
                      </property>
                     </widget>
                    </item>
@@ -1177,7 +1177,7 @@
                   <string>Maximum number of upload slots per torrent:</string>
                  </property>
                  <property name="checked">
-                  <bool>true</bool>
+                  <bool>false</bool>
                  </property>
                 </widget>
                </item>
@@ -1236,7 +1236,7 @@
                   <string>Global maximum number of upload slots:</string>
                  </property>
                  <property name="checked">
-                  <bool>true</bool>
+                  <bool>false</bool>
                  </property>
                 </widget>
                </item>

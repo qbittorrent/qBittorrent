@@ -418,8 +418,8 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
     if (orientation == Qt::Horizontal) {
         if (role == Qt::DisplayRole) {
             switch(section) {
-            case TorrentModelItem::TR_NAME: return tr("Name", "i.e: torrent name");
             case TorrentModelItem::TR_PRIORITY: return "#";
+            case TorrentModelItem::TR_NAME: return tr("Name", "i.e: torrent name");
             case TorrentModelItem::TR_SIZE: return tr("Size", "i.e: torrent size");
             case TorrentModelItem::TR_PROGRESS: return tr("Done", "% Done");
             case TorrentModelItem::TR_STATUS: return tr("Status", "Torrent status (e.g. downloading, seeding, paused)");

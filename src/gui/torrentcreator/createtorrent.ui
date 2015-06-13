@@ -239,18 +239,15 @@
      <property name="text">
       <string>Start seeding after creation</string>
      </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item>
     <widget class="QCheckBox" name="checkIgnoreShareLimits">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
      <property name="text">
       <string>Ignore share ratio limits for this torrent</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
      </property>
     </widget>
    </item>
