@@ -54,7 +54,8 @@ var current_hash = "";
 
 var loadTrackersDataTimer;
 var loadTrackersData = function() {
-    if ($('prop_trackers').hasClass('invisible')) {
+    if ($('prop_trackers').hasClass('invisible') ||
+        $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
         // Tab changed, don't do anything
         return;
     }

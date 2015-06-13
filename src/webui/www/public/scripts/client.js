@@ -392,6 +392,10 @@ window.addEvent('load', function () {
                 $('prop_webseeds').addClass("invisible");
                 updatePropertiesPanel();
             });
+
+            $('propertiesPanel_collapseToggle').addEvent('click', function(e){
+                updatePropertiesPanel();
+            });
         },
         column : 'mainColumn',
         height : prop_h

@@ -54,7 +54,8 @@ var current_hash = "";
 
 var loadWebSeedsDataTimer;
 var loadWebSeedsData = function() {
-    if ($('prop_webseeds').hasClass('invisible')) {
+    if ($('prop_webseeds').hasClass('invisible') ||
+        $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
         // Tab changed, don't do anything
         return;
     }
