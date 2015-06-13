@@ -17,11 +17,6 @@ branches:
     - search_encoding_windows
     - v2_9_x
 
-notifications:
-  email:
-    on_success: change
-    on_failure: change 
-
 before_install:
   - shopt -s expand_aliases
   - alias sudo="sudo "
