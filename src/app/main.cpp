@@ -33,6 +33,7 @@
 #include <QScopedPointer>
 
 #ifndef DISABLE_GUI
+// GUI-only includes
 #include <QFont>
 #include <QMessageBox>
 #include <QPainter>
@@ -47,8 +48,13 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 Q_IMPORT_PLUGIN(qico)
 #endif
 #endif // QBT_STATIC_QT
-#else // DISABLE_GUI
+
+#else
+// NoGUI-only includes
 #include <cstdio>
+#ifdef Q_OS_UNIX
+#include "unistd.h"
+#endif
 #endif // DISABLE_GUI
 
 #ifdef Q_OS_UNIX
