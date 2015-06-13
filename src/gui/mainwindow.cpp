@@ -723,7 +723,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHand
 void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const
 {
     // Display a message box
-    showNotificationBaloon(tr("Url download error"), tr("Couldn't download file at url: %1, reason: %2.").arg(url).arg(reason));
+    showNotificationBaloon(tr("URL download error"), tr("Couldn't download file at URL: %1, reason: %2.").arg(url).arg(reason));
 }
 
 void MainWindow::on_actionSet_global_upload_limit_triggered()

@@ -45,7 +45,7 @@ CookiesDlg::CookiesDlg(QWidget *parent, const QList<QByteArray> &raw_cookies) :
   ui->add_btn->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
   ui->del_btn->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
 
-  ui->infos_lbl->setText(tr("Common keys for cookies are : '%1', '%2'.\nYou should get this information from your Web browser preferences.").arg("uid").arg("pass"));
+  ui->infos_lbl->setText(tr("Common keys for cookies are: '%1', '%2'.\nYou should get this information from your Web browser preferences.").arg("uid").arg("pass"));
   foreach (const QByteArray &raw_cookie, raw_cookies) {
     QList<QByteArray> cookie_parts = raw_cookie.split('=');
     if (cookie_parts.size() != 2) continue;

@@ -625,14 +625,14 @@ void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString&
     bool invalid = (sizes.size() > 0 ? icon.pixmap(sizes.first()).isNull() : true);
     if (invalid) {
         if (url.endsWith(".ico", Qt::CaseInsensitive)) {
-            Logger::instance()->addMessage(tr("Couldn't decode favico for url `%1`. Trying to download favico in PNG format.").arg(url),
+            Logger::instance()->addMessage(tr("Couldn't decode favicon for URL `%1`. Trying to download favicon in PNG format.").arg(url),
                                            Log::WARNING);
             Net::DownloadHandler *h = Net::DownloadManager::instance()->downloadUrl(url.left(url.size() - 4) + ".png");
             connect(h, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleFavicoDownload(QString, QString)));
             connect(h, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleFavicoFailure(QString, QString)));
         }
         else {
-            Logger::instance()->addMessage(tr("Couldn't decode favico for url `%1`.").arg(url), Log::WARNING);
+            Logger::instance()->addMessage(tr("Couldn't decode favicon for URL `%1`.").arg(url), Log::WARNING);
         }
         Utils::Fs::forceRemove(filePath);
     }
@@ -646,7 +646,7 @@ void TrackerFiltersList::handleFavicoFailure(const QString& url, const QString& 
 {
     // Don't use getHost() on the url here. Print the full url. The error might relate to
     // that.
-    Logger::instance()->addMessage(tr("Couldn't download favico for url `%1`. Reason: `%2`").arg(url).arg(error),
+    Logger::instance()->addMessage(tr("Couldn't download favicon for URL `%1`. Reason: `%2`").arg(url).arg(error),
                                    Log::WARNING);
 }
 

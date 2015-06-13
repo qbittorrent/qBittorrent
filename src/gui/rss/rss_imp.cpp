@@ -204,7 +204,7 @@ void RSSImp::on_newFeedButton_clicked()
     if (clip_txt.startsWith("http://", Qt::CaseInsensitive) || clip_txt.startsWith("https://", Qt::CaseInsensitive) || clip_txt.startsWith("ftp://", Qt::CaseInsensitive))
         default_url = clip_txt;
 
-    QString newUrl = AutoExpandableDialog::getText(this, tr("Please type a rss stream url"), tr("Stream URL:"), QLineEdit::Normal, default_url, &ok);
+    QString newUrl = AutoExpandableDialog::getText(this, tr("Please type a RSS stream URL"), tr("Stream URL:"), QLineEdit::Normal, default_url, &ok);
     if (!ok)
         return;
 
@@ -214,7 +214,7 @@ void RSSImp::on_newFeedButton_clicked()
 
     if (m_feedList->hasFeed(newUrl)) {
         QMessageBox::warning(this, "qBittorrent",
-                             tr("This rss feed is already in the list."),
+                             tr("This RSS feed is already in the list."),
                              QMessageBox::Ok);
         return;
     }
