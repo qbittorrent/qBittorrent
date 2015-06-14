@@ -1489,18 +1489,23 @@ void Session::setListeningPort(int port)
         return;
     }
 
-    QString ip;
-    qDebug("This network interface has %d IP addresses", network_iface.addressEntries().size());
-    foreach (const QNetworkAddressEntry &entry, network_iface.addressEntries()) {
-        if ((!listen_ipv6 && (entry.ip().protocol() == QAbstractSocket::IPv6Protocol))
-            || (listen_ipv6 && (entry.ip().protocol() == QAbstractSocket::IPv4Protocol)))
+    const QList<QNetworkAddressEntry> addresses = network_iface.addressEntries();
+    qDebug("This network interface has %d IP addresses", addresses.size());
+    QHostAddress ip;
+    QString ipString;
+    QAbstractSocket::NetworkLayerProtocol protocol;
+    foreach (const QNetworkAddressEntry &entry, addresses) {
+        ip = entry.ip();
+        ipString = ip.toString();
+        protocol = ip.protocol();
+        Q_ASSERT(protocol == QAbstractSocket::IPv4Protocol || protocol == QAbstractSocket::IPv6Protocol);
+        if ((!listen_ipv6 && (protocol == QAbstractSocket::IPv6Protocol))
+            || (listen_ipv6 && (protocol == QAbstractSocket::IPv4Protocol)))
             continue;
-
-        qDebug("Trying to listen on IP %s (%s)", qPrintable(entry.ip().toString()), qPrintable(iface_name));
-        m_nativeSession->listen_on(ports, ec, entry.ip().toString().toLatin1().constData(), libt::session::listen_no_system_port);
+        qDebug("Trying to listen on IP %s (%s)", qPrintable(ipString), qPrintable(iface_name));
+        m_nativeSession->listen_on(ports, ec, ipString.toLatin1().constData(), libt::session::listen_no_system_port);
         if (!ec) {
-            ip = entry.ip().toString();
-            logger->addMessage(tr("qBittorrent is trying to listen on interface %1 port: %2", "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881").arg(ip).arg(QString::number(port)), Log::INFO);
+            logger->addMessage(tr("qBittorrent is trying to listen on interface %1 port: %2", "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881").arg(ipString).arg(port), Log::INFO);
             return;
         }
     }
