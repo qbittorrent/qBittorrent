@@ -41,6 +41,7 @@
 
 #include <libtorrent/version.hpp>
 
+#include <cstdlib>
 #include "options_imp.h"
 #include "core/preferences.h"
 #include "core/utils/fs.h"
