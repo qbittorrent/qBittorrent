@@ -94,8 +94,6 @@ protected slots:
     void on_actionAbout_triggered();
     void on_actionStatistics_triggered();
     void on_actionCreate_torrent_triggered();
-    void on_actionWebsite_triggered() const;
-    void on_actionBugReport_triggered() const;
     void balloonClicked();
     void writeSettings();
     void readSettings();

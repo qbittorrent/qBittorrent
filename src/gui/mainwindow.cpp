@@ -137,7 +137,6 @@ MainWindow::MainWindow(QWidget *parent)
     actionCreate_torrent->setIcon(IconProvider::instance()->getIcon("document-edit"));
     actionAbout->setIcon(IconProvider::instance()->getIcon("help-about"));
     actionStatistics->setIcon(IconProvider::instance()->getIcon("view-statistics"));
-    actionBugReport->setIcon(IconProvider::instance()->getIcon("tools-report-bug"));
     actionDecreasePriority->setIcon(IconProvider::instance()->getIcon("go-down"));
     actionBottomPriority->setIcon(IconProvider::instance()->getIcon("go-bottom"));
     actionDelete->setIcon(IconProvider::instance()->getIcon("list-remove"));
@@ -546,19 +545,9 @@ void MainWindow::updateNbTorrents()
     tabs->setTabText(0, tr("Transfers (%1)").arg(transferList->getSourceModel()->rowCount()));
 }
 
-void MainWindow::on_actionWebsite_triggered() const
-{
-    QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://www.qbittorrent.org")));
-}
-
 void MainWindow::on_actionDocumentation_triggered() const
 {
     QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://doc.qbittorrent.org")));
-}
-
-void MainWindow::on_actionBugReport_triggered() const
-{
-    QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://bugs.qbittorrent.org")));
 }
 
 void MainWindow::tab_changed(int new_tab)
