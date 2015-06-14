@@ -1324,6 +1324,7 @@ QString options_imp::languageToLocalizedString(const QLocale &locale)
   case QLocale::French: return QString::fromUtf8("Français");
   case QLocale::German: return QString::fromUtf8("Deutsch");
   case QLocale::Hungarian: return QString::fromUtf8("Magyar");
+  case QLocale::Indonesian: return QString::fromUtf8("Bahasa Indonesia");
   case QLocale::Italian: return QString::fromUtf8("Italiano");
   case QLocale::Dutch: return QString::fromUtf8("Nederlands");
   case QLocale::Spanish: return QString::fromUtf8("Español");
