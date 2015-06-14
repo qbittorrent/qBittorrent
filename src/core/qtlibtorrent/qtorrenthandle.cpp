@@ -533,6 +533,7 @@ void QTorrentHandle::resume(const bool force) const
     bool has_persistant_error = TorPersistent->hasError(torrent_hash);
     TorPersistent->setErrorState(torrent_hash, false);
     bool temp_path_enabled = Preferences::instance()->isTempPathEnabled();
+    TorPersistent->setHasMissingFiles(torrent_hash, false);
     if (has_persistant_error && temp_path_enabled) {
         // Torrent was supposed to be seeding, checking again in final destination
         qDebug("Resuming a torrent with error...");
