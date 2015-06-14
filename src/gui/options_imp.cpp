@@ -1075,7 +1075,19 @@ QString options_imp::getLocale() const {
 
 void options_imp::setLocale(const QString &localeStr) {
   QLocale locale(localeStr);
-  QString name = locale.name();
+  QString name;
+
+  // Check if Chinese and act according to script instead of country
+  if (locale.language() == QLocale::Chinese) {
+      if (locale.script() == QLocale::SimplifiedHanScript)
+          name = "zh_Hans";
+      else
+          name = "zh_Hant";
+  }
+  else {
+      name = locale.name();
+  }
+
   // Attempt to find exact match
   int index = comboI18n->findData(name, Qt::UserRole);
   if (index < 0 ) {
@@ -1360,7 +1372,7 @@ QString options_imp::languageToLocalizedString(const QLocale &locale)
   case QLocale::Basque: return QString::fromUtf8("Euskara");
   case QLocale::Vietnamese: return QString::fromUtf8("tiếng Việt");
   case QLocale::Chinese: {
-    if (locale.country() == QLocale::China)
+    if (locale.script() == QLocale::SimplifiedHanScript)
       return QString::fromUtf8("中文 (简体)");
     return QString::fromUtf8("中文 (繁體)");
   }
