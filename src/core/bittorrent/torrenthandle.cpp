@@ -1206,6 +1206,7 @@ void TorrentHandle::resume(bool forced)
     try {
         if (hasError())
             m_nativeHandle.clear_error();
+        m_hasMissingFiles = false;
         m_nativeHandle.set_upload_mode(false);
         m_nativeHandle.auto_managed(!forced);
         m_nativeHandle.resume();
