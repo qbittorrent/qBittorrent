@@ -118,6 +118,7 @@ options_imp::options_imp(QWidget *parent):
   }
 
 #ifdef Q_OS_MAC
+  checkShowSystray->setTitle(tr("Show qBittorrent in menu bar"));
   checkMinimizeToSysTray->setVisible(false);
   checkCloseToSystray->setVisible(false);
 #endif
