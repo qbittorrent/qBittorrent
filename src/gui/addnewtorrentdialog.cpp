@@ -555,16 +555,13 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint&)
         }
         else {
             int prio = prio::NORMAL;
-            if (act == ui->actionHigh) {
+            if (act == ui->actionHigh)
                 prio = prio::HIGH;
-            }
-            else {
-                if (act == ui->actionMaximum)
-                    prio = prio::MAXIMUM;
-                else
-                    if (act == ui->actionNot_downloaded)
-                        prio = prio::IGNORED;
-            }
+            else if (act == ui->actionMaximum)
+                prio = prio::MAXIMUM;
+            else if (act == ui->actionNot_downloaded)
+                prio = prio::IGNORED;
+
             qDebug("Setting files priority");
             foreach (const QModelIndex &index, selectedRows) {
                 qDebug("Setting priority(%d) for file at row %d", prio, index.row());
