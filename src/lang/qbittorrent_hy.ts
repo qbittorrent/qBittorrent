@@ -92,7 +92,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="53"/>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ընտրել...</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="62"/>
@@ -170,153 +170,153 @@
         <translation>Չբեռնել</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="189"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="640"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="191"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="642"/>
         <source>I/O Error</source>
         <translation>Սխալ</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="189"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="191"/>
         <source>The torrent file does not exist.</source>
         <translation>Torrent ֆայլը գոյություն չունի</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="204"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="206"/>
         <source>Invalid torrent</source>
         <translation>Սխալ torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="204"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="206"/>
         <source>Failed to load the torrent: %1</source>
         <translation>%1 torrent ֆայլի բացման սխալ</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="210"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="233"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="212"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="235"/>
         <source>Already in download list</source>
-        <translation type="unfinished"></translation>
+        <translation>Արդեն ներբեռնումների ցանկում է</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="210"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="212"/>
         <source>Torrent is already in download list. Merging trackers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="657"/>
-        <source>Not Available</source>
-        <comment>This comment is unavailable</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="658"/>
-        <source>Not Available</source>
-        <comment>This date is unavailable</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="667"/>
-        <source>Not available</source>
-        <translation>Հասանելի չէ</translation>
-    </message>
-    <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="227"/>
-        <source>Invalid magnet link</source>
-        <translation>Սխալ magnet հղում</translation>
-    </message>
-    <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="227"/>
-        <source>This magnet link was not recognized</source>
-        <translation>magnet հղումը չի վերականգնվել</translation>
-    </message>
-    <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="233"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="235"/>
         <source>Magnet link is already in download list. Merging trackers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="240"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="643"/>
+        <source>Unknown error</source>
+        <translation type="unfinished">Անհայտ սխալ</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="659"/>
+        <source>Not Available</source>
+        <comment>This comment is unavailable</comment>
+        <translation>Հասանելի չէ</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="660"/>
+        <source>Not Available</source>
+        <comment>This date is unavailable</comment>
+        <translation>Հասանելի չէ</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="669"/>
+        <source>Not available</source>
+        <translation>Հասանելի չէ</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="229"/>
+        <source>Invalid magnet link</source>
+        <translation>Սխալ magnet հղում</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="229"/>
+        <source>This magnet link was not recognized</source>
+        <translation>magnet հղումը չի վերականգնվել</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="242"/>
         <source>Magnet link</source>
         <translation>Magnet հղում</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="250"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="252"/>
         <source>Retrieving metadata...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="312"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="314"/>
         <source>Not Available</source>
         <comment>This size is unavailable.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Հասանելի չէ</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="314"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="316"/>
         <source>Disk space: %1</source>
         <translation>Պնակի չափը. %1</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="341"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="349"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="343"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="351"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="353"/>
         <source>Choose save path</source>
         <translation>Ընտրեք պահպանելու տեղը</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="403"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="405"/>
         <source>Rename the file</source>
         <translation>Անվանափոխել</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="404"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="406"/>
         <source>New name:</source>
         <translation>Նոր անուն.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="408"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="433"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="410"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="435"/>
         <source>The file could not be renamed</source>
         <translation>Ֆայլը չի կարող անվանփոխվել</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="409"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="411"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Ֆայլի անունը պարունակում է արգելված նշաններ, ընտրեք այլ անուն։</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="434"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="469"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="436"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="471"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Այս անունով արդեն առկա է։ Ընտրեք այլ անուն։</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="468"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="470"/>
         <source>The folder could not be renamed</source>
         <translation>Թղթապանակը չի կարող անվանափոխվել</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="526"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="528"/>
         <source>Rename...</source>
         <translation>Անվանափոխել...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="530"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="532"/>
         <source>Priority</source>
         <translation>Առաջ-ը</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="634"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="636"/>
         <source>Parsing metadata...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="638"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="640"/>
         <source>Metadata retrieval complete</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="641"/>
-        <source>Unknown error</source>
-        <translation type="unfinished">Անհայտ սխալ</translation>
     </message>
 </context>
 <context>
@@ -371,13 +371,13 @@
     <message>
         <location filename="../gui/advancedsettings.h" line="169"/>
         <source> (auto)</source>
-        <translation type="unfinished"></translation>
+        <translation> (ինքնա)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="195"/>
         <source> s</source>
         <comment> seconds</comment>
-        <translation type="unfinished"></translation>
+        <translation> վ</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="196"/>
@@ -393,7 +393,7 @@
         <location filename="../gui/advancedsettings.h" line="204"/>
         <source> m</source>
         <comment> minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation> ր</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="230"/>
@@ -493,7 +493,7 @@
     <message>
         <location filename="../app/application.cpp" line="165"/>
         <source>Information</source>
-        <translation type="unfinished">Տեղեկություն</translation>
+        <translation>Տեղեկություն</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="166"/>
@@ -518,7 +518,7 @@
     <message>
         <location filename="../app/application.cpp" line="342"/>
         <source>Saving torrent progress...</source>
-        <translation type="unfinished"></translation>
+        <translation>Պահպանում է torrent-ը...</translation>
     </message>
 </context>
 <context>
@@ -597,7 +597,7 @@
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="361"/>
         <source> days</source>
-        <translation type="unfinished"></translation>
+        <translation> օր</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="402"/>
@@ -780,7 +780,7 @@
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="424"/>
         <source>Rules list</source>
-        <translation type="unfinished"></translation>
+        <translation>Կանոնների ցանկ</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="428"/>
@@ -823,17 +823,17 @@
         <translation>Նշեք կանոնի անունը</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="577"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="578"/>
         <source>Regex mode: use Perl-like regular expressions</source>
         <translation>Regex եղանակ. օգտ. Perl՝ կանոնավոր սահ-ը</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="581"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="582"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Wildcard եղանակ. կարող եք օգտագործել &lt;ul&gt;&lt;li&gt;? պարզ նշանների համար&lt;/li&gt;&lt;li&gt;* զրո և զրոյից բարձր&lt;/li&gt;&lt;li&gt;Բացատներ ԵՎ օպերատորը &lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="583"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="584"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Wildcard եղանակ. կարող եք օգտագործել &lt;ul&gt;&lt;li&gt;? պարզ նշանների համար&lt;/li&gt;&lt;li&gt;* զրո և զրոյից բարձր&lt;/li&gt;&lt;li&gt;| Բացատներ ԿԱՄ օպերատորը &lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
@@ -859,10 +859,9 @@
     </message>
     <message>
         <location filename="../gui/rss/cookiesdlg.cpp" line="48"/>
-        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
+        <source>Common keys for cookies are: &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation>Cookie-երի ընդհանուր բանալիներն են . &apos;%1&apos;, &apos;%2&apos;։
-Մանրամասները վեբ դիտարկիչի կարգավորումներում։</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -870,64 +869,64 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../core/dnsupdater.cpp" line="192"/>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation>Ձեր դինամիկ DNS-ն հաջողությամբ է կիրառվել</translation>
+        <translation type="unfinished">Ձեր դինամիկ DNS-ն հաջողությամբ է կիրառվել</translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="196"/>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation>Ակտիվ DNS-ի սխալ. Սպասարկիչը հասանելի չէ։ Կրկին կփորձի 30 րոպեից։</translation>
+        <translation type="unfinished">Ակտիվ DNS-ի սխալ. Սպասարկիչը հասանելի չէ։ Կրկին կփորձի 30 րոպեից։</translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="205"/>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
-        <translation>Ակտիվ DNS-ի սխալ. հոսթի անունը սխալ է։</translation>
+        <translation type="unfinished">Ակտիվ DNS-ի սխալ. հոսթի անունը սխալ է։</translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="210"/>
         <source>Dynamic DNS error: Invalid username/password.</source>
-        <translation>Ակտիվ DNS-ի սխալ. Ծածկանունը/ծածկագիրը սխալ են։</translation>
+        <translation type="unfinished">Ակտիվ DNS-ի սխալ. Ծածկանունը/ծածկագիրը սխալ են։</translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="215"/>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation>Ակտիվ DNS-ի սխալ. qBittorrent-ը արգելվել է սպասարկիչի կողմից, խնդրում ենք այս մասին հաղորդեք մեզ http://bugs.qbittorrent.org կայքում։</translation>
+        <translation type="unfinished">Ակտիվ DNS-ի սխալ. qBittorrent-ը արգելվել է սպասարկիչի կողմից, խնդրում ենք այս մասին հաղորդեք մեզ http://bugs.qbittorrent.org կայքում։</translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="221"/>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation>Ակտիվ DNS-ի սխալ. %1-ը վերադարձվել է սպասարկիչի կողմից, խնդրում ենք հաղորդել այսմասին http://bugs.qbittorrent.org կայքում։</translation>
+        <translation type="unfinished">Ակտիվ DNS-ի սխալ. %1-ը վերադարձվել է սպասարկիչի կողմից, խնդրում ենք հաղորդել այսմասին http://bugs.qbittorrent.org կայքում։</translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="227"/>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
-        <translation>Ակտիվ DNS-ի սխալ. Ձեր ծածկանունը արգելված է։</translation>
+        <translation type="unfinished">Ակտիվ DNS-ի սխալ. Ձեր ծածկանունը արգելված է։</translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="248"/>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
-        <translation>Ակտիվ DNS-ի սխալ. տիրույթի անունը սխալ է։</translation>
+        <translation type="unfinished">Ակտիվ DNS-ի սխալ. տիրույթի անունը սխալ է։</translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="259"/>
         <source>Dynamic DNS error: supplied username is too short.</source>
-        <translation>Ակտիվ DNS-ի սխալ. ծածկանունը կար- է։</translation>
+        <translation type="unfinished">Ակտիվ DNS-ի սխալ. ծածկանունը կար- է։</translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="270"/>
         <source>Dynamic DNS error: supplied password is too short.</source>
-        <translation>Ակտիվ DNS-ի սխալ. ծածկագիրը կարճ է։</translation>
+        <translation type="unfinished">Ակտիվ DNS-ի սխալ. ծածկագիրը կարճ է։</translation>
     </message>
 </context>
 <context>
     <name>DeletionConfirmationDlg</name>
     <message>
-        <location filename="../gui/deletionconfirmationdlg.h" line="47"/>
+        <location filename="../gui/deletionconfirmationdlg.h" line="48"/>
         <source>Are you sure you want to delete &quot;%1&quot; from the transfer list?</source>
         <comment>Are you sure you want to delete &quot;ubuntu-linux-iso&quot; from the transfer list?</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/deletionconfirmationdlg.h" line="49"/>
+        <location filename="../gui/deletionconfirmationdlg.h" line="50"/>
         <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
         <translation type="unfinished"></translation>
@@ -939,118 +938,118 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../core/downloadthread.cpp" line="165"/>
         <location filename="../core/downloadthread.cpp" line="169"/>
         <source>I/O Error</source>
-        <translation>Սխալ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="260"/>
+        <location filename="../core/downloadthread.cpp" line="259"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation>Հեռադիր հոսթի անունը չի գտնվել (հոսթի անունը սխալ է)</translation>
+        <translation type="unfinished">Հեռադիր հոսթի անունը չի գտնվել (հոսթի անունը սխալ է)</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="262"/>
+        <location filename="../core/downloadthread.cpp" line="261"/>
         <source>The operation was canceled</source>
-        <translation>Գործողությունը ընդհատվել է</translation>
+        <translation type="unfinished">Գործողությունը ընդհատվել է</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="264"/>
+        <location filename="../core/downloadthread.cpp" line="263"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation>Հեռադիր սպասարկիչը փակել է միացումը՝ մինչ կստացվեր պատասխանը</translation>
+        <translation type="unfinished">Հեռադիր սպասարկիչը փակել է միացումը՝ մինչ կստացվեր պատասխանը</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="266"/>
+        <location filename="../core/downloadthread.cpp" line="265"/>
         <source>The connection to the remote server timed out</source>
-        <translation>Հեռադիր սպասարկիչին միանալու ժ-ը լրացել է</translation>
+        <translation type="unfinished">Հեռադիր սպասարկիչին միանալու ժ-ը լրացել է</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="268"/>
+        <location filename="../core/downloadthread.cpp" line="267"/>
         <source>SSL/TLS handshake failed</source>
-        <translation>SSL/TLS փոխլրացումը ձախողվեց</translation>
+        <translation type="unfinished">SSL/TLS փոխլրացումը ձախողվեց</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="270"/>
+        <location filename="../core/downloadthread.cpp" line="269"/>
         <source>The remote server refused the connection</source>
-        <translation>Հեռադիր սպասարկիչը մերժել է միացումը</translation>
+        <translation type="unfinished">Հեռադիր սպասարկիչը մերժել է միացումը</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="272"/>
+        <location filename="../core/downloadthread.cpp" line="271"/>
         <source>The connection to the proxy server was refused</source>
-        <translation>Միացումը միջնորդ սպասարկիչին մերժվել է</translation>
+        <translation type="unfinished">Միացումը միջնորդ սպասարկիչին մերժվել է</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="274"/>
+        <location filename="../core/downloadthread.cpp" line="273"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation>Միջնորդ սպասարկիչը փակել է միացումը</translation>
+        <translation type="unfinished">Միջնորդ սպասարկիչը փակել է միացումը</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="276"/>
+        <location filename="../core/downloadthread.cpp" line="275"/>
         <source>The proxy host name was not found</source>
-        <translation>Չի գտնվել միջնորդի հոսթի անունը</translation>
+        <translation type="unfinished">Չի գտնվել միջնորդի հոսթի անունը</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="278"/>
+        <location filename="../core/downloadthread.cpp" line="277"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation>Միջնորդին միանալու ժ-ը լրացել է, միջնորդը հարցմանը ժամանակին չի պատասխանել</translation>
+        <translation type="unfinished">Միջնորդին միանալու ժ-ը լրացել է, միջնորդը հարցմանը ժամանակին չի պատասխանել</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="280"/>
+        <location filename="../core/downloadthread.cpp" line="279"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation>Միջնորդը պահանջում է ներկայացում</translation>
+        <translation type="unfinished">Միջնորդը պահանջում է ներկայացում</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="282"/>
+        <location filename="../core/downloadthread.cpp" line="281"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation>
+        <translation type="unfinished">
 Մուտքը հեռադիր կառավարմանը փակ է (401)</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="284"/>
+        <location filename="../core/downloadthread.cpp" line="283"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation>Գործողությունը, որը պահանջում է հեռադիր պարունակությունը, չի թույլատրվել</translation>
+        <translation type="unfinished">Գործողությունը, որը պահանջում է հեռադիր պարունակությունը, չի թույլատրվել</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="286"/>
+        <location filename="../core/downloadthread.cpp" line="285"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation>Հեռադիր պարունակությունը չի գտնվել սպասարկիչում (404)</translation>
+        <translation type="unfinished">Հեռադիր պարունակությունը չի գտնվել սպասարկիչում (404)</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="288"/>
+        <location filename="../core/downloadthread.cpp" line="287"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>Հեռադիր սպասարկիչը պահանջում է ներկայացում </translation>
+        <translation type="unfinished">Հեռադիր սպասարկիչը պահանջում է ներկայացում </translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="290"/>
+        <location filename="../core/downloadthread.cpp" line="289"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation>Network Access API-ին չի կարողանում ստանալ հարցում, որովհետեև արձանագր. հայտնի չէ</translation>
+        <translation type="unfinished">Network Access API-ին չի կարողանում ստանալ հարցում, որովհետեև արձանագր. հայտնի չէ</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="292"/>
+        <location filename="../core/downloadthread.cpp" line="291"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation>Պահանջվող գործողությունը սխալ է այս արձանագր. համար</translation>
+        <translation type="unfinished">Պահանջվող գործողությունը սխալ է այս արձանագր. համար</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="294"/>
+        <location filename="../core/downloadthread.cpp" line="293"/>
         <source>An unknown network-related error was detected</source>
-        <translation>Անհայտ սխալ</translation>
+        <translation type="unfinished">Անհայտ սխալ</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="296"/>
+        <location filename="../core/downloadthread.cpp" line="295"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation>Միջնորդի անհայտ սխալ</translation>
+        <translation type="unfinished">Միջնորդի անհայտ սխալ</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="298"/>
+        <location filename="../core/downloadthread.cpp" line="297"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation>Հեռադիր պարունակության անհայտ սխալ</translation>
+        <translation type="unfinished">Հեռադիր պարունակության անհայտ սխալ</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="300"/>
+        <location filename="../core/downloadthread.cpp" line="299"/>
         <source>A breakdown in protocol was detected</source>
-        <translation>Անհաջողություն արձանագրությունում</translation>
+        <translation type="unfinished">Անհաջողություն արձանագրությունում</translation>
     </message>
     <message>
-        <location filename="../core/downloadthread.cpp" line="302"/>
+        <location filename="../core/downloadthread.cpp" line="301"/>
         <source>Unknown error</source>
-        <translation>Անհայտ սխալ</translation>
+        <translation type="unfinished">Անհայտ սխալ</translation>
     </message>
 </context>
 <context>
@@ -1069,13 +1068,13 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../gui/executionlog.cpp" line="102"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt;-ը արգելկափակվել է</translation>
     </message>
     <message>
         <location filename="../gui/executionlog.cpp" line="104"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked %2</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt;-ը արգելափակվել է %2</translation>
     </message>
     <message>
         <location filename="../gui/executionlog.cpp" line="107"/>
@@ -1115,165 +1114,235 @@ You should get this information from your Web browser preferences.</source>
         <translation>Օգնություն</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="39"/>
+        <location filename="../webui/extra_translations.h" line="40"/>
         <source>Download Torrents from their URL or Magnet link</source>
-        <translation>Բեռնել Torrent-ները իրենց հղումներից կամ Magnet հղումից</translation>
+        <translation>Ներբեռնել Torrent-ները իրենց հղումներից կամ Magnet հղումից</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="40"/>
+        <location filename="../webui/extra_translations.h" line="41"/>
         <source>Only one link per line</source>
         <translation>Մեկ հղում տողի համար</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="41"/>
-        <source>Download local torrent</source>
-        <translation>Բեռնել լոկալ torrent</translation>
-    </message>
-    <message>
         <location filename="../webui/extra_translations.h" line="42"/>
-        <source>Torrent files were correctly added to download list.</source>
-        <translation>Torrent ֆայլերը հաջողությամբ ավելացվել են բեռնումների ցանկին։</translation>
+        <source>Download local torrent</source>
+        <translation>Ներբեռնել լոկալ torrent</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="43"/>
-        <source>Point to torrent file</source>
-        <translation>Ավելացնել torrent ֆայլին</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="44"/>
         <source>Download</source>
-        <translation>Բեռնել</translation>
+        <translation>Ներբեռնել</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="45"/>
-        <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
-        <translation>Ջնջե՞լ ընտրված torrent-ները ցանկից և պնակից։</translation>
+        <source>Download rate limit must be greater than 0 or disabled.</source>
+        <translation>Ներբեռնելու սահմանափակումը պետք է լինի կամ բարձր 0-ից կամ անջատված։</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="46"/>
-        <source>Download rate limit must be greater than 0 or disabled.</source>
-        <translation>Բեռնման սահմանափակումը պետք է լինի կամ բարձր 0-ից կամ անջատված։</translation>
+        <source>Upload rate limit must be greater than 0 or disabled.</source>
+        <translation>Վերբեռնելու սահմանափակումը պետք է լինի կամ բարձր 0-ից կամ անջատված։</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="47"/>
-        <source>Upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Փոխանցման սահմանափակումը պետք է լինի կամ բարձր 0-ից կամ անջատված։</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="48"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
         <translation>Միացումների առավ. քանակը պետք է լինի կամ բարձր 0-ից կամ անջատված։</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="49"/>
+        <location filename="../webui/extra_translations.h" line="48"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
         <translation>Միացումների առավ. քանակը torrent-ի համար պետք է լինի կամ բարձր 0-ից կամ անջատված։</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="50"/>
+        <location filename="../webui/extra_translations.h" line="49"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Փոխանցման սլոթների առավ. քանակը torrent-ի համար պետք է լինի կամ բարձր 0-ից կամ անջատված։</translation>
+        <translation>Վերբեռնելու սլոթների առավ. քանակը torrent-ի համար պետք է լինի կամ բարձր 0-ից կամ անջատված։</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="51"/>
+        <location filename="../webui/extra_translations.h" line="50"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>Հնարավոր չէ պահպանել ծրագրի կարգավորումները, qBittorrent-ը հնարավոր է անհասանելի է։</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="52"/>
+        <location filename="../webui/extra_translations.h" line="51"/>
         <source>Language</source>
         <translation>Լեզուն</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="64"/>
+        <location filename="../webui/extra_translations.h" line="63"/>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="65"/>
+        <location filename="../webui/extra_translations.h" line="64"/>
         <source>Invalid Username or Password.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="66"/>
+        <location filename="../webui/extra_translations.h" line="65"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="67"/>
+        <location filename="../webui/extra_translations.h" line="66"/>
         <source>Login</source>
         <translation type="unfinished">Մուտքաբառը</translation>
     </message>
     <message>
+        <location filename="../webui/extra_translations.h" line="67"/>
+        <source>Upload Failed!</source>
+        <translation>Վերբեռնումը ձախողվեց</translation>
+    </message>
+    <message>
         <location filename="../webui/extra_translations.h" line="68"/>
-        <source>qBittorrent web User Interface</source>
+        <source>Original authors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="69"/>
-        <source>Upload Failed!</source>
+        <source>Upload limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="70"/>
+        <source>Download limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="71"/>
+        <source>Apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="72"/>
+        <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="73"/>
-        <source>Downloaded</source>
-        <comment>Is the file downloaded or not?</comment>
-        <translation>Բեռնվել է</translation>
+        <source>Upload Torrents</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="53"/>
+        <location filename="../webui/extra_translations.h" line="74"/>
+        <source>Use a different port for DHT and BitTorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="75"/>
+        <source>DHT port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="76"/>
+        <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="77"/>
+        <source>Downloading</source>
+        <translation type="unfinished">Ներբեռնվում է</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="78"/>
+        <source>Seeding</source>
+        <translation type="unfinished">Փոխանցվում է</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="79"/>
+        <source>Completed</source>
+        <translation type="unfinished">Ավարտված</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="80"/>
+        <source>Resumed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="81"/>
+        <source>Paused</source>
+        <translation type="unfinished">Դադարի մեջ է</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="82"/>
+        <source>Active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="83"/>
+        <source>Inactive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="87"/>
+        <source>Downloaded</source>
+        <comment>Is the file downloaded or not?</comment>
+        <translation>Ներբեռնվել է</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="52"/>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
         <translation>Մտնող կապուղիների դարպասը պետք է լինի 1024-ից մինչև 65535։</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="54"/>
+        <location filename="../webui/extra_translations.h" line="39"/>
+        <source>Logout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="44"/>
+        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="53"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
         <translation>Web UI-ի համար օգտագործվող դարպասը պետք է լինի 1024-ից մինչև 65535։</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="55"/>
+        <location filename="../webui/extra_translations.h" line="54"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Web UI-ի օգտագործողի անունը պետք է պարունակի գոնե 3 նիշ։</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="56"/>
+        <location filename="../webui/extra_translations.h" line="55"/>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation>Օգտագործողի ծածկագիրը պետք է պարունակի գոնե 3 նիշ։</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="57"/>
+        <location filename="../webui/extra_translations.h" line="56"/>
         <source>Save</source>
         <translation>Պահպանել</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="58"/>
+        <location filename="../webui/extra_translations.h" line="57"/>
         <source>qBittorrent client is not reachable</source>
         <translation>qBittorrent ծրագիրը հասանելի չէ</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="59"/>
+        <location filename="../webui/extra_translations.h" line="58"/>
         <source>HTTP Server</source>
         <translation>HTTP սպասարկիչ</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="60"/>
+        <location filename="../webui/extra_translations.h" line="59"/>
         <source>The following parameters are supported:</source>
         <translation>Աջակցվում են՝</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="61"/>
+        <location filename="../webui/extra_translations.h" line="60"/>
         <source>Torrent path</source>
         <translation>Torrent-ի ճ-ը</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="62"/>
+        <location filename="../webui/extra_translations.h" line="61"/>
         <source>Torrent name</source>
         <translation>Torrent-ի անունը</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="63"/>
+        <location filename="../webui/extra_translations.h" line="62"/>
         <source>qBittorrent has been shutdown.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent-ը անջատվել է:</translation>
     </message>
 </context>
 <context>
@@ -1282,7 +1351,7 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../gui/transferlistfilterswidget.cpp" line="179"/>
         <source>All (0)</source>
         <comment>this is for the label filter</comment>
-        <translation type="unfinished"></translation>
+        <translation>Բոլորը (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="182"/>
@@ -1294,7 +1363,7 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../gui/transferlistfilterswidget.cpp" line="250"/>
         <source>All (%1)</source>
         <comment>this is for the label filter</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Բոլորը (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="207"/>
@@ -1391,423 +1460,433 @@ You should get this information from your Web browser preferences.</source>
         <translation>&amp;Խմբագրել</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="62"/>
+        <location filename="../gui/mainwindow.ui" line="60"/>
         <source>&amp;Tools</source>
         <translation>&amp;Գործիքներ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="83"/>
+        <location filename="../gui/mainwindow.ui" line="80"/>
         <source>&amp;File</source>
         <translation>&amp;Ֆայլ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="51"/>
+        <location filename="../gui/mainwindow.ui" line="50"/>
         <source>&amp;Help</source>
         <translation>&amp;Օգնություն</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="92"/>
+        <location filename="../gui/mainwindow.ui" line="64"/>
+        <source>On Downloads &amp;Done</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="90"/>
         <source>&amp;View</source>
         <translation>&amp;Տեսքը</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="162"/>
+        <location filename="../gui/mainwindow.ui" line="161"/>
         <source>&amp;Options...</source>
         <translation>&amp;Ընտրանքներ...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="175"/>
+        <location filename="../gui/mainwindow.ui" line="174"/>
         <source>&amp;Resume</source>
         <translation>&amp;Վերսկսել</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="362"/>
+        <location filename="../gui/mainwindow.ui" line="206"/>
+        <source>Torrent &amp;Creator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="211"/>
+        <source>Set Upload Limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="216"/>
+        <source>Set Download Limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="226"/>
+        <source>Set Global Download Limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="231"/>
+        <source>Set Global Upload Limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="236"/>
+        <source>Minimum Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="244"/>
+        <source>Top Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="252"/>
+        <source>Decrease Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="260"/>
+        <source>Increase Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="271"/>
+        <location filename="../gui/mainwindow.ui" line="274"/>
+        <source>Alternative Speed Limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="282"/>
+        <source>&amp;Top Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="285"/>
+        <source>Display Top Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="293"/>
+        <source>S&amp;peed in Title Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="296"/>
+        <source>Show Transfer Speed in Title Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="304"/>
+        <source>&amp;RSS Reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="312"/>
+        <source>Search &amp;Engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="317"/>
+        <source>L&amp;ock qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="331"/>
+        <source>&amp;Import Existing Torrent...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="334"/>
+        <source>Import Torrent...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="339"/>
+        <source>Do&amp;nate!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="347"/>
         <source>R&amp;esume All</source>
         <translation>Վ&amp;երսկսել բոլորը</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="216"/>
-        <source>Torrent &amp;creator</source>
-        <translation>Ստեղծել &amp;torrent</translation>
+        <location filename="../gui/mainwindow.ui" line="360"/>
+        <source>&amp;Log</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="286"/>
-        <location filename="../gui/mainwindow.ui" line="289"/>
-        <source>Alternative speed limits</source>
-        <translation>Արագ-ան այլընտրանքային սահ-ում</translation>
+        <location filename="../gui/mainwindow.ui" line="371"/>
+        <source>&amp;Exit qBittorrent</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="297"/>
-        <source>Top &amp;tool bar</source>
-        <translation>Գործիքների &amp;վահանակը վերևում</translation>
+        <location filename="../gui/mainwindow.ui" line="379"/>
+        <source>&amp;Suspend System</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="300"/>
-        <source>Display top tool bar</source>
-        <translation>Ցուցադրել գործիքների վահանակը</translation>
+        <location filename="../gui/mainwindow.ui" line="387"/>
+        <source>&amp;Hibernate System</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="308"/>
-        <source>&amp;Speed in title bar</source>
-        <translation>&amp;Արագ-ը պատուհանի վերին մասում</translation>
+        <location filename="../gui/mainwindow.ui" line="395"/>
+        <source>S&amp;hutdown System</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="311"/>
-        <source>Show transfer speed in title bar</source>
-        <translation>Ցուցադրել փոխանցումների արագ-ը անունների վահանակում</translation>
+        <location filename="../gui/mainwindow.ui" line="403"/>
+        <source>&amp;Disabled</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="170"/>
+        <location filename="../gui/mainwindow.ui" line="418"/>
+        <source>&amp;Statistics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="423"/>
+        <source>Check for Updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="426"/>
+        <source>Check for Program Updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="169"/>
         <source>&amp;About</source>
         <translation>&amp;Մասին</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="146"/>
-        <source>&amp;Add torrent file...</source>
-        <translation>&amp;Ավելացնել torrent ֆայլ…</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="154"/>
-        <location filename="../gui/mainwindow.ui" line="157"/>
+        <location filename="../gui/mainwindow.ui" line="156"/>
         <source>Exit</source>
         <translation>Ելք</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="183"/>
+        <location filename="../gui/mainwindow.ui" line="182"/>
         <source>&amp;Pause</source>
         <translation>&amp;Դադար</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="191"/>
+        <location filename="../gui/mainwindow.ui" line="190"/>
         <source>&amp;Delete</source>
         <translation>&amp;Ջնջել</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="367"/>
+        <location filename="../gui/mainwindow.ui" line="352"/>
         <source>P&amp;ause All</source>
         <translation>Դ&amp;ադարեցնել բոլորը</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="203"/>
-        <source>Visit &amp;Website</source>
-        <translation>Ծրագրի &amp;կայքը</translation>
+        <location filename="../gui/mainwindow.ui" line="145"/>
+        <source>&amp;Add Torrent File...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="66"/>
-        <source>Auto-Shutdown on downloads completion</source>
-        <translation>Անջատել՝ բեռնումները ավարտելուց հետո</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="149"/>
+        <location filename="../gui/mainwindow.ui" line="148"/>
         <source>Open</source>
+        <translation>Բացել</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="153"/>
+        <source>E&amp;xit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="165"/>
+        <location filename="../gui/mainwindow.ui" line="164"/>
         <source>Options</source>
-        <translation type="unfinished">Ընտրանքներ</translation>
+        <translation>Ընտրանքներ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="178"/>
+        <location filename="../gui/mainwindow.ui" line="177"/>
         <source>Resume</source>
-        <translation type="unfinished">Վերսկսել</translation>
+        <translation>Վերսկսել</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="186"/>
+        <location filename="../gui/mainwindow.ui" line="185"/>
         <source>Pause</source>
-        <translation type="unfinished">Դադար</translation>
+        <translation>Դադար</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="194"/>
+        <location filename="../gui/mainwindow.ui" line="193"/>
         <source>Delete</source>
-        <translation type="unfinished">Ջնջել</translation>
+        <translation>Ջնջել</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="208"/>
-        <source>Add &amp;link to torrent...</source>
-        <translation>Ավելացնել &amp;torrent-ի հղումը…</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="211"/>
+        <location filename="../gui/mainwindow.ui" line="201"/>
         <source>Open URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Բացել URL</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="221"/>
-        <source>Report a &amp;bug</source>
-        <translation>Հաղորդել  &amp;սխալի մասին</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="226"/>
-        <source>Set upload limit...</source>
-        <translation>Նշել փոխանցման սահ-փակում...</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="231"/>
-        <source>Set download limit...</source>
-        <translation>Նշել բեռնման սահ-փակում...</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="236"/>
         <source>&amp;Documentation</source>
         <translation>&amp;Թղթաբանություն</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="241"/>
-        <source>Set global download limit...</source>
-        <translation>Նշել բեռնման գլոբալ սահ-փակում...</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="246"/>
-        <source>Set global upload limit...</source>
-        <translation>Նշել փոխանցման գլոբալ սահ-փակում...</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="251"/>
-        <source>Minimum priority</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="259"/>
-        <source>Top priority</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="319"/>
-        <source>&amp;RSS reader</source>
-        <translation>&amp;RSS ալիքներ</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="327"/>
-        <source>Search &amp;engine</source>
-        <translation>Փնտրման  &amp;տողը</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="338"/>
+        <location filename="../gui/mainwindow.ui" line="320"/>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>Կողպել</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="386"/>
-        <source>Exit qBittorrent</source>
-        <translation>Ելք qBittorrent-ից</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="394"/>
-        <source>Suspend system</source>
-        <translation>Կանգնեցնել համակարգը</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="402"/>
-        <source>Hibernate system</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="410"/>
-        <source>Shutdown system</source>
-        <translation>Անջատել համակարգիչը</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="418"/>
-        <source>Disabled</source>
-        <translation>Անջատված է</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="423"/>
-        <location filename="../gui/mainwindow.cpp" line="1366"/>
+        <location filename="../gui/mainwindow.ui" line="408"/>
+        <location filename="../gui/mainwindow.cpp" line="1359"/>
         <source>Show</source>
         <translation>Ցուցադրել՛</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="433"/>
-        <source>Statistics</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="438"/>
-        <location filename="../gui/mainwindow.cpp" line="1521"/>
+        <location filename="../gui/mainwindow.cpp" line="1514"/>
         <source>Check for updates</source>
-        <translation type="unfinished">Ստուգել թարմացումները</translation>
+        <translation>Ստուգել թարմացումները</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="441"/>
-        <location filename="../gui/mainwindow.cpp" line="1522"/>
+        <location filename="../gui/mainwindow.cpp" line="1515"/>
         <source>Check for program updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Ստուգել ծրագրի թարմացումները</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="332"/>
-        <location filename="../gui/mainwindow.ui" line="335"/>
+        <location filename="../gui/mainwindow.ui" line="323"/>
         <source>Lock qBittorrent</source>
         <translation>Կողփել  qBittorrent-ը</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="346"/>
-        <source>Import existing torrent...</source>
-        <translation>Ներմուծել առկա torrent…</translation>
+        <location filename="../gui/mainwindow.ui" line="198"/>
+        <source>Add Torrent &amp;Link...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="349"/>
-        <source>Import torrent...</source>
-        <translation>Ներմուծել torrent...</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="354"/>
-        <source>Donate money</source>
-        <translation>Նվիրատվություն</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="357"/>
+        <location filename="../gui/mainwindow.ui" line="342"/>
         <source>If you like qBittorrent, please donate!</source>
         <translation>Եթե qBittorrent-ը Ձեզ դուր եկավ, խնդրում ենք նվիրաբերել։</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="375"/>
-        <source>Execution &amp;Log</source>
-        <translation>Բացառության &amp;ցանկը</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="378"/>
-        <location filename="../gui/mainwindow.cpp" line="1550"/>
+        <location filename="../gui/mainwindow.ui" line="363"/>
+        <location filename="../gui/mainwindow.cpp" line="1543"/>
         <source>Execution Log</source>
         <translation>Բացառության ցանկը</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="267"/>
-        <source>Decrease priority</source>
-        <translation>Իջեցնել առաջ-ը</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="275"/>
-        <source>Increase priority</source>
-        <translation>Բարձրաց-ել առաջ-ը</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.cpp" line="165"/>
-        <source>Set the password...</source>
-        <translation>Նշեք ծածկագիրը...</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.cpp" line="167"/>
-        <location filename="../gui/mainwindow.cpp" line="489"/>
+        <location filename="../gui/mainwindow.cpp" line="488"/>
         <source>Clear the password</source>
-        <translation type="unfinished"></translation>
+        <translation>Մաքրել գաղտնաբառը</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="195"/>
+        <location filename="../gui/mainwindow.cpp" line="194"/>
         <source>Filter torrent list...</source>
+        <translation>Զտրել torrent-ների ցանկը....</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="164"/>
+        <source>&amp;Set Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="212"/>
+        <location filename="../gui/mainwindow.cpp" line="166"/>
+        <source>&amp;Clear Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="211"/>
         <source>Transfers</source>
         <translation>Փոխանցումներ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="354"/>
+        <location filename="../gui/mainwindow.cpp" line="353"/>
         <source>Torrent file association</source>
         <translation>Torrent ֆայլի ասոցիացումներ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="355"/>
+        <location filename="../gui/mainwindow.cpp" line="354"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>qBittorrent-ը  torrent ֆայլերի կամ Magnet հղումների համար ասոցիացված ծրագիրը չէ։
 Ասոցիացնե՞լ այն տվյալ ֆայլերի համար։</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="386"/>
+        <location filename="../gui/mainwindow.cpp" line="385"/>
         <source>Icons Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Միայն պատկերակները</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="388"/>
+        <location filename="../gui/mainwindow.cpp" line="387"/>
         <source>Text Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Միայն տեքստը</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="390"/>
+        <location filename="../gui/mainwindow.cpp" line="389"/>
         <source>Text Alongside Icons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="392"/>
+        <location filename="../gui/mainwindow.cpp" line="391"/>
         <source>Text Under Icons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="394"/>
+        <location filename="../gui/mainwindow.cpp" line="393"/>
         <source>Follow System Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="474"/>
-        <location filename="../gui/mainwindow.cpp" line="501"/>
-        <location filename="../gui/mainwindow.cpp" line="812"/>
+        <location filename="../gui/mainwindow.cpp" line="473"/>
+        <location filename="../gui/mainwindow.cpp" line="500"/>
+        <location filename="../gui/mainwindow.cpp" line="801"/>
         <source>UI lock password</source>
         <translation>Ծրագրի կողփման ծածկագիրը</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="474"/>
-        <location filename="../gui/mainwindow.cpp" line="501"/>
-        <location filename="../gui/mainwindow.cpp" line="812"/>
+        <location filename="../gui/mainwindow.cpp" line="473"/>
+        <location filename="../gui/mainwindow.cpp" line="500"/>
+        <location filename="../gui/mainwindow.cpp" line="801"/>
         <source>Please type the UI lock password:</source>
         <translation>Նշեք ծածկագիրը.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="478"/>
+        <location filename="../gui/mainwindow.cpp" line="477"/>
         <source>The password should contain at least 3 characters</source>
         <translation>Ծածկագիրը պետք է պարունակի գոնե 3 նիշ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="483"/>
+        <location filename="../gui/mainwindow.cpp" line="482"/>
         <source>Password update</source>
         <translation>Թարմացնել ծածկագիրը</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="483"/>
+        <location filename="../gui/mainwindow.cpp" line="482"/>
         <source>The UI lock password has been successfully updated</source>
         <translation>UI-ի կողփման ծածկագիրը հաջողությամբ թարմացվեց</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="489"/>
+        <location filename="../gui/mainwindow.cpp" line="488"/>
         <source>Are you sure you want to clear the password?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="518"/>
+        <location filename="../gui/mainwindow.cpp" line="517"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="535"/>
+        <location filename="../gui/mainwindow.cpp" line="534"/>
         <source>Search</source>
         <translation>Փնտրել</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="546"/>
+        <location filename="../gui/mainwindow.cpp" line="545"/>
         <source>Transfers (%1)</source>
         <translation>Փոխանցումներ (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="650"/>
+        <location filename="../gui/mainwindow.cpp" line="639"/>
         <source>Download completion</source>
         <translation>Բեռնումը ավարտվում է</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="650"/>
+        <location filename="../gui/mainwindow.cpp" line="639"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1-ի բեռնումը ավարտվեց։</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="657"/>
+        <location filename="../gui/mainwindow.cpp" line="646"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Ն/Ա սխալ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="657"/>
+        <location filename="../gui/mainwindow.cpp" line="646"/>
         <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent xxx.avi.
@@ -1816,170 +1895,178 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
  Պատճառը. %2</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="723"/>
+        <location filename="../gui/mainwindow.cpp" line="712"/>
         <source>Recursive download confirmation</source>
         <translation>Բեռնման հաստատում</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="723"/>
+        <location filename="../gui/mainwindow.cpp" line="712"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation>%1 torrent-ը պարունակում է torrent ֆայլեր, ցանկանու՞մ եք շարունակել դրանց բեռնումը։</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="724"/>
-        <location filename="../gui/mainwindow.cpp" line="915"/>
+        <location filename="../gui/mainwindow.cpp" line="713"/>
         <source>Yes</source>
         <translation>Այո</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="725"/>
-        <location filename="../gui/mainwindow.cpp" line="914"/>
+        <location filename="../gui/mainwindow.cpp" line="714"/>
         <source>No</source>
         <translation>Ոչ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="726"/>
+        <location filename="../gui/mainwindow.cpp" line="715"/>
         <source>Never</source>
         <translation>Երբեք</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="740"/>
-        <source>Url download error</source>
-        <translation>Հղումից բեռնման սխալ</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.cpp" line="740"/>
-        <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation>Հնարավոր չէ բեռնել ֆայլը %1 հղումից, պատճառը՝ %2։</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.cpp" line="748"/>
+        <location filename="../gui/mainwindow.cpp" line="737"/>
         <source>Global Upload Speed Limit</source>
         <translation>Փոխանցման արագ-ան գլոբալ սահ-փակումներ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="764"/>
+        <location filename="../gui/mainwindow.cpp" line="753"/>
         <source>Global Download Speed Limit</source>
         <translation>Բեռնման արագ-ան գլոբալ սահ-փակումներ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1460"/>
+        <location filename="../gui/mainwindow.cpp" line="903"/>
+        <source>&amp;No</source>
+        <translation type="unfinished">&amp;Ոչ</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="904"/>
+        <source>&amp;Yes</source>
+        <translation type="unfinished">&amp;Այո</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="905"/>
+        <source>&amp;Always Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1453"/>
         <source>Missing Python Interpreter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1461"/>
+        <location filename="../gui/mainwindow.cpp" line="1454"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1506"/>
+        <location filename="../gui/mainwindow.cpp" line="1499"/>
         <source>A new version is available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1507"/>
+        <location filename="../gui/mainwindow.cpp" line="1500"/>
         <source>A new version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1516"/>
+        <location filename="../gui/mainwindow.cpp" line="1509"/>
         <source>There isn&apos;t a new version available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1517"/>
+        <location filename="../gui/mainwindow.cpp" line="1510"/>
         <source>There isn&apos;t a new version of qBittorrent available on Sourceforge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1620"/>
+        <location filename="../gui/mainwindow.cpp" line="1610"/>
         <source>Checking for updates...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1621"/>
+        <location filename="../gui/mainwindow.cpp" line="1611"/>
         <source>Already checking for program updates in the background</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1688"/>
+        <location filename="../gui/mainwindow.cpp" line="1678"/>
         <source>Download error</source>
-        <translation type="unfinished">Բեռնման սխալ</translation>
+        <translation>Ներբեռնելու սխալ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1688"/>
+        <location filename="../gui/mainwindow.cpp" line="1678"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="478"/>
-        <location filename="../gui/mainwindow.cpp" line="826"/>
+        <location filename="../gui/mainwindow.cpp" line="477"/>
+        <location filename="../gui/mainwindow.cpp" line="815"/>
         <source>Invalid password</source>
         <translation>Ծածկագիրը սխալ է</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="826"/>
+        <location filename="../gui/mainwindow.cpp" line="729"/>
+        <source>URL download error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="729"/>
+        <source>Couldn&apos;t download file at URL: %1, reason: %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="815"/>
         <source>The password is invalid</source>
         <translation>Ծածկագիրը սխալ է</translation>
     </message>
     <message>
+        <location filename="../gui/mainwindow.cpp" line="1244"/>
         <location filename="../gui/mainwindow.cpp" line="1251"/>
-        <location filename="../gui/mainwindow.cpp" line="1258"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ներբեռնում՝ %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1254"/>
-        <location filename="../gui/mainwindow.cpp" line="1260"/>
+        <location filename="../gui/mainwindow.cpp" line="1247"/>
+        <location filename="../gui/mainwindow.cpp" line="1253"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Վերբեռնում՝ %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1265"/>
+        <location filename="../gui/mainwindow.cpp" line="1258"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation type="unfinished"></translation>
+        <translation>[Ներ. %1, Վեր. %2] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1366"/>
+        <location filename="../gui/mainwindow.cpp" line="1359"/>
         <source>Hide</source>
         <translation>Թաքցնել</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="911"/>
+        <location filename="../gui/mainwindow.cpp" line="900"/>
         <source>Exiting qBittorrent</source>
         <translation>Ելք qBittorrent-ից</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="912"/>
+        <location filename="../gui/mainwindow.cpp" line="901"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Այս պահին որոշ ֆայլեր փախանցվում են։
 Այնուհանդերձ դու՞րս գալ qBittorrent-ից։</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="916"/>
-        <source>Always</source>
-        <translation>Միշտ</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.cpp" line="1070"/>
+        <location filename="../gui/mainwindow.cpp" line="1063"/>
         <source>Open Torrent Files</source>
         <translation>Բացել torrent ֆայլեր</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1071"/>
+        <location filename="../gui/mainwindow.cpp" line="1064"/>
         <source>Torrent Files</source>
         <translation>Torrent ֆայլեր</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1127"/>
+        <location filename="../gui/mainwindow.cpp" line="1120"/>
         <source>Options were saved successfully.</source>
         <translation>Ընտրանքները հաջողությամբ պահպանվեցին։</translation>
     </message>
@@ -2016,12 +2103,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="69"/>
         <source>Port</source>
-        <translation type="unfinished">Դարպասը</translation>
+        <translation>Դարպաս</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="70"/>
         <source>Flags</source>
-        <translation type="unfinished"></translation>
+        <translation>Դրոշակներ</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="71"/>
@@ -2044,25 +2131,25 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../gui/properties/peerlistwidget.cpp" line="74"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Բեռնման արգ-ը</translation>
+        <translation>Ներբեռնելու արգ-ը</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="75"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Փոխանցման արգ-ը</translation>
+        <translation>Վերբ. արագ-ը</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="76"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
-        <translation>Բեռնվել է</translation>
+        <translation>Ներբեռնվել է</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="77"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation>Փոխանցվել է</translation>
+        <translation>Վերբեռնվել է</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="78"/>
@@ -2083,12 +2170,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="181"/>
         <source>Limit download rate...</source>
-        <translation>Բեռնման սահմանափակումը…</translation>
+        <translation type="unfinished">Բեռնման սահմանափակումը…</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="182"/>
         <source>Limit upload rate...</source>
-        <translation>Փոխանցման սահ-ը…</translation>
+        <translation type="unfinished">Փոխանցման սահ-ը…</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="185"/>
@@ -2139,12 +2226,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="262"/>
         <source>Upload rate limiting</source>
-        <translation>Փոխանցման սահ-ը</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="294"/>
         <source>Download rate limiting</source>
-        <translation>Բեռնման սահ-ը</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="485"/>
@@ -2301,72 +2388,72 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Միջնորդը</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1549"/>
+        <location filename="../gui/options.ui" line="1556"/>
         <source>Global Rate Limits</source>
         <translation>Սահմանափակումները</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1667"/>
+        <location filename="../gui/options.ui" line="1674"/>
         <source>Apply rate limit to uTP connections</source>
         <translation>Կիրառել սահ-փակում uTP-ի համար</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1674"/>
+        <location filename="../gui/options.ui" line="1681"/>
         <source>Apply rate limit to transport overhead</source>
         <translation>Կիրառել սահ-փակում գերազանցելու դեպքում</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1687"/>
+        <location filename="../gui/options.ui" line="1694"/>
         <source>Alternative Global Rate Limits</source>
         <translation>Այլընտրանքային սահմանափակումներ</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1793"/>
+        <location filename="../gui/options.ui" line="1806"/>
         <source>Schedule the use of alternative rate limits</source>
         <translation>Այլընտրանքային սահ-փակումների պլանավորում</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1999"/>
+        <location filename="../gui/options.ui" line="2012"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Միացնել Լոկալ Peer-երի բացահայտումը</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2011"/>
+        <location filename="../gui/options.ui" line="2024"/>
         <source>Encryption mode:</source>
         <translation>Կոդավորման եղանակը.</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2019"/>
+        <location filename="../gui/options.ui" line="2032"/>
         <source>Prefer encryption</source>
         <translation>Նախընտրելի կոդավորում</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2024"/>
+        <location filename="../gui/options.ui" line="2037"/>
         <source>Require encryption</source>
         <translation>Պահանջել կոդավորում</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2029"/>
+        <location filename="../gui/options.ui" line="2042"/>
         <source>Disable encryption</source>
         <translation>Անջատել կոդավորումը</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2064"/>
+        <location filename="../gui/options.ui" line="2077"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Մանրամասներ&lt;/a&gt;)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2107"/>
+        <location filename="../gui/options.ui" line="2120"/>
         <source>Maximum active downloads:</source>
         <translation>Առավելագ. ակտիվ բեռնումներ.</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2127"/>
+        <location filename="../gui/options.ui" line="2140"/>
         <source>Maximum active uploads:</source>
         <translation>Առավելագ. ակտիվ փոխանցումներ.</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2147"/>
+        <location filename="../gui/options.ui" line="2160"/>
         <source>Maximum active torrents:</source>
         <translation>Առավելագ. ակտիվ  torrent-ներ.</translation>
     </message>
@@ -2416,22 +2503,22 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Փոխանցումների սլոթների առավ. քանակը torrent-ի համար.</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1567"/>
-        <location filename="../gui/options.ui" line="1722"/>
+        <location filename="../gui/options.ui" line="1574"/>
+        <location filename="../gui/options.ui" line="1772"/>
         <source>Upload:</source>
         <translation>Փոխանցում.</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1603"/>
-        <location filename="../gui/options.ui" line="1749"/>
+        <location filename="../gui/options.ui" line="1610"/>
+        <location filename="../gui/options.ui" line="1782"/>
         <source>Download:</source>
         <translation>Բեռնում.</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1596"/>
-        <location filename="../gui/options.ui" line="1629"/>
+        <location filename="../gui/options.ui" line="1603"/>
+        <location filename="../gui/options.ui" line="1636"/>
         <location filename="../gui/options.ui" line="1742"/>
-        <location filename="../gui/options.ui" line="1769"/>
+        <location filename="../gui/options.ui" line="1765"/>
         <source>KiB/s</source>
         <translation>Կբիթ/վ</translation>
     </message>
@@ -2441,28 +2528,28 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Ջնջել թղթապանակը</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1837"/>
+        <location filename="../gui/options.ui" line="1850"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>մինչև</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1892"/>
+        <location filename="../gui/options.ui" line="1905"/>
         <source>Every day</source>
         <translation>Ամեն օր</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1897"/>
+        <location filename="../gui/options.ui" line="1910"/>
         <source>Week days</source>
         <translation>Շաբաթական</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1902"/>
+        <location filename="../gui/options.ui" line="1915"/>
         <source>Week ends</source>
         <translation>Հանգստյան օրեր</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/options.ui" line="1983"/>
+        <location filename="../gui/options.ui" line="1996"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Փոխանակել  peer-երը համատեղելի Bittorrent ծրագրերի միջև (µTorrent, Vuze, ...)</translation>
     </message>
@@ -2483,7 +2570,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../gui/options.ui" line="20"/>
-        <location filename="../gui/options.ui" line="1651"/>
+        <location filename="../gui/options.ui" line="1658"/>
         <source>Options</source>
         <translation>Ընտրանքներ</translation>
     </message>
@@ -2555,11 +2642,6 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Միագույն (Բաց շապիկ)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="383"/>
-        <source>Ask for program exit confirmation</source>
-        <translation>Հարցնել ծրագիրը փակելիս</translation>
-    </message>
-    <message>
         <location filename="../gui/options.ui" line="199"/>
         <source>User Interface Language:</source>
         <translation>Ծրագրի լեզուն.</translation>
@@ -2572,6 +2654,11 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/options.ui" line="359"/>
         <source>Start qBittorrent on Windows start up</source>
+        <translation>Մեկնարկել qBittorrent-ը Windows-ի հետ</translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="383"/>
+        <source>Confirmation on exit when torrents are active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2613,7 +2700,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/options.ui" line="561"/>
         <source>Bring torrent dialog to the front</source>
-        <translation type="unfinished"></translation>
+        <translation>Երկխոսությունը պահել առջևում</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="583"/>
@@ -2653,7 +2740,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/options.ui" line="852"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Պատճենել .torrent ֆայլերը ավարտված բեռնումների համար՝</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="908"/>
@@ -2693,7 +2780,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/options.ui" line="1110"/>
         <source>Use different port on each startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Յուրաքանչյուրի համար օգտ. առանձին պորտ</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1236"/>
@@ -2731,133 +2818,138 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Վերաբացել ֆիլտրը</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1657"/>
+        <location filename="../gui/options.ui" line="1520"/>
+        <source>Apply to trackers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="1664"/>
         <source>Enable bandwidth management (uTP)</source>
         <translation>Միացնել սահմանափակումները (uTP)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1810"/>
+        <location filename="../gui/options.ui" line="1823"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>Ժ.</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1884"/>
+        <location filename="../gui/options.ui" line="1897"/>
         <source>When:</source>
         <translation>Երբ.</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1967"/>
+        <location filename="../gui/options.ui" line="1980"/>
         <source>Privacy</source>
         <translation>Անվտանգություն</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1973"/>
+        <location filename="../gui/options.ui" line="1986"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Միացնել DHT՝ լրացուցիչ peer-եր գտնելու համար</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1986"/>
+        <location filename="../gui/options.ui" line="1999"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Միացնել Peer-երի փոխանակումը (PeX)՝ լրացուցիչ peer-եր գտնելու համար</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1996"/>
+        <location filename="../gui/options.ui" line="2009"/>
         <source>Look for peers on your local network</source>
         <translation>Ձեր լոկալ ցանցի peer-երը</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2054"/>
+        <location filename="../gui/options.ui" line="2067"/>
         <source>Enable when using a proxy or a VPN connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2057"/>
+        <location filename="../gui/options.ui" line="2070"/>
         <source>Enable anonymous mode</source>
         <translation>Միացնել անանուն եղանակը</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2206"/>
+        <location filename="../gui/options.ui" line="2219"/>
         <source>Do not count slow torrents in these limits</source>
         <translation>Չհաշվել դանդաղ  torrent-ները այս սահ-մբ</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2227"/>
+        <location filename="../gui/options.ui" line="2240"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Փոխանցել torrent-ները մինչև սահ-ը կհասնի</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2256"/>
+        <location filename="../gui/options.ui" line="2269"/>
         <source>then</source>
         <translation>ապա</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2267"/>
+        <location filename="../gui/options.ui" line="2280"/>
         <source>Pause them</source>
         <translation>Դադարեցնել բոլորը</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2272"/>
+        <location filename="../gui/options.ui" line="2285"/>
         <source>Remove them</source>
         <translation>Ջնջել</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2370"/>
+        <location filename="../gui/options.ui" line="2383"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>Օգտ. UPnP / NAT-PMP՝ ռոութերից փոխանցելու համար</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2380"/>
+        <location filename="../gui/options.ui" line="2393"/>
         <source>Use HTTPS instead of HTTP</source>
         <translation>Օգտ. HTTPS՝ HTTP-ի փոխարեն</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2423"/>
+        <location filename="../gui/options.ui" line="2436"/>
         <source>Import SSL Certificate</source>
         <translation>Ներմուծել SSL վավերագիր</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2476"/>
+        <location filename="../gui/options.ui" line="2489"/>
         <source>Import SSL Key</source>
         <translation>Ներմուծել SSL բանալի</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2411"/>
+        <location filename="../gui/options.ui" line="2424"/>
         <source>Certificate:</source>
         <translation>Վավերագիրը.</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2464"/>
+        <location filename="../gui/options.ui" line="2477"/>
         <source>Key:</source>
         <translation>Բանալին.</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2498"/>
+        <location filename="../gui/options.ui" line="2511"/>
         <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Ինֆո վավերագրի մասին&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2543"/>
+        <location filename="../gui/options.ui" line="2556"/>
         <source>Bypass authentication for localhost</source>
         <translation>localhost-ի շրջանցիկ ներկայացում</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2567"/>
+        <location filename="../gui/options.ui" line="2580"/>
         <source>Update my dynamic domain name</source>
         <translation>Թարմացնել ակտիվ տիրույթի անունը</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2579"/>
+        <location filename="../gui/options.ui" line="2592"/>
         <source>Service:</source>
         <translation>Սպասարկիչը.</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2602"/>
+        <location filename="../gui/options.ui" line="2615"/>
         <source>Register</source>
         <translation>Գրանցել</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2611"/>
+        <location filename="../gui/options.ui" line="2624"/>
         <source>Domain name:</source>
         <translation>Տիրույթի անունը.</translation>
     </message>
@@ -2878,45 +2970,45 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1343"/>
-        <location filename="../gui/options.ui" line="2335"/>
+        <location filename="../gui/options.ui" line="2348"/>
         <source>Port:</source>
         <translation>Դարպասը.</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="942"/>
         <location filename="../gui/options.ui" line="1394"/>
-        <location filename="../gui/options.ui" line="2511"/>
+        <location filename="../gui/options.ui" line="2524"/>
         <source>Authentication</source>
         <translation>Ներկայացում</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="954"/>
         <location filename="../gui/options.ui" line="1408"/>
-        <location filename="../gui/options.ui" line="2550"/>
-        <location filename="../gui/options.ui" line="2625"/>
+        <location filename="../gui/options.ui" line="2563"/>
+        <location filename="../gui/options.ui" line="2638"/>
         <source>Username:</source>
         <translation>Օգտվողը.</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="964"/>
         <location filename="../gui/options.ui" line="1428"/>
-        <location filename="../gui/options.ui" line="2557"/>
-        <location filename="../gui/options.ui" line="2639"/>
+        <location filename="../gui/options.ui" line="2570"/>
+        <location filename="../gui/options.ui" line="2652"/>
         <source>Password:</source>
         <translation>Ծածկագիրը.</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2092"/>
+        <location filename="../gui/options.ui" line="2105"/>
         <source>Torrent Queueing</source>
         <translation>Torrent-ը հերթում է</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2216"/>
+        <location filename="../gui/options.ui" line="2229"/>
         <source>Share Ratio Limiting</source>
         <translation>Փոխանցման սահ-ներ</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2321"/>
+        <location filename="../gui/options.ui" line="2334"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Միացնել  Web User Interface-ը (Հեռադիր կառավարում)</translation>
     </message>
@@ -3121,7 +3213,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="481"/>
         <source>Piece size:</source>
-        <translation type="unfinished">Մասի չափը.</translation>
+        <translation>Մասի չափը.</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="669"/>
@@ -3150,255 +3242,270 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Չբեռնել</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="350"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="351"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="353"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="354"/>
         <source>this session</source>
         <translation>այս աշխատաշրջանում</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="352"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="353"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="355"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="356"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/վ</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="356"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="359"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Փոխանցվել է %1</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="360"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="363"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>Առավելագ. %1</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="465"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="539"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="468"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="542"/>
         <source>I/O Error</source>
         <translation>Ն/Ա սխալ</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="465"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="468"/>
         <source>This file does not exist yet.</source>
         <translation>Այս ֆայլը դեռևս գոյություն չունի։</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="539"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="542"/>
         <source>This folder does not exist yet.</source>
         <translation>Այս թղթապանակը դեռևս գոյություն չունի։</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="557"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="560"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Բացել</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="558"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="561"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Բացել թղթապանակը</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="559"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="562"/>
         <source>Rename...</source>
         <translation>Անվանափոխել...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="564"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="567"/>
         <source>Priority</source>
-        <translation>Առաջնայնությունը</translation>
+        <translation>Առաջնահերթություն</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="610"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="613"/>
         <source>New Web seed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="616"/>
-        <source>Remove Web seed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="618"/>
-        <source>Copy Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Նոր վեբ շղթա</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="619"/>
-        <source>Edit Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <source>Remove Web seed</source>
+        <translation>Հեռացնել վեբ շղթան</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="644"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="621"/>
+        <source>Copy Web seed URL</source>
+        <translation>Պատճենել վեբ շղթայի URL-ն</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="622"/>
+        <source>Edit Web seed URL</source>
+        <translation>Խմբագրել վեբ շղթայի URL-ն</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="647"/>
         <source>Rename the file</source>
         <translation>Անվանափոխել</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="645"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="648"/>
         <source>New name:</source>
         <translation>Նոր անունը.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="649"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="680"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="652"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="683"/>
         <source>The file could not be renamed</source>
         <translation>Հնարավոր չէ անվանափոխել ֆայլը</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="650"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="653"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Ֆայլի անունը պարունակում է արգելված նշաններ, ընտրեք այլ անուն։</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="681"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="719"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="684"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="722"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Այս անունը արդեն առկա է տվյալ թղթապանակում։ Նշեք այլ անուն։</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="718"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="721"/>
         <source>The folder could not be renamed</source>
         <translation>Թղթապանակը հնարավոր չէ անվանափոխել</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="757"/>
-        <source>New url seed</source>
-        <comment>New HTTP source</comment>
-        <translation>Նոր հղման փոխանցում</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="758"/>
-        <source>New url seed:</source>
-        <translation>Նոր հղման փոխանցում.</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="819"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="829"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="764"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="820"/>
-        <source>This url seed is already in the list.</source>
-        <translation>Այս հղումը արդեն առկա է ցանկում։</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="83"/>
         <source>Filter files...</source>
+        <translation>Զտիչի ֆայլեր...</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="767"/>
+        <source>New URL seed</source>
+        <comment>New HTTP source</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="812"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="768"/>
+        <source>New URL seed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="774"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="830"/>
+        <source>This URL seed is already in the list.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="822"/>
         <source>Web seed editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Վեբ շղթայի խմբագրում</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="813"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="823"/>
         <source>Web seed URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>Վեբ շղթայի URL.</translation>
     </message>
 </context>
 <context>
     <name>QBtSession</name>
     <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="134"/>
+        <source>Peer ID: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="235"/>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="241"/>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation>%1-ի սահմանափակումը լրացել է։</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="236"/>
         <source>Removing torrent %1...</source>
-        <translation>Ջնջվում է %1 torrent-ը...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="242"/>
         <source>Pausing torrent %1...</source>
-        <translation>Դադարեցվում է %1 torrent-ը...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="418"/>
-        <source>HTTP user agent is %1</source>
-        <translation>HTTP օգտագործելու ծրագիրը՝ %1</translation>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="409"/>
+        <source>UPnP / NAT-PMP support [ON]</source>
+        <translation type="unfinished">UPnP / NAT-PMP աջակցում [ՄԻԱՑ]</translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="412"/>
+        <source>UPnP / NAT-PMP support [OFF]</source>
+        <translation type="unfinished">UPnP / NAT-PMP աջակցում [ԱՆՋ]</translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="417"/>
+        <source>HTTP User-Agent is %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="444"/>
         <source>Anonymous mode [ON]</source>
-        <translation>Անանուն եղանակ [ՄԻԱՑ]</translation>
+        <translation type="unfinished">Անանուն եղանակ [ՄԻԱՑ]</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="446"/>
         <source>Anonymous mode [OFF]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1548"/>
-        <source>DHT support [OFF]</source>
-        <translation>DHT աջակցում [ԱՆՋ]</translation>
+        <translation type="unfinished">Անանուն [ԱՆՋ.]</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="529"/>
         <source>PeX support [ON]</source>
-        <translation>PeX աջակցում [ՄԻԱՑ]</translation>
+        <translation type="unfinished">PeX աջակցում [ՄԻԱՑ]</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="531"/>
         <source>PeX support [OFF]</source>
-        <translation>PeX աջակցում [ԱՆՏ]</translation>
+        <translation type="unfinished">PeX աջակցում [ԱՆՏ]</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="534"/>
         <source>Restart is required to toggle PeX support</source>
-        <translation>Պահանջվում է վերագործարկում՝ փոխանջատելու համար PeX-ը</translation>
+        <translation type="unfinished">Պահանջվում է վերագործարկում՝ փոխանջատելու համար PeX-ը</translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="539"/>
+        <source>Local Peer Discovery support [ON]</source>
+        <translation type="unfinished">Լոկալ Peer-երի բացահայտման աջակցում [ՄԻԱՑ]</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="542"/>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Լոկալ Peer-երի բացահայտման աջակցում [ԱՆՋ]</translation>
+        <translation type="unfinished">Լոկալ Peer-երի բացահայտման աջակցում [ԱՆՋ]</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="554"/>
         <source>Encryption support [ON]</source>
-        <translation>Գաղտնագրման աջակցում [ՄԻԱՑ]</translation>
+        <translation type="unfinished">Գաղտնագրման աջակցում [ՄԻԱՑ]</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="559"/>
         <source>Encryption support [FORCED]</source>
-        <translation>Գաղտնագրման աջակցում [ՊԱՐՏ.]</translation>
+        <translation type="unfinished">Գաղտնագրման աջակցում [ՊԱՐՏ.]</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="564"/>
         <source>Encryption support [OFF]</source>
-        <translation>Գաղտնագրման աջակցում [ԱՆՋ.]</translation>
+        <translation type="unfinished">Գաղտնագրման աջակցում [ԱՆՋ.]</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="623"/>
         <source>Embedded Tracker [ON]</source>
-        <translation>Արգելված ուղղորդիչ [ՄԻԱՑ]</translation>
+        <translation type="unfinished">Արգելված ուղղորդիչ [ՄԻԱՑ]</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="625"/>
         <source>Failed to start the embedded tracker!</source>
-        <translation>Սխալ՝ արգելված ուղղորդիչը բացելիս։</translation>
+        <translation type="unfinished">Սխալ՝ արգելված ուղղորդիչը բացելիս։</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="628"/>
         <source>Embedded Tracker [OFF]</source>
-        <translation>Արգելված ուղղորդիչ [ԱՆՋ]</translation>
+        <translation type="unfinished">Արգելված ուղղորդիչ [ԱՆՋ]</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="770"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos;-ը ջնջվել է բեռնումների ցանկից և պնակից։</translation>
+        <translation type="unfinished">&apos;%1&apos;-ը ջնջվել է բեռնումների ցանկից և պնակից։</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="772"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos;-ը ջնջվել է բեռնումների ցանկից։</translation>
+        <translation type="unfinished">&apos;%1&apos;-ը ջնջվել է բեռնումների ցանկից։</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="869"/>
@@ -3408,7 +3515,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="874"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation>&apos;%1&apos;-ը ճիշտ magnet հղում չէ։.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="893"/>
@@ -3416,93 +3523,7 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1053"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation>&apos;%1&apos;-ը արդեն առկա է ցանկում։</translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1173"/>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1178"/>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation>&apos;%1&apos;-ը վերսկսվել է։</translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1535"/>
-        <source>DHT support [ON]</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1540"/>
-        <source>DHT support [OFF]. Reason: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1896"/>
-        <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
-        <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2396"/>
-        <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2401"/>
-        <source>Attempting to move torrent: &apos;%1&apos; to path: &apos;%2&apos;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2575"/>
-        <source>due to IP filter.</source>
-        <comment>this peer was blocked due to ip filter.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2578"/>
-        <source>due to port filter.</source>
-        <comment>this peer was blocked due to port filter.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2581"/>
-        <source>due to i2p mixed mode restrictions.</source>
-        <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2584"/>
-        <source>because it has a low port.</source>
-        <comment>this peer was blocked because it has a low port.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2587"/>
-        <source>because Î¼TP is disabled.</source>
-        <comment>this peer was blocked because Î¼TP is disabled.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2590"/>
-        <source>because TCP is disabled.</source>
-        <comment>this peer was blocked because TCP is disabled.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2700"/>
-        <source>External IP: %1</source>
-        <comment>e.g. External IP: 192.168.0.1</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="3050"/>
-        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
-        <comment>%1 is a number</comment>
-        <translation>Հաջողությամբ ստուգվել է IP ֆիլտրը. %1 կանոնները կիրառվել են։</translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="3056"/>
-        <source>Error: Failed to parse the provided IP filter.</source>
-        <translation>Սխալ՝ կապված IP ֆիլտրերի կիրառման հետ։</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="976"/>
@@ -3510,60 +3531,31 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1180"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation>&apos;%1&apos;-ը ավելացվել է բեռնումների ցանկին։</translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="409"/>
-        <source>UPnP / NAT-PMP support [ON]</source>
-        <translation>UPnP / NAT-PMP աջակցում [ՄԻԱՑ]</translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="412"/>
-        <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation>UPnP / NAT-PMP աջակցում [ԱՆՋ]</translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="539"/>
-        <source>Local Peer Discovery support [ON]</source>
-        <translation>Լոկալ Peer-երի բացահայտման աջակցում [ՄԻԱՑ]</translation>
+        <translation type="unfinished">&apos;%1&apos;-ը ավելացվել է բեռնումների ցանկին։</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1025"/>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1030"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation>Հնարավոր չէ ապակոդավորել &apos;%1&apos; ֆայլը</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1033"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>Ֆայլը վնասված է կամ torrent չէ։</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1068"/>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation>Սխալ. %1 torrent-ը չի պարունակում ֆայլեր։</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1879"/>
-        <source>The network interface defined is invalid: %1</source>
-        <translation>Ցանցային միջներեսը սխալ է որոշվել. %1</translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2004"/>
-        <source>Recursive download of file %1 embedded in torrent %2</source>
-        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation>%1 ֆայլի ձեռադիր բեռնումը արգելված է %2 ֆայլում</translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2187"/>
-        <source>Unable to decode %1 torrent file.</source>
-        <translation>Հնարավոր չէ ապակոդավորել  %1 torrent ֆայլը։</translation>
-    </message>
-    <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2043"/>
-        <source>Torrent name: %1</source>
-        <translation>Torrent-ի անունը. %1</translation>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1173"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1178"/>
+        <source>&apos;%1&apos; resumed. (fast resume)</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <translation type="unfinished">&apos;%1&apos;-ը վերսկսվել է։</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1338"/>
@@ -3576,102 +3568,207 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1867"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1535"/>
+        <source>DHT support [ON]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1540"/>
+        <source>DHT support [OFF]. Reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1548"/>
+        <source>DHT support [OFF]</source>
+        <translation type="unfinished">DHT աջակցում [ԱՆՋ]</translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1852"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1871"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1856"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1892"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1864"/>
+        <source>The network interface defined is invalid: %1</source>
+        <translation type="unfinished">Ցանցային միջներեսը սխալ է որոշվել. %1</translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1877"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2044"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1881"/>
+        <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
+        <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1989"/>
+        <source>Recursive download of file %1 embedded in torrent %2</source>
+        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
+        <translation type="unfinished">%1 ֆայլի ձեռադիր բեռնումը արգելված է %2 ֆայլում</translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2028"/>
+        <source>Torrent name: %1</source>
+        <translation type="unfinished">Torrent-ի անունը. %1</translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2029"/>
         <source>Torrent size: %1</source>
-        <translation>Torrent-ի չափը. %1</translation>
+        <translation type="unfinished">Torrent-ի չափը. %1</translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2045"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2030"/>
         <source>Save path: %1</source>
-        <translation>Պահպանելու տեղը. %1</translation>
+        <translation type="unfinished">Պահպանելու տեղը. %1</translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2046"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2031"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation>Torrent-ը բեռնվել է  %1ում։</translation>
+        <translation type="unfinished">Torrent-ը բեռնվել է  %1ում։</translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2047"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2032"/>
         <source>Thank you for using qBittorrent.</source>
-        <translation>Շնորհակալություն qBittorrent-ը օգտագործելու համար։</translation>
+        <translation type="unfinished">Շնորհակալություն qBittorrent-ը օգտագործելու համար։</translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2050"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2035"/>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation>[qBittorrent] %1-ի բեռնումը ավարտվեց</translation>
+        <translation type="unfinished">[qBittorrent] %1-ի բեռնումը ավարտվեց</translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2464"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2172"/>
+        <source>Unable to decode %1 torrent file.</source>
+        <translation type="unfinished">Հնարավոր չէ ապակոդավորել  %1 torrent ֆայլը։</translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2380"/>
+        <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2385"/>
+        <source>Attempting to move torrent: &apos;%1&apos; to path: &apos;%2&apos;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2448"/>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
-        <translation>Ն/Ա սխալ, &apos;%1&apos; դադարի մեջ է։</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2465"/>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2619"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2449"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2603"/>
         <source>Reason: %1</source>
-        <translation>Պատճառը. %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2556"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2540"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation>UPnP/NAT-PMP. Դարպասի որոշումը ձախողվեց, հաղորդագրությունը՝ %1</translation>
+        <translation type="unfinished">UPnP/NAT-PMP. Դարպասի որոշումը ձախողվեց, հաղորդագրությունը՝ %1</translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2561"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2545"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation>UPnP/NAT-PMP. Դարպասի որոշումը հաջող էր, հաղորդագրությունը՝ %1</translation>
+        <translation type="unfinished">UPnP/NAT-PMP. Դարպասի որոշումը հաջող էր, հաղորդագրությունը՝ %1</translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2614"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2559"/>
+        <source>due to IP filter.</source>
+        <comment>this peer was blocked due to ip filter.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2562"/>
+        <source>due to port filter.</source>
+        <comment>this peer was blocked due to port filter.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2565"/>
+        <source>due to i2p mixed mode restrictions.</source>
+        <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2568"/>
+        <source>because it has a low port.</source>
+        <comment>this peer was blocked because it has a low port.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2571"/>
+        <source>because Î¼TP is disabled.</source>
+        <comment>this peer was blocked because Î¼TP is disabled.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2574"/>
+        <source>because TCP is disabled.</source>
+        <comment>this peer was blocked because TCP is disabled.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2598"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation>Ֆայլի չափը չի համապատասխանում %1 torrent-ին, դադարեցվում է։</translation>
+        <translation type="unfinished">Ֆայլի չափը չի համապատասխանում %1 torrent-ին, դադարեցվում է։</translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2618"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2602"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation>Վերսկսումը մերժվել է %1 torrent-ի համար, նորից է սկսվում...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2625"/>
-        <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation>Հղման փոխանցումը ձախողվեց %1 հղումների համար, հաղորդագրությունը՝ %2</translation>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2609"/>
+        <source>URL seed lookup failed for url: %1, message: %2</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2640"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2624"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2667"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2651"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2830"/>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2684"/>
+        <source>External IP: %1</source>
+        <comment>e.g. External IP: 192.168.0.1</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2814"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation>Բեռնվում է &apos;%1&apos;-ը, խնդրում ենք սպասել...</translation>
+        <translation type="unfinished">Բեռնվում է &apos;%1&apos;-ը, խնդրում ենք սպասել...</translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="3034"/>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished">Հաջողությամբ է ստուգվել IP ֆիլտրով. %1 կանոններ են կիրառվել։</translation>
+    </message>
+    <message>
+        <location filename="../core/qtlibtorrent/qbtsession.cpp" line="3040"/>
+        <source>Error: Failed to parse the provided IP filter.</source>
+        <translation type="unfinished">Սխալ՝ կապված IP ֆիլտրերի կիրառման հետ։</translation>
     </message>
 </context>
 <context>
@@ -3742,7 +3839,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../app/main.cpp" line="382"/>
-        <source>Changes the webui port (current: %1)</source>
+        <source>Changes the Web UI port (current: %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3806,12 +3903,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../app/main.cpp" line="442"/>
         <source>Cancel</source>
-        <translation type="unfinished">Մերժել</translation>
+        <translation>Չեղարկել</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="443"/>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translation>Համաձայն եմ</translation>
     </message>
 </context>
 <context>
@@ -3841,7 +3938,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/rss/rss.ui" line="95"/>
         <source>RSS Downloader...</source>
-        <translation>RSS բեռնում...</translation>
+        <translation>RSS ներբեռնում...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="102"/>
@@ -3859,7 +3956,7 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent-ներ.&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(կրկնակի սեղմեք՝ բեռնելու համար)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent-ներ.&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(կրկնակի սեղմեք՝ ներբեռնելու համար)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="162"/>
@@ -3897,7 +3994,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/rss/rss.ui" line="207"/>
         <source>Download torrent</source>
-        <translation>Բեռնել torrent-ը</translation>
+        <translation>Ներբեռնել torrent-ը</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="212"/>
@@ -3929,13 +4026,18 @@ p, li { white-space: pre-wrap; }
     <name>RSSImp</name>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="204"/>
-        <source>Please type a rss stream url</source>
-        <translation>Նշեք rss հոսանքի հղումը</translation>
+        <source>Stream URL:</source>
+        <translation>Հոսքի հղումը.</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="204"/>
-        <source>Stream URL:</source>
-        <translation>Հոսքի հղումը.</translation>
+        <source>Please type a RSS stream URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rss_imp.cpp" line="214"/>
+        <source>This RSS feed is already in the list.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="241"/>
@@ -3969,11 +4071,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/rss/rss_imp.cpp" line="159"/>
         <source>New folder</source>
         <translation>Նոր թղթապանակ</translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="214"/>
-        <source>This rss feed is already in the list.</source>
-        <translation>Այս rss ալիքը արդեն առկա է ցանկում։</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="241"/>
@@ -4024,7 +4121,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../gui/rss/rssfeed.cpp" line="371"/>
+        <location filename="../gui/rss/rssfeed.cpp" line="370"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Միանգամից բեռնել %1 torrent-ը՝ %2 RSS ալիքից…...</translation>
     </message>
@@ -4132,7 +4229,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/searchengine.cpp" line="173"/>
         <location filename="../searchengine/searchengine.cpp" line="192"/>
         <location filename="../searchengine/searchengine.cpp" line="193"/>
-        <location filename="../searchengine/searchengine.cpp" line="458"/>
+        <location filename="../searchengine/searchengine.cpp" line="440"/>
         <source>Search</source>
         <translation>Փնտրել</translation>
     </message>
@@ -4148,56 +4245,72 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="232"/>
-        <location filename="../searchengine/searchengine.cpp" line="322"/>
+        <location filename="../searchengine/searchengine.cpp" line="301"/>
         <source>Results</source>
         <translation>Արդյունքները</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="301"/>
+        <location filename="../searchengine/searchengine.cpp" line="280"/>
         <source>Searching...</source>
         <translation>Փնտրվում է…</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="303"/>
+        <location filename="../searchengine/searchengine.cpp" line="282"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Կանգնեցնել</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="436"/>
+        <location filename="../searchengine/searchengine.cpp" line="418"/>
         <source>Search Engine</source>
         <translation>Որոնում</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="436"/>
-        <location filename="../searchengine/searchengine.cpp" line="451"/>
+        <location filename="../searchengine/searchengine.cpp" line="418"/>
+        <location filename="../searchengine/searchengine.cpp" line="433"/>
         <source>Search has finished</source>
         <translation>Որոնումը ավարտվեց</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="442"/>
+        <location filename="../searchengine/searchengine.cpp" line="424"/>
         <source>An error occurred during search...</source>
         <translation>Սխալ՝ փնտրելիս…</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="440"/>
-        <location filename="../searchengine/searchengine.cpp" line="446"/>
+        <location filename="../searchengine/searchengine.cpp" line="422"/>
+        <location filename="../searchengine/searchengine.cpp" line="428"/>
         <source>Search aborted</source>
         <translation>Փնտրումը կանգնեցվել է</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="449"/>
+        <location filename="../searchengine/searchengine.cpp" line="113"/>
+        <source>All enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine/searchengine.cpp" line="114"/>
+        <source>All engines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine/searchengine.cpp" line="117"/>
+        <location filename="../searchengine/searchengine.cpp" line="162"/>
+        <source>Multiple...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine/searchengine.cpp" line="431"/>
         <source>Search returned no results</source>
         <translation>Ոչնինչ չի գտնվել</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="457"/>
+        <location filename="../searchengine/searchengine.cpp" line="439"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Արդյունքները</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="493"/>
-        <location filename="../searchengine/searchengine.cpp" line="499"/>
+        <location filename="../searchengine/searchengine.cpp" line="475"/>
+        <location filename="../searchengine/searchengine.cpp" line="481"/>
         <source>Unknown</source>
         <translation>Անհայտ</translation>
     </message>
@@ -4239,12 +4352,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../core/qtlibtorrent/shutdownconfirm.cpp" line="40"/>
         <source>Exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Փակել հաստատումը</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/shutdownconfirm.cpp" line="41"/>
         <source>Exit now</source>
-        <translation type="unfinished"></translation>
+        <translation>Փակել</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/shutdownconfirm.cpp" line="44"/>
@@ -4254,17 +4367,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../core/qtlibtorrent/shutdownconfirm.cpp" line="45"/>
         <source>Shutdown now</source>
-        <translation type="unfinished"></translation>
+        <translation>Անջատել</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/shutdownconfirm.cpp" line="99"/>
         <source>qBittorrent will now exit unless you cancel within the next %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent-ը կփակվի, եթե չչեղարկեք %1 վայրկյանի ընթացքում:</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/shutdownconfirm.cpp" line="102"/>
         <source>The computer will now be switched off unless you cancel within the next %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Համակարգիչը կանջատվի, եթե չչեղարկեք %1 վայրկյանի ընթացքում:</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/shutdownconfirm.cpp" line="105"/>
@@ -4298,12 +4411,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/statsdialog.ui" line="14"/>
         <source>Statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>Վիճակագրությունը</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="20"/>
         <source>User statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>Օգտվողի վիճակագրութուն</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="26"/>
@@ -4318,12 +4431,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/statsdialog.ui" line="47"/>
         <source>Alltime download:</source>
-        <translation type="unfinished"></translation>
+        <translation>Բոլոր ներբեռնումները.</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="68"/>
         <source>Alltime upload:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ընդ. վերբեռնվել է՝</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="82"/>
@@ -4378,7 +4491,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/statsdialog.ui" line="243"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>Լավ</translation>
     </message>
 </context>
 <context>
@@ -4459,82 +4572,82 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/transferlistfilterswidget.cpp" line="111"/>
         <source>All (0)</source>
         <comment>this is for the status filter</comment>
-        <translation type="unfinished"></translation>
+        <translation>Բոլորը (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="114"/>
         <source>Downloading (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ներբեռնում (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="117"/>
         <source>Seeding (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Փոխանցում (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="120"/>
         <source>Completed (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ավարտված (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="123"/>
         <source>Resumed (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Վերսկսված (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="126"/>
         <source>Paused (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Դադարի մեջ (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="129"/>
         <source>Active (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ակտիվ (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="132"/>
         <source>Inactive (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ոչ ակտիվ (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="148"/>
         <source>All (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Բոլորը (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="149"/>
         <source>Downloading (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ներբեռնում (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="150"/>
         <source>Seeding (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Փոխանցում (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="151"/>
         <source>Completed (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ավարտված (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="152"/>
         <source>Paused (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Դադարի մեջ (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="153"/>
         <source>Resumed (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Վերսկսված (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="154"/>
         <source>Active (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ակտիվ (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="155"/>
         <source>Inactive (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ոչ ակտիվ (%1)</translation>
     </message>
 </context>
 <context>
@@ -4607,7 +4720,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/torrentcreator/torrentcreatordlg.cpp" line="159"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation>Ստեղծված torrent ֆայլը ճիշտ չէ։ Այն չի կարող ավելացվել բեռնման ցանկին։</translation>
+        <translation>Ստեղծված torrent ֆայլը ճիշտ չէ։ Այն չի կարող ավելացվել ներբեռնելու ցանկին։</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/torrentcreatordlg.cpp" line="171"/>
@@ -4660,7 +4773,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="67"/>
         <source>Torrent files</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent ֆայլեր</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="90"/>
@@ -4693,7 +4806,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TorrentModel</name>
     <message>
-        <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="421"/>
+        <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="422"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
         <translation>Անունը</translation>
@@ -4732,13 +4845,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="428"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Բեռ. արագ-ը</translation>
+        <translation>Ներբեռ. արագ-ը</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="429"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Փոխ. արագ-ը</translation>
+        <translation>Վեր. արագ-ը</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="430"/>
@@ -4778,43 +4891,43 @@ p, li { white-space: pre-wrap; }
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="436"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation>Բեռ. սահ-ում</translation>
+        <translation>Ներբեռ. սահ-ում</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="437"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation>Փոխ. սահ-ում</translation>
+        <translation>Վեր. սահ-ում</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="438"/>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished">Բեռնվել է</translation>
+        <translation>Ներբեռնվել է</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="439"/>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished">Փոխանցվել է</translation>
+        <translation>Վերբեռնված</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="440"/>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ա/շրջանի ներբեռնում</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="441"/>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Աշ/շրջանի վերբեռնում</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="442"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Մնում է</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="443"/>
@@ -4826,13 +4939,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="444"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation type="unfinished"></translation>
+        <translation>Պահպանելու ճ-ը</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="445"/>
         <source>Completed</source>
         <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ավարտված</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="446"/>
@@ -4856,7 +4969,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="449"/>
         <source>Total Size</source>
         <comment>i.e. Size including unwanted data</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ընդհանուր չափ</translation>
     </message>
 </context>
 <context>
@@ -4865,7 +4978,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/transferlistfilterswidget.cpp" line="424"/>
         <source>All (0)</source>
         <comment>this is for the label filter</comment>
-        <translation type="unfinished"></translation>
+        <translation>Բոլորը (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="427"/>
@@ -4899,27 +5012,27 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/transferlistfilterswidget.cpp" line="558"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="590"/>
         <source>Error (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Սխալ (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="571"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="605"/>
         <source>Warning (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Զգուշացում (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="623"/>
-        <source>Couldn&apos;t decode favico for url `%1`. Trying to download favico in PNG format.</source>
+        <source>Couldn&apos;t decode favicon for URL `%1`. Trying to download favicon in PNG format.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="628"/>
-        <source>Couldn&apos;t decode favico for url `%1`.</source>
+        <source>Couldn&apos;t decode favicon for URL `%1`.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="642"/>
-        <source>Couldn&apos;t download favico for url `%1`. Reason: `%2`</source>
+        <source>Couldn&apos;t download favicon for URL `%1`. Reason: `%2`</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4942,7 +5055,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/transferlistfilterswidget.cpp" line="701"/>
         <source>All (%1)</source>
         <comment>this is for the tracker filter</comment>
-        <translation type="unfinished"></translation>
+        <translation>Բոլորը (%1)</translation>
     </message>
 </context>
 <context>
@@ -5031,7 +5144,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="456"/>
-        <source>Copy tracker url</source>
+        <source>Copy tracker URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5080,7 +5193,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/properties/trackersadditiondlg.h" line="79"/>
         <source>Error while trying to open the downloaded file.</source>
-        <translation>Սխալ՝ բեռնված ֆայլը բացելիս։</translation>
+        <translation>Սխալ՝ ներբեռնելու ֆայլը բացելիս։</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.h" line="124"/>
@@ -5095,12 +5208,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/properties/trackersadditiondlg.h" line="133"/>
         <source>Download error</source>
-        <translation>Բեռնման սխալ</translation>
+        <translation>Ներբեռնելու սխալ</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.h" line="133"/>
         <source>The trackers list could not be downloaded, reason: %1</source>
-        <translation>Ուղղորդիչների ցանկը չի կարող բեռնվել, պատճառը՝ %1</translation>
+        <translation>Ուղղորդիչների ցանկը չի կարող ներբեռնվել, պատճառը՝ %1</translation>
     </message>
 </context>
 <context>
@@ -5108,13 +5221,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="94"/>
         <source>Downloading</source>
-        <translation>Բեռնվում է</translation>
+        <translation>Ներբեռնվում է</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="97"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ներբեռնելու մետատվյալներ</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="103"/>
@@ -5149,13 +5262,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/transferlistdelegate.cpp" line="100"/>
         <source>[F] Downloading</source>
         <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation type="unfinished"></translation>
+        <translation>[F] Ներբեռնում է</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="113"/>
         <source>[F] Seeding</source>
         <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation type="unfinished"></translation>
+        <translation>[F] Փոխանցում</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="121"/>
@@ -5178,12 +5291,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="133"/>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ավարտված</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="136"/>
         <source>Missing Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Բացակայող ֆայլեր</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="150"/>
@@ -5207,7 +5320,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/transferlistdelegate.cpp" line="229"/>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 առաջ</translation>
     </message>
 </context>
 <context>
@@ -5231,199 +5344,199 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="586"/>
+        <location filename="../gui/transferlistwidget.cpp" line="587"/>
         <source>Column visibility</source>
         <translation>Սյուների տեսքը</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="870"/>
+        <location filename="../gui/transferlistwidget.cpp" line="871"/>
         <source>Label</source>
         <translation>Նիշը</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="256"/>
+        <location filename="../gui/transferlistwidget.cpp" line="257"/>
         <source>Choose save path</source>
         <translation>Ընտրեք պահպանելու տեղը</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="505"/>
+        <location filename="../gui/transferlistwidget.cpp" line="506"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Torrent-ների բեռնման արագ. սահ-ում</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="538"/>
+        <location filename="../gui/transferlistwidget.cpp" line="539"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Torrent-ների փոխանցման արագ. սահ-ում</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="574"/>
+        <location filename="../gui/transferlistwidget.cpp" line="575"/>
         <source>Recheck confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="574"/>
+        <location filename="../gui/transferlistwidget.cpp" line="575"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="658"/>
+        <location filename="../gui/transferlistwidget.cpp" line="659"/>
         <source>New Label</source>
         <translation>Նոր նիշ</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="658"/>
+        <location filename="../gui/transferlistwidget.cpp" line="659"/>
         <source>Label:</source>
         <translation>Նիշը.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="664"/>
+        <location filename="../gui/transferlistwidget.cpp" line="665"/>
         <source>Invalid label name</source>
         <translation>Նշանի սխալ անուն</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="664"/>
+        <location filename="../gui/transferlistwidget.cpp" line="665"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Անունը նշելիս մի օգտագործեք որևէ հատուկ նշան։</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="692"/>
+        <location filename="../gui/transferlistwidget.cpp" line="693"/>
         <source>Rename</source>
         <translation>Անվանափոխել</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="692"/>
+        <location filename="../gui/transferlistwidget.cpp" line="693"/>
         <source>New name:</source>
         <translation>Նոր անունը.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="733"/>
+        <location filename="../gui/transferlistwidget.cpp" line="734"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Վերսկսել</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="735"/>
+        <location filename="../gui/transferlistwidget.cpp" line="736"/>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="737"/>
+        <location filename="../gui/transferlistwidget.cpp" line="738"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Դադար</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="739"/>
+        <location filename="../gui/transferlistwidget.cpp" line="740"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Ջնջել</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="741"/>
+        <location filename="../gui/transferlistwidget.cpp" line="742"/>
         <source>Preview file...</source>
         <translation>Նախն. դիտում…</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="743"/>
+        <location filename="../gui/transferlistwidget.cpp" line="744"/>
         <source>Limit share ratio...</source>
         <translation>Արագ-ան սահ-ներ...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="745"/>
+        <location filename="../gui/transferlistwidget.cpp" line="746"/>
         <source>Limit upload rate...</source>
         <translation>Փոխանցման սահ-ը…</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="747"/>
+        <location filename="../gui/transferlistwidget.cpp" line="748"/>
         <source>Limit download rate...</source>
         <translation>Բեռնման սահմանափակումը…</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="749"/>
+        <location filename="../gui/transferlistwidget.cpp" line="750"/>
         <source>Open destination folder</source>
         <translation>Բացել պարունակող թղթապանակը</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="751"/>
+        <location filename="../gui/transferlistwidget.cpp" line="752"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Շարժել վերև</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="753"/>
+        <location filename="../gui/transferlistwidget.cpp" line="754"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Շարժել ներքև</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="755"/>
+        <location filename="../gui/transferlistwidget.cpp" line="756"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>Հերթում առաջ</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="757"/>
+        <location filename="../gui/transferlistwidget.cpp" line="758"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>Հերթում հետ</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="759"/>
+        <location filename="../gui/transferlistwidget.cpp" line="760"/>
         <source>Set location...</source>
         <translation>Բեռնման տեղը...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="765"/>
+        <location filename="../gui/transferlistwidget.cpp" line="766"/>
         <source>Copy name</source>
-        <translation type="unfinished"></translation>
+        <translation>Պատճենել անունը</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="912"/>
+        <location filename="../gui/transferlistwidget.cpp" line="913"/>
         <source>Priority</source>
         <translation>Առաջնայնությունը</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="761"/>
+        <location filename="../gui/transferlistwidget.cpp" line="762"/>
         <source>Force recheck</source>
         <translation>Ստիպ. վերստուգում</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="763"/>
+        <location filename="../gui/transferlistwidget.cpp" line="764"/>
         <source>Copy magnet link</source>
         <translation>Պատճենել magnet հղումը</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="767"/>
+        <location filename="../gui/transferlistwidget.cpp" line="768"/>
         <source>Super seeding mode</source>
         <translation>Գերփոխանցման եղանակ</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="770"/>
+        <location filename="../gui/transferlistwidget.cpp" line="771"/>
         <source>Rename...</source>
         <translation>Անվանափոխել...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="772"/>
+        <location filename="../gui/transferlistwidget.cpp" line="773"/>
         <source>Download in sequential order</source>
         <translation>Բեռնել հաջորդական կարգով</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="775"/>
+        <location filename="../gui/transferlistwidget.cpp" line="776"/>
         <source>Download first and last piece first</source>
         <translation>Բեռնել առաջին և վերջին մասերը</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="871"/>
+        <location filename="../gui/transferlistwidget.cpp" line="872"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Նոր...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="872"/>
+        <location filename="../gui/transferlistwidget.cpp" line="873"/>
         <source>Reset</source>
         <comment>Reset label</comment>
-        <translation>Ետարկել</translation>
+        <translation>Վերակայել</translation>
     </message>
 </context>
 <context>
@@ -5431,7 +5544,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Torrent-ի բեռնման/փոխանցման սահ-եր</translation>
+        <translation>Torrent-ի ներբեռնելու/վերբեռնելու սահ-եր</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="20"/>
@@ -5465,7 +5578,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="79"/>
-        <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
+        <source>Web UI Error - Unable to bind Web UI to port %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5478,7 +5591,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message utf8="true">
         <location filename="../gui/about_imp.h" line="56"/>
-        <source>Copyright ©2006-2013 The qBittorrent project</source>
+        <source>Copyright ©2006-2015 The qBittorrent project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5494,12 +5607,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/about_imp.h" line="62"/>
         <source>Forum: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ֆորում.</translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="65"/>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="unfinished"></translation>
+        <translation>IRC: #qbittorrent on Freenode</translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="82"/>
@@ -5566,7 +5679,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/login.ui" line="161"/>
         <source>Cancel</source>
-        <translation>Մերժել</translation>
+        <translation>Չեղարկել</translation>
     </message>
 </context>
 <context>
@@ -5590,9 +5703,9 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="296"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="293"/>
         <source>Cancel</source>
-        <translation>Մերժել</translation>
+        <translation>Չեղարկել</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="14"/>
@@ -5706,12 +5819,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="289"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="286"/>
         <source>Create and save...</source>
         <translation>Ստեղծել կամ պահպանել…</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="260"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="257"/>
         <source>Progress:</source>
         <translation>Ընթացքը.</translation>
     </message>
@@ -5731,17 +5844,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/downloadfromurldlg.ui" line="77"/>
         <source>Download</source>
-        <translation>Բեռնել</translation>
+        <translation>Ներբեռնել</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.ui" line="84"/>
         <source>Cancel</source>
-        <translation>Մերժել</translation>
+        <translation>Չեղարկել</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.ui" line="14"/>
         <source>Download from urls</source>
-        <translation>Բեռնել հղումներից</translation>
+        <translation>Ներբեռնել հղումներից</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.h" line="97"/>
@@ -5773,37 +5886,42 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="55"/>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine/engineselect.ui" line="60"/>
         <source>Url</source>
         <translation>Հղումը</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="60"/>
-        <location filename="../searchengine/engineselect.ui" line="119"/>
+        <location filename="../searchengine/engineselect.ui" line="65"/>
+        <location filename="../searchengine/engineselect.ui" line="124"/>
         <source>Enabled</source>
         <translation>Միացված է</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="78"/>
+        <location filename="../searchengine/engineselect.ui" line="83"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
         <translation>Կարող եք գտնել որոնման խրոցակներ այստեղից. &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="93"/>
+        <location filename="../searchengine/engineselect.ui" line="98"/>
         <source>Install a new one</source>
         <translation>Տեղակայել նորը</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="100"/>
+        <location filename="../searchengine/engineselect.ui" line="105"/>
         <source>Check for updates</source>
         <translation>Ստուգել թարմացումները</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="107"/>
+        <location filename="../searchengine/engineselect.ui" line="112"/>
         <source>Close</source>
         <translation>Փակել</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="124"/>
+        <location filename="../searchengine/engineselect.ui" line="129"/>
         <source>Uninstall</source>
         <translation>Ջնջել</translation>
     </message>
@@ -5811,12 +5929,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="176"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="178"/>
         <source>Uninstall warning</source>
         <translation>Զգուշացում ջնջելիս</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="176"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="178"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -5825,135 +5943,135 @@ However, those plugins were disabled.</source>
 Այնուհանդերձ այդ խրոցակները անջատվել են։</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="178"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="180"/>
         <source>Uninstall success</source>
         <translation>Հաջողությամբ ջնջվեց</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="339"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="345"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="354"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="360"/>
         <source>Select search plugins</source>
         <translation>Ընտրեք փնտրման խրոցակը</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="355"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="361"/>
         <source>qBittorrent search plugins</source>
         <translation>qBittorrent-ի փնտրման խրոցակներ</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="239"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="264"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="269"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="278"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="241"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="266"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="271"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="281"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="284"/>
         <source>Search plugin install</source>
         <translation>Տեղակայել փնտրման խրոցակ</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="119"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="190"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="301"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="121"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="192"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="304"/>
         <source>Yes</source>
         <translation>Այո</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="122"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="156"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="193"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="304"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="124"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="158"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="195"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="307"/>
         <source>No</source>
         <translation>Ոչ</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="264"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="269"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="278"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="266"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="271"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="281"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="407"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="441"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="462"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="469"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="284"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="413"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="447"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="468"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="475"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="239"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="241"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 փնտրող խրոցակի ավելի նոր տարբերակն է տեղակայված։</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="407"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="441"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="462"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="469"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="413"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="447"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="468"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="475"/>
         <source>Search plugin update</source>
         <translation>Փնտրման խրոցակի թարմացում</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="441"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="462"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="447"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="468"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Ցավոք թարմացումների հասանելիությունը հանարավոր չէ ստուգել։</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="407"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="413"/>
         <source>All your plugins are already up to date.</source>
         <translation>Ձեր բոլոր խրոցակները նոր են։</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="264"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="266"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 փնտրման խրոցակները չեն կարող թարմացվել, կպահվեն հները։</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="269"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="271"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 փնտրման  խրոցակները չեն կարող տեղակայվել։</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="178"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="180"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>Բոլոր ընտրված խրոցակները հաջողությամբ ջնջվեցին</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="278"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="281"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 խրոցակը հաջողությամբ ջնջվեց։</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="281"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="284"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 խրոցակը հաջողությամբ տեղակայվեց։</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="339"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="345"/>
         <source>Invalid link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="469"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="475"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Ցավոք %1 խրոցակի տեղակայումը ձախողվեց։</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="331"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="340"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="337"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="346"/>
         <source>New search engine plugin URL</source>
         <translation>Փնտրման խրոցակի հղումը</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="332"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="341"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="338"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="347"/>
         <source>URL:</source>
         <translation>Հղումը.</translation>
     </message>
@@ -5969,10 +6087,10 @@ However, those plugins were disabled.</source>
 <context>
     <name>fsutils</name>
     <message>
-        <location filename="../core/fs_utils.cpp" line="454"/>
-        <location filename="../core/fs_utils.cpp" line="457"/>
-        <location filename="../core/fs_utils.cpp" line="489"/>
-        <location filename="../core/fs_utils.cpp" line="501"/>
+        <location filename="../core/fs_utils.cpp" line="475"/>
+        <location filename="../core/fs_utils.cpp" line="478"/>
+        <location filename="../core/fs_utils.cpp" line="510"/>
+        <location filename="../core/fs_utils.cpp" line="522"/>
         <source>Downloads</source>
         <translation>Բեռնումներ</translation>
     </message>
@@ -6010,42 +6128,42 @@ However, those plugins were disabled.</source>
         <translation>ՏԲ</translation>
     </message>
     <message>
-        <location filename="../core/misc.cpp" line="309"/>
+        <location filename="../core/misc.cpp" line="307"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/վ</translation>
     </message>
     <message>
-        <location filename="../core/misc.cpp" line="419"/>
+        <location filename="../core/misc.cpp" line="417"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1ժ %2ր</translation>
     </message>
     <message>
-        <location filename="../core/misc.cpp" line="423"/>
+        <location filename="../core/misc.cpp" line="421"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1օր %2ժ</translation>
     </message>
     <message>
-        <location filename="../core/misc.cpp" line="299"/>
+        <location filename="../core/misc.cpp" line="297"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Անհայտ</translation>
     </message>
     <message>
-        <location filename="../core/misc.cpp" line="237"/>
+        <location filename="../core/misc.cpp" line="235"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation>Բոլոր բեռնումները ավարտվել են։ Համակարգիչը անջատվում է։</translation>
+        <translation>Բոլոր ներբեռնումները ավարտվել են։ Համակարգիչը անջատվում է։</translation>
     </message>
     <message>
-        <location filename="../core/misc.cpp" line="412"/>
+        <location filename="../core/misc.cpp" line="410"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>« 1ր</translation>
     </message>
     <message>
-        <location filename="../core/misc.cpp" line="415"/>
+        <location filename="../core/misc.cpp" line="413"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1րոպե</translation>
@@ -6074,119 +6192,119 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1128"/>
-        <location filename="../gui/options_imp.cpp" line="1130"/>
+        <location filename="../gui/options_imp.cpp" line="1172"/>
+        <location filename="../gui/options_imp.cpp" line="1174"/>
         <source>Choose export directory</source>
         <translation>Ընտրեք արտածման տեղը</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1166"/>
-        <location filename="../gui/options_imp.cpp" line="1168"/>
-        <location filename="../gui/options_imp.cpp" line="1179"/>
-        <location filename="../gui/options_imp.cpp" line="1181"/>
+        <location filename="../gui/options_imp.cpp" line="1210"/>
+        <location filename="../gui/options_imp.cpp" line="1212"/>
+        <location filename="../gui/options_imp.cpp" line="1223"/>
+        <location filename="../gui/options_imp.cpp" line="1225"/>
         <source>Choose a save directory</source>
         <translation>Ընտրեք պահպանելու տեղը</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1152"/>
-        <location filename="../gui/options_imp.cpp" line="1154"/>
-        <source>Choose an ip filter file</source>
-        <translation>Ընտրեք ip ֆիլտր ֆայլը</translation>
-    </message>
-    <message>
-        <location filename="../gui/options_imp.cpp" line="1082"/>
+        <location filename="../gui/options_imp.cpp" line="1126"/>
         <source>Add directory to scan</source>
         <translation>Ստուգելու համար ավելացնել թղթապանակ</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1089"/>
+        <location filename="../gui/options_imp.cpp" line="1133"/>
         <source>Folder is already being watched.</source>
         <translation>Թղթապանակը արդեն ստուգվել է։</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1092"/>
+        <location filename="../gui/options_imp.cpp" line="1136"/>
         <source>Folder does not exist.</source>
         <translation>Թղթապանակը գոյություն չունի։</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1095"/>
+        <location filename="../gui/options_imp.cpp" line="1139"/>
         <source>Folder is not readable.</source>
         <translation>Թղթապանակը կարդալու համար չէ։</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1105"/>
+        <location filename="../gui/options_imp.cpp" line="1149"/>
         <source>Failure</source>
         <translation>Ձախողում</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1105"/>
+        <location filename="../gui/options_imp.cpp" line="1149"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Հնարավոր չէ ստուգման համարավելացնել թղթապանակ՝ &apos;%1&apos;: %2 </translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1152"/>
-        <location filename="../gui/options_imp.cpp" line="1154"/>
+        <location filename="../gui/options_imp.cpp" line="1196"/>
+        <location filename="../gui/options_imp.cpp" line="1198"/>
         <source>Filters</source>
         <translation>Ֆիլտրեր</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1220"/>
+        <location filename="../gui/options_imp.cpp" line="1196"/>
+        <location filename="../gui/options_imp.cpp" line="1198"/>
+        <source>Choose an IP filter file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options_imp.cpp" line="1264"/>
         <source>SSL Certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1231"/>
+        <location filename="../gui/options_imp.cpp" line="1275"/>
         <source>SSL Key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1262"/>
+        <location filename="../gui/options_imp.cpp" line="1306"/>
         <source>Parsing error</source>
         <translation>Սխալ</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1262"/>
+        <location filename="../gui/options_imp.cpp" line="1306"/>
         <source>Failed to parse the provided IP filter</source>
         <translation> IP ֆիլտրի տրամադրման սխալ</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1264"/>
+        <location filename="../gui/options_imp.cpp" line="1308"/>
         <source>Successfully refreshed</source>
         <translation>Հաջողությամբ թարմացվեց</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1264"/>
+        <location filename="../gui/options_imp.cpp" line="1308"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Հաջողությամբ է ստուգվել IP ֆիլտրով. %1 կանոններ են կիրառվել։</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1343"/>
+        <location filename="../gui/options_imp.cpp" line="1387"/>
         <source>Invalid key</source>
         <translation>Սխալ բանալի</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1343"/>
+        <location filename="../gui/options_imp.cpp" line="1387"/>
         <source>This is not a valid SSL key.</source>
         <translation>Սա ճիշտ SSLբանալի չէ։</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1358"/>
+        <location filename="../gui/options_imp.cpp" line="1402"/>
         <source>Invalid certificate</source>
         <translation>Սխալ վավերագիր</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1358"/>
+        <location filename="../gui/options_imp.cpp" line="1402"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Սա ճիշտ SSL վավերագիր չէ։</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1367"/>
+        <location filename="../gui/options_imp.cpp" line="1411"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1370"/>
+        <location filename="../gui/options_imp.cpp" line="1414"/>
         <source>Time Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6263,7 +6381,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../searchengine/search.ui" line="113"/>
         <source>Download</source>
-        <translation>Բեռնել</translation>
+        <translation>Ներբեռնել</translation>
     </message>
     <message>
         <location filename="../searchengine/search.ui" line="123"/>
