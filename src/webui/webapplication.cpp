@@ -688,18 +688,14 @@ void WebApplication::parsePath()
 
     // check action for requested path
     QStringList pathItems = request().path.split('/', QString::SkipEmptyParts);
-    if (!pathItems.empty()) {
-        if (actions_.contains(pathItems.front())) {
-            scope_ = pathItems.front();
-            pathItems.pop_front();
-        }
+    if (!pathItems.empty() && actions_.contains(pathItems.front())) {
+        scope_ = pathItems.front();
+        pathItems.pop_front();
     }
 
-    if (!pathItems.empty()) {
-        if (actions_[scope_].contains(pathItems.front())) {
-            action_ = pathItems.front();
-            pathItems.pop_front();
-        }
+    if (!pathItems.empty() && actions_[scope_].contains(pathItems.front())) {
+        action_ = pathItems.front();
+        pathItems.pop_front();
     }
 
     args_ = pathItems;
