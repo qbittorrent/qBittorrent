@@ -228,6 +228,7 @@ options_imp::options_imp(QWidget *parent):
   connect(textProxyPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   // Misc tab
   connect(checkIPFilter, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkIpFilterTrackers, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
   connect(textFilterPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkEnableQueueing, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinMaxActiveDownloads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
@@ -457,8 +458,10 @@ void options_imp::saveOptions() {
   // Misc preferences
   // * IPFilter
   pref->setFilteringEnabled(isFilteringEnabled());
-  if (isFilteringEnabled())
+  if (isFilteringEnabled()) {
+    pref->setFilteringTrackerEnabled(checkIpFilterTrackers->isChecked());
     pref->setFilter(textFilterPath->text());
+  }
   // End IPFilter preferences
   // Queueing system
   pref->setQueueingSystemEnabled(isQueueingSystemEnabled());
@@ -764,6 +767,7 @@ void options_imp::loadOptions() {
   // Misc preferences
   // * IP Filter
   checkIPFilter->setChecked(pref->isFilteringEnabled());
+  checkIpFilterTrackers->setChecked(pref->isFilteringTrackerEnabled());
   textFilterPath->setText(fsutils::toNativePath(pref->getFilter()));
   // End IP Filter
   // Queueing system preferences

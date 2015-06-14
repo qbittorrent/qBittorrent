@@ -282,6 +282,8 @@ public:
     // IP Filter
     bool isFilteringEnabled() const;
     void setFilteringEnabled(bool enabled);
+    bool isFilteringTrackerEnabled() const;
+    void setFilteringTrackerEnabled(bool enabled);
     QString getFilter() const;
     void setFilter(const QString &path);
     QStringList bannedIPs() const;

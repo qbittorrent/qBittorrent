@@ -414,9 +414,9 @@ void QBtSession::configureSession() {
     // * Session settings
     session_settings sessionSettings = s->settings();
     sessionSettings.user_agent = "qBittorrent " VERSION;
-    //std::cout << "HTTP User-Agent is " << sessionSettings.user_agent << std::endl;
     logger->addMessage(tr("HTTP User-Agent is %1").arg(misc::toQString(sessionSettings.user_agent)));
 
+    sessionSettings.apply_ip_filter_to_trackers = pref->isFilteringTrackerEnabled();
     sessionSettings.upnp_ignore_nonrouters = true;
     sessionSettings.use_dht_as_fallback = false;
     // Disable support for SSL torrents for now

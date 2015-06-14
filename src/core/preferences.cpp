@@ -971,6 +971,16 @@ void Preferences::setFilteringEnabled(bool enabled)
     setValue("Preferences/IPFilter/Enabled", enabled);
 }
 
+bool Preferences::isFilteringTrackerEnabled() const
+{
+	return value("Preferences/IPFilter/FilterTracker", false).toBool();
+}
+
+void Preferences::setFilteringTrackerEnabled(bool enabled)
+{
+	setValue("Preferences/IPFilter/FilterTracker", enabled);
+}
+
 QString Preferences::getFilter() const
 {
     return fsutils::fromNativePath(value("Preferences/IPFilter/File").toString());
