@@ -98,7 +98,7 @@ class about : public QDialog, private Ui::AboutDlg{
           <li><u>Galician:</u> Marcos Lans (marcoslansgarza@gmail.com) and antiparvos(Transifex)</li>\
           <li><u>Georgian:</u> Beqa Arabuli (arabulibeqa@yahoo.com)</li>\
           <li><u>German:</u> Niels Hoffmann (zentralmaschine@users.sourceforge.net), schnurlos (schnurlos@gmail.com)</li>\
-          <li><u>Greek:</u> Tsvetan Bankov (emerge_life@users.sourceforge.net), Stephanos Antaris (santaris@csd.auth.gr), sledgehammer999(hammered999@gmail.com) and Γιάννης Ανθυμίδης Evropi(Transifex)</li>\
+          <li><u>Greek:</u> Tsvetan Bankov (emerge_life@users.sourceforge.net), Stephanos Antaris (santaris@csd.auth.gr), sledgehammer999(hammered999@gmail.com), Γιάννης Ανθυμίδης Evropi(Transifex) and Panagiotis Tabakis(tabakisp@gmail.com)</li>\
           <li><u>Hebrew:</u> David Deutsch (d.deffo@gmail.com)</li>\
           <li><u>Hungarian:</u> Majoros Péter (majoros.peterj@gmail.com)</li>\
           <li><u>Italian:</u> bovirus (bovirus@live.it) and Matteo Sechi (bu17714@gmail.com)</li>\
