@@ -253,8 +253,20 @@ void Application::initializeTranslation()
     Preferences* const pref = Preferences::instance();
     // Load translation
     QString locale = pref->getLocale();
+
     if (locale.isEmpty()) {
-        locale = QLocale::system().name();
+        QLocale systemLocale = QLocale::system();
+        // Check if Chinese and act according to script instead of country
+        if (systemLocale.language() == QLocale::Chinese) {
+            if (systemLocale.script() == QLocale::SimplifiedHanScript)
+                locale = "zh_Hans";
+            else
+                locale = "zh_Hant";
+        }
+        else {
+            locale = systemLocale.name();
+        }
+
         pref->setLocale(locale);
     }
 
