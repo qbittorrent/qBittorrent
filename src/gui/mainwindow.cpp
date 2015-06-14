@@ -162,9 +162,9 @@ MainWindow::MainWindow(QWidget *parent)
     pauseAllMenu->addAction(actionPause_All);
     actionPause->setMenu(pauseAllMenu);
     QMenu *lockMenu = new QMenu(this);
-    QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("Set the password..."));
+    QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("&Set Password"));
     connect(defineUiLockPasswdAct, SIGNAL(triggered()), this, SLOT(defineUILockPassword()));
-    QAction *clearUiLockPasswdAct = lockMenu->addAction(tr("Clear the password"));
+    QAction *clearUiLockPasswdAct = lockMenu->addAction(tr("&Clear Password"));
     connect(clearUiLockPasswdAct, SIGNAL(triggered()), this, SLOT(clearUILockPassword()));
     actionLock_qBittorrent->setMenu(lockMenu);
 
