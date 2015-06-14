@@ -64,6 +64,11 @@ options_imp::options_imp(QWidget *parent):
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   setModal(true);
+
+#if (defined(Q_OS_UNIX))
+  setWindowTitle(tr("Preferences"));
+#endif
+
   // Icons
   tabSelection->item(TAB_UI)->setIcon(IconProvider::instance()->getIcon("preferences-desktop"));
   tabSelection->item(TAB_BITTORRENT)->setIcon(IconProvider::instance()->getIcon("preferences-system-network"));
