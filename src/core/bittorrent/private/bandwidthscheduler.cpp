@@ -90,7 +90,7 @@ void BandwidthScheduler::start()
     if (new_mode != alt_bw_enabled)
         emit switchToAlternativeMode(new_mode);
 
-    // Timeout regularly to accomodate for external system clock changes
+    // Timeout regularly to accommodate for external system clock changes
     // eg from the user or from a timesync utility
     QTimer::start(1500);
 }

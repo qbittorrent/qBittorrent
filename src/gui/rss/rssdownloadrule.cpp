@@ -83,7 +83,7 @@ bool RssDownloadRule::matches(const QString &article_title) const
         if (ep.endsWith('-')) { // Infinite range
           int epOurs = ep.left(ep.size() - 1).toInt();
 
-          // Extract partial match from article and ocmpare as digits
+          // Extract partial match from article and compare as digits
           pos = reg.indexIn(article_title);
           if (pos != -1) {
             int epTheirs = reg.cap(1).toInt();
@@ -100,7 +100,7 @@ bool RssDownloadRule::matches(const QString &article_title) const
           int epOursFirst = range.first().toInt();
           int epOursLast = range.last().toInt();
 
-          // Extract partial match from article and ocmpare as digits
+          // Extract partial match from article and compare as digits
           pos = reg.indexIn(article_title);
           if (pos != -1) {
             int epTheirs = reg.cap(1).toInt();

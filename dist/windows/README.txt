@@ -11,7 +11,7 @@ TRANSLATORS:
 5. Save the files with utf8 encoding and BOM.
 6. Submit your changes: 1) as a pull request to the official git repo or
    2) open an issue to the bugtracker and attach them or 3) via email or
-   4)the same way you provide the tranlations for qbt itself
+   4)the same way you provide the translations for qbt itself
 
 PACKAGERS:
 

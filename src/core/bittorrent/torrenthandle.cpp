@@ -1038,7 +1038,7 @@ qreal TorrentHandle::realRatio() const
     if (all_time_download < total_done) {
         // We have more data on disk than we downloaded
         // either because the user imported the file
-        // or because of crash the download histroy was lost.
+        // or because of crash the download history was lost.
         // Otherwise will get weird ratios
         // eg when downloaded 1KB and uploaded 700MB of a
         // 700MB torrent.

@@ -13,7 +13,7 @@ int myFunction(int a)
 myClass::myClass(int *parent)
     : m_parent(parent)
 {
-    //initialiaze
+    //initialize
 }
 
 int myClass::myMethod(int a)
@@ -119,10 +119,10 @@ Generally it will depend on the particular piece of code and would be determined
 
 ### 4. File encoding and line endings.###
 
-UTF-8 and Unix-like line ending (LF). Unless some platform speficic files need other encodings/line endings.
+UTF-8 and Unix-like line ending (LF). Unless some platform specific files need other encodings/line endings.
 
 ### 5. Initialization lists.###
-Initialization lists should be vertical. This will allow for more easily readable diffs. The inilization colon should be indented and in its own line along with first argument. The rest of the arguments should be indented too and have the comma prepended.
+Initialization lists should be vertical. This will allow for more easily readable diffs. The initialization colon should be indented and in its own line along with first argument. The rest of the arguments should be indented too and have the comma prepended.
 ```c++
 myClass::myClass(int a, int b, int c, int d)
     : priv_a(a)

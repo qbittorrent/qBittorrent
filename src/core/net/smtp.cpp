@@ -171,7 +171,7 @@ void Smtp::readyRead()
         QByteArray line = m_buffer.left(pos);
         m_buffer = m_buffer.mid(pos + 2);
         qDebug() << "Response line:" << line;
-        // Extract reponse code
+        // Extract response code
         QByteArray code = line.left(3);
 
         switch (m_state) {

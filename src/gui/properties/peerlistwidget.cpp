@@ -90,8 +90,8 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent):
   hideColumn(PeerListDelegate::COL_COUNT);
   if (!Preferences::instance()->resolvePeerCountries())
     hideColumn(PeerListDelegate::COUNTRY);
-  //To also migitate the above issue, we have to resize each column when
-  //its size is 0, because explicitely 'showing' the column isn't enough
+  //To also mitigate the above issue, we have to resize each column when
+  //its size is 0, because explicitly 'showing' the column isn't enough
   //in the above scenario.
   for (unsigned int i=0; i<PeerListDelegate::IP_HIDDEN; i++)
     if (!columnWidth(i))
