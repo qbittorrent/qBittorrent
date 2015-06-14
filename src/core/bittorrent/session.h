@@ -36,6 +36,7 @@
 #include <QVector>
 #include <QMutex>
 #include <QWaitCondition>
+#include <QNetworkConfigurationManager>
 
 #include "core/tristatebool.h"
 #include "core/types.h"
@@ -227,6 +228,10 @@ namespace BitTorrent
         void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
         void switchToAlternativeMode(bool alternative);
 
+        // Session reconfiguration triggers
+        void networkOnlineStateChanged(const bool online);
+        void networkConfigurationChange(const QNetworkConfiguration&);
+
     private:
         explicit Session(QObject *parent = 0);
         ~Session();
@@ -242,7 +247,7 @@ namespace BitTorrent
         void setProxySettings(libtorrent::proxy_settings proxySettings);
         void adjustLimits();
         void adjustLimits(libtorrent::session_settings &sessionSettings);
-        void setListeningPort(int port);
+        void setListeningPort();
         void setDefaultSavePath(const QString &path);
         void setDefaultTempPath(const QString &path = QString());
         void preAllocateAllFiles(bool b);
@@ -355,6 +360,8 @@ namespace BitTorrent
         QMutex m_alertsMutex;
         QWaitCondition m_alertsWaitCondition;
         QVector<libtorrent::alert *> m_alerts;
+
+        QNetworkConfigurationManager m_networkManager;
 
         static Session *m_instance;
     };
