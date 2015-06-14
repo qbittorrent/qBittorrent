@@ -50,6 +50,7 @@
 #include <winreg.h>
 #endif
 
+#include <cstdlib>
 #include "core/utils/fs.h"
 #include "core/utils/misc.h"
 
