@@ -208,7 +208,7 @@ void PropertiesWidget::clear() {
   qDebug("Clearing torrent properties");
   save_path->clear();
   lbl_creationDate->clear();
-  pieceSize_lbl->clear();
+  label_total_pieces_val->clear();
   hash_lbl->clear();
   comment_text->clear();
   progress_lbl->clear();
@@ -229,8 +229,16 @@ void PropertiesWidget::clear() {
   listWebSeeds->clear();
   m_contentFilerLine->clear();
   PropListModel->model()->clear();
-  showPiecesAvailability(false);
-  showPiecesDownloaded(false);
+  label_eta_val->clear();
+  label_seeds_val->clear();
+  label_peers_val->clear();
+  label_dl_speed_val->clear();
+  label_upload_speed_val->clear();
+  label_total_size_val->clear();
+  label_completed_on_val->clear();
+  label_last_complete_val->clear();
+  label_created_by_val->clear();
+  label_added_on_val->clear();
 }
 
 QTorrentHandle PropertiesWidget::getCurrentTorrent() const {
@@ -270,13 +278,18 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle& _h)
     PropListModel->model()->clear();
     if (h.has_metadata()) {
       // Creation date
-      lbl_creationDate->setText(h.creation_date());
-      // Piece size
-      pieceSize_lbl->setText(misc::friendlyUnit(h.piece_length()));
+      lbl_creationDate->setText(misc::toQString(h.creation_date_unix(), Qt::DefaultLocaleShortDate));
+
+      label_total_size_val->setText(misc::friendlyUnit(h.total_size()));
+
       // Comment
       comment_text->setHtml(misc::parseHtmlLinks(h.comment()));
+
       // URL seeds
       loadUrlSeeds();
+
+      label_created_by_val->setText(h.creator());
+
       // List files in torrent
 #if LIBTORRENT_VERSION_NUM < 10000
       PropListModel->model()->setupModelData(h.get_torrent_info());
@@ -284,10 +297,12 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle& _h)
       PropListModel->model()->setupModelData(*h.torrent_file());
 #endif
       filesList->setExpanded(PropListModel->index(0, 0), true);
+
       // Load file priorities
       PropListModel->model()->updateFilesPriorities(h.file_priorities());
     }
   } catch(const invalid_handle& e) { }
+
   // Load dynamic data
   loadDynamicData();
 }
@@ -326,7 +341,7 @@ void PropertiesWidget::saveSettings() {
     sizes = slideSizes;
   qDebug("Sizes: %d", sizes.size());
   if (sizes.size() == 2) {
-    pref->setPropSplitterSizes(QString::number(sizes.first())+','+QString::number(sizes.last()));
+    pref->setPropSplitterSizes(QString::number(sizes.first()) + ',' + QString::number(sizes.last()));
   }
   pref->setPropFileListState(filesList->header()->saveState());
   // Remember current tab
@@ -340,94 +355,121 @@ void PropertiesWidget::reloadPreferences() {
 }
 
 void PropertiesWidget::loadDynamicData() {
-  // Refresh only if the torrent handle is valid and if visible
-  if (!h.is_valid() || main_window->getCurrentTabWidget() != transferList || state != VISIBLE) return;
-  try {
-    // Transfer infos
-    if (stackedProperties->currentIndex() == PropTabBar::MAIN_TAB) {
-      libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters
-                                                   | torrent_handle::query_distributed_copies
-                                                   | torrent_handle::query_pieces);
+     // Refresh only if the torrent handle is valid and if visible
+     if (!h.is_valid() || main_window->getCurrentTabWidget() != transferList || state != VISIBLE) return;
+     try {
+     switch(stackedProperties->currentIndex()) {
+     case PropTabBar::MAIN_TAB: {
+         // Transfer infos
+         libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters
+                                                      | torrent_handle::query_distributed_copies
+                                                      | torrent_handle::query_pieces);
 
-      wasted->setText(misc::friendlyUnit(status.total_failed_bytes+status.total_redundant_bytes));
-      upTotal->setText(misc::friendlyUnit(status.all_time_upload) + " ("+misc::friendlyUnit(status.total_payload_upload)+" "+tr("this session")+")");
-      dlTotal->setText(misc::friendlyUnit(status.all_time_download) + " ("+misc::friendlyUnit(status.total_payload_download)+" "+tr("this session")+")");
-      lbl_uplimit->setText(h.upload_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.upload_limit())+tr("/s", "/second (i.e. per second)"));
-      lbl_dllimit->setText(h.download_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.download_limit())+tr("/s", "/second (i.e. per second)"));
-      QString elapsed_txt = misc::userFriendlyDuration(status.active_time);
-      if (h.is_seed(status)) {
-        elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(status.seeding_time))+")";
-      }
-      lbl_elapsed->setText(elapsed_txt);
-      if (status.connections_limit > 0)
-        lbl_connections->setText(QString::number(status.num_connections)+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(status.connections_limit))+")");
-      else
-        lbl_connections->setText(QString::number(status.num_connections));
-      // Update next announce time
-      reannounce_lbl->setText(misc::userFriendlyDuration(status.next_announce.total_seconds()));
-      // Update ratio info
-      const qreal ratio = QBtSession::instance()->getRealRatio(status);
-      shareRatio->setText(ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
-      if (!h.is_seed(status) && status.has_metadata) {
-        showPiecesDownloaded(true);
-        // Downloaded pieces
+         wasted->setText(misc::friendlyUnit(status.total_failed_bytes + status.total_redundant_bytes));
+         upTotal->setText(misc::friendlyUnit(status.all_time_upload) + " (" + misc::friendlyUnit(status.total_payload_upload) + " " + tr("session") + ")");
+         dlTotal->setText(misc::friendlyUnit(status.all_time_download) + " (" + misc::friendlyUnit(status.total_payload_download) + " " + tr("session") + ")");
+         lbl_uplimit->setText(h.upload_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.upload_limit()) + tr("/s", "/second (i.e. per second)"));
+         lbl_dllimit->setText(h.download_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.download_limit()) + tr("/s", "/second (i.e. per second)"));
+         QString elapsed_txt = misc::userFriendlyDuration(status.active_time);
+         if (h.is_seed(status))
+             elapsed_txt += " (" + tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(status.seeding_time)) + ")";
+
+         lbl_elapsed->setText(elapsed_txt);
+         lbl_connections->setText(QString::number(status.num_connections));
+         label_eta_val->setText(misc::userFriendlyDuration(h.eta()));
+
+         // Update next announce time
+         reannounce_lbl->setText(misc::userFriendlyDuration(status.next_announce.total_seconds()));
+
+         // Update ratio info
+         const qreal ratio = QBtSession::instance()->getRealRatio(status);
+         shareRatio->setText(ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
+
+         label_seeds_val->setText(QString::number(status.num_seeds) + " " + tr("(%1 total)","e.g. (10 total)").arg(QString::number(status.list_seeds)));
+         label_peers_val->setText(QString::number(status.num_peers - status.num_seeds) + " " + tr("(%1 total)","e.g. (10 total)").arg(QString::number(status.list_peers - status.list_seeds)));
+
+         label_dl_speed_val->setText(misc::friendlyUnit(status.download_payload_rate) + tr("/s", "/second (i.e. per second)") + " "
+                                     + tr("(%1/s avg.)","e.g. (100KiB/s avg.)").arg(misc::friendlyUnit(status.all_time_download / (1 + status.active_time - status.finished_time))));
+         label_upload_speed_val->setText(misc::friendlyUnit(status.upload_payload_rate) + tr("/s", "/second (i.e. per second)") + " "
+                                         + tr("(%1/s avg.)", "e.g. (100KiB/s avg.)").arg(misc::friendlyUnit(status.all_time_upload / (1 + status.active_time))));
+
+         label_last_complete_val->setText(status.last_seen_complete != 0 ? misc::toQString(status.last_seen_complete, Qt::DefaultLocaleShortDate) : tr("Never"));
+         label_completed_on_val->setText(status.completed_time != 0 ? misc::toQString(status.completed_time, Qt::DefaultLocaleShortDate) : "");
+         label_added_on_val->setText(misc::toQString(status.added_time, Qt::DefaultLocaleShortDate));
+
+         if (status.has_metadata)
+             label_total_pieces_val->setText(tr("%1 x %2 (have %3)", "(torrent pieces) eg 152 x 4MB (have 25)").arg(status.pieces.size()).arg(misc::friendlyUnit(h.piece_length())).arg(status.num_pieces));
+
+         if (!h.is_seed(status) && status.has_metadata) {
+             showPiecesDownloaded(true);
+             // Downloaded pieces
 #if LIBTORRENT_VERSION_NUM < 10000
-        bitfield bf(h.get_torrent_info().num_pieces(), 0);
+             bitfield bf(h.get_torrent_info().num_pieces(), 0);
 #else
-        bitfield bf(h.torrent_file()->num_pieces(), 0);
+             bitfield bf(h.torrent_file()->num_pieces(), 0);
 #endif
-        h.downloading_pieces(bf);
-        downloaded_pieces->setProgress(status.pieces, bf);
-        // Pieces availability
-        if (!h.is_paused(status) && !h.is_queued(status) && !h.is_checking(status)) {
-          showPiecesAvailability(true);
-          std::vector<int> avail;
-          h.piece_availability(avail);
-          pieces_availability->setAvailability(avail);
-          avail_average_lbl->setText(misc::accurateDoubleToString(status.distributed_copies, 3));
-        } else {
-          showPiecesAvailability(false);
-        }
-        // Progress
-        qreal progress = h.progress(status)*100.;
-        progress_lbl->setText(misc::accurateDoubleToString(progress, 1)+"%");
-      } else {
-        showPiecesAvailability(false);
-        showPiecesDownloaded(false);
-      }
-      return;
-    }
-    if (stackedProperties->currentIndex() == PropTabBar::TRACKERS_TAB) {
-      // Trackers
-      trackerList->loadTrackers();
-      return;
-    }
-    if (stackedProperties->currentIndex() == PropTabBar::PEERS_TAB) {
-      // Load peers
-      peersList->loadPeers(h);
-      return;
-    }
-    if (stackedProperties->currentIndex() == PropTabBar::FILES_TAB) {
-      libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters
-                                                   | torrent_handle::query_distributed_copies
-                                                   | torrent_handle::query_pieces);
-      // Files progress
-      if (h.is_valid() && status.has_metadata) {
-        qDebug("Updating priorities in files tab");
-        filesList->setUpdatesEnabled(false);
-        std::vector<size_type> fp;
-        h.file_progress(fp);
-        PropListModel->model()->updateFilesProgress(fp);
-        // XXX: We don't update file priorities regularly for performance
-        // reasons. This means that priorities will not be updated if
-        // set from the Web UI.
-        // PropListModel->model()->updateFilesPriorities(h.file_priorities());
-        filesList->setUpdatesEnabled(true);
-      }
-    }
-  } catch(const invalid_handle& e) {
-    qWarning() << "Caught exception in PropertiesWidget::loadDynamicData(): " << misc::toQStringU(e.what());
-  }
+             h.downloading_pieces(bf);
+             downloaded_pieces->setProgress(status.pieces, bf);
+             // Pieces availability
+             if (!h.is_paused(status) && !h.is_queued(status) && !h.is_checking(status)) {
+                 showPiecesAvailability(true);
+                 std::vector<int> avail;
+                 h.piece_availability(avail);
+                 pieces_availability->setAvailability(avail);
+                 avail_average_lbl->setText(misc::accurateDoubleToString(status.distributed_copies, 3));
+             }
+             else {
+                 showPiecesAvailability(false);
+             }
+
+             // Progress
+             qreal progress = h.progress(status)*100.;
+             progress_lbl->setText(misc::accurateDoubleToString(progress, 1) + "%");
+         }
+         else {
+         	 showPiecesAvailability(false);
+         	 showPiecesDownloaded(false);
+         }
+
+         return;
+     }
+
+     case PropTabBar::TRACKERS_TAB:
+         // Trackers
+         trackerList->loadTrackers();
+         return;
+
+     case PropTabBar::PEERS_TAB:
+         // Load peers
+         peersList->loadPeers(h);
+         return;
+
+     case PropTabBar::FILES_TAB: {
+         libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters
+                                                      | torrent_handle::query_distributed_copies
+                                                      | torrent_handle::query_pieces);
+         // Files progress
+         if (h.is_valid() && status.has_metadata) {
+             qDebug("Updating priorities in files tab");
+             filesList->setUpdatesEnabled(false);
+             std::vector<size_type> fp;
+             h.file_progress(fp);
+             PropListModel->model()->updateFilesProgress(fp);
+             // XXX: We don't update file priorities regularly for performance
+             // reasons. This means that priorities will not be updated if
+             // set from the Web UI.
+             // PropListModel->model()->updateFilesPriorities(h.file_priorities());
+             filesList->setUpdatesEnabled(true);
+         }
+         return;
+     }
+
+     default:
+         return;
+     }
+     } catch(const invalid_handle& e) {
+         qWarning() << "Caught exception in PropertiesWidget::loadDynamicData(): " << misc::toQStringU(e.what());
+     }
 }
 
 void PropertiesWidget::loadUrlSeeds() {
@@ -686,7 +728,7 @@ void PropertiesWidget::renameSelectedFile() {
           return;
         }
       }
-      const bool force_recheck = QFile::exists(h.save_path()+"/"+new_name);
+      const bool force_recheck = QFile::exists(h.save_path() + "/" + new_name);
       qDebug("Renaming %s to %s", qPrintable(old_name), qPrintable(new_name));
       h.rename_file(file_index, new_name);
       // Force recheck
@@ -743,7 +785,7 @@ void PropertiesWidget::renameSelectedFile() {
       // Rename folder in torrent files model too
       PropListModel->setData(index, new_name_last);
       // Remove old folder
-      const QDir old_folder(h.save_path()+"/"+old_path);
+      const QDir old_folder(h.save_path() + "/" + old_path);
       int timeout = 10;
       while(!QDir().rmpath(old_folder.absolutePath()) && timeout > 0) {
         // XXX: We should not sleep here (freezes the UI for 1 second)
