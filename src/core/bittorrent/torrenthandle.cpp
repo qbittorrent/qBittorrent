@@ -1031,31 +1031,16 @@ qreal TorrentHandle::maxRatio(bool *usesGlobalRatio) const
 
 qreal TorrentHandle::realRatio() const
 {
-    libt::size_type all_time_upload = m_nativeStatus.all_time_upload;
-    libt::size_type all_time_download = m_nativeStatus.all_time_download;
-    libt::size_type total_done = m_nativeStatus.total_done;
+    libt::size_type upload = m_nativeStatus.all_time_upload;
+    // special case for a seeder who lost its stats, also assume nobody will import a 99% done torrent
+    libt::size_type download = (m_nativeStatus.all_time_download < m_nativeStatus.total_done * 0.01) ? m_nativeStatus.total_done : m_nativeStatus.all_time_download;
 
-    if (all_time_download < total_done) {
-        // We have more data on disk than we downloaded
-        // either because the user imported the file
-        // or because of crash the download history was lost.
-        // Otherwise will get weird ratios
-        // eg when downloaded 1KB and uploaded 700MB of a
-        // 700MB torrent.
-        all_time_download = total_done;
-    }
+    if (download == 0)
+        return (upload == 0) ? 0.0 : MAX_RATIO;
 
-    if (all_time_download == 0) {
-        if (all_time_upload == 0) return 0.0;
-        else return MAX_RATIO + 1;
-    }
-
-    qreal ratio = all_time_upload / static_cast<qreal>(all_time_download);
-    Q_ASSERT(ratio >= 0.);
-    if (ratio > MAX_RATIO)
-        ratio = MAX_RATIO;
-
-    return ratio;
+    qreal ratio = upload / static_cast<qreal>(download);
+    Q_ASSERT(ratio >= 0.0);
+    return (ratio > MAX_RATIO) ? MAX_RATIO : ratio;
 }
 
 int TorrentHandle::uploadPayloadRate() const
