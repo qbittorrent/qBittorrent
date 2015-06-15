@@ -71,8 +71,6 @@ static const char *__TRANSLATIONS__[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Apply"),
     QT_TRANSLATE_NOOP("HttpServer", "Add"),
     QT_TRANSLATE_NOOP("HttpServer", "Upload Torrents"),
-    QT_TRANSLATE_NOOP("HttpServer", "Use a different port for DHT and BitTorrent"),
-    QT_TRANSLATE_NOOP("HttpServer", "DHT port:"),
     QT_TRANSLATE_NOOP("HttpServer", "All"),
     QT_TRANSLATE_NOOP("HttpServer", "Downloading"),
     QT_TRANSLATE_NOOP("HttpServer", "Seeding"),
