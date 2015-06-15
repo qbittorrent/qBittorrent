@@ -41,6 +41,9 @@
 #include <QUrl>
 #ifndef DISABLE_GUI
 #include <QIcon>
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
+#include <QCollator>
+#endif
 #endif
 
 #include <libtorrent/version.hpp>
@@ -104,7 +107,19 @@ namespace misc
     QString accurateDoubleToString(const double &n, const int &precision);
 
 #ifndef DISABLE_GUI
-    bool naturalSort(QString left, QString right, bool& result);
+    bool naturalSort(const QString &left, const QString &right, bool &result);
+
+    class NaturalCompare
+    {
+    public:
+        NaturalCompare();
+        bool operator()(const QString &l, const QString &r);
+        bool lessThan(const QString &left, const QString &right);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
+    private:
+        QCollator m_collator;
+#endif
+    };
 #endif
 
     // Implements constant-time comparison to protect against timing attacks
