@@ -1,18 +1,22 @@
 # Adapt these paths on Windows
 
-#Point this to the boost include folder
+# Point this to the boost include folder
 INCLUDEPATH += $$quote(C:/qBittorrent/boost_1_51_0)
-#Point this to the libtorrent include folder
+# Point this to the libtorrent include folder
 INCLUDEPATH += $$quote(C:/qBittorrent/RC_0_16/include)
-#Point this to the zlib include folder
+# Point this to the zlib include folder
 INCLUDEPATH += $$quote(C:/qBittorrent/Zlib/include)
+# Point this to the openssl include folder
+INCLUDEPATH += $$quote(C:/qBittorrent/openssl/include)
 
-#Point this to the boost lib folder
+# Point this to the boost lib folder
 LIBS += $$quote(-LC:/qBittorrent/boost_1_51_0/stage/lib)
-#Point this to the libtorrent lib folder
+# Point this to the libtorrent lib folder
 LIBS += $$quote(-LC:/qBittorrent/RC_0_16/bin/<path-according-to-the-build-options-chosen>)
-#Point this to the zlib lib folder
+# Point this to the zlib lib folder
 LIBS += $$quote(-LC:/qBittorrent/Zlib/lib)
+# Point this to the openssl lib folder
+LIBS += $$quote(-LC:/qBittorrent/openssl/lib)
 
 # LIBTORRENT DEFINES
 DEFINES += BOOST_ALL_NO_LIB
@@ -40,7 +44,7 @@ CONFIG(debug, debug|release) {
   DEFINES += NDEBUG
 }
 
-#Enable backtrace support
+# Enable backtrace support
 CONFIG += strace_win
 
 win32-g++ {
