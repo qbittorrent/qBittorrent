@@ -2,13 +2,19 @@ src/gui/geoip/GeoIP.dat
 src/gui/geoip/GeoIP.dat.gz
 src/qbittorrent
 src/qbittorrent-nox
+src/release
+src/debug
 qbittorrent.pro.user*
 conf.pri
-Makefile
+Makefile*
 *.pyc
 *.log
+
 # Compiled object files
 *.o
+*.pdb
+*.exe
+
 # Generated MOC, resource and UI files
 moc_*.cpp
 qrc_*.cpp
@@ -19,6 +25,7 @@ src/lang/qbittorrent_*.qm
 .qmake.stash
 src/qbittorrent.app
 *.dmg
+
 #Autotools junk
 aclocal.m4
 autom4te.cache/*
