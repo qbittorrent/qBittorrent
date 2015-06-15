@@ -45,6 +45,7 @@
 #include "transferlistwidget.h"
 #include "torrentpersistentdata.h"
 #include "qbtsession.h"
+#include "core/unicodestrings.h"
 #include "proplistdelegate.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodel.h"
@@ -368,8 +369,8 @@ void PropertiesWidget::loadDynamicData() {
          wasted->setText(misc::friendlyUnit(status.total_failed_bytes + status.total_redundant_bytes));
          upTotal->setText(misc::friendlyUnit(status.all_time_upload) + " (" + misc::friendlyUnit(status.total_payload_upload) + " " + tr("session") + ")");
          dlTotal->setText(misc::friendlyUnit(status.all_time_download) + " (" + misc::friendlyUnit(status.total_payload_download) + " " + tr("session") + ")");
-         lbl_uplimit->setText(h.upload_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.upload_limit()) + tr("/s", "/second (i.e. per second)"));
-         lbl_dllimit->setText(h.download_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.download_limit()) + tr("/s", "/second (i.e. per second)"));
+         lbl_uplimit->setText(h.upload_limit() <= 0 ? QString::fromUtf8(C_INFINITY) : misc::friendlyUnit(h.upload_limit()) + tr("/s", "/second (i.e. per second)"));
+         lbl_dllimit->setText(h.download_limit() <= 0 ? QString::fromUtf8(C_INFINITY) : misc::friendlyUnit(h.download_limit()) + tr("/s", "/second (i.e. per second)"));
          QString elapsed_txt = misc::userFriendlyDuration(status.active_time);
          if (h.is_seed(status))
              elapsed_txt += " (" + tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(status.seeding_time)) + ")";
@@ -383,7 +384,7 @@ void PropertiesWidget::loadDynamicData() {
 
          // Update ratio info
          const qreal ratio = QBtSession::instance()->getRealRatio(status);
-         shareRatio->setText(ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
+         shareRatio->setText(ratio > QBtSession::MAX_RATIO ? QString::fromUtf8(C_INFINITY) : misc::accurateDoubleToString(ratio, 2));
 
          label_seeds_val->setText(QString::number(status.num_seeds) + " " + tr("(%1 total)","e.g. (10 total)").arg(QString::number(status.list_seeds)));
          label_peers_val->setText(QString::number(status.num_peers - status.num_seeds) + " " + tr("(%1 total)","e.g. (10 total)").arg(QString::number(status.list_peers - status.list_seeds)));

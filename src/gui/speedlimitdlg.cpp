@@ -29,6 +29,7 @@
  */
 
 #include "speedlimitdlg.h"
+#include "core/unicodestrings.h"
 
 SpeedLimitDialog::SpeedLimitDialog(QWidget *parent): QDialog(parent)
 {
@@ -69,7 +70,7 @@ void SpeedLimitDialog::updateSpinValue(int val) const
     qDebug("Called updateSpinValue with %d", val);
     if (val <= 0) {
         spinBandwidth->setValue(0);
-        spinBandwidth->setSpecialValueText(QString::fromUtf8("∞"));
+        spinBandwidth->setSpecialValueText(QString::fromUtf8(C_INFINITY));
         spinBandwidth->setSuffix(QString::fromUtf8(""));
     }
     else {
@@ -82,7 +83,7 @@ void SpeedLimitDialog::updateSliderValue(int val) const
 {
     if (val <= 0) {
         spinBandwidth->setValue(0);
-        spinBandwidth->setSpecialValueText(QString::fromUtf8("∞"));
+        spinBandwidth->setSpecialValueText(QString::fromUtf8(C_INFINITY));
         spinBandwidth->setSuffix(QString::fromUtf8(""));
     }
     if (val > bandwidthSlider->maximum())

@@ -28,6 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "core/unicodestrings.h"
 #include "misc.h"
 
 #include <cmath>
@@ -405,7 +406,7 @@ QString misc::magnetUriToHash(const QString& magnet_uri)
 QString misc::userFriendlyDuration(qlonglong seconds)
 {
     if (seconds < 0 || seconds >= MAX_ETA)
-        return QString::fromUtf8("∞");
+        return QString::fromUtf8(C_INFINITY);
     if (seconds == 0)
         return "0";
     if (seconds < 60)
@@ -421,7 +422,7 @@ QString misc::userFriendlyDuration(qlonglong seconds)
     hours = hours - days * 24;
     if (days < 100)
         return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days)).arg(QString::number(hours));
-    return QString::fromUtf8("∞");
+    return QString::fromUtf8(C_INFINITY);
 }
 
 QString misc::getUserIDString()

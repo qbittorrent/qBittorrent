@@ -37,6 +37,7 @@
 #include "misc.h"
 #include "torrentmodel.h"
 #include "qbtsession.h"
+#include "core/unicodestrings.h"
 
 #ifdef Q_OS_WIN
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
@@ -155,7 +156,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     QItemDelegate::drawBackground(painter, opt, index);
     const qlonglong limit = index.data().toLongLong();
     opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-    QItemDelegate::drawDisplay(painter, opt, opt.rect, limit > 0 ? misc::accurateDoubleToString(limit/1024., 1) + " " + tr("KiB/s", "KiB/second (.i.e per second)") : QString::fromUtf8("∞"));
+    QItemDelegate::drawDisplay(painter, opt, opt.rect, limit > 0 ? misc::accurateDoubleToString(limit/1024., 1) + " " + tr("KiB/s", "KiB/second (.i.e per second)") : QString::fromUtf8(C_INFINITY));
     break;
   }
   case TorrentModelItem::TR_TIME_ELAPSED: {
@@ -178,7 +179,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       const qreal ratio = index.data().toDouble();
       QItemDelegate::drawDisplay(painter, opt, opt.rect,
-                                 (ratio == -1 || ratio > QBtSession::MAX_RATIO) ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
+                                 (ratio == -1 || ratio > QBtSession::MAX_RATIO) ? QString::fromUtf8(C_INFINITY) : misc::accurateDoubleToString(ratio, 2));
       break;
     }
   case TorrentModelItem::TR_PRIORITY: {

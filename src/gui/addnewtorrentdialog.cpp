@@ -40,6 +40,7 @@
 #include "fs_utils.h"
 #include "autoexpandabledialog.h"
 #include "messageboxraised.h"
+#include "core/unicodestrings.h"
 
 #include <QDebug>
 #include <QString>
@@ -155,7 +156,7 @@ void AddNewTorrentDialog::showEvent(QShowEvent *event)
 void AddNewTorrentDialog::showAdvancedSettings(bool show)
 {
     if (show) {
-        ui->adv_button->setText(QString::fromUtf8("▲"));
+        ui->adv_button->setText(QString::fromUtf8(C_UP));
         ui->settings_group->setVisible(true);
         ui->info_group->setVisible(true);
         if (m_hasMetadata && (m_torrentInfo->num_files() > 1)) {
@@ -169,7 +170,7 @@ void AddNewTorrentDialog::showAdvancedSettings(bool show)
         static_cast<QVBoxLayout*>(layout())->insertWidget(layout()->indexOf(ui->never_show_cb) + 1, ui->adv_button);
     }
     else {
-        ui->adv_button->setText(QString::fromUtf8("▼"));
+        ui->adv_button->setText(QString::fromUtf8(C_DOWN));
         ui->settings_group->setVisible(false);
         ui->info_group->setVisible(false);
         ui->buttonsHLayout->insertWidget(0, layout()->takeAt(layout()->indexOf(ui->never_show_cb) + 1)->widget());
