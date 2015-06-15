@@ -47,6 +47,7 @@
 #include "core/utils/fs.h"
 #include "core/utils/misc.h"
 #include "core/utils/string.h"
+#include "core/unicodestrings.h"
 #include "proplistdelegate.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodel.h"
@@ -355,8 +356,8 @@ void PropertiesWidget::loadDynamicData() {
         wasted->setText(Utils::Misc::friendlyUnit(m_torrent->wastedSize()));
         upTotal->setText(Utils::Misc::friendlyUnit(m_torrent->totalUpload()) + " ("+Utils::Misc::friendlyUnit(m_torrent->totalPayloadUpload())+" "+tr("this session")+")");
         dlTotal->setText(Utils::Misc::friendlyUnit(m_torrent->totalDownload()) + " ("+Utils::Misc::friendlyUnit(m_torrent->totalPayloadDownload())+" "+tr("this session")+")");
-        lbl_uplimit->setText(m_torrent->uploadLimit() <= 0 ? QString::fromUtf8("∞") : Utils::Misc::friendlyUnit(m_torrent->uploadLimit())+tr("/s", "/second (i.e. per second)"));
-        lbl_dllimit->setText(m_torrent->downloadLimit() <= 0 ? QString::fromUtf8("∞") : Utils::Misc::friendlyUnit(m_torrent->downloadLimit())+tr("/s", "/second (i.e. per second)"));
+        lbl_uplimit->setText(m_torrent->uploadLimit() <= 0 ? QString::fromUtf8(C_INFINITY) : Utils::Misc::friendlyUnit(m_torrent->uploadLimit())+tr("/s", "/second (i.e. per second)"));
+        lbl_dllimit->setText(m_torrent->downloadLimit() <= 0 ? QString::fromUtf8(C_INFINITY) : Utils::Misc::friendlyUnit(m_torrent->downloadLimit())+tr("/s", "/second (i.e. per second)"));
         QString elapsed_txt = Utils::Misc::userFriendlyDuration(m_torrent->activeTime());
         if (m_torrent->isSeed())
             elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(Utils::Misc::userFriendlyDuration(m_torrent->seedingTime()))+")";
@@ -371,7 +372,7 @@ void PropertiesWidget::loadDynamicData() {
 
         // Update ratio info
         const qreal ratio = m_torrent->realRatio();
-        shareRatio->setText(ratio > BitTorrent::TorrentHandle::MAX_RATIO ? QString::fromUtf8("∞") : Utils::String::fromDouble(ratio, 2));
+        shareRatio->setText(ratio > BitTorrent::TorrentHandle::MAX_RATIO ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(ratio, 2));
 
         label_seeds_val->setText(QString::number(m_torrent->seedsCount()) + " " + tr("(%1 total)","e.g. (10 total)").arg(QString::number(m_torrent->totalSeedsCount())));
         label_peers_val->setText(QString::number(m_torrent->leechsCount()) + " " + tr("(%1 total)","e.g. (10 total)").arg(QString::number(m_torrent->totalLeechersCount())));
