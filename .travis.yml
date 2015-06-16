@@ -13,7 +13,7 @@ env:
     - lt_source=from_svnRC_1_0 gui=true
     - lt_source=from_svnRC_1_0 gui=false
   global:
-    - secure: "jsPZRwIZDLKza6wfy5ob0cAFVqEb3y0lIzpGNmwpcmxDlK0oqMxybKFIxcq+jFECsvVokZ2s7mP5wkUjhLlu4ksZNI86kdYMhwzIgaTDTHkKRwTEZKvNKEZgDvH7jV0IySRnSwI7LTbWGd4BJlhX6F5GSo+gRnuLxDwjckRc1fI="
+    - secure: "OI9CUjj4lTb0HwwIZU5PbECU3hLlAL6KC8KsbwohG8/O3j5fLcnmDsK4Ad9us5cC39sS11Jcd1kDP2qRcCuST/glVNhLkcjKkiQerOfd5nQ/qL4JYfz/1mfP5mdpz9jHKzpLUIG+TXkbSTjP6VVmsb5KPT+3pKEdRFZB+Pu9+J8="
     - coverity_branch: coverity_scan
 
 branches:
@@ -70,9 +70,9 @@ after_success:
 addons:
   coverity_scan:
     project:
-      name: Chocobo1/qBittorrent
+      name: "qbittorrent/qBittorrent"
       description: "Build submitted via Travis CI"
     build_command_prepend: "./bootstrap.sh && ./configure"
     build_command: make
     branch_pattern: $coverity_branch
-    notification_email: Chocobo1@users.noreply.github.com
+    notification_email: sledgehammer999@qbittorrent.org
