@@ -205,7 +205,7 @@ void PropertiesWidget::clear() {
   qDebug("Clearing torrent properties");
   save_path->clear();
   lbl_creationDate->clear();
-  pieceSize_lbl->clear();
+  label_total_pieces_val->clear();
   hash_lbl->clear();
   comment_text->clear();
   progress_lbl->clear();
@@ -226,8 +226,16 @@ void PropertiesWidget::clear() {
   listWebSeeds->clear();
   m_contentFilerLine->clear();
   PropListModel->model()->clear();
-  showPiecesAvailability(false);
-  showPiecesDownloaded(false);
+  label_eta_val->clear();
+  label_seeds_val->clear();
+  label_peers_val->clear();
+  label_dl_speed_val->clear();
+  label_upload_speed_val->clear();
+  label_total_size_val->clear();
+  label_completed_on_val->clear();
+  label_last_complete_val->clear();
+  label_created_by_val->clear();
+  label_added_on_val->clear();
 }
 
 BitTorrent::TorrentHandle *PropertiesWidget::getCurrentTorrent() const
@@ -267,16 +275,22 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent
     PropListModel->model()->clear();
     if (m_torrent->hasMetadata()) {
       // Creation date
-      lbl_creationDate->setText(m_torrent->creationDate().toString());
-      // Piece size
-      pieceSize_lbl->setText(Utils::Misc::friendlyUnit(m_torrent->pieceLength()));
+      lbl_creationDate->setText(m_torrent->creationDate().toString(Qt::DefaultLocaleShortDate));
+
+      label_total_size_val->setText(Utils::Misc::friendlyUnit(m_torrent->totalSize()));
+
       // Comment
       comment_text->setHtml(Utils::Misc::parseHtmlLinks(m_torrent->comment()));
+
       // URL seeds
       loadUrlSeeds();
+
+      label_created_by_val->setText(m_torrent->creator());
+
       // List files in torrent
       PropListModel->model()->setupModelData(m_torrent->info());
       filesList->setExpanded(PropListModel->index(0, 0), true);
+
       // Load file priorities
       PropListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
     }
@@ -318,7 +332,7 @@ void PropertiesWidget::saveSettings() {
     sizes = slideSizes;
   qDebug("Sizes: %d", sizes.size());
   if (sizes.size() == 2) {
-    pref->setPropSplitterSizes(QString::number(sizes.first())+','+QString::number(sizes.last()));
+    pref->setPropSplitterSizes(QString::number(sizes.first()) + ',' + QString::number(sizes.last()));
   }
   pref->setPropFileListState(filesList->header()->saveState());
   // Remember current tab
@@ -332,74 +346,98 @@ void PropertiesWidget::reloadPreferences() {
 }
 
 void PropertiesWidget::loadDynamicData() {
-  // Refresh only if the torrent handle is valid and if visible
-  if (!m_torrent || (main_window->getCurrentTabWidget() != transferList) || (state != VISIBLE)) return;
+    // Refresh only if the torrent handle is valid and if visible
+    if (!m_torrent || (main_window->getCurrentTabWidget() != transferList) || (state != VISIBLE)) return;
 
     // Transfer infos
-    if (stackedProperties->currentIndex() == PropTabBar::MAIN_TAB) {
+    switch(stackedProperties->currentIndex()) {
+    case PropTabBar::MAIN_TAB: {
+        wasted->setText(Utils::Misc::friendlyUnit(m_torrent->wastedSize()));
+        upTotal->setText(Utils::Misc::friendlyUnit(m_torrent->totalUpload()) + " ("+Utils::Misc::friendlyUnit(m_torrent->totalPayloadUpload())+" "+tr("this session")+")");
+        dlTotal->setText(Utils::Misc::friendlyUnit(m_torrent->totalDownload()) + " ("+Utils::Misc::friendlyUnit(m_torrent->totalPayloadDownload())+" "+tr("this session")+")");
+        lbl_uplimit->setText(m_torrent->uploadLimit() <= 0 ? QString::fromUtf8("∞") : Utils::Misc::friendlyUnit(m_torrent->uploadLimit())+tr("/s", "/second (i.e. per second)"));
+        lbl_dllimit->setText(m_torrent->downloadLimit() <= 0 ? QString::fromUtf8("∞") : Utils::Misc::friendlyUnit(m_torrent->downloadLimit())+tr("/s", "/second (i.e. per second)"));
+        QString elapsed_txt = Utils::Misc::userFriendlyDuration(m_torrent->activeTime());
+        if (m_torrent->isSeed())
+            elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(Utils::Misc::userFriendlyDuration(m_torrent->seedingTime()))+")";
 
-      wasted->setText(Utils::Misc::friendlyUnit(m_torrent->wastedSize()));
-      upTotal->setText(Utils::Misc::friendlyUnit(m_torrent->totalUpload()) + " ("+Utils::Misc::friendlyUnit(m_torrent->totalPayloadUpload())+" "+tr("this session")+")");
-      dlTotal->setText(Utils::Misc::friendlyUnit(m_torrent->totalDownload()) + " ("+Utils::Misc::friendlyUnit(m_torrent->totalPayloadDownload())+" "+tr("this session")+")");
-      lbl_uplimit->setText(m_torrent->uploadLimit() <= 0 ? QString::fromUtf8("∞") : Utils::Misc::friendlyUnit(m_torrent->uploadLimit())+tr("/s", "/second (i.e. per second)"));
-      lbl_dllimit->setText(m_torrent->downloadLimit() <= 0 ? QString::fromUtf8("∞") : Utils::Misc::friendlyUnit(m_torrent->downloadLimit())+tr("/s", "/second (i.e. per second)"));
-      QString elapsed_txt = Utils::Misc::userFriendlyDuration(m_torrent->activeTime());
-      if (m_torrent->isSeed()) {
-        elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(Utils::Misc::userFriendlyDuration(m_torrent->seedingTime()))+")";
-      }
-      lbl_elapsed->setText(elapsed_txt);
-      if (m_torrent->connectionsLimit() > 0)
-        lbl_connections->setText(QString::number(m_torrent->connectionsCount())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(m_torrent->connectionsLimit()))+")");
-      else
-        lbl_connections->setText(QString::number(m_torrent->connectionsLimit()));
-      // Update next announce time
-      reannounce_lbl->setText(Utils::Misc::userFriendlyDuration(m_torrent->nextAnnounce()));
-      // Update ratio info
-      const qreal ratio = m_torrent->realRatio();
-      shareRatio->setText(ratio > BitTorrent::TorrentHandle::MAX_RATIO ? QString::fromUtf8("∞") : Utils::String::fromDouble(ratio, 2));
-      if (!m_torrent->isSeed() && m_torrent->hasMetadata()) {
-        showPiecesDownloaded(true);
-        // Downloaded pieces
-        downloaded_pieces->setProgress(m_torrent->pieces(), m_torrent->downloadingPieces());
-        // Pieces availability
-        if (!m_torrent->isPaused() && !m_torrent->isQueued() && !m_torrent->isChecking()) {
-          showPiecesAvailability(true);
-          pieces_availability->setAvailability(m_torrent->pieceAvailability());
-          avail_average_lbl->setText(Utils::String::fromDouble(m_torrent->distributedCopies(), 3));
-        } else {
-          showPiecesAvailability(false);
+        lbl_elapsed->setText(elapsed_txt);
+
+        lbl_connections->setText(QString::number(m_torrent->connectionsCount()));
+        label_eta_val->setText(Utils::Misc::userFriendlyDuration(m_torrent->eta()));
+
+        // Update next announce time
+        reannounce_lbl->setText(Utils::Misc::userFriendlyDuration(m_torrent->nextAnnounce()));
+
+        // Update ratio info
+        const qreal ratio = m_torrent->realRatio();
+        shareRatio->setText(ratio > BitTorrent::TorrentHandle::MAX_RATIO ? QString::fromUtf8("∞") : Utils::String::fromDouble(ratio, 2));
+
+        label_seeds_val->setText(QString::number(m_torrent->seedsCount()) + " " + tr("(%1 total)","e.g. (10 total)").arg(QString::number(m_torrent->totalSeedsCount())));
+        label_peers_val->setText(QString::number(m_torrent->leechsCount()) + " " + tr("(%1 total)","e.g. (10 total)").arg(QString::number(m_torrent->totalLeechersCount())));
+
+        label_dl_speed_val->setText(Utils::Misc::friendlyUnit(m_torrent->downloadPayloadRate()) + tr("/s", "/second (i.e. per second)") + " "
+                                    + tr("(%1/s avg.)","e.g. (100KiB/s avg.)").arg(Utils::Misc::friendlyUnit(m_torrent->totalDownload() / (1 + m_torrent->activeTime() - m_torrent->finishedTime()))));
+        label_upload_speed_val->setText(Utils::Misc::friendlyUnit(m_torrent->uploadPayloadRate()) + tr("/s", "/second (i.e. per second)") + " "
+                                        + tr("(%1/s avg.)", "e.g. (100KiB/s avg.)").arg(Utils::Misc::friendlyUnit(m_torrent->totalUpload() / (1 + m_torrent->activeTime()))));
+
+        label_last_complete_val->setText(m_torrent->lastSeenComplete().isValid() ? m_torrent->lastSeenComplete().toString(Qt::DefaultLocaleShortDate) : tr("Never"));
+        label_completed_on_val->setText(m_torrent->completedTime().isValid() ? m_torrent->completedTime().toString(Qt::DefaultLocaleShortDate) : "");
+        label_added_on_val->setText(m_torrent->addedTime().toString(Qt::DefaultLocaleShortDate));
+
+        if (m_torrent->hasMetadata()) {
+            label_total_pieces_val->setText(tr("%1 x %2 (have %3)", "(torrent pieces) eg 152 x 4MB (have 25)").arg(m_torrent->piecesCount()).arg(Utils::Misc::friendlyUnit(m_torrent->pieceLength())).arg(m_torrent->piecesHave()));
+
+            if (!m_torrent->isSeed() && !m_torrent->isPaused() && !m_torrent->isQueued() && !m_torrent->isChecking()) {
+                // Pieces availability
+                showPiecesAvailability(true);
+                pieces_availability->setAvailability(m_torrent->pieceAvailability());
+                avail_average_lbl->setText(Utils::String::fromDouble(m_torrent->distributedCopies(), 3));
+            }
+            else {
+                showPiecesAvailability(false);
+            }
+
+            // Progress
+            qreal progress = m_torrent->progress() * 100.;
+            progress_lbl->setText(Utils::String::fromDouble(progress, 1)+"%");
+            downloaded_pieces->setProgress(m_torrent->pieces(), m_torrent->downloadingPieces());
         }
-        // Progress
-        qreal progress = m_torrent->progress() * 100.;
-        progress_lbl->setText(Utils::String::fromDouble(progress, 1)+"%");
-      } else {
-        showPiecesAvailability(false);
-        showPiecesDownloaded(false);
-      }
-      return;
+        else {
+        	showPiecesAvailability(false);
+        }
+
+        return;
     }
-    if (stackedProperties->currentIndex() == PropTabBar::TRACKERS_TAB) {
-      // Trackers
-      trackerList->loadTrackers();
-      return;
+
+    case PropTabBar::TRACKERS_TAB: {
+        // Trackers
+        trackerList->loadTrackers();
+        return;
     }
-    if (stackedProperties->currentIndex() == PropTabBar::PEERS_TAB) {
-      // Load peers
-      peersList->loadPeers(m_torrent);
-      return;
+
+    case PropTabBar::PEERS_TAB: {
+        // Load peers
+        peersList->loadPeers(m_torrent);
+        return;
     }
-    if (stackedProperties->currentIndex() == PropTabBar::FILES_TAB) {
-      // Files progress
-      if (m_torrent->hasMetadata()) {
-        qDebug("Updating priorities in files tab");
-        filesList->setUpdatesEnabled(false);
-        PropListModel->model()->updateFilesProgress(m_torrent->filesProgress());
-        // XXX: We don't update file priorities regularly for performance
-        // reasons. This means that priorities will not be updated if
-        // set from the Web UI.
-        // PropListModel->model()->updateFilesPriorities(h.file_priorities());
-        filesList->setUpdatesEnabled(true);
-      }
+
+    case PropTabBar::FILES_TAB: {
+        // Files progress
+        if (m_torrent->hasMetadata()) {
+            qDebug("Updating priorities in files tab");
+            filesList->setUpdatesEnabled(false);
+            PropListModel->model()->updateFilesProgress(m_torrent->filesProgress());
+            // XXX: We don't update file priorities regularly for performance
+            // reasons. This means that priorities will not be updated if
+            // set from the Web UI.
+            // PropListModel->model()->updateFilesPriorities(h.file_priorities());
+            filesList->setUpdatesEnabled(true);
+        }
+    }
+
+    default:
+          return;
     }
 }
 
