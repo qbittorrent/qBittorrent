@@ -494,6 +494,11 @@ int TorrentHandle::piecesCount() const
     return m_torrentInfo.piecesCount();
 }
 
+int TorrentHandle::piecesHave() const
+{
+    return m_nativeStatus.num_pieces;
+}
+
 qreal TorrentHandle::progress() const
 {
     if (!m_nativeStatus.total_wanted)
@@ -844,6 +849,11 @@ int TorrentHandle::activeTime() const
     return m_nativeStatus.active_time;
 }
 
+int TorrentHandle::finishedTime() const
+{
+    return m_nativeStatus.finished_time;
+}
+
 int TorrentHandle::seedingTime() const
 {
     return m_nativeStatus.seeding_time;
@@ -904,6 +914,21 @@ int TorrentHandle::peersCount() const
 int TorrentHandle::leechsCount() const
 {
     return (m_nativeStatus.num_peers - m_nativeStatus.num_seeds);
+}
+
+int TorrentHandle::totalSeedsCount() const
+{
+	return m_nativeStatus.list_seeds;
+}
+
+int TorrentHandle::totalPeersCount() const
+{
+	return m_nativeStatus.list_peers;
+}
+
+int TorrentHandle::totalLeechersCount() const
+{
+    return (m_nativeStatus.list_peers - m_nativeStatus.list_seeds);
 }
 
 int TorrentHandle::completeCount() const
