@@ -13,11 +13,10 @@
 <!-- preferences -->
 <div class="toolbarTabs">
 	<ul id="preferencesTabs" class="tab-menu">
-		<li id="PrefConnectionLink" class="selected"><a>QBT_TR(Connection)QBT_TR</a></li>
+		<li id="PrefDownloadsLink" class="selected"><a>QBT_TR(Downloads)QBT_TR</a></li>
+		<li id="PrefConnectionLink"><a>QBT_TR(Connection)QBT_TR</a></li>
+		<li id="PrefSpeedLink"><a>QBT_TR(Speed)QBT_TR</a></li>
 		<li id="PrefBittorrentLink"><a>QBT_TR(BitTorrent)QBT_TR</a></li>
-                <li id="PrefDownloadsLink"><a>QBT_TR(Downloads)QBT_TR</a></li>
-		<li id="PrefProxyLink"><a>QBT_TR(Proxy Server)QBT_TR</a></li>
-                <li id="PrefFilterLink"><a>QBT_TR(IP Filtering)QBT_TR</a></li>
                 <li id="PrefWebUILink"><a>QBT_TR(Web UI)QBT_TR</a></li>
 	</ul>
 	<div class="clear"></div>
@@ -27,25 +26,21 @@
 // Tabs
 MochaUI.initializeTabs('preferencesTabs');
 
-$('PrefConnectionLink').addEvent('click', function(e){
-  $$('.PrefTab').addClass('invisible');
-  $('ConnectionTab').removeClass('invisible');
-});
-$('PrefBittorrentLink').addEvent('click', function(e) {
-  $$('.PrefTab').addClass('invisible');
-  $('BittorrentTab').removeClass('invisible');
-});
 $('PrefDownloadsLink').addEvent('click', function(e) {
   $$('.PrefTab').addClass('invisible');
   $('DownloadsTab').removeClass('invisible');
 });
-$('PrefProxyLink').addEvent('click', function(e) {
+$('PrefConnectionLink').addEvent('click', function(e){
   $$('.PrefTab').addClass('invisible');
-  $('ProxyTab').removeClass('invisible');
+  $('ConnectionTab').removeClass('invisible');
 });
-$('PrefFilterLink').addEvent('click', function(e) {
+$('PrefSpeedLink').addEvent('click', function(e) {
   $$('.PrefTab').addClass('invisible');
-  $('FilterTab').removeClass('invisible');
+  $('SpeedTab').removeClass('invisible');
+});
+$('PrefBittorrentLink').addEvent('click', function(e) {
+  $$('.PrefTab').addClass('invisible');
+  $('BittorrentTab').removeClass('invisible');
 });
 $('PrefWebUILink').addEvent('click', function(e) {
   $$('.PrefTab').addClass('invisible');

@@ -1,4 +1,71 @@
-	<div id="ConnectionTab" class="PrefTab">
+<div id="DownloadsTab" class="PrefTab">
+  <fieldset class="settings">
+  <legend>QBT_TR(Hard Disk)QBT_TR</legend>
+  <div class="formRow">
+  <label for="savepath_text" class="leftLabelLarge">QBT_TR(Save files to location:)QBT_TR</label>
+  <input type="text" id="savepath_text"/>
+  </div>
+  <div class="formRow">
+  <input type="checkbox" id="temppath_checkbox" onclick="updateTempDirEnabled();"/>
+  <label for="temppath_checkbox">QBT_TR(Keep incomplete torrents in:)QBT_TR</label>
+  <input type="text" id="temppath_text"/>
+  </div>
+  <br/>
+  QBT_TR(Automatically add torrents from:)QBT_TR<br/>
+    <table border="1" id="watched_folders_tab">
+    <thead><tr><th>QBT_TR(Watched Folder)QBT_TR</th><th>QBT_TR(Download here)QBT_TR</th></tr></thead>
+    <tbody></tbody>
+    <tfoot><tr><td style="padding-top:4px;"><input type="text" id="new_watch_folder_txt"/></td><td style="padding-top:4px;"><input type="checkbox" id="new_watch_folder_dl" style="padding-left:18px;"/><img src="theme/list-add" alt="Add" style="padding-left:2px;width:16px;cursor:pointer;margin-right:-18px;" onclick="javascript:addWatchFolder();"/></td></tr></tfoot>
+    </table><br/>
+
+  <input type="checkbox" id="exportdir_checkbox" onclick="updateExportDirEnabled();"/>
+  <label for="exportdir_checkbox">QBT_TR(Copy .torrent files to:)QBT_TR</label>&nbsp;&nbsp;
+  <input type="text" id="exportdir_text"/><br/>
+  <span id="appendexttr">
+  <input type="checkbox" id="appendext_checkbox"/>
+  <label for="appendext_checkbox">QBT_TR(Append .!qB extension to incomplete files)QBT_TR</label><br/>
+  </span>
+
+  <input type="checkbox" id="preallocateall_checkbox"/>
+  <label for="preallocateall_checkbox">QBT_TR(Pre-allocate disk space for all files)QBT_TR</label><br/>
+</fieldset>
+
+<fieldset class="settings">
+  <legend>QBT_TR(Email notification upon download completion)QBT_TR</legend>
+  <input type="checkbox" id="mail_notification_checkbox" onclick="updateMailNotification();"/>
+  <label for="mail_notification_checkbox">QBT_TR(Email notification upon download completion)QBT_TR</label><br/>
+  <div class="formRow">
+  <label for="dest_email_txt" class="leftLabelLarge">QBT_TR(Destination email:)QBT_TR</label><input type="text" id="dest_email_txt"/>
+  </div>
+  <div class="formRow">
+  <label for="smtp_server_txt" class="leftLabelLarge">QBT_TR(SMTP server:)QBT_TR</label><input type="text" id="smtp_server_txt"/>
+  </div>
+  <div class="formRow">
+  <input type="checkbox" id="mail_ssl_checkbox"/><label for="mail_ssl_checkbox">QBT_TR(This server requires a secure connection (SSL))QBT_TR</label>
+  </div>
+  <input type="checkbox" id="mail_auth_checkbox" onclick="updateMailAuthSettings();"/><label for="mail_auth_checkbox">QBT_TR(Authentication)QBT_TR</label><br/>
+    <div class="formRow">
+    <label for="mail_username_text" class="leftLabelLarge">QBT_TR(Username:)QBT_TR</label><input type="text" id="mail_username_text"/>
+    </div>
+    <div class="formRow">
+    <label for="mail_password_text" class="leftLabelLarge">QBT_TR(Password:)QBT_TR</label><input type="password" id="mail_password_text"/>
+    </div>
+</fieldset>
+
+<fieldset class="settings">
+  <legend>QBT_TR(Run an external program on torrent completion)QBT_TR</legend>
+ <input type="checkbox" id="autorun_checkbox" onclick="updateAutoRun();"/>
+ <label for="autorun_checkbox">QBT_TR(Run an external program on torrent completion)QBT_TR</label><br/>
+<input type="text" id="autorunProg_txt" style="width: 400px;"/><br/>
+<i>QBT_TR(The following parameters are supported:)QBT_TR
+<ul>
+<li>%f: QBT_TR(Torrent path)QBT_TR</li>
+<li>%n: QBT_TR(Torrent name)QBT_TR</li>
+</ul></i>
+</fieldset>
+</div>
+
+<div id="ConnectionTab" class="PrefTab invisible">
 <fieldset class="settings">
   <legend>QBT_TR(Listening Port)QBT_TR</legend>
   <label for="port_value">QBT_TR(Port used for incoming connections:)QBT_TR</label>
@@ -6,6 +73,7 @@
   <input type="checkbox" id="upnp_checkbox"/>
   <label for="upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR</label>
 </fieldset>
+
 <fieldset class="settings">
   <legend>QBT_TR(Connections Limits)QBT_TR</legend>
   <table>
@@ -39,6 +107,52 @@
   </tr>
   </table>
 </fieldset>
+
+<fieldset class="settings">
+  <legend>QBT_TR(Proxy Server)QBT_TR</legend>
+    <div class="formRow">
+    <label for="peer_proxy_type_select" class="leftLabelSmall">QBT_TR(Type:)QBT_TR</label>
+    <select id ="peer_proxy_type_select" onchange="updatePeerProxySettings();">
+      <option value="none">QBT_TR((None))QBT_TR</option>
+      <option value="socks4">QBT_TR(SOCKS4)QBT_TR</option>
+      <option value="socks5">QBT_TR(SOCKS5)QBT_TR</option>
+      <option value="http">QBT_TR(HTTP)QBT_TR</option>
+    </select>
+    </div>
+    <div class="formRow">
+    <label for="peer_proxy_host_text" class="leftLabelSmall">QBT_TR(Host:)QBT_TR</label>
+    <input type="text" id="peer_proxy_host_text" />
+    </div>
+    <div class="formRow">
+    <label for="peer_proxy_port_value" class="leftLabelSmall">QBT_TR(Port:)QBT_TR</label>
+    <input type="text" id="peer_proxy_port_value" style="width: 4em;"/>
+    </div>
+    <div class="formRow">
+    <input type="checkbox" id="use_peer_proxy_checkbox"/>
+    <label for="use_peer_proxy_checkbox">QBT_TR(Use proxy for peer connections)QBT_TR</label>
+    </div>
+    <input type="checkbox" id="peer_proxy_auth_checkbox" onclick="updatePeerProxyAuthSettings();"/>
+    <label for="peer_proxy_auth_checkbox">QBT_TR(Authentication)QBT_TR</label><br/>
+    <div class="formRow">
+    <label for="peer_proxy_username_text" class="leftLabelLarge">QBT_TR(Username:)QBT_TR</label>
+    <input type="text" id="peer_proxy_username_text" />
+    </div>
+    <div class="formRow">
+    <label for="peer_proxy_password_text" class="leftLabelLarge">QBT_TR(Password:)QBT_TR</label>
+    <input type="password" id="peer_proxy_password_text" />
+    </div>
+</fieldset>
+
+<fieldset class="settings">
+  <legend>QBT_TR(IP Filtering)QBT_TR</legend>
+  <input type="checkbox" id="ipfilter_enabled_checkbox" onclick="updateFilterSettings();"/>
+  <label for="ipfilter_enabled_checkbox">QBT_TR(IP Filtering)QBT_TR</label><br/>
+  <label for="ipfilter_text" style="margin-left: 20px;">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR</label>
+  <input type="text" id="ipfilter_text"/>
+</fieldset>
+</div>
+
+<div id="SpeedTab" class="PrefTab invisible">
 <fieldset class="settings">
   <legend>QBT_TR(Global Rate Limits)QBT_TR</legend>
   <table>
@@ -67,6 +181,7 @@
   <label for="limit_tcp_overhead_checkbox">QBT_TR(Apply rate limit to transport overhead)QBT_TR</label><br/>
   </fieldset>
 </fieldset>
+
 <fieldset class="settings">
   <legend>QBT_TR(Alternative Global Rate Limits)QBT_TR</legend>
   <table>
@@ -119,7 +234,6 @@
   <label for="pex_checkbox">QBT_TR(Enable Peer Exchange (PeX) to find more peers)QBT_TR</label><br/>
   <input type="checkbox" id="lsd_checkbox"/>
   <label for="lsd_checkbox">QBT_TR(Enable Local Peer Discovery to find more peers)QBT_TR</label><br/>
-
   <label for="encryption_select">QBT_TR(Encryption mode:)QBT_TR</label>
   <select id="encryption_select">
     <option value="0">QBT_TR(Prefer encryption)QBT_TR</option>
@@ -128,73 +242,6 @@
   </select><br/>
   <input type="checkbox" id="anonymous_mode_checkbox" onClick="toggleAnonymousMode()"/>
   <label for="anonymous_mode_checkbox">QBT_TR(Enable anonymous mode)QBT_TR (<a href="https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode">More information</a>)</label><br/>
-</fieldset>
-</div>
-
-<div id="DownloadsTab" class="PrefTab invisible">
-  <fieldset class="settings">
-  <legend>QBT_TR(Hard Disk)QBT_TR</legend>
-  <div class="formRow">
-  <label for="savepath_text" class="leftLabelLarge">QBT_TR(Save files to location:)QBT_TR</label>
-  <input type="text" id="savepath_text"/>
-  </div>
-  <div class="formRow">
-  <input type="checkbox" id="temppath_checkbox" onclick="updateTempDirEnabled();"/>
-  <label for="temppath_checkbox">QBT_TR(Keep incomplete torrents in:)QBT_TR</label>
-  <input type="text" id="temppath_text"/>
-  </div>
-  <br/>
-  QBT_TR(Automatically add torrents from:)QBT_TR<br/>
-    <table border="1" id="watched_folders_tab">
-    <thead><tr><th>QBT_TR(Watched Folder)QBT_TR</th><th>QBT_TR(Download here)QBT_TR</th></tr></thead>
-    <tbody></tbody>
-    <tfoot><tr><td style="padding-top:4px;"><input type="text" id="new_watch_folder_txt"/></td><td style="padding-top:4px;"><input type="checkbox" id="new_watch_folder_dl" style="padding-left:18px;"/><img src="theme/list-add" alt="Add" style="padding-left:2px;width:16px;cursor:pointer;margin-right:-18px;" onclick="javascript:addWatchFolder();"/></td></tr></tfoot>
-    </table><br/>
-
-  <input type="checkbox" id="exportdir_checkbox" onclick="updateExportDirEnabled();"/>
-  <label for="exportdir_checkbox">QBT_TR(Copy .torrent files to:)QBT_TR</label>&nbsp;&nbsp;
-  <input type="text" id="exportdir_text"/><br/>
-  <span id="appendexttr">
-  <input type="checkbox" id="appendext_checkbox"/>
-  <label for="appendext_checkbox">QBT_TR(Append .!qB extension to incomplete files)QBT_TR</label><br/>
-  </span>
-  
-  <input type="checkbox" id="preallocateall_checkbox"/>
-  <label for="preallocateall_checkbox">QBT_TR(Pre-allocate disk space for all files)QBT_TR</label><br/>
-</fieldset>
-
-<fieldset class="settings">
-  <legend>QBT_TR(Email notification upon download completion)QBT_TR</legend>
-  <input type="checkbox" id="mail_notification_checkbox" onclick="updateMailNotification();"/>
-  <label for="mail_notification_checkbox">QBT_TR(Email notification upon download completion)QBT_TR</label><br/>
-  <div class="formRow">
-  <label for="dest_email_txt" class="leftLabelLarge">QBT_TR(Destination email:)QBT_TR</label><input type="text" id="dest_email_txt"/>
-  </div>
-  <div class="formRow">
-  <label for="smtp_server_txt" class="leftLabelLarge">QBT_TR(SMTP server:)QBT_TR</label><input type="text" id="smtp_server_txt"/>
-  </div>
-  <div class="formRow">
-  <input type="checkbox" id="mail_ssl_checkbox"/><label for="mail_ssl_checkbox">QBT_TR(This server requires a secure connection (SSL))QBT_TR</label>
-  </div>
-  <input type="checkbox" id="mail_auth_checkbox" onclick="updateMailAuthSettings();"/><label for="mail_auth_checkbox">QBT_TR(Authentication)QBT_TR</label><br/>
-    <div class="formRow">
-    <label for="mail_username_text" class="leftLabelLarge">QBT_TR(Username:)QBT_TR</label><input type="text" id="mail_username_text"/>
-    </div>
-    <div class="formRow">
-    <label for="mail_password_text" class="leftLabelLarge">QBT_TR(Password:)QBT_TR</label><input type="password" id="mail_password_text"/>
-    </div>
-</fieldset>
-
-<fieldset class="settings">
-  <legend>QBT_TR(Run an external program on torrent completion)QBT_TR</legend>
- <input type="checkbox" id="autorun_checkbox" onclick="updateAutoRun();"/>
- <label for="autorun_checkbox">QBT_TR(Run an external program on torrent completion)QBT_TR</label><br/>
-<input type="text" id="autorunProg_txt" style="width: 400px;"/><br/>
-<i>QBT_TR(The following parameters are supported:)QBT_TR
-<ul>
-<li>%f: QBT_TR(Torrent path)QBT_TR</li>
-<li>%n: QBT_TR(Torrent name)QBT_TR</li>
-</ul></i>
 </fieldset>
 
 <fieldset class="settings">
@@ -217,54 +264,6 @@
   <input type="checkbox" id="dont_count_slow_torrents_checkbox"/>
   <label for="dont_count_slow_torrents_checkbox">QBT_TR(Do not count slow torrents in these limits)QBT_TR</label>
   </div>
-</fieldset>
-</div>
-
-<div id="FilterTab" class="PrefTab invisible">
-<fieldset class="settings">
-  <legend>QBT_TR(IP Filtering)QBT_TR</legend>
-  <input type="checkbox" id="ipfilter_enabled_checkbox" onclick="updateFilterSettings();"/>
-  <label for="ipfilter_enabled_checkbox">QBT_TR(IP Filtering)QBT_TR</label><br/>
-  <label for="ipfilter_text" style="margin-left: 20px;">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR</label>
-  <input type="text" id="ipfilter_text"/>
-</fieldset>
-</div>
-
-<div id="ProxyTab" class="PrefTab invisible">
-<fieldset class="settings">
-  <legend>QBT_TR(Proxy Server)QBT_TR</legend>
-    <div class="formRow">
-    <label for="peer_proxy_type_select" class="leftLabelSmall">QBT_TR(Type:)QBT_TR</label>
-    <select id ="peer_proxy_type_select" onchange="updatePeerProxySettings();">
-      <option value="none">QBT_TR((None))QBT_TR</option>
-      <option value="socks4">QBT_TR(SOCKS4)QBT_TR</option>
-      <option value="socks5">QBT_TR(SOCKS5)QBT_TR</option>
-      <option value="http">QBT_TR(HTTP)QBT_TR</option>
-    </select>
-    </div>
-    <div class="formRow">
-    <label for="peer_proxy_host_text" class="leftLabelSmall">QBT_TR(Host:)QBT_TR</label>
-    <input type="text" id="peer_proxy_host_text" />
-    </div>
-    <div class="formRow">
-    <label for="peer_proxy_port_value" class="leftLabelSmall">QBT_TR(Port:)QBT_TR</label>
-    <input type="text" id="peer_proxy_port_value" style="width: 4em;"/>
-    </div>
-    <div class="formRow">
-    <input type="checkbox" id="use_peer_proxy_checkbox"/>
-    <label for="use_peer_proxy_checkbox">QBT_TR(Use proxy for peer connections)QBT_TR</label>
-    </div>
-    <input type="checkbox" id="peer_proxy_auth_checkbox" onclick="updatePeerProxyAuthSettings();"/>
-    <label for="peer_proxy_auth_checkbox">QBT_TR(Authentication)QBT_TR</label><br/>
-    
-    <div class="formRow">
-    <label for="peer_proxy_username_text" class="leftLabelLarge">QBT_TR(Username:)QBT_TR</label>
-    <input type="text" id="peer_proxy_username_text" />
-    </div>
-    <div class="formRow">
-    <label for="peer_proxy_password_text" class="leftLabelLarge">QBT_TR(Password:)QBT_TR</label>
-    <input type="password" id="peer_proxy_password_text" />
-    </div>
 </fieldset>
 </div>
 
