@@ -262,6 +262,10 @@ a.propButton img {
 }
 
 /* Mocha Customization */
+#mochaToolbar {
+	margin-top: 5px;
+}
+
 #mochaToolbar .divider {
 	background-image: url(../images/skin/toolbox-divider.gif);
 	background-repeat: no-repeat;
