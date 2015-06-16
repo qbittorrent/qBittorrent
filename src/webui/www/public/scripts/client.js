@@ -218,10 +218,12 @@ window.addEvent('load', function () {
             myTable.columns['priority'].force_hide = !queueing_enabled;
             myTable.updateColumn('priority');
             if (queueing_enabled) {
+                $('queueingLinks').removeClass('invisible');
                 $('queueingButtons').removeClass('invisible');
                 $('queueingMenuItems').removeClass('invisible');
             }
             else {
+                $('queueingLinks').addClass('invisible');
                 $('queueingButtons').addClass('invisible');
                 $('queueingMenuItems').addClass('invisible');
             }
