@@ -48,14 +48,20 @@
                             <li><a id="pauseAllLink"><img class="MyMenuIcon" alt="QBT_TR(P&ause All)QBT_TR" src="theme/media-playback-pause" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(P&ause All)QBT_TR</a></li>
                             <li class="divider"><a id="resumeLink"><img class="MyMenuIcon" alt="QBT_TR(&Resume)QBT_TR" src="theme/media-playback-start" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Resume)QBT_TR</a></li>
                             <li><a id="pauseLink"><img class="MyMenuIcon" src="theme/media-playback-pause" alt="QBT_TR(&Pause)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Pause)QBT_TR</a></li>
-                            <li><a id="recheckLink"><img class="MyMenuIcon" src="theme/document-edit-verify" alt="QBT_TR(Force recheck)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Force recheck)QBT_TR</a></li>
                             <li class="divider"><a id="deleteLink"><img class="MyMenuIcon" src="theme/list-remove" alt="QBT_TR(&Delete)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Delete)QBT_TR</a></li>
+                            <span id="queueingLinks">
+                                <li class="divider"><a id="topPrioLink"><img class="MyMenuIcon" src="theme/go-top" alt="QBT_TR(Top Priority)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Top Priority)QBT_TR</a></li>
+                                <li><a id="increasePrioLink"><img class="MyMenuIcon" src="theme/go-up" alt="QBT_TR(Increase Priority)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Increase Priority)QBT_TR</a></li>
+                                <li><a id="decreasePrioLink"><img class="MyMenuIcon" src="theme/go-down" alt="QBT_TR(Decrease Priority)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Decrease Priority)QBT_TR</a></li>
+                                <li><a id="bottomPrioLink"><img class="MyMenuIcon" src="theme/go-bottom" alt="QBT_TR(Minimum Priority)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Minimum Priority)QBT_TR</a></li>
+                            </span>
+                            <li class="divider"><a id="recheckLink"><img class="MyMenuIcon" src="theme/document-edit-verify" alt="QBT_TR(Force Recheck)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Force Recheck)QBT_TR</a></li>
                         </ul>
                     </li>
                     <li>
                         <a class="returnFalse">QBT_TR(&View)QBT_TR</a>
                         <ul>
-                        <li><a id="speedInBrowserTitleBarLink"><img class="MyMenuIcon" src="theme/checked" alt="QBT_TR(&Speed in title bar)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Speed in title bar)QBT_TR</a></li>
+                        <li><a id="speedInBrowserTitleBarLink"><img class="MyMenuIcon" src="theme/checked" alt="QBT_TR(S&peed in Title Bar)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(S&peed in Title Bar)QBT_TR</a></li>
                         </ul>
                     </li>
                     <li>
@@ -67,9 +73,8 @@
                     <li>
                         <a class="returnFalse">QBT_TR(&Help)QBT_TR</a>
                         <ul>
-                            <li><a id="bugLink" target="_blank" href="http://bugs.qbittorrent.org/"><img class="MyMenuIcon" src="theme/tools-report-bug" alt="QBT_TR(Report a &bug)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Report a &bug)QBT_TR</a></li>
-                            <li><a id="siteLink" target="_blank" href="http://www.qbittorrent.org/"><img class="MyMenuIcon" src="images/skin/qbittorrent16.png" alt="QBT_TR(Visit &Website)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Visit &Website)QBT_TR</a></li>
                             <li><a id="docsLink" target="_blank" href="http://wiki.qbittorrent.org/"><img class="MyMenuIcon" src="theme/help-contents" alt="QBT_TR(&Documentation)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Documentation)QBT_TR</a></li>
+                            <li class="divider"><a id="bugLink" target="_blank" href="http://sourceforge.net/donate/index.php?group_id=163414"><img class="MyMenuIcon" src="theme/wallet-open" alt="QBT_TR(Do&nate!)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Do&nate!)QBT_TR</a></li>
                             <li><a id="aboutLink"><img class="MyMenuIcon" src="theme/help-about" alt="QBT_TR(&About)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&About)QBT_TR</a></li>
                         </ul>
                     </li>
@@ -77,8 +82,8 @@
             </div>
             <div id="mochaToolbar">
                 &nbsp;&nbsp;
-                <a id="uploadButton"><img class="mochaToolButton" title="QBT_TR(&Add Torrent File...)QBT_TR" src="theme/list-add" alt="QBT_TR(&Add Torrent File...)QBT_TR" width="24" height="24" onload="fixPNG(this)"/></a>
                 <a id="downloadButton"><img class="mochaToolButton" title="QBT_TR(Add Torrent &Link...)QBT_TR" src="theme/insert-link" alt="QBT_TR(Add Torrent &Link...)QBT_TR" width="24" height="24" onload="fixPNG(this)"/></a>
+                <a id="uploadButton"><img class="mochaToolButton" title="QBT_TR(&Add Torrent File...)QBT_TR" src="theme/list-add" alt="QBT_TR(&Add Torrent File...)QBT_TR" width="24" height="24" onload="fixPNG(this)"/></a>
                 <a id="deleteButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Delete)QBT_TR" src="theme/list-remove" alt="QBT_TR(Delete)QBT_TR" width="24" height="24" onload="fixPNG(this)"/></a>
                 <a id="resumeButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Resume)QBT_TR" src="theme/media-playback-start" alt="QBT_TR(Resume)QBT_TR" width="24" height="24" onload="fixPNG(this)"/></a>
                 <a id="pauseButton"><img class="mochaToolButton" title="QBT_TR(Pause)QBT_TR" src="theme/media-playback-pause" alt="QBT_TR(Pause)QBT_TR" width="24" height="24" onload="fixPNG(this)"/></a>

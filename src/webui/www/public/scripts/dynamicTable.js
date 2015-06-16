@@ -49,9 +49,9 @@ var dynamicTable = new Class({
         },
 
         initColumns : function () {
+            this.newColumn('priority', 'width: 30px; cursor: pointer', '#');
             this.newColumn('state_icon', 'width: 16px', '');
             this.newColumn('name', 'min-width: 200px; cursor: pointer', 'QBT_TR(Name)QBT_TR');
-            this.newColumn('priority', 'width: 90px; cursor: pointer', '#');
             this.newColumn('size', 'width: 100px; cursor: pointer', 'QBT_TR(Size)QBT_TR');
             this.newColumn('progress', 'width: 80px; cursor: pointer', 'QBT_TR(Done)QBT_TR');
             this.newColumn('num_seeds', 'width: 100px; cursor: pointer', 'QBT_TR(Seeds)QBT_TR');
@@ -507,6 +507,10 @@ var dynamicTable = new Class({
                     state = "queued";
                 else if (state == "checkingUP" || state == "checkingDL")
                     state = "checking";
+                else if (state == "forcedDL" || state == "metaDL")
+                    state = "downloading";
+                else if (state == "forcedUP")
+                    state = "uploading";
 
                 var img_path = 'images/skin/' + state + '.png';
 
@@ -520,12 +524,6 @@ var dynamicTable = new Class({
                         'src' : img_path,
                         'class' : 'statusIcon'
                     }));
-            };
-
-            // name
-
-            this.columns['name'].updateTd = function (td, row) {
-                td.set('html', escapeHtml(this.getRowValue(row)));
             };
 
             // priority
@@ -546,6 +544,12 @@ var dynamicTable = new Class({
                 else if (row1_val > row2_val)
                     return 1;
                 else return 0;
+            };
+
+            // name
+
+            this.columns['name'].updateTd = function (td, row) {
+                td.set('html', escapeHtml(this.getRowValue(row)));
             };
 
             // size
