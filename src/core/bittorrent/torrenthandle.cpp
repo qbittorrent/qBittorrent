@@ -39,6 +39,7 @@
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
+#include <libtorrent/create_torrent.hpp>
 #include <boost/bind.hpp>
 
 #ifdef Q_OS_WIN
@@ -1258,15 +1259,8 @@ bool TorrentHandle::saveTorrentFile(const QString &path)
 {
     if (!m_torrentInfo.isValid()) return false;
 
-    // TODO: Use libtorrent::create_torrent() here!
-
-    libt::entry meta = libt::bdecode(m_torrentInfo.metadata().data(),
-                                     m_torrentInfo.metadata().data() + m_torrentInfo.metadata().size());
-    libt::entry torrentEntry(libt::entry::dictionary_t);
-    torrentEntry["info"] = meta;
-    QList<TrackerEntry> trackers = m_torrentInfo.trackers();
-    if (!trackers.isEmpty())
-        torrentEntry["announce"] = trackers.first().nativeEntry().url;
+    libt::create_torrent torrentCreator(*(m_torrentInfo.nativeInfo()));
+    libt::entry torrentEntry = torrentCreator.generate();
 
     QVector<char> out;
     libt::bencode(std::back_inserter(out), torrentEntry);
