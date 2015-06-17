@@ -182,7 +182,11 @@ bool Utils::Fs::forceRemove(const QString& file_path)
  * Removes directory and its content recursively.
  *
  */
-void Utils::Fs::removeDirRecursive(const QString& dirName) {
+void Utils::Fs::removeDirRecursive(const QString& dirName)
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    QDir(dirName).removeRecursively();
+#else
     QDir dir(dirName);
 
     if (!dir.exists()) return;
@@ -197,6 +201,7 @@ void Utils::Fs::removeDirRecursive(const QString& dirName) {
     }
 
     dir.rmdir(dirName);
+#endif
 }
 
 /**
