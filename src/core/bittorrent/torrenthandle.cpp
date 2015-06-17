@@ -40,6 +40,7 @@
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/create_torrent.hpp>
+#include <libtorrent/magnet_uri.hpp>
 #include <boost/bind.hpp>
 
 #ifdef Q_OS_WIN
@@ -130,6 +131,7 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &in)
     , disableTempPath(in.disableTempPath)
     , sequential(in.sequential)
     , hasSeedStatus(in.skipChecking)
+    , addForced(in.addForced)
     , addPaused(in.addPaused)
     , filePriorities(in.filePriorities)
     , ratioLimit(TorrentHandle::USE_GLOBAL_RATIO)
@@ -1437,26 +1439,34 @@ void TorrentHandle::handleTorrentResumedAlert(libtorrent::torrent_resumed_alert 
 
 void TorrentHandle::handleSaveResumeDataAlert(libtorrent::save_resume_data_alert *p)
 {
-    if (p->resume_data) {
-        (*(p->resume_data))["qBt-addedTime"] = m_addedTime.toTime_t();
-        (*(p->resume_data))["qBt-savePath"] = m_useDefaultSavePath ? "" : m_savePath.toUtf8().constData();
-        (*(p->resume_data))["qBt-ratioLimit"] = QString::number(m_ratioLimit).toUtf8().constData();
-        (*(p->resume_data))["qBt-label"] = m_label.toUtf8().constData();
-        (*(p->resume_data))["qBt-name"] = m_name.toUtf8().constData();
-        (*(p->resume_data))["qBt-seedStatus"] = m_hasSeedStatus;
-        (*(p->resume_data))["qBt-tempPathDisabled"] = m_tempPathDisabled;
+    const bool useDummyResumeData = !(p && p->resume_data);
+    libtorrent::entry dummyEntry;
 
-        m_session->handleTorrentResumeDataReady(this, *(p->resume_data));
+    libtorrent::entry &resumeData = useDummyResumeData ? dummyEntry : *(p->resume_data);
+    if (useDummyResumeData) {
+        resumeData["qBt-magnetUri"] = Utils::String::toStdString(toMagnetUri());
+        resumeData["qBt-paused"] = isPaused();
+        resumeData["qBt-forced"] = isForced();
     }
-    else {
-        m_session->handleTorrentResumeDataFailed(this);
-    }
+    resumeData["qBt-addedTime"] = m_addedTime.toTime_t();
+    resumeData["qBt-savePath"] = m_useDefaultSavePath ? "" : Utils::String::toStdString(m_savePath);
+    resumeData["qBt-ratioLimit"] = Utils::String::toStdString(QString::number(m_ratioLimit));
+    resumeData["qBt-label"] = Utils::String::toStdString(m_label);
+    resumeData["qBt-name"] = Utils::String::toStdString(m_name);
+    resumeData["qBt-seedStatus"] = m_hasSeedStatus;
+    resumeData["qBt-tempPathDisabled"] = m_tempPathDisabled;
+
+    m_session->handleTorrentResumeDataReady(this, resumeData);
 }
 
 void TorrentHandle::handleSaveResumeDataFailedAlert(libtorrent::save_resume_data_failed_alert *p)
 {
-    Q_UNUSED(p);
-    m_session->handleTorrentResumeDataFailed(this);
+    // if torrent has no metadata we should save dummy fastresume data
+    // containing Magnet URI and qBittorrent own resume data only
+    if (p->error.value() == libt::errors::no_metadata)
+        handleSaveResumeDataAlert(0);
+    else
+        m_session->handleTorrentResumeDataFailed(this);
 }
 
 void TorrentHandle::handleFastResumeRejectedAlert(libtorrent::fastresume_rejected_alert *p)
@@ -1808,7 +1818,7 @@ void TorrentHandle::flushCache()
 
 QString TorrentHandle::toMagnetUri() const
 {
-    return m_torrentInfo.toMagnetUri();
+    return Utils::String::fromStdString(libt::make_magnet_uri(m_nativeHandle));
 }
 
 void TorrentHandle::resolveCountries(bool b)

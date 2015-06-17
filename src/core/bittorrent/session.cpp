@@ -95,7 +95,7 @@ namespace libt = libtorrent;
 using namespace BitTorrent;
 
 static bool readFile(const QString &path, QByteArray &buf);
-static bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out);
+static bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out, MagnetUri &magnetUri);
 
 static void torrentQueuePositionUp(const libt::torrent_handle &handle);
 static void torrentQueuePositionDown(const libt::torrent_handle &handle);
@@ -1086,33 +1086,34 @@ bool Session::addTorrent_impl(const AddTorrentData &addData, const MagnetUri &ma
         p = magnetUri.addTorrentParams();
         hash = magnetUri.hash();
     }
-    else {
-        if (!torrentInfo.isValid()) return false;
-
+    else if (torrentInfo.isValid()) {
         // Metadata
         p.ti = torrentInfo.nativeInfo();
         hash = torrentInfo.hash();
+    }
+    else {
+        Q_ASSERT(false);
+    }
 
-        if (addData.resumed) {
-            // Set torrent fast resume data
+    if (addData.resumed && !fromMagnetUri) {
+        // Set torrent fast resume data
 #if LIBTORRENT_VERSION_NUM < 10000
-            p.resume_data = &buf;
+        p.resume_data = &buf;
 #else
-            p.resume_data = buf;
-            p.flags |= libt::add_torrent_params::flag_use_resume_save_path;
+        p.resume_data = buf;
+        p.flags |= libt::add_torrent_params::flag_use_resume_save_path;
 #endif
-            p.flags |= libt::add_torrent_params::flag_merge_resume_trackers;
+        p.flags |= libt::add_torrent_params::flag_merge_resume_trackers;
 
-        }
-        else {
-            foreach (int prio, addData.filePriorities)
-                filePriorities.push_back(prio);
+    }
+    else {
+        foreach (int prio, addData.filePriorities)
+            filePriorities.push_back(prio);
 #if LIBTORRENT_VERSION_NUM < 10000
-            p.file_priorities = &filePriorities;
+        p.file_priorities = &filePriorities;
 #else
-            p.file_priorities = filePriorities;
+        p.file_priorities = filePriorities;
 #endif
-        }
     }
 
     // We should not add torrent if it already
@@ -1929,22 +1930,15 @@ void Session::startUpTorrents()
                 resumeDataDir.absoluteFilePath(QString("%1.fastresume.%2").arg(hash).arg(prio));
         QByteArray data;
         AddTorrentData resumeData;
-        if (readFile(fastresumePath, data) && loadTorrentResumeData(data, resumeData)) {
+        MagnetUri magnetUri;
+        if (readFile(fastresumePath, data) && loadTorrentResumeData(data, resumeData, magnetUri)) {
             filePath = resumeDataDir.filePath(QString("%1.torrent").arg(hash));
-            if (QFile(filePath).exists()) {
-                qDebug("Starting up torrent %s ...", qPrintable(hash));
-                if (!addTorrent_impl(resumeData, MagnetUri(), TorrentInfo::loadFromFile(filePath), data))
-                    logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
-                                       .arg(Utils::Fs::toNativePath(hash)), Log::CRITICAL);
-            }
-            else {
-                logger->addMessage(tr("Unable to resume torrent '%1': torrent file not found.", "e.g: Unable to resume torrent 'hash': torrent file not found.")
+            qDebug("Starting up torrent %s ...", qPrintable(hash));
+            if (!addTorrent_impl(resumeData, magnetUri, TorrentInfo::loadFromFile(filePath), data))
+                logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
                                    .arg(Utils::Fs::toNativePath(hash)), Log::CRITICAL);
-            }
         }
     }
-
-    qDebug("Unfinished torrents resumed.");
 }
 
 quint64 Session::getAlltimeDL() const
@@ -2121,6 +2115,9 @@ void Session::handleAddTorrentAlert(libtorrent::add_torrent_alert *p)
     bool fromMagnetUri = !torrent->hasMetadata();
 
     if (data.resumed) {
+        if (fromMagnetUri && !data.addPaused)
+            torrent->resume(data.addForced);
+
         logger->addMessage(tr("'%1' resumed. (fast resume)", "'torrent name' was resumed. (fast resume)")
                            .arg(torrent->name()));
     }
@@ -2363,7 +2360,7 @@ bool readFile(const QString &path, QByteArray &buf)
     return true;
 }
 
-bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out)
+bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out, MagnetUri &magnetUri)
 {
     out = AddTorrentData();
     out.resumed = true;
@@ -2380,6 +2377,10 @@ bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out)
     out.name = Utils::String::fromStdString(fast.dict_find_string_value("qBt-name"));
     out.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
     out.disableTempPath = fast.dict_find_int_value("qBt-tempPathDisabled");
+
+    magnetUri = MagnetUri(Utils::String::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
+    out.addPaused = fast.dict_find_int_value("qBt-paused");
+    out.addForced = fast.dict_find_int_value("qBt-forced");
 
     return true;
 }

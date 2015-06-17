@@ -32,7 +32,6 @@
 #include <QDateTime>
 
 #include <libtorrent/error_code.hpp>
-#include <libtorrent/magnet_uri.hpp>
 
 #include "core/utils/misc.h"
 #include "core/utils/fs.h"
@@ -210,12 +209,6 @@ QByteArray TorrentInfo::metadata() const
 {
     if (!isValid()) return QByteArray();
     return QByteArray(m_nativeInfo->metadata().get(), m_nativeInfo->metadata_size());
-}
-
-QString TorrentInfo::toMagnetUri() const
-{
-    if (!isValid()) return QString();
-    return Utils::String::fromStdString(libt::make_magnet_uri(*m_nativeInfo));
 }
 
 void TorrentInfo::renameFile(uint index, const QString &newPath)
