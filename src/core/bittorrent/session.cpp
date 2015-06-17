@@ -742,8 +742,13 @@ void Session::processBigRatios()
         if (torrent->isSeed() && (torrent->ratioLimit() != TorrentHandle::NO_RATIO_LIMIT)) {
             const qreal ratio = torrent->realRatio();
             qreal ratioLimit = torrent->ratioLimit();
-            if (ratioLimit == TorrentHandle::USE_GLOBAL_RATIO)
-                ratioLimit = m_globalMaxRatio;
+            if (ratioLimit == TorrentHandle::USE_GLOBAL_RATIO) {
+                // If Global Max Ratio is really set...
+                if (m_globalMaxRatio >= 0)
+                    ratioLimit = m_globalMaxRatio;
+                else
+                    continue;
+            }
             qDebug("Ratio: %f (limit: %f)", ratio, ratioLimit);
             Q_ASSERT(ratioLimit >= 0.f);
 
@@ -2149,6 +2154,8 @@ void Session::handleAddTorrentAlert(libtorrent::add_torrent_alert *p)
     }
 
     saveTorrentResumeData(torrent);
+    if ((torrent->ratioLimit() >= 0) && !m_bigRatioTimer->isActive())
+        m_bigRatioTimer->start();
 
     // Send torrent addition signal
     emit torrentAdded(torrent);
