@@ -141,8 +141,14 @@ void PeerListWidget::updatePeerCountryResolutionState()
 {
   if (Preferences::instance()->resolvePeerCountries() != m_displayFlags) {
     m_displayFlags = !m_displayFlags;
-    if (m_displayFlags)
+    if (m_displayFlags) {
       loadPeers(m_properties->getCurrentTorrent());
+      showColumn(PeerListDelegate::COUNTRY);
+      resizeColumnToContents(PeerListDelegate::COUNTRY);
+    }
+    else {
+        hideColumn(PeerListDelegate::COUNTRY);
+    }
   }
 }
 
