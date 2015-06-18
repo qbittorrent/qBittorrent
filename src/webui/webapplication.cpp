@@ -295,9 +295,19 @@ void WebApplication::action_command_shutdown()
 void WebApplication::action_command_download()
 {
     CHECK_URI(0);
-    CHECK_PARAMETERS("urls");
+    CHECK_PARAMETERS("urls" << "label" << "savePath" << "skipChecking");
+
     QString urls = request().posts["urls"];
     QStringList list = urls.split('\n');
+
+    QString label = request().posts["label"].simplified();
+    QString savePath = request().posts["savePath"].simplified();
+    bool setSavePath;
+    if (!savePath.isEmpty() && savePath != Preferences::instance()->getSavePath())
+        setSavePath = true;
+    else
+        setSavePath = false;
+    bool skipChecking = (request().posts["skipChecking"].simplified() == "true");
 
     foreach (QString url, list) {
         url = url.trimmed();
@@ -307,7 +317,13 @@ void WebApplication::action_command_download()
                 url = Utils::Misc::bcLinkToMagnet(url);
             }
 
-            BitTorrent::Session::instance()->addTorrent(url);
+            BitTorrent::AddTorrentParams params;
+            params.label = label;
+            if (setSavePath)
+                params.savePath = savePath;
+            params.skipChecking = skipChecking;
+
+            BitTorrent::Session::instance()->addTorrent(url, params);
         }
     }
 }
@@ -316,6 +332,15 @@ void WebApplication::action_command_upload()
 {
     qDebug() << Q_FUNC_INFO;
     CHECK_URI(0);
+
+    QString label = request().posts["label"].simplified();
+    QString savePath = request().posts["savePath"].simplified();
+    bool setSavePath;
+    if (!savePath.isEmpty() && savePath != Preferences::instance()->getSavePath())
+        setSavePath = true;
+    else
+        setSavePath = false;
+    bool skipChecking = (request().posts["skipChecking"].simplified() == "true");
 
     foreach(const Http::UploadedFile& torrent, request().files) {
         QString filePath = saveTmpFile(torrent.data);
@@ -327,6 +352,12 @@ void WebApplication::action_command_upload()
                 print(QObject::tr("Error: '%1' is not a valid torrent file.\n").arg(torrent.filename), Http::CONTENT_TYPE_TXT);
             }
             else {
+                BitTorrent::AddTorrentParams params;
+                params.label = label;
+                if (setSavePath)
+                    params.savePath = savePath;
+                params.skipChecking = skipChecking;
+
                 if (!BitTorrent::Session::instance()->addTorrent(torrentInfo)) {
                     status(500, "Internal Server Error");
                     print(QObject::tr("Error: Could not add torrent to session."), Http::CONTENT_TYPE_TXT);
