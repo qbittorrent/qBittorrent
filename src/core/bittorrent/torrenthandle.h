@@ -95,7 +95,6 @@ namespace BitTorrent
         TriStateBool addPaused;
         // for new torrents
         QVector<int> filePriorities;
-        bool ignoreShareRatio;
         // for resumed torrents
         QDateTime addedTime;
         qreal ratioLimit;
