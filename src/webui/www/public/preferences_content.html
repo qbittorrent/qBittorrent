@@ -115,10 +115,6 @@
   <legend>QBT_TR(Privacy)QBT_TR</legend>
   <input type="checkbox" id="dht_checkbox"/>
   <label for="dht_checkbox">QBT_TR(Enable DHT (decentralized network) to find more peers)QBT_TR</label><br/>
-  <input type="checkbox" id="DHTPortDiffThanBT_checkbox" onclick="updateDHTPortSettings();"/>
-  <label for="DHTPortDiffThanBT_checkbox">QBT_TR(Use a different port for DHT and BitTorrent)QBT_TR</label><br/>
-  <label for="DHTPort_txt" style="margin-left: 20px;">QBT_TR(DHT port:)QBT_TR</label>
-  <input type="text" id="DHTPort_txt" value="6881"/><br/>
   <input type="checkbox" id="pex_checkbox"/>
   <label for="pex_checkbox">QBT_TR(Enable Peer Exchange (PeX) to find more peers)QBT_TR</label><br/>
   <input type="checkbox" id="lsd_checkbox"/>
@@ -381,7 +377,6 @@
 toggleAnonymousMode = function() {
   if($('anonymous_mode_checkbox').getProperty('checked')) {
     $('dht_checkbox').setProperty('disabled', true);
-    $('DHTPortDiffThanBT_checkbox').setProperty('disabled', true);
     $('dht_checkbox').setProperty('checked', false);
     $('lsd_checkbox').setProperty('disabled', true);
     $('lsd_checkbox').setProperty('checked', false);
@@ -389,7 +384,6 @@ toggleAnonymousMode = function() {
     $('upnp_checkbox').setProperty('checked', false);
   } else {
     $('dht_checkbox').setProperty('disabled', false);
-    $('DHTPortDiffThanBT_checkbox').setProperty('disabled', false);
     $('lsd_checkbox').setProperty('disabled', false);
     $('upnp_checkbox').setProperty('disabled', false);
   }
@@ -546,14 +540,6 @@ updateFilterSettings = function() {
     $('ipfilter_text').setProperty('disabled', false);
   } else {
     $('ipfilter_text').setProperty('disabled', true);
-  }
-}
-
-updateDHTPortSettings = function() {
-  if($('DHTPortDiffThanBT_checkbox').getProperty('checked')) {
-    $('DHTPort_txt').setProperty('disabled', false);
-  } else {
-    $('DHTPort_txt').setProperty('disabled', true);
   }
 }
 
@@ -743,9 +729,6 @@ loadPreferences = function() {
                     updateMaxUploadsPerTorrentEnabled();
                     // Bittorrent
                     $('dht_checkbox').setProperty('checked', pref.dht);
-                    $('DHTPortDiffThanBT_checkbox').setProperty('checked', !pref.dhtSameAsBT);
-                    $('DHTPort_txt').setProperty('value', pref.dht_port);
-                    updateDHTPortSettings();
                     $('pex_checkbox').setProperty('checked', pref.pex);
                     $('lsd_checkbox').setProperty('checked', pref.lsd);
                     var encryption = pref.encryption.toInt();
@@ -960,8 +943,6 @@ applyPreferences = function() {
   }
   // Bittorrent
   settings.set('dht', $('dht_checkbox').getProperty('checked'));
-  settings.set('dhtSameAsBT', !$('DHTPortDiffThanBT_checkbox').getProperty('checked'));
-  settings.set('dht_port', $('DHTPort_txt').getProperty('value').toInt());
   settings.set('pex', $('pex_checkbox').getProperty('checked'));
   settings.set('lsd', $('lsd_checkbox').getProperty('checked'));
   settings.set('encryption', $('encryption_select').getSelected()[0].getProperty('value'));
