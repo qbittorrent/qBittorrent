@@ -296,8 +296,10 @@ QString misc::friendlyUnit(qreal val, bool is_speed)
     if (val < 0)
         return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
     int i = 0;
-    while(val >= 1024. && i++<6)
+    while(val >= 1024. && i < 4) {
         val /= 1024.;
+        ++i;
+    }
     QString ret;
     if (i == 0)
         ret = QString::number((long)val) + " " + QCoreApplication::translate("misc", units[0].source, units[0].comment);
