@@ -134,7 +134,7 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &in)
     , addForced(in.addForced)
     , addPaused(in.addPaused)
     , filePriorities(in.filePriorities)
-    , ratioLimit(TorrentHandle::USE_GLOBAL_RATIO)
+    , ratioLimit(in.ignoreShareRatio ? TorrentHandle::NO_RATIO_LIMIT : TorrentHandle::USE_GLOBAL_RATIO)
 {
 }
 
@@ -192,7 +192,7 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_savePath(Utils::Fs::toNativePath(data.savePath))
     , m_label(data.label)
     , m_hasSeedStatus(data.resumed ? data.hasSeedStatus : false)
-    , m_ratioLimit(data.resumed ? data.ratioLimit : (data.ignoreShareRatio ? NO_RATIO_LIMIT : USE_GLOBAL_RATIO))
+    , m_ratioLimit(data.ratioLimit)
     , m_tempPathDisabled(data.disableTempPath)
     , m_hasMissingFiles(false)
     , m_useDefaultSavePath(false)
