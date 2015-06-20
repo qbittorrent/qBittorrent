@@ -36,6 +36,9 @@
      <property name="acceptRichText">
       <bool>false</bool>
      </property>
+     <property name="tabChangesFocus">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item>
