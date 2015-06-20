@@ -75,6 +75,8 @@ Q_IMPORT_PLUGIN(qico)
 #include "core/utils/misc.h"
 #include "core/preferences.h"
 
+#include "upgrade.h"
+
 // Signal handlers
 #if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
 void sigintHandler(int);
@@ -199,6 +201,8 @@ int main(int argc, char *argv[])
 
         return EXIT_SUCCESS;
     }
+
+    if (!upgrade()) return EXIT_FAILURE;
 
     srand(time(0));
 #ifdef DISABLE_GUI

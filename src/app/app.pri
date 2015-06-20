@@ -27,3 +27,6 @@ strace_win {
 }
 
 SOURCES += $$PWD/main.cpp
+
+# upgrade code
+HEADERS += $$PWD/upgrade.h

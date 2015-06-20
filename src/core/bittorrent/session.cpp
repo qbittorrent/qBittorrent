@@ -88,7 +88,7 @@ using namespace BitTorrent;
 #include "session.h"
 
 static const char PEER_ID[] = "qB";
-static const char RESUME_FOLDER[] = "ResumeData";
+static const char RESUME_FOLDER[] = "BT_backup";
 static const int MAX_TRACKER_ERRORS = 2;
 
 namespace libt = libtorrent;
