@@ -118,24 +118,26 @@ namespace BitTorrent
         {
             Unknown = -1,
 
-            Error,
-
-            Uploading,
-            PausedUploading,
-            QueuedUploading,
-            StalledUploading,
-            CheckingUploading,
-            ForcedUploading,
-
-            Allocating,
-
-            DownloadingMetadata,
+            ForcedDownloading,
             Downloading,
-            PausedDownloading,
-            QueuedDownloading,
+            DownloadingMetadata,
+            Allocating,
             StalledDownloading,
+
+            ForcedUploading,
+            Uploading,
+            StalledUploading,
+
+            QueuedDownloading,
+            QueuedUploading,
+
+            CheckingUploading,
             CheckingDownloading,
-            ForcedDownloading
+
+            PausedDownloading,
+            PausedUploading,
+
+            Error
         };
 
         TorrentState(int value);
