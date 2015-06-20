@@ -315,8 +315,11 @@ MainWindow::MainWindow(QWidget *parent)
             activateWindow();
             raise();
         }
-        else {
-            create();
+        else if (pref->startMinimized()) {
+            if (pref->minimizeToTray())
+                create();
+            else
+                showMinimized();
         }
     }
     else {
