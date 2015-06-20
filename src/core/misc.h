@@ -64,6 +64,7 @@ namespace misc
 {
     QString toQString(const std::string &str);
     QString toQString(const char* str);
+    QString toQString(time_t t, Qt::DateFormat f = Qt::DefaultLocaleLongDate);
     QString toQStringU(const std::string &str);
     QString toQStringU(const char* str);
     QString toQString(const libtorrent::sha1_hash &hash);
@@ -100,7 +101,6 @@ namespace misc
     QList<int> intListfromStringList(const QStringList &l);
     QList<bool> boolListfromStringList(const QStringList &l);
 
-    QString toQString(time_t t);
     QString accurateDoubleToString(const double &n, const int &precision);
 
 #ifndef DISABLE_GUI

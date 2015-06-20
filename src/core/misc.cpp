@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Bittorrent Client using Qt4 and libtorrent.
  * Copyright (C) 2006  Christophe Dumez
  *
@@ -530,9 +530,9 @@ QString misc::parseHtmlLinks(const QString &raw_text)
     return result;
 }
 
-QString misc::toQString(time_t t)
+QString misc::toQString(time_t t, Qt::DateFormat f)
 {
-    return QDateTime::fromTime_t(t).toString(Qt::DefaultLocaleLongDate);
+    return QDateTime::fromTime_t(t).toString(f);
 }
 
 #ifndef DISABLE_GUI
