@@ -43,6 +43,7 @@
 #include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
 #include "core/utils/fs.h"
+#include "core/utils/string.h"
 
 AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& manager, QWidget *parent) :
   QDialog(parent),
@@ -308,10 +309,10 @@ RssDownloadRulePtr AutomatedRssDownloader::getCurrentRule() const
 void AutomatedRssDownloader::initLabelCombobox()
 {
   // Load custom labels
-  const QStringList customLabels = Preferences::instance()->getTorrentLabels();
-  foreach (const QString& label, customLabels) {
-    ui->comboLabel->addItem(label);
-  }
+  QStringList customLabels = Preferences::instance()->getTorrentLabels();
+  std::sort(customLabels.begin(), customLabels.end(), Utils::String::NaturalCompare());
+  foreach (const QString& l, customLabels)
+    ui->comboLabel->addItem(l);
 }
 
 void AutomatedRssDownloader::saveEditedRule()
