@@ -183,6 +183,7 @@ namespace BitTorrent
         QString savePathParsed() const;
         int filesCount() const;
         int piecesCount() const;
+        int piecesHave() const;
         qreal progress() const;
         QString label() const;
         QDateTime addedTime() const;
@@ -224,12 +225,16 @@ namespace BitTorrent
         qlonglong totalDownload() const;
         qlonglong totalUpload() const;
         int activeTime() const;
+        int finishedTime() const;
         int seedingTime() const;
         qulonglong eta() const;
         QVector<qreal> filesProgress() const;
         int seedsCount() const;
         int peersCount() const;
         int leechsCount() const;
+        int totalSeedsCount() const;
+        int totalPeersCount() const;
+        int totalLeechersCount() const;
         int completeCount() const;
         int incompleteCount() const;
         QDateTime lastSeenComplete() const;
