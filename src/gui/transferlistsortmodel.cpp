@@ -196,8 +196,12 @@ bool TransferListSortModel::lowerPositionThan(const QModelIndex &left, const QMo
     // Sort according to TR_PRIORITY
     const int queueL = model->data(model->index(left.row(), TorrentModelItem::TR_PRIORITY)).toInt();
     const int queueR = model->data(model->index(right.row(), TorrentModelItem::TR_PRIORITY)).toInt();
-    if ((queueL > 0) || (queueR > 0))
-        return queueL < queueR;
+    if ((queueL > 0) || (queueR > 0)) {
+        if ((queueL > 0) && (queueR > 0))
+            return queueL < queueR;
+        else
+            return queueL != 0;
+    }
 
     // Sort according to TR_SEED_DATE
     const QDateTime dateL = model->data(model->index(left.row(), TorrentModelItem::TR_SEED_DATE)).toDateTime();
