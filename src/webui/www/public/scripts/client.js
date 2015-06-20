@@ -89,7 +89,6 @@ window.addEvent('load', function () {
         width : null,
         resizeLimit : [100, 300]
     });
-    MochaUI.Desktop.setDesktopSize();
 
     setFilter = function (f) {
         // Visually Select the right filter
@@ -129,9 +128,22 @@ window.addEvent('load', function () {
     });
     initializeWindows();
 
+    // Show Top Toolbar is enabled by default
+    if (localStorage.getItem('show_top_toolbar') == null)
+        var showTopToolbar = true;
+    else
+        var showTopToolbar = localStorage.getItem('show_top_toolbar') == "true";
+    if (!showTopToolbar) {
+        $('showTopToolbarLink').firstChild.style.opacity = '0';
+        $('mochaToolbar').addClass('invisible');
+    }
+
     var speedInTitle = localStorage.getItem('speed_in_browser_title_bar') == "true";
     if (!speedInTitle)
         $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
+
+    // After Show Top Toolbar
+    MochaUI.Desktop.setDesktopSize();
 
     var syncMainDataLastResponseId = 0;
     var serverState = {};
@@ -218,10 +230,12 @@ window.addEvent('load', function () {
             myTable.columns['priority'].force_hide = !queueing_enabled;
             myTable.updateColumn('priority');
             if (queueing_enabled) {
+                $('queueingLinks').removeClass('invisible');
                 $('queueingButtons').removeClass('invisible');
                 $('queueingMenuItems').removeClass('invisible');
             }
             else {
+                $('queueingLinks').addClass('invisible');
                 $('queueingButtons').addClass('invisible');
                 $('queueingMenuItems').addClass('invisible');
             }
@@ -268,6 +282,20 @@ window.addEvent('load', function () {
         myTable.setSortedColumn(column);
         updateMainData();
     };
+
+    $('showTopToolbarLink').addEvent('click', function(e) {
+        showTopToolbar = !showTopToolbar;
+        localStorage.setItem('show_top_toolbar', showTopToolbar.toString());
+        if (showTopToolbar) {
+            $('showTopToolbarLink').firstChild.style.opacity = '1';
+            $('mochaToolbar').removeClass('invisible');
+        }
+        else {
+            $('showTopToolbarLink').firstChild.style.opacity = '0';
+            $('mochaToolbar').addClass('invisible');
+        }
+        MochaUI.Desktop.setDesktopSize();
+    });
 
     $('speedInBrowserTitleBarLink').addEvent('click', function(e) {
         speedInTitle = !speedInTitle;
