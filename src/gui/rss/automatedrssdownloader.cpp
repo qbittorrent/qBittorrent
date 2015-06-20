@@ -260,9 +260,9 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
       QDateTime dateTime = rule->lastMatch();
       QString lMatch;
       if (dateTime.isValid())
-        lMatch = tr("Last match: %1 days ago").arg(dateTime.daysTo(QDateTime::currentDateTime()));
+        lMatch = tr("Last Match: %1 days ago").arg(dateTime.daysTo(QDateTime::currentDateTime()));
       else
-        lMatch = tr("Last match: Unknown");
+        lMatch = tr("Last Match: Unknown");
       ui->lblLastMatch->setText(lMatch);
       updateMustLineValidity();
       updateMustNotLineValidity();

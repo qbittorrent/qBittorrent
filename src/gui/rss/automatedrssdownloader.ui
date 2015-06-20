@@ -23,7 +23,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Enable the automated RSS downloader</string>
+      <string>Enable Automated RSS Downloader</string>
      </property>
     </widget>
    </item>
@@ -45,7 +45,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Download rules</string>
+            <string>Download Rules</string>
            </property>
           </widget>
          </item>
@@ -85,13 +85,13 @@
        <item>
         <widget class="QGroupBox" name="ruleDefBox">
          <property name="title">
-          <string>Rule definition</string>
+          <string>Rule Definition</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
            <widget class="QCheckBox" name="checkRegex">
             <property name="text">
-             <string>Use regular expressions</string>
+             <string>Use Regular Expressions</string>
             </property>
            </widget>
           </item>
@@ -100,14 +100,14 @@
             <item row="0" column="0">
              <widget class="QLabel" name="label_4">
               <property name="text">
-               <string>Must contain:</string>
+               <string>Must Contain:</string>
               </property>
              </widget>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_5">
               <property name="text">
-               <string>Must not contain:</string>
+               <string>Must Not Contain:</string>
               </property>
              </widget>
             </item>
@@ -177,7 +177,7 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Assign label:</string>
+               <string>Assign Label:</string>
               </property>
              </widget>
             </item>
@@ -193,7 +193,7 @@
           <item>
            <widget class="QCheckBox" name="saveDiffDir_check">
             <property name="text">
-             <string>Save to a different directory</string>
+             <string>Save to a Different Directory</string>
             </property>
            </widget>
           </item>
@@ -233,7 +233,7 @@
             <item>
              <widget class="QLabel" name="lblIgnoreDays">
               <property name="text">
-               <string comment="... X days">Ignore subsequent matches for (0 to disable)</string>
+               <string comment="... X days">Ignore Subsequent Matches for (0 to Disable)</string>
               </property>
              </widget>
             </item>
@@ -246,7 +246,7 @@
                <string> days</string>
               </property>
               <property name="maximum">
-               <number>360</number>
+               <number>365</number>
               </property>
              </widget>
             </item>
@@ -281,17 +281,17 @@
              <widget class="QComboBox" name="comboAddPaused">
               <item>
                <property name="text">
-                <string>Use global setting</string>
+                <string>Use global settings</string>
                </property>
               </item>
               <item>
                <property name="text">
-                <string>Always add paused</string>
+                <string>Always</string>
                </property>
               </item>
               <item>
                <property name="text">
-                <string>Never add paused</string>
+                <string>Never</string>
                </property>
               </item>
              </widget>
@@ -312,7 +312,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Apply rule to feeds:</string>
+            <string>Apply Rule to Feeds:</string>
            </property>
           </widget>
          </item>
@@ -334,7 +334,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Matching RSS articles</string>
+          <string>Matching RSS Articles</string>
          </property>
         </widget>
        </item>
