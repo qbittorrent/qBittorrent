@@ -616,7 +616,10 @@ void TrackerFiltersList::trackerWarning(const QString &hash, const QString &trac
 void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString& filePath)
 {
     QString host = getHost(url);
-    if (!m_trackers.contains(host)) return;
+    if (!m_trackers.contains(host)) {
+        Utils::Fs::forceRemove(filePath);
+        return;
+    }
 
     QListWidgetItem *trackerItem = item(rowFromTracker(host));
     QIcon icon(filePath);
