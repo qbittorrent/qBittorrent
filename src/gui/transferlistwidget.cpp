@@ -649,7 +649,7 @@ void TransferListWidget::renameSelectedTorrent()
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
     if (selectedIndexes.size() != 1) return;
     if (!selectedIndexes.first().isValid()) return;
-    QModelIndex mi = mapToSource(selectedIndexes.first());
+    QModelIndex mi = listModel->index(mapToSource(selectedIndexes.first()).row(), TorrentModelItem::TR_NAME);
     const QString hash = getHashFromRow(mi.row());
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent) return;
