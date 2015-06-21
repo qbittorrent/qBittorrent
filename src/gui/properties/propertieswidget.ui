@@ -883,17 +883,26 @@
                </widget>
               </item>
               <item row="4" column="1" colspan="5">
-               <widget class="QTextBrowser" name="comment_text">
+               <widget class="QLabel" name="comment_text">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::RichText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                </property>
                 <property name="openExternalLinks">
                  <bool>true</bool>
                 </property>
-                <property name="openLinks">
+                <property name="textInteractionFlags">
+                 <set>Qt::TextBrowserInteraction</set>
+                </property>
+                <property name="openLinks" stdset="0">
                  <bool>true</bool>
                 </property>
                </widget>

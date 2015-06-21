@@ -280,7 +280,7 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent
       label_total_size_val->setText(Utils::Misc::friendlyUnit(m_torrent->totalSize()));
 
       // Comment
-      comment_text->setHtml(Utils::Misc::parseHtmlLinks(m_torrent->comment()));
+      comment_text->setText(Utils::Misc::parseHtmlLinks(m_torrent->comment()));
 
       // URL seeds
       loadUrlSeeds();
