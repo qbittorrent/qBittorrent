@@ -283,7 +283,7 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle& _h)
       label_total_size_val->setText(misc::friendlyUnit(h.total_size()));
 
       // Comment
-      comment_text->setHtml(misc::parseHtmlLinks(h.comment()));
+      comment_text->setText(misc::parseHtmlLinks(h.comment()));
 
       // URL seeds
       loadUrlSeeds();
