@@ -969,6 +969,14 @@ int TorrentHandle::timeSinceDownload() const
     return m_nativeStatus.time_since_download;
 }
 
+int TorrentHandle::timeSinceActivity() const
+{
+    if (m_nativeStatus.time_since_upload < m_nativeStatus.time_since_download)
+        return m_nativeStatus.time_since_upload;
+    else
+        return m_nativeStatus.time_since_download;
+}
+
 int TorrentHandle::downloadLimit() const
 {
     SAFE_RETURN(int, download_limit, -1)
@@ -1117,9 +1125,11 @@ void TorrentHandle::setName(const QString &name)
 void TorrentHandle::setLabel(const QString &label)
 {
     if (m_label != label) {
+        QString oldLabel = m_label;
         m_label = label;
         m_needSaveResumeData = true;
         adjustSavePath();
+        m_session->handleTorrentLabelChanged(this, oldLabel);
     }
 }
 

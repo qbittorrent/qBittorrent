@@ -1,6 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -34,35 +35,11 @@
 #include <QAbstractListModel>
 #include <QList>
 
-#include "core/bittorrent/torrenthandle.h"
-
-class QIcon;
-
-class TorrentModelItem : public QObject {
-    Q_OBJECT
-
-public:
-    enum Column {TR_PRIORITY, TR_NAME, TR_SIZE, TR_TOTAL_SIZE, TR_PROGRESS, TR_STATUS, TR_SEEDS, TR_PEERS, TR_DLSPEED, TR_UPSPEED, TR_ETA, TR_RATIO, TR_LABEL, TR_ADD_DATE, TR_SEED_DATE, TR_TRACKER, TR_DLLIMIT, TR_UPLIMIT, TR_AMOUNT_DOWNLOADED, TR_AMOUNT_UPLOADED, TR_AMOUNT_DOWNLOADED_SESSION, TR_AMOUNT_UPLOADED_SESSION, TR_AMOUNT_LEFT, TR_TIME_ELAPSED, TR_SAVE_PATH, TR_COMPLETED, TR_RATIO_LIMIT, TR_SEEN_COMPLETE_DATE, TR_LAST_ACTIVITY, NB_COLUMNS};
-
-public:
-    TorrentModelItem(BitTorrent::TorrentHandle *torrent);
-    inline int columnCount() const { return NB_COLUMNS; }
-    QVariant data(int column, int role = Qt::DisplayRole) const;
-    bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
-    inline BitTorrent::InfoHash hash() const { return m_torrent->hash(); }
-    BitTorrent::TorrentState state() const;
-    BitTorrent::TorrentHandle *torrentHandle() const;
-
-signals:
-    void labelChanged(QString previous, QString current);
-
-private:
-    static QIcon getIconByState(BitTorrent::TorrentState state);
-    static QColor getColorByState(BitTorrent::TorrentState state);
-
-private:
-    BitTorrent::TorrentHandle *m_torrent;
-};
+namespace BitTorrent
+{
+    class InfoHash;
+    class TorrentHandle;
+}
 
 class TorrentModel : public QAbstractListModel
 {
@@ -70,39 +47,59 @@ class TorrentModel : public QAbstractListModel
     Q_DISABLE_COPY(TorrentModel)
 
 public:
+    enum Column
+    {
+        TR_PRIORITY,
+        TR_NAME,
+        TR_SIZE,
+        TR_TOTAL_SIZE,
+        TR_PROGRESS,
+        TR_STATUS,
+        TR_SEEDS,
+        TR_PEERS,
+        TR_DLSPEED,
+        TR_UPSPEED,
+        TR_ETA,
+        TR_RATIO,
+        TR_LABEL,
+        TR_ADD_DATE,
+        TR_SEED_DATE,
+        TR_TRACKER,
+        TR_DLLIMIT,
+        TR_UPLIMIT,
+        TR_AMOUNT_DOWNLOADED,
+        TR_AMOUNT_UPLOADED,
+        TR_AMOUNT_DOWNLOADED_SESSION,
+        TR_AMOUNT_UPLOADED_SESSION,
+        TR_AMOUNT_LEFT,
+        TR_TIME_ELAPSED,
+        TR_SAVE_PATH,
+        TR_COMPLETED,
+        TR_RATIO_LIMIT,
+        TR_SEEN_COMPLETE_DATE,
+        TR_LAST_ACTIVITY,
+
+        NB_COLUMNS
+    };
+
     explicit TorrentModel(QObject *parent = 0);
-    ~TorrentModel();
-    inline int rowCount(const QModelIndex& index = QModelIndex()) const { Q_UNUSED(index); return m_items.size(); }
-    int columnCount(const QModelIndex &parent=QModelIndex()) const { Q_UNUSED(parent); return TorrentModelItem::NB_COLUMNS; }
+
+    int rowCount(const QModelIndex& index = QModelIndex()) const;
+    int columnCount(const QModelIndex &parent=QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::DisplayRole);
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
-    int torrentRow(const BitTorrent::InfoHash &hash) const;
-    QString torrentHash(int row) const;
-    BitTorrent::TorrentHandle *torrentHandle(const QModelIndex &index) const;
     Qt::ItemFlags flags(const QModelIndex &index) const;
-    void populate();
 
-signals:
-    void torrentAdded(TorrentModelItem *torrentItem);
-    void torrentAboutToBeRemoved(TorrentModelItem *torrentItem);
-    void torrentChangedLabel(TorrentModelItem *torrentItem, QString previous, QString current);
+    BitTorrent::TorrentHandle *torrentHandle(const QModelIndex &index) const;
 
 private slots:
     void addTorrent(BitTorrent::TorrentHandle *const torrent);
-    void notifyTorrentChanged(int row);
-    void handleTorrentLabelChange(QString previous, QString current);
     void handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent);
     void handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const torrent);
 
 private:
-    void beginInsertTorrent(int row);
-    void endInsertTorrent();
-    void beginRemoveTorrent(int row);
-    void endRemoveTorrent();
-
-private:
-    QList<TorrentModelItem*> m_items;
+    QList<BitTorrent::TorrentHandle *> m_torrents;
 };
 
 #endif // TORRENTMODEL_H

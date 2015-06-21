@@ -195,6 +195,7 @@ namespace BitTorrent
         void torrentFinished(BitTorrent::TorrentHandle *const torrent);
         void torrentFinishedChecking(BitTorrent::TorrentHandle *const torrent);
         void torrentSavePathChanged(BitTorrent::TorrentHandle *const torrent);
+        void torrentLabelChanged(BitTorrent::TorrentHandle *const torrent, const QString &oldLabel);
         void allTorrentsFinished();
         void metadataLoaded(const BitTorrent::TorrentInfo &info);
         void torrentMetadataLoaded(BitTorrent::TorrentHandle *const torrent);
@@ -289,6 +290,7 @@ namespace BitTorrent
         QString tempPath() const;
         void handleTorrentRatioLimitChanged(TorrentHandle *const torrent);
         void handleTorrentSavePathChanged(TorrentHandle *const torrent);
+        void handleTorrentLabelChanged(TorrentHandle *const torrent, const QString &oldLabel);
         void handleTorrentMetadataReceived(TorrentHandle *const torrent);
         void handleTorrentPaused(TorrentHandle *const torrent);
         void handleTorrentResumed(TorrentHandle *const torrent);

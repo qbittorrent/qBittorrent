@@ -332,8 +332,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(executable_watcher, SIGNAL(fileChanged(QString)), this, SLOT(notifyOfUpdate(QString)));
     executable_watcher->addPath(qApp->applicationFilePath());
 
-    // Populate the transfer list
-    transferList->getSourceModel()->populate();
     transferList->setFocus();
 
     // Update the number of torrents (tab)
