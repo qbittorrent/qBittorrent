@@ -98,6 +98,9 @@
                <property name="text">
                 <string notr="true"/>
                </property>
+               <property name="textFormat">
+                <enum>Qt::PlainText</enum>
+               </property>
                <property name="alignment">
                 <set>Qt::AlignLeading</set>
                </property>
@@ -138,7 +141,7 @@
              <item>
               <widget class="QLabel" name="avail_average_lbl">
                <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
@@ -151,6 +154,9 @@
                </property>
                <property name="text">
                 <string notr="true"/>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::PlainText</enum>
                </property>
                <property name="alignment">
                 <set>Qt::AlignLeading</set>
@@ -205,6 +211,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="0" column="2">
@@ -233,6 +242,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -263,6 +275,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="1" column="0">
@@ -291,6 +306,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -321,6 +339,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="1" column="4">
@@ -349,6 +370,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -379,6 +403,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="2" column="2">
@@ -407,6 +434,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -437,6 +467,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="3" column="0">
@@ -465,6 +498,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -495,6 +531,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="3" column="4">
@@ -523,6 +562,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -553,6 +595,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="4" column="2">
@@ -582,6 +627,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="4" column="4">
@@ -610,6 +658,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -655,6 +706,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="0" column="2">
@@ -683,6 +737,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -713,6 +770,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="1" column="0">
@@ -741,6 +801,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -771,6 +834,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="1" column="4">
@@ -800,6 +866,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="2" column="0">
@@ -828,6 +897,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                 <property name="textInteractionFlags">
                  <set>Qt::TextSelectableByMouse</set>
@@ -860,6 +932,12 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                 </property>
                 <property name="wordWrap">
                  <bool>true</bool>
