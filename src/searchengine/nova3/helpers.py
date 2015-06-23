@@ -1,3 +1,8 @@
+#VERSION: 1.40
+
+# Author:
+#  Christophe DUMEZ (chris@qbittorrent.org)
+
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
 #
@@ -21,11 +26,6 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-
-#VERSION: 1.40
-
-# Author:
-#  Christophe DUMEZ (chris@qbittorrent.org)
 
 import re, html.entities
 import tempfile
