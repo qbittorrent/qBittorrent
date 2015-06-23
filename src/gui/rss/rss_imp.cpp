@@ -344,12 +344,10 @@ void RSSImp::downloadSelectedTorrents()
         RssArticlePtr article = feed->getItem(item->data(Article::IdRole).toString());
         if (!article) continue;
 
-        QString torrentLink = article->torrentUrl();
-        // Check if it is a magnet link
-        if (torrentLink.startsWith("magnet:", Qt::CaseInsensitive) && Preferences::instance()->useAdditionDialog())
-            AddNewTorrentDialog::show(torrentLink);
+        if (Preferences::instance()->useAdditionDialog())
+            AddNewTorrentDialog::show(article->torrentUrl());
         else
-            BitTorrent::Session::instance()->addTorrent(torrentLink);
+            BitTorrent::Session::instance()->addTorrent(article->torrentUrl());
     }
 }
 
