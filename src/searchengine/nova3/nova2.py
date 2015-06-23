@@ -1,5 +1,13 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#VERSION: 1.40
+
+# Author:
+#  Fabien Devaux <fab AT gnux DOT info>
+# Contributors:
+#  Christophe Dumez <chris@qbittorrent.org> (qbittorrent integration)
+#  Thanks to gab #gcu @ irc.freenode.net (multipage support on PirateBay)
+#  Thanks to Elias <gekko04@users.sourceforge.net> (torrentreactor and isohunt search engines)
+#
+# Licence: BSD
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -24,18 +32,6 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-
-
-#VERSION: 1.40
-
-# Author:
-#  Fabien Devaux <fab AT gnux DOT info>
-# Contributors:
-#  Christophe Dumez <chris@qbittorrent.org> (qbittorrent integration)
-#  Thanks to gab #gcu @ irc.freenode.net (multipage support on PirateBay)
-#  Thanks to Elias <gekko04@users.sourceforge.net> (torrentreactor and isohunt search engines)
-#
-# Licence: BSD
 
 import urllib.parse
 from os import path, cpu_count
