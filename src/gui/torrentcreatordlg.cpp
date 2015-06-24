@@ -60,7 +60,7 @@ TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent)
     showProgressBar(false);
     loadTrackerList();
     // Piece sizes
-    m_pieceSizes << 32 << 64 << 128 << 256 << 512 << 1024 << 2048 << 4096;
+    m_pieceSizes << 16 << 32 << 64 << 128 << 256 << 512 << 1024 << 2048 << 4096 << 8192 << 16384;
     loadSettings();
     show();
 }
