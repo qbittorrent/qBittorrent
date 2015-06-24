@@ -95,6 +95,6 @@ FORMS += \
     $$PWD/autoexpandabledialog.ui \
     $$PWD/statsdialog.ui \
     $$PWD/options.ui \
-    $$PWD/createtorrent.ui
+    $$PWD/torrentcreatordlg.ui
 
 RESOURCES += $$PWD/about.qrc
