@@ -527,6 +527,8 @@ QString misc::parseHtmlLinks(const QString &raw_text)
     static QRegExp reNoScheme("<a\\s+href=\"(?!http(s?))([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">");
     result.replace(reNoScheme, "<a href=\"http://\\1\">");
 
+    // to preserve plain text formatting
+    result = "<p style=\"white-space: pre-wrap;\">" + result + "</p>";
     return result;
 }
 
