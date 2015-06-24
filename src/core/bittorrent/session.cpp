@@ -1399,7 +1399,6 @@ void Session::generateResumeData(bool final)
 {
     foreach (TorrentHandle *const torrent, m_torrents) {
         if (!torrent->isValid()) continue;
-        if (!torrent->hasMetadata()) continue;
         if (torrent->hasMissingFiles()) continue;
         if (torrent->isChecking() || torrent->hasError()) continue;
         if (!final && !torrent->needSaveResumeData()) continue;
