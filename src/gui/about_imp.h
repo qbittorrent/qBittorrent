@@ -72,17 +72,21 @@ class about : public QDialog, private Ui::AboutDlg{
       //Title
       lb_name->setText(QString::fromUtf8("<b><h1>qBittorrent")+QString::fromUtf8(" " VERSION"</h1></b>"));
       // Thanks
-      te_thanks->setHtml(QString::fromUtf8(C_THANKS));
+      QFile thanksfile(":/thanks.html");
+      if (thanksfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        te_thanks->setHtml(QString::fromUtf8(thanksfile.readAll().constData()));
+        thanksfile.close();
+      }
       // Translation
-      QString trans_txt = "<p>"+tr("I would like to thank the following people who volunteered to translate qBittorrent:")+"</p>";
-      trans_txt += QString::fromUtf8(C_TRANSLATORS);
-      trans_txt += "<p>"+tr("Please contact me if you would like to translate qBittorrent into your own language.")+"</p>";
-      te_translation->setHtml(trans_txt);
+      QFile translatorsfile(":/translators.html");
+      if (translatorsfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        te_translation->setHtml(QString::fromUtf8(translatorsfile.readAll().constData()));
+        translatorsfile.close();
+      }
       // License
-      te_license->append(QString::fromUtf8("<a name='top'></a>"));
       QFile licensefile(":/gpl.html");
-      if (licensefile.open(QIODevice::ReadOnly|QIODevice::Text)) {
-        te_license->setHtml(licensefile.readAll());
+      if (licensefile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        te_license->setHtml(QString::fromUtf8(licensefile.readAll().constData()));
         licensefile.close();
       }
       // Libraries
