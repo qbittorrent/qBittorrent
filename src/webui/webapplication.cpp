@@ -48,7 +48,7 @@
 
 using namespace libtorrent;
 
-static const int API_VERSION = 2;
+static const int API_VERSION = 3;
 static const int API_VERSION_MIN = 2;
 
 const QString WWW_FOLDER = ":/www/public/";
