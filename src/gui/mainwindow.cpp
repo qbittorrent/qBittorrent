@@ -1514,7 +1514,7 @@ void MainWindow::handleUpdateCheckFinished(bool update_available, QString new_ve
     }
     sender()->deleteLater();
     actionCheck_for_updates->setEnabled(true);
-    actionCheck_for_updates->setText(tr("Check for updates"));
+    actionCheck_for_updates->setText(tr("Check for Updates"));
     actionCheck_for_updates->setToolTip(tr("Check for program updates"));
     // Don't bother the user again in this session if he chose to ignore the update
     if (Preferences::instance()->isUpdateCheckEnabled() && answer == QMessageBox::Yes)
@@ -1612,7 +1612,7 @@ void MainWindow::checkProgramUpdate()
 {
     programUpdateTimer.stop(); // If the user had clicked the menu item
     actionCheck_for_updates->setEnabled(false);
-    actionCheck_for_updates->setText(tr("Checking for updates..."));
+    actionCheck_for_updates->setText(tr("Checking for Updates..."));
     actionCheck_for_updates->setToolTip(tr("Already checking for program updates in the background"));
     bool invokedByUser = actionCheck_for_updates == qobject_cast<QAction*>(sender());
     ProgramUpdater *updater = new ProgramUpdater(this, invokedByUser);
