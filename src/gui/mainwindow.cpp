@@ -1426,8 +1426,8 @@ void MainWindow::handleUpdateCheckFinished(bool update_available, QString new_ve
 {
     QMessageBox::StandardButton answer = QMessageBox::Yes;
     if (update_available) {
-        answer = QMessageBox::question(this, tr("A new version is available"),
-                                       tr("A new version of qBittorrent is available on Sourceforge.\nWould you like to update qBittorrent to version %1?").arg(new_version),
+        answer = QMessageBox::question(this, tr("Update Available"),
+                                       tr("A new version is available.\nUpdate to version %1?").arg(new_version),
                                        QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
         if (answer == QMessageBox::Yes) {
             // The user want to update, let's download the update
@@ -1436,12 +1436,12 @@ void MainWindow::handleUpdateCheckFinished(bool update_available, QString new_ve
         }
     }
     else if (invokedByUser) {
-        QMessageBox::information(this, tr("There isn't a new version available"),
-                                 tr("There isn't a new version of qBittorrent available on Sourceforge"));
+        QMessageBox::information(this, tr("Already Using the Latest Version"),
+                                 tr("No updates available.\nYou are already using the latest version."));
     }
     sender()->deleteLater();
     actionCheck_for_updates->setEnabled(true);
-    actionCheck_for_updates->setText(tr("Check for Updates"));
+    actionCheck_for_updates->setText(tr("&Check for Updates"));
     actionCheck_for_updates->setToolTip(tr("Check for program updates"));
     // Don't bother the user again in this session if he chose to ignore the update
     if (Preferences::instance()->isUpdateCheckEnabled() && answer == QMessageBox::Yes)
