@@ -1,4 +1,4 @@
-#VERSION: 2.14
+#VERSION: 2.15
 #AUTHORS: Diego de las Heras (diegodelasheras@gmail.com)
 
 # Redistribution and use in source and binary forms, with or without
@@ -37,8 +37,8 @@ class torrentz(object):
     supported_categories = {'all': ''}
 
     trackers_list = ['udp://open.demonii.com:1337/announce',
+                    'udp://tracker.openbittorrent.com:80/announce',
                     'udp://tracker.leechers-paradise.org:6969',
-                    'udp://exodus.desync.com:6969',
                     'udp://tracker.coppersurfer.tk:6969',
                     'udp://9.rarbg.com:2710/announce']
 
@@ -52,8 +52,8 @@ class torrentz(object):
             self.current_item = None
 
         def handle_starttag(self, tag, attrs):
+            params = dict(attrs)
             if tag == 'a':
-                params = dict(attrs)
                 if 'href' in params:
                     self.current_item = {}
                     self.td_counter = 0
@@ -61,8 +61,10 @@ class torrentz(object):
                         params['href'].strip(' /') + self.trackers
                     self.current_item['desc_link'] = self.url + params['href'].strip()
             elif tag == 'span':
-                if isinstance(self.td_counter,int):
+                if self.td_counter is not None:
                     self.td_counter += 1
+                    if 'class' in params and params['class'] == 'pe': # hack to avoid Pending
+                        self.td_counter += 2
                     if self.td_counter > 6: # safety
                         self.td_counter = None
 
@@ -74,12 +76,18 @@ class torrentz(object):
             elif self.td_counter == 4:
                 if 'size' not in self.current_item:
                     self.current_item['size'] = data.strip()
+                    if self.current_item['size'] == 'Pending':
+                        self.current_item['size'] = ''
             elif self.td_counter == 5:
                 if 'seeds' not in self.current_item:
                     self.current_item['seeds'] = data.strip().replace(',', '')
+                    if not self.current_item['seeds'].isdigit():
+                        self.current_item['seeds'] = 0
             elif self.td_counter == 6:
                 if 'leech' not in self.current_item:
                     self.current_item['leech'] = data.strip().replace(',', '')
+                    if not self.current_item['leech'].isdigit():
+                        self.current_item['leech'] = 0
 
                 # display item
                 self.td_counter = None
@@ -87,10 +95,7 @@ class torrentz(object):
                 if self.current_item['name'].find(' \xc2'):
                     self.current_item['name'] = self.current_item['name'].split(' \xc2')[0]
                 self.current_item['link'] += '&' + urlencode({'dn' : self.current_item['name']})
-                if not self.current_item['seeds'].isdigit():
-                    self.current_item['seeds'] = 0
-                if not self.current_item['leech'].isdigit():
-                    self.current_item['leech'] = 0
+
                 prettyPrinter(self.current_item)
                 self.results.append('a')
 
