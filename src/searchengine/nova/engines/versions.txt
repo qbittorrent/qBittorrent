@@ -1,7 +1,7 @@
 btdigg: 1.25
 demonoid: 1.1
 extratorrent: 2.0
-kickasstorrents: 1.27
+kickasstorrents: 1.28
 legittorrents: 2.00
 mininova: 2.00
 piratebay: 2.11
