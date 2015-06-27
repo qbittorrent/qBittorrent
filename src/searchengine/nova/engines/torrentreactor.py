@@ -1,4 +1,4 @@
-#VERSION: 1.36
+#VERSION: 1.40
 #AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 #              Bruno Barbieri (brunorex@gmail.com)
@@ -34,7 +34,7 @@ from HTMLParser import HTMLParser
 from re import compile as re_compile
 
 class torrentreactor(object):
-    url = 'http://www.torrentreactor.net'
+    url = 'http://torrentreactor.com'
     name = 'TorrentReactor'
     supported_categories = {'all': '', 'movies': '5', 'tv': '8', 'music': '6', 'games': '3', 'anime': '1', 'software': '2'}
 
@@ -42,13 +42,14 @@ class torrentreactor(object):
         print(download_file(info))
 
     class SimpleHTMLParser(HTMLParser):
-        def __init__(self, results, url, *args):
+        def __init__(self, results, url, what):
             HTMLParser.__init__(self)
             self.td_counter = None
             self.current_item = None
             self.results = results
             self.id = None
             self.url = url
+            self.what_list = urllib.unquote(what).decode('utf8').split()
             self.torrents_matcher = re_compile("/torrents/\d+.*")
             self.dispatcher = { 'a' : self.start_a, 'td' : self.start_td }
 
@@ -87,6 +88,10 @@ class torrentreactor(object):
                     self.td_counter = None
                     # add item to results
                     if self.current_item:
+                        self.current_item['name'] = self.current_item['name'].decode('utf8')
+                        # TorrentReactor returns unrelated results, we need to filter
+                        if not all(word in self.current_item['name'].lower() for word in self.what_list):
+                            return
                         self.current_item['engine_url'] = self.url
                         if not self.current_item['seeds'].isdigit():
                             self.current_item['seeds'] = 0
@@ -99,13 +104,13 @@ class torrentreactor(object):
     def search(self, what, cat='all'):
         i = 0
         dat = ''
-
-        while i < 11:
-            results = []
-            parser = self.SimpleHTMLParser(results, self.url)
-            dat = retrieve_url('%s/torrent-search/%s/%s?sort=seeders.desc&type=all&period=none&categories=%s'%(self.url, what, (i*35), self.supported_categories[cat]))
+        results = []
+        parser = self.SimpleHTMLParser(results, self.url, what)
+        while i < 9:
+            dat = retrieve_url('%s/torrents-search/%s/%s?sort=seeders.desc&type=all&period=none&categories=%s'%(self.url, what, (i*35), self.supported_categories[cat]))
             parser.feed(dat)
-            parser.close()
             if len(results) <= 0:
                 break
+            del results[:]
             i += 1
+        parser.close()
