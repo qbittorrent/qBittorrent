@@ -1,4 +1,4 @@
-#VERSION: 2.0
+#VERSION: 2.01
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -141,7 +141,7 @@ class extratorrent(object):
         """ Performs search """
         connection = http("extratorrent.cc")
 
-        query = "".join(("/search/?new=1&search=", what, "&s_cat=", self.supported_categories[cat]))
+        query = "".join(("/advanced_search/?with=", what, "&s_cat=", self.supported_categories[cat]))
 
         connection.request("GET", query)
         response = connection.getresponse()
