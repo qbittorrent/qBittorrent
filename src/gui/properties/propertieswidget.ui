@@ -98,6 +98,9 @@
                <property name="text">
                 <string notr="true"/>
                </property>
+               <property name="textFormat">
+                <enum>Qt::PlainText</enum>
+               </property>
                <property name="alignment">
                 <set>Qt::AlignLeading</set>
                </property>
@@ -138,7 +141,7 @@
              <item>
               <widget class="QLabel" name="avail_average_lbl">
                <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
@@ -151,6 +154,9 @@
                </property>
                <property name="text">
                 <string notr="true"/>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::PlainText</enum>
                </property>
                <property name="alignment">
                 <set>Qt::AlignLeading</set>
@@ -205,6 +211,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="0" column="2">
@@ -233,6 +242,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -263,6 +275,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="1" column="0">
@@ -291,6 +306,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -321,6 +339,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="1" column="4">
@@ -349,6 +370,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -379,6 +403,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="2" column="2">
@@ -407,6 +434,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -437,6 +467,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="3" column="0">
@@ -465,6 +498,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -495,6 +531,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="3" column="4">
@@ -523,6 +562,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -553,6 +595,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="4" column="2">
@@ -582,6 +627,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="4" column="4">
@@ -610,6 +658,9 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -655,6 +706,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="0" column="2">
@@ -683,6 +737,41 @@
                 </property>
                 <property name="text">
                  <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="4">
+               <widget class="QLabel" name="label_created_by">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Created By:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="5">
+               <widget class="QLabel" name="label_created_by_val">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string notr="true"/>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
@@ -713,6 +802,9 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
               <item row="1" column="2">
@@ -742,9 +834,12 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                </widget>
               </item>
-              <item row="2" column="0">
+              <item row="1" column="4">
                <widget class="QLabel" name="label_9">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -760,7 +855,7 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
+              <item row="1" column="5">
                <widget class="QLabel" name="lbl_creationDate">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -771,38 +866,12 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
-               </widget>
-              </item>
-              <item row="2" column="2">
-               <widget class="QLabel" name="label_created_by">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Created By:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
                 </property>
                </widget>
               </item>
-              <item row="2" column="3">
-               <widget class="QLabel" name="label_created_by_val">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string notr="true"/>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
+              <item row="2" column="0">
                <widget class="QLabel" name="hash_lbl2">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -818,7 +887,7 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="1" colspan="3">
+              <item row="2" column="1" colspan="5">
                <widget class="QLabel" name="hash_lbl">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -829,12 +898,15 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
                 <property name="textInteractionFlags">
                  <set>Qt::TextSelectableByMouse</set>
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
+              <item row="3" column="0">
                <widget class="QLabel" name="savePath_lbl">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -846,11 +918,11 @@
                  <string>Save Path:</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
                 </property>
                </widget>
               </item>
-              <item row="4" column="1" colspan="3">
+              <item row="3" column="1" colspan="5">
                <widget class="QLabel" name="save_path">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -861,12 +933,21 @@
                 <property name="text">
                  <string notr="true"/>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
                 <property name="textInteractionFlags">
                  <set>Qt::TextSelectableByMouse</set>
                 </property>
                </widget>
               </item>
-              <item row="5" column="0">
+              <item row="4" column="0">
                <widget class="QLabel" name="comment_lbl2">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -882,18 +963,30 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="1" colspan="3">
-               <widget class="QTextBrowser" name="comment_text">
+              <item row="4" column="1" colspan="5">
+               <widget class="QLabel" name="comment_text">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::RichText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
                 <property name="openExternalLinks">
                  <bool>true</bool>
                 </property>
-                <property name="openLinks">
+                <property name="textInteractionFlags">
+                 <set>Qt::TextBrowserInteraction</set>
+                </property>
+                <property name="openLinks" stdset="0">
                  <bool>true</bool>
                 </property>
                </widget>
