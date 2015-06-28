@@ -1,9 +1,6 @@
 language:
   - cpp
 
-git:
-  depth: 1
-
 env:
   matrix:
     # Uncomment when Travis upgraded "Ubuntu 12.04 LTS" to a newer version whose repo will have a more up-to-date libtorrent package
