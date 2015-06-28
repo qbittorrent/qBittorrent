@@ -55,6 +55,14 @@ class SearchListDelegate: public QItemDelegate {
           QItemDelegate::drawBackground(painter, opt, index);
           QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
           break;
+        case SearchSortModel::SEEDS:
+          QItemDelegate::drawBackground(painter, opt, index);
+          QItemDelegate::drawDisplay(painter, opt, option.rect, (index.data().toLongLong() >= 0) ? index.data().toString() : tr("Unknown"));
+          break;
+        case SearchSortModel::LEECHS:
+          QItemDelegate::drawBackground(painter, opt, index);
+          QItemDelegate::drawDisplay(painter, opt, option.rect, (index.data().toLongLong() >= 0) ? index.data().toString() : tr("Unknown"));
+          break;
         default:
           QItemDelegate::paint(painter, option, index);
       }
