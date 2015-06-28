@@ -27,6 +27,7 @@
  *
  * Contact : chris@qbittorrent.org
  */
+
 #include <QTextStream>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -50,6 +51,7 @@
 #include "core/bittorrent/session.h"
 #include "guiiconprovider.h"
 #include "core/net/dnsupdater.h"
+#include "core/unicodestrings.h"
 
 #ifndef QT_NO_OPENSSL
 #include <QSslKey>
@@ -1327,56 +1329,56 @@ QString options_imp::languageToLocalizedString(const QLocale &locale)
   switch(locale.language()) {
   case QLocale::English: {
     if (locale.country() == QLocale::Australia)
-      return "English(Australia)";
+      return QString::fromUtf8(C_LOCALE_ENGLISH_AUSTRALIA);
     else if (locale.country() == QLocale::UnitedKingdom)
-      return "English(United Kingdom)";
-    return "English";
+      return QString::fromUtf8(C_LOCALE_ENGLISH_UNITEDKINGDOM);
+    return QString::fromUtf8(C_LOCALE_ENGLISH);
   }
-  case QLocale::French: return QString::fromUtf8("Français");
-  case QLocale::German: return QString::fromUtf8("Deutsch");
-  case QLocale::Hungarian: return QString::fromUtf8("Magyar");
-  case QLocale::Indonesian: return QString::fromUtf8("Bahasa Indonesia");
-  case QLocale::Italian: return QString::fromUtf8("Italiano");
-  case QLocale::Dutch: return QString::fromUtf8("Nederlands");
-  case QLocale::Spanish: return QString::fromUtf8("Español");
-  case QLocale::Catalan: return QString::fromUtf8("Català");
-  case QLocale::Galician: return QString::fromUtf8("Galego");
+  case QLocale::French: return QString::fromUtf8(C_LOCALE_FRENCH);
+  case QLocale::German: return QString::fromUtf8(C_LOCALE_GERMAN);
+  case QLocale::Hungarian: return QString::fromUtf8(C_LOCALE_HUNGARIAN);
+  case QLocale::Indonesian: return QString::fromUtf8(C_LOCALE_INDONESIAN);
+  case QLocale::Italian: return QString::fromUtf8(C_LOCALE_ITALIAN);
+  case QLocale::Dutch: return QString::fromUtf8(C_LOCALE_DUTCH);
+  case QLocale::Spanish: return QString::fromUtf8(C_LOCALE_SPANISH);
+  case QLocale::Catalan: return QString::fromUtf8(C_LOCALE_CATALAN);
+  case QLocale::Galician: return QString::fromUtf8(C_LOCALE_GALICIAN);
   case QLocale::Portuguese: {
     if (locale.country() == QLocale::Brazil)
-      return QString::fromUtf8("Português brasileiro");
-    return QString::fromUtf8("Português");
+      return QString::fromUtf8(C_LOCALE_PORTUGUESE_BRAZIL);
+    return QString::fromUtf8(C_LOCALE_PORTUGUESE);
   }
-  case QLocale::Polish: return QString::fromUtf8("Polski");
-  case QLocale::Lithuanian: return QString::fromUtf8("Lietuvių");
-  case QLocale::Czech: return QString::fromUtf8("Čeština");
-  case QLocale::Slovak: return QString::fromUtf8("Slovenčina");
-  case QLocale::Serbian: return QString::fromUtf8("Српски");
-  case QLocale::Croatian: return QString::fromUtf8("Hrvatski");
-  case QLocale::Armenian: return QString::fromUtf8("Հայերեն");
-  case QLocale::Romanian: return QString::fromUtf8("Română");
-  case QLocale::Turkish: return QString::fromUtf8("Türkçe");
-  case QLocale::Greek: return QString::fromUtf8("Ελληνικά");
-  case QLocale::Swedish: return QString::fromUtf8("Svenska");
-  case QLocale::Finnish: return QString::fromUtf8("Suomi");
-  case QLocale::Norwegian: return QString::fromUtf8("Norsk");
-  case QLocale::Danish: return QString::fromUtf8("Dansk");
-  case QLocale::Bulgarian: return QString::fromUtf8("Български");
-  case QLocale::Ukrainian: return QString::fromUtf8("Українська");
-  case QLocale::Russian: return QString::fromUtf8("Русский");
-  case QLocale::Japanese: return QString::fromUtf8("日本語");
-  case QLocale::Hebrew: return QString::fromUtf8("עברית");
-  case QLocale::Hindi: return QString::fromUtf8("हिन्दी, हिंदी");
-  case QLocale::Arabic: return QString::fromUtf8("عربي");
-  case QLocale::Georgian: return QString::fromUtf8("ქართული");
-  case QLocale::Byelorussian: return QString::fromUtf8("Беларуская");
-  case QLocale::Basque: return QString::fromUtf8("Euskara");
-  case QLocale::Vietnamese: return QString::fromUtf8("tiếng Việt");
+  case QLocale::Polish: return QString::fromUtf8(C_LOCALE_POLISH);
+  case QLocale::Lithuanian: return QString::fromUtf8(C_LOCALE_LITHUANIAN);
+  case QLocale::Czech: return QString::fromUtf8(C_LOCALE_CZECH);
+  case QLocale::Slovak: return QString::fromUtf8(C_LOCALE_SLOVAK);
+  case QLocale::Serbian: return QString::fromUtf8(C_LOCALE_SERBIAN);
+  case QLocale::Croatian: return QString::fromUtf8(C_LOCALE_CROATIAN);
+  case QLocale::Armenian: return QString::fromUtf8(C_LOCALE_ARMENIAN);
+  case QLocale::Romanian: return QString::fromUtf8(C_LOCALE_ROMANIAN);
+  case QLocale::Turkish: return QString::fromUtf8(C_LOCALE_TURKISH);
+  case QLocale::Greek: return QString::fromUtf8(C_LOCALE_GREEK);
+  case QLocale::Swedish: return QString::fromUtf8(C_LOCALE_SWEDISH);
+  case QLocale::Finnish: return QString::fromUtf8(C_LOCALE_FINNISH);
+  case QLocale::Norwegian: return QString::fromUtf8(C_LOCALE_NORWEGIAN);
+  case QLocale::Danish: return QString::fromUtf8(C_LOCALE_DANISH);
+  case QLocale::Bulgarian: return QString::fromUtf8(C_LOCALE_BULGARIAN);
+  case QLocale::Ukrainian: return QString::fromUtf8(C_LOCALE_UKRAINIAN);
+  case QLocale::Russian: return QString::fromUtf8(C_LOCALE_RUSSIAN);
+  case QLocale::Japanese: return QString::fromUtf8(C_LOCALE_JAPANESE);
+  case QLocale::Hebrew: return QString::fromUtf8(C_LOCALE_HEBREW);
+  case QLocale::Hindi: return QString::fromUtf8(C_LOCALE_HINDI);
+  case QLocale::Arabic: return QString::fromUtf8(C_LOCALE_ARABIC);
+  case QLocale::Georgian: return QString::fromUtf8(C_LOCALE_GEORGIAN);
+  case QLocale::Byelorussian: return QString::fromUtf8(C_LOCALE_BYELORUSSIAN);
+  case QLocale::Basque: return QString::fromUtf8(C_LOCALE_BASQUE);
+  case QLocale::Vietnamese: return QString::fromUtf8(C_LOCALE_VIETNAMESE);
   case QLocale::Chinese: {
     if (locale.script() == QLocale::SimplifiedHanScript)
-      return QString::fromUtf8("中文 (简体)");
-    return QString::fromUtf8("中文 (繁體)");
+      return QString::fromUtf8(C_LOCALE_CHINESE_SIMPLIFIED);
+    return QString::fromUtf8(C_LOCALE_CHINESE_TRADITIONAL);
   }
-  case QLocale::Korean: return QString::fromUtf8("한글");
+  case QLocale::Korean: return QString::fromUtf8(C_LOCALE_KOREAN);
   default: {
     // Fallback to English
     const QString eng_lang = QLocale::languageToString(locale.language());
