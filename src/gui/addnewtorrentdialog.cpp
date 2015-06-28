@@ -329,7 +329,7 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
 
     QString size_string = torrent_size ? Utils::Misc::friendlyUnit(torrent_size) : QString(tr("Not Available", "This size is unavailable."));
     size_string += " (";
-    size_string += tr("Disk space: %1").arg(Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(
+    size_string += tr("Free disk space: %1").arg(Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(
                                                                    ui->save_path_combo->itemData(
                                                                        ui->save_path_combo->currentIndex()).toString())));
     size_string += ")";
@@ -345,6 +345,8 @@ void AddNewTorrentDialog::onSavePathChanged(int index)
 
     // Remember index
     m_oldIndex = index;
+
+    updateDiskSpaceLabel();
 }
 
 void AddNewTorrentDialog::browseButton_clicked()
@@ -394,8 +396,6 @@ void AddNewTorrentDialog::browseButton_clicked()
         ui->save_path_combo->setCurrentIndex(m_oldIndex);
     }
     connect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
-
-    updateDiskSpaceLabel();
 }
 
 void AddNewTorrentDialog::relayout()
