@@ -40,7 +40,8 @@
   <file>lang/qbittorrent_tr.qm</file>
   <file>lang/qbittorrent_uk.qm</file>
   <file>lang/qbittorrent_vi.qm</file>
-  <file>lang/qbittorrent_zh_Hans.qm</file>
-  <file>lang/qbittorrent_zh_Hant.qm</file>
+  <file>lang/qbittorrent_zh.qm</file>
+  <file>lang/qbittorrent_zh_TW.qm</file>
+  <file>lang/qbittorrent_zh_HK.qm</file>
 </qresource>
 </RCC>
