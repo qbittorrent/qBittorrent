@@ -662,7 +662,7 @@ void Preferences::setGlobalDownloadLimit(int limit)
 
 int Preferences::getGlobalUploadLimit() const
 {
-    return value("Preferences/Connection/GlobalUPLimit", 50).toInt();
+    return value("Preferences/Connection/GlobalUPLimit", -1).toInt();
 }
 
 void Preferences::setGlobalUploadLimit(int limit)
