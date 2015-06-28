@@ -1103,8 +1103,6 @@ bool Session::addTorrent_impl(const AddTorrentData &addData, const MagnetUri &ma
         p.resume_data = buf;
         p.flags |= libt::add_torrent_params::flag_use_resume_save_path;
 #endif
-        p.flags |= libt::add_torrent_params::flag_merge_resume_trackers;
-
     }
     else {
         foreach (int prio, addData.filePriorities)
