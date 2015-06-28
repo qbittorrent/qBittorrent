@@ -102,12 +102,24 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(filesList->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
   connect(filesList->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+  // set bar height relative to screen dpi
+  int barHeight = devicePixelRatio() * 18;
+#else
+  // set bar height relative to font height
+  QFont defFont;
+  QFontMetrics fMetrics(defFont, 0);  // need to be device-dependent
+  int barHeight = fMetrics.height() * 5 / 4;
+#endif
+
   // Downloaded pieces progress bar
   downloaded_pieces = new DownloadedPiecesBar(this);
   ProgressHLayout->insertWidget(1, downloaded_pieces);
+  downloaded_pieces->setFixedHeight(barHeight);
   // Pieces availability bar
   pieces_availability = new PieceAvailabilityBar(this);
   ProgressHLayout_2->insertWidget(1, pieces_availability);
+  pieces_availability->setFixedHeight(barHeight);
   // Tracker list
   trackerList = new TrackerList(this);
   connect(trackerUpButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionUp()));

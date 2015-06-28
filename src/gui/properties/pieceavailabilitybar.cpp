@@ -36,8 +36,6 @@
 PieceAvailabilityBar::PieceAvailabilityBar(QWidget *parent)
     : QWidget(parent)
 {
-    setFixedHeight(BAR_HEIGHT);
-
     m_bgColor = 0xffffff;
     m_borderColor = palette().color(QPalette::Dark).rgb();
     m_pieceColor = 0x0000ff;
