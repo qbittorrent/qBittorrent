@@ -113,13 +113,19 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
 #endif
 
   // Downloaded pieces progress bar
+  tempProgressBarArea->setVisible(false);
   downloaded_pieces = new DownloadedPiecesBar(this);
-  ProgressHLayout->insertWidget(1, downloaded_pieces);
+  groupBarLayout->addWidget(downloaded_pieces, 0, 1);
   downloaded_pieces->setFixedHeight(barHeight);
+  downloaded_pieces->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+
   // Pieces availability bar
+  tempAvailabilityBarArea->setVisible(false);
   pieces_availability = new PieceAvailabilityBar(this);
-  ProgressHLayout_2->insertWidget(1, pieces_availability);
+  groupBarLayout->addWidget(pieces_availability, 1, 1);
   pieces_availability->setFixedHeight(barHeight);
+  pieces_availability->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+
   // Tracker list
   trackerList = new TrackerList(this);
   connect(trackerUpButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionUp()));
