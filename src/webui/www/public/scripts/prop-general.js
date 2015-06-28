@@ -16,7 +16,8 @@ var clearData = function() {
 
 var loadTorrentDataTimer;
 var loadTorrentData = function() {
-    if ($('prop_general').hasClass('invisible')) {
+    if ($('prop_general').hasClass('invisible') ||
+        $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
         // Tab changed, don't do anything
         return;
     }

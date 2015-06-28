@@ -344,7 +344,7 @@ window.addEvent('load', function () {
         contentURL : 'properties_content.html',
         require : {
             css : ['css/Tabs.css'],
-            js : ['scripts/prop-general.js', 'scripts/prop-trackers.js', 'scripts/prop-files.js'],
+            js : ['scripts/prop-general.js', 'scripts/prop-trackers.js', 'scripts/prop-webseeds.js', 'scripts/prop-files.js'],
         },
         tabsURL : 'properties.html',
         tabsOnload : function() {
@@ -355,6 +355,8 @@ window.addEvent('load', function () {
                     updateTorrentData();
                 else if (!$('prop_trackers').hasClass('invisible'))
                     updateTrackersData();
+                else if (!$('prop_webseeds').hasClass('invisible'))
+                    updateWebSeedsData();
                 else if (!$('prop_files').hasClass('invisible'))
                     updateTorrentFilesData();
             }
@@ -362,6 +364,7 @@ window.addEvent('load', function () {
             $('PropGeneralLink').addEvent('click', function(e){
                 $('prop_general').removeClass("invisible");
                 $('prop_trackers').addClass("invisible");
+                $('prop_webseeds').addClass("invisible");
                 $('prop_files').addClass("invisible");
                 updatePropertiesPanel();
             });
@@ -369,6 +372,15 @@ window.addEvent('load', function () {
             $('PropTrackersLink').addEvent('click', function(e){
                 $('prop_trackers').removeClass("invisible");
                 $('prop_general').addClass("invisible");
+                $('prop_webseeds').addClass("invisible");
+                $('prop_files').addClass("invisible");
+                updatePropertiesPanel();
+            });
+
+            $('PropWebSeedsLink').addEvent('click', function(e){
+                $('prop_webseeds').removeClass("invisible");
+                $('prop_general').addClass("invisible");
+                $('prop_trackers').addClass("invisible");
                 $('prop_files').addClass("invisible");
                 updatePropertiesPanel();
             });
@@ -377,6 +389,11 @@ window.addEvent('load', function () {
                 $('prop_files').removeClass("invisible");
                 $('prop_general').addClass("invisible");
                 $('prop_trackers').addClass("invisible");
+                $('prop_webseeds').addClass("invisible");
+                updatePropertiesPanel();
+            });
+
+            $('propertiesPanel_collapseToggle').addEvent('click', function(e){
                 updatePropertiesPanel();
             });
         },

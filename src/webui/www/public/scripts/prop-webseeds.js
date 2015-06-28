@@ -1,4 +1,4 @@
-var trackersDynTable = new Class({
+var webseedsDynTable = new Class({
 
     initialize: function() {},
 
@@ -52,80 +52,58 @@ var trackersDynTable = new Class({
 
 var current_hash = "";
 
-var loadTrackersDataTimer;
-var loadTrackersData = function() {
-    if ($('prop_trackers').hasClass('invisible') ||
+var loadWebSeedsDataTimer;
+var loadWebSeedsData = function() {
+    if ($('prop_webseeds').hasClass('invisible') ||
         $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
         // Tab changed, don't do anything
         return;
     }
     var new_hash = myTable.getCurrentTorrentHash();
     if (new_hash == "") {
-        tTable.removeAllRows();
-        clearTimeout(loadTrackersDataTimer);
-        loadTrackersDataTimer = loadTrackersData.delay(10000);
+        wsTable.removeAllRows();
+        clearTimeout(loadWebSeedsDataTimer);
+        loadWebSeedsDataTimer = loadWebSeedsData.delay(10000);
         return;
     }
     if (new_hash != current_hash) {
-        tTable.removeAllRows();
+        wsTable.removeAllRows();
         current_hash = new_hash;
     }
-    var url = 'query/propertiesTrackers/' + current_hash;
+    var url = 'query/propertiesWebSeeds/' + current_hash;
     var request = new Request.JSON({
         url: url,
         noCache: true,
         method: 'get',
         onFailure: function() {
             $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
-            clearTimeout(loadTrackersDataTimer);
-            loadTrackersDataTimer = loadTrackersData.delay(20000);
+            clearTimeout(loadWebSeedsDataTimer);
+            loadWebSeedsDataTimer = loadWebSeedsData.delay(20000);
         },
-        onSuccess: function(trackers) {
+        onSuccess: function(webseeds) {
             $('error_div').set('html', '');
-            if (trackers) {
-                // Update Trackers data
-                trackers.each(function(tracker) {
+            if (webseeds) {
+                // Update WebSeeds data
+                webseeds.each(function(webseed) {
                     var row = new Array();
-                    row.length = 4;
-                    row[0] = tracker.url;
-                    row[1] = tracker.status;
-                    row[2] = tracker.num_peers;
-                    row[3] = tracker.msg;
-                    tTable.insertRow(row);
+                    row.length = 1;
+                    row[0] = webseed.url;
+                    wsTable.insertRow(row);
                 });
             }
             else {
-                tTable.removeAllRows();
+                wsTable.removeAllRows();
             }
-            clearTimeout(loadTrackersDataTimer);
-            loadTrackersDataTimer = loadTrackersData.delay(10000);
+            clearTimeout(loadWebSeedsDataTimer);
+            loadWebSeedsDataTimer = loadWebSeedsData.delay(10000);
         }
     }).send();
 }
 
-var updateTrackersData = function() {
-    clearTimeout(loadTrackersDataTimer);
-    loadTrackersData();
+var updateWebSeedsData = function() {
+    clearTimeout(loadWebSeedsDataTimer);
+    loadWebSeedsData();
 }
 
-tTable = new trackersDynTable();
-tTable.setup($('trackersTable'));
-
-// Add trackers code
-$('addTrackersPlus').addEvent('click', function addTrackerDlg() {
-    if (current_hash.length == 0) return;
-    new MochaUI.Window({
-        id: 'trackersPage',
-        title: "QBT_TR(Trackers addition dialog)QBT_TR",
-        loadMethod: 'iframe',
-        contentURL: 'addtrackers.html?hash=' + current_hash,
-        scrollbars: true,
-        resizable: false,
-        maximizable: false,
-        closable: true,
-        paddingVertical: 0,
-        paddingHorizontal: 0,
-        width: 500,
-        height: 250
-    });
-});
+wsTable = new webseedsDynTable();
+wsTable.setup($('webseedsTable'));

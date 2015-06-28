@@ -362,7 +362,7 @@ ul.filterList li:hover a {
     line-height: 20px;
 }
 
-#trackersTable {
+#trackersTable, #webseedsTable {
     line-height: 25px;
 }
 

@@ -273,7 +273,8 @@ var filesDynTable = new Class({
 
 var loadTorrentFilesDataTimer;
 var loadTorrentFilesData = function() {
-    if ($('prop_files').hasClass('invisible')) {
+    if ($('prop_files').hasClass('invisible') ||
+        $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
         // Tab changed, don't do anything
         return;
     }
