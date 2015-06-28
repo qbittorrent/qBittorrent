@@ -1573,15 +1573,12 @@
                    <property name="text">
                     <string>Upload:</string>
                    </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
                   </widget>
                  </item>
                  <item row="0" column="1">
                   <widget class="QSpinBox" name="spinUploadLimit">
                    <property name="enabled">
-                    <bool>true</bool>
+                    <bool>false</bool>
                    </property>
                    <property name="suffix">
                     <string/>
@@ -1593,7 +1590,7 @@
                     <number>1000000</number>
                    </property>
                    <property name="value">
-                    <number>50</number>
+                    <number>100</number>
                    </property>
                   </widget>
                  </item>
