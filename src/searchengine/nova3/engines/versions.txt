@@ -1,4 +1,4 @@
-btdigg: 1.25
+btdigg: 1.30
 demonoid: 1.1
 extratorrent: 2.0
 kickasstorrents: 1.28
