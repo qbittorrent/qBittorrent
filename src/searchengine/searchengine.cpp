@@ -472,13 +472,13 @@ void SearchEngine::appendSearchResult(const QString &line) {
     bool ok = false;
     qlonglong nb_seeders = parts.at(PL_SEEDS).trimmed().toLongLong(&ok);
     if (!ok || nb_seeders < 0) {
-        cur_model->setData(cur_model->index(row, SearchSortModel::SEEDS), tr("Unknown")); // Seeders
+        cur_model->setData(cur_model->index(row, SearchSortModel::SEEDS), -1); // Seeders
     } else {
         cur_model->setData(cur_model->index(row, SearchSortModel::SEEDS), nb_seeders); // Seeders
     }
     qlonglong nb_leechers = parts.at(PL_LEECHS).trimmed().toLongLong(&ok);
     if (!ok || nb_leechers < 0) {
-        cur_model->setData(cur_model->index(row, SearchSortModel::LEECHS), tr("Unknown")); // Leechers
+        cur_model->setData(cur_model->index(row, SearchSortModel::LEECHS), -1); // Leechers
     } else {
         cur_model->setData(cur_model->index(row, SearchSortModel::LEECHS), nb_leechers); // Leechers
     }

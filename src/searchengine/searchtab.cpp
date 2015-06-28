@@ -88,7 +88,7 @@ SearchTab::SearchTab(SearchEngine *parent) : QWidget(), parent(parent)
 void SearchTab::downloadSelectedItem(const QModelIndex& index) {
   QString engine_url = proxyModel->data(proxyModel->index(index.row(), SearchSortModel::ENGINE_URL)).toString();
   QString torrent_url = proxyModel->data(proxyModel->index(index.row(), SearchSortModel::DL_LINK)).toString();
-  setRowColor(index.row(), "red");
+  setRowColor(index.row(), "blue");
   parent->downloadTorrent(engine_url, torrent_url);
 }
 
