@@ -49,6 +49,7 @@
 #include "core/utils/string.h"
 #include "propertieswidget.h"
 #include "proplistdelegate.h"
+#include "torrentcontentmodelitem.h"
 
 PropListDelegate::PropListDelegate(PropertiesWidget *properties, QObject *parent)
     : QItemDelegate(parent)
@@ -98,16 +99,16 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
             QItemDelegate::drawBackground(painter, opt, index);
             QString text = "";
             switch (index.data().toInt()) {
-            case -1:
+            case prio::MIXED:
                 text = tr("Mixed", "Mixed (priorities");
                 break;
-            case 0:
+            case prio::IGNORED:
                 text = tr("Not downloaded");
                 break;
-            case 2:
+            case prio::HIGH:
                 text = tr("High", "High (priority)");
                 break;
-            case 7:
+            case prio::MAXIMUM:
                 text = tr("Maximum", "Maximum (priority)");
                 break;
             default:
@@ -129,10 +130,10 @@ void PropListDelegate::setEditorData(QWidget *editor, const QModelIndex &index) 
     QComboBox *combobox = static_cast<QComboBox*>(editor);
     // Set combobox index
     switch(index.data().toInt()) {
-    case 2:
+    case prio::HIGH:
         combobox->setCurrentIndex(1);
         break;
-    case 7:
+    case prio::MAXIMUM:
         combobox->setCurrentIndex(2);
         break;
     default:
@@ -172,13 +173,13 @@ void PropListDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, 
 
     switch(value)  {
     case 1:
-        model->setData(index, 2); // HIGH
+        model->setData(index, prio::HIGH); // HIGH
         break;
     case 2:
-        model->setData(index, 7); // MAX
+        model->setData(index, prio::MAXIMUM); // MAX
         break;
     default:
-        model->setData(index, 1); // NORMAL
+        model->setData(index, prio::NORMAL); // NORMAL
     }
 
     emit filteredFilesChanged();
