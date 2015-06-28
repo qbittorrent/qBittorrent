@@ -375,7 +375,7 @@ void PropertiesWidget::loadDynamicData() {
              elapsed_txt += " (" + tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(status.seeding_time)) + ")";
 
          lbl_elapsed->setText(elapsed_txt);
-         lbl_connections->setText(QString::number(status.num_connections));
+         lbl_connections->setText(QString::number(status.num_connections) + " (" + tr("%1 max", "e.g. 10 max").arg(QString::number(status.connections_limit)) + ")");
          label_eta_val->setText(misc::userFriendlyDuration(h.eta()));
 
          // Update next announce time
