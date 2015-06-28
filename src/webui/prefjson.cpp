@@ -68,6 +68,8 @@ QByteArray prefjson::getPreferences()
     data["download_in_scan_dirs"] = var_list;
     data["export_dir_enabled"] = pref->isTorrentExportEnabled();
     data["export_dir"] = Utils::Fs::toNativePath(pref->getTorrentExportDir());
+    data["export_dir_fin_enabled"] = pref->isFinishedTorrentExportEnabled();
+    data["export_dir_fin"] = Utils::Fs::toNativePath(pref->getFinishedTorrentExportDir());
     data["mail_notification_enabled"] = pref->isMailNotificationEnabled();
     data["mail_notification_email"] = pref->getMailNotificationEmail();
     data["mail_notification_smtp"] = pref->getMailNotificationSMTP();
@@ -82,11 +84,15 @@ QByteArray prefjson::getPreferences()
     data["max_active_downloads"] = pref->getMaxActiveDownloads();
     data["max_active_torrents"] = pref->getMaxActiveTorrents();
     data["max_active_uploads"] = pref->getMaxActiveUploads();
+    data["max_ratio_enabled"] = (pref->getGlobalMaxRatio() >= 0.);
+    data["max_ratio"] = pref->getGlobalMaxRatio();
+    data["max_ratio_act"] = pref->getMaxRatioAction();
     data["dont_count_slow_torrents"] = pref->ignoreSlowTorrentsForQueueing();
     data["incomplete_files_ext"] = pref->useIncompleteFilesExtension();
     // Connection
     data["listen_port"] = pref->getSessionPort();
     data["upnp"] = pref->isUPnPEnabled();
+    data["random_port"] = pref->useRandomPort();
     data["dl_limit"] = pref->getGlobalDownloadLimit();
     data["up_limit"] = pref->getGlobalUploadLimit();
     data["max_connec"] = pref->getMaxConnecs();
@@ -117,12 +123,16 @@ QByteArray prefjson::getPreferences()
     data["proxy_ip"] = pref->getProxyIp();
     data["proxy_port"] = pref->getProxyPort();
     data["proxy_peer_connections"] = pref->proxyPeerConnections();
+#if LIBTORRENT_VERSION_NUM >= 10000
+    data["force_proxy"] = pref->getForceProxy();
+#endif
     data["proxy_auth_enabled"] = pref->isProxyAuthEnabled();
     data["proxy_username"] = pref->getProxyUsername();
     data["proxy_password"] = pref->getProxyPassword();
     // IP Filter
     data["ip_filter_enabled"] = pref->isFilteringEnabled();
     data["ip_filter_path"] = Utils::Fs::toNativePath(pref->getFilter());
+    data["ip_filter_trackers"] = pref->isFilteringTrackerEnabled();
     // Web UI
     data["web_ui_port"] = pref->getWebUiPort();
     data["web_ui_username"] = pref->getWebUiUsername();
@@ -198,6 +208,8 @@ void prefjson::setPreferences(const QString& json)
     }
     if (m.contains("export_dir"))
         pref->setTorrentExportDir(m["export_dir"].toString());
+    if (m.contains("export_dir_fin"))
+        pref->setFinishedTorrentExportDir(m["export_dir_fin"].toString());
     if (m.contains("mail_notification_enabled"))
         pref->setMailNotificationEnabled(m["mail_notification_enabled"].toBool());
     if (m.contains("mail_notification_email"))
@@ -226,6 +238,12 @@ void prefjson::setPreferences(const QString& json)
         pref->setMaxActiveTorrents(m["max_active_torrents"].toInt());
     if (m.contains("max_active_uploads"))
         pref->setMaxActiveUploads(m["max_active_uploads"].toInt());
+    if (m.contains("max_ratio_enabled"))
+        pref->setGlobalMaxRatio(m["max_ratio"].toInt());
+    else
+        pref->setGlobalMaxRatio(-1);
+    if (m.contains("max_ratio_act"))
+        pref->setMaxRatioAction(m["max_ratio_act"].toInt());
     if (m.contains("dont_count_slow_torrents"))
         pref->setIgnoreSlowTorrentsForQueueing(m["dont_count_slow_torrents"].toBool());
     if (m.contains("incomplete_files_ext"))
@@ -235,6 +253,8 @@ void prefjson::setPreferences(const QString& json)
         pref->setSessionPort(m["listen_port"].toInt());
     if (m.contains("upnp"))
         pref->setUPnPEnabled(m["upnp"].toBool());
+    if (m.contains("random_port"))
+        pref->setRandomPort(m["random_port"].toBool());
     if (m.contains("dl_limit"))
         pref->setGlobalDownloadLimit(m["dl_limit"].toInt());
     if (m.contains("up_limit"))
@@ -290,6 +310,10 @@ void prefjson::setPreferences(const QString& json)
         pref->setProxyPort(m["proxy_port"].toUInt());
     if (m.contains("proxy_peer_connections"))
         pref->setProxyPeerConnections(m["proxy_peer_connections"].toBool());
+#if LIBTORRENT_VERSION_NUM >= 10000
+    if (m.contains("force_proxy"))
+        pref->setForceProxy(m["force_proxy"].toBool());
+#endif
     if (m.contains("proxy_auth_enabled"))
         pref->setProxyAuthEnabled(m["proxy_auth_enabled"].toBool());
     if (m.contains("proxy_username"))
@@ -301,6 +325,8 @@ void prefjson::setPreferences(const QString& json)
         pref->setFilteringEnabled(m["ip_filter_enabled"].toBool());
     if (m.contains("ip_filter_path"))
         pref->setFilter(m["ip_filter_path"].toString());
+    if (m.contains("ip_filter_trackers"))
+        pref->setFilteringTrackerEnabled(m["ip_filter_trackers"].toBool());
     // Web UI
     if (m.contains("web_ui_port"))
         pref->setWebUiPort(m["web_ui_port"].toUInt());

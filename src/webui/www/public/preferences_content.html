@@ -2,7 +2,7 @@
   <fieldset class="settings">
   <legend>QBT_TR(Hard Disk)QBT_TR</legend>
   <div class="formRow">
-  <label for="savepath_text" class="leftLabelLarge">QBT_TR(Save files to location:)QBT_TR</label>
+  <label for="savepath_text">QBT_TR(Save files to location:)QBT_TR</label>
   <input type="text" id="savepath_text"/>
   </div>
   <div class="formRow">
@@ -10,30 +10,29 @@
   <label for="temppath_checkbox">QBT_TR(Keep incomplete torrents in:)QBT_TR</label>
   <input type="text" id="temppath_text"/>
   </div>
-  <br/>
+  <input type="checkbox" id="preallocateall_checkbox"/>
+  <label for="preallocateall_checkbox">QBT_TR(Pre-allocate disk space for all files)QBT_TR</label><br/>
+  <span id="appendexttr">
+  <input type="checkbox" id="appendext_checkbox"/>
+  <label for="appendext_checkbox">QBT_TR(Append .!qB extension to incomplete files)QBT_TR</label>
+  </span><br/><br/>
   QBT_TR(Automatically add torrents from:)QBT_TR<br/>
     <table border="1" id="watched_folders_tab">
     <thead><tr><th>QBT_TR(Watched Folder)QBT_TR</th><th>QBT_TR(Download here)QBT_TR</th></tr></thead>
     <tbody></tbody>
     <tfoot><tr><td style="padding-top:4px;"><input type="text" id="new_watch_folder_txt"/></td><td style="padding-top:4px;"><input type="checkbox" id="new_watch_folder_dl" style="padding-left:18px;"/><img src="theme/list-add" alt="Add" style="padding-left:2px;width:16px;cursor:pointer;margin-right:-18px;" onclick="javascript:addWatchFolder();"/></td></tr></tfoot>
     </table><br/>
-
   <input type="checkbox" id="exportdir_checkbox" onclick="updateExportDirEnabled();"/>
   <label for="exportdir_checkbox">QBT_TR(Copy .torrent files to:)QBT_TR</label>&nbsp;&nbsp;
   <input type="text" id="exportdir_text"/><br/>
-  <span id="appendexttr">
-  <input type="checkbox" id="appendext_checkbox"/>
-  <label for="appendext_checkbox">QBT_TR(Append .!qB extension to incomplete files)QBT_TR</label><br/>
-  </span>
-
-  <input type="checkbox" id="preallocateall_checkbox"/>
-  <label for="preallocateall_checkbox">QBT_TR(Pre-allocate disk space for all files)QBT_TR</label><br/>
+  <input type="checkbox" id="exportdirfin_checkbox" onclick="updateExportDirFinEnabled();"/>
+  <label for="exportdirfin_checkbox">QBT_TR(Copy .torrent files for finished downloads to:)QBT_TR</label>&nbsp;&nbsp;
+  <input type="text" id="exportdirfin_text"/><br/>
 </fieldset>
 
 <fieldset class="settings">
-  <legend>QBT_TR(Email notification upon download completion)QBT_TR</legend>
-  <input type="checkbox" id="mail_notification_checkbox" onclick="updateMailNotification();"/>
-  <label for="mail_notification_checkbox">QBT_TR(Email notification upon download completion)QBT_TR</label><br/>
+  <legend><input type="checkbox" id="mail_notification_checkbox" onclick="updateMailNotification();"/>
+  <label for="mail_notification_checkbox">QBT_TR(Email notification upon download completion)QBT_TR</label></legend>
   <div class="formRow">
   <label for="dest_email_txt" class="leftLabelLarge">QBT_TR(Destination email:)QBT_TR</label><input type="text" id="dest_email_txt"/>
   </div>
@@ -43,25 +42,26 @@
   <div class="formRow">
   <input type="checkbox" id="mail_ssl_checkbox"/><label for="mail_ssl_checkbox">QBT_TR(This server requires a secure connection (SSL))QBT_TR</label>
   </div>
-  <input type="checkbox" id="mail_auth_checkbox" onclick="updateMailAuthSettings();"/><label for="mail_auth_checkbox">QBT_TR(Authentication)QBT_TR</label><br/>
+  <fieldset class="settings">
+    <legend><input type="checkbox" id="mail_auth_checkbox" onclick="updateMailAuthSettings();"/><label for="mail_auth_checkbox">QBT_TR(Authentication)QBT_TR</label></legend>
     <div class="formRow">
     <label for="mail_username_text" class="leftLabelLarge">QBT_TR(Username:)QBT_TR</label><input type="text" id="mail_username_text"/>
     </div>
     <div class="formRow">
     <label for="mail_password_text" class="leftLabelLarge">QBT_TR(Password:)QBT_TR</label><input type="password" id="mail_password_text"/>
     </div>
+  </fieldset>
 </fieldset>
 
 <fieldset class="settings">
-  <legend>QBT_TR(Run an external program on torrent completion)QBT_TR</legend>
- <input type="checkbox" id="autorun_checkbox" onclick="updateAutoRun();"/>
- <label for="autorun_checkbox">QBT_TR(Run an external program on torrent completion)QBT_TR</label><br/>
-<input type="text" id="autorunProg_txt" style="width: 400px;"/><br/>
-<i>QBT_TR(The following parameters are supported:)QBT_TR
-<ul>
-<li>%f: QBT_TR(Torrent path)QBT_TR</li>
-<li>%n: QBT_TR(Torrent name)QBT_TR</li>
-</ul></i>
+    <legend><input type="checkbox" id="autorun_checkbox" onclick="updateAutoRun();"/>
+    <label for="autorun_checkbox">QBT_TR(Run an external program on torrent completion)QBT_TR</label></legend>
+    <input type="text" id="autorunProg_txt" style="width: 400px;"/><br/>
+    <i>QBT_TR(The following parameters are supported:)QBT_TR
+    <ul>
+    <li>%f: QBT_TR(Torrent path)QBT_TR</li>
+    <li>%n: QBT_TR(Torrent name)QBT_TR</li>
+    </ul></i>
 </fieldset>
 </div>
 
@@ -71,7 +71,9 @@
   <label for="port_value">QBT_TR(Port used for incoming connections:)QBT_TR</label>
   <input type="text" id="port_value" style="width: 4em;"/><br/>
   <input type="checkbox" id="upnp_checkbox"/>
-  <label for="upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR</label>
+  <label for="upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR</label><br/>
+  <input type="checkbox" id="random_port_checkbox"/>
+  <label for="random_port_checkbox">QBT_TR(Use different port on each startup)QBT_TR</label>
 </fieldset>
 
 <fieldset class="settings">
@@ -131,8 +133,13 @@
     <input type="checkbox" id="use_peer_proxy_checkbox"/>
     <label for="use_peer_proxy_checkbox">QBT_TR(Use proxy for peer connections)QBT_TR</label>
     </div>
-    <input type="checkbox" id="peer_proxy_auth_checkbox" onclick="updatePeerProxyAuthSettings();"/>
-    <label for="peer_proxy_auth_checkbox">QBT_TR(Authentication)QBT_TR</label><br/>
+    <div class="formRow">
+    <input type="checkbox" id="force_proxy_checkbox"/>
+    <label for="force_proxy_checkbox">QBT_TR(Disable connections not supported by proxies)QBT_TR</label>
+    </div>
+    <fieldset class="settings">
+    <legend><input type="checkbox" id="peer_proxy_auth_checkbox" onclick="updatePeerProxyAuthSettings();"/>
+    <label for="peer_proxy_auth_checkbox">QBT_TR(Authentication)QBT_TR</label></legend>
     <div class="formRow">
     <label for="peer_proxy_username_text" class="leftLabelLarge">QBT_TR(Username:)QBT_TR</label>
     <input type="text" id="peer_proxy_username_text" />
@@ -141,14 +148,16 @@
     <label for="peer_proxy_password_text" class="leftLabelLarge">QBT_TR(Password:)QBT_TR</label>
     <input type="password" id="peer_proxy_password_text" />
     </div>
+    </fieldset>
 </fieldset>
 
 <fieldset class="settings">
-  <legend>QBT_TR(IP Filtering)QBT_TR</legend>
-  <input type="checkbox" id="ipfilter_enabled_checkbox" onclick="updateFilterSettings();"/>
-  <label for="ipfilter_enabled_checkbox">QBT_TR(IP Filtering)QBT_TR</label><br/>
-  <label for="ipfilter_text" style="margin-left: 20px;">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR</label>
-  <input type="text" id="ipfilter_text"/>
+  <legend><input type="checkbox" id="ipfilter_enabled_checkbox" onclick="updateFilterSettings();"/>
+  <label for="ipfilter_enabled_checkbox">QBT_TR(IP Filtering)QBT_TR</label></legend>
+  <label for="ipfilter_text">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR</label>
+  <input type="text" id="ipfilter_text"/><br/>
+  <input type="checkbox" id="ipfilter_trackers_checkbox"/>
+  <label for="ipfilter_trackers_checkbox">QBT_TR(Apply to trackers)QBT_TR</label>
 </fieldset>
 </div>
 
@@ -240,14 +249,13 @@
     <option value="1">QBT_TR(Require encryption)QBT_TR</option>
     <option value="2">QBT_TR(Disable encryption)QBT_TR</option>
   </select><br/>
-  <input type="checkbox" id="anonymous_mode_checkbox" onClick="toggleAnonymousMode()"/>
+  <input type="checkbox" id="anonymous_mode_checkbox"/>
   <label for="anonymous_mode_checkbox">QBT_TR(Enable anonymous mode)QBT_TR (<a href="https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode">More information</a>)</label><br/>
 </fieldset>
 
 <fieldset class="settings">
-  <legend>QBT_TR(Torrent Queueing)QBT_TR</legend>
-  <input type="checkbox" id="queueing_checkbox" onclick="updateQueueingSystem();"/>
-  <label for="queueing_checkbox">QBT_TR(Torrent Queueing)QBT_TR</label><br/>
+  <legend><input type="checkbox" id="queueing_checkbox" onclick="updateQueueingSystem();"/>
+  <label for="queueing_checkbox">QBT_TR(Torrent Queueing)QBT_TR</label></legend>
   <div class="formRow">
   <label for="max_active_dl_value" style="margin-left: 20px;" class="leftLabelLarge">QBT_TR(Maximum active downloads:)QBT_TR</label>
   <input type="text" id="max_active_dl_value" style="width: 4em;"/>
@@ -264,6 +272,18 @@
   <input type="checkbox" id="dont_count_slow_torrents_checkbox"/>
   <label for="dont_count_slow_torrents_checkbox">QBT_TR(Do not count slow torrents in these limits)QBT_TR</label>
   </div>
+</fieldset>
+
+<fieldset class="settings">
+  <legend>QBT_TR(Share Ratio Limiting)QBT_TR</legend>
+  <input type="checkbox" id="max_ratio_checkbox" onClick="updateMaxRatioEnabled();"/>
+  <label for="max_ratio_checkbox">QBT_TR(Seed torrents until their ratio reaches)QBT_TR</label>
+  <input type="text" id="max_ratio_value" style="width: 4em;"/>
+  QBT_TR(then)QBT_TR
+  <select id="max_ratio_act">
+    <option value="0">QBT_TR(Pause them)QBT_TR</option>
+    <option value="1">QBT_TR(Remove them)QBT_TR</option>
+  </select>
 </fieldset>
 </div>
 
@@ -371,22 +391,7 @@
 <center><input type="button" value="QBT_TR(Save)QBT_TR" onclick="applyPreferences();"/></center>
 
 <script type="text/javascript">
-  var WatchedFoldersTable = new HtmlTable($("watched_folders_tab"));
-
-toggleAnonymousMode = function() {
-  if($('anonymous_mode_checkbox').getProperty('checked')) {
-    $('dht_checkbox').setProperty('disabled', true);
-    $('dht_checkbox').setProperty('checked', false);
-    $('lsd_checkbox').setProperty('disabled', true);
-    $('lsd_checkbox').setProperty('checked', false);
-    $('upnp_checkbox').setProperty('disabled', true);
-    $('upnp_checkbox').setProperty('checked', false);
-  } else {
-    $('dht_checkbox').setProperty('disabled', false);
-    $('lsd_checkbox').setProperty('disabled', false);
-    $('upnp_checkbox').setProperty('disabled', false);
-  }
-}
+var WatchedFoldersTable = new HtmlTable($("watched_folders_tab"));
 
 updateDlLimitEnabled = function() {
   if($('dl_limit_checkbox').getProperty('checked')) {
@@ -488,15 +493,35 @@ updateExportDirEnabled = function() {
   }
 }
 
+updateExportDirFinEnabled = function() {
+  if($('exportdirfin_checkbox').getProperty('checked')) {
+    $('exportdirfin_text').setProperty('disabled', false);
+  } else {
+    $('exportdirfin_text').setProperty('disabled', true);
+  }
+}
+
 updateQueueingSystem = function() {
   if($('queueing_checkbox').getProperty('checked')) {
     $('max_active_dl_value').setProperty('disabled', false);
     $('max_active_up_value').setProperty('disabled', false);
     $('max_active_to_value').setProperty('disabled', false);
+    $('dont_count_slow_torrents_checkbox').setProperty('disabled', false);
   } else {
     $('max_active_dl_value').setProperty('disabled', true);
     $('max_active_up_value').setProperty('disabled', true);
     $('max_active_to_value').setProperty('disabled', true);
+    $('dont_count_slow_torrents_checkbox').setProperty('disabled', true);
+  }
+}
+
+updateMaxRatioEnabled = function() {
+  if($('max_ratio_checkbox').getProperty('checked')) {
+    $('max_ratio_value').setProperty('disabled', false);
+    $('max_ratio_act').setProperty('disabled', false);
+  } else {
+    $('max_ratio_value').setProperty('disabled', true);
+    $('max_ratio_act').setProperty('disabled', true);
   }
 }
 
@@ -537,8 +562,10 @@ updateAutoRun = function() {
 updateFilterSettings = function() {
   if($('ipfilter_enabled_checkbox').getProperty('checked')) {
     $('ipfilter_text').setProperty('disabled', false);
+    $('ipfilter_trackers_checkbox').setProperty('disabled', false);
   } else {
     $('ipfilter_text').setProperty('disabled', true);
+    $('ipfilter_trackers_checkbox').setProperty('disabled', true);
   }
 }
 
@@ -547,6 +574,7 @@ updatePeerProxySettings = function() {
     $('peer_proxy_host_text').setProperty('disabled', false);
     $('peer_proxy_port_value').setProperty('disabled', false);
     $('use_peer_proxy_checkbox').setProperty('disabled', false);
+    $('force_proxy_checkbox').setProperty('disabled', false);
     if($('peer_proxy_type_select').getProperty('value') != "socks5") {
       $('peer_proxy_auth_checkbox').setProperty('checked', false);
       $('peer_proxy_auth_checkbox').setProperty('disabled', true);
@@ -558,6 +586,7 @@ updatePeerProxySettings = function() {
     $('peer_proxy_host_text').setProperty('disabled', true);
     $('peer_proxy_port_value').setProperty('disabled', true);
     $('use_peer_proxy_checkbox').setProperty('disabled', true);
+    $('force_proxy_checkbox').setProperty('disabled', true);
     $('peer_proxy_auth_checkbox').setProperty('disabled', true);
     $('peer_proxy_auth_checkbox').setProperty('checked', false);
     updatePeerProxyAuthSettings();
@@ -653,7 +682,8 @@ loadPreferences = function() {
                     // Connection
                     $('port_value').setProperty('value', pref.listen_port.toInt());
                     $('upnp_checkbox').setProperty('checked', pref.upnp);
-                    
+                    $('random_port_checkbox').setProperty('checked', pref.random_port);
+
                     var dl_limit = pref.dl_limit.toInt();
                     if(dl_limit <= 0) {
                       $('dl_limit_checkbox').setProperty('checked', false);
@@ -751,15 +781,18 @@ loadPreferences = function() {
                       var mycb = "<input id='cb_watch_"+ i +"' type='checkbox' " + checked + ">";
                       WatchedFoldersTable.push([myinput, mycb]);
                     }
-
-                    if(pref.export_dir_enabled) {
+                    $('exportdir_checkbox').setProperty('checked', pref.export_dir_enabled);
+                    if(pref.export_dir_enabled)
                       $('exportdir_text').setProperty('value', pref.export_dir);
-                      $('exportdir_checkbox').setProperty('checked', true);
-                    } else {
+                    else
                       $('exportdir_text').setProperty('value', '');
-                      $('exportdir_checkbox').setProperty('checked', false);
-                    }
                     updateExportDirEnabled();
+                    $('exportdirfin_checkbox').setProperty('checked', pref.export_dir_fin_enabled);
+                    if(pref.export_dir_fin_enabled)
+                      $('exportdirfin_text').setProperty('value', pref.export_dir_fin);
+                    else
+                      $('exportdirfin_text').setProperty('value', '');
+                    updateExportDirFinEnabled();
                     $('mail_notification_checkbox').setProperty('checked', pref.mail_notification_enabled);
                     $('dest_email_txt').setProperty('value', pref.mail_notification_email);
                     $('smtp_server_txt').setProperty('value', pref.mail_notification_smtp);
@@ -785,9 +818,18 @@ loadPreferences = function() {
                     $('max_active_to_value').setProperty('value', pref.max_active_torrents.toInt());
                     $('dont_count_slow_torrents_checkbox').setProperty('checked', pref.dont_count_slow_torrents);
                     updateQueueingSystem();
+                    $('max_ratio_checkbox').setProperty('checked', pref.max_ratio_enabled);
+                    if (pref.max_ratio_enabled)
+                        $('max_ratio_value').setProperty('value', pref.max_ratio.toInt());
+                    else
+                        $('max_ratio_value').setProperty('value', 1);
+                    var max_ratio_act = pref.max_ratio_act.toInt();
+                    $('max_ratio_act').getChildren('option')[max_ratio_act].setAttribute('selected', '');
+                    updateMaxRatioEnabled();
                     // IP Filter
                     $('ipfilter_enabled_checkbox').setProperty('checked', pref.ip_filter_enabled);
                     $('ipfilter_text').setProperty('value', pref.ip_filter_path);
+                    $('ipfilter_trackers_checkbox').setProperty('checked', pref.ip_filter_trackers);
                     updateFilterSettings();
                     // PEER Proxy
                     switch(pref.proxy_type.toInt()) {
@@ -809,6 +851,7 @@ loadPreferences = function() {
                     $('peer_proxy_host_text').setProperty('value', pref.proxy_ip);
                     $('peer_proxy_port_value').setProperty('value', pref.proxy_port);
                     $('use_peer_proxy_checkbox').setProperty('checked', pref.proxy_peer_connections);
+                    $('force_proxy_checkbox').setProperty('checked', pref.force_proxy);
                     $('peer_proxy_auth_checkbox').setProperty('checked', pref.proxy_auth_enabled);
                     updatePeerProxyAuthSettings();
                     $('peer_proxy_username_text').setProperty('value', pref.proxy_username);
@@ -845,8 +888,8 @@ applyPreferences = function() {
     return;
   }
   settings.set('listen_port', listen_port);
-  
   settings.set('upnp', $('upnp_checkbox').getProperty('checked'));
+  settings.set('random_port', $('random_port_checkbox').getProperty('checked'));
     
   var dl_limit = -1;
   if($('dl_limit_checkbox').getProperty('checked')) {
@@ -962,6 +1005,11 @@ applyPreferences = function() {
     settings.set('export_dir', $('exportdir_text').getProperty('value'));
   else
     settings.set('export_dir', '');
+  if($('exportdirfin_checkbox').getProperty('checked'))
+    settings.set('export_dir_fin', $('exportdirfin_text').getProperty('value'));
+  else
+    settings.set('export_dir_fin', '');
+
   settings.set('preallocate_all', $('preallocateall_checkbox').getProperty('checked'));
   if(!$('appendexttr').hasClass('invisible')) {
     settings.set('incomplete_files_ext', $('appendext_checkbox').getProperty('checked'));
@@ -971,6 +1019,18 @@ applyPreferences = function() {
   settings.set('max_active_uploads', $('max_active_up_value').getProperty('value').toInt());
   settings.set('max_active_torrents', $('max_active_to_value').getProperty('value').toInt());
   settings.set('dont_count_slow_torrents', $('dont_count_slow_torrents_checkbox').getProperty('checked'));
+ 
+  var max_ratio = -1;
+  if($('max_ratio_checkbox').getProperty('checked')) {
+    max_ratio = $('max_ratio_value').getProperty('value').toInt();
+    if(max_ratio < 0 || max_ratio > 9998) {
+      alert("QBT_TR(Share ratio limit must be between 0 and 9998.)QBT_TR");
+      return;
+    }
+  }
+  settings.set('max_ratio_enabled', $('max_ratio_checkbox').getProperty('checked'));
+  settings.set('max_ratio', max_ratio);
+  settings.set('max_ratio_act', $('max_ratio_act').getProperty('value').toInt());
  
   settings.set('mail_notification_enabled', $('mail_notification_checkbox').getProperty('checked'));
   settings.set('mail_notification_email', $('dest_email_txt').getProperty('value'));
@@ -986,7 +1046,8 @@ applyPreferences = function() {
   // IP Filter
   settings.set('ip_filter_enabled', $('ipfilter_enabled_checkbox').getProperty('checked'));
   settings.set('ip_filter_path', $('ipfilter_text').getProperty('value'));
-  
+  settings.set('ip_filter_trackers', $('ipfilter_trackers_checkbox').getProperty('checked'));
+
   // Peer Proxy
   var proxy_type_str = $('peer_proxy_type_select').getProperty('value');
   var proxy_type = -1;
@@ -1017,6 +1078,7 @@ applyPreferences = function() {
   settings.set('proxy_ip', $('peer_proxy_host_text').getProperty('value'));
   settings.set('proxy_port', $('peer_proxy_port_value').getProperty('value').toInt());
   settings.set('proxy_peer_connections', $('use_peer_proxy_checkbox').getProperty('checked'));
+  settings.set('force_proxy', $('force_proxy_checkbox').getProperty('checked'));
   settings.set('proxy_username', $('peer_proxy_username_text').getProperty('value'));
   settings.set('proxy_password', $('peer_proxy_password_text').getProperty('value'));
   
