@@ -363,7 +363,7 @@ void PropertiesWidget::loadDynamicData() {
 
         lbl_elapsed->setText(elapsed_txt);
 
-        lbl_connections->setText(QString::number(m_torrent->connectionsCount()));
+        lbl_connections->setText(QString::number(m_torrent->connectionsCount()) + " (" + tr("%1 max", "e.g. 10 max").arg(QString::number(m_torrent->connectionsLimit())) + ")");
         label_eta_val->setText(Utils::Misc::userFriendlyDuration(m_torrent->eta()));
 
         // Update next announce time
