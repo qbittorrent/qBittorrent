@@ -171,7 +171,7 @@ void engineSelectDlg::on_actionUninstall_triggered() {
     }
   }
   if (error)
-    QMessageBox::warning(0, tr("Uninstall warning"), tr("Some plugins could not be uninstalled because they are included in qBittorrent.\n Only the ones you added yourself can be uninstalled.\nHowever, those plugins were disabled."));
+    QMessageBox::warning(0, tr("Uninstall warning"), tr("Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.\nThose plugins were disabled."));
   else
     QMessageBox::information(0, tr("Uninstall success"), tr("All selected plugins were uninstalled successfully"));
 }
@@ -234,7 +234,7 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
   qDebug("Version to be installed: %.2f", new_version);
   if (!isUpdateNeeded(plugin_name, new_version)) {
     qDebug("Apparently update is not needed, we have a more recent version");
-    QMessageBox::information(this, tr("Search plugin install")+" -- qBittorrent", tr("A more recent version of %1 search engine plugin is already installed.", "%1 is the name of the search engine").arg(plugin_name));
+    QMessageBox::information(this, tr("Search plugin install"), tr("A more recent version of %1 search engine plugin is already installed.", "%1 is the name of the search engine").arg(plugin_name));
     return;
   }
   // Process with install
@@ -259,12 +259,12 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
       // restore backup
       QFile::copy(dest_path+".bak", dest_path);
       Utils::Fs::forceRemove(dest_path+".bak");
-      QMessageBox::warning(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin could not be updated, keeping old version.", "%1 is the name of the search engine").arg(plugin_name));
+      QMessageBox::warning(this, tr("Search plugin install"), tr("%1 search engine plugin could not be updated, keeping old version.", "%1 is the name of the search engine").arg(plugin_name));
       return;
     } else {
       // Remove broken file
       Utils::Fs::forceRemove(dest_path);
-      QMessageBox::warning(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin could not be installed.", "%1 is the name of the search engine").arg(plugin_name));
+      QMessageBox::warning(this, tr("Search plugin install"), tr("%1 search engine plugin could not be installed.", "%1 is the name of the search engine").arg(plugin_name));
       return;
     }
   }
@@ -274,10 +274,10 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
     qreal version = SearchEngine::getPluginVersion(Utils::Fs::searchEngineLocation() + "/engines/" + plugin_name + ".py");
     QTreeWidgetItem *item = findItemWithID(plugin_name);
     item->setText(ENGINE_VERSION, QString::number(version, 'f', 2));
-    QMessageBox::information(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin was successfully updated.", "%1 is the name of the search engine").arg(plugin_name));
+    QMessageBox::information(this, tr("Search plugin install"), tr("%1 search engine plugin was successfully updated.", "%1 is the name of the search engine").arg(plugin_name));
     return;
   } else {
-    QMessageBox::information(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin was successfully installed.", "%1 is the name of the search engine").arg(plugin_name));
+    QMessageBox::information(this, tr("Search plugin install"), tr("%1 search engine plugin was successfully installed.", "%1 is the name of the search engine").arg(plugin_name));
     return;
   }
 }
@@ -354,7 +354,7 @@ void engineSelectDlg::askForPluginUrl() {
 void engineSelectDlg::askForLocalPlugin() {
   QStringList pathsList = QFileDialog::getOpenFileNames(0,
                                                         tr("Select search plugins"), QDir::homePath(),
-                                                        tr("qBittorrent search plugins")+QString::fromUtf8(" (*.py)"));
+                                                        tr("qBittorrent search plugin")+QString::fromUtf8(" (*.py)"));
   QString path;
   foreach (path, pathsList) {
     if (path.endsWith(".py", Qt::CaseInsensitive)) {
@@ -406,7 +406,7 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file) {
   // Clean up tmp file
   Utils::Fs::forceRemove(versions_file);
   if (file_correct && !updated) {
-    QMessageBox::information(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("All your plugins are already up to date."));
+    QMessageBox::information(this, tr("Search plugin update"), tr("All your plugins are already up to date."));
   }
   return file_correct;
 }
@@ -447,7 +447,7 @@ void engineSelectDlg::processDownloadedFile(const QString &url, QString filePath
   }
   if (url.endsWith("versions.txt")) {
     if (!parseVersionsFile(filePath)) {
-      QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, update server is temporarily unavailable."));
+      QMessageBox::warning(this, tr("Search plugin update"), tr("Sorry, update server is temporarily unavailable."));
     }
     Utils::Fs::forceRemove(filePath);
     return;
@@ -468,13 +468,13 @@ void engineSelectDlg::handleDownloadFailure(const QString &url, const QString &r
     return;
   }
   if (url.endsWith("versions.txt")) {
-    QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, update server is temporarily unavailable."));
+    QMessageBox::warning(this, tr("Search plugin update"), tr("Sorry, update server is temporarily unavailable."));
     return;
   }
   if (url.endsWith(".py", Qt::CaseInsensitive)) {
     // a plugin update download has been failed
     QString plugin_name = url.split('/').last();
     plugin_name.replace(".py", "", Qt::CaseInsensitive);
-    QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, %1 search plugin install failed.", "%1 is the name of the search engine").arg(plugin_name));
+    QMessageBox::warning(this, tr("Search plugin update"), tr("Sorry, %1 search plugin installation failed.", "%1 is the name of the search engine").arg(plugin_name));
   }
 }
