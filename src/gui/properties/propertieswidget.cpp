@@ -39,7 +39,6 @@
 #include <QMessageBox>
 #include <QMenu>
 #include <QFileDialog>
-#include <QDesktopServices>
 #include <QBitArray>
 
 #include "core/bittorrent/session.h"
@@ -475,15 +474,7 @@ void PropertiesWidget::openFile(const QModelIndex &index) {
   qDebug("Trying to open file at %s", qPrintable(file_path));
   // Flush data
   m_torrent->flushCache();
-  if (QFile::exists(file_path)) {
-    if (file_path.startsWith("//"))
-      QDesktopServices::openUrl(Utils::Fs::toNativePath("file:" + file_path));
-    else
-      QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
-  }
-  else {
-    QMessageBox::warning(this, tr("I/O Error"), tr("This file does not exist yet."));
-  }
+  Utils::Misc::openPath(file_path);
 }
 
 void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_folder) {
@@ -500,10 +491,6 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
     }
     if (path_items.isEmpty())
       return;
-#if !(defined(Q_OS_WIN) || (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)))
-    if (containing_folder)
-      path_items.removeLast();
-#endif
     const QDir saveDir(m_torrent->actualSavePath());
     const QString relative_path = path_items.join("/");
     absolute_path = Utils::Fs::expandPath(saveDir.absoluteFilePath(relative_path));
@@ -513,54 +500,14 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
     const QDir saveDir(m_torrent->actualSavePath());
     const QString relative_path = m_torrent->filePath(i);
     absolute_path = Utils::Fs::expandPath(saveDir.absoluteFilePath(relative_path));
-
-#if !(defined(Q_OS_WIN) || (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)))
-    if (containing_folder)
-      absolute_path = Utils::Fs::folderName(absolute_path);
-#endif
   }
 
   // Flush data
   m_torrent->flushCache();
-  if (!QFile::exists(absolute_path))
-      return;
-  qDebug("Trying to open folder at %s", qPrintable(absolute_path));
-
-#ifdef Q_OS_WIN
-  if (containing_folder) {
-    // Syntax is: explorer /select, "C:\Folder1\Folder2\file_to_select"
-    // Dir separators MUST be win-style slashes
-    QProcess::startDetached("explorer.exe", QStringList() << "/select," << Utils::Fs::toNativePath(absolute_path));
-  } else {
-#elif defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
-  if (containing_folder) {
-    QProcess proc;
-    QString output;
-    proc.start("xdg-mime", QStringList() << "query" << "default" << "inode/directory");
-    proc.waitForFinished();
-    output = proc.readLine().simplified();
-    if (output == "dolphin.desktop")
-      proc.startDetached("dolphin", QStringList() << "--select" << Utils::Fs::toNativePath(absolute_path));
-    else if (output == "nautilus-folder-handler.desktop")
-      proc.startDetached("nautilus", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(absolute_path));
-    else if (output == "kfmclient_dir.desktop")
-      proc.startDetached("konqueror", QStringList() << "--select" << Utils::Fs::toNativePath(absolute_path));
-    else
-      QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(absolute_path).absolutePath()));
-  } else {
-#endif
-    if (QFile::exists(absolute_path)) {
-      // Hack to access samba shares with QDesktopServices::openUrl
-      if (absolute_path.startsWith("//"))
-        QDesktopServices::openUrl(Utils::Fs::toNativePath("file:" + absolute_path));
-      else
-        QDesktopServices::openUrl(QUrl::fromLocalFile(absolute_path));
-    } else {
-      QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
-    }
-#if defined(Q_OS_WIN) || (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-  }
-#endif
+  if (containing_folder)
+    Utils::Misc::openFolderSelect(absolute_path);
+  else
+    Utils::Misc::openPath(absolute_path);
 }
 
 void PropertiesWidget::displayFilesListMenu(const QPoint&) {

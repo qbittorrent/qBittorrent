@@ -66,10 +66,16 @@ const int UNLEN = 256;
 #endif
 #endif // DISABLE_GUI
 
+#ifndef DISABLE_GUI
+#include <QDesktopServices>
+#include <QProcess>
+#endif
+
 #include "core/utils/string.h"
 #include "core/unicodestrings.h"
 #include "core/logger.h"
 #include "misc.h"
+#include "fs.h"
 
 static struct { const char *source; const char *comment; } units[] = {
     QT_TRANSLATE_NOOP3("misc", "B", "bytes"),
@@ -525,6 +531,64 @@ QString Utils::Misc::parseHtmlLinks(const QString &raw_text)
     result = "<p style=\"white-space: pre-wrap;\">" + result + "</p>";
     return result;
 }
+
+#ifndef DISABLE_GUI
+// Open the given path with an appropriate application
+void Utils::Misc::openPath(const QString& absolutePath)
+{
+    const QString path = Utils::Fs::fromNativePath(absolutePath);
+    // Hack to access samba shares with QDesktopServices::openUrl
+    if (path.startsWith("//"))
+        QDesktopServices::openUrl(Utils::Fs::toNativePath("file:" + path));
+    else
+        QDesktopServices::openUrl(QUrl::fromLocalFile(path));
+}
+
+// Open the parent directory of the given path with a file manager and select
+// (if possible) the item at the given path
+void Utils::Misc::openFolderSelect(const QString& absolutePath)
+{
+    const QString path = Utils::Fs::fromNativePath(absolutePath);
+#ifdef Q_OS_WIN
+    if (QFileInfo(path).exists()) {
+        // Syntax is: explorer /select, "C:\Folder1\Folder2\file_to_select"
+        // Dir separators MUST be win-style slashes
+        QProcess::startDetached("explorer.exe", QStringList() << "/select," << Utils::Fs::toNativePath(absolutePath));
+    }
+    else {
+        // If the item to select doesn't exist, try to open its parent
+        openPath(path.left(path.lastIndexOf("/")));
+    }
+#elif defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
+    if (QFileInfo(path).exists()) {
+        QProcess proc;
+        QString output;
+        proc.start("xdg-mime", QStringList() << "query" << "default" << "inode/directory");
+        proc.waitForFinished();
+        output = proc.readLine().simplified();
+        if (output == "dolphin.desktop")
+            proc.startDetached("dolphin", QStringList() << "--select" << Utils::Fs::toNativePath(path));
+        else if (output == "nautilus.desktop" || output == "org.gnome.Nautilus.desktop"
+                 || output == "nautilus-folder-handler.desktop")
+            proc.startDetached("nautilus", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(path));
+        else if (output == "caja-folder-handler.desktop")
+            proc.startDetached("caja", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(path));
+        else if (output == "nemo.desktop")
+            proc.startDetached("nemo", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(path));
+        else if (output == "kfmclient_dir.desktop")
+            proc.startDetached("konqueror", QStringList() << "--select" << Utils::Fs::toNativePath(path));
+        else
+            openPath(path.left(path.lastIndexOf("/")));
+    }
+    else {
+        // If the item to select doesn't exist, try to open its parent
+        openPath(path.left(path.lastIndexOf("/")));
+    }
+#else
+    openPath(path.left(path.lastIndexOf("/")));
+#endif
+}
+#endif // DISABLE_GUI
 
 namespace
 {
