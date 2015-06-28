@@ -524,7 +524,7 @@ void SearchEngine::on_download_button_clicked() {
             QString torrent_url = model->data(model->index(index.row(), URL_COLUMN)).toString();
             QString engine_url = model->data(model->index(index.row(), ENGINE_URL_COLUMN)).toString();
             downloadTorrent(engine_url, torrent_url);
-            all_tab.at(tabWidget->currentIndex())->setRowColor(index.row(), "red");
+            all_tab.at(tabWidget->currentIndex())->setRowColor(index.row(), "blue");
         }
     }
 }
