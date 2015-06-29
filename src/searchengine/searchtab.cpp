@@ -52,11 +52,12 @@ SearchTab::SearchTab(SearchEngine *parent) : QWidget(), parent(parent)
   setLayout(box);
   // Set Search results list model
   SearchListModel = new QStandardItemModel(0, SearchSortModel::NB_SEARCH_COLUMNS);
-  SearchListModel->setHeaderData(SearchSortModel::NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
-  SearchListModel->setHeaderData(SearchSortModel::SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
-  SearchListModel->setHeaderData(SearchSortModel::SEEDS, Qt::Horizontal, tr("Seeders", "i.e: Number of full sources"));
-  SearchListModel->setHeaderData(SearchSortModel::LEECHS, Qt::Horizontal, tr("Leechers", "i.e: Number of partial sources"));
-  SearchListModel->setHeaderData(SearchSortModel::ENGINE_URL, Qt::Horizontal, tr("Search engine"));
+  SearchListModel->setHeaderData(SearchSortModel::NAME, Qt::Horizontal, tr("Name", "i.e: torrent name"));
+  SearchListModel->setHeaderData(SearchSortModel::SIZE, Qt::Horizontal, tr("Size", "i.e: torrent size"));
+  SearchListModel->setHeaderData(SearchSortModel::SEEDS, Qt::Horizontal, tr("Seeders", "i.e: number of full sources"));
+  SearchListModel->setHeaderData(SearchSortModel::LEECHS, Qt::Horizontal, tr("Leechers", "i.e: number of partial sources"));
+  SearchListModel->setHeaderData(SearchSortModel::RATIO, Qt::Horizontal, tr("Ratio", "i.e: seeders/leechers ratio"));
+  SearchListModel->setHeaderData(SearchSortModel::ENGINE_URL, Qt::Horizontal, tr("Search engine", "i.e: search engine URL"));
 
   proxyModel = new SearchSortModel();
   proxyModel->setDynamicSortFilter(true);
