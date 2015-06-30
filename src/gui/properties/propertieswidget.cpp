@@ -66,6 +66,7 @@
 PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, TransferListWidget *transferList):
   QWidget(parent), transferList(transferList), main_window(main_window), m_torrent(0) {
   setupUi(this);
+  setAutoFillBackground(true);
 
   // Icons
   trackerUpButton->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
