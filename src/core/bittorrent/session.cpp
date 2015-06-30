@@ -1,3 +1,4 @@
+
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
@@ -619,6 +620,16 @@ void Session::configure()
 
     qDebug("Applying encryption settings");
     m_nativeSession->set_pe_settings(encryptionSettings);
+
+    // * Add trackers
+    m_additionalTrackers.empty();
+    if (pref->isAddTrackersEnabled()) {
+        foreach (QString tracker, pref->getTrackersList().split("\n")) {
+            tracker = tracker.trimmed();
+            if (!tracker.isEmpty())
+                m_additionalTrackers << tracker;
+        }
+    }
 
     // * Maximum ratio
     m_highRatioAction = pref->getMaxRatioAction();
@@ -2110,6 +2121,9 @@ void Session::handleAddTorrentAlert(libtorrent::add_torrent_alert *p)
                 logger->addMessage(tr("Couldn't save '%1.torrent'").arg(torrent->hash()), Log::CRITICAL);
             }
         }
+
+        if (pref->isAddTrackersEnabled() && !torrent->isPrivate())
+            torrent->addTrackers(m_additionalTrackers);
 
         bool addPaused = data.addPaused;
         if (data.addPaused == TriStateBool::Undefined)

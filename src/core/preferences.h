@@ -270,6 +270,10 @@ public:
     void setLSDEnabled(bool enabled);
     int getEncryptionSetting() const;
     void setEncryptionSetting(int val);
+    bool isAddTrackersEnabled() const;
+    void setAddTrackersEnabled(bool enabled);
+    QString getTrackersList() const;
+    void setTrackersList(const QString &val);
     qreal getGlobalMaxRatio() const;
     void setGlobalMaxRatio(qreal ratio);
     MaxRatioAction getMaxRatioAction() const;
