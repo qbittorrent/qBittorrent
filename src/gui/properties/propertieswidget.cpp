@@ -184,7 +184,7 @@ void PropertiesWidget::setVisibility(bool visible) {
     slideSizes = hSplitter->sizes();
     hSplitter->handle(1)->setVisible(false);
     hSplitter->handle(1)->setDisabled(true);
-    QList<int> sizes = QList<int>() << hSplitter->geometry().height()-30 << 30;
+    QList<int> sizes = QList<int>() << 10000 << 30;
     hSplitter->setSizes(sizes);
     state = REDUCED;
     return;
