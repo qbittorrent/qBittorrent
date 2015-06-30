@@ -134,6 +134,9 @@ namespace BitTorrent
             CheckingUploading,
             CheckingDownloading,
 
+            QueuedForChecking,
+            CheckingResumeData,
+
             PausedDownloading,
             PausedUploading,
 
