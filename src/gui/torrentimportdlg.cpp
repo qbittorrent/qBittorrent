@@ -219,7 +219,11 @@ void TorrentImportDlg::loadTorrent(const QString &torrent_path)
     // Load the torrent file
     try {
         std::vector<char> buffer;
+#if LIBTORRENT_VERSION_NUM < 10100
         lazy_entry entry;
+#else
+        bdecode_node entry;
+#endif
         libtorrent::error_code ec;
         misc::loadBencodedFile(torrent_path, buffer, entry, ec);
 #if LIBTORRENT_VERSION_NUM < 10000

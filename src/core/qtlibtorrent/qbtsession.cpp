@@ -65,7 +65,11 @@
 #include <libtorrent/extensions/ut_pex.hpp>
 #include <libtorrent/extensions/smart_ban.hpp>
 //#include <libtorrent/extensions/metadata_transfer.hpp>
+#if LIBTORRENT_VERSION_NUM < 10100
 #include <libtorrent/lazy_entry.hpp>
+#else
+#include <libtorrent/bdecode.hpp>
+#endif
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/identify_client.hpp>
@@ -1024,7 +1028,11 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
         qDebug() << "Loading torrent at" << path;
         // Getting torrent file informations
         std::vector<char> buffer;
+#if LIBTORRENT_VERSION_NUM < 10100
         lazy_entry entry;
+#else
+        bdecode_node entry;
+#endif
         libtorrent::error_code ec;
         misc::loadBencodedFile(path, buffer, entry, ec);
 #if LIBTORRENT_VERSION_NUM < 10000
@@ -1492,7 +1500,11 @@ void QBtSession::loadSessionState() {
         return;
     }
     std::vector<char> in;
-    lazy_entry e;
+#if LIBTORRENT_VERSION_NUM < 10100
+        lazy_entry e;
+#else
+        bdecode_node e;
+#endif
     libtorrent::error_code ec;
     misc::loadBencodedFile(state_path, in, e, ec);
     if (!ec)
@@ -1721,7 +1733,11 @@ void QBtSession::addTorrentsFromScanFolder(QStringList &pathList)
         }
         try {
             std::vector<char> buffer;
+#if LIBTORRENT_VERSION_NUM < 10100
             lazy_entry entry;
+#else
+            bdecode_node entry;
+#endif
             libtorrent::error_code ec;
             misc::loadBencodedFile(file, buffer, entry, ec);
             torrent_info t(entry);
@@ -2015,7 +2031,11 @@ void QBtSession::recursiveTorrentDownload(const QTorrentHandle &h)
                 const QString torrent_fullpath = h.save_path()+"/"+torrent_relpath;
 
                 std::vector<char> buffer;
+#if LIBTORRENT_VERSION_NUM < 10100
                 lazy_entry entry;
+#else
+                bdecode_node entry;
+#endif
                 libtorrent::error_code ec;
                 misc::loadBencodedFile(torrent_fullpath, buffer, entry, ec);
 #if LIBTORRENT_VERSION_NUM < 10000
@@ -2186,7 +2206,11 @@ void QBtSession::handleTorrentFinishedAlert(libtorrent::torrent_finished_alert* 
                     qDebug("Full subtorrent path is %s", qPrintable(torrent_fullpath));
                     try {
                         std::vector<char> buffer;
+#if LIBTORRENT_VERSION_NUM < 10100
                         lazy_entry entry;
+#else
+                        bdecode_node entry;
+#endif
                         libtorrent::error_code ec;
                         misc::loadBencodedFile(torrent_fullpath, buffer, entry, ec);
 #if LIBTORRENT_VERSION_NUM < 10000
@@ -3077,11 +3101,16 @@ void QBtSession::recoverPersistentData(const QString &hash, const std::vector<ch
     if (TorPersistent->isKnownTorrent(hash) || TorrentTempData::hasTempData(hash) || buf.empty())
         return;
 
-    libtorrent::lazy_entry fast;
     libtorrent::error_code ec;
-
+#if LIBTORRENT_VERSION_NUM < 10100
+    libtorrent::lazy_entry fast;
     libtorrent::lazy_bdecode(&(buf.front()), &(buf.back()), fast, ec);
     if (fast.type() != libtorrent::lazy_entry::dict_t && !ec)
+#else
+    libtorrent::bdecode_node fast;
+    libtorrent::bdecode(&(buf.front()), &(buf.back()), fast, ec);
+    if (fast.type() != libtorrent::bdecode_node::dict_t && !ec)
+#endif
         return;
 
     QString savePath = fsutils::fromNativePath(QString::fromUtf8(fast.dict_find_string_value("qBt-savePath").c_str()));

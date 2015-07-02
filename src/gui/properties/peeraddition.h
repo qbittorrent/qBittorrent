@@ -72,8 +72,13 @@ public:
     return spinPort->value();
   }
 
+#if BOOST_VERSION < 103500
   static libtorrent::asio::ip::tcp::endpoint askForPeerEndpoint() {
     libtorrent::asio::ip::tcp::endpoint ep;
+#else
+  static boost::asio::ip::tcp::endpoint askForPeerEndpoint() {
+    boost::asio::ip::tcp::endpoint ep;
+#endif
     PeerAdditionDlg dlg;
     if (dlg.exec() == QDialog::Accepted) {
       QString ip = dlg.getIP();
@@ -84,7 +89,11 @@ public:
         return ep;
       }
       qDebug("Provided IP is correct");
+#if BOOST_VERSION < 103500
       ep = libtorrent::asio::ip::tcp::endpoint(addr, dlg.getPort());
+#else
+      ep = boost::asio::ip::tcp::endpoint(addr, dlg.getPort());
+#endif
     }
     return ep;
   }

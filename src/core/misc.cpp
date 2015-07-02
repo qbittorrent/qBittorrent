@@ -640,7 +640,11 @@ bool misc::slowEquals(const QByteArray &a, const QByteArray &b)
     return (diff == 0);
 }
 
+#if LIBTORRENT_VERSION_NUM < 10100
 void misc::loadBencodedFile(const QString &filename, std::vector<char> &buffer, libtorrent::lazy_entry &entry, libtorrent::error_code &ec)
+#else
+void misc::loadBencodedFile(const QString &filename, std::vector<char> &buffer, libtorrent::bdecode_node &entry, libtorrent::error_code &ec)
+#endif
 {
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly)) return;
@@ -649,7 +653,11 @@ void misc::loadBencodedFile(const QString &filename, std::vector<char> &buffer, 
     buffer.resize(content_size);
     file.read(&buffer[0], content_size);
     // bdecode
+#if LIBTORRENT_VERSION_NUM < 10100
     lazy_bdecode(&buffer[0], &buffer[0] + buffer.size(), entry, ec);
+#else
+    bdecode(&buffer[0], &buffer[0] + buffer.size(), entry, ec);
+#endif
 }
 
 namespace {

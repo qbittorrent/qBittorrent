@@ -194,7 +194,11 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
 
     try {
         std::vector<char> buffer;
+#if LIBTORRENT_VERSION_NUM < 10100
         lazy_entry entry;
+#else
+        bdecode_node entry;
+#endif
         libtorrent::error_code ec;
         misc::loadBencodedFile(m_filePath, buffer, entry, ec);
 #if LIBTORRENT_VERSION_NUM < 10000

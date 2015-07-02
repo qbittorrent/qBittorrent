@@ -352,7 +352,11 @@ void PropertiesWidget::loadDynamicData() {
       else
         lbl_connections->setText(QString::number(status.num_connections));
       // Update next announce time
+#if LIBTORRENT_VERSION_NUM < 10100
       reannounce_lbl->setText(misc::userFriendlyDuration(status.next_announce.total_seconds()));
+#else
+      reannounce_lbl->setText(misc::userFriendlyDuration(status.next_announce.count()));
+#endif
       // Update ratio info
       const qreal ratio = QBtSession::instance()->getRealRatio(status);
       shareRatio->setText(ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
