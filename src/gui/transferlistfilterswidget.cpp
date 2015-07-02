@@ -67,7 +67,7 @@ FiltersBase::FiltersBase(QWidget *parent, TransferListWidget *transferList)
     setUniformItemSizes(true);
     setSpacing(0);
 
-    setIconSize(QSize(16, 16));
+    setIconSize(Utils::Misc::smallIconSize());
 
 #if defined(Q_OS_MAC)
     setAttribute(Qt::WA_MacShowFocusRect, false);

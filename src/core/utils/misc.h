@@ -54,6 +54,7 @@ namespace Utils
         void shutdownComputer(ShutdownAction action);
         // Get screen center
         QPoint screenCenter(QWidget *win);
+        QSize smallIconSize();
 #endif
         int pythonVersion();
         QString pythonExecutable();
