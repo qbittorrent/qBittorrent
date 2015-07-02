@@ -81,7 +81,7 @@ QSize FiltersBase::sizeHint() const
     QSize size;
     // Height should be exactly the height of the content
     size.setHeight((sizeHintForRow(0) * count()) + (2 * frameWidth()) + 6);
-    // Width should be exactly the height of the content
+    // Width should be exactly the width of the content
     size.setWidth(sizeHintForColumn(0) + (2 * frameWidth()));
     return size;
 }
@@ -108,7 +108,7 @@ StatusFiltersWidget::StatusFiltersWidget(QWidget *parent, TransferListWidget *tr
     setUniformItemSizes(true);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     // Height is fixed (sizeHint().height() is used)
-    setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     setSpacing(0);
     connect(BitTorrent::Session::instance(), SIGNAL(torrentsUpdated(const BitTorrent::TorrentStatusReport &)), SLOT(updateTorrentNumbers(const BitTorrent::TorrentStatusReport &)));
 
@@ -176,7 +176,7 @@ LabelFiltersList::LabelFiltersList(QWidget *parent, TransferListWidget *transfer
     , m_totalTorrents(0)
     , m_totalLabeled(0)
 {
-    setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     connect(BitTorrent::Session::instance(), SIGNAL(torrentLabelChanged(BitTorrent::TorrentHandle *const, QString)), SLOT(torrentChangedLabel(BitTorrent::TorrentHandle *const, QString)));
 
@@ -420,7 +420,7 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
     : FiltersBase(parent, transferList)
     , m_totalTorrents(0)
 {
-    setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     QListWidgetItem *allTrackers = new QListWidgetItem(this);
     allTrackers->setData(Qt::DisplayRole, QVariant(tr("All (0)", "this is for the label filter")));
@@ -778,6 +778,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     vLayout->setContentsMargins(0, 4, 0, 0);
     frameLayout->setContentsMargins(0, 4, 0, 0);
     frameLayout->setSpacing(2);
+    frameLayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
 
     frame->setLayout(frameLayout);
     scroll->setWidget(frame);
@@ -808,8 +809,6 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
 
     trackerFilters = new TrackerFiltersList(this, transferList);
     frameLayout->addWidget(trackerFilters);
-
-    frameLayout->addStretch();
 
     connect(statusLabel, SIGNAL(toggled(bool)), statusFilters, SLOT(toggleFilter(bool)));
     connect(statusLabel, SIGNAL(toggled(bool)), pref, SLOT(setStatusFilterState(const bool)));
