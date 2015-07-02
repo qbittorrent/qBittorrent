@@ -767,16 +767,13 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     font.setBold(true);
     font.setCapitalization(QFont::AllUppercase);
 
-    frame->setFrameShadow(QFrame::Plain);
-    frame->setFrameShape(QFrame::NoFrame);
-    scroll->setFrameShadow(QFrame::Plain);
-    scroll->setFrameShape(QFrame::NoFrame);
-    scroll->setStyleSheet("QFrame { background: transparent; }");
     scroll->setWidgetResizable(true);
     scroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    vLayout->setContentsMargins(0, 4, 0, 0);
-    frameLayout->setContentsMargins(0, 4, 0, 0);
+    setStyleSheet("QFrame {background: transparent;}");
+    scroll->setStyleSheet("QFrame {border: none;}");
+    vLayout->setContentsMargins(0, 0, 0, 0);
+    frameLayout->setContentsMargins(0, 2, 0, 0);
     frameLayout->setSpacing(2);
     frameLayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
 
@@ -784,7 +781,6 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     scroll->setWidget(frame);
     vLayout->addWidget(scroll);
     setLayout(vLayout);
-    setContentsMargins(0,0,0,0);
 
     QCheckBox * statusLabel = new QCheckBox(tr("Status"), this);
     statusLabel->setChecked(pref->getStatusFilterState());
