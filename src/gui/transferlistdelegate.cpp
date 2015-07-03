@@ -123,6 +123,12 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       case BitTorrent::TorrentState::CheckingUploading:
         display = tr("Checking", "Torrent local data is being checked");
         break;
+      case BitTorrent::TorrentState::QueuedForChecking:
+        display = tr("Queued for checking", "i.e. torrent is queued for hash checking");
+        break;
+      case BitTorrent::TorrentState::CheckingResumeData:
+        display = tr("Checking resume data", "used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.");
+        break;
       case BitTorrent::TorrentState::PausedDownloading:
         display = tr("Paused");
         break;

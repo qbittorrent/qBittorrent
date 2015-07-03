@@ -109,6 +109,10 @@ QString TorrentState::toString() const
         return QLatin1String("checkingDL");
     case ForcedDownloading:
         return QLatin1String("forcedDL");
+    case QueuedForChecking:
+        return QLatin1String("queuedForChecking");
+    case CheckingResumeData:
+        return QLatin1String("checkingResumeData");
     default:
         return QLatin1String("unknown");
     }
@@ -776,9 +780,13 @@ void TorrentHandle::updateState()
             case libt::torrent_status::allocating:
                 m_state = TorrentState::Allocating;
                 break;
-            case libt::torrent_status::checking_files:
             case libt::torrent_status::queued_for_checking:
+                m_state = TorrentState::QueuedForChecking;
+                break;
             case libt::torrent_status::checking_resume_data:
+                m_state = TorrentState::CheckingResumeData;
+                break;
+            case libt::torrent_status::checking_files:
                 m_state = m_hasSeedStatus ? TorrentState::CheckingUploading : TorrentState::CheckingDownloading;
                 break;
             case libt::torrent_status::downloading_metadata:
