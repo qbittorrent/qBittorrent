@@ -250,15 +250,15 @@ var dynamicTable = new Class({
             var state = row['full_data'].state;
             switch(filterName) {
                 case 'downloading':
-                    if ((state != 'downloading') && !~state.indexOf('DL'))
+                    if (state != 'downloading' && !~state.indexOf('DL'))
                         return false;
                     break;
                 case 'seeding':
-                    if ((state != 'uploading') && (state != 'stalledUP') && (state != 'queuedUP') && (state != 'checkingUP'))
+                    if (state != 'uploading' && state != 'forcedUP' && state != 'stalledUP' && state != 'queuedUP' && state != 'checkingUP')
                         return false;
                     break;
                 case 'completed':
-                    if ((state != 'uploading') && !~state.indexOf('UP'))
+                    if (state != 'uploading' && !~state.indexOf('UP'))
                         return false;
                     break;
                 case 'paused':
@@ -270,11 +270,11 @@ var dynamicTable = new Class({
                         return false;
                     break;
                 case 'active':
-                    if ((state != 'uploading') && (state != 'downloading'))
+                    if (state != 'downloading' && state != 'forcedDL' && state != 'uploading' && state != 'forcedUP')
                         return false;
                     break;
                 case 'inactive':
-                    if ((state == 'uploading') || (state == 'downloading'))
+                    if (state == 'downloading' || state == 'forcedDL' || state == 'uploading'  || state == 'forcedUP')
                         return false;
                     break;
             }
@@ -501,16 +501,23 @@ var dynamicTable = new Class({
             this.columns['state_icon'].updateTd = function (td, row) {
                 var state = this.getRowValue(row);
 
-                if (state == "pausedUP" || state == "pausedDL")
-                    state = "paused";
-                else if (state == "queuedUP" || state == "queuedDL")
-                    state = "queued";
-                else if (state == "checkingUP" || state == "checkingDL")
-                    state = "checking";
-                else if (state == "forcedDL" || state == "metaDL")
+                if (state == "forcedDL" || state == "metaDL")
                     state = "downloading";
+                else if (state == "allocating")
+                    state = "stalledDL";
                 else if (state == "forcedUP")
                     state = "uploading";
+                else if (state == "pausedDL")
+                    state = "paused";
+                else if (state == "pausedUP")
+                    state = "completed";
+                else if (state == "queuedDL" || state == "queuedUP")
+                    state = "queued";
+                else if (state == "checkingDL" || state == "checkingUP" ||
+                        state == "queuedForChecking" || state == "checkingResumeData")
+                    state = "checking";
+                else if (state == "unknown")
+                    state = "error";
 
                 var img_path = 'images/skin/' + state + '.png';
 
