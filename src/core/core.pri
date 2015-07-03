@@ -39,6 +39,7 @@ HEADERS += \
     $$PWD/utils/fs.h \
     $$PWD/utils/misc.h \
     $$PWD/utils/string.h \
+    $$PWD/unicodestrings.h \
     $$PWD/torrentfilter.h \
     $$PWD/scanfoldersmodel.h
 
