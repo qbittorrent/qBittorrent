@@ -73,8 +73,9 @@ RESOURCES += \
 # Translations
 TRANSLATIONS = \
     $$LANG_PATH/qbittorrent_fr.ts \
-    $$LANG_PATH/qbittorrent_zh_Hans.ts \
-    $$LANG_PATH/qbittorrent_zh_Hant.ts \
+    $$LANG_PATH/qbittorrent_zh.ts \
+    $$LANG_PATH/qbittorrent_zh_TW.ts \
+    $$LANG_PATH/qbittorrent_zh_HK.ts \
     $$LANG_PATH/qbittorrent_en.ts \
     $$LANG_PATH/qbittorrent_en_AU.ts \
     $$LANG_PATH/qbittorrent_en_GB.ts \
