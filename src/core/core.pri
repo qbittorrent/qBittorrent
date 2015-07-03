@@ -23,7 +23,8 @@ HEADERS += \
     $$PWD/http/responsegenerator.h \
     $$PWD/http/server.h \
     $$PWD/http/types.h \
-    $$PWD/http/responsebuilder.h
+    $$PWD/http/responsebuilder.h \
+    $$PWD/unicodestrings.h
 
 SOURCES += \
     $$PWD/downloadthread.cpp \
