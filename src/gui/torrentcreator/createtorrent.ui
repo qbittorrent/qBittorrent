@@ -158,8 +158,13 @@
         <bool>false</bool>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>4</number>
        </property>
+       <item>
+        <property name="text">
+         <string>16 KiB</string>
+        </property>
+       </item>
        <item>
         <property name="text">
          <string>32 KiB</string>
@@ -198,6 +203,16 @@
        <item>
         <property name="text">
          <string>4 MiB</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>8 MiB</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>16 MiB</string>
         </property>
        </item>
       </widget>
