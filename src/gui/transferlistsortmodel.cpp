@@ -158,7 +158,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
             }
         }
         else if (!invalidL && !invalidR) {
-            return lowerPositionThan(left, right);
+            return etaL < etaR;
         }
         else {
             return !invalidL;
