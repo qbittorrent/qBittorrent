@@ -2702,8 +2702,8 @@ void QBtSession::handleListenFailedAlert(libtorrent::listen_failed_alert *p) {
     qDebug() << "Failed listening on " << proto << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
     Logger::instance()->addMessage(tr("qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4", "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use").arg(p->endpoint.address().to_string(ec).c_str()).arg(proto).arg(QString::number(p->endpoint.port())).arg(misc::toQStringU(p->error.message())), Log::CRITICAL);
 #else
-    qDebug() << "Failed listening on " << proto << p->interface.c_str();
-    Logger::instance()->addMessage(tr("qBittorrent failed listening on interface %1 port: %2. Reason: %3", "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use").arg(p->interface.c_str()).arg(proto).arg(misc::toQStringU(p->error.message())), Log::CRITICAL);
+    qDebug() << "Failed listening on " << proto << p->listen_interface();
+    Logger::instance()->addMessage(tr("qBittorrent failed listening on interface %1 port: %2. Reason: %3", "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use").arg(p->listen_interface()).arg(proto).arg(misc::toQStringU(p->error.message())), Log::CRITICAL);
 #endif
 }
 
