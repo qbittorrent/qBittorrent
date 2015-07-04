@@ -2199,7 +2199,7 @@ void Session::handleFileErrorAlert(libt::file_error_alert *p)
     qDebug() << Q_FUNC_INFO;
     // NOTE: Check this function!
     TorrentHandle *const torrent = m_torrents.value(p->handle.info_hash());
-    if (torrent) {
+    if (torrent && !torrent->nativeHandle().status().paused) {
         QString msg = Utils::String::fromStdString(p->message());
         Logger::instance()->addMessage(tr("An I/O error occurred, '%1' paused. %2")
                            .arg(torrent->name()).arg(msg));
