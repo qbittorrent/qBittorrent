@@ -1,4 +1,4 @@
-#VERSION: 2.15
+#VERSION: 2.16
 #AUTHORS: Diego de las Heras (diegodelasheras@gmail.com)
 
 # Redistribution and use in source and binary forms, with or without
@@ -95,6 +95,7 @@ class torrentz(object):
                 if self.current_item['name'].find(' \xc2'):
                     self.current_item['name'] = self.current_item['name'].split(' \xc2')[0]
                 self.current_item['link'] += '&' + urlencode({'dn' : self.current_item['name']})
+                self.current_item['name'] = self.current_item['name'].decode('utf8')
 
                 prettyPrinter(self.current_item)
                 self.results.append('a')
@@ -106,14 +107,15 @@ class torrentz(object):
         # initialize trackers for magnet links
         trackers = '&' + '&'.join(urlencode({'tr' : tracker}) for tracker in self.trackers_list)
 
+        results_list = []
+        parser = self.MyHtmlParser(results_list, self.url, trackers)
         i = 0
         while i < 6:
-            results_list = []
             # "what" is already urlencoded
-            html = retrieve_url('%s/any?f=%s&p=%d' % (self.url, what, i))
-            parser = self.MyHtmlParser(results_list, self.url, trackers)
+            html = retrieve_url(self.url + '/any?f=%s&p=%d' % (what, i))
             parser.feed(html)
-            parser.close()
             if len(results_list) < 1:
                 break
+            del results_list[:]
             i += 1
+        parser.close()
