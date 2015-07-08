@@ -572,9 +572,10 @@ void TransferListWidget::setMaxRatioSelectedTorrents()
 
 void TransferListWidget::recheckSelectedTorrents()
 {
-    QMessageBox::StandardButton ret = QMessageBox::question(this, tr("Recheck confirmation"), tr("Are you sure you want to recheck the selected torrent(s)?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
-    if (ret != QMessageBox::Yes)
-        return;
+    if (Preferences::instance()->confirmTorrentRecheck()) {
+        QMessageBox::StandardButton ret = QMessageBox::question(this, tr("Recheck confirmation"), tr("Are you sure you want to recheck the selected torrent(s)?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        if (ret != QMessageBox::Yes) return;
+    }
     const QStringList hashes = getSelectedTorrentsHashes();
     foreach (const QString &hash, hashes)
         BTSession->recheckTorrent(hash);
