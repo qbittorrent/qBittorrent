@@ -20,7 +20,7 @@
     <table border="1" id="watched_folders_tab">
     <thead><tr><th>QBT_TR(Watched Folder)QBT_TR</th><th>QBT_TR(Download here)QBT_TR</th></tr></thead>
     <tbody></tbody>
-    <tfoot><tr><td style="padding-top:4px;"><input type="text" id="new_watch_folder_txt"/></td><td style="padding-top:4px;"><input type="checkbox" id="new_watch_folder_dl" style="padding-left:18px;"/><img src="theme/list-add" alt="Add" style="padding-left:2px;width:16px;cursor:pointer;margin-right:-18px;" onclick="javascript:addWatchFolder();"/></td></tr></tfoot>
+    <tfoot><tr><td style="padding-top:4px;"><input type="text" id="new_watch_folder_txt"/></td><td style="padding-top:4px;"><input type="checkbox" id="new_watch_folder_dl" style="padding-left:18px;"/><img src="theme/list-add" alt="Add" style="padding-left:2px;width:16px;cursor:pointer;margin-right:-18px;" onclick="addWatchFolder();"/></td></tr></tfoot>
     </table><br/>
   <input type="checkbox" id="exportdir_checkbox" onclick="updateExportDirEnabled();"/>
   <label for="exportdir_checkbox">QBT_TR(Copy .torrent files to:)QBT_TR</label>&nbsp;&nbsp;
@@ -182,7 +182,7 @@
   </table>
   <fieldset class="settings">
   <legend>QBT_TR(Options)QBT_TR</legend>
-  <input type="checkbox" id="enable_utp_checkbox"/>
+  <input type="checkbox" id="enable_utp_checkbox" onClick="updateUTPEnabled();"/>
   <label for="enable_utp_checkbox">QBT_TR(Enable bandwidth management (uTP))QBT_TR</label><br/>
   <input type="checkbox" id="limit_utp_rate_checkbox"/>
   <label for="limit_utp_rate_checkbox">QBT_TR(Apply rate limit to uTP connections)QBT_TR</label><br/>
@@ -585,13 +585,11 @@ updateDlLimitEnabled = function() {
   }
 }
 
-setuTPSettingsVisible = function(visible) {
-  if(visible) {
-    $('enable_utp_checkbox').removeClass('invisible');
-    $('limit_utp_rate_checkbox').removeClass('invisible');
+updateUTPEnabled = function() {
+  if($('enable_utp_checkbox').getProperty('checked')) {
+    $('limit_utp_rate_checkbox').setProperty('disabled', false);
   } else {
-    $('enable_utp_checkbox').addClass('invisible');
-    $('limit_utp_rate_checkbox').addClass('invisible');
+    $('limit_utp_rate_checkbox').setProperty('disabled', true);
   }
 }
 
@@ -710,12 +708,7 @@ loadPreferences = function() {
                     $('temppath_text').setProperty('value', pref.temp_path);
                     updateTempDirEnabled();
                     $('preallocateall_checkbox').setProperty('checked', pref.preallocate_all);
-                    if($defined(pref.incomplete_files_ext)) {
-                      $('appendexttr').removeClass('invisible');
-                      $('appendext_checkbox').setProperty('checked', pref.incomplete_files_ext);
-                    } else {
-                      $('appendexttr').addClass('invisible');
-                    }
+                    $('appendext_checkbox').setProperty('checked', pref.incomplete_files_ext);
                     var i;
                     for(i=0; i<pref.scan_dirs.length; i+=1) {
                       var myinput = "<input id='text_watch_"+ i +"' type='text' value='" + pref.scan_dirs[i] + "'>";
@@ -725,17 +718,23 @@ loadPreferences = function() {
                       var mycb = "<input id='cb_watch_"+ i +"' type='checkbox' " + checked + ">";
                       WatchedFoldersTable.push([myinput, mycb]);
                     }
-                    $('exportdir_checkbox').setProperty('checked', pref.export_dir_enabled);
-                    if(pref.export_dir_enabled)
+                    if(pref.export_dir != '') {
+                      $('exportdir_checkbox').setProperty('checked', true);
                       $('exportdir_text').setProperty('value', pref.export_dir);
-                    else
+                    }
+                    else {
+                      $('exportdir_checkbox').setProperty('checked', false);
                       $('exportdir_text').setProperty('value', '');
+                    }
                     updateExportDirEnabled();
-                    $('exportdirfin_checkbox').setProperty('checked', pref.export_dir_fin_enabled);
-                    if(pref.export_dir_fin_enabled)
+                    if(pref.export_dir_fin != '') {
+                      $('exportdirfin_checkbox').setProperty('checked', true);
                       $('exportdirfin_text').setProperty('value', pref.export_dir_fin);
-                    else
+                    }
+                    else {
+                      $('exportdirfin_checkbox').setProperty('checked', false);
                       $('exportdirfin_text').setProperty('value', '');
+                    }
                     updateExportDirFinEnabled();
 
                     // Email notification upon download completion
@@ -848,13 +847,10 @@ loadPreferences = function() {
                       $('dl_limit_value').setProperty('value', dl_limit);
                     }
                     updateDlLimitEnabled();
-                    utp_supported = $defined(pref.enable_utp);
-                    setuTPSettingsVisible(utp_supported);
-                    if(utp_supported) {
-                      $('enable_utp_checkbox').setProperty('checked', pref.enable_utp);
-                      $('limit_utp_rate_checkbox').setProperty('checked', pref.limit_utp_rate);
-                    }
+                    $('enable_utp_checkbox').setProperty('checked', pref.enable_utp);
+                    $('limit_utp_rate_checkbox').setProperty('checked', pref.limit_utp_rate);
                     $('limit_tcp_overhead_checkbox').setProperty('checked', pref.limit_tcp_overhead);
+                    updateUTPEnabled();
 
                     // Alternative Global Rate Limits
                     var alt_up_limit = pref.alt_up_limit.toInt();
@@ -890,11 +886,7 @@ loadPreferences = function() {
                     $('lsd_checkbox').setProperty('checked', pref.lsd);
                     var encryption = pref.encryption.toInt();
                     $('encryption_select').getChildren('option')[encryption].setAttribute('selected', '');
-                        if($defined(pref.anonymous_mode)) {
-		                  $('anonymous_mode_checkbox').setProperty('checked', pref.anonymous_mode);
-		                } else {
-                      $('anonymous_mode_checkbox').addClass('invisible');
-                    }
+                    $('anonymous_mode_checkbox').setProperty('checked', pref.anonymous_mode);
 
                     // Torrent Queueing
                     $('queueing_checkbox').setProperty('checked', pref.queueing_enabled);
@@ -951,9 +943,7 @@ applyPreferences = function() {
   settings.set('temp_path_enabled', $('temppath_checkbox').getProperty('checked'));
   settings.set('temp_path', $('temppath_text').getProperty('value'));
   settings.set('preallocate_all', $('preallocateall_checkbox').getProperty('checked'));
-  if(!$('appendexttr').hasClass('invisible')) {
-    settings.set('incomplete_files_ext', $('appendext_checkbox').getProperty('checked'));
-  }
+  settings.set('incomplete_files_ext', $('appendext_checkbox').getProperty('checked'));
   var watched_folders = getWatchedFolders();
   settings.set('scan_dirs', watched_folders[0]);
   settings.set('download_in_scan_dirs', watched_folders[1]);
@@ -982,7 +972,7 @@ applyPreferences = function() {
   // Connection tab
   // Listening Port
   var listen_port = $('port_value').getProperty('value').toInt();
-  if(listen_port <= 1024 || listen_port > 65535) {
+  if(isNaN(listen_port) || listen_port <= 1024 || listen_port > 65535) {
     alert("QBT_TR(The port used for incoming connections must be greater than 1024 and less than 65535.)QBT_TR");
     return;
   }
@@ -994,7 +984,7 @@ applyPreferences = function() {
   var max_connec = -1;
   if($('max_connec_checkbox').getProperty('checked')) {
     max_connec = $('max_connec_value').getProperty('value').toInt();
-    if(max_connec <= 0) {
+    if(isNaN(max_connec) || max_connec <= 0) {
       alert("QBT_TR(Maximum number of connections limit must be greater than 0 or disabled.)QBT_TR");
       return;
     }
@@ -1003,7 +993,7 @@ applyPreferences = function() {
   var max_connec_per_torrent = -1;
   if($('max_connec_per_torrent_checkbox').getProperty('checked')) {
     max_connec_per_torrent = $('max_connec_per_torrent_value').getProperty('value').toInt();
-    if(max_connec_per_torrent <= 0) {
+    if(isNaN(max_connec_per_torrent) || max_connec_per_torrent <= 0) {
       alert("QBT_TR(Maximum number of connections per torrent limit must be greater than 0 or disabled.)QBT_TR");
       return;
     }
@@ -1012,7 +1002,7 @@ applyPreferences = function() {
   var max_uploads = -1;
   if($('max_uploads_checkbox').getProperty('checked')) {
     max_uploads = $('max_uploads_value').getProperty('value').toInt();
-    if(max_uploads <= 0) {
+    if(isNaN(max_uploads) || max_uploads <= 0) {
       alert("QBT_TR(Global number of upload slots limit must be greater than 0 or disabled.)QBT_TR");
       return;
     }
@@ -1021,7 +1011,7 @@ applyPreferences = function() {
   var max_uploads_per_torrent = -1;
   if($('max_uploads_per_torrent_checkbox').getProperty('checked')) {
     max_uploads_per_torrent = $('max_uploads_per_torrent_value').getProperty('value').toInt();
-    if(max_uploads_per_torrent <= 0) {
+    if(isNaN(max_uploads_per_torrent) || max_uploads_per_torrent <= 0) {
       alert("QBT_TR(Maximum number of upload slots per torrent limit must be greater than 0 or disabled.)QBT_TR");
       return;
     }
@@ -1087,10 +1077,8 @@ applyPreferences = function() {
     }
   }
   settings.set('dl_limit', dl_limit);
-  if(!$('enable_utp_checkbox').hasClass('invisible')) {
-    settings.set('enable_utp', $('enable_utp_checkbox').getProperty('checked'));
-    settings.set('limit_utp_rate', $('limit_utp_rate_checkbox').getProperty('checked'));
-  }
+  settings.set('enable_utp', $('enable_utp_checkbox').getProperty('checked'));
+  settings.set('limit_utp_rate', $('limit_utp_rate_checkbox').getProperty('checked'));
   settings.set('limit_tcp_overhead', $('limit_tcp_overhead_checkbox').getProperty('checked'));
 
   // Alternative Global Rate Limits
@@ -1130,22 +1118,37 @@ applyPreferences = function() {
   settings.set('pex', $('pex_checkbox').getProperty('checked'));
   settings.set('lsd', $('lsd_checkbox').getProperty('checked'));
   settings.set('encryption', $('encryption_select').getSelected()[0].getProperty('value'));
-  if(!$('anonymous_mode_checkbox').hasClass('invisible')) {
-    settings.set('anonymous_mode', $('anonymous_mode_checkbox').getProperty('checked'));
-  }
+  settings.set('anonymous_mode', $('anonymous_mode_checkbox').getProperty('checked'));
 
   // Torrent Queueing
   settings.set('queueing_enabled', $('queueing_checkbox').getProperty('checked'));
-  settings.set('max_active_downloads', $('max_active_dl_value').getProperty('value').toInt());
-  settings.set('max_active_uploads', $('max_active_up_value').getProperty('value').toInt());
-  settings.set('max_active_torrents', $('max_active_to_value').getProperty('value').toInt());
-  settings.set('dont_count_slow_torrents', $('dont_count_slow_torrents_checkbox').getProperty('checked'));
+  if($('queueing_checkbox').getProperty('checked')) {
+    var max_active_downloads = $('max_active_dl_value').getProperty('value').toInt();
+    if(isNaN(max_active_downloads) || max_active_downloads < -1) {
+      alert("QBT_TR(Maximum active downloads must be greater than -1.)QBT_TR");
+      return;
+    }
+    settings.set('max_active_downloads', max_active_downloads);
+    var max_active_uploads = $('max_active_up_value').getProperty('value').toInt();
+    if(isNaN(max_active_uploads) || max_active_uploads < -1) {
+      alert("QBT_TR(Maximum active uploads must be greater than -1.)QBT_TR");
+      return;
+    }
+    settings.set('max_active_uploads', max_active_uploads);
+    var max_active_torrents = $('max_active_to_value').getProperty('value').toInt();
+    if(isNaN(max_active_torrents) || max_active_torrents < -1) {
+      alert("QBT_TR(Maximum active torrents must be greater than -1.)QBT_TR");
+      return;
+    }
+    settings.set('max_active_torrents', max_active_torrents);
+    settings.set('dont_count_slow_torrents', $('dont_count_slow_torrents_checkbox').getProperty('checked'));
+  }
 
   // Share Ratio Limiting
   var max_ratio = -1;
   if($('max_ratio_checkbox').getProperty('checked')) {
     max_ratio = $('max_ratio_value').getProperty('value').toInt();
-    if(max_ratio < 0 || max_ratio > 9998) {
+    if(isNaN(max_ratio) || max_ratio < 0 || max_ratio > 9998) {
       alert("QBT_TR(Share ratio limit must be between 0 and 9998.)QBT_TR");
       return;
     }
@@ -1160,7 +1163,7 @@ applyPreferences = function() {
 
   // HTTP Server
   var web_ui_port = $('webui_port_value').getProperty('value').toInt();
-  if(web_ui_port <= 1024 || web_ui_port > 65535) {
+  if(isNaN(web_ui_port) || web_ui_port <= 1024 || web_ui_port > 65535) {
     alert("QBT_TR(The port used for the Web UI must be greater than 1024 and less than 65535.)QBT_TR");
     return;
   }
