@@ -6,4 +6,4 @@ legittorrents: 2.00
 mininova: 2.00
 piratebay: 2.11
 torrentreactor: 1.40
-torrentz: 2.15
+torrentz: 2.16
