@@ -75,6 +75,14 @@ if (!Date.prototype.toISOString) {
     }());
 }
 
+/*
+ * JS counterpart of the function in src/misc.cpp
+ */
+function parseHtmlLinks(text) {
+    var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    return text.replace(exp,"<a target='_blank' href='$1'>$1</a>"); 
+}
+
 function escapeHtml(str) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str));

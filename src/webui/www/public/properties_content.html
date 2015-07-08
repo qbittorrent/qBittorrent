@@ -1,24 +1,49 @@
 <div id="prop_general">
     <fieldset>
     <legend><b>QBT_TR(Transfer)QBT_TR</b></legend>
-    <table>
-    <tr><td style="text-align:right; padding: 4px;">QBT_TR(Uploaded:)QBT_TR</td><td style="padding-right: 20px;" id="total_uploaded"></td><td style="text-align:right; padding: 4px;">QBT_TR(UP limit:)QBT_TR</td><td style="padding-right: 20px;" id="up_limit"></td><td style="text-align:right; padding: 4px;">QBT_TR(Share ratio:)QBT_TR</td><td id="share_ratio"></td></tr>
-    <tr><td style="text-align:right; padding: 4px;">QBT_TR(Downloaded:)QBT_TR</td><td style="padding-right: 20px;" id="total_downloaded"></td><td style="text-align:right; padding: 4px;">QBT_TR(DL limit:)QBT_TR</td><td style="padding-right: 20px;" id="dl_limit"></td><td style="text-align:right; padding: 4px;">QBT_TR(Connections:)QBT_TR</td><td id="nb_connections"></td></tr>
-    <tr><td style="text-align:right; padding: 4px;">QBT_TR(Wasted:)QBT_TR</td><td style="padding-right: 20px;" id="total_wasted"></td><td style="text-align:right; padding: 4px;">QBT_TR(Time active:)QBT_TR</td><td style="padding-right: 20px;" id="time_elapsed"></td><td></td></tr>
+    <table style="width: 100%">
+    <tr>
+    <td class="generalLabel">QBT_TR(Time Active:)QBT_TR</td><td id="time_elapsed"></td>
+    <td class="generalLabel">QBT_TR(ETA:)QBT_TR</td><td id="eta"></td>
+    <td class="generalLabel">QBT_TR(Connections:)QBT_TR</td><td id="nb_connections"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Downloaded:)QBT_TR</td><td id="total_downloaded"></td>
+    <td class="generalLabel">QBT_TR(Uploaded:)QBT_TR</td><td id="total_uploaded"></td>
+    <td class="generalLabel">QBT_TR(Seeds:)QBT_TR</td><td id="seeds"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Download Speed:)QBT_TR</td><td id="dl_speed"></td>
+    <td class="generalLabel">QBT_TR(Upload Speed:)QBT_TR</td><td id="up_speed"></td>
+    <td class="generalLabel">QBT_TR(Peers:)QBT_TR</td><td id="peers"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Download Limit:)QBT_TR</td><td id="dl_limit"></td>
+    <td class="generalLabel">QBT_TR(Upload Limit:)QBT_TR</td><td id="up_limit"></td>
+    <td class="generalLabel">QBT_TR(Wasted:)QBT_TR</td><td id="total_wasted"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Share Ratio:)QBT_TR</td><td id="share_ratio"></td>
+    <td class="generalLabel">QBT_TR(Reannounce In:)QBT_TR</td><td id="reannounce"></td>
+    <td class="generalLabel">QBT_TR(Last Seen Complete:)QBT_TR</td><td id="last_seen"></td>
+    </tr>
     </table>
     </fieldset>
-
     <fieldset>
     <legend><b>QBT_TR(Information)QBT_TR</b></legend>
-    <table>
-    <tr><td style="text-align:right; padding: 4px;">QBT_TR(Save path:)QBT_TR</td><td id="save_path"></td></tr>
-    <tr><td style="text-align:right; padding: 4px;">QBT_TR(Created on:)QBT_TR</td><td id="creation_date"></td></tr>
-    <tr><td style="text-align:right; padding: 4px;">QBT_TR(Piece size:)QBT_TR</td><td id="piece_size"></td></tr>
-    <tr><td style="text-align:right; padding: 4px;">QBT_TR(Torrent hash:)QBT_TR</td><td id="torrent_hash"></td></tr>
-    <tr><td style="vertical-align: top;  padding: 4px; text-align:right;">QBT_TR(Comment:)QBT_TR</td>
-    <td><textarea name="comment" id="comment" rows="5" cols="80" readonly></textarea></td></tr>
+    <table style="width: 100%">
+    <tr>
+    <td class="generalLabel">QBT_TR(Total Size:)QBT_TR</td><td id="total_size"></td>
+    <td class="generalLabel">QBT_TR(Pieces:)QBT_TR</td><td id="pieces"></td>
+    <td class="generalLabel">QBT_TR(Created By:)QBT_TR</td><td id="created_by"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Added On:)QBT_TR</td><td id="addition_date"></td>
+    <td class="generalLabel">QBT_TR(Completed On:)QBT_TR</td><td id="completion_date"></td>
+    <td class="generalLabel">QBT_TR(Created On:)QBT_TR</td><td id="creation_date"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Torrent Hash:)QBT_TR</td><td colspan="5" id="torrent_hash"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Save Path:)QBT_TR</td><td colspan="5" id="save_path"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Comment:)QBT_TR</td><td colspan="5" style="white-space: pre-wrap;" id="comment"></td>
+    </tr>
     </table>
-    <br/>
     </fieldset>
 </div>
 

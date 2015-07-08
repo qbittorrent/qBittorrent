@@ -114,22 +114,39 @@ static const char KEY_TRACKER_PEERS[] = "num_peers";
 static const char KEY_WEBSEED_URL[] = "url";
 
 // Torrent keys (Properties)
-static const char KEY_PROP_SAVE_PATH[] = "save_path";
-static const char KEY_PROP_CREATION_DATE[] = "creation_date";
-static const char KEY_PROP_PIECE_SIZE[] = "piece_size";
-static const char KEY_PROP_COMMENT[] = "comment";
-static const char KEY_PROP_WASTED[] = "total_wasted";
-static const char KEY_PROP_UPLOADED[] = "total_uploaded";
-static const char KEY_PROP_UPLOADED_SESSION[] = "total_uploaded_session";
-static const char KEY_PROP_DOWNLOADED[] = "total_downloaded";
-static const char KEY_PROP_DOWNLOADED_SESSION[] = "total_downloaded_session";
-static const char KEY_PROP_UP_LIMIT[] = "up_limit";
-static const char KEY_PROP_DL_LIMIT[] = "dl_limit";
 static const char KEY_PROP_TIME_ELAPSED[] = "time_elapsed";
 static const char KEY_PROP_SEEDING_TIME[] = "seeding_time";
+static const char KEY_PROP_ETA[] = "eta";
 static const char KEY_PROP_CONNECT_COUNT[] = "nb_connections";
 static const char KEY_PROP_CONNECT_COUNT_LIMIT[] = "nb_connections_limit";
+static const char KEY_PROP_DOWNLOADED[] = "total_downloaded";
+static const char KEY_PROP_DOWNLOADED_SESSION[] = "total_downloaded_session";
+static const char KEY_PROP_UPLOADED[] = "total_uploaded";
+static const char KEY_PROP_UPLOADED_SESSION[] = "total_uploaded_session";
+static const char KEY_PROP_DL_SPEED[] = "dl_speed";
+static const char KEY_PROP_DL_SPEED_AVG[] = "dl_speed_avg";
+static const char KEY_PROP_UP_SPEED[] = "up_speed";
+static const char KEY_PROP_UP_SPEED_AVG[] = "up_speed_avg";
+static const char KEY_PROP_DL_LIMIT[] = "dl_limit";
+static const char KEY_PROP_UP_LIMIT[] = "up_limit";
+static const char KEY_PROP_WASTED[] = "total_wasted";
+static const char KEY_PROP_SEEDS[] = "seeds";
+static const char KEY_PROP_SEEDS_TOTAL[] = "seeds_total";
+static const char KEY_PROP_PEERS[] = "peers";
+static const char KEY_PROP_PEERS_TOTAL[] = "peers_total";
 static const char KEY_PROP_RATIO[] = "share_ratio";
+static const char KEY_PROP_REANNOUNCE[] = "reannounce";
+static const char KEY_PROP_TOTAL_SIZE[] = "total_size";
+static const char KEY_PROP_PIECES_NUM[] = "pieces_num";
+static const char KEY_PROP_PIECE_SIZE[] = "piece_size";
+static const char KEY_PROP_PIECES_HAVE[] = "pieces_have";
+static const char KEY_PROP_CREATED_BY[] = "created_by";
+static const char KEY_PROP_LAST_SEEN[] = "last_seen";
+static const char KEY_PROP_ADDITION_DATE[] = "addition_date";
+static const char KEY_PROP_COMPLETION_DATE[] = "completion_date";
+static const char KEY_PROP_CREATION_DATE[] = "creation_date";
+static const char KEY_PROP_SAVE_PATH[] = "save_path";
+static const char KEY_PROP_COMMENT[] = "comment";
 
 // File keys
 static const char KEY_FILE_NAME[] = "name";
@@ -410,22 +427,39 @@ QByteArray btjson::getWebSeedsForTorrent(const QString& hash)
  *
  * The return value is a JSON-formatted dictionary.
  * The dictionary keys are:
- *   - "save_path": Torrent save path
- *   - "creation_date": Torrent creation date
- *   - "piece_size": Torrent piece size
- *   - "comment": Torrent comment
- *   - "total_wasted": Total data wasted for torrent
- *   - "total_uploaded": Total data uploaded for torrent
- *   - "total_uploaded_session": Total data uploaded this session
- *   - "total_downloaded": Total data uploaded for torrent
- *   - "total_downloaded_session": Total data downloaded this session
- *   - "up_limit": Torrent upload limit
- *   - "dl_limit": Torrent download limit
  *   - "time_elapsed": Torrent elapsed time
  *   - "seeding_time": Torrent elapsed time while complete
+ *   - "eta": Torrent ETA
  *   - "nb_connections": Torrent connection count
  *   - "nb_connections_limit": Torrent connection count limit
+ *   - "total_downloaded": Total data uploaded for torrent
+ *   - "total_downloaded_session": Total data downloaded this session
+ *   - "total_uploaded": Total data uploaded for torrent
+ *   - "total_uploaded_session": Total data uploaded this session
+ *   - "dl_speed": Torrent download speed
+ *   - "dl_speed_avg": Torrent average download speed
+ *   - "up_speed": Torrent upload speed
+ *   - "up_speed_avg": Torrent average upload speed
+ *   - "dl_limit": Torrent download limit
+ *   - "up_limit": Torrent upload limit
+ *   - "total_wasted": Total data wasted for torrent
+ *   - "seeds": Torrent connected seeds
+ *   - "seeds_total": Torrent total number of seeds
+ *   - "peers": Torrent connected peers
+ *   - "peers_total": Torrent total number of peers
  *   - "share_ratio": Torrent share ratio
+ *   - "reannounce": Torrent next reannounce time
+ *   - "total_size": Torrent total size
+ *   - "pieces_num": Torrent pieces count
+ *   - "piece_size": Torrent piece size
+ *   - "pieces_have": Torrent pieces have
+ *   - "created_by": Torrent creator
+ *   - "last_seen": Torrent last seen complete
+ *   - "addition_date": Torrent addition date
+ *   - "completion_date": Torrent completion date
+ *   - "creation_date": Torrent creation date
+ *   - "save_path": Torrent save path
+ *   - "comment": Torrent comment
  */
 QByteArray btjson::getPropertiesForTorrent(const QString& hash)
 {
@@ -436,26 +470,47 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
         return QByteArray();
     }
 
-    if (!torrent->hasMetadata())
-        return QByteArray();
-
-    dataDict[KEY_PROP_SAVE_PATH] = Utils::Fs::toNativePath(torrent->savePath());
-    dataDict[KEY_PROP_CREATION_DATE] = torrent->creationDate().toTime_t();
-    dataDict[KEY_PROP_PIECE_SIZE] = torrent->pieceLength();
-    dataDict[KEY_PROP_COMMENT] = torrent->comment();
-    dataDict[KEY_PROP_WASTED] = torrent->wastedSize();
-    dataDict[KEY_PROP_UPLOADED] = torrent->totalUpload();
-    dataDict[KEY_PROP_UPLOADED_SESSION] = torrent->totalPayloadUpload();
-    dataDict[KEY_PROP_DOWNLOADED] = torrent->totalDownload();
-    dataDict[KEY_PROP_DOWNLOADED_SESSION] = torrent->totalPayloadDownload();
-    dataDict[KEY_PROP_UP_LIMIT] = torrent->uploadLimit() <= 0 ? -1 : torrent->uploadLimit();
-    dataDict[KEY_PROP_DL_LIMIT] = torrent->downloadLimit() <= 0 ? -1 : torrent->downloadLimit();
     dataDict[KEY_PROP_TIME_ELAPSED] = torrent->activeTime();
     dataDict[KEY_PROP_SEEDING_TIME] = torrent->seedingTime();
+    dataDict[KEY_PROP_ETA] = torrent->eta();
     dataDict[KEY_PROP_CONNECT_COUNT] = torrent->connectionsCount();
     dataDict[KEY_PROP_CONNECT_COUNT_LIMIT] = torrent->connectionsLimit();
+    dataDict[KEY_PROP_DOWNLOADED] = torrent->totalDownload();
+    dataDict[KEY_PROP_DOWNLOADED_SESSION] = torrent->totalPayloadDownload();
+    dataDict[KEY_PROP_UPLOADED] = torrent->totalUpload();
+    dataDict[KEY_PROP_UPLOADED_SESSION] = torrent->totalPayloadUpload();
+    dataDict[KEY_PROP_DL_SPEED] = torrent->downloadPayloadRate();
+    dataDict[KEY_PROP_DL_SPEED_AVG] = torrent->totalDownload() / (1 + torrent->activeTime() - torrent->finishedTime());
+    dataDict[KEY_PROP_UP_SPEED] = torrent->uploadPayloadRate();
+    dataDict[KEY_PROP_UP_SPEED_AVG] = torrent->totalUpload() / (1 + torrent->activeTime());
+    dataDict[KEY_PROP_DL_LIMIT] = torrent->downloadLimit() <= 0 ? -1 : torrent->downloadLimit();
+    dataDict[KEY_PROP_UP_LIMIT] = torrent->uploadLimit() <= 0 ? -1 : torrent->uploadLimit();
+    dataDict[KEY_PROP_WASTED] = torrent->wastedSize();
+    dataDict[KEY_PROP_SEEDS] = torrent->seedsCount();
+    dataDict[KEY_PROP_SEEDS_TOTAL] = torrent->totalSeedsCount();
+    dataDict[KEY_PROP_PEERS] = torrent->leechsCount();
+    dataDict[KEY_PROP_PEERS_TOTAL] = torrent->totalLeechersCount();
     const qreal ratio = torrent->realRatio();
     dataDict[KEY_PROP_RATIO] = ratio > BitTorrent::TorrentHandle::MAX_RATIO ? -1 : ratio;
+    dataDict[KEY_PROP_REANNOUNCE] = torrent->nextAnnounce();
+    dataDict[KEY_PROP_TOTAL_SIZE] = torrent->totalSize();
+    dataDict[KEY_PROP_PIECES_NUM] = torrent->piecesCount();
+    dataDict[KEY_PROP_PIECE_SIZE] = torrent->pieceLength();
+    dataDict[KEY_PROP_PIECES_HAVE] = torrent->piecesHave();
+    dataDict[KEY_PROP_CREATED_BY] = torrent->creator();
+    dataDict[KEY_PROP_ADDITION_DATE] = torrent->addedTime().toTime_t();
+    if (torrent->hasMetadata()) {
+        dataDict[KEY_PROP_LAST_SEEN] = torrent->lastSeenComplete().isValid() ? (int)torrent->lastSeenComplete().toTime_t() : -1;
+        dataDict[KEY_PROP_COMPLETION_DATE] = torrent->completedTime().isValid() ? (int)torrent->completedTime().toTime_t() : -1;
+        dataDict[KEY_PROP_CREATION_DATE] = torrent->creationDate().toTime_t();
+    }
+    else {
+        dataDict[KEY_PROP_LAST_SEEN] = -1;
+        dataDict[KEY_PROP_COMPLETION_DATE] = -1;
+        dataDict[KEY_PROP_CREATION_DATE] = -1;
+    }
+    dataDict[KEY_PROP_SAVE_PATH] = torrent->savePathParsed();
+    dataDict[KEY_PROP_COMMENT] = torrent->comment();
 
     return json::toJson(dataDict);
 }
