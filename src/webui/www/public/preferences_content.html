@@ -196,13 +196,15 @@
   <table>
   <tr>
   <td>
-    QBT_TR(Upload:)QBT_TR
+    <input type="checkbox" id="alt_up_limit_checkbox" onClick="updateAltUpLimitEnabled();"/>
+    <label for ="alt_up_limit_checkbox">QBT_TR(Upload:)QBT_TR</label>
   </td>
   <td><input type="text" id="alt_up_limit_value" style="width: 4em;"/>&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR</td>
   </tr>
   <tr>
   <td>
-    QBT_TR(Download:)QBT_TR
+    <input type="checkbox" id="alt_dl_limit_checkbox" onClick="updateAltDlLimitEnabled();"/>
+    <label for="alt_dl_limit_checkbox">QBT_TR(Download:)QBT_TR</label>
   </td>
   <td><input type="text" id="alt_dl_limit_value" style="width: 4em;"/>&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR</td>
   </tr>
@@ -394,11 +396,35 @@
 <script type="text/javascript">
 var WatchedFoldersTable = new HtmlTable($("watched_folders_tab"));
 
+updateUpLimitEnabled = function() {
+  if($('up_limit_checkbox').getProperty('checked')) {
+    $('up_limit_value').setProperty('disabled', false);
+  } else {
+    $('up_limit_value').setProperty('disabled', true);
+  }
+}
+
 updateDlLimitEnabled = function() {
   if($('dl_limit_checkbox').getProperty('checked')) {
     $('dl_limit_value').setProperty('disabled', false);
   } else {
     $('dl_limit_value').setProperty('disabled', true);
+  }
+}
+
+updateAltUpLimitEnabled = function() {
+  if($('alt_up_limit_checkbox').getProperty('checked')) {
+    $('alt_up_limit_value').setProperty('disabled', false);
+  } else {
+    $('alt_up_limit_value').setProperty('disabled', true);
+  }
+}
+
+updateAltDlLimitEnabled = function() {
+  if($('alt_dl_limit_checkbox').getProperty('checked')) {
+    $('alt_dl_limit_value').setProperty('disabled', false);
+  } else {
+    $('alt_dl_limit_value').setProperty('disabled', true);
   }
 }
 
@@ -415,14 +441,6 @@ updateSchedulingEnabled = function() {
     $('schedule_to_hour').setProperty('disabled', true);
     $('schedule_to_min').setProperty('disabled', true);
     $('schedule_freq_select').setProperty('disabled', true);
-  }
-}
-
-updateUpLimitEnabled = function() {
-  if($('up_limit_checkbox').getProperty('checked')) {
-    $('up_limit_value').setProperty('disabled', false);
-  } else {
-    $('up_limit_value').setProperty('disabled', true);
   }
 }
 
@@ -684,15 +702,7 @@ loadPreferences = function() {
                     $('port_value').setProperty('value', pref.listen_port.toInt());
                     $('upnp_checkbox').setProperty('checked', pref.upnp);
                     $('random_port_checkbox').setProperty('checked', pref.random_port);
-
-                    var dl_limit = pref.dl_limit.toInt();
-                    if(dl_limit <= 0) {
-                      $('dl_limit_checkbox').setProperty('checked', false);
-                    } else {
-                      $('dl_limit_checkbox').setProperty('checked', true);
-                      $('dl_limit_value').setProperty('value', dl_limit);
-                    }
-                    updateDlLimitEnabled();
+                    // Global rate limits
                     var up_limit = pref.up_limit.toInt();
                     if(up_limit <= 0) {
                       $('up_limit_checkbox').setProperty('checked', false);
@@ -701,9 +711,31 @@ loadPreferences = function() {
                       $('up_limit_value').setProperty('value', up_limit);
                     }
                     updateUpLimitEnabled();
+                    var dl_limit = pref.dl_limit.toInt();
+                    if(dl_limit <= 0) {
+                      $('dl_limit_checkbox').setProperty('checked', false);
+                    } else {
+                      $('dl_limit_checkbox').setProperty('checked', true);
+                      $('dl_limit_value').setProperty('value', dl_limit);
+                    }
+                    updateDlLimitEnabled();
                     // Alternative limits
-                    $('alt_dl_limit_value').setProperty('value', pref.alt_dl_limit.toInt());
-                    $('alt_up_limit_value').setProperty('value', pref.alt_up_limit.toInt());
+                    var alt_up_limit = pref.alt_up_limit.toInt();
+                    if(alt_up_limit <= 0) {
+                      $('alt_up_limit_checkbox').setProperty('checked', false);
+                    } else {
+                      $('alt_up_limit_checkbox').setProperty('checked', true);
+                      $('alt_up_limit_value').setProperty('value', alt_up_limit);
+                    }
+                    updateAltUpLimitEnabled();
+                    var alt_dl_limit = pref.alt_dl_limit.toInt();
+                    if(alt_dl_limit <= 0) {
+                      $('alt_dl_limit_checkbox').setProperty('checked', false);
+                    } else {
+                      $('alt_dl_limit_checkbox').setProperty('checked', true);
+                      $('alt_dl_limit_value').setProperty('value', alt_dl_limit);
+                    }
+                    updateAltDlLimitEnabled();
                     // Scheduling
                     $('limit_sheduling_checkbox').setProperty('checked', pref.scheduler_enabled);
                     $('schedule_from_hour').setProperty('value', time_padding(pref.schedule_from_hour));
@@ -712,15 +744,14 @@ loadPreferences = function() {
                     $('schedule_to_min').setProperty('value', time_padding(pref.schedule_to_min));
                     $('schedule_freq_select').setProperty('value', pref.scheduler_days);
                     updateSchedulingEnabled();
-                    
-		                // uTP
-		                utp_supported = $defined(pref.enable_utp);
-		                setuTPSettingsVisible(utp_supported);
-		                if(utp_supported) {
-		                  $('enable_utp_checkbox').setProperty('checked', pref.enable_utp);
-		                  $('limit_utp_rate_checkbox').setProperty('checked', pref.limit_utp_rate);
-		                }
-		                $('limit_tcp_overhead_checkbox').setProperty('checked', pref.limit_tcp_overhead);
+                    // uTP
+                    utp_supported = $defined(pref.enable_utp);
+                    setuTPSettingsVisible(utp_supported);
+                    if(utp_supported) {
+                      $('enable_utp_checkbox').setProperty('checked', pref.enable_utp);
+                      $('limit_utp_rate_checkbox').setProperty('checked', pref.limit_utp_rate);
+                    }
+                    $('limit_tcp_overhead_checkbox').setProperty('checked', pref.limit_tcp_overhead);
                     var max_connec = pref.max_connec.toInt();
                     if(max_connec <= 0) {
                       $('max_connec_checkbox').setProperty('checked', false);
@@ -891,27 +922,47 @@ applyPreferences = function() {
   settings.set('listen_port', listen_port);
   settings.set('upnp', $('upnp_checkbox').getProperty('checked'));
   settings.set('random_port', $('random_port_checkbox').getProperty('checked'));
-    
-  var dl_limit = -1;
-  if($('dl_limit_checkbox').getProperty('checked')) {
-    dl_limit = $('dl_limit_value').getProperty('value').toInt();
-    if(dl_limit <= 0) {
-      alert("QBT_TR(Download rate limit must be greater than 0 or disabled.)QBT_TR");
-      return;
-    }
-  }
-  settings.set('dl_limit', dl_limit);
-  
+
+  // Global rate limits
   var up_limit = -1;
   if($('up_limit_checkbox').getProperty('checked')) {
     up_limit = $('up_limit_value').getProperty('value').toInt();
-    if(up_limit <= 0) {
-      alert("QBT_TR(Upload rate limit must be greater than 0 or disabled.)QBT_TR");
+    if(isNaN(up_limit) || up_limit <= 0) {
+      alert("QBT_TR(Global upload rate limit must be greater than 0 or disabled.)QBT_TR");
       return;
     }
   }
   settings.set('up_limit', up_limit);
-  
+  var dl_limit = -1;
+  if($('dl_limit_checkbox').getProperty('checked')) {
+    dl_limit = $('dl_limit_value').getProperty('value').toInt();
+    if(isNaN(dl_limit) || dl_limit <= 0) {
+      alert("QBT_TR(Global download rate limit must be greater than 0 or disabled.)QBT_TR");
+      return;
+    }
+  }
+  settings.set('dl_limit', dl_limit);
+
+  // Alternative limits
+  var alt_up_limit = -1;
+  if($('alt_up_limit_checkbox').getProperty('checked')) {
+    alt_up_limit = $('alt_up_limit_value').getProperty('value').toInt();
+    if(isNaN(alt_up_limit) || alt_up_limit <= 0) {
+      alert("QBT_TR(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR");
+      return;
+    }
+  }
+  settings.set('alt_up_limit', alt_up_limit);
+  var alt_dl_limit = -1;
+  if($('alt_dl_limit_checkbox').getProperty('checked')) {
+    alt_dl_limit = $('alt_dl_limit_value').getProperty('value').toInt();
+    if(isNaN(alt_dl_limit) || alt_dl_limit <= 0) {
+      alert("QBT_TR(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR");
+      return;
+    }
+  }
+  settings.set('alt_dl_limit', alt_dl_limit);
+
   if(!$('enable_utp_checkbox').hasClass('invisible')) {
     settings.set('enable_utp', $('enable_utp_checkbox').getProperty('checked'));
     settings.set('limit_utp_rate', $('limit_utp_rate_checkbox').getProperty('checked'));
@@ -958,21 +1009,6 @@ applyPreferences = function() {
     }
   }
   settings.set('max_uploads_per_torrent', max_uploads_per_torrent);
-
-  // Alternative speed limits
-  var alt_dl_limit = $('alt_dl_limit_value').getProperty('value').toInt();
-  if(alt_dl_limit <= 0) {
-    alert("QBT_TR(Download rate limit must be greater than 0 or disabled.)QBT_TR");
-    return;
-  }
-  settings.set('alt_dl_limit', alt_dl_limit);
-  
-  var alt_up_limit = $('alt_up_limit_value').getProperty('value').toInt();
-  if(alt_up_limit <= 0) {
-    alert("QBT_TR(Upload rate limit must be greater than 0 or disabled.)QBT_TR");
-    return;
-  }
-  settings.set('alt_up_limit', alt_up_limit);
 
   // Scheduler
   var scheduling_enabled = $('limit_sheduling_checkbox').getProperty('checked');
