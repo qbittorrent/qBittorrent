@@ -67,9 +67,7 @@ QByteArray prefjson::getPreferences()
     foreach (bool b, pref->getDownloadInScanDirs())
         var_list << b;
     data["download_in_scan_dirs"] = var_list;
-    data["export_dir_enabled"] = pref->isTorrentExportEnabled();
     data["export_dir"] = fsutils::toNativePath(pref->getTorrentExportDir());
-    data["export_dir_fin_enabled"] = pref->isFinishedTorrentExportEnabled();
     data["export_dir_fin"] = fsutils::toNativePath(pref->getFinishedTorrentExportDir());
     // Email notification upon download completion
     data["mail_notification_enabled"] = pref->isMailNotificationEnabled();
