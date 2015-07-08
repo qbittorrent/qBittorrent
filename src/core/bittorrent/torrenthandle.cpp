@@ -680,7 +680,8 @@ bool TorrentHandle::isCompleted() const
             || m_state == TorrentState::StalledUploading
             || m_state == TorrentState::CheckingUploading
             || m_state == TorrentState::PausedUploading
-            || m_state == TorrentState::QueuedUploading;
+            || m_state == TorrentState::QueuedUploading
+            || m_state == TorrentState::ForcedUploading;
 }
 
 bool TorrentHandle::isActive() const
