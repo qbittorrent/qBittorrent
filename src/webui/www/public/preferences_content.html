@@ -343,18 +343,21 @@
 <fieldset class="settings">
   <legend>QBT_TR(HTTP Server)QBT_TR</legend>
   <label for="webui_port_value">QBT_TR(Port:)QBT_TR</label><input type="text" id="webui_port_value" style="width: 4em;"/><br/>
-
-  <input type="checkbox" id="use_https_checkbox" onclick="updateHttpsSettings();" />
-  <label for="use_https_checkbox">QBT_TR(Use HTTPS instead of HTTP)QBT_TR</label><br/>
-  <div class="formRow">
-  <label for="ssl_key_textarea" style="margin-left: 20px;">QBT_TR(Key:)QBT_TR</label>
-  <textarea id="ssl_key_textarea" rows="5" cols="70"></textarea>
-  </div>
-  <div class="formRow">
-  <label for="ssl_cert_textarea" style="margin-left: 20px;">QBT_TR(Certificate:)QBT_TR</label>
-  <textarea id="ssl_cert_textarea" rows="5" cols="70"></textarea>
-  </div>
-  <div style="padding-left: 10px;"><a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts>Information about certificates</a></div>
+  <input type="checkbox" id="webui_upnp_checkbox"/>
+  <label for="webui_upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP to forward the port from my router)QBT_TR</label><br/>
+  <fieldset class="settings">
+  <legend><input type="checkbox" id="use_https_checkbox" onclick="updateHttpsSettings();" />
+  <label for="use_https_checkbox">QBT_TR(Use HTTPS instead of HTTP)QBT_TR</label></legend>
+    <div class="formRow">
+    <label for="ssl_key_textarea" style="margin-left: 20px;">QBT_TR(Key:)QBT_TR</label>
+    <textarea id="ssl_key_textarea" rows="5" cols="70"></textarea>
+    </div>
+    <div class="formRow">
+    <label for="ssl_cert_textarea" style="margin-left: 20px;">QBT_TR(Certificate:)QBT_TR</label>
+    <textarea id="ssl_cert_textarea" rows="5" cols="70"></textarea>
+    </div>
+    <div style="padding-left: 10px;"><a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts>Information about certificates</a></div>
+  </fieldset>
 </fieldset>
 
 <fieldset class="settings">
@@ -912,6 +915,7 @@ loadPreferences = function() {
 
                     // HTTP Server
                     $('webui_port_value').setProperty('value', pref.web_ui_port);
+                    $('webui_upnp_checkbox').setProperty('checked', pref.web_ui_upnp);
                     $('use_https_checkbox').setProperty('checked', pref.use_https);
                     $('ssl_key_textarea').setProperty('value', pref.ssl_key);
                     $('ssl_cert_textarea').setProperty('value', pref.ssl_cert);
@@ -1168,6 +1172,7 @@ applyPreferences = function() {
     return;
   }
   settings.set('web_ui_port', web_ui_port);
+  settings.set('web_ui_upnp', $('webui_upnp_checkbox').getProperty('checked'));
   settings.set('use_https', $('use_https_checkbox').getProperty('checked'));
   settings.set('ssl_key', $('ssl_key_textarea').getProperty('value'));
   settings.set('ssl_cert', $('ssl_cert_textarea').getProperty('value'));
