@@ -28,11 +28,23 @@ window.addEvent('domready', function() {
             url: 'command/download',
             method: 'post',
             data: {
-                urls: $('urls').value
+                urls: $('urls').value,
+                label: $('label').getProperty('value'),
+                savePath: $('save_path').getProperty('value'),
+                skipChecking: $('skip_checking').getProperty('checked')
             },
             onComplete: function() {
                 window.parent.document.getElementById('downloadPage').parentNode.removeChild(window.parent.document.getElementById('downloadPage'));
             }
         }).send();
     });
+
+    new Request.JSON({
+          url: 'query/preferences',
+          noCache: true,
+          method: 'get',
+          onSuccess: function(pref) {
+             $('save_path').setProperty('value', pref.save_path);
+          }
+    }).send();
 });

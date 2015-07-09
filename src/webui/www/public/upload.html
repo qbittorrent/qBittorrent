@@ -28,6 +28,9 @@ function uploadFiles(files) {
 	if (xhr.upload) {
 		// start upload
 		var formData = new FormData();
+        formData.append("label", $("label").getProperty("value"))
+        formData.append("savePath", $("save_path").getProperty("value"))
+        formData.append("skipChecking", $("skip_checking").getProperty("checked"))
 		for (var i = 0, file; file = files[i]; ++i)
 			formData.append(file.name, file);
 		xhr.onreadystatechange = stateChangeHandler;
@@ -56,6 +59,15 @@ window.addEvent('load', function() {
 		$('upload_frame').addEvent('load', function() { window.parent.closeWindows(); });
 		$('uploadForm').addEvent('submit', function() { $('upload_spinner').style.display = "block"; });
 	}
+
+    new Request.JSON({
+          url: 'query/preferences',
+          method: 'get',
+          noCache: true,
+          onSuccess: function(pref) {
+             $('save_path').setProperty('value', pref.save_path);
+          }
+    }).send();
 });
 </script>
 </head>
@@ -65,7 +77,25 @@ window.addEvent('load', function() {
 <div style="margin-top: 25px; display: inline-block; border: 1px solid lightgrey; border-radius: 4px;">
 	<input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
 </div>
-<div id="submitbutton" style="margin-top: 30px;">
+
+<div style="margin-top: 15px;">
+    <label>QBT_TR(Choose a save directory)QBT_TR</label>
+</div>
+<div>
+    <input type="text" id="save_path" />
+</div>
+
+<div style="margin-top: 10px;">
+    <label for="label">QBT_TR(Label:)QBT_TR</label>
+    <input type="text" id="label" />
+</div>
+
+<div style="margin-top: 10px;">
+    <input type="checkbox" id="skip_checking"/>
+    <label for="skip_checking">QBT_TR(Skip hash check)QBT_TR</label>
+</div>
+
+<div id="submitbutton" style="margin-top: 15px;">
 	<button type="submit" style="font-size: 1em;">QBT_TR(Upload Torrents)QBT_TR</button>
 </div>
 </form>
