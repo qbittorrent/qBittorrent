@@ -150,6 +150,7 @@ QByteArray prefjson::getPreferences()
     data["locale"] = pref->getLocale();
     // HTTP Server
     data["web_ui_port"] = pref->getWebUiPort();
+    data["web_ui_upnp"] = pref->useUPnPForWebUIPort();
     data["use_https"] = pref->isWebUiHttpsEnabled();
     data["ssl_key"] = QString::fromLatin1(pref->getWebUiHttpsKey());
     data["ssl_cert"] = QString::fromLatin1(pref->getWebUiHttpsCertificate());
@@ -361,6 +362,8 @@ void prefjson::setPreferences(const QString& json)
     // HTTP Server
     if (m.contains("web_ui_port"))
         pref->setWebUiPort(m["web_ui_port"].toUInt());
+    if (m.contains("web_ui_upnp"))
+        pref->setUPnPForWebUIPort(m["web_ui_upnp"].toBool());
     if (m.contains("use_https"))
         pref->setWebUiHttpsEnabled(m["use_https"].toBool());
 #ifndef QT_NO_OPENSSL
