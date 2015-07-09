@@ -362,9 +362,13 @@ void WebApplication::action_command_addTrackers()
     QString hash = request().posts["hash"];
 
     if (!hash.isEmpty()) {
-        QString urls = request().posts["urls"];
-        QStringList list = urls.split('\n');
-        QBtSession::instance()->addTrackersAndUrlSeeds(hash, list, QStringList());
+        QStringList trackers;
+        foreach (QString url, request().posts["urls"].split('\n')) {
+            url = url.trimmed();
+            if (!url.isEmpty())
+                trackers << url;
+        }
+        QBtSession::instance()->addTrackersAndUrlSeeds(hash, trackers, QStringList());
     }
 }
 
