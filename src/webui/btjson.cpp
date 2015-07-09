@@ -502,7 +502,7 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
     try {
         QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
         if (!h.has_metadata())
-            return QByteArray();
+            return json::toJson(file_list);
 
         const std::vector<int> priorities = h.file_priorities();
         std::vector<size_type> fp;
