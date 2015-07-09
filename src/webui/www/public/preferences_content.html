@@ -972,8 +972,8 @@ applyPreferences = function() {
   // Connection tab
   // Listening Port
   var listen_port = $('port_value').getProperty('value').toInt();
-  if(isNaN(listen_port) || listen_port <= 1024 || listen_port > 65535) {
-    alert("QBT_TR(The port used for incoming connections must be greater than 1024 and less than 65535.)QBT_TR");
+  if(isNaN(listen_port) || listen_port < 1 || listen_port > 65535) {
+    alert("QBT_TR(The port used for incoming connections must be between 1 and 65535.)QBT_TR");
     return;
   }
   settings.set('listen_port', listen_port);
@@ -1163,8 +1163,8 @@ applyPreferences = function() {
 
   // HTTP Server
   var web_ui_port = $('webui_port_value').getProperty('value').toInt();
-  if(isNaN(web_ui_port) || web_ui_port <= 1024 || web_ui_port > 65535) {
-    alert("QBT_TR(The port used for the Web UI must be greater than 1024 and less than 65535.)QBT_TR");
+  if(isNaN(web_ui_port) || web_ui_port < 1 || web_ui_port > 65535) {
+    alert("QBT_TR(The port used for the Web UI must be between 1 and 65535.)QBT_TR");
     return;
   }
   settings.set('web_ui_port', web_ui_port);
