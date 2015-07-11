@@ -1,4 +1,4 @@
-* unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.1
+* Sat Jul 11 2015 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.1
     - FEATURE: Change default preferences (ngosang)
     - FEATURE: Add "Add link to torrent" menu in TrayIconMenu. Closes #2918. (Chocobo1)
     - FEATURE: Allow to Open files from the properties pane by pressing "Enter" (pmzqla)
@@ -44,6 +44,7 @@
     - WEBUI: Increase API_VERSION due to changes in #3279, #3197, #3226 and #3040 (ngosang)
     - WEBUI: Add Web Seeds (HTTP Sources) tab (ngosang)
     - WEBUI: Don't update the tabs if tab's panel is collapsed (ngosang)
+    - WEBUI: Fix alternative global rate limits. (ngosang)
     - SEARCH: Fix thepiratebay. Closes #3012 (ngosang)
     - SEARCH: Improve torrentz engine to return more results (ngosang)
     - SEARCH: Change width of columns in search tab. Closes #764 (ngosang)
