@@ -229,43 +229,43 @@ void WebApplication::action_query_torrents()
     print(btjson::getTorrents(
         gets["filter"], gets["label"], gets["sort"], gets["reverse"] == "true",
         gets["limit"].toInt(), gets["offset"].toInt()
-        ), Http::CONTENT_TYPE_JS);
+        ), Http::CONTENT_TYPE_JSON);
 }
 
 void WebApplication::action_query_preferences()
 {
     CHECK_URI(0);
-    print(prefjson::getPreferences(), Http::CONTENT_TYPE_JS);
+    print(prefjson::getPreferences(), Http::CONTENT_TYPE_JSON);
 }
 
 void WebApplication::action_query_transferInfo()
 {
     CHECK_URI(0);
-    print(btjson::getTransferInfo(), Http::CONTENT_TYPE_JS);
+    print(btjson::getTransferInfo(), Http::CONTENT_TYPE_JSON);
 }
 
 void WebApplication::action_query_propertiesGeneral()
 {
     CHECK_URI(1);
-    print(btjson::getPropertiesForTorrent(args_.front()), Http::CONTENT_TYPE_JS);
+    print(btjson::getPropertiesForTorrent(args_.front()), Http::CONTENT_TYPE_JSON);
 }
 
 void WebApplication::action_query_propertiesTrackers()
 {
     CHECK_URI(1);
-    print(btjson::getTrackersForTorrent(args_.front()), Http::CONTENT_TYPE_JS);
+    print(btjson::getTrackersForTorrent(args_.front()), Http::CONTENT_TYPE_JSON);
 }
 
 void WebApplication::action_query_propertiesWebSeeds()
 {
     CHECK_URI(1);
-    print(btjson::getWebSeedsForTorrent(args_.front()), Http::CONTENT_TYPE_JS);
+    print(btjson::getWebSeedsForTorrent(args_.front()), Http::CONTENT_TYPE_JSON);
 }
 
 void WebApplication::action_query_propertiesFiles()
 {
     CHECK_URI(1);
-    print(btjson::getFilesForTorrent(args_.front()), Http::CONTENT_TYPE_JS);
+    print(btjson::getFilesForTorrent(args_.front()), Http::CONTENT_TYPE_JSON);
 }
 
 // GET param:
@@ -273,7 +273,9 @@ void WebApplication::action_query_propertiesFiles()
 void WebApplication::action_sync_maindata()
 {
     CHECK_URI(0);
-    print(btjson::getSyncMainData(request().gets["rid"].toInt(), session()->syncMainDataLastResponse, session()->syncMainDataLastAcceptedResponse));
+    print(btjson::getSyncMainData(request().gets["rid"].toInt(),
+        session()->syncMainDataLastResponse,
+        session()->syncMainDataLastAcceptedResponse), Http::CONTENT_TYPE_JSON);
 }
 
 void WebApplication::action_version_api()
@@ -417,13 +419,13 @@ void WebApplication::action_command_setFilePrio()
 void WebApplication::action_command_getGlobalUpLimit()
 {
     CHECK_URI(0);
-    print(QByteArray::number(QBtSession::instance()->getSession()->settings().upload_rate_limit));
+    print(QByteArray::number(QBtSession::instance()->getSession()->settings().upload_rate_limit), Http::CONTENT_TYPE_TXT);
 }
 
 void WebApplication::action_command_getGlobalDlLimit()
 {
     CHECK_URI(0);
-    print(QByteArray::number(QBtSession::instance()->getSession()->settings().download_rate_limit));
+    print(QByteArray::number(QBtSession::instance()->getSession()->settings().download_rate_limit), Http::CONTENT_TYPE_TXT);
 }
 
 void WebApplication::action_command_setGlobalUpLimit()
@@ -459,7 +461,7 @@ void WebApplication::action_command_getTorrentsUpLimit()
     CHECK_URI(0);
     CHECK_PARAMETERS("hashes");
     QStringList hashes = request().posts["hashes"].split("|");
-    print(btjson::getTorrentsRatesLimits(hashes, false), Http::CONTENT_TYPE_JS);
+    print(btjson::getTorrentsRatesLimits(hashes, false), Http::CONTENT_TYPE_JSON);
 }
 
 void WebApplication::action_command_getTorrentsDlLimit()
@@ -467,7 +469,7 @@ void WebApplication::action_command_getTorrentsDlLimit()
     CHECK_URI(0);
     CHECK_PARAMETERS("hashes");
     QStringList hashes = request().posts["hashes"].split("|");
-    print(btjson::getTorrentsRatesLimits(hashes, true), Http::CONTENT_TYPE_JS);
+    print(btjson::getTorrentsRatesLimits(hashes, true), Http::CONTENT_TYPE_JSON);
 }
 
 void WebApplication::action_command_setTorrentsUpLimit()
@@ -513,7 +515,7 @@ void WebApplication::action_command_toggleAlternativeSpeedLimits()
 void WebApplication::action_command_alternativeSpeedLimitsEnabled()
 {
     CHECK_URI(0);
-    print(QByteArray::number(Preferences::instance()->isAltBandwidthEnabled()));
+    print(QByteArray::number(Preferences::instance()->isAltBandwidthEnabled()), Http::CONTENT_TYPE_TXT);
 }
 
 void WebApplication::action_command_toggleSequentialDownload()
