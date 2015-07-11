@@ -1134,143 +1134,133 @@ You should get this information from your Web browser preferences.</source>
         <translation>Stiahnuť</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="45"/>
-        <source>Download rate limit must be greater than 0 or disabled.</source>
-        <translation>Obmedzenie rýchlosti sťahovania musí byť väčšie ako 0 alebo vypnuté.</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="46"/>
-        <source>Upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Obmedzenie rýchlosti nahrávania musí byť väčšie ako 0 alebo vypnuté.</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="47"/>
+        <location filename="../webui/extra_translations.h" line="52"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
         <translation>Maximálny počet spojení musí byť väčší ako 0 alebo vypnutý.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="48"/>
+        <location filename="../webui/extra_translations.h" line="53"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
         <translation>Maximálny počet spojení na torrent musí byť väčší ako 0 alebo vypnutý.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="49"/>
+        <location filename="../webui/extra_translations.h" line="54"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Maximálny počet nahrávacích pozící musí byť väčší ako 0 alebo vypnutý.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="50"/>
+        <location filename="../webui/extra_translations.h" line="55"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>Nepodarilo sa uložiť nastavenia programu, qBittorrent je pravdepodobne nedostupný.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="51"/>
+        <location filename="../webui/extra_translations.h" line="56"/>
         <source>Language</source>
         <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="63"/>
+        <location filename="../webui/extra_translations.h" line="68"/>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
         <translation>Nepodarilo sa prihlásiť, qBittorrent je pravdepodobne nedosiahnuteľný.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="64"/>
+        <location filename="../webui/extra_translations.h" line="69"/>
         <source>Invalid Username or Password.</source>
         <translation>Nesprávne užívateľské meno alebo heslo.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="65"/>
+        <location filename="../webui/extra_translations.h" line="70"/>
         <source>Password</source>
         <translation>Heslo</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="66"/>
+        <location filename="../webui/extra_translations.h" line="71"/>
         <source>Login</source>
         <translation>Prihlasovacie meno</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="67"/>
+        <location filename="../webui/extra_translations.h" line="72"/>
         <source>Upload Failed!</source>
         <translation>Nahrávanie zlyhalo!</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="68"/>
+        <location filename="../webui/extra_translations.h" line="73"/>
         <source>Original authors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="69"/>
+        <location filename="../webui/extra_translations.h" line="74"/>
         <source>Upload limit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="70"/>
+        <location filename="../webui/extra_translations.h" line="75"/>
         <source>Download limit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="71"/>
+        <location filename="../webui/extra_translations.h" line="76"/>
         <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="72"/>
+        <location filename="../webui/extra_translations.h" line="77"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="73"/>
+        <location filename="../webui/extra_translations.h" line="78"/>
         <source>Upload Torrents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="74"/>
+        <location filename="../webui/extra_translations.h" line="79"/>
         <source>All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="75"/>
+        <location filename="../webui/extra_translations.h" line="80"/>
         <source>Downloading</source>
         <translation type="unfinished">Sťahuje sa</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="76"/>
+        <location filename="../webui/extra_translations.h" line="81"/>
         <source>Seeding</source>
         <translation type="unfinished">Seeduje sa</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="77"/>
+        <location filename="../webui/extra_translations.h" line="82"/>
         <source>Completed</source>
         <translation type="unfinished">Dokončené</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="78"/>
+        <location filename="../webui/extra_translations.h" line="83"/>
         <source>Resumed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="79"/>
+        <location filename="../webui/extra_translations.h" line="84"/>
         <source>Paused</source>
         <translation type="unfinished">Pozastavený</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="80"/>
+        <location filename="../webui/extra_translations.h" line="85"/>
         <source>Active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="81"/>
+        <location filename="../webui/extra_translations.h" line="86"/>
         <source>Inactive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="85"/>
+        <location filename="../webui/extra_translations.h" line="90"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Stiahnuté</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="52"/>
+        <location filename="../webui/extra_translations.h" line="57"/>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
         <translation>Port pre prichádzajúce spojenia musí byť medzi 1024 a 65535.</translation>
     </message>
@@ -1285,52 +1275,87 @@ You should get this information from your Web browser preferences.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="53"/>
+        <location filename="../webui/extra_translations.h" line="45"/>
+        <source>Global upload rate limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="46"/>
+        <source>Global download rate limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="47"/>
+        <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="48"/>
+        <source>Alternative download rate limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="49"/>
+        <source>Maximum active downloads must be greater than -1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="50"/>
+        <source>Maximum active uploads must be greater than -1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="51"/>
+        <source>Maximum active torrents must be greater than -1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="58"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
         <translation>Port pre webové rozhranie musí byť medzi 1024 a 65535.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="54"/>
+        <location filename="../webui/extra_translations.h" line="59"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Používateľské meno pre webové rozhranie musí mať dĺžku aspoň 3 znaky.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="55"/>
+        <location filename="../webui/extra_translations.h" line="60"/>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation>Heslo pre webové rozhranie musí mať dĺžku aspoň 3 znaky.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="56"/>
+        <location filename="../webui/extra_translations.h" line="61"/>
         <source>Save</source>
         <translation>Uložiť</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="57"/>
+        <location filename="../webui/extra_translations.h" line="62"/>
         <source>qBittorrent client is not reachable</source>
         <translation>Klient qBittorrent nie je dostupný</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="58"/>
+        <location filename="../webui/extra_translations.h" line="63"/>
         <source>HTTP Server</source>
         <translation>HTTP server</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="59"/>
+        <location filename="../webui/extra_translations.h" line="64"/>
         <source>The following parameters are supported:</source>
         <translation>Nasledovné parametre sú podporované:</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="60"/>
+        <location filename="../webui/extra_translations.h" line="65"/>
         <source>Torrent path</source>
         <translation>Cesta k torrentu</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="61"/>
+        <location filename="../webui/extra_translations.h" line="66"/>
         <source>Torrent name</source>
         <translation>Názov torrentu</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="62"/>
+        <location filename="../webui/extra_translations.h" line="67"/>
         <source>qBittorrent has been shutdown.</source>
         <translation>qBittorrent bol ukončený.</translation>
     </message>
@@ -5774,7 +5799,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="293"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="308"/>
         <source>Cancel</source>
         <translation>Storno</translation>
     </message>
@@ -5831,71 +5856,86 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="165"/>
+        <source>16 KiB</source>
+        <translation type="unfinished">512 KiB {16 ?}</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="170"/>
         <source>32 KiB</source>
         <translation>32 KiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="170"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="175"/>
         <source>64 KiB</source>
         <translation>64 KiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="175"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="180"/>
         <source>128 KiB</source>
         <translation>128 KiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="180"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="185"/>
         <source>256 KiB</source>
         <translation>256 KiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="185"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="190"/>
         <source>512 KiB</source>
         <translation>512 KiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="190"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="195"/>
         <source>1 MiB</source>
         <translation>1 MiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="195"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="200"/>
         <source>2 MiB</source>
         <translation>2 MiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="200"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="205"/>
         <source>4 MiB</source>
         <translation>4 MiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="208"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="210"/>
+        <source>8 MiB</source>
+        <translation type="unfinished">4 MiB {8 ?}</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="215"/>
+        <source>16 MiB</source>
+        <translation type="unfinished">4 MiB {16 ?}</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="223"/>
         <source>Auto</source>
         <translation>Auto</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="233"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="248"/>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
         <translation>Súkromný (ak je zapnuté, nebude sa šíriť pomocou siete DHT)</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="240"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="255"/>
         <source>Start seeding after creation</source>
         <translation>Začať seedovanie po vytvorení</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="250"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="265"/>
         <source>Ignore share ratio limits for this torrent</source>
         <translation>Ignorovať obmedzenia pomeru zdieľania pre tento torrent</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="286"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="301"/>
         <source>Create and save...</source>
         <translation>Vytvoriť a uložiť...</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="257"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="272"/>
         <source>Progress:</source>
         <translation>Priebeh:</translation>
     </message>

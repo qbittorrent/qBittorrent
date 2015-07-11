@@ -199,22 +199,22 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="213"/>
         <source>Torrent is already in download list. Merging trackers.</source>
-        <translation type="unfinished"></translation>
+        <translation>토렌트가 이미 다운로드 목록에 있습니다. 트래커를 합칩니다.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="236"/>
         <source>Magnet link is already in download list. Merging trackers.</source>
-        <translation type="unfinished"></translation>
+        <translation>마그넷 고리가 이미 다운로드 목록에 있습니다. 트래커를 합칩니다.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="317"/>
         <source>Free disk space: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>남은 디스크 공간: %1</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="644"/>
         <source>Unknown error</source>
-        <translation type="unfinished"></translation>
+        <translation>알 수 없는 오류</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="660"/>
@@ -693,12 +693,12 @@
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="263"/>
         <source> days ago.</source>
-        <translation type="unfinished"></translation>
+        <translation>일 전.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="265"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>알 수 없음</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="358"/>
@@ -1048,7 +1048,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../core/downloadthread.cpp" line="301"/>
         <source>Unknown error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">알 수 없는 오류</translation>
     </message>
 </context>
 <context>
@@ -1133,143 +1133,133 @@ You should get this information from your Web browser preferences.</source>
         <translation>받기</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="45"/>
-        <source>Download rate limit must be greater than 0 or disabled.</source>
-        <translation>받기 비율 제한은 0보다 높아야 하며, 0일 경우 제한하지 않습니다.</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="46"/>
-        <source>Upload rate limit must be greater than 0 or disabled.</source>
-        <translation>올리기 비율 제한은 0보다 높아야 하며, 0일 경우 제한하지 않습니다.</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="47"/>
+        <location filename="../webui/extra_translations.h" line="52"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
         <translation>최대 연결 수는 0보다 높게 설정되어야 합니다.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="48"/>
+        <location filename="../webui/extra_translations.h" line="53"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
         <translation>토렌트 당 최대 연결 수는 0보다 높게 설정 되어야 합니다.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="49"/>
+        <location filename="../webui/extra_translations.h" line="54"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>토렌트 당 최대 올리기 연결 수는 0보다 높게 설정 되어야 합니다.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="50"/>
+        <location filename="../webui/extra_translations.h" line="55"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>설정을 저장할 수 없습니다. 큐빗 토렌트가 연결할 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="51"/>
+        <location filename="../webui/extra_translations.h" line="56"/>
         <source>Language</source>
         <translation>언어</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="63"/>
+        <location filename="../webui/extra_translations.h" line="68"/>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="64"/>
+        <location filename="../webui/extra_translations.h" line="69"/>
         <source>Invalid Username or Password.</source>
         <translation>유효하지 않은 사용자명/암호입니다.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="65"/>
+        <location filename="../webui/extra_translations.h" line="70"/>
         <source>Password</source>
         <translation>암호</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="66"/>
+        <location filename="../webui/extra_translations.h" line="71"/>
         <source>Login</source>
         <translation>로그인</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="67"/>
+        <location filename="../webui/extra_translations.h" line="72"/>
         <source>Upload Failed!</source>
         <translation>업로드 실패!</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="68"/>
+        <location filename="../webui/extra_translations.h" line="73"/>
         <source>Original authors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="69"/>
-        <source>Upload limit:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="70"/>
-        <source>Download limit:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="71"/>
-        <source>Apply</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="72"/>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="73"/>
-        <source>Upload Torrents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../webui/extra_translations.h" line="74"/>
-        <source>All</source>
-        <translation type="unfinished"></translation>
+        <source>Upload limit:</source>
+        <translation>올리기 제한:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="75"/>
-        <source>Downloading</source>
-        <translation type="unfinished">받는중</translation>
+        <source>Download limit:</source>
+        <translation>받기 제한:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="76"/>
-        <source>Seeding</source>
-        <translation type="unfinished">공유중</translation>
+        <source>Apply</source>
+        <translation>적용</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="77"/>
-        <source>Completed</source>
-        <translation type="unfinished">완료됨</translation>
+        <source>Add</source>
+        <translation>추가</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="78"/>
+        <source>Upload Torrents</source>
+        <translation>토렌트 올리기</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="79"/>
+        <source>All</source>
+        <translation>모두</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="80"/>
+        <source>Downloading</source>
+        <translation>받는 중</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="81"/>
+        <source>Seeding</source>
+        <translation>배포 중</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="82"/>
+        <source>Completed</source>
+        <translation>완료됨</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="83"/>
         <source>Resumed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="79"/>
+        <location filename="../webui/extra_translations.h" line="84"/>
         <source>Paused</source>
         <translation type="unfinished">정지됨</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="80"/>
+        <location filename="../webui/extra_translations.h" line="85"/>
         <source>Active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="81"/>
+        <location filename="../webui/extra_translations.h" line="86"/>
         <source>Inactive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="85"/>
+        <location filename="../webui/extra_translations.h" line="90"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>받기 완료됨</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="52"/>
+        <location filename="../webui/extra_translations.h" line="57"/>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
         <translation>송신 포트는 1024 이상 65535 이하로 설정되어야 합니다.</translation>
     </message>
@@ -1284,52 +1274,87 @@ You should get this information from your Web browser preferences.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="53"/>
+        <location filename="../webui/extra_translations.h" line="45"/>
+        <source>Global upload rate limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="46"/>
+        <source>Global download rate limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="47"/>
+        <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="48"/>
+        <source>Alternative download rate limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="49"/>
+        <source>Maximum active downloads must be greater than -1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="50"/>
+        <source>Maximum active uploads must be greater than -1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="51"/>
+        <source>Maximum active torrents must be greater than -1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="58"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
         <translation>웹 사용자 인터페이스에서 사용되는 포트는 1024 ~ 65535 사이로 설정되어야 합니다.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="54"/>
+        <location filename="../webui/extra_translations.h" line="59"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>웹 사용자 인터페이스의 사용자명은 3글자 이상이어야 합니다.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="55"/>
+        <location filename="../webui/extra_translations.h" line="60"/>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation>웹 사용자 인터페이스의 암호는 3글자 이상이어야 합니다.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="56"/>
+        <location filename="../webui/extra_translations.h" line="61"/>
         <source>Save</source>
         <translation>저장</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="57"/>
+        <location filename="../webui/extra_translations.h" line="62"/>
         <source>qBittorrent client is not reachable</source>
         <translation>큐빗 토렌트 클라이언트에 도달할 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="58"/>
+        <location filename="../webui/extra_translations.h" line="63"/>
         <source>HTTP Server</source>
         <translation>HTTP 서버</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="59"/>
+        <location filename="../webui/extra_translations.h" line="64"/>
         <source>The following parameters are supported:</source>
         <translation>다음 매개변수를 지원합니다:</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="60"/>
+        <location filename="../webui/extra_translations.h" line="65"/>
         <source>Torrent path</source>
         <translation>토렌트 경로</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="61"/>
+        <location filename="../webui/extra_translations.h" line="66"/>
         <source>Torrent name</source>
         <translation>토렌트 이름</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="62"/>
+        <location filename="../webui/extra_translations.h" line="67"/>
         <source>qBittorrent has been shutdown.</source>
         <translation>큐빗 토렌트가 종료되었습니다.</translation>
     </message>
@@ -1916,12 +1941,12 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../gui/mainwindow.cpp" line="905"/>
         <source>&amp;No</source>
-        <translation type="unfinished"></translation>
+        <translation>아니오(&amp;N)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="906"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>예(&amp;Y)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="907"/>
@@ -4389,7 +4414,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/searchlistdelegate.h" line="60"/>
         <location filename="../searchengine/searchlistdelegate.h" line="64"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">알 수 없음</translation>
     </message>
 </context>
 <context>
@@ -5060,7 +5085,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="427"/>
         <source>Trackerless (0)</source>
-        <translation>트랙커 없음 (0)</translation>
+        <translation>트래커 없음 (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="430"/>
@@ -5076,7 +5101,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/transferlistfilterswidget.cpp" line="476"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="533"/>
         <source>Trackerless (%1)</source>
-        <translation>트랙커 없음 (%1)</translation>
+        <translation>트래커 없음 (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="482"/>
@@ -5222,7 +5247,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="456"/>
         <source>Copy tracker URL</source>
-        <translation type="unfinished"></translation>
+        <translation>트래커 URL 복사</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="457"/>
@@ -5770,7 +5795,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="293"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="308"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
@@ -5827,71 +5852,86 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="165"/>
+        <source>16 KiB</source>
+        <translation type="unfinished">512 KB {16 ?}</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="170"/>
         <source>32 KiB</source>
         <translation>32 KB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="170"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="175"/>
         <source>64 KiB</source>
         <translation>64 KB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="175"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="180"/>
         <source>128 KiB</source>
         <translation>128 KB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="180"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="185"/>
         <source>256 KiB</source>
         <translation>256 KB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="185"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="190"/>
         <source>512 KiB</source>
         <translation>512 KB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="190"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="195"/>
         <source>1 MiB</source>
         <translation>1 MB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="195"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="200"/>
         <source>2 MiB</source>
         <translation>2 MB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="200"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="205"/>
         <source>4 MiB</source>
         <translation>4 MB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="208"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="210"/>
+        <source>8 MiB</source>
+        <translation type="unfinished">4 MB {8 ?}</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="215"/>
+        <source>16 MiB</source>
+        <translation type="unfinished">4 MB {16 ?}</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="223"/>
         <source>Auto</source>
         <translation>자동</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="233"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="248"/>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
         <translation>비공개 (이 기능을 사용하면 DHT 네트워크에 배포되지 않습니다)</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="240"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="255"/>
         <source>Start seeding after creation</source>
         <translation>생성후 바로 배포 시작하기</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="250"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="265"/>
         <source>Ignore share ratio limits for this torrent</source>
         <translation>이 토렌트에 공유 비율 제한 무시</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="286"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="301"/>
         <source>Create and save...</source>
         <translation>생성 후 저장하기...</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="257"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="272"/>
         <source>Progress:</source>
         <translation>진행상황:</translation>
     </message>

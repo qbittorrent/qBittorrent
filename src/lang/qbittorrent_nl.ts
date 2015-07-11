@@ -209,7 +209,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="317"/>
         <source>Free disk space: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vrije schijfruimte: %1</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="644"/>
@@ -485,7 +485,7 @@
     <message>
         <location filename="../gui/advancedsettings.h" line="218"/>
         <source>Ignore transfer limits on local network</source>
-        <translation>Overdrachtlimieten op het lokale netwerk negeren</translation>
+        <translation>Overdrachtbegrenzing op lokaal netwerk negeren</translation>
     </message>
 </context>
 <context>
@@ -1134,143 +1134,133 @@ U zou deze informatie moeten krijgen van uw webbrowser-voorkeuren.</translation>
         <translation>Download</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="45"/>
-        <source>Download rate limit must be greater than 0 or disabled.</source>
-        <translation>Limiet voor downloadsnelheid moet hoger zijn dan 0 of uitgeschakeld.</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="46"/>
-        <source>Upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Limiet voor uploadsnelheid moet hoger zijn dan 0 of uitgeschakeld.</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="47"/>
+        <location filename="../webui/extra_translations.h" line="52"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation>Limiet voor maximaal aantal verbindingen moet groter zijn dan 0 of uitgeschakeld.</translation>
+        <translation>Begrenzing voor maximaal aantal verbindingen moet groter dan 0 of uitgeschakeld zijn.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="48"/>
+        <location filename="../webui/extra_translations.h" line="53"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Limiet voor maximaal aantal verbindingen per torrent moet groter zijn dan 0 of uitgeschakeld.</translation>
+        <translation>Begrenzing voor maximaal aantal verbindingen per torrent moet groter dan 0 of uitgeschakeld zijn.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="49"/>
+        <location filename="../webui/extra_translations.h" line="54"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Limiet voor maximaal aantal uploadslots per torrent moet groter zijn dan 0 of uitgeschakeld.</translation>
+        <translation>Begrenzing voor maximaal aantal uploadslots per torrent moet groter dan 0 of uitgeschakeld zijn.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="50"/>
+        <location filename="../webui/extra_translations.h" line="55"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>Onmogelijk om programmavoorkeuren op te slaan, qBittorrent is waarschijnlijk onbereikbaar.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="51"/>
+        <location filename="../webui/extra_translations.h" line="56"/>
         <source>Language</source>
         <translation>Taal</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="63"/>
+        <location filename="../webui/extra_translations.h" line="68"/>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
         <translation>Niet mogelijk om in te loggen, qBittorrent is waarschijnlijk onbereikbaar.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="64"/>
+        <location filename="../webui/extra_translations.h" line="69"/>
         <source>Invalid Username or Password.</source>
         <translation>Ongeldige gebruikersnaam of wachtwoord.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="65"/>
+        <location filename="../webui/extra_translations.h" line="70"/>
         <source>Password</source>
         <translation>Wachtwoord</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="66"/>
+        <location filename="../webui/extra_translations.h" line="71"/>
         <source>Login</source>
         <translation>Login</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="67"/>
+        <location filename="../webui/extra_translations.h" line="72"/>
         <source>Upload Failed!</source>
         <translation>Uploaden mislukt!</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="68"/>
+        <location filename="../webui/extra_translations.h" line="73"/>
         <source>Original authors</source>
         <translation>Oorspronkelijke auteurs</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="69"/>
+        <location filename="../webui/extra_translations.h" line="74"/>
         <source>Upload limit:</source>
-        <translation>Uploadlimiet:</translation>
+        <translation>Uploadbegrenzing:</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="70"/>
+        <location filename="../webui/extra_translations.h" line="75"/>
         <source>Download limit:</source>
-        <translation>Downloadlimiet</translation>
+        <translation>Downloadbegrenzing:</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="71"/>
+        <location filename="../webui/extra_translations.h" line="76"/>
         <source>Apply</source>
         <translation>Toepassen</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="72"/>
+        <location filename="../webui/extra_translations.h" line="77"/>
         <source>Add</source>
         <translation>Toevoegen</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="73"/>
+        <location filename="../webui/extra_translations.h" line="78"/>
         <source>Upload Torrents</source>
         <translation>Torrents uploaden</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="74"/>
+        <location filename="../webui/extra_translations.h" line="79"/>
         <source>All</source>
         <translation>Alle</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="75"/>
+        <location filename="../webui/extra_translations.h" line="80"/>
         <source>Downloading</source>
         <translation>Downloaden</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="76"/>
+        <location filename="../webui/extra_translations.h" line="81"/>
         <source>Seeding</source>
         <translation>Seeden</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="77"/>
+        <location filename="../webui/extra_translations.h" line="82"/>
         <source>Completed</source>
         <translation>Voltooid</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="78"/>
+        <location filename="../webui/extra_translations.h" line="83"/>
         <source>Resumed</source>
         <translation>Hervat</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="79"/>
+        <location filename="../webui/extra_translations.h" line="84"/>
         <source>Paused</source>
         <translation>Gepauzeerd</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="80"/>
+        <location filename="../webui/extra_translations.h" line="85"/>
         <source>Active</source>
         <translation>Actief</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="81"/>
+        <location filename="../webui/extra_translations.h" line="86"/>
         <source>Inactive</source>
         <translation>Inactief</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="85"/>
+        <location filename="../webui/extra_translations.h" line="90"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Gedownload</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="52"/>
+        <location filename="../webui/extra_translations.h" line="57"/>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
         <translation>De poort gebruikt voor inkomende verbindingen moet groter zijn dan 1024 en kleiner dan 65535.</translation>
     </message>
@@ -1285,52 +1275,87 @@ U zou deze informatie moeten krijgen van uw webbrowser-voorkeuren.</translation>
         <translation>Bent u zeker dat u de geselecteerde torrents wilt verwijderen van de overdrachtenlijst?</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="53"/>
+        <location filename="../webui/extra_translations.h" line="45"/>
+        <source>Global upload rate limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="46"/>
+        <source>Global download rate limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="47"/>
+        <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="48"/>
+        <source>Alternative download rate limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="49"/>
+        <source>Maximum active downloads must be greater than -1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="50"/>
+        <source>Maximum active uploads must be greater than -1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="51"/>
+        <source>Maximum active torrents must be greater than -1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="58"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
         <translation>De poort gebruikt voor de Web-UI moet groter zijn dan 1024 en kleiner dan 65535.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="54"/>
+        <location filename="../webui/extra_translations.h" line="59"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>De Web-UI-gebruikersnaam moet minstens 3 tekens lang zijn.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="55"/>
+        <location filename="../webui/extra_translations.h" line="60"/>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation>Het Web-UI-wachtwoord moet minstens 3 tekens lang zijn.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="56"/>
+        <location filename="../webui/extra_translations.h" line="61"/>
         <source>Save</source>
         <translation>Opslaan</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="57"/>
+        <location filename="../webui/extra_translations.h" line="62"/>
         <source>qBittorrent client is not reachable</source>
         <translation>qBittorrent-client is niet bereikbaar</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="58"/>
+        <location filename="../webui/extra_translations.h" line="63"/>
         <source>HTTP Server</source>
         <translation>Http-server</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="59"/>
+        <location filename="../webui/extra_translations.h" line="64"/>
         <source>The following parameters are supported:</source>
         <translation>De volgende parameters worden ondersteund:</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="60"/>
+        <location filename="../webui/extra_translations.h" line="65"/>
         <source>Torrent path</source>
         <translation>Torrent-pad</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="61"/>
+        <location filename="../webui/extra_translations.h" line="66"/>
         <source>Torrent name</source>
         <translation>Torrentnaam</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="62"/>
+        <location filename="../webui/extra_translations.h" line="67"/>
         <source>qBittorrent has been shutdown.</source>
         <translation>qBittorrent werd afgesloten.</translation>
     </message>
@@ -1492,22 +1517,22 @@ U zou deze informatie moeten krijgen van uw webbrowser-voorkeuren.</translation>
     <message>
         <location filename="../gui/mainwindow.ui" line="211"/>
         <source>Set Upload Limit...</source>
-        <translation>Uploadlimiet instellen...</translation>
+        <translation>Uploadbegrenzing instellen...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="216"/>
         <source>Set Download Limit...</source>
-        <translation>Downloadlimiet instellen...</translation>
+        <translation>Downloadbegrenzing instellen...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="226"/>
         <source>Set Global Download Limit...</source>
-        <translation>Stel globale downloadlimiet in...</translation>
+        <translation>Globale downloadbegrenzing instellen...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="231"/>
         <source>Set Global Upload Limit...</source>
-        <translation>Stel globale uploadlimiet in...</translation>
+        <translation>Globale uploadbegrenzing instellen...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="236"/>
@@ -1533,7 +1558,7 @@ U zou deze informatie moeten krijgen van uw webbrowser-voorkeuren.</translation>
         <location filename="../gui/mainwindow.ui" line="271"/>
         <location filename="../gui/mainwindow.ui" line="274"/>
         <source>Alternative Speed Limits</source>
-        <translation>Alternatieve snelheidslimieten</translation>
+        <translation>Alternatieve snelheidsbegrenzingen</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="282"/>
@@ -1907,12 +1932,12 @@ Reden: %2</translation>
     <message>
         <location filename="../gui/mainwindow.cpp" line="739"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Algemene uploadsnelheidlimiet</translation>
+        <translation>Algemene uploadsnelheidsbegrenzing</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="755"/>
         <source>Global Download Speed Limit</source>
-        <translation>Algemene downloadsnelheidslimiet</translation>
+        <translation>Algemene downloadsnelheidsbegrenzing</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="905"/>
@@ -1944,34 +1969,36 @@ Wilt u het nu installeren?</translation>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1501"/>
         <source>Update Available</source>
-        <translation type="unfinished"></translation>
+        <translation>Update beschikbaar</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1502"/>
         <source>A new version is available.
 Update to version %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Er is een nieuwe versie beschikbaar.
+Bijwerken naar versie %1?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1511"/>
         <source>Already Using the Latest Version</source>
-        <translation type="unfinished"></translation>
+        <translation>De laatste versie wordt al gebruikt.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1512"/>
         <source>No updates available.
 You are already using the latest version.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geen updates beschikbaar.
+U gebruikt de laatste versie al.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1516"/>
         <source>&amp;Check for Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Controleren op updates</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1614"/>
         <source>Checking for Updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>Controleren op updates...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1615"/>
@@ -2163,12 +2190,12 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="181"/>
         <source>Limit download rate...</source>
-        <translation>Downloadsnelheid limiteren...</translation>
+        <translation>Downloadsnelheid begrenzen...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="182"/>
         <source>Limit upload rate...</source>
-        <translation>Uploadsnelheid limiteren...</translation>
+        <translation>Uploadsnelheid begrenzen...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="185"/>
@@ -2219,12 +2246,12 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="262"/>
         <source>Upload rate limiting</source>
-        <translation>Uploadsnelheid limiteren</translation>
+        <translation>Uploadsnelheid begrenzen</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="294"/>
         <source>Download rate limiting</source>
-        <translation>Downloadsnelheid limiteren</translation>
+        <translation>Downloadsnelheid begrenzen</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="485"/>
@@ -2373,7 +2400,7 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     <message>
         <location filename="../gui/options.ui" line="1122"/>
         <source>Connections Limits</source>
-        <translation>Verbindingslimieten</translation>
+        <translation>Begrenzing verbindingen</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1275"/>
@@ -2383,27 +2410,27 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     <message>
         <location filename="../gui/options.ui" line="1556"/>
         <source>Global Rate Limits</source>
-        <translation>Algemene snelheidslimieten</translation>
+        <translation>Algemene snelheidsbegrenzingen</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1671"/>
         <source>Apply rate limit to uTP connections</source>
-        <translation>Snelheidslimiet toepassen op uTP-verbindingen</translation>
+        <translation>Snelheidsbegrenzing toepassen op uTP-verbindingen</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1678"/>
         <source>Apply rate limit to transport overhead</source>
-        <translation>Snelheidslimiet toepassen op transport-overhead</translation>
+        <translation>Snelheidsbegrenzing toepassen op transport-overhead</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1691"/>
         <source>Alternative Global Rate Limits</source>
-        <translation>Alternatieve algemene snelheidslimieten</translation>
+        <translation>Alternatieve algemene snelheidsbegrenzingen</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1803"/>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>Gebruik van alternatieve snelheidslimieten inplannen</translation>
+        <translation>Gebruik van alternatieve snelheidsbegrenzingen inplannen</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2009"/>
@@ -2864,7 +2891,7 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     <message>
         <location filename="../gui/options.ui" line="2216"/>
         <source>Do not count slow torrents in these limits</source>
-        <translation>Trage torrents niet meerekenen bij deze limieten</translation>
+        <translation>Trage torrents niet meerekenen bij deze begrenzingen</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2237"/>
@@ -2998,7 +3025,7 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     <message>
         <location filename="../gui/options.ui" line="2226"/>
         <source>Share Ratio Limiting</source>
-        <translation>Limiteren deelverhouding</translation>
+        <translation>Deelverhouding begrenzen</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2331"/>
@@ -3124,7 +3151,7 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="77"/>
         <source>Progress:</source>
-        <translation type="unfinished">Voortgang:</translation>
+        <translation>Voortgang:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="184"/>
@@ -3135,12 +3162,12 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
         <location filename="../gui/properties/propertieswidget.ui" line="196"/>
         <source>Time Active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Tijd actief:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="228"/>
         <source>ETA:</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschatte resterende tijd:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="324"/>
@@ -3150,32 +3177,32 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="356"/>
         <source>Seeds:</source>
-        <translation type="unfinished"></translation>
+        <translation>Seeds:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="388"/>
         <source>Download Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Downloadsnelheid:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="420"/>
         <source>Upload Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uploadsnelheid:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="452"/>
         <source>Peers:</source>
-        <translation type="unfinished"></translation>
+        <translation>Peers:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="484"/>
         <source>Download Limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Downloadbegrenzing:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="516"/>
         <source>Upload Limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uploadbegrenzing:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="548"/>
@@ -3225,57 +3252,57 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="580"/>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Deelverhouding:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="612"/>
         <source>Reannounce In:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opnieuw aankondigen binnen:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="644"/>
         <source>Last Seen Complete:</source>
-        <translation type="unfinished"></translation>
+        <translation>Laatst volledig gezien:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="691"/>
         <source>Total Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Totale grootte:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="723"/>
         <source>Pieces:</source>
-        <translation type="unfinished"></translation>
+        <translation>Deeltjes:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="755"/>
         <source>Created By:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aangemaakt door:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="787"/>
         <source>Added On:</source>
-        <translation type="unfinished"></translation>
+        <translation>Toegevoegd op:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="819"/>
         <source>Completed On:</source>
-        <translation type="unfinished"></translation>
+        <translation>Voltooid op:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="851"/>
         <source>Created On:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aangemaakt op:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="883"/>
         <source>Torrent Hash:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent-hash:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="918"/>
         <source>Save Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opslagpad:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1191"/>
@@ -3314,25 +3341,25 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
         <location filename="../gui/properties/propertieswidget.cpp" line="390"/>
         <source>(%1 total)</source>
         <comment>e.g. (10 total)</comment>
-        <translation type="unfinished"></translation>
+        <translation>(%1 totaal)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="393"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="395"/>
         <source>(%1/s avg.)</source>
         <comment>e.g. (100KiB/s avg.)</comment>
-        <translation type="unfinished"></translation>
+        <translation>(%1/s gem.)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="397"/>
         <source>Never</source>
-        <translation type="unfinished">Nooit</translation>
+        <translation>Nooit</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="402"/>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 x %2 (%3 in bezit)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="511"/>
@@ -3436,7 +3463,7 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
         <location filename="../gui/properties/propertieswidget.cpp" line="370"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="371"/>
         <source>session</source>
-        <translation type="unfinished"></translation>
+        <translation>sessie</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="810"/>
@@ -4392,7 +4419,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/searchlistdelegate.h" line="60"/>
         <location filename="../searchengine/searchlistdelegate.h" line="64"/>
         <source>Unknown</source>
-        <translation type="unfinished">Onbekend</translation>
+        <translation>Onbekend</translation>
     </message>
 </context>
 <context>
@@ -4511,12 +4538,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/statsdialog.ui" line="47"/>
         <source>Alltime download:</source>
-        <translation>Van altijd, gedownload:</translation>
+        <translation>Totale download:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="68"/>
         <source>Alltime upload:</source>
-        <translation>Van altijd, geüpload:</translation>
+        <translation>Totale upload:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="82"/>
@@ -4623,27 +4650,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/statusbar.cpp" line="205"/>
         <source>Click to switch to alternative speed limits</source>
-        <translation>Klikken om alternatieve snelheidslimieten in te schakelen</translation>
+        <translation>Klikken om alternatieve snelheidsbegrenzingen in te schakelen</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="201"/>
         <source>Click to switch to regular speed limits</source>
-        <translation>Klikken om algemene snelheidslimieten in te schakelen</translation>
+        <translation>Klikken om algemene snelheidsbegrenzingen in te schakelen</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="215"/>
         <source>Manual change of rate limits mode. The scheduler is disabled.</source>
-        <translation>Handmatige wijziging van snelheidslimieten. De planner is uitgeschakeld.</translation>
+        <translation>Handmatige wijziging van snelheidbegrenzing. De planner is uitgeschakeld.</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="223"/>
         <source>Global Download Speed Limit</source>
-        <translation>Algemene limiet downloadsnelheid</translation>
+        <translation>Algemene begrenzing downloadsnelheid</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="249"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Algemene limiet uploadsnelheid</translation>
+        <translation>Algemene begrenzing uploadsnelheid</translation>
     </message>
 </context>
 <context>
@@ -4971,13 +4998,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="436"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation>Downloadlimiet</translation>
+        <translation>Downloadbegrenzing</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="437"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation>Uploadlimiet</translation>
+        <translation>Uploadbegrenzing</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="438"/>
@@ -5031,7 +5058,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="446"/>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation>Limiet deelverhouding</translation>
+        <translation>Begrenzing deelverhouding</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="447"/>
@@ -5515,22 +5542,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="742"/>
         <source>Preview file...</source>
-        <translation>Bestand vooraf weergeven...</translation>
+        <translation>Voorbeeld van bestand weergeven...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="744"/>
         <source>Limit share ratio...</source>
-        <translation>Deelverhouding limiteren...</translation>
+        <translation>Deelverhouding begrenzen...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="746"/>
         <source>Limit upload rate...</source>
-        <translation>Uploadsnelheid limiteren...</translation>
+        <translation>Uploadsnelheid begrenzen...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="748"/>
         <source>Limit download rate...</source>
-        <translation>Downloadsnelheid limiteren...</translation>
+        <translation>Downloadsnelheid begrenzen...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="750"/>
@@ -5579,7 +5606,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="762"/>
         <source>Force recheck</source>
-        <translation>Hercontrole forceren</translation>
+        <translation>Opnieuw controleren forceren</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="764"/>
@@ -5624,12 +5651,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Upload/downloadverhouding van torrent limiteren</translation>
+        <translation>Upload/downloadverhouding van torrent begrenzen</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation>Algemene deelverhoudingslimiet gebruiken</translation>
+        <translation>Algemene deelverhoudingsbegrenzing gebruiken</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="23"/>
@@ -5641,12 +5668,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation>Geen deelverhoudingslimiet instellen</translation>
+        <translation>Geen deelverhoudingsbegrenzing instellen</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation>Deelverhoudingslimiet instellen op</translation>
+        <translation>Deelverhoudingsbegrenzing instellen op</translation>
     </message>
 </context>
 <context>
@@ -5667,12 +5694,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/about_imp.h" line="55"/>
         <source>An advanced BitTorrent client programmed in &lt;nobr&gt;C++&lt;/nobr&gt;, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Een geavanceerde BitTorrent client geprogrammeerd in &lt;nobr&gt;C++&lt;/nobr&gt;, gebaseerd op Qt-toolkit en libtorrent-rasterbar.</translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="57"/>
         <source>Copyright %1 2006-2015 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>Auteursrecht %1 2006-2015 het qBittorrent-project</translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="59"/>
@@ -5773,7 +5800,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="293"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="308"/>
         <source>Cancel</source>
         <translation>Annuleren</translation>
     </message>
@@ -5830,71 +5857,86 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="165"/>
+        <source>16 KiB</source>
+        <translation type="unfinished">512 KiB {16 ?}</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="170"/>
         <source>32 KiB</source>
         <translation>32 KiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="170"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="175"/>
         <source>64 KiB</source>
         <translation>64 KiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="175"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="180"/>
         <source>128 KiB</source>
         <translation>128 KiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="180"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="185"/>
         <source>256 KiB</source>
         <translation>256 KiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="185"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="190"/>
         <source>512 KiB</source>
         <translation>512 KiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="190"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="195"/>
         <source>1 MiB</source>
         <translation>1 MiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="195"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="200"/>
         <source>2 MiB</source>
         <translation>2 MiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="200"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="205"/>
         <source>4 MiB</source>
         <translation>4 MiB</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="208"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="210"/>
+        <source>8 MiB</source>
+        <translation type="unfinished">4 MiB {8 ?}</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="215"/>
+        <source>16 MiB</source>
+        <translation type="unfinished">4 MiB {16 ?}</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="223"/>
         <source>Auto</source>
         <translation>Automatisch</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="233"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="248"/>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
         <translation>Privé (wordt niet verdeeld op het DHT-netwerk indien ingeschakeld)</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="240"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="255"/>
         <source>Start seeding after creation</source>
         <translation>Beginnen met seeden na aanmaken</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="250"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="265"/>
         <source>Ignore share ratio limits for this torrent</source>
-        <translation>Deelverhoudingslimieten negeren voor deze torrent</translation>
+        <translation>Deelverhoudingsbegrenzing negeren voor deze torrent</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="286"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="301"/>
         <source>Create and save...</source>
         <translation>Aanmaken en opslaan...</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreator/createtorrent.ui" line="257"/>
+        <location filename="../gui/torrentcreator/createtorrent.ui" line="272"/>
         <source>Progress:</source>
         <translation>Voortgang:</translation>
     </message>
@@ -6051,7 +6093,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="361"/>
         <source>qBittorrent search plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent zoekplugin</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="413"/>
@@ -6093,7 +6135,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/engineselectdlg.cpp" line="178"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Niet alle plugins konden verwijderd worden omdat ze bij qBittorrent horen. Alleen de door uzelf toegevoegde plugins kunnen worden verwijderd.
+Deze plugins zijn uitgeschakeld.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="281"/>
@@ -6116,7 +6159,7 @@ Those plugins were disabled.</source>
         <location filename="../searchengine/engineselectdlg.cpp" line="475"/>
         <source>Sorry, %1 search plugin installation failed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sorry, installatie van de %1-zoekplugin is mislukt.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="337"/>
@@ -6392,22 +6435,22 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/preview.ui" line="14"/>
         <source>Preview selection</source>
-        <translation>Selectie vooraf bekijken</translation>
+        <translation>Voorbeeld van selectie weergeven</translation>
     </message>
     <message>
         <location filename="../gui/preview.ui" line="38"/>
         <source>File preview</source>
-        <translation>Bestand vooraf bekijken</translation>
+        <translation>Voorbeeld van bestand</translation>
     </message>
     <message>
         <location filename="../gui/preview.ui" line="54"/>
         <source>The following files support previewing, please select one of them:</source>
-        <translation>De volgende bestanden ondersteunen vooraf bekijken, selecteer er een van:</translation>
+        <translation>De volgende bestanden ondersteunen het weergeven van een voorbeeld, selecteer er een van:</translation>
     </message>
     <message>
         <location filename="../gui/preview.ui" line="89"/>
         <source>Preview</source>
-        <translation>Vooraf bekijken</translation>
+        <translation>Voorbeeld weergeven</translation>
     </message>
     <message>
         <location filename="../gui/preview.ui" line="96"/>
