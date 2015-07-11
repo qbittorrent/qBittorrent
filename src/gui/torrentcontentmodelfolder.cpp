@@ -136,19 +136,19 @@ void TorrentContentModelFolder::setPriority(int new_prio, bool update_parent)
 
 void TorrentContentModelFolder::recalculateProgress()
 {
-  qreal progress = 0;
-  int count = 0;
+  qreal tProgress = 0;
+  qulonglong tSize = 0;
   foreach (TorrentContentModelItem* child, m_childItems) {
     if (child->priority() != prio::IGNORED) {
       if (child->itemType() == FolderType)
         static_cast<TorrentContentModelFolder*>(child)->recalculateProgress();
-      progress += child->progress();
-      ++count;
+      tProgress += child->progress() * child->size();
+      tSize += child->size();
     }
   }
 
-  if (!isRootItem() && (count > 0)) {
-    m_progress = progress / count;
+  if (!isRootItem() && tSize > 0) {
+    m_progress = tProgress / tSize;
     Q_ASSERT(m_progress <= 1.);
   }
 }
