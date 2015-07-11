@@ -46,7 +46,8 @@ namespace Http
     const QString CONTENT_TYPE_CSS = "text/css; charset=UTF-8";
     const QString CONTENT_TYPE_GIF = "image/gif";
     const QString CONTENT_TYPE_HTML = "text/html; charset=UTF-8";
-    const QString CONTENT_TYPE_JS = "text/javascript; charset=UTF-8";
+    const QString CONTENT_TYPE_JS = "application/javascript; charset=UTF-8";
+    const QString CONTENT_TYPE_JSON = "application/json";
     const QString CONTENT_TYPE_PNG = "image/png";
     const QString CONTENT_TYPE_TXT = "text/plain; charset=UTF-8";
 
