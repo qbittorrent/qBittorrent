@@ -59,7 +59,7 @@
             <x>0</x>
             <y>0</y>
             <width>549</width>
-            <height>447</height>
+            <height>450</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -1081,13 +1081,6 @@
      <widget class="QWidget" name="speed_page">
       <layout class="QVBoxLayout" name="speed_layout"/>
      </widget>
-    </widget>
-   </item>
-   <item>
-    <widget class="Line" name="line">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
     </widget>
    </item>
   </layout>

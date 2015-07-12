@@ -39,7 +39,8 @@
 PropTabBar::PropTabBar(QWidget *parent) :
   QHBoxLayout(parent), m_currentIndex(-1)
 {
-  setSpacing(2);
+  setAlignment(Qt::AlignLeft | Qt::AlignCenter);
+  setSpacing(3);
   m_btnGroup = new QButtonGroup(this);
   // General tab
   QPushButton *main_infos_button = new QPushButton(GuiIconProvider::instance()->getIcon("document-properties"), tr("General"), parent);
@@ -63,7 +64,7 @@ PropTabBar::PropTabBar(QWidget *parent) :
   addWidget(files_button);
   m_btnGroup->addButton(files_button, FILES_TAB);
   // Spacer
-  addItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
+  addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed));
   // Speed tab
   QPushButton *speed_button = new QPushButton(GuiIconProvider::instance()->getIcon("office-chart-line"), tr("Speed"), parent);
   addWidget(speed_button);

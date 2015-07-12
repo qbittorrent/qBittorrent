@@ -68,10 +68,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   setupUi(this);
   setAutoFillBackground(true);
 
-  // Icons
-  trackerUpButton->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
-  trackerDownButton->setIcon(GuiIconProvider::instance()->getIcon("go-down"));
-
   state = VISIBLE;
 
   // Set Properties list model
@@ -129,6 +125,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
 
   // Tracker list
   trackerList = new TrackerList(this);
+  trackerUpButton->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
+  trackerDownButton->setIcon(GuiIconProvider::instance()->getIcon("go-down"));
   connect(trackerUpButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionUp()));
   connect(trackerDownButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionDown()));
   horizontalLayout_trackers->insertWidget(0, trackerList);
@@ -146,6 +144,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   speed_layout->addWidget(speedWidget);
   // Tab bar
   m_tabBar = new PropTabBar();
+  m_tabBar->setContentsMargins(0, 5, 0, 0);
   verticalLayout->addLayout(m_tabBar);
   connect(m_tabBar, SIGNAL(tabChanged(int)), stackedProperties, SLOT(setCurrentIndex(int)));
   connect(m_tabBar, SIGNAL(tabChanged(int)), this, SLOT(saveSettings()));
