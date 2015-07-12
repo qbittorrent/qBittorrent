@@ -204,13 +204,13 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_needSaveResumeData(false)
 {
     initialize();
-    setSequentialDownload(data.sequential);
 
 #ifndef DISABLE_COUNTRIES_RESOLUTION
     resolveCountries(m_session->isResolveCountriesEnabled());
 #endif
 
     if (!data.resumed) {
+        setSequentialDownload(data.sequential);
         if (hasMetadata()) {
             setFirstLastPiecePriority(data.sequential);
             if (m_session->isAppendExtensionEnabled())
