@@ -313,7 +313,9 @@ void WebApplication::action_command_download()
                 qDebug("Converting bc link to magnet link");
                 url = Utils::Misc::bcLinkToMagnet(url);
             }
-
+            if ((url.size() == 40 && !url.contains(QRegExp("[^0-9A-Fa-f]")))
+                || (url.size() == 32 && !url.contains(QRegExp("[^2-7A-Za-z]"))))
+                url = "magnet:?xt=urn:btih:" + url;
             BitTorrent::Session::instance()->addTorrent(url);
         }
     }
