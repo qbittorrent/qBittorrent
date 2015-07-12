@@ -481,7 +481,7 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
     }
 
     if (!torrent->hasMetadata())
-        return QByteArray();
+        return json::toJson(fileList);
 
     const QVector<int> priorities = torrent->filePriorities();
     QVector<qreal> fp = torrent->filesProgress();
