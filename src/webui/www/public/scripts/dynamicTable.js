@@ -530,14 +530,15 @@ var dynamicTable = new Class({
 
             this.columns['priority'].updateTd = function (td, row) {
                 var priority = this.getRowValue(row);
-                td.set('html', priority < 0 ? null : priority);
+                td.set('html', priority < 1 ? '*' : priority);
             };
+
             this.columns['priority'].compareRows = function (row1, row2) {
                 var row1_val = this.getRowValue(row1);
                 var row2_val = this.getRowValue(row2);
-                if (row1_val == -1)
+                if (row1_val < 1)
                     row1_val = 1000000;
-                if (row2_val == -1)
+                if (row2_val < 1)
                     row2_val = 1000000;
                 if (row1_val < row2_val)
                     return -1;
