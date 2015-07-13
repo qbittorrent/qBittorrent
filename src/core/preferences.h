@@ -424,6 +424,8 @@ public:
 #endif
     bool confirmTorrentDeletion() const;
     void setConfirmTorrentDeletion(bool enabled);
+    bool confirmTorrentRecheck() const;
+    void setConfirmTorrentRecheck(bool enabled);
     TrayIcon::Style trayIconStyle() const;
     void setTrayIconStyle(TrayIcon::Style style);
 

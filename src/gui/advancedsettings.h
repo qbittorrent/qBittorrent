@@ -20,7 +20,7 @@ enum AdvSettingsRows {DISK_CACHE, DISK_CACHE_TTL, OS_CACHE, SAVE_RESUME_DATA_INT
                     #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
                       USE_ICON_THEME,
                     #endif
-                      CONFIRM_DELETE_TORRENT, TRACKER_EXCHANGE,
+                      CONFIRM_DELETE_TORRENT, CONFIRM_RECHECK_TORRENT, TRACKER_EXCHANGE,
                       ANNOUNCE_ALL_TRACKERS,
                       ROW_COUNT};
 
@@ -31,7 +31,7 @@ private:
   QSpinBox spin_cache, spin_save_resume_data_interval, outgoing_ports_min, outgoing_ports_max, spin_list_refresh, spin_maxhalfopen, spin_tracker_port;
   QCheckBox cb_os_cache, cb_ignore_limits_lan, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
   cb_super_seeding, cb_program_notifications, cb_tracker_status, cb_confirm_torrent_deletion,
-  cb_enable_tracker_ext, cb_listen_ipv6;
+  cb_confirm_torrent_recheck, cb_enable_tracker_ext, cb_listen_ipv6;
   QComboBox combo_iface;
   QSpinBox spin_cache_ttl;
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
@@ -121,6 +121,7 @@ public slots:
     pref->useSystemIconTheme(cb_use_icon_theme.isChecked());
 #endif
     pref->setConfirmTorrentDeletion(cb_confirm_torrent_deletion.isChecked());
+    pref->setConfirmTorrentRecheck(cb_confirm_torrent_recheck.isChecked());
     // Tracker exchange
     pref->setTrackerExchangeEnabled(cb_enable_tracker_ext.isChecked());
     pref->setAnnounceToAllTrackers(cb_announce_all_trackers.isChecked());
@@ -287,6 +288,9 @@ private slots:
     // Torrent deletion confirmation
     cb_confirm_torrent_deletion.setChecked(pref->confirmTorrentDeletion());
     setRow(CONFIRM_DELETE_TORRENT, tr("Confirm torrent deletion"), &cb_confirm_torrent_deletion);
+    // Torrent recheck confirmation
+    cb_confirm_torrent_recheck.setChecked(pref->confirmTorrentRecheck());
+    setRow(CONFIRM_RECHECK_TORRENT, tr("Confirm torrent recheck"), &cb_confirm_torrent_recheck);
     // Tracker exchange
     cb_enable_tracker_ext.setChecked(pref->trackerExchangeEnabled());
     setRow(TRACKER_EXCHANGE, tr("Exchange trackers with other peers"), &cb_enable_tracker_ext);

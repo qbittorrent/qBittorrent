@@ -1894,6 +1894,16 @@ void Preferences::setConfirmTorrentDeletion(bool enabled)
     setValue("Preferences/Advanced/confirmTorrentDeletion", enabled);
 }
 
+bool Preferences::confirmTorrentRecheck() const
+{
+    return value("Preferences/Advanced/confirmTorrentRecheck", true).toBool();
+}
+
+void Preferences::setConfirmTorrentRecheck(bool enabled)
+{
+    setValue("Preferences/Advanced/confirmTorrentRecheck", enabled);
+}
+
 TrayIcon::Style Preferences::trayIconStyle() const
 {
     return TrayIcon::Style(value("Preferences/Advanced/TrayIconStyle", TrayIcon::NORMAL).toInt());
