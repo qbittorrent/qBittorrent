@@ -363,8 +363,11 @@ void WebApplication::action_command_addTrackers()
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (torrent) {
         QList<BitTorrent::TrackerEntry> trackers;
-        foreach (const QString &url, request().posts["urls"].split('\n'))
-            trackers << url;
+        foreach (QString url, request().posts["urls"].split('\n')) {
+            url = url.trimmed();
+            if (!url.isEmpty())
+                trackers << url;
+        }
         torrent->addTrackers(trackers);
     }
 }
