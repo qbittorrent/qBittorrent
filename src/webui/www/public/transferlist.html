@@ -25,6 +25,9 @@
             Pause : function (element, ref) {
                 pauseFN();
             },
+            ForceStart : function (element, ref) {
+                setForceStartFN();
+            },
             prioTop : function (element, ref) {
                 setPriorityFN('topPrio');
             },
@@ -54,9 +57,6 @@
             },
             SuperSeeding : function (element, ref) {
                 setSuperSeedingFN(!ref.getItemChecked('SuperSeeding'));
-            },
-            ForceStart : function (element, ref) {
-                setForceStartFN(!ref.getItemChecked('ForceStart'));
             }
         },
         offsets : {
