@@ -36,6 +36,7 @@
 #include <QModelIndex>
 #include <QPainter>
 #include <QProgressBar>
+#include "core/unicodestrings.h"
 #include "core/utils/misc.h"
 #include "searchengine.h"
 
@@ -57,11 +58,26 @@ class SearchListDelegate: public QItemDelegate {
           break;
         case SearchSortModel::SEEDS:
           QItemDelegate::drawBackground(painter, opt, index);
-          QItemDelegate::drawDisplay(painter, opt, option.rect, (index.data().toLongLong() >= 0) ? index.data().toString() : tr("Unknown"));
+          if (index.data().toLongLong() >= 0)
+            QItemDelegate::drawDisplay(painter, opt, option.rect, index.data().toString());
+          else
+            QItemDelegate::drawDisplay(painter, opt, option.rect, tr("Unknown"));
           break;
         case SearchSortModel::LEECHS:
           QItemDelegate::drawBackground(painter, opt, index);
-          QItemDelegate::drawDisplay(painter, opt, option.rect, (index.data().toLongLong() >= 0) ? index.data().toString() : tr("Unknown"));
+          if (index.data().toLongLong() >= 0)
+            QItemDelegate::drawDisplay(painter, opt, option.rect, index.data().toString());
+          else
+            QItemDelegate::drawDisplay(painter, opt, option.rect, tr("Unknown"));
+          break;
+        case SearchSortModel::RATIO:
+          QItemDelegate::drawBackground(painter, opt, index);
+          if (index.data().toDouble() >= SearchSortModel::MAX_RATIO)
+            QItemDelegate::drawDisplay(painter, opt, option.rect, QString::fromUtf8(C_INFINITY));
+          else if (index.data().toDouble() < 0)
+            QItemDelegate::drawDisplay(painter, opt, option.rect, tr("Unknown"));
+          else
+            QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::String::fromDouble(index.data().toDouble(), 2));          
           break;
         default:
           QItemDelegate::paint(painter, option, index);

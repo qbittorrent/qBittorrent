@@ -8,7 +8,8 @@ class SearchSortModel : public QSortFilterProxyModel {
   Q_OBJECT
 
 public:
-  enum SearchColumn { NAME, SIZE, SEEDS, LEECHS, ENGINE_URL, DL_LINK, DESC_LINK, NB_SEARCH_COLUMNS };
+  static const qreal MAX_RATIO = 9999.;
+  enum SearchColumn { NAME, SIZE, SEEDS, LEECHS, RATIO, ENGINE_URL, DL_LINK, DESC_LINK, NB_SEARCH_COLUMNS };
 
   SearchSortModel(QObject *parent = 0) : QSortFilterProxyModel(parent) {}
 

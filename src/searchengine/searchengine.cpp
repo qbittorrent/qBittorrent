@@ -474,17 +474,23 @@ void SearchEngine::appendSearchResult(const QString &line) {
     cur_model->setData(cur_model->index(row, SearchSortModel::SIZE), parts.at(PL_SIZE).trimmed().toLongLong()); // Size
     bool ok = false;
     qlonglong nb_seeders = parts.at(PL_SEEDS).trimmed().toLongLong(&ok);
-    if (!ok || nb_seeders < 0) {
-        cur_model->setData(cur_model->index(row, SearchSortModel::SEEDS), -1); // Seeders
-    } else {
-        cur_model->setData(cur_model->index(row, SearchSortModel::SEEDS), nb_seeders); // Seeders
-    }
+    if (!ok || nb_seeders < 0)
+        nb_seeders = -1;
+    cur_model->setData(cur_model->index(row, SearchSortModel::SEEDS), nb_seeders); // Seeders
     qlonglong nb_leechers = parts.at(PL_LEECHS).trimmed().toLongLong(&ok);
-    if (!ok || nb_leechers < 0) {
-        cur_model->setData(cur_model->index(row, SearchSortModel::LEECHS), -1); // Leechers
-    } else {
-        cur_model->setData(cur_model->index(row, SearchSortModel::LEECHS), nb_leechers); // Leechers
-    }
+    if (!ok || nb_leechers < 0)
+        nb_leechers = -1;
+    cur_model->setData(cur_model->index(row, SearchSortModel::LEECHS), nb_leechers); // Leechers
+    qreal nb_ratio;
+    if (nb_seeders == -1 || nb_leechers == -1)
+        nb_ratio = -1;
+    else if (nb_seeders == 0)
+        nb_ratio = 0;
+    else if (nb_leechers == 0)
+        nb_ratio = SearchSortModel::MAX_RATIO;
+    else
+        nb_ratio = 1. * nb_seeders / nb_leechers;
+    cur_model->setData(cur_model->index(row, SearchSortModel::RATIO), nb_ratio); // Ratio
     cur_model->setData(cur_model->index(row, SearchSortModel::ENGINE_URL), parts.at(PL_ENGINE_URL).trimmed()); // Engine URL
     // Description Link
     if (nb_fields == NB_PLUGIN_COLUMNS)
