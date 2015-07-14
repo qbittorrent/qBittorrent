@@ -35,6 +35,7 @@
 #include <QHash>
 #include <QPointer>
 #include <QSet>
+#include <QShortcut>
 
 namespace Net
 {
@@ -80,7 +81,8 @@ protected slots:
   void loadSettings();
   void saveSettings() const;
   void showPeerListMenu(const QPoint&);
-  void banSelectedPeers(const QStringList& peer_ips);
+  void banSelectedPeers();
+  void copySelectedPeers();
   void handleSortColumnChanged(int col);
 
 private:
@@ -97,6 +99,7 @@ private:
   QPointer<Net::ReverseResolution> m_resolver;
   PropertiesWidget *m_properties;
   bool m_displayFlags;
+  QShortcut *copyHotkey;
 };
 
 #endif // PEERLISTWIDGET_H
