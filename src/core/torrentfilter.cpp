@@ -107,7 +107,10 @@ bool TorrentFilter::setHashSet(const QStringSet &hashSet)
 
 bool TorrentFilter::setLabel(const QString &label)
 {
-    if (m_label != label) {
+    // QString::operator==() doesn't distinguish between empty and null strings.
+    if ((m_label != label)
+            || (m_label.isNull() && !label.isNull())
+            || (!m_label.isNull() && label.isNull())) {
         m_label = label;
         return true;
     }
@@ -154,6 +157,7 @@ bool TorrentFilter::matchHash(BitTorrent::TorrentHandle *const torrent) const
 
 bool TorrentFilter::matchLabel(BitTorrent::TorrentHandle *const torrent) const
 {
-    if (m_label == AnyLabel) return true;
+    if (m_label.isNull()) return true;
+    else if (m_label.isEmpty()) return torrent->label().isEmpty();
     else return (torrent->label() == m_label);
 }
