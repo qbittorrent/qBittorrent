@@ -86,7 +86,6 @@ public slots:
     void displayDLHoSMenu(const QPoint&);
     void applyNameFilter(const QString& name);
     void applyStatusFilter(int f);
-    void applyLabelFilterAll();
     void applyLabelFilter(QString label);
     void applyTrackerFilterAll();
     void applyTrackerFilter(const QStringList &hashes);

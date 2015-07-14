@@ -375,16 +375,7 @@ void LabelFiltersList::showMenu(QPoint)
 
 void LabelFiltersList::applyFilter(int row)
 {
-    switch (row) {
-    case 0:
-        transferList->applyLabelFilterAll();
-        break;
-    case 1:
-        transferList->applyLabelFilter(QString());
-        break;
-    default:
-        transferList->applyLabelFilter(labelFromRow(row));
-    }
+    transferList->applyLabelFilter(labelFromRow(row));
 }
 
 void LabelFiltersList::handleNewTorrent(BitTorrent::TorrentHandle *const torrent)
@@ -407,7 +398,9 @@ void LabelFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const 
 
 QString LabelFiltersList::labelFromRow(int row) const
 {
-    Q_ASSERT(row > 1);
+    if (row == 0) return QString(); // All
+    if (row == 1) return QLatin1String(""); // Unlabeled
+
     const QString &label = item(row)->text();
     QStringList parts = label.split(" ");
     Q_ASSERT(parts.size() >= 2);
