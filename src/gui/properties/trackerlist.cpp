@@ -474,7 +474,9 @@ void TrackerList::showTrackerListMenu(QPoint) {
   }
 #endif
   if (act == reannounceAct) {
-    properties->getCurrentTorrent()->forceReannounce();
+    BitTorrent::TorrentHandle *h = properties->getCurrentTorrent();
+    h->forceReannounce();
+    h->forceDHTAnnounce();
     return;
   }
   if (act == editAct) {
