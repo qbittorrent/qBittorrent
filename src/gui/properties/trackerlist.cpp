@@ -394,7 +394,6 @@ void TrackerList::editSelectedTracker() {
     torrent->replaceTrackers(trackers);
     if (!torrent->isPaused()) {
       torrent->forceReannounce();
-      torrent->forceDHTAnnounce();
     }
 }
 
