@@ -394,22 +394,28 @@ void TrackerList::editSelectedTracker() {
     torrent->replaceTrackers(trackers);
     if (!torrent->isPaused()) {
       torrent->forceReannounce();
-      torrent->forceDHTAnnounce();
     }
 }
 
 #if LIBTORRENT_VERSION_NUM >= 10000
 void TrackerList::reannounceSelected() {
-    BitTorrent::TorrentHandle *const torrent = properties->getCurrentTorrent();
-    if (!torrent) return;
-
-    QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
+    QList<QTreeWidgetItem *> selected_items = selectedItems();
     if (selected_items.isEmpty()) return;
 
+    BitTorrent::TorrentHandle *const torrent = properties->getCurrentTorrent();
+    if (!torrent) return;
     QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
-    for (int i = 0; i < trackers.size(); ++i) {
-      foreach (QTreeWidgetItem* w, selected_items) {
-        if (w->text(COL_URL) == trackers[i].url()) {
+
+    foreach (QTreeWidgetItem* item, selected_items) {
+      // DHT case
+      if (item == dht_item) {
+        torrent->forceDHTAnnounce();
+        continue;
+      }
+
+      // Trackers case
+      for (int i = 0; i < trackers.size(); ++i) {
+        if (item->text(COL_URL) == trackers[i].url()) {
           torrent->forceReannounce(i);
           break;
         }
@@ -468,7 +474,9 @@ void TrackerList::showTrackerListMenu(QPoint) {
   }
 #endif
   if (act == reannounceAct) {
-    properties->getCurrentTorrent()->forceReannounce();
+    BitTorrent::TorrentHandle *h = properties->getCurrentTorrent();
+    h->forceReannounce();
+    h->forceDHTAnnounce();
     return;
   }
   if (act == editAct) {
