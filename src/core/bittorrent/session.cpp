@@ -1092,7 +1092,10 @@ bool Session::addTorrent_impl(const AddTorrentData &addData, const MagnetUri &ma
         hash = torrentInfo.hash();
     }
     else {
-        Q_ASSERT(false);
+        // We can have an invalid torrentInfo when there isn't a matching
+        // .torrent file to the .fastresume we loaded. Possibly from a
+        // failed upgrade.
+        return false;
     }
 
     if (addData.resumed && !fromMagnetUri) {
