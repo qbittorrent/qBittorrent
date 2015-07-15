@@ -148,7 +148,8 @@ void SearchEngine::tab_changed(int t)
 {//when we switch from a tab that is not empty to another that is empty the download button
   //doesn't have to be available
     if (t>-1) {//-1 = no more tab
-        if (all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel()->rowCount()) {
+        currentSearchTab = all_tab.at(tabWidget->currentIndex());
+        if (currentSearchTab->getCurrentSearchListModel()->rowCount()) {
             download_button->setEnabled(true);
             goToDescBtn->setEnabled(true);
         }
@@ -156,6 +157,7 @@ void SearchEngine::tab_changed(int t)
             download_button->setEnabled(false);
             goToDescBtn->setEnabled(false);
         }
+        search_status->setText(currentSearchTab->status);
     }
 }
 
@@ -194,6 +196,7 @@ void SearchEngine::on_search_button_clicked() {
             search_button->setText(tr("Search"));
             return;
         }
+        allTabsSetActiveState(false);
     }
     searchProcess->waitForFinished();
     // Reload environment variables (proxy)
@@ -207,6 +210,7 @@ void SearchEngine::on_search_button_clicked() {
     }
     // Tab Addition
     currentSearchTab = new SearchTab(this);
+    activeSearchTab = currentSearchTab;
     connect(currentSearchTab->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveResultsColumnsWidth()));
     all_tab.append(currentSearchTab);
     QString tabName = pattern;
@@ -278,7 +282,8 @@ void SearchEngine::downloadTorrent(QString engine_url, QString torrent_url) {
 
 void SearchEngine::searchStarted() {
     // Update SearchEngine widgets
-    search_status->setText(tr("Searching..."));
+    activeSearchTab->status = tr("Searching...");
+    search_status->setText(activeSearchTab->status);
     search_status->repaint();
     search_button->setText(tr("Stop"));
 }
@@ -298,8 +303,8 @@ void SearchEngine::readSearchOutput() {
     foreach (const QByteArray &line, lines_list) {
         appendSearchResult(QString::fromUtf8(line));
     }
-    if (currentSearchTab)
-        currentSearchTab->getCurrentLabel()->setText(tr("Results")+QString::fromUtf8(" <i>(")+QString::number(nb_search_results)+QString::fromUtf8(")</i>:"));
+    if (activeSearchTab)
+        activeSearchTab->getCurrentLabel()->setText(tr("Results")+QString::fromUtf8(" <i>(")+QString::number(nb_search_results)+QString::fromUtf8(")</i>:"));
 }
 
 void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus) {
@@ -412,7 +417,7 @@ void SearchEngine::updateNova() {
 // Slot called when search is Finished
 // Search can be finished for 3 reasons :
 // Error | Stopped by user | Finished normally
-void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus) {
+void SearchEngine::searchFinished(int exitcode, QProcess::ExitStatus) {
     if (searchTimeout->isActive()) {
         searchTimeout->stop();
     }
@@ -422,24 +427,28 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus) {
     }
     if (exitcode) {
 #ifdef Q_OS_WIN
-        search_status->setText(tr("Search aborted"));
+        activeSearchTab->status = tr("Search aborted");
 #else
-        search_status->setText(tr("An error occurred during search..."));
+        activeSearchTab->status = tr("An error occurred during search...");
 #endif
-    }else{
+    } else {
         if (search_stopped) {
-            search_status->setText(tr("Search aborted"));
-        }else{
+            activeSearchTab->status = tr("Search aborted");
+        } else {
             if (no_search_results) {
-              search_status->setText(tr("Search returned no results"));
-            }else{
-              search_status->setText(tr("Search has finished"));
+                activeSearchTab->status = tr("Search returned no results");
+            } else {
+                activeSearchTab->status = tr("Search has finished");
             }
         }
     }
 
-    if (currentSearchTab)
-        currentSearchTab->getCurrentLabel()->setText(tr("Results", "i.e: Search results")+QString::fromUtf8(" <i>(")+QString::number(nb_search_results)+QString::fromUtf8(")</i>:"));
+    if (activeSearchTab)
+        if (currentSearchTab == activeSearchTab) search_status->setText(activeSearchTab->status);
+        activeSearchTab->getCurrentLabel()->setText(tr("Results", "i.e: Search results")+QString::fromUtf8(" <i>(")+QString::number(nb_search_results)+QString::fromUtf8(")</i>:"));
+        activeSearchTab->isActive = false;
+        activeSearchTab = 0;
+
     search_button->setText(tr("Search"));
 }
 
@@ -447,7 +456,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus) {
 // Line is in the following form :
 // file url | file name | file size | nb seeds | nb leechers | Search engine url
 void SearchEngine::appendSearchResult(const QString &line) {
-    if (!currentSearchTab) {
+    if (!activeSearchTab) {
         if (searchProcess->state() != QProcess::NotRunning) {
             searchProcess->terminate();
         }
@@ -462,9 +471,9 @@ void SearchEngine::appendSearchResult(const QString &line) {
     if (nb_fields < NB_PLUGIN_COLUMNS-1) { //-1 because desc_link is optional
         return;
     }
-    Q_ASSERT(currentSearchTab);
+    Q_ASSERT(activeSearchTab);
     // Add item to search result list
-    QStandardItemModel* cur_model = currentSearchTab->getCurrentSearchListModel();
+    QStandardItemModel* cur_model = activeSearchTab->getCurrentSearchListModel();
     Q_ASSERT(cur_model);
     int row = cur_model->rowCount();
     cur_model->insertRow(row);
@@ -498,8 +507,9 @@ void SearchEngine::appendSearchResult(const QString &line) {
 }
 
 void SearchEngine::closeTab(int index) {
-    if (index == tabWidget->indexOf(currentSearchTab)) {
-        qDebug("Deleted current search Tab");
+    // Search is run for active tab so if user decided to close it, then stop search
+    if (activeSearchTab && index == tabWidget->indexOf(activeSearchTab)) {
+        qDebug("Closed active search Tab");
         if (searchProcess->state() != QProcess::NotRunning) {
             searchProcess->terminate();
         }
@@ -507,7 +517,8 @@ void SearchEngine::closeTab(int index) {
             searchTimeout->stop();
         }
         search_stopped = true;
-        currentSearchTab = 0;
+        if (currentSearchTab == activeSearchTab) currentSearchTab = 0;
+        activeSearchTab = 0;
     }
     delete all_tab.takeAt(index);
     if (!all_tab.size()) {
@@ -542,5 +553,12 @@ void SearchEngine::on_goToDescBtn_clicked()
             if (!desc_url.isEmpty())
                 QDesktopServices::openUrl(QUrl::fromEncoded(desc_url.toUtf8()));
         }
+    }
+}
+
+inline void SearchEngine::allTabsSetActiveState(bool newState)
+{
+    foreach(SearchTab *tab, all_tab) {
+        tab->isActive = newState;
     }
 }
