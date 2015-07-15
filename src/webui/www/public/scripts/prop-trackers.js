@@ -125,7 +125,7 @@ $('addTrackersPlus').addEvent('click', function addTrackerDlg() {
         closable: true,
         paddingVertical: 0,
         paddingHorizontal: 0,
-        width: 500,
-        height: 250
+        width: 450,
+        height: 200
     });
 });
