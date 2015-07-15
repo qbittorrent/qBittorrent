@@ -314,52 +314,34 @@ initializeWindows = function() {
         if (h.length) {
             new MochaUI.Window({
                 id: 'newLabelPage',
-                title: "QBT_TR(Torrent Label)QBT_TR",
+                title: "QBT_TR(New Label)QBT_TR",
                 loadMethod: 'iframe',
-                contentURL: 'newlabel.html?hashes=' + h.join(','),
+                contentURL: 'newlabel.html?hashes=' + h.join('|'),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
                 paddingVertical: 0,
                 paddingHorizontal: 0,
-                width: 424,
-                height: 150
+                width: 250,
+                height: 100
             });
         }
     };
 
-    resetLabelFN = function () {
-        var h = myTable.selectedIds();
-        var label_json = JSON.stringify({value: ''});
-        if (h.length) {
-            h.each(function (hash, index) {
-                new Request({
-                    url: 'command/setLabel',
-                    method: 'post',
-                    data: {
-                        hash: hash,
-                        label_obj: label_json
-                    }
-                }).send();
-            });
-        }
-    };
-
-    updateLabelFN = function (label_hash) {
-        var label = label_list[label_hash].name;
-        var label_json = JSON.stringify({value: label});
+    updateLabelFN = function (labelHash) {
+        var labelName = '';
+        if (labelHash != 0)
+            var labelName = label_list[labelHash].name;
         var h = myTable.selectedIds();
         if (h.length) {
-            h.each(function (hash, index) {
-                new Request({
-                    url: 'command/setLabel',
-                    method: 'post',
-                    data: {
-                        hash: hash,
-                        label_obj: label_json
-                    }
-                }).send();
-            });
+            new Request({
+                url: 'command/setLabel',
+                method: 'post',
+                data: {
+                    hashes: h.join("|"),
+                    label: labelName
+                }
+            }).send();
         }
     };
 

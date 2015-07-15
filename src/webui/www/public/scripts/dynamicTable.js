@@ -280,7 +280,7 @@ var dynamicTable = new Class({
                     break;
             }
 
-            if (labelName == LABELS_ALL && row['full_data'].label.length > 0)
+            if (labelName == LABELS_ALL)
                 return true;
 
             if (labelName == LABELS_UNLABELLED && row['full_data'].label.length === 0)

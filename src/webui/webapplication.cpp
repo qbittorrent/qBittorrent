@@ -669,19 +669,19 @@ void WebApplication::action_command_recheck()
 void WebApplication::action_command_setLabel()
 {
     CHECK_URI(0);
-    CHECK_PARAMETERS("hash" << "label_obj");
+    CHECK_PARAMETERS("hashes" << "label");
 
-    QString hash = request().posts["hash"];
-    QString label_obj = request().posts["label_obj"];
+    QStringList hashes = request().posts["hashes"].split("|");
+    QString label = request().posts["label"].trimmed();
+    if (!Utils::Fs::isValidFileSystemName(label)) {
+        status(400, "Labels must not contain special characters");
+        return;
+    }
 
-    const QVariantMap m = json::fromJson(label_obj).toMap();
-    if( m.contains("value") ) {
-        QString label = m["value"].toString();
-        if (!hash.isEmpty()) {
-            BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-            if (torrent)
-                torrent->setLabel(label);
-        }
+    foreach (const QString &hash, hashes) {
+        BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+        if (torrent)
+            torrent->setLabel(label);
     }
 }
 
