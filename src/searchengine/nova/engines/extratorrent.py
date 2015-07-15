@@ -1,5 +1,6 @@
-#VERSION: 2.01
+#VERSION: 2.02
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
+#CONTRIBUTORS: Diego de las Heras (diegodelasheras@gmail.com)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -75,7 +76,7 @@ class extratorrent(object):
                         #description
                         self.current_item["desc_link"] = "".join((self.url, link))
                         #remove view at the beginning
-                        self.current_item["name"] = params["title"][5:].replace("&amp;", "&")
+                        self.current_item["name"] = params["title"][5:-8].replace("&amp;", "&")
                         self.pending_size = True
                     elif link[8] == "_":
                         #download link
