@@ -58,6 +58,7 @@ public:
     };
 
     static const QString AnyLabel;
+    static const QString NoLabel;
     static const QStringSet AnyHash;
 
     static const TorrentFilter DownloadingTorrent;

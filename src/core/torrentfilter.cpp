@@ -30,6 +30,7 @@
 #include "torrentfilter.h"
 
 const QString TorrentFilter::AnyLabel;
+const QString TorrentFilter::NoLabel = QLatin1String("");
 const QStringSet TorrentFilter::AnyHash = (QStringSet() << QString());
 
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
@@ -154,6 +155,7 @@ bool TorrentFilter::matchHash(BitTorrent::TorrentHandle *const torrent) const
 
 bool TorrentFilter::matchLabel(BitTorrent::TorrentHandle *const torrent) const
 {
-    if (m_label == AnyLabel) return true;
+    if (m_label.isNull()) return true;
+    else if (m_label.isEmpty()) return torrent->label().isEmpty();
     else return (torrent->label() == m_label);
 }
