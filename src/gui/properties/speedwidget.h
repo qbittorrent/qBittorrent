@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015 Anton Lashkov <lenton_91@mail.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,43 +24,56 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#ifndef PROPTABBAR_H
-#define PROPTABBAR_H
+#ifndef SPEEDWIDGET_H
+#define SPEEDWIDGET_H
 
-#include <QHBoxLayout>
+#include <QWidget>
+#include <QtConcurrentRun>
 
-QT_BEGIN_NAMESPACE
-class QButtonGroup;
-QT_END_NAMESPACE
+#include "speedplotview.h"
 
-class PropTabBar : public QHBoxLayout
+class QVBoxLayout;
+class QHBoxLayout;
+class QLabel;
+class QComboBox;
+class QToolButton;
+class QMenu;
+class QSignalMapper;
+class PropertiesWidget;
+
+class SpeedWidget : public QWidget
 {
-  Q_OBJECT
-  Q_DISABLE_COPY(PropTabBar)
-
+    Q_OBJECT
 public:
-  enum PropertyTab {MAIN_TAB, TRACKERS_TAB, PEERS_TAB, URLSEEDS_TAB, FILES_TAB, SPEED_TAB};
+    SpeedWidget(PropertiesWidget *parent);
+    ~SpeedWidget();
 
-public:
-  explicit PropTabBar(QWidget *parent = 0);
-  ~PropTabBar();
-  int currentIndex() const;
-
-signals:
-  void tabChanged(int index);
-  void visibilityToggled(bool visible);
-
-public slots:
-  void setCurrentIndex(int index);
+private slots:
+    void onPeriodChange(int period);
+    void onGraphChange(int id);
 
 private:
-  QButtonGroup *m_btnGroup;
-  int m_currentIndex;
+    void update();
+    void loadSettings();
+    void saveSettings() const;
+    Q_INVOKABLE void graphUpdate();
 
+    QVBoxLayout *m_layout;
+    QHBoxLayout *m_hlayout;
+    QLabel *m_periodLabel;
+    QComboBox *m_periodCombobox;
+    SpeedPlotView *m_plot;
+    PropertiesWidget *m_properties;
+
+    QToolButton *m_graphsButton;
+    QMenu *m_graphsMenu;
+    QList<QAction *> m_graphsMenuActions;
+    QSignalMapper *m_graphsSignalMapper;
+
+    QFuture<void> m_updateFuture;
+    bool m_isUpdating;
 };
 
-#endif // PROPTABBAR_H
+#endif // SPEEDWIDGET_H

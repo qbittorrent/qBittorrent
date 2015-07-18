@@ -50,6 +50,46 @@ int SessionStatus::payloadUploadRate() const
     return m_nativeStatus.payload_upload_rate;
 }
 
+int SessionStatus::downloadRate() const
+{
+    return m_nativeStatus.download_rate;
+}
+
+int SessionStatus::uploadRate() const
+{
+    return m_nativeStatus.upload_rate;
+}
+
+int SessionStatus::ipOverheadDownloadRate() const
+{
+    return m_nativeStatus.ip_overhead_download_rate;
+}
+
+int SessionStatus::ipOverheadUploadRate() const
+{
+    return m_nativeStatus.ip_overhead_upload_rate;
+}
+
+int SessionStatus::dhtDownloadRate() const
+{
+    return m_nativeStatus.dht_download_rate;
+}
+
+int SessionStatus::dhtUploadRate() const
+{
+    return m_nativeStatus.dht_upload_rate;
+}
+
+int SessionStatus::trackerDownloadRate() const
+{
+    return m_nativeStatus.tracker_download_rate;
+}
+
+int SessionStatus::trackerUploadRate() const
+{
+    return m_nativeStatus.tracker_upload_rate;
+}
+
 qlonglong SessionStatus::totalDownload() const
 {
     return m_nativeStatus.total_download;

@@ -368,5 +368,6 @@
   <file>icons/oxygen/go-bottom.png</file>
   <file>icons/oxygen/go-top.png</file>
   <file>icons/oxygen/checked.png</file>
+  <file>icons/oxygen/office-chart-line.png</file>
 </qresource>
 </RCC>

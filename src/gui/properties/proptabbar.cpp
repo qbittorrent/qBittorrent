@@ -64,6 +64,10 @@ PropTabBar::PropTabBar(QWidget *parent) :
   m_btnGroup->addButton(files_button, FILES_TAB);
   // Spacer
   addItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
+  // Speed tab
+  QPushButton *speed_button = new QPushButton(GuiIconProvider::instance()->getIcon("office-chart-line"), tr("Speed"), parent);
+  addWidget(speed_button);
+  m_btnGroup->addButton(speed_button, SPEED_TAB);
   // SIGNAL/SLOT
   connect(m_btnGroup, SIGNAL(buttonClicked(int)), SLOT(setCurrentIndex(int)));
   // Disable buttons focus

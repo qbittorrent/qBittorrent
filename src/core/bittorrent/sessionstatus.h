@@ -51,6 +51,16 @@ namespace BitTorrent
         // account "useful" part of the rate
         int payloadUploadRate() const;
 
+        // Additional download/upload rates
+        int uploadRate() const;
+        int downloadRate() const;
+        int ipOverheadUploadRate() const;
+        int ipOverheadDownloadRate() const;
+        int dhtUploadRate() const;
+        int dhtDownloadRate() const;
+        int trackerUploadRate() const;
+        int trackerDownloadRate() const;
+
         qlonglong totalDownload() const;
         qlonglong totalUpload() const;
         qlonglong totalPayloadDownload() const;
