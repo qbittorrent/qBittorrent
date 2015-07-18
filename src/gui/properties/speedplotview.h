@@ -38,17 +38,6 @@ class SpeedPlotView : public QGraphicsView
 {
     Q_OBJECT
 public:
-    explicit SpeedPlotView(QWidget *parent = 0);
-
-    void setGraphEnable(int id, bool enable);
-
-    void pushXPoint(double x);
-    void pushYPoint(int id, double y);
-
-    void setViewableLastPoints(int period);
-
-    void replot();
-
     enum GraphID
     {
         UP = 0,
@@ -72,34 +61,45 @@ public:
         HOUR6
     };
 
-    enum PeriodInSeconds
-    {
-        MIN1_SEC = 60,
-        MIN5_SEC = 300,
-        MIN30_SEC = 1800,
-        HOUR6_SEC = 21600
-    };
+    explicit SpeedPlotView(QWidget *parent = 0);
+
+    void setGraphEnable(GraphID id, bool enable);
+
+    void pushXPoint(double x);
+    void pushYPoint(GraphID id, double y);
+
+    void setViewableLastPoints(TimePeriod period);
+
+    void replot();
 
 protected:
     virtual void paintEvent(QPaintEvent *event);
 
 private:
+    enum PeriodInSeconds
+    {
+        MIN1_SEC = 60,
+        MIN5_SEC = 5 * 60,
+        MIN30_SEC = 30 * 60,
+        HOUR6_SEC = 6 * 60 * 60
+    };
+
     struct GraphProperties
     {
         GraphProperties();
-        GraphProperties(const QString &_name, const QPen &_pen, bool _enable = false);
+        GraphProperties(const QString &name, const QPen &pen, bool enable = false);
 
-        QString name;
-        QPen pen;
-        bool enable;
+        QString m_name;
+        QPen m_pen;
+        bool m_enable;
     };
 
     QQueue<double> m_xData;
-    QMap<int, QQueue<double> > m_yData;
-    QMap<int, GraphProperties> m_properties;
+    QMap<GraphID, QQueue<double> > m_yData;
+    QMap<GraphID, GraphProperties> m_properties;
 
-    int m_viewablePointsCount;
-    int m_maxCapacity;
+    PeriodInSeconds m_viewablePointsCount;
+    PeriodInSeconds m_maxCapacity;
 
     double maxYValue();
 };

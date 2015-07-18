@@ -65,7 +65,6 @@ private:
     QLabel *m_periodLabel;
     QComboBox *m_periodCombobox;
     SpeedPlotView *m_plot;
-    PropertiesWidget *m_properties;
 
     QToolButton *m_graphsButton;
     QMenu *m_graphsMenu;

@@ -68,9 +68,9 @@ SpeedPlotView::SpeedPlotView(QWidget *parent)
     m_properties[TRACKER_DOWN] = GraphProperties(tr("Tracker Download"), greenPen);
 }
 
-void SpeedPlotView::setGraphEnable(int id, bool enable)
+void SpeedPlotView::setGraphEnable(GraphID id, bool enable)
 {
-    m_properties[id].enable = enable;
+    m_properties[id].m_enable = enable;
 }
 
 void SpeedPlotView::pushXPoint(double x)
@@ -81,7 +81,7 @@ void SpeedPlotView::pushXPoint(double x)
     m_xData.append(x);
 }
 
-void SpeedPlotView::pushYPoint(int id, double y)
+void SpeedPlotView::pushYPoint(GraphID id, double y)
 {
     while (m_yData[id].size() >= m_maxCapacity)
         m_yData[id].pop_front();
@@ -89,9 +89,24 @@ void SpeedPlotView::pushYPoint(int id, double y)
     m_yData[id].append(y);
 }
 
-void SpeedPlotView::setViewableLastPoints(int period)
+void SpeedPlotView::setViewableLastPoints(TimePeriod period)
 {
-    m_viewablePointsCount = period;
+    switch (period) {
+    case SpeedPlotView::MIN1:
+        m_viewablePointsCount = SpeedPlotView::MIN1_SEC;
+        break;
+    case SpeedPlotView::MIN5:
+        m_viewablePointsCount = SpeedPlotView::MIN5_SEC;
+        break;
+    case SpeedPlotView::MIN30:
+        m_viewablePointsCount = SpeedPlotView::MIN30_SEC;
+        break;
+    case SpeedPlotView::HOUR6:
+        m_viewablePointsCount = SpeedPlotView::HOUR6_SEC;
+        break;
+    default:
+        break;
+    }
 }
 
 void SpeedPlotView::replot()
@@ -102,9 +117,9 @@ void SpeedPlotView::replot()
 double SpeedPlotView::maxYValue()
 {
     double maxYValue = 0;
-    for (QMap<int, QQueue<double> >::const_iterator it = m_yData.begin(); it != m_yData.end(); ++it) {
+    for (QMap<GraphID, QQueue<double> >::const_iterator it = m_yData.begin(); it != m_yData.end(); ++it) {
 
-        if (!m_properties[it.key()].enable)
+        if (!m_properties[it.key()].m_enable)
             continue;
 
         QQueue<double> &queue = m_yData[it.key()];
@@ -182,9 +197,9 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     double y_multiplier = rect.height() / max_y;
     double x_tick_size = double(rect.width()) / m_viewablePointsCount;
 
-    for (QMap<int, QQueue<double> >::const_iterator it = m_yData.begin(); it != m_yData.end(); ++it) {
+    for (QMap<GraphID, QQueue<double> >::const_iterator it = m_yData.begin(); it != m_yData.end(); ++it) {
 
-        if (!m_properties[it.key()].enable)
+        if (!m_properties[it.key()].m_enable)
             continue;
 
         QQueue<double> &queue = m_yData[it.key()];
@@ -195,7 +210,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
                                     rect.bottom() - queue.at(i) * y_multiplier));
         }
 
-        painter.setPen(m_properties[it.key()].pen);
+        painter.setPen(m_properties[it.key()].m_pen);
         painter.drawPolyline(points.data(), points.size());
     }
 
@@ -204,15 +219,13 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
 
     double legend_height = 0;
     int legend_width = 0;
-    for (QMap<int, GraphProperties>::const_iterator it = m_properties.begin(); it != m_properties.end(); ++it) {
+    for (QMap<GraphID, GraphProperties>::const_iterator it = m_properties.begin(); it != m_properties.end(); ++it) {
 
-        if (!it.value().enable)
+        if (!it.value().m_enable)
             continue;
 
-        if (font_metrics.width(it.value().name) > legend_width)
-        {
-            legend_width =  font_metrics.width(it.value().name);
-        }
+        if (font_metrics.width(it.value().m_name) > legend_width)
+            legend_width =  font_metrics.width(it.value().m_name);
         legend_height += 1.5 * font_metrics.height();
     }
 
@@ -220,34 +233,32 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     painter.fillRect(legend_background_rect, QColor(255, 255, 255, 128)); // 50% transparent
 
     int i = 0;
-    for (QMap<int, GraphProperties>::const_iterator it = m_properties.begin(); it != m_properties.end(); ++it) {
+    for (QMap<GraphID, GraphProperties>::const_iterator it = m_properties.begin(); it != m_properties.end(); ++it) {
 
-        if (!it.value().enable)
+        if (!it.value().m_enable)
             continue;
 
-        int name_size = font_metrics.width(it.value().name);
+        int name_size = font_metrics.width(it.value().m_name);
         double indent = 1.5 * i * font_metrics.height();
 
-        painter.setPen(it.value().pen);
+        painter.setPen(it.value().m_pen);
         painter.drawLine(legend_top_left + QPointF(0, indent + font_metrics.height()),
                          legend_top_left + QPointF(name_size, indent + font_metrics.height()));
         painter.drawText(QRectF(legend_top_left + QPointF(0, indent), QSizeF(2 * name_size, font_metrics.height())),
-                         it.value().name, QTextOption(Qt::AlignVCenter));
+                         it.value().m_name, QTextOption(Qt::AlignVCenter));
         ++i;
     }
 }
 
 SpeedPlotView::GraphProperties::GraphProperties()
-    : name()
-    , pen()
-    , enable(false)
+    : m_enable(false)
 {
 }
 
-SpeedPlotView::GraphProperties::GraphProperties(const QString &_name, const QPen &_pen, bool _enable)
-    : name(_name)
-    , pen(_pen)
-    , enable(_enable)
+SpeedPlotView::GraphProperties::GraphProperties(const QString &name, const QPen &pen, bool enable)
+    : m_name(name)
+    , m_pen(pen)
+    , m_enable(enable)
 {
 }
 

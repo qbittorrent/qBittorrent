@@ -46,7 +46,6 @@
 
 SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     : QWidget(parent)
-    , m_properties(parent)
 {
     m_layout = new QVBoxLayout(this);
     m_layout->setContentsMargins(0, 0, 0, 0);
@@ -143,7 +142,7 @@ void SpeedWidget::update()
         m_plot->pushYPoint(SpeedPlotView::TRACKER_UP, btStatus.trackerUploadRate());
         m_plot->pushYPoint(SpeedPlotView::TRACKER_DOWN, btStatus.trackerDownloadRate());
 
-        QMetaObject::invokeMethod(this, "graphUpdate");
+        QMetaObject::invokeMethod(this, "graphUpdate", Qt::QueuedConnection);
         Utils::Misc::msleep(1000);
     }
 }
@@ -155,30 +154,14 @@ void SpeedWidget::graphUpdate()
 
 void SpeedWidget::onPeriodChange(int period)
 {
-    switch (period) {
-    case SpeedPlotView::MIN1:
-        m_plot->setViewableLastPoints(SpeedPlotView::MIN1_SEC);
-        break;
-    case SpeedPlotView::MIN5:
-        m_plot->setViewableLastPoints(SpeedPlotView::MIN5_SEC);
-        break;
-    case SpeedPlotView::MIN30:
-        m_plot->setViewableLastPoints(SpeedPlotView::MIN30_SEC);
-        break;
-    case SpeedPlotView::HOUR6:
-        m_plot->setViewableLastPoints(SpeedPlotView::HOUR6_SEC);
-        break;
-    default:
-        break;
-    }
-
+    m_plot->setViewableLastPoints(static_cast<SpeedPlotView::TimePeriod>(period));
     graphUpdate();
 }
 
 void SpeedWidget::onGraphChange(int id)
 {
     QAction *action = m_graphsMenuActions.at(id);
-    m_plot->setGraphEnable(id, action->isChecked());
+    m_plot->setGraphEnable(static_cast<SpeedPlotView::GraphID>(id), action->isChecked());
 
     graphUpdate();
 }
@@ -189,18 +172,14 @@ void SpeedWidget::loadSettings()
 
     int periodIndex = preferences->getSpeedWidgetPeriod();
     m_periodCombobox->setCurrentIndex(periodIndex);
-    onPeriodChange(periodIndex);
+    onPeriodChange(static_cast<SpeedPlotView::TimePeriod>(periodIndex));
 
     for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id) {
         QAction *action = m_graphsMenuActions.at(id);
+        bool enable = preferences->getSpeedWidgetGraphEnable(id);
 
-        if (preferences->getSpeedWidgetGraphEnable(id)) {
-            action->setChecked(true);
-            m_plot->setGraphEnable(id, true);
-        } else {
-            action->setChecked(false);
-            m_plot->setGraphEnable(id, false);
-        }
+        action->setChecked(enable);
+        m_plot->setGraphEnable(static_cast<SpeedPlotView::GraphID>(id), enable);
     }
 }
 
