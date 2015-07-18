@@ -20,6 +20,7 @@ nogui {
     TARGET = qbittorrent-nox
 } else {
     QT += xml
+    QT += concurrent
     CONFIG(static) {
         DEFINES += QBT_STATIC_QT
         QTPLUGIN += qico
