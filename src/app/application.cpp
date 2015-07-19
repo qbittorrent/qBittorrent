@@ -139,7 +139,7 @@ void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
 
     // AutoRun program
     if (pref->isAutoRunEnabled()) {
-        QString program = pref->getAutoRunProgram().trimmed();
+        QString program = pref->getAutoRunProgram();
         // Replace %f by torrent path
         program.replace("%f", torrent->savePathParsed());
         // Replace %n by torrent name

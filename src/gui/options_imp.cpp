@@ -411,7 +411,7 @@ void options_imp::saveOptions() {
   pref->setMailNotificationSMTPUsername(mailNotifUsername->text());
   pref->setMailNotificationSMTPPassword(mailNotifPassword->text());
   pref->setAutoRunEnabled(autoRunBox->isChecked());
-  pref->setAutoRunProgram(autoRun_txt->text());
+  pref->setAutoRunProgram(autoRun_txt->text().trimmed());
   pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
   pref->setActionOnDblClOnTorrentFn(getActionOnDblClOnTorrentFn());
   // End Downloads preferences
