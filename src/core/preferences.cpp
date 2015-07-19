@@ -1767,7 +1767,7 @@ QString Preferences::getPythonPath()
     supported_versions << "34" << "33" << "32" << "31" << "30" << "27" << "26" << "25";
     foreach (const QString &v, supported_versions)
         if (QFile::exists("C:/Python" + v + "/python.exe"))
-            return "C:/Python" + v;
+            return "C:/Python" + v + "/python.exe";
 
     return QString();
 }
