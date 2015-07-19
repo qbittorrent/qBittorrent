@@ -28,54 +28,30 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QRegExp>
-#include <QMessageBox>
+#ifndef PEERADDITION_H
+#define PEERADDITION_H
+
+#include <QDialog>
 
 #include "core/bittorrent/peerinfo.h"
-#include "peeraddition.h"
+#include "ui_peersadditiondlg.h"
 
-PeerAdditionDlg::PeerAdditionDlg(QWidget *parent)
-    : QDialog(parent)
+class PeersAdditionDlg: public QDialog, private Ui::addPeersDialog
 {
-    setupUi(this);
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(validateInput()));
-}
+    Q_OBJECT
 
-QHostAddress PeerAdditionDlg::getAddress() const
-{
-    return QHostAddress(lineIP->text());
-}
+public:
+    PeersAdditionDlg(QWidget *parent = 0);
 
+    static QList<BitTorrent::PeerAddress> askForPeers();
 
-ushort PeerAdditionDlg::getPort() const
-{
-    return spinPort->value();
-}
+protected slots:
+    void validateInput();
 
+private:
+    BitTorrent::PeerAddress parsePeer(QString peer);
+    QList<BitTorrent::PeerAddress> m_peersList;
 
-BitTorrent::PeerAddress PeerAdditionDlg::askForPeerAddress()
-{
-    BitTorrent::PeerAddress addr;
+};
 
-    PeerAdditionDlg dlg;
-    if (dlg.exec() == QDialog::Accepted) {
-        addr.ip = dlg.getAddress();
-        if (addr.ip.isNull())
-            qDebug("Unable to parse the provided IP.");
-        else
-            qDebug("Provided IP is correct");
-        addr.port = dlg.getPort();
-    }
-
-    return addr;
-}
-
-
-void PeerAdditionDlg::validateInput()
-{
-    if (getAddress().isNull())
-        QMessageBox::warning(this, tr("Invalid IP"), tr("The IP you provided is invalid."), QMessageBox::Ok);
-    else
-        accept();
-}
+#endif // PEERADDITION_H

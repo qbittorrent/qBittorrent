@@ -43,7 +43,7 @@
 #include "core/logger.h"
 #include "propertieswidget.h"
 #include "geoipmanager.h"
-#include "peeraddition.h"
+#include "peersadditiondlg.h"
 #include "speedlimitdlg.h"
 #include "guiiconprovider.h"
 #include "peerlistdelegate.h"
@@ -109,6 +109,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent):
   // SIGNAL/SLOT
   connect(header(), SIGNAL(sectionClicked(int)), SLOT(handleSortColumnChanged(int)));
   handleSortColumnChanged(header()->sortIndicatorSection());
+  copyHotkey = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::Key_C), this, SLOT(copySelectedPeers()), 0, Qt::WidgetShortcut);
 }
 
 PeerListWidget::~PeerListWidget()
@@ -119,6 +120,7 @@ PeerListWidget::~PeerListWidget()
   delete m_listDelegate;
   if (m_resolver)
     delete m_resolver;
+  delete copyHotkey;
 }
 
 void PeerListWidget::updatePeerHostNameResolutionState()
@@ -151,16 +153,6 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
   BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
   if (!torrent) return;
 
-  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-  QStringList selectedPeerIPs;
-  QStringList selectedPeerIPPort;
-  foreach (const QModelIndex &index, selectedIndexes) {
-    int row = m_proxyModel->mapToSource(index).row();
-    QString myip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
-    QString myport = m_listModel->data(m_listModel->index(row, PeerListDelegate::PORT)).toString();
-    selectedPeerIPs << myip;
-    selectedPeerIPPort << myip + ":" + myport;
-  }
   // Add Peer Action
   QAction *addPeerAct = 0;
   if (!torrent->isQueued() && !torrent->isChecking()) {
@@ -169,7 +161,7 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
   }
   QAction *banAct = 0;
   QAction *copyPeerAct = 0;
-  if (!selectedPeerIPs.isEmpty()) {
+  if (!selectionModel()->selectedRows().isEmpty()) {
     copyPeerAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy selected"));
     menu.addSeparator();
     banAct = menu.addAction(GuiIconProvider::instance()->getIcon("user-group-delete"), tr("Ban peer permanently"));
@@ -179,47 +171,69 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
   QAction *act = menu.exec(QCursor::pos());
   if (act == 0) return;
   if (act == addPeerAct) {
-    BitTorrent::PeerAddress addr = PeerAdditionDlg::askForPeerAddress();
-    if (!addr.ip.isNull()) {
-      if (torrent->connectPeer(addr))
-        QMessageBox::information(0, tr("Peer addition"), tr("The peer was added to this torrent."));
-      else
-        QMessageBox::critical(0, tr("Peer addition"), tr("The peer could not be added to this torrent."));
+    QList<BitTorrent::PeerAddress> peersList = PeersAdditionDlg::askForPeers();
+    int peerCount = 0;
+    foreach (const BitTorrent::PeerAddress &addr, peersList) {
+        if (torrent->connectPeer(addr)) {
+            qDebug("Adding peer %s...", qPrintable(addr.ip.toString()));
+            Logger::instance()->addMessage(tr("Manually adding peer %1...").arg(addr.ip.toString()));
+            peerCount++;
+        }
+        else {
+            Logger::instance()->addMessage(tr("The peer %1 could not be added to this torrent.").arg(addr.ip.toString()), Log::WARNING);
+        }
     }
-    else {
-      qDebug("No peer was added");
-    }
+    if (peerCount < peersList.length())
+        QMessageBox::information(0, tr("Peer addition"), tr("Some peers could not be added. Check the Log for details."));
+    else if (peerCount > 0)
+        QMessageBox::information(0, tr("Peer addition"), tr("The peers were added to this torrent."));
     return;
   }
   if (act == banAct) {
-    banSelectedPeers(selectedPeerIPs);
+    banSelectedPeers();
     return;
   }
   if (act == copyPeerAct) {
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-    QApplication::clipboard()->setText(selectedPeerIPPort.join("\r\n"));
-#else
-    QApplication::clipboard()->setText(selectedPeerIPPort.join("\n"));
-#endif
+    copySelectedPeers();
+    return;
   }
 }
 
-void PeerListWidget::banSelectedPeers(const QStringList& peer_ips)
+void PeerListWidget::banSelectedPeers()
 {
   // Confirm first
-  int ret = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to ban permanently the selected peers?"),
+  int ret = QMessageBox::question(this, tr("Ban peer permanently"), tr("Are you sure you want to ban permanently the selected peers?"),
                                   tr("&Yes"), tr("&No"),
                                   QString(), 0, 1);
   if (ret)
     return;
 
-  foreach (const QString &ip, peer_ips) {
+  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+  foreach (const QModelIndex &index, selectedIndexes) {
+    int row = m_proxyModel->mapToSource(index).row();
+    QString ip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
     qDebug("Banning peer %s...", ip.toLocal8Bit().data());
     Logger::instance()->addMessage(tr("Manually banning peer %1...").arg(ip));
     BitTorrent::Session::instance()->banIP(ip);
   }
   // Refresh list
   loadPeers(m_properties->getCurrentTorrent());
+}
+
+void PeerListWidget::copySelectedPeers()
+{
+  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+  QStringList selectedPeers;
+  foreach (const QModelIndex &index, selectedIndexes) {
+    int row = m_proxyModel->mapToSource(index).row();
+    QString ip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
+    QString myport = m_listModel->data(m_listModel->index(row, PeerListDelegate::PORT)).toString();
+    if (ip.indexOf(".") == -1) // IPv6
+        selectedPeers << "[" + ip + "]:" + myport;
+    else // IPv4
+        selectedPeers << ip + ":" + myport;
+  }
+  QApplication::clipboard()->setText(selectedPeers.join("\n"));
 }
 
 void PeerListWidget::clear() {
