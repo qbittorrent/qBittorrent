@@ -887,7 +887,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
                                    tr("Some files are currently transferring.\nAre you sure you want to quit qBittorrent?"),
                                    QMessageBox::NoButton, this);
             QPushButton *noBtn = confirmBox.addButton(tr("&No"), QMessageBox::NoRole);
-            QPushButton *yesBtn = confirmBox.addButton(tr("&Yes"), QMessageBox::YesRole);
+            confirmBox.addButton(tr("&Yes"), QMessageBox::YesRole);
             QPushButton *alwaysBtn = confirmBox.addButton(tr("&Always Yes"), QMessageBox::YesRole);
             confirmBox.setDefaultButton(noBtn);
             confirmBox.exec();
