@@ -1,5 +1,9 @@
 * Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.0
     - FEATURE: Huge core code refactoring. Problems with labels, temp folders etc should be eliminated. Smoother UI should be observed too. (Gelmir)
+    - FEATURE: Speed graph (Anton Lashkov)
+    - FEATURE: Add multiple peers in Peers addition dialog. Closes #1563, #2245, #3133, #1419, #3287, #1419 (ngosang)
+    - FEATURE: Allow to copy all peers with a keyboard shortcut (ngosang)
+    - BUGFIX: Fix progress calculation in Content tab. Closes #2639 Closes #2752 (ngosang)
     - OTHER: Fixed typos, spelling correction (dartraiden)
     
 
