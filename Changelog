@@ -1,3 +1,21 @@
+* Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.2
+    - FEATURE: Allow to force reannounce DHT too (Chocobo1)
+    - FEATURE: Implement an option to disable confirmation of torrent recheck (blaxspirit)
+    - FEATURE: Allow to copy all the trackers with a keyboard shortcut (pmzqla)
+    - BUGFIX: Fix torrent renaming. Closes #3398 (ngosang)
+    - COSMETIC: Update color scheme of completed.png icon. (sledgehammer999)
+    - COSMETIC: Fix printing of the copyright symbol in the About dialog. (sledgehammer999)
+    - WEBUI: Ports between 1 and 65535 as in the GUI. Closes #1602 (ngosang)
+    - WEBUI: Fix an error in Content tab when the torrent doesn't have metadata (ngosang)
+    - WEBUI: New option Web UI port UPNP. Closes #3358 (ngosang)
+    - WEBUI: Fix API Content Types. Closes #3393 (ngosang)
+    - WEBUI: Fix empty trackers addition (ngosang)
+    - WEBUI: Torrent download from hash. Closes #1173 (ngosang)
+    - WEBUI: Fix sort by queue number (ngosang)
+    - WEBUI: Open external links in a new window/tab (ngosang)
+    - SEARCH: Search status per tab (DoumanAsh)
+    - SEARCH: Remove the word 'torrent' in ExtraTorrent results (ngosang)
+
 * Sat Jul 11 2015 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.1
     - FEATURE: Change default preferences (ngosang)
     - FEATURE: Add "Add link to torrent" menu in TrayIconMenu. Closes #2918. (Chocobo1)
