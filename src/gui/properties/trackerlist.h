@@ -59,6 +59,7 @@ private:
   QTreeWidgetItem* lsd_item;
   QShortcut *editHotkey;
   QShortcut *deleteHotkey;
+  QShortcut *copyHotkey;
 
 public:
   TrackerList(PropertiesWidget *properties);
