@@ -520,7 +520,7 @@
              <x>0</x>
              <y>0</y>
              <width>487</width>
-             <height>1005</height>
+             <height>965</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -990,7 +990,7 @@
             <item>
              <widget class="QGroupBox" name="autoRunBox">
               <property name="title">
-               <string>Run an external program on torrent completion</string>
+               <string>Run external program on torrent completion</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -1003,18 +1003,7 @@
                 <widget class="QLineEdit" name="autoRun_txt"/>
                </item>
                <item>
-                <widget class="QLabel" name="label_4">
-                 <property name="text">
-                  <string>The following parameters are supported:
-&lt;ul&gt;
-&lt;li&gt;%f: Torrent path&lt;/li&gt;
-&lt;li&gt;%n: Torrent name&lt;/li&gt;
-&lt;/ul&gt;</string>
-                 </property>
-                 <property name="textFormat">
-                  <enum>Qt::RichText</enum>
-                 </property>
-                </widget>
+                <widget class="QLabel" name="autoRun_param"/>
                </item>
               </layout>
              </widget>

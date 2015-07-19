@@ -140,10 +140,18 @@ void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
     // AutoRun program
     if (pref->isAutoRunEnabled()) {
         QString program = pref->getAutoRunProgram();
-        // Replace %f by torrent path
-        program.replace("%f", torrent->savePathParsed());
-        // Replace %n by torrent name
-        program.replace("%n", torrent->name());
+        int file_count = torrent->filesCount();
+
+        program.replace("%N", torrent->name());
+        program.replace("%F", (file_count > 1) ? "" : torrent->fileName(0));
+        program.replace("%L", torrent->label());
+        program.replace("%D", torrent->rootPath());
+        program.replace("%K", (file_count > 1) ? "multi" : "single");
+        program.replace("%C", QString::number(torrent->filesCount()));
+        program.replace("%Z", QString::number(torrent->totalSize()));
+        program.replace("%T", torrent->currentTracker());
+        program.replace("%I", torrent->hash());
+
         QProcess::startDetached(program);
     }
 
