@@ -221,7 +221,7 @@ QVariant TorrentModel::data(const QModelIndex &index, int role) const
     case TR_TIME_ELAPSED:
         return (role == Qt::DisplayRole) ? torrent->activeTime() : torrent->seedingTime();
     case TR_SAVE_PATH:
-        return torrent->savePathParsed();
+        return torrent->rootPath();
     case TR_COMPLETED:
         return torrent->completedSize();
     case TR_RATIO_LIMIT:
