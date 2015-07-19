@@ -665,16 +665,15 @@ void TransferListWidget::displayListMenu(const QPoint&)
     actionFirstLastPiece_prio.setCheckable(true);
     connect(&actionFirstLastPiece_prio, SIGNAL(triggered()), this, SLOT(toggleSelectedFirstLastPiecePrio()));
     // End of actions
-    QMenu listMenu(this);
+
     // Enable/disable pause/start action given the DL state
-    bool has_pause = false, has_start = false, has_force = false, has_preview = false;
+    bool needs_pause = false, needs_start = false, needs_force = false, needs_preview = false;
     bool all_same_super_seeding = true;
     bool super_seeding_mode = false;
     bool all_same_sequential_download_mode = true, all_same_prio_firstlast = true;
     bool sequential_download_mode = false, prioritize_first_last = false;
     bool one_has_metadata = false, one_not_seed = false;
     bool first = true;
-    bool forced = false;
 
     BitTorrent::TorrentHandle *torrent;
     qDebug("Displaying menu");
@@ -686,7 +685,6 @@ void TransferListWidget::displayListMenu(const QPoint&)
 
         if (torrent->hasMetadata())
             one_has_metadata = true;
-        forced = torrent->isForced();
         if (!torrent->isSeed()) {
             one_not_seed = true;
             if (torrent->hasMetadata()) {
@@ -712,35 +710,32 @@ void TransferListWidget::displayListMenu(const QPoint&)
 
             }
         }
-        if (torrent->isPaused()) {
-            if (!has_start) {
-                listMenu.addAction(&actionStart);
-                has_start = true;
-            }
-            if (!has_force) {
-                listMenu.addAction(&actionForceStart);
-                has_force = true;
-            }
-        }
-        else {
-            if (forced && !has_start) {
-                listMenu.addAction(&actionStart);
-                has_start = true;
-            }
-            if (!has_pause) {
-                listMenu.addAction(&actionPause);
-                has_pause = true;
-            }
-            if (!forced && !has_force) {
-                listMenu.addAction(&actionForceStart);
-                has_force = true;
-            }
-        }
-        if (torrent->hasMetadata() && !has_preview)
-            has_preview = true;
+        if (!torrent->isForced())
+            needs_force = true;
+        else
+            needs_start = true;
+        if (torrent->isPaused())
+            needs_start = true;
+        else
+            needs_pause = true;
+        if (torrent->hasMetadata())
+            needs_preview = true;
+
         first = false;
-        if (has_pause && has_start && has_force && has_preview && one_not_seed) break;
+
+        if (one_has_metadata && one_not_seed && !all_same_sequential_download_mode
+            && !all_same_prio_firstlast && !all_same_super_seeding && needs_start
+            && needs_force && needs_pause && needs_preview) {
+            break;
+        }
     }
+    QMenu listMenu(this);
+    if (needs_start)
+        listMenu.addAction(&actionStart);
+    if (needs_pause)
+        listMenu.addAction(&actionPause);
+    if (needs_force)
+        listMenu.addAction(&actionForceStart);
     listMenu.addSeparator();
     listMenu.addAction(&actionDelete);
     listMenu.addSeparator();
@@ -768,7 +763,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
     }
     listMenu.addSeparator();
     bool added_preview_action = false;
-    if (has_preview) {
+    if (needs_preview) {
         listMenu.addAction(&actionPreview_file);
         added_preview_action = true;
     }
