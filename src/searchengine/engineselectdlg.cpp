@@ -82,7 +82,21 @@ engineSelectDlg::~engineSelectDlg() {
 
 void engineSelectDlg::dropEvent(QDropEvent *event) {
   event->acceptProposedAction();
-  QStringList files = event->mimeData()->text().split(QString::fromUtf8("\n"));
+  QStringList files;
+  if (event->mimeData()->hasUrls()) {
+    const QList<QUrl> urls = event->mimeData()->urls();
+    foreach (const QUrl &url, urls) {
+      if (!url.isEmpty()) {
+        if (url.scheme().compare("file", Qt::CaseInsensitive) == 0)
+          files << url.toLocalFile();
+        else
+          files << url.toString();
+      }
+    }
+  }
+  else {
+    files = event->mimeData()->text().split(QString::fromUtf8("\n"));
+  }
   foreach (QString file, files) {
     qDebug("dropped %s", qPrintable(file));
     if (misc::isUrl(file)) {
