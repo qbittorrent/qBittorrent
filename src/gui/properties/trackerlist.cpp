@@ -407,7 +407,6 @@ void TrackerList::editSelectedTracker() {
     h.replace_trackers(trackers);
     if (!h.is_paused()) {
       h.force_reannounce();
-      h.force_dht_announce();
     }
   } catch(invalid_handle&) {
     return;
@@ -428,6 +427,10 @@ void TrackerList::reannounceSelected() {
     std::vector<announce_entry> trackers = h.trackers();
     for (size_t i = 0; i < trackers.size(); ++i) {
       foreach (QTreeWidgetItem* w, selected_items) {
+        if (w == dht_item) {
+            h.force_dht_announce();
+            break;
+        }
         if (w->text(COL_URL) == misc::toQString(trackers[i].url)) {
           h.force_reannounce(0, i);
           break;
@@ -491,6 +494,7 @@ void TrackerList::showTrackerListMenu(QPoint) {
 #endif
   if (act == reannounceAct) {
     properties->getCurrentTorrent().force_reannounce();
+    properties->getCurrentTorrent().force_dht_announce();
     return;
   }
   if (act == editAct) {
