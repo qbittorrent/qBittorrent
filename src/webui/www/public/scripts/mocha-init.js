@@ -181,14 +181,14 @@ initializeWindows = function() {
         }
     };
 
-    setForceStartFN = function(val) {
+    setForceStartFN = function() {
         var h = myTable.selectedIds();
         if (h.length) {
             new Request({
                 url: 'command/setForceStart',
                 method: 'post',
                 data: {
-                    value: val,
+                    value: 'true',
                     hashes: h.join("|")
                 }
             }).send();

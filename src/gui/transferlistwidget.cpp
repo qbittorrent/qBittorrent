@@ -621,10 +621,10 @@ void TransferListWidget::displayListMenu(const QPoint&)
     // Create actions
     QAction actionStart(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), 0);
     connect(&actionStart, SIGNAL(triggered()), this, SLOT(startSelectedTorrents()));
-    QAction actionForceStart(tr("Force Resume", "Force Resume/start the torrent"), 0);
-    connect(&actionForceStart, SIGNAL(triggered()), this, SLOT(forceStartSelectedTorrents()));
     QAction actionPause(GuiIconProvider::instance()->getIcon("media-playback-pause"), tr("Pause", "Pause the torrent"), 0);
     connect(&actionPause, SIGNAL(triggered()), this, SLOT(pauseSelectedTorrents()));
+    QAction actionForceStart(GuiIconProvider::instance()->getIcon("media-seek-forward"), tr("Force Resume", "Force Resume/start the torrent"), 0);
+    connect(&actionForceStart, SIGNAL(triggered()), this, SLOT(forceStartSelectedTorrents()));
     QAction actionDelete(GuiIconProvider::instance()->getIcon("edit-delete"), tr("Delete", "Delete the torrent"), 0);
     connect(&actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelectedTorrents()));
     QAction actionPreview_file(GuiIconProvider::instance()->getIcon("view-preview"), tr("Preview file..."), 0);
@@ -723,23 +723,17 @@ void TransferListWidget::displayListMenu(const QPoint&)
             }
         }
         else {
-
-            if (!forced) {
-                if (!has_force) {
-                    listMenu.addAction(&actionForceStart);
-                    has_force = true;
-                }
+            if (forced && !has_start) {
+                listMenu.addAction(&actionStart);
+                has_start = true;
             }
-            else {
-                if (!has_start) {
-                    listMenu.addAction(&actionStart);
-                    has_start = true;
-                }
-            }
-
             if (!has_pause) {
                 listMenu.addAction(&actionPause);
                 has_pause = true;
+            }
+            if (!forced && !has_force) {
+                listMenu.addAction(&actionForceStart);
+                has_force = true;
             }
         }
         if (torrent->hasMetadata() && !has_preview)

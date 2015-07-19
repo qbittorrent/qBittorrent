@@ -136,8 +136,9 @@ var ContextMenu = new Class({
         all_are_downloaded = true;
         all_are_paused = true;
         there_are_paused = false;
-        all_are_super_seeding = true;
         all_are_force_start = true;
+        there_are_force_start = false;
+        all_are_super_seeding = true;
 
         var h = myTable.selectedIds();
         h.each(function(item, index){
@@ -153,19 +154,20 @@ var ContextMenu = new Class({
             else
                 there_are_f_l_piece_prio = true;
 
-            if (data['force_start'] != true)
-                all_are_force_start = false;
-
             if (data['progress'] != 1.0) // not downloaded
                 all_are_downloaded = false;
             else if (data['super_seeding'] != true)
                 all_are_super_seeding = false;
 
-            state = data['state'];
-            if ((state != 'pausedUP') && (state != 'pausedDL'))
+            if (data['state'] != 'pausedUP' && data['state'] != 'pausedDL')
                 all_are_paused = false;
             else
                 there_are_paused = true;
+
+            if (data['force_start'] != true)
+                all_are_force_start = false;
+            else
+                there_are_force_start = true;
         });
 
         show_seq_dl = true;
@@ -177,8 +179,6 @@ var ContextMenu = new Class({
 
         if (!all_are_f_l_piece_prio && there_are_f_l_piece_prio)
             show_f_l_piece_prio = false;
-
-        this.setItemChecked('ForceStart', all_are_force_start);
 
         if (all_are_downloaded) {
             this.hideItem('SequentialDownload');
@@ -207,18 +207,16 @@ var ContextMenu = new Class({
             this.hideItem('SuperSeeding');
         }
 
-        if (all_are_paused) {
-            this.showItem('Start');
+        this.showItem('Start');
+        this.showItem('Pause');
+        this.showItem('ForceStart');
+        if (all_are_paused)
             this.hideItem('Pause');
-        } else {
-            if (there_are_paused) {
-                this.showItem('Start');
-                this.showItem('Pause');
-            } else {
-                this.hideItem('Start');
-                this.showItem('Pause');
-            }
-        }
+        else if (all_are_force_start)
+            this.hideItem('ForceStart');
+        else if (!there_are_paused && !there_are_force_start)
+            this.hideItem('Start');
+
     },
 
     //show menu

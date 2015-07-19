@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>414</width>
+    <width>462</width>
     <height>256</height>
    </rect>
   </property>
@@ -14,34 +14,6 @@
    <string>Preview selection</string>
   </property>
   <layout class="QVBoxLayout">
-   <item>
-    <widget class="QLabel" name="lbl_title">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>37</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>37</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>File preview</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignHCenter|Qt::AlignTop</set>
-     </property>
-    </widget>
-   </item>
    <item>
     <widget class="QLabel" name="label">
      <property name="maximumSize">
