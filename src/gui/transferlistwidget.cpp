@@ -761,8 +761,10 @@ void TransferListWidget::displayListMenu(const QPoint&)
     labelActions << labelMenu->addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("New...", "New label..."));
     labelActions << labelMenu->addAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Reset", "Reset label"));
     labelMenu->addSeparator();
-    foreach (const QString &label, customLabels)
+    foreach (QString label, customLabels) {
+        label.replace('&', "&&");  // avoid '&' becomes accelerator key
         labelActions << labelMenu->addAction(GuiIconProvider::instance()->getIcon("inode-directory"), label);
+    }
     listMenu.addSeparator();
     if (one_not_seed)
         listMenu.addAction(&actionSet_download_limit);
