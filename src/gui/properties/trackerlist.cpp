@@ -425,17 +425,17 @@ void TrackerList::reannounceSelected() {
       return;
 
     std::vector<announce_entry> trackers = h.trackers();
-    for (size_t i = 0; i < trackers.size(); ++i) {
-      foreach (QTreeWidgetItem* w, selected_items) {
+    foreach (QTreeWidgetItem* w, selected_items) {
         if (w == dht_item) {
             h.force_dht_announce();
-            break;
+            continue;
         }
-        if (w->text(COL_URL) == misc::toQString(trackers[i].url)) {
-          h.force_reannounce(0, i);
-          break;
+        for (size_t i = 0; i < trackers.size(); ++i) {
+            if (w->text(COL_URL) == misc::toQString(trackers[i].url)) {
+                h.force_reannounce(0, i);
+                break;
+            }
         }
-      }
     }
   } catch(invalid_handle&) {
     return;
