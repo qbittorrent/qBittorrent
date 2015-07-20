@@ -1762,8 +1762,8 @@ QString Preferences::getPythonPath()
     // Fallback: Detect python from default locations
     const QStringList dirs = QDir("C:/").entryList(QStringList("Python*"), QDir::Dirs, QDir::Name | QDir::Reversed);
     foreach (const QString &dir, dirs) {
-        const QString path("C:/" + dir + "/python.exe");
-        if (QFile::exists(path))
+        const QString path("C:/" + dir + "/");
+        if (QFile::exists(path + "python.exe"))
             return path;
     }
 
