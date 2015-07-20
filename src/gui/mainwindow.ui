@@ -131,10 +131,10 @@
    <addaction name="separator"/>
    <addaction name="actionStart"/>
    <addaction name="actionPause"/>
-   <addaction name="actionBottomPriority"/>
-   <addaction name="actionDecreasePriority"/>
-   <addaction name="actionIncreasePriority"/>
    <addaction name="actionTopPriority"/>
+   <addaction name="actionIncreasePriority"/>
+   <addaction name="actionDecreasePriority"/>
+   <addaction name="actionBottomPriority"/>
    <addaction name="separator"/>
    <addaction name="actionOptions"/>
    <addaction name="actionLock_qBittorrent"/>
