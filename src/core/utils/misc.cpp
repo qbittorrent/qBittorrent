@@ -233,7 +233,7 @@ int Utils::Misc::pythonVersion()
     static int version = -1;
     if (version < 0) {
         QProcess python_proc;
-#if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
+#if defined(Q_OS_UNIX)
         /*
          * On Unix-Like Systems python2 and python3 should always exist
          * http://legacy.python.org/dev/peps/pep-0394/
@@ -272,7 +272,7 @@ int Utils::Misc::pythonVersion()
 
 QString Utils::Misc::pythonExecutable()
 {
-#if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
+#if defined(Q_OS_UNIX)
     /*
      * On Unix-Like Systems python2 and python3 should always exist
      * http://legacy.python.org/dev/peps/pep-0394/
