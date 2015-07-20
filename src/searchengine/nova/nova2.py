@@ -1,4 +1,4 @@
-#VERSION: 1.40
+#VERSION: 1.41
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -41,6 +41,11 @@ from multiprocessing import Pool, cpu_count
 from fix_encoding import fix_encoding
 
 THREADED = True
+try:
+    MAX_THREADS = cpu_count()
+except NotImplementedError:
+    MAX_THREADS = 1
+
 CATEGORIES = {'all', 'movies', 'tv', 'music', 'games', 'anime', 'software', 'pictures', 'books'}
 
 ################################################################################
@@ -170,7 +175,7 @@ def main(args):
 
     if THREADED:
         #child process spawning is controlled min(number of searches, number of cpu)
-        pool = Pool(min(len(engines_list), cpu_count()))
+        pool = Pool(min(len(engines_list), MAX_THREADS))
         pool.map(run_search, ([globals()[engine], what, cat] for engine in engines_list))
     else:
         map(run_search, ([globals()[engine], what, cat] for engine in engines_list))
