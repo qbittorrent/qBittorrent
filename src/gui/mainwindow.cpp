@@ -218,7 +218,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     vboxLayout->addWidget(tabs);
 
-    prioSeparator = toolBar->insertSeparator(actionBottomPriority);
+    prioSeparator = toolBar->insertSeparator(actionTopPriority);
     prioSeparatorMenu = menu_Edit->insertSeparator(actionTopPriority);
 
     // Transfer list slots
