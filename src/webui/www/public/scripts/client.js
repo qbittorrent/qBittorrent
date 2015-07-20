@@ -174,11 +174,11 @@ window.addEvent('load', function () {
                             response['torrents'][key]['hash'] = key;
                             myTable.updateRowData(response['torrents'][key]);
                         }
-                    myTable.updateTable(full_update);
                     if (response['torrents_removed'])
                         response['torrents_removed'].each(function (hash) {
                             myTable.removeRow(hash);
                         });
+                    myTable.updateTable(full_update);
                     myTable.altRow();
                     if (response['server_state']) {
                         var tmp = response['server_state'];
