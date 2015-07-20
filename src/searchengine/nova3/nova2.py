@@ -1,4 +1,4 @@
-#VERSION: 1.40
+#VERSION: 1.41
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -34,12 +34,17 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import urllib.parse
-from os import path, cpu_count
+from os import path
 from glob import glob
 from sys import argv
-from multiprocessing import Pool
+from multiprocessing import Pool, cpu_count
 
 THREADED = True
+try:
+    MAX_THREADS = cpu_count()
+except NotImplementedError:
+    MAX_THREADS = 1
+
 CATEGORIES = {'all', 'movies', 'tv', 'music', 'games', 'anime', 'software', 'pictures', 'books'}
 
 ################################################################################
@@ -168,7 +173,7 @@ def main(args):
     what = urllib.parse.quote(' '.join(args[2:]))
     if THREADED:
         #child process spawning is controlled min(number of searches, number of cpu)
-        with Pool(min(len(engines_list), cpu_count())) as pool:
+        with Pool(min(len(engines_list), MAX_THREADS)) as pool:
             pool.map(run_search, ([globals()[engine], what, cat] for engine in engines_list))
     else:
         #py3 note: map is needed to be evaluated for content to be executed
