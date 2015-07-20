@@ -458,7 +458,13 @@ var dynamicTable = new Class({
             data = row[fullUpdate ? 'full_data' : 'data'];
 
             tds = tr.getElements('td');
+            for (var i = 0; i < this.columns.length; i++) {
+                if (data.hasOwnProperty(this.columns[i].dataProperties[0]))
+                    this.columns[i].updateTd(tds[i], row);
+            }
+            row['data'] = {};
 
+            /*
             for(var prop in data)
                 for (var i = 0; i < this.columns.length; i++)
                     for (var j = 0; j < this.columns[i].dataProperties.length; j++)
@@ -473,6 +479,7 @@ var dynamicTable = new Class({
                 if (tr.hasClass('selected'))
                     tr.removeClass('selected');
             }
+            */
         },
 
         removeRow : function (hash) {
