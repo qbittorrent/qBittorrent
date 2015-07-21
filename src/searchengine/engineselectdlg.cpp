@@ -358,11 +358,10 @@ void engineSelectDlg::askForLocalPlugin() {
   QStringList pathsList = QFileDialog::getOpenFileNames(0,
                                                         tr("Select search plugins"), QDir::homePath(),
                                                         tr("qBittorrent search plugin")+QString::fromUtf8(" (*.py)"));
-  QString path;
-  foreach (path, pathsList) {
+  foreach (QString path, pathsList) {
     if (path.endsWith(".py", Qt::CaseInsensitive)) {
-      QString plugin_name = path.split("/").last();
-      plugin_name.replace(".py", "", Qt::CaseInsensitive);
+      QString plugin_name = Utils::Fs::fileName(path);
+      plugin_name.chop(3); // Remove extension
       installPlugin(path, plugin_name);
     }
   }
