@@ -1646,7 +1646,7 @@ void MainWindow::installPython()
     DownloadThread *pydownloader = new DownloadThread(this);
     connect(pydownloader, SIGNAL(downloadFinished(QString,QString)), this, SLOT(pythonDownloadSuccess(QString,QString)));
     connect(pydownloader, SIGNAL(downloadFailure(QString,QString)), this, SLOT(pythonDownloadFailure(QString,QString)));
-    pydownloader->downloadUrl("http://python.org/ftp/python/2.7.3/python-2.7.3.msi");
+    pydownloader->downloadUrl("https://www.python.org/ftp/python/3.4.3/python-3.4.3.msi");
 }
 
 void MainWindow::pythonDownloadSuccess(QString url, QString file_path)
