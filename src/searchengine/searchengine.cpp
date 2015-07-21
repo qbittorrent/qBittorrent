@@ -181,6 +181,11 @@ void SearchEngine::giveFocusToSearchInput() {
 
 // Function called when we click on search button
 void SearchEngine::on_search_button_clicked() {
+    if (misc::pythonVersion() < 0) {
+        mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
+        return;
+    }
+
     if (searchProcess->state() != QProcess::NotRunning) {
 #ifdef Q_OS_WIN
         searchProcess->kill();
