@@ -1760,11 +1760,12 @@ QString Preferences::getPythonPath()
         return path;
 
     // Fallback: Detect python from default locations
-    QStringList supported_versions;
-    supported_versions << "34" << "33" << "32" << "31" << "30" << "27" << "26" << "25";
-    foreach (const QString &v, supported_versions)
-        if (QFile::exists("C:/Python" + v + "/python.exe"))
-            return "C:/Python" + v;
+    const QStringList dirs = QDir("C:/").entryList(QStringList("Python*"), QDir::Dirs, QDir::Name | QDir::Reversed);
+    foreach (const QString &dir, dirs) {
+        const QString path("C:/" + dir + "/python.exe");
+        if (QFile::exists(path))
+            return path;
+    }
 
     return QString();
 }
