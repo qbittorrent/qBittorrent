@@ -57,6 +57,7 @@ namespace Utils
 #endif
         int pythonVersion();
         QString pythonExecutable();
+        QString pythonVersionComplete();
         // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
         // use Binary prefix standards from IEC 60027-2
         // see http://en.wikipedia.org/wiki/Kilobyte

@@ -104,9 +104,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_posInitialized(false)
     , force_exit(false)
     , unlockDlgShowing(false)
-#ifdef Q_OS_WIN
     , has_python(false)
-#endif
 {
     setupUi(this);
 
@@ -1366,19 +1364,73 @@ void MainWindow::on_actionRSS_Reader_triggered()
 
 void MainWindow::on_actionSearch_engine_triggered()
 {
-#ifdef Q_OS_WIN
     if (!has_python && actionSearch_engine->isChecked()) {
-        bool res = false;
+        int pythonVersion = Utils::Misc::pythonVersion();
 
         // Check if python is already in PATH
-        if (Utils::Misc::pythonVersion() > 0)
-            res = true;
-        else
-            res = addPythonPathToEnv();
+        if (pythonVersion > 0)
+            Logger::instance()->addMessage(tr("Python found in %1").arg("PATH"), Log::INFO); // Prevent translators from messing with PATH
+#ifdef Q_OS_WIN
+        else if (addPythonPathToEnv())
+            pythonVersion = Utils::Misc::pythonVersion();
+#endif
+
+        bool res = false;
+
+        if (pythonVersion == 2) {
+            // Check if python 2.7.x or later
+            QString version = Utils::Misc::pythonVersionComplete().trimmed();
+            QStringList splitted = version.split('.');
+            if (splitted.size() > 1) {
+                int middleVer = splitted.at(1).toInt();
+                if (middleVer < 7) {
+                    QMessageBox::information(this, tr("Old Python Interpreter"), tr("Your Python version is %1, which is too old. You need at least version 2.7.0 for python2 or 3.3.0 for python3.").arg(version));
+                    actionSearch_engine->setChecked(false);
+                    Preferences::instance()->setSearchEnabled(false);
+                    return;
+                }
+                else {
+                    res = true;
+                }
+            }
+            else {
+                QMessageBox::information(this, tr("Undetermined Python version"), tr("Couldn't decode your Python version: %1").arg(version));
+                actionSearch_engine->setChecked(false);
+                Preferences::instance()->setSearchEnabled(false);
+                return;
+            }
+        }
+        else if (pythonVersion == 3) {
+            // Check if python 3.3.x or later
+            QString version = Utils::Misc::pythonVersionComplete().trimmed();
+            QStringList splitted = version.split('.');
+            if (splitted.size() > 1) {
+                int middleVer = splitted.at(1).toInt();
+                if (middleVer < 3) {
+                    QMessageBox::information(this, tr("Old Python Interpreter"), tr("Your Python version is %1, which is too old. You need at least version 2.7.0 for python2 or 3.3.0 for python3.").arg(version));
+                    actionSearch_engine->setChecked(false);
+                    Preferences::instance()->setSearchEnabled(false);
+                    return;
+                }
+                else {
+                    res = true;
+                }
+            }
+            else {
+                QMessageBox::information(this, tr("Undetermined Python version"), tr("Couldn't decode your Python version: %1").arg(version));
+                actionSearch_engine->setChecked(false);
+                Preferences::instance()->setSearchEnabled(false);
+                return;
+            }
+        }
+        else {
+            res = false;
+        }
 
         if (res) {
             has_python = true;
         }
+#ifdef Q_OS_WIN
         else if (QMessageBox::question(this, tr("Missing Python Interpreter"),
                                        tr("Python is required to use the search engine but it does not seem to be installed.\nDo you want to install it now?"),
                                        QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
@@ -1388,13 +1440,16 @@ void MainWindow::on_actionSearch_engine_triggered()
             Preferences::instance()->setSearchEnabled(false);
             return;
         }
+#endif
         else {
+#ifndef Q_OS_WIN
+            QMessageBox::information(this, tr("Missing Python Interpreter"), tr("Python is required to use the search engine but it does not seem to be installed."));
+#endif
             actionSearch_engine->setChecked(false);
             Preferences::instance()->setSearchEnabled(false);
             return;
         }
     }
-#endif
     displaySearchTab(actionSearch_engine->isChecked());
 }
 
@@ -1554,6 +1609,7 @@ bool MainWindow::addPythonPathToEnv()
         return true;
     QString python_path = Preferences::getPythonPath();
     if (!python_path.isEmpty()) {
+        Logger::instance()->addMessage(tr("Python found in %1").arg(Utils::Fs::toNativePath(python_path)), Log::INFO);
         // Add it to PATH envvar
         QString path_envar = QString::fromLocal8Bit(qgetenv("PATH").constData());
         if (path_envar.isNull())
@@ -1595,6 +1651,8 @@ void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePa
     // Reload search engine
     has_python = addPythonPathToEnv();
     if (has_python) {
+        // Make it print the version to Log
+        Utils::Misc::pythonVersion();
         actionSearch_engine->setChecked(true);
         displaySearchTab(true);
     }

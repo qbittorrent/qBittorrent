@@ -68,6 +68,7 @@ const int UNLEN = 256;
 
 #include "core/utils/string.h"
 #include "core/unicodestrings.h"
+#include "core/logger.h"
 #include "misc.h"
 
 static struct { const char *source; const char *comment; } units[] = {
@@ -241,6 +242,11 @@ int Utils::Misc::pythonVersion()
         python_proc.start("python3", QStringList() << "--version", QIODevice::ReadOnly);
         if (python_proc.waitForFinished()) {
             if (python_proc.exitCode() == 0) {
+                QByteArray output = python_proc.readAllStandardOutput();
+                if (output.isEmpty())
+                    output = python_proc.readAllStandardError();
+                const QByteArray version_str = output.split(' ').last();
+                Logger::instance()->addMessage(QCoreApplication::translate("misc", "Python version: %1").arg(QString(version_str)), Log::INFO);
                 version = 3;
                 return 3;
             }
@@ -248,6 +254,11 @@ int Utils::Misc::pythonVersion()
         python_proc.start("python2", QStringList() << "--version", QIODevice::ReadOnly);
         if (python_proc.waitForFinished()) {
             if (python_proc.exitCode() == 0) {
+                QByteArray output = python_proc.readAllStandardOutput();
+                if (output.isEmpty())
+                    output = python_proc.readAllStandardError();
+                const QByteArray version_str = output.split(' ').last();
+                Logger::instance()->addMessage(QCoreApplication::translate("misc", "Python version: %1").arg(QString(version_str)), Log::INFO);
                 version = 2;
                 return 2;
             }
@@ -260,7 +271,7 @@ int Utils::Misc::pythonVersion()
         if (output.isEmpty())
             output = python_proc.readAllStandardError();
         const QByteArray version_str = output.split(' ').last();
-        qDebug() << "Python version is:" << version_str.trimmed();
+        Logger::instance()->addMessage(QCoreApplication::translate("misc", "Python version: %1").arg(QString(version_str)), Log::INFO);
         if (version_str.startsWith("3."))
             version = 3;
         else
@@ -283,6 +294,32 @@ QString Utils::Misc::pythonExecutable()
         return "python2";
 #endif
     return "python";
+}
+
+/**
+ * Returns the complete python version
+ * eg 2.7.9
+ * Make sure to have setup python first
+ */
+QString Utils::Misc::pythonVersionComplete() {
+    static QString version;
+
+    if (version.isEmpty()) {
+        if (pythonVersion() < 0)
+            return QString();
+
+        QProcess python_proc;
+        python_proc.start(pythonExecutable(), QStringList() << "--version", QIODevice::ReadOnly);
+        if (!python_proc.waitForFinished()) return QString();
+        if (python_proc.exitCode() < 0) return QString();
+        QByteArray output = python_proc.readAllStandardOutput();
+        if (output.isEmpty())
+            output = python_proc.readAllStandardError();
+        const QByteArray version_str = output.split(' ').last();
+        version = version_str;
+    }
+
+    return version;
 }
 
 // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
