@@ -1420,12 +1420,12 @@ void Preferences::setOutgoingPortsMax(uint val)
     setValue("Preferences/Advanced/OutgoingPortsMax", val);
 }
 
-bool Preferences::ignoreLimitsOnLAN() const
+bool Preferences::getIgnoreLimitsOnLAN() const
 {
     return value("Preferences/Advanced/IgnoreLimitsLAN", true).toBool();
 }
 
-void Preferences::ignoreLimitsOnLAN(bool ignore)
+void Preferences::setIgnoreLimitsOnLAN(bool ignore)
 {
     setValue("Preferences/Advanced/IgnoreLimitsLAN", ignore);
 }

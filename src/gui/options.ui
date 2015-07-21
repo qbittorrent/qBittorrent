@@ -1679,6 +1679,13 @@
                     </property>
                    </widget>
                   </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkLimitLocalPeerRate">
+                    <property name="text">
+                     <string>Apply rate limit to peers on LAN</string>
+                    </property>
+                   </widget>
+                  </item>
                  </layout>
                 </widget>
                </item>

@@ -415,8 +415,8 @@ void Session::setSessionSettings()
     // Outgoing ports
     sessionSettings.outgoing_ports = std::make_pair(pref->outgoingPortsMin(), pref->outgoingPortsMax());
     // Ignore limits on LAN
-    qDebug() << "Ignore limits on LAN" << pref->ignoreLimitsOnLAN();
-    sessionSettings.ignore_limits_on_local_network = pref->ignoreLimitsOnLAN();
+    qDebug() << "Ignore limits on LAN" << pref->getIgnoreLimitsOnLAN();
+    sessionSettings.ignore_limits_on_local_network = pref->getIgnoreLimitsOnLAN();
     // Include overhead in transfer limits
     sessionSettings.rate_limit_ip_overhead = pref->includeOverheadInLimits();
     // IP address to announce to trackers
