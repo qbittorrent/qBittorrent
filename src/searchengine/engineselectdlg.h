@@ -46,6 +46,7 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
   private:
     DownloadThread *downloader;
     SupportedEngines *supported_engines;
+    const QString m_updateUrl;
 
   public:
     engineSelectDlg(QWidget *parent, SupportedEngines *supported_engines);

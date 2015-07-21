@@ -47,9 +47,12 @@
 #include <QMimeData>
 
 enum EngineColumns {ENGINE_NAME, ENGINE_VERSION, ENGINE_URL, ENGINE_STATE, ENGINE_ID};
-const QString UPDATE_URL = QString("https://raw.github.com/qbittorrent/qBittorrent/master/src/searchengine/") + (misc::pythonVersion() >= 3 ? "nova3" : "nova") + "/engines/";
 
-engineSelectDlg::engineSelectDlg(QWidget *parent, SupportedEngines *supported_engines) : QDialog(parent), supported_engines(supported_engines) {
+engineSelectDlg::engineSelectDlg(QWidget *parent, SupportedEngines *supported_engines)
+    : QDialog(parent)
+    , supported_engines(supported_engines)
+    , m_updateUrl(QString("https://raw.github.com/qbittorrent/qBittorrent/master/src/searchengine/") + (misc::pythonVersion() >= 3 ? "nova3" : "nova") + "/engines/")
+{
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   pluginsTree->setRootIsDecorated(false);
@@ -111,7 +114,7 @@ void engineSelectDlg::dragEnterEvent(QDragEnterEvent *event) {
 void engineSelectDlg::on_updateButton_clicked() {
   // Download version file from update server on sourceforge
   setCursor(QCursor(Qt::WaitCursor));
-  downloader->downloadUrl(QString(UPDATE_URL)+"versions.txt");
+  downloader->downloadUrl(m_updateUrl + "versions.txt");
 }
 
 void engineSelectDlg::toggleEngineState(QTreeWidgetItem *item, int) {
@@ -398,8 +401,8 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file) {
       qDebug("Plugin: %s is outdated", qPrintable(plugin_name));
       // Downloading update
       setCursor(QCursor(Qt::WaitCursor));
-      downloader->downloadUrl(UPDATE_URL+plugin_name+".py");
-      //downloader->downloadUrl(UPDATE_URL+plugin_name+".png");
+      downloader->downloadUrl(m_updateUrl + plugin_name + ".py");
+      //downloader->downloadUrl(m_updateUrl + plugin_name + ".png");
       updated = true;
     }else {
       qDebug("Plugin: %s is up to date", qPrintable(plugin_name));
