@@ -202,9 +202,7 @@ private:
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     QTimer programUpdateTimer;
 #endif
-#ifdef Q_OS_WIN
     bool has_python;
-#endif
     QMenu* toolbarMenu;
 
 private slots:
