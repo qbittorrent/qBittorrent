@@ -1453,7 +1453,7 @@ void MainWindow::on_actionSearch_engine_triggered()
             has_python = true;
         }
         else if (QMessageBox::question(this, tr("Missing Python Interpreter"),
-                                       tr("Python 2.x is required to use the search engine but it does not seem to be installed.\nDo you want to install it now?"),
+                                       tr("Python is required to use the search engine but it does not seem to be installed.\nDo you want to install it now?"),
                                        QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
             // Download and Install Python
             installPython();
