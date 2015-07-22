@@ -91,10 +91,3 @@ nogui:systemd {
 # INSTALL
 target.path = $$PREFIX/bin/
 INSTALLS += target
-
-!nogui {
-    # DEFINE added by configure
-    contains(DEFINES, WITH_GEOIP_EMBEDDED) {
-        message("You chose to embed GeoIP database in qBittorrent executable.")
-    }
-}

@@ -1626,7 +1626,7 @@ void MainWindow::installPython()
 {
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl("https://www.python.org/ftp/python/3.4.3/python-3.4.3.msi");
+    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl("https://www.python.org/ftp/python/3.4.3/python-3.4.3.msi", true);
     connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(pythonDownloadSuccess(QString, QString)));
     connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(pythonDownloadFailure(QString, QString)));
 }

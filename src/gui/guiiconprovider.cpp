@@ -68,6 +68,12 @@ QIcon GuiIconProvider::getIcon(const QString &iconId)
     return QIcon(IconProvider::getIconPath(iconId));
 }
 
+QIcon GuiIconProvider::getFlagIcon(const QString &countryIsoCode)
+{
+    if (countryIsoCode.isEmpty()) return QIcon();
+    return QIcon(":/icons/flags/" + countryIsoCode.toLower() + ".png");
+}
+
 // Makes sure the icon is at least available in 16px and 24px size
 // It scales the icon from the theme if necessary
 // Otherwise, the UI looks broken if the icon is not available

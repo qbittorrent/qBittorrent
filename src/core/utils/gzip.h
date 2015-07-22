@@ -1,6 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,35 +25,20 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#ifndef GEOIPMANAGER_H
-#define GEOIPMANAGER_H
+#ifndef UTILS_GZIP_H
+#define UTILS_GZIP_H
 
-#include <QString>
-#include <QIcon>
+class QByteArray;
 
-namespace libtorrent {
-  class session;
+namespace Utils
+{
+    namespace Gzip
+    {
+        bool compress(QByteArray src, QByteArray &dest);
+        bool uncompress(QByteArray src, QByteArray &dest);
+    }
 }
 
-class GeoIPManager : public QObject {
-  Q_OBJECT
-
-public:
-  static void loadDatabase(libtorrent::session *s);
-  static QIcon CountryISOCodeToIcon(const QString &iso);
-  static QString CountryISOCodeToName(const QString &iso);
-
-private:
-  static QString geoipFolder(bool embedded=false);
-  static QString geoipDBpath(bool embedded=false);
-#ifdef WITH_GEOIP_EMBEDDED
-  static void exportEmbeddedDb();
-#endif
-};
-
-
-#endif // GEOIP_H
+#endif // UTILS_GZIP_H

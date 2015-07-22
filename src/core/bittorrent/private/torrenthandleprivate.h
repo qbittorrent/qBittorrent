@@ -42,9 +42,6 @@ struct TorrentHandlePrivate
     virtual void handleDefaultSavePathChanged() = 0;
     virtual void handleTempPathChanged() = 0;
     virtual void handleAppendExtensionToggled() = 0;
-#ifndef DISABLE_COUNTRIES_RESOLUTION
-    virtual void handleResolveCountriesToggled() = 0;
-#endif
 
 protected:
     ~TorrentHandlePrivate() {}

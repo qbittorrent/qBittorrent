@@ -32,7 +32,6 @@ DEFINES += _CRT_SECURE_NO_DEPRECATE
 DEFINES += _SCL_SECURE_NO_DEPRECATE
 DEFINES += __USE_W32_SOCKETS
 DEFINES += _FILE_OFFSET_BITS=64
-DEFINES += WITH_SHIPPED_GEOIP_H
 
 CONFIG(debug, debug|release) {
   DEFINES += TORRENT_DEBUG
@@ -49,6 +48,3 @@ win32-g++ {
 else {
     include(winconf-msvc.pri)
 }
-
-DEFINES += WITH_GEOIP_EMBEDDED
-message("On Windows, GeoIP database must be embedded.")

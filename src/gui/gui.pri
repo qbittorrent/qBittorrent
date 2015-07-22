@@ -3,7 +3,6 @@ INCLUDEPATH += $$PWD
 include(lineedit/lineedit.pri)
 include(properties/properties.pri)
 include(rss/rss.pri)
-include(geoip/geoip.pri)
 include(powermanagement/powermanagement.pri)
 unix:!macx:dbus: include(qtnotify/qtnotify.pri)
 

@@ -283,9 +283,6 @@ namespace BitTorrent
         bool isTempPathEnabled() const;
         bool isAppendExtensionEnabled() const;
         bool useAppendLabelToSavePath() const;
-    #ifndef DISABLE_COUNTRIES_RESOLUTION
-        bool isResolveCountriesEnabled() const;
-    #endif
         QString defaultSavePath() const;
         QString tempPath() const;
         void handleTorrentRatioLimitChanged(TorrentHandle *const torrent);
@@ -327,10 +324,6 @@ namespace BitTorrent
         qreal m_globalMaxRatio;
         int m_numResumeData;
         int m_extraLimit;
-    #ifndef DISABLE_COUNTRIES_RESOLUTION
-        bool m_geoipDBLoaded;
-        bool m_resolveCountries;
-    #endif
         bool m_appendLabelToSavePath;
         bool m_appendExtension;
         uint m_refreshInterval;

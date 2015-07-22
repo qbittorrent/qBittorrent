@@ -36,23 +36,23 @@
 #include <QUrl>
 #include <QDebug>
 
-#include <zlib.h>
-
 #include "core/utils/fs.h"
+#include "core/utils/gzip.h"
 #include "core/utils/misc.h"
 #include "downloadmanager.h"
 #include "downloadhandler.h"
 
 static QString errorCodeToString(QNetworkReply::NetworkError status);
-static QByteArray gUncompress(Bytef *inData, uInt len);
 
 using namespace Net;
 
-DownloadHandler::DownloadHandler(QNetworkReply *reply, DownloadManager *manager, qint64 limit)
+DownloadHandler::DownloadHandler(QNetworkReply *reply, DownloadManager *manager, bool saveToFile, qint64 limit, bool handleRedirectToMagnet)
     : QObject(manager)
     , m_reply(reply)
     , m_manager(manager)
+    , m_saveToFile(saveToFile)
     , m_sizeLimit(limit)
+    , m_handleRedirectToMagnet(handleRedirectToMagnet)
     , m_url(reply->url().toString())
 {
     init();
@@ -90,11 +90,23 @@ void DownloadHandler::processFinishedDownload()
         }
         else {
             // Success
-            QString filePath;
-            if (saveToFile(filePath))
-                emit downloadFinished(m_url, filePath);
-            else
-                emit downloadFailed(m_url, tr("I/O Error"));
+            QByteArray replyData = m_reply->readAll();
+            if (m_reply->rawHeader("Content-Encoding") == "gzip") {
+                // uncompress gzip reply
+                Utils::Gzip::uncompress(replyData, replyData);
+            }
+
+            if (m_saveToFile) {
+                QString filePath;
+                if (saveToFile(replyData, filePath))
+                    emit downloadFinished(m_url, filePath);
+                else
+                    emit downloadFailed(m_url, tr("I/O Error"));
+                }
+            else {
+                emit downloadFinished(m_url, replyData);
+            }
+
             this->deleteLater();
         }
     }
@@ -128,7 +140,7 @@ void DownloadHandler::init()
     connect(m_reply, SIGNAL(finished()), this, SLOT(processFinishedDownload()));
 }
 
-bool DownloadHandler::saveToFile(QString &filePath)
+bool DownloadHandler::saveToFile(const QByteArray &replyData, QString &filePath)
 {
     QTemporaryFile *tmpfile = new QTemporaryFile;
     if (!tmpfile->open()) {
@@ -140,11 +152,6 @@ bool DownloadHandler::saveToFile(QString &filePath)
     filePath = tmpfile->fileName();
     qDebug("Temporary filename is: %s", qPrintable(filePath));
     if (m_reply->isOpen() || m_reply->open(QIODevice::ReadOnly)) {
-        QByteArray replyData = m_reply->readAll();
-        if (m_reply->rawHeader("Content-Encoding") == "gzip") {
-            // uncompress gzip reply
-            replyData = gUncompress(reinterpret_cast<unsigned char*>(replyData.data()), static_cast<uInt>(replyData.length()));
-        }
         tmpfile->write(replyData);
         tmpfile->close();
         // XXX: tmpfile needs to be deleted on Windows before using the file
@@ -173,14 +180,20 @@ void DownloadHandler::handleRedirection(QUrl newUrl)
     if (newUrlString.startsWith("magnet:", Qt::CaseInsensitive)) {
         qDebug("Magnet redirect detected.");
         m_reply->abort();
-        emit redirectedToMagnet(m_url, newUrlString);
+        if (m_handleRedirectToMagnet)
+            emit redirectedToMagnet(m_url, newUrlString);
+        else
+            emit downloadFailed(m_url, tr("Unexpected redirect to magnet URI."));
+
         this->deleteLater();
     }
     else {
         DownloadHandler *tmp = m_manager->downloadUrl(newUrlString, m_sizeLimit);
         m_reply->deleteLater();
         m_reply = tmp->m_reply;
+        m_saveToFile = tmp->m_saveToFile;
         m_sizeLimit = tmp->m_sizeLimit;
+        m_handleRedirectToMagnet = tmp->m_handleRedirectToMagnet;
         init();
         tmp->m_reply = 0;
         delete tmp;
@@ -235,56 +248,4 @@ QString errorCodeToString(QNetworkReply::NetworkError status)
     default:
         return QObject::tr("Unknown error");
     }
-}
-
-QByteArray gUncompress(Bytef *inData, uInt len)
-{
-    if (len <= 4) {
-        qWarning("gUncompress: Input data is truncated");
-        return QByteArray();
-    }
-
-    QByteArray result;
-
-    z_stream strm;
-    static const int CHUNK_SIZE = 1024;
-    char out[CHUNK_SIZE];
-
-    /* allocate inflate state */
-    strm.zalloc = Z_NULL;
-    strm.zfree = Z_NULL;
-    strm.opaque = Z_NULL;
-    strm.avail_in = len;
-    strm.next_in = inData;
-
-    const int windowBits = 15;
-    const int ENABLE_ZLIB_GZIP = 32;
-
-    int ret = inflateInit2(&strm, windowBits | ENABLE_ZLIB_GZIP); // gzip decoding
-    if (ret != Z_OK)
-        return QByteArray();
-
-    // run inflate()
-    do {
-        strm.avail_out = CHUNK_SIZE;
-        strm.next_out = reinterpret_cast<unsigned char*>(out);
-
-        ret = inflate(&strm, Z_NO_FLUSH);
-        Q_ASSERT(ret != Z_STREAM_ERROR); // state not clobbered
-
-        switch (ret) {
-        case Z_NEED_DICT:
-        case Z_DATA_ERROR:
-        case Z_MEM_ERROR:
-            (void) inflateEnd(&strm);
-            return QByteArray();
-        }
-
-        result.append(out, CHUNK_SIZE - strm.avail_out);
-    }
-    while (!strm.avail_out);
-
-    // clean up and return
-    inflateEnd(&strm);
-    return result;
 }

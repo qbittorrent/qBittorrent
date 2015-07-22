@@ -429,7 +429,7 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file) {
 
 void engineSelectDlg::downloadFromUrl(const QString &url)
 {
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(url);
+    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(url, true);
     connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
     connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
 }

@@ -63,7 +63,7 @@ using namespace BitTorrent;
 //#include <libtorrent/extensions/metadata_transfer.hpp>
 
 #ifndef DISABLE_COUNTRIES_RESOLUTION
-#include "geoipmanager.h"
+#include "core/net/geoipmanager.h"
 #endif
 
 #include "core/utils/misc.h"
@@ -141,10 +141,6 @@ Session::Session(QObject *parent)
     , m_globalMaxRatio(-1)
     , m_numResumeData(0)
     , m_extraLimit(0)
-#ifndef DISABLE_COUNTRIES_RESOLUTION
-    , m_geoipDBLoaded(false)
-    , m_resolveCountries(false)
-#endif
     , m_appendLabelToSavePath(false)
     , m_appendExtension(false)
     , m_refreshInterval(0)
@@ -251,13 +247,6 @@ bool Session::useAppendLabelToSavePath() const
 {
     return m_appendLabelToSavePath;
 }
-
-#ifndef DISABLE_COUNTRIES_RESOLUTION
-bool Session::isResolveCountriesEnabled() const
-{
-    return m_resolveCountries;
-}
-#endif
 
 QString Session::defaultSavePath() const
 {
@@ -576,25 +565,6 @@ void Session::configure()
     else {
         delete m_bwScheduler;
     }
-
-#ifndef DISABLE_COUNTRIES_RESOLUTION
-    // Resolve countries
-    qDebug("Loading country resolution settings");
-    const bool new_resolv_countries = pref->resolvePeerCountries();
-    if (m_resolveCountries != new_resolv_countries) {
-        qDebug("in country resolution settings");
-        m_resolveCountries = new_resolv_countries;
-        if (m_resolveCountries && !m_geoipDBLoaded) {
-            qDebug("Loading geoip database");
-            GeoIPManager::loadDatabase(m_nativeSession);
-            m_geoipDBLoaded = true;
-        }
-
-        // Update torrent handles
-        foreach (TorrentHandlePrivate *const torrent, m_torrents)
-            torrent->handleResolveCountriesToggled();
-    }
-#endif
 
     Logger* const logger = Logger::instance();
 
@@ -1049,7 +1019,7 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
     if (Utils::Misc::isUrl(source)) {
         Logger::instance()->addMessage(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));
         // Launch downloader
-        Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, 10485760 /* 10MB */);
+        Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, true, 10485760 /* 10MB */, true);
         connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleDownloadFinished(QString, QString)));
         connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleDownloadFailed(QString, QString)));
         connect(handler, SIGNAL(redirectedToMagnet(QString, QString)), this, SLOT(handleRedirectedToMagnet(QString, QString)));

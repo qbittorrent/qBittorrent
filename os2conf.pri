@@ -13,8 +13,4 @@ LIBS += \
 RC_FILE = qbittorrent_os2.rc
 
 # LIBTORRENT DEFINES
-DEFINES += WITH_SHIPPED_GEOIP_H
 DEFINES += BOOST_ASIO_DYN_LINK
-
-DEFINES += WITH_GEOIP_EMBEDDED
-message("On eCS(OS/2), GeoIP database must be embedded.")

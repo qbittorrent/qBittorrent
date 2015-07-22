@@ -75,7 +75,7 @@ DownloadManager *DownloadManager::instance()
     return m_instance;
 }
 
-DownloadHandler *DownloadManager::downloadUrl(const QString &url, qint64 limit)
+DownloadHandler *DownloadManager::downloadUrl(const QString &url, bool saveToFile, qint64 limit, bool handleRedirectToMagnet)
 {
     // Update proxy settings
     applyProxySettings();
@@ -91,7 +91,7 @@ DownloadHandler *DownloadManager::downloadUrl(const QString &url, qint64 limit)
     qDebug("Downloading %s...", request.url().toEncoded().data());
     // accept gzip
     request.setRawHeader("Accept-Encoding", "gzip");
-    return new DownloadHandler(m_networkManager.get(request), this, limit);
+    return new DownloadHandler(m_networkManager.get(request), this, saveToFile, limit, handleRedirectToMagnet);
 }
 
 QList<QNetworkCookie> DownloadManager::cookiesForUrl(const QString &url) const

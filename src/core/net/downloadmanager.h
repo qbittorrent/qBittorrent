@@ -53,7 +53,7 @@ namespace Net
         static void freeInstance();
         static DownloadManager *instance();
 
-        DownloadHandler *downloadUrl(const QString &url, qint64 limit = 0);
+        DownloadHandler *downloadUrl(const QString &url, bool saveToFile = false, qint64 limit = 0, bool handleRedirectToMagnet = false);
         QList<QNetworkCookie> cookiesForUrl(const QString &url) const;
         bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url);
 

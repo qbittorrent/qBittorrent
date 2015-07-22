@@ -16,9 +16,11 @@ HEADERS += \
     $$PWD/net/dnsupdater.h \
     $$PWD/net/downloadmanager.h \
     $$PWD/net/downloadhandler.h \
+    $$PWD/net/geoipmanager.h \
     $$PWD/net/portforwarder.h \
     $$PWD/net/reverseresolution.h \
     $$PWD/net/smtp.h \
+    $$PWD/net/private/geoipdatabase.h \
     $$PWD/bittorrent/infohash.h \
     $$PWD/bittorrent/session.h \
     $$PWD/bittorrent/sessionstatus.h \
@@ -37,6 +39,7 @@ HEADERS += \
     $$PWD/bittorrent/private/filterparserthread.h \
     $$PWD/bittorrent/private/statistics.h \
     $$PWD/utils/fs.h \
+    $$PWD/utils/gzip.h \
     $$PWD/utils/misc.h \
     $$PWD/utils/string.h \
     $$PWD/unicodestrings.h \
@@ -57,9 +60,11 @@ SOURCES += \
     $$PWD/net/dnsupdater.cpp \
     $$PWD/net/downloadmanager.cpp \
     $$PWD/net/downloadhandler.cpp \
+    $$PWD/net/geoipmanager.cpp \
     $$PWD/net/portforwarder.cpp \
     $$PWD/net/reverseresolution.cpp \
     $$PWD/net/smtp.cpp \
+    $$PWD/net/private/geoipdatabase.cpp \
     $$PWD/bittorrent/infohash.cpp \
     $$PWD/bittorrent/session.cpp \
     $$PWD/bittorrent/sessionstatus.cpp \
@@ -76,6 +81,7 @@ SOURCES += \
     $$PWD/bittorrent/private/filterparserthread.cpp \
     $$PWD/bittorrent/private/statistics.cpp \
     $$PWD/utils/fs.cpp \
+    $$PWD/utils/gzip.cpp \
     $$PWD/utils/misc.cpp \
     $$PWD/utils/string.cpp \
     $$PWD/torrentfilter.cpp \

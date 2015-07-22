@@ -474,7 +474,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         trackerItem = new QListWidgetItem();
         trackerItem->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("network-server"));
 
-        Net::DownloadHandler *h = Net::DownloadManager::instance()->downloadUrl(QString("http://%1/favicon.ico").arg(host));
+        Net::DownloadHandler *h = Net::DownloadManager::instance()->downloadUrl(QString("http://%1/favicon.ico").arg(host), true);
         connect(h, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleFavicoDownload(QString, QString)));
         connect(h, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleFavicoFailure(QString, QString)));
     }
@@ -634,7 +634,7 @@ void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString&
         if (url.endsWith(".ico", Qt::CaseInsensitive)) {
             Logger::instance()->addMessage(tr("Couldn't decode favicon for URL `%1`. Trying to download favicon in PNG format.").arg(url),
                                            Log::WARNING);
-            Net::DownloadHandler *h = Net::DownloadManager::instance()->downloadUrl(url.left(url.size() - 4) + ".png");
+            Net::DownloadHandler *h = Net::DownloadManager::instance()->downloadUrl(url.left(url.size() - 4) + ".png", true);
             connect(h, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleFavicoDownload(QString, QString)));
             connect(h, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleFavicoFailure(QString, QString)));
         }

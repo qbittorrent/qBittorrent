@@ -28,6 +28,7 @@
 
 #include <libtorrent/version.hpp>
 
+#include "core/net/geoipmanager.h"
 #include "core/utils/string.h"
 #include "peerinfo.h"
 
@@ -69,11 +70,12 @@ bool PeerInfo::fromLSD() const
     return (m_nativeInfo.source & libt::peer_info::lsd);
 }
 
+#ifndef DISABLE_COUNTRIES_RESOLUTION
 QString PeerInfo::country() const
 {
-    return QString(QByteArray(m_nativeInfo.country, 2));
+    return Net::GeoIPManager::instance()->lookup(address().ip);
 }
-
+#endif
 
 bool PeerInfo::isInteresting() const
 {

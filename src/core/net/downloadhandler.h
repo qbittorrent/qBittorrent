@@ -47,12 +47,13 @@ namespace Net
         Q_OBJECT
 
     public:
-        DownloadHandler(QNetworkReply *reply, DownloadManager *manager, qint64 limit = 0);
+        DownloadHandler(QNetworkReply *reply, DownloadManager *manager, bool saveToFile = false, qint64 limit = 0, bool handleRedirectToMagnet = false);
         ~DownloadHandler();
 
         QString url() const;
 
     signals:
+        void downloadFinished(const QString &url, const QByteArray &data);
         void downloadFinished(const QString &url, const QString &filePath);
         void downloadFailed(const QString &url, const QString &reason);
         void redirectedToMagnet(const QString &url, const QString &magnetUri);
@@ -63,12 +64,14 @@ namespace Net
 
     private:
         void init();
-        bool saveToFile(QString &filePath);
+        bool saveToFile(const QByteArray &replyData, QString &filePath);
         void handleRedirection(QUrl newUrl);
 
         QNetworkReply *m_reply;
         DownloadManager *m_manager;
+        bool m_saveToFile;
         qint64 m_sizeLimit;
+        bool m_handleRedirectToMagnet;
         QString m_url;
     };
 }

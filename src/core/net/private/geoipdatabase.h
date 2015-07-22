@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,37 +26,35 @@
  * exception statement from your version.
  */
 
-#ifndef GUIICONPROVIDER_H
-#define GUIICONPROVIDER_H
+#ifndef GEOIPDATABASE_H
+#define GEOIPDATABASE_H
 
-#include "core/iconprovider.h"
+#include <QtGlobal>
 
-class QIcon;
+class QHostAddress;
+class QString;
+class QByteArray;
+class QDateTime;
 
-class GuiIconProvider : public IconProvider
+struct GeoIPData;
+
+class GeoIPDatabase
 {
-    Q_DISABLE_COPY(GuiIconProvider)
-    Q_OBJECT
-
 public:
-    static void initInstance();
-    static GuiIconProvider *instance();
+    static GeoIPDatabase *load(const QString &filename, QString &error);
+    static GeoIPDatabase *load(const QByteArray &data, QString &error);
 
-    QIcon getIcon(const QString &iconId);
-    QIcon getFlagIcon(const QString &countryIsoCode);
-    QString getIconPath(const QString &iconId);
+    ~GeoIPDatabase();
 
-private slots:
-    void configure();
+    QString type() const;
+    quint16 ipVersion() const;
+    QDateTime buildEpoch() const;
+    QString lookup(const QHostAddress &hostAddr) const;
 
 private:
-    explicit GuiIconProvider(QObject *parent = 0);
-    ~GuiIconProvider();
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    QIcon generateDifferentSizes(const QIcon &icon);
+    GeoIPDatabase(GeoIPData *geoIPData);
 
-    bool m_useSystemTheme;
-#endif
+    GeoIPData *m_geoIPData;
 };
 
-#endif // GUIICONPROVIDER_H
+#endif // GEOIPDATABASE_H
