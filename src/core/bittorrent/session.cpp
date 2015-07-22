@@ -569,7 +569,7 @@ void Session::configure()
     if (pref->isSchedulerEnabled()) {
         if (!m_bwScheduler) {
             m_bwScheduler = new BandwidthScheduler(this);
-            connect(m_bwScheduler, SIGNAL(switchToAlternativeMode(bool)), this, SLOT(changeSpeedLimitMode(bool)));
+            connect(m_bwScheduler.data(), SIGNAL(switchToAlternativeMode(bool)), this, SLOT(switchToAlternativeMode(bool)));
         }
         m_bwScheduler->start();
     }
@@ -780,6 +780,11 @@ void Session::handleRedirectedToMagnet(const QString &url, const QString &magnet
     addTorrent_impl(m_downloadedTorrents.take(url), MagnetUri(magnetUri));
 }
 
+void Session::switchToAlternativeMode(bool alternative)
+{
+    changeSpeedLimitMode_impl(alternative);
+}
+
 // Add to BitTorrent session the downloaded torrent file
 void Session::handleDownloadFinished(const QString &url, const QString &filePath)
 {
@@ -790,32 +795,14 @@ void Session::handleDownloadFinished(const QString &url, const QString &filePath
 
 void Session::changeSpeedLimitMode(bool alternative)
 {
-    qDebug() << Q_FUNC_INFO << alternative;
-    // Save new state to remember it on startup
     Preferences* const pref = Preferences::instance();
     // Stop the scheduler when the user has manually changed the bandwidth mode
-    if (!pref->isSchedulerEnabled())
+    if (pref->isSchedulerEnabled()) {
+        pref->setSchedulerEnabled(false);
         delete m_bwScheduler;
-    pref->setAltBandwidthEnabled(alternative);
+    }
 
-    // Apply settings to the bittorrent session
-    int downLimit = alternative ? pref->getAltGlobalDownloadLimit() : pref->getGlobalDownloadLimit();
-    if (downLimit <= 0)
-        downLimit = -1;
-    else
-        downLimit *= 1024;
-    setDownloadRateLimit(downLimit);
-
-    // Upload rate
-    int upLimit = alternative ? pref->getAltGlobalUploadLimit() : pref->getGlobalUploadLimit();
-    if (upLimit <= 0)
-        upLimit = -1;
-    else
-        upLimit *= 1024;
-    setUploadRateLimit(upLimit);
-
-    // Notify
-    emit speedLimitModeChanged(alternative);
+    changeSpeedLimitMode_impl(alternative);
 }
 
 // Return the torrent handle, given its hash
@@ -1394,6 +1381,34 @@ void Session::enableDHT(bool enable)
             qDebug("DHT disabled");
         }
     }
+}
+
+void Session::changeSpeedLimitMode_impl(bool alternative)
+{
+    qDebug() << Q_FUNC_INFO << alternative;
+    Preferences* const pref = Preferences::instance();
+
+    // Save new state to remember it on startup
+    pref->setAltBandwidthEnabled(alternative);
+
+    // Apply settings to the bittorrent session
+    int downLimit = alternative ? pref->getAltGlobalDownloadLimit() : pref->getGlobalDownloadLimit();
+    if (downLimit <= 0)
+        downLimit = -1;
+    else
+        downLimit *= 1024;
+    setDownloadRateLimit(downLimit);
+
+    // Upload rate
+    int upLimit = alternative ? pref->getAltGlobalUploadLimit() : pref->getGlobalUploadLimit();
+    if (upLimit <= 0)
+        upLimit = -1;
+    else
+        upLimit *= 1024;
+    setUploadRateLimit(upLimit);
+
+    // Notify
+    emit speedLimitModeChanged(alternative);
 }
 
 void Session::generateResumeData(bool final)
