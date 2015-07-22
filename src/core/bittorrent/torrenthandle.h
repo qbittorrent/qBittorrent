@@ -61,6 +61,7 @@ namespace libtorrent
     struct save_resume_data_alert;
     struct save_resume_data_failed_alert;
     struct file_renamed_alert;
+    struct file_rename_failed_alert;
     struct storage_moved_alert;
     struct storage_moved_failed_alert;
     struct metadata_received_alert;
@@ -303,7 +304,7 @@ namespace BitTorrent
         libtorrent::torrent_handle nativeHandle() const;
 
     private:
-        typedef boost::function<void ()> MoveStorageTrigger;
+        typedef boost::function<void ()> EventTrigger;
 
         void initialize();
         void updateStatus();
@@ -333,6 +334,7 @@ namespace BitTorrent
         void handleSaveResumeDataFailedAlert(libtorrent::save_resume_data_failed_alert *p);
         void handleFastResumeRejectedAlert(libtorrent::fastresume_rejected_alert *p);
         void handleFileRenamedAlert(libtorrent::file_renamed_alert *p);
+        void handleFileRenameFailedAlert(libtorrent::file_rename_failed_alert *p);
         void handleFileCompletedAlert(libtorrent::file_completed_alert *p);
         void handleMetadataReceivedAlert(libtorrent::metadata_received_alert *p);
         void handleStatsAlert(libtorrent::stats_alert *p);
@@ -370,7 +372,10 @@ namespace BitTorrent
         // m_queuedPath is where files should be moved to,
         // when current moving is completed
         QString m_queuedPath;
-        QQueue<MoveStorageTrigger> m_moveStorageTriggers;
+        // m_moveFinishedTriggers is activated only when the following conditions are met:
+        // all file rename jobs complete, all file move jobs complete
+        QQueue<EventTrigger> m_moveFinishedTriggers;
+        int m_renameCount;
 
         // Persistent data
         QString m_name;
