@@ -201,7 +201,11 @@ MainWindow::MainWindow(QWidget *parent)
     vSplitter->addWidget(hSplitter);
     vSplitter->setCollapsible(0, true);
     vSplitter->setCollapsible(1, false);
-    tabs->addTab(vSplitter, GuiIconProvider::instance()->getIcon("folder-remote"), tr("Transfers"));
+    /*
+     * Explicitly define the mnemonic ('&T') to prevent Qt from using the number between parentheses.
+     * When the Qt Breeze style is used and the number is used for the mnemonic, (%1) is not visible until Alt is pressed.
+     */
+    tabs->addTab(vSplitter, GuiIconProvider::instance()->getIcon("folder-remote"), tr("&Transfers (%1)").arg(0));
 
     connect(search_filter, SIGNAL(textChanged(QString)), transferList, SLOT(applyNameFilter(QString)));
     connect(hSplitter, SIGNAL(splitterMoved(int, int)), this, SLOT(writeSettings()));
@@ -531,7 +535,7 @@ void MainWindow::displaySearchTab(bool enable)
 
 void MainWindow::updateNbTorrents()
 {
-    tabs->setTabText(0, tr("Transfers (%1)").arg(transferList->getSourceModel()->rowCount()));
+    tabs->setTabText(0, tr("&Transfers (%1)").arg(transferList->getSourceModel()->rowCount()));
 }
 
 void MainWindow::on_actionDocumentation_triggered() const
