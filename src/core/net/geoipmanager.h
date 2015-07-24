@@ -68,7 +68,6 @@ namespace Net
 
         bool m_enabled;
         GeoIPDatabase *m_geoIPDatabase;
-        mutable QCache<QHostAddress, QString> m_cache;
 
         static GeoIPManager *m_instance;
     };
