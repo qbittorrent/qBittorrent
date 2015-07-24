@@ -403,8 +403,13 @@ void GeoIPManager::configure()
     const bool enabled = Preferences::instance()->resolvePeerCountries();
     if (m_enabled != enabled) {
         m_enabled = enabled;
-        if (m_enabled && !m_geoIPDatabase)
+        if (m_enabled && !m_geoIPDatabase) {
             loadDatabase();
+        }
+        else if (!m_enabled && m_geoIPDatabase) {
+            delete m_geoIPDatabase;
+            m_geoIPDatabase = 0;
+        }
     }
 }
 
