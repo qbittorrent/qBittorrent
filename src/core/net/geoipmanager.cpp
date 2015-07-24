@@ -57,7 +57,6 @@ GeoIPManager *GeoIPManager::m_instance = 0;
 GeoIPManager::GeoIPManager()
     : m_enabled(false)
     , m_geoIPDatabase(0)
-    , m_cache(CACHE_SIZE)
 {
     configure();
     connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
@@ -126,15 +125,8 @@ void GeoIPManager::downloadDatabaseFile()
 
 QString GeoIPManager::lookup(const QHostAddress &hostAddr) const
 {
-    if (m_enabled && m_geoIPDatabase) {
-        QString *country = m_cache.object(hostAddr);
-        if (country)
-            return *country;
-
-        QString code = m_geoIPDatabase->lookup(hostAddr);
-        m_cache.insert(hostAddr, new QString(code));
-        return code;
-    }
+    if (m_enabled && m_geoIPDatabase)
+        return m_geoIPDatabase->lookup(hostAddr);
 
     return QString();
 }
