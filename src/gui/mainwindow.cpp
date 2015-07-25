@@ -503,7 +503,8 @@ void MainWindow::displayRSSTab(bool enable)
         // RSS tab
         if (!rssWidget) {
             rssWidget = new RSSImp(tabs);
-            int index_tab = tabs->addTab(rssWidget, tr("RSS"));
+            connect(rssWidget, SIGNAL(updateRSSCount(int)), this, SLOT(updateRSSTabLabel(int)));
+            int index_tab = tabs->addTab(rssWidget, tr("RSS (%1)").arg(0));
             tabs->setTabIcon(index_tab, GuiIconProvider::instance()->getIcon("application-rss+xml"));
         }
     }
@@ -511,6 +512,11 @@ void MainWindow::displayRSSTab(bool enable)
         delete rssWidget;
     }
 
+}
+
+void MainWindow::updateRSSTabLabel(int count)
+{
+    tabs->setTabText(tabs->indexOf(rssWidget), tr("RSS (%1)").arg(count));
 }
 
 void MainWindow::displaySearchTab(bool enable)
