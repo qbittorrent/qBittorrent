@@ -1377,36 +1377,13 @@ void MainWindow::on_actionSearch_engine_triggered()
 
         bool res = false;
 
-        if (pythonVersion == 2) {
-            // Check if python 2.7.x or later
-            QString version = Utils::Misc::pythonVersionComplete().trimmed();
+        if ((pythonVersion == 2) || (pythonVersion == 3)) {
+            // Check python minimum requirement: 2.7.0/3.3.0
+            QString version = Utils::Misc::pythonVersionComplete();
             QStringList splitted = version.split('.');
             if (splitted.size() > 1) {
                 int middleVer = splitted.at(1).toInt();
-                if (middleVer < 7) {
-                    QMessageBox::information(this, tr("Old Python Interpreter"), tr("Your Python version is %1, which is too old. You need at least version 2.7.0 for python2 or 3.3.0 for python3.").arg(version));
-                    actionSearch_engine->setChecked(false);
-                    Preferences::instance()->setSearchEnabled(false);
-                    return;
-                }
-                else {
-                    res = true;
-                }
-            }
-            else {
-                QMessageBox::information(this, tr("Undetermined Python version"), tr("Couldn't decode your Python version: %1").arg(version));
-                actionSearch_engine->setChecked(false);
-                Preferences::instance()->setSearchEnabled(false);
-                return;
-            }
-        }
-        else if (pythonVersion == 3) {
-            // Check if python 3.3.x or later
-            QString version = Utils::Misc::pythonVersionComplete().trimmed();
-            QStringList splitted = version.split('.');
-            if (splitted.size() > 1) {
-                int middleVer = splitted.at(1).toInt();
-                if (middleVer < 3) {
+                if ((pythonVersion == 2 && middleVer < 7) || (pythonVersion == 3 && middleVer < 3)) {
                     QMessageBox::information(this, tr("Old Python Interpreter"), tr("Your Python version %1 is outdated. Please upgrade to latest version for search engines to work. Minimum requirement: 2.7.0/3.3.0.").arg(version));
                     actionSearch_engine->setChecked(false);
                     Preferences::instance()->setSearchEnabled(false);
@@ -1422,9 +1399,6 @@ void MainWindow::on_actionSearch_engine_triggered()
                 Preferences::instance()->setSearchEnabled(false);
                 return;
             }
-        }
-        else {
-            res = false;
         }
 
         if (res) {
