@@ -36,7 +36,6 @@
 #include <QList>
 #include <QClipboard>
 
-#include <libtorrent/version.hpp>
 #include "propertieswidget.h"
 
 enum TrackerListColumn {COL_TIER, COL_URL, COL_STATUS, COL_PEERS, COL_MSG};
@@ -79,9 +78,7 @@ public slots:
   void loadTrackers();
   void askForTrackers();
   void copyTrackerUrl();
-#if LIBTORRENT_VERSION_NUM >= 10000
   void reannounceSelected();
-#endif
   void deleteSelectedTrackers();
   void editSelectedTracker();
   void showTrackerListMenu(QPoint);

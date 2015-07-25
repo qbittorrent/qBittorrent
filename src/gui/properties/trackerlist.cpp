@@ -399,7 +399,6 @@ void TrackerList::editSelectedTracker() {
     }
 }
 
-#if LIBTORRENT_VERSION_NUM >= 10000
 void TrackerList::reannounceSelected() {
     QList<QTreeWidgetItem *> selected_items = selectedItems();
     if (selected_items.isEmpty()) return;
@@ -427,8 +426,6 @@ void TrackerList::reannounceSelected() {
     loadTrackers();
 }
 
-#endif
-
 void TrackerList::showTrackerListMenu(QPoint) {
   BitTorrent::TorrentHandle *const torrent = properties->getCurrentTorrent();
   if (!torrent) return;
@@ -444,14 +441,10 @@ void TrackerList::showTrackerListMenu(QPoint) {
     copyAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy tracker URL"));
     editAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"),tr("Edit selected tracker URL"));
   }
-#if LIBTORRENT_VERSION_NUM >= 10000
   QAction *reannounceSelAct = NULL;
-#endif
   QAction *reannounceAct = NULL;
   if (!torrent->isPaused()) {
-#if LIBTORRENT_VERSION_NUM >= 10000
     reannounceSelAct = menu.addAction(GuiIconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce to selected trackers"));
-#endif
     menu.addSeparator();
     reannounceAct = menu.addAction(GuiIconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers"));
   }
@@ -469,12 +462,10 @@ void TrackerList::showTrackerListMenu(QPoint) {
     deleteSelectedTrackers();
     return;
   }
-#if LIBTORRENT_VERSION_NUM >= 10000
   if (act == reannounceSelAct) {
     reannounceSelected();
     return;
   }
-#endif
   if (act == reannounceAct) {
     BitTorrent::TorrentHandle *h = properties->getCurrentTorrent();
     h->forceReannounce();

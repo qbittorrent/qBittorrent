@@ -41,8 +41,6 @@
 #include <QNetworkCookie>
 #include <QVariant>
 
-#include <libtorrent/version.hpp>
-
 #include "core/types.h"
 
 enum scheduler_days
@@ -246,10 +244,8 @@ public:
     void setProxyType(int type);
     bool proxyPeerConnections() const;
     void setProxyPeerConnections(bool enabled);
-#if LIBTORRENT_VERSION_NUM >= 10000
     bool getForceProxy() const;
     void setForceProxy(bool enabled);
-#endif
 
     // Bittorrent options
     int getMaxConnecs() const;

@@ -97,9 +97,7 @@ QByteArray prefjson::getPreferences()
     data["proxy_ip"] = pref->getProxyIp();
     data["proxy_port"] = pref->getProxyPort();
     data["proxy_peer_connections"] = pref->proxyPeerConnections();
-#if LIBTORRENT_VERSION_NUM >= 10000
     data["force_proxy"] = pref->getForceProxy();
-#endif
     data["proxy_auth_enabled"] = pref->isProxyAuthEnabled();
     data["proxy_username"] = pref->getProxyUsername();
     data["proxy_password"] = pref->getProxyPassword();
@@ -264,10 +262,8 @@ void prefjson::setPreferences(const QString& json)
         pref->setProxyPort(m["proxy_port"].toUInt());
     if (m.contains("proxy_peer_connections"))
         pref->setProxyPeerConnections(m["proxy_peer_connections"].toBool());
-#if LIBTORRENT_VERSION_NUM >= 10000
     if (m.contains("force_proxy"))
         pref->setForceProxy(m["force_proxy"].toBool());
-#endif
     if (m.contains("proxy_auth_enabled"))
         pref->setProxyAuthEnabled(m["proxy_auth_enabled"].toBool());
     if (m.contains("proxy_username"))

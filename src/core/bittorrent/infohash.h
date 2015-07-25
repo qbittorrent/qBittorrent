@@ -29,13 +29,7 @@
 #ifndef BITTORRENT_INFOHASH_H
 #define BITTORRENT_INFOHASH_H
 
-#include <libtorrent/version.hpp>
-#if LIBTORRENT_VERSION_NUM < 10000
-#include <libtorrent/peer_id.hpp>
-#else
 #include <libtorrent/sha1_hash.hpp>
-#endif
-
 #include <QString>
 
 namespace BitTorrent

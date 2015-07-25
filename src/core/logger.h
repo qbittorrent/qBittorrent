@@ -5,7 +5,6 @@
 #include <QVector>
 #include <QReadWriteLock>
 #include <QObject>
-#include <libtorrent/version.hpp>
 
 const int MAX_LOG_MESSAGES = 1000;
 
@@ -31,19 +30,13 @@ namespace Log
 
     struct Peer
     {
-#if LIBTORRENT_VERSION_NUM < 10000
-        Peer(int id, const QString &ip, bool blocked);
-#else
         Peer(int id, const QString &ip, bool blocked, const QString &reason);
-#endif
         Peer();
         int id;
         qint64 timestamp;
         QString ip;
         bool blocked;
-#if LIBTORRENT_VERSION_NUM >= 10000
         QString reason;
-#endif
     };
 }
 
@@ -58,11 +51,7 @@ public:
     static Logger *instance();
 
     void addMessage(const QString &message, const Log::MsgType &type = Log::NORMAL);
-#if LIBTORRENT_VERSION_NUM < 10000
-    void addPeer(const QString &ip, bool blocked);
-#else
     void addPeer(const QString &ip, bool blocked, const QString &reason = QString());
-#endif
     QVector<Log::Msg> getMessages(int lastKnownId = -1) const;
     QVector<Log::Peer> getPeers(int lastKnownId = -1) const;
 

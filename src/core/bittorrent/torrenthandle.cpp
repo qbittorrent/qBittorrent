@@ -34,7 +34,6 @@
 #include <QByteArray>
 #include <QBitArray>
 
-#include <libtorrent/version.hpp>
 #include <libtorrent/entry.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/address.hpp>
@@ -230,13 +229,8 @@ InfoHash TorrentHandle::hash() const
 QString TorrentHandle::name() const
 {
     QString name = m_name;
-    if (name.isEmpty()) {
-#if LIBTORRENT_VERSION_NUM < 10000
-        name = m_nativeName;
-#else
+    if (name.isEmpty())
         name = Utils::String::fromStdString(m_nativeStatus.name);
-#endif
-    }
 
     if (name.isEmpty())
         name = m_hash;
@@ -319,11 +313,7 @@ QString TorrentHandle::rootPath() const
 
 QString TorrentHandle::nativeActualSavePath() const
 {
-#if LIBTORRENT_VERSION_NUM < 10000
-    return m_nativeSavePath;
-#else
     return Utils::String::fromStdString(m_nativeStatus.save_path);
-#endif
 }
 
 QString TorrentHandle::actualSavePath() const
@@ -1014,12 +1004,7 @@ QBitArray TorrentHandle::pieces() const
 {
     QBitArray result(m_nativeStatus.pieces.size());
 
-#if LIBTORRENT_VERSION_NUM < 10000
-    typedef size_t pieces_size_t;
-#else
-    typedef int pieces_size_t;
-#endif
-    for (pieces_size_t i = 0; i < m_nativeStatus.pieces.size(); ++i)
+    for (int i = 0; i < m_nativeStatus.pieces.size(); ++i)
         result.setBit(i, m_nativeStatus.pieces.get_bit(i));
 
     return result;
@@ -1162,19 +1147,10 @@ void TorrentHandle::move(QString path)
     }
 }
 
-#if LIBTORRENT_VERSION_NUM < 10000
-void TorrentHandle::forceReannounce()
-{
-    SAFE_CALL(force_reannounce);
-}
-
-#else
-
 void TorrentHandle::forceReannounce(int index)
 {
     SAFE_CALL(force_reannounce, 0, index);
 }
-#endif
 
 void TorrentHandle::forceDHTAnnounce()
 {
@@ -1753,16 +1729,7 @@ void TorrentHandle::updateTorrentInfo()
 {
     if (!hasMetadata()) return;
 
-#if LIBTORRENT_VERSION_NUM < 10000
-    try {
-        m_torrentInfo = TorrentInfo(&m_nativeHandle.get_torrent_info());
-    }
-    catch (std::exception &exc) {
-        qDebug("torrent_handle::get_torrent_info() throws exception: %s", exc.what()); \
-    }
-#else
     m_torrentInfo = TorrentInfo(m_nativeStatus.torrent_file);
-#endif
 }
 
 void TorrentHandle::initialize()
@@ -1801,15 +1768,6 @@ void TorrentHandle::updateStatus()
 void TorrentHandle::updateStatus(const libtorrent::torrent_status &nativeStatus)
 {
     m_nativeStatus = nativeStatus;
-#if LIBTORRENT_VERSION_NUM < 10000
-    try {
-        m_nativeName = Utils::String::fromStdString(m_nativeHandle.name());
-        m_nativeSavePath = Utils::Fs::fromNativePath(Utils::String::fromStdString(m_nativeHandle.save_path()));
-    }
-    catch (std::exception &exc) {
-        qDebug("torrent_handle method inside TorrentHandleImpl::updateStatus() throws exception: %s", exc.what());
-    }
-#endif
 
     updateState();
     updateTorrentInfo();

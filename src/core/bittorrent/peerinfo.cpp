@@ -26,8 +26,6 @@
  * exception statement from your version.
  */
 
-#include <libtorrent/version.hpp>
-
 #include "core/net/geoipmanager.h"
 #include "core/utils/string.h"
 #include "peerinfo.h"
@@ -169,20 +167,12 @@ bool PeerInfo::useI2PSocket() const
 
 bool PeerInfo::useUTPSocket() const
 {
-#if LIBTORRENT_VERSION_NUM < 10000
-    return (m_nativeInfo.connection_type & libt::peer_info::bittorrent_utp);
-#else
     return (m_nativeInfo.flags & libt::peer_info::utp_socket);
-#endif
 }
 
 bool PeerInfo::useSSLSocket() const
 {
-#if LIBTORRENT_VERSION_NUM < 10000
-    return false;
-#else
     return (m_nativeInfo.flags & libt::peer_info::ssl_socket);
-#endif
 }
 
 bool PeerInfo::isRC4Encrypted() const
@@ -239,12 +229,7 @@ QBitArray PeerInfo::pieces() const
 {
     QBitArray result(m_nativeInfo.pieces.size());
 
-#if LIBTORRENT_VERSION_NUM < 10000
-    typedef size_t pieces_size_t;
-#else
-    typedef int pieces_size_t;
-#endif
-    for (pieces_size_t i = 0; i < m_nativeInfo.pieces.size(); ++i)
+    for (int i = 0; i < m_nativeInfo.pieces.size(); ++i)
         result.setBit(i, m_nativeInfo.pieces.get_bit(i));
 
     return result;
@@ -252,11 +237,7 @@ QBitArray PeerInfo::pieces() const
 
 QString PeerInfo::connectionType() const
 {
-#if LIBTORRENT_VERSION_NUM < 10000
-    if (m_nativeInfo.connection_type & libt::peer_info::bittorrent_utp)
-#else
     if (m_nativeInfo.flags & libt::peer_info::utp_socket)
-#endif
         return QString::fromUtf8("μTP");
 
     QString connection;
