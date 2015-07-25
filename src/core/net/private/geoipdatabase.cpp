@@ -30,7 +30,7 @@
 #include <QCoreApplication>
 #include <QVariant>
 #include <QHash>
-#include <QList>
+#include <QVector>
 #include <QScopedArrayPointer>
 #include <QScopedPointer>
 #include <QHostAddress>
@@ -42,8 +42,10 @@
 
 struct Node
 {
-    quint32 left;
-    quint32 right;
+    static const int RECORD_SIZE = 24;
+
+    quint32 left: RECORD_SIZE;
+    quint32 right: RECORD_SIZE;
 };
 
 struct GeoIPData
@@ -54,8 +56,8 @@ struct GeoIPData
     quint32 nodeCount;
     QDateTime buildEpoch;
     // Search data
-    QList<Node> index;
-    QHash<quint32, QString> countries;
+    QVector<Node> index;
+    QVector<QString> countries;
 };
 
 namespace
@@ -214,16 +216,15 @@ QString GeoIPDatabase::lookup(const QHostAddress &hostAddr) const
 #else
     Q_IPV6ADDR addr = hostAddr.toIPv6Address();
 #endif
-    const quint32 nodeCount = static_cast<quint32>(m_geoIPData->index.size());
     Node node = m_geoIPData->index[0];
     for (int i = 0; i < 16; ++i) {
         for (int j = 0; j < 8; ++j) {
             bool right = static_cast<bool>((addr[i] >> (7 - j)) & 1);
             quint32 id = (right ? node.right : node.left);
-            if (id == nodeCount)
+            if (id == m_geoIPData->nodeCount)
                 return QString();
-            else if (id > nodeCount)
-                return m_geoIPData->countries[id];
+            else if (id > m_geoIPData->nodeCount)
+                return m_geoIPData->countries[id - (m_geoIPData->nodeCount + 1)];
             else
                 node = m_geoIPData->index[id];
         }
@@ -331,7 +332,7 @@ namespace
 
         CHECK_METADATA_REQ(record_size, UShort);
         m_geoIPData->recordSize = metadata.value("record_size").value<quint16>();
-        if (m_geoIPData->recordSize != 24) {
+        if (m_geoIPData->recordSize != Node::RECORD_SIZE) {
             m_error = tr("Unsupported record size: %1").arg(m_geoIPData->recordSize);
             return false;
         }
@@ -373,6 +374,7 @@ namespace
         const uchar *ptr = m_data;
         bool left = true;
         Node node;
+        QHash<quint32, int> offsets;
         for (quint32 i = 0; i < (2 * m_geoIPData->nodeCount); ++i) {
             uchar buf[4] = { 0 };
 
@@ -380,21 +382,33 @@ namespace
             fromBigEndian(buf, 4);
             quint32 id = *(reinterpret_cast<quint32 *>(buf));
 
-            if ((id > m_geoIPData->nodeCount) && !m_geoIPData->countries.contains(id)) {
-                const quint32 offset = id - m_geoIPData->nodeCount - sizeof(DATA_SECTION_SEPARATOR);
-                quint32 tmp = offset + indexSize + sizeof(DATA_SECTION_SEPARATOR);
-                QVariant val = readDataField(tmp);
-                if (val.userType() == QMetaType::QVariantHash) {
-                    m_geoIPData->countries[id] = val.toHash()["country"].toHash()["iso_code"].toString();
+            if (id > m_geoIPData->nodeCount) {
+                int mappedOffset = offsets.value(id, -1);
+                if (mappedOffset == -1) {
+                    const quint32 offset = id - m_geoIPData->nodeCount - sizeof(DATA_SECTION_SEPARATOR);
+                    quint32 tmp = offset + indexSize + sizeof(DATA_SECTION_SEPARATOR);
+                    QVariant val = readDataField(tmp);
+                    if (val.userType() == QMetaType::QVariantHash) {
+                        QString code = val.toHash()["country"].toHash()["iso_code"].toString();
+                        mappedOffset = m_geoIPData->countries.indexOf(code);
+                        if (mappedOffset == -1) {
+                            mappedOffset = m_geoIPData->countries.size();
+                            m_geoIPData->countries << code;
+                        }
+
+                        offsets[id] = mappedOffset;
+                    }
+                    else if (val.userType() == QVariant::Invalid) {
+                        m_error = tr("Database corrupted: invalid data type at DATA@%1").arg(offset, 8, 16, QLatin1Char('0'));
+                        return false;
+                    }
+                    else {
+                        m_error = tr("Invalid database: unsupported data type at DATA@%1").arg(offset, 8, 16, QLatin1Char('0'));
+                        return false;
+                    }
                 }
-                else if (val.userType() == QVariant::Invalid) {
-                    m_error = tr("Database corrupted: invalid data type at DATA@%1").arg(offset, 8, 16, QLatin1Char('0'));
-                    return false;
-                }
-                else {
-                    m_error = tr("Invalid database: unsupported data type at DATA@%1").arg(offset, 8, 16, QLatin1Char('0'));
-                    return false;
-                }
+
+                id = m_geoIPData->nodeCount + mappedOffset + 1;
             }
 
             if (left) {
@@ -409,6 +423,7 @@ namespace
             ptr += recordBytes;
         }
 
+        m_geoIPData->countries.squeeze();
         return true;
     }
 
