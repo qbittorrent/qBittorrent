@@ -12,12 +12,19 @@ function friendlyUnit(value, isSpeed) {
 
     if (value < 0)
         return "QBT_TR(Unknown)QBT_TR";
+
     var i = 0;
-    while (value >= 1024. && i++ < 6)
+    while (value >= 1024. && i < 4) {
         value /= 1024.;
+        ++i;
+    }
     var ret;
-    ret = (Math.floor(10 * value) / 10).toFixed(1) //Don't round up
+    if (i == 0)
+        ret = value + " " + units[i];
+    else
+        ret = (Math.floor(10 * value) / 10).toFixed(1) //Don't round up
             + " " + units[i];
+
     if (isSpeed)
         ret += "QBT_TR(/s)QBT_TR";
     return ret;
