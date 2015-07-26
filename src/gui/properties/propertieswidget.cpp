@@ -360,7 +360,7 @@ void PropertiesWidget::loadDynamicData() {
         lbl_dllimit->setText(m_torrent->downloadLimit() <= 0 ? QString::fromUtf8(C_INFINITY) : Utils::Misc::friendlyUnit(m_torrent->downloadLimit())+tr("/s", "/second (i.e. per second)"));
         QString elapsed_txt = Utils::Misc::userFriendlyDuration(m_torrent->activeTime());
         if (m_torrent->isSeed())
-            elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(Utils::Misc::userFriendlyDuration(m_torrent->seedingTime()))+")";
+            elapsed_txt += " ("+tr("seeded for %1", "e.g. seeded for 3m10s").arg(Utils::Misc::userFriendlyDuration(m_torrent->seedingTime()))+")";
 
         lbl_elapsed->setText(elapsed_txt);
 
