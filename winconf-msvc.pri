@@ -1,10 +1,10 @@
-strace_win:{
-  contains(QMAKE_HOST.arch, x86):{
+strace_win {
+  contains(QMAKE_HOST.arch, x86) {
     # i686 arch requires frame pointer preservation
     QMAKE_CXXFLAGS_RELEASE += -Oy-
     QMAKE_CXXFLAGS_DEBUG += -Oy-
   }
-  release:{
+  release {
     QMAKE_CXXFLAGS_RELEASE += -Zi
     QMAKE_LFLAGS += "/DEBUG"
   }
@@ -18,7 +18,7 @@ RC_FILE = qbittorrent.rc
 # Enable Wide characters
 DEFINES += TORRENT_USE_WPATH
 
-#Adapt the lib names/versions accordingly
+# Adapt the lib names/versions accordingly
 CONFIG(debug, debug|release) {
   LIBS += libtorrentd.lib \
           libboost_system-vc90-mt-sgd-1_51.lib
