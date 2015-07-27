@@ -2110,7 +2110,7 @@ void Session::handleAddTorrentAlert(libtorrent::add_torrent_alert *p)
                     exportTorrentFile(torrent);
             }
             else {
-                logger->addMessage(tr("Couldn't save 1%.torrent").arg(torrent->hash()), Log::CRITICAL);
+                logger->addMessage(tr("Couldn't save %1.torrent").arg(torrent->hash()), Log::CRITICAL);
             }
         }
 
