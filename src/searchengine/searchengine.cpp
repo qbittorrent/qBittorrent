@@ -254,7 +254,7 @@ void SearchEngine::on_search_button_clicked()
     nb_search_results = 0;
     search_result_line_truncated.clear();
     //on change le texte du label courrant
-    activeSearchTab->getCurrentLabel()->setText(tr("Results") + " <i>(0)</i>:");
+    activeSearchTab->getCurrentLabel()->setText(tr("Results <i>(%1)</i>:", "i.e: Search results").arg(0));
     // Launch search
     searchProcess->start(misc::pythonExecutable(), params, QIODevice::ReadOnly);
     searchTimeout->start(180000); // 3min
@@ -326,7 +326,7 @@ void SearchEngine::readSearchOutput()
     search_result_line_truncated = lines_list.takeLast().trimmed();
     foreach (const QByteArray &line, lines_list)
         appendSearchResult(QString::fromUtf8(line));
-    activeSearchTab->getCurrentLabel()->setText(tr("Results") + QString::fromUtf8(" <i>(") + QString::number(nb_search_results) + QString::fromUtf8(")</i>:"));
+    activeSearchTab->getCurrentLabel()->setText(tr("Results <i>(%1)</i>:", "i.e: Search results").arg(nb_search_results));
 }
 
 void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus)
