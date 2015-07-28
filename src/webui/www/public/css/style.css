@@ -358,6 +358,13 @@ ul.filterList li:hover a {
     color: white;
 }
 
+td.generalLabel {
+    white-space: nowrap;
+    text-align: right;
+    width: 1px;
+    vertical-align: top;
+}
+
 #filesTable {
     line-height: 20px;
 }

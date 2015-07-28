@@ -166,7 +166,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     QString txt = Utils::Misc::userFriendlyDuration(index.data().toLongLong());
     qlonglong seeding_time = index.data(Qt::UserRole).toLongLong();
     if (seeding_time > 0)
-      txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(Utils::Misc::userFriendlyDuration(seeding_time))+")";
+      txt += " ("+tr("seeded for %1", "e.g. seeded for 3m10s").arg(Utils::Misc::userFriendlyDuration(seeding_time))+")";
     QItemDelegate::drawDisplay(painter, opt, opt.rect, txt);
     break;
   }

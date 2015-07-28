@@ -12,12 +12,19 @@ function friendlyUnit(value, isSpeed) {
 
     if (value < 0)
         return "QBT_TR(Unknown)QBT_TR";
+
     var i = 0;
-    while (value >= 1024. && i++ < 6)
+    while (value >= 1024. && i < 4) {
         value /= 1024.;
+        ++i;
+    }
     var ret;
-    ret = (Math.floor(10 * value) / 10).toFixed(1) //Don't round up
+    if (i == 0)
+        ret = value + " " + units[i];
+    else
+        ret = (Math.floor(10 * value) / 10).toFixed(1) //Don't round up
             + " " + units[i];
+
     if (isSpeed)
         ret += "QBT_TR(/s)QBT_TR";
     return ret;
@@ -73,6 +80,14 @@ if (!Date.prototype.toISOString) {
         };
 
     }());
+}
+
+/*
+ * JS counterpart of the function in src/misc.cpp
+ */
+function parseHtmlLinks(text) {
+    var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    return text.replace(exp,"<a target='_blank' href='$1'>$1</a>"); 
 }
 
 function escapeHtml(str) {
