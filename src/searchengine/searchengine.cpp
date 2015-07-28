@@ -207,13 +207,16 @@ void SearchEngine::on_search_button_clicked()
         search_stopped = true;
         if (searchTimeout->isActive())
             searchTimeout->stop();
+
+        searchProcess->waitForFinished(1000);
+
         if (search_button->text() != tr("Search")) {
             search_button->setText(tr("Search"));
             return;
         }
         allTabsSetActiveState(false);
     }
-    searchProcess->waitForFinished();
+
     // Reload environment variables (proxy)
     searchProcess->setEnvironment(QProcess::systemEnvironment());
 
@@ -249,7 +252,7 @@ void SearchEngine::on_search_button_clicked()
     nb_search_results = 0;
     search_result_line_truncated.clear();
     //on change le texte du label courrant
-    currentSearchTab->getCurrentLabel()->setText(tr("Results") + " <i>(0)</i>:");
+    activeSearchTab->getCurrentLabel()->setText(tr("Results") + " <i>(0)</i>:");
     // Launch search
     searchProcess->start(misc::pythonExecutable(), params, QIODevice::ReadOnly);
     searchTimeout->start(180000); // 3min
@@ -301,7 +304,7 @@ void SearchEngine::searchStarted()
 {
     // Update SearchEngine widgets
     activeSearchTab->status = tr("Searching...");
-    search_status->setText(activeSearchTab->status);
+    search_status->setText(currentSearchTab->status);
     search_status->repaint();
     search_button->setText(tr("Stop"));
 }
@@ -321,8 +324,7 @@ void SearchEngine::readSearchOutput()
     search_result_line_truncated = lines_list.takeLast().trimmed();
     foreach (const QByteArray &line, lines_list)
         appendSearchResult(QString::fromUtf8(line));
-    if (activeSearchTab)
-        activeSearchTab->getCurrentLabel()->setText(tr("Results") + QString::fromUtf8(" <i>(") + QString::number(nb_search_results) + QString::fromUtf8(")</i>:"));
+    activeSearchTab->getCurrentLabel()->setText(tr("Results") + QString::fromUtf8(" <i>(") + QString::number(nb_search_results) + QString::fromUtf8(")</i>:"));
 }
 
 void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus)
@@ -440,6 +442,11 @@ void SearchEngine::searchFinished(int exitcode, QProcess::ExitStatus)
     bool useNotificationBalloons = Preferences::instance()->useProgramNotification();
     if (useNotificationBalloons && mp_mainWindow->getCurrentTabWidget() != this)
         mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
+
+    if (activeSearchTab.isNull())
+        // The active tab was closed
+        return;
+
     if (exitcode) {
 #ifdef Q_OS_WIN
         activeSearchTab->status = tr("Search aborted");
@@ -458,13 +465,9 @@ void SearchEngine::searchFinished(int exitcode, QProcess::ExitStatus)
                 activeSearchTab->status = tr("Search has finished");
         }
     }
-
-    if (activeSearchTab)
-        if (currentSearchTab == activeSearchTab) search_status->setText(activeSearchTab->status);
-    activeSearchTab->getCurrentLabel()->setText(tr("Results", "i.e: Search results") + QString::fromUtf8(" <i>(") + QString::number(nb_search_results) + QString::fromUtf8(")</i>:"));
+    search_status->setText(currentSearchTab->status);
     activeSearchTab->isActive = false;
     activeSearchTab = 0;
-
     search_button->setText(tr("Search"));
 }
 
@@ -473,9 +476,11 @@ void SearchEngine::searchFinished(int exitcode, QProcess::ExitStatus)
 // file url | file name | file size | nb seeds | nb leechers | Search engine url
 void SearchEngine::appendSearchResult(const QString &line)
 {
-    if (!activeSearchTab) {
-        if (searchProcess->state() != QProcess::NotRunning)
+    if (activeSearchTab.isNull()) {
+        if (searchProcess->state() != QProcess::NotRunning) {
             searchProcess->terminate();
+            searchProcess->waitForFinished(1000);
+        }
         if (searchTimeout->isActive())
             searchTimeout->stop();
         search_stopped = true;
@@ -521,20 +526,22 @@ void SearchEngine::appendSearchResult(const QString &line)
 void SearchEngine::closeTab(int index)
 {
     // Search is run for active tab so if user decided to close it, then stop search
-    if (activeSearchTab && index == tabWidget->indexOf(activeSearchTab)) {
+    if (!activeSearchTab.isNull() && index == tabWidget->indexOf(activeSearchTab)) {
         qDebug("Closed active search Tab");
         if (searchProcess->state() != QProcess::NotRunning)
             searchProcess->terminate();
+            searchProcess->waitForFinished(1000);
+        }
         if (searchTimeout->isActive())
             searchTimeout->stop();
         search_stopped = true;
-        if (currentSearchTab == activeSearchTab) currentSearchTab = 0;
         activeSearchTab = 0;
     }
     delete all_tab.takeAt(index);
     if (!all_tab.size()) {
         download_button->setEnabled(false);
         goToDescBtn->setEnabled(false);
+        search_status->setText(tr("Stopped"));
     }
 }
 
