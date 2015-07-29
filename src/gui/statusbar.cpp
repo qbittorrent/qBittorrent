@@ -208,10 +208,8 @@ void StatusBar::updateAltSpeedsBtn(bool alternative) {
 
 void StatusBar::toggleAlternativeSpeeds() {
   Preferences* const pref = Preferences::instance();
-  if (pref->isSchedulerEnabled()) {
-    pref->setSchedulerEnabled(false);
+  if (pref->isSchedulerEnabled())
     m_bar->showMessage(tr("Manual change of rate limits mode. The scheduler is disabled."), 5000);
-  }
   BitTorrent::Session::instance()->changeSpeedLimitMode(!pref->isAltBandwidthEnabled());
 }
 

@@ -225,6 +225,7 @@ namespace BitTorrent
         void handleDownloadFinished(const QString &url, const QString &filePath);
         void handleDownloadFailed(const QString &url, const QString &reason);
         void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
+        void switchToAlternativeMode(bool alternative);
 
     private:
         explicit Session(QObject *parent = 0);
@@ -249,6 +250,7 @@ namespace BitTorrent
         void setMaxUploadsPerTorrent(int max);
         void enableLSD(bool enable);
         void enableDHT(bool enable);
+        void changeSpeedLimitMode_impl(bool alternative);
 
         void setAppendLabelToSavePath(bool append);
         void setAppendExtension(bool append);
