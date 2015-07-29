@@ -38,11 +38,7 @@
 #include "misc.h"
 
 #include <boost/version.hpp>
-#if BOOST_VERSION < 103500
-#include <libtorrent/asio/ip/tcp.hpp>
-#else
 #include <boost/asio/ip/tcp.hpp>
-#endif
 
 const int CACHE_SIZE = 500;
 

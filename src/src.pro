@@ -50,10 +50,6 @@ DEFINES += QT_NO_CAST_TO_ASCII
 # Fast concatenation (Qt >= 4.6)
 DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 
-# Fixes compilation with Boost >= v1.46 where boost
-# filesystem v3 is the default.
-DEFINES += BOOST_FILESYSTEM_VERSION=2
-
 win32: DEFINES += NOMINMAX
 
 include(app/app.pri)
