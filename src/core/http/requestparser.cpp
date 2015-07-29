@@ -330,16 +330,22 @@ bool RequestParser::parseFormData(const QByteArray& data)
 
 bool RequestParser::parseHeaderValue(const QString& value, QStringMap& out)
 {
-    QStringList items = value.split(QLatin1Char(';'));
-    out[""] = items[0];
-
-    for (QStringList::size_type i = 1; i < items.size(); ++i) {
-        int pos = items[i].indexOf("=");
-        if (pos < 0)
-            return false;
-
-        out[items[i].left(pos).trimmed()] = unquoted(items[i].mid(pos + 1).trimmed());
+    int pos = value.indexOf(QLatin1Char(';'));
+    if (pos == -1) {
+        out[""] = value.trimmed();
+        return true;
     }
+
+    out[""] = value.left(pos).trimmed();
+
+    QRegExp rx(";\\s*([^=;\"]+)\\s*=\\s*(\"[^\"]*\"|[^\";\\s]+)\\s*");
+    while (rx.indexIn(value, pos) == pos) {
+        out[rx.cap(1).trimmed()] = unquoted(rx.cap(2));
+        pos += rx.cap(0).length();
+    }
+
+    if (pos != value.length())
+        return false;
 
     return true;
 }
