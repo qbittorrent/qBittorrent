@@ -482,7 +482,11 @@ void SearchEngine::appendSearchResult(const QString &line)
 {
     if (activeSearchTab.isNull()) {
         if (searchProcess->state() != QProcess::NotRunning) {
+#ifdef Q_OS_WIN
+            searchProcess->kill();
+#else
             searchProcess->terminate();
+#endif
             searchProcess->waitForFinished(1000);
         }
         if (searchTimeout->isActive())
@@ -532,8 +536,12 @@ void SearchEngine::closeTab(int index)
     // Search is run for active tab so if user decided to close it, then stop search
     if (!activeSearchTab.isNull() && index == tabWidget->indexOf(activeSearchTab)) {
         qDebug("Closed active search Tab");
-        if (searchProcess->state() != QProcess::NotRunning)
+        if (searchProcess->state() != QProcess::NotRunning) {
+#ifdef Q_OS_WIN
+            searchProcess->kill();
+#else
             searchProcess->terminate();
+#endif
             searchProcess->waitForFinished(1000);
         }
         if (searchTimeout->isActive())
