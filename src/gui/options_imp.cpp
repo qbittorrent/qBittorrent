@@ -178,6 +178,19 @@ options_imp::options_imp(QWidget *parent):
   connect(mailNotifPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(autoRunBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(autoRun_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+
+  autoRun_param->setText(QString::fromUtf8("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10")
+                         .arg(tr("Supported parameters (case sensitive):"))
+                         .arg(tr("%N: Torrent name"))
+                         .arg(tr("%F: Downloaded file name (single-file torrent only)"))
+                         .arg(tr("%L: Label"))
+                         .arg(tr("%D: Save path"))
+                         .arg(tr("%K: \"single\"|\"multi\" file(s)"))
+                         .arg(tr("%C: Number of files"))
+                         .arg(tr("%Z: Torrent size (bytes)"))
+                         .arg(tr("%T: Current tracker"))
+                         .arg(tr("%I: Info hash")));
+
   // Connection tab
   connect(spinPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkRandomPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -402,7 +415,7 @@ void options_imp::saveOptions() {
   pref->setMailNotificationSMTPUsername(mailNotifUsername->text());
   pref->setMailNotificationSMTPPassword(mailNotifPassword->text());
   pref->setAutoRunEnabled(autoRunBox->isChecked());
-  pref->setAutoRunProgram(autoRun_txt->text());
+  pref->setAutoRunProgram(autoRun_txt->text().trimmed());
   pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
   pref->setActionOnDblClOnTorrentFn(getActionOnDblClOnTorrentFn());
   // End Downloads preferences

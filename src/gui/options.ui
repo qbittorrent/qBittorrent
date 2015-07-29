@@ -85,7 +85,7 @@
         <string>Behavior</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -96,7 +96,7 @@
         <string>Downloads</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -107,7 +107,7 @@
         <string>Connection</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -118,7 +118,7 @@
         <string>Speed</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -129,7 +129,7 @@
         <string>BitTorrent</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -140,7 +140,7 @@
         <string>Web UI</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -151,7 +151,7 @@
         <string>Advanced</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -520,7 +520,7 @@
              <x>0</x>
              <y>0</y>
              <width>487</width>
-             <height>1005</height>
+             <height>965</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -990,7 +990,7 @@
             <item>
              <widget class="QGroupBox" name="autoRunBox">
               <property name="title">
-               <string>Run an external program on torrent completion</string>
+               <string>Run external program on torrent completion</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -1003,18 +1003,7 @@
                 <widget class="QLineEdit" name="autoRun_txt"/>
                </item>
                <item>
-                <widget class="QLabel" name="label_4">
-                 <property name="text">
-                  <string>The following parameters are supported:
-&lt;ul&gt;
-&lt;li&gt;%f: Torrent path&lt;/li&gt;
-&lt;li&gt;%n: Torrent name&lt;/li&gt;
-&lt;/ul&gt;</string>
-                 </property>
-                 <property name="textFormat">
-                  <enum>Qt::RichText</enum>
-                 </property>
-                </widget>
+                <widget class="QLabel" name="autoRun_param"/>
                </item>
               </layout>
              </widget>
@@ -1037,8 +1026,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>474</width>
-             <height>640</height>
+             <width>450</width>
+             <height>632</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1545,8 +1534,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>474</width>
-             <height>438</height>
+             <width>376</width>
+             <height>431</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1826,18 +1815,18 @@
                       <property name="wrapping">
                        <bool>true</bool>
                       </property>
+                      <property name="displayFormat">
+                       <string notr="true">hh:mm</string>
+                      </property>
+                      <property name="calendarPopup">
+                       <bool>false</bool>
+                      </property>
                       <property name="time">
                        <time>
                         <hour>8</hour>
                         <minute>0</minute>
                         <second>0</second>
                        </time>
-                      </property>
-                      <property name="displayFormat">
-                       <string notr="true">hh:mm</string>
-                      </property>
-                      <property name="calendarPopup">
-                       <bool>false</bool>
                       </property>
                      </widget>
                     </item>
@@ -1856,15 +1845,15 @@
                       <property name="wrapping">
                        <bool>true</bool>
                       </property>
+                      <property name="displayFormat">
+                       <string notr="true">hh:mm</string>
+                      </property>
                       <property name="time">
                        <time>
                         <hour>20</hour>
                         <minute>0</minute>
                         <second>0</second>
                        </time>
-                      </property>
-                      <property name="displayFormat">
-                       <string notr="true">hh:mm</string>
                       </property>
                      </widget>
                     </item>
@@ -1966,8 +1955,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>556</width>
-             <height>418</height>
+             <width>555</width>
+             <height>410</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2320,7 +2309,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>474</width>
+             <width>419</width>
              <height>537</height>
             </rect>
            </property>
@@ -2697,8 +2686,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>487</width>
-             <height>342</height>
+             <width>98</width>
+             <height>28</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
