@@ -272,11 +272,7 @@ namespace BitTorrent
         void pause();
         void resume(bool forced = false);
         void move(QString path);
-    #if LIBTORRENT_VERSION_NUM < 10000
-        void forceReannounce();
-    #else
         void forceReannounce(int index = -1);
-    #endif
         void forceDHTAnnounce();
         void forceRecheck();
         void setTrackerLogin(const QString &username, const QString &password);
@@ -354,10 +350,6 @@ namespace BitTorrent
         TorrentState  m_state;
         TorrentInfo m_torrentInfo;
         SpeedMonitor m_speedMonitor;
-    #if LIBTORRENT_VERSION_NUM < 10000
-        QString m_nativeName;
-        QString m_nativeSavePath;
-    #endif
 
         InfoHash m_hash;
 

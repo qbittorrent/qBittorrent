@@ -16,18 +16,12 @@ namespace Log
 
     Peer::Peer() {}
 
-#if LIBTORRENT_VERSION_NUM < 10000
-    Peer::Peer(int id, const QString &ip, bool blocked)
-#else
     Peer::Peer(int id, const QString &ip, bool blocked, const QString &reason)
-#endif
         : id(id)
         , timestamp(QDateTime::currentMSecsSinceEpoch())
         , ip(ip)
         , blocked(blocked)
-#if LIBTORRENT_VERSION_NUM >= 10000
         , reason(reason)
-#endif
     {
     }
 
@@ -76,19 +70,11 @@ void Logger::addMessage(const QString &message, const Log::MsgType &type)
     emit newLogMessage(temp);
 }
 
-#if LIBTORRENT_VERSION_NUM < 10000
-void Logger::addPeer(const QString &ip, bool blocked)
-#else
 void Logger::addPeer(const QString &ip, bool blocked, const QString &reason)
-#endif
 {
     QWriteLocker locker(&lock);
 
-#if LIBTORRENT_VERSION_NUM < 10000
-    Log::Peer temp(peerCounter++, ip, blocked);
-#else
     Log::Peer temp(peerCounter++, ip, blocked, reason);
-#endif
     m_peers.push_back(temp);
 
     if (m_peers.size() >= MAX_LOG_MESSAGES)

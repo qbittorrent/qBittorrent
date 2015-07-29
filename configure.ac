@@ -18,12 +18,6 @@ AC_ARG_WITH(qt5,
             [],
             [with_qt5=no])
 
-AC_ARG_WITH(libtorrent-rasterbar0.16,
-            [AS_HELP_STRING([--with-libtorrent-rasterbar0.16],
-                            [Compile using libtorrent-rasterbar 0.16.x series (default=no)])],
-            [],
-            [with_libtorrent_rasterbar0_16=no])
-
 AC_ARG_WITH(qtsingleapplication,
             [AS_HELP_STRING([--with-qtsingleapplication=@<:@system|shipped@:>@],
                             [Use the shipped qtsingleapplication library or the system one (default=shipped)])],
@@ -101,7 +95,6 @@ AS_CASE(["x$enable_gui"],
         ["xno"],
               [AC_MSG_RESULT([no])
               enable_qt_dbus=[no]
-              enable_geoip_database=[no]
               QBT_ADD_CONFIG="$QBT_ADD_CONFIG nogui"],
         [AC_MSG_RESULT([$enable_gui])
         AC_MSG_ERROR([Unknown option "$enable_gui". Use either "yes" or "no".])])
@@ -175,23 +168,6 @@ AS_IF([test "x$BOOST_SYSTEM_LIB" = "x"],
       [AC_MSG_NOTICE([Boost.System LIB: $BOOST_SYSTEM_LIB])
       LIBS="$BOOST_SYSTEM_LIB $LIBS"])
 
-AC_MSG_CHECKING([whether to compile using libtorrent-rasterbar 0.16.x])
-AS_CASE(["x$with_libtorrent_rasterbar0_16"],
-        ["xno"],
-              [AC_MSG_RESULT([no])
-              PKG_CHECK_MODULES(libtorrent,
-                               [libtorrent-rasterbar >= 1.0.0],
-                               [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
-                               LIBS="$libtorrent_LIBS $LIBS"])],
-        ["xyes"],
-               [AC_MSG_RESULT([yes])
-               PKG_CHECK_MODULES(libtorrent,
-                                [libtorrent-rasterbar >= 0.16.0],
-                                [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
-                                LIBS="$libtorrent_LIBS $LIBS"])],
-        [AC_MSG_RESULT([$with_libtorrent_rasterbar0_16])
-        AC_MSG_ERROR([Unknown option "$with_libtorrent_rasterbar0_16". Use either "yes" or "no".])])
-
 AC_MSG_CHECKING([which qtsingleapplication to use])
 AS_CASE(["x$with_qtsingleapplication"],
         ["xshipped"],
@@ -219,6 +195,11 @@ AS_IF([test "x$with_qt5" = "xno"],
               [AC_MSG_RESULT([$with_qjson])
               AC_MSG_ERROR([Unknown option "$with_qjson". Use either "system" or "shipped".])])
      ])
+
+PKG_CHECK_MODULES(libtorrent,
+                  [libtorrent-rasterbar >= 1.0.0],
+                  [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
+                  LIBS="$libtorrent_LIBS $LIBS"])
 
 PKG_CHECK_MODULES(zlib,
                  [zlib],

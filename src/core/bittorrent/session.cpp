@@ -46,7 +46,6 @@ using namespace BitTorrent;
 #include <queue>
 #include <vector>
 
-#include <libtorrent/version.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/lazy_entry.hpp>
 #include <libtorrent/bencode.hpp>
@@ -430,12 +429,10 @@ void Session::setSessionSettings()
     else
         sessionSettings.mixed_mode_algorithm = libt::session_settings::peer_proportional;
     sessionSettings.connection_speed = 20; //default is 10
-#if LIBTORRENT_VERSION_NUM >= 10000
     if (pref->isProxyEnabled())
         sessionSettings.force_proxy = pref->getForceProxy();
     else
         sessionSettings.force_proxy = false;
-#endif
     sessionSettings.no_connect_privileged_ports = false;
     sessionSettings.seed_choking_algorithm = libt::session_settings::fastest_upload;
     qDebug() << "Set session settings";
@@ -1070,21 +1067,13 @@ bool Session::addTorrent_impl(const AddTorrentData &addData, const MagnetUri &ma
 
     if (addData.resumed && !fromMagnetUri) {
         // Set torrent fast resume data
-#if LIBTORRENT_VERSION_NUM < 10000
-        p.resume_data = &buf;
-#else
         p.resume_data = buf;
         p.flags |= libt::add_torrent_params::flag_use_resume_save_path;
-#endif
     }
     else {
         foreach (int prio, addData.filePriorities)
             filePriorities.push_back(prio);
-#if LIBTORRENT_VERSION_NUM < 10000
-        p.file_priorities = &filePriorities;
-#else
         p.file_priorities = filePriorities;
-#endif
     }
 
     // We should not add torrent if it already
@@ -1118,12 +1107,10 @@ bool Session::addTorrent_impl(const AddTorrentData &addData, const MagnetUri &ma
     else
         p.flags &= ~libt::add_torrent_params::flag_seed_mode;
 
-#if LIBTORRENT_VERSION_NUM >= 10000
     // Limits
     Preferences *const pref = Preferences::instance();
     p.max_connections = pref->getMaxConnecsPerTorrent();
     p.max_uploads = pref->getMaxUploadsPerTorrent();
-#endif
 
     QString savePath;
     // Set actual save path (e.g. temporary folder)
@@ -1184,11 +1171,9 @@ bool Session::loadMetadata(const QString &magnetUri)
         p.storage_mode = libt::storage_mode_sparse;
 
     Preferences *const pref = Preferences::instance();
-#if LIBTORRENT_VERSION_NUM >= 10000
     // Limits
     p.max_connections = pref->getMaxConnecsPerTorrent();
     p.max_uploads = pref->getMaxUploadsPerTorrent();
-#endif
 
     QString savePath = QString("%1/%2").arg(QDir::tempPath()).arg(hash);
     p.save_path = Utils::String::toStdString(Utils::Fs::toNativePath(savePath));
@@ -1206,11 +1191,6 @@ bool Session::loadMetadata(const QString &magnetUri)
     libt::error_code ec;
     libt::torrent_handle h = m_nativeSession->add_torrent(p, ec);
     if (ec) return false;
-
-#if LIBTORRENT_VERSION_NUM < 10000
-    h.set_max_connections(pref->getMaxConnecsPerTorrent());
-    h.set_max_uploads(pref->getMaxUploadsPerTorrent());
-#endif
 
     // waiting for metadata...
     m_loadedMetadata.insert(h.info_hash(), TorrentInfo());
@@ -2079,13 +2059,6 @@ void Session::handleAddTorrentAlert(libtorrent::add_torrent_alert *p)
     m_torrents.insert(torrent->hash(), torrent);
 
     Preferences *const pref = Preferences::instance();
-#if LIBTORRENT_VERSION_NUM < 10000
-    try {
-        p->handle.set_max_connections(pref->getMaxConnecsPerTorrent());
-        p->handle.set_max_uploads(pref->getMaxUploadsPerTorrent());
-    }
-    catch (std::exception &) {}
-#endif
 
     bool fromMagnetUri = !torrent->hasMetadata();
 
@@ -2158,11 +2131,7 @@ void Session::handleMetadataReceivedAlert(libt::metadata_received_alert *p)
     if (m_loadedMetadata.contains(hash)) {
         --m_extraLimit;
         adjustLimits();
-#if LIBTORRENT_VERSION_NUM < 10000
-        m_loadedMetadata[hash] = TorrentInfo(&p->handle.get_torrent_info());
-#else
         m_loadedMetadata[hash] = TorrentInfo(p->handle.torrent_file());
-#endif
         m_nativeSession->remove_torrent(p->handle, libt::session::delete_files);
     }
 }
@@ -2195,10 +2164,6 @@ void Session::handlePeerBlockedAlert(libt::peer_blocked_alert *p)
 {
     boost::system::error_code ec;
     std::string ip = p->ip.to_string(ec);
-#if LIBTORRENT_VERSION_NUM < 10000
-    if (!ec)
-        Logger::instance()->addPeer(QString::fromLatin1(ip.c_str()), true);
-#else
     QString reason;
     switch (p->reason) {
     case libt::peer_blocked_alert::ip_filter:
@@ -2223,7 +2188,6 @@ void Session::handlePeerBlockedAlert(libt::peer_blocked_alert *p)
 
     if (!ec)
         Logger::instance()->addPeer(QString::fromLatin1(ip.c_str()), true, reason);
-#endif
 }
 
 void Session::handlePeerBanAlert(libt::peer_ban_alert *p)
@@ -2243,14 +2207,12 @@ void Session::handleListenSucceededAlert(libt::listen_succeeded_alert *p)
 {
     boost::system::error_code ec;
     QString proto = "TCP";
-#if LIBTORRENT_VERSION_NUM >= 10000
     if (p->sock_type == libt::listen_succeeded_alert::udp)
         proto = "UDP";
     else if (p->sock_type == libt::listen_succeeded_alert::tcp)
         proto = "TCP";
     else if (p->sock_type == libt::listen_succeeded_alert::tcp_ssl)
         proto = "TCP_SSL";
-#endif
     qDebug() << "Successfully listening on " << proto << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
     Logger::instance()->addMessage(tr("qBittorrent is successfully listening on interface %1 port: %2/%3", "e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881").arg(p->endpoint.address().to_string(ec).c_str()).arg(proto).arg(QString::number(p->endpoint.port())), Log::INFO);
 
@@ -2266,7 +2228,6 @@ void Session::handleListenFailedAlert(libt::listen_failed_alert *p)
 {
     boost::system::error_code ec;
     QString proto = "TCP";
-#if LIBTORRENT_VERSION_NUM >= 10000
     if (p->sock_type == libt::listen_failed_alert::udp)
         proto = "UDP";
     else if (p->sock_type == libt::listen_failed_alert::tcp)
@@ -2277,7 +2238,6 @@ void Session::handleListenFailedAlert(libt::listen_failed_alert *p)
         proto = "I2P";
     else if (p->sock_type == libt::listen_failed_alert::socks5)
         proto = "SOCKS5";
-#endif
     qDebug() << "Failed listening on " << proto << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
     Logger::instance()->addMessage(
                 tr("qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4",

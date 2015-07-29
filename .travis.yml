@@ -6,8 +6,6 @@ env:
     # Uncomment when Travis upgraded "Ubuntu 12.04 LTS" to a newer version whose repo will have a more up-to-date libtorrent package
     #- lt_branch=dist gui=true
     #- lt_branch=dist gui=false
-    - lt_branch=RC_0_16 gui=true
-    - lt_branch=RC_0_16 gui=false
     - lt_branch=RC_1_0 gui=true
     - lt_branch=RC_1_0 gui=false
   global:
@@ -37,9 +35,6 @@ before_install:
   - if ! $gui; then qbtconf="$qbtconf --disable-gui" ; else export "DISPLAY=:99.0" && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ; fi
   - qbtconf="$qbtconf --with-qt4"
   - ltconf=" --with-libgeoip=system"
-
-  # Options for specific branches
-  - if [[ "$lt_branch" == "RC_0_16" ]]; then qbtconf="$qbtconf --with-libtorrent-rasterbar0.16" ; fi
 
   # Print settings
   - echo $lt_branch

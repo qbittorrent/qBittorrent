@@ -28,7 +28,6 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <libtorrent/version.hpp>
 #include <libtorrent/entry.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/torrent_info.hpp>

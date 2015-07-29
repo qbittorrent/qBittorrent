@@ -31,14 +31,9 @@
 
 #include <QObject>
 #include <QHash>
-#include <libtorrent/version.hpp>
 
 namespace libtorrent
 {
-#if LIBTORRENT_VERSION_NUM < 10000
-    class upnp;
-    class natpmp;
-#endif
     class session;
 }
 
@@ -69,13 +64,7 @@ namespace Net
 
         bool m_active;
         libtorrent::session *m_provider;
-#if LIBTORRENT_VERSION_NUM < 10000
-        libtorrent::upnp *m_upnp;
-        libtorrent::natpmp *m_natpmp;
-        QHash<qint16, QPair<int, int> > m_mappedPorts;
-#else
         QHash<qint16, int> m_mappedPorts;
-#endif
 
         static PortForwarder *m_instance;
     };

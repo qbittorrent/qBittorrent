@@ -29,10 +29,6 @@
 #include <QDebug>
 
 #include <libtorrent/session.hpp>
-#if LIBTORRENT_VERSION_NUM < 10000
-#include <libtorrent/upnp.hpp>
-#include <libtorrent/natpmp.hpp>
-#endif
 
 #include "core/logger.h"
 #include "core/preferences.h"
@@ -45,10 +41,6 @@ PortForwarder::PortForwarder(libtorrent::session *provider, QObject *parent)
     : QObject(parent)
     , m_active(false)
     , m_provider(provider)
-#if LIBTORRENT_VERSION_NUM < 10000
-    , m_upnp(0)
-    , m_natpmp(0)
-#endif
 {
     configure();
     connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
@@ -81,33 +73,17 @@ PortForwarder *PortForwarder::instance()
 void PortForwarder::addPort(qint16 port)
 {
     if (!m_mappedPorts.contains(port)) {
-#if LIBTORRENT_VERSION_NUM < 10000
-        m_mappedPorts.insert(port, qMakePair(0, 0));
-#else
         m_mappedPorts.insert(port, 0);
-#endif
-        if (m_active) {
-#if LIBTORRENT_VERSION_NUM < 10000
-            m_mappedPorts[port].first = m_upnp->add_mapping(libt::upnp::tcp, port, port);
-            m_mappedPorts[port].second = m_natpmp->add_mapping(libt::natpmp::tcp, port, port);
-#else
+        if (m_active)
             m_mappedPorts[port] = m_provider->add_port_mapping(libt::session::tcp, port, port);
-#endif
-        }
     }
 }
 
 void PortForwarder::deletePort(qint16 port)
 {
     if (m_mappedPorts.contains(port)) {
-        if (m_active) {
-#if LIBTORRENT_VERSION_NUM < 10000
-            m_upnp->delete_mapping(m_mappedPorts[port].first);
-            m_natpmp->delete_mapping(m_mappedPorts[port].second);
-#else
+        if (m_active)
             m_provider->delete_port_mapping(m_mappedPorts[port]);
-#endif
-        }
         m_mappedPorts.remove(port);
     }
 }
@@ -126,19 +102,10 @@ void PortForwarder::configure()
 void PortForwarder::start()
 {
     qDebug("Enabling UPnP / NAT-PMP");
-#if LIBTORRENT_VERSION_NUM < 10000
-    m_upnp = m_provider->start_upnp();
-    m_natpmp = m_provider->start_natpmp();
-    foreach (qint16 port, m_mappedPorts.keys()) {
-        m_mappedPorts[port].first = m_upnp->add_mapping(libt::upnp::tcp, port, port);
-        m_mappedPorts[port].second = m_natpmp->add_mapping(libt::natpmp::tcp, port, port);
-    }
-#else
     m_provider->start_upnp();
     m_provider->start_natpmp();
     foreach (qint16 port, m_mappedPorts.keys())
         m_mappedPorts[port] = m_provider->add_port_mapping(libt::session::tcp, port, port);
-#endif
     m_active = true;
     Logger::instance()->addMessage(tr("UPnP / NAT-PMP support [ON]"), Log::INFO);
 }
@@ -148,11 +115,6 @@ void PortForwarder::stop()
     qDebug("Disabling UPnP / NAT-PMP");
     m_provider->stop_upnp();
     m_provider->stop_natpmp();
-
-#if LIBTORRENT_VERSION_NUM < 10000
-    m_upnp = 0;
-    m_natpmp = 0;
-#endif
     m_active = false;
     Logger::instance()->addMessage(tr("UPnP / NAT-PMP support [OFF]"), Log::INFO);
 }
