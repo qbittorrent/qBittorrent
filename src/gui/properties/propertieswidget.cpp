@@ -252,7 +252,7 @@ BitTorrent::TorrentHandle *PropertiesWidget::getCurrentTorrent() const
 void PropertiesWidget::updateSavePath(BitTorrent::TorrentHandle *const torrent)
 {
   if (m_torrent == torrent) {
-    save_path->setText(m_torrent->savePathParsed());
+    save_path->setText(m_torrent->rootPath());
   }
 }
 
