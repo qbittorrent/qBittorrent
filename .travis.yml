@@ -45,11 +45,9 @@ addons:
     - libssl-dev
     - libboost-dev
     - libboost-system-dev
-    - libgeoip-dev
     - libqt4-dev
     # Uncomment when Travis upgraded "Ubuntu 12.04 LTS" to a newer version whose repo will have a more up-to-date libtorrent package
     #- libtorrent-rasterbar6
-    #- libboost-filesystem-dev
 
 before_install:
   # Only allow specific build for coverity scan, others will stop
@@ -61,7 +59,7 @@ before_install:
 
   - libt_path="$HOME/libt_install"
   - qbt_path="$HOME/qbt_install"
-  - ltconf="$ltconf --prefix="$libt_path" --with-libgeoip=system"
+  - ltconf="$ltconf --prefix="$libt_path" --disable-geoip"
   - qbtconf="$qbtconf --prefix="$qbt_path" PKG_CONFIG_PATH="$libt_path/lib/pkgconfig":$PKG_CONFIG_PATH"
 
   # Options for specific branches
