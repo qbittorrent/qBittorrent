@@ -190,6 +190,7 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_session(session)
     , m_nativeHandle(nativeHandle)
     , m_state(TorrentState::Unknown)
+    , m_renameCount(0)
     , m_name(data.name)
     , m_addedTime(data.resumed ? data.addedTime : QDateTime::currentDateTime())
     , m_savePath(Utils::Fs::toNativePath(data.savePath))
@@ -1269,6 +1270,7 @@ void TorrentHandle::setTrackerLogin(const QString &username, const QString &pass
 
 void TorrentHandle::renameFile(int index, const QString &name)
 {
+    ++m_renameCount;
     qDebug() << Q_FUNC_INFO << index << name;
     SAFE_CALL(rename_file, index, Utils::String::toStdString(Utils::Fs::toNativePath(name)));
 }
@@ -1339,10 +1341,8 @@ void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
         QDir().rmpath(m_oldPath);
     }
 
-    if (!isMoveInProgress()) {
-        while (!m_moveStorageTriggers.isEmpty())
-            m_moveStorageTriggers.takeFirst()();
-    }
+    while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
+        m_moveFinishedTriggers.takeFirst()();
 }
 
 void TorrentHandle::handleStorageMovedFailedAlert(libtorrent::storage_moved_failed_alert *p)
@@ -1361,10 +1361,8 @@ void TorrentHandle::handleStorageMovedFailedAlert(libtorrent::storage_moved_fail
         m_queuedPath.clear();
     }
 
-    if (!isMoveInProgress()) {
-        while (!m_moveStorageTriggers.isEmpty())
-            m_moveStorageTriggers.takeFirst()();
-    }
+    while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
+        m_moveFinishedTriggers.takeFirst()();
 }
 
 void TorrentHandle::handleTrackerReplyAlert(libtorrent::tracker_reply_alert *p)
@@ -1433,10 +1431,10 @@ void TorrentHandle::handleTorrentFinishedAlert(libtorrent::torrent_finished_aler
     if (Preferences::instance()->recheckTorrentsOnCompletion())
         forceRecheck();
 
-    if (!isMoveInProgress())
-        m_session->handleTorrentFinished(this);
+    if (isMoveInProgress() || m_renameCount > 0)
+        m_moveFinishedTriggers.append(boost::bind(&SessionPrivate::handleTorrentFinished, m_session, this));
     else
-        m_moveStorageTriggers.append(boost::bind(&SessionPrivate::handleTorrentFinished, m_session, this));
+        m_session->handleTorrentFinished(this);
 }
 
 void TorrentHandle::handleTorrentPausedAlert(libtorrent::torrent_paused_alert *p)
@@ -1532,6 +1530,19 @@ void TorrentHandle::handleFileRenamedAlert(libtorrent::file_renamed_alert *p)
         // Renaming a file corresponds to changing the save path
         m_session->handleTorrentSavePathChanged(this);
     }
+
+    --m_renameCount;
+    while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
+        m_moveFinishedTriggers.takeFirst()();
+}
+
+void TorrentHandle::handleFileRenameFailedAlert(libtorrent::file_rename_failed_alert *p)
+{
+    Q_UNUSED(p);
+
+    --m_renameCount;
+    while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
+        m_moveFinishedTriggers.takeFirst()();
 }
 
 void TorrentHandle::handleFileCompletedAlert(libtorrent::file_completed_alert *p)
@@ -1625,6 +1636,9 @@ void TorrentHandle::handleAlert(libtorrent::alert *a)
     case libt::file_renamed_alert::alert_type:
         handleFileRenamedAlert(static_cast<libt::file_renamed_alert*>(a));
         break;
+    case libt::file_rename_failed_alert::alert_type:
+        handleFileRenameFailedAlert(static_cast<libt::file_rename_failed_alert*>(a));
+        break;
     case libt::file_completed_alert::alert_type:
         handleFileCompletedAlert(static_cast<libt::file_completed_alert*>(a));
         break;
@@ -1700,7 +1714,7 @@ void TorrentHandle::adjustActualSavePath()
     if (!isMoveInProgress())
         adjustActualSavePath_impl();
     else
-        m_moveStorageTriggers.append(boost::bind(&TorrentHandle::adjustActualSavePath_impl, this));
+        m_moveFinishedTriggers.append(boost::bind(&TorrentHandle::adjustActualSavePath_impl, this));
 }
 
 void TorrentHandle::adjustActualSavePath_impl()
