@@ -374,11 +374,11 @@ namespace
         bool left = true;
         Node node;
         for (quint32 i = 0; i < (2 * m_geoIPData->nodeCount); ++i) {
-            uchar buf[4] = { 0 };
+            quint32 id = 0;
+            uchar *idPtr = reinterpret_cast<uchar *>(&id);
 
-            memcpy(&buf[4 - recordBytes], ptr, recordBytes);
-            fromBigEndian(buf, 4);
-            quint32 id = *(reinterpret_cast<quint32 *>(buf));
+            memcpy(&idPtr[4 - recordBytes], ptr, recordBytes);
+            fromBigEndian(idPtr, 4);
 
             if ((id > m_geoIPData->nodeCount) && !m_geoIPData->countries.contains(id)) {
                 const quint32 offset = id - m_geoIPData->nodeCount - sizeof(DATA_SECTION_SEPARATOR);
