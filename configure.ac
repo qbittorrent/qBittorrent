@@ -197,7 +197,7 @@ AS_IF([test "x$with_qt5" = "xno"],
      ])
 
 PKG_CHECK_MODULES(libtorrent,
-                  [libtorrent-rasterbar >= 1.0.0],
+                  [libtorrent-rasterbar >= 1.0.6],
                   [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
                   LIBS="$libtorrent_LIBS $LIBS"])
 
