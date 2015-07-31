@@ -186,13 +186,13 @@ AS_CASE(["x$with_libtorrent_rasterbar0_16"],
         ["xno"],
               [AC_MSG_RESULT([no])
               PKG_CHECK_MODULES(libtorrent,
-                               [libtorrent-rasterbar >= 1.0.0],
+                               [libtorrent-rasterbar >= 1.0.6],
                                [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
                                LIBS="$libtorrent_LIBS $LIBS"])],
         ["xyes"],
                [AC_MSG_RESULT([yes])
                PKG_CHECK_MODULES(libtorrent,
-                                [libtorrent-rasterbar >= 0.16.0],
+                                [libtorrent-rasterbar >= 0.16.19],
                                 [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
                                 LIBS="$libtorrent_LIBS $LIBS"])],
         [AC_MSG_RESULT([$with_libtorrent_rasterbar0_16])
