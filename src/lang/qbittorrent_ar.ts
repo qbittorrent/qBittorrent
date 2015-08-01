@@ -6425,32 +6425,32 @@ Those plugins were disabled.</source>
         <translation>تمت معالجة قائمة الحظر المعطاة بنجاح: %1 تم تطبيقها.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1396"/>
+        <location filename="../gui/options_imp.cpp" line="1397"/>
         <source>Invalid key</source>
         <translation>مفتاح خاطئ</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1396"/>
+        <location filename="../gui/options_imp.cpp" line="1397"/>
         <source>This is not a valid SSL key.</source>
         <translation>هذا مفتاح SSL خاطئ.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1411"/>
+        <location filename="../gui/options_imp.cpp" line="1412"/>
         <source>Invalid certificate</source>
         <translation>شهادة خاطئة</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1411"/>
+        <location filename="../gui/options_imp.cpp" line="1412"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>هذه شهادة SSL خاطئة.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1420"/>
+        <location filename="../gui/options_imp.cpp" line="1421"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>لا يمكن أن يكون وقت البدء مطابق لوقت الانتهاء.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1423"/>
+        <location filename="../gui/options_imp.cpp" line="1424"/>
         <source>Time Error</source>
         <translation>خطأ في الوقت</translation>
     </message>

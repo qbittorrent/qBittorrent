@@ -6426,32 +6426,32 @@ Those plugins were disabled.</source>
         <translation>Επιτυχής ανάλυση του παρεχόμενου φίλτρου IP: %1 κανόνες εφαρμόστηκαν.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1396"/>
+        <location filename="../gui/options_imp.cpp" line="1397"/>
         <source>Invalid key</source>
         <translation>Άκυρο κλειδί</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1396"/>
+        <location filename="../gui/options_imp.cpp" line="1397"/>
         <source>This is not a valid SSL key.</source>
         <translation>Αυτό δεν είναι έγκυρο κλειδί SSL.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1411"/>
+        <location filename="../gui/options_imp.cpp" line="1412"/>
         <source>Invalid certificate</source>
         <translation>Άκυρο πιστοποιητικό</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1411"/>
+        <location filename="../gui/options_imp.cpp" line="1412"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Αυτό δεν είναι έγκυρο πιστοποιητικό SSL.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1420"/>
+        <location filename="../gui/options_imp.cpp" line="1421"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Η ώρα έναρξης και η ώρα λήξης δεν μπορούν να είναι ίδιες.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1423"/>
+        <location filename="../gui/options_imp.cpp" line="1424"/>
         <source>Time Error</source>
         <translation>Σφάλμα Ώρας</translation>
     </message>

@@ -6427,32 +6427,32 @@ Those plugins were disabled.</source>
         <translation>解析提供的 IP 过滤器成功：%1 条规则被应用。</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1396"/>
+        <location filename="../gui/options_imp.cpp" line="1397"/>
         <source>Invalid key</source>
         <translation>无效密钥</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1396"/>
+        <location filename="../gui/options_imp.cpp" line="1397"/>
         <source>This is not a valid SSL key.</source>
         <translation>这不是有效的 SSL 密钥。</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1411"/>
+        <location filename="../gui/options_imp.cpp" line="1412"/>
         <source>Invalid certificate</source>
         <translation>无效证书</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1411"/>
+        <location filename="../gui/options_imp.cpp" line="1412"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>这不是有效的 SSL 证书。</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1420"/>
+        <location filename="../gui/options_imp.cpp" line="1421"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>开始时间和结束时间不能相同。</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1423"/>
+        <location filename="../gui/options_imp.cpp" line="1424"/>
         <source>Time Error</source>
         <translation>时间错误</translation>
     </message>

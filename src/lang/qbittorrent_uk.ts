@@ -6431,32 +6431,32 @@ Those plugins were disabled.</source>
         <translation>Успішно розібрано наданий фільтр IP: застосовано %1 правил.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1396"/>
+        <location filename="../gui/options_imp.cpp" line="1397"/>
         <source>Invalid key</source>
         <translation>Неправильний ключ</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1396"/>
+        <location filename="../gui/options_imp.cpp" line="1397"/>
         <source>This is not a valid SSL key.</source>
         <translation>Це не є коректний ключ SSL.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1411"/>
+        <location filename="../gui/options_imp.cpp" line="1412"/>
         <source>Invalid certificate</source>
         <translation>Неправильний сертифікат</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1411"/>
+        <location filename="../gui/options_imp.cpp" line="1412"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Це не є коректний сертифікат SSL.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1420"/>
+        <location filename="../gui/options_imp.cpp" line="1421"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Час початку і кінця не може бути тим самим.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1423"/>
+        <location filename="../gui/options_imp.cpp" line="1424"/>
         <source>Time Error</source>
         <translation>Помилка часу</translation>
     </message>

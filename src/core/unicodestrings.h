@@ -56,6 +56,7 @@ const char C_LOCALE_POLISH[] = "Polski";
 const char C_LOCALE_LITHUANIAN[] = "Lietuvių";
 const char C_LOCALE_CZECH[] = "Čeština";
 const char C_LOCALE_SLOVAK[] = "Slovenčina";
+const char C_LOCALE_SLOVENIAN[] = "Slovenščina";
 const char C_LOCALE_SERBIAN[] = "Српски";
 const char C_LOCALE_CROATIAN[] = "Hrvatski";
 const char C_LOCALE_ARMENIAN[] = "Հայերեն";
