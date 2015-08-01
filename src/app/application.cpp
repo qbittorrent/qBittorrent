@@ -163,9 +163,9 @@ void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
 
 void Application::allTorrentsFinished()
 {
+#ifndef DISABLE_GUI
     Preferences *const pref = Preferences::instance();
 
-#ifndef DISABLE_GUI
     bool will_shutdown = (pref->shutdownWhenDownloadsComplete()
                           || pref->shutdownqBTWhenDownloadsComplete()
                           || pref->suspendWhenDownloadsComplete()

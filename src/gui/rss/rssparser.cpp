@@ -58,12 +58,6 @@ static const char shortMonth[][4] = {
   "May", "Jun", "Jul", "Aug",
   "Sep", "Oct", "Nov", "Dec"
 };
-static const char longMonth[][10] = {
-  "January", "February", "March",
-  "April", "May", "June",
-  "July", "August", "September",
-  "October", "November", "December"
-};
 
 // Ported to Qt4 from KDElibs4
 QDateTime RssParser::parseDate(const QString &string) {
