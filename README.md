@@ -1,7 +1,7 @@
 qBittorrent - A BitTorrent client in Qt
 ------------------------------------------
 
-[![Build Status](https://travis-ci.org/qbittorrent/qBittorrent.svg?branch=master)](https://travis-ci.org/qbittorrent/qBittorrent)
+[![Build Status](https://travis-ci.org/qbittorrent/qBittorrent.svg?branch=v3_2_x)](https://travis-ci.org/qbittorrent/qBittorrent)
 [![Coverity Status](https://scan.coverity.com/projects/5494/badge.svg)](https://scan.coverity.com/projects/5494)
 ********************************
 ### Description:
