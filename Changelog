@@ -1,4 +1,4 @@
-* Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.2
+* Sat Aug 01 2015 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.2
     - FEATURE: Allow to force reannounce DHT too (Chocobo1)
     - FEATURE: Implement an option to disable confirmation of torrent recheck (blaxspirit)
     - FEATURE: Allow to copy all the trackers with a keyboard shortcut (pmzqla)
