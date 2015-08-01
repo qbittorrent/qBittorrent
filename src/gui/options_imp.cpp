@@ -1341,7 +1341,7 @@ QString options_imp::languageToLocalizedString(const QLocale &locale)
   case QLocale::Lithuanian: return QString::fromUtf8(C_LOCALE_LITHUANIAN);
   case QLocale::Czech: return QString::fromUtf8(C_LOCALE_CZECH);
   case QLocale::Slovak: return QString::fromUtf8(C_LOCALE_SLOVAK);
-  case QLocale::Slovenian: return QString::fromUtf8(C_LOCALE_SLOVAK);
+  case QLocale::Slovenian: return QString::fromUtf8(C_LOCALE_SLOVENIAN);
   case QLocale::Serbian: return QString::fromUtf8(C_LOCALE_SERBIAN);
   case QLocale::Croatian: return QString::fromUtf8(C_LOCALE_CROATIAN);
   case QLocale::Armenian: return QString::fromUtf8(C_LOCALE_ARMENIAN);
