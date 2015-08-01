@@ -350,7 +350,7 @@
     <message>
         <location filename="../gui/advancedsettings.h" line="172"/>
         <source> MiB</source>
-        <translation>MiB</translation>
+        <translation> MiB</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="211"/>
@@ -376,7 +376,7 @@
         <location filename="../gui/advancedsettings.h" line="227"/>
         <source> ms</source>
         <comment> milliseconds</comment>
-        <translation>ms</translation>
+        <translation> ms</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="53"/>
@@ -398,7 +398,7 @@
         <location filename="../gui/advancedsettings.h" line="196"/>
         <source> s</source>
         <comment> seconds</comment>
-        <translation>s</translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="197"/>
@@ -414,7 +414,7 @@
         <location filename="../gui/advancedsettings.h" line="205"/>
         <source> m</source>
         <comment> minutes</comment>
-        <translation>m</translation>
+        <translation> m</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="231"/>
@@ -449,7 +449,7 @@
     <message>
         <location filename="../gui/advancedsettings.h" line="293"/>
         <source>Confirm torrent recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Bevestig torrent opnieuw controleren</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="296"/>
@@ -5895,7 +5895,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/transferlistwidget.cpp" line="624"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Pauzerene</translation>
+        <translation>Pauzeren</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="628"/>
