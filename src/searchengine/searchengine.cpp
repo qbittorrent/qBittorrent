@@ -184,6 +184,7 @@ void SearchEngine::searchTextEdited(QString)
 {
     // Enable search button
     search_button->setText(tr("Search"));
+    newQueryString = true;
 }
 
 void SearchEngine::giveFocusToSearchInput()
@@ -211,11 +212,13 @@ void SearchEngine::on_search_button_clicked()
 
         searchProcess->waitForFinished(1000);
 
-        if (search_button->text() != tr("Search")) {
+        if (!newQueryString) {
             search_button->setText(tr("Search"));
             return;
         }
     }
+
+    newQueryString = false;
 
     // Reload environment variables (proxy)
     searchProcess->setEnvironment(QProcess::systemEnvironment());
