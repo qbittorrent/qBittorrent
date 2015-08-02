@@ -48,8 +48,6 @@ SearchTab::SearchTab(SearchEngine *parent) : QWidget(), parent(parent)
     resultsBrowser->setSelectionMode(QAbstractItemView::ExtendedSelection);
     box->addWidget(results_lbl);
     box->addWidget(resultsBrowser);
-    // New tab is created with new search
-    isActive = true;
 
     setLayout(box);
     // Set Search results list model

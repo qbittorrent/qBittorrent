@@ -126,7 +126,7 @@ private:
     QList<QPointer<SearchTab> > all_tab; // To store all tabs
     const SearchCategories full_cat_names;
     MainWindow *mp_mainWindow;
-    inline void allTabsSetActiveState(bool);
+    bool newQueryString;
 };
 
 #endif

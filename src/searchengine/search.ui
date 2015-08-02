@@ -24,12 +24,6 @@
      </item>
      <item>
       <widget class="QPushButton" name="search_button">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>29</height>
-        </size>
-       </property>
        <property name="text">
         <string>Search</string>
        </property>
