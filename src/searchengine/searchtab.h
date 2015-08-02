@@ -71,7 +71,6 @@ public:
     QTreeView * getCurrentTreeView();
     void setRowColor(int row, QString color);
     QHeaderView* header() const;
-    bool isActive;
     QString status;
 };
 

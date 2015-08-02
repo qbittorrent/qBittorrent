@@ -215,7 +215,6 @@ void SearchEngine::on_search_button_clicked()
             search_button->setText(tr("Search"));
             return;
         }
-        allTabsSetActiveState(false);
     }
 
     // Reload environment variables (proxy)
@@ -469,7 +468,6 @@ void SearchEngine::searchFinished(int exitcode, QProcess::ExitStatus)
         }
     }
     search_status->setText(currentSearchTab->status);
-    activeSearchTab->isActive = false;
     activeSearchTab = 0;
     search_button->setText(tr("Search"));
 }
@@ -576,10 +574,4 @@ void SearchEngine::on_goToDescBtn_clicked()
                 QDesktopServices::openUrl(QUrl::fromEncoded(desc_url.toUtf8()));
         }
     }
-}
-
-inline void SearchEngine::allTabsSetActiveState(bool newState)
-{
-    foreach(SearchTab *tab, all_tab)
-        tab->isActive = newState;
 }
