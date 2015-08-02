@@ -1,3 +1,7 @@
+* Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.3
+    - BUGFIX: Fix crash when closing a search tab while search is running (pmzqla)
+    - SEARCH: Other minor search fixes and improvements (pmzqla)
+    
 * Sat Aug 01 2015 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.2
     - FEATURE: Allow to force reannounce DHT too (Chocobo1)
     - FEATURE: Implement an option to disable confirmation of torrent recheck (blaxspirit)
