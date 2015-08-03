@@ -13,7 +13,7 @@
 #include "core/preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, DISK_CACHE_TTL, OS_CACHE, SAVE_RESUME_DATA_INTERVAL, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_LISTEN_IPV6, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
+enum AdvSettingsRows {DISK_CACHE, DISK_CACHE_TTL, OS_CACHE, SAVE_RESUME_DATA_INTERVAL, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, SHOW_ZEROS, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_LISTEN_IPV6, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
                     #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
                       UPDATE_CHECK,
                     #endif
@@ -33,6 +33,7 @@ private:
   cb_super_seeding, cb_program_notifications, cb_tracker_status, cb_confirm_torrent_deletion,
   cb_confirm_torrent_recheck, cb_enable_tracker_ext, cb_listen_ipv6;
   QComboBox combo_iface;
+  QComboBox combo_showzeros;
   QSpinBox spin_cache_ttl;
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
   QCheckBox cb_update_check;
@@ -84,6 +85,8 @@ public slots:
     pref->recheckTorrentsOnCompletion(cb_recheck_completed.isChecked());
     // Transfer list refresh interval
     pref->setRefreshInterval(spin_list_refresh.value());
+    // Show zeros for torrents values
+    pref->setShowZeros(combo_showzeros.currentIndex());
     // Peer resolution
     pref->resolvePeerCountries(cb_resolve_countries.isChecked());
     pref->resolvePeerHostNames(cb_resolve_hosts.isChecked());
@@ -260,6 +263,15 @@ private slots:
       combo_iface.setCurrentIndex(i);
     }
     setRow(NETWORK_IFACE, tr("Network Interface (requires restart)"), &combo_iface);
+
+    // Show zero values for torrents
+    const uint current_showzeros = pref->getShowZeros();
+    combo_showzeros.addItem(tr("Always show all values"));
+    combo_showzeros.addItem(tr("Only hide zeros for paused torrents"));
+    combo_showzeros.addItem(tr("Always hide zero values"));
+    combo_showzeros.setCurrentIndex(current_showzeros);
+    setRow(SHOW_ZEROS, tr("Zero values in the list"), &combo_showzeros);
+ 
     // Listen on IPv6 address
     cb_listen_ipv6.setChecked(pref->getListenIPv6());
     setRow(NETWORK_LISTEN_IPV6, tr("Listen on IPv6 address (requires restart)"), &cb_listen_ipv6);
