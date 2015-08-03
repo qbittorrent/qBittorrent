@@ -246,21 +246,13 @@ void RSSImp::deleteSelectedItems()
     QList<QTreeWidgetItem*> selectedItems = m_feedList->selectedItems();
     if (selectedItems.isEmpty())
         return;
+    if ((selectedItems.size() == 1) && (selectedItems.first() == m_feedList->stickyUnreadItem()))
+        return;
 
-    int ret;
-    if (selectedItems.size() > 1) {
-        ret = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to delete these elements from the list?"),
-                                    tr("&Yes"), tr("&No"),
-                                    QString(), 0, 1);
-    }
-    else {
-        if (selectedItems.first() == m_feedList->stickyUnreadItem())
-            return;
-        ret = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to delete this element from the list?"),
-                                    tr("&Yes"), tr("&No"),
-                                    QString(), 0, 1);
-    }
-    if (ret)
+    QMessageBox::StandardButton answer = QMessageBox::question(this, tr("Deletion confirmation"),
+        tr("Are you sure you want to delete the selected RSS feeds?"),
+        QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
+    if (answer == QMessageBox::No)
         return;
 
     foreach (QTreeWidgetItem* item, selectedItems) {
