@@ -110,7 +110,7 @@ void DownloadManager::applyProxySettings()
     QNetworkProxy proxy;
     const Preferences* const pref = Preferences::instance();
 
-    if (pref->isProxyEnabled()) {
+    if (pref->isProxyEnabled() && !pref->isProxyOnlyForTorrents()) {
         // Proxy enabled
         proxy.setHostName(pref->getProxyIp());
         proxy.setPort(pref->getProxyPort());

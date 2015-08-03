@@ -246,6 +246,8 @@ public:
     void setProxyPeerConnections(bool enabled);
     bool getForceProxy() const;
     void setForceProxy(bool enabled);
+    void setProxyOnlyForTorrents(bool enabled);
+    bool isProxyOnlyForTorrents() const;
 
     // Bittorrent options
     int getMaxConnecs() const;

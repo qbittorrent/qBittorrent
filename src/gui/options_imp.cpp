@@ -233,6 +233,7 @@ options_imp::options_imp(QWidget *parent):
   connect(spinProxyPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkProxyPeerConnecs, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
   connect(checkForceProxy, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+  connect(isProxyOnlyForTorrents, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
   connect(checkProxyAuth, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(textProxyUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(textProxyPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -441,6 +442,7 @@ void options_imp::saveOptions() {
   pref->setProxyPort(getProxyPort());
   pref->setProxyPeerConnections(checkProxyPeerConnecs->isChecked());
   pref->setForceProxy(checkForceProxy->isChecked());
+  pref->setProxyOnlyForTorrents(isProxyOnlyForTorrents->isChecked());
   pref->setProxyAuthEnabled(isProxyAuthEnabled());
   pref->setProxyUsername(getProxyUsername());
   pref->setProxyPassword(getProxyPassword());
@@ -694,6 +696,7 @@ void options_imp::loadOptions() {
   spinProxyPort->setValue(pref->getProxyPort());
   checkProxyPeerConnecs->setChecked(pref->proxyPeerConnections());
   checkForceProxy->setChecked(pref->getForceProxy());
+  isProxyOnlyForTorrents->setChecked(pref->isProxyOnlyForTorrents());
   checkProxyAuth->setChecked(pref->isProxyAuthEnabled());
   textProxyUsername->setText(pref->getProxyUsername());
   textProxyPassword->setText(pref->getProxyPassword());
@@ -996,6 +999,7 @@ void options_imp::enableProxy(int index) {
     spinProxyPort->setEnabled(true);
     checkProxyPeerConnecs->setEnabled(true);
     checkForceProxy->setEnabled(true);
+    isProxyOnlyForTorrents->setEnabled(true);
     if (index > 1) {
       checkProxyAuth->setEnabled(true);
     } else {
@@ -1010,6 +1014,7 @@ void options_imp::enableProxy(int index) {
     spinProxyPort->setEnabled(false);
     checkProxyPeerConnecs->setEnabled(false);
     checkForceProxy->setEnabled(false);
+    isProxyOnlyForTorrents->setEnabled(false);
     checkProxyAuth->setEnabled(false);
     checkProxyAuth->setChecked(false);
   }
