@@ -110,20 +110,31 @@ void RSSImp::displayItemsListMenu(const QPoint&)
 {
     QMenu myItemListMenu(this);
     QList<QListWidgetItem*> selectedItems = listArticles->selectedItems();
-    if (selectedItems.size() > 0) {
-        bool has_attachment = false;
-        foreach (const QListWidgetItem* item, selectedItems) {
-            if (m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
-                ->getItem(item->data(Article::IdRole).toString())->hasAttachment()) {
-                has_attachment = true;
-                break;
-            }
-        }
-        if (has_attachment)
-            myItemListMenu.addAction(actionDownload_torrent);
-        myItemListMenu.addAction(actionOpen_news_URL);
+    if (selectedItems.size() <= 0)
+        return;
+
+    bool hasTorrent = false;
+    bool hasLink = false;
+    foreach (const QListWidgetItem* item, selectedItems) {
+        if (!item) continue;
+        RssFeedPtr feed = m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString());
+        if (!feed) continue;
+        RssArticlePtr article = feed->getItem(item->data(Article::IdRole).toString());
+        if (!article) continue;
+
+        if (!article->torrentUrl().isEmpty())
+            hasTorrent = true;
+        if (!article->link().isEmpty())
+            hasLink = true;
+        if (hasTorrent && hasLink)
+            break;
     }
-    myItemListMenu.exec(QCursor::pos());
+    if (hasTorrent)
+        myItemListMenu.addAction(actionDownload_torrent);
+    if (hasLink)
+        myItemListMenu.addAction(actionOpen_news_URL);
+    if (hasTorrent || hasLink)
+        myItemListMenu.exec(QCursor::pos());
 }
 
 void RSSImp::on_actionManage_cookies_triggered()
