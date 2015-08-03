@@ -371,6 +371,8 @@ public:
     void recheckTorrentsOnCompletion(bool recheck);
     unsigned int getRefreshInterval() const;
     void setRefreshInterval(uint interval);
+    unsigned int getShowZeros() const;
+    void setShowZeros(uint id);
     bool resolvePeerCountries() const;
     void resolvePeerCountries(bool resolve);
     bool resolvePeerHostNames() const;

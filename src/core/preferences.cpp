@@ -1468,6 +1468,16 @@ void Preferences::setRefreshInterval(uint interval)
     setValue("Preferences/General/RefreshInterval", interval);
 }
 
+unsigned int Preferences::getShowZeros() const
+{
+    return value("Preferences/General/ShowZeros", 0).toUInt();
+}
+
+void Preferences::setShowZeros(uint id)
+{
+    setValue("Preferences/General/ShowZeros", id);
+}
+
 bool Preferences::resolvePeerCountries() const
 {
     return value("Preferences/Connection/ResolvePeerCountries", true).toBool();
