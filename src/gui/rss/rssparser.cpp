@@ -260,7 +260,7 @@ void RssParser::parseRssArticle(QXmlStreamReader& xml, const QString& feedUrl)
 
     if (xml.isStartElement()) {
       if (xml.name() == "title")
-        article["title"] = xml.readElementText();
+        article["title"] = xml.readElementText().trimmed();
       else if (xml.name() == "enclosure") {
         if (xml.attributes().value("type") == "application/x-bittorrent")
           article["torrent_url"] = xml.attributes().value("url").toString();
@@ -273,13 +273,13 @@ void RssParser::parseRssArticle(QXmlStreamReader& xml, const QString& feedUrl)
           article["news_link"] = link;
       }
       else if (xml.name() == "description")
-        article["description"] = xml.readElementText();
+        article["description"] = xml.readElementText().trimmed();
       else if (xml.name() == "pubDate")
-        article["date"] = parseDate(xml.readElementText());
+        article["date"] = parseDate(xml.readElementText().trimmed());
       else if (xml.name() == "author")
-        article["author"] = xml.readElementText();
+        article["author"] = xml.readElementText().trimmed();
       else if (xml.name() == "guid")
-        article["id"] = xml.readElementText();
+        article["id"] = xml.readElementText().trimmed();
     }
   }
 
@@ -349,7 +349,7 @@ void RssParser::parseAtomArticle(QXmlStreamReader& xml, const QString& feedUrl, 
         // Workaround for CDATA (QString cannot parse html escapes on it's own)
         QTextDocument doc;
         doc.setHtml(xml.readElementText());
-        article["title"] = doc.toPlainText();
+        article["title"] = doc.toPlainText().trimmed();
       }
       else if (xml.name() == "link") {
         QString link = ( xml.attributes().isEmpty() ?
@@ -379,13 +379,13 @@ void RssParser::parseAtomArticle(QXmlStreamReader& xml, const QString& feedUrl, 
         // Actually works great for non-broken content too
         QString feedText = xml.readElementText(QXmlStreamReader::IncludeChildElements);
         if (!feedText.isEmpty())
-          article["description"] = feedText;
+          article["description"] = feedText.trimmed();
 
         double_content = true;
       }
       else if (xml.name() == "updated"){
         // ATOM uses standard compliant date, don't do fancy stuff
-        QDateTime articleDate = QDateTime::fromString(xml.readElementText(), Qt::ISODate);
+        QDateTime articleDate = QDateTime::fromString(xml.readElementText().trimmed(), Qt::ISODate);
         article["date"] = ( articleDate.isValid() ?
                               articleDate :
                               QDateTime::currentDateTime() );
@@ -394,12 +394,12 @@ void RssParser::parseAtomArticle(QXmlStreamReader& xml, const QString& feedUrl, 
         xml.readNext();
         while(xml.name() != "author") {
           if(xml.name() == "name")
-            article["author"] = xml.readElementText();
+            article["author"] = xml.readElementText().trimmed();
           xml.readNext();
         }
       }
       else if (xml.name() == "id")
-        article["id"] = xml.readElementText();
+        article["id"] = xml.readElementText().trimmed();
     }
   }
 
