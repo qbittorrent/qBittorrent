@@ -259,8 +259,13 @@ void RssParser::parseRssArticle(QXmlStreamReader& xml, const QString& feedUrl)
         if (xml.attributes().value("type") == "application/x-bittorrent")
           article["torrent_url"] = xml.attributes().value("url").toString();
       }
-      else if (xml.name() == "link")
-        article["news_link"] = xml.readElementText();
+      else if (xml.name() == "link") {
+        QString link = xml.readElementText().trimmed();
+        if (link.startsWith("magnet:", Qt::CaseInsensitive))
+          article["torrent_url"] = link; // magnet link instead of a news URL
+        else
+          article["news_link"] = link;
+      }
       else if (xml.name() == "description")
         article["description"] = xml.readElementText();
       else if (xml.name() == "pubDate")
@@ -341,17 +346,18 @@ void RssParser::parseAtomArticle(QXmlStreamReader& xml, const QString& feedUrl, 
         article["title"] = doc.toPlainText();
       }
       else if (xml.name() == "link") {
-        QString theLink = ( xml.attributes().isEmpty() ?
-                              xml.readElementText() :
-                              xml.attributes().value("href").toString() );
+        QString link = ( xml.attributes().isEmpty() ?
+                           xml.readElementText().trimmed() :
+                           xml.attributes().value("href").toString() );
 
-        // Atom feeds can have relative links, work around this and
-        // take the stress of figuring article full URI from UI
+        if (link.startsWith("magnet:", Qt::CaseInsensitive))
+          article["torrent_url"] = link; // magnet link instead of a news URL
+        else
+          // Atom feeds can have relative links, work around this and
+          // take the stress of figuring article full URI from UI
+          // Assemble full URI
+          article["news_link"] = ( baseUrl.isEmpty() ? link : baseUrl + link );
 
-        // Assemble full URI
-        article["news_link"] = ( baseUrl.isEmpty() ?
-                                   theLink :
-                                   baseUrl + theLink );
       }
       else if (xml.name() == "summary" || xml.name() == "content"){
         if(double_content) { // Duplicate content -> ignore
