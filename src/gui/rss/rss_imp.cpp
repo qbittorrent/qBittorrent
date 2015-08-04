@@ -340,12 +340,19 @@ void RSSImp::refreshAllFeeds()
 void RSSImp::downloadSelectedTorrents()
 {
     QList<QListWidgetItem*> selected_items = listArticles->selectedItems();
-    foreach (const QListWidgetItem* item, selected_items) {
+    if (selected_items.size() <= 0)
+        return;
+    foreach (QListWidgetItem* item, selected_items) {
         if (!item) continue;
         RssFeedPtr feed = m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString());
         if (!feed) continue;
         RssArticlePtr article = feed->getItem(item->data(Article::IdRole).toString());
         if (!article) continue;
+
+        // Mark as read
+        article->markAsRead();
+        item->setData(Article::ColorRole, QVariant(QColor("grey")));
+        item->setData(Article::IconRole, QVariant(QIcon(":/icons/sphere.png")));
 
         if (article->torrentUrl().isEmpty())
             continue;
@@ -354,19 +361,36 @@ void RSSImp::downloadSelectedTorrents()
         else
             BitTorrent::Session::instance()->addTorrent(article->torrentUrl());
     }
+    // Decrement feed nb unread news
+    updateItemInfos(m_feedList->stickyUnreadItem());
+    updateItemInfos(m_feedList->getTreeItemFromUrl(selected_items.first()->data(Article::FeedUrlRole).toString()));
 }
 
 // open the url of the selected RSS articles in the Web browser
 void RSSImp::openSelectedArticlesUrls()
 {
     QList<QListWidgetItem *> selected_items = listArticles->selectedItems();
-    foreach (const QListWidgetItem* item, selected_items) {
-        RssArticlePtr news =  m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
-                             ->getItem(item->data(Article::IdRole).toString());
-        const QString link = news->link();
+    if (selected_items.size() <= 0)
+        return;
+    foreach (QListWidgetItem* item, selected_items) {
+        if (!item) continue;
+        RssFeedPtr feed = m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString());
+        if (!feed) continue;
+        RssArticlePtr article = feed->getItem(item->data(Article::IdRole).toString());
+        if (!article) continue;
+
+        // Mark as read
+        article->markAsRead();
+        item->setData(Article::ColorRole, QVariant(QColor("grey")));
+        item->setData(Article::IconRole, QVariant(QIcon(":/icons/sphere.png")));
+
+        const QString link = article->link();
         if (!link.isEmpty())
             QDesktopServices::openUrl(QUrl(link));
     }
+    // Decrement feed nb unread news
+    updateItemInfos(m_feedList->stickyUnreadItem());
+    updateItemInfos(m_feedList->getTreeItemFromUrl(selected_items.first()->data(Article::FeedUrlRole).toString()));
 }
 
 //right-click on stream : give it an alias
@@ -543,7 +567,6 @@ void RSSImp::refreshTextBrowser()
 {
     QList<QListWidgetItem*> selection = listArticles->selectedItems();
     if (selection.empty()) return;
-    Q_ASSERT(selection.size() == 1);
     QListWidgetItem *item = selection.first();
     Q_ASSERT(item);
     if (item == m_currentArticle) return;
@@ -708,8 +731,6 @@ RSSImp::RSSImp(QWidget *parent):
 
     m_feedList = new FeedListWidget(splitter_h, m_rssManager);
     splitter_h->insertWidget(0, m_feedList);
-    listArticles->setSelectionBehavior(QAbstractItemView::SelectItems);
-    listArticles->setSelectionMode(QAbstractItemView::SingleSelection);
     editHotkey = new QShortcut(QKeySequence("F2"), m_feedList, 0, 0, Qt::WidgetShortcut);
     connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedRssFile()));
     connect(m_feedList, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedRssFile()));

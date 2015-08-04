@@ -139,7 +139,7 @@ p, li { white-space: pre-wrap; }
            <enum>Qt::CustomContextMenu</enum>
           </property>
           <property name="selectionMode">
-           <enum>QAbstractItemView::SingleSelection</enum>
+           <enum>QAbstractItemView::ExtendedSelection</enum>
           </property>
           <property name="selectionBehavior">
            <enum>QAbstractItemView::SelectItems</enum>
