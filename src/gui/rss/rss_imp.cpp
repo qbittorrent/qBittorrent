@@ -355,6 +355,8 @@ void RSSImp::downloadSelectedTorrents()
         RssArticlePtr article = feed->getItem(item->data(Article::IdRole).toString());
         if (!article) continue;
 
+        if (article->torrentUrl().isEmpty())
+            continue;
         if (Preferences::instance()->useAdditionDialog())
             AddNewTorrentDialog::show(article->torrentUrl());
         else

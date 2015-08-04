@@ -364,6 +364,12 @@ void RssFeed::downloadArticleTorrentIfMatching(RssDownloadRuleList* rules, const
   rules->saveRulesToStorage();
   // Download the torrent
   const QString& torrent_url = article->torrentUrl();
+  if (torrent_url.isEmpty()) {
+    Logger::instance()->addMessage(tr("Automatic download %1 from %2 RSS feed failed because it doesn't contain a torrent or a magnet link...").arg(article->title()).arg(displayName()), Log::WARNING);
+    article->markAsRead();
+    return;
+  }
+
   Logger::instance()->addMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(article->title()).arg(displayName()));
   connect(BitTorrent::Session::instance(), SIGNAL(downloadFromUrlFinished(QString)), article.data(), SLOT(handleTorrentDownloadSuccess(const QString&)), Qt::UniqueConnection);
   connect(article.data(), SIGNAL(articleWasRead()), SLOT(handleArticleStateChanged()), Qt::UniqueConnection);

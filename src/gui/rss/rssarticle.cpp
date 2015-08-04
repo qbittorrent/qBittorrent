@@ -82,7 +82,7 @@ const QString& RssArticle::author() const {
 }
 
 const QString& RssArticle::torrentUrl() const {
-  return m_torrentUrl.isEmpty() ? m_link : m_torrentUrl;
+  return m_torrentUrl;
 }
 
 const QString& RssArticle::link() const {
@@ -123,6 +123,6 @@ const QString& RssArticle::title() const
 }
 
 void RssArticle::handleTorrentDownloadSuccess(const QString &url) {
-  if (url == m_torrentUrl || url == m_link)
+  if (url == m_torrentUrl)
     markAsRead();
 }
