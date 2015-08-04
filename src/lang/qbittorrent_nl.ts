@@ -6771,32 +6771,32 @@ Deze plugins zijn uitgeschakeld.</translation>
         <translation>Verwerken van opgegeven IP-filter gelukt: er werden %1 regels toegepast.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1391"/>
+        <location filename="../gui/options_imp.cpp" line="1392"/>
         <source>Invalid key</source>
         <translation>Ongeldige sleutel</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1391"/>
+        <location filename="../gui/options_imp.cpp" line="1392"/>
         <source>This is not a valid SSL key.</source>
         <translation>Dit is geen geldige SSL-sleutel.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1406"/>
+        <location filename="../gui/options_imp.cpp" line="1407"/>
         <source>Invalid certificate</source>
         <translation>Ongeldig certificaat</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1406"/>
+        <location filename="../gui/options_imp.cpp" line="1407"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Dit is geen geldig SSL-certificaat.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1415"/>
+        <location filename="../gui/options_imp.cpp" line="1416"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>De starttijd en de eindtijd kan niet hetzelfde zijn.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1418"/>
+        <location filename="../gui/options_imp.cpp" line="1419"/>
         <source>Time Error</source>
         <translation>Tijd-fout</translation>
     </message>

@@ -6764,32 +6764,32 @@ Those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1391"/>
+        <location filename="../gui/options_imp.cpp" line="1392"/>
         <source>Invalid key</source>
         <translation>Virheellinen avain</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1391"/>
+        <location filename="../gui/options_imp.cpp" line="1392"/>
         <source>This is not a valid SSL key.</source>
         <translation>Tämä ei ole kelvollinen SSL-avain.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1406"/>
+        <location filename="../gui/options_imp.cpp" line="1407"/>
         <source>Invalid certificate</source>
         <translation>Virheellinen varmenne</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1406"/>
+        <location filename="../gui/options_imp.cpp" line="1407"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Tämä ei ole kelvollinen SSL-varmenne.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1415"/>
+        <location filename="../gui/options_imp.cpp" line="1416"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Aloitus- ja päättymisaika eivät voi olla samoja.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1418"/>
+        <location filename="../gui/options_imp.cpp" line="1419"/>
         <source>Time Error</source>
         <translation>Aikavirhe</translation>
     </message>

@@ -6765,32 +6765,32 @@ Those plugins were disabled.</source>
         <translation>Analitzat satisfactòriament el filtre IP: %1 regla ha estat aplicada.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1391"/>
+        <location filename="../gui/options_imp.cpp" line="1392"/>
         <source>Invalid key</source>
         <translation>Clau no vàlida</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1391"/>
+        <location filename="../gui/options_imp.cpp" line="1392"/>
         <source>This is not a valid SSL key.</source>
         <translation>Aquesta no és una clau SSL vàlida.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1406"/>
+        <location filename="../gui/options_imp.cpp" line="1407"/>
         <source>Invalid certificate</source>
         <translation>Certificat no vàlid</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1406"/>
+        <location filename="../gui/options_imp.cpp" line="1407"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Aquest no és un Certificat SSL vàlid.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1415"/>
+        <location filename="../gui/options_imp.cpp" line="1416"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Els temps d&apos;inici i d&apos;acabament no poden ser els mateixos.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1418"/>
+        <location filename="../gui/options_imp.cpp" line="1419"/>
         <source>Time Error</source>
         <translation>Error de temps</translation>
     </message>

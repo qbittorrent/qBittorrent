@@ -6771,32 +6771,32 @@ En su lugar, esos plugins fueron deshabilitados.</translation>
         <translation>Filtro IP analizado correctamente: %1 reglas fueron aplicadas.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1391"/>
+        <location filename="../gui/options_imp.cpp" line="1392"/>
         <source>Invalid key</source>
         <translation>Clave no válida</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1391"/>
+        <location filename="../gui/options_imp.cpp" line="1392"/>
         <source>This is not a valid SSL key.</source>
         <translation>Esta no es una clave SSL válida.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1406"/>
+        <location filename="../gui/options_imp.cpp" line="1407"/>
         <source>Invalid certificate</source>
         <translation>Certificado no válido</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1406"/>
+        <location filename="../gui/options_imp.cpp" line="1407"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Este no es un Certificado SSL válido.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1415"/>
+        <location filename="../gui/options_imp.cpp" line="1416"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Los tiempos de inicio y finalización no pueden ser iguales.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1418"/>
+        <location filename="../gui/options_imp.cpp" line="1419"/>
         <source>Time Error</source>
         <translation>Error de tiempo</translation>
     </message>

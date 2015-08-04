@@ -1,85 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="uk">
+<TS version="2.0" language="sl">
 <context>
     <name>AboutDlg</name>
     <message>
         <location filename="../gui/about.ui" line="21"/>
         <source>About qBittorrent</source>
-        <translation>Про qBittorrent</translation>
+        <translation>O programu qBittorent</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="83"/>
         <source>About</source>
-        <translation>Про програму</translation>
+        <translation>O programu</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="128"/>
         <source>Author</source>
-        <translation>Автор</translation>
+        <translation>Avtor</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="216"/>
         <location filename="../gui/about.ui" line="293"/>
         <source>Name:</source>
-        <translation>Ім’я:</translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="240"/>
         <location filename="../gui/about.ui" line="281"/>
         <source>Country:</source>
-        <translation>Країна:</translation>
+        <translation>Država</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="228"/>
         <location filename="../gui/about.ui" line="312"/>
         <source>E-mail:</source>
-        <translation>E-mail:</translation>
+        <translation>E-pošta:</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="262"/>
         <source>Greece</source>
-        <translation>Греція</translation>
+        <translation>Grčija</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="341"/>
         <source>Current maintainer</source>
-        <translation>Поточний супровідник</translation>
+        <translation>Trenutni vzdrževalec</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="354"/>
         <source>Original author</source>
-        <translation>Оригінальний автор</translation>
+        <translation>Originalni avtor</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="412"/>
         <source>Libraries</source>
-        <translation>Бібліотеки</translation>
+        <translation>Knjižnice</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="424"/>
         <source>This version of qBittorrent was built against the following libraries:</source>
-        <translation>Дану версію qBittorrent збудовано з наступними бібліотеками:</translation>
+        <translation>Ta verzija qBittorenta je bila ustvarjena s sledečimi knjižnicami:</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="184"/>
         <source>France</source>
-        <translation>Франція</translation>
+        <translation>Francija</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="382"/>
         <source>Translation</source>
-        <translation>Переклад</translation>
+        <translation>Prevod</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="399"/>
         <source>License</source>
-        <translation>Ліцензія</translation>
+        <translation>Licenca</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="365"/>
         <source>Thanks to</source>
-        <translation>Подяки</translation>
+        <translation>Zahvala</translation>
     </message>
 </context>
 <context>
@@ -87,257 +87,257 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="29"/>
         <source>Save as</source>
-        <translation>Зберегти як</translation>
+        <translation>Shrani kot</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="53"/>
         <source>Browse...</source>
-        <translation>Відкрити...</translation>
+        <translation>Brskaj ...</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="62"/>
         <source>Set as default save path</source>
-        <translation>Зробити стандартним шляхом збереження</translation>
+        <translation>Nastavi kot privzeta pot za prenose</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="72"/>
         <source>Never show again</source>
-        <translation>Більше ніколи не показувати</translation>
+        <translation>Ne prikaži več</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="89"/>
         <source>Torrent settings</source>
-        <translation>Налаштування торрента</translation>
+        <translation>Torrent nastavitve</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="95"/>
         <source>Start torrent</source>
-        <translation>Запустити торрент</translation>
+        <translation>Začni torrent</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="107"/>
         <source>Label:</source>
-        <translation>Мітка:</translation>
+        <translation>Oznaka:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="126"/>
         <source>Skip hash check</source>
-        <translation>Пропустити перевірку хешу</translation>
+        <translation>Preskoči preverjanje napak</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="136"/>
         <source>Torrent Information</source>
-        <translation>Інформація про торрент</translation>
+        <translation>Torrent informacije</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="144"/>
         <source>Size:</source>
-        <translation>Розмір:</translation>
+        <translation>Velikost:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="158"/>
         <source>Comment:</source>
-        <translation>Коментар:</translation>
+        <translation>Komentar:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="172"/>
         <source>Date:</source>
-        <translation>Дата:</translation>
+        <translation>Datum:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="186"/>
         <source>Info Hash:</source>
-        <translation>Інформаційний хеш</translation>
+        <translation>Razpršilo:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="277"/>
         <source>Normal</source>
-        <translation>Нормальний</translation>
+        <translation>Normalno</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="282"/>
         <source>High</source>
-        <translation>Високий</translation>
+        <translation>Visoko</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="287"/>
         <source>Maximum</source>
-        <translation>Максимальний</translation>
+        <translation>Maksimalno</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="292"/>
         <source>Do not download</source>
-        <translation>Не завантажувати</translation>
+        <translation>Ne prenesi</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="165"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="636"/>
         <source>I/O Error</source>
-        <translation>Помилка вводу/виводу</translation>
+        <translation>I/O Napaka</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="165"/>
         <source>The torrent file does not exist.</source>
-        <translation>Цей torrent-файл не існує.</translation>
+        <translation>Torrent datoteka ne obstaja.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="173"/>
         <source>Invalid torrent</source>
-        <translation>Хибний торрент</translation>
+        <translation>Napačen torrent</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="173"/>
         <source>Failed to load the torrent: %1</source>
-        <translation>Не вдалось завантажити торрент: %1</translation>
+        <translation>Napaka pri nalaganju torrenta: %1</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="185"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="213"/>
         <source>Already in download list</source>
-        <translation>Вже є в списку завантажень</translation>
+        <translation>Torrent že obstaja v seznamu prenosov</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="333"/>
         <source>Free disk space: %1</source>
-        <translation>Вільне місце на диску: %1</translation>
+        <translation>Neporabljen prostor na disku: %1</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="662"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
-        <translation>Недоступно</translation>
+        <translation>Ni na voljo.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="663"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
-        <translation>Недоступно</translation>
+        <translation>Ni na voljo</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="672"/>
         <source>Not available</source>
-        <translation>Недоступно</translation>
+        <translation>Ni na voljo</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="202"/>
         <source>Invalid magnet link</source>
-        <translation>Хибне magnet-посилання</translation>
+        <translation>Napačna magnet povezava</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="185"/>
         <source>Torrent is already in download list. Trackers were merged.</source>
-        <translation>Торрент вже є у списку завантажень. Трекери об’єднано.</translation>
+        <translation>Torrent že obstaja v seznamu prenosov. Sledilniki so bili združeni.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="188"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="216"/>
         <source>Cannot add torrent</source>
-        <translation>Не вдалось додати торрент</translation>
+        <translation>Ni mogoče dodati torrenta</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="188"/>
         <source>Cannot add this torrent. Perhaps it is already in adding state.</source>
-        <translation>Не вдалось додати цей торрент. Можливо, він уже в стані додавання.</translation>
+        <translation>Ni mogoče dodati torrenta. Mogoče je že dodan.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="202"/>
         <source>This magnet link was not recognized</source>
-        <translation>Це magnet-посилання не було розпізнано</translation>
+        <translation>Ta magnet povezava ni prepoznavna</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="213"/>
         <source>Magnet link is already in download list. Trackers were merged.</source>
-        <translation>Magnet-посилання вже є в списку завантажень. Трекерт об’єднано.</translation>
+        <translation>Magnet povezava je že v seznamu prenosov. Sledilnik so bili združeni.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="216"/>
         <source>Cannot add this torrent. Perhaps it is already in adding.</source>
-        <translation>Не вдалось додати цей торрент. Можливо, він уже додається</translation>
+        <translation>Ni mogoče dodati torrenta. Mogoče je že dodan.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="225"/>
         <source>Magnet link</source>
-        <translation>Magnet-посилання</translation>
+        <translation>Magnet povezava</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="232"/>
         <source>Retrieving metadata...</source>
-        <translation>Отримуються метадані...</translation>
+        <translation>Pridobivam podatke...</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="331"/>
         <source>Not Available</source>
         <comment>This size is unavailable.</comment>
-        <translation>Недоступно</translation>
+        <translation>Ni na voljo</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="362"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="370"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="372"/>
         <source>Choose save path</source>
-        <translation>Виберіть шлях збереження</translation>
+        <translation>Izberi mapo za shranjevanje</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="421"/>
         <source>Rename the file</source>
-        <translation>Перейменувати файл</translation>
+        <translation>Preimenuj datoteko</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="422"/>
         <source>New name:</source>
-        <translation>Нова назва:</translation>
+        <translation>Novo ime:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="426"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="451"/>
         <source>The file could not be renamed</source>
-        <translation>Файл не вдалося перейменувати</translation>
+        <translation>Datoteke ni možno preimenovati</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="427"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Ця назва файла містить заборонені символи. Будь ласка, виберіть іншу.</translation>
+        <translation>To ime datoteke vsebuje prepovedane znake, prosim izberi drugo ime.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="452"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="485"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Ця назва вже використовується в даній папці. Будь ласка, виберіть іншу.</translation>
+        <translation>To ime je že v uporabi v tej mapi. Prosim uporabi drugo ime.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="484"/>
         <source>The folder could not be renamed</source>
-        <translation>Цю теку не вдалося перейменувати</translation>
+        <translation>Mape ni možno preimenovati</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="541"/>
         <source>Rename...</source>
-        <translation>Перейменувати...</translation>
+        <translation>Preimenuj...</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="545"/>
         <source>Priority</source>
-        <translation>Пріоритет</translation>
+        <translation>Prioriteta</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="637"/>
         <source>Invalid metadata</source>
-        <translation>Хибні метадані</translation>
+        <translation>Neveljavni meta podatki</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="644"/>
         <source>Parsing metadata...</source>
-        <translation>Розбираються метадані...</translation>
+        <translation>Razpoznavanje podatkov...</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="648"/>
         <source>Metadata retrieval complete</source>
-        <translation>Завершено отримання метаданих</translation>
+        <translation>Pridobivanje podatkov končano</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="709"/>
         <source>Download Error</source>
-        <translation>Помилка завантаження</translation>
+        <translation>Napaka prejema</translation>
     </message>
 </context>
 <context>
@@ -345,173 +345,173 @@
     <message>
         <location filename="../gui/advancedsettings.h" line="191"/>
         <source>Disk write cache size</source>
-        <translation>Розмір дискового кешу</translation>
+        <translation>Velikost predpomnilnika</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="172"/>
         <source> MiB</source>
-        <translation> МіБ</translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="211"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
-        <translation>Вихідні порти (мінімум) [0: Вимк.]</translation>
+        <translation>Odhodni porti (min) [0: Onemogočeno]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="216"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
-        <translation>Вихідні порти (максимум) [0: Вимк.]</translation>
+        <translation>Odhodni porti (max) [0: Onemogočeno]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="222"/>
         <source>Recheck torrents on completion</source>
-        <translation>Перепровіряти торренти після завантаження</translation>
+        <translation>Preveri torrent po prenosu</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="228"/>
         <source>Transfer list refresh interval</source>
-        <translation>Інтервал оновлення списку завантажень</translation>
+        <translation>Interval osvežanja seznama prenosov</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="227"/>
         <source> ms</source>
         <comment> milliseconds</comment>
-        <translation> мс</translation>
+        <translation>ms</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="53"/>
         <source>Setting</source>
-        <translation>Параметр</translation>
+        <translation>Nastavitve</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="53"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
-        <translation>Значення</translation>
+        <translation>Vrednost</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="170"/>
         <source> (auto)</source>
-        <translation> (автоматично)</translation>
+        <translation>(samodejno)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="196"/>
         <source> s</source>
         <comment> seconds</comment>
-        <translation> с</translation>
+        <translation>s</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="197"/>
         <source>Disk cache expiry interval</source>
-        <translation>Термін дійсності дискового кешу</translation>
+        <translation>Predpomnilnik poteče v</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="200"/>
         <source>Enable OS cache</source>
-        <translation>Увімкнути кеш ОС</translation>
+        <translation>Omogoči predpomnilnik OS</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="205"/>
         <source> m</source>
         <comment> minutes</comment>
-        <translation>хв</translation>
+        <translation>m</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="231"/>
         <source>Resolve peer countries (GeoIP)</source>
-        <translation>Дізнаватись країну пірів (GeoIP)</translation>
+        <translation>Razreši mednarodne soležnike (GeoIP)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="234"/>
         <source>Resolve peer host names</source>
-        <translation>Дізнаватись адресу пірів</translation>
+        <translation>Razreši host imena soležnikov</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="239"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation>Максимальна кількість напіввідкритих з’єднань [0: Вимк.]</translation>
+        <translation>Maksimalno število na pol odprtih povezav [0: Onemogoči]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="242"/>
         <source>Strict super seeding</source>
-        <translation>Строге супер-сідування</translation>
+        <translation>Strogo super sejanje</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="262"/>
         <source>Network Interface (requires restart)</source>
-        <translation>Мережевий інтерфейс (потребує перезапуску)</translation>
+        <translation>Mrežni vmesnik (zahteva ponovni zagon)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="265"/>
         <source>Listen on IPv6 address (requires restart)</source>
-        <translation>Очікувати з’єднання за адресою IPv6 (потребує перезапуску).</translation>
+        <translation>Poslušaj na IPv6 naslovu (zahteva ponovni zagon)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="293"/>
         <source>Confirm torrent recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Potrdi ponovno preverjanje torrenta</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="296"/>
         <source>Exchange trackers with other peers</source>
-        <translation>Обмінюватись трекерами з іншими пірами</translation>
+        <translation>Izmenjuj sledilnike z drugimi soležniki</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="299"/>
         <source>Always announce to all trackers</source>
-        <translation>Отримувати пірів з усіх трекерів</translation>
+        <translation>Vedno sporoči vsem sledilcem</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="244"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
-        <translation>Будь-який інтерфейс</translation>
+        <translation>Katerikoli vmesnik</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="206"/>
         <source>Save resume data interval</source>
         <comment>How often the fastresume file is saved.</comment>
-        <translation>Інтервал збереження даних відновлення</translation>
+        <translation>Interval shranjevanja prenosa</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="268"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation>IP адреса, що повідомляється трекерам (потребує перезапуску)</translation>
+        <translation>IP naslov za poročilo sledilcem (zahteva ponovni zagon)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="271"/>
         <source>Display program on-screen notifications</source>
-        <translation>Відображати сповіщення програми на екрані</translation>
+        <translation>Prikaži obvestila na zaslonu</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="274"/>
         <source>Enable embedded tracker</source>
-        <translation>Увімкнути вбудований трекер</translation>
+        <translation>Omogoči vdelane sledilnike</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="279"/>
         <source>Embedded tracker port</source>
-        <translation>Порт вбудованого трекера</translation>
+        <translation>Vrata vdelanih sledilnikov</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="282"/>
         <source>Check for software updates</source>
-        <translation>Перевірити оновлення програмного забезпечення</translation>
+        <translation>Preveri posodobitve programa</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="286"/>
         <source>Use system icon theme</source>
-        <translation>Використовувати системну тему значків</translation>
+        <translation>Uporabi sistemske ikone</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="290"/>
         <source>Confirm torrent deletion</source>
-        <translation>Підтверджувати видалення торрентів</translation>
+        <translation>Potrdi brisanje torrenta</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="219"/>
         <source>Ignore transfer limits on local network</source>
-        <translation>Ігнорувати обмеження швидкості для локальної мережі</translation>
+        <translation>Ignoriraj omejitve prenosa na lokalnem omrežju</translation>
     </message>
 </context>
 <context>
@@ -520,37 +520,37 @@
         <location filename="../app/application.cpp" line="104"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
-        <translation>qBittorrent %1 запущено</translation>
+        <translation>qBittorrent %1 zagnan</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="262"/>
         <source>Information</source>
-        <translation>Інформація</translation>
+        <translation>Podatki</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="263"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation>Щоб керувати програмою qBittorrent, скористайтесь Веб-інтерфейсом: http://localhost:%1</translation>
+        <translation>Za nadziranje qBittorenta, pojdite na http://localhost:%1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="264"/>
         <source>The Web UI administrator user name is: %1</source>
-        <translation>Ім’я користувача-адміністратора в Веб-інтерфейсі: %1</translation>
+        <translation>Skrbniško ime spletnega vmesnika je: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="267"/>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation>Пароль адміністратора в Веб-інтерфейсі все ще стандартний: %1</translation>
+        <translation>Skrbniško geslo spletnega vmesnika je: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="268"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation>Це ризик безпеки, будь ласка, змініть пароль в налаштуваннях програми.</translation>
+        <translation>To je varnostno tveganje, zato premislite o zamenjavi gesla v možnostih programa.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="442"/>
         <source>Saving torrent progress...</source>
-        <translation>Зберігається прогрес торрента...</translation>
+        <translation>Shranjujem napredek torrenta ...</translation>
     </message>
 </context>
 <context>
@@ -558,316 +558,316 @@
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="14"/>
         <source>Automated RSS Downloader</source>
-        <translation>Автоматичний завантажувач RSS</translation>
+        <translation>Samodejni RSS prenos</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="26"/>
         <source>Enable the automated RSS downloader</source>
-        <translation>Увімкнути автоматичний завантажувач RSS</translation>
+        <translation>Omogoči saodejni RSS prenos</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="48"/>
         <source>Download rules</source>
-        <translation>Правила завантаження</translation>
+        <translation>Pravila prenosov</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="123"/>
         <source>Rule definition</source>
-        <translation>Визначення правила</translation>
+        <translation>Definicija pravila</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="138"/>
         <source>Must contain:</source>
-        <translation>Повинно містити:</translation>
+        <translation>Mora vsebovati:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="180"/>
         <source>Must not contain:</source>
-        <translation>Не може містити:</translation>
+        <translation>Naj ne vsebuje:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="129"/>
         <source>Use regular expressions</source>
-        <translation>Використовувати регулярні вирази</translation>
+        <translation>Uporabi privzete izraze</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="494"/>
         <source>Import...</source>
-        <translation>Імпорт...</translation>
+        <translation>Uvozi...</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="501"/>
         <source>Export...</source>
-        <translation>Експорт...</translation>
+        <translation>Izvozi...</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="272"/>
         <source>Assign label:</source>
-        <translation>Призначити мітку:</translation>
+        <translation>Nastavi oznako:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="254"/>
         <source>Episode filter:</source>
-        <translation>Фільтр серій:</translation>
+        <translation>Filter epizod:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="291"/>
         <source>Save to a different directory</source>
-        <translation>Зберегти в іншу теку</translation>
+        <translation>Shrani v drugo mapo</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="303"/>
         <source>Save to:</source>
-        <translation>Зберегти у:</translation>
+        <translation>Shrani v:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="338"/>
         <source>Ignore subsequent matches for (0 to disable)</source>
         <comment>... X days</comment>
-        <translation>Ігнорувати подальші збіги протягом (0 щоб вимкнути)</translation>
+        <translation>Ignoriraj naknadne prilagoditve za (0 za onemogočeno)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="361"/>
         <source> days</source>
-        <translation>днів</translation>
+        <translation>dni</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="402"/>
         <source>Add Paused:</source>
-        <translation>Додати зупиненим:</translation>
+        <translation>Dodaj torrente v premoru:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="416"/>
         <source>Use global setting</source>
-        <translation>Використовувати глобальне налаштування</translation>
+        <translation>Uporabi splošne nastavitve</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="421"/>
         <source>Always add paused</source>
-        <translation>Завжди додавати зупиненими</translation>
+        <translation>Vedno dodaj torrente v premoru</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="426"/>
         <source>Never add paused</source>
-        <translation>Ніколи не додавати зупиненими</translation>
+        <translation>Nikoli ne dodaj torrente v premoru</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="447"/>
         <source>Apply rule to feeds:</source>
-        <translation>Застосувати правило до подач:</translation>
+        <translation>Potrdi pravilo za:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="469"/>
         <source>Matching RSS articles</source>
-        <translation>Підходящі RSS-статті</translation>
+        <translation>Ujemajoč RSS članek</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="76"/>
         <source>Matches articles based on episode filter.</source>
-        <translation>Знаходить статті на основі фільтру серій</translation>
+        <translation>Prilagodi članke na podlagi filtra epizod.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="76"/>
         <source>Example: </source>
-        <translation>Приклад:</translation>
+        <translation>Primer:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="77"/>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
         <comment>example X will match</comment>
-        <translation>знайде 2, 5, 8-15, 30 і подальші серії першого сезону</translation>
+        <translation>bo uejlo epizode ene sezone 2, 5, 8 do 15, 30 in naprej</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="78"/>
         <source>Episode filter rules: </source>
-        <translation>Правила фільтра серій:</translation>
+        <translation>Filter pravila epizod:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="78"/>
         <source>Season number is a mandatory non-zero value</source>
-        <translation>Номер сезону — обов’язкове ненульове значення</translation>
+        <translation>Številka sezone je obvezna vrednost</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="79"/>
         <source>Episode number is a mandatory non-zero value</source>
-        <translation>Номер серії — обов’язкове ненульове значення</translation>
+        <translation>Številka epizode je obvezna vrednost</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="80"/>
         <source>Filter must end with semicolon</source>
-        <translation>Фільтр повинен закінчуватись крапкою з комою</translation>
+        <translation>Filter se mora končati z pomišljajem</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="81"/>
         <source>Three range types for episodes are supported: </source>
-        <translation>Підтримуються три типи діапазонів для серій</translation>
+        <translation>Tri vrste epizod so podprte:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="82"/>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation>Одне число: &lt;b&gt;1x25;&lt;/b&gt; відповідає 25ій серії першого сезону</translation>
+        <translation>Sama številka: &lt;b&gt;1x25;&lt;/b&gt; ustreza epizodi 25 sezone 1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="83"/>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation>Звичайний діапазон: &lt;b&gt;1x25-40;&lt;/b&gt; відповідає серіям 25-40 першого сезону</translation>
+        <translation>Normalno zaporedje: &lt;b&gt;1x25-40;&lt;/b&gt; ustreza epizodam 25 do 40 sezone 1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="84"/>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one</source>
-        <translation>Нескінченний діапазон: &lt;b&gt;1x25-;&lt;/b&gt; відповідає всім серіям, починаючи з 25-ї, першого сезону</translation>
+        <translation>Neskončna vrednost: &lt;b&gt;1x25-;&lt;/b&gt; ustreza epizodam 25 in naprej sezone 1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="261"/>
         <source>Last match: </source>
-        <translation>Останній збіг:</translation>
+        <translation>Zadnje ujemanje:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="263"/>
         <source> days ago.</source>
-        <translation>днів тому.</translation>
+        <translation>pred dnevi.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="265"/>
         <source>Unknown</source>
-        <translation>Невідомо</translation>
+        <translation>Neznano</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="358"/>
         <source>New rule name</source>
-        <translation>Нова назва правила</translation>
+        <translation>Ime novega pravila</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="358"/>
         <source>Please type the name of the new download rule.</source>
-        <translation>Будь ласка, введіть назву нового правила завантаження.</translation>
+        <translation>Prosim vpiši ime novega pravila prenosov.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="362"/>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="480"/>
         <source>Rule name conflict</source>
-        <translation>Конфлікт назв правил</translation>
+        <translation>Konflikt imen pravil.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="362"/>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="480"/>
         <source>A rule with this name already exists, please choose another name.</source>
-        <translation>Правило з цією назвою вже існує, будь ласка, оберіть іншу назву.</translation>
+        <translation>Pravilo z tem imenom že obstaja, prosim izberi drugo ime.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="380"/>
         <source>Are you sure you want to remove the download rule named %1?</source>
-        <translation>Ви впевнені, що хочете видалити правило &quot;%1&quot;?</translation>
+        <translation>Ali zares želiš odstraniti pravilo prenosov z imenom %1?</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="382"/>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation>Ви дійсно хочете видалити вибрані правила завантаження?</translation>
+        <translation>Ali ste prepričani, da želite odstraniti izbrana pravila za prejem?</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="383"/>
         <source>Rule deletion confirmation</source>
-        <translation>Підтвердження видалення правила</translation>
+        <translation>Potrditev odstranitev pravila</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="399"/>
         <source>Destination directory</source>
-        <translation>Тека призначення</translation>
+        <translation>Ciljni imenik</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="407"/>
         <source>Invalid action</source>
-        <translation>Неправильна дія</translation>
+        <translation>Neveljavno dejanje</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="407"/>
         <source>The list is empty, there is nothing to export.</source>
-        <translation>Список пустий, нічого експортувати.</translation>
+        <translation>Seznam je prazen. Ničesar ni za izvoz.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="411"/>
         <source>Where would you like to save the list?</source>
-        <translation>Де би ви хотіли зберегти список?</translation>
+        <translation>Kam želite shraniti seznam?</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="411"/>
         <source>Rules list (*.rssrules)</source>
-        <translation>Список правил (*.rssrules)</translation>
+        <translation>Seznam pravil (*.rssrules)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="416"/>
         <source>I/O Error</source>
-        <translation>Помилка вводу/виводу</translation>
+        <translation>I/O Napaka</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="416"/>
         <source>Failed to create the destination file</source>
-        <translation>Не вдалося створити теку призначення</translation>
+        <translation>Spodletelo ustvarjanje ciljne datoteke</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="424"/>
         <source>Please point to the RSS download rules file</source>
-        <translation>Будь ласка, вкажіть файл правил завантаження RSS</translation>
+        <translation>Vpišite naslov spletnega vira RSS.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="424"/>
         <source>Rules list</source>
-        <translation>Список правил</translation>
+        <translation>Seznam pravil</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="428"/>
         <source>Import Error</source>
-        <translation>Помилка імпорту</translation>
+        <translation>Napaka uvoza</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="428"/>
         <source>Failed to import the selected rules file</source>
-        <translation>Не вдалось імпортувати вибраний файл правил</translation>
+        <translation>Spodletelo uvažanje izbrane datoteke s pravili</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="439"/>
         <source>Add new rule...</source>
-        <translation>Додати нове правило...</translation>
+        <translation>Dodaj novo pravilo ...</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="445"/>
         <source>Delete rule</source>
-        <translation>Видалити правило</translation>
+        <translation>Odstrani pravilo</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="447"/>
         <source>Rename rule...</source>
-        <translation>Перейменувати правило...</translation>
+        <translation>Preimenuj pravilo ...</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="449"/>
         <source>Delete selected rules</source>
-        <translation>Видалити позначені правила</translation>
+        <translation>Odstrani izbrana pravila</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="476"/>
         <source>Rule renaming</source>
-        <translation>Перейменування правила</translation>
+        <translation>Preimenovanje pravila</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="476"/>
         <source>Please type the new rule name</source>
-        <translation>Будь ласка, введіть нову назву правила</translation>
+        <translation>Vpišite novo ime pravila</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="578"/>
         <source>Regex mode: use Perl-like regular expressions</source>
-        <translation>Режим регулярних виразів: Perl-подібні</translation>
+        <translation>Način regularnega izraza: uporabite Perlu podobne regularne izraze</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="582"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>Режим шаблонів: можна використовувати&lt;ul&gt;&lt;li&gt;? для позначення будь-якого символа&lt;/li&gt;&lt;li&gt;* для позначення 0 або більше символів&lt;/li&gt;&lt;li&gt;Пробіли вважаються операторами AND (та)&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>Način nadomestnega znaka: uporabite lahko &lt;ul&gt;&lt;li&gt;? za ujemanje enega znaka &lt;/li&gt;&lt;li&gt;* za ujemanje nič ali več znakov &lt;/li&gt;&lt;li&gt;presledek velja kot IN operator&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="584"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>Режим шаблонів: можна використовувати&lt;ul&gt;&lt;li&gt;? для позначення будь-якого символа&lt;/li&gt;&lt;li&gt;* для позначення 0 або більше символів&lt;/li&gt;&lt;li&gt;| використовується як оператор OR (або)&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>Način nadomestnega znaka: uporabite lahko &lt;ul&gt;&lt;li&gt;? za ujemanje enega znaka &lt;/li&gt;&lt;li&gt;* za ujemanje nič ali več znakov &lt;/li&gt;&lt;li&gt;| velja kot ALI operator&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>
@@ -875,223 +875,223 @@
     <message>
         <location filename="../core/bittorrent/session.cpp" line="160"/>
         <source>Peer ID: </source>
-        <translation>Ідентифікатор піра:</translation>
+        <translation>ID soležnika:</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="354"/>
         <source>HTTP User-Agent is %1</source>
-        <translation>Назва програми (HTTP): %1</translation>
+        <translation>Uporabniški posrednik HTTP je %1</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="381"/>
         <source>Anonymous mode [ON]</source>
-        <translation>Анонімний режим [Увімк.]</translation>
+        <translation>Brezimni način [vključen]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="383"/>
         <source>Anonymous mode [OFF]</source>
-        <translation>Анонімний режим [Вимк.]</translation>
+        <translation>Brezimni način [izključen]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="580"/>
         <source>PeX support [ON]</source>
-        <translation>Підтримка PeX [Увімк.]</translation>
+        <translation>Podpora PeX [vključena]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="582"/>
         <source>PeX support [OFF]</source>
-        <translation>Підтримка PeX [Вимк.]</translation>
+        <translation>Podpora PeX [izključena]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="584"/>
         <source>Restart is required to toggle PeX support</source>
-        <translation>Щоб перемкнути підтримку PeX, потрібно перезавантажити програму</translation>
+        <translation>Potreben je ponovni zagon za preklop PeX podpore</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="589"/>
         <source>Local Peer Discovery support [ON]</source>
-        <translation>Підтримка локального пошуку пірів [Увімк.]</translation>
+        <translation>Podpora odkrivanja krajevnih soležnikov  - LPD [vključena]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="593"/>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Підтримка пошуку локальних пірів [Вимк.]</translation>
+        <translation>Podpora odkrivanja krajevnih soležnikov - LPD [izključena]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="606"/>
         <source>Encryption support [ON]</source>
-        <translation>Підтримка шифрування [Увімк.]</translation>
+        <translation>Podpora šifriranja [vključena]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="611"/>
         <source>Encryption support [FORCED]</source>
-        <translation>Підтримка шифрування [Примусова]</translation>
+        <translation>Podpora šifriranja [vsiljena]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="616"/>
         <source>Encryption support [OFF]</source>
-        <translation>Підтримка шифрування [Вимк.]</translation>
+        <translation>Podpora šifriranja [izključena]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="681"/>
         <source>Embedded Tracker [ON]</source>
-        <translation>Вбудований трекер [Увімк.]</translation>
+        <translation>Vdelan sledilnik [vključen]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="683"/>
         <source>Failed to start the embedded tracker!</source>
-        <translation>Не вдалося запустити вбудований трекер!</translation>
+        <translation>Spodletel zagon vdelanega sledilnika!</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="686"/>
         <source>Embedded Tracker [OFF]</source>
-        <translation>Вбудований трекер [Вимк.]</translation>
+        <translation>Vdelan sledilnik [izključen]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="724"/>
         <source>%1 reached the maximum ratio you set. Removing...</source>
-        <translation>%1 досяг максимального коефіцієнта, налаштованого вами. Видаляється...</translation>
+        <translation>%1 je dosegel najvišje nastavljeno razmerje. Odstranjujem ...</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="730"/>
         <source>%1 reached the maximum ratio you set. Pausing...</source>
-        <translation>%1 досяг максимального коефіцієнта, налаштованого вами. Призупиняється...</translation>
+        <translation>%1 je dosegel najvišje nastavljeno razmerje. Premor ...</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="847"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; було видалено зі списку завантажень та жорсткого диску.</translation>
+        <translation>&apos;%1&apos; je bil odstranjen iz seznama prenosov in trdega diska.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="849"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; видалено зі списку завантажень.</translation>
+        <translation>&apos;%1&apos; je bil odstranjen iz seznama prenosov.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1003"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation>Завантажується &apos;%1&apos;, зачекайте...</translation>
+        <translation>Prejemanje &apos;%1&apos;, prosim počakajte ...</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1215"/>
         <source>Error: Could not create torrent export directory: %1</source>
-        <translation>Помилка: Не вдалось створити теку експорту: %1</translation>
+        <translation>Napaka: Ni bilo mogoče ustvariti imenika za izvoz torrenta: %1</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1223"/>
         <source>Torrent Export: torrent is invalid, skipping...</source>
-        <translation>Експорт торрентів: торрент хибний, пропускається...</translation>
+        <translation>Izvoz torrenta: torrent je neveljaven, preskok ...</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1243"/>
         <source>Error: could not export torrent %1, maybe it has not metadata yet.</source>
-        <translation>Помилка: не вдалось експортувати торрент %1, можливо, він ще не має метаданих.</translation>
+        <translation>Napaka: ni bilo mogoče izvoziti torrenta %1, mogoče še nima meta podatkov.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1316"/>
         <source>DHT support [ON]</source>
-        <translation>Підтримка DHT [Увімк.]</translation>
+        <translation>Podpora DHT [vključena]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1321"/>
         <source>DHT support [OFF]. Reason: %1</source>
-        <translation>Підтримка DHT [Вимк.]. Причина: %1</translation>
+        <translation>Podpora DHT [izključena]. Razlog: %1</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1329"/>
         <source>DHT support [OFF]</source>
-        <translation>Підтримка DHT [Вимк.]</translation>
+        <translation>Podpora DHT [izključena]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1475"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
-        <translation>qBittorrent пробує приєднатись до будь-якого інтерфейсу, порт: %1</translation>
+        <translation>qBittorrent poskuša poslušati na vseh vratih vmesnika: %1</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1479"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
-        <translation>qBittorrent не зміг відкрити порт %1 на жодному доступному мережевому інтерфейсі. Причина: %2</translation>
+        <translation>qBittorrent je spodletel pri poslušanju na vseh vratih vmesnika: %1. Razlog: %2</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1488"/>
         <source>The network interface defined is invalid: %1</source>
-        <translation>Зазначений мережевий інтерфейс неправильний: %1</translation>
+        <translation>Določeni omrežni vmesnik je neveljaven: %1</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1503"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation>qBittorrent пробує приєднатись до інтерфейсу %1, порт: %2</translation>
+        <translation>qBittorrent poskuša poslušati na vmesniku %1 in vratih: %2</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1508"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
-        <translation>qBittorrent не знайшов локальну адресу %1 для очікування вхідних з’єднань</translation>
+        <translation>qBittorrent ni našel krajevnega naslova %1 za poslušanje</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1606"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
-        <translation>Трекет &apos;%1&apos; додано до торрента &apos;%2&apos;</translation>
+        <translation>Sledilnik &apos;%1&apos; je bil dodan h torrentu &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1616"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
-        <translation>Трекер &apos;%1&apos; вилучено з торрента &apos;%2&apos;</translation>
+        <translation>Sledilnik &apos;%1&apos; je bil odstranjen iz torrenta &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1631"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
-        <translation>URL-роздачу &apos;%1&apos; додано до торрента &apos;%2&apos;</translation>
+        <translation>URL sejalec &apos;%1&apos; je bil dodan h torrentu &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1637"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
-        <translation>URL-роздачу &apos;%1&apos; вилучено з торрента &apos;%2&apos;</translation>
+        <translation>URL sejalec &apos;%1&apos; je bil odstranjen iz torrenta &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1694"/>
         <source>Unable to decode %1 torrent file.</source>
-        <translation>Не вдалось розкодувати %1 torrent-файл.</translation>
+        <translation>Ni mogoče odkodirati %1 datoteke torrent.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1800"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation>Рекурсивне завантаження файла %1, вбудованого в торрент %2</translation>
+        <translation>Rekurzivni prejem datoteke %1 vdelane v torrent %2</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1907"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
-        <translation>Не вдалося відновити торрент &apos;%1&apos;.</translation>
+        <translation>Ni mogoče nadaljevati torrenta &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1930"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Успішно оброблено наданий фільтр IP: застосовано %1 правил.</translation>
+        <translation>Uspešno razčlenjen filter IP: %1 pravil je bilo uveljavljenih.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="1936"/>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation>Помилка: Не вдалося розібрати даний фільтр IP.</translation>
+        <translation>Napaka: Spodletelo razčlenjevanje filtra IP.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2062"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
-        <translation>Не вдалося додати торрент. Причина: %1</translation>
+        <translation>Ni bilo mogoče dodati torrenta. Razlog: %1</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2083"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
-        <translation>&apos;%1&apos; продовжено. (швидке відновлення)</translation>
+        <translation>&apos;%1&apos; se nadaljuje. (hitro nadaljevanje)</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2100"/>
@@ -1102,81 +1102,81 @@
         <location filename="../core/bittorrent/session.cpp" line="2111"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
-        <translation>&apos;%1&apos; додано до списку завантажень.</translation>
+        <translation>&apos;%1&apos; je bil dodan na seznam prejemov.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2160"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
-        <translation>Сталася помилка вводу/виводу, &apos;%1&apos; призупинено. %2</translation>
+        <translation>Zgodila se je napaka I/O, &apos;%1&apos; v premoru. %2</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2168"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation>UPnP/NAT-PMP: Не вдалось приєднати порт, повідомлення: %1</translation>
+        <translation>UPnP/NAT-PMP: Spodletela preslikava vrat, sporočilo: %1</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2174"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation>UPnP/NAT-PMP: Успішне приєднання порта, повідомлення: %1</translation>
+        <translation>UPnP/NAT-PMP: Uspešna preslikava vrat, sporočilo: %1</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2184"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
-        <translation>через фільтр IP.</translation>
+        <translation>zaradi filtra IP.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2187"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
-        <translation>через фільтр портів.</translation>
+        <translation>zaradi filtra vrat.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2190"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
-        <translation>через обмеження змішаного режиму i2p.</translation>
+        <translation>zaradi i2p omejitev mešanega načina.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2193"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
-        <translation>через низький номер порта.</translation>
+        <translation>ker ima prenizka vrata.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2196"/>
         <source>because Î¼TP is disabled.</source>
         <comment>this peer was blocked because Î¼TP is disabled.</comment>
-        <translation>бо μTP вимкнено.</translation>
+        <translation>ker je  UDP onemogočen.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2199"/>
         <source>because TCP is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
-        <translation>бо TCP вимкнено.</translation>
+        <translation>ker je TCP onemogočen.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2217"/>
         <source>URL seed lookup failed for url: %1, message: %2</source>
-        <translation>Пошук URL-роздачі невдалий для URL: %1, повідомлення: %2</translation>
+        <translation>Spodletelo iskanje naslova za sejalca URL: %1, sporočilo: %2</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2231"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation>qBittorrent очікує з’єднань на інтерфейсі %1 порт: %2/%3</translation>
+        <translation>qBittorrent uspešno posluša na vmesniku %1 in vratih: %2/%3</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2257"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
-        <translation>qBittorrent не зміг приєднатись до інтерфейсу %1 порт: %2/%3. Причина: %4</translation>
+        <translation>qBittorrent je spodletel pri poslušanju na vmesnika %1 in vratih:%2/%3. Razlog: %4</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="2266"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
-        <translation>Зовнішня IP: %1</translation>
+        <translation>Zunanji IP: %1</translation>
     </message>
 </context>
 <context>
@@ -1184,17 +1184,17 @@
     <message>
         <location filename="../core/bittorrent/torrenthandle.cpp" line="1355"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
-        <translation>Не вдалося перемістити торрент: &apos;%1&apos;. Причина: %2</translation>
+        <translation>Ni bilo mogoče premakniti torrenta: &apos;%1&apos;. Razlog: %2</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/torrenthandle.cpp" line="1494"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation>Розміри файлів не збігаються для торрента %1, зупиняю його.</translation>
+        <translation>Neusklajeni velikosti datoteke za torrent %1, v premoru.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/torrenthandle.cpp" line="1500"/>
         <source>Fast resume data was rejected for torrent %1. Reason: %2. Checking again...</source>
-        <translation>Дані швидкого відновлення були відкинуті для торрента %1. Причина: %2. Перевіряю ще раз...</translation>
+        <translation>Hitro nadaljevanje je bilo zavrnjeno za torrent %1. Razlog: %2. Preverjam znova ...</translation>
     </message>
 </context>
 <context>
@@ -1202,26 +1202,26 @@
     <message>
         <location filename="../gui/rss/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
-        <translation>Керування Cookies</translation>
+        <translation>Upravljanje piškotkov</translation>
     </message>
     <message>
         <location filename="../gui/rss/cookiesdlg.ui" line="36"/>
         <source>Key</source>
         <extracomment>As in Key/Value pair</extracomment>
-        <translation>Ключ</translation>
+        <translation>Ključ</translation>
     </message>
     <message>
         <location filename="../gui/rss/cookiesdlg.ui" line="41"/>
         <source>Value</source>
         <extracomment>As in Key/Value pair</extracomment>
-        <translation>Значення</translation>
+        <translation>Vrednost</translation>
     </message>
     <message>
         <location filename="../gui/rss/cookiesdlg.cpp" line="48"/>
         <source>Common keys for cookies are: &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation>Звичайні ключі для cookies: &apos;%1&apos;, &apos;%2&apos;.
-Цю інформацію можна отримати з налаштувань Веб-браузера.</translation>
+        <translation>Pogosti ključi za piškotke so: &apos;%1&apos;, &apos;%2&apos;.
+Te podrobnosti boste našli v možnostih spletnega brskalnika.</translation>
     </message>
 </context>
 <context>
@@ -1230,13 +1230,13 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../gui/deletionconfirmationdlg.h" line="48"/>
         <source>Are you sure you want to delete &quot;%1&quot; from the transfer list?</source>
         <comment>Are you sure you want to delete &quot;ubuntu-linux-iso&quot; from the transfer list?</comment>
-        <translation>Ви впевнені, що хочете видалити &quot;%1&quot; зі списку завантажень?</translation>
+        <translation>Ali ste prepričani, da želite odstraniti &quot;%1&quot; iz seznama prenosov?</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdlg.h" line="50"/>
         <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
-        <translation>Ви впевнені, що хочете видалити ці %1 торренти зі списку завантажень?</translation>
+        <translation>Ali ste prepričani, da želite odstraniti %1 torrentov iz seznama prenosov?</translation>
     </message>
 </context>
 <context>
@@ -1244,24 +1244,24 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../gui/executionlog.ui" line="27"/>
         <source>General</source>
-        <translation>Загальні</translation>
+        <translation>Splošno</translation>
     </message>
     <message>
         <location filename="../gui/executionlog.ui" line="33"/>
         <source>Blocked IPs</source>
-        <translation>Заблоковані IP</translation>
+        <translation>Blokirani IPji</translation>
     </message>
     <message>
         <location filename="../gui/executionlog.cpp" line="101"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked %2</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; заблоковано %2</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; je bil blokiran %2</translation>
     </message>
     <message>
         <location filename="../gui/executionlog.cpp" line="103"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
         <comment>x.y.z.w was banned</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; забанено</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; je bil izobčen</translation>
     </message>
 </context>
 <context>
@@ -1269,12 +1269,12 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../gui/rss/feedlistwidget.cpp" line="41"/>
         <source>RSS feeds</source>
-        <translation>RSS-подачі</translation>
+        <translation>Viri RSS</translation>
     </message>
     <message>
         <location filename="../gui/rss/feedlistwidget.cpp" line="43"/>
         <source>Unread</source>
-        <translation>Непрочитані</translation>
+        <translation>Neprebrano</translation>
     </message>
 </context>
 <context>
@@ -1284,7 +1284,7 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../core/bittorrent/private/filterparserthread.cpp" line="159"/>
         <location filename="../core/bittorrent/private/filterparserthread.cpp" line="267"/>
         <source>I/O Error: Could not open ip filer file in read mode.</source>
-        <translation>Помилка вводу/виводу: Не вдалось відкрити для читання файл IP-фільтру</translation>
+        <translation>Napaka I/O: Ni mogoče odpreti datoteke filtra IP v načinu branja.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/private/filterparserthread.cpp" line="278"/>
@@ -1295,7 +1295,7 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../core/bittorrent/private/filterparserthread.cpp" line="340"/>
         <location filename="../core/bittorrent/private/filterparserthread.cpp" line="360"/>
         <source>Parsing Error: The filter file is not a valid PeerGuardian P2B file.</source>
-        <translation>Помилка розбору: Файл фільтру не є коректним файлом PeerGuardian P2B.</translation>
+        <translation>Napaka razčlenjevanja: Datoteka filtra ni veljavna datoteka PeerGuardian P2B.</translation>
     </message>
 </context>
 <context>
@@ -1304,52 +1304,52 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../core/net/private/geoipdatabase.cpp" line="243"/>
         <location filename="../core/net/private/geoipdatabase.cpp" line="271"/>
         <source>Unsupported database file size.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodprta velikost datoteke podatkovne zbirke</translation>
     </message>
     <message>
         <location filename="../core/net/private/geoipdatabase.cpp" line="311"/>
         <source>Metadata error: &apos;%1&apos; entry not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka meta podatkov: &apos;%1&apos; ni mogoče najti.</translation>
     </message>
     <message>
         <location filename="../core/net/private/geoipdatabase.cpp" line="312"/>
         <source>Metadata error: &apos;%1&apos; entry has invalid type.</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka meta podatkov: &apos;%1&apos; je neveljavne vrste.</translation>
     </message>
     <message>
         <location filename="../core/net/private/geoipdatabase.cpp" line="321"/>
         <source>Unsupported database version: %1.%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodprta različica podatkovne zbirke: %1.%2</translation>
     </message>
     <message>
         <location filename="../core/net/private/geoipdatabase.cpp" line="328"/>
         <source>Unsupported IP version: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodprta različica IP: %1</translation>
     </message>
     <message>
         <location filename="../core/net/private/geoipdatabase.cpp" line="335"/>
         <source>Unsupported record size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodprta velikost zapisa: %1</translation>
     </message>
     <message>
         <location filename="../core/net/private/geoipdatabase.cpp" line="345"/>
         <source>Invalid database type: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neveljavna vrsta podatkovne zbirke: %1</translation>
     </message>
     <message>
         <location filename="../core/net/private/geoipdatabase.cpp" line="366"/>
         <source>Database corrupted: no data section found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Podatkovna zbirka pokvarjena: ni bil najden odsek podatkov.</translation>
     </message>
     <message>
         <location filename="../core/net/private/geoipdatabase.cpp" line="391"/>
         <source>Database corrupted: invalid data type at DATA@%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Podatkovna zbirka pokvarjena: neveljavna vrsta podatkov pri DATA@%1</translation>
     </message>
     <message>
         <location filename="../core/net/private/geoipdatabase.cpp" line="395"/>
         <source>Invalid database: unsupported data type at DATA@%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neveljavna podatkovna zbirka: nepodprta vrsta podatkov na DATA@%1</translation>
     </message>
 </context>
 <context>
@@ -1357,263 +1357,263 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="36"/>
         <source>File</source>
-        <translation>Файл</translation>
+        <translation>Datoteka</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="37"/>
         <source>Edit</source>
-        <translation>Редагувати</translation>
+        <translation>Uredi</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="38"/>
         <source>Help</source>
-        <translation>Допомога</translation>
+        <translation>Pomoč</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="40"/>
         <source>Download Torrents from their URL or Magnet link</source>
-        <translation>Завантажити торренти з їх URL або magnet-посилання</translation>
+        <translation>Prejmite torrente preko URL ali magnetne povezave.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="41"/>
         <source>Only one link per line</source>
-        <translation>Одне посилання на рядок</translation>
+        <translation>Samo ena povezava na vrstico</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="42"/>
         <source>Download local torrent</source>
-        <translation>Завантажити локальний торрент</translation>
+        <translation>Prejmi krajevni torrent</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="43"/>
         <source>Download</source>
-        <translation>Завантажити</translation>
+        <translation>Prejem</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="45"/>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Splošna omejitev razmerja pošiljanja mora biti večja od 0 ali onemogočena.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="46"/>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Splošna omejitev razmerja prejema mora biti večja od 0 ali onemogočena.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="47"/>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nadomestna omejitev razmerja pošiljanja mora biti večja od 0 ali onemogočena.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="48"/>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nadomestna omejitev razmerja prejema mora biti večja od 0 ali onemogočena.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="49"/>
         <source>Maximum active downloads must be greater than -1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Največje število dejavnih prejemov mora biti večje od -1.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="50"/>
         <source>Maximum active uploads must be greater than -1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Največje število dejavnih pošiljanj mora biti večje od -1.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="51"/>
         <source>Maximum active torrents must be greater than -1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Največje število dejavnih torrentov mora biti večje od -1.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="52"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation>Максимальна кількість з’єднань повинна бути більша 0 або відсутня.</translation>
+        <translation>Največje število povezav mora biti večje od 0 ali onemogočeno.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="53"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Максимальна кількість з’єднань на торрент повинна бути більша 0 або відсутня.</translation>
+        <translation>Največje število povezav na torrent mora biti večje od 0 ali onemogočeno.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="54"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Максимальна кількість з’єднань для вивантаження на торрент повинна бути більша 0 або відсутня.</translation>
+        <translation>Največje število povezav za pošiljanje na torrent mora biti večje od 0 ali onemogočeno.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="55"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Не вдалося зберегти налаштування програми, можливо qBittorrent недоступний.</translation>
+        <translation>Ni mogoče shraniti možnosti programa, qBittorrent je verjetno nedosegljiv.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="56"/>
         <source>Language</source>
-        <translation>Мова</translation>
+        <translation>Jezik</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="57"/>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vrata uporabljena za dohodne povezave morajo biti med 1 in 65535.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="58"/>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vrata uporabljena za spletni vmesnik morajo biti med 1 in 65535.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="68"/>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Не вдалось залогуватись, qBittorrent напевне недосяжний</translation>
+        <translation>Prijava ni mogoča, qBittorrent je verjetno nedosegljiv.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="69"/>
         <source>Invalid Username or Password.</source>
-        <translation>Неправильний логін або пароль.</translation>
+        <translation>Neveljavno uporabniško ime ali geslo.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="70"/>
         <source>Password</source>
-        <translation>Пароль</translation>
+        <translation>Geslo</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="71"/>
         <source>Login</source>
-        <translation>Логін</translation>
+        <translation>Prijava</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="72"/>
         <source>Upload Failed!</source>
-        <translation>Не вдалось вивантажити!</translation>
+        <translation>Pošiljanje spodletelo!</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="73"/>
         <source>Original authors</source>
-        <translation>Оригінальні автори</translation>
+        <translation>Izvirni avtorji</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="74"/>
         <source>Upload limit:</source>
-        <translation>Обмеження вивантаження:</translation>
+        <translation>Omejitev pošiljanja:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="75"/>
         <source>Download limit:</source>
-        <translation>Обмеження завантаження:</translation>
+        <translation>Omejitev prejema:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="76"/>
         <source>Apply</source>
-        <translation>Застосувати</translation>
+        <translation>Uveljavi</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="77"/>
         <source>Add</source>
-        <translation>Додати</translation>
+        <translation>Dodaj</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="78"/>
         <source>Upload Torrents</source>
-        <translation>Вивантажити торренти</translation>
+        <translation>Pošlji torrente</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="79"/>
         <source>All</source>
-        <translation>Всі</translation>
+        <translation>Vse</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="80"/>
         <source>Downloading</source>
-        <translation>Завантажуються</translation>
+        <translation>Prejemanje</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="81"/>
         <source>Seeding</source>
-        <translation>Роздаються</translation>
+        <translation>Sejanje</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="82"/>
         <source>Completed</source>
-        <translation>Завершені</translation>
+        <translation>Končano</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="83"/>
         <source>Resumed</source>
-        <translation>Відновлені</translation>
+        <translation>Se nadaljuje</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="84"/>
         <source>Paused</source>
-        <translation>Призупинені</translation>
+        <translation>V premoru</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="85"/>
         <source>Active</source>
-        <translation>Активні</translation>
+        <translation>Dejavno</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="86"/>
         <source>Inactive</source>
-        <translation>Неактивні</translation>
+        <translation>Nedejavno</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="90"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
-        <translation>Завантажено</translation>
+        <translation>Prejeto</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="39"/>
         <source>Logout</source>
-        <translation>Вийти</translation>
+        <translation>Odjava</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="44"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Ви впевнені, що хочете видалити вибрані торренти зі списку завантажень?</translation>
+        <translation>Ali ste prepričani, da želite izbrisati izbrane torrente iz seznama prenosov?</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="59"/>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Ім’я користувача Веб-інтерфейсу повинне містити хоча б 3 символи.</translation>
+        <translation>Uporabniško ime za spletni vmesnik mora vsebovati vsaj 3 znake.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="60"/>
         <source>The Web UI password must be at least 3 characters long.</source>
-        <translation>Пароль від Веб-інтерфейсу повинен містити хоча б 3 символи.</translation>
+        <translation>Geslo za spletni vmesnik mora vsebovati vsaj 3 znake.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="61"/>
         <source>Save</source>
-        <translation>Зберегти</translation>
+        <translation>Shrani</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="62"/>
         <source>qBittorrent client is not reachable</source>
-        <translation>Клієнт qBittorrent недосяжний</translation>
+        <translation>Odjemalec qBittorrent ni dosegljiv</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="63"/>
         <source>HTTP Server</source>
-        <translation>Сервер HTTP</translation>
+        <translation>Strežnik HTTP</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="64"/>
         <source>The following parameters are supported:</source>
-        <translation>Підтримуються наступні параметри:</translation>
+        <translation>Naslednji parametri so podprti:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="65"/>
         <source>Torrent path</source>
-        <translation>Шлях до торрента</translation>
+        <translation>Pot torrenta</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="66"/>
         <source>Torrent name</source>
-        <translation>Назва торрента</translation>
+        <translation>Ime torrenta</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="67"/>
         <source>qBittorrent has been shutdown.</source>
-        <translation>qBittorrent вимкнено.</translation>
+        <translation>qBittorrent je bil izklopljen.</translation>
     </message>
 </context>
 <context>
@@ -1622,19 +1622,19 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../gui/transferlistfilterswidget.cpp" line="185"/>
         <source>All (0)</source>
         <comment>this is for the label filter</comment>
-        <translation>Всі (0)</translation>
+        <translation>Vsi (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="188"/>
         <source>Unlabeled (0)</source>
-        <translation>Без мітки (0)</translation>
+        <translation>Neoznačeni (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="210"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="256"/>
         <source>All (%1)</source>
         <comment>this is for the label filter</comment>
-        <translation>Всі (%1)</translation>
+        <translation>Vsi (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="213"/>
@@ -1642,7 +1642,7 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../gui/transferlistfilterswidget.cpp" line="259"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="264"/>
         <source>Unlabeled (%1)</source>
-        <translation>Без мітки (%1)</translation>
+        <translation>Neoznačeni (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="235"/>
@@ -1654,52 +1654,52 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="326"/>
         <source>Add label...</source>
-        <translation>Додати мітку...</translation>
+        <translation>Dodaj oznako ...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="330"/>
         <source>Remove label</source>
-        <translation>Вилучити мітку</translation>
+        <translation>Odstrani oznako</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="331"/>
         <source>Remove unused labels</source>
-        <translation>Вилучити невикористовувані мітки</translation>
+        <translation>Odstrani neuporabljene oznake</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="333"/>
         <source>Resume torrents</source>
-        <translation>Продовжити торренти</translation>
+        <translation>Nadaljuj torrente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="334"/>
         <source>Pause torrents</source>
-        <translation>Призупинити торренти</translation>
+        <translation>Premor torrentov</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="335"/>
         <source>Delete torrents</source>
-        <translation>Видалити торренти</translation>
+        <translation>Odstrani torrente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="362"/>
         <source>New Label</source>
-        <translation>Нова мітка</translation>
+        <translation>Nova oznaka</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="362"/>
         <source>Label:</source>
-        <translation>Мітка:</translation>
+        <translation>Oznaka:</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="368"/>
         <source>Invalid label name</source>
-        <translation>Некоректна назва мітки</translation>
+        <translation>Neveljavno ime oznake</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="368"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Будь ласка, не використовуйте особливих символів у назві мітки.</translation>
+        <translation>Ne uporabljajte posebnih znakov v imenu oznake.</translation>
     </message>
 </context>
 <context>
@@ -1707,7 +1707,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../gui/lineedit/src/lineedit.cpp" line="30"/>
         <source>Clear the text</source>
-        <translation>Очистити текст</translation>
+        <translation>Pobriši besedilo</translation>
     </message>
 </context>
 <context>
@@ -1715,12 +1715,12 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../gui/loglistwidget.cpp" line="47"/>
         <source>Copy</source>
-        <translation>Копіювати</translation>
+        <translation>Kopiraj</translation>
     </message>
     <message>
         <location filename="../gui/loglistwidget.cpp" line="48"/>
         <source>Clear</source>
-        <translation>Очистити</translation>
+        <translation>Pobriši</translation>
     </message>
 </context>
 <context>
@@ -1728,433 +1728,433 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="37"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Торренти</translation>
+        <translation>&amp;Uredi</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="60"/>
         <source>&amp;Tools</source>
-        <translation>&amp;Інструменти</translation>
+        <translation>&amp;Orodja</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="80"/>
         <source>&amp;File</source>
-        <translation>&amp;Файл</translation>
+        <translation>&amp;Datoteka</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="50"/>
         <source>&amp;Help</source>
-        <translation>&amp;Допомога</translation>
+        <translation>&amp;Pomoč</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="64"/>
         <source>On Downloads &amp;Done</source>
-        <translation>Після &amp;завершення завантажень</translation>
+        <translation>Ob &amp;zaključenih prejemih</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="90"/>
         <source>&amp;View</source>
-        <translation>&amp;Показати</translation>
+        <translation>&amp;Pogled</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="161"/>
         <source>&amp;Options...</source>
-        <translation>&amp;Налаштування...</translation>
+        <translation>&amp;Možnosti ...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="174"/>
         <source>&amp;Resume</source>
-        <translation>&amp;Продовжити</translation>
+        <translation>&amp;Nadaljuj</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="206"/>
         <source>Torrent &amp;Creator</source>
-        <translation>С&amp;творення торрента</translation>
+        <translation>Ustvarjalnik &amp;torrentov</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="211"/>
         <source>Set Upload Limit...</source>
-        <translation>Встановити обмеження вивантаження...</translation>
+        <translation>Nastavi omejitev pošiljanja ...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="216"/>
         <source>Set Download Limit...</source>
-        <translation>Встановити обмеження завантаження...</translation>
+        <translation>Nastavi omejitev prejemanja ...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="226"/>
         <source>Set Global Download Limit...</source>
-        <translation>Встановити глобальний ліміт завантаження...</translation>
+        <translation>Nastavi splošno omejitev prejemanja ...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="231"/>
         <source>Set Global Upload Limit...</source>
-        <translation>Встановити глобальний ліміт вивантаження...</translation>
+        <translation>Nastavi splošno omejitev pošiljanja ...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="236"/>
         <source>Minimum Priority</source>
-        <translation>Найнижчий пріоритет</translation>
+        <translation>Najmanjša prednost</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="244"/>
         <source>Top Priority</source>
-        <translation>Найвищий пріоритет</translation>
+        <translation>Najvišja prednost</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="252"/>
         <source>Decrease Priority</source>
-        <translation>Зменшити пріоритет</translation>
+        <translation>Zmanjšaj prednost</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="260"/>
         <source>Increase Priority</source>
-        <translation>Збільшити пріоритет</translation>
+        <translation>Povišaj prednost</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="271"/>
         <location filename="../gui/mainwindow.ui" line="274"/>
         <source>Alternative Speed Limits</source>
-        <translation>Альтернативні обмеження швидкості</translation>
+        <translation>Nadomestna omejitev hitrosti</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="282"/>
         <source>&amp;Top Toolbar</source>
-        <translation>&amp;Верхню панель</translation>
+        <translation>&amp;Zgornja orodna vrstica</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="285"/>
         <source>Display Top Toolbar</source>
-        <translation>Показувати верхню панель</translation>
+        <translation>Pokaži zgornjo orodno vrstico</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="293"/>
         <source>S&amp;peed in Title Bar</source>
-        <translation>&amp;Швидкість у заголовку</translation>
+        <translation>Hit&amp;rost v naslovni vrstici</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="296"/>
         <source>Show Transfer Speed in Title Bar</source>
-        <translation>Показувати швидкість завантаження і вивантаження у заголовку</translation>
+        <translation>Pokaži hitrost prenosa v naslovni vrstici</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="304"/>
         <source>&amp;RSS Reader</source>
-        <translation>&amp;Читач RSS</translation>
+        <translation>&amp;Bralnik RSS</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="312"/>
         <source>Search &amp;Engine</source>
-        <translation>&amp;Пошуковик</translation>
+        <translation>&amp;Iskalnik</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="317"/>
         <source>L&amp;ock qBittorrent</source>
-        <translation>За&amp;блокувати qBittorrent</translation>
+        <translation>&amp;Zakleni qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="331"/>
         <source>&amp;Import Existing Torrent...</source>
-        <translation>&amp;Імпортувати існуючий торрент...</translation>
+        <translation>&amp;Uvozi obstoječi torrent ...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="334"/>
         <source>Import Torrent...</source>
-        <translation>Імпортувати торрент...</translation>
+        <translation>Uvozi torrent ...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="339"/>
         <source>Do&amp;nate!</source>
-        <translation>По&amp;жертвувати гроші</translation>
+        <translation>Pod&amp;ari!</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="347"/>
         <source>R&amp;esume All</source>
-        <translation>П&amp;родовжити всі</translation>
+        <translation>&amp;Nadaljuj vse</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="360"/>
         <source>&amp;Log</source>
-        <translation>&amp;Журнал</translation>
+        <translation>&amp;Dnevnik</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="371"/>
         <source>&amp;Exit qBittorrent</source>
-        <translation>В&amp;ийти з qBittorrent</translation>
+        <translation>&amp;Končaj qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="379"/>
         <source>&amp;Suspend System</source>
-        <translation>При&amp;зупинити систему</translation>
+        <translation>Sistem v &amp;pripravljenost</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="387"/>
         <source>&amp;Hibernate System</source>
-        <translation>При&amp;спати систему</translation>
+        <translation>Sistem v &amp;mirovanje</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="395"/>
         <source>S&amp;hutdown System</source>
-        <translation>&amp;Вимкнути систему</translation>
+        <translation>I&amp;zklopi sistem</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="403"/>
         <source>&amp;Disabled</source>
-        <translation>&amp;Вимкнено</translation>
+        <translation>Onemo&amp;goči</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="418"/>
         <source>&amp;Statistics</source>
-        <translation>&amp;Статистика</translation>
+        <translation>Statisti&amp;ka</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="423"/>
         <source>Check for Updates</source>
-        <translation>Перевірити оновлення</translation>
+        <translation>Preveri za posodobitve</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="426"/>
         <source>Check for Program Updates</source>
-        <translation>Перевірити оновлення програми</translation>
+        <translation>Preveri posodobitve programa</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="169"/>
         <source>&amp;About</source>
-        <translation>&amp;Про програму</translation>
+        <translation>&amp;O programu</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="156"/>
         <source>Exit</source>
-        <translation>Вийти</translation>
+        <translation>Končaj</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="182"/>
         <source>&amp;Pause</source>
-        <translation>При&amp;зупинити</translation>
+        <translation>&amp;Premor</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="190"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Видалити</translation>
+        <translation>&amp;Odstrani</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="352"/>
         <source>P&amp;ause All</source>
-        <translation>З&amp;упинити всі</translation>
+        <translation>P&amp;remor vseh</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="145"/>
         <source>&amp;Add Torrent File...</source>
-        <translation>&amp;Додати torrent-файл...</translation>
+        <translation>&amp;Dodaj datoteko torrent ...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="148"/>
         <source>Open</source>
-        <translation>Відкрити</translation>
+        <translation>Odpri</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="153"/>
         <source>E&amp;xit</source>
-        <translation>&amp;Вийти</translation>
+        <translation>&amp;Končaj</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="164"/>
         <source>Options</source>
-        <translation>Налаштування</translation>
+        <translation>Možnosti</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="177"/>
         <source>Resume</source>
-        <translation>Продовжити</translation>
+        <translation>Nadaljuj</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="185"/>
         <source>Pause</source>
-        <translation>Призупинити</translation>
+        <translation>Premor</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="193"/>
         <source>Delete</source>
-        <translation>Видалити</translation>
+        <translation>Odstrani</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="201"/>
         <source>Open URL</source>
-        <translation>Відкрити URL</translation>
+        <translation>Odpri URL</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="221"/>
         <source>&amp;Documentation</source>
-        <translation>&amp;Документація</translation>
+        <translation>Dokumenta&amp;cija</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="320"/>
         <source>Lock</source>
-        <translation>Замкнути</translation>
+        <translation>Zakleni</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="408"/>
         <location filename="../gui/mainwindow.cpp" line="1292"/>
         <source>Show</source>
-        <translation>Показати</translation>
+        <translation>Pokaži</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1479"/>
         <source>Check for program updates</source>
-        <translation>Перевірити, чи є свіжіші версії програми</translation>
+        <translation>Preveri posodobitve programa</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="323"/>
         <source>Lock qBittorrent</source>
-        <translation>Заблокувати qBittorrent</translation>
+        <translation>Zakleni qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="198"/>
         <source>Add Torrent &amp;Link...</source>
-        <translation>Додати &amp;посилання на торрент</translation>
+        <translation>Dodaj torrent &amp;povezavo</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="342"/>
         <source>If you like qBittorrent, please donate!</source>
-        <translation>Якщо вам подобається qBittorrent, будь ласка, пожертвуйте кошти!</translation>
+        <translation>Če vam je qBittorrent všeč, potem prosim donirajte! </translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="363"/>
         <location filename="../gui/mainwindow.cpp" line="1507"/>
         <source>Execution Log</source>
-        <translation>Журнал виконання</translation>
+        <translation>Dnevnik izvedb</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="477"/>
         <source>Clear the password</source>
-        <translation>Забрати пароль</translation>
+        <translation>Pobriši geslo</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="187"/>
         <source>Filter torrent list...</source>
-        <translation>Фільтрувати список торрентів...</translation>
+        <translation>Filtriraj seznam torrenta ...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="158"/>
         <source>&amp;Set Password</source>
-        <translation>&amp;Встановити пароль</translation>
+        <translation>&amp;Nastavi geslo</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="160"/>
         <source>&amp;Clear Password</source>
-        <translation>&amp;Забрати пароль</translation>
+        <translation>&amp;Pobriši geslo</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="204"/>
         <source>Transfers</source>
-        <translation>Завантаження</translation>
+        <translation>Prenosi</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="342"/>
         <source>Torrent file association</source>
-        <translation>Асоціації torrent-файлів</translation>
+        <translation>Povezava datoteke torrent</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="343"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation>qBittorrent не є програмою за замовчуванням для відкривання торрентів.
-Встановити qBittorrent як програму для відкривання torrent-файлів та magnet-посилань?</translation>
+        <translation>qBittorrent ni privzeti program za odpiranje datotek torrent ali magnetnih povezav.
+Ali želite qBittorrent povezati z datotekami torrent in magnetnimi povezavami?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="374"/>
         <source>Icons Only</source>
-        <translation>Лише значки</translation>
+        <translation>Samo ikone</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="376"/>
         <source>Text Only</source>
-        <translation>Лише текст</translation>
+        <translation>Samo besedilo</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="378"/>
         <source>Text Alongside Icons</source>
-        <translation>Текст біля значків</translation>
+        <translation>Besedilo zraven ikon</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="380"/>
         <source>Text Under Icons</source>
-        <translation>Текст під значками</translation>
+        <translation>Besedilo pod ikonami</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="382"/>
         <source>Follow System Style</source>
-        <translation>Наслідувати стиль системи</translation>
+        <translation>Upoštevaj slog sistema</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="462"/>
         <location filename="../gui/mainwindow.cpp" line="489"/>
         <location filename="../gui/mainwindow.cpp" line="791"/>
         <source>UI lock password</source>
-        <translation>Пароль блокування інтерфейсу</translation>
+        <translation>Geslo za zaklep uporabniškega vmesnika</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="462"/>
         <location filename="../gui/mainwindow.cpp" line="489"/>
         <location filename="../gui/mainwindow.cpp" line="791"/>
         <source>Please type the UI lock password:</source>
-        <translation>Будь ласка, введіть пароль блокування інтерфейсу:</translation>
+        <translation>Vpišite geslo za zaklep uporabniškega vmesnika:</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="466"/>
         <source>The password should contain at least 3 characters</source>
-        <translation>Пароль повинен містити щонайменше 3 символи</translation>
+        <translation>Geslo mora vsebovati vsaj 3 znake.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="471"/>
         <source>Password update</source>
-        <translation>Оновити пароль</translation>
+        <translation>Posodobite geslo</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="471"/>
         <source>The UI lock password has been successfully updated</source>
-        <translation>Пароль блокування інтерфейсу успішно оновлено</translation>
+        <translation>Geslo za zaklep uporabniškega vmesnika je bilo uspešno posodobljeno.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="477"/>
         <source>Are you sure you want to clear the password?</source>
-        <translation>Ви впевнені, що хочете забрати пароль?</translation>
+        <translation>Ali ste prepričani, da želite pobrisati geslo?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="529"/>
         <source>Search</source>
-        <translation>Пошук</translation>
+        <translation>Iskanje</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="540"/>
         <source>Transfers (%1)</source>
-        <translation>Завантаження (%1)</translation>
+        <translation>Prenosi (%1)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="631"/>
         <source>Error</source>
-        <translation>Помилка</translation>
+        <translation>Napaka</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="631"/>
         <source>Failed to add torrent: %1</source>
-        <translation>Не вдалося додати торрент: %1</translation>
+        <translation>Spodletelo dodajanje torrenta: %1</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="637"/>
         <source>Download completion</source>
-        <translation>Завантажено</translation>
+        <translation>Prejem zaključen</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="637"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation>Завантаження &apos;%1&apos; завершено.</translation>
+        <translation>%1 je zaključilo prejemanje.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="643"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation>Помилка вводу/виводу</translation>
+        <translation>Napaka I/O</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="643"/>
@@ -2162,69 +2162,69 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation>Сталася помилка вводу/виводу для торрента %1.
- Причина: %2</translation>
+        <translation>Zgodila se je napaka I/O za torrent %1.
+Razlog: %2</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="704"/>
         <source>Recursive download confirmation</source>
-        <translation>Підтвердження рекурсивного завантаження</translation>
+        <translation>Rekurzivna potrditev prejema</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="704"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation>Торрент %1 містить інші torrent-файли. Завантажувати і їх?</translation>
+        <translation>Torrent %1 vsebuje datoteke torrent. Ali želite nadaljevati z njihovim prejemom?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="705"/>
         <source>Yes</source>
-        <translation>Так</translation>
+        <translation>Da</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="706"/>
         <source>No</source>
-        <translation>Ні</translation>
+        <translation>Ne</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="707"/>
         <source>Never</source>
-        <translation>Ніколи</translation>
+        <translation>Nikoli</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="727"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Глобальний ліміт вивантаження</translation>
+        <translation>Splošna omejitev hitrosti pošiljanja</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="743"/>
         <source>Global Download Speed Limit</source>
-        <translation>Глобальний ліміт завантаження</translation>
+        <translation>Splošna omejitev hitrosti prejemanja</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="893"/>
         <source>&amp;No</source>
-        <translation>&amp;Ні</translation>
+        <translation>&amp;Ne</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="894"/>
         <source>&amp;Yes</source>
-        <translation>&amp;Так</translation>
+        <translation>&amp;Da</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="895"/>
         <source>&amp;Always Yes</source>
-        <translation>&amp;Завжди так</translation>
+        <translation>&amp;Vedno da</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1378"/>
         <location filename="../gui/mainwindow.cpp" line="1592"/>
         <source>Python found in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Python najden v %1</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1393"/>
         <source>Old Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Star Python tolmač</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1463"/>
@@ -2239,81 +2239,82 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1403"/>
         <source>Undetermined Python version</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedoločena različica Pythona</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1393"/>
         <source>Your Python version %1 is outdated. Please upgrade to latest version for search engines to work. Minimum requirement: 2.7.0/3.3.0.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaša različica Pythona %1 je zastarela. Za delovanje iskalnikov morate nadgraditi Python na zadnjo različico. Najmanjša zahteva je: 2.7.0/3.3.0</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1403"/>
         <source>Couldn&apos;t determine your Python version (%1). Search engine disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ni mogoče razbrati vaše različice Pythona (%1). Iskalnik je onemogočen.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1414"/>
         <location filename="../gui/mainwindow.cpp" line="1426"/>
         <source>Missing Python Interpreter</source>
-        <translation>Не вистачає інтерпретатора Python</translation>
+        <translation>Manjka Python tolmač</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1415"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Za uporabo iskalnika potrebujete Python. Ta pa ni nameščen.
+Ali ga želite namestiti sedaj?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1426"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Python je potreben za uporabo iskalnika, vendar ta ni nameščen.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1464"/>
         <source>A new version is available.
 Update to version %1?</source>
-        <translation>Доступна нова версія.
-Оновити до версії %1?</translation>
+        <translation>Na voljo je nova različica.
+Želite posodobiti na različico %1?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1474"/>
         <source>No updates available.
 You are already using the latest version.</source>
-        <translation>Немає доступних оновлень.
-Ви вже користуєтеся найновішою версією.</translation>
+        <translation>Ni posodobitev.
+Že uporabljate zadnjo različico.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1478"/>
         <source>&amp;Check for Updates</source>
-        <translation>&amp;Перевірити оновлення</translation>
+        <translation>&amp;Preveri za posodobitve</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1576"/>
         <source>Checking for Updates...</source>
-        <translation>Перевірка оновлень...</translation>
+        <translation>Preverjam za posodobitve ...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1577"/>
         <source>Already checking for program updates in the background</source>
-        <translation>Вже відбувається фонова перевірка оновлень</translation>
+        <translation>Že v ozadju preverjam posodobitve programa</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1645"/>
         <source>Download error</source>
-        <translation>Помилка завантаження</translation>
+        <translation>Napaka prejema</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1645"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation>Не вдалося завантажити програму інсталяції Python. Причина: %1.
-Будь ласка, встановіть Python самостійно.</translation>
+        <translation>Namestitev za Python ni bilo mogoče prejeti. Razlog: %1
+Namestite Python ročno.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="466"/>
         <location filename="../gui/mainwindow.cpp" line="805"/>
         <source>Invalid password</source>
-        <translation>Неправильний пароль</translation>
+        <translation>Neveljavno geslo</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="507"/>
@@ -2324,69 +2325,69 @@ Please install it manually.</source>
     <message>
         <location filename="../gui/mainwindow.cpp" line="719"/>
         <source>URL download error</source>
-        <translation>Помилка завантаження URL</translation>
+        <translation>Napaka prejema URL</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="719"/>
         <source>Couldn&apos;t download file at URL: %1, reason: %2.</source>
-        <translation>Не вдалося завантажити файл з URL: %1, причина: %2.</translation>
+        <translation>Ni mogoče prejeti datoteke na URL-ju: %1. Razlog: %2.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="805"/>
         <source>The password is invalid</source>
-        <translation>Цей пароль неправильний</translation>
+        <translation>Geslo je neveljavno</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1187"/>
         <location filename="../gui/mainwindow.cpp" line="1194"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation>Шв. завант.: %1</translation>
+        <translation>Hitrost prejema: %1</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1190"/>
         <location filename="../gui/mainwindow.cpp" line="1196"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>Шв. вивант.: %1</translation>
+        <translation>Hitrost pošiljanja: %1</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1201"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[З: %1, В: %2] qBittorrent %3</translation>
+        <translation>[Pr: %1, Po: %2] qBittorrent %3</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1292"/>
         <source>Hide</source>
-        <translation>Сховати</translation>
+        <translation>Skrij</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="890"/>
         <source>Exiting qBittorrent</source>
-        <translation>Вихід із qBittorrent</translation>
+        <translation>Izhod  qBittorrenta</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="891"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation>Ще відбуваються передачі файлів.
-Ви впевнені, що хочете вийти з qBittorrent?</translation>
+        <translation>Trenutno se prenašajo določene datoteke.
+Ali ste prepričani, da želite končati qBittorrent?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1032"/>
         <source>Open Torrent Files</source>
-        <translation>Відкрити torrent-файли</translation>
+        <translation>Odpri datoteke torrent</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1033"/>
         <source>Torrent Files</source>
-        <translation>Torrent-файли</translation>
+        <translation>Torrent datoteke</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1068"/>
         <source>Options were saved successfully.</source>
-        <translation>Налаштування успішно збережені.</translation>
+        <translation>Možnosti so bile uspešno shranjene</translation>
     </message>
 </context>
 <context>
@@ -2394,52 +2395,52 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../core/net/dnsupdater.cpp" line="200"/>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation>Ваш динамічний DNS успішно оновлено.</translation>
+        <translation>Vaš dinamični DNS je bil uspešno posodobljen.</translation>
     </message>
     <message>
         <location filename="../core/net/dnsupdater.cpp" line="204"/>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation>Помилка динамічного DNS: Сервіс тимчасово недоступний; повторна спроба за 30 хвилин.</translation>
+        <translation>Napaka dinamičnega DNS-ja: Storitev trenutno ni na voljo, sledi vnovičen poskus čez 30min.</translation>
     </message>
     <message>
         <location filename="../core/net/dnsupdater.cpp" line="213"/>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
-        <translation>Помилка динамічного DNS: наданий домен не існує в зазначеному обліковому записі.</translation>
+        <translation>Napaka dinamičnega DNS-ja: vpisano ime gostitelja ne obstaja pod določenim računom.</translation>
     </message>
     <message>
         <location filename="../core/net/dnsupdater.cpp" line="218"/>
         <source>Dynamic DNS error: Invalid username/password.</source>
-        <translation>Помилка динамічного DNS: Неправильний логін/пароль.</translation>
+        <translation>Napaka dinamičnega DNS-ja: Neveljavno uporabniško ime/geslo.</translation>
     </message>
     <message>
         <location filename="../core/net/dnsupdater.cpp" line="223"/>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation>Помилка динамічного DNS: qBittorrent додано в чорний список сервісу; будь ласка, повідомте про це на http://bugs.qbittorrent.org.</translation>
+        <translation>Napaka dinamičnega DNS-ja: qBittorrent je pristal na črnem seznamu storitve. Prijavite hrošča na http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <location filename="../core/net/dnsupdater.cpp" line="229"/>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation>Помилка динамічного DNS: Сервіс повернув %1; будь ласка, повідомте про помилку на http://bugs.qbittorrent.org.</translation>
+        <translation>Napaka dinamičnega DNS-ja: storitev je sporočila %1. Prijavite hrošča na http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <location filename="../core/net/dnsupdater.cpp" line="235"/>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
-        <translation>Помилка динамічного DNS: Ваш логін заблоковано через зловживання.</translation>
+        <translation>Napaka dinamičnega DNSja: Vaše uporabniško ime je bilo blokirano zaradi zlorabe.</translation>
     </message>
     <message>
         <location filename="../core/net/dnsupdater.cpp" line="256"/>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
-        <translation>Помилка динамічного DNS: наданий домен неправильний.</translation>
+        <translation>Napaka dinamičnega DNS-ja: vpisano ime domene je neveljavno.</translation>
     </message>
     <message>
         <location filename="../core/net/dnsupdater.cpp" line="267"/>
         <source>Dynamic DNS error: supplied username is too short.</source>
-        <translation>Помилка динамічного DNS: наданий логін закороткий.</translation>
+        <translation>Napaka dinamičnega DNS-ja: vpisano uporabniško ime je prekratko.</translation>
     </message>
     <message>
         <location filename="../core/net/dnsupdater.cpp" line="278"/>
         <source>Dynamic DNS error: supplied password is too short.</source>
-        <translation>Помилка динамічного DNS: наданий пароль закороткий.</translation>
+        <translation>Napaka dinamičnega DNS-ja: vpisano geslo je prekratko.</translation>
     </message>
 </context>
 <context>
@@ -2447,17 +2448,17 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="104"/>
         <source>I/O Error</source>
-        <translation>Помилка вводу/виводу</translation>
+        <translation>I/O Napaka</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="117"/>
         <source>The file size is %1. It exceeds the download limit of %2.</source>
-        <translation>Розмір файла %1. Він перевищує ліміт завантаження %2.</translation>
+        <translation>Velikost datoteke je %1. Prekorači omejitev prejema %2.</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="186"/>
         <source>Unexpected redirect to magnet URI.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepričakovana preusmeritev na magnetno povezavo.</translation>
     </message>
 </context>
 <context>
@@ -2466,33 +2467,33 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../core/net/geoipmanager.cpp" line="105"/>
         <location filename="../core/net/geoipmanager.cpp" line="435"/>
         <source>GeoIP database loaded. Type: %1. Build time: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>GeoIP podatkovna zbirka naložena. Vrsta: %1. Čas izgradnje: %2.</translation>
     </message>
     <message>
         <location filename="../core/net/geoipmanager.cpp" line="109"/>
         <location filename="../core/net/geoipmanager.cpp" line="456"/>
         <source>Couldn&apos;t load GeoIP database. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ni bilo mogoče naložiti podatkovne zbirke GeoIP. Razlog: %1</translation>
     </message>
     <message>
         <location filename="../core/net/geoipmanager.cpp" line="424"/>
         <source>Could not uncompress GeoIP database file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ni bilo mogoče razširiti datoteke podatkovne zbirke GeoIP.</translation>
     </message>
     <message>
         <location filename="../core/net/geoipmanager.cpp" line="445"/>
         <source>Couldn&apos;t save downloaded GeoIP database file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ni bilo mogoče shraniti prejete datoteke podatkovne zbirke GeoIP.</translation>
     </message>
     <message>
         <location filename="../core/net/geoipmanager.cpp" line="448"/>
         <source>Successfully updated GeoIP database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uspešno posodobljena podatkovna zbirka GeoIP.</translation>
     </message>
     <message>
         <location filename="../core/net/geoipmanager.cpp" line="463"/>
         <source>Couldn&apos;t download GeoIP database file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ni bilo mogoče prejeti datoteke podatkovne zbirke GeoIP. Razlog: %1</translation>
     </message>
 </context>
 <context>
@@ -2500,12 +2501,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../core/net/portforwarder.cpp" line="110"/>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation>Підтримка UPnP / NAT-PMP [Увімк.]</translation>
+        <translation>Podpora UPnP / NAT-PMP  [vključena]</translation>
     </message>
     <message>
         <location filename="../core/net/portforwarder.cpp" line="119"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation>Підтримка UPnP / NAT-PMP [Вимк.]</translation>
+        <translation>Podpora UPnP / NAT-PMP [izključena]</translation>
     </message>
 </context>
 <context>
@@ -2513,7 +2514,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../core/net/smtp.cpp" line="501"/>
         <source>Email Notification Error:</source>
-        <translation>Помилка сповіщення e-mail:</translation>
+        <translation>Napaka e-poštnega obvestila:</translation>
     </message>
 </context>
 <context>
@@ -2522,7 +2523,7 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../gui/properties/peerlistdelegate.h" line="65"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation>/с</translation>
+        <translation>/s</translation>
     </message>
 </context>
 <context>
@@ -2535,191 +2536,191 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="68"/>
         <source>Port</source>
-        <translation>Порт</translation>
+        <translation>Vrata</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="69"/>
         <source>Flags</source>
-        <translation>Прапори</translation>
+        <translation>Zastavice</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="70"/>
         <source>Connection</source>
-        <translation>З’єднання</translation>
+        <translation>Povezava</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="71"/>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
-        <translation>Клієнт</translation>
+        <translation>Odjemalec</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="72"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation>Прогрес</translation>
+        <translation>Napredek</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="73"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Шв. завантаження</translation>
+        <translation>Hitrost prejema</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="74"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Шв. вивантаження</translation>
+        <translation>Hitrost pošiljanja</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="75"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
-        <translation>Завантажено</translation>
+        <translation>Prejeto</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="76"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation>Вивантажено</translation>
+        <translation>Poslano</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="77"/>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don&apos;t.</comment>
-        <translation>Доречність</translation>
+        <translation>Pomembnost</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="165"/>
         <source>Add a new peer...</source>
-        <translation>Додати нового піра...</translation>
+        <translation>Dodaj novega soležnika ...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="171"/>
         <source>Copy selected</source>
-        <translation>Скопіювати вибране</translation>
+        <translation>Kopiraj izbrano</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="173"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="211"/>
         <source>Ban peer permanently</source>
-        <translation>Заблокувати піра</translation>
+        <translation>Trajno izobči soležnika</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="185"/>
         <source>Manually adding peer %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ročno dodajanje soležnika %1 ...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="189"/>
         <source>The peer %1 could not be added to this torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Soležnika %1 ni bilo mogoče dodati h torrentu.</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="193"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="195"/>
         <source>Peer addition</source>
-        <translation>Додавання піра</translation>
+        <translation>Zbiranje soležnikov</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="193"/>
         <source>Some peers could not be added. Check the Log for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nekaterih soležnikov ni bilo mogoče dodati h torrentu. Za več podrobnosti preverite Dnevnik.</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="195"/>
         <source>The peers were added to this torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Soležniki so biil dodan h torrentu.</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="211"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation>Ви впевнені, що хочете назовсім заблокувати вибраних пірів?</translation>
+        <translation>Ali ste prepričani, da želite trajno izobčiti izbrane soležnike?</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="212"/>
         <source>&amp;Yes</source>
-        <translation>&amp;Так</translation>
+        <translation>&amp;Da</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="212"/>
         <source>&amp;No</source>
-        <translation>&amp;Ні</translation>
+        <translation>&amp;Ne</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="222"/>
         <source>Manually banning peer %1...</source>
-        <translation>Вручну блокується пір %1...</translation>
+        <translation>Ročno izobčenje soležnika %1 ...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="387"/>
         <source>interested(local) and choked(peer)</source>
-        <translation>зацікавлений (локальний), відмовляється (пір)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="393"/>
         <source>interested(local) and unchoked(peer)</source>
-        <translation>зацікавлений (локальний), погоджується (пір)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="402"/>
         <source>interested(peer) and choked(local)</source>
-        <translation>зацікавлений (пір), відмовляється (локальний)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="408"/>
         <source>interested(peer) and unchoked(local)</source>
-        <translation>зацікавлений (пір), погоджується (локальний)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="416"/>
         <source>optimistic unchoke</source>
-        <translation>оптимістичний вибір</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="423"/>
         <source>peer snubbed</source>
-        <translation>пір зупинився</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="430"/>
         <source>incoming connection</source>
-        <translation>вхідне з’єднання</translation>
+        <translation>dohodna povezava</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="437"/>
         <source>not interested(local) and unchoked(peer)</source>
-        <translation>незацікавлений (локальний), відмовляється (пір)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="444"/>
         <source>not interested(peer) and unchoked(local)</source>
-        <translation>незацікавлений (пір), відмовляється (локальний)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="451"/>
         <source>peer from PEX</source>
-        <translation>пір із PEX</translation>
+        <translation>soležnik iz PEX</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="458"/>
         <source>peer from DHT</source>
-        <translation>пір із DHT</translation>
+        <translation>soležnik iz DHT</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="465"/>
         <source>encrypted traffic</source>
-        <translation>закодований трафік</translation>
+        <translation>šifriran promet</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="472"/>
         <source>encrypted handshake</source>
-        <translation>зашифроване рукостискання</translation>
+        <translation>šifrirana izmenjava signalov </translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="487"/>
         <source>peer from LSD</source>
-        <translation>пір із LSD</translation>
+        <translation>soležnik iz LSD</translation>
     </message>
 </context>
 <context>
@@ -2727,22 +2728,22 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/properties/peersadditiondlg.cpp" line="58"/>
         <source>No peer entered</source>
-        <translation type="unfinished"></translation>
+        <translation>Ni bilo vpisanega soležnika</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondlg.cpp" line="59"/>
         <source>Please type at least one peer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vpišite vsaj enega soležnika.</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondlg.cpp" line="69"/>
         <source>Invalid peer</source>
-        <translation type="unfinished"></translation>
+        <translation>Neveljaven soležnik</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondlg.cpp" line="70"/>
         <source>The peer %1 is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Soležnik %1 je neveljaven.</translation>
     </message>
 </context>
 <context>
@@ -2750,160 +2751,160 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/options.ui" line="96"/>
         <source>Downloads</source>
-        <translation>Завантаження</translation>
+        <translation>Prejemi</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="107"/>
         <source>Connection</source>
-        <translation>З’єднання</translation>
+        <translation>Povezava</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="118"/>
         <source>Speed</source>
-        <translation>Швидкість</translation>
+        <translation>Hitrost</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="140"/>
         <source>Web UI</source>
-        <translation>Веб-інтерфейс</translation>
+        <translation>Spletni vmesnik</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="151"/>
         <source>Advanced</source>
-        <translation>Додатково</translation>
+        <translation>Napredno</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="227"/>
         <source>(Requires restart)</source>
-        <translation>(Потребує перезавантаження програми)</translation>
+        <translation>(Zahteva ponovni zagon)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="261"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
-        <translation>Кожен другий рядок виділений кольором</translation>
+        <translation>Uporabi izmenične barve vrstice</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="303"/>
         <location filename="../gui/options.ui" line="329"/>
         <source>Start / Stop Torrent</source>
-        <translation>Запустити або зупинити торрент</translation>
+        <translation>Začni / Ustavi torrent</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="313"/>
         <location filename="../gui/options.ui" line="339"/>
         <source>No action</source>
-        <translation>Нічого не робити</translation>
+        <translation>Brez dejanja</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="700"/>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>Додавати розширення .!qB до незавершених файлів</translation>
+        <translation>Dodaj pripono .!qB nedokončanim datotekam</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="803"/>
         <source>Copy .torrent files to:</source>
-        <translation>Копіювати torrent-файли до:</translation>
+        <translation>Kopiraj datoteke .torrent v:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1111"/>
         <source>Connections Limits</source>
-        <translation>Обмеження з’єднань</translation>
+        <translation>Omejitve povezav</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1264"/>
         <source>Proxy Server</source>
-        <translation>Проксі-сервер</translation>
+        <translation>Posredniški strežnik</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1545"/>
         <source>Global Rate Limits</source>
-        <translation>Глобальні обмеження швидкості</translation>
+        <translation>Splošne omejitve hitrosti</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1660"/>
         <source>Apply rate limit to uTP connections</source>
-        <translation>Включати в обмеження з’єднання uTP</translation>
+        <translation>Uveljavi omejitve hitrosti za povezave uTP</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1667"/>
         <source>Apply rate limit to transport overhead</source>
-        <translation>Включати в обмеження протокол передачі</translation>
+        <translation>Uveljavi omejitev razmerja v slepi prenos</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1680"/>
         <source>Alternative Global Rate Limits</source>
-        <translation>Альтернативні глобальні обмеження швидкості</translation>
+        <translation>Nadomestne splošne omejitve hitrosti</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1792"/>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>Використання альтернативних обмежень швидкості за розкладом</translation>
+        <translation>Načrtujte uporabo nadomestnih omejitev hitrosti</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1998"/>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Увімкнути локальний пошук пірів, щоб знаходити більше пірів</translation>
+        <translation>Omogočite odkrivanje krajevnih soležnikov za iskanje več soležnikov</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2010"/>
         <source>Encryption mode:</source>
-        <translation>Режим шифрування:</translation>
+        <translation>Način šifriranja:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2018"/>
         <source>Prefer encryption</source>
-        <translation>Надавати перевагу шифруванню</translation>
+        <translation>Prednostno šifriraj</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2023"/>
         <source>Require encryption</source>
-        <translation>Вимагати шифрування</translation>
+        <translation>Zahtevaj šifriranje</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2028"/>
         <source>Disable encryption</source>
-        <translation>Вимкнути шифрування</translation>
+        <translation>Onemogoči šifriranje</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2063"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Подробиці&lt;/a&gt;)</translation>
+        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Več podrobnosti&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2106"/>
         <source>Maximum active downloads:</source>
-        <translation>Максимум активних завантажень:</translation>
+        <translation>Največ dejavnih prejemov:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2126"/>
         <source>Maximum active uploads:</source>
-        <translation>Максимум активних вивантажень:</translation>
+        <translation>Največ dejavnih pošiljanj:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2146"/>
         <source>Maximum active torrents:</source>
-        <translation>Максимум активних торрентів:</translation>
+        <translation>Največ dejavnih torrentov:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="536"/>
         <source>When adding a torrent</source>
-        <translation>При додаванні торрента</translation>
+        <translation>Ob dodajanju torrenta</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="85"/>
         <source>Behavior</source>
-        <translation>Поведінка</translation>
+        <translation>Obnašanje</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="191"/>
         <source>Language</source>
-        <translation>Мова</translation>
+        <translation>Jezik</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="552"/>
         <source>Display torrent content and some options</source>
-        <translation>Відображати вміст торрента і деякі налаштування</translation>
+        <translation>Pokaži vsebino torrenta in nekaj možnosti</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="993"/>
@@ -2913,39 +2914,39 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/options.ui" line="1047"/>
         <source>Port used for incoming connections:</source>
-        <translation>Порт для вхідних з’єднань:</translation>
+        <translation>Uporabljena vrata za dohodne povezave:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1067"/>
         <source>Random</source>
-        <translation>Випадковий</translation>
+        <translation>Naključno</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1117"/>
         <source>Global maximum number of connections:</source>
-        <translation>Максимальна кількість з’єднань:</translation>
+        <translation>Najvišje splošno število povezav:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1143"/>
         <source>Maximum number of connections per torrent:</source>
-        <translation>Максимальна кількість з’єднань на торрент:</translation>
+        <translation>Najvišje število povezav na torrent:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1166"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Макс. з’єднань для вивантаження на торрент:</translation>
+        <translation>Najvišje število povezav za pošiljanje na torrent:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1563"/>
         <location filename="../gui/options.ui" line="1758"/>
         <source>Upload:</source>
-        <translation>Вивантаження:</translation>
+        <translation>Pošiljanje:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1596"/>
         <location filename="../gui/options.ui" line="1768"/>
         <source>Download:</source>
-        <translation>Завантаження:</translation>
+        <translation>Prejem:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1589"/>
@@ -2953,43 +2954,43 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../gui/options.ui" line="1728"/>
         <location filename="../gui/options.ui" line="1751"/>
         <source>KiB/s</source>
-        <translation>КіБ/с</translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="770"/>
         <source>Remove folder</source>
-        <translation>Вилучити теку</translation>
+        <translation>Odstrani mapo</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1836"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation>-</translation>
+        <translation>do</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1891"/>
         <source>Every day</source>
-        <translation>Щодня</translation>
+        <translation>Vsak dan</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1896"/>
         <source>Week days</source>
-        <translation>Дні тижня</translation>
+        <translation>Med tednom</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1901"/>
         <source>Week ends</source>
-        <translation>Вихідні</translation>
+        <translation>Vikend</translation>
     </message>
     <message utf8="true">
         <location filename="../gui/options.ui" line="1982"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation>Обмін пірами із сумісними Bittorrent-клієнтами (µTorrent, Vuze, ...)</translation>
+        <translation>Izmenjaj soležnike z združljivimi odjemalci Bittorrent (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1306"/>
         <source>Host:</source>
-        <translation>Сервер:</translation>
+        <translation>Gostitelj:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1285"/>
@@ -2999,392 +3000,392 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/options.ui" line="1272"/>
         <source>Type:</source>
-        <translation>Тип:</translation>
+        <translation>Vrsta:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="20"/>
         <location filename="../gui/options.ui" line="1644"/>
         <source>Options</source>
-        <translation>Налаштування</translation>
+        <translation>Možnosti</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="277"/>
         <source>Action on double-click</source>
-        <translation>Дія при подвійному клацанні</translation>
+        <translation>Dejanje ob dvojnem kliku</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="286"/>
         <source>Downloading torrents:</source>
-        <translation>Якщо завантажується:</translation>
+        <translation>Prejemanje torrentov:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="308"/>
         <location filename="../gui/options.ui" line="334"/>
         <source>Open destination folder</source>
-        <translation>Відкрити теку призначення</translation>
+        <translation>Odpri ciljno mapo</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="321"/>
         <source>Completed torrents:</source>
-        <translation>Завершені торренти:</translation>
+        <translation>Končani torrenti:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="353"/>
         <source>Desktop</source>
-        <translation>Робочий стіл</translation>
+        <translation>Namizje</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="366"/>
         <source>Show splash screen on start up</source>
-        <translation>Показувати логотип при завантаженні програми</translation>
+        <translation>Pokaži pozdravno okno ob zagonu</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="376"/>
         <source>Start qBittorrent minimized</source>
-        <translation>Запускати qBittorrent згорнутим</translation>
+        <translation>Začni qBittorrent skrčen</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="402"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation>Згортати qBittorrent у зону сповіщень</translation>
+        <translation>Skrči qBittorrent v obvestilno področje</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="412"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>Закривати qBittorrent у зону сповіщень</translation>
+        <translation>Zapri qBittorrent v obvestilno področje</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="421"/>
         <source>Tray icon style:</source>
-        <translation>Стиль значка в системному лотку:</translation>
+        <translation>Slog ikone sistemske vrstice:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="429"/>
         <source>Normal</source>
-        <translation>Звичайний</translation>
+        <translation>Normalno</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="434"/>
         <source>Monochrome (Dark theme)</source>
-        <translation>Монохромний (Темна тема)</translation>
+        <translation>Monochrome (Temna tema)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="439"/>
         <source>Monochrome (Light theme)</source>
-        <translation>Монохромний (Світла тема)</translation>
+        <translation>Monochrome (Svetla tema)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="199"/>
         <source>User Interface Language:</source>
-        <translation>Мова інтерфейсу:</translation>
+        <translation>Jezik uporabniškega vmesnika:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="255"/>
         <source>Transfer List</source>
-        <translation>Список завантажень</translation>
+        <translation>Seznam prenosov</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="359"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation>Запускати qBittorrent при завантаженні системи</translation>
+        <translation>Zaženi qBittorrent ob zagonu Windowsov</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="383"/>
         <source>Confirmation on exit when torrents are active</source>
-        <translation>Підтверджувати вихід, коли є активні торренти</translation>
+        <translation>Zahtevaj potrditev ob izhodu, če so torrenti dejavni</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="393"/>
         <source>Show qBittorrent in notification area</source>
-        <translation>Показувати qBittorrent в області сповіщень</translation>
+        <translation>Pokaži qBittorrent v obvestilnem področju</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="452"/>
         <source>File association</source>
-        <translation>Прив’язка файлів</translation>
+        <translation>Povezava datoteke</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="458"/>
         <source>Use qBittorrent for .torrent files</source>
-        <translation>Використовувати qBittorrent для файлів .torrent</translation>
+        <translation>Uporabi qBittorrent za datoteke .torrent</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="465"/>
         <source>Use qBittorrent for magnet links</source>
-        <translation>Використовувати qBittorrent для magnet-посилань</translation>
+        <translation>Uporabi qBittorrent za magnetne povezave</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="478"/>
         <source>Power Management</source>
-        <translation>Керування енергоспоживанням</translation>
+        <translation>Upravljanje s porabo</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="484"/>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation>Не дозволяти призупинення системи, коли є активні торренти</translation>
+        <translation>Prepreči prehod v stanje pripravljenosti, če so torrenti dejavni</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="545"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation>Не починати завантаження автоматично</translation>
+        <translation>Ne začni samodejni prejem</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="561"/>
         <source>Bring torrent dialog to the front</source>
-        <translation>Підняти вікно торрента</translation>
+        <translation>Prikaži torrent pogovorno okno v ospredje</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="583"/>
         <source>Hard Disk</source>
-        <translation>Жорсткий диск</translation>
+        <translation>Trdi disk</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="589"/>
         <source>Save files to location:</source>
-        <translation>Зберігати файли до:</translation>
+        <translation>Shrani datoteke v:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="637"/>
         <source>Append the label of the torrent to the save path</source>
-        <translation>Додавати мітку торрента до шляху збереження</translation>
+        <translation>Pripni oznako torrenta v ime mape</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="647"/>
         <source>Pre-allocate disk space for all files</source>
-        <translation>Попередньо виділяти місце для всіх файлів</translation>
+        <translation>Predhodno dodeli prostor na disku za vse datoteke</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="654"/>
         <source>Keep incomplete torrents in:</source>
-        <translation>Тримати незавершені торренти у:</translation>
+        <translation>Hrani nedokončane torrente v:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="707"/>
         <source>Automatically add torrents from:</source>
-        <translation>Автоматично додавати торренти із:</translation>
+        <translation>Samodejno dodaj torrente iz:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="760"/>
         <source>Add folder...</source>
-        <translation>Додати теку...</translation>
+        <translation>Dodaj mapo ...</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="852"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>Копіювати torrent-файли для завершених завантажень до:</translation>
+        <translation>Za zaključene prejeme kopiraj datoteke .torrent v:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="908"/>
         <source>Email notification upon download completion</source>
-        <translation>Сповіщення через e-mail при завершенні завантажень</translation>
+        <translation>Pošlji e-poštno obvestilo ob zaključku prejema</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="922"/>
         <source>Destination email:</source>
-        <translation>E-mail призначення:</translation>
+        <translation>Ciljni e-poštni naslov:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="932"/>
         <source>SMTP server:</source>
-        <translation>SMTP сервер:</translation>
+        <translation>Strežnik SMTP:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="981"/>
         <source>This server requires a secure connection (SSL)</source>
-        <translation>Цей сервер вимагає безпечного з’єднання (SSL)</translation>
+        <translation>Ta strežnik  zahteva varno povezavo (SSL)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1039"/>
         <source>Listening Port</source>
-        <translation>Порт для вхідних з’єднань</translation>
+        <translation>Vrata za poslušanje</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1089"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Використовувати UPnP / NAT-PMP з мого роутера</translation>
+        <translation>Uporabi UPnP / NAT-PMP za posredovanje vrat od mojega usmerjevalnika</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1099"/>
         <source>Use different port on each startup</source>
-        <translation>Використовувати щоразу інший порт</translation>
+        <translation>Uporabi druga vrata ob vsakem zagonu</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1225"/>
         <source>Global maximum number of upload slots:</source>
-        <translation>Максимальна кількість з’єднань для вивантаження:</translation>
+        <translation>Najvišje splošno število povezav za pošiljanje na torrent:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1360"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation>В іншому випадку, проксі-сервер використовується лише для з’єднань з трекером</translation>
+        <translation>Drugače je posredniški strežnik uporabljen samo za povezave s sledilnikom</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1363"/>
         <source>Use proxy for peer connections</source>
-        <translation>Використовувати проксі для з’єднання з пірами</translation>
+        <translation>Uporabi posredniški strežnik za povezave s soležniki</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1370"/>
         <source>Disable connections not supported by proxies</source>
-        <translation>Вимкнути з’єднання, які не підтримуються проксі-серверами.</translation>
+        <translation>Onemogoči povezave, ki ne podpirajo posredniških strežnikov</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1439"/>
         <source>Info: The password is saved unencrypted</source>
-        <translation>Примітка: Пароль зберігається в незашифрованому вигляді</translation>
+        <translation>Obvestilo: Geslo je shranjeno nešifrirano</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1452"/>
         <source>IP Filtering</source>
-        <translation>IP-фільтр</translation>
+        <translation>Filtriranje IP</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1493"/>
         <source>Reload the filter</source>
-        <translation>Перезавантажити фільтр</translation>
+        <translation>Ponovno naloži filter</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1509"/>
         <source>Apply to trackers</source>
-        <translation>Застосувати до трекерів</translation>
+        <translation>Uveljavi pri sledilcem</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1650"/>
         <source>Enable bandwidth management (uTP)</source>
-        <translation>Увімкнути керування пропускною здатністю (uTP)</translation>
+        <translation>Omogoči upravljanje pasovne širine (uTP)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1809"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation>з</translation>
+        <translation>od</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1883"/>
         <source>When:</source>
-        <translation>Коли:</translation>
+        <translation>Ko:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1966"/>
         <source>Privacy</source>
-        <translation>Конфіденційність</translation>
+        <translation>Zasebnost</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1972"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Увімкнути DHT (децентралізовану мережу), щоб знаходити більше пірів</translation>
+        <translation>Omogočite DHT (decentralizirano omrežje) da najdete več soležnikov</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1985"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Увімкнути обмін пірами (PeX), щоб знаходити більше пірів</translation>
+        <translation>Omogočite Izmenjavo soležnikov (PeX) da najdete več soležnikov</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1995"/>
         <source>Look for peers on your local network</source>
-        <translation>Шукати пірів у локальній мережі</translation>
+        <translation>Poišči soležnike na krajevnem omrežju</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2053"/>
         <source>Enable when using a proxy or a VPN connection</source>
-        <translation>Увімкнути при використанні з’єднання через проксі або VPN</translation>
+        <translation>Omogoči, ko se uporablja posredniški strežnik ali povezava VPN</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2056"/>
         <source>Enable anonymous mode</source>
-        <translation>Увімкнути анонімний режим</translation>
+        <translation>Omogoči brezimni način</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2205"/>
         <source>Do not count slow torrents in these limits</source>
-        <translation>Не враховувати повільні торренти до цих обмежень</translation>
+        <translation>Ne štej počasnih torrentov ob teh omejitvah</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2226"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation>Сідувати торренти, доки їх коефіцієнт не досягне</translation>
+        <translation>Sejaj torrente, dokler razmerje ne doseže</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2255"/>
         <source>then</source>
-        <translation>а тоді</translation>
+        <translation>nato</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2266"/>
         <source>Pause them</source>
-        <translation>Призупинити їх</translation>
+        <translation>Jih daj v premor</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2271"/>
         <source>Remove them</source>
-        <translation>Видалити їх</translation>
+        <translation>Jih odstrani</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2369"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation>Використовувати UPnP / NAT-PMP, щоб направити порт в роутері</translation>
+        <translation>Uporabi UPnP / NAT-PMP za posredovanje vrat od mojega usmerjevalnika</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2379"/>
         <source>Use HTTPS instead of HTTP</source>
-        <translation>Використовувати HTTPS замість HTTP</translation>
+        <translation>Uporabi HTTPS namesto HTTP</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2422"/>
         <source>Import SSL Certificate</source>
-        <translation>Імпортувати сертифікат SSL</translation>
+        <translation>Uvozi potrdilo SSL</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2475"/>
         <source>Import SSL Key</source>
-        <translation>Імпортувати ключ SSL</translation>
+        <translation>Uvozi ključ SSL</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2410"/>
         <source>Certificate:</source>
-        <translation>Сертифікат:</translation>
+        <translation>Potrdilo:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2463"/>
         <source>Key:</source>
-        <translation>Ключ:</translation>
+        <translation>Ključ:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2497"/>
         <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Інформація про сертифікати&lt;/a&gt;</translation>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Podrobnosti o potrdilih&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2542"/>
         <source>Bypass authentication for localhost</source>
-        <translation>Пропустити автентифікацію для localhost</translation>
+        <translation>Obidi overitev za lokalnega gostitelja</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2566"/>
         <source>Update my dynamic domain name</source>
-        <translation>Оновлювати мій динамічний домен</translation>
+        <translation>Posodobi mojo dinamično ime domene</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2578"/>
         <source>Service:</source>
-        <translation>Сервіс:</translation>
+        <translation>Storitev:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2601"/>
         <source>Register</source>
-        <translation>Зареєструватись</translation>
+        <translation>Vpis</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2610"/>
         <source>Domain name:</source>
-        <translation>Домен:</translation>
+        <translation>Ime domene:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1280"/>
         <source>(None)</source>
-        <translation>(Немає)</translation>
+        <translation>(Brez)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="129"/>
@@ -3400,14 +3401,14 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../gui/options.ui" line="1332"/>
         <location filename="../gui/options.ui" line="2334"/>
         <source>Port:</source>
-        <translation>Порт:</translation>
+        <translation>Vrata:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="942"/>
         <location filename="../gui/options.ui" line="1383"/>
         <location filename="../gui/options.ui" line="2510"/>
         <source>Authentication</source>
-        <translation>Автентифікація</translation>
+        <translation>Overitev</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="954"/>
@@ -3415,7 +3416,7 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../gui/options.ui" line="2549"/>
         <location filename="../gui/options.ui" line="2624"/>
         <source>Username:</source>
-        <translation>Ім’я користувача:</translation>
+        <translation>Uporabniško ime:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="964"/>
@@ -3423,22 +3424,22 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../gui/options.ui" line="2556"/>
         <location filename="../gui/options.ui" line="2638"/>
         <source>Password:</source>
-        <translation>Пароль:</translation>
+        <translation>Geslo:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2091"/>
         <source>Torrent Queueing</source>
-        <translation>Черга торрентів</translation>
+        <translation>Čakalna vrsta torrentov</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2215"/>
         <source>Share Ratio Limiting</source>
-        <translation>Обмеження вивантаження</translation>
+        <translation>Souporaba omejitve razmerja</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2320"/>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation>Увімкнути Веб-інтерфейс (дистанційне керування)</translation>
+        <translation>Omogoči spletni uporabniški vmesnik (Oddaljen nadzor)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1290"/>
@@ -3448,7 +3449,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/options.ui" line="1464"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation>Шлях до фільтра (.dat, .p2p, .p2b):</translation>
+        <translation>Filter poti (.dat, .p2p, .p2b):</translation>
     </message>
 </context>
 <context>
@@ -3456,29 +3457,29 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/previewselect.cpp" line="51"/>
         <source>Name</source>
-        <translation>Назва</translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <location filename="../gui/previewselect.cpp" line="52"/>
         <source>Size</source>
-        <translation>Розмір</translation>
+        <translation>Velikost</translation>
     </message>
     <message>
         <location filename="../gui/previewselect.cpp" line="53"/>
         <source>Progress</source>
-        <translation>Прогрес</translation>
+        <translation>Napredek</translation>
     </message>
     <message>
         <location filename="../gui/previewselect.cpp" line="79"/>
         <location filename="../gui/previewselect.cpp" line="116"/>
         <source>Preview impossible</source>
-        <translation>Перегляд неможливий</translation>
+        <translation>Predogled ni mogoč</translation>
     </message>
     <message>
         <location filename="../gui/previewselect.cpp" line="79"/>
         <location filename="../gui/previewselect.cpp" line="116"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Пробачте, неможливо переглянути цей файл</translation>
+        <translation>Žal, predogled te datoteke ni mogoč</translation>
     </message>
 </context>
 <context>
@@ -3486,34 +3487,34 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/properties/proplistdelegate.cpp" line="106"/>
         <source>Not downloaded</source>
-        <translation>Не завантажується</translation>
+        <translation>Ni prejet</translation>
     </message>
     <message>
         <location filename="../gui/properties/proplistdelegate.cpp" line="115"/>
         <location filename="../gui/properties/proplistdelegate.cpp" line="162"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation>Нормальний</translation>
+        <translation>Normalno</translation>
     </message>
     <message>
         <location filename="../gui/properties/proplistdelegate.cpp" line="109"/>
         <location filename="../gui/properties/proplistdelegate.cpp" line="163"/>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation>Високий</translation>
+        <translation>Visoko</translation>
     </message>
     <message>
         <location filename="../gui/properties/proplistdelegate.cpp" line="103"/>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
-        <translation>Змішані</translation>
+        <translation>Mešano</translation>
     </message>
     <message>
         <location filename="../gui/properties/proplistdelegate.cpp" line="112"/>
         <location filename="../gui/properties/proplistdelegate.cpp" line="164"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>Максимальний</translation>
+        <translation>Najvišje</translation>
     </message>
 </context>
 <context>
@@ -3521,32 +3522,32 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="45"/>
         <source>General</source>
-        <translation>Загальні</translation>
+        <translation>Splošno</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="50"/>
         <source>Trackers</source>
-        <translation>Трекери</translation>
+        <translation>Sledilniki</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="54"/>
         <source>Peers</source>
-        <translation>Піри</translation>
+        <translation>Soležniki</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="58"/>
         <source>HTTP Sources</source>
-        <translation>Джерела HTTP</translation>
+        <translation>Viri HTTP</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="62"/>
         <source>Content</source>
-        <translation>Вміст</translation>
+        <translation>Vsebina</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="68"/>
         <source>Speed</source>
-        <translation type="unfinished">Швидкість</translation>
+        <translation>Hitrost</translation>
     </message>
 </context>
 <context>
@@ -3554,185 +3555,185 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="292"/>
         <source>Downloaded:</source>
-        <translation>Завантажено:</translation>
+        <translation>Prejeto:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="134"/>
         <source>Availability:</source>
-        <translation>Доступно:</translation>
+        <translation>Na voljo:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="77"/>
         <source>Progress:</source>
-        <translation>Прогрес:</translation>
+        <translation>Napredek:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="184"/>
         <source>Transfer</source>
-        <translation>Передача</translation>
+        <translation>Prenos</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="196"/>
         <source>Time Active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation>Активний протягом:</translation>
+        <translation>Čas delovanja:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="228"/>
         <source>ETA:</source>
-        <translation>Залишилось:</translation>
+        <translation>Preostal čas:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="324"/>
         <source>Uploaded:</source>
-        <translation>Вивантажено:</translation>
+        <translation>Poslano:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="356"/>
         <source>Seeds:</source>
-        <translation>Сіди:</translation>
+        <translation>Sejalci:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="388"/>
         <source>Download Speed:</source>
-        <translation>Швидкість завантаження:</translation>
+        <translation>Hitrost prejema:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="420"/>
         <source>Upload Speed:</source>
-        <translation>Швидкість вивантаження:</translation>
+        <translation>Hitrost pošiljanja:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="452"/>
         <source>Peers:</source>
-        <translation>Піри:</translation>
+        <translation>Soležniki:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="484"/>
         <source>Download Limit:</source>
-        <translation>Обмеження завантаження:</translation>
+        <translation>Omejitev prejema:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="516"/>
         <source>Upload Limit:</source>
-        <translation>Обмеження вивантаження:</translation>
+        <translation>Omejitev pošiljanja:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="548"/>
         <source>Wasted:</source>
-        <translation>Змарновано:</translation>
+        <translation>Zavrženo:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="260"/>
         <source>Connections:</source>
-        <translation>З’єднання:</translation>
+        <translation>Povezave:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="679"/>
         <source>Information</source>
-        <translation>Інформація</translation>
+        <translation>Podrobnosti</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="959"/>
         <source>Comment:</source>
-        <translation>Коментар:</translation>
+        <translation>Komentar:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1144"/>
         <source>Torrent content:</source>
-        <translation>Вміст торрента:</translation>
+        <translation>Vsebina torrenta:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1111"/>
         <source>Select All</source>
-        <translation>Вибрати все</translation>
+        <translation>Izberi vse</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1118"/>
         <source>Select None</source>
-        <translation>Зняти виділення</translation>
+        <translation>Ne izberi nič</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1205"/>
         <source>Normal</source>
-        <translation>Нормальний</translation>
+        <translation>Normalno</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1200"/>
         <source>High</source>
-        <translation>Високий</translation>
+        <translation>Visoko</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="580"/>
         <source>Share Ratio:</source>
-        <translation>Коефіцієнт роздачі:</translation>
+        <translation>Deli razmerje:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="612"/>
         <source>Reannounce In:</source>
-        <translation>Переанонсувати через:</translation>
+        <translation>Ponovno objavi čez:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="644"/>
         <source>Last Seen Complete:</source>
-        <translation>Востаннє завершений:</translation>
+        <translation>Nazadnje videno v celoti:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="691"/>
         <source>Total Size:</source>
-        <translation>Загальний розмір:</translation>
+        <translation>Skupna velikost:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="723"/>
         <source>Pieces:</source>
-        <translation>Частин:</translation>
+        <translation>Kosov:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="755"/>
         <source>Created By:</source>
-        <translation>Створено:</translation>
+        <translation>Ustvarjeno od:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="787"/>
         <source>Added On:</source>
-        <translation>Додано:</translation>
+        <translation>Dodano:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="819"/>
         <source>Completed On:</source>
-        <translation>Завершено:</translation>
+        <translation>Zaključeno:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="851"/>
         <source>Created On:</source>
-        <translation>Створено:</translation>
+        <translation>Ustvarjeno:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="883"/>
         <source>Torrent Hash:</source>
-        <translation>Хеш торрента:</translation>
+        <translation>Razpršilo:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="918"/>
         <source>Save Path:</source>
-        <translation>Шлях збереження:</translation>
+        <translation>Mesto:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1195"/>
         <source>Maximum</source>
-        <translation>Максимальний</translation>
+        <translation>Največ</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1187"/>
         <location filename="../gui/properties/propertieswidget.ui" line="1190"/>
         <source>Do not download</source>
-        <translation>Не завантажувати</translation>
+        <translation>Ne prenesi</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="362"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="363"/>
         <source>this session</source>
-        <translation>цього сеансу</translation>
+        <translation>to sejo</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="364"/>
@@ -3741,126 +3742,126 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../gui/properties/propertieswidget.cpp" line="387"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation>/с</translation>
+        <translation>/s</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="372"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation>макс. %1</translation>
+        <translation>največ %1</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="382"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="383"/>
         <source>(%1 total)</source>
         <comment>e.g. (10 total)</comment>
-        <translation>(%1 загалом)</translation>
+        <translation>(skupaj %1)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="386"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="388"/>
         <source>(%1/s avg.)</source>
         <comment>e.g. (100KiB/s avg.)</comment>
-        <translation>(%1/с середн.)</translation>
+        <translation>(povprečno %1/s)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="390"/>
         <source>Never</source>
-        <translation>Ніколи</translation>
+        <translation>Nikoli</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="395"/>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
-        <translation>%1 × %2 (є %3)</translation>
+        <translation>%1 x %2 (ima %3)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="485"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="559"/>
         <source>I/O Error</source>
-        <translation>Помилка вводу/виводу</translation>
+        <translation>I/O Napaka</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="485"/>
         <source>This file does not exist yet.</source>
-        <translation>Цей файл ще не існує.</translation>
+        <translation>Ta datoteka še ne obstaja.</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="559"/>
         <source>This folder does not exist yet.</source>
-        <translation>Ця тека ще не існує.</translation>
+        <translation>Ta mapa še ne obstaja.</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="577"/>
         <source>Open</source>
-        <translation>Відкрити</translation>
+        <translation>Odpri</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="578"/>
         <source>Open Containing Folder</source>
-        <translation>Відкрити теку</translation>
+        <translation>Odpri mapo</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="579"/>
         <source>Rename...</source>
-        <translation>Перейменувати...</translation>
+        <translation>Preimenuj ...</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="584"/>
         <source>Priority</source>
-        <translation>Пріоритет</translation>
+        <translation>Prednost</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="630"/>
         <source>New Web seed</source>
-        <translation>Додати Веб-сід</translation>
+        <translation>Nov spletni sejalec</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="636"/>
         <source>Remove Web seed</source>
-        <translation>Вилучити Веб-сід</translation>
+        <translation>Odstrani spletnega sejalca</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="638"/>
         <source>Copy Web seed URL</source>
-        <translation>Скопіювати URL Веб-сіда</translation>
+        <translation>Kopiraj URL spletnega sejalca</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="639"/>
         <source>Edit Web seed URL</source>
-        <translation>Редагувати URL Веб-сіда</translation>
+        <translation>Uredi URL spletnega sejalca</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="664"/>
         <source>Rename the file</source>
-        <translation>Перейменувати файл</translation>
+        <translation>Preimenuj datoteko</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="665"/>
         <source>New name:</source>
-        <translation>Нова назва:</translation>
+        <translation>Novo ime:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="669"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="700"/>
         <source>The file could not be renamed</source>
-        <translation>Файл не вдалося перейменувати</translation>
+        <translation>Datoteke ni bilo mogoče preimenovati</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="670"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Ця назва файла містить заборонені символи. Будь ласка, виберіть іншу.</translation>
+        <translation>Ime datoteke vsebuje prepovedane znake, izberite drugo ime.</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="701"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="739"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Ця назва файла вже використовується в даній папці. Будь ласка, виберіть іншу.</translation>
+        <translation>To ime je že v uporabi v tej mapi. Prosim uporabite drugo ime.</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="738"/>
         <source>The folder could not be renamed</source>
-        <translation>Не вдалося перейменувати цю теку</translation>
+        <translation>Mape ni bilo mogoče preimenovati</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="841"/>
@@ -3870,7 +3871,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="85"/>
         <source>Filter files...</source>
-        <translation>Фільтрувати файли...</translation>
+        <translation>Filtriraj datoteke ...</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="368"/>
@@ -3882,28 +3883,28 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../gui/properties/propertieswidget.cpp" line="784"/>
         <source>New URL seed</source>
         <comment>New HTTP source</comment>
-        <translation>Нова URL-роздача</translation>
+        <translation>Nov URL sejalca</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="785"/>
         <source>New URL seed:</source>
-        <translation>Нова URL-роздача:</translation>
+        <translation>Nov URL sejalca:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="791"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="842"/>
         <source>This URL seed is already in the list.</source>
-        <translation>Ця URL-роздача вже є у списку.</translation>
+        <translation>URL sejalca je že na seznamu.</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="834"/>
         <source>Web seed editing</source>
-        <translation>Редагування Веб-сіда</translation>
+        <translation>Urejanje spletnega sejalca</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="835"/>
         <source>Web seed URL:</source>
-        <translation>URL Веб-сіда:</translation>
+        <translation>URL spletnega sejalca:</translation>
     </message>
 </context>
 <context>
@@ -3911,111 +3912,111 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../webui/abstractwebapplication.cpp" line="110"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation>Ваша IP-адреса заблокована після надто численних невдалих спроб автентифікації.</translation>
+        <translation>Vaš naslov IP je bil izobčen zaradi prevelikega števila neuspešnih poskusov overitve.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="338"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.
 </source>
-        <translation>Помилка: &apos;%1&apos; не є коректним torrent-файлом.
+        <translation>Napaka: &apos;%1&apos; je neveljavna datoteka torrent.
 </translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="343"/>
         <source>Error: Could not add torrent to session.</source>
-        <translation>Помилка: Не вдалося додати торрент до сеансу.</translation>
+        <translation>Napaka: Ni mogoče dodati torrenta k seji.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="352"/>
         <source>I/O Error: Could not create temporary file.</source>
-        <translation>Помилка вводу/виводу.</translation>
+        <translation>Napaka I/O: Ni mogoče ustvariti začasne datoteke.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="140"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
-        <translation>%1 — невідомий параметр командного рядка.</translation>
+        <translation>%1 ni znan parameter ukazne vrstice.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="152"/>
         <location filename="../app/main.cpp" line="165"/>
         <source>%1 must be the single command line parameter.</source>
-        <translation>%1 повинен бути єдиним параметром командного рядка.</translation>
+        <translation>%1 mora biti parameter v eni ukazni vrstici.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="175"/>
         <source>%1 must specify the correct port (1 to 65535).</source>
-        <translation>%1 повинен бути коректним портом (1–65535).</translation>
+        <translation>%1 mora določiti prava vrata ( 1 do 65535).</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="191"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
-        <translation>Ви не можете використовувати %1: qBittorrent уже запущено для цього користувача.</translation>
+        <translation>Ne morete uporabiti %1: qBittorrent je že zagnan za tega uporabnika.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="370"/>
         <source>Usage:</source>
-        <translation>Використання:</translation>
+        <translation>Uporaba:</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="383"/>
         <source>Options:</source>
-        <translation>Параметри:</translation>
+        <translation>Možnosti:</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="385"/>
         <source>Displays program version</source>
-        <translation>Показує версію програми</translation>
+        <translation>Pokaže različico programa</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="387"/>
         <source>Displays this help message</source>
-        <translation>Показує це повідомлення допомоги</translation>
+        <translation>Pokaže to spletno pomoč</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="389"/>
         <source>Changes the Web UI port (current: %1)</source>
-        <translation>Змінює порт Веб-інтерфейсу (поточний: %1)</translation>
+        <translation>Spremeni vrata spletnega vmesnika (trenutno: %1)</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="392"/>
         <source>Disable splash screen</source>
-        <translation>Вимкнути початкову заставку</translation>
+        <translation>Onemogoči pozdravno okno</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="394"/>
         <source>Run in daemon-mode (background)</source>
-        <translation>Виконувати у фоновому режимі (daemon)</translation>
+        <translation>Zaženi v načinu ozadnjega opravila (v ozadju)</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="396"/>
         <source>Downloads the torrents passed by the user</source>
-        <translation>Завантажує торренти, вказані користувачем</translation>
+        <translation>Prejme torrente, ki jih posreduje uporabnik</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="406"/>
         <source>Help</source>
-        <translation>Допомога</translation>
+        <translation>Pomoč</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="415"/>
         <source>Run application with -h option to read about command line parameters.</source>
-        <translation>Запустіть програму із параметром -h, щоб прочитати про параметри командного рядка.</translation>
+        <translation>Zaženite program z možnosti -h, če želite prebrati več o parametrih ukazne vrstice.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="417"/>
         <source>Bad command line</source>
-        <translation>Поганий командний рядок</translation>
+        <translation>Napačna ukazna vrstica</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="423"/>
         <source>Bad command line: </source>
-        <translation>Поганий командний рядок:</translation>
+        <translation>Napačna ukazna vrstica:</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="436"/>
         <source>Legal Notice</source>
-        <translation>Правова примітка</translation>
+        <translation>Pravno obvestilo</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="437"/>
@@ -4023,196 +4024,196 @@ Are you sure you want to quit qBittorrent?</source>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation>qBittorrent — це програма для роздачі файлів. Коли ви запускаєте торрент, його дані будуть доступні іншим через вивантаження. Всі дані, які ви роздаєте, на вашій відповідальності.
+        <translation>qBittorrent je program za izmenjavo datotek. Ko zaženete torrent bodo njegovi podatki bili na voljo drugim. Vsebina, ki jo izmenjujete je samo vaša odgovornost.
 
-Ця замітка більше не з’являтиметься.</translation>
+Ne bo nadaljnjih obvestil.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="438"/>
         <source>Press %1 key to accept and continue...</source>
-        <translation>Натисніть %1, щоб погодитись і продовжити...</translation>
+        <translation>Pritisnite tipko %1 za sprejem in nadaljevanje ...</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="448"/>
         <source>Legal notice</source>
-        <translation>Правова примітка</translation>
+        <translation>Pravno obvestilo</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="449"/>
         <source>Cancel</source>
-        <translation>Скасувати</translation>
+        <translation>Prekliči</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="450"/>
         <source>I Agree</source>
-        <translation>Я погоджуюсь</translation>
+        <translation>Se strinjam</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="121"/>
         <source>Torrent name: %1</source>
-        <translation>Назва торрента: %1</translation>
+        <translation>Ime torrenta: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="122"/>
         <source>Torrent size: %1</source>
-        <translation>Розмір торрента: %1</translation>
+        <translation>Velikost torrenta: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="123"/>
         <source>Save path: %1</source>
-        <translation>Шлях збереження: %1</translation>
+        <translation>Mesto: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="124"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation>Торрент завантажено за %1.</translation>
+        <translation>Torrent je bil prejet v %1.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="127"/>
         <source>Thank you for using qBittorrent.</source>
-        <translation>Дякуємо, що ви користуєтесь qBittorrent.</translation>
+        <translation>Hvala, ker uporabljate qBittorrent.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="133"/>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation>[qBittorrent] Завантаження &apos;%1&apos; завершено</translation>
+        <translation>[qBittorrent] %1 je zaključil prejemanje</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="207"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation>Віддалений сервер не знайдено (неправильна адреса)</translation>
+        <translation>Oddaljeno ime gostitelja ni bilo najdeno (neveljavno ime gostitelja)</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="209"/>
         <source>The operation was canceled</source>
-        <translation>Операцію скасовано</translation>
+        <translation>Dejanje je bilo preklicano</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="211"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation>Віддалений сервер закрив з’єднання передчасно, перед тим, як було отримано і оброблено відповідь</translation>
+        <translation>Oddaljeni strežnik je predčasno zaprl povezavo, preden je bil odgovor prejet in obdelan</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="213"/>
         <source>The connection to the remote server timed out</source>
-        <translation>Вичерпано час на з’єднання з віддаленим сервером</translation>
+        <translation>Povezava do oddaljenega strežnika je časovno potekla</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="215"/>
         <source>SSL/TLS handshake failed</source>
-        <translation>Помилка обміну SSL/TLS</translation>
+        <translation>Spodletela izmenjava signalov SSL/TLS</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="217"/>
         <source>The remote server refused the connection</source>
-        <translation>Віддалений сервер відмовив у з’єднанні</translation>
+        <translation>Oddaljeni strežnik je zavrnil povezavo</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="219"/>
         <source>The connection to the proxy server was refused</source>
-        <translation>Відмовлено у з’єднанні з проксі-сервером</translation>
+        <translation>Povezava na posredniški strežnik je bila zavrnjena</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="221"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation>Проксі-сервер закрив з’єднання передчасно</translation>
+        <translation>Posredniški strežnik je predčasno zaprl povezavo</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="223"/>
         <source>The proxy host name was not found</source>
-        <translation>Не знайдено адресу проксі-сервера</translation>
+        <translation>Ime gostitelja posredniškega strežnika ni bilo najdeno</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="225"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation>Вичерпано час на з’єднання з проксі або сервер не встиг відповісти на запит</translation>
+        <translation>Povezava do posredniškega strežnika je časovno potekla ali pa posredniški strežnik ni odgovoril na poslano zahtevo</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="227"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation>Проксі-сервер вимагає автентифікації, щоб задовольнити запит, але не прийняв наданих автентифікаційних даних</translation>
+        <translation>Posredniški strežnik potrebuje overitev za spoštovanje zahteve ampak ni sprejel nobenih ponujenih poveril</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="229"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation>Відмовлено у доступі до віддалених даних (401)</translation>
+        <translation>Dostop do oddaljene vsebine je bil zavrnjen (401)</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="231"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation>Операція щодо віддаленого вмісту не дозволена</translation>
+        <translation>Zahtevano dejanje na oddaljeni vsebini ni dovoljeno</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="233"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation>Віддалені дані не знайдено на сервері (404)</translation>
+        <translation>Oddaljena vsebina ni bila najdena na strežniku (404)</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="235"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>Віддалений сервер потребує автентифікації, щоб надати вміст, але не прийняв наданих автентифікаційних даних</translation>
+        <translation>Oddaljeni strežnik potrebuje overitev za serviranje vsebine ampak ni sprejel nobenih ponujenih poveril</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="237"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation>Не вдалось задовольнити запит: невідомий протокол</translation>
+        <translation> Network Access API ne more spoštovati zahteve, ker protokol ni znan</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="239"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation>Операція недопустима для цього протоколу</translation>
+        <translation>Zahtevano dejanje je neveljavno za ta protokol</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="241"/>
         <source>An unknown network-related error was detected</source>
-        <translation>Виявлено невідому помилку, пов’язану з мережею</translation>
+        <translation>Zaznana je bila neznana napaka povezana z omrežjem</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="243"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation>Виявлено невідому помилку, пов’язану з проксі</translation>
+        <translation>Zaznana je bila neznana napaka povezana s posredniškim strežnikom</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="245"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation>Виявлено невідому помилку, пов’язану з віддаленим вмістом</translation>
+        <translation>Zaznana je bila neznana napaka povezana z oddaljeno vsebino</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="247"/>
         <source>A breakdown in protocol was detected</source>
-        <translation>Виявлено поломку в протоколі</translation>
+        <translation>Zaznana je bila napaka v protokolu</translation>
     </message>
     <message>
         <location filename="../core/net/downloadhandler.cpp" line="249"/>
         <source>Unknown error</source>
-        <translation>Невідома помилка</translation>
+        <translation>Neznana napaka</translation>
     </message>
     <message>
         <location filename="../app/upgrade.h" line="50"/>
         <location filename="../app/upgrade.h" line="63"/>
         <source>Upgrade</source>
-        <translation>Оновлення</translation>
+        <translation>Nadgradnja</translation>
     </message>
     <message>
         <location filename="../app/upgrade.h" line="53"/>
         <source>You updated from an older version that saved things differently. You must migrate to the new saving system. You will not be able to use an older version than v3.3.0 again. Continue? [y/n]</source>
-        <translation>Ви оновили програму зі старої версії, яка по-іншому зберігала дані. Ви повинні перейти на нову систему. Після цього ви не зможете повернутись до старішої версії, ніж v3.3.0. Продовжити? [т/н]</translation>
+        <translation>Posodobili ste starejšo različico, ki je shranjevala predmete na drugačen način. Morali boste uporabljati nov sistem shranjevanja. Ne boste mogli več uporabljati starejše različice od v3.3.0. Nadaljujem? [y/n]</translation>
     </message>
     <message>
         <location filename="../app/upgrade.h" line="62"/>
         <source>You updated from an older version that saved things differently. You must migrate to the new saving system. If you continue, you will not be able to use an older version than v3.3.0 again.</source>
-        <translation>Ви оновили програму зі старої версії, яка по-іншому зберігала дані. Ви повинні перейти на нову систему. Після цього ви не зможете повернутись до старішої версії, ніж v3.3.0.</translation>
+        <translation>Posodobili ste starejšo različico, ki je shranjevala predmete na drugačen način. Morali boste uporabljati nov sistem shranjevanja. Če nadaljujete ne boste mogli več uporabljati starejše različice od v3.3.0.</translation>
     </message>
     <message>
         <location filename="../app/upgrade.h" line="122"/>
         <source>Couldn&apos;t migrate torrent with hash: %1</source>
-        <translation>Не вдалося адаптувати торрент з хешом: %1</translation>
+        <translation>Ni mogoče preseliti torrenta z razpršilom: %1</translation>
     </message>
     <message>
         <location filename="../app/upgrade.h" line="125"/>
         <source>Couldn&apos;t migrate torrent. Invalid fastresume file name: %1</source>
-        <translation>Не вдалося адаптувати торрент. Неправильна назва файла швидкого відновлення: %1</translation>
+        <translation>Ni mogoče preseliti torrenta. Neveljavno ime datoteke za hitro nadaljevanje: %1</translation>
     </message>
 </context>
 <context>
@@ -4220,34 +4221,34 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/rss/rss.ui" line="17"/>
         <source>Search</source>
-        <translation>Пошук</translation>
+        <translation>Iskanje</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="31"/>
         <source>New subscription</source>
-        <translation>Нова підписка</translation>
+        <translation>Nova naročnina</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="47"/>
         <location filename="../gui/rss/rss.ui" line="199"/>
         <location filename="../gui/rss/rss.ui" line="202"/>
         <source>Mark items read</source>
-        <translation>Позначити як прочитане</translation>
+        <translation>Označi predmete kot prebrane</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="66"/>
         <source>Update all</source>
-        <translation>Оновити всі</translation>
+        <translation>Posodobi vse</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="95"/>
         <source>RSS Downloader...</source>
-        <translation>Завантажувач RSS...</translation>
+        <translation>Prejemalnik RSS ...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="102"/>
         <source>Settings...</source>
-        <translation>Налаштування...</translation>
+        <translation>Nastavitve ...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="124"/>
@@ -4260,70 +4261,70 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Торренти:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(двічі клацніть, щоб завантажити)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrenti:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(dvojni klik za prejem)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="162"/>
         <location filename="../gui/rss/rss.ui" line="165"/>
         <source>Delete</source>
-        <translation>Видалити</translation>
+        <translation>Odstrani</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="170"/>
         <source>Rename...</source>
-        <translation>Перейменувати...</translation>
+        <translation>Preimenuj ...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="173"/>
         <source>Rename</source>
-        <translation>Перейменувати</translation>
+        <translation>Preimenuj</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="178"/>
         <location filename="../gui/rss/rss.ui" line="181"/>
         <source>Update</source>
-        <translation>Оновити</translation>
+        <translation>Posodobi</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="186"/>
         <source>New subscription...</source>
-        <translation>Нова підписка...</translation>
+        <translation>Nova naročnina ...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="191"/>
         <location filename="../gui/rss/rss.ui" line="194"/>
         <source>Update all feeds</source>
-        <translation>Оновити всі подачі</translation>
+        <translation>Posodobi vse vire</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="207"/>
         <source>Download torrent</source>
-        <translation>Завантажити торрент</translation>
+        <translation>Prejmi torrent</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="212"/>
         <source>Open news URL</source>
-        <translation>Відкрити URL новини</translation>
+        <translation>Odpri URL novic</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="217"/>
         <source>Copy feed URL</source>
-        <translation>Копіювати URL подачі</translation>
+        <translation>Kopiraj URL vira</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="222"/>
         <source>New folder...</source>
-        <translation>Нова тека...</translation>
+        <translation>Nova mapa ...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="227"/>
         <source>Manage cookies...</source>
-        <translation>Керування Cookies...</translation>
+        <translation>Upravljanje piškotkov ...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="63"/>
         <source>Refresh RSS streams</source>
-        <translation>Оновити подачі RSS</translation>
+        <translation>Osveži pretok RSS</translation>
     </message>
 </context>
 <context>
@@ -4331,95 +4332,95 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="207"/>
         <source>Stream URL:</source>
-        <translation>URL подачі:</translation>
+        <translation>URL pretoka:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="207"/>
         <source>Please type a RSS stream URL</source>
-        <translation>Будь ласка, введіть URL подачі RSS</translation>
+        <translation>Vpišite URL pretoka RSS</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="217"/>
         <source>This RSS feed is already in the list.</source>
-        <translation>Ця подача RSS вже є у списку.</translation>
+        <translation>Vir RSS je že na vašem seznamu.</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="244"/>
         <location filename="../gui/rss/rss_imp.cpp" line="251"/>
         <source>Are you sure? -- qBittorrent</source>
-        <translation>Ви впевнені? -- qBittorrent</translation>
+        <translation>Ali ste prepričani? -- qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="245"/>
         <location filename="../gui/rss/rss_imp.cpp" line="252"/>
         <source>&amp;Yes</source>
-        <translation>&amp;Так</translation>
+        <translation>&amp;Da</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="245"/>
         <location filename="../gui/rss/rss_imp.cpp" line="252"/>
         <source>&amp;No</source>
-        <translation>&amp;Ні</translation>
+        <translation>&amp;Ne</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="162"/>
         <source>Please choose a folder name</source>
-        <translation>Будь ласка, виберіть назву теки</translation>
+        <translation>Izberite ime mape</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="162"/>
         <source>Folder name:</source>
-        <translation>Назва теки:</translation>
+        <translation>Ime mape:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="162"/>
         <source>New folder</source>
-        <translation>Нова тека</translation>
+        <translation>Nova mapa</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="244"/>
         <source>Are you sure you want to delete these elements from the list?</source>
-        <translation>Ви впевнені, що хочете видалити ці елементи зі списку?</translation>
+        <translation>Ali ste prepričani, da želite izbrisati izbrane predmete iz seznama?</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="251"/>
         <source>Are you sure you want to delete this element from the list?</source>
-        <translation>Ви впевнені, що хочете видалити цей елемент зі списку?</translation>
+        <translation>Ali ste prepričani, da želite izbrisati ta predmet iz seznama?</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="380"/>
         <source>Please choose a new name for this RSS feed</source>
-        <translation>Будь ласка, виберіть нову назву для цієї RSS-подачі</translation>
+        <translation>Izberite novo ime za ta vir RSS</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="380"/>
         <source>New feed name:</source>
-        <translation>Нова назва подачі:</translation>
+        <translation>Novo ime vira:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="384"/>
         <source>Name already in use</source>
-        <translation>Назва вже використовується</translation>
+        <translation>Ime je že v uporabi</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="384"/>
         <source>This name is already used by another item, please choose another one.</source>
-        <translation>Ця назва вже використовується. Будь ласка, виберіть іншу.</translation>
+        <translation>To ime že uporablja drug predmet, izberite novo ime.</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="562"/>
         <source>Date: </source>
-        <translation>Дата: </translation>
+        <translation>Datum:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="564"/>
         <source>Author: </source>
-        <translation>Автор: </translation>
+        <translation>Avtor:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="641"/>
         <source>Unread</source>
-        <translation>Непрочитані</translation>
+        <translation>Neprebrano</translation>
     </message>
 </context>
 <context>
@@ -4427,7 +4428,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/rss/rssfeed.cpp" line="367"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation>Автоматично завантажую торрент %1 з RSS-подачі %2...</translation>
+        <translation>Samodejno prejmi torrent %1 iz %2 vira RSS ...</translation>
     </message>
 </context>
 <context>
@@ -4435,12 +4436,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/rss/rssparser.cpp" line="452"/>
         <source>Failed to open downloaded RSS file.</source>
-        <translation>Не вдалось відкрити завантажений RSS-файл.</translation>
+        <translation>Spodletelo odpiranje prejete datoteke RSS.</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssparser.cpp" line="489"/>
         <source>Invalid RSS feed at %1.</source>
-        <translation>Некоректна RSS подача: %1.</translation>
+        <translation>Neveljaven vir RSS na %1.</translation>
     </message>
 </context>
 <context>
@@ -4448,22 +4449,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/rss/rsssettingsdlg.ui" line="14"/>
         <source>RSS Reader Settings</source>
-        <translation>Налаштування читача RSS</translation>
+        <translation>Nastavitve bralnika RSS</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsssettingsdlg.ui" line="47"/>
         <source>RSS feeds refresh interval:</source>
-        <translation>Інтервал оновлення RSS-подач:</translation>
+        <translation>Razmik osveževanja virov RSS:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsssettingsdlg.ui" line="70"/>
         <source>minutes</source>
-        <translation>хвилин</translation>
+        <translation>minut</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsssettingsdlg.ui" line="77"/>
         <source>Maximum number of articles per feed:</source>
-        <translation>Максимальна кількість новин на подачу:</translation>
+        <translation>Največje število člankov na vir:</translation>
     </message>
 </context>
 <context>
@@ -4471,12 +4472,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../core/scanfoldersmodel.cpp" line="139"/>
         <source>Watched Folder</source>
-        <translation>Тека спостерігання</translation>
+        <translation>Opazovana mapa</translation>
     </message>
     <message>
         <location filename="../core/scanfoldersmodel.cpp" line="141"/>
         <source>Download here</source>
-        <translation>Завантажувати до</translation>
+        <translation>Prejmite tukaj</translation>
     </message>
 </context>
 <context>
@@ -4484,47 +4485,47 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine/supportedengines.h" line="53"/>
         <source>All categories</source>
-        <translation>Всі категорії</translation>
+        <translation>Vse kategorije</translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="54"/>
         <source>Movies</source>
-        <translation>Фільми</translation>
+        <translation>Filmi</translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="55"/>
         <source>TV shows</source>
-        <translation>Телешоу</translation>
+        <translation>TV oddaje</translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="56"/>
         <source>Music</source>
-        <translation>Музика</translation>
+        <translation>Glasba</translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="57"/>
         <source>Games</source>
-        <translation>Ігри</translation>
+        <translation>Igre</translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="58"/>
         <source>Anime</source>
-        <translation>Аніме</translation>
+        <translation>Anime</translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="59"/>
         <source>Software</source>
-        <translation>Програми</translation>
+        <translation>Programska oprema</translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="60"/>
         <source>Pictures</source>
-        <translation>Зображення</translation>
+        <translation>Slike</translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="61"/>
         <source>Books</source>
-        <translation>Книги</translation>
+        <translation>Knjige</translation>
     </message>
 </context>
 <context>
@@ -4534,71 +4535,71 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/searchengine.cpp" line="220"/>
         <location filename="../searchengine/searchengine.cpp" line="479"/>
         <source>Search</source>
-        <translation>Пошук</translation>
+        <translation>Iskanje</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="203"/>
         <source>Please install Python to use the Search Engine.</source>
-        <translation type="unfinished"></translation>
+        <translation>Za uporabo iskalnika namestite Python.</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="233"/>
         <source>Empty search pattern</source>
-        <translation>Пустий шаблон пошуку</translation>
+        <translation>Brez iskanega parametra</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="233"/>
         <source>Please type a search pattern first</source>
-        <translation>Будь ласка, спочатку введіть шаблон пошуку</translation>
+        <translation>Najprej vpišite iskani parameter</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="313"/>
         <source>Searching...</source>
-        <translation>Шукаю...</translation>
+        <translation>Iskanje ...</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="316"/>
         <source>Stop</source>
-        <translation>Зупинити</translation>
+        <translation>Sop</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="203"/>
         <location filename="../searchengine/searchengine.cpp" line="453"/>
         <source>Search Engine</source>
-        <translation>Пошуковик</translation>
+        <translation>Iskalnik</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="453"/>
         <location filename="../searchengine/searchengine.cpp" line="474"/>
         <source>Search has finished</source>
-        <translation>Пошук закінчено</translation>
+        <translation>Iskanje je zaključeno</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="463"/>
         <source>An error occurred during search...</source>
-        <translation>Під час пошуку сталася помилка...</translation>
+        <translation>Med iskanjem se je zgodila napaka</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="461"/>
         <location filename="../searchengine/searchengine.cpp" line="468"/>
         <source>Search aborted</source>
-        <translation>Пошук скасовано</translation>
+        <translation>Iskanje preklicano</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="118"/>
         <source>All enabled</source>
-        <translation>Всі увімкнено</translation>
+        <translation>Vse omogočeno</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="119"/>
         <source>All engines</source>
-        <translation>Всі пошуковики</translation>
+        <translation>Vsi iskalniki</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="122"/>
         <location filename="../searchengine/searchengine.cpp" line="177"/>
         <source>Multiple...</source>
-        <translation>Кілька...</translation>
+        <translation>Več ...</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="262"/>
@@ -4610,12 +4611,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine/searchengine.cpp" line="472"/>
         <source>Search returned no results</source>
-        <translation>Пошук не дав результів</translation>
+        <translation>Iskanje ni vrnilo rezultatov</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="561"/>
         <source>Stopped</source>
-        <translation type="unfinished">Зупинено</translation>
+        <translation type="unfinished">Ustavljeno</translation>
     </message>
 </context>
 <context>
@@ -4624,7 +4625,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/searchlistdelegate.h" line="60"/>
         <location filename="../searchengine/searchlistdelegate.h" line="64"/>
         <source>Unknown</source>
-        <translation>Невідомо</translation>
+        <translation>Neznano</translation>
     </message>
 </context>
 <context>
@@ -4633,30 +4634,30 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/searchtab.cpp" line="55"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation>Назва</translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <location filename="../searchengine/searchtab.cpp" line="56"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation>Розмір</translation>
+        <translation>Velikost</translation>
     </message>
     <message>
         <location filename="../searchengine/searchtab.cpp" line="57"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
-        <translation>Сідери</translation>
+        <translation>Sejalci</translation>
     </message>
     <message>
         <location filename="../searchengine/searchtab.cpp" line="58"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation>Лічери</translation>
+        <translation>Pobiralci</translation>
     </message>
     <message>
         <location filename="../searchengine/searchtab.cpp" line="59"/>
         <source>Search engine</source>
-        <translation>Пошуковик</translation>
+        <translation>Iskalnik</translation>
     </message>
 </context>
 <context>
@@ -4664,42 +4665,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/shutdownconfirm.cpp" line="45"/>
         <source>Exit confirmation</source>
-        <translation>Підтвердження виходу</translation>
+        <translation>Potrditev izhoda</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirm.cpp" line="46"/>
         <source>Exit now</source>
-        <translation>Вийти зараз</translation>
+        <translation>Končaj sedaj</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirm.cpp" line="49"/>
         <source>Shutdown confirmation</source>
-        <translation>Підтвердження вимкнення</translation>
+        <translation>Potrditev izklopa</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirm.cpp" line="50"/>
         <source>Shutdown now</source>
-        <translation>Вимкнути комп’ютер зараз</translation>
+        <translation>Izklopi sedaj</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirm.cpp" line="109"/>
         <source>qBittorrent will now exit unless you cancel within the next %1 seconds.</source>
-        <translation>qBittorrent буде закрито через %1 секунд.</translation>
+        <translation>qBittorrent se bo sedaj končal razen če ne prekličete v naslednjih %1 sekundah.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirm.cpp" line="112"/>
         <source>The computer will now be switched off unless you cancel within the next %1 seconds.</source>
-        <translation>Комп’ютер вимкнеться через %1 секунд.</translation>
+        <translation>Računalnik se bo sedaj izklopil, razen če ne prekličete v naslednjih %1 sekundah.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirm.cpp" line="115"/>
         <source>The computer will now go to sleep mode unless you cancel within the next %1 seconds.</source>
-        <translation>Комп’ютер перейде в економний режим через %1 секунд.</translation>
+        <translation>Računalnik bo sedaj šel v način pripravljenosti, razen če ne prekličete v naslednjih %1 sekundah.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirm.cpp" line="118"/>
         <source>The computer will now go to hibernation mode unless you cancel within the next %1 seconds.</source>
-        <translation>Комп’ютер перейде у режим сну (вимкнеться зі збереженням на диск) через %1 секунд.</translation>
+        <translation>Računalnik bo sedaj šel v način mirovanja, razen če ne prekličete v naslednjih %1 sekundah.</translation>
     </message>
 </context>
 <context>
@@ -4707,7 +4708,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/speedlimitdlg.cpp" line="78"/>
         <source>KiB/s</source>
-        <translation>КіБ/с</translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -4715,52 +4716,52 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="47"/>
         <source>Total Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Skupaj poslano</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="48"/>
         <source>Total Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Skupaj prejeto</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="52"/>
         <source>Payload Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Poslano koristne vsebine</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="53"/>
         <source>Payload Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Prejeto koristne vsebine</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="57"/>
         <source>Overhead Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Poslano skupne uporabe</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="58"/>
         <source>Overhead Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Prejeto skupne uporabe</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="62"/>
         <source>DHT Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT poslano</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="63"/>
         <source>DHT Download</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT prejeto</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="67"/>
         <source>Tracker Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Sledilnik poslal</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="68"/>
         <source>Tracker Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Sledilnik prejel</translation>
     </message>
 </context>
 <context>
@@ -4768,82 +4769,82 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="56"/>
         <source>Period:</source>
-        <translation type="unfinished"></translation>
+        <translation>Obdobje:</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="59"/>
         <source>1 Minute</source>
-        <translation type="unfinished"></translation>
+        <translation>1 minuta</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="60"/>
         <source>5 Minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>5 minut</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="61"/>
         <source>30 Minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>30 minut</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="62"/>
         <source>6 Hours</source>
-        <translation type="unfinished"></translation>
+        <translation>6 ur</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="67"/>
         <source>Select Graphs</source>
-        <translation type="unfinished"></translation>
+        <translation>Izberite grafe</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="72"/>
         <source>Total Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Skupaj poslano</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="73"/>
         <source>Total Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Skupaj prejeto</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="74"/>
         <source>Payload Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Poslano koristne vsebine</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="75"/>
         <source>Payload Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Prejeto koristne vsebine</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="76"/>
         <source>Overhead Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Poslano skupne uporabe</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="77"/>
         <source>Overhead Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Prejeto skupne uporabe</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="78"/>
         <source>DHT Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT poslano</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="79"/>
         <source>DHT Download</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT prejeto</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="80"/>
         <source>Tracker Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Sledilnik poslal</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="81"/>
         <source>Tracker Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Sledilnik prejel</translation>
     </message>
 </context>
 <context>
@@ -4851,87 +4852,87 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/statsdialog.ui" line="14"/>
         <source>Statistics</source>
-        <translation>Статистика</translation>
+        <translation>Statistika</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="20"/>
         <source>User statistics</source>
-        <translation>Статистика користувача</translation>
+        <translation>Statistika uporabnika</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="26"/>
         <source>Total peer connections:</source>
-        <translation>Загальна кількість підключень пірів:</translation>
+        <translation>Skupno število povezav soležnikov:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="33"/>
         <source>Global ratio:</source>
-        <translation>Глобальний коефіцієнт:</translation>
+        <translation>Splošno razmerje:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="47"/>
         <source>Alltime download:</source>
-        <translation>Завантажено за весь час:</translation>
+        <translation>Skupno prejeto:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="68"/>
         <source>Alltime upload:</source>
-        <translation>Вивантажено за весь час:</translation>
+        <translation>Skupno poslano:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="82"/>
         <source>Total waste (this session):</source>
-        <translation>Загалом змарновано (за цей сеанс):</translation>
+        <translation>Skupaj zavrnjeno (to sejo):</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="99"/>
         <source>Cache statistics</source>
-        <translation>Статистика кешу</translation>
+        <translation>Statistika predpomnilnika</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="105"/>
         <source>Read cache Hits:</source>
-        <translation>Попадань в кеші зчитування:</translation>
+        <translation>Število branja predpomnilnika:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="126"/>
         <source>Total buffers size:</source>
-        <translation>Загальний розмір буферів:</translation>
+        <translation>Skupna velikost medpomnilnika:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="136"/>
         <source>Performance statistics</source>
-        <translation>Статистика швидкодії</translation>
+        <translation>Statistika zmogljivosti</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="170"/>
         <source>Queued I/O jobs:</source>
-        <translation>Завдання вводу/виводу в черзі:</translation>
+        <translation>Posli I/O v čakalni vrsti:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="177"/>
         <source>Write cache overload:</source>
-        <translation>Перевантаження кешу запису:</translation>
+        <translation>Preobremenitev pisanja predpomnilnika:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="184"/>
         <source>Average time in queue (ms):</source>
-        <translation>Середній час в черзі (мс):</translation>
+        <translation>Povprečen čas v čakalni vrsti (ms):</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="191"/>
         <source>Read cache overload:</source>
-        <translation>Перевантаження кешу зчитування:</translation>
+        <translation>Preobremenitev branja predpomnilnika:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="198"/>
         <source>Total queued size:</source>
-        <translation>Загальний розмір в черзі:</translation>
+        <translation>Skupna velikost v čakalni vrsti:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="243"/>
         <source>OK</source>
-        <translation>Гаразд</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -4940,70 +4941,70 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/statusbar.cpp" line="59"/>
         <location filename="../gui/statusbar.cpp" line="171"/>
         <source>Connection status:</source>
-        <translation>Статус з’єднання:</translation>
+        <translation>Stanje povezave:</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="59"/>
         <location filename="../gui/statusbar.cpp" line="171"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation>Немає прямих з’єднань. Це може означати, що є проблеми з налаштуванням мережі.</translation>
+        <translation>Ni neposrednih povezav. To lahko pomeni, da so težave z nastavitvijo omrežja.</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="73"/>
         <location filename="../gui/statusbar.cpp" line="178"/>
         <source>DHT: %1 nodes</source>
-        <translation>DHT: %1 вузлів</translation>
+        <translation>DHT: %1 vozlišč</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="141"/>
         <source>qBittorrent needs to be restarted</source>
-        <translation>Потрібно перезапустити qBittorrent</translation>
+        <translation>qBittorrent se mora ponovno zagnati</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="151"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation>qBittorrent щойно було оновлено, і тепер потрібно його перезапустити, щоб застосувати зміни.</translation>
+        <translation>qBittorrent se je pravkar posodobil in potrebuje ponovni zagon za uveljavljanje sprememb.</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="163"/>
         <location filename="../gui/statusbar.cpp" line="168"/>
         <source>Connection Status:</source>
-        <translation>Статус з’єднання:</translation>
+        <translation>Stanje povezave:</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="163"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
-        <translation>Не в мережі. Зазвичай це означає, що qBittorrent не може приймати вхідні з’єднання з вибраного порту.</translation>
+        <translation>Nepovezani. To ponavadi pomeni, da je qBittorrentu spodletelo poslušanje dohodnih povezav na izbranih vratih.</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="168"/>
         <source>Online</source>
-        <translation>В мережі</translation>
+        <translation>Povezani</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="203"/>
         <source>Click to switch to alternative speed limits</source>
-        <translation>Клацніть, щоб перемкнутись на альтернативні обмеження швидкості</translation>
+        <translation>Kliknite za uporabo nadomestnih omejitev hitrosti</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="199"/>
         <source>Click to switch to regular speed limits</source>
-        <translation>Клацніть, щоб повернутись до звичайних обмежень швидкості</translation>
+        <translation>Kliknite za uporabo splošnih omejitev hitrosti</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="212"/>
         <source>Manual change of rate limits mode. The scheduler is disabled.</source>
-        <translation>Режим ручної зміни обмежень. Розклад вимкнено.</translation>
+        <translation>Ročna sprememba načina omejitve hitrosti. Razporejevalnik je onemogočen.</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="219"/>
         <source>Global Download Speed Limit</source>
-        <translation>Глобальний ліміт завантаження</translation>
+        <translation>Splošna omejitev hitrosti prejemanja</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="245"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Глобальний ліміт вивантаження</translation>
+        <translation>Splošna omejitev hitrosti pošiljanja</translation>
     </message>
 </context>
 <context>
@@ -5012,82 +5013,82 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/transferlistfilterswidget.cpp" line="117"/>
         <source>All (0)</source>
         <comment>this is for the status filter</comment>
-        <translation>Всі (0)</translation>
+        <translation>Vsi (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="120"/>
         <source>Downloading (0)</source>
-        <translation>Завантажуються (0)</translation>
+        <translation>Prejemanje (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="123"/>
         <source>Seeding (0)</source>
-        <translation>Роздаються (0)</translation>
+        <translation>Sejanje (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="126"/>
         <source>Completed (0)</source>
-        <translation>Завершені (0)</translation>
+        <translation>Končano (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="129"/>
         <source>Resumed (0)</source>
-        <translation>Відновлені (0)</translation>
+        <translation>Se nadaljuje (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="132"/>
         <source>Paused (0)</source>
-        <translation>Призупинені (0)</translation>
+        <translation>V premoru (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="135"/>
         <source>Active (0)</source>
-        <translation>Активні (0)</translation>
+        <translation>Dejavno (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="138"/>
         <source>Inactive (0)</source>
-        <translation>Неактивні (0)</translation>
+        <translation>Nedejavno (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="153"/>
         <source>All (%1)</source>
-        <translation>Всі (%1)</translation>
+        <translation>Vsi (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="154"/>
         <source>Downloading (%1)</source>
-        <translation>Завантажуються (%1)</translation>
+        <translation>Prejemanje (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="155"/>
         <source>Seeding (%1)</source>
-        <translation>Роздаються (%1)</translation>
+        <translation>Sejanje (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="156"/>
         <source>Completed (%1)</source>
-        <translation>Завершені (%1)</translation>
+        <translation>Končano (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="157"/>
         <source>Paused (%1)</source>
-        <translation>Призупинені (%1)</translation>
+        <translation>V premoru (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="158"/>
         <source>Resumed (%1)</source>
-        <translation>Відновлені (%1)</translation>
+        <translation>Se nadaljuje (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="159"/>
         <source>Active (%1)</source>
-        <translation>Активні (%1)</translation>
+        <translation>Dejavno (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="160"/>
         <source>Inactive (%1)</source>
-        <translation>Неактивні (%1)</translation>
+        <translation>Nedejavno (%1)</translation>
     </message>
 </context>
 <context>
@@ -5095,22 +5096,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="56"/>
         <source>Name</source>
-        <translation>Назва</translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="56"/>
         <source>Size</source>
-        <translation>Розмір</translation>
+        <translation>Velikost</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="57"/>
         <source>Progress</source>
-        <translation>Прогрес</translation>
+        <translation>Napredek</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="57"/>
         <source>Priority</source>
-        <translation>Пріоритет</translation>
+        <translation>Prednost</translation>
     </message>
 </context>
 <context>
@@ -5118,54 +5119,54 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="78"/>
         <source>Select a folder to add to the torrent</source>
-        <translation>Виберіть теку для додавання в торрент</translation>
+        <translation>Izberite mapo, ki jo želite dodati torrentu</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="92"/>
         <source>Select a file to add to the torrent</source>
-        <translation>Виберіть файл для додавання в торрент</translation>
+        <translation>Izberite datoteko, ki jo želite dodati torrentu</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="114"/>
         <source>No input path set</source>
-        <translation>Не задано вхідний шлях</translation>
+        <translation>Ni bilo nastavljeno mesto vnosa</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="114"/>
         <source>Please type an input path first</source>
-        <translation>Будь ласка, спочатку введіть вхідний шлях</translation>
+        <translation>Najprej vpišite mesto vnosa</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="124"/>
         <source>Select destination torrent file</source>
-        <translation>Виберіть цільовий torrent-файл</translation>
+        <translation>Izberite ciljno datoteko torrenta</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="124"/>
         <source>Torrent Files</source>
-        <translation>Torrent-файли</translation>
+        <translation>Datoteke torrenta</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="152"/>
         <location filename="../gui/torrentcreatordlg.cpp" line="165"/>
         <location filename="../gui/torrentcreatordlg.cpp" line="176"/>
         <source>Torrent creation</source>
-        <translation>Створення торрента</translation>
+        <translation>Ustvarjanje torrenta</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="152"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation>Створення торрента було невдалим, причина: %1</translation>
+        <translation>Ustvarjanje torrenta ni bilo uspešno. Razlog: %1</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="165"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation>Створений торрент-файл некоректний. Його не буде додано до списку завантажень.</translation>
+        <translation>Ustvarjena datoteka torrent je neveljavna. Ne bo dodana na seznam prejemov.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="176"/>
         <source>Torrent was created successfully:</source>
-        <translation>Торрент успішно створено:</translation>
+        <translation>Torrent je bil uspešno ustvarjen:</translation>
     </message>
 </context>
 <context>
@@ -5173,17 +5174,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="14"/>
         <source>Torrent Import</source>
-        <translation>Імпорт торрента</translation>
+        <translation>Uvozi torrent</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="53"/>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translation>Цей майстер допоможе вам поділитись торрентом, який ви вже завантажили з qBittorrent.</translation>
+        <translation>Ta pomočnik vam bo pomagal izmenjati torrent, ki ste ga že prejeli, s pomočjo qBittorrenta.</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="65"/>
         <source>Torrent file to import:</source>
-        <translation>Torrent-файл, що імпортується:</translation>
+        <translation>Datoteka torrent za uvoz:</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="109"/>
@@ -5193,54 +5194,54 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="90"/>
         <source>Content location:</source>
-        <translation>Розташування вмісту:</translation>
+        <translation>Mesto vsebine:</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="121"/>
         <source>Skip the data checking stage and start seeding immediately</source>
-        <translation>Пропустити перевірку даних та почати сідування негайно</translation>
+        <translation>Preskoči korak preverjanja podatkov in nemudoma začni s sejanjem</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="131"/>
         <source>Import</source>
-        <translation>Імпорт</translation>
+        <translation>Uvozi</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="65"/>
         <source>Torrent file to import</source>
-        <translation>Torrent-файл, що імпортується</translation>
+        <translation>Datoteka torrent za uvoz</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="65"/>
         <source>Torrent files</source>
-        <translation>Torrent-файли</translation>
+        <translation>Datoteke torrenta</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="89"/>
         <source>%1 Files</source>
         <comment>%1 is a file extension (e.g. PDF)</comment>
-        <translation>Файли %1</translation>
+        <translation>%1 Datotek</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="91"/>
         <source>Please provide the location of %1</source>
         <comment>%1 is a file name</comment>
-        <translation>Будь ласка, вкажіть розташування %1</translation>
+        <translation>Določite mesto %1</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="124"/>
         <source>Please point to the location of the torrent: %1</source>
-        <translation>Будь ласка, вкажіть на розташування торрента: %1</translation>
+        <translation>Določite mesto torrenta: %1</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="222"/>
         <source>Invalid torrent file</source>
-        <translation>Хибний torrent-файл</translation>
+        <translation>Neveljavna datoteka torrent</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="222"/>
         <source>This is not a valid torrent file.</source>
-        <translation>Цей файл не є коректним torrent-файлом.</translation>
+        <translation>To ni veljavna datoteka torrent.</translation>
     </message>
 </context>
 <context>
@@ -5249,167 +5250,167 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/torrentmodel.cpp" line="97"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation>Назва</translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="98"/>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
-        <translation>Розмір</translation>
+        <translation>Velikost</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="99"/>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation>Зроблено</translation>
+        <translation>Končano</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="100"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation>Статус</translation>
+        <translation>Stanje</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="101"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>Сіди</translation>
+        <translation>Sejalci</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="102"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation>Піри</translation>
+        <translation>Soležniki</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="103"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Шв. завантаження</translation>
+        <translation>Hitrost prejema</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="104"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Шв. вивантаження</translation>
+        <translation>Hitrost pošiljanja</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="105"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation>Коефіцієнт</translation>
+        <translation>Razmerje</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="106"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Залишилось</translation>
+        <translation>Preostali čas</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="107"/>
         <source>Label</source>
-        <translation>Мітка</translation>
+        <translation>Oznaka</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="108"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation>Додано</translation>
+        <translation>Dodano</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="109"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Завершено</translation>
+        <translation>Končano</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="110"/>
         <source>Tracker</source>
-        <translation>Трекер</translation>
+        <translation>Sledilnik</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="111"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation>Ліміт завантаження</translation>
+        <translation>Omejitev prejemanja</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="112"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation>Ліміт вивантаження</translation>
+        <translation>Omejitev pošiljanja</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="113"/>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation>Завантажено</translation>
+        <translation>Prejeto</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="114"/>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation>Вивантажено</translation>
+        <translation>Poslano</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="115"/>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Завантажено за сеанс</translation>
+        <translation>Prejeto v seji</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="116"/>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Вивантажено за сеанс</translation>
+        <translation>Poslano v seji</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="117"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation>Залишилось</translation>
+        <translation>Preostalo</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="118"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation>Активний протягом</translation>
+        <translation>Čas delovanja</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="119"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation>Шлях збереження</translation>
+        <translation>Mesto</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="120"/>
         <source>Completed</source>
         <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation>Завершено</translation>
+        <translation>Končano</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="121"/>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation>Обмеження коефіцієнта</translation>
+        <translation>Omejitev razmerja</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="122"/>
         <source>Last Seen Complete</source>
         <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation>Востаннє завершений</translation>
+        <translation>Nazadnje videno v celoti</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="123"/>
         <source>Last Activity</source>
         <comment>Time passed since a chunk was downloaded/uploaded</comment>
-        <translation>Востаннє активний</translation>
+        <translation>Zadnja dejavnost</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="124"/>
         <source>Total Size</source>
         <comment>i.e. Size including unwanted data</comment>
-        <translation>Загальний розмір</translation>
+        <translation>Skupna velikost</translation>
     </message>
 </context>
 <context>
@@ -5418,28 +5419,28 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/transferlistfilterswidget.cpp" line="426"/>
         <source>All (0)</source>
         <comment>this is for the label filter</comment>
-        <translation>Всі (0)</translation>
+        <translation>Vsi (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="429"/>
         <source>Trackerless (0)</source>
-        <translation>Без трекерів (0)</translation>
+        <translation>Brez sledilnika (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="432"/>
         <source>Error (0)</source>
-        <translation>Помилка (0)</translation>
+        <translation>Napaka (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="435"/>
         <source>Warning (0)</source>
-        <translation>Попередження (0)</translation>
+        <translation>Opozorilo (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="478"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="535"/>
         <source>Trackerless (%1)</source>
-        <translation>Без трекерів (%1)</translation>
+        <translation>Brez sledilnika (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="484"/>
@@ -5452,50 +5453,50 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/transferlistfilterswidget.cpp" line="560"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="592"/>
         <source>Error (%1)</source>
-        <translation>Помилка (%1)</translation>
+        <translation>Napaka (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="573"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="607"/>
         <source>Warning (%1)</source>
-        <translation>Попередження (%1)</translation>
+        <translation>Opozorilo (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="628"/>
         <source>Couldn&apos;t decode favicon for URL `%1`. Trying to download favicon in PNG format.</source>
-        <translation>Не вдалося розкодувати піктограму для URL: &apos;%1&apos;. Спроба завантажити зображення у форматі PNG.</translation>
+        <translation>Ni mogoče odkodirati ikone zaznamka za URL `%1`. Poskušam prejeti ikono zaznamka v zapisu PNG.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="635"/>
         <source>Couldn&apos;t decode favicon for URL `%1`.</source>
-        <translation>Не вдалося розкодувати піктограму для URL: &apos;%1&apos;.</translation>
+        <translation>Ni mogoče odkodirati ikone zaznamka za URL `%1`.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="649"/>
         <source>Couldn&apos;t download favicon for URL `%1`. Reason: `%2`</source>
-        <translation>Не вдалося завантажити піктограму для URL: &apos;%1&apos;. Причина: &apos;%2&apos;</translation>
+        <translation>Ni mogoče prejeti ikone zaznamka za URL `%1`. Razlog: `%2`</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="656"/>
         <source>Resume torrents</source>
-        <translation>Продовжити торренти</translation>
+        <translation>Nadaljuj torrente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="657"/>
         <source>Pause torrents</source>
-        <translation>Призупинити торренти</translation>
+        <translation>Premor torrentov</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="658"/>
         <source>Delete torrents</source>
-        <translation>Видалити торренти</translation>
+        <translation>Odstrani torrente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="692"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="706"/>
         <source>All (%1)</source>
         <comment>this is for the tracker filter</comment>
-        <translation>Всі (%1)</translation>
+        <translation>Vsi (%1)</translation>
     </message>
 </context>
 <context>
@@ -5508,104 +5509,104 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="66"/>
         <source>Status</source>
-        <translation>Статус</translation>
+        <translation>Stanje</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="67"/>
         <source>Peers</source>
-        <translation>Піри</translation>
+        <translation>Soležniki</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="68"/>
         <source>Message</source>
-        <translation>Повідомлення</translation>
+        <translation>Sporočilo</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="204"/>
         <location filename="../gui/properties/trackerlist.cpp" line="273"/>
         <source>Working</source>
-        <translation>Працює</translation>
+        <translation>Deluje</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="205"/>
         <source>Disabled</source>
-        <translation>Вимкнений</translation>
+        <translation>Onemogočeno</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="226"/>
         <source>This torrent is private</source>
-        <translation>Цей торрент приватний</translation>
+        <translation>Ta torrent je zaseben</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="277"/>
         <source>Updating...</source>
-        <translation>Оновлюється...</translation>
+        <translation>Posodabljam...</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="281"/>
         <source>Not working</source>
-        <translation>Не працює</translation>
+        <translation>Ne deluje</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="285"/>
         <source>Not contacted yet</source>
-        <translation>Ще не зв’язувався</translation>
+        <translation>Še ni bilo stika</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="367"/>
         <source>Tracker URL:</source>
-        <translation>URL трекера:</translation>
+        <translation>URL sledilnika:</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="367"/>
         <source>Tracker editing</source>
-        <translation>Редагування трекера</translation>
+        <translation>Urejanje sledilnika</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="373"/>
         <location filename="../gui/properties/trackerlist.cpp" line="384"/>
         <source>Tracker editing failed</source>
-        <translation>Не вдалось відредагувати трекер</translation>
+        <translation>Urejanje sledilnika spodletelo</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="373"/>
         <source>The tracker URL entered is invalid.</source>
-        <translation>Введено некоректний URL трекера.</translation>
+        <translation>Vpisani URL sledilnika ni veljaven.</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="384"/>
         <source>The tracker URL already exists.</source>
-        <translation>Цей URL трекера вже присутній.</translation>
+        <translation>URL sledilnika že obstaja.</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="435"/>
         <source>Add a new tracker...</source>
-        <translation>Додати новий трекер...</translation>
+        <translation>Dodaj nov sledilnik ...</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="441"/>
         <source>Copy tracker URL</source>
-        <translation>Копіювати адресу трекера</translation>
+        <translation>Kopiraj URL sledilnika</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="442"/>
         <source>Edit selected tracker URL</source>
-        <translation>Редагувати вибраний URL трекера</translation>
+        <translation>Uredi izbrani URL sledilnika</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="447"/>
         <source>Force reannounce to selected trackers</source>
-        <translation>Примусово отримати пірів із вибраних трекерів</translation>
+        <translation>Prisilno sporoči izbranim sledilnikom</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="449"/>
         <source>Force reannounce to all trackers</source>
-        <translation>Примусово отримати пірів з усіх трекерів</translation>
+        <translation>Prisilno sporoči vsem sledilnikom</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="440"/>
         <source>Remove tracker</source>
-        <translation>Видалити трекер</translation>
+        <translation>Odstrani sledilnik</translation>
     </message>
 </context>
 <context>
@@ -5613,47 +5614,47 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/properties/trackersadditiondlg.ui" line="14"/>
         <source>Trackers addition dialog</source>
-        <translation>Додавання трекера</translation>
+        <translation>Pogovorno okno za dodajanje sledilnikov</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.ui" line="20"/>
         <source>List of trackers to add (one per line):</source>
-        <translation>Список трекерів, які ви хочете додати (один на рядок):</translation>
+        <translation>Seznam sledilnikov za dodajanje (en na vrstico):</translation>
     </message>
     <message utf8="true">
         <location filename="../gui/properties/trackersadditiondlg.ui" line="44"/>
         <source>µTorrent compatible list URL:</source>
-        <translation>URL µTorrent-сумісного списку:</translation>
+        <translation>µTorrent URL seznam združljivosti:</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.cpp" line="73"/>
         <source>I/O Error</source>
-        <translation>Помилка вводу/виводу</translation>
+        <translation>I/O Napaka</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.cpp" line="73"/>
         <source>Error while trying to open the downloaded file.</source>
-        <translation>Не вдалося відкрити завантажений файл.</translation>
+        <translation>Napaka ob poskusu odpiranja prejete datoteke.</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.cpp" line="111"/>
         <source>No change</source>
-        <translation>Без змін</translation>
+        <translation>Brez spremembe</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.cpp" line="111"/>
         <source>No additional trackers were found.</source>
-        <translation>Не знайдено додаткових трекерів.</translation>
+        <translation>Ni bilo najdenih dodatnih sledilnikov.</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.cpp" line="119"/>
         <source>Download error</source>
-        <translation>Помилка завантаження</translation>
+        <translation>Napaka prejema</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.cpp" line="119"/>
         <source>The trackers list could not be downloaded, reason: %1</source>
-        <translation>Не вдалося завантажити список трекерів, причина: %1</translation>
+        <translation>Seznam sledilnikov ni bilo mogoče prejeti. Razlog: %1</translation>
     </message>
 </context>
 <context>
@@ -5661,94 +5662,94 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="97"/>
         <source>Downloading</source>
-        <translation>Завантажується</translation>
+        <translation>Prejemanje</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="103"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
-        <translation>Завантажуються метадані</translation>
+        <translation>Prejemanje meta podatkov</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="109"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
-        <translation>Виділяється місце</translation>
+        <translation>Alociram</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="133"/>
         <source>Paused</source>
-        <translation>Зупинено</translation>
+        <translation>V premoru</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="120"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
-        <translation>В черзі</translation>
+        <translation>V vrsti za prejem</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="113"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
-        <translation>Роздається</translation>
+        <translation>Sejanje</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="100"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
-        <translation>Заглох</translation>
+        <translation>Zastoj</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="106"/>
         <source>[F] Downloading</source>
         <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation>[П] Завантажується</translation>
+        <translation>[D] Prejemanje</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="116"/>
         <source>[F] Seeding</source>
         <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation>[П] Роздається</translation>
+        <translation>[D] Sejanje</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="124"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
-        <translation>Перевіряється</translation>
+        <translation>Preverjanje</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="127"/>
         <source>Queued for checking</source>
         <comment>i.e. torrent is queued for hash checking</comment>
-        <translation>В черзі на перевірку</translation>
+        <translation>V čakalni vrsti za preverjanje</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="130"/>
         <source>Checking resume data</source>
         <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
-        <translation>Перевірка даних відновлення</translation>
+        <translation>Preverjanje podatkov za nadaljevanje</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="136"/>
         <source>Completed</source>
-        <translation>Завершені</translation>
+        <translation>Končano</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="139"/>
         <source>Missing Files</source>
-        <translation>Відсутні файли</translation>
+        <translation>Mankajoče Datoteke</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="153"/>
         <source>/s</source>
         <comment>/second (.i.e per second)</comment>
-        <translation>/с</translation>
+        <translation>/s</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="161"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation>КіБ/с</translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="169"/>
@@ -5760,7 +5761,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/transferlistdelegate.cpp" line="232"/>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
-        <translation>%1 тому</translation>
+        <translation>%1 nazaj</translation>
     </message>
 </context>
 <context>
@@ -5768,17 +5769,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="788"/>
         <source>Status</source>
-        <translation>Статус</translation>
+        <translation>Stanje</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="796"/>
         <source>Labels</source>
-        <translation>Мітки</translation>
+        <translation>Oznake</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="804"/>
         <source>Trackers</source>
-        <translation>Трекери</translation>
+        <translation>Sledilniki</translation>
     </message>
 </context>
 <context>
@@ -5786,197 +5787,197 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="494"/>
         <source>Column visibility</source>
-        <translation>Показані колонки</translation>
+        <translation>Vidnost stolpca</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="749"/>
         <source>Label</source>
-        <translation>Мітка</translation>
+        <translation>Oznaka</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="237"/>
         <source>Choose save path</source>
-        <translation>Виберіть шлях збереження</translation>
+        <translation>Izberite mesto za shranjevanje</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="422"/>
         <source>Torrent Download Speed Limiting</source>
-        <translation>Обмеження швидкості завантаження торрента</translation>
+        <translation>Omejitev hitrosti prejemanja torrenta</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="451"/>
         <source>Torrent Upload Speed Limiting</source>
-        <translation>Обмеження швидкості вивантаження торрента</translation>
+        <translation>Omejitev hitrosti pošiljanja torrenta</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="482"/>
         <source>Recheck confirmation</source>
-        <translation>Підтвердження повторної перевірки</translation>
+        <translation>Ponovno potrdite preverjanje</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="482"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation>Ви впевнені, що хочете повторно перевірити вибрані торрент(и)?</translation>
+        <translation>Ali ste prepričani, da želite ponovno preveriti želene torrente?</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="558"/>
         <source>New Label</source>
-        <translation>Нова мітка</translation>
+        <translation>Nova oznaka</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="558"/>
         <source>Label:</source>
-        <translation>Назва:</translation>
+        <translation>Oznaka:</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="564"/>
         <source>Invalid label name</source>
-        <translation>Некоректна назва мітки</translation>
+        <translation>Neveljavno ime oznake</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="564"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Будь ласка, не використовуйте особливі символи в назві мітки.</translation>
+        <translation>Ne uporabljajte posebnih znakov v imenu oznake.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="593"/>
         <source>Rename</source>
-        <translation>Перейменувати</translation>
+        <translation>Preimenuj</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="593"/>
         <source>New name:</source>
-        <translation>Нова назва:</translation>
+        <translation>Novo ime:</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="622"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Продовжити</translation>
+        <translation>Nadaljuj</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="626"/>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation>Примусово продовжити</translation>
+        <translation>Prisili nadaljevanje</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="624"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Призупинити</translation>
+        <translation>Premor</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="628"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>Видалити</translation>
+        <translation>Odstrani</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="630"/>
         <source>Preview file...</source>
-        <translation>Переглянути файл...</translation>
+        <translation>Predogled datoteke ...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="632"/>
         <source>Limit share ratio...</source>
-        <translation>Обмежити коефіцієнт роздачі...</translation>
+        <translation>Omeji razmerje izmenjave ...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="634"/>
         <source>Limit upload rate...</source>
-        <translation>Обмежити швидкість вивантаження...</translation>
+        <translation>Omejitev razmerja pošiljanja ...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="636"/>
         <source>Limit download rate...</source>
-        <translation>Обмежити швидкість завантаження...</translation>
+        <translation>Omejitev razmerja prejemanja ...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="638"/>
         <source>Open destination folder</source>
-        <translation>Відкрити теку призначення</translation>
+        <translation>Odpri ciljno mapo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="640"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
-        <translation>Посунути вперед</translation>
+        <translation>Premakni navzgor</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="642"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
-        <translation>Посунути назад</translation>
+        <translation>Premakni navzdol</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="644"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation>Перемістити на початок</translation>
+        <translation>Premakni na vrh</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="646"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation>Перемістити в кінець</translation>
+        <translation>Premakni na dno</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="648"/>
         <source>Set location...</source>
-        <translation>Встановити місце...</translation>
+        <translation>Nastavi mesto ...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="654"/>
         <source>Copy name</source>
-        <translation>Копіювати назву</translation>
+        <translation>Kopiraj ime</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="793"/>
         <source>Priority</source>
-        <translation>Пріоритет</translation>
+        <translation>Prioriteta</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="650"/>
         <source>Force recheck</source>
-        <translation>Примусова перевірка</translation>
+        <translation>Prisili ponovno preverjanje</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="652"/>
         <source>Copy magnet link</source>
-        <translation>Копіювати magnet-посилання</translation>
+        <translation>Kopiraj magnetno povezavo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="656"/>
         <source>Super seeding mode</source>
-        <translation>Режим супер-сідування</translation>
+        <translation>Način super sejanja</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="659"/>
         <source>Rename...</source>
-        <translation>Перейменувати...</translation>
+        <translation>Preimenuj...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="661"/>
         <source>Download in sequential order</source>
-        <translation>Завантажувати послідовно</translation>
+        <translation>Prejemanje v zaporednem vrstnem redu</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="664"/>
         <source>Download first and last piece first</source>
-        <translation>Спочатку завантажувати першу і останню частину</translation>
+        <translation>Prejemanje najprej prvega in zadnjega kosa</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="750"/>
         <source>New...</source>
         <comment>New label...</comment>
-        <translation>Нова...</translation>
+        <translation>Nov...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="751"/>
         <source>Reset</source>
         <comment>Reset label</comment>
-        <translation>Забрати мітку</translation>
+        <translation>Ponastavi</translation>
     </message>
 </context>
 <context>
@@ -5984,29 +5985,29 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Обмеження коефіцієнта вивантаження/завантаження торрента</translation>
+        <translation>Omejevanje torrent razmerja pošiljanja/prejemanja</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation>Використовувати глобальні обмеження</translation>
+        <translation>Uporabi splošno omejitev razmerja</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="23"/>
         <location filename="../gui/updownratiodlg.ui" line="33"/>
         <location filename="../gui/updownratiodlg.ui" line="45"/>
         <source>buttonGroup</source>
-        <translation>Група кнопок</translation>
+        <translation>buttonGroup</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation>Не використовувати обмеження коефіцієнта</translation>
+        <translation>Brez omejitve razmerja</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation>Встановити обмеження коефіцієнта в</translation>
+        <translation>Nastavi omejitev razmerja na</translation>
     </message>
 </context>
 <context>
@@ -6014,12 +6015,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../webui/webui.cpp" line="84"/>
         <source>The Web UI is listening on port %1</source>
-        <translation>Веб-інтерфейс очікує з’єднань (порт %1)</translation>
+        <translation>Spletni vmesnik posluša na vratih %1</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="86"/>
         <source>Web UI Error - Unable to bind Web UI to port %1</source>
-        <translation>Помилка Веб-інтерфейсу - Не вдалось приєднати Веб-інтерфейс до порту %1</translation>
+        <translation>Napaka spletnega vmesnika - ni mogoče povezati spletni vmesnik na vrata %1</translation>
     </message>
 </context>
 <context>
@@ -6027,32 +6028,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/about_imp.h" line="55"/>
         <source>An advanced BitTorrent client programmed in &lt;nobr&gt;C++&lt;/nobr&gt;, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Потужний клієнт BitTorrent, запрограмований на &lt;nobr&gt;C++&lt;/nobr&gt;, на основі бібліотек Qt та libtorrent-rasterbar.</translation>
+        <translation>Napreden odjemalec BitTorrent, programiran v &lt;nobr&gt;C++&lt;/nobr&gt;, temelji na zbirki orodij Qt in libtorrent-rasterbar.</translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="57"/>
         <source>Copyright %1 2006-2015 The qBittorrent project</source>
-        <translation>Авторське право %1 2006-2015 Проект qBittorrent</translation>
+        <translation>Avtorske pravice %1 2006-2015 The qBittorrent project</translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="59"/>
         <source>Home Page: </source>
-        <translation>Домашня сторінка: </translation>
+        <translation>Domača stran:</translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="61"/>
         <source>Bug Tracker: </source>
-        <translation>Трекер помилок: </translation>
+        <translation>Sledilnik hroščev:</translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="63"/>
         <source>Forum: </source>
-        <translation>Форум: </translation>
+        <translation>Forum: </translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="66"/>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent на Freenode</translation>
+        <translation>IRC: #qbittorrent na Freenode</translation>
     </message>
 </context>
 <context>
@@ -6060,17 +6061,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/properties/peersadditiondlg.ui" line="14"/>
         <source>Add Peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj soležnike</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondlg.ui" line="20"/>
         <source>List of peers to add (one per line):</source>
-        <translation type="unfinished"></translation>
+        <translation>Seznam soležnikov za dodajanje (en na vrstico):</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondlg.ui" line="37"/>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapis: IPv4:vrata /[IPv6]:vrata</translation>
     </message>
 </context>
 <context>
@@ -6079,37 +6080,37 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/login.ui" line="14"/>
         <location filename="../gui/login.ui" line="47"/>
         <source>Tracker authentication</source>
-        <translation>Автентифікація на трекері</translation>
+        <translation>Overitev sledilnika</translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="64"/>
         <source>Tracker:</source>
-        <translation>Трекер:</translation>
+        <translation>Sledilnik:</translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="86"/>
         <source>Login</source>
-        <translation>Логін</translation>
+        <translation>Prijava</translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="94"/>
         <source>Username:</source>
-        <translation>Ім’я користувача:</translation>
+        <translation>Uporabniško ime:</translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="117"/>
         <source>Password:</source>
-        <translation>Пароль:</translation>
+        <translation>Geslo:</translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="154"/>
         <source>Log in</source>
-        <translation>Увійти</translation>
+        <translation>Prijava</translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="161"/>
         <source>Cancel</source>
-        <translation>Скасувати</translation>
+        <translation>Prekliči</translation>
     </message>
 </context>
 <context>
@@ -6117,17 +6118,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/confirmdeletiondlg.ui" line="20"/>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>Підтвердження видалення — qBittorrent</translation>
+        <translation>Potrditev odstranjevanje - qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/confirmdeletiondlg.ui" line="67"/>
         <source>Remember choice</source>
-        <translation>Запам’ятати вибір</translation>
+        <translation>Zapomni si izbiro</translation>
     </message>
     <message>
         <location filename="../gui/confirmdeletiondlg.ui" line="94"/>
         <source>Also delete the files on the hard disk</source>
-        <translation>Також видалити файли на жорсткому диску</translation>
+        <translation>Odstrani tudi datoteke na trdem disku</translation>
     </message>
 </context>
 <context>
@@ -6135,143 +6136,143 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="308"/>
         <source>Cancel</source>
-        <translation>Скасувати</translation>
+        <translation>Prekliči</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="14"/>
         <source>Torrent Creation Tool</source>
-        <translation>Інструмент створення торрента</translation>
+        <translation>Orodje za ustvarjanje torrenta</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="38"/>
         <source>Torrent file creation</source>
-        <translation>Створення torrent-файла</translation>
+        <translation>Ustvarjanje datoteke torrent</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="60"/>
         <source>Add file</source>
-        <translation>Додати файл</translation>
+        <translation>Dodaj datoteko</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="67"/>
         <source>Add folder</source>
-        <translation>Додати теку</translation>
+        <translation>Dodaj mapo</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="48"/>
         <source>File or folder to add to the torrent:</source>
-        <translation>Файл або тека для додавання в торрент:</translation>
+        <translation>Datoteka ali mapa, ki jo želite dodati torrentu:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="78"/>
         <source>Tracker URLs:</source>
-        <translation>URL трекерів:</translation>
+        <translation>URL-ji sledilnikov:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="88"/>
         <source>Web seeds urls:</source>
-        <translation>URL Веб-сідів:</translation>
+        <translation>Spletni naslov sejalcev:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="98"/>
         <source>Comment:</source>
-        <translation>Коментар:</translation>
+        <translation>Komentar:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="127"/>
         <source>You can separate tracker tiers / groups with an empty line.</source>
         <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation>Можна розділити групи трекерів пустими рядками.</translation>
+        <translation>Ločite lahko stopnje / skupine sledilnika s prazno vrstico.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="148"/>
         <source>Piece size:</source>
-        <translation>Розмір частини:</translation>
+        <translation>Velikost kosa:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="165"/>
         <source>16 KiB</source>
-        <translation>16 КіБ</translation>
+        <translation>16 KiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="170"/>
         <source>32 KiB</source>
-        <translation>32 КіБ</translation>
+        <translation>32 KiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="175"/>
         <source>64 KiB</source>
-        <translation>64 КіБ</translation>
+        <translation>64 KiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="180"/>
         <source>128 KiB</source>
-        <translation>128 КіБ</translation>
+        <translation>128 KiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="185"/>
         <source>256 KiB</source>
-        <translation>256 КіБ</translation>
+        <translation>256 KiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="190"/>
         <source>512 KiB</source>
-        <translation>512 КіБ</translation>
+        <translation>512 KiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="195"/>
         <source>1 MiB</source>
-        <translation>1 МіБ</translation>
+        <translation>1 MiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="200"/>
         <source>2 MiB</source>
-        <translation>2 МіБ</translation>
+        <translation>2 MiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="205"/>
         <source>4 MiB</source>
-        <translation>4 МіБ</translation>
+        <translation>4 MiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="210"/>
         <source>8 MiB</source>
-        <translation>8 МіБ</translation>
+        <translation>8 MiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="215"/>
         <source>16 MiB</source>
-        <translation>16 МіБ</translation>
+        <translation>16 MiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="223"/>
         <source>Auto</source>
-        <translation>Автоматично</translation>
+        <translation>Samodejno</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="248"/>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
-        <translation>Приватно (не буде передаватись через мережу DHT, якщо увімкнено)</translation>
+        <translation>Zasebno (če omogočeno, ne bo razširjeno na omrežju DHT)</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="255"/>
         <source>Start seeding after creation</source>
-        <translation>Почати роздачу одразу після створення</translation>
+        <translation>Po ustvarjanju začni sejati</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="265"/>
         <source>Ignore share ratio limits for this torrent</source>
-        <translation>Ігнорувати обмеження коефіцієнта роздачі для цього торрента</translation>
+        <translation>Ne upoštevaj omejitev razmerja izmenjave za ta torrent</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="301"/>
         <source>Create and save...</source>
-        <translation>Створити і зберегти...</translation>
+        <translation>Ustvari in shrani ...</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="272"/>
         <source>Progress:</source>
-        <translation>Прогрес:</translation>
+        <translation>Napredek:</translation>
     </message>
 </context>
 <context>
@@ -6279,37 +6280,37 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/downloadfromurldlg.ui" line="28"/>
         <source>Add torrent links</source>
-        <translation>Додати посилання на торрент</translation>
+        <translation>Dodaj torrent povezave</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.ui" line="58"/>
         <source>One per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation>Одне на рядок (підтримуються HTTP- і magnet-посилання та інформаційні хеші)</translation>
+        <translation>Eno na vrstico (povezave HTTP, magnetne povezave in info-razpršila so podprta)</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.ui" line="80"/>
         <source>Download</source>
-        <translation>Завантажити</translation>
+        <translation>Prenesi</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.ui" line="87"/>
         <source>Cancel</source>
-        <translation>Скасувати</translation>
+        <translation>Prekliči</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.ui" line="14"/>
         <source>Download from urls</source>
-        <translation>Завантажити з адрес</translation>
+        <translation>Prejemanje iz URLjev</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.h" line="96"/>
         <source>No URL entered</source>
-        <translation>Не введено URL</translation>
+        <translation>Ni bilo vpisanega URLja</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.h" line="96"/>
         <source>Please type at least one URL.</source>
-        <translation>Будь ласка, введіть хоча б один URL.</translation>
+        <translation>Vpišite vsaj en URL.</translation>
     </message>
 </context>
 <context>
@@ -6317,22 +6318,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine/engineselect.ui" line="17"/>
         <source>Search plugins</source>
-        <translation>Пошукові додатки</translation>
+        <translation>Vstavki iskanja</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="30"/>
         <source>Installed search engines:</source>
-        <translation>Встановлені пошуковики:</translation>
+        <translation>Nameščeni iskalniki:</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="50"/>
         <source>Name</source>
-        <translation>Назва</translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="55"/>
         <source>Version</source>
-        <translation>Версія</translation>
+        <translation>Verzija</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="60"/>
@@ -6343,32 +6344,32 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/engineselect.ui" line="65"/>
         <location filename="../searchengine/engineselect.ui" line="124"/>
         <source>Enabled</source>
-        <translation>Увімкнено</translation>
+        <translation>Omogočeno</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="83"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation>Ви можете отримати нові пошукові додатки тут: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation>Nove vstavke iskanja najdete na : &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="98"/>
         <source>Install a new one</source>
-        <translation>Встановити новий</translation>
+        <translation>Namestite novega</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="105"/>
         <source>Check for updates</source>
-        <translation>Перевірити оновлення</translation>
+        <translation>Preveri za posodobitve</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="112"/>
         <source>Close</source>
-        <translation>Закрити</translation>
+        <translation>Zapri</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="129"/>
         <source>Uninstall</source>
-        <translation>Видалити</translation>
+        <translation>Odstrani</translation>
     </message>
 </context>
 <context>
@@ -6376,22 +6377,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="191"/>
         <source>Uninstall warning</source>
-        <translation>Попередження про видалення</translation>
+        <translation>Opozorilo odstranjevanja</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="193"/>
         <source>Uninstall success</source>
-        <translation>Видалення успішне</translation>
+        <translation>Odstranjevanje uspešno</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="358"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation>Це посилання не вказує на пошуковий додаток.</translation>
+        <translation>Povezava ne kaže na vstavek iskalnika.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="373"/>
         <source>Select search plugins</source>
-        <translation>Вибрати пошукові додатки</translation>
+        <translation>Izberite vstavke iskanja</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="254"/>
@@ -6400,14 +6401,14 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/engineselectdlg.cpp" line="294"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="297"/>
         <source>Search plugin install</source>
-        <translation>Встановити пошуковий додаток</translation>
+        <translation>Namestitev vstavka iskanja</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="134"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="205"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="317"/>
         <source>Yes</source>
-        <translation>Так</translation>
+        <translation>Da</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="137"/>
@@ -6415,18 +6416,18 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/engineselectdlg.cpp" line="208"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="320"/>
         <source>No</source>
-        <translation>Ні</translation>
+        <translation>Ne</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="254"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Новіша версія пошукового додатка %1 вже встановлена.</translation>
+        <translation>Novejša različica %1 vstavka iskanja je že nameščena.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="374"/>
         <source>qBittorrent search plugin</source>
-        <translation>Пошуковий додаток qBittorrent</translation>
+        <translation>qBittorrent vstavek iskanja</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="425"/>
@@ -6434,71 +6435,71 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/engineselectdlg.cpp" line="487"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="494"/>
         <source>Search plugin update</source>
-        <translation>Оновити пошуковий додаток</translation>
+        <translation>Posodobitev vstavka iskanja</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="466"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="487"/>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation>Пробачте, сервер оновлень тимчасово недоступний.</translation>
+        <translation>Strežnik za posodobitve trenutno ni na voljo.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="425"/>
         <source>All your plugins are already up to date.</source>
-        <translation>Всі ваші додатки свіжої версії.</translation>
+        <translation>Vsi vaši vstavki so že posodobljeni.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="279"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Пошуковий додаток %1 не вдалося оновити, залишено стару версію.</translation>
+        <translation>Vstavek iskalnika %1 ni bilo mogoče posodobiti. Ohranjanje stare različice.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="284"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Не вдалося встановити пошуковий додаток %1.</translation>
+        <translation>Vstavek iskalnika %1 ni bilo mogoče namestiti.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="193"/>
         <source>All selected plugins were uninstalled successfully</source>
-        <translation>Всі вибрані пошукові додатки успішно видалено</translation>
+        <translation>Vsi izbrani vstavki so bili uspešno odstranjeni</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="191"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation>Деякі додатки не вдалося видалити, тому що вони є частиною qBittorrent. Можна видалити лише ті додатки, які ви встановили власноруч.
-Ці додатки було вимкнено.</translation>
+        <translation>Nekatere vstavke ni bilo mogoče odstraniti, ker so vključeni v qBittorrent. Samo tiste, ki ste jih sami dodali lahko odstranite.
+Tisti vstavki so bili onemogočeni.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="294"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Пошуковий додаток %1 успішно оновлено.</translation>
+        <translation>Vstavek iskalnika %1 je bil uspešno posodobljen.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="297"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Пошуковий додаток %1 успішно встановлено.</translation>
+        <translation>Vstavek iskalnika %1 je bil uspešno nameščen.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="358"/>
         <source>Invalid link</source>
-        <translation>Хибне посилання</translation>
+        <translation>Neveljavna povezava</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="494"/>
         <source>Sorry, %1 search plugin installation failed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Вибачте, встановлення пошукового додатка %1 невдале.</translation>
+        <translation>Namestitev %1 vstavka iskanja je spodletela.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="350"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="359"/>
         <source>New search engine plugin URL</source>
-        <translation>Новий URL пошукового додатка</translation>
+        <translation>Nov URL vstavka iskalnika.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="351"/>
@@ -6512,7 +6513,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/stacktrace_win_dlg.ui" line="14"/>
         <source>Crash info</source>
-        <translation>Інформація про крах</translation>
+        <translation>Informacije o napaki</translation>
     </message>
 </context>
 <context>
@@ -6523,7 +6524,7 @@ Those plugins were disabled.</source>
         <location filename="../core/utils/fs.cpp" line="484"/>
         <location filename="../core/utils/fs.cpp" line="496"/>
         <source>Downloads</source>
-        <translation>Завантаження</translation>
+        <translation>Prejemi</translation>
     </message>
 </context>
 <context>
@@ -6532,31 +6533,31 @@ Those plugins were disabled.</source>
         <location filename="../core/utils/misc.cpp" line="75"/>
         <source>B</source>
         <comment>bytes</comment>
-        <translation>Б</translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="../core/utils/misc.cpp" line="76"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
-        <translation>КіБ</translation>
+        <translation>KiB</translation>
     </message>
     <message>
         <location filename="../core/utils/misc.cpp" line="77"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
-        <translation>МіБ</translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../core/utils/misc.cpp" line="78"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
-        <translation>ГіБ</translation>
+        <translation>GiB</translation>
     </message>
     <message>
         <location filename="../core/utils/misc.cpp" line="79"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
-        <translation>ТіБ</translation>
+        <translation>TiB</translation>
     </message>
     <message>
         <location filename="../core/utils/misc.cpp" line="276"/>
@@ -6566,68 +6567,68 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../core/utils/misc.cpp" line="299"/>
         <source>Python version: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Različica Python: %1</translation>
     </message>
     <message>
         <location filename="../core/utils/misc.cpp" line="325"/>
         <source>/s</source>
         <comment>per second</comment>
-        <translation>/с</translation>
+        <translation>/s</translation>
     </message>
     <message>
         <location filename="../core/utils/misc.cpp" line="413"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1г %2хв</translation>
+        <translation>%1h %2m</translation>
     </message>
     <message>
         <location filename="../core/utils/misc.cpp" line="417"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation>%1д %2г</translation>
+        <translation>%1d %2h</translation>
     </message>
     <message>
         <location filename="../core/utils/misc.cpp" line="313"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
-        <translation>Невідомо</translation>
+        <translation>Neznano</translation>
     </message>
     <message>
         <location filename="../core/utils/misc.cpp" line="199"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation>Зараз qBittorrent вимкне комп’ютер, бо всі завантаження завершено.</translation>
+        <translation>qBittorrent bo sedaj izklopil računalnik, ker so vsi prejemi zaključeni.</translation>
     </message>
     <message>
         <location filename="../core/utils/misc.cpp" line="406"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
-        <translation>&lt; 1хв</translation>
+        <translation>&lt; 1m</translation>
     </message>
     <message>
         <location filename="../core/utils/misc.cpp" line="409"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
-        <translation>%1хв</translation>
+        <translation>%1m</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="386"/>
         <source>Working</source>
-        <translation>Працює</translation>
+        <translation>Deluje</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="384"/>
         <source>Updating...</source>
-        <translation>Оновлюється...</translation>
+        <translation>Posodabljam...</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="388"/>
         <source>Not working</source>
-        <translation>Не працює</translation>
+        <translation>Ne deluje</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="382"/>
         <source>Not contacted yet</source>
-        <translation>Ще не зв’язувався</translation>
+        <translation>Še ni bilo stika</translation>
     </message>
 </context>
 <context>
@@ -6636,7 +6637,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/options_imp.cpp" line="1169"/>
         <location filename="../gui/options_imp.cpp" line="1171"/>
         <source>Choose export directory</source>
-        <translation>Виберіть теку для експорту</translation>
+        <translation>Izberite mapo za izvoz</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1207"/>
@@ -6644,12 +6645,12 @@ Those plugins were disabled.</source>
         <location filename="../gui/options_imp.cpp" line="1220"/>
         <location filename="../gui/options_imp.cpp" line="1222"/>
         <source>Choose a save directory</source>
-        <translation>Виберіть теку для збереження</translation>
+        <translation>Izberite mapo za shranjevanje</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1123"/>
         <source>Add directory to scan</source>
-        <translation>Додати теку спостерігання</translation>
+        <translation>Dodajte mapo za preiskovanje</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="183"/>
@@ -6704,100 +6705,100 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options_imp.cpp" line="1130"/>
         <source>Folder is already being watched.</source>
-        <translation>За текою вже ведеться стеження.</translation>
+        <translation>Mapa se že opazuje.</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1133"/>
         <source>Folder does not exist.</source>
-        <translation>Тека не існує.</translation>
+        <translation>Mapa ne obstaja.</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1136"/>
         <source>Folder is not readable.</source>
-        <translation>Теку неможливо прочитати.</translation>
+        <translation>Mapa ni berljiva.</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1146"/>
         <source>Failure</source>
-        <translation>Провал</translation>
+        <translation>Spodletelo</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1146"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation>Не вдалося додати теку &apos;%1&apos;: %2</translation>
+        <translation>Spodletelo dodajanje mape za preiskovanje &apos;%1&apos;: %2</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1193"/>
         <location filename="../gui/options_imp.cpp" line="1195"/>
         <source>Filters</source>
-        <translation>Фільтри</translation>
+        <translation>Filtri</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1193"/>
         <location filename="../gui/options_imp.cpp" line="1195"/>
         <source>Choose an IP filter file</source>
-        <translation>Виберіть файл IP-фільтра</translation>
+        <translation>Izberite datoteko s filtri IP</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1261"/>
         <source>SSL Certificate</source>
-        <translation>Сертифікат SSL</translation>
+        <translation>Potrdilo SSL</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1272"/>
         <source>SSL Key</source>
-        <translation>Ключ SSL</translation>
+        <translation>Ključ SSL</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1303"/>
         <source>Parsing error</source>
-        <translation>Помилка розбору</translation>
+        <translation>Napaka razčlenjevanja</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1303"/>
         <source>Failed to parse the provided IP filter</source>
-        <translation>Не вдалося розібрати даний фільтр IP</translation>
+        <translation>Spodletelo razčlenjevanje filtra IP.</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1305"/>
         <source>Successfully refreshed</source>
-        <translation>Успішно оновлено</translation>
+        <translation>Uspešno osveženo</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1305"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Успішно розібрано наданий фільтр IP: застосовано %1 правил.</translation>
+        <translation>Uspešno razčlenjen filter IP: %1 pravil je bilo uveljavljenih.</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1392"/>
         <source>Invalid key</source>
-        <translation>Неправильний ключ</translation>
+        <translation>Neveljaven ključ</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1392"/>
         <source>This is not a valid SSL key.</source>
-        <translation>Це не є коректний ключ SSL.</translation>
+        <translation>To ni veljaven ključ SSL.</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1407"/>
         <source>Invalid certificate</source>
-        <translation>Неправильний сертифікат</translation>
+        <translation>Neveljavno potrdilo</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1407"/>
         <source>This is not a valid SSL certificate.</source>
-        <translation>Це не є коректний сертифікат SSL.</translation>
+        <translation>To ni veljavno potrdilo SSL.</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1416"/>
         <source>The start time and the end time can&apos;t be the same.</source>
-        <translation>Час початку і кінця не може бути тим самим.</translation>
+        <translation>Čas začetka in konca ne smeta biti enaka.</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1419"/>
         <source>Time Error</source>
-        <translation>Помилка часу</translation>
+        <translation>Napaka časa</translation>
     </message>
 </context>
 <context>
@@ -6805,22 +6806,22 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../searchengine/pluginsource.ui" line="13"/>
         <source>Plugin source</source>
-        <translation>Джерело додатка</translation>
+        <translation>Vir vstavka</translation>
     </message>
     <message>
         <location filename="../searchengine/pluginsource.ui" line="26"/>
         <source>Search plugin source:</source>
-        <translation>Джерело пошукового додатка:</translation>
+        <translation>Vir vstavka iskanja</translation>
     </message>
     <message>
         <location filename="../searchengine/pluginsource.ui" line="35"/>
         <source>Local file</source>
-        <translation>Локальний файл</translation>
+        <translation>Lokalna datoteka</translation>
     </message>
     <message>
         <location filename="../searchengine/pluginsource.ui" line="42"/>
         <source>Web link</source>
-        <translation>Веб-посилання</translation>
+        <translation>Spletna povezava</translation>
     </message>
 </context>
 <context>
@@ -6828,22 +6829,22 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/preview.ui" line="14"/>
         <source>Preview selection</source>
-        <translation>Вибір перегляду</translation>
+        <translation>Izbira predogleda</translation>
     </message>
     <message>
         <location filename="../gui/preview.ui" line="26"/>
         <source>The following files support previewing, please select one of them:</source>
-        <translation>Наступні файли підтримують перегляд, виберіть один з них:</translation>
+        <translation>Naslednje datoteke podpirajo predogled. Izberite eno:</translation>
     </message>
     <message>
         <location filename="../gui/preview.ui" line="61"/>
         <source>Preview</source>
-        <translation>Перегляд</translation>
+        <translation>Predogled</translation>
     </message>
     <message>
         <location filename="../gui/preview.ui" line="68"/>
         <source>Cancel</source>
-        <translation>Скасувати</translation>
+        <translation>Prekliči</translation>
     </message>
 </context>
 <context>
@@ -6852,27 +6853,27 @@ Those plugins were disabled.</source>
         <location filename="../searchengine/search.ui" line="14"/>
         <location filename="../searchengine/search.ui" line="28"/>
         <source>Search</source>
-        <translation>Пошук</translation>
+        <translation>Iskanje</translation>
     </message>
     <message>
         <location filename="../searchengine/search.ui" line="51"/>
         <source>Status:</source>
-        <translation>Статус:</translation>
+        <translation>Stanje:</translation>
     </message>
     <message>
         <location filename="../searchengine/search.ui" line="75"/>
         <source>Stopped</source>
-        <translation>Зупинено</translation>
+        <translation>Ustavljeno</translation>
     </message>
     <message>
         <location filename="../searchengine/search.ui" line="107"/>
         <source>Download</source>
-        <translation>Завантажити</translation>
+        <translation>Prejem</translation>
     </message>
     <message>
         <location filename="../searchengine/search.ui" line="117"/>
         <source>Go to description page</source>
-        <translation>Перейти до сторінки опису</translation>
+        <translation>Pojdi na stran z opisom</translation>
     </message>
     <message>
         <location filename="../searchengine/search.ui" line="127"/>
@@ -6882,7 +6883,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../searchengine/search.ui" line="147"/>
         <source>Search engines...</source>
-        <translation>Пошуковики...</translation>
+        <translation>Iskalniki ...</translation>
     </message>
 </context>
 </TS>
