@@ -553,17 +553,8 @@ void RSSImp::refreshTextBrowser()
     QListWidgetItem *item = selection.first();
     Q_ASSERT(item);
     if (item == m_currentArticle) return;
-    // Stop displaying previous news if necessary
-    if (m_feedList->currentFeed() == m_feedList->stickyUnreadItem()) {
-        if (m_currentArticle) {
-            disconnect(listArticles, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
-            listArticles->removeItemWidget(m_currentArticle);
-            Q_ASSERT(m_currentArticle);
-            delete m_currentArticle;
-            connect(listArticles, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
-        }
-        m_currentArticle = item;
-    }
+    m_currentArticle = item;
+
     RssFeedPtr stream = m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString());
     RssArticlePtr article = stream->getItem(item->data(Article::IdRole).toString());
     QString html;
@@ -686,14 +677,11 @@ void RSSImp::onFeedContentChanged(const QString& url)
     qDebug() << Q_FUNC_INFO << url;
     QTreeWidgetItem *item = m_feedList->getTreeItemFromUrl(url);
     // If the feed is selected, update the displayed news
-    if (m_feedList->currentItem() == item ) {
+    if (m_feedList->currentItem() == item)
         populateArticleList(item);
-    }
-    else {
-        // Update unread items
-        if (m_feedList->currentItem() == m_feedList->stickyUnreadItem())
-            populateArticleList(m_feedList->stickyUnreadItem());
-    }
+    // Update unread items
+    else if (m_feedList->currentItem() == m_feedList->stickyUnreadItem())
+        populateArticleList(m_feedList->stickyUnreadItem());
 }
 
 void RSSImp::updateRefreshInterval(uint val)
