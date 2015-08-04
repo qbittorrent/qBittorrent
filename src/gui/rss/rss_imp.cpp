@@ -352,6 +352,8 @@ void RSSImp::downloadSelectedTorrents()
         RssArticlePtr article = feed->getItem(item->data(Article::IdRole).toString());
         if (!article) continue;
 
+        if (article->torrentUrl().isEmpty())
+            continue;
         QString torrentLink = article->torrentUrl();
         // Check if it is a magnet link
         if (torrentLink.startsWith("magnet:", Qt::CaseInsensitive)) {
