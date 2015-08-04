@@ -109,6 +109,7 @@ protected slots:
 
 private slots:
     void on_goToDescBtn_clicked();
+    void on_copyURLBtn_clicked();
 
 private:
     // Search related

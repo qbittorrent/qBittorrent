@@ -42,6 +42,7 @@
 #include <QSortFilterProxyModel>
 #include <QFileDialog>
 #include <QDesktopServices>
+#include <QClipboard>
 
 #ifdef Q_OS_WIN
 #include <stdlib.h>
@@ -74,6 +75,7 @@ SearchEngine::SearchEngine(MainWindow* parent)
     download_button->setIcon(GuiIconProvider::instance()->getIcon("download"));
     goToDescBtn->setIcon(GuiIconProvider::instance()->getIcon("application-x-mswinurl"));
     enginesButton->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
+    copyURLBtn->setIcon(GuiIconProvider::instance()->getIcon("edit-copy"));
     tabWidget->setTabsClosable(true);
     connect(tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
     // Boolean initialization
@@ -159,10 +161,12 @@ void SearchEngine::tab_changed(int t)
         if (currentSearchTab->getCurrentSearchListModel()->rowCount()) {
             download_button->setEnabled(true);
             goToDescBtn->setEnabled(true);
+            copyURLBtn->setEnabled(true);
         }
         else {
             download_button->setEnabled(false);
             goToDescBtn->setEnabled(false);
+            copyURLBtn->setEnabled(false);
         }
         search_status->setText(currentSearchTab->status);
     }
@@ -529,6 +533,7 @@ void SearchEngine::appendSearchResult(const QString &line)
     // Enable clear & download buttons
     download_button->setEnabled(true);
     goToDescBtn->setEnabled(true);
+    copyURLBtn->setEnabled(true);
 }
 
 void SearchEngine::closeTab(int index)
@@ -554,6 +559,7 @@ void SearchEngine::closeTab(int index)
         download_button->setEnabled(false);
         goToDescBtn->setEnabled(false);
         search_status->setText(tr("Stopped"));
+        copyURLBtn->setEnabled(false);
     }
 }
 
@@ -584,5 +590,23 @@ void SearchEngine::on_goToDescBtn_clicked()
             if (!desc_url.isEmpty())
                 QDesktopServices::openUrl(QUrl::fromEncoded(desc_url.toUtf8()));
         }
+    }
+}
+
+void SearchEngine::on_copyURLBtn_clicked()
+{
+    QStringList urls;
+    QModelIndexList selectedIndexes = all_tab.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
+    foreach (const QModelIndex &index, selectedIndexes) {
+        if (index.column() == SearchSortModel::NAME) {
+            QSortFilterProxyModel* model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
+            const QString descUrl = model->data(model->index(index.row(), SearchSortModel::DESC_LINK)).toString();
+            if (!descUrl.isEmpty())
+                urls << descUrl.toUtf8();
+        }
+    }
+    if (!urls.empty()) {
+        QClipboard *clipboard = QApplication::clipboard();
+        clipboard->setText(urls.join("\n"));
     }
 }
