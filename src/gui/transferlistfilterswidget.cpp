@@ -467,9 +467,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         trackerItem = new QListWidgetItem();
         trackerItem->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("network-server"));
 
-        Net::DownloadHandler *h = Net::DownloadManager::instance()->downloadUrl(QString("http://%1/favicon.ico").arg(host), true);
-        connect(h, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleFavicoDownload(QString, QString)));
-        connect(h, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleFavicoFailure(QString, QString)));
+        downloadFavicon(QString("http://%1/favicon.ico").arg(host));
     }
 
     tmp.append(hash);
@@ -610,6 +608,13 @@ void TrackerFiltersList::trackerWarning(const QString &hash, const QString &trac
         applyFilter(3);
 }
 
+void TrackerFiltersList::downloadFavicon(const QString& url)
+{
+    Net::DownloadHandler *h = Net::DownloadManager::instance()->downloadUrl(url, true);
+    connect(h, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleFavicoDownload(QString, QString)));
+    connect(h, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleFavicoFailure(QString, QString)));
+}
+
 void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString& filePath)
 {
     QString host = getHost(url);
@@ -627,9 +632,7 @@ void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString&
         if (url.endsWith(".ico", Qt::CaseInsensitive)) {
             Logger::instance()->addMessage(tr("Couldn't decode favicon for URL `%1`. Trying to download favicon in PNG format.").arg(url),
                                            Log::WARNING);
-            Net::DownloadHandler *h = Net::DownloadManager::instance()->downloadUrl(url.left(url.size() - 4) + ".png", true);
-            connect(h, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleFavicoDownload(QString, QString)));
-            connect(h, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleFavicoFailure(QString, QString)));
+            downloadFavicon(url.left(url.size() - 4) + ".png");
         }
         else {
             Logger::instance()->addMessage(tr("Couldn't decode favicon for URL `%1`.").arg(url), Log::WARNING);
@@ -648,6 +651,8 @@ void TrackerFiltersList::handleFavicoFailure(const QString& url, const QString& 
     // that.
     Logger::instance()->addMessage(tr("Couldn't download favicon for URL `%1`. Reason: `%2`").arg(url).arg(error),
                                    Log::WARNING);
+    if (url.endsWith(".ico", Qt::CaseInsensitive))
+        downloadFavicon(url.left(url.size() - 4) + ".png");
 }
 
 void TrackerFiltersList::showMenu(QPoint)
