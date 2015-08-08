@@ -706,7 +706,7 @@ void AddNewTorrentDialog::setupTreeview()
 
 void AddNewTorrentDialog::handleDownloadFailed(const QString &url, const QString &reason)
 {
-    MessageBoxRaised::critical(0, tr("Download Error"), QString("Cannot download %1: %2").arg(url).arg(reason));
+    MessageBoxRaised::critical(0, tr("Download Error"), QString("Cannot download '%1': %2").arg(url).arg(reason));
     this->deleteLater();
 }
 

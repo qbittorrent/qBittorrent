@@ -182,11 +182,11 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
     foreach (const BitTorrent::PeerAddress &addr, peersList) {
         if (torrent->connectPeer(addr)) {
             qDebug("Adding peer %s...", qPrintable(addr.ip.toString()));
-            Logger::instance()->addMessage(tr("Manually adding peer %1...").arg(addr.ip.toString()));
+            Logger::instance()->addMessage(tr("Manually adding peer '%1'...").arg(addr.ip.toString()));
             peerCount++;
         }
         else {
-            Logger::instance()->addMessage(tr("The peer %1 could not be added to this torrent.").arg(addr.ip.toString()), Log::WARNING);
+            Logger::instance()->addMessage(tr("The peer '%1' could not be added to this torrent.").arg(addr.ip.toString()), Log::WARNING);
         }
     }
     if (peerCount < peersList.length())
@@ -219,7 +219,7 @@ void PeerListWidget::banSelectedPeers()
     int row = m_proxyModel->mapToSource(index).row();
     QString ip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
     qDebug("Banning peer %s...", ip.toLocal8Bit().data());
-    Logger::instance()->addMessage(tr("Manually banning peer %1...").arg(ip));
+    Logger::instance()->addMessage(tr("Manually banning peer '%1'...").arg(ip));
     BitTorrent::Session::instance()->banIP(ip);
   }
   // Refresh list

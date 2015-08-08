@@ -377,7 +377,7 @@ void AutomatedRssDownloader::on_removeRuleBtn_clicked()
   // Ask for confirmation
   QString confirm_text;
   if (selection.count() == 1)
-    confirm_text = tr("Are you sure you want to remove the download rule named %1?").arg(selection.first()->text());
+    confirm_text = tr("Are you sure you want to remove the download rule named '%1'?").arg(selection.first()->text());
   else
     confirm_text = tr("Are you sure you want to remove the selected download rules?");
   if (QMessageBox::question(this, tr("Rule deletion confirmation"), confirm_text, QMessageBox::Yes, QMessageBox::No) != QMessageBox::Yes)

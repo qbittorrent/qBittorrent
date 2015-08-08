@@ -351,7 +351,7 @@ void Session::setSessionSettings()
     libt::session_settings sessionSettings = m_nativeSession->settings();
     sessionSettings.user_agent = "qBittorrent " VERSION;
     //std::cout << "HTTP User-Agent is " << sessionSettings.user_agent << std::endl;
-    logger->addMessage(tr("HTTP User-Agent is %1").arg(Utils::String::fromStdString(sessionSettings.user_agent)));
+    logger->addMessage(tr("HTTP User-Agent is '%1'").arg(Utils::String::fromStdString(sessionSettings.user_agent)));
 
     sessionSettings.upnp_ignore_nonrouters = true;
     sessionSettings.use_dht_as_fallback = false;
@@ -721,13 +721,13 @@ void Session::processBigRatios()
             if ((ratio <= TorrentHandle::MAX_RATIO) && (ratio >= ratioLimit)) {
                 Logger* const logger = Logger::instance();
                 if (m_highRatioAction == MaxRatioAction::Remove) {
-                    logger->addMessage(tr("%1 reached the maximum ratio you set. Removing...").arg(torrent->name()));
+                    logger->addMessage(tr("'%1' reached the maximum ratio you set. Removing...").arg(torrent->name()));
                     deleteTorrent(torrent->hash());
                 }
                 else {
                     // Pause it
                     if (!torrent->isPaused()) {
-                        logger->addMessage(tr("%1 reached the maximum ratio you set. Pausing...").arg(torrent->name()));
+                        logger->addMessage(tr("'%1' reached the maximum ratio you set. Pausing...").arg(torrent->name()));
                         torrent->pause();
                     }
                 }
@@ -1212,7 +1212,7 @@ void Session::exportTorrentFiles(QString path)
     QDir exportDir(path);
     if (!exportDir.exists()) {
         if (!exportDir.mkpath(exportDir.absolutePath())) {
-            Logger::instance()->addMessage(tr("Error: Could not create torrent export directory: %1").arg(exportDir.absolutePath()), Log::CRITICAL);
+            Logger::instance()->addMessage(tr("Error: Could not create torrent export directory: '%1'").arg(exportDir.absolutePath()), Log::CRITICAL);
             return;
         }
     }
@@ -1240,7 +1240,7 @@ void Session::exportTorrentFiles(QString path)
             QFile::copy(srcPath, dstPath);
         }
         else {
-            Logger::instance()->addMessage(tr("Error: could not export torrent %1, maybe it has not metadata yet.").arg(torrent->hash()), Log::CRITICAL);
+            Logger::instance()->addMessage(tr("Error: could not export torrent '%1', maybe it has not metadata yet.").arg(torrent->hash()), Log::CRITICAL);
         }
     }
 }
@@ -1691,7 +1691,7 @@ void Session::handleTorrentFinished(TorrentHandle *const torrent)
             }
             else {
                 qDebug("Caught error loading torrent");
-                Logger::instance()->addMessage(tr("Unable to decode %1 torrent file.").arg(Utils::Fs::toNativePath(torrentFullpath)), Log::CRITICAL);
+                Logger::instance()->addMessage(tr("Unable to decode '%1' torrent file.").arg(Utils::Fs::toNativePath(torrentFullpath)), Log::CRITICAL);
             }
         }
     }
@@ -1797,8 +1797,8 @@ void Session::recursiveTorrentDownload(const InfoHash &hash)
         const QString torrentRelpath = torrent->filePath(i);
         if (torrentRelpath.endsWith(".torrent")) {
             Logger::instance()->addMessage(
-                        tr("Recursive download of file %1 embedded in torrent %2"
-                           , "Recursive download of test.torrent embedded in torrent test2")
+                        tr("Recursive download of file '%1' embedded in torrent '%2'"
+                           , "Recursive download of 'test.torrent' embedded in torrent 'test2'")
                         .arg(Utils::Fs::toNativePath(torrentRelpath)).arg(torrent->name()));
             const QString torrentFullpath = torrent->savePath() + "/" + torrentRelpath;
 
@@ -2106,7 +2106,7 @@ void Session::handleAddTorrentAlert(libtorrent::add_torrent_alert *p)
                     exportTorrentFile(torrent);
             }
             else {
-                logger->addMessage(tr("Couldn't save %1.torrent").arg(torrent->hash()), Log::CRITICAL);
+                logger->addMessage(tr("Couldn't save '%1.torrent'").arg(torrent->hash()), Log::CRITICAL);
             }
         }
 
@@ -2223,7 +2223,7 @@ void Session::handlePeerBanAlert(libt::peer_ban_alert *p)
 
 void Session::handleUrlSeedAlert(libt::url_seed_alert *p)
 {
-    Logger::instance()->addMessage(tr("URL seed lookup failed for url: %1, message: %2").arg(Utils::String::fromStdString(p->url)).arg(Utils::String::fromStdString(p->message())), Log::CRITICAL);
+    Logger::instance()->addMessage(tr("URL seed lookup failed for URL: '%1', message: %2").arg(Utils::String::fromStdString(p->url)).arg(Utils::String::fromStdString(p->message())), Log::CRITICAL);
 }
 
 void Session::handleListenSucceededAlert(libt::listen_succeeded_alert *p)

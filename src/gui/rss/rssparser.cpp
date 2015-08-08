@@ -498,7 +498,7 @@ void RssParser::parseFeed(const ParsingJob& job)
   }
 
   if (!found_channel) {
-    reportFailure(job, tr("Invalid RSS feed at %1.").arg(job.feedUrl));
+    reportFailure(job, tr("Invalid RSS feed at '%1'.").arg(job.feedUrl));
     return;
   }
 
