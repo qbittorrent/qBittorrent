@@ -68,7 +68,7 @@ var loadTorrentData = function() {
 
                 temp = "QBT_TR(%1 (%2 max))QBT_TR"
                         .replace("%1", data.nb_connections)
-                        .replace("%2", data.nb_connections_limit)
+                        .replace("%2", data.nb_connections_limit < 0 ? "∞" : data.nb_connections_limit)
                 $('nb_connections').set('html', temp);
 
                 temp = "QBT_TR(%1 (%2 this session))QBT_TR"
