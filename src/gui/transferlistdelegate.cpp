@@ -150,7 +150,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       QItemDelegate::drawBackground(painter, opt, index);
       const qulonglong speed = index.data().toULongLong();
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-      QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed)+tr("/s", "/second (.i.e per second)"));
+      QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed, true));
       break;
     }
   case TorrentModel::TR_UPLIMIT:
@@ -158,15 +158,17 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     QItemDelegate::drawBackground(painter, opt, index);
     const qlonglong limit = index.data().toLongLong();
     opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-    QItemDelegate::drawDisplay(painter, opt, opt.rect, limit > 0 ? Utils::String::fromDouble(limit/1024., 1) + " " + tr("KiB/s", "KiB/second (.i.e per second)") : QString::fromUtf8(C_INFINITY));
+    QItemDelegate::drawDisplay(painter, opt, opt.rect, limit > 0 ? Utils::Misc::friendlyUnit(limit, true) : QString::fromUtf8(C_INFINITY));
     break;
   }
   case TorrentModel::TR_TIME_ELAPSED: {
     QItemDelegate::drawBackground(painter, opt, index);
-    QString txt = Utils::Misc::userFriendlyDuration(index.data().toLongLong());
     qlonglong seeding_time = index.data(Qt::UserRole).toLongLong();
+    QString txt;
     if (seeding_time > 0)
-      txt += " ("+tr("seeded for %1", "e.g. seeded for 3m10s").arg(Utils::Misc::userFriendlyDuration(seeding_time))+")";
+      txt += tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
+            .arg(Utils::Misc::userFriendlyDuration(index.data().toLongLong()))
+            .arg(Utils::Misc::userFriendlyDuration(seeding_time));
     QItemDelegate::drawDisplay(painter, opt, opt.rect, txt);
     break;
   }

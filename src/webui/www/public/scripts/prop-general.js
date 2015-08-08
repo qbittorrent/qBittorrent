@@ -56,64 +56,102 @@ var loadTorrentData = function() {
             if (data) {
                 var temp;
                 // Update Torrent data
-                temp = friendlyDuration(data.time_elapsed)
                 if (data.seeding_time > 0)
-                    temp += " (" + "QBT_TR(seeded for %1)QBT_TR".replace("%1", friendlyDuration(data.seeding_time)) + ")";
+                    temp = "QBT_TR(%1 (%2 this session))QBT_TR"
+                            .replace("%1", friendlyDuration(data.time_elapsed))
+                            .replace("%2", friendlyDuration(data.seeding_time))
+                else
+                    temp = friendlyDuration(data.time_elapsed)
                 $('time_elapsed').set('html', temp);
+
                 $('eta').set('html', friendlyDuration(data.eta));
-                temp = data.nb_connections + " (" + "QBT_TR(%1 max)QBT_TR".replace("%1", data.nb_connections_limit) + ")";
+
+                temp = "QBT_TR(%1 (%2 max))QBT_TR"
+                        .replace("%1", data.nb_connections)
+                        .replace("%2", data.nb_connections_limit)
                 $('nb_connections').set('html', temp);
-                temp =  friendlyUnit(data.total_downloaded) +
-                    " (" + friendlyUnit(data.total_downloaded_session) +
-                    " QBT_TR(this session)QBT_TR" + ")";
+
+                temp = "QBT_TR(%1 (%2 this session))QBT_TR"
+                        .replace("%1", friendlyUnit(data.total_downloaded))
+                        .replace("%2", friendlyUnit(data.total_downloaded_session))
                 $('total_downloaded').set('html', temp);
-                temp = friendlyUnit(data.total_uploaded) +
-                    " (" + friendlyUnit(data.total_uploaded_session) +
-                    " QBT_TR(this session)QBT_TR" + ")";
+
+                temp = "QBT_TR(%1 (%2 this session))QBT_TR"
+                        .replace("%1", friendlyUnit(data.total_uploaded))
+                        .replace("%2", friendlyUnit(data.total_uploaded_session))
                 $('total_uploaded').set('html', temp);
-                temp = friendlyUnit(data.dl_speed, true) + " QBT_TR((%1/s avg.))QBT_TR".replace("%1", friendlyUnit(data.dl_speed_avg));
+
+                temp = "QBT_TR(%1 (%2 avg.))QBT_TR"
+                        .replace("%1", friendlyUnit(data.dl_speed, true))
+                        .replace("%2", friendlyUnit(data.dl_speed_avg, true));
                 $('dl_speed').set('html', temp);
-                temp = friendlyUnit(data.up_speed, true) + " QBT_TR((%1/s avg.))QBT_TR".replace("%1", friendlyUnit(data.up_speed_avg));
+
+                temp = "QBT_TR(%1 (%2 avg.))QBT_TR"
+                        .replace("%1", friendlyUnit(data.up_speed, true))
+                        .replace("%2", friendlyUnit(data.up_speed_avg, true));
                 $('up_speed').set('html', temp);
+
                 temp = (data.dl_limit == -1 ? "∞" : friendlyUnit(data.dl_limit, true));
                 $('dl_limit').set('html', temp);
+
                 temp = (data.up_limit == -1 ? "∞" : friendlyUnit(data.up_limit, true));
                 $('up_limit').set('html', temp);
+
                 $('total_wasted').set('html', friendlyUnit(data.total_wasted));
-                temp = data.seeds + " QBT_TR((%1 total))QBT_TR".replace("%1", data.seeds_total);
+
+                temp = "QBT_TR(%1 (%2 total))QBT_TR"
+                        .replace("%1", data.seeds)
+                        .replace("%2", data.seeds_total);
                 $('seeds').set('html', temp);
-                temp = data.peers + " QBT_TR((%1 total))QBT_TR".replace("%1", data.peers_total);
+
+                temp = "QBT_TR(%1 (%2 total))QBT_TR"
+                        .replace("%1", data.peers)
+                        .replace("%2", data.peers_total);
                 $('peers').set('html', temp);
+
                 $('share_ratio').set('html', data.share_ratio.toFixed(2));
+
                 $('reannounce').set('html', friendlyDuration(data.reannounce));
+
                 if (data.last_seen != -1)
                     temp = new Date(data.last_seen * 1000).toLocaleString();
                 else
                     temp = "QBT_TR(Never)QBT_TR";
                 $('last_seen').set('html', temp);
+
                 $('total_size').set('html', friendlyUnit(data.total_size));
+
                 if (data.pieces_num != -1)
-                    temp = "QBT_TR(%1 x %2 (have %3))QBT_TR".replace("%1", data.pieces_num).replace("%2", friendlyUnit(data.piece_size)).replace("%3", data.pieces_have);
+                    temp = "QBT_TR(%1 x %2 (have %3))QBT_TR"
+                            .replace("%1", data.pieces_num)
+                            .replace("%2", friendlyUnit(data.piece_size))
+                            .replace("%3", data.pieces_have);
                 else
                     temp = "QBT_TR(Unknown)QBT_TR";
                 $('pieces').set('html', temp);
+
                 $('created_by').set('html', data.created_by);
                 if (data.addition_date != -1)
                     temp = new Date(data.addition_date * 1000).toLocaleString();
                 else
                     temp = "QBT_TR(Unknown)QBT_TR";
+
                 $('addition_date').set('html', temp);
                 if (data.completion_date != -1)
                     temp = new Date(data.completion_date * 1000).toLocaleString();
                 else
                     temp = "";
+
                 $('completion_date').set('html', temp);
+
                 if (data.creation_date != -1)
                     temp = new Date(data.creation_date * 1000).toLocaleString();
                 else
                     temp = "QBT_TR(Unknown)QBT_TR";
                 $('creation_date').set('html', temp);
+
                 $('save_path').set('html', data.save_path);
+
                 $('comment').set('html', parseHtmlLinks(data.comment));
             }
             else {
