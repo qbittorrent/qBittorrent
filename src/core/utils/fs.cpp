@@ -33,6 +33,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QSettings>
+#include <QDirIterator>
 #include <QCoreApplication>
 
 #ifdef Q_OS_MAC
@@ -112,57 +113,51 @@ QString Utils::Fs::folderName(const QString& file_path)
 }
 
 /**
- * Remove an empty folder tree.
- *
- * This function will also remove .DS_Store files on Mac OS and
- * Thumbs.db on Windows.
+ * This function will first remove system cache files, e.g. `Thumbs.db`,
+ * `.DS_Store`. Then will try to remove the whole tree if the tree consist
+ * only of folders
  */
-bool Utils::Fs::smartRemoveEmptyFolderTree(const QString& dir_path)
+bool Utils::Fs::smartRemoveEmptyFolderTree(const QString& path)
 {
-    qDebug() << Q_FUNC_INFO << dir_path;
-    if (dir_path.isEmpty())
+    if (!QDir(path).exists())
         return false;
 
-    QDir dir(dir_path);
-    if (!dir.exists())
-        return true;
+    static const QStringList deleteFilesList = {
+        // Windows
+        "Thumbs.db",
+        "desktop.ini",
+        // Linux
+        ".directory",
+        // Mac OS
+        ".DS_Store"
+    };
 
-    // Remove Files created by the OS
-#if defined Q_OS_MAC
-    forceRemove(dir_path + QLatin1String("/.DS_Store"));
-#elif defined Q_OS_WIN
-    forceRemove(dir_path + QLatin1String("/Thumbs.db"));
-#endif
+    // travel from the deepest folder and remove anything unwanted on the way out.
+    QStringList dirList(path + "/");  // get all sub directories paths
+    QDirIterator iter(path, (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories);
+    while (iter.hasNext())
+        dirList << iter.next() + "/";
+    std::sort(dirList.begin(), dirList.end(), [](const QString &l, const QString &r) { return l.count("/") > r.count("/"); });  // sort descending by directory depth
 
-    QFileInfoList sub_files = dir.entryInfoList();
-    foreach (const QFileInfo& info, sub_files) {
-        QString sub_name = info.fileName();
-        if (sub_name == "." || sub_name == "..")
-            continue;
-
-        QString sub_path = info.absoluteFilePath();
-        qDebug() << Q_FUNC_INFO << "sub file: " << sub_path;
-        if (info.isDir()) {
-            if (!smartRemoveEmptyFolderTree(sub_path)) {
-                qWarning() << Q_FUNC_INFO << "Failed to remove folder: " << sub_path;
-                return false;
-            }
+    for (const QString &p : dirList) {
+        // remove unwanted files
+        for (const QString &f : deleteFilesList) {
+            forceRemove(p + f);
         }
-        else {
-            if (info.isHidden()) {
-                qDebug() << Q_FUNC_INFO << "Removing hidden file: " << sub_path;
-                if (!forceRemove(sub_path)) {
-                    qWarning() << Q_FUNC_INFO << "Failed to remove " << sub_path;
-                    return false;
-                }
-            }
-            else {
-                qWarning() << Q_FUNC_INFO << "Folder is not empty, aborting. Found: " << sub_path;
-            }
+
+        // remove temp files on linux (file ends with '~'), e.g. `filename~`
+        QDir dir(p);
+        QStringList tmpFileList = dir.entryList(QDir::Files);
+        for (const QString &f : tmpFileList) {
+            if (f.endsWith("~"))
+                forceRemove(p + f);
         }
+
+        // remove directory if empty
+        dir.rmdir(p);
     }
-    qDebug() << Q_FUNC_INFO << "Calling rmdir on " << dir_path;
-    return QDir().rmdir(dir_path);
+
+    return QDir(path).exists();
 }
 
 /**
