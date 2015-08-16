@@ -31,8 +31,6 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QComboBox>
-#include <QToolButton>
 #include <QMenu>
 #include <QSignalMapper>
 
@@ -43,6 +41,20 @@
 #include "core/bittorrent/sessionstatus.h"
 #include "core/preferences.h"
 #include "core/utils/misc.h"
+
+ComboBoxMenuButton::ComboBoxMenuButton(QWidget *parent, QMenu *menu)
+    : QComboBox(parent)
+    , m_menu(menu)
+{
+}
+
+void ComboBoxMenuButton::showPopup()
+{
+    QPoint p = mapToGlobal(QPoint(0, height()));
+    m_menu->exec(p);
+    QComboBox::hidePopup();
+}
+
 
 SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     : QWidget(parent)
@@ -62,11 +74,6 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     m_periodCombobox->addItem(tr("6 Hours"));
 
     connect(m_periodCombobox, SIGNAL(currentIndexChanged(int)), this, SLOT(onPeriodChange(int)));
-
-    m_graphsButton = new QToolButton();
-    m_graphsButton->setText(tr("Select Graphs"));
-    m_graphsButton->setPopupMode(QToolButton::InstantPopup);
-    m_graphsButton->setAutoExclusive(true);
 
     m_graphsMenu = new QMenu();
     m_graphsMenu->addAction(tr("Total Upload"));
@@ -92,7 +99,8 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     }
     connect(m_graphsSignalMapper, SIGNAL(mapped(int)), this, SLOT(onGraphChange(int)));
 
-    m_graphsButton->setMenu(m_graphsMenu);
+    m_graphsButton = new ComboBoxMenuButton(this, m_graphsMenu);
+    m_graphsButton->addItem(tr("Select Graphs"));
 
     m_hlayout->addWidget(m_periodLabel);
     m_hlayout->addWidget(m_periodCombobox);

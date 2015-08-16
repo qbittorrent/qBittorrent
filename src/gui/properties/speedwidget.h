@@ -30,6 +30,7 @@
 #define SPEEDWIDGET_H
 
 #include <QWidget>
+#include <QComboBox>
 #include <QtConcurrentRun>
 
 #include "speedplotview.h"
@@ -37,11 +38,21 @@
 class QVBoxLayout;
 class QHBoxLayout;
 class QLabel;
-class QComboBox;
-class QToolButton;
 class QMenu;
 class QSignalMapper;
 class PropertiesWidget;
+
+class ComboBoxMenuButton : public QComboBox
+{
+    Q_OBJECT
+public:
+    ComboBoxMenuButton(QWidget *parent, QMenu *menu);
+    virtual void showPopup();
+
+private:
+    QMenu *m_menu;
+};
+
 
 class SpeedWidget : public QWidget
 {
@@ -66,7 +77,7 @@ private:
     QComboBox *m_periodCombobox;
     SpeedPlotView *m_plot;
 
-    QToolButton *m_graphsButton;
+    ComboBoxMenuButton *m_graphsButton;
     QMenu *m_graphsMenu;
     QList<QAction *> m_graphsMenuActions;
     QSignalMapper *m_graphsSignalMapper;
