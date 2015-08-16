@@ -39,7 +39,6 @@ struct TorrentHandlePrivate
 {
     virtual void handleAlert(libtorrent::alert *) = 0;
     virtual void handleStateUpdate(const libtorrent::torrent_status &) = 0;
-    virtual void handleDefaultSavePathChanged() = 0;
     virtual void handleTempPathChanged() = 0;
     virtual void handleAppendExtensionToggled() = 0;
 

@@ -1412,14 +1412,9 @@ void Session::setDefaultSavePath(const QString &path)
 {
     if (path.isEmpty()) return;
 
-    QString defaultSavePath = Utils::Fs::fromNativePath(path);
-    if (!defaultSavePath.endsWith("/"))
-        defaultSavePath += "/";
-    if (m_defaultSavePath != defaultSavePath) {
-        m_defaultSavePath = defaultSavePath;
-        foreach (TorrentHandlePrivate *const torrent, m_torrents)
-            torrent->handleDefaultSavePathChanged();
-    }
+    m_defaultSavePath = Utils::Fs::fromNativePath(path);
+    if (!m_defaultSavePath.endsWith("/"))
+        m_defaultSavePath += "/";
 }
 
 void Session::setDefaultTempPath(const QString &path)
@@ -1443,8 +1438,20 @@ void Session::setAppendLabelToSavePath(bool append)
 {
     if (m_appendLabelToSavePath != append) {
         m_appendLabelToSavePath = append;
-        foreach (TorrentHandlePrivate *const torrent, m_torrents)
-            torrent->handleDefaultSavePathChanged();
+        foreach (TorrentHandle *const torrent, m_torrents) {
+            QString label = torrent->label();
+            if (label.isEmpty()) continue;
+
+            QString testedOldSavePath = m_defaultSavePath;
+            QString newSavePath = m_defaultSavePath;
+            if (!m_appendLabelToSavePath)
+                testedOldSavePath += QString("%1/").arg(label);
+            else
+                newSavePath += QString("%1/").arg(label);
+
+            if (torrent->savePath() == testedOldSavePath)
+                torrent->move(newSavePath);
+        }
     }
 }
 
@@ -1597,6 +1604,19 @@ void Session::handleTorrentSavePathChanged(TorrentHandle *const torrent)
 
 void Session::handleTorrentLabelChanged(TorrentHandle *const torrent, const QString &oldLabel)
 {
+    if (m_appendLabelToSavePath) {
+        QString testedOldSavePath = m_defaultSavePath;
+        if (!oldLabel.isEmpty())
+            testedOldSavePath += QString("%1/").arg(oldLabel);
+        QString newLabel = torrent->label();
+        if (torrent->savePath() == testedOldSavePath) {
+            QString newSavePath = m_defaultSavePath;
+            if (!newLabel.isEmpty())
+                newSavePath += QString("%1/").arg(newLabel);
+            torrent->move(newSavePath);
+        }
+    }
+
     emit torrentLabelChanged(torrent, oldLabel);
 }
 

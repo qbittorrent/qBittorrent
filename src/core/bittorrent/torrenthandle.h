@@ -310,7 +310,6 @@ namespace BitTorrent
 
         void handleAlert(libtorrent::alert *a);
         void handleStateUpdate(const libtorrent::torrent_status &nativeStatus);
-        void handleDefaultSavePathChanged();
         void handleTempPathChanged();
         void handleAppendExtensionToggled();
 
@@ -336,7 +335,6 @@ namespace BitTorrent
         bool useTempPath() const;
         QString nativeActualSavePath() const;
 
-        void adjustSavePath();
         void adjustActualSavePath();
         void adjustActualSavePath_impl();
         void moveStorage(const QString &newPath);
@@ -375,7 +373,6 @@ namespace BitTorrent
         bool m_tempPathDisabled;
         bool m_hasMissingFiles;
 
-        bool m_useDefaultSavePath;
         bool m_pauseAfterRecheck;
         bool m_needSaveResumeData;
         QHash<QString, TrackerInfo> m_trackerInfos;

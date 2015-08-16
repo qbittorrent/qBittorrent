@@ -199,7 +199,6 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_ratioLimit(data.ratioLimit)
     , m_tempPathDisabled(data.disableTempPath)
     , m_hasMissingFiles(false)
-    , m_useDefaultSavePath(false)
     , m_pauseAfterRecheck(false)
     , m_needSaveResumeData(false)
 {
@@ -1119,7 +1118,6 @@ void TorrentHandle::setLabel(const QString &label)
         QString oldLabel = m_label;
         m_label = label;
         m_needSaveResumeData = true;
-        adjustSavePath();
         m_session->handleTorrentLabelChanged(this, oldLabel);
     }
 }
@@ -1131,10 +1129,6 @@ void TorrentHandle::setSequentialDownload(bool b)
 
 void TorrentHandle::move(QString path)
 {
-    // now we use non-default save path
-    // even if new path same as default.
-    m_useDefaultSavePath = false;
-
     path = Utils::Fs::toNativePath(path);
     if (path == savePath()) return;
 
@@ -1463,7 +1457,7 @@ void TorrentHandle::handleSaveResumeDataAlert(libtorrent::save_resume_data_alert
         resumeData["qBt-forced"] = isForced();
     }
     resumeData["qBt-addedTime"] = m_addedTime.toTime_t();
-    resumeData["qBt-savePath"] = m_useDefaultSavePath ? "" : Utils::String::toStdString(m_savePath);
+    resumeData["qBt-savePath"] = Utils::String::toStdString(m_savePath);
     resumeData["qBt-ratioLimit"] = Utils::String::toStdString(QString::number(m_ratioLimit));
     resumeData["qBt-label"] = Utils::String::toStdString(m_label);
     resumeData["qBt-name"] = Utils::String::toStdString(m_name);
@@ -1583,32 +1577,6 @@ void TorrentHandle::handleMetadataReceivedAlert(libt::metadata_received_alert *p
         // and the torrent can be paused when metadata is received
         m_speedMonitor.reset();
         m_session->handleTorrentPaused(this);
-    }
-}
-
-void TorrentHandle::handleDefaultSavePathChanged()
-{
-    adjustSavePath();
-}
-
-void TorrentHandle::adjustSavePath()
-{
-    // If we use default save path...
-    if (m_useDefaultSavePath) {
-        QString defaultSavePath = m_session->defaultSavePath();
-        if (m_session->useAppendLabelToSavePath() && !m_label.isEmpty())
-            defaultSavePath +=  QString("%1/").arg(m_label);
-        defaultSavePath = Utils::Fs::toNativePath(defaultSavePath);
-        if (m_savePath != defaultSavePath) {
-            if (!useTempPath()) {
-                moveStorage(defaultSavePath);
-            }
-            else {
-                m_savePath = defaultSavePath;
-                m_needSaveResumeData = true;
-                m_session->handleTorrentSavePathChanged(this);
-            }
-        }
     }
 }
 
@@ -1749,15 +1717,7 @@ void TorrentHandle::updateTorrentInfo()
 void TorrentHandle::initialize()
 {
     updateStatus();
-
     m_hash = InfoHash(m_nativeStatus.info_hash);
-    if (m_savePath.isEmpty()) {
-        // we use default save path
-        m_savePath = nativeActualSavePath();
-        m_useDefaultSavePath = true;
-    }
-
-    adjustSavePath();
     adjustActualSavePath();
 }
 
