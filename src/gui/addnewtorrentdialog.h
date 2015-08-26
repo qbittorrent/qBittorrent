@@ -72,6 +72,7 @@ private slots:
     void handleDownloadFailed(const QString &url, const QString &reason);
     void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
     void handleDownloadFinished(const QString &url, const QString &filePath);
+    void prioritizeFiles();
 
 protected slots:
     virtual void accept();

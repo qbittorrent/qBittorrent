@@ -675,6 +675,7 @@ void AddNewTorrentDialog::setupTreeview()
         if (m_torrentInfo.filesCount() > 1) {
             m_contentModel = new TorrentContentFilterModel(this);
             connect(m_contentModel->model(), SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabel()));
+            connect(m_contentModel->model(), SIGNAL(filteredFilesChanged()), SLOT(prioritizeFiles()));
             ui->content_tree->setModel(m_contentModel);
             ui->content_tree->hideColumn(PROGRESS);
             m_contentDelegate = new PropListDelegate();
@@ -726,4 +727,50 @@ void AddNewTorrentDialog::handleDownloadFinished(const QString &url, const QStri
         open();
     else
         this->deleteLater();
+}
+
+void AddNewTorrentDialog::prioritizeFiles()
+{
+    // Copied from TorrentHandle::prioritizeFiles() but instead of using
+    // TorrentHandle::renameFile() it uses TorrentInfo::renameFile()
+
+    const QVector<int> priorities = m_contentModel->model()->getFilePriorities();
+    qDebug() << Q_FUNC_INFO;
+    if (priorities.size() != m_torrentInfo.filesCount()) return;
+
+    qDebug() << Q_FUNC_INFO << "Moving unwanted files to .unwanted folder and conversely...";
+    for (int i = 0; i < priorities.size(); ++i) {
+        QString filepath = m_torrentInfo.filePath(i);
+        // Move unwanted files to a .unwanted subfolder
+        if (priorities[i] == 0) {
+            QString parentAbsPath = Utils::Fs::branchPath(filepath);
+            // Make sure the file does not already exists
+            if (QDir(parentAbsPath).dirName() != ".unwanted") {
+                QString unwantedAbsPath = parentAbsPath + "/.unwanted";
+                QString newAbsPath = unwantedAbsPath + "/" + Utils::Fs::fileName(filepath);
+                qDebug() << "Unwanted path is" << unwantedAbsPath;
+
+#ifdef Q_OS_WIN
+                // FIX: We need to set the folder to HIDDEN for windows
+#endif
+                QString parentPath = Utils::Fs::branchPath(filepath);
+                if (!parentPath.isEmpty() && !parentPath.endsWith("/"))
+                    parentPath += "/";
+                m_torrentInfo.renameFile(i, parentPath + ".unwanted/" + Utils::Fs::fileName(filepath));
+            }
+        }
+
+        // Move wanted files back to their original folder
+        if (priorities[i] > 0) {
+            QString parentRelPath = Utils::Fs::branchPath(filepath);
+            if (QDir(parentRelPath).dirName() == ".unwanted") {
+                QString oldName = Utils::Fs::fileName(filepath);
+                QString newRelPath = Utils::Fs::branchPath(parentRelPath);
+                if (newRelPath.isEmpty())
+                    m_torrentInfo.renameFile(i, oldName);
+                else
+                    m_torrentInfo.renameFile(i, QDir(newRelPath).filePath(oldName));
+            }
+        }
+    }
 }
