@@ -63,16 +63,14 @@ INCLUDEPATH += $$PWD
 include(app/app.pri)
 include(base/base.pri)
 !nowebui: include(webui/webui.pri)
-!nogui {
-    include(gui/gui.pri)
-    include(searchengine/searchengine.pri)
-}
+!nogui: include(gui/gui.pri)
 
 # Resource files
 QMAKE_RESOURCE_FLAGS += -compress 9 -threshold 5
 RESOURCES += \
     icons.qrc \
-    lang.qrc
+    lang.qrc \
+    searchengine.qrc
 
 # Translations
 TRANSLATIONS = \

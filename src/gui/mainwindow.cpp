@@ -53,7 +53,7 @@
 #include "torrentcreatordlg.h"
 #include "downloadfromurldlg.h"
 #include "addnewtorrentdialog.h"
-#include "searchwidget.h"
+#include "search/searchwidget.h"
 #include "rss_imp.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
