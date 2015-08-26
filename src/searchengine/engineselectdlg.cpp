@@ -34,8 +34,8 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "ico.h"
-#include "searchengine.h"
-#include "pluginsource.h"
+#include "searchwidget.h"
+#include "pluginsourcedlg.h"
 #include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
 #include <QProcess>
@@ -53,7 +53,7 @@
 
 enum EngineColumns {ENGINE_NAME, ENGINE_VERSION, ENGINE_URL, ENGINE_STATE, ENGINE_ID};
 
-engineSelectDlg::engineSelectDlg(QWidget *parent, SupportedEngines *supported_engines)
+EngineSelectDlg::EngineSelectDlg(QWidget *parent, SupportedEngines *supported_engines)
     : QDialog(parent)
     , supported_engines(supported_engines)
     , m_updateUrl(QString("https://raw.github.com/qbittorrent/qBittorrent/master/src/searchengine/") + (Utils::Misc::pythonVersion() >= 3 ? "nova3" : "nova") + "/engines/")
@@ -82,13 +82,13 @@ engineSelectDlg::engineSelectDlg(QWidget *parent, SupportedEngines *supported_en
   show();
 }
 
-engineSelectDlg::~engineSelectDlg() {
+EngineSelectDlg::~EngineSelectDlg() {
   qDebug("Destroying engineSelectDlg");
   emit enginesChanged();
   qDebug("Engine plugins dialog destroyed");
 }
 
-void engineSelectDlg::dropEvent(QDropEvent *event) {
+void EngineSelectDlg::dropEvent(QDropEvent *event) {
   event->acceptProposedAction();
   QStringList files;
   if (event->mimeData()->hasUrls()) {
@@ -123,7 +123,7 @@ void engineSelectDlg::dropEvent(QDropEvent *event) {
 }
 
 // Decode if we accept drag 'n drop or not
-void engineSelectDlg::dragEnterEvent(QDragEnterEvent *event) {
+void EngineSelectDlg::dragEnterEvent(QDragEnterEvent *event) {
   QString mime;
   foreach (mime, event->mimeData()->formats()) {
     qDebug("mimeData: %s", qPrintable(mime));
@@ -133,13 +133,13 @@ void engineSelectDlg::dragEnterEvent(QDragEnterEvent *event) {
   }
 }
 
-void engineSelectDlg::on_updateButton_clicked() {
+void EngineSelectDlg::on_updateButton_clicked() {
   // Download version file from update server on sourceforge
   setCursor(QCursor(Qt::WaitCursor));
   downloadFromUrl(m_updateUrl + "versions.txt");
 }
 
-void engineSelectDlg::toggleEngineState(QTreeWidgetItem *item, int) {
+void EngineSelectDlg::toggleEngineState(QTreeWidgetItem *item, int) {
   SupportedEngine *engine = supported_engines->value(item->text(ENGINE_ID));
   engine->setEnabled(!engine->isEnabled());
   if (engine->isEnabled()) {
@@ -151,7 +151,7 @@ void engineSelectDlg::toggleEngineState(QTreeWidgetItem *item, int) {
   }
 }
 
-void engineSelectDlg::displayContextMenu(const QPoint&) {
+void EngineSelectDlg::displayContextMenu(const QPoint&) {
   QMenu myContextMenu(this);
   // Enable/disable pause/start action given the DL state
   QList<QTreeWidgetItem *> items = pluginsTree->selectedItems();
@@ -164,11 +164,11 @@ void engineSelectDlg::displayContextMenu(const QPoint&) {
   myContextMenu.exec(QCursor::pos());
 }
 
-void engineSelectDlg::on_closeButton_clicked() {
+void EngineSelectDlg::on_closeButton_clicked() {
   close();
 }
 
-void engineSelectDlg::on_actionUninstall_triggered() {
+void EngineSelectDlg::on_actionUninstall_triggered() {
   QList<QTreeWidgetItem *> items = pluginsTree->selectedItems();
   QTreeWidgetItem *item;
   bool error = false;
@@ -205,7 +205,7 @@ void engineSelectDlg::on_actionUninstall_triggered() {
     QMessageBox::information(0, tr("Uninstall success"), tr("All selected plugins were uninstalled successfully"));
 }
 
-void engineSelectDlg::enableSelection(bool enable) {
+void EngineSelectDlg::enableSelection(bool enable) {
   QList<QTreeWidgetItem *> items = pluginsTree->selectedItems();
   QTreeWidgetItem *item;
   foreach (item, items) {
@@ -224,14 +224,14 @@ void engineSelectDlg::enableSelection(bool enable) {
 }
 
 // Set the color of a row in data model
-void engineSelectDlg::setRowColor(int row, QString color) {
+void EngineSelectDlg::setRowColor(int row, QString color) {
   QTreeWidgetItem *item = pluginsTree->topLevelItem(row);
   for (int i=0; i<pluginsTree->columnCount(); ++i) {
     item->setData(i, Qt::ForegroundRole, QVariant(QColor(color)));
   }
 }
 
-QList<QTreeWidgetItem*> engineSelectDlg::findItemsWithUrl(QString url) {
+QList<QTreeWidgetItem*> EngineSelectDlg::findItemsWithUrl(QString url) {
   QList<QTreeWidgetItem*> res;
   for (int i=0; i<pluginsTree->topLevelItemCount(); ++i) {
     QTreeWidgetItem *item = pluginsTree->topLevelItem(i);
@@ -241,7 +241,7 @@ QList<QTreeWidgetItem*> engineSelectDlg::findItemsWithUrl(QString url) {
   return res;
 }
 
-QTreeWidgetItem* engineSelectDlg::findItemWithID(QString id) {
+QTreeWidgetItem* EngineSelectDlg::findItemWithID(QString id) {
   QList<QTreeWidgetItem*> res;
   for (int i=0; i<pluginsTree->topLevelItemCount(); ++i) {
     QTreeWidgetItem *item = pluginsTree->topLevelItem(i);
@@ -251,15 +251,15 @@ QTreeWidgetItem* engineSelectDlg::findItemWithID(QString id) {
   return 0;
 }
 
-bool engineSelectDlg::isUpdateNeeded(QString plugin_name, qreal new_version) const {
-  qreal old_version = SearchEngine::getPluginVersion(Utils::Fs::searchEngineLocation() + "/engines/" + plugin_name + ".py");
+bool EngineSelectDlg::isUpdateNeeded(QString plugin_name, qreal new_version) const {
+  qreal old_version = SearchWidget::getPluginVersion(Utils::Fs::searchEngineLocation() + "/engines/" + plugin_name + ".py");
   qDebug("IsUpdate needed? tobeinstalled: %.2f, alreadyinstalled: %.2f", new_version, old_version);
   return (new_version > old_version);
 }
 
-void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
+void EngineSelectDlg::installPlugin(QString path, QString plugin_name) {
   qDebug("Asked to install plugin at %s", qPrintable(path));
-  qreal new_version = SearchEngine::getPluginVersion(path);
+  qreal new_version = SearchWidget::getPluginVersion(path);
   if (new_version == 0.0) {
     QMessageBox::warning(this, tr("Invalid plugin"), tr("The search engine plugin is invalid, please contact the author."));
     return;
@@ -304,7 +304,7 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
   // Install was successful, remove backup and update plugin version
   if (update) {
     Utils::Fs::forceRemove(dest_path+".bak");
-    qreal version = SearchEngine::getPluginVersion(Utils::Fs::searchEngineLocation() + "/engines/" + plugin_name + ".py");
+    qreal version = SearchWidget::getPluginVersion(Utils::Fs::searchEngineLocation() + "/engines/" + plugin_name + ".py");
     QTreeWidgetItem *item = findItemWithID(plugin_name);
     item->setText(ENGINE_VERSION, QString::number(version, 'f', 2));
     QMessageBox::information(this, tr("Search plugin install"), tr("'%1' search engine plugin was successfully updated.", "%1 is the name of the search engine").arg(plugin_name));
@@ -315,7 +315,7 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
   }
 }
 
-void engineSelectDlg::loadSupportedSearchEngines() {
+void EngineSelectDlg::loadSupportedSearchEngines() {
   // Some clean up first
   pluginsTree->clear();
   foreach (QString name, supported_engines->keys()) {
@@ -323,7 +323,7 @@ void engineSelectDlg::loadSupportedSearchEngines() {
   }
 }
 
-void engineSelectDlg::addNewEngine(QString engine_name) {
+void EngineSelectDlg::addNewEngine(QString engine_name) {
   QTreeWidgetItem *item = new QTreeWidgetItem(pluginsTree);
   SupportedEngine *engine = supported_engines->value(engine_name);
   item->setText(ENGINE_NAME, engine->getFullName());
@@ -351,17 +351,17 @@ void engineSelectDlg::addNewEngine(QString engine_name) {
     }
   }
   // Load version
-  qreal version = SearchEngine::getPluginVersion(Utils::Fs::searchEngineLocation() + "/engines/" + engine->getName() + ".py");
+  qreal version = SearchWidget::getPluginVersion(Utils::Fs::searchEngineLocation() + "/engines/" + engine->getName() + ".py");
   item->setText(ENGINE_VERSION, QString::number(version, 'f', 2));
 }
 
-void engineSelectDlg::on_installButton_clicked() {
-  pluginSourceDlg *dlg = new pluginSourceDlg(this);
+void EngineSelectDlg::on_installButton_clicked() {
+  PluginSourceDlg *dlg = new PluginSourceDlg(this);
   connect(dlg, SIGNAL(askForLocalFile()), this, SLOT(askForLocalPlugin()));
   connect(dlg, SIGNAL(askForUrl()), this, SLOT(askForPluginUrl()));
 }
 
-void engineSelectDlg::askForPluginUrl() {
+void EngineSelectDlg::askForPluginUrl() {
   bool ok(false);
   QString clipTxt = qApp->clipboard()->text();
   QString defaultUrl = "http://";
@@ -391,7 +391,7 @@ void engineSelectDlg::askForPluginUrl() {
   downloadFromUrl(url);
 }
 
-void engineSelectDlg::askForLocalPlugin() {
+void EngineSelectDlg::askForLocalPlugin() {
   QStringList pathsList = QFileDialog::getOpenFileNames(0,
                                                         tr("Select search plugins"), QDir::homePath(),
                                                         tr("qBittorrent search plugin")+QString::fromUtf8(" (*.py)"));
@@ -404,7 +404,7 @@ void engineSelectDlg::askForLocalPlugin() {
   }
 }
 
-bool engineSelectDlg::parseVersionsFile(QString versions_file) {
+bool EngineSelectDlg::parseVersionsFile(QString versions_file) {
   qDebug("Checking if update is needed");
   bool file_correct = false;
   QFile versions(versions_file);
@@ -450,14 +450,14 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file) {
   return file_correct;
 }
 
-void engineSelectDlg::downloadFromUrl(const QString &url)
+void EngineSelectDlg::downloadFromUrl(const QString &url)
 {
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(url, true);
     connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
     connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
 }
 
-void engineSelectDlg::processDownloadedFile(const QString &url, QString filePath) {
+void EngineSelectDlg::processDownloadedFile(const QString &url, QString filePath) {
   filePath = Utils::Fs::fromNativePath(filePath);
   setCursor(QCursor(Qt::ArrowCursor));
   qDebug("engineSelectDlg received %s", qPrintable(url));
@@ -500,7 +500,7 @@ void engineSelectDlg::processDownloadedFile(const QString &url, QString filePath
   }
 }
 
-void engineSelectDlg::handleDownloadFailure(const QString &url, const QString &reason) {
+void EngineSelectDlg::handleDownloadFailure(const QString &url, const QString &reason) {
   setCursor(QCursor(Qt::ArrowCursor));
   if (url.endsWith("favicon.ico", Qt::CaseInsensitive)) {
     qDebug("Could not download favicon: %s, reason: %s", qPrintable(url), qPrintable(reason));

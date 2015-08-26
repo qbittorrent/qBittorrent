@@ -53,7 +53,7 @@
 #include "torrentcreatordlg.h"
 #include "downloadfromurldlg.h"
 #include "addnewtorrentdialog.h"
-#include "searchengine.h"
+#include "searchwidget.h"
 #include "rss_imp.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
@@ -531,7 +531,7 @@ void MainWindow::displaySearchTab(bool enable)
     if (enable) {
         // RSS tab
         if (!searchEngine) {
-            searchEngine = new SearchEngine(this);
+            searchEngine = new SearchWidget(this);
             tabs->insertTab(1, searchEngine, GuiIconProvider::instance()->getIcon("edit-find"), tr("Search"));
         }
     }

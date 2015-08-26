@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>search_engine</class>
- <widget class="QWidget" name="search_engine">
+ <class>SearchWidget</class>
+ <widget class="QWidget" name="SearchWidget">
   <property name="geometry">
    <rect>
     <x>0</x>

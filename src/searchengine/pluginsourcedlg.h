@@ -28,13 +28,13 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef PLUGIN_SOURCE_H
-#define PLUGIN_SOURCE_H
+#ifndef PLUGINSOURCEDLG_H
+#define PLUGINSOURCEDLG_H
 
 #include <QDialog>
-#include "ui_pluginsource.h"
+#include "ui_pluginsourcedlg.h"
 
-class pluginSourceDlg: public QDialog, private Ui::pluginSourceDlg {
+class PluginSourceDlg: public QDialog, private Ui::PluginSourceDlg {
   Q_OBJECT
 
   signals:
@@ -53,13 +53,13 @@ class pluginSourceDlg: public QDialog, private Ui::pluginSourceDlg {
     }
 
   public:
-    pluginSourceDlg(QWidget* parent): QDialog(parent) {
+    PluginSourceDlg(QWidget* parent): QDialog(parent) {
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       show();
     }
 
-    ~pluginSourceDlg() {}
+    ~PluginSourceDlg() {}
 };
 
-#endif
+#endif // PLUGINSOURCEDLG_H

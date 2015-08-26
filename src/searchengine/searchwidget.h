@@ -28,20 +28,20 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef SEARCH_H
-#define SEARCH_H
+#ifndef SEARCHWIDGET_H
+#define SEARCHWIDGET_H
 
 #include <QProcess>
 #include <QList>
 #include <QPair>
 #include <QPointer>
 #include <QStringListModel>
-#include "ui_search.h"
+#include "ui_searchwidget.h"
 #include "engineselectdlg.h"
 #include "searchtab.h"
 #include "supportedengines.h"
 
-class SearchEngine;
+class SearchWidget;
 class MainWindow;
 class LineEdit;
 
@@ -49,16 +49,16 @@ QT_BEGIN_NAMESPACE
 class QTimer;
 QT_END_NAMESPACE
 
-class SearchEngine : public QWidget, public Ui::search_engine{
+class SearchWidget : public QWidget, private Ui::SearchWidget{
     Q_OBJECT
-    Q_DISABLE_COPY(SearchEngine)
+    Q_DISABLE_COPY(SearchWidget)
 
 private:
     enum PluginColumn { PL_DL_LINK, PL_NAME, PL_SIZE, PL_SEEDS, PL_LEECHS, PL_ENGINE_URL, PL_DESC_LINK, NB_PLUGIN_COLUMNS };
 
 public:
-    SearchEngine(MainWindow *mp_mainWindow);
-    ~SearchEngine();
+    SearchWidget(MainWindow *mp_mainWindow);
+    ~SearchWidget();
     QString selectedCategory() const;
     QString selectedEngine() const;
 
@@ -130,4 +130,4 @@ private:
     bool newQueryString;
 };
 
-#endif
+#endif // SEARCHWIDGET_H

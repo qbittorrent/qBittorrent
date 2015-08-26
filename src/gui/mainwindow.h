@@ -38,7 +38,7 @@
 #include "statsdialog.h"
 
 class downloadFromURL;
-class SearchEngine;
+class SearchWidget;
 class RSSImp;
 class about;
 class options_imp;
@@ -192,7 +192,7 @@ private:
     QSplitter *hSplitter;
     QSplitter *vSplitter;
     // Search
-    QPointer<SearchEngine> searchEngine;
+    QPointer<SearchWidget> searchEngine;
     // RSS
     QPointer<RSSImp> rssWidget;
     // Execution Log
