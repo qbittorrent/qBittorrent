@@ -469,7 +469,7 @@ void options_imp::saveOptions()
     pref->setEncryptionSetting(getEncryptionSetting());
     pref->enableAnonymousMode(checkAnonymousMode->isChecked());
     pref->setGlobalMaxRatio(getMaxRatio());
-    pref->setMaxRatioAction(comboRatioLimitAct->currentIndex());
+    pref->setMaxRatioAction(static_cast<MaxRatioAction>(comboRatioLimitAct->currentIndex()));
     // End Bittorrent preferences
     // Misc preferences
     // * IPFilter
@@ -804,7 +804,7 @@ void options_imp::loadOptions()
         spinMaxRatio->setEnabled(false);
         comboRatioLimitAct->setEnabled(false);
     }
-    comboRatioLimitAct->setCurrentIndex(pref->getMaxRatioAction());
+    comboRatioLimitAct->setCurrentIndex(static_cast<int>(pref->getMaxRatioAction()));
     // End Bittorrent preferences
 
     // Web UI preferences

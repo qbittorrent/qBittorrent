@@ -63,7 +63,7 @@ namespace
     const quint32 __ENDIAN_TEST__ = 0x00000001;
     const bool __IS_LITTLE_ENDIAN__ = (reinterpret_cast<const uchar *>(&__ENDIAN_TEST__)[0] == 0x01);
 
-    BEGIN_SCOPED_ENUM(DataType)
+    enum class DataType
     {
         Unknown = 0,
         Pointer = 1,
@@ -81,8 +81,7 @@ namespace
         EndMarker = 13,
         Boolean = 14,
         Float = 15
-    }
-    END_SCOPED_ENUM
+    };
 
     struct DataFieldDescriptor
     {
