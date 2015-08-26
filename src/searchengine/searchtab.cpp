@@ -40,10 +40,10 @@
 #include "searchtab.h"
 #include "searchlistdelegate.h"
 #include "base/utils/misc.h"
-#include "searchengine.h"
+#include "searchwidget.h"
 #include "base/preferences.h"
 
-SearchTab::SearchTab(SearchEngine *parent) : QWidget(), parent(parent)
+SearchTab::SearchTab(SearchWidget *parent) : QWidget(), parent(parent)
 {
     box = new QVBoxLayout();
     results_lbl = new QLabel();

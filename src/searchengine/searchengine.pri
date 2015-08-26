@@ -1,18 +1,18 @@
 INCLUDEPATH += $$PWD
 
-FORMS += $$PWD/search.ui \
-         $$PWD/engineselect.ui \
-         $$PWD/pluginsource.ui
+FORMS += $$PWD/searchwidget.ui \
+         $$PWD/engineselectdlg.ui \
+         $$PWD/pluginsourcedlg.ui
 
-HEADERS += $$PWD/searchengine.h \
+HEADERS += $$PWD/searchwidget.h \
            $$PWD/searchtab.h \
            $$PWD/engineselectdlg.h \
-           $$PWD/pluginsource.h \
+           $$PWD/pluginsourcedlg.h \
            $$PWD/searchlistdelegate.h \
            $$PWD/supportedengines.h \
            $$PWD/searchsortmodel.h
 
-SOURCES += $$PWD/searchengine.cpp \
+SOURCES += $$PWD/searchwidget.cpp \
            $$PWD/searchtab.cpp \
            $$PWD/engineselectdlg.cpp
 

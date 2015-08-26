@@ -31,14 +31,15 @@
 #ifndef ENGINE_SELECT_DLG_H
 #define ENGINE_SELECT_DLG_H
 
-#include "ui_engineselect.h"
+#include "ui_engineselectdlg.h"
 #include "supportedengines.h"
 
 QT_BEGIN_NAMESPACE
 class QDropEvent;
 QT_END_NAMESPACE
 
-class engineSelectDlg : public QDialog, public Ui::engineSelect{
+class EngineSelectDlg : public QDialog, public Ui::EngineSelectDlg
+{
   Q_OBJECT
 
   private:
@@ -48,8 +49,8 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
     const QString m_updateUrl;
 
   public:
-    engineSelectDlg(QWidget *parent, SupportedEngines *supported_engines);
-    ~engineSelectDlg();
+    EngineSelectDlg(QWidget *parent, SupportedEngines *supported_engines);
+    ~EngineSelectDlg();
     QList<QTreeWidgetItem*> findItemsWithUrl(QString url);
     QTreeWidgetItem* findItemWithID(QString id);
 

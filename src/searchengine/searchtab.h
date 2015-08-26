@@ -28,25 +28,26 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef SEARCH_TAB_H
-#define SEARCH_TAB_H
+#ifndef SEARCHTAB_H
+#define SEARCHTAB_H
 
-#include "ui_search.h"
+#include <QLabel>
+#include <QVBoxLayout>
+
 #include "searchsortmodel.h"
 
 #define ENGINE_URL_COLUMN 4
 #define URL_COLUMN 5
 
 class SearchListDelegate;
-class SearchEngine;
+class SearchWidget;
 
-QT_BEGIN_NAMESPACE
 class QTreeView;
 class QHeaderView;
 class QStandardItemModel;
-QT_END_NAMESPACE
 
-class SearchTab: public QWidget, public Ui::search_engine {
+class SearchTab: public QWidget
+{
     Q_OBJECT
 
 private:
@@ -56,13 +57,13 @@ private:
     QStandardItemModel *SearchListModel;
     SearchSortModel *proxyModel;
     SearchListDelegate *SearchDelegate;
-    SearchEngine *parent;
+    SearchWidget *parent;
 
 protected slots:
     void downloadSelectedItem(const QModelIndex& index);
 
 public:
-    SearchTab(SearchEngine *parent);
+    SearchTab(SearchWidget *parent);
     ~SearchTab();
     bool loadColWidthResultsList();
     QLabel * getCurrentLabel();
@@ -74,5 +75,5 @@ public:
     QString status;
 };
 
-#endif
+#endif // SEARCHTAB_H
 
