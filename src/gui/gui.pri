@@ -41,7 +41,14 @@ HEADERS += \
     $$PWD/advancedsettings.h \
     $$PWD/shutdownconfirm.h \
     $$PWD/torrentmodel.h \
-    $$PWD/torrentcreatordlg.h
+    $$PWD/torrentcreatordlg.h \
+    $$PWD/search/searchwidget.h \
+    $$PWD/search/searchtab.h \
+    $$PWD/search/engineselectdlg.h \
+    $$PWD/search/pluginsourcedlg.h \
+    $$PWD/search/searchlistdelegate.h \
+    $$PWD/search/supportedengines.h \
+    $$PWD/search/searchsortmodel.h
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -72,7 +79,10 @@ SOURCES += \
     $$PWD/options_imp.cpp \
     $$PWD/shutdownconfirm.cpp \
     $$PWD/torrentmodel.cpp \
-    $$PWD/torrentcreatordlg.cpp
+    $$PWD/torrentcreatordlg.cpp \
+    $$PWD/search/searchwidget.cpp \
+    $$PWD/search/searchtab.cpp \
+    $$PWD/search/engineselectdlg.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
@@ -94,6 +104,9 @@ FORMS += \
     $$PWD/autoexpandabledialog.ui \
     $$PWD/statsdialog.ui \
     $$PWD/options.ui \
-    $$PWD/torrentcreatordlg.ui
+    $$PWD/torrentcreatordlg.ui \
+    $$PWD/search/searchwidget.ui \
+    $$PWD/search/engineselectdlg.ui \
+    $$PWD/search/pluginsourcedlg.ui
 
 RESOURCES += $$PWD/about.qrc
