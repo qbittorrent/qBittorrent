@@ -2,6 +2,10 @@
 TEMPLATE = app
 CONFIG += qt thread silent
 
+# C++11 support
+CONFIG += c++11
+DEFINES += BOOST_NO_CXX11_RVALUE_REFERENCES
+
 # Windows specific configuration
 win32: include(../winconf.pri)
 

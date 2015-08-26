@@ -1,3 +1,6 @@
+# C++11 support
+lessThan(QT_MAJOR_VERSION, 5): QMAKE_CXXFLAGS += -std=gnu++11
+
 strace_win{
   contains(QMAKE_HOST.arch, x86) {
     # i686 arch requires frame pointer preservation
