@@ -34,6 +34,7 @@
 #include "notifications.h"
 #endif
 
+#include <QDebug>
 #include <QFileDialog>
 #include <QFileSystemWatcher>
 #include <QMessageBox>
@@ -50,6 +51,7 @@
 #include "mainwindow.h"
 #include "transferlistwidget.h"
 #include "base/utils/misc.h"
+#include "base/utils/fs.h"
 #include "torrentcreatordlg.h"
 #include "downloadfromurldlg.h"
 #include "addnewtorrentdialog.h"

@@ -65,7 +65,7 @@ namespace Utils
         QString QDesktopServicesCacheLocation();
         QString QDesktopServicesDownloadLocation();
         /* End of Qt4 code */
-        QString searchEngineLocation();
+
         QString cacheLocation();
     }
 }

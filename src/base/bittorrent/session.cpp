@@ -968,6 +968,10 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
         qDebug("Converting bc link to magnet link");
         source = Utils::Misc::bcLinkToMagnet(source);
     }
+    else if (((source.size() == 40) && !source.contains(QRegExp("[^0-9A-Fa-f]")))
+             || ((source.size() == 32) && !source.contains(QRegExp("[^2-7A-Za-z]")))) {
+        source = "magnet:?xt=urn:btih:" + source;
+    }
 
     if (Utils::Misc::isUrl(source)) {
         Logger::instance()->addMessage(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));

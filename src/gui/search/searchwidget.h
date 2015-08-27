@@ -1,6 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,19 +32,19 @@
 #ifndef SEARCHWIDGET_H
 #define SEARCHWIDGET_H
 
-#include <QProcess>
 #include <QList>
 #include <QPair>
 #include <QPointer>
 #include <QStringListModel>
 #include "ui_searchwidget.h"
-#include "engineselectdlg.h"
+#include "pluginselectdlg.h"
 #include "searchtab.h"
-#include "supportedengines.h"
 
 class SearchWidget;
 class MainWindow;
 class LineEdit;
+class SearchEngine;
+struct SearchResult;
 
 QT_BEGIN_NAMESPACE
 class QTimer;
@@ -53,79 +54,46 @@ class SearchWidget : public QWidget, private Ui::SearchWidget{
     Q_OBJECT
     Q_DISABLE_COPY(SearchWidget)
 
-private:
-    enum PluginColumn { PL_DL_LINK, PL_NAME, PL_SIZE, PL_SEEDS, PL_LEECHS, PL_ENGINE_URL, PL_DESC_LINK, NB_PLUGIN_COLUMNS };
-
 public:
     SearchWidget(MainWindow *mp_mainWindow);
     ~SearchWidget();
     QString selectedCategory() const;
     QString selectedEngine() const;
 
-    static qreal getPluginVersion(QString filePath) {
-        QFile plugin(filePath);
-        if (!plugin.exists()) {
-            qDebug("%s plugin does not exist, returning 0.0", qPrintable(filePath));
-            return 0.0;
-        }
-        if (!plugin.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            return 0.0;
-        }
-        qreal version = 0.0;
-        while (!plugin.atEnd()) {
-            QByteArray line = plugin.readLine();
-            if (line.startsWith("#VERSION: ")) {
-                line = line.split(' ').last().trimmed();
-                version = line.toFloat();
-                qDebug("plugin %s version: %.2f", qPrintable(filePath), version);
-                break;
-            }
-        }
-        return version;
-    }
-
 public slots:
-    void on_download_button_clicked();
-    void downloadTorrent(QString engine_url, QString torrent_url);
+    void downloadTorrent(QString url);
     void giveFocusToSearchInput();
 
-protected slots:
+private slots:
     // Search slots
     void tab_changed(int);//to prevent the use of the download button when the tab is empty
     void on_search_button_clicked();
+    void on_download_button_clicked();
     void closeTab(int index);
-    void appendSearchResult(const QString &line);
-    void searchFinished(int exitcode,QProcess::ExitStatus);
-    void readSearchOutput();
+    void appendSearchResults(const QList<SearchResult> &results);
     void searchStarted();
-    void updateNova();
+    void searchFinished(bool cancelled);
+    void searchFailed();
     void selectMultipleBox(const QString &text);
-    void on_enginesButton_clicked();
+    void on_pluginsButton_clicked();
     void saveResultsColumnsWidth();
-    void downloadFinished(int exitcode, QProcess::ExitStatus);
     void fillCatCombobox();
-    void fillEngineComboBox();
+    void fillPluginComboBox();
     void searchTextEdited(QString);
-
-private slots:
     void on_goToDescBtn_clicked();
     void on_copyURLBtn_clicked();
 
 private:
     // Search related
     LineEdit* search_pattern;
-    QProcess *searchProcess;
-    QList<QProcess*> downloaders;
-    bool search_stopped;
+
     bool no_search_results;
     QByteArray search_result_line_truncated;
     unsigned long nb_search_results;
-    SupportedEngines *supported_engines;
-    QTimer *searchTimeout;
+    SearchEngine *m_searchEngine;
     QPointer<SearchTab> currentSearchTab; // Selected tab
     QPointer<SearchTab> activeSearchTab; // Tab with running search
     QList<QPointer<SearchTab> > all_tab; // To store all tabs
-    const SearchCategories full_cat_names;
     MainWindow *mp_mainWindow;
     bool newQueryString;
 };

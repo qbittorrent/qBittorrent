@@ -3,7 +3,6 @@
   <file>searchengine/nova/fix_encoding.py</file>
   <file>searchengine/nova/helpers.py</file>
   <file>searchengine/nova/nova2.py</file>
-  <file>searchengine/nova/nova2dl.py</file>
   <file>searchengine/nova/novaprinter.py</file>
   <file>searchengine/nova/socks.py</file>
   <file>searchengine/nova/engines/btdigg.png</file>
@@ -26,7 +25,6 @@
   <file>searchengine/nova/engines/torrentz.py</file>
   <file>searchengine/nova3/helpers.py</file>
   <file>searchengine/nova3/nova2.py</file>
-  <file>searchengine/nova3/nova2dl.py</file>
   <file>searchengine/nova3/novaprinter.py</file>
   <file>searchengine/nova3/sgmllib3.py</file>
   <file>searchengine/nova3/socks.py</file>
