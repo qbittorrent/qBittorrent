@@ -34,7 +34,7 @@ nogui {
 }
 nowebui: DEFINES += DISABLE_WEBUI
 strace_win: DEFINES += STACKTRACE_WIN
-QT += network
+QT += network xml
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 # Vars

@@ -44,10 +44,9 @@ HEADERS += \
     $$PWD/torrentcreatordlg.h \
     $$PWD/search/searchwidget.h \
     $$PWD/search/searchtab.h \
-    $$PWD/search/engineselectdlg.h \
+    $$PWD/search/pluginselectdlg.h \
     $$PWD/search/pluginsourcedlg.h \
     $$PWD/search/searchlistdelegate.h \
-    $$PWD/search/supportedengines.h \
     $$PWD/search/searchsortmodel.h
 
 SOURCES += \
@@ -82,7 +81,7 @@ SOURCES += \
     $$PWD/torrentcreatordlg.cpp \
     $$PWD/search/searchwidget.cpp \
     $$PWD/search/searchtab.cpp \
-    $$PWD/search/engineselectdlg.cpp
+    $$PWD/search/pluginselectdlg.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
@@ -106,7 +105,7 @@ FORMS += \
     $$PWD/options.ui \
     $$PWD/torrentcreatordlg.ui \
     $$PWD/search/searchwidget.ui \
-    $$PWD/search/engineselectdlg.ui \
+    $$PWD/search/pluginselectdlg.ui \
     $$PWD/search/pluginsourcedlg.ui
 
 RESOURCES += $$PWD/about.qrc

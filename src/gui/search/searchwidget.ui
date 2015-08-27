@@ -20,7 +20,7 @@
       <widget class="QComboBox" name="comboCategory"/>
      </item>
      <item>
-      <widget class="QComboBox" name="selectEngine"/>
+      <widget class="QComboBox" name="selectPlugin"/>
      </item>
      <item>
       <widget class="QPushButton" name="search_button">
@@ -142,9 +142,9 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="enginesButton">
+        <widget class="QPushButton" name="pluginsButton">
          <property name="text">
-          <string>Search engines...</string>
+          <string>Search plugins...</string>
          </property>
         </widget>
        </item>

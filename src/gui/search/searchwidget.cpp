@@ -1,6 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -43,6 +44,8 @@
 #include <QFileDialog>
 #include <QDesktopServices>
 #include <QClipboard>
+#include <QProcess>
+#include <QDebug>
 
 #ifdef Q_OS_WIN
 #include <stdlib.h>
@@ -52,6 +55,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/preferences.h"
+#include "base/searchengine.h"
 #include "searchlistdelegate.h"
 #include "mainwindow.h"
 #include "addnewtorrentdialog.h"
@@ -74,52 +78,44 @@ SearchWidget::SearchWidget(MainWindow* parent)
     search_button->setIcon(GuiIconProvider::instance()->getIcon("edit-find"));
     download_button->setIcon(GuiIconProvider::instance()->getIcon("download"));
     goToDescBtn->setIcon(GuiIconProvider::instance()->getIcon("application-x-mswinurl"));
-    enginesButton->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
+    pluginsButton->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
     copyURLBtn->setIcon(GuiIconProvider::instance()->getIcon("edit-copy"));
     tabWidget->setTabsClosable(true);
     connect(tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
-    // Boolean initialization
-    search_stopped = false;
-    // Creating Search Process
-    searchProcess = new QProcess(this);
-    searchProcess->setEnvironment(QProcess::systemEnvironment());
-    connect(searchProcess, SIGNAL(started()), this, SLOT(searchStarted()));
-    connect(searchProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readSearchOutput()));
-    connect(searchProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(searchFinished(int,QProcess::ExitStatus)));
-    connect(tabWidget, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
-    searchTimeout = new QTimer(this);
-    searchTimeout->setSingleShot(true);
-    connect(searchTimeout, SIGNAL(timeout()), this, SLOT(on_search_button_clicked()));
-    // Update nova.py search plugin if necessary
-    updateNova();
-    supported_engines = new SupportedEngines();
+
+    m_searchEngine = new SearchEngine;
+    connect(m_searchEngine, SIGNAL(searchStarted()), SLOT(searchStarted()));
+    connect(m_searchEngine, SIGNAL(newSearchResults(QList<SearchResult>)), SLOT(appendSearchResults(QList<SearchResult>)));
+    connect(m_searchEngine, SIGNAL(searchFinished(bool)), SLOT(searchFinished(bool)));
+    connect(m_searchEngine, SIGNAL(searchFailed()), SLOT(searchFailed()));
+
     // Fill in category combobox
     fillCatCombobox();
-    fillEngineComboBox();
+    fillPluginComboBox();
 
     connect(search_pattern, SIGNAL(textEdited(QString)), this, SLOT(searchTextEdited(QString)));
-    connect(selectEngine, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(selectMultipleBox(const QString &)));
+    connect(selectPlugin, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(selectMultipleBox(const QString &)));
 }
 
 void SearchWidget::fillCatCombobox()
 {
     comboCategory->clear();
-    comboCategory->addItem(full_cat_names["all"], QVariant("all"));
-    QStringList supported_cat = supported_engines->supportedCategories();
+    comboCategory->addItem(SearchEngine::categoryFullName("all"), QVariant("all"));
+    QStringList supported_cat = m_searchEngine->supportedCategories();
     foreach (QString cat, supported_cat) {
         qDebug("Supported category: %s", qPrintable(cat));
-        comboCategory->addItem(full_cat_names[cat], QVariant(cat));
+        comboCategory->addItem(SearchEngine::categoryFullName(cat), QVariant(cat));
     }
 }
 
-void SearchWidget::fillEngineComboBox()
+void SearchWidget::fillPluginComboBox()
 {
-    selectEngine->clear();
-    selectEngine->addItem(tr("All enabled"), QVariant("enabled"));
-    selectEngine->addItem(tr("All engines"), QVariant("all"));
-    foreach (QString engi, supported_engines->enginesEnabled())
-        selectEngine->addItem(engi, QVariant(engi));
-    selectEngine->addItem(tr("Multiple..."), QVariant("multi"));
+    selectPlugin->clear();
+    selectPlugin->addItem(tr("All enabled"), QVariant("enabled"));
+    selectPlugin->addItem(tr("All plugins"), QVariant("all"));
+    foreach (QString name, m_searchEngine->enabledPlugins())
+        selectPlugin->addItem(name, QVariant(name));
+    selectPlugin->addItem(tr("Multiple..."), QVariant("multi"));
 }
 
 QString SearchWidget::selectedCategory() const
@@ -129,26 +125,15 @@ QString SearchWidget::selectedCategory() const
 
 QString SearchWidget::selectedEngine() const
 {
-    return selectEngine->itemData(selectEngine->currentIndex()).toString();
+    return selectPlugin->itemData(selectPlugin->currentIndex()).toString();
 }
 
 SearchWidget::~SearchWidget()
 {
     qDebug("Search destruction");
-    searchProcess->kill();
-    searchProcess->waitForFinished();
-    foreach (QProcess *downloader, downloaders) {
-        // Make sure we disconnect the SIGNAL/SLOT first
-        // To avoid qreal free
-        downloader->disconnect();
-        downloader->kill();
-        downloader->waitForFinished();
-        delete downloader;
-    }
+
     delete search_pattern;
-    delete searchTimeout;
-    delete searchProcess;
-    delete supported_engines;
+    delete m_searchEngine;
 }
 
 void SearchWidget::tab_changed(int t)
@@ -174,14 +159,14 @@ void SearchWidget::tab_changed(int t)
 
 void SearchWidget::selectMultipleBox(const QString &text)
 {
-    if (text == tr("Multiple...")) on_enginesButton_clicked();
+    if (text == tr("Multiple...")) on_pluginsButton_clicked();
 }
 
-void SearchWidget::on_enginesButton_clicked()
+void SearchWidget::on_pluginsButton_clicked()
 {
-    EngineSelectDlg *dlg = new EngineSelectDlg(this, supported_engines);
-    connect(dlg, SIGNAL(enginesChanged()), this, SLOT(fillCatCombobox()));
-    connect(dlg, SIGNAL(enginesChanged()), this, SLOT(fillEngineComboBox()));
+    PluginSelectDlg *dlg = new PluginSelectDlg(m_searchEngine, this);
+    connect(dlg, SIGNAL(pluginsChanged()), this, SLOT(fillCatCombobox()));
+    connect(dlg, SIGNAL(pluginsChanged()), this, SLOT(fillPluginComboBox()));
 }
 
 void SearchWidget::searchTextEdited(QString)
@@ -204,17 +189,8 @@ void SearchWidget::on_search_button_clicked()
         return;
     }
 
-    if (searchProcess->state() != QProcess::NotRunning) {
-#ifdef Q_OS_WIN
-        searchProcess->kill();
-#else
-        searchProcess->terminate();
-#endif
-        search_stopped = true;
-        if (searchTimeout->isActive())
-            searchTimeout->stop();
-
-        searchProcess->waitForFinished(1000);
+    if (m_searchEngine->isActive()) {
+        m_searchEngine->cancelSearch();
 
         if (!newQueryString) {
             search_button->setText(tr("Search"));
@@ -224,15 +200,13 @@ void SearchWidget::on_search_button_clicked()
 
     newQueryString = false;
 
-    // Reload environment variables (proxy)
-    searchProcess->setEnvironment(QProcess::systemEnvironment());
-
     const QString pattern = search_pattern->text().trimmed();
     // No search pattern entered
     if (pattern.isEmpty()) {
         QMessageBox::critical(0, tr("Empty search pattern"), tr("Please type a search pattern first"));
         return;
     }
+
     // Tab Addition
     currentSearchTab = new SearchTab(this);
     activeSearchTab = currentSearchTab;
@@ -243,26 +217,23 @@ void SearchWidget::on_search_button_clicked()
     tabWidget->addTab(currentSearchTab, tabName);
     tabWidget->setCurrentWidget(currentSearchTab);
 
-    // Getting checked search engines
-    QStringList params;
-    search_stopped = false;
-    params << Utils::Fs::toNativePath(Utils::Fs::searchEngineLocation() + "/nova2.py");
-    if (selectedEngine() == "all") params << supported_engines->enginesAll().join(",");
-    else if (selectedEngine() == "enabled") params << supported_engines->enginesEnabled().join(",");
-    else if (selectedEngine() == "multi") params << supported_engines->enginesEnabled().join(",");
-    else params << selectedEngine();
+    QStringList plugins;
+    if (selectedEngine() == "all") plugins = m_searchEngine->allPlugins();
+    else if (selectedEngine() == "enabled") plugins = m_searchEngine->enabledPlugins();
+    else if (selectedEngine() == "multi") plugins = m_searchEngine->enabledPlugins();
+    else plugins << selectedEngine();
+
     qDebug("Search with category: %s", qPrintable(selectedCategory()));
-    params << selectedCategory();
-    params << pattern.split(" ");
+
     // Update SearchEngine widgets
     no_search_results = true;
     nb_search_results = 0;
-    search_result_line_truncated.clear();
+
     // Changing the text of the current label
     activeSearchTab->getCurrentLabel()->setText(tr("Results <i>(%1)</i>:", "i.e: Search results").arg(0));
+
     // Launch search
-    searchProcess->start(Utils::Misc::pythonExecutable(), params, QIODevice::ReadOnly);
-    searchTimeout->start(180000); // 3min
+    m_searchEngine->startSearch(pattern, selectedCategory(), plugins);
 }
 
 void SearchWidget::saveResultsColumnsWidth()
@@ -281,30 +252,12 @@ void SearchWidget::saveResultsColumnsWidth()
     pref->setSearchColsWidth(new_width_list.join(" "));
 }
 
-void SearchWidget::downloadTorrent(QString engine_url, QString torrent_url)
+void SearchWidget::downloadTorrent(QString url)
 {
-    if (torrent_url.startsWith("bc://bt/", Qt::CaseInsensitive)) {
-        qDebug("Converting bc link to magnet link");
-        torrent_url = Utils::Misc::bcLinkToMagnet(torrent_url);
-    }
-    qDebug() << Q_FUNC_INFO << torrent_url;
-    if (torrent_url.startsWith("magnet:")) {
-        QStringList urls;
-        urls << torrent_url;
-        mp_mainWindow->downloadFromURLList(urls);
-    }
-    else {
-        QProcess *downloadProcess = new QProcess(this);
-        downloadProcess->setEnvironment(QProcess::systemEnvironment());
-        connect(downloadProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(downloadFinished(int,QProcess::ExitStatus)));
-        downloaders << downloadProcess;
-        QStringList params;
-        params << Utils::Fs::toNativePath(Utils::Fs::searchEngineLocation() + "/nova2dl.py");
-        params << engine_url;
-        params << torrent_url;
-        // Launch search
-        downloadProcess->start(Utils::Misc::pythonExecutable(), params, QIODevice::ReadOnly);
-    }
+    if (Preferences::instance()->useAdditionDialog())
+        AddNewTorrentDialog::show(url, this);
+    else
+        BitTorrent::Session::instance()->addTorrent(url);
 }
 
 void SearchWidget::searchStarted()
@@ -316,220 +269,75 @@ void SearchWidget::searchStarted()
     search_button->setText(tr("Stop"));
 }
 
-// search Qprocess return output as soon as it gets new
-// stuff to read. We split it into lines and add each
-// line to search results calling appendSearchResult().
-void SearchWidget::readSearchOutput()
-{
-    QByteArray output = searchProcess->readAllStandardOutput();
-    output.replace("\r", "");
-    QList<QByteArray> lines_list = output.split('\n');
-    if (!search_result_line_truncated.isEmpty()) {
-        QByteArray end_of_line = lines_list.takeFirst();
-        lines_list.prepend(search_result_line_truncated + end_of_line);
-    }
-    search_result_line_truncated = lines_list.takeLast().trimmed();
-    foreach (const QByteArray &line, lines_list)
-        appendSearchResult(QString::fromUtf8(line));
-    activeSearchTab->getCurrentLabel()->setText(tr("Results <i>(%1)</i>:", "i.e: Search results").arg(nb_search_results));
-}
-
-void SearchWidget::downloadFinished(int exitcode, QProcess::ExitStatus)
-{
-    QProcess *downloadProcess = (QProcess*)sender();
-    if (exitcode == 0) {
-        QString line = QString::fromUtf8(downloadProcess->readAllStandardOutput()).trimmed();
-        QStringList parts = line.split(' ');
-        if (parts.size() == 2) {
-            QString path = parts[0];
-
-            if (Preferences::instance()->useAdditionDialog())
-                AddNewTorrentDialog::show(path, mp_mainWindow);
-            else
-                BitTorrent::Session::instance()->addTorrent(path);
-        }
-    }
-    qDebug("Deleting downloadProcess");
-    downloaders.removeOne(downloadProcess);
-    delete downloadProcess;
-}
-
-static inline void removePythonScriptIfExists(const QString& script_path)
-{
-    Utils::Fs::forceRemove(script_path);
-    Utils::Fs::forceRemove(script_path + "c");
-}
-
-// Update nova.py search plugin if necessary
-void SearchWidget::updateNova()
-{
-    qDebug("Updating nova");
-    // create nova directory if necessary
-    QDir search_dir(Utils::Fs::searchEngineLocation());
-    QString nova_folder = Utils::Misc::pythonVersion() >= 3 ? "nova3" : "nova";
-    QFile package_file(search_dir.absoluteFilePath("__init__.py"));
-    package_file.open(QIODevice::WriteOnly | QIODevice::Text);
-    package_file.close();
-    if (!search_dir.exists("engines"))
-        search_dir.mkdir("engines");
-    Utils::Fs::removeDirRecursive(search_dir.absoluteFilePath("__pycache__"));
-
-    QFile package_file2(search_dir.absolutePath() + "/engines/__init__.py");
-    package_file2.open(QIODevice::WriteOnly | QIODevice::Text);
-    package_file2.close();
-    // Copy search plugin files (if necessary)
-    QString filePath = search_dir.absoluteFilePath("nova2.py");
-    if (getPluginVersion(":/" + nova_folder + "/nova2.py") > getPluginVersion(filePath)) {
-        removePythonScriptIfExists(filePath);
-        QFile::copy(":/" + nova_folder + "/nova2.py", filePath);
-    }
-
-    filePath = search_dir.absoluteFilePath("nova2dl.py");
-    if (getPluginVersion(":/" + nova_folder + "/nova2dl.py") > getPluginVersion(filePath)) {
-        removePythonScriptIfExists(filePath);
-        QFile::copy(":/" + nova_folder + "/nova2dl.py", filePath);
-    }
-
-    filePath = search_dir.absoluteFilePath("novaprinter.py");
-    if (getPluginVersion(":/" + nova_folder + "/novaprinter.py") > getPluginVersion(filePath)) {
-        removePythonScriptIfExists(filePath);
-        QFile::copy(":/" + nova_folder + "/novaprinter.py", filePath);
-    }
-
-    filePath = search_dir.absoluteFilePath("helpers.py");
-    if (getPluginVersion(":/" + nova_folder + "/helpers.py") > getPluginVersion(filePath)) {
-        removePythonScriptIfExists(filePath);
-        QFile::copy(":/" + nova_folder + "/helpers.py", filePath);
-    }
-
-    filePath = search_dir.absoluteFilePath("socks.py");
-    removePythonScriptIfExists(filePath);
-    QFile::copy(":/" + nova_folder + "/socks.py", filePath);
-
-    if (nova_folder == "nova") {
-        filePath = search_dir.absoluteFilePath("fix_encoding.py");
-        removePythonScriptIfExists(filePath);
-        QFile::copy(":/" + nova_folder + "/fix_encoding.py", filePath);
-    }
-    else if (nova_folder == "nova3") {
-        filePath = search_dir.absoluteFilePath("sgmllib3.py");
-        removePythonScriptIfExists(filePath);
-        QFile::copy(":/" + nova_folder + "/sgmllib3.py", filePath);
-    }
-    QDir destDir(QDir(Utils::Fs::searchEngineLocation()).absoluteFilePath("engines"));
-    Utils::Fs::removeDirRecursive(destDir.absoluteFilePath("__pycache__"));
-    QDir shipped_subDir(":/" + nova_folder + "/engines/");
-    QStringList files = shipped_subDir.entryList();
-    foreach (const QString &file, files) {
-        QString shipped_file = shipped_subDir.absoluteFilePath(file);
-        // Copy python classes
-        if (file.endsWith(".py")) {
-            const QString dest_file = destDir.absoluteFilePath(file);
-            if (getPluginVersion(shipped_file) > getPluginVersion(dest_file) ) {
-                qDebug("shipped %s is more recent then local plugin, updating...", qPrintable(file));
-                removePythonScriptIfExists(dest_file);
-                qDebug("%s copied to %s", qPrintable(shipped_file), qPrintable(dest_file));
-                QFile::copy(shipped_file, dest_file);
-            }
-        }
-        else {
-            // Copy icons
-            if (file.endsWith(".png"))
-                if (!QFile::exists(destDir.absoluteFilePath(file)))
-                    QFile::copy(shipped_file, destDir.absoluteFilePath(file));
-        }
-    }
-}
-
 // Slot called when search is Finished
 // Search can be finished for 3 reasons :
 // Error | Stopped by user | Finished normally
-void SearchWidget::searchFinished(int exitcode, QProcess::ExitStatus)
+void SearchWidget::searchFinished(bool cancelled)
 {
-    if (searchTimeout->isActive())
-        searchTimeout->stop();
     bool useNotificationBalloons = Preferences::instance()->useProgramNotification();
     if (useNotificationBalloons && mp_mainWindow->getCurrentTabWidget() != this)
         mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
 
-    if (activeSearchTab.isNull())
-        // The active tab was closed
-        return;
+    if (activeSearchTab.isNull()) return; // The active tab was closed
 
-    if (exitcode) {
-#ifdef Q_OS_WIN
+    if (cancelled)
         activeSearchTab->status = tr("Search aborted");
-#else
-        activeSearchTab->status = tr("An error occurred during search...");
-#endif
-    }
-    else {
-        if (search_stopped) {
-            activeSearchTab->status = tr("Search aborted");
-        }
-        else {
-            if (no_search_results)
-                activeSearchTab->status = tr("Search returned no results");
-            else
-                activeSearchTab->status = tr("Search has finished");
-        }
-    }
+    else if (no_search_results)
+        activeSearchTab->status = tr("Search returned no results");
+    else
+        activeSearchTab->status = tr("Search has finished");
+
     search_status->setText(currentSearchTab->status);
     activeSearchTab = 0;
     search_button->setText(tr("Search"));
 }
 
+void SearchWidget::searchFailed()
+{
+    bool useNotificationBalloons = Preferences::instance()->useProgramNotification();
+    if (useNotificationBalloons && mp_mainWindow->getCurrentTabWidget() != this)
+        mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has failed"));
+
+    if (activeSearchTab.isNull()) return; // The active tab was closed
+
+#ifdef Q_OS_WIN
+    activeSearchTab->status = tr("Search aborted");
+#else
+    activeSearchTab->status = tr("An error occurred during search...");
+#endif
+}
+
 // SLOT to append one line to search results list
-// Line is in the following form :
-// file url | file name | file size | nb seeds | nb leechers | Search engine url
-void SearchWidget::appendSearchResult(const QString &line)
+void SearchWidget::appendSearchResults(const QList<SearchResult> &results)
 {
     if (activeSearchTab.isNull()) {
-        if (searchProcess->state() != QProcess::NotRunning) {
-#ifdef Q_OS_WIN
-            searchProcess->kill();
-#else
-            searchProcess->terminate();
-#endif
-            searchProcess->waitForFinished(1000);
-        }
-        if (searchTimeout->isActive())
-            searchTimeout->stop();
-        search_stopped = true;
+        m_searchEngine->cancelSearch();
         return;
     }
-    const QStringList parts = line.split("|");
-    const int nb_fields = parts.size();
-    if (nb_fields < NB_PLUGIN_COLUMNS - 1) //-1 because desc_link is optional
-        return;
+
     Q_ASSERT(activeSearchTab);
-    // Add item to search result list
+
     QStandardItemModel* cur_model = activeSearchTab->getCurrentSearchListModel();
     Q_ASSERT(cur_model);
-    int row = cur_model->rowCount();
-    cur_model->insertRow(row);
 
-    cur_model->setData(cur_model->index(row, SearchSortModel::DL_LINK), parts.at(PL_DL_LINK).trimmed()); // download URL
-    cur_model->setData(cur_model->index(row, SearchSortModel::NAME), parts.at(PL_NAME).trimmed()); // Name
-    cur_model->setData(cur_model->index(row, SearchSortModel::SIZE), parts.at(PL_SIZE).trimmed().toLongLong()); // Size
-    bool ok = false;
-    qlonglong nb_seeders = parts.at(PL_SEEDS).trimmed().toLongLong(&ok);
-    if (!ok || nb_seeders < 0)
-        cur_model->setData(cur_model->index(row, SearchSortModel::SEEDS), -1); // Seeders
-    else
-        cur_model->setData(cur_model->index(row, SearchSortModel::SEEDS), nb_seeders); // Seeders
-    qlonglong nb_leechers = parts.at(PL_LEECHS).trimmed().toLongLong(&ok);
-    if (!ok || nb_leechers < 0)
-        cur_model->setData(cur_model->index(row, SearchSortModel::LEECHS), -1); // Leechers
-    else
-        cur_model->setData(cur_model->index(row, SearchSortModel::LEECHS), nb_leechers); // Leechers
-    cur_model->setData(cur_model->index(row, SearchSortModel::ENGINE_URL), parts.at(PL_ENGINE_URL).trimmed()); // Engine URL
-    // Description Link
-    if (nb_fields == NB_PLUGIN_COLUMNS)
-        cur_model->setData(cur_model->index(row, SearchSortModel::DESC_LINK), parts.at(PL_DESC_LINK).trimmed());
+    foreach (const SearchResult &result, results) {
+        // Add item to search result list
+        int row = cur_model->rowCount();
+        cur_model->insertRow(row);
+
+        cur_model->setData(cur_model->index(row, SearchSortModel::DL_LINK), result.fileUrl); // download URL
+        cur_model->setData(cur_model->index(row, SearchSortModel::NAME), result.fileName); // Name
+        cur_model->setData(cur_model->index(row, SearchSortModel::SIZE), result.fileSize); // Size
+        cur_model->setData(cur_model->index(row, SearchSortModel::SEEDS), result.nbSeeders); // Seeders
+        cur_model->setData(cur_model->index(row, SearchSortModel::LEECHS), result.nbLeechers); // Leechers
+        cur_model->setData(cur_model->index(row, SearchSortModel::ENGINE_URL), result.siteUrl); // Search site URL
+        cur_model->setData(cur_model->index(row, SearchSortModel::DESC_LINK), result.descrLink); // Description Link
+    }
 
     no_search_results = false;
-    ++nb_search_results;
+    nb_search_results += results.size();
+    activeSearchTab->getCurrentLabel()->setText(tr("Results <i>(%1)</i>:", "i.e: Search results").arg(nb_search_results));
+
     // Enable clear & download buttons
     download_button->setEnabled(true);
     goToDescBtn->setEnabled(true);
@@ -541,17 +349,8 @@ void SearchWidget::closeTab(int index)
     // Search is run for active tab so if user decided to close it, then stop search
     if (!activeSearchTab.isNull() && index == tabWidget->indexOf(activeSearchTab)) {
         qDebug("Closed active search Tab");
-        if (searchProcess->state() != QProcess::NotRunning) {
-#ifdef Q_OS_WIN
-            searchProcess->kill();
-#else
-            searchProcess->terminate();
-#endif
-            searchProcess->waitForFinished(1000);
-        }
-        if (searchTimeout->isActive())
-            searchTimeout->stop();
-        search_stopped = true;
+        if (m_searchEngine->isActive())
+            m_searchEngine->cancelSearch();
         activeSearchTab = 0;
     }
     delete all_tab.takeAt(index);
@@ -573,8 +372,7 @@ void SearchWidget::on_download_button_clicked()
             // Get Item url
             QSortFilterProxyModel* model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
             QString torrent_url = model->data(model->index(index.row(), URL_COLUMN)).toString();
-            QString engine_url = model->data(model->index(index.row(), ENGINE_URL_COLUMN)).toString();
-            downloadTorrent(engine_url, torrent_url);
+            downloadTorrent(torrent_url);
             all_tab.at(tabWidget->currentIndex())->setRowColor(index.row(), "blue");
         }
     }

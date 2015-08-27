@@ -42,7 +42,8 @@ HEADERS += \
     $$PWD/utils/string.h \
     $$PWD/unicodestrings.h \
     $$PWD/torrentfilter.h \
-    $$PWD/scanfoldersmodel.h
+    $$PWD/scanfoldersmodel.h \
+    $$PWD/searchengine.h
 
 SOURCES += \
     $$PWD/tristatebool.cpp \
@@ -83,4 +84,5 @@ SOURCES += \
     $$PWD/utils/misc.cpp \
     $$PWD/utils/string.cpp \
     $$PWD/torrentfilter.cpp \
-    $$PWD/scanfoldersmodel.cpp
+    $$PWD/scanfoldersmodel.cpp \
+    $$PWD/searchengine.cpp

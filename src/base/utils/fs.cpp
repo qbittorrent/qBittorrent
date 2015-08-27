@@ -509,18 +509,6 @@ QString Utils::Fs::QDesktopServicesDownloadLocation()
 #endif
 }
 
-QString Utils::Fs::searchEngineLocation()
-{
-    QString folder = "nova";
-    if (Utils::Misc::pythonVersion() >= 3)
-        folder = "nova3";
-    const QString location = expandPathAbs(QDesktopServicesDataLocation() + folder);
-    QDir locationDir(location);
-    if (!locationDir.exists())
-        locationDir.mkpath(locationDir.absolutePath());
-    return location;
-}
-
 QString Utils::Fs::cacheLocation()
 {
     QString location = expandPathAbs(QDesktopServicesCacheLocation());
