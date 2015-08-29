@@ -194,7 +194,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     // draw graphs
     rect.adjust(3, 0, 0, 0); // Need, else graphs cross left gridline
 
-    double y_multiplier = rect.height() / max_y;
+    double y_multiplier = (max_y == 0.0) ? 0.0 : rect.height() / max_y;
     double x_tick_size = double(rect.width()) / m_viewablePointsCount;
 
     for (QMap<GraphID, QQueue<double> >::const_iterator it = m_yData.begin(); it != m_yData.end(); ++it) {
