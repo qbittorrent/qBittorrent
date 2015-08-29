@@ -32,7 +32,6 @@
 #include <QShortcut>
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
-#include <QDesktopServices>
 #include <QTimer>
 #include <QClipboard>
 #include <QColor>
@@ -176,7 +175,7 @@ TorrentModel* TransferListWidget::getSourceModel() const
 
 void TransferListWidget::previewFile(QString filePath)
 {
-    openUrl(filePath);
+    Utils::Misc::openPath(filePath);
 }
 
 inline QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const
@@ -213,7 +212,11 @@ void TransferListWidget::torrentDoubleClicked(const QModelIndex& index)
             torrent->pause();
         break;
     case OPEN_DEST:
-        openUrl(torrent->rootPath());
+        if (torrent->filesCount() == 1)
+            Utils::Misc::openFolderSelect(QDir(torrent->rootPath()).absoluteFilePath(torrent->filePath(0)));
+        else
+            Utils::Misc::openPath(torrent->rootPath());
+        break;
     }
 }
 
@@ -380,12 +383,18 @@ void TransferListWidget::openSelectedTorrentsFolder() const
 {
     QSet<QString> pathsList;
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents()) {
-        QString rootFolder = torrent->rootPath();
-        qDebug("Opening path at %s", qPrintable(rootFolder));
-        if (!pathsList.contains(rootFolder)) {
-            pathsList.insert(rootFolder);
-            openUrl(rootFolder);
+        QString path;
+        if (torrent->filesCount() == 1) {
+            path = QDir(torrent->rootPath()).absoluteFilePath(torrent->filePath(0));
+            if (!pathsList.contains(path))
+                Utils::Misc::openFolderSelect(path);
         }
+        else {
+            path = torrent->rootPath();
+            if (!pathsList.contains(path))
+                Utils::Misc::openPath(path);
+        }
+        pathsList.insert(path);
     }
 }
 
@@ -566,16 +575,6 @@ void TransferListWidget::askNewLabelForSelection()
             }
         }
     } while(invalid);
-}
-
-bool TransferListWidget::openUrl(const QString &_path) const
-{
-    const QString path = Utils::Fs::fromNativePath(_path);
-    // Hack to access samba shares with QDesktopServices::openUrl
-    if (path.startsWith("//"))
-        return QDesktopServices::openUrl(Utils::Fs::toNativePath("file:" + path));
-    else
-        return QDesktopServices::openUrl(QUrl::fromLocalFile(path));
 }
 
 void TransferListWidget::renameSelectedTorrent()
