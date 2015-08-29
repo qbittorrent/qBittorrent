@@ -592,7 +592,7 @@ void Utils::Misc::openFolderSelect(const QString& absolutePath)
         proc.start("xdg-mime", QStringList() << "query" << "default" << "inode/directory");
         proc.waitForFinished();
         output = proc.readLine().simplified();
-        if (output == "dolphin.desktop")
+        if (output == "dolphin.desktop" || output == "org.kde.dolphin.desktop")
             proc.startDetached("dolphin", QStringList() << "--select" << Utils::Fs::toNativePath(path));
         else if (output == "nautilus.desktop" || output == "org.gnome.Nautilus.desktop"
                  || output == "nautilus-folder-handler.desktop")
