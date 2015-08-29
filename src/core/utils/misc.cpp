@@ -553,7 +553,33 @@ void Utils::Misc::openFolderSelect(const QString& absolutePath)
     if (QFileInfo(path).exists()) {
         // Syntax is: explorer /select, "C:\Folder1\Folder2\file_to_select"
         // Dir separators MUST be win-style slashes
-        QProcess::startDetached("explorer.exe", QStringList() << "/select," << Utils::Fs::toNativePath(absolutePath));
+
+        // QProcess::startDetached() has an obscure bug. If the path has
+        // no spaces and a comma(and maybe other special characters) it doesn't
+        // get wrapped in quotes. So explorer.exe can't find the correct path and
+        // displays the default one. If we wrap the path in quotes and pass it to
+        // QProcess::startDetached() explorer.exe still shows the default path. In
+        // this case QProcess::startDetached() probably puts its own quotes around ours.
+
+        STARTUPINFO startupInfo;
+        ::ZeroMemory(&startupInfo, sizeof(startupInfo));
+        startupInfo.cb = sizeof(startupInfo);
+
+        PROCESS_INFORMATION processInfo;
+        ::ZeroMemory(&processInfo, sizeof(processInfo));
+
+        QString cmd = QString("explorer.exe /select,\"%1\"").arg(Utils::Fs::toNativePath(absolutePath));
+        LPWSTR lpCmd = new WCHAR[cmd.size() + 1];
+        cmd.toWCharArray(lpCmd);
+        lpCmd[cmd.size()] = 0;
+
+        bool ret = ::CreateProcessW(NULL, lpCmd, NULL, NULL, FALSE, 0, NULL, NULL, &startupInfo, &processInfo);
+        delete [] lpCmd;
+
+        if (ret) {
+            ::CloseHandle(processInfo.hProcess);
+            ::CloseHandle(processInfo.hThread);
+        }
     }
     else {
         // If the item to select doesn't exist, try to open its parent
