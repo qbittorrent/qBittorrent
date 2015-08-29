@@ -100,6 +100,12 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
 #endif
     header()->setStretchLastSection(false);
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    // On Qt5 the first column can be reordered by the user.
+    // So we use a dummy column that is always hidden.
+    setColumnHidden(TorrentModel::TR_DUMMY, true);
+#endif
+
     // Default hidden columns
     if (!column_loaded) {
         setColumnHidden(TorrentModel::TR_ADD_DATE, true);
@@ -503,7 +509,11 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&)
     hideshowColumn.setTitle(tr("Column visibility"));
     QList<QAction*> actions;
     for (int i = 0; i < listModel->columnCount(); ++i) {
-        if (!BitTorrent::Session::instance()->isQueueingEnabled() && i == TorrentModel::TR_PRIORITY) {
+        if ((!BitTorrent::Session::instance()->isQueueingEnabled() && i == TorrentModel::TR_PRIORITY)
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+            || (i == TorrentModel::TR_DUMMY)
+#endif
+            ) {
             actions.append(0);
             continue;
         }

@@ -49,6 +49,9 @@ class TorrentModel : public QAbstractListModel
 public:
     enum Column
     {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        TR_DUMMY,
+#endif
         TR_PRIORITY,
         TR_NAME,
         TR_SIZE,

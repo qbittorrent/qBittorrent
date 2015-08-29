@@ -86,6 +86,11 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent):
   //incorrect restoreState() being used.
   for (unsigned int i=0; i<PeerListDelegate::IP_HIDDEN; i++)
     showColumn(i);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+  // On Qt5 the first column can be reordered by the user.
+  // So we use a dummy column that is always hidden.
+  setColumnHidden(PeerListDelegate::DUMMY, true);
+#endif
   hideColumn(PeerListDelegate::IP_HIDDEN);
   hideColumn(PeerListDelegate::COL_COUNT);
   if (!Preferences::instance()->resolvePeerCountries())

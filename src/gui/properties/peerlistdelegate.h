@@ -36,12 +36,31 @@
 #include "core/utils/misc.h"
 #include "core/utils/string.h"
 
-class PeerListDelegate: public QItemDelegate {
+class PeerListDelegate: public QItemDelegate
+{
   Q_OBJECT
 
 public:
-  enum PeerListColumns {COUNTRY, IP, PORT, CONNECTION, FLAGS, CLIENT, PROGRESS, DOWN_SPEED, UP_SPEED,
-                        TOT_DOWN, TOT_UP, RELEVANCE, IP_HIDDEN, COL_COUNT};
+  enum PeerListColumns
+  {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    DUMMY,
+#endif
+    COUNTRY,
+    IP,
+    PORT,
+    CONNECTION,
+    FLAGS,
+    CLIENT,
+    PROGRESS,
+    DOWN_SPEED,
+    UP_SPEED,
+    TOT_DOWN,
+    TOT_UP,
+    RELEVANCE,
+    IP_HIDDEN,
+    COL_COUNT
+  };
 
 public:
   PeerListDelegate(QObject *parent) : QItemDelegate(parent) {}
