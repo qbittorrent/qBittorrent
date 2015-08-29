@@ -109,9 +109,6 @@ protected slots:
     void askNewLabelForSelection();
     void saveSettings();
 
-private:
-    bool openUrl(const QString& _path) const;
-
 signals:
     void currentTorrentChanged(const QTorrentHandle &h);
 

@@ -114,6 +114,11 @@ namespace misc
     bool slowEquals(const QByteArray &a, const QByteArray &b);
     void loadBencodedFile(const QString &filename, std::vector<char> &buffer, libtorrent::lazy_entry &entry, libtorrent::error_code &ec);
 
+#ifndef DISABLE_GUI
+    void openPath(const QString& absolutePath);
+    void openFolderSelect(const QString& absolutePath);
+#endif
+
     void msleep(unsigned long msecs);
 }
 
