@@ -62,7 +62,7 @@
 #include <winbase.h>
 #endif
 
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#ifndef DISABLE_GUI
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 #include <QDesktopServices>
 #else
@@ -464,62 +464,76 @@ QString fsutils::QDesktopServicesCacheLocation() {
   return result;
 }
 
-QString fsutils::QDesktopServicesDownloadLocation() {
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-  // as long as it stays WinXP like we do the same on OS/2
-  // TODO: Use IKnownFolderManager to get path of FOLDERID_Downloads
-  // instead of hardcoding "Downloads"
-  // Unfortunately, this would break compatibility with WinXP
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
-  return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(
-        QCoreApplication::translate("fsutils", "Downloads"));
-#else
-  return QDir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).absoluteFilePath(
-        QCoreApplication::translate("fsutils", "Downloads"));
+QString fsutils::QDesktopServicesDownloadLocation()
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#if defined(Q_OS_WIN)
+    if (QSysInfo::windowsVersion() <= QSysInfo::WV_XP)  // Windows XP
+        return QDir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).absoluteFilePath(
+                    QCoreApplication::translate("fsutils", "Downloads"));
 #endif
+    return QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+#else
+
+#if defined(Q_OS_OS2)
+    return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(
+                QCoreApplication::translate("fsutils", "Downloads"));
+#endif
+
+#if defined(Q_OS_WIN)
+    // as long as it stays WinXP like we do the same on OS/2
+    // TODO: Use IKnownFolderManager to get path of FOLDERID_Downloads
+    // instead of hardcoding "Downloads"
+    // Unfortunately, this would break compatibility with WinXP
+    if (QSysInfo::windowsVersion() <= QSysInfo::WV_XP)  // Windows XP
+        return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(
+                    QCoreApplication::translate("fsutils", "Downloads"));
+    else
+        return QDir(QDesktopServices::storageLocation(QDesktopServices::HomeLocation)).absoluteFilePath("Downloads");
 #endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-  QString save_path;
-  // Default save path on Linux
-  QString config_path = QString::fromLocal8Bit(qgetenv("XDG_CONFIG_HOME").constData());
-  if (config_path.isEmpty())
-    config_path = QDir::home().absoluteFilePath(".config");
+    QString save_path;
+    // Default save path on Linux
+    QString config_path = QString::fromLocal8Bit(qgetenv("XDG_CONFIG_HOME").constData());
+    if (config_path.isEmpty())
+        config_path = QDir::home().absoluteFilePath(".config");
 
-  QString user_dirs_file = config_path + "/user-dirs.dirs";
-  if (QFile::exists(user_dirs_file)) {
-    QSettings settings(user_dirs_file, QSettings::IniFormat);
-    // We need to force UTF-8 encoding here since this is not
-    // the default for Ini files.
-    settings.setIniCodec("UTF-8");
-    QString xdg_download_dir = settings.value("XDG_DOWNLOAD_DIR").toString();
-    if (!xdg_download_dir.isEmpty()) {
-      // Resolve $HOME environment variables
-      xdg_download_dir.replace("$HOME", QDir::homePath());
-      save_path = xdg_download_dir;
-      qDebug() << Q_FUNC_INFO << "SUCCESS: Using XDG path for downloads: " << save_path;
+    QString user_dirs_file = config_path + "/user-dirs.dirs";
+    if (QFile::exists(user_dirs_file)) {
+        QSettings settings(user_dirs_file, QSettings::IniFormat);
+        // We need to force UTF-8 encoding here since this is not
+        // the default for Ini files.
+        settings.setIniCodec("UTF-8");
+        QString xdg_download_dir = settings.value("XDG_DOWNLOAD_DIR").toString();
+        if (!xdg_download_dir.isEmpty()) {
+            // Resolve $HOME environment variables
+            xdg_download_dir.replace("$HOME", QDir::homePath());
+            save_path = xdg_download_dir;
+            qDebug() << Q_FUNC_INFO << "SUCCESS: Using XDG path for downloads: " << save_path;
+        }
     }
-  }
 
-  // Fallback
-  if (!save_path.isEmpty() && !QFile::exists(save_path)) {
-    QDir().mkpath(save_path);
-  }
+    // Fallback
+    if (!save_path.isEmpty() && !QFile::exists(save_path)) {
+        QDir().mkpath(save_path);
+    }
 
-  if (save_path.isEmpty() || !QFile::exists(save_path)) {
-    save_path = QDir::home().absoluteFilePath(QCoreApplication::translate("fsutils", "Downloads"));
-    qDebug() << Q_FUNC_INFO << "using" << save_path << "as fallback since the XDG detection did not work";
-  }
+    if (save_path.isEmpty() || !QFile::exists(save_path)) {
+        save_path = QDir::home().absoluteFilePath(QCoreApplication::translate("fsutils", "Downloads"));
+        qDebug() << Q_FUNC_INFO << "using" << save_path << "as fallback since the XDG detection did not work";
+    }
 
-  return save_path;
+    return save_path;
 #endif
 
-#ifdef Q_OS_MAC
-  // TODO: How to support this on Mac OS X?
+#if defined(Q_OS_MAC)
+    // TODO: How to support this on Mac OS?
 #endif
 
-  // Fallback
-  return QDir::home().absoluteFilePath(QCoreApplication::translate("fsutils", "Downloads"));
+    // Fallback
+    return QDir::home().absoluteFilePath(QCoreApplication::translate("fsutils", "Downloads"));
+#endif
 }
 
 QString fsutils::searchEngineLocation() {
