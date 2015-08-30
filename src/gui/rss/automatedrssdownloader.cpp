@@ -346,7 +346,7 @@ void AutomatedRssDownloader::saveEditedRule()
   rule->setAddPaused(RssDownloadRule::AddPausedState(ui->comboAddPaused->currentIndex()));
   // Save new label
   if (!rule->label().isEmpty())
-    Preferences::instance()->addTorrentLabel(rule->label());
+    Preferences::instance()->addTorrentLabelExternal(rule->label());
   rule->setIgnoreDays(ui->spinIgnorePeriod->value());
   //rule->setRssFeeds(getSelectedFeeds());
   // Save it

@@ -113,6 +113,7 @@ private:
 
 signals:
     void changed();
+    void externalLabelAdded(QString&);
 
 public slots:
     void save();
@@ -403,6 +404,7 @@ public:
 #endif
     QStringList getTorrentLabels() const;
     void setTorrentLabels(const QStringList& labels);
+    void addTorrentLabelExternal(const QString &label);
     void addTorrentLabel(const QString& label);
     void removeTorrentLabel(const QString& label);
     bool recursiveDownloadDisabled() const;

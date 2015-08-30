@@ -97,7 +97,7 @@ public:
 
 private slots:
     // Redefine addItem() to make sure the list stays sorted
-    void addItem(QString &label, bool hasTorrent);
+    void addItem(QString &label, bool hasTorrent = false);
     void removeItem(const QString &label);
     void removeSelectedLabel();
     void removeUnusedLabels();
