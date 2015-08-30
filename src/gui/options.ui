@@ -256,6 +256,16 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_4">
                <item>
+                <widget class="QCheckBox" name="confirmDeletion">
+                 <property name="text">
+                  <string>Confirm when deleting torrents</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QCheckBox" name="checkAltRowColors">
                  <property name="text">
                   <string extracomment="In transfer list, one every two rows will have grey background.">Use alternating row colors</string>
