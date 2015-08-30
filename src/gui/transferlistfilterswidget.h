@@ -157,6 +157,7 @@ private:
     int rowFromTracker(const QString &tracker) const;
     QString getHost(const QString &trakcer) const;
     QStringList getHashes(int row);
+    void downloadFavicon(const QString &url);
 
 private:
     QHash<QString, QStringList> m_trackers;
