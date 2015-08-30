@@ -832,6 +832,16 @@ void Preferences::setForceProxy(bool enabled)
     setValue("Preferences/Connection/ProxyForce", enabled);
 }
 
+void Preferences::setProxyOnlyForTorrents(bool enabled)
+{
+    setValue("Preferences/Connection/ProxyOnlyForTorrents", enabled);
+}
+
+bool Preferences::isProxyOnlyForTorrents() const
+{
+    return value("Preferences/Connection/ProxyOnlyForTorrents", false).toBool();
+}
+
 // Bittorrent options
 int Preferences::getMaxConnecs() const
 {

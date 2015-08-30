@@ -1385,6 +1385,19 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="isProxyOnlyForTorrents">
+                 <property name="text">
+                  <string>Use proxy only for torrents</string>
+                 </property>
+                 <property name="toolTip">
+                  <string>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="checkProxyAuth">
                  <property name="enabled">
                   <bool>false</bool>

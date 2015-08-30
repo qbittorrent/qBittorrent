@@ -1828,35 +1828,44 @@ void Session::setProxySettings(libt::proxy_settings proxySettings)
     proxySettings.proxy_peer_connections = Preferences::instance()->proxyPeerConnections();
     m_nativeSession->set_proxy(proxySettings);
 
-    // Define environment variable
-    QString proxy_str;
-    switch(proxySettings.type) {
-    case libt::proxy_settings::http_pw:
-        proxy_str = QString("http://%1:%2@%3:%4").arg(Utils::String::fromStdString(proxySettings.username)).arg(Utils::String::fromStdString(proxySettings.password))
-                .arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
-        break;
-    case libt::proxy_settings::http:
-        proxy_str = QString("http://%1:%2").arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
-        break;
-    case libt::proxy_settings::socks5:
-        proxy_str = QString("%1:%2").arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
-        break;
-    case libt::proxy_settings::socks5_pw:
-        proxy_str = QString("%1:%2@%3:%4").arg(Utils::String::fromStdString(proxySettings.username)).arg(Utils::String::fromStdString(proxySettings.password))
-                .arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
-        break;
-    default:
-        qDebug("Disabling HTTP communications proxy");
+    // Define environment variables for urllib in search engine plugins
+    if (Preferences::instance()->isProxyOnlyForTorrents()) {
         qputenv("http_proxy", QByteArray());
+        qputenv("https_proxy", QByteArray());
         qputenv("sock_proxy", QByteArray());
-        return;
     }
-    // We need this for urllib in search engine plugins
-    qDebug("HTTP communications proxy string: %s", qPrintable(proxy_str));
-    if ((proxySettings.type == libt::proxy_settings::socks5) || (proxySettings.type == libt::proxy_settings::socks5_pw))
-        qputenv("sock_proxy", proxy_str.toLocal8Bit());
-    else
-        qputenv("http_proxy", proxy_str.toLocal8Bit());
+    else {
+        QString proxy_str;
+        switch(proxySettings.type) {
+        case libt::proxy_settings::http_pw:
+            proxy_str = QString("http://%1:%2@%3:%4").arg(Utils::String::fromStdString(proxySettings.username)).arg(Utils::String::fromStdString(proxySettings.password))
+                    .arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
+            break;
+        case libt::proxy_settings::http:
+            proxy_str = QString("http://%1:%2").arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
+            break;
+        case libt::proxy_settings::socks5:
+            proxy_str = QString("%1:%2").arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
+            break;
+        case libt::proxy_settings::socks5_pw:
+            proxy_str = QString("%1:%2@%3:%4").arg(Utils::String::fromStdString(proxySettings.username)).arg(Utils::String::fromStdString(proxySettings.password))
+                    .arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
+            break;
+        default:
+            qDebug("Disabling HTTP communications proxy");
+            qputenv("http_proxy", QByteArray());
+            qputenv("https_proxy", QByteArray());
+            qputenv("sock_proxy", QByteArray());
+            return;
+        }
+        qDebug("HTTP communications proxy string: %s", qPrintable(proxy_str));
+        if ((proxySettings.type == libt::proxy_settings::socks5) || (proxySettings.type == libt::proxy_settings::socks5_pw))
+            qputenv("sock_proxy", proxy_str.toLocal8Bit());
+        else {
+            qputenv("http_proxy", proxy_str.toLocal8Bit());
+            qputenv("https_proxy", proxy_str.toLocal8Bit());
+        }
+    }
 }
 
 // Will resume torrents in backup directory
