@@ -52,7 +52,7 @@ enum EngineColumns {ENGINE_NAME, ENGINE_VERSION, ENGINE_URL, ENGINE_STATE, ENGIN
 engineSelectDlg::engineSelectDlg(QWidget *parent, SupportedEngines *supported_engines)
     : QDialog(parent)
     , supported_engines(supported_engines)
-    , m_updateUrl(QString("https://raw.github.com/qbittorrent/qBittorrent/master/src/searchengine/") + (Utils::Misc::pythonVersion() >= 3 ? "nova3" : "nova") + "/engines/")
+    , m_updateUrl(QString("https://raw.githubusercontent.com/qbittorrent/qBittorrent/master/src/searchengine/") + (Utils::Misc::pythonVersion() >= 3 ? "nova3" : "nova") + "/engines/")
 {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
