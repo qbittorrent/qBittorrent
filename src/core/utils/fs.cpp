@@ -54,7 +54,7 @@
 #include <winbase.h>
 #endif
 
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#ifndef DISABLE_GUI
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 #include <QDesktopServices>
 #else
@@ -439,18 +439,30 @@ QString Utils::Fs::QDesktopServicesCacheLocation()
 
 QString Utils::Fs::QDesktopServicesDownloadLocation()
 {
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#if defined(Q_OS_WIN)
+    if (QSysInfo::windowsVersion() <= QSysInfo::WV_XP)  // Windows XP
+        return QDir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).absoluteFilePath(
+                    QCoreApplication::translate("fsutils", "Downloads"));
+#endif
+    return QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+#else
+
+#if defined(Q_OS_OS2)
+    return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(
+                QCoreApplication::translate("fsutils", "Downloads"));
+#endif
+
+#if defined(Q_OS_WIN)
     // as long as it stays WinXP like we do the same on OS/2
     // TODO: Use IKnownFolderManager to get path of FOLDERID_Downloads
     // instead of hardcoding "Downloads"
     // Unfortunately, this would break compatibility with WinXP
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
-    return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(
-                QCoreApplication::translate("fsutils", "Downloads"));
-#else
-    return QDir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).absoluteFilePath(
-                QCoreApplication::translate("fsutils", "Downloads"));
-#endif
+    if (QSysInfo::windowsVersion() <= QSysInfo::WV_XP)  // Windows XP
+        return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(
+                    QCoreApplication::translate("fsutils", "Downloads"));
+    else
+        return QDir(QDesktopServices::storageLocation(QDesktopServices::HomeLocation)).absoluteFilePath("Downloads");
 #endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
@@ -488,12 +500,13 @@ QString Utils::Fs::QDesktopServicesDownloadLocation()
     return save_path;
 #endif
 
-#ifdef Q_OS_MAC
-    // TODO: How to support this on Mac OS X?
+#if defined(Q_OS_MAC)
+    // TODO: How to support this on Mac OS?
 #endif
 
     // Fallback
     return QDir::home().absoluteFilePath(QCoreApplication::translate("fsutils", "Downloads"));
+#endif
 }
 
 QString Utils::Fs::searchEngineLocation()
