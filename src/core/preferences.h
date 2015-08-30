@@ -367,8 +367,8 @@ public:
     void setOutgoingPortsMin(uint val);
     uint outgoingPortsMax() const;
     void setOutgoingPortsMax(uint val);
-    bool ignoreLimitsOnLAN() const;
-    void ignoreLimitsOnLAN(bool ignore);
+    bool getIgnoreLimitsOnLAN() const;
+    void setIgnoreLimitsOnLAN(bool ignore);
     bool includeOverheadInLimits() const;
     void includeOverheadInLimits(bool include);
     bool trackerExchangeEnabled() const;
