@@ -188,12 +188,9 @@ void DownloadHandler::handleRedirection(QUrl newUrl)
         this->deleteLater();
     }
     else {
-        DownloadHandler *tmp = m_manager->downloadUrl(newUrlString, m_sizeLimit);
+        DownloadHandler *tmp = m_manager->downloadUrl(newUrlString, m_saveToFile, m_sizeLimit, m_handleRedirectToMagnet);
         m_reply->deleteLater();
         m_reply = tmp->m_reply;
-        m_saveToFile = tmp->m_saveToFile;
-        m_sizeLimit = tmp->m_sizeLimit;
-        m_handleRedirectToMagnet = tmp->m_handleRedirectToMagnet;
         init();
         tmp->m_reply = 0;
         delete tmp;
