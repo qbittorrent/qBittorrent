@@ -248,7 +248,9 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
         ui->lineEFilter->clear();
       ui->saveDiffDir_check->setChecked(!rule->savePath().isEmpty());
       ui->lineSavePath->setText(fsutils::toNativePath(rule->savePath()));
+      ui->checkRegex->blockSignals(true);
       ui->checkRegex->setChecked(rule->useRegex());
+      ui->checkRegex->blockSignals(false);
       if (rule->label().isEmpty()) {
         ui->comboLabel->setCurrentIndex(-1);
         ui->comboLabel->clearEditText();
