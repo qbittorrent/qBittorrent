@@ -60,6 +60,7 @@
 #include "application.h"
 #include "core/logger.h"
 #include "core/preferences.h"
+#include "core/utils/fs.h"
 #include "core/utils/misc.h"
 #include "core/iconprovider.h"
 #include "core/scanfoldersmodel.h"
@@ -146,7 +147,7 @@ void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
         program.replace("%N", torrent->name());
         program.replace("%F", (file_count > 1) ? "" : torrent->fileName(0));
         program.replace("%L", torrent->label());
-        program.replace("%D", torrent->rootPath());
+        program.replace("%D", Utils::Fs::toNativePath(torrent->rootPath()));
         program.replace("%K", (file_count > 1) ? "multi" : "single");
         program.replace("%C", QString::number(torrent->filesCount()));
         program.replace("%Z", QString::number(torrent->totalSize()));

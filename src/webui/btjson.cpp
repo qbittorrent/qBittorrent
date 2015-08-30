@@ -509,7 +509,7 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
         dataDict[KEY_PROP_COMPLETION_DATE] = -1;
         dataDict[KEY_PROP_CREATION_DATE] = -1;
     }
-    dataDict[KEY_PROP_SAVE_PATH] = torrent->savePathParsed();
+    dataDict[KEY_PROP_SAVE_PATH] = Utils::Fs::toNativePath(torrent->rootPath());
     dataDict[KEY_PROP_COMMENT] = torrent->comment();
 
     return json::toJson(dataDict);
