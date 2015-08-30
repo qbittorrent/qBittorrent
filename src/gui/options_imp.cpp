@@ -200,6 +200,7 @@ options_imp::options_imp(QWidget *parent):
   connect(checkuTP, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
   connect(checkLimituTPConnections, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
   connect(checkLimitTransportOverhead, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+  connect(checkLimitLocalPeerRate, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
   // Bittorrent tab
   connect(checkMaxConnecs, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMaxConnecsPerTorrent, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -426,6 +427,7 @@ void options_imp::saveOptions() {
   pref->setuTPEnabled(checkuTP->isChecked());
   pref->setuTPRateLimited(checkLimituTPConnections->isChecked());
   pref->includeOverheadInLimits(checkLimitTransportOverhead->isChecked());
+  pref->setIgnoreLimitsOnLAN(!checkLimitLocalPeerRate->isChecked());
   const QPair<int, int> alt_down_up_limit = getAltGlobalBandwidthLimits();
   pref->setAltGlobalDownloadLimit(alt_down_up_limit.first);
   pref->setAltGlobalUploadLimit(alt_down_up_limit.second);
@@ -664,6 +666,7 @@ void options_imp::loadOptions() {
   checkuTP->setChecked(pref->isuTPEnabled());
   checkLimituTPConnections->setChecked(pref->isuTPRateLimited());
   checkLimitTransportOverhead->setChecked(pref->includeOverheadInLimits());
+  checkLimitLocalPeerRate->setChecked(!pref->getIgnoreLimitsOnLAN());
   // Scheduler
   check_schedule->setChecked(pref->isSchedulerEnabled());
   schedule_from->setTime(pref->getSchedulerStartTime());

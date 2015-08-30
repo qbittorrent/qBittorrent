@@ -13,7 +13,7 @@
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, DISK_CACHE_TTL, OS_CACHE, SAVE_RESUME_DATA_INTERVAL, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_LISTEN_IPV6, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
+enum AdvSettingsRows {DISK_CACHE, DISK_CACHE_TTL, OS_CACHE, SAVE_RESUME_DATA_INTERVAL, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_LISTEN_IPV6, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
                     #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
                       UPDATE_CHECK,
                     #endif
@@ -29,7 +29,7 @@ class AdvancedSettings: public QTableWidget {
 
 private:
   QSpinBox spin_cache, spin_save_resume_data_interval, outgoing_ports_min, outgoing_ports_max, spin_list_refresh, spin_maxhalfopen, spin_tracker_port;
-  QCheckBox cb_os_cache, cb_ignore_limits_lan, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
+  QCheckBox cb_os_cache, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
   cb_super_seeding, cb_program_notifications, cb_tracker_status, cb_confirm_torrent_deletion,
   cb_confirm_torrent_recheck, cb_enable_tracker_ext, cb_listen_ipv6;
   QComboBox combo_iface;
@@ -78,8 +78,6 @@ public slots:
     // Outgoing ports
     pref->setOutgoingPortsMin(outgoing_ports_min.value());
     pref->setOutgoingPortsMax(outgoing_ports_max.value());
-    // Ignore limits on LAN
-    pref->ignoreLimitsOnLAN(cb_ignore_limits_lan.isChecked());
     // Recheck torrents on completion
     pref->recheckTorrentsOnCompletion(cb_recheck_completed.isChecked());
     // Transfer list refresh interval
@@ -214,9 +212,6 @@ private slots:
     outgoing_ports_max.setMaximum(65535);
     outgoing_ports_max.setValue(pref->outgoingPortsMax());
     setRow(OUTGOING_PORT_MAX, tr("Outgoing ports (Max) [0: Disabled]"), &outgoing_ports_max);
-    // Ignore transfer limits on local network
-    cb_ignore_limits_lan.setChecked(pref->ignoreLimitsOnLAN());
-    setRow(IGNORE_LIMIT_LAN, tr("Ignore transfer limits on local network"), &cb_ignore_limits_lan);
     // Recheck completed torrents
     cb_recheck_completed.setChecked(pref->recheckTorrentsOnCompletion());
     setRow(RECHECK_COMPLETED, tr("Recheck torrents on completion"), &cb_recheck_completed);
