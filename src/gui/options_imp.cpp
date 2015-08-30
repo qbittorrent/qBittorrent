@@ -132,6 +132,7 @@ options_imp::options_imp(QWidget *parent):
   // Apply button is activated when a value is changed
   // General tab
   connect(comboI18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+  connect(confirmDeletion, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkAltRowColors, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkShowSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkCloseToSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -377,6 +378,7 @@ void options_imp::saveOptions() {
 
   // General preferences
   pref->setLocale(locale);
+  pref->setConfirmTorrentDeletion(confirmDeletion->isChecked());
   pref->setAlternatingRowColors(checkAltRowColors->isChecked());
   pref->setSystrayIntegration(systrayIntegration());
   pref->setTrayIconStyle(TrayIcon::Style(comboTrayIcon->currentIndex()));
@@ -538,6 +540,7 @@ void options_imp::loadOptions() {
   // General preferences
   const Preferences* const pref = Preferences::instance();
   setLocale(pref->getLocale());
+  confirmDeletion->setChecked(pref->confirmTorrentDeletion());
   checkAltRowColors->setChecked(pref->useAlternatingRowColors());
 
   checkShowSplash->setChecked(!pref->isSplashScreenDisabled());
