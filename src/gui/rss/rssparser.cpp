@@ -277,6 +277,9 @@ void RssParser::parseRssArticle(QXmlStreamReader& xml, const QString& feedUrl)
     }
   }
 
+  if (!article.contains("torrent_url") && article.contains("news_link"))
+    article["torrent_url"] = article["news_link"];
+
   if (!article.contains("id")) {
     // Item does not have a guid, fall back to some other identifier
     const QString link = article.value("news_link").toString();
@@ -396,6 +399,9 @@ void RssParser::parseAtomArticle(QXmlStreamReader& xml, const QString& feedUrl, 
         article["id"] = xml.readElementText().trimmed();
     }
   }
+
+  if (!article.contains("torrent_url") && article.contains("news_link"))
+    article["torrent_url"] = article["news_link"];
 
   if (!article.contains("id")) {
     // Item does not have a guid, fall back to some other identifier
