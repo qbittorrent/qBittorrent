@@ -67,7 +67,7 @@ void PeersAdditionDlg::validateInput()
         }
         else {
             QMessageBox::warning(this, tr("Invalid peer"),
-                    tr("The peer %1 is invalid.").arg(peer),
+                    tr("The peer '%1' is invalid.").arg(peer),
                     QMessageBox::Ok);
             m_peersList.clear();
             return;

@@ -121,7 +121,7 @@ void TorrentCreatorDlg::on_createButton_clicked()
     Preferences* const pref = Preferences::instance();
     QString lastPath = pref->getCreateTorLastSavePath();
 
-    QString destination = QFileDialog::getSaveFileName(this, tr("Select destination torrent file"), lastPath, tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
+    QString destination = QFileDialog::getSaveFileName(this, tr("Select destination torrent file"), lastPath, tr("Torrent Files (*.torrent)"));
     if (destination.isEmpty())
         return;
 
@@ -173,7 +173,7 @@ void TorrentCreatorDlg::handleCreationSuccess(QString path, QString branch_path)
 
         BitTorrent::Session::instance()->addTorrent(t, params);
     }
-    QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully:")+" "+Utils::Fs::toNativePath(path));
+    QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully: %1", "%1 is the path of the torrent").arg(Utils::Fs::toNativePath(path)));
     close();
 }
 

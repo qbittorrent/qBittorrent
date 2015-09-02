@@ -131,7 +131,7 @@ void Application::sendNotificationEmail(BitTorrent::TorrentHandle *const torrent
     Net::Smtp *sender = new Net::Smtp;
     sender->sendMail("notification@qbittorrent.org",
                      Preferences::instance()->getMailNotificationEmail(),
-                     QObject::tr("[qBittorrent] %1 has finished downloading").arg(torrent->name()),
+                     QObject::tr("[qBittorrent] '%1' has finished downloading").arg(torrent->name()),
                      content);
 }
 

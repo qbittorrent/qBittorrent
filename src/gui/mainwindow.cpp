@@ -634,13 +634,13 @@ void MainWindow::addTorrentFailed(const QString &error) const
 // called when a torrent has finished
 void MainWindow::finishedTorrent(BitTorrent::TorrentHandle *const torrent) const
 {
-    showNotificationBaloon(tr("Download completion"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
+    showNotificationBaloon(tr("Download completion"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
 }
 
 // Notification when disk is full
 void MainWindow::fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const
 {
-    showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occurred for torrent %1.\n Reason: %2", "e.g: An error occurred for torrent xxx.avi.\n Reason: disk is full.").arg(torrent->name()).arg(msg));
+    showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occurred for torrent '%1'.\n Reason: %2", "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(torrent->name()).arg(msg));
 }
 
 void MainWindow::createKeyboardShortcuts()
@@ -701,7 +701,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHand
     if (pref->recursiveDownloadDisabled()) return;
     // Get Torrent name
     QString torrent_name = torrent->name();
-    QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent %1 contains torrent files, do you want to proceed with their download?").arg(torrent_name));
+    QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent '%1' contains torrent files, do you want to proceed with their download?").arg(torrent_name));
     QPushButton *yes = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
     /*QPushButton *no = */ confirmBox.addButton(tr("No"), QMessageBox::NoRole);
     QPushButton *never = confirmBox.addButton(tr("Never"), QMessageBox::NoRole);
@@ -716,7 +716,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHand
 void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const
 {
     // Display a message box
-    showNotificationBaloon(tr("URL download error"), tr("Couldn't download file at URL: %1, reason: %2.").arg(url).arg(reason));
+    showNotificationBaloon(tr("URL download error"), tr("Couldn't download file at URL '%1', reason: %2.").arg(url).arg(reason));
 }
 
 void MainWindow::on_actionSet_global_upload_limit_triggered()
@@ -1589,7 +1589,7 @@ bool MainWindow::addPythonPathToEnv()
         return true;
     QString python_path = Preferences::getPythonPath();
     if (!python_path.isEmpty()) {
-        Logger::instance()->addMessage(tr("Python found in %1").arg(Utils::Fs::toNativePath(python_path)), Log::INFO);
+        Logger::instance()->addMessage(tr("Python found in '%1'").arg(Utils::Fs::toNativePath(python_path)), Log::INFO);
         // Add it to PATH envvar
         QString path_envar = QString::fromLocal8Bit(qgetenv("PATH").constData());
         if (path_envar.isNull())

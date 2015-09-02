@@ -258,11 +258,11 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
       ui->comboAddPaused->setCurrentIndex(rule->addPaused());
       ui->spinIgnorePeriod->setValue(rule->ignoreDays());
       QDateTime dateTime = rule->lastMatch();
-      QString lMatch = tr("Last match: ");
+      QString lMatch;
       if (dateTime.isValid())
-        lMatch += QString::number(dateTime.daysTo(QDateTime::currentDateTime())) + tr(" days ago.");
+        lMatch = tr("Last match: %1 days ago").arg(dateTime.daysTo(QDateTime::currentDateTime()));
       else
-        lMatch += tr("Unknown");
+        lMatch = tr("Last match: Unknown");
       ui->lblLastMatch->setText(lMatch);
       updateMustLineValidity();
       updateMustNotLineValidity();
@@ -377,7 +377,7 @@ void AutomatedRssDownloader::on_removeRuleBtn_clicked()
   // Ask for confirmation
   QString confirm_text;
   if (selection.count() == 1)
-    confirm_text = tr("Are you sure you want to remove the download rule named %1?").arg(selection.first()->text());
+    confirm_text = tr("Are you sure you want to remove the download rule named '%1'?").arg(selection.first()->text());
   else
     confirm_text = tr("Are you sure you want to remove the selected download rules?");
   if (QMessageBox::question(this, tr("Rule deletion confirmation"), confirm_text, QMessageBox::Yes, QMessageBox::No) != QMessageBox::Yes)

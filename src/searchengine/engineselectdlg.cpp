@@ -251,7 +251,7 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
   qDebug("Version to be installed: %.2f", new_version);
   if (!isUpdateNeeded(plugin_name, new_version)) {
     qDebug("Apparently update is not needed, we have a more recent version");
-    QMessageBox::information(this, tr("Search plugin install"), tr("A more recent version of %1 search engine plugin is already installed.", "%1 is the name of the search engine").arg(plugin_name));
+    QMessageBox::information(this, tr("Search plugin install"), tr("A more recent version of '%1' search engine plugin is already installed.", "%1 is the name of the search engine").arg(plugin_name));
     return;
   }
   // Process with install
@@ -276,12 +276,12 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
       // restore backup
       QFile::copy(dest_path+".bak", dest_path);
       Utils::Fs::forceRemove(dest_path+".bak");
-      QMessageBox::warning(this, tr("Search plugin install"), tr("%1 search engine plugin could not be updated, keeping old version.", "%1 is the name of the search engine").arg(plugin_name));
+      QMessageBox::warning(this, tr("Search plugin install"), tr("'%1' search engine plugin could not be updated, keeping old version.", "%1 is the name of the search engine").arg(plugin_name));
       return;
     } else {
       // Remove broken file
       Utils::Fs::forceRemove(dest_path);
-      QMessageBox::warning(this, tr("Search plugin install"), tr("%1 search engine plugin could not be installed.", "%1 is the name of the search engine").arg(plugin_name));
+      QMessageBox::warning(this, tr("Search plugin install"), tr("'%1' search engine plugin could not be installed.", "%1 is the name of the search engine").arg(plugin_name));
       return;
     }
   }
@@ -291,10 +291,10 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
     qreal version = SearchEngine::getPluginVersion(Utils::Fs::searchEngineLocation() + "/engines/" + plugin_name + ".py");
     QTreeWidgetItem *item = findItemWithID(plugin_name);
     item->setText(ENGINE_VERSION, QString::number(version, 'f', 2));
-    QMessageBox::information(this, tr("Search plugin install"), tr("%1 search engine plugin was successfully updated.", "%1 is the name of the search engine").arg(plugin_name));
+    QMessageBox::information(this, tr("Search plugin install"), tr("'%1' search engine plugin was successfully updated.", "%1 is the name of the search engine").arg(plugin_name));
     return;
   } else {
-    QMessageBox::information(this, tr("Search plugin install"), tr("%1 search engine plugin was successfully installed.", "%1 is the name of the search engine").arg(plugin_name));
+    QMessageBox::information(this, tr("Search plugin install"), tr("'%1' search engine plugin was successfully installed.", "%1 is the name of the search engine").arg(plugin_name));
     return;
   }
 }
@@ -491,6 +491,6 @@ void engineSelectDlg::handleDownloadFailure(const QString &url, const QString &r
     // a plugin update download has been failed
     QString plugin_name = url.split('/').last();
     plugin_name.replace(".py", "", Qt::CaseInsensitive);
-    QMessageBox::warning(this, tr("Search plugin update"), tr("Sorry, %1 search plugin installation failed.", "%1 is the name of the search engine").arg(plugin_name));
+    QMessageBox::warning(this, tr("Search plugin update"), tr("Sorry, '%1' search plugin installation failed.", "%1 is the name of the search engine").arg(plugin_name));
   }
 }

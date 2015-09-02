@@ -62,7 +62,7 @@ public:
       QItemDelegate::drawBackground(painter, opt, index);
       qreal speed = index.data().toDouble();
       if (speed > 0.0)
-        QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed)+tr("/s", "/second (i.e. per second)"));
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed, true));
       break;
     }
     case PROGRESS:

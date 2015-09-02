@@ -86,9 +86,9 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
         QString filter;
         if (!extension.isEmpty()) {
             extension = extension.toUpper();
-            filter = tr("%1 Files", "%1 is a file extension (e.g. PDF)").arg(extension) + " (*." + extension + ")";
+            filter = tr("'%1' Files", "%1 is a file extension (e.g. PDF)").arg(extension) + " (*." + extension + ")";
         }
-        m_contentPath = QFileDialog::getOpenFileName(this, tr("Please provide the location of %1", "%1 is a file name").arg(file_name), default_dir, filter);
+        m_contentPath = QFileDialog::getOpenFileName(this, tr("Please provide the location of '%1'", "%1 is a file name").arg(file_name), default_dir, filter);
         if (m_contentPath.isEmpty() || !QFile(m_contentPath).exists()) {
             m_contentPath = QString::null;
             ui->importBtn->setEnabled(false);

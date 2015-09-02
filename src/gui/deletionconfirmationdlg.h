@@ -45,7 +45,7 @@ class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
   DeletionConfirmationDlg(QWidget *parent, const int &size, const QString &name): QDialog(parent) {
     setupUi(this);
     if (size == 1)
-      label->setText(tr("Are you sure you want to delete \"%1\" from the transfer list?", "Are you sure you want to delete \"ubuntu-linux-iso\" from the transfer list?").arg(name));
+      label->setText(tr("Are you sure you want to delete '%1' from the transfer list?", "Are you sure you want to delete 'ubuntu-linux-iso' from the transfer list?").arg(name));
     else
       label->setText(tr("Are you sure you want to delete these %1 torrents from the transfer list?", "Are you sure you want to delete these 5 torrents from the transfer list?").arg(QString::number(size)));
     // Icons

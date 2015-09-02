@@ -1491,13 +1491,13 @@ void TorrentHandle::handleFastResumeRejectedAlert(libtorrent::fastresume_rejecte
     updateStatus();
     if (p->error.value() == libt::errors::mismatching_file_size) {
         // Mismatching file size (files were probably moved)
-        logger->addMessage(tr("File sizes mismatch for torrent %1, pausing it.").arg(name()), Log::CRITICAL);
+        logger->addMessage(tr("File sizes mismatch for torrent '%1', pausing it.").arg(name()), Log::CRITICAL);
         m_hasMissingFiles = true;
         if (!isPaused())
             pause();
     }
     else {
-        logger->addMessage(tr("Fast resume data was rejected for torrent %1. Reason: %2. Checking again...")
+        logger->addMessage(tr("Fast resume data was rejected for torrent '%1'. Reason: %2. Checking again...")
                            .arg(name()).arg(Utils::String::fromStdString(p->message())), Log::CRITICAL);
     }
 }

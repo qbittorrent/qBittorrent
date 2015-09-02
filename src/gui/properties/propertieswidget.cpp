@@ -358,17 +358,30 @@ void PropertiesWidget::loadDynamicData() {
     switch(stackedProperties->currentIndex()) {
     case PropTabBar::MAIN_TAB: {
         wasted->setText(Utils::Misc::friendlyUnit(m_torrent->wastedSize()));
-        upTotal->setText(Utils::Misc::friendlyUnit(m_torrent->totalUpload()) + " ("+Utils::Misc::friendlyUnit(m_torrent->totalPayloadUpload())+" "+tr("this session")+")");
-        dlTotal->setText(Utils::Misc::friendlyUnit(m_torrent->totalDownload()) + " ("+Utils::Misc::friendlyUnit(m_torrent->totalPayloadDownload())+" "+tr("this session")+")");
-        lbl_uplimit->setText(m_torrent->uploadLimit() <= 0 ? QString::fromUtf8(C_INFINITY) : Utils::Misc::friendlyUnit(m_torrent->uploadLimit())+tr("/s", "/second (i.e. per second)"));
-        lbl_dllimit->setText(m_torrent->downloadLimit() <= 0 ? QString::fromUtf8(C_INFINITY) : Utils::Misc::friendlyUnit(m_torrent->downloadLimit())+tr("/s", "/second (i.e. per second)"));
-        QString elapsed_txt = Utils::Misc::userFriendlyDuration(m_torrent->activeTime());
-        if (m_torrent->isSeed())
-            elapsed_txt += " ("+tr("seeded for %1", "e.g. seeded for 3m10s").arg(Utils::Misc::userFriendlyDuration(m_torrent->seedingTime()))+")";
 
+        upTotal->setText(tr("%1 (%2 this session)").arg(Utils::Misc::friendlyUnit(m_torrent->totalUpload()))
+                                                    .arg(Utils::Misc::friendlyUnit(m_torrent->totalPayloadUpload())));
+
+        dlTotal->setText(tr("%1 (%2 this session)").arg(Utils::Misc::friendlyUnit(m_torrent->totalDownload()))
+                                                    .arg(Utils::Misc::friendlyUnit(m_torrent->totalPayloadDownload())));
+
+        lbl_uplimit->setText(m_torrent->uploadLimit() <= 0 ? QString::fromUtf8(C_INFINITY) : Utils::Misc::friendlyUnit(m_torrent->uploadLimit(), true));
+
+        lbl_dllimit->setText(m_torrent->downloadLimit() <= 0 ? QString::fromUtf8(C_INFINITY) : Utils::Misc::friendlyUnit(m_torrent->downloadLimit(), true));
+
+        QString elapsed_txt;
+        if (m_torrent->isSeed())
+            elapsed_txt = tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
+                            .arg(Utils::Misc::userFriendlyDuration(m_torrent->activeTime()))
+                            .arg(Utils::Misc::userFriendlyDuration(m_torrent->seedingTime()));
+        else
+            elapsed_txt = Utils::Misc::userFriendlyDuration(m_torrent->activeTime());
         lbl_elapsed->setText(elapsed_txt);
 
-        lbl_connections->setText(QString::number(m_torrent->connectionsCount()) + " (" + tr("%1 max", "e.g. 10 max").arg(QString::number(m_torrent->connectionsLimit())) + ")");
+        lbl_connections->setText(tr("%1 (%2 max)", "%1 and %2 are numbers, e.g. 3 (10 max)")
+                                .arg(m_torrent->connectionsCount() < 0 ? QString::fromUtf8(C_INFINITY) : QString::number(m_torrent->connectionsCount()))
+                                .arg(QString::number(m_torrent->connectionsLimit())));
+
         label_eta_val->setText(Utils::Misc::userFriendlyDuration(m_torrent->eta()));
 
         // Update next announce time
@@ -378,16 +391,26 @@ void PropertiesWidget::loadDynamicData() {
         const qreal ratio = m_torrent->realRatio();
         shareRatio->setText(ratio > BitTorrent::TorrentHandle::MAX_RATIO ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(ratio, 2));
 
-        label_seeds_val->setText(QString::number(m_torrent->seedsCount()) + " " + tr("(%1 total)","e.g. (10 total)").arg(QString::number(m_torrent->totalSeedsCount())));
-        label_peers_val->setText(QString::number(m_torrent->leechsCount()) + " " + tr("(%1 total)","e.g. (10 total)").arg(QString::number(m_torrent->totalLeechersCount())));
+        label_seeds_val->setText(tr("%1 (%2 total)", "%1 and %2 are numbers, e.g. 3 (10 total)")
+                                .arg(QString::number(m_torrent->seedsCount()))
+                                .arg(QString::number(m_torrent->totalSeedsCount())));
 
-        label_dl_speed_val->setText(Utils::Misc::friendlyUnit(m_torrent->downloadPayloadRate()) + tr("/s", "/second (i.e. per second)") + " "
-                                    + tr("(%1/s avg.)","e.g. (100KiB/s avg.)").arg(Utils::Misc::friendlyUnit(m_torrent->totalDownload() / (1 + m_torrent->activeTime() - m_torrent->finishedTime()))));
-        label_upload_speed_val->setText(Utils::Misc::friendlyUnit(m_torrent->uploadPayloadRate()) + tr("/s", "/second (i.e. per second)") + " "
-                                        + tr("(%1/s avg.)", "e.g. (100KiB/s avg.)").arg(Utils::Misc::friendlyUnit(m_torrent->totalUpload() / (1 + m_torrent->activeTime()))));
+        label_peers_val->setText(tr("%1 (%2 total)", "%1 and %2 are numbers, e.g. 3 (10 total)")
+                                .arg(QString::number(m_torrent->leechsCount()))
+                                .arg(QString::number(m_torrent->totalLeechersCount())));
+
+        label_dl_speed_val->setText(tr("%1 (%2 avg.)", "%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)")
+                                        .arg(Utils::Misc::friendlyUnit(m_torrent->downloadPayloadRate(), true))
+                                        .arg(m_torrent->totalDownload() / (1 + m_torrent->activeTime() - m_torrent->finishedTime()), true));
+
+        label_upload_speed_val->setText(tr("%1 (%2 avg.)", "%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)")
+                                        .arg(Utils::Misc::friendlyUnit(m_torrent->uploadPayloadRate(), true))
+                                        .arg(Utils::Misc::friendlyUnit(m_torrent->totalUpload() / (1 + m_torrent->activeTime())), true));
 
         label_last_complete_val->setText(m_torrent->lastSeenComplete().isValid() ? m_torrent->lastSeenComplete().toString(Qt::DefaultLocaleShortDate) : tr("Never"));
+
         label_completed_on_val->setText(m_torrent->completedTime().isValid() ? m_torrent->completedTime().toString(Qt::DefaultLocaleShortDate) : "");
+
         label_added_on_val->setText(m_torrent->addedTime().toString(Qt::DefaultLocaleShortDate));
 
         if (m_torrent->hasMetadata()) {
