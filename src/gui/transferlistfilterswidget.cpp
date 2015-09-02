@@ -644,6 +644,8 @@ void TrackerFiltersList::handleFavicoFailure(const QString& url, const QString& 
     // that.
     Logger::instance()->addMessage(tr("Couldn't download favicon for URL `%1`. Reason: `%2`").arg(url).arg(error),
                                    Log::WARNING);
+    if (url.endsWith(".ico", Qt::CaseInsensitive))
+        m_downloader->downloadUrl(url.left(url.size() - 4) + ".png");
 }
 
 void TrackerFiltersList::showMenu(QPoint)
