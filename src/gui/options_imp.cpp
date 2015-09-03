@@ -423,6 +423,7 @@ void options_imp::saveOptions() {
   pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
   pref->setActionOnDblClOnTorrentFn(getActionOnDblClOnTorrentFn());
   // End Downloads preferences
+
   // Connection preferences
   pref->setSessionPort(getPort());
   pref->setRandomPort(checkRandomPort->isChecked());
@@ -539,8 +540,9 @@ void options_imp::loadOptions() {
   int intValue;
   qreal floatValue;
   QString strValue;
-  // General preferences
   const Preferences* const pref = Preferences::instance();
+
+  // General preferences
   setLocale(pref->getLocale());
   confirmDeletion->setChecked(pref->confirmTorrentDeletion());
   checkAltRowColors->setChecked(pref->useAlternatingRowColors());
@@ -560,15 +562,18 @@ void options_imp::loadOptions() {
 
 #ifdef Q_OS_WIN
   checkStartup->setChecked(pref->WinStartup());
-  // Windows: file association settings
   checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
   checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
 #endif
   // End General preferences
+
   // Downloads preferences
+  checkAdditionDialog->setChecked(pref->useAdditionDialog());
+  checkAdditionDialogFront->setChecked(pref->additionDialogFront());
+  checkStartPaused->setChecked(pref->addTorrentsInPause());
+
   textSavePath->setText(Utils::Fs::toNativePath(pref->getSavePath()));
   if (pref->isTempPathEnabled()) {
-    // enable
     checkTempFolder->setChecked(true);
   } else {
     checkTempFolder->setChecked(false);
@@ -577,16 +582,13 @@ void options_imp::loadOptions() {
   checkAppendLabel->setChecked(pref->appendTorrentLabel());
   checkAppendqB->setChecked(pref->useIncompleteFilesExtension());
   checkPreallocateAll->setChecked(pref->preAllocateAllFiles());
-  checkAdditionDialog->setChecked(pref->useAdditionDialog());
-  checkAdditionDialogFront->setChecked(pref->additionDialogFront());
-  checkStartPaused->setChecked(pref->addTorrentsInPause());
 
   strValue = Utils::Fs::toNativePath(pref->getTorrentExportDir());
   if (strValue.isEmpty()) {
     // Disable
     checkExportDir->setChecked(false);
   } else {
-    // enable
+    // Enable
     checkExportDir->setChecked(true);
     textExportDir->setText(strValue);
   }
@@ -596,10 +598,11 @@ void options_imp::loadOptions() {
     // Disable
     checkExportDirFin->setChecked(false);
   } else {
-    // enable
+    // Enable
     checkExportDirFin->setChecked(true);
     textExportDirFin->setText(strValue);
   }
+
   groupMailNotification->setChecked(pref->isMailNotificationEnabled());
   dest_email_txt->setText(pref->getMailNotificationEmail());
   smtp_server_txt->setText(pref->getMailNotificationSMTP());
@@ -607,6 +610,7 @@ void options_imp::loadOptions() {
   groupMailNotifAuth->setChecked(pref->getMailNotificationSMTPAuth());
   mailNotifUsername->setText(pref->getMailNotificationSMTPUsername());
   mailNotifPassword->setText(pref->getMailNotificationSMTPPassword());
+
   autoRunBox->setChecked(pref->isAutoRunEnabled());
   autoRun_txt->setText(pref->getAutoRunProgram());
   intValue = pref->getActionOnDblClOnTorrentDl();
@@ -618,11 +622,90 @@ void options_imp::loadOptions() {
     intValue = 1;
   actionTorrentFnOnDblClBox->setCurrentIndex(intValue);
   // End Downloads preferences
+
   // Connection preferences
-  spinPort->setValue(pref->getSessionPort());
   checkUPnP->setChecked(pref->isUPnPEnabled());
   checkRandomPort->setChecked(pref->useRandomPort());
+  spinPort->setValue(pref->getSessionPort());
   spinPort->setDisabled(checkRandomPort->isChecked());
+
+  intValue = pref->getMaxConnecs();
+  if (intValue > 0) {
+    // enable
+    checkMaxConnecs->setChecked(true);
+    spinMaxConnec->setEnabled(true);
+    spinMaxConnec->setValue(intValue);
+  } else {
+    // disable
+    checkMaxConnecs->setChecked(false);
+    spinMaxConnec->setEnabled(false);
+  }
+  intValue = pref->getMaxConnecsPerTorrent();
+  if (intValue > 0) {
+    // enable
+    checkMaxConnecsPerTorrent->setChecked(true);
+    spinMaxConnecPerTorrent->setEnabled(true);
+    spinMaxConnecPerTorrent->setValue(intValue);
+  } else {
+    // disable
+    checkMaxConnecsPerTorrent->setChecked(false);
+    spinMaxConnecPerTorrent->setEnabled(false);
+  }
+  intValue = pref->getMaxUploads();
+  if (intValue > 0) {
+    // enable
+    checkMaxUploads->setChecked(true);
+    spinMaxUploads->setEnabled(true);
+    spinMaxUploads->setValue(intValue);
+  } else {
+    // disable
+    checkMaxUploads->setChecked(false);
+    spinMaxUploads->setEnabled(false);
+  }
+  intValue = pref->getMaxUploadsPerTorrent();
+  if (intValue > 0) {
+    // enable
+    checkMaxUploadsPerTorrent->setChecked(true);
+    spinMaxUploadsPerTorrent->setEnabled(true);
+    spinMaxUploadsPerTorrent->setValue(intValue);
+  } else {
+    // disable
+    checkMaxUploadsPerTorrent->setChecked(false);
+    spinMaxUploadsPerTorrent->setEnabled(false);
+  }
+
+  intValue = pref->getProxyType();
+  switch(intValue) {
+  case Proxy::SOCKS4:
+    comboProxyType->setCurrentIndex(1);
+    break;
+  case Proxy::SOCKS5:
+  case Proxy::SOCKS5_PW:
+    comboProxyType->setCurrentIndex(2);
+    break;
+  case Proxy::HTTP:
+  case Proxy::HTTP_PW:
+    comboProxyType->setCurrentIndex(3);
+    break;
+  default:
+    comboProxyType->setCurrentIndex(0);
+  }
+  enableProxy(comboProxyType->currentIndex());
+  textProxyIP->setText(pref->getProxyIp());
+  spinProxyPort->setValue(pref->getProxyPort());
+  checkProxyPeerConnecs->setChecked(pref->proxyPeerConnections());
+  checkForceProxy->setChecked(pref->getForceProxy());
+  isProxyOnlyForTorrents->setChecked(pref->isProxyOnlyForTorrents());
+  checkProxyAuth->setChecked(pref->isProxyAuthEnabled());
+  textProxyUsername->setText(pref->getProxyUsername());
+  textProxyPassword->setText(pref->getProxyPassword());
+
+  checkIPFilter->setChecked(pref->isFilteringEnabled());
+  checkIpFilterTrackers->setChecked(pref->isFilteringTrackerEnabled());
+  textFilterPath->setText(Utils::Fs::toNativePath(pref->getFilter()));
+  // End Connection preferences
+
+  // Speed preferences
   intValue = pref->getGlobalDownloadLimit();
   if (intValue > 0) {
     // Enabled
@@ -668,97 +751,31 @@ void options_imp::loadOptions() {
     checkUploadLimitAlt->setChecked(false);
     spinUploadLimitAlt->setEnabled(false);
   }
-  // Options
+
   checkuTP->setChecked(pref->isuTPEnabled());
   checkLimituTPConnections->setChecked(pref->isuTPRateLimited());
   checkLimitTransportOverhead->setChecked(pref->includeOverheadInLimits());
   checkLimitLocalPeerRate->setChecked(!pref->getIgnoreLimitsOnLAN());
-  // Scheduler
+
   check_schedule->setChecked(pref->isSchedulerEnabled());
   schedule_from->setTime(pref->getSchedulerStartTime());
   schedule_to->setTime(pref->getSchedulerEndTime());
   schedule_days->setCurrentIndex((int)pref->getSchedulerDays());
+  // End Speed preferences
 
-  intValue = pref->getProxyType();
-  switch(intValue) {
-  case Proxy::SOCKS4:
-    comboProxyType->setCurrentIndex(1);
-    break;
-  case Proxy::SOCKS5:
-  case Proxy::SOCKS5_PW:
-    comboProxyType->setCurrentIndex(2);
-    break;
-  case Proxy::HTTP:
-  case Proxy::HTTP_PW:
-    comboProxyType->setCurrentIndex(3);
-    break;
-  default:
-    comboProxyType->setCurrentIndex(0);
-  }
-  enableProxy(comboProxyType->currentIndex());
-  //if (isProxyEnabled()) {
-  // Proxy is enabled, save settings
-  textProxyIP->setText(pref->getProxyIp());
-  spinProxyPort->setValue(pref->getProxyPort());
-  checkProxyPeerConnecs->setChecked(pref->proxyPeerConnections());
-  checkForceProxy->setChecked(pref->getForceProxy());
-  isProxyOnlyForTorrents->setChecked(pref->isProxyOnlyForTorrents());
-  checkProxyAuth->setChecked(pref->isProxyAuthEnabled());
-  textProxyUsername->setText(pref->getProxyUsername());
-  textProxyPassword->setText(pref->getProxyPassword());
-  //}
-  // End Connection preferences
   // Bittorrent preferences
-  intValue = pref->getMaxConnecs();
-  if (intValue > 0) {
-    // enable
-    checkMaxConnecs->setChecked(true);
-    spinMaxConnec->setEnabled(true);
-    spinMaxConnec->setValue(intValue);
-  } else {
-    // disable
-    checkMaxConnecs->setChecked(false);
-    spinMaxConnec->setEnabled(false);
-  }
-  intValue = pref->getMaxConnecsPerTorrent();
-  if (intValue > 0) {
-    // enable
-    checkMaxConnecsPerTorrent->setChecked(true);
-    spinMaxConnecPerTorrent->setEnabled(true);
-    spinMaxConnecPerTorrent->setValue(intValue);
-  } else {
-    // disable
-    checkMaxConnecsPerTorrent->setChecked(false);
-    spinMaxConnecPerTorrent->setEnabled(false);
-  }
-  intValue = pref->getMaxUploads();
-  if (intValue > 0) {
-    // enable
-    checkMaxUploads->setChecked(true);
-    spinMaxUploads->setEnabled(true);
-    spinMaxUploads->setValue(intValue);
-  } else {
-    // disable
-    checkMaxUploads->setChecked(false);
-    spinMaxUploads->setEnabled(false);
-  }
-  intValue = pref->getMaxUploadsPerTorrent();
-  if (intValue > 0) {
-    // enable
-    checkMaxUploadsPerTorrent->setChecked(true);
-    spinMaxUploadsPerTorrent->setEnabled(true);
-    spinMaxUploadsPerTorrent->setValue(intValue);
-  } else {
-    // disable
-    checkMaxUploadsPerTorrent->setChecked(false);
-    spinMaxUploadsPerTorrent->setEnabled(false);
-  }
   checkDHT->setChecked(pref->isDHTEnabled());
   checkPeX->setChecked(pref->isPeXEnabled());
   checkLSD->setChecked(pref->isLSDEnabled());
   comboEncryption->setCurrentIndex(pref->getEncryptionSetting());
   checkAnonymousMode->setChecked(pref->isAnonymousModeEnabled());
-  // Ratio limit
+
+  checkEnableQueueing->setChecked(pref->isQueueingSystemEnabled());
+  spinMaxActiveDownloads->setValue(pref->getMaxActiveDownloads());
+  spinMaxActiveUploads->setValue(pref->getMaxActiveUploads());
+  spinMaxActiveTorrents->setValue(pref->getMaxActiveTorrents());
+  checkIgnoreSlowTorrentsForQueueing->setChecked(pref->ignoreSlowTorrentsForQueueing());
+
   floatValue = pref->getGlobalMaxRatio();
   if (floatValue >= 0.) {
     // Enable
@@ -774,20 +791,8 @@ void options_imp::loadOptions() {
   }
   comboRatioLimitAct->setCurrentIndex(pref->getMaxRatioAction());
   // End Bittorrent preferences
-  // Misc preferences
-  // * IP Filter
-  checkIPFilter->setChecked(pref->isFilteringEnabled());
-  checkIpFilterTrackers->setChecked(pref->isFilteringTrackerEnabled());
-  textFilterPath->setText(Utils::Fs::toNativePath(pref->getFilter()));
-  // End IP Filter
-  // Queueing system preferences
-  checkEnableQueueing->setChecked(pref->isQueueingSystemEnabled());
-  spinMaxActiveDownloads->setValue(pref->getMaxActiveDownloads());
-  spinMaxActiveUploads->setValue(pref->getMaxActiveUploads());
-  spinMaxActiveTorrents->setValue(pref->getMaxActiveTorrents());
-  checkIgnoreSlowTorrentsForQueueing->setChecked(pref->ignoreSlowTorrentsForQueueing());
-  // End Queueing system preferences
-  // Web UI
+
+  // Web UI preferences
   checkWebUi->setChecked(pref->isWebUiEnabled());
   spinWebUiPort->setValue(pref->getWebUiPort());
   checkWebUIUPnP->setChecked(pref->useUPnPForWebUIPort());
@@ -797,13 +802,13 @@ void options_imp::loadOptions() {
   textWebUiUsername->setText(pref->getWebUiUsername());
   textWebUiPassword->setText(pref->getWebUiPassword());
   checkBypassLocalAuth->setChecked(!pref->isWebUiLocalAuthEnabled());
-  // Dynamic DNS
+
   checkDynDNS->setChecked(pref->isDynDNSEnabled());
   comboDNSService->setCurrentIndex((int)pref->getDynDNSService());
   domainNameTxt->setText(pref->getDynDomainName());
   DNSUsernameTxt->setText(pref->getDynDNSUsername());
   DNSPasswordTxt->setText(pref->getDynDNSPassword());
-  // End Web UI
+  // End Web UI preferences
 }
 
 // return min & max ports
