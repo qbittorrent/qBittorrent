@@ -34,7 +34,12 @@
 #include "ui_options.h"
 
 // actions on double-click on torrents
-enum DoubleClickAction {TOGGLE_PAUSE, OPEN_DEST, NO_ACTION};
+enum DoubleClickAction
+{
+    TOGGLE_PAUSE,
+    OPEN_DEST,
+    NO_ACTION
+};
 
 class AdvancedSettings;
 
@@ -42,128 +47,137 @@ QT_BEGIN_NAMESPACE
 class QCloseEvent;
 QT_END_NAMESPACE
 
-class options_imp : public QDialog, private Ui_Preferences {
-  Q_OBJECT
+class options_imp: public QDialog, private Ui_Preferences
+{
+    Q_OBJECT
 private:
-  enum Tabs {TAB_UI, TAB_DOWNLOADS, TAB_CONNECTION, TAB_SPEED, TAB_BITTORRENT, TAB_WEBUI, TAB_ADVANCED};
+    enum Tabs
+    {
+        TAB_UI,
+        TAB_DOWNLOADS,
+        TAB_CONNECTION,
+        TAB_SPEED,
+        TAB_BITTORRENT,
+        TAB_WEBUI,
+        TAB_ADVANCED
+    };
 
 public:
-  // Constructor / Destructor
-  options_imp(QWidget *parent=0);
-  ~options_imp();
+    // Constructor / Destructor
+    options_imp(QWidget *parent = 0);
+    ~options_imp();
 
 public slots:
-  void showConnectionTab();
+    void showConnectionTab();
 
 signals:
-  void status_changed() const;
-  void exitWithCancel();
+    void status_changed() const;
+    void exitWithCancel();
 
 private slots:
-  void enableProxy(int comboIndex);
-  void on_buttonBox_accepted();
-  void closeEvent(QCloseEvent *e);
-  void on_buttonBox_rejected();
-  void applySettings(QAbstractButton* button);
-  void enableApplyButton();
-  void changePage(QListWidgetItem*, QListWidgetItem*);
-  void loadWindowState();
-  void saveWindowState() const;
-  void handleScanFolderViewSelectionChanged();
-  void on_IpFilterRefreshBtn_clicked();
-  void handleIPFilterParsed(bool error, int ruleCount);
-  void on_browseExportDirButton_clicked();
-  void on_browseExportDirFinButton_clicked();
-  void on_browseFilterButton_clicked();
-  void on_browseSaveDirButton_clicked();
-  void on_browseTempDirButton_clicked();
-  void on_randomButton_clicked();
-  void on_addScanFolderButton_clicked();
-  void on_removeScanFolderButton_clicked();
-  void on_btnWebUiCrt_clicked();
-  void on_btnWebUiKey_clicked();
-  void on_registerDNSBtn_clicked();
-  void setLocale(const QString &locale);
+    void enableProxy(int comboIndex);
+    void on_buttonBox_accepted();
+    void closeEvent(QCloseEvent *e);
+    void on_buttonBox_rejected();
+    void applySettings(QAbstractButton* button);
+    void enableApplyButton();
+    void changePage(QListWidgetItem*, QListWidgetItem*);
+    void loadWindowState();
+    void saveWindowState() const;
+    void handleScanFolderViewSelectionChanged();
+    void on_IpFilterRefreshBtn_clicked();
+    void handleIPFilterParsed(bool error, int ruleCount);
+    void on_browseExportDirButton_clicked();
+    void on_browseExportDirFinButton_clicked();
+    void on_browseFilterButton_clicked();
+    void on_browseSaveDirButton_clicked();
+    void on_browseTempDirButton_clicked();
+    void on_randomButton_clicked();
+    void on_addScanFolderButton_clicked();
+    void on_removeScanFolderButton_clicked();
+    void on_btnWebUiCrt_clicked();
+    void on_btnWebUiKey_clicked();
+    void on_registerDNSBtn_clicked();
+    void setLocale(const QString &locale);
 
 private:
-  // Methods
-  void saveOptions();
-  void loadOptions();
-  void initializeLanguageCombo();
-  static QString languageToLocalizedString(const QLocale &locale);
-  // General options
-  QString getLocale() const;
-  bool systrayIntegration() const;
-  bool minimizeToTray() const;
-  bool closeToTray() const;
-  bool startMinimized() const;
-  bool isSlashScreenDisabled() const;
-  bool preventFromSuspend() const;
+    // Methods
+    void saveOptions();
+    void loadOptions();
+    void initializeLanguageCombo();
+    static QString languageToLocalizedString(const QLocale &locale);
+    // General options
+    QString getLocale() const;
+    bool systrayIntegration() const;
+    bool minimizeToTray() const;
+    bool closeToTray() const;
+    bool startMinimized() const;
+    bool isSlashScreenDisabled() const;
+    bool preventFromSuspend() const;
 #ifdef Q_OS_WIN
-  bool WinStartup() const;
+    bool WinStartup() const;
 #endif
-  // Downloads
-  QString getSavePath() const;
-  bool isTempPathEnabled() const;
-  QString getTempPath() const;
-  bool preAllocateAllFiles() const;
-  bool useAdditionDialog() const;
-  bool addTorrentsInPause() const;
-  QString getTorrentExportDir() const;
-  QString getFinishedTorrentExportDir() const;
-  QString askForExportDir(const QString& currentExportPath);
-  int getActionOnDblClOnTorrentDl() const;
-  int getActionOnDblClOnTorrentFn() const;
-  // Connection options
-  int getPort() const;
-  bool isUPnPEnabled() const;
-  QPair<int,int> getGlobalBandwidthLimits() const;
-  QPair<int,int> getAltGlobalBandwidthLimits() const;
-  // Bittorrent options
-  int getMaxConnecs() const;
-  int getMaxConnecsPerTorrent() const;
-  int getMaxUploads() const;
-  int getMaxUploadsPerTorrent() const;
-  bool isDHTEnabled() const;
-  bool isLSDEnabled() const;
-  int getEncryptionSetting() const;
-  qreal getMaxRatio() const;
-  // Proxy options
-  bool isProxyEnabled() const;
-  bool isProxyAuthEnabled() const;
-  QString getProxyIp() const;
-  unsigned short getProxyPort() const;
-  QString getProxyUsername() const;
-  QString getProxyPassword() const;
-  int getProxyType() const;
-  // IP Filter
-  bool isFilteringEnabled() const;
-  QString getFilter() const;
-  bool m_refreshingIpFilter;
-  // Queueing system
-  bool isQueueingSystemEnabled() const;
-  int getMaxActiveDownloads() const;
-  int getMaxActiveUploads() const;
-  int getMaxActiveTorrents() const;
-  bool isWebUiEnabled() const;
-  quint16 webUiPort() const;
-  QString webUiUsername() const;
-  QString webUiPassword() const;
-  QSize sizeFittingScreen() const;
+    // Downloads
+    QString getSavePath() const;
+    bool isTempPathEnabled() const;
+    QString getTempPath() const;
+    bool preAllocateAllFiles() const;
+    bool useAdditionDialog() const;
+    bool addTorrentsInPause() const;
+    QString getTorrentExportDir() const;
+    QString getFinishedTorrentExportDir() const;
+    QString askForExportDir(const QString& currentExportPath);
+    int getActionOnDblClOnTorrentDl() const;
+    int getActionOnDblClOnTorrentFn() const;
+    // Connection options
+    int getPort() const;
+    bool isUPnPEnabled() const;
+    QPair<int, int> getGlobalBandwidthLimits() const;
+    QPair<int, int> getAltGlobalBandwidthLimits() const;
+    // Bittorrent options
+    int getMaxConnecs() const;
+    int getMaxConnecsPerTorrent() const;
+    int getMaxUploads() const;
+    int getMaxUploadsPerTorrent() const;
+    bool isDHTEnabled() const;
+    bool isLSDEnabled() const;
+    int getEncryptionSetting() const;
+    qreal getMaxRatio() const;
+    // Proxy options
+    bool isProxyEnabled() const;
+    bool isProxyAuthEnabled() const;
+    QString getProxyIp() const;
+    unsigned short getProxyPort() const;
+    QString getProxyUsername() const;
+    QString getProxyPassword() const;
+    int getProxyType() const;
+    // IP Filter
+    bool isFilteringEnabled() const;
+    QString getFilter() const;
+    bool m_refreshingIpFilter;
+    // Queueing system
+    bool isQueueingSystemEnabled() const;
+    int getMaxActiveDownloads() const;
+    int getMaxActiveUploads() const;
+    int getMaxActiveTorrents() const;
+    bool isWebUiEnabled() const;
+    quint16 webUiPort() const;
+    QString webUiUsername() const;
+    QString webUiPassword() const;
+    QSize sizeFittingScreen() const;
 
 private:
-  void setSslKey(const QByteArray &key, bool interactive = true);
-  void setSslCertificate(const QByteArray &cert, bool interactive = true);
-  bool schedTimesOk();
+    void setSslKey(const QByteArray &key, bool interactive = true);
+    void setSslCertificate(const QByteArray &cert, bool interactive = true);
+    bool schedTimesOk();
 
 private:
-  QButtonGroup choiceLanguage;
-  QAbstractButton *applyButton;
-  AdvancedSettings *advancedSettings;
-  QList<QString> addedScanDirs;
-  // SSL Cert / key
-  QByteArray m_sslCert, m_sslKey;
-
+    QButtonGroup choiceLanguage;
+    QAbstractButton *applyButton;
+    AdvancedSettings *advancedSettings;
+    QList<QString> addedScanDirs;
+    // SSL Cert / key
+    QByteArray m_sslCert, m_sslKey;
 };
 
 #endif
