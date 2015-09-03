@@ -2197,36 +2197,36 @@ void Preferences::setRssOpenFolders(const QStringList &folders)
 QByteArray Preferences::getRssHSplitterState() const
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    return value("rss/qt5/splitter_h").toByteArray();
+    return value("Rss/qt5/splitter_h").toByteArray();
 #else
-    return value("rss/splitter_h").toByteArray();
+    return value("Rss/splitter_h").toByteArray();
 #endif
 }
 
 void Preferences::setRssHSplitterState(const QByteArray &state)
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    setValue("rss/qt5/splitter_h", state);
+    setValue("Rss/qt5/splitter_h", state);
 #else
-    setValue("rss/splitter_h", state);
+    setValue("Rss/splitter_h", state);
 #endif
 }
 
 QByteArray Preferences::getRssVSplitterState() const
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    return value("rss/qt5/splitter_v").toByteArray();
+    return value("Rss/qt5/splitter_v").toByteArray();
 #else
-    return value("rss/splitter_v").toByteArray();
+    return value("Rss/splitter_v").toByteArray();
 #endif
 }
 
 void Preferences::setRssVSplitterState(const QByteArray &state)
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    setValue("rss/qt5/splitter_v", state);
+    setValue("Rss/qt5/splitter_v", state);
 #else
-    setValue("rss/splitter_v", state);
+    setValue("Rss/splitter_v", state);
 #endif
 }
 
