@@ -51,7 +51,7 @@ int FilterParserThread::parseDATFilterFile(QString filePath, libtorrent::ip_filt
     QFile file(filePath);
     if (file.exists()) {
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            std::cerr << "I/O Error: Could not open ip filer file in read mode." << std::endl;
+            std::cerr << "I/O Error: Could not open ip filter file in read mode." << std::endl;
             return ruleCount;
         }
         unsigned int nbLine = 0;
@@ -137,7 +137,7 @@ int FilterParserThread::parseP2PFilterFile(QString filePath, libtorrent::ip_filt
     QFile file(filePath);
     if (file.exists()) {
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            std::cerr << "I/O Error: Could not open ip filer file in read mode." << std::endl;
+            std::cerr << "I/O Error: Could not open ip filter file in read mode." << std::endl;
             return ruleCount;
         }
         unsigned int nbLine = 0;
@@ -229,7 +229,7 @@ int FilterParserThread::parseP2BFilterFile(QString filePath, libtorrent::ip_filt
     QFile file(filePath);
     if (file.exists()) {
         if (!file.open(QIODevice::ReadOnly)) {
-            std::cerr << "I/O Error: Could not open ip filer file in read mode." << std::endl;
+            std::cerr << "I/O Error: Could not open ip filter file in read mode." << std::endl;
             return ruleCount;
         }
         QDataStream stream(&file);

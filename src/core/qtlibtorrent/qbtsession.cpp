@@ -52,6 +52,7 @@
 #include "scannedfoldersmodel.h"
 #include "qtracker.h"
 #include "logger.h"
+#include "unicodestrings.h"
 #ifndef DISABLE_GUI
 #include "shutdownconfirm.h"
 #include "geoipmanager.h"
@@ -1957,7 +1958,7 @@ void QBtSession::updateRatioTimer()
 
 // Enable IP Filtering
 void QBtSession::enableIPFilter(const QString &filter_path, bool force) {
-    qDebug("Enabling IPFiler");
+    qDebug("Enabling IPFilter");
     if (!filterParser) {
         filterParser = new FilterParserThread(this, s);
         connect(filterParser.data(), SIGNAL(IPFilterParsed(int)), SLOT(handleIPFilterParsed(int)));
@@ -2568,10 +2569,10 @@ void QBtSession::handlePeerBlockedAlert(libtorrent::peer_blocked_alert* p)
         reason = tr("because it has a low port.", "this peer was blocked because it has a low port.");
         break;
     case peer_blocked_alert::utp_disabled:
-        reason = tr("because μTP is disabled.", "this peer was blocked because μTP is disabled.");
+        reason = trUtf8("because %1 is disabled.", "this peer was blocked because uTP is disabled.").arg(QString::fromUtf8(C_UTP)); // don't translate μTP
         break;
     case peer_blocked_alert::tcp_disabled:
-        reason = tr("because TCP is disabled.", "this peer was blocked because TCP is disabled.");
+        reason = tr("because %1 is disabled.", "this peer was blocked because TCP is disabled.").arg("TCP"); // don't translate TCP
         break;
     }
 

@@ -40,6 +40,7 @@
 #include "iconprovider.h"
 #include "qtorrenthandle.h"
 #include "logger.h"
+#include "unicodestrings.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QSet>
@@ -460,7 +461,7 @@ QString PeerListWidget::getConnectionString(const peer_info& peer)
 #else
   if (peer.flags & peer_info::utp_socket) {
 #endif
-    return QString::fromUtf8("μTP");
+    return QString::fromUtf8(C_UTP);
   }
 
   QString connection;
@@ -578,7 +579,7 @@ void PeerListWidget::getFlags(const peer_info& peer, QString& flags, QString& to
   if (peer.flags & peer_info::utp_socket) {
 #endif
     flags += "P ";
-    tooltip += QString::fromUtf8("μTP");
+    tooltip += QString::fromUtf8(C_UTP);
     tooltip += ", ";
   }
 
