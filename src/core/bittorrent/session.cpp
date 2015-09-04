@@ -68,6 +68,7 @@ using namespace BitTorrent;
 #include "core/utils/misc.h"
 #include "core/utils/fs.h"
 #include "core/utils/string.h"
+#include "core/unicodestrings.h"
 #include "core/logger.h"
 #include "core/preferences.h"
 #include "core/torrentfilter.h"
@@ -1764,7 +1765,7 @@ void Session::initResumeFolder()
 // Enable IP Filtering
 void Session::enableIPFilter(const QString &filterPath, bool force)
 {
-    qDebug("Enabling IPFiler");
+    qDebug("Enabling IPFilter");
     if (!m_filterParser) {
         m_filterParser = new FilterParserThread(m_nativeSession, this);
         connect(m_filterParser.data(), SIGNAL(IPFilterParsed(int)), SLOT(handleIPFilterParsed(int)));
@@ -2202,10 +2203,10 @@ void Session::handlePeerBlockedAlert(libt::peer_blocked_alert *p)
         reason = tr("because it has a low port.", "this peer was blocked because it has a low port.");
         break;
     case libt::peer_blocked_alert::utp_disabled:
-        reason = tr("because μTP is disabled.", "this peer was blocked because μTP is disabled.");
+        reason = trUtf8("because %1 is disabled.", "this peer was blocked because uTP is disabled.").arg(QString::fromUtf8(C_UTP)); // don't translate μTP
         break;
     case libt::peer_blocked_alert::tcp_disabled:
-        reason = tr("because TCP is disabled.", "this peer was blocked because TCP is disabled.");
+        reason = tr("because %1 is disabled.", "this peer was blocked because TCP is disabled.").arg("TCP"); // don't translate TCP
         break;
     }
 

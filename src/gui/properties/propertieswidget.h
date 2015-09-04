@@ -120,7 +120,7 @@ private:
   DownloadedPiecesBar *downloaded_pieces;
   PieceAvailabilityBar *pieces_availability;
   PropTabBar *m_tabBar;
-  LineEdit *m_contentFilerLine;
+  LineEdit *m_contentFilterLine;
   QShortcut *editHotkeyFile;
   QShortcut *editHotkeyWeb;
   QShortcut *deleteHotkeyWeb;

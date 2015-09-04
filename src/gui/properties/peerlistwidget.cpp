@@ -41,6 +41,7 @@
 #include "core/bittorrent/peerinfo.h"
 #include "core/preferences.h"
 #include "core/logger.h"
+#include "core/unicodestrings.h"
 #include "propertieswidget.h"
 #include "core/net/geoipmanager.h"
 #include "peersadditiondlg.h"
@@ -477,7 +478,7 @@ void PeerListWidget::getFlags(const BitTorrent::PeerInfo &peer, QString& flags, 
 
   if (peer.useUTPSocket()) {
     flags += "P ";
-    tooltip += QString::fromUtf8("μTP");
+    tooltip += QString::fromUtf8(C_UTP);
     tooltip += ", ";
   }
 

@@ -221,7 +221,7 @@ QString errorCodeToString(QNetworkReply::NetworkError status)
     case QNetworkReply::ProxyTimeoutError:
         return QObject::tr("The connection to the proxy timed out or the proxy did not reply in time to the request sent");
     case QNetworkReply::ProxyAuthenticationRequiredError:
-        return QObject::tr("The proxy requires authentication in order to honour the request but did not accept any credentials offered");
+        return QObject::tr("The proxy requires authentication in order to honor the request but did not accept any credentials offered");
     case QNetworkReply::ContentAccessDenied:
         return QObject::tr("The access to the remote content was denied (401)");
     case QNetworkReply::ContentOperationNotPermittedError:

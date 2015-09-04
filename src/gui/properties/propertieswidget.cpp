@@ -80,10 +80,10 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   filesList->setItemDelegate(PropDelegate);
   filesList->setSortingEnabled(true);
   // Torrent content filtering
-  m_contentFilerLine = new LineEdit(this);
-  m_contentFilerLine->setPlaceholderText(tr("Filter files..."));
-  connect(m_contentFilerLine, SIGNAL(textChanged(QString)), this, SLOT(filterText(QString)));
-  contentFilterLayout->insertWidget(4, m_contentFilerLine);
+  m_contentFilterLine = new LineEdit(this);
+  m_contentFilterLine->setPlaceholderText(tr("Filter files..."));
+  connect(m_contentFilterLine, SIGNAL(textChanged(QString)), this, SLOT(filterText(QString)));
+  contentFilterLayout->insertWidget(4, m_contentFilterLine);
 
   // SIGNAL/SLOTS
   connect(filesList, SIGNAL(clicked(const QModelIndex&)), filesList, SLOT(edit(const QModelIndex&)));
@@ -229,7 +229,7 @@ void PropertiesWidget::clear() {
   reannounce_lbl->clear();
   shareRatio->clear();
   listWebSeeds->clear();
-  m_contentFilerLine->clear();
+  m_contentFilterLine->clear();
   PropListModel->model()->clear();
   label_eta_val->clear();
   label_seeds_val->clear();

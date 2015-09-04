@@ -28,6 +28,7 @@
 
 #include "core/net/geoipmanager.h"
 #include "core/utils/string.h"
+#include "core/unicodestrings.h"
 #include "peerinfo.h"
 
 namespace libt = libtorrent;
@@ -238,7 +239,7 @@ QBitArray PeerInfo::pieces() const
 QString PeerInfo::connectionType() const
 {
     if (m_nativeInfo.flags & libt::peer_info::utp_socket)
-        return QString::fromUtf8("μTP");
+        return QString::fromUtf8(C_UTP);
 
     QString connection;
     switch(m_nativeInfo.connection_type) {
