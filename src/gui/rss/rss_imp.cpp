@@ -635,11 +635,11 @@ void RSSImp::saveSlidersPosition()
 void RSSImp::restoreSlidersPosition()
 {
     const Preferences* const pref = Preferences::instance();
-    QByteArray pos_h = pref->getRssHSplitterState();
-    if (!pos_h.isNull())
+    const QByteArray pos_h = pref->getRssHSplitterState();
+    if (!pos_h.isEmpty())
         splitter_h->restoreState(pos_h);
-    QByteArray pos_v = pref->getRssVSplitterState();
-    if (!pos_v.isNull())
+    const QByteArray pos_v = pref->getRssVSplitterState();
+    if (!pos_v.isEmpty())
         splitter_v->restoreState(pos_v);
 }
 
