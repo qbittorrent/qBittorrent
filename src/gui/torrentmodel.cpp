@@ -347,6 +347,7 @@ QIcon getIconByState(BitTorrent::TorrentState state)
 
 QColor getColorByState(BitTorrent::TorrentState state)
 {
+    // Color names taken from http://cloford.com/resources/colours/500col.htm
     bool dark = isDarkTheme();
 
     switch (state) {
@@ -366,14 +367,14 @@ QColor getColorByState(BitTorrent::TorrentState state)
         if (!dark)
             return QColor(65, 105, 225); // Royal Blue
         else
-            return QColor(100, 149, 237); // Cornflower Blue
+            return QColor(99, 184, 255); // Steel Blue 1
     case BitTorrent::TorrentState::PausedDownloading:
         return QColor(250, 128, 114); // Salmon
     case BitTorrent::TorrentState::PausedUploading:
         if (!dark)
             return QColor(0, 0, 139); // Dark Blue
         else
-            return QColor(65, 105, 225); // Royal Blue
+            return QColor(79, 148, 205); // Steel Blue 3
     case BitTorrent::TorrentState::Error:
         return QColor(255, 0, 0); // red
     case BitTorrent::TorrentState::QueuedDownloading:
@@ -382,7 +383,10 @@ QColor getColorByState(BitTorrent::TorrentState state)
     case BitTorrent::TorrentState::CheckingUploading:
     case BitTorrent::TorrentState::QueuedForChecking:
     case BitTorrent::TorrentState::CheckingResumeData:
-        return QColor(0, 128, 128); // Teal
+        if (!dark)
+            return QColor(0, 128, 128); // Teal
+        else
+            return QColor(0, 205, 205); // Cyan 3
     case BitTorrent::TorrentState::Unknown:
         return QColor(255, 0, 0); // red
     default:
