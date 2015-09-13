@@ -32,6 +32,7 @@
 
 #include "preferences.h"
 #include "qinisettings.h"
+#include "logger.h"
 
 #include <QCryptographicHash>
 #include <QPair>
@@ -68,12 +69,12 @@ Preferences::Preferences()
     QStringList keys = settings_new->allKeys();
     bool use_new = false;
 
-
     // This means that the PC closed either due to power outage
     // or because the disk was full. In any case the settings weren't transfered
     // in their final position. So assume that qbittorrent_new.ini/qbittorrent_new.conf
     // contains the most recent settings.
     if (!keys.isEmpty()) {
+        Logger::instance()->addMessage(tr("Detected unclean program exit. Using fallback file to restore settings."), Log::WARNING);
         use_new = true;
         dirty = true;
     }
@@ -101,7 +102,9 @@ Preferences::Preferences()
     //Ensures sync to disk before we attempt to manipulate the files from save().
     delete settings;
 #ifndef Q_OS_MAC
+    QString new_path = settings_new->fileName();
     delete settings_new;
+    Utils::Fs::forceRemove(new_path);
 
     if (use_new)
         save();
@@ -138,7 +141,7 @@ void Preferences::freeInstance()
 
 bool Preferences::save()
 {
-    QReadLocker locker(&lock);
+    QWriteLocker locker(&lock);
 
     if (!dirty) return false;
 
@@ -161,11 +164,19 @@ bool Preferences::save()
 
 #ifndef Q_OS_MAC
     settings->sync(); // Important to get error status
-    if (settings->status() == QSettings::AccessError) {
+    QString new_path = settings->fileName();
+    QSettings::Status status = settings->status();
+
+    if (status != QSettings::NoError) {
+        if (status == QSettings::AccessError)
+            Logger::instance()->addMessage(tr("An access error occurred while trying to write the configuration file."), Log::CRITICAL);
+        else
+            Logger::instance()->addMessage(tr("A format error occurred while trying to write the configuration file."), Log::CRITICAL);
+
         delete settings;
+        Utils::Fs::forceRemove(new_path);
         return false;
     }
-    QString new_path = settings->fileName();
     delete settings;
     QString final_path = new_path;
     int index = final_path.lastIndexOf("_new", -1, Qt::CaseInsensitive);
