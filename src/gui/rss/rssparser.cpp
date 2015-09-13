@@ -257,7 +257,13 @@ void RssParser::parseRssArticle(QXmlStreamReader& xml, const QString& feedUrl)
         article["title"] = xml.readElementText().trimmed();
       else if (xml.name() == "enclosure") {
         if (xml.attributes().value("type") == "application/x-bittorrent")
-          article["torrent_url"] = xml.attributes().value("url").toString();
+        {
+            QString link = xml.attributes().value("url").toString();
+            if (link.startsWith("magnet:", Qt::CaseInsensitive))
+              article["torrent_url"] = link;
+            else
+              article["news_link"] = link;
+        }
       }
       else if (xml.name() == "link") {
         QString link = xml.readElementText().trimmed();
@@ -265,6 +271,11 @@ void RssParser::parseRssArticle(QXmlStreamReader& xml, const QString& feedUrl)
           article["torrent_url"] = link; // magnet link instead of a news URL
         else
           article["news_link"] = link;
+      }
+      else if(xml.name() == "magnetURI") {
+        QString link = xml.readElementText().trimmed().toAscii();
+        if (link.startsWith("magnet:", Qt::CaseInsensitive))
+          article["torrent_url"] = link; // magnet link instead of a news URL
       }
       else if (xml.name() == "description")
         article["description"] = xml.readElementText().trimmed();
