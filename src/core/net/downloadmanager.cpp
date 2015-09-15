@@ -88,6 +88,9 @@ DownloadHandler *DownloadManager::downloadUrl(const QString &url, bool saveToFil
     // Spoof Firefox 38 user agent to avoid web server banning
     request.setRawHeader("User-Agent", "Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0");
 
+    // Spoof HTTP Referer to allow adding torrent link from Torcache/KickAssTorrents
+    request.setRawHeader("Referer", request.url().toEncoded().data());
+
     qDebug("Downloading %s...", request.url().toEncoded().data());
     // accept gzip
     request.setRawHeader("Accept-Encoding", "gzip");
