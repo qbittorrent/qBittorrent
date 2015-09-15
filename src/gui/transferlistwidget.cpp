@@ -782,6 +782,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
     bool all_same_sequential_download_mode = true, all_same_prio_firstlast = true;
     bool sequential_download_mode = false, prioritize_first_last = false;
     bool one_has_metadata = false, one_not_seed = false;
+    bool all_same_label = true;
+    QString first_label;
     bool first = true;
     QTorrentHandle h;
     qDebug("Displaying menu");
@@ -791,6 +793,12 @@ void TransferListWidget::displayListMenu(const QPoint&)
         // Get handle and pause the torrent
         h = BTSession->getTorrentHandle(hash);
         if (!h.is_valid()) continue;
+
+        if (first_label.isEmpty() && first)
+            first_label = listModel->data(listModel->index(mapToSource(index).row(), TorrentModelItem::TR_LABEL)).toString();
+
+        all_same_label = (first_label == (listModel->data(listModel->index(mapToSource(index).row(), TorrentModelItem::TR_LABEL)).toString()));
+
         if (h.has_metadata())
             one_has_metadata = true;
         if (!h.is_seed()) {
@@ -832,8 +840,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
         first = false;
 
         if (one_has_metadata && one_not_seed && !all_same_sequential_download_mode
-            && !all_same_prio_firstlast && !all_same_super_seeding && needs_start
-            && needs_force && needs_pause && needs_preview) {
+            && !all_same_prio_firstlast && !all_same_super_seeding && !all_same_label
+            && needs_start && needs_force && needs_pause && needs_preview) {
             break;
         }
     }
@@ -860,7 +868,13 @@ void TransferListWidget::displayListMenu(const QPoint&)
     labelMenu->addSeparator();
     foreach (QString label, customLabels) {
         label.replace('&', "&&");  // avoid '&' becomes accelerator key
-        labelActions << labelMenu->addAction(IconProvider::instance()->getIcon("inode-directory"), label);
+        QAction *lb = new QAction(IconProvider::instance()->getIcon("inode-directory"), label, labelMenu);
+        if (all_same_label && (label == first_label)) {
+            lb->setCheckable(true);
+            lb->setChecked(true);
+        }
+        labelMenu->addAction(lb);
+        labelActions << lb;
     }
     listMenu.addSeparator();
     if (one_not_seed)
