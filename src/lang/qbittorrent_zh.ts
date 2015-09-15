@@ -989,7 +989,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../core/downloadthread.cpp" line="279"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
-        <translation type="unfinished"></translation>
+        <translation>代理服务器要求身份验证以确认请求但不接受任何提供的凭据</translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="281"/>
@@ -1537,7 +1537,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="244"/>
         <source>Top Priority</source>
-        <translation>高优先级</translation>
+        <translation>最低优先级</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="252"/>
@@ -2702,7 +2702,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/options.ui" line="261"/>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>删除torrents时进行确认</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="369"/>
@@ -2883,7 +2883,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/options.ui" line="1695"/>
         <source>Apply rate limit to peers on LAN</source>
-        <translation type="unfinished"></translation>
+        <translation>对本地网络用户进行速度限制</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1837"/>
@@ -3079,6 +3079,21 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../gui/options.ui" line="1485"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>过滤器路径(.dat, .p2p, .p2b)：</translation>
+    </message>
+    <message>
+        <location filename="../core/preferences.cpp" line="76"/>
+        <source>Detected unclean program exit. Using fallback file to restore settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/preferences.cpp" line="169"/>
+        <source>An access error occurred while trying to write the configuration file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/preferences.cpp" line="171"/>
+        <source>A format error occurred while trying to write the configuration file.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3835,13 +3850,13 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2572"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
-        <translation type="unfinished"></translation>
+        <translation>因为 %1 是禁用的</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2575"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
-        <translation type="unfinished"></translation>
+        <translation>因为 %1 是禁用的</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2599"/>
@@ -4074,7 +4089,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/rss/rss.ui" line="124"/>
         <source>Torrents: (double-click to download)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrents: (双击下载)</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="158"/>
@@ -4175,12 +4190,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="252"/>
         <source>Deletion confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>确认删除</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="253"/>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation type="unfinished"></translation>
+        <translation>您确定要删除选中的RSS订阅吗?</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="415"/>
@@ -4223,7 +4238,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/rss/rssfeed.cpp" line="371"/>
         <source>Automatic download %1 from %2 RSS feed failed because it doesn&apos;t contain a torrent or a magnet link...</source>
-        <translation type="unfinished"></translation>
+        <translation>从 %2 订阅源自动下载 %1 失败，因为 %2 订阅源没有包含任何torrent或者磁力链接...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeed.cpp" line="376"/>
@@ -4406,7 +4421,7 @@ No further notices will be issued.</source>
         <location filename="../searchengine/searchengine.cpp" line="329"/>
         <source>Results &lt;i&gt;(%1)&lt;/i&gt;:</source>
         <comment>i.e: Search results</comment>
-        <translation type="unfinished"></translation>
+        <translation>结果 &lt;i&gt;(%1)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="465"/>
@@ -4416,7 +4431,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="553"/>
         <source>Stopped</source>
-        <translation type="unfinished">停止</translation>
+        <translation>已停止</translation>
     </message>
 </context>
 <context>

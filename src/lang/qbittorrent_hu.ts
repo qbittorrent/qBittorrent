@@ -989,7 +989,7 @@ Ezt az információt a böngésző beállításaiból lehet kinyerni.</translati
     <message>
         <location filename="../core/downloadthread.cpp" line="279"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
-        <translation type="unfinished"></translation>
+        <translation>A proxy szerver hitelesítést kíván, de nem fogadta el a megadott belépési adatokat</translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="281"/>
@@ -2702,7 +2702,7 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../gui/options.ui" line="261"/>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent törlés megerősítése</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="369"/>
@@ -2883,7 +2883,7 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../gui/options.ui" line="1695"/>
         <source>Apply rate limit to peers on LAN</source>
-        <translation type="unfinished"></translation>
+        <translation>Korlátok alkalmazása a LAN kapcsolatokra is</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1837"/>
@@ -3079,6 +3079,21 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
         <location filename="../gui/options.ui" line="1485"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Szűrő fájl helye (.dat, .p2p, .p2b):</translation>
+    </message>
+    <message>
+        <location filename="../core/preferences.cpp" line="76"/>
+        <source>Detected unclean program exit. Using fallback file to restore settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/preferences.cpp" line="169"/>
+        <source>An access error occurred while trying to write the configuration file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/preferences.cpp" line="171"/>
+        <source>A format error occurred while trying to write the configuration file.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3835,13 +3850,13 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2572"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
-        <translation type="unfinished"></translation>
+        <translation>mert a %1 ki van kapcsolva.</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2575"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
-        <translation type="unfinished"></translation>
+        <translation>mert a %1 ki van kapcsolva.</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2599"/>
@@ -4074,7 +4089,7 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/rss/rss.ui" line="124"/>
         <source>Torrents: (double-click to download)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent: (duplaklikk a letöltéshez)</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="158"/>
@@ -4175,12 +4190,12 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="252"/>
         <source>Deletion confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Törlés megerősítése</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="253"/>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation type="unfinished"></translation>
+        <translation>Biztos vagy benne, hogy törlöd a kiválasztott RSS hírcsatornát?</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="415"/>
@@ -4223,7 +4238,7 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/rss/rssfeed.cpp" line="371"/>
         <source>Automatic download %1 from %2 RSS feed failed because it doesn&apos;t contain a torrent or a magnet link...</source>
-        <translation type="unfinished"></translation>
+        <translation>Az automatikus letöltés %1 a %2 RSS csatornáról hibába ütközött mert nem tartalmaz torrentet, vagy mágneslinket...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeed.cpp" line="376"/>
@@ -4406,7 +4421,7 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../searchengine/searchengine.cpp" line="329"/>
         <source>Results &lt;i&gt;(%1)&lt;/i&gt;:</source>
         <comment>i.e: Search results</comment>
-        <translation type="unfinished"></translation>
+        <translation>Eredmények &lt;i&gt;(%1)&lt;/i&gt;:</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="465"/>
@@ -4416,7 +4431,7 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../searchengine/searchengine.cpp" line="553"/>
         <source>Stopped</source>
-        <translation type="unfinished">Megállítva</translation>
+        <translation>Megállítva</translation>
     </message>
 </context>
 <context>

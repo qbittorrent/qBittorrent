@@ -989,7 +989,7 @@ Deve obter estas informações nas preferências do seu navegador web.</translat
     <message>
         <location filename="../core/downloadthread.cpp" line="279"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
-        <translation type="unfinished"></translation>
+        <translation>O proxy requer a autenticação do pedido mas não aceitou as credenciais indicadas</translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="281"/>
@@ -2701,7 +2701,7 @@ Tem a certeza que deseja sair?</translation>
     <message>
         <location filename="../gui/options.ui" line="261"/>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmar eliminação de torrents</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="369"/>
@@ -2882,7 +2882,7 @@ Tem a certeza que deseja sair?</translation>
     <message>
         <location filename="../gui/options.ui" line="1695"/>
         <source>Apply rate limit to peers on LAN</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar taxa limite às ligações LAN</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1837"/>
@@ -3078,6 +3078,21 @@ Tem a certeza que deseja sair?</translation>
         <location filename="../gui/options.ui" line="1485"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Filtrar caminho (.dat, .p2p, .p2b):</translation>
+    </message>
+    <message>
+        <location filename="../core/preferences.cpp" line="76"/>
+        <source>Detected unclean program exit. Using fallback file to restore settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/preferences.cpp" line="169"/>
+        <source>An access error occurred while trying to write the configuration file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/preferences.cpp" line="171"/>
+        <source>A format error occurred while trying to write the configuration file.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3834,13 +3849,13 @@ Tem a certeza que deseja sair?</translation>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2572"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
-        <translation type="unfinished"></translation>
+        <translation>porque %1 está inativo.</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2575"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
-        <translation type="unfinished"></translation>
+        <translation>porque %1 está inativo.</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2599"/>
@@ -4073,7 +4088,7 @@ Esta será a única vez que recebe este aviso.</translation>
     <message>
         <location filename="../gui/rss/rss.ui" line="124"/>
         <source>Torrents: (double-click to download)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrents: (duplo clique para transferir)</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="158"/>
@@ -4174,12 +4189,12 @@ Esta será a única vez que recebe este aviso.</translation>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="252"/>
         <source>Deletion confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmação de eliminação</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="253"/>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tem a certeza de que deseja eliminar as fontes RSS selecionadas?</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="415"/>
@@ -4222,7 +4237,7 @@ Esta será a única vez que recebe este aviso.</translation>
     <message>
         <location filename="../gui/rss/rssfeed.cpp" line="371"/>
         <source>Automatic download %1 from %2 RSS feed failed because it doesn&apos;t contain a torrent or a magnet link...</source>
-        <translation type="unfinished"></translation>
+        <translation>A transferência automática de %1 da fonte RSS %s falhou porque não possui um torrent ou ligação magnet.</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeed.cpp" line="376"/>
@@ -4405,7 +4420,7 @@ Esta será a única vez que recebe este aviso.</translation>
         <location filename="../searchengine/searchengine.cpp" line="329"/>
         <source>Results &lt;i&gt;(%1)&lt;/i&gt;:</source>
         <comment>i.e: Search results</comment>
-        <translation type="unfinished"></translation>
+        <translation>Resultados &lt;i&gt;(%1)&lt;/i&gt;:</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="465"/>
@@ -4415,7 +4430,7 @@ Esta será a única vez que recebe este aviso.</translation>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="553"/>
         <source>Stopped</source>
-        <translation type="unfinished">Parado</translation>
+        <translation>Parado</translation>
     </message>
 </context>
 <context>

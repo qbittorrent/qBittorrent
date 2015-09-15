@@ -989,7 +989,7 @@ Anda seharusnya mendapatkan informasi ini dari preferensi peramban Web Anda.</tr
     <message>
         <location filename="../core/downloadthread.cpp" line="279"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
-        <translation type="unfinished"></translation>
+        <translation>Proksi membutuhkan otentikasi dalam rangka menghormati permintaan tetapi tidak menerima kredensial apapun yang ditawarkan</translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="281"/>
@@ -2443,12 +2443,12 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
     <message>
         <location filename="../gui/options.ui" line="1681"/>
         <source>Apply rate limit to uTP connections</source>
-        <translation>Terapkan batas laju ke koneksi uTP</translation>
+        <translation>Terapkan batas laju untuk koneksi uTP</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1688"/>
         <source>Apply rate limit to transport overhead</source>
-        <translation>Terapkan batas laju ke overhead transpor</translation>
+        <translation>Terapkan batas laju untuk overhead transpor</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1708"/>
@@ -2702,7 +2702,7 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
     <message>
         <location filename="../gui/options.ui" line="261"/>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfirmasi ketika menghapus torrent</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="369"/>
@@ -2853,7 +2853,7 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
     <message>
         <location filename="../gui/options.ui" line="1391"/>
         <source>Disable connections not supported by proxies</source>
-        <translation>Nonaktifkan koneksi yang tidak didukung oleh proxy</translation>
+        <translation>Nonaktifkan koneksi yang tidak didukung oleh proksi</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1460"/>
@@ -2883,7 +2883,7 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
     <message>
         <location filename="../gui/options.ui" line="1695"/>
         <source>Apply rate limit to peers on LAN</source>
-        <translation type="unfinished"></translation>
+        <translation>Terapkan batas laju untuk peer pada LAN</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1837"/>
@@ -3079,6 +3079,21 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <location filename="../gui/options.ui" line="1485"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Jalur penyaring (.dat, .p2p, .p2b):</translation>
+    </message>
+    <message>
+        <location filename="../core/preferences.cpp" line="76"/>
+        <source>Detected unclean program exit. Using fallback file to restore settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/preferences.cpp" line="169"/>
+        <source>An access error occurred while trying to write the configuration file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/preferences.cpp" line="171"/>
+        <source>A format error occurred while trying to write the configuration file.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3551,7 +3566,7 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="418"/>
         <source>HTTP User-Agent is %1</source>
-        <translation>HTTP User-Agent adalah %1</translation>
+        <translation>User-Agent HTTP adalah %1</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="445"/>
@@ -3835,13 +3850,13 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2572"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
-        <translation type="unfinished"></translation>
+        <translation>karena %1 dinonaktifkan.</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2575"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
-        <translation type="unfinished"></translation>
+        <translation>karena %1 dinonaktifkan.</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2599"/>
@@ -4074,7 +4089,7 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     <message>
         <location filename="../gui/rss/rss.ui" line="124"/>
         <source>Torrents: (double-click to download)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent: (klik dua kali untuk mengunduh)</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="158"/>
@@ -4175,12 +4190,12 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="252"/>
         <source>Deletion confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfirmasi penghapusan</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="253"/>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation type="unfinished"></translation>
+        <translation>Apakah Anda yakin ingin menghapus umpan RSS yang dipilih?</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="415"/>
@@ -4223,7 +4238,7 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     <message>
         <location filename="../gui/rss/rssfeed.cpp" line="371"/>
         <source>Automatic download %1 from %2 RSS feed failed because it doesn&apos;t contain a torrent or a magnet link...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pengunduhan otomatis %1 dari %2 umpan RSS gagal karena tidak mengandung tautan torrent atau magnet...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeed.cpp" line="376"/>
@@ -4406,7 +4421,7 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
         <location filename="../searchengine/searchengine.cpp" line="329"/>
         <source>Results &lt;i&gt;(%1)&lt;/i&gt;:</source>
         <comment>i.e: Search results</comment>
-        <translation type="unfinished"></translation>
+        <translation>Hasil &lt;i&gt;(%1)&lt;/i&gt;:</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="465"/>
@@ -4416,7 +4431,7 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="553"/>
         <source>Stopped</source>
-        <translation type="unfinished">Dihentikan</translation>
+        <translation>Dihentikan</translation>
     </message>
 </context>
 <context>

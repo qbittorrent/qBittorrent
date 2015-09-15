@@ -989,7 +989,7 @@ Du bør få denne informasjonen fra innstillingene til nettleseren din.</transla
     <message>
         <location filename="../core/downloadthread.cpp" line="279"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
-        <translation type="unfinished"></translation>
+        <translation>Mellomtjeneren krever autentisering for å hedre forespørselen, men aksepterte ikke noen av de oppgitte referansene</translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="281"/>
@@ -2228,7 +2228,7 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="186"/>
         <source>Ban peer permanently</source>
-        <translation>Bann deltaker permanent</translation>
+        <translation>Bannlys deltaker permanent</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="197"/>
@@ -2254,7 +2254,7 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="232"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation>Er du sikker på at du vil banne de valgte deltakerne permanent?</translation>
+        <translation>Er du sikker på at du vil bannlyse de valgte deltakerne permanent?</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="233"/>
@@ -2269,7 +2269,7 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="240"/>
         <source>Manually banning peer %1...</source>
-        <translation>Banner manuelt deltaker %1...</translation>
+        <translation>Bannlyser manuelt deltaker %1...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="263"/>
@@ -2702,7 +2702,7 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
     <message>
         <location filename="../gui/options.ui" line="261"/>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Bekreft ved sletting av torrenter</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="369"/>
@@ -2883,7 +2883,7 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
     <message>
         <location filename="../gui/options.ui" line="1695"/>
         <source>Apply rate limit to peers on LAN</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk forholdsgrense for deltakere på lokalnett</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1837"/>
@@ -3079,6 +3079,21 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
         <location filename="../gui/options.ui" line="1485"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Filtersti (.dat, .p2p, .p2b):</translation>
+    </message>
+    <message>
+        <location filename="../core/preferences.cpp" line="76"/>
+        <source>Detected unclean program exit. Using fallback file to restore settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/preferences.cpp" line="169"/>
+        <source>An access error occurred while trying to write the configuration file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/preferences.cpp" line="171"/>
+        <source>A format error occurred while trying to write the configuration file.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3661,7 +3676,7 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1031"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation>Ikke i stand til å dekode torrentfilen: &apos;%1&apos;</translation>
+        <translation>Ikke i stand til å dekode torrentfil: &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1034"/>
@@ -3835,13 +3850,13 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2572"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
-        <translation type="unfinished"></translation>
+        <translation>fordi %1 er deaktivert.</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2575"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
-        <translation type="unfinished"></translation>
+        <translation>fordi %1 er deaktivert.</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2599"/>
@@ -4074,7 +4089,7 @@ Ingen flere notiser vil bli gitt.</translation>
     <message>
         <location filename="../gui/rss/rss.ui" line="124"/>
         <source>Torrents: (double-click to download)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenter: (dobbel-klikk for å laste ned)</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="158"/>
@@ -4175,12 +4190,12 @@ Ingen flere notiser vil bli gitt.</translation>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="252"/>
         <source>Deletion confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Slettingsbekreftelse</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="253"/>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation type="unfinished"></translation>
+        <translation>Er du sikker på at du vil slette de valgte nyhetsmatingene?</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="415"/>
@@ -4223,7 +4238,7 @@ Ingen flere notiser vil bli gitt.</translation>
     <message>
         <location filename="../gui/rss/rssfeed.cpp" line="371"/>
         <source>Automatic download %1 from %2 RSS feed failed because it doesn&apos;t contain a torrent or a magnet link...</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisk nedlasting %1 fra %2 nyhetsmating mislyktes, fordi den ikke inneholder en torrent eller en magnetlenke...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeed.cpp" line="376"/>
@@ -4406,7 +4421,7 @@ Ingen flere notiser vil bli gitt.</translation>
         <location filename="../searchengine/searchengine.cpp" line="329"/>
         <source>Results &lt;i&gt;(%1)&lt;/i&gt;:</source>
         <comment>i.e: Search results</comment>
-        <translation type="unfinished"></translation>
+        <translation>Resultater &lt;i&gt;(%1)&lt;/i&gt;:</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="465"/>
@@ -4416,7 +4431,7 @@ Ingen flere notiser vil bli gitt.</translation>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="553"/>
         <source>Stopped</source>
-        <translation type="unfinished">Stoppet</translation>
+        <translation>Stoppet</translation>
     </message>
 </context>
 <context>
@@ -4838,7 +4853,7 @@ Ingen flere notiser vil bli gitt.</translation>
     <message>
         <location filename="../gui/torrentcreator/torrentcreatordlg.cpp" line="171"/>
         <source>Torrent was created successfully:</source>
-        <translation>Torrenten ble vellykket opprettet:</translation>
+        <translation>Torrent ble vellykket opprettet:</translation>
     </message>
 </context>
 <context>
@@ -6360,7 +6375,7 @@ Disse programtilleggene ble deaktivert.</translation>
         <location filename="../gui/options_imp.cpp" line="1204"/>
         <location filename="../gui/options_imp.cpp" line="1206"/>
         <source>Choose an IP filter file</source>
-        <translation>Velg en IP filter fil</translation>
+        <translation>Velg en IP filterfil</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1272"/>
