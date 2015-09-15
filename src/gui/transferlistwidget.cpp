@@ -672,6 +672,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
     bool all_same_sequential_download_mode = true, all_same_prio_firstlast = true;
     bool sequential_download_mode = false, prioritize_first_last = false;
     bool one_has_metadata = false, one_not_seed = false;
+    bool all_same_label = true;
+    QString first_label;
     bool first = true;
 
     BitTorrent::TorrentHandle *torrent;
@@ -681,6 +683,11 @@ void TransferListWidget::displayListMenu(const QPoint&)
         // Get handle and pause the torrent
         torrent = listModel->torrentHandle(mapToSource(index));
         if (!torrent) continue;
+
+        if (first_label.isEmpty() && first)
+            first_label = torrent->label();
+
+        all_same_label = (first_label == torrent->label());
 
         if (torrent->hasMetadata())
             one_has_metadata = true;
@@ -723,8 +730,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
         first = false;
 
         if (one_has_metadata && one_not_seed && !all_same_sequential_download_mode
-            && !all_same_prio_firstlast && !all_same_super_seeding && needs_start
-            && needs_force && needs_pause && needs_preview) {
+            && !all_same_prio_firstlast && !all_same_super_seeding && !all_same_label
+            && needs_start && needs_force && needs_pause && needs_preview) {
             break;
         }
     }
@@ -751,7 +758,13 @@ void TransferListWidget::displayListMenu(const QPoint&)
     labelMenu->addSeparator();
     foreach (QString label, customLabels) {
         label.replace('&', "&&");  // avoid '&' becomes accelerator key
-        labelActions << labelMenu->addAction(GuiIconProvider::instance()->getIcon("inode-directory"), label);
+        QAction *lb = new QAction(GuiIconProvider::instance()->getIcon("inode-directory"), label, labelMenu);
+        if (all_same_label && (label == first_label)) {
+            lb->setCheckable(true);
+            lb->setChecked(true);
+        }
+        labelMenu->addAction(lb);
+        labelActions << lb;
     }
     listMenu.addSeparator();
     if (one_not_seed)
