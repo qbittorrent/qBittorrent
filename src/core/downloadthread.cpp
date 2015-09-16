@@ -193,6 +193,8 @@ QNetworkReply* DownloadThread::downloadUrl(const QString &url, const QList<QNetw
   QNetworkRequest request(qurl);
   // Spoof Firefox 38 user agent to avoid web server banning
   request.setRawHeader("User-Agent", "Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0");
+  // Spoof HTTP Referer to allow adding torrent link from Torcache/KickAssTorrents
+  request.setRawHeader("Referer", request.url().toEncoded().data());
   qDebug("Downloading %s...", request.url().toEncoded().data());
   qDebug("%d cookies for this URL", m_networkManager.cookieJar()->cookiesForUrl(url).size());
   for (int i=0; i<m_networkManager.cookieJar()->cookiesForUrl(url).size(); ++i) {
