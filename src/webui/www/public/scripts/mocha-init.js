@@ -56,8 +56,8 @@ initializeWindows = function() {
             closable: true,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 500,
-            height: 300
+            width: 450,
+            height: 220
         });
         updateMainData();
     });
@@ -113,15 +113,14 @@ initializeWindows = function() {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 424,
-            height: 80
+            width: 450,
+            height: 100
         });
     }
 
     uploadLimitFN = function() {
         var h = myTable.selectedIds();
         if (h.length) {
-            var hash = h[0];
             new MochaUI.Window({
                 id: 'uploadLimitPage',
                 title: "QBT_TR(Torrent Upload Speed Limiting)QBT_TR",
@@ -132,8 +131,8 @@ initializeWindows = function() {
                 maximizable: false,
                 paddingVertical: 0,
                 paddingHorizontal: 0,
-                width: 424,
-                height: 80
+                width: 450,
+                height: 100
             });
         }
     };
@@ -207,15 +206,14 @@ initializeWindows = function() {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 424,
-            height: 80
+            width: 450,
+            height: 100
         });
     }
 
     downloadLimitFN = function() {
         var h = myTable.selectedIds();
         if (h.length) {
-            var hash = h[0];
             new MochaUI.Window({
                 id: 'downloadLimitPage',
                 title: "QBT_TR(Torrent Download Speed Limiting)QBT_TR",
@@ -226,31 +224,26 @@ initializeWindows = function() {
                 maximizable: false,
                 paddingVertical: 0,
                 paddingHorizontal: 0,
-                width: 424,
-                height: 80
+                width: 450,
+                height: 100
             });
         }
     };
 
     deleteFN = function() {
         var h = myTable.selectedIds();
-        /*if(h.length && confirm('QBT_TR(Are you sure you want to delete the selected torrents from the transfer list?)QBT_TR')) {
-            h.each(function(item, index){
-                new Request({url: 'command/delete', method: 'post', data: {hash: item}}).send();
-            });
-        }*/
         if (h.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
-                title: "QBT_TR(Deletion confirmation - qBittorrent)QBT_TR",
+                title: "QBT_TR(Deletion confirmation)QBT_TR",
                 loadMethod: 'iframe',
-                contentURL: 'confirmdeletion.html?hashes=' + h.join(','),
+                contentURL: 'confirmdeletion.html?hashes=' + h.join("|"),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
                 padding: 10,
-                width: 424,
-                height: 140
+                width: 450,
+                height: 110
             });
             updateMainData();
         }
