@@ -29,10 +29,6 @@
  */
 
 #include <QtGlobal>
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
-#include <QDBusConnection>
-#include "notifications.h"
-#endif
 
 #include <QFileDialog>
 #include <QFileSystemWatcher>
@@ -102,6 +98,7 @@ void qt_mac_set_dock_menu(QMenu *menu);
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , m_posInitialized(false)
+    , notifier(0)
     , force_exit(false)
     , unlockDlgShowing(false)
     , has_python(false)
@@ -628,19 +625,19 @@ void MainWindow::balloonClicked()
 
 void MainWindow::addTorrentFailed(const QString &error) const
 {
-    showNotificationBaloon(tr("Error"), tr("Failed to add torrent: %1").arg(error));
+    notifier->showNotification(tr("Error"), tr("Failed to add torrent: %1").arg(error));
 }
 
 // called when a torrent has finished
 void MainWindow::finishedTorrent(BitTorrent::TorrentHandle *const torrent) const
 {
-    showNotificationBaloon(tr("Download completion"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
+    notifier->notifyTorrentFinished(torrent);
 }
 
 // Notification when disk is full
 void MainWindow::fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const
 {
-    showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occurred for torrent '%1'.\n Reason: %2", "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(torrent->name()).arg(msg));
+    notifier->notifyTorrentIOError(torrent, msg);
 }
 
 void MainWindow::createKeyboardShortcuts()
@@ -715,8 +712,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHand
 
 void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const
 {
-    // Display a message box
-    showNotificationBaloon(tr("URL download error"), tr("Couldn't download file at URL '%1', reason: %2.").arg(url).arg(reason));
+    notifier->notifyUrlDownloadError(url, reason);
 }
 
 void MainWindow::on_actionSet_global_upload_limit_triggered()
@@ -1201,33 +1197,6 @@ void MainWindow::updateGUI()
         setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true)).arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true)).arg(QString::fromUtf8(VERSION)));
 }
 
-void MainWindow::showNotificationBaloon(QString title, QString msg) const
-{
-    if (!Preferences::instance()->useProgramNotification()) return;
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
-    org::freedesktop::Notifications notifications("org.freedesktop.Notifications",
-                                                  "/org/freedesktop/Notifications",
-                                                  QDBusConnection::sessionBus());
-    // Testing for 'notifications.isValid()' isn't helpful here.
-    // If the notification daemon is configured to run 'as needed'
-    // the above check can be false if the daemon wasn't started
-    // by another application. In this case DBus will be able to
-    // start the notification daemon and complete our request. Such
-    // a daemon is xfce4-notifyd, DBus autostarts it and after
-    // some inactivity shuts it down. Other DEs, like GNOME, choose
-    // to start their daemons at the session startup and have it sit
-    // idling for the whole session.
-    QVariantMap hints;
-    hints["desktop-entry"] = "qBittorrent";
-    QDBusPendingReply<uint> reply = notifications.Notify("qBittorrent", 0, "qbittorrent", title,
-                                                         msg, QStringList(), hints, -1);
-    reply.waitForFinished();
-    if (!reply.isError())
-        return;
-#endif
-    if (systrayIcon && QSystemTrayIcon::supportsMessages())
-        systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
-}
 
 /*****************************************************
 *                                                   *
@@ -1330,6 +1299,11 @@ void MainWindow::createTrayIcon()
     // End of Icon Menu
     connect(systrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(toggleVisibility(QSystemTrayIcon::ActivationReason)));
     systrayIcon->show();
+
+    if(notifier) {
+        delete notifier;
+    }
+    notifier = createNotifier(this, systrayIcon);
 }
 
 // Display Program Options

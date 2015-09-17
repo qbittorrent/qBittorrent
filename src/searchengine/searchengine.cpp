@@ -200,7 +200,7 @@ void SearchEngine::giveFocusToSearchInput()
 void SearchEngine::on_search_button_clicked()
 {
     if (Utils::Misc::pythonVersion() < 0) {
-        mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
+        mp_mainWindow->getNotifier()->showNotification(tr("Search Engine"), tr("Please install Python to use the Search Engine."), this);
         return;
     }
 
@@ -450,7 +450,7 @@ void SearchEngine::searchFinished(int exitcode, QProcess::ExitStatus)
         searchTimeout->stop();
     bool useNotificationBalloons = Preferences::instance()->useProgramNotification();
     if (useNotificationBalloons && mp_mainWindow->getCurrentTabWidget() != this)
-        mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
+        mp_mainWindow->getNotifier()->notifySearchFinished(this);
 
     if (activeSearchTab.isNull())
         // The active tab was closed
