@@ -236,7 +236,6 @@ void RSSImp::on_newFeedButton_clicked()
     // Notify TreeWidget
     m_feedList->itemAdded(item, stream);
 
-    stream->refresh();
     m_rssManager->saveStreamList();
 }
 
