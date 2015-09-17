@@ -6,20 +6,23 @@
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
 	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
 	<script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
-<script type="text/javascript">
-	window.addEvent('domready', function(){
-        $('trackersUrls').focus();
-	$('addTrackersButton').addEvent('click', function(e){
-		new Event(e).stop();
-		var hash = new URI().getData('hash');
-		new Request({url: 'command/addTrackers', method: 'post', data: {hash: hash, urls: $('trackersUrls').value},
-			onComplete: function() {
-				window.parent.document.getElementById('trackersPage').parentNode.removeChild(window.parent.document.getElementById('trackersPage'));
-			}
-		}).send();
-	});
-});
-</script>
+    <script type="text/javascript">
+        window.addEvent('domready', function(){
+            $('trackersUrls').focus();
+            $('addTrackersButton').addEvent('click', function(e){
+                new Event(e).stop();
+                var hash = new URI().getData('hash');
+                new Request({
+                    url: 'command/addTrackers',
+                    method: 'post',
+                    data: {hash: hash, urls: $('trackersUrls').value},
+                    onComplete: function() {
+                        window.parent.closeWindows();
+                    }
+                }).send();
+        });
+    });
+    </script>
 </head>
 <body>
 <center>
