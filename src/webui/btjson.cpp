@@ -103,6 +103,7 @@ static const char KEY_TORRENT_FIRST_LAST_PIECE_PRIO[] = "f_l_piece_prio";
 static const char KEY_TORRENT_LABEL[] = "label";
 static const char KEY_TORRENT_SUPER_SEEDING[] = "super_seeding";
 static const char KEY_TORRENT_FORCE_START[] = "force_start";
+static const char KEY_TORRENT_SAVE_PATH[] = "save_path";
 
 // Tracker keys
 static const char KEY_TRACKER_URL[] = "url";
@@ -635,6 +636,7 @@ QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
     ret[KEY_TORRENT_LABEL] = torrent->label();
     ret[KEY_TORRENT_SUPER_SEEDING] = torrent->superSeeding();
     ret[KEY_TORRENT_FORCE_START] = torrent->isForced();
+    ret[KEY_TORRENT_SAVE_PATH] = Utils::Fs::toNativePath(torrent->rootPath());
 
     return ret;
 }
