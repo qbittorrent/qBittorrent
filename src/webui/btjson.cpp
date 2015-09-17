@@ -456,10 +456,7 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
             return QByteArray();
 
         // Save path
-        QString save_path = fsutils::toNativePath(TorrentPersistentData::instance()->getSavePath(hash));
-        if (save_path.isEmpty())
-            save_path = fsutils::toNativePath(h.save_path());
-        data[KEY_PROP_SAVE_PATH] = save_path;
+        data[KEY_PROP_SAVE_PATH] = fsutils::toNativePath(h.root_path());
         data[KEY_PROP_CREATION_DATE] = h.creation_date_unix();
         data[KEY_PROP_PIECE_SIZE] = static_cast<qlonglong>(h.piece_length());
         data[KEY_PROP_COMMENT] = h.comment();
