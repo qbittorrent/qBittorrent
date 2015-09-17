@@ -35,6 +35,7 @@
 #include "../utils/fs.h"
 #include "../utils/misc.h"
 #include "searchpluginmanager.h"
+#include "base/notifications/notificationrequest.h"
 
 namespace
 {
@@ -115,6 +116,11 @@ void SearchHandler::cancelSearch()
 // Error | Stopped by user | Finished normally
 void SearchHandler::processFinished(int exitcode)
 {
+    Notifications::Request()
+    .title(tr("Search Engine"))
+    .message(tr("Search has finished"))
+//      .setWidget(this);
+    .exec();
     m_searchTimeout->stop();
 
     if (m_searchCancelled)
@@ -152,6 +158,13 @@ void SearchHandler::readSearchOutput()
 
 void SearchHandler::processFailed()
 {
+    Notifications::Request()
+        .title(tr("Search Engine"))
+        .severity(Notifications::Severity::Error)
+        .message(tr("Search has failed"))
+//         .setWidget(this);
+        .exec();
+
     if (!m_searchCancelled)
         emit searchFailed();
 }

@@ -81,19 +81,14 @@ public:
     QWidget *currentTabWidget() const;
     TransferListWidget *transferListWidget() const;
     PropertiesWidget *propertiesWidget() const;
-    QMenu *trayIconMenu();
+    QMenu* trayIconMenu();
+    QSystemTrayIcon* systemTrayIcon() const;
 
     // ExecutionLog properties
     bool isExecutionLogEnabled() const;
     void setExecutionLogEnabled(bool value);
     int executionLogMsgTypes() const;
     void setExecutionLogMsgTypes(const int value);
-
-    // Notifications properties
-    bool isNotificationsEnabled() const;
-    void setNotificationsEnabled(bool value);
-    bool isTorrentAddedNotificationsEnabled() const;
-    void setTorrentAddedNotificationsEnabled(bool value);
 
     // Misc properties
     bool isDownloadTrackerFavicon() const;
@@ -102,14 +97,12 @@ public:
     void activate();
     void cleanup();
 
-    void showNotificationBaloon(QString title, QString msg) const;
-
 private slots:
     void balloonClicked();
     void writeSettings();
     void readSettings();
-    void fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const;
-    void handleDownloadFromUrlFailure(QString, QString) const;
+    void createTrayIcon();
+    void createSystrayDelayed();
     void tabChanged(int newTab);
     void defineUILockPassword();
     void clearUILockPassword();
@@ -127,9 +120,6 @@ private slots:
     void updateGUI();
     void loadPreferences(bool configureSession = true);
     void addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle *, QString> &tracker);
-    void addTorrentFailed(const QString &error) const;
-    void torrentNew(BitTorrent::TorrentHandle *const torrent) const;
-    void finishedTorrent(BitTorrent::TorrentHandle *const torrent) const;
     void askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHandle *const torrent);
     void optionsSaved();
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)

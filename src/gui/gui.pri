@@ -3,7 +3,6 @@ INCLUDEPATH += $$PWD
 include(lineedit/lineedit.pri)
 include(powermanagement/powermanagement.pri)
 include(properties/properties.pri)
-unix:!macx:dbus: include(qtnotify/qtnotify.pri)
 
 HEADERS += \
     $$PWD/about_imp.h \
@@ -27,6 +26,7 @@ HEADERS += \
     $$PWD/loglistwidget.h \
     $$PWD/mainwindow.h \
     $$PWD/messageboxraised.h \
+    $$PWD/notifications/guinotificationsmanager.h \
     $$PWD/optionsdlg.h \
     $$PWD/previewlistdelegate.h \
     $$PWD/previewselectdialog.h \
@@ -84,6 +84,7 @@ SOURCES += \
     $$PWD/loglistwidget.cpp \
     $$PWD/mainwindow.cpp \
     $$PWD/messageboxraised.cpp \
+    $$PWD/notifications/guinotificationsmanager.cpp \
     $$PWD/optionsdlg.cpp \
     $$PWD/previewselectdialog.cpp \
     $$PWD/rss/articlelistwidget.cpp \
@@ -130,6 +131,11 @@ win32|macx {
 macx {
     HEADERS += $$PWD/macutilities.h
     OBJECTIVE_SOURCES += $$PWD/macutilities.mm
+}
+
+!dbus|win32|macx {
+    HEADERS += $$PWD/notifications/systemtraynotifier.h
+    SOURCES += $$PWD/notifications/systemtraynotifier.cpp
 }
 
 FORMS += \

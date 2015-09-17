@@ -88,6 +88,10 @@
 #include "webui/webui.h"
 #endif
 
+#ifndef DISABLE_GUI
+#include "gui/notifications/guinotificationsmanager.h"
+#endif
+
 namespace
 {
 #define SETTINGS_KEY(name) "Application/" name
@@ -525,9 +529,13 @@ int Application::exec(const QStringList &params)
         printf("%s", qUtf8Printable(warning));
     }
 #endif // DISABLE_WEBUI
+
+    m_notificationManager = new Notifications::Manager(nullptr, this);
 #else
     m_window = new MainWindow;
+    m_notificationManager = new Notifications::GuiManager(this);
 #endif // DISABLE_GUI
+    Notifications::Manager::setInstance(m_notificationManager.data());
 
     m_running = true;
 

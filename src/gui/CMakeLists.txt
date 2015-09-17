@@ -9,12 +9,6 @@ add_subdirectory(powermanagement)
 add_subdirectory(rss)
 add_subdirectory(search)
 
-if (UNIX AND NOT APPLE AND DBUS)
-   add_subdirectory(qtnotify)
-   include_directories(qtnotify)
-   list(APPEND QBT_GUI_OPTIONAL_LINK_LIBRARIES qbt_qtnotify)
-endif (UNIX AND NOT APPLE AND DBUS)
-
 include_directories(
 ${CMAKE_CURRENT_BINARY_DIR}/properties
 ${CMAKE_CURRENT_BINARY_DIR}/rss
@@ -75,6 +69,7 @@ transferlistsortmodel.h
 transferlistwidget.h
 updownratiodlg.h
 utils.h
+notifications/guinotificationsmanager.h
 )
 
 set(QBT_GUI_SOURCES
@@ -121,6 +116,7 @@ transferlistsortmodel.cpp
 transferlistwidget.cpp
 updownratiodlg.cpp
 utils.cpp
+notifications/guinotificationsmanager.cpp
 )
 
 if (APPLE)
@@ -154,6 +150,15 @@ torrentcategorydialog.ui
 torrentcreatordlg.ui
 shutdownconfirmdlg.ui
 )
+
+if (NOT DBUS)
+    list(APPEND QBT_GUI_HEADERS
+        notifications/systemtraynotifier.h
+    )
+    list(APPEND QBT_GUI_SOURCES
+        notifications/systemtraynotifier.cpp
+    )
+endif (NOT DBUS)
 
 qbt_target_sources(about.qrc)
 

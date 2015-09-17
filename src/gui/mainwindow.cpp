@@ -113,7 +113,6 @@
 void qt_mac_set_dock_menu(QMenu *menu);
 #endif
 
-#define TIME_TRAY_BALLOON 5000
 #define PREVENT_SUSPEND_INTERVAL 60000
 
 namespace
@@ -124,11 +123,6 @@ namespace
 #define EXECUTIONLOG_SETTINGS_KEY(name) SETTINGS_KEY("Log/") name
     const QString KEY_EXECUTIONLOG_ENABLED = EXECUTIONLOG_SETTINGS_KEY("Enabled");
     const QString KEY_EXECUTIONLOG_TYPES = EXECUTIONLOG_SETTINGS_KEY("Types");
-
-    // Notifications properties keys
-#define NOTIFICATIONS_SETTINGS_KEY(name) SETTINGS_KEY("Notifications/") name
-    const QString KEY_NOTIFICATIONS_ENABLED = NOTIFICATIONS_SETTINGS_KEY("Enabled");
-    const QString KEY_NOTIFICATIONS_TORRENTADDED = NOTIFICATIONS_SETTINGS_KEY("TorrentAdded");
 
     // Misc
     const QString KEY_DOWNLOAD_TRACKER_FAVICON = NOTIFICATIONS_SETTINGS_KEY("DownloadTrackerFavicon");
@@ -494,26 +488,6 @@ void MainWindow::setExecutionLogMsgTypes(const int value)
     settings()->storeValue(KEY_EXECUTIONLOG_TYPES, value);
 }
 
-bool MainWindow::isNotificationsEnabled() const
-{
-    return settings()->loadValue(KEY_NOTIFICATIONS_ENABLED, true).toBool();
-}
-
-void MainWindow::setNotificationsEnabled(bool value)
-{
-    settings()->storeValue(KEY_NOTIFICATIONS_ENABLED, value);
-}
-
-bool MainWindow::isTorrentAddedNotificationsEnabled() const
-{
-    return settings()->loadValue(KEY_NOTIFICATIONS_TORRENTADDED, false).toBool();
-}
-
-void MainWindow::setTorrentAddedNotificationsEnabled(bool value)
-{
-    settings()->storeValue(KEY_NOTIFICATIONS_TORRENTADDED, value);
-}
-
 bool MainWindow::isDownloadTrackerFavicon() const
 {
     return settings()->loadValue(KEY_DOWNLOAD_TRACKER_FAVICON, true).toBool();
@@ -813,32 +787,6 @@ void MainWindow::balloonClicked()
     activateWindow();
 }
 
-void MainWindow::addTorrentFailed(const QString &error) const
-{
-    showNotificationBaloon(tr("Error"), tr("Failed to add torrent: %1").arg(error));
-}
-
-// called when a torrent was added
-void MainWindow::torrentNew(BitTorrent::TorrentHandle *const torrent) const
-{
-    if (isTorrentAddedNotificationsEnabled())
-        showNotificationBaloon(tr("Torrent added"), tr("'%1' was added.", "e.g: xxx.avi was added.").arg(torrent->name()));
-}
-
-// called when a torrent has finished
-void MainWindow::finishedTorrent(BitTorrent::TorrentHandle *const torrent) const
-{
-    showNotificationBaloon(tr("Download completion"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
-}
-
-// Notification when disk is full
-void MainWindow::fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const
-{
-    showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error")
-        , tr("An I/O error occurred for torrent '%1'.\n Reason: %2"
-            , "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(torrent->name(), msg));
-}
-
 void MainWindow::createKeyboardShortcuts()
 {
     m_ui->actionCreateTorrent->setShortcut(QKeySequence::New);
@@ -936,13 +884,6 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHand
         BitTorrent::Session::instance()->recursiveTorrentDownload(torrent->hash());
     else if (confirmBox.clickedButton() == never)
         pref->disableRecursiveDownload();
-}
-
-void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const
-{
-    // Display a message box
-    showNotificationBaloon(tr("URL download error")
-        , tr("Couldn't download file at URL '%1', reason: %2.").arg(url, reason));
 }
 
 void MainWindow::on_actionSetGlobalUploadLimit_triggered()
@@ -1555,37 +1496,6 @@ void MainWindow::updateGUI()
     }
 }
 
-void MainWindow::showNotificationBaloon(QString title, QString msg) const
-{
-    if (!isNotificationsEnabled()) return;
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
-    org::freedesktop::Notifications notifications("org.freedesktop.Notifications",
-                                                  "/org/freedesktop/Notifications",
-                                                  QDBusConnection::sessionBus());
-    // Testing for 'notifications.isValid()' isn't helpful here.
-    // If the notification daemon is configured to run 'as needed'
-    // the above check can be false if the daemon wasn't started
-    // by another application. In this case DBus will be able to
-    // start the notification daemon and complete our request. Such
-    // a daemon is xfce4-notifyd, DBus autostarts it and after
-    // some inactivity shuts it down. Other DEs, like GNOME, choose
-    // to start their daemons at the session startup and have it sit
-    // idling for the whole session.
-    QVariantMap hints;
-    hints["desktop-entry"] = "qBittorrent";
-    QDBusPendingReply<uint> reply = notifications.Notify("qBittorrent", 0, "qbittorrent", title,
-                                                         msg, QStringList(), hints, -1);
-    reply.waitForFinished();
-    if (!reply.isError())
-        return;
-#elif defined(Q_OS_MAC)
-    MacUtils::displayNotification(title, msg);
-#else
-    if (m_systrayIcon && QSystemTrayIcon::supportsMessages())
-        m_systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
-#endif
-}
-
 /*****************************************************
 *                                                   *
 *                      Utils                        *
@@ -1696,6 +1606,13 @@ void MainWindow::updateAltSpeedsBtn(bool alternative)
 }
 
 PropertiesWidget *MainWindow::propertiesWidget() const
+
+QSystemTrayIcon *MainWindow::systemTrayIcon() const
+{
+    return m_systrayIcon.data();
+}
+
+void MainWindow::createTrayIcon()
 {
     return m_propertiesWidget;
 }

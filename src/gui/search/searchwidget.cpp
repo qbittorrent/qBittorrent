@@ -283,7 +283,12 @@ void SearchWidget::giveFocusToSearchInput()
 void SearchWidget::on_searchButton_clicked()
 {
     if (Utils::Misc::pythonVersion() < 0) {
-        m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
+        Notifications::Request()
+            .title(tr("Search Engine"))
+            .message(tr("Please install Python to use the Search Engine."))
+//          .setWidget(this)
+            .severity(Notifications::Severity::Error)
+            .exec();
         return;
     }
 

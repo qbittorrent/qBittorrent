@@ -13,6 +13,10 @@ unix:!macx: include(../unixconf.pri)
 
 QT += network xml
 
+dbus {
+    QT += dbus
+}
+
 nogui {
     TARGET = qbittorrent-nox
     QT -= gui

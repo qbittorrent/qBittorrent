@@ -41,6 +41,10 @@ HEADERS += \
     $$PWD/net/proxyconfigurationmanager.h \
     $$PWD/net/reverseresolution.h \
     $$PWD/net/smtp.h \
+    $$PWD/notifications/notifier.h \
+    $$PWD/notifications/dummynotifier.h \
+    $$PWD/notifications/notificationsmanager.h \
+    $$PWD/notifications/notificationrequest.h \
     $$PWD/preferences.h \
     $$PWD/private/profile_p.h \
     $$PWD/profile.h \
@@ -107,6 +111,10 @@ SOURCES += \
     $$PWD/net/proxyconfigurationmanager.cpp \
     $$PWD/net/reverseresolution.cpp \
     $$PWD/net/smtp.cpp \
+    $$PWD/notifications/notifier.cpp \
+    $$PWD/notifications/dummynotifier.cpp \
+    $$PWD/notifications/notificationsmanager.cpp \
+    $$PWD/notifications/notificationrequest.cpp \
     $$PWD/preferences.cpp \
     $$PWD/private/profile_p.cpp \
     $$PWD/profile.cpp \
@@ -133,3 +141,9 @@ SOURCES += \
     $$PWD/utils/net.cpp \
     $$PWD/utils/random.cpp \
     $$PWD/utils/string.cpp
+
+unix:!macx:dbus {
+    include(notifications/qtnotify/qtnotify.pri)
+    HEADERS += $$PWD/notifications/dbusnotifier.h
+    SOURCES += $$PWD/notifications/dbusnotifier.cpp
+}

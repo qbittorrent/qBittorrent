@@ -35,6 +35,10 @@ net/private/geoipdatabase.h
 net/proxyconfigurationmanager.h
 net/reverseresolution.h
 net/smtp.h
+notifications/dummynotifier.h
+notifications/notifier.h
+notifications/notificationsmanager.h
+notifications/notificationrequest.h
 private/profile_p.h
 rss/private/rss_parser.h
 rss/rss_article.h
@@ -104,6 +108,10 @@ net/private/geoipdatabase.cpp
 net/proxyconfigurationmanager.cpp
 net/reverseresolution.cpp
 net/smtp.cpp
+notifications/dummynotifier.cpp
+notifications/notifier.cpp
+notifications/notificationsmanager.cpp
+notifications/notificationrequest.cpp
 private/profile_p.cpp
 rss/private/rss_parser.cpp
 rss/rss_article.cpp
@@ -136,6 +144,18 @@ torrentfileguard.cpp
 torrentfilter.cpp
 tristatebool.cpp
 )
+
+if (UNIX AND NOT APPLE AND DBUS)
+    add_subdirectory(notifications/qtnotify)
+    include_directories(notifications/qtnotify)
+    list(APPEND QBT_BASE_HEADERS
+        notifications/dbusnotifier.h
+    )
+    list(APPEND QBT_BASE_SOURCES
+        notifications/dbusnotifier.cpp
+    )
+   list(APPEND QBT_BASE_OPTIONAL_LINK_LIBRARIES qbt_qtnotify)
+endif (UNIX AND NOT APPLE AND DBUS)
 
 add_library(qbt_base STATIC ${QBT_BASE_HEADERS} ${QBT_BASE_SOURCES})
 target_link_libraries(qbt_base PRIVATE ZLIB::ZLIB PUBLIC LibtorrentRasterbar::LibTorrent)

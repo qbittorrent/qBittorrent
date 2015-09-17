@@ -38,6 +38,7 @@
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
 #include "gui/addnewtorrentdialog.h"
+#include "base/notifications/notificationsmanager.h"
 #include "gui/mainwindow.h"
 
 enum AdvSettingsCols
@@ -205,7 +206,7 @@ void AdvancedSettings::saveAdvancedSettings()
     // Misc GUI properties
     mainWindow->setDownloadTrackerFavicon(cb_tracker_favicon.isChecked());
     AddNewTorrentDialog::setSavePathHistoryLength(spinSavePathHistoryLength.value());
-
+    Notifications::Manager::setNotificationsEnabled(cb_program_notifications.isChecked());
     // Tracker
     session->setTrackerEnabled(cb_tracker_status.isChecked());
     pref->setTrackerPort(spin_tracker_port.value());
@@ -426,11 +427,8 @@ void AdvancedSettings::loadAdvancedSettings()
 
     // Program notifications
     const MainWindow * const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
-    cb_program_notifications.setChecked(mainWindow->isNotificationsEnabled());
+    cb_program_notifications.setChecked(Notifications::Manager::areNotificationsEnabled());
     addRow(PROGRAM_NOTIFICATIONS, tr("Display notifications"), &cb_program_notifications);
-    // Torrent added notifications
-    cb_torrent_added_notifications.setChecked(mainWindow->isTorrentAddedNotificationsEnabled());
-    addRow(TORRENT_ADDED_NOTIFICATIONS, tr("Display notifications for added torrents"), &cb_torrent_added_notifications);
     // Download tracker's favicon
     cb_tracker_favicon.setChecked(mainWindow->isDownloadTrackerFavicon());
     addRow(DOWNLOAD_TRACKER_FAVICON, tr("Download tracker's favicon"), &cb_tracker_favicon);

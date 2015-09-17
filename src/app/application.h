@@ -64,6 +64,10 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
+{
+    class Manager;
+}
+
 namespace RSS
 {
     class Session;
@@ -136,6 +140,7 @@ private:
 #ifndef DISABLE_WEBUI
     WebUI *m_webui;
 #endif
+    QPointer<Notifications::Manager> m_notificationManager;
 
     // FileLog
     QPointer<FileLogger> m_fileLogger;
