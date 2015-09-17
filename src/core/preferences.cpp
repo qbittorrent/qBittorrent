@@ -1616,6 +1616,13 @@ void Preferences::setTorrentLabels(const QStringList& labels)
     setValue("TransferListFilters/customLabels", labels);
 }
 
+void Preferences::addTorrentLabelExternal(const QString &label)
+{
+    addTorrentLabel(label);
+    QString toEmit = label;
+    emit externalLabelAdded(toEmit);
+}
+
 void Preferences::addTorrentLabel(const QString& label)
 {
     QStringList labels = value("TransferListFilters/customLabels").toStringList();

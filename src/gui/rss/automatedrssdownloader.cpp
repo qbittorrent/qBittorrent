@@ -248,7 +248,9 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
         ui->lineEFilter->clear();
       ui->saveDiffDir_check->setChecked(!rule->savePath().isEmpty());
       ui->lineSavePath->setText(Utils::Fs::toNativePath(rule->savePath()));
+      ui->checkRegex->blockSignals(true);
       ui->checkRegex->setChecked(rule->useRegex());
+      ui->checkRegex->blockSignals(false);
       if (rule->label().isEmpty()) {
         ui->comboLabel->setCurrentIndex(-1);
         ui->comboLabel->clearEditText();
@@ -344,7 +346,7 @@ void AutomatedRssDownloader::saveEditedRule()
   rule->setAddPaused(RssDownloadRule::AddPausedState(ui->comboAddPaused->currentIndex()));
   // Save new label
   if (!rule->label().isEmpty())
-    Preferences::instance()->addTorrentLabel(rule->label());
+    Preferences::instance()->addTorrentLabelExternal(rule->label());
   rule->setIgnoreDays(ui->spinIgnorePeriod->value());
   //rule->setRssFeeds(getSelectedFeeds());
   // Save it
