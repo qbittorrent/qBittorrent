@@ -4,7 +4,7 @@ include(lineedit/lineedit.pri)
 include(properties/properties.pri)
 include(rss/rss.pri)
 include(powermanagement/powermanagement.pri)
-unix:!macx:dbus: include(qtnotify/qtnotify.pri)
+include(notifications/notifications.pri)
 
 HEADERS += \
     $$PWD/mainwindow.h \
