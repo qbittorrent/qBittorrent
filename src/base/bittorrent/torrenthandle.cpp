@@ -1143,6 +1143,8 @@ void TorrentHandle::setFirstLastPiecePriority(bool b)
 
     std::vector<int> fp;
     SAFE_GET(fp, file_priorities);
+    std::vector<int> pp;
+    SAFE_GET(pp, piece_priorities);
 
     // Download first and last pieces first for all media files in the torrent
     int nbfiles = static_cast<int>(fp.size());
@@ -1151,14 +1153,22 @@ void TorrentHandle::setFirstLastPiecePriority(bool b)
         const QString ext = Utils::Fs::fileExtension(path);
         if (Utils::Misc::isPreviewable(ext) && (fp[index] > 0)) {
             qDebug() << "File" << path << "is previewable, toggle downloading of first/last pieces first";
+
             // Determine the priority to set
             int prio = b ? 7 : fp[index];
 
             QPair<int, int> extremities = fileExtremityPieces(index);
-            SAFE_CALL(piece_priority, extremities.first, prio);
-            SAFE_CALL(piece_priority, extremities.second, prio);
+
+            // worst case: AVI index = 1% of total file size (at the end of the file)
+            int nNumPieces = ceil(fileSize(index) * 0.01 / pieceLength());
+            for (int i = 0; i < nNumPieces; ++i) {
+                pp[extremities.first + i] = prio;
+                pp[extremities.second - i] = prio;
+            }
         }
     }
+
+    SAFE_CALL(prioritize_pieces, pp);
 }
 
 void TorrentHandle::toggleFirstLastPiecePriority()
