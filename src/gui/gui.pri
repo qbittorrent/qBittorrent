@@ -51,7 +51,8 @@ HEADERS += \
     $$PWD/cookiesmodel.h \
     $$PWD/cookiesdialog.h \
     $$PWD/categoryfiltermodel.h \
-    $$PWD/categoryfilterwidget.h
+    $$PWD/categoryfilterwidget.h \
+    $$PWD/torrentmodel_p.h
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -93,11 +94,19 @@ SOURCES += \
     $$PWD/cookiesmodel.cpp \
     $$PWD/cookiesdialog.cpp \
     $$PWD/categoryfiltermodel.cpp \
-    $$PWD/categoryfilterwidget.cpp
+    $$PWD/categoryfilterwidget.cpp \
+    $$PWD/torrentmodel_p.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
     SOURCES += $$PWD/programupdater.cpp
+}
+
+unix:!macx {
+    HEADERS += $$PWD/utils/colorutils.h \
+               $$PWD/utils/kdecolorscheme.h
+    SOURCES += $$PWD/utils/colorutils.cpp \
+               $$PWD/utils/kdecolorscheme.cpp
 }
 
 FORMS += \

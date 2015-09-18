@@ -64,6 +64,10 @@
 #include "transferlistwidget.h"
 #include "autoexpandabledialog.h"
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#include "utils/kdecolorscheme.h"
+#endif
+
 PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *main_window, TransferListWidget *transferList)
     : QWidget(parent), transferList(transferList), main_window(main_window), m_torrent(0)
 {
@@ -125,6 +129,20 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *main_window, Tra
     groupBarLayout->addWidget(pieces_availability, 1, 1);
     pieces_availability->setFixedHeight(barHeight);
     pieces_availability->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    if (KDEColorScheme::instance()->wasLoadedSuccesfuly()) {
+        downloaded_pieces->setColors(
+            KDEColorScheme::instance()->color(KDEColorScheme::BackgroundNormal).rgb(),
+            KDEColorScheme::instance()->color(KDEColorScheme::DecorationFocus).rgb(),
+            KDEColorScheme::instance()->color(KDEColorScheme::ForegroundActive).rgb(),
+            KDEColorScheme::instance()->color(KDEColorScheme::ForegroundPositive).rgb());
+        pieces_availability->setColors(
+            KDEColorScheme::instance()->color(KDEColorScheme::BackgroundNormal).rgb(),
+            KDEColorScheme::instance()->color(KDEColorScheme::DecorationFocus).rgb(),
+            KDEColorScheme::instance()->color(KDEColorScheme::ForegroundActive).rgb());
+    }
+#endif
 
     // Tracker list
     trackerList = new TrackerList(this);

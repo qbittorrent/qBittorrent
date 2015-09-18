@@ -69,6 +69,7 @@ enum AdvSettingsRows
     DOWNLOAD_TRACKER_FAVICON,
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     USE_ICON_THEME,
+    USE_COLOR_THEME,
 #endif
 
     // libtorrent section
@@ -183,6 +184,7 @@ void AdvancedSettings::saveAdvancedSettings()
     // Icon theme
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     pref->useSystemIconTheme(cb_use_icon_theme.isChecked());
+    pref->useSystemColorTheme(cb_use_color_theme.isChecked());
 #endif
     pref->setConfirmTorrentRecheck(cb_confirm_torrent_recheck.isChecked());
     session->setAnnounceToAllTrackers(cb_announce_all_trackers.isChecked());
@@ -373,6 +375,8 @@ void AdvancedSettings::loadAdvancedSettings()
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     cb_use_icon_theme.setChecked(pref->useSystemIconTheme());
     addRow(USE_ICON_THEME, tr("Use system icon theme"), &cb_use_icon_theme);
+    cb_use_color_theme.setChecked(pref->useSystemColorTheme());
+    addRow(USE_COLOR_THEME, tr("Use system color theme"), &cb_use_color_theme);
 #endif
     // Torrent recheck confirmation
     cb_confirm_torrent_recheck.setChecked(pref->confirmTorrentRecheck());

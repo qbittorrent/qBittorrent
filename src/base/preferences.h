@@ -229,6 +229,8 @@ public:
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     bool useSystemIconTheme() const;
     void useSystemIconTheme(bool enabled);
+    bool useSystemColorTheme() const;
+    void useSystemColorTheme(bool b);
 #endif
     bool recursiveDownloadDisabled() const;
     void disableRecursiveDownload(bool disable = true);
