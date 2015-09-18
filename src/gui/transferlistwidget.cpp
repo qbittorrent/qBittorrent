@@ -668,7 +668,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
     QAction actionSequential_download(tr("Download in sequential order"), 0);
     actionSequential_download.setCheckable(true);
     connect(&actionSequential_download, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSequentialDownload()));
-    QAction actionFirstLastPiece_prio(tr("Download first and last piece first"), 0);
+    QAction actionFirstLastPiece_prio(tr("Download first and last pieces first"), 0);
     actionFirstLastPiece_prio.setCheckable(true);
     connect(&actionFirstLastPiece_prio, SIGNAL(triggered()), this, SLOT(toggleSelectedFirstLastPiecePrio()));
     // End of actions
