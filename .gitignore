@@ -30,3 +30,8 @@ src/qbittorrent.app
 aclocal.m4
 autom4te.cache/*
 config.status
+
+# Edited configuration after a windows build
+*.pri.old
+winconf-msvc.pri
+winconf.pri
