@@ -466,17 +466,6 @@ void TorrentHandle::saveResumeData()
     m_needSaveResumeData = false;
 }
 
-QString TorrentHandle::savePathParsed() const
-{
-    QString p;
-    if (hasMetadata() && (filesCount() == 1))
-        p = firstFileSavePath();
-    else
-        p = savePath();
-
-    return Utils::Fs::toNativePath(p);
-}
-
 int TorrentHandle::filesCount() const
 {
     return m_torrentInfo.filesCount();

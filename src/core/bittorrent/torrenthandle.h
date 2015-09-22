@@ -184,7 +184,6 @@ namespace BitTorrent
         QString actualSavePath() const;
         QString savePath() const;
         QString rootPath() const;
-        QString savePathParsed() const;
         int filesCount() const;
         int piecesCount() const;
         int piecesHave() const;
