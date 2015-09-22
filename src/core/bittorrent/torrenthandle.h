@@ -97,7 +97,6 @@ namespace BitTorrent
         // for new torrents
         QVector<int> filePriorities;
         // for resumed torrents
-        QDateTime addedTime;
         qreal ratioLimit;
 
         AddTorrentData();
@@ -363,7 +362,6 @@ namespace BitTorrent
 
         // Persistent data
         QString m_name;
-        QDateTime m_addedTime;
         QString m_savePath;
         QString m_label;
         bool m_hasSeedStatus;

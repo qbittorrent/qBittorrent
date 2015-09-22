@@ -2369,7 +2369,6 @@ bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out, MagnetUr
     libt::lazy_bdecode(data.constData(), data.constData() + data.size(), fast, ec);
     if ((fast.type() != libt::lazy_entry::dict_t) && !ec) return false;
 
-    out.addedTime = QDateTime::fromTime_t(fast.dict_find_int_value("qBt-addedTime"));
     out.savePath = Utils::Fs::fromNativePath(Utils::String::fromStdString(fast.dict_find_string_value("qBt-savePath")));
     out.ratioLimit = Utils::String::fromStdString(fast.dict_find_string_value("qBt-ratioLimit")).toDouble();
     out.label = Utils::String::fromStdString(fast.dict_find_string_value("qBt-label"));

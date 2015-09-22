@@ -89,7 +89,6 @@ bool upgradeResumeFile(const QString &filepath)
 
     libtorrent::entry fastNew;
     fastNew = fastOld;
-    fastNew["qBt-addedTime"] = fastOld.dict_find_int_value("qBt-added_time");
 
     int priority = fastOld.dict_find_int_value("qBt-queuePosition");
     QFile file2(QString("%1.%2").arg(filepath).arg(priority > 0 ? priority : 0));
