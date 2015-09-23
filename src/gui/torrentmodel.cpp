@@ -29,10 +29,13 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QDebug>
 #include <QApplication>
-#include <QPalette>
+#include <QDebug>
+#include <QDir>
 #include <QIcon>
+#include <QPalette>
+#include <QProcessEnvironment>
+#include <QSettings>
 
 #include "core/bittorrent/session.h"
 #include "core/bittorrent/torrenthandle.h"
@@ -54,6 +57,27 @@ static QIcon getCheckingIcon();
 static QIcon getErrorIcon();
 
 static bool isDarkTheme();
+
+namespace {
+class TorrentStateColorsImpl {
+public:
+    TorrentStateColorsImpl();
+    QColor color(BitTorrent::TorrentState state)
+    {
+        return stateColors.value(state, Qt::red);
+    }
+private:
+    void setDefaultColors();
+#ifdef Q_OS_UNIX
+    bool readKDEColors(const QProcessEnvironment& env);
+    static QColor decodeKDEColor(const QVariant& v, bool &ok);
+#endif
+    QMap<BitTorrent::TorrentState, QColor> stateColors;
+};
+
+Q_GLOBAL_STATIC(TorrentStateColorsImpl, TorrentStateColors)
+
+}
 
 // TorrentModel
 
@@ -347,52 +371,7 @@ QIcon getIconByState(BitTorrent::TorrentState state)
 
 QColor getColorByState(BitTorrent::TorrentState state)
 {
-    // Color names taken from http://cloford.com/resources/colours/500col.htm
-    bool dark = isDarkTheme();
-
-    switch (state) {
-    case BitTorrent::TorrentState::Downloading:
-    case BitTorrent::TorrentState::ForcedDownloading:
-    case BitTorrent::TorrentState::DownloadingMetadata:
-        return QColor(34, 139, 34); // Forest Green
-    case BitTorrent::TorrentState::Allocating:
-    case BitTorrent::TorrentState::StalledDownloading:
-    case BitTorrent::TorrentState::StalledUploading:
-        if (!dark)
-            return QColor(0, 0, 0); // Black
-        else
-            return QColor(255, 255, 255); // White
-    case BitTorrent::TorrentState::Uploading:
-    case BitTorrent::TorrentState::ForcedUploading:
-        if (!dark)
-            return QColor(65, 105, 225); // Royal Blue
-        else
-            return QColor(99, 184, 255); // Steel Blue 1
-    case BitTorrent::TorrentState::PausedDownloading:
-        return QColor(250, 128, 114); // Salmon
-    case BitTorrent::TorrentState::PausedUploading:
-        if (!dark)
-            return QColor(0, 0, 139); // Dark Blue
-        else
-            return QColor(79, 148, 205); // Steel Blue 3
-    case BitTorrent::TorrentState::Error:
-        return QColor(255, 0, 0); // red
-    case BitTorrent::TorrentState::QueuedDownloading:
-    case BitTorrent::TorrentState::QueuedUploading:
-    case BitTorrent::TorrentState::CheckingDownloading:
-    case BitTorrent::TorrentState::CheckingUploading:
-    case BitTorrent::TorrentState::QueuedForChecking:
-    case BitTorrent::TorrentState::CheckingResumeData:
-        if (!dark)
-            return QColor(0, 128, 128); // Teal
-        else
-            return QColor(0, 205, 205); // Cyan 3
-    case BitTorrent::TorrentState::Unknown:
-        return QColor(255, 0, 0); // red
-    default:
-        Q_ASSERT(false);
-        return QColor(255, 0, 0); // red
-    }
+   return TorrentStateColors()->color(state);
 }
 
 QIcon getPausedIcon()
@@ -456,3 +435,179 @@ bool isDarkTheme()
     QColor color = pal.color(QPalette::Active, QPalette::Base);
     return (color.lightness() < 127);
 }
+
+TorrentStateColorsImpl::TorrentStateColorsImpl()
+{
+    QProcessEnvironment env(QProcessEnvironment::systemEnvironment());
+    bool specificColoursRead = false;
+#ifdef Q_OS_UNIX
+    if (env.contains(QLatin1String("XDG_CURRENT_DESKTOP"))) {
+        QString desktop = env.value(QLatin1String("XDG_CURRENT_DESKTOP"));
+        if (desktop == QLatin1String("KDE")) {
+            specificColoursRead = readKDEColors(env);
+        }
+    }
+#endif
+    if (!specificColoursRead) {
+        setDefaultColors();
+    }
+}
+
+void TorrentStateColorsImpl::setDefaultColors()
+{
+    using BitTorrent::TorrentState;
+    bool dark = isDarkTheme();
+
+    stateColors[TorrentState::Downloading] =
+    stateColors[TorrentState::ForcedDownloading] =
+    stateColors[TorrentState::DownloadingMetadata] =
+         QColor(34, 139, 34); // Forest Green
+
+    stateColors[TorrentState::Allocating] =
+    stateColors[TorrentState::StalledDownloading] =
+    stateColors[TorrentState::StalledUploading] =
+        !dark ? QColor(0, 0, 0) : // Black
+                QColor(255, 255, 255); // White
+
+    stateColors[TorrentState::Uploading] =
+    stateColors[TorrentState::ForcedUploading] =
+        !dark ? QColor(65, 105, 225) :// Royal Blue
+               QColor(99, 184, 255); // Steel Blue 1
+
+    stateColors[TorrentState::PausedDownloading] =
+        QColor(250, 128, 114); // Salmon
+
+    stateColors[TorrentState::PausedUploading] =
+        !dark ? QColor(0, 0, 139) : // Dark Blue
+            QColor(79, 148, 205); // Steel Blue 3
+
+    stateColors[TorrentState::Error] =
+        QColor(255, 0, 0); // red
+
+    stateColors[TorrentState::QueuedDownloading] =
+    stateColors[TorrentState::QueuedUploading] =
+    stateColors[TorrentState::CheckingDownloading] =
+    stateColors[TorrentState::CheckingUploading] =
+    stateColors[TorrentState::QueuedForChecking] =
+    stateColors[TorrentState::CheckingResumeData] =
+        !dark ? QColor(0, 128, 128): // Teal
+            QColor(0, 205, 205); // Cyan 3
+    stateColors[TorrentState::Unknown] =
+        QColor(255, 0, 0); // red
+}
+
+#ifdef Q_OS_UNIX
+bool TorrentStateColorsImpl::readKDEColors(const QProcessEnvironment& env)
+{
+    bool versionDecodedOk = false;
+    int kdeVersion = env.value(QLatin1String("KDE_SESSION_VERSION"), QLatin1String("4"))
+            .toInt(&versionDecodedOk);
+    if (!versionDecodedOk) {
+        return false;
+    }
+    QString kdeCfgFile;
+    switch (kdeVersion) {
+    case 4:
+        kdeCfgFile = QLatin1String(".kde4/share/config/kdeglobals");
+        break;
+    case 5:
+        kdeCfgFile = QLatin1String(".config/kdeglobals");
+        break;
+    default:
+        return false;
+    }
+    QString configPath = QDir(QDir::homePath()).absoluteFilePath(kdeCfgFile);
+    if (!QFileInfo(configPath).exists()) {
+        return false;
+    }
+
+    QSettings kdeGlobals(configPath, QSettings::IniFormat);
+    kdeGlobals.beginGroup(QLatin1String("Colors:View"));
+    bool allColorsWereReadOk = true;
+    bool colorReadOk = false;
+    // we currently do not use the following colors:
+#if 0
+    QColor BackgroundAlternate = decodeKDEColor(kdeGlobals.value(QLatin1String("BackgroundAlternate")), colorReadOk);
+    allColorsWereReadOk &= colorReadOk;
+    QColor BackgroundNormal = decodeKDEColor(kdeGlobals.value(QLatin1String("BackgroundNormal")), colorReadOk);
+    allColorsWereReadOk &= colorReadOk;
+    QColor DecorationFocus = decodeKDEColor(kdeGlobals.value(QLatin1String("DecorationFocus")), colorReadOk);
+    allColorsWereReadOk &= colorReadOk;
+    QColor ForegroundVisited = decodeKDEColor(kdeGlobals.value(QLatin1String("ForegroundVisited")), colorReadOk);
+    allColorsWereReadOk &= colorReadOk;
+    QColor ForegroundNormal = decodeKDEColor(kdeGlobals.value(QLatin1String("ForegroundNormal")), colorReadOk);
+    allColorsWereReadOk &= colorReadOk;
+#endif
+    QColor DecorationHover = decodeKDEColor(kdeGlobals.value(QLatin1String("DecorationHover")), colorReadOk);
+    allColorsWereReadOk &= colorReadOk;
+    QColor ForegroundActive = decodeKDEColor(kdeGlobals.value(QLatin1String("ForegroundActive")), colorReadOk);
+    allColorsWereReadOk &= colorReadOk;
+    QColor ForegroundInactive = decodeKDEColor(kdeGlobals.value(QLatin1String("ForegroundInactive")), colorReadOk);
+    allColorsWereReadOk &= colorReadOk;
+    QColor ForegroundLink = decodeKDEColor(kdeGlobals.value(QLatin1String("ForegroundLink")), colorReadOk);
+    allColorsWereReadOk &= colorReadOk;
+    QColor ForegroundNegative = decodeKDEColor(kdeGlobals.value(QLatin1String("ForegroundNegative")), colorReadOk);
+    allColorsWereReadOk &= colorReadOk;
+    QColor ForegroundNeutral = decodeKDEColor(kdeGlobals.value(QLatin1String("ForegroundNeutral")), colorReadOk);
+    allColorsWereReadOk &= colorReadOk;
+    QColor ForegroundPositive = decodeKDEColor(kdeGlobals.value(QLatin1String("ForegroundPositive")), colorReadOk);
+    allColorsWereReadOk &= colorReadOk;
+    kdeGlobals.endGroup();
+
+    if(!allColorsWereReadOk) { // this situation must be extremely rare, therefore we do not check every color
+        return false;
+    }
+    using BitTorrent::TorrentState;
+
+    stateColors[TorrentState::Downloading] =
+    stateColors[TorrentState::ForcedDownloading] =
+    stateColors[TorrentState::DownloadingMetadata] =
+         ForegroundPositive;
+
+    stateColors[TorrentState::Allocating] =
+    stateColors[TorrentState::StalledDownloading] =
+    stateColors[TorrentState::StalledUploading] =
+        ForegroundInactive;
+
+    stateColors[TorrentState::Uploading] =
+    stateColors[TorrentState::ForcedUploading] =
+        ForegroundNeutral;
+
+    stateColors[TorrentState::PausedDownloading] =
+        DecorationHover;
+
+    stateColors[TorrentState::PausedUploading] =
+        ForegroundActive;
+
+    stateColors[TorrentState::Error] =
+        ForegroundNegative;
+
+    stateColors[TorrentState::QueuedDownloading] =
+    stateColors[TorrentState::QueuedUploading] =
+    stateColors[TorrentState::CheckingDownloading] =
+    stateColors[TorrentState::CheckingUploading] =
+    stateColors[TorrentState::QueuedForChecking] =
+    stateColors[TorrentState::CheckingResumeData] =
+        ForegroundLink;
+    stateColors[TorrentState::Unknown] =
+        ForegroundNegative;
+    return true;
+}
+
+QColor TorrentStateColorsImpl::decodeKDEColor(const QVariant& v, bool &ok)
+{
+    QVariantList components(v.toList());
+    if(components.size() == 3) {
+        bool rOk, gOk, bOk;
+        const int r = components[0].toString().toInt(&rOk);
+        const int g = components[1].toString().toInt(&gOk);
+        const int b = components[2].toString().toInt(&bOk);
+        if (rOk && gOk && bOk) {
+            ok = true;
+            return QColor::fromRgb(r, g, b);
+        }
+    }
+    ok = false;
+    return Qt::black;
+}
+#endif
