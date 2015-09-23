@@ -45,6 +45,7 @@
 #include <QClipboard>
 #include <QProcess>
 #include <QDebug>
+#include <QTextStream>
 
 #include <iostream>
 #ifdef Q_OS_WIN
@@ -74,13 +75,32 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     , m_mainWindow(mainWindow)
     , m_isNewQueryString(false)
     , m_noSearchResults(true)
-    , m_nbSearchResults(0)
 {
     setupUi(this);
 
     m_searchPattern = new LineEdit(this);
     searchBarLayout->insertWidget(0, m_searchPattern);
     connect(m_searchPattern, SIGNAL(returnPressed()), searchButton, SLOT(click()));
+
+    QString searchPatternHint;
+    QTextStream stream(&searchPatternHint, QIODevice::WriteOnly);
+
+    stream << "<html><head/><body><p>"
+           << tr("A phrase to search for.") << "<br>"
+           << tr("Spaces in a search term may be protected by double quotes.")
+           << "</p><p>"
+           << tr("Example:", "Search phrase example")
+           << "<br>"
+           << tr("<b>foo bar</b>: search for <b>foo</b> and <b>bar</b>",
+                 "Search phrase example, illustrates quotes usage, a pair of "
+                 "space delimited words, individal words are highlighted")
+           << "<br>"
+           << tr("<b>&quot;foo bar&quot;</b>: search for <b>foo bar</b>",
+                 "Search phrase example, illustrates quotes usage, double quoted"
+                 "pair of space delimited words, the whole pair is highlighted")
+           << "</p></body></html>" << flush;
+
+    m_searchPattern->setToolTip(searchPatternHint);
 
     // Icons
     searchButton->setIcon(GuiIconProvider::instance()->getIcon("edit-find"));
@@ -158,7 +178,6 @@ void SearchWidget::tab_changed(int t)
             goToDescBtn->setEnabled(false);
             copyURLBtn->setEnabled(false);
         }
-        searchStatus->setText(m_currentSearchTab->status());
     }
 }
 
@@ -185,6 +204,11 @@ void SearchWidget::searchTextEdited(QString)
 void SearchWidget::giveFocusToSearchInput()
 {
     m_searchPattern->setFocus();
+}
+
+QTabWidget *SearchWidget::searchTabs() const
+{
+    return tabWidget;
 }
 
 // Function called when we click on search button
@@ -222,6 +246,7 @@ void SearchWidget::on_searchButton_clicked()
     tabName.replace(QRegExp("&{1}"), "&&");
     tabWidget->addTab(m_currentSearchTab, tabName);
     tabWidget->setCurrentWidget(m_currentSearchTab);
+    m_currentSearchTab->getCurrentSearchListProxy()->setNameFilter(pattern);
 
     QStringList plugins;
     if (selectedPlugin() == "all") plugins = m_searchEngine->allPlugins();
@@ -233,10 +258,9 @@ void SearchWidget::on_searchButton_clicked()
 
     // Update SearchEngine widgets
     m_noSearchResults = true;
-    m_nbSearchResults = 0;
 
     // Changing the text of the current label
-    m_activeSearchTab->getCurrentLabel()->setText(tr("Results <i>(%1)</i>:", "i.e: Search results").arg(0));
+    m_activeSearchTab->updateResultsCount();
 
     // Launch search
     m_searchEngine->startSearch(pattern, selectedCategory(), plugins);
@@ -268,9 +292,7 @@ void SearchWidget::downloadTorrent(QString url)
 void SearchWidget::searchStarted()
 {
     // Update SearchEngine widgets
-    m_activeSearchTab->setStatus(tr("Searching..."));
-    searchStatus->setText(m_currentSearchTab->status());
-    searchStatus->repaint();
+    m_activeSearchTab->setStatus(SearchTab::Status::Ongoing);
     searchButton->setText(tr("Stop"));
 }
 
@@ -285,13 +307,12 @@ void SearchWidget::searchFinished(bool cancelled)
     if (m_activeSearchTab.isNull()) return; // The active tab was closed
 
     if (cancelled)
-        m_activeSearchTab->setStatus(tr("Search aborted"));
+        m_activeSearchTab->setStatus(SearchTab::Status::Aborted);
     else if (m_noSearchResults)
-        m_activeSearchTab->setStatus(tr("Search returned no results"));
+        m_activeSearchTab->setStatus(SearchTab::Status::NoResults);
     else
-        m_activeSearchTab->setStatus(tr("Search has finished"));
+        m_activeSearchTab->setStatus(SearchTab::Status::Finished);
 
-    searchStatus->setText(m_currentSearchTab->status());
     m_activeSearchTab = 0;
     searchButton->setText(tr("Search"));
 }
@@ -304,9 +325,9 @@ void SearchWidget::searchFailed()
     if (m_activeSearchTab.isNull()) return; // The active tab was closed
 
 #ifdef Q_OS_WIN
-    m_activeSearchTab->setStatus(tr("Search aborted"));
+    m_activeSearchTab->setStatus(SearchTab::Status::Aborted);
 #else
-    m_activeSearchTab->setStatus(tr("An error occurred during search..."));
+    m_activeSearchTab->setStatus(SearchTab::Status::Error);
 #endif
 }
 
@@ -331,14 +352,13 @@ void SearchWidget::appendSearchResults(const QList<SearchResult> &results)
         curModel->setData(curModel->index(row, SearchSortModel::NAME), result.fileName); // Name
         curModel->setData(curModel->index(row, SearchSortModel::SIZE), result.fileSize); // Size
         curModel->setData(curModel->index(row, SearchSortModel::SEEDS), result.nbSeeders); // Seeders
-        curModel->setData(curModel->index(row, SearchSortModel::LEECHS), result.nbLeechers); // Leechers
+        curModel->setData(curModel->index(row, SearchSortModel::LEECHES), result.nbLeechers); // Leechers
         curModel->setData(curModel->index(row, SearchSortModel::ENGINE_URL), result.siteUrl); // Search site URL
         curModel->setData(curModel->index(row, SearchSortModel::DESC_LINK), result.descrLink); // Description Link
     }
 
     m_noSearchResults = false;
-    m_nbSearchResults += results.size();
-    m_activeSearchTab->getCurrentLabel()->setText(tr("Results <i>(%1)</i>:", "i.e: Search results").arg(m_nbSearchResults));
+    m_activeSearchTab->updateResultsCount();
 
     // Enable clear & download buttons
     downloadButton->setEnabled(true);
@@ -361,7 +381,6 @@ void SearchWidget::closeTab(int index)
     if (!m_allTabs.size()) {
         downloadButton->setEnabled(false);
         goToDescBtn->setEnabled(false);
-        searchStatus->setText(tr("Stopped"));
         copyURLBtn->setEnabled(false);
     }
 }

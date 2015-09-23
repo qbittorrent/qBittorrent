@@ -55,6 +55,8 @@ public:
     void downloadTorrent(QString url);
     void giveFocusToSearchInput();
 
+    QTabWidget* searchTabs() const;
+
 private slots:
     // Search slots
     void tab_changed(int); //to prevent the use of the download button when the tab is empty
@@ -89,7 +91,6 @@ private:
     bool m_isNewQueryString;
     bool m_noSearchResults;
     QByteArray m_searchResultLineTruncated;
-    unsigned long m_nbSearchResults;
 };
 
 #endif // SEARCHWIDGET_H
