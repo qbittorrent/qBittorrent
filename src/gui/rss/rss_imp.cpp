@@ -255,11 +255,6 @@ void RSSImp::deleteSelectedItems()
         return;
 
     foreach (QTreeWidgetItem* item, selectedItems) {
-        if (m_feedList->currentFeed() == item) {
-            textBrowser->clear();
-            m_currentArticle = 0;
-            listArticles->clear();
-        }
         if (item == m_feedList->stickyUnreadItem())
             continue;
         RssFilePtr rss_item = m_feedList->getRSSItem(item);
@@ -282,6 +277,9 @@ void RSSImp::deleteSelectedItems()
     m_rssManager->saveStreamList();
     // Update Unread items
     updateItemInfos(m_feedList->stickyUnreadItem());
+    if (m_feedList->currentItem() == m_feedList->stickyUnreadItem())
+        populateArticleList(m_feedList->stickyUnreadItem());
+
 }
 
 void RSSImp::loadFoldersOpenState()
@@ -577,8 +575,10 @@ void RSSImp::refreshTextBrowser()
     if (item == m_currentArticle) return;
     m_currentArticle = item;
 
-    RssFeedPtr stream = m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString());
-    RssArticlePtr article = stream->getItem(item->data(Article::IdRole).toString());
+    RssFeedPtr feed = m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString());
+    if (!feed) return;
+    RssArticlePtr article = feed->getItem(item->data(Article::IdRole).toString());
+    if (!article) return;
     QString html;
     html += "<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>";
     html += "<div style='background-color: #678db2; font-weight: bold; color: #fff;'>" + article->title() + "</div>";
