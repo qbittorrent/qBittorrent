@@ -509,22 +509,6 @@ qreal TorrentHandle::ratioLimit() const
     return m_ratioLimit;
 }
 
-
-QString TorrentHandle::firstFileSavePath() const
-{
-    Q_ASSERT(hasMetadata());
-
-    QString fSavePath = savePath();
-    if (!fSavePath.endsWith("/"))
-        fSavePath += "/";
-    fSavePath += filePath(0);
-    // Remove .!qB extension
-    if (fSavePath.endsWith(".!qB", Qt::CaseInsensitive))
-        fSavePath.chop(4);
-
-    return fSavePath;
-}
-
 QString TorrentHandle::filePath(int index) const
 {
     return m_torrentInfo.filePath(index);

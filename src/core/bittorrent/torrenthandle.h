@@ -192,7 +192,6 @@ namespace BitTorrent
         QDateTime addedTime() const;
         qreal ratioLimit() const;
 
-        QString firstFileSavePath() const;
         QString filePath(int index) const;
         QString fileName(int index) const;
         qlonglong fileSize(int index) const;
