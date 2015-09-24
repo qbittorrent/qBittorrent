@@ -46,6 +46,7 @@
 #include <QDropEvent>
 #include <QTemporaryFile>
 #include <QMimeData>
+#include <QClipboard>
 
 enum EngineColumns {ENGINE_NAME, ENGINE_VERSION, ENGINE_URL, ENGINE_STATE, ENGINE_ID};
 
@@ -351,9 +352,16 @@ void engineSelectDlg::on_installButton_clicked() {
 
 void engineSelectDlg::askForPluginUrl() {
   bool ok(false);
+  QString clipTxt = qApp->clipboard()->text();
+  QString defaultUrl = "http://";
+  if ((clipTxt.startsWith("http://", Qt::CaseInsensitive)
+    || clipTxt.startsWith("https://", Qt::CaseInsensitive)
+    || clipTxt.startsWith("ftp://", Qt::CaseInsensitive))
+    && clipTxt.endsWith(".py"))
+    defaultUrl = clipTxt;
   QString url = AutoExpandableDialog::getText(this, tr("New search engine plugin URL"),
                                       tr("URL:"), QLineEdit::Normal,
-                                      "http://", &ok);
+                                      defaultUrl, &ok);
 
   while(true) {
     if (!ok || url.isEmpty())
