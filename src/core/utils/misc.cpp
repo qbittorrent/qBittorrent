@@ -601,7 +601,7 @@ void Utils::Misc::openFolderSelect(const QString& absolutePath)
             proc.startDetached("caja", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(path));
         else if (output == "nemo.desktop")
             proc.startDetached("nemo", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(path));
-        else if (output == "kfmclient_dir.desktop")
+        else if (output == "konqueror.desktop" || output == "kfmclient_dir.desktop")
             proc.startDetached("konqueror", QStringList() << "--select" << Utils::Fs::toNativePath(path));
         else
             openPath(path.left(path.lastIndexOf("/")));
