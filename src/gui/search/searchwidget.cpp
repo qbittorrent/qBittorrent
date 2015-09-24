@@ -29,17 +29,16 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QStandardItemModel>
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QTemporaryFile>
 #include <QSystemTrayIcon>
-#include <iostream>
 #include <QTimer>
 #include <QDir>
 #include <QMenu>
 #include <QClipboard>
 #include <QMimeData>
+#include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QFileDialog>
 #include <QDesktopServices>
@@ -47,6 +46,7 @@
 #include <QProcess>
 #include <QDebug>
 
+#include <iostream>
 #ifdef Q_OS_WIN
 #include <stdlib.h>
 #endif
@@ -61,22 +61,27 @@
 #include "addnewtorrentdialog.h"
 #include "guiiconprovider.h"
 #include "lineedit.h"
+#include "pluginselectdlg.h"
+#include "searchsortmodel.h"
+#include "searchtab.h"
 #include "searchwidget.h"
 
 #define SEARCHHISTORY_MAXSIZE 50
+#define URL_COLUMN 5
 
-/*SEARCH ENGINE START*/
-SearchWidget::SearchWidget(MainWindow* parent)
-    : QWidget(parent)
-    , search_pattern(new LineEdit(this))
-    , mp_mainWindow(parent)
+SearchWidget::SearchWidget(MainWindow *mainWindow)
+    : QWidget(mainWindow)
+    , m_mainWindow(mainWindow)
 {
     setupUi(this);
-    searchBarLayout->insertWidget(0, search_pattern);
-    connect(search_pattern, SIGNAL(returnPressed()), search_button, SLOT(click()));
+
+    m_searchPattern = new LineEdit(this);
+    searchBarLayout->insertWidget(0, m_searchPattern);
+    connect(m_searchPattern, SIGNAL(returnPressed()), searchButton, SLOT(click()));
+
     // Icons
-    search_button->setIcon(GuiIconProvider::instance()->getIcon("edit-find"));
-    download_button->setIcon(GuiIconProvider::instance()->getIcon("download"));
+    searchButton->setIcon(GuiIconProvider::instance()->getIcon("edit-find"));
+    downloadButton->setIcon(GuiIconProvider::instance()->getIcon("download"));
     goToDescBtn->setIcon(GuiIconProvider::instance()->getIcon("application-x-mswinurl"));
     pluginsButton->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
     copyURLBtn->setIcon(GuiIconProvider::instance()->getIcon("edit-copy"));
@@ -93,7 +98,7 @@ SearchWidget::SearchWidget(MainWindow* parent)
     fillCatCombobox();
     fillPluginComboBox();
 
-    connect(search_pattern, SIGNAL(textEdited(QString)), this, SLOT(searchTextEdited(QString)));
+    connect(m_searchPattern, SIGNAL(textEdited(QString)), this, SLOT(searchTextEdited(QString)));
     connect(selectPlugin, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(selectMultipleBox(const QString &)));
 }
 
@@ -101,8 +106,7 @@ void SearchWidget::fillCatCombobox()
 {
     comboCategory->clear();
     comboCategory->addItem(SearchEngine::categoryFullName("all"), QVariant("all"));
-    QStringList supported_cat = m_searchEngine->supportedCategories();
-    foreach (QString cat, supported_cat) {
+    foreach (QString cat, m_searchEngine->supportedCategories()) {
         qDebug("Supported category: %s", qPrintable(cat));
         comboCategory->addItem(SearchEngine::categoryFullName(cat), QVariant(cat));
     }
@@ -123,7 +127,7 @@ QString SearchWidget::selectedCategory() const
     return comboCategory->itemData(comboCategory->currentIndex()).toString();
 }
 
-QString SearchWidget::selectedEngine() const
+QString SearchWidget::selectedPlugin() const
 {
     return selectPlugin->itemData(selectPlugin->currentIndex()).toString();
 }
@@ -131,8 +135,6 @@ QString SearchWidget::selectedEngine() const
 SearchWidget::~SearchWidget()
 {
     qDebug("Search destruction");
-
-    delete search_pattern;
     delete m_searchEngine;
 }
 
@@ -142,24 +144,25 @@ void SearchWidget::tab_changed(int t)
     //doesn't have to be available
     if (t > -1) {
         //-1 = no more tab
-        currentSearchTab = all_tab.at(tabWidget->currentIndex());
-        if (currentSearchTab->getCurrentSearchListModel()->rowCount()) {
-            download_button->setEnabled(true);
+        m_currentSearchTab = m_allTabs.at(tabWidget->currentIndex());
+        if (m_currentSearchTab->getCurrentSearchListModel()->rowCount()) {
+            downloadButton->setEnabled(true);
             goToDescBtn->setEnabled(true);
             copyURLBtn->setEnabled(true);
         }
         else {
-            download_button->setEnabled(false);
+            downloadButton->setEnabled(false);
             goToDescBtn->setEnabled(false);
             copyURLBtn->setEnabled(false);
         }
-        search_status->setText(currentSearchTab->status);
+        searchStatus->setText(m_currentSearchTab->status());
     }
 }
 
 void SearchWidget::selectMultipleBox(const QString &text)
 {
-    if (text == tr("Multiple...")) on_pluginsButton_clicked();
+    if (text == tr("Multiple..."))
+        on_pluginsButton_clicked();
 }
 
 void SearchWidget::on_pluginsButton_clicked()
@@ -172,35 +175,35 @@ void SearchWidget::on_pluginsButton_clicked()
 void SearchWidget::searchTextEdited(QString)
 {
     // Enable search button
-    search_button->setText(tr("Search"));
-    newQueryString = true;
+    searchButton->setText(tr("Search"));
+    m_isNewQueryString = true;
 }
 
 void SearchWidget::giveFocusToSearchInput()
 {
-    search_pattern->setFocus();
+    m_searchPattern->setFocus();
 }
 
 // Function called when we click on search button
-void SearchWidget::on_search_button_clicked()
+void SearchWidget::on_searchButton_clicked()
 {
     if (Utils::Misc::pythonVersion() < 0) {
-        mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
+        m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
         return;
     }
 
     if (m_searchEngine->isActive()) {
         m_searchEngine->cancelSearch();
 
-        if (!newQueryString) {
-            search_button->setText(tr("Search"));
+        if (!m_isNewQueryString) {
+            searchButton->setText(tr("Search"));
             return;
         }
     }
 
-    newQueryString = false;
+    m_isNewQueryString = false;
 
-    const QString pattern = search_pattern->text().trimmed();
+    const QString pattern = m_searchPattern->text().trimmed();
     // No search pattern entered
     if (pattern.isEmpty()) {
         QMessageBox::critical(0, tr("Empty search pattern"), tr("Please type a search pattern first"));
@@ -208,29 +211,29 @@ void SearchWidget::on_search_button_clicked()
     }
 
     // Tab Addition
-    currentSearchTab = new SearchTab(this);
-    activeSearchTab = currentSearchTab;
-    connect(currentSearchTab->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveResultsColumnsWidth()));
-    all_tab.append(currentSearchTab);
+    m_currentSearchTab = new SearchTab(this);
+    m_activeSearchTab = m_currentSearchTab;
+    connect(m_currentSearchTab->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveResultsColumnsWidth()));
+    m_allTabs.append(m_currentSearchTab);
     QString tabName = pattern;
     tabName.replace(QRegExp("&{1}"), "&&");
-    tabWidget->addTab(currentSearchTab, tabName);
-    tabWidget->setCurrentWidget(currentSearchTab);
+    tabWidget->addTab(m_currentSearchTab, tabName);
+    tabWidget->setCurrentWidget(m_currentSearchTab);
 
     QStringList plugins;
-    if (selectedEngine() == "all") plugins = m_searchEngine->allPlugins();
-    else if (selectedEngine() == "enabled") plugins = m_searchEngine->enabledPlugins();
-    else if (selectedEngine() == "multi") plugins = m_searchEngine->enabledPlugins();
-    else plugins << selectedEngine();
+    if (selectedPlugin() == "all") plugins = m_searchEngine->allPlugins();
+    else if (selectedPlugin() == "enabled") plugins = m_searchEngine->enabledPlugins();
+    else if (selectedPlugin() == "multi") plugins = m_searchEngine->enabledPlugins();
+    else plugins << selectedPlugin();
 
     qDebug("Search with category: %s", qPrintable(selectedCategory()));
 
     // Update SearchEngine widgets
-    no_search_results = true;
-    nb_search_results = 0;
+    m_noSearchResults = true;
+    m_nbSearchResults = 0;
 
     // Changing the text of the current label
-    activeSearchTab->getCurrentLabel()->setText(tr("Results <i>(%1)</i>:", "i.e: Search results").arg(0));
+    m_activeSearchTab->getCurrentLabel()->setText(tr("Results <i>(%1)</i>:", "i.e: Search results").arg(0));
 
     // Launch search
     m_searchEngine->startSearch(pattern, selectedCategory(), plugins);
@@ -238,18 +241,17 @@ void SearchWidget::on_search_button_clicked()
 
 void SearchWidget::saveResultsColumnsWidth()
 {
-    if (all_tab.isEmpty())
-        return;
-    QTreeView* treeview = all_tab.first()->getCurrentTreeView();
-    Preferences* const pref = Preferences::instance();
-    QStringList new_width_list;
-    short nbColumns = all_tab.first()->getCurrentSearchListModel()->columnCount();
+    if (m_allTabs.isEmpty()) return;
+
+    QTreeView *treeview = m_allTabs.first()->getCurrentTreeView();
+    QStringList newWidthList;
+    short nbColumns = m_allTabs.first()->getCurrentSearchListModel()->columnCount();
     for (short i = 0; i < nbColumns; ++i)
         if (treeview->columnWidth(i) > 0)
-            new_width_list << QString::number(treeview->columnWidth(i));
+            newWidthList << QString::number(treeview->columnWidth(i));
     // Don't save the width of the last column (auto column width)
-    new_width_list.removeLast();
-    pref->setSearchColsWidth(new_width_list.join(" "));
+    newWidthList.removeLast();
+    Preferences::instance()->setSearchColsWidth(newWidthList.join(" "));
 }
 
 void SearchWidget::downloadTorrent(QString url)
@@ -263,10 +265,10 @@ void SearchWidget::downloadTorrent(QString url)
 void SearchWidget::searchStarted()
 {
     // Update SearchEngine widgets
-    activeSearchTab->status = tr("Searching...");
-    search_status->setText(currentSearchTab->status);
-    search_status->repaint();
-    search_button->setText(tr("Stop"));
+    m_activeSearchTab->setStatus(tr("Searching..."));
+    searchStatus->setText(m_currentSearchTab->status());
+    searchStatus->repaint();
+    searchButton->setText(tr("Stop"));
 }
 
 // Slot called when search is Finished
@@ -274,72 +276,69 @@ void SearchWidget::searchStarted()
 // Error | Stopped by user | Finished normally
 void SearchWidget::searchFinished(bool cancelled)
 {
-    bool useNotificationBalloons = Preferences::instance()->useProgramNotification();
-    if (useNotificationBalloons && mp_mainWindow->getCurrentTabWidget() != this)
-        mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
+    if (Preferences::instance()->useProgramNotification() && (m_mainWindow->getCurrentTabWidget() != this))
+        m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
 
-    if (activeSearchTab.isNull()) return; // The active tab was closed
+    if (m_activeSearchTab.isNull()) return; // The active tab was closed
 
     if (cancelled)
-        activeSearchTab->status = tr("Search aborted");
-    else if (no_search_results)
-        activeSearchTab->status = tr("Search returned no results");
+        m_activeSearchTab->setStatus(tr("Search aborted"));
+    else if (m_noSearchResults)
+        m_activeSearchTab->setStatus(tr("Search returned no results"));
     else
-        activeSearchTab->status = tr("Search has finished");
+        m_activeSearchTab->setStatus(tr("Search has finished"));
 
-    search_status->setText(currentSearchTab->status);
-    activeSearchTab = 0;
-    search_button->setText(tr("Search"));
+    searchStatus->setText(m_currentSearchTab->status());
+    m_activeSearchTab = 0;
+    searchButton->setText(tr("Search"));
 }
 
 void SearchWidget::searchFailed()
 {
-    bool useNotificationBalloons = Preferences::instance()->useProgramNotification();
-    if (useNotificationBalloons && mp_mainWindow->getCurrentTabWidget() != this)
-        mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has failed"));
+    if (Preferences::instance()->useProgramNotification() && (m_mainWindow->getCurrentTabWidget() != this))
+        m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has failed"));
 
-    if (activeSearchTab.isNull()) return; // The active tab was closed
+    if (m_activeSearchTab.isNull()) return; // The active tab was closed
 
 #ifdef Q_OS_WIN
-    activeSearchTab->status = tr("Search aborted");
+    m_activeSearchTab->setStatus(tr("Search aborted"));
 #else
-    activeSearchTab->status = tr("An error occurred during search...");
+    m_activeSearchTab->setStatus(tr("An error occurred during search..."));
 #endif
 }
 
-// SLOT to append one line to search results list
 void SearchWidget::appendSearchResults(const QList<SearchResult> &results)
 {
-    if (activeSearchTab.isNull()) {
+    if (m_activeSearchTab.isNull()) {
         m_searchEngine->cancelSearch();
         return;
     }
 
-    Q_ASSERT(activeSearchTab);
+    Q_ASSERT(m_activeSearchTab);
 
-    QStandardItemModel* cur_model = activeSearchTab->getCurrentSearchListModel();
-    Q_ASSERT(cur_model);
+    QStandardItemModel *curModel = m_activeSearchTab->getCurrentSearchListModel();
+    Q_ASSERT(curModel);
 
     foreach (const SearchResult &result, results) {
         // Add item to search result list
-        int row = cur_model->rowCount();
-        cur_model->insertRow(row);
+        int row = curModel->rowCount();
+        curModel->insertRow(row);
 
-        cur_model->setData(cur_model->index(row, SearchSortModel::DL_LINK), result.fileUrl); // download URL
-        cur_model->setData(cur_model->index(row, SearchSortModel::NAME), result.fileName); // Name
-        cur_model->setData(cur_model->index(row, SearchSortModel::SIZE), result.fileSize); // Size
-        cur_model->setData(cur_model->index(row, SearchSortModel::SEEDS), result.nbSeeders); // Seeders
-        cur_model->setData(cur_model->index(row, SearchSortModel::LEECHS), result.nbLeechers); // Leechers
-        cur_model->setData(cur_model->index(row, SearchSortModel::ENGINE_URL), result.siteUrl); // Search site URL
-        cur_model->setData(cur_model->index(row, SearchSortModel::DESC_LINK), result.descrLink); // Description Link
+        curModel->setData(curModel->index(row, SearchSortModel::DL_LINK), result.fileUrl); // download URL
+        curModel->setData(curModel->index(row, SearchSortModel::NAME), result.fileName); // Name
+        curModel->setData(curModel->index(row, SearchSortModel::SIZE), result.fileSize); // Size
+        curModel->setData(curModel->index(row, SearchSortModel::SEEDS), result.nbSeeders); // Seeders
+        curModel->setData(curModel->index(row, SearchSortModel::LEECHS), result.nbLeechers); // Leechers
+        curModel->setData(curModel->index(row, SearchSortModel::ENGINE_URL), result.siteUrl); // Search site URL
+        curModel->setData(curModel->index(row, SearchSortModel::DESC_LINK), result.descrLink); // Description Link
     }
 
-    no_search_results = false;
-    nb_search_results += results.size();
-    activeSearchTab->getCurrentLabel()->setText(tr("Results <i>(%1)</i>:", "i.e: Search results").arg(nb_search_results));
+    m_noSearchResults = false;
+    m_nbSearchResults += results.size();
+    m_activeSearchTab->getCurrentLabel()->setText(tr("Results <i>(%1)</i>:", "i.e: Search results").arg(m_nbSearchResults));
 
     // Enable clear & download buttons
-    download_button->setEnabled(true);
+    downloadButton->setEnabled(true);
     goToDescBtn->setEnabled(true);
     copyURLBtn->setEnabled(true);
 }
@@ -347,46 +346,48 @@ void SearchWidget::appendSearchResults(const QList<SearchResult> &results)
 void SearchWidget::closeTab(int index)
 {
     // Search is run for active tab so if user decided to close it, then stop search
-    if (!activeSearchTab.isNull() && index == tabWidget->indexOf(activeSearchTab)) {
+    if (!m_activeSearchTab.isNull() && index == tabWidget->indexOf(m_activeSearchTab)) {
         qDebug("Closed active search Tab");
         if (m_searchEngine->isActive())
             m_searchEngine->cancelSearch();
-        activeSearchTab = 0;
+        m_activeSearchTab = 0;
     }
-    delete all_tab.takeAt(index);
-    if (!all_tab.size()) {
-        download_button->setEnabled(false);
+
+    delete m_allTabs.takeAt(index);
+
+    if (!m_allTabs.size()) {
+        downloadButton->setEnabled(false);
         goToDescBtn->setEnabled(false);
-        search_status->setText(tr("Stopped"));
+        searchStatus->setText(tr("Stopped"));
         copyURLBtn->setEnabled(false);
     }
 }
 
 // Download selected items in search results list
-void SearchWidget::on_download_button_clicked()
+void SearchWidget::on_downloadButton_clicked()
 {
     //QModelIndexList selectedIndexes = currentSearchTab->getCurrentTreeView()->selectionModel()->selectedIndexes();
-    QModelIndexList selectedIndexes = all_tab.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
+    QModelIndexList selectedIndexes = m_allTabs.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
     foreach (const QModelIndex &index, selectedIndexes) {
         if (index.column() == SearchSortModel::NAME) {
             // Get Item url
-            QSortFilterProxyModel* model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
-            QString torrent_url = model->data(model->index(index.row(), URL_COLUMN)).toString();
-            downloadTorrent(torrent_url);
-            all_tab.at(tabWidget->currentIndex())->setRowColor(index.row(), "blue");
+            QSortFilterProxyModel *model = m_allTabs.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
+            QString torrentUrl = model->data(model->index(index.row(), URL_COLUMN)).toString();
+            downloadTorrent(torrentUrl);
+            m_allTabs.at(tabWidget->currentIndex())->setRowColor(index.row(), "blue");
         }
     }
 }
 
 void SearchWidget::on_goToDescBtn_clicked()
 {
-    QModelIndexList selectedIndexes = all_tab.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
+    QModelIndexList selectedIndexes = m_allTabs.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
     foreach (const QModelIndex &index, selectedIndexes) {
         if (index.column() == SearchSortModel::NAME) {
-            QSortFilterProxyModel* model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
-            const QString desc_url = model->data(model->index(index.row(), SearchSortModel::DESC_LINK)).toString();
-            if (!desc_url.isEmpty())
-                QDesktopServices::openUrl(QUrl::fromEncoded(desc_url.toUtf8()));
+            QSortFilterProxyModel *model = m_allTabs.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
+            const QString descUrl = model->data(model->index(index.row(), SearchSortModel::DESC_LINK)).toString();
+            if (!descUrl.isEmpty())
+                QDesktopServices::openUrl(QUrl::fromEncoded(descUrl.toUtf8()));
         }
     }
 }
@@ -394,15 +395,17 @@ void SearchWidget::on_goToDescBtn_clicked()
 void SearchWidget::on_copyURLBtn_clicked()
 {
     QStringList urls;
-    QModelIndexList selectedIndexes = all_tab.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
+    QModelIndexList selectedIndexes = m_allTabs.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
+
     foreach (const QModelIndex &index, selectedIndexes) {
         if (index.column() == SearchSortModel::NAME) {
-            QSortFilterProxyModel* model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
+            QSortFilterProxyModel *model = m_allTabs.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
             const QString descUrl = model->data(model->index(index.row(), SearchSortModel::DESC_LINK)).toString();
             if (!descUrl.isEmpty())
                 urls << descUrl.toUtf8();
         }
     }
+
     if (!urls.empty()) {
         QClipboard *clipboard = QApplication::clipboard();
         clipboard->setText(urls.join("\n"));

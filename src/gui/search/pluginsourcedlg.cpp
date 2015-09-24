@@ -28,18 +28,24 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef SEARCHLISTDELEGATE_H
-#define SEARCHLISTDELEGATE_H
+#include "pluginsourcedlg.h"
 
-#include <QItemDelegate>
-
-class SearchListDelegate: public QItemDelegate
+PluginSourceDlg::PluginSourceDlg(QWidget *parent)
+    : QDialog(parent)
 {
-public:
-    explicit SearchListDelegate(QObject *parent = 0);
+    setupUi(this);
+    setAttribute(Qt::WA_DeleteOnClose);
+    show();
+}
 
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const;
-};
+void PluginSourceDlg::on_localButton_clicked()
+{
+    emit askForLocalFile();
+    close();
+}
 
-#endif
+void PluginSourceDlg::on_urlButton_clicked()
+{
+    emit askForUrl();
+    close();
+}

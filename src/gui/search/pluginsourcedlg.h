@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -34,32 +34,20 @@
 #include <QDialog>
 #include "ui_pluginsourcedlg.h"
 
-class PluginSourceDlg: public QDialog, private Ui::PluginSourceDlg {
-  Q_OBJECT
+class PluginSourceDlg: public QDialog, private Ui::PluginSourceDlg
+{
+    Q_OBJECT
 
-  signals:
+public:
+    explicit PluginSourceDlg(QWidget *parent = 0);
+
+signals:
     void askForUrl();
     void askForLocalFile();
 
-  protected slots:
-    void on_localButton_clicked() {
-      emit askForLocalFile();
-      close();
-    }
-
-    void on_urlButton_clicked() {
-      emit askForUrl();
-      close();
-    }
-
-  public:
-    PluginSourceDlg(QWidget* parent): QDialog(parent) {
-      setupUi(this);
-      setAttribute(Qt::WA_DeleteOnClose);
-      show();
-    }
-
-    ~PluginSourceDlg() {}
+private slots:
+    void on_localButton_clicked();
+    void on_urlButton_clicked();
 };
 
 #endif // PLUGINSOURCEDLG_H

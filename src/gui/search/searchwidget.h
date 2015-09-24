@@ -33,69 +33,63 @@
 #define SEARCHWIDGET_H
 
 #include <QList>
-#include <QPair>
 #include <QPointer>
-#include <QStringListModel>
-#include "ui_searchwidget.h"
-#include "pluginselectdlg.h"
-#include "searchtab.h"
 
-class SearchWidget;
+#include "ui_searchwidget.h"
+
 class MainWindow;
 class LineEdit;
 class SearchEngine;
 struct SearchResult;
+class SearchTab;
 
-QT_BEGIN_NAMESPACE
-class QTimer;
-QT_END_NAMESPACE
-
-class SearchWidget : public QWidget, private Ui::SearchWidget{
+class SearchWidget: public QWidget, private Ui::SearchWidget
+{
     Q_OBJECT
     Q_DISABLE_COPY(SearchWidget)
 
 public:
-    SearchWidget(MainWindow *mp_mainWindow);
+    explicit SearchWidget(MainWindow *mainWindow);
     ~SearchWidget();
-    QString selectedCategory() const;
-    QString selectedEngine() const;
 
-public slots:
     void downloadTorrent(QString url);
     void giveFocusToSearchInput();
 
 private slots:
     // Search slots
-    void tab_changed(int);//to prevent the use of the download button when the tab is empty
-    void on_search_button_clicked();
-    void on_download_button_clicked();
+    void tab_changed(int); //to prevent the use of the download button when the tab is empty
+    void on_searchButton_clicked();
+    void on_downloadButton_clicked();
+    void on_goToDescBtn_clicked();
+    void on_copyURLBtn_clicked();
+    void on_pluginsButton_clicked();
+
     void closeTab(int index);
     void appendSearchResults(const QList<SearchResult> &results);
     void searchStarted();
     void searchFinished(bool cancelled);
     void searchFailed();
     void selectMultipleBox(const QString &text);
-    void on_pluginsButton_clicked();
+
     void saveResultsColumnsWidth();
     void fillCatCombobox();
     void fillPluginComboBox();
     void searchTextEdited(QString);
-    void on_goToDescBtn_clicked();
-    void on_copyURLBtn_clicked();
 
 private:
-    // Search related
-    LineEdit* search_pattern;
+    QString selectedCategory() const;
+    QString selectedPlugin() const;
 
-    bool no_search_results;
-    QByteArray search_result_line_truncated;
-    unsigned long nb_search_results;
+    LineEdit *m_searchPattern;
     SearchEngine *m_searchEngine;
-    QPointer<SearchTab> currentSearchTab; // Selected tab
-    QPointer<SearchTab> activeSearchTab; // Tab with running search
-    QList<QPointer<SearchTab> > all_tab; // To store all tabs
-    MainWindow *mp_mainWindow;
-    bool newQueryString;
+    QPointer<SearchTab> m_currentSearchTab; // Selected tab
+    QPointer<SearchTab> m_activeSearchTab; // Tab with running search
+    QList<QPointer<SearchTab> > m_allTabs; // To store all tabs
+    MainWindow *m_mainWindow;
+    bool m_isNewQueryString;
+    bool m_noSearchResults;
+    QByteArray m_searchResultLineTruncated;
+    unsigned long m_nbSearchResults;
 };
 
 #endif // SEARCHWIDGET_H

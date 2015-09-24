@@ -30,8 +30,8 @@
 #include <QDomDocument>
 #include <QDomNode>
 #include <QDomElement>
-#include <QProcess>
 #include <QDir>
+#include <QProcess>
 #include <QDebug>
 
 #include "base/utils/fs.h"
@@ -62,8 +62,8 @@ static inline void removePythonScriptIfExists(const QString &scriptPath)
 const QHash<QString, QString> SearchEngine::m_categoryNames = SearchEngine::initializeCategoryNames();
 
 SearchEngine::SearchEngine()
-    : m_searchStopped(false)
-    , m_updateUrl(QString("https://raw.github.com/qbittorrent/qBittorrent/master/src/searchengine/%1/engines/").arg(Utils::Misc::pythonVersion() >= 3 ? "nova3" : "nova"))
+    : m_updateUrl(QString("https://raw.github.com/qbittorrent/qBittorrent/master/src/searchengine/%1/engines/").arg(Utils::Misc::pythonVersion() >= 3 ? "nova3" : "nova"))
+    , m_searchStopped(false)
 {
     updateNova();
 
@@ -71,7 +71,7 @@ SearchEngine::SearchEngine()
     m_searchProcess->setEnvironment(QProcess::systemEnvironment());
     connect(m_searchProcess, SIGNAL(started()), this, SIGNAL(searchStarted()));
     connect(m_searchProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readSearchOutput()));
-    connect(m_searchProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(processFinished(int, QProcess::ExitStatus)));
+    connect(m_searchProcess, SIGNAL(finished(int)), this, SLOT(processFinished(int)));
 
     m_searchTimeout = new QTimer(this);
     m_searchTimeout->setSingleShot(true);
@@ -315,7 +315,7 @@ QString SearchEngine::engineLocation()
 // Slot called when QProcess is Finished
 // QProcess can be finished for 3 reasons :
 // Error | Stopped by user | Finished normally
-void SearchEngine::processFinished(int exitcode, QProcess::ExitStatus)
+void SearchEngine::processFinished(int exitcode)
 {
     m_searchTimeout->stop();
 

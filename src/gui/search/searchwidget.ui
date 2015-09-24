@@ -23,7 +23,7 @@
       <widget class="QComboBox" name="selectPlugin"/>
      </item>
      <item>
-      <widget class="QPushButton" name="search_button">
+      <widget class="QPushButton" name="searchButton">
        <property name="text">
         <string>Search</string>
        </property>
@@ -53,7 +53,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="search_status">
+      <widget class="QLabel" name="searchStatus">
        <property name="minimumSize">
         <size>
          <width>200</width>
@@ -99,7 +99,7 @@
      <item>
       <layout class="QHBoxLayout">
        <item>
-        <widget class="QPushButton" name="download_button">
+        <widget class="QPushButton" name="downloadButton">
          <property name="enabled">
           <bool>false</bool>
          </property>
