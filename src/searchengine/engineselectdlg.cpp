@@ -248,6 +248,10 @@ bool engineSelectDlg::isUpdateNeeded(QString plugin_name, qreal new_version) con
 void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
   qDebug("Asked to install plugin at %s", qPrintable(path));
   qreal new_version = SearchEngine::getPluginVersion(path);
+  if (new_version == 0.0) {
+    QMessageBox::warning(this, tr("Invalid plugin"), tr("The search engine plugin is invalid, please contact the author."));
+    return;
+  }
   qDebug("Version to be installed: %.2f", new_version);
   if (!isUpdateNeeded(plugin_name, new_version)) {
     qDebug("Apparently update is not needed, we have a more recent version");
