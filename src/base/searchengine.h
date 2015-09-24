@@ -30,11 +30,12 @@
 #ifndef SEARCHENGINE_H
 #define SEARCHENGINE_H
 
+#include <QObject>
 #include <QHash>
 #include <QStringList>
-#include <QProcess>
 #include <QList>
 
+class QProcess;
 class QTimer;
 
 struct PluginInfo
@@ -104,7 +105,7 @@ signals:
 private slots:
     void onTimeout();
     void readSearchOutput();
-    void processFinished(int exitcode, QProcess::ExitStatus);
+    void processFinished(int exitcode);
     void versionInfoDownloaded(const QString &url, const QByteArray &data);
     void versionInfoDownloadFailed(const QString &url, const QString &reason);
     void pluginDownloaded(const QString &url, QString filePath);

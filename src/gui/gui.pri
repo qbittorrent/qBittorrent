@@ -81,7 +81,10 @@ SOURCES += \
     $$PWD/torrentcreatordlg.cpp \
     $$PWD/search/searchwidget.cpp \
     $$PWD/search/searchtab.cpp \
-    $$PWD/search/pluginselectdlg.cpp
+    $$PWD/search/pluginselectdlg.cpp \
+    $$PWD/search/pluginsourcedlg.cpp \
+    $$PWD/search/searchlistdelegate.cpp \
+    $$PWD/search/searchsortmodel.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h

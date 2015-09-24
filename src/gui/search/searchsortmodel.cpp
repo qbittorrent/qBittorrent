@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2013  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,22 +24,31 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#ifndef SEARCHLISTDELEGATE_H
-#define SEARCHLISTDELEGATE_H
+#include "searchsortmodel.h"
 
-#include <QItemDelegate>
-
-class SearchListDelegate: public QItemDelegate
+SearchSortModel::SearchSortModel(QObject *parent)
+    : QSortFilterProxyModel(parent)
 {
-public:
-    explicit SearchListDelegate(QObject *parent = 0);
+}
 
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const;
-};
+bool SearchSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
+{
+    if ((sortColumn() == NAME) || (sortColumn() == ENGINE_URL)) {
+        QVariant vL = sourceModel()->data(left);
+        QVariant vR = sourceModel()->data(right);
+        if (!(vL.isValid() && vR.isValid()))
+            return QSortFilterProxyModel::lessThan(left, right);
+        Q_ASSERT(vL.isValid());
+        Q_ASSERT(vR.isValid());
 
-#endif
+        bool res = false;
+        if (Utils::String::naturalSort(vL.toString(), vR.toString(), res))
+            return res;
+
+        return QSortFilterProxyModel::lessThan(left, right);
+    }
+
+    return QSortFilterProxyModel::lessThan(left, right);
+}

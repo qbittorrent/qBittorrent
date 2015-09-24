@@ -33,132 +33,140 @@
 #include <QStandardItemModel>
 #include <QHeaderView>
 #include <QSortFilterProxyModel>
+#include <QLabel>
+#include <QVBoxLayout>
 #ifdef QBT_USES_QT5
 #include <QTableView>
 #endif
 
-#include "searchtab.h"
-#include "searchlistdelegate.h"
 #include "base/utils/misc.h"
-#include "searchwidget.h"
 #include "base/preferences.h"
+#include "searchsortmodel.h"
+#include "searchlistdelegate.h"
+#include "searchwidget.h"
+#include "searchtab.h"
 
-SearchTab::SearchTab(SearchWidget *parent) : QWidget(), parent(parent)
+SearchTab::SearchTab(SearchWidget *parent)
+    : QWidget(parent)
+    , m_parent(parent)
 {
-    box = new QVBoxLayout();
-    results_lbl = new QLabel();
-    resultsBrowser = new QTreeView();
+    m_box = new QVBoxLayout(this);
+    m_resultsLbl = new QLabel(this);
+    m_resultsBrowser = new QTreeView(this);
 #ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;
-    unused.setVerticalHeader(resultsBrowser->header());
-    resultsBrowser->header()->setParent(resultsBrowser);
+    unused.setVerticalHeader(m_resultsBrowser->header());
+    m_resultsBrowser->header()->setParent(m_resultsBrowser);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
 #endif
-    resultsBrowser->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    box->addWidget(results_lbl);
-    box->addWidget(resultsBrowser);
+    m_resultsBrowser->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    m_box->addWidget(m_resultsLbl);
+    m_box->addWidget(m_resultsBrowser);
 
-    setLayout(box);
+    setLayout(m_box);
+
     // Set Search results list model
-    SearchListModel = new QStandardItemModel(0, SearchSortModel::NB_SEARCH_COLUMNS);
-    SearchListModel->setHeaderData(SearchSortModel::NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
-    SearchListModel->setHeaderData(SearchSortModel::SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
-    SearchListModel->setHeaderData(SearchSortModel::SEEDS, Qt::Horizontal, tr("Seeders", "i.e: Number of full sources"));
-    SearchListModel->setHeaderData(SearchSortModel::LEECHS, Qt::Horizontal, tr("Leechers", "i.e: Number of partial sources"));
-    SearchListModel->setHeaderData(SearchSortModel::ENGINE_URL, Qt::Horizontal, tr("Search engine"));
+    m_searchListModel = new QStandardItemModel(0, SearchSortModel::NB_SEARCH_COLUMNS, this);
+    m_searchListModel->setHeaderData(SearchSortModel::NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
+    m_searchListModel->setHeaderData(SearchSortModel::SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
+    m_searchListModel->setHeaderData(SearchSortModel::SEEDS, Qt::Horizontal, tr("Seeders", "i.e: Number of full sources"));
+    m_searchListModel->setHeaderData(SearchSortModel::LEECHS, Qt::Horizontal, tr("Leechers", "i.e: Number of partial sources"));
+    m_searchListModel->setHeaderData(SearchSortModel::ENGINE_URL, Qt::Horizontal, tr("Search engine"));
 
-    proxyModel = new SearchSortModel();
-    proxyModel->setDynamicSortFilter(true);
-    proxyModel->setSourceModel(SearchListModel);
-    resultsBrowser->setModel(proxyModel);
+    m_proxyModel = new SearchSortModel(this);
+    m_proxyModel->setDynamicSortFilter(true);
+    m_proxyModel->setSourceModel(m_searchListModel);
+    m_resultsBrowser->setModel(m_proxyModel);
 
-    SearchDelegate = new SearchListDelegate();
-    resultsBrowser->setItemDelegate(SearchDelegate);
+    m_searchDelegate = new SearchListDelegate(this);
+    m_resultsBrowser->setItemDelegate(m_searchDelegate);
 
-    resultsBrowser->hideColumn(SearchSortModel::DL_LINK); // Hide url column
-    resultsBrowser->hideColumn(SearchSortModel::DESC_LINK);
+    m_resultsBrowser->hideColumn(SearchSortModel::DL_LINK); // Hide url column
+    m_resultsBrowser->hideColumn(SearchSortModel::DESC_LINK);
 
-    resultsBrowser->setRootIsDecorated(false);
-    resultsBrowser->setAllColumnsShowFocus(true);
-    resultsBrowser->setSortingEnabled(true);
+    m_resultsBrowser->setRootIsDecorated(false);
+    m_resultsBrowser->setAllColumnsShowFocus(true);
+    m_resultsBrowser->setSortingEnabled(true);
 
     // Connect signals to slots (search part)
-    connect(resultsBrowser, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(downloadSelectedItem(const QModelIndex&)));
+    connect(m_resultsBrowser, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(downloadSelectedItem(const QModelIndex&)));
 
     // Load last columns width for search results list
-    if (!loadColWidthResultsList()) {
-        resultsBrowser->header()->resizeSection(0, 275);
-    }
+    if (!loadColWidthResultsList())
+        m_resultsBrowser->header()->resizeSection(0, 275);
 
     // Sort by Seeds
-    resultsBrowser->sortByColumn(SearchSortModel::SEEDS, Qt::DescendingOrder);
+    m_resultsBrowser->sortByColumn(SearchSortModel::SEEDS, Qt::DescendingOrder);
 }
 
-void SearchTab::downloadSelectedItem(const QModelIndex& index) {
-    QString torrent_url = proxyModel->data(proxyModel->index(index.row(), SearchSortModel::DL_LINK)).toString();
+void SearchTab::downloadSelectedItem(const QModelIndex &index)
+{
+    QString torrentUrl = m_proxyModel->data(m_proxyModel->index(index.row(), SearchSortModel::DL_LINK)).toString();
     setRowColor(index.row(), "blue");
-    parent->downloadTorrent(torrent_url);
+    m_parent->downloadTorrent(torrentUrl);
 }
 
-SearchTab::~SearchTab() {
-    delete box;
-    delete results_lbl;
-    delete resultsBrowser;
-    delete SearchListModel;
-    delete proxyModel;
-    delete SearchDelegate;
+QHeaderView* SearchTab::header() const
+{
+    return m_resultsBrowser->header();
 }
 
-QHeaderView* SearchTab::header() const {
-    return resultsBrowser->header();
-}
-
-bool SearchTab::loadColWidthResultsList() {
+bool SearchTab::loadColWidthResultsList()
+{
     QString line = Preferences::instance()->getSearchColsWidth();
-    if (line.isEmpty())
+    if (line.isEmpty()) return false;
+
+    QStringList widthList = line.split(' ');
+    if (widthList.size() > m_searchListModel->columnCount())
         return false;
 
-    QStringList width_list = line.split(' ');
-    if (width_list.size() > SearchListModel->columnCount())
-        return false;
-
-    unsigned int listSize = width_list.size();
-    for (unsigned int i=0; i<listSize; ++i) {
-      resultsBrowser->header()->resizeSection(i, width_list.at(i).toInt());
+    unsigned int listSize = widthList.size();
+    for (unsigned int i = 0; i < listSize; ++i) {
+        m_resultsBrowser->header()->resizeSection(i, widthList.at(i).toInt());
     }
 
     return true;
 }
 
-QLabel* SearchTab::getCurrentLabel()
+QLabel* SearchTab::getCurrentLabel() const
 {
-    return results_lbl;
+    return m_resultsLbl;
 }
 
-QTreeView* SearchTab::getCurrentTreeView()
+QTreeView* SearchTab::getCurrentTreeView() const
 {
-    return resultsBrowser;
+    return m_resultsBrowser;
 }
 
 QSortFilterProxyModel* SearchTab::getCurrentSearchListProxy() const
 {
-    return proxyModel;
+    return m_proxyModel;
 }
 
 QStandardItemModel* SearchTab::getCurrentSearchListModel() const
 {
-    return SearchListModel;
+    return m_searchListModel;
 }
 
 // Set the color of a row in data model
-void SearchTab::setRowColor(int row, QString color) {
-  proxyModel->setDynamicSortFilter(false);
-  for (int i=0; i<proxyModel->columnCount(); ++i) {
-    proxyModel->setData(proxyModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
-  }
-  proxyModel->setDynamicSortFilter(true);
+void SearchTab::setRowColor(int row, QString color)
+{
+    m_proxyModel->setDynamicSortFilter(false);
+    for (int i = 0; i < m_proxyModel->columnCount(); ++i) {
+        m_proxyModel->setData(m_proxyModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
+    }
+
+    m_proxyModel->setDynamicSortFilter(true);
 }
 
+QString SearchTab::status() const
+{
+    return m_status;
+}
 
+void SearchTab::setStatus(const QString &value)
+{
+    m_status = value;
+}

@@ -31,48 +31,50 @@
 #ifndef SEARCHTAB_H
 #define SEARCHTAB_H
 
-#include <QLabel>
-#include <QVBoxLayout>
+#include <QWidget>
 
-#include "searchsortmodel.h"
-
-#define ENGINE_URL_COLUMN 4
-#define URL_COLUMN 5
-
-class SearchListDelegate;
-class SearchWidget;
-
+class QLabel;
 class QTreeView;
 class QHeaderView;
 class QStandardItemModel;
+class QSortFilterProxyModel;
+class QModelIndex;
+class QVBoxLayout;
+
+class SearchSortModel;
+class SearchListDelegate;
+class SearchWidget;
 
 class SearchTab: public QWidget
 {
     Q_OBJECT
 
-private:
-    QVBoxLayout *box;
-    QLabel *results_lbl;
-    QTreeView *resultsBrowser;
-    QStandardItemModel *SearchListModel;
-    SearchSortModel *proxyModel;
-    SearchListDelegate *SearchDelegate;
-    SearchWidget *parent;
-
-protected slots:
-    void downloadSelectedItem(const QModelIndex& index);
-
 public:
-    SearchTab(SearchWidget *parent);
-    ~SearchTab();
-    bool loadColWidthResultsList();
-    QLabel * getCurrentLabel();
+    explicit SearchTab(SearchWidget *m_parent);
+
+    QLabel* getCurrentLabel() const;
     QStandardItemModel* getCurrentSearchListModel() const;
     QSortFilterProxyModel* getCurrentSearchListProxy() const;
-    QTreeView * getCurrentTreeView();
-    void setRowColor(int row, QString color);
+    QTreeView* getCurrentTreeView() const;
     QHeaderView* header() const;
-    QString status;
+    QString status() const;
+
+    bool loadColWidthResultsList();
+    void setRowColor(int row, QString color);
+    void setStatus(const QString &value);
+
+private slots:
+    void downloadSelectedItem(const QModelIndex &index);
+
+private:
+    QVBoxLayout *m_box;
+    QLabel *m_resultsLbl;
+    QTreeView *m_resultsBrowser;
+    QStandardItemModel *m_searchListModel;
+    SearchSortModel *m_proxyModel;
+    SearchListDelegate *m_searchDelegate;
+    SearchWidget *m_parent;
+    QString m_status;
 };
 
 #endif // SEARCHTAB_H

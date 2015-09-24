@@ -34,42 +34,36 @@
 
 #include "ui_pluginselectdlg.h"
 
-QT_BEGIN_NAMESPACE
 class QDropEvent;
-QT_END_NAMESPACE
-
 class SearchEngine;
 
-class PluginSelectDlg : public QDialog, public Ui::PluginSelectDlg
+class PluginSelectDlg: public QDialog, private Ui::PluginSelectDlg
 {
-  Q_OBJECT
+    Q_OBJECT
 
-  private:
-    SearchEngine *m_pluginManager;
-    int m_asyncOps;
-
-  public:
-    PluginSelectDlg(SearchEngine *pluginManager, QWidget *parent = 0);
+public:
+    explicit PluginSelectDlg(SearchEngine *pluginManager, QWidget *parent = 0);
     ~PluginSelectDlg();
+
     QList<QTreeWidgetItem*> findItemsWithUrl(QString url);
     QTreeWidgetItem* findItemWithID(QString id);
 
-  signals:
+signals:
     void pluginsChanged();
 
-  protected:
+protected:
     void dropEvent(QDropEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
 
-  private slots:
+private slots:
+    void on_actionUninstall_triggered();
+    void on_updateButton_clicked();
+    void on_installButton_clicked();
     void on_closeButton_clicked();
     void togglePluginState(QTreeWidgetItem*, int);
     void setRowColor(int row, QString color);
     void displayContextMenu(const QPoint& pos);
     void enableSelection(bool enable);
-    void on_actionUninstall_triggered();
-    void on_updateButton_clicked();
-    void on_installButton_clicked();
     void askForLocalPlugin();
     void askForPluginUrl();
     void iconDownloaded(const QString &url, QString filePath);
@@ -82,11 +76,14 @@ class PluginSelectDlg : public QDialog, public Ui::PluginSelectDlg
     void pluginUpdated(const QString &name);
     void pluginUpdateFailed(const QString &name, const QString &reason);
 
-  private:
+private:
     void loadSupportedSearchPlugins();
-    void addNewPlugin(QString engine_name);
+    void addNewPlugin(QString pluginName);
     void startAsyncOp();
     void finishAsyncOp();
+
+    SearchEngine *m_pluginManager;
+    int m_asyncOps;
 };
 
 #endif // PLUGINSELECTDLG_H
