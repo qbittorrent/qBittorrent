@@ -226,18 +226,18 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="185"/>
         <source>Torrent is already in download list. Trackers were merged.</source>
-        <translation type="unfinished"></translation>
+        <translation>Торентът е вече в списъка за сваляне. Тракерите са слети.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="188"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="216"/>
         <source>Cannot add torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Неможе да се добави торентът</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="188"/>
         <source>Cannot add this torrent. Perhaps it is already in adding state.</source>
-        <translation type="unfinished"></translation>
+        <translation>Този торент неможе да се добави. Може вече да е в състояние на прибавяне.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="202"/>
@@ -247,12 +247,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="213"/>
         <source>Magnet link is already in download list. Trackers were merged.</source>
-        <translation type="unfinished"></translation>
+        <translation>Магнитната връзка вече е в списъка за изтегляния. Тракерите са слети.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="216"/>
         <source>Cannot add this torrent. Perhaps it is already in adding.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неможе да се добави торентът. Може би вече е в прибавяне.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="225"/>
@@ -322,7 +322,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="637"/>
         <source>Invalid metadata</source>
-        <translation type="unfinished"></translation>
+        <translation>Невалидни метаданни</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="644"/>
@@ -337,7 +337,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="709"/>
         <source>Download Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Грешка в изтеглянето</translation>
     </message>
 </context>
 <context>
@@ -540,7 +540,7 @@
     <message>
         <location filename="../app/application.cpp" line="443"/>
         <source>Saving torrent progress...</source>
-        <translation type="unfinished"></translation>
+        <translation>Запазване прогреса на торентите...</translation>
     </message>
 </context>
 <context>
@@ -614,7 +614,7 @@
         <location filename="../gui/rss/automatedrssdownloader.ui" line="338"/>
         <source>Ignore subsequent matches for (0 to disable)</source>
         <comment>... X days</comment>
-        <translation type="unfinished"></translation>
+        <translation>Игнорирай последващи съвпадения за (0 за изключване)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="361"/>
@@ -680,7 +680,7 @@
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="79"/>
         <source>Episode number is a mandatory non-zero value</source>
-        <translation type="unfinished"></translation>
+        <translation>Номера на епизода е завължителна ненулева стойност</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="80"/>
@@ -690,22 +690,22 @@
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="81"/>
         <source>Three range types for episodes are supported: </source>
-        <translation type="unfinished"></translation>
+        <translation>Три обхватни типа за епизоди се поддържат:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="82"/>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation type="unfinished"></translation>
+        <translation>Единен номер: &lt;b&gt;1x25;&lt;/b&gt; съвпада с епизод 25 от първи сезон</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="83"/>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation type="unfinished"></translation>
+        <translation>Нормален обхват: &lt;b&gt;1x25-40;&lt;/b&gt; съвпада с епизодите от 25 до 40 от първи сезон</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="84"/>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one</source>
-        <translation type="unfinished"></translation>
+        <translation>Безкраен обхват: &lt;b&gt;1x25-;&lt;/b&gt; съвпада с епизодите 25 и нагоре от първи сезон</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="358"/>
@@ -732,17 +732,17 @@
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="263"/>
         <source>Last match: %1 days ago</source>
-        <translation type="unfinished"></translation>
+        <translation>Последно съвпадане: преди %1 дни</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="265"/>
         <source>Last match: Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Последно съвпадане: Неизвестно</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="380"/>
         <source>Are you sure you want to remove the download rule named &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Сигурни ли сте, че искате да премахнете правилото с име &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="382"/>
@@ -870,12 +870,12 @@
     <message>
         <location filename="../core/bittorrent/session.cpp" line="382"/>
         <source>Anonymous mode [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Анонимен режим [ВКЛЮЧЕН]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="384"/>
         <source>Anonymous mode [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Анонимен режим [ИЗКЛЮЧЕН]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="581"/>
@@ -905,17 +905,17 @@
     <message>
         <location filename="../core/bittorrent/session.cpp" line="607"/>
         <source>Encryption support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation type>Поддръжка на шифриране [ВКЛЮЧЕНО]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="612"/>
         <source>Encryption support [FORCED]</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддръжка на шифриране [НАСИЛЕНО]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="617"/>
         <source>Encryption support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддръжка на шифриране [ИЗКЛЮЧЕНО]</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="682"/>
@@ -1161,7 +1161,7 @@
         <location filename="../core/bittorrent/session.cpp" line="2276"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
-        <translation type="unfinished"></translation>
+        <translation>Външен IP: %1</translation>
     </message>
 </context>
 <context>
@@ -1169,17 +1169,17 @@
     <message>
         <location filename="../core/bittorrent/torrenthandle.cpp" line="1355"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Неуспешно преместване на торента: &apos;%1&apos;. Причина: %2</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/torrenthandle.cpp" line="1494"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Големината на файла не съвпада с торента &apos;%1&apos;, паузиране на торента.</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/torrenthandle.cpp" line="1500"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="unfinished"></translation>
+        <translation>Бързо подновяващи се данни бяха отхвърлени за тоента &apos;%1&apos;. Причина: %2. Проверяване наново...</translation>
     </message>
 </context>
 <context>
@@ -1214,13 +1214,13 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../gui/deletionconfirmationdlg.h" line="48"/>
         <source>Are you sure you want to delete &apos;%1&apos; from the transfer list?</source>
         <comment>Are you sure you want to delete &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
-        <translation type="unfinished"></translation>
+        <translation>Сигурни ли сте, че искате да изтриете &apos;%1&apos; от списъка за трансфери?</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdlg.h" line="50"/>
         <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
-        <translation type="unfinished"></translation>
+        <translation>Сигурни ли сте, че искате да изтриете тези %1 торента от списъка за трансфиране?</translation>
     </message>
 </context>
 <context>
