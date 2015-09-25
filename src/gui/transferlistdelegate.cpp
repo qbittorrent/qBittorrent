@@ -34,12 +34,12 @@
 #include <QStyleOptionViewItemV2>
 #include <QApplication>
 #include <QPainter>
-#include "core/utils/misc.h"
-#include "core/utils/string.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
 #include "torrentmodel.h"
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/torrenthandle.h"
-#include "core/unicodestrings.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/unicodestrings.h"
 
 #ifdef Q_OS_WIN
 #ifndef QBT_USES_QT5

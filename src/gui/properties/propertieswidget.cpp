@@ -41,12 +41,12 @@
 #include <QFileDialog>
 #include <QBitArray>
 
-#include "core/bittorrent/session.h"
-#include "core/preferences.h"
-#include "core/utils/fs.h"
-#include "core/utils/misc.h"
-#include "core/utils/string.h"
-#include "core/unicodestrings.h"
+#include "base/bittorrent/session.h"
+#include "base/preferences.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
+#include "base/unicodestrings.h"
 #include "proplistdelegate.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodel.h"

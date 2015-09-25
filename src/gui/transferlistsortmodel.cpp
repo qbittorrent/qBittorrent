@@ -30,9 +30,9 @@
 
 #include <QStringList>
 
-#include "core/types.h"
-#include "core/utils/string.h"
-#include "core/bittorrent/torrenthandle.h"
+#include "base/types.h"
+#include "base/utils/string.h"
+#include "base/bittorrent/torrenthandle.h"
 #include "torrentmodel.h"
 #include "transferlistsortmodel.h"
 

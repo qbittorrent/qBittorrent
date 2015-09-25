@@ -28,7 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "core/utils/string.h"
+#include "base/utils/string.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodel.h"
 

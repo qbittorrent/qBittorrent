@@ -33,8 +33,8 @@
 #include <QDebug>
 
 #include "rssdownloadrulelist.h"
-#include "core/preferences.h"
-#include "core/qinisettings.h"
+#include "base/preferences.h"
+#include "base/qinisettings.h"
 
 RssDownloadRuleList::RssDownloadRuleList()
 {

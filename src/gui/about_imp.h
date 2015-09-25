@@ -36,7 +36,7 @@
 #include <QtGlobal>
 #include <libtorrent/version.hpp>
 #include <boost/version.hpp>
-#include "core/unicodestrings.h"
+#include "base/unicodestrings.h"
 
 class about : public QDialog, private Ui::AboutDlg{
   Q_OBJECT

@@ -29,9 +29,9 @@
  */
 
 #include "prefjson.h"
-#include "core/preferences.h"
-#include "core/scanfoldersmodel.h"
-#include "core/utils/fs.h"
+#include "base/preferences.h"
+#include "base/scanfoldersmodel.h"
+#include "base/utils/fs.h"
 
 #ifndef QT_NO_OPENSSL
 #include <QSslCertificate>

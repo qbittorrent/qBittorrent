@@ -36,11 +36,11 @@
 #include <QTableView>
 #endif
 
-#include "core/utils/misc.h"
+#include "base/utils/misc.h"
 #include "previewlistdelegate.h"
 #include "previewselect.h"
-#include "core/utils/fs.h"
-#include "core/preferences.h"
+#include "base/utils/fs.h"
+#include "base/preferences.h"
 
 PreviewSelect::PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const torrent)
     : QDialog(parent)

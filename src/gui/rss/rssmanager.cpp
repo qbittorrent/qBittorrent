@@ -30,8 +30,8 @@
 
 #include <QDebug>
 #include "rssmanager.h"
-#include "core/preferences.h"
-#include "core/bittorrent/session.h"
+#include "base/preferences.h"
+#include "base/bittorrent/session.h"
 #include "rssfeed.h"
 #include "rssarticle.h"
 #include "rssdownloadrulelist.h"

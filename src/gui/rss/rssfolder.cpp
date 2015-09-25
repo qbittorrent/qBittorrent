@@ -33,7 +33,7 @@
 #include "guiiconprovider.h"
 #include "rssfolder.h"
 #include "rssarticle.h"
-#include "core/bittorrent/session.h"
+#include "base/bittorrent/session.h"
 #include "rssmanager.h"
 #include "rssfeed.h"
 

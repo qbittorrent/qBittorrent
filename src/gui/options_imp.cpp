@@ -42,14 +42,14 @@
 
 #include <cstdlib>
 #include "options_imp.h"
-#include "core/preferences.h"
-#include "core/utils/fs.h"
+#include "base/preferences.h"
+#include "base/utils/fs.h"
 #include "advancedsettings.h"
-#include "core/scanfoldersmodel.h"
-#include "core/bittorrent/session.h"
+#include "base/scanfoldersmodel.h"
+#include "base/bittorrent/session.h"
 #include "guiiconprovider.h"
-#include "core/net/dnsupdater.h"
-#include "core/unicodestrings.h"
+#include "base/net/dnsupdater.h"
+#include "base/unicodestrings.h"
 
 #ifndef QT_NO_OPENSSL
 #include <QSslKey>

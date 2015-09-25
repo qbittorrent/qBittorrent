@@ -39,9 +39,9 @@
 
 #include "searchtab.h"
 #include "searchlistdelegate.h"
-#include "core/utils/misc.h"
+#include "base/utils/misc.h"
 #include "searchengine.h"
-#include "core/preferences.h"
+#include "base/preferences.h"
 
 SearchTab::SearchTab(SearchEngine *parent) : QWidget(), parent(parent)
 {

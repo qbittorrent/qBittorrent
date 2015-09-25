@@ -28,8 +28,8 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "core/utils/misc.h"
-#include "core/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/utils/fs.h"
 #include "torrentcontentmodelitem.h"
 #include "torrentcontentmodelfolder.h"
 #include <QDebug>

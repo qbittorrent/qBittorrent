@@ -26,11 +26,11 @@
  * exception statement from your version.
  */
 
-#include "core/preferences.h"
-#include "core/logger.h"
-#include "core/http/server.h"
-#include "core/net/dnsupdater.h"
-#include "core/net/portforwarder.h"
+#include "base/preferences.h"
+#include "base/logger.h"
+#include "base/http/server.h"
+#include "base/net/dnsupdater.h"
+#include "base/net/portforwarder.h"
 #include "webapplication.h"
 #include "webui.h"
 

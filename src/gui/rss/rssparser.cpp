@@ -29,7 +29,7 @@
  */
 
 #include "rssparser.h"
-#include "core/utils/fs.h"
+#include "base/utils/fs.h"
 
 #include <QDebug>
 #include <QFile>

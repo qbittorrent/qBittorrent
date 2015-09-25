@@ -42,12 +42,12 @@
 #include <QHeaderView>
 #endif
 
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/torrenthandle.h"
-#include "core/bittorrent/peerinfo.h"
-#include "core/bittorrent/trackerentry.h"
-#include "core/preferences.h"
-#include "core/utils/misc.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/peerinfo.h"
+#include "base/bittorrent/trackerentry.h"
+#include "base/preferences.h"
+#include "base/utils/misc.h"
 #include "propertieswidget.h"
 #include "trackersadditiondlg.h"
 #include "guiiconprovider.h"
