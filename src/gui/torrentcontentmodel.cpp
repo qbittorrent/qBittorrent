@@ -32,8 +32,8 @@
 #include <QIcon>
 
 #include "guiiconprovider.h"
-#include "core/utils/misc.h"
-#include "core/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/utils/fs.h"
 #include "torrentcontentmodel.h"
 #include "torrentcontentmodelitem.h"
 #include "torrentcontentmodelfolder.h"

@@ -30,7 +30,7 @@
 
 #include "rsssettingsdlg.h"
 #include "ui_rsssettingsdlg.h"
-#include "core/preferences.h"
+#include "base/preferences.h"
 
 RssSettingsDlg::RssSettingsDlg(QWidget *parent) :
   QDialog(parent),

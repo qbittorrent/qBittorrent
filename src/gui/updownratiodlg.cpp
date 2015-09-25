@@ -31,7 +31,7 @@
 #include "updownratiodlg.h"
 #include "ui_updownratiodlg.h"
 
-#include "core/preferences.h"
+#include "base/preferences.h"
 
 UpDownRatioDlg::UpDownRatioDlg(bool useDefault, qreal initialValue,
     qreal maxValue, QWidget *parent)

@@ -33,12 +33,12 @@
 #include <QFile>
 #include <QUrl>
 
-#include "core/utils/misc.h"
-#include "core/utils/fs.h"
-#include "core/net/downloadmanager.h"
-#include "core/net/downloadhandler.h"
-#include "core/bittorrent/trackerentry.h"
-#include "core/bittorrent/torrenthandle.h"
+#include "base/utils/misc.h"
+#include "base/utils/fs.h"
+#include "base/net/downloadmanager.h"
+#include "base/net/downloadhandler.h"
+#include "base/bittorrent/trackerentry.h"
+#include "base/bittorrent/torrenthandle.h"
 #include "guiiconprovider.h"
 #include "trackersadditiondlg.h"
 

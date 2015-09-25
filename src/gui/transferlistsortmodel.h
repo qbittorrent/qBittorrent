@@ -32,7 +32,7 @@
 #define TRANSFERLISTSORTMODEL_H
 
 #include <QSortFilterProxyModel>
-#include "core/torrentfilter.h"
+#include "base/torrentfilter.h"
 
 class QStringList;
 

@@ -49,20 +49,20 @@
 
 #include "mainwindow.h"
 #include "transferlistwidget.h"
-#include "core/utils/misc.h"
+#include "base/utils/misc.h"
 #include "torrentcreatordlg.h"
 #include "downloadfromurldlg.h"
 #include "addnewtorrentdialog.h"
 #include "searchengine.h"
 #include "rss_imp.h"
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/sessionstatus.h"
-#include "core/bittorrent/torrenthandle.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/sessionstatus.h"
+#include "base/bittorrent/torrenthandle.h"
 #include "about_imp.h"
 #include "trackerlogin.h"
 #include "options_imp.h"
 #include "speedlimitdlg.h"
-#include "core/preferences.h"
+#include "base/preferences.h"
 #include "trackerlist.h"
 #include "peerlistwidget.h"
 #include "transferlistfilterswidget.h"
@@ -73,7 +73,7 @@
 #include "torrentmodel.h"
 #include "executionlog.h"
 #include "guiiconprovider.h"
-#include "core/logger.h"
+#include "base/logger.h"
 #include "autoexpandabledialog.h"
 #ifdef Q_OS_MAC
 void qt_mac_set_dock_menu(QMenu *menu);
@@ -85,8 +85,8 @@ void qt_mac_set_dock_menu(QMenu *menu);
 #endif
 #include "powermanagement.h"
 #ifdef Q_OS_WIN
-#include "core/net/downloadmanager.h"
-#include "core/net/downloadhandler.h"
+#include "base/net/downloadmanager.h"
+#include "base/net/downloadhandler.h"
 #endif
 
 #define TIME_TRAY_BALLOON 5000
