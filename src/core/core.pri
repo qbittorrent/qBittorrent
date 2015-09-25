@@ -32,8 +32,6 @@ HEADERS += \
     $$PWD/bittorrent/trackerentry.h \
     $$PWD/bittorrent/tracker.h \
     $$PWD/bittorrent/torrentcreatorthread.h \
-    $$PWD/bittorrent/private/sessionprivate.h \
-    $$PWD/bittorrent/private/torrenthandleprivate.h \
     $$PWD/bittorrent/private/speedmonitor.h \
     $$PWD/bittorrent/private/bandwidthscheduler.h \
     $$PWD/bittorrent/private/filterparserthread.h \

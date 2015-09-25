@@ -1399,7 +1399,7 @@ void TorrentHandle::handleTorrentFinishedAlert(libtorrent::torrent_finished_aler
         forceRecheck();
 
     if (isMoveInProgress() || m_renameCount > 0)
-        m_moveFinishedTriggers.append(boost::bind(&SessionPrivate::handleTorrentFinished, m_session, this));
+        m_moveFinishedTriggers.append(boost::bind(&Session::handleTorrentFinished, m_session, this));
     else
         m_session->handleTorrentFinished(this);
 }
