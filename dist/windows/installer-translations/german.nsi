@@ -44,6 +44,6 @@ LangString remove_cache ${LANG_GERMAN} "Torrents und zwischengespeicherte Daten 
 ;LangString uninst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before uninstalling."
 LangString uninst_warning ${LANG_GERMAN} "qBittorrent läuft gerade. Bitte das Programm vor der Deinstallation beenden."
 ;LangString uninst_tor_warn ${LANG_ENGLISH} "Not removing .torrent association. It is associated with:"
-LangString uninst_tor_warn ${LANG_GERMAN} "Dateiverknüfung mit .torrent-Dateien konnte nicht entfernt werden, da dieser Typ mit diesem Programm verknüpft ist:"
+LangString uninst_tor_warn ${LANG_GERMAN} "Dateiverknüpfung mit .torrent-Dateien konnte nicht entfernt werden, da dieser Typ mit diesem Programm verknüpft ist:"
 ;LangString uninst_mag_warn ${LANG_ENGLISH} "Not removing magnet association. It is associated with:"
-LangString uninst_mag_warn ${LANG_GERMAN} "Dateiverknüfung mit Magnet-Links konnte nicht entfernt werden, da dieser Typ mit diesem Programm verknüpft ist:"
+LangString uninst_mag_warn ${LANG_GERMAN} "Dateiverknüpfung mit Magnet-Links konnte nicht entfernt werden, da dieser Typ mit diesem Programm verknüpft ist:"
