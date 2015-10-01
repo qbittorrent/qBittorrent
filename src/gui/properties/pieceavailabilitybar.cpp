@@ -29,6 +29,7 @@
  */
 
 #include <cmath>
+#include <QDebug>
 #include "pieceavailabilitybar.h"
 
 PieceAvailabilityBar::PieceAvailabilityBar(QWidget *parent) :
@@ -156,8 +157,11 @@ int PieceAvailabilityBar::mixTwoColors(int &rgb1, int &rgb2, float ratio)
 
 void PieceAvailabilityBar::updateImage()
 {
-  //  qDebug() << "updateImageAv";
   QImage image2(width() - 2, 1, QImage::Format_RGB888);
+  if (image2.isNull()) {
+    qDebug() << "QImage image2() allocation failed, width():" << width();
+    return;
+  }
 
   if (m_pieces.empty()) {
     image2.fill(0xffffff);
