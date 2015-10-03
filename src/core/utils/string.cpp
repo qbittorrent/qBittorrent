@@ -45,7 +45,7 @@ std::string Utils::String::toStdString(const QString &str)
 }
 
 // uses lessThan comparison
-bool Utils::String::naturalSort(QString left, QString right, bool &result)
+bool Utils::String::naturalSort(const QString &left, const QString &right, bool &result)
 {
     // Return value indicates if functions was successful
     // result argument will contain actual comparison result if function was successful
@@ -103,6 +103,83 @@ bool Utils::String::naturalSort(QString left, QString right, bool &result)
 
     } while (true);
 
+    return false;
+}
+
+Utils::String::NaturalCompare::NaturalCompare()
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
+#if defined(Q_OS_WIN)
+    // Without ICU library, QCollator doesn't support `setNumericMode(true)` on OS older than Win7
+    if(SysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
+        return;
+#endif
+    m_collator.setNumericMode(true);
+    m_collator.setCaseSensitivity(Qt::CaseInsensitive);
+#endif
+}
+
+bool Utils::String::NaturalCompare::operator()(const QString &l, const QString &r)
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
+#if defined(Q_OS_WIN)
+    // Without ICU library, QCollator doesn't support `setNumericMode(true)` on OS older than Win7
+    if(SysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
+        return lessThan(l, r);
+#endif
+    return (m_collator.compare(l, r) < 0);
+#else
+    return lessThan(l, r);
+#endif
+}
+
+bool Utils::String::NaturalCompare::lessThan(const QString &left, const QString &right)
+{
+    // Return value `false` indicates `right` should go before `left`, otherwise, after
+    int posL = 0;
+    int posR = 0;
+    while (true) {
+        while (true) {
+            if (posL == left.size() || posR == right.size())
+                return (left.size() < right.size());  // when a shorter string is another string's prefix, shorter string place before longer string
+
+            QChar leftChar = left[posL].toLower();
+            QChar rightChar = right[posR].toLower();
+            if (leftChar == rightChar)
+                ;  // compare next character
+            else if (leftChar.isDigit() && rightChar.isDigit())
+                break; // Both are digits, break this loop and compare numbers
+            else
+                return leftChar < rightChar;
+
+            ++posL;
+            ++posR;
+        }
+
+        int startL = posL;
+        while ((posL < left.size()) && left[posL].isDigit())
+            ++posL;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
+        int numL = left.midRef(startL, posL - startL).toInt();
+#else
+        int numL = left.mid(startL, posL - startL).toInt();
+#endif
+
+        int startR = posR;
+        while ((posR < right.size()) && right[posR].isDigit())
+            ++posR;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
+        int numR = right.midRef(startR, posR - startR).toInt();
+#else
+        int numR = right.mid(startR, posR - startR).toInt();
+#endif
+
+        if (numL != numR)
+            return (numL < numR);
+
+        // Strings + digits do match and we haven't hit string end
+        // Do another round
+    }
     return false;
 }
 
