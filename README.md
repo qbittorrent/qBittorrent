@@ -32,6 +32,9 @@ http://www.qbittorrent.org
 or our wiki here:
 http://wiki.qbittorrent.org
 
+Use the forum for troubleshooting before reporting bugs:
+http://forum.qbittorrent.org
+
 Please report any bug (or feature request) to:
 http://bugs.qbittorrent.org
 
