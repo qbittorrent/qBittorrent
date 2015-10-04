@@ -1558,7 +1558,7 @@ void MainWindow::handleUpdateCheckFinished(bool update_available, QString new_ve
 
 void MainWindow::on_actionDonate_money_triggered()
 {
-    QDesktopServices::openUrl(QUrl("http://sourceforge.net/donate/index.php?group_id=163414"));
+    QDesktopServices::openUrl(QUrl("http://www.qbittorrent.org/donate"));
 }
 
 void MainWindow::showConnectionSettings()
