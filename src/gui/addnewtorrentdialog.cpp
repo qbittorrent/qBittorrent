@@ -96,7 +96,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
 
     // Load categories
     QStringList categories = session->categories();
-    std::sort(categories.begin(), categories.end(), Utils::String::NaturalCompare());
+    std::sort(categories.begin(), categories.end(), Utils::String::naturalCompare);
     QString defaultCategory = settings()->loadValue(KEY_DEFAULTCATEGORY).toString();
 
     if (!defaultCategory.isEmpty())

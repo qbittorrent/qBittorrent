@@ -51,19 +51,19 @@ namespace Utils
         // Taken from https://crackstation.net/hashing-security.htm
         bool slowEquals(const QByteArray &a, const QByteArray &b);
 
-        bool naturalSort(const QString &left, const QString &right, bool &result);
-
         class NaturalCompare
         {
         public:
             NaturalCompare();
-            bool operator()(const QString &l, const QString &r);
+            bool operator()(const QString &left, const QString &right);
             bool lessThan(const QString &left, const QString &right);
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
         private:
             QCollator m_collator;
 #endif
         };
+
+        bool naturalCompare(const QString &left, const QString &right);
     }
 }
 

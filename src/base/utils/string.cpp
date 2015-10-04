@@ -44,68 +44,6 @@ std::string Utils::String::toStdString(const QString &str)
     return std::string(utf8.constData(), utf8.length());
 }
 
-// uses lessThan comparison
-bool Utils::String::naturalSort(const QString &left, const QString &right, bool &result)
-{
-    // Return value indicates if functions was successful
-    // result argument will contain actual comparison result if function was successful
-    int posL = 0;
-    int posR = 0;
-    do {
-        forever {
-            if (posL == left.size() || posR == right.size())
-                return false; // No data
-
-            QChar leftChar = left.at(posL);
-            QChar rightChar = right.at(posR);
-            bool leftCharIsDigit = leftChar.isDigit();
-            bool rightCharIsDigit = rightChar.isDigit();
-            if (leftCharIsDigit != rightCharIsDigit)
-                return false; // Digit positions mismatch
-
-            if (leftCharIsDigit)
-                break; // Both are digit, break this loop and compare numbers
-
-            if (leftChar != rightChar)
-                return false; // Strings' subsets before digit do not match
-
-            ++posL;
-            ++posR;
-        }
-
-        QString temp;
-        while (posL < left.size()) {
-            if (left.at(posL).isDigit())
-                temp += left.at(posL);
-            else
-                break;
-            posL++;
-        }
-        int numL = temp.toInt();
-        temp.clear();
-
-        while (posR < right.size()) {
-            if (right.at(posR).isDigit())
-                temp += right.at(posR);
-            else
-                break;
-            posR++;
-        }
-        int numR = temp.toInt();
-
-        if (numL != numR) {
-            result = (numL < numR);
-            return true;
-        }
-
-        // Strings + digits do match and we haven't hit string end
-        // Do another round
-
-    } while (true);
-
-    return false;
-}
-
 Utils::String::NaturalCompare::NaturalCompare()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
@@ -119,23 +57,25 @@ Utils::String::NaturalCompare::NaturalCompare()
 #endif
 }
 
-bool Utils::String::NaturalCompare::operator()(const QString &l, const QString &r)
+bool Utils::String::NaturalCompare::operator()(const QString &left, const QString &right)
 {
+    // case-insensitive comparison
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 #if defined(Q_OS_WIN)
     // Without ICU library, QCollator doesn't support `setNumericMode(true)` on OS older than Win7
     if(QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
-        return lessThan(l, r);
+        return lessThan(left, right);
 #endif
-    return (m_collator.compare(l, r) < 0);
+    return (m_collator.compare(left, right) < 0);
 #else
-    return lessThan(l, r);
+    return lessThan(left, right);
 #endif
 }
 
 bool Utils::String::NaturalCompare::lessThan(const QString &left, const QString &right)
 {
     // Return value `false` indicates `right` should go before `left`, otherwise, after
+    // case-insensitive comparison
     int posL = 0;
     int posR = 0;
     while (true) {
@@ -181,6 +121,13 @@ bool Utils::String::NaturalCompare::lessThan(const QString &left, const QString 
         // Do another round
     }
     return false;
+}
+
+bool Utils::String::naturalCompare(const QString &left, const QString &right)
+{
+    // provide a single `NaturalCompare` instance for easy use
+    static NaturalCompare nCmp;  // this is thread-safe in C++11 (stated in spec 6.7.4)
+    return nCmp(left, right);
 }
 
 // to send numbers instead of strings with suffixes
