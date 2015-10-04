@@ -300,9 +300,15 @@ QString Utils::Misc::pythonVersionComplete() {
             QByteArray output = pythonProc.readAllStandardOutput();
             if (output.isEmpty())
                 output = pythonProc.readAllStandardError();
-            const QByteArray versionStr = output.split(' ').last();
-            version = versionStr.trimmed();
-            Logger::instance()->addMessage(QCoreApplication::translate("misc", "Python version: %1").arg(version), Log::INFO);
+
+            // Software 'Anaconda' installs its own python interpreter
+            // and `python --version` returns a string like this:
+            // `Python 3.4.3 :: Anaconda 2.3.0 (64-bit)`
+            const QList<QByteArray> verSplit = output.split(' ');
+            if (verSplit.size() > 1) {
+                version = verSplit.at(1).trimmed();
+                Logger::instance()->addMessage(QCoreApplication::translate("misc", "Python version: %1").arg(version), Log::INFO);
+            }
         }
     }
     return version;
