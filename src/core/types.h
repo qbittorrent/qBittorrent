@@ -31,43 +31,28 @@
 
 #include <QVariant>
 
-#define BEGIN_SCOPED_ENUM(name) class name\
-{\
-    int m_val;\
-\
-public:\
-    name() {}\
-    name(int val) : m_val(val) {}\
-    operator int() const { return m_val; }\
-    operator QVariant() const { return m_val; }\
-\
-    enum
-
-#define END_SCOPED_ENUM ; };
-
 const qlonglong MAX_ETA = 8640000;
 
-BEGIN_SCOPED_ENUM(MaxRatioAction)
+enum class MaxRatioAction
 {
     Pause,
     Remove
-}
-END_SCOPED_ENUM
+};
 
-BEGIN_SCOPED_ENUM(TorrentExportFolder)
+Q_DECLARE_METATYPE(MaxRatioAction)
+
+enum class TorrentExportFolder
 {
     Regular,
     Finished
-}
-END_SCOPED_ENUM
+};
 
-BEGIN_SCOPED_ENUM(ShutdownAction)
+enum class ShutdownAction
 {
     None,
     Shutdown,
     Suspend,
     Hibernate
-}
-END_SCOPED_ENUM
+};
 
 #endif // TYPES_H

@@ -141,7 +141,7 @@ QByteArray prefjson::getPreferences()
     // Share Ratio Limiting
     data["max_ratio_enabled"] = (pref->getGlobalMaxRatio() >= 0.);
     data["max_ratio"] = pref->getGlobalMaxRatio();
-    data["max_ratio_act"] = pref->getMaxRatioAction();
+    data["max_ratio_act"] = QVariant::fromValue(pref->getMaxRatioAction());
 
     // Web UI
     // Language
@@ -337,7 +337,7 @@ void prefjson::setPreferences(const QString& json)
     else
         pref->setGlobalMaxRatio(-1);
     if (m.contains("max_ratio_act"))
-        pref->setMaxRatioAction(m["max_ratio_act"].toInt());
+        pref->setMaxRatioAction(m["max_ratio_act"].value<MaxRatioAction>());
 
     // Web UI
     // Language

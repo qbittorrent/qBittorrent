@@ -9,15 +9,14 @@ exists($$OUT_PWD/../conf.pri) {
     include(conf.pri)
 }
 
+# C++11 support
+lessThan(QT_MAJOR_VERSION, 5): QMAKE_CXXFLAGS += -std=c++11
+
 # COMPILATION SPECIFIC
-!nogui:dbus {
-    QT += dbus
-}
+!nogui:dbus: QT += dbus
 
 QMAKE_CXXFLAGS += -Wformat -Wformat-security
-!haiku {
-    QMAKE_LFLAGS_APP += -rdynamic
-}
+!haiku: QMAKE_LFLAGS_APP += -rdynamic
 
 # Man page
 nogui {

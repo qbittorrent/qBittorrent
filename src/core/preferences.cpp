@@ -974,12 +974,12 @@ void Preferences::setGlobalMaxRatio(qreal ratio)
 
 MaxRatioAction Preferences::getMaxRatioAction() const
 {
-    return value("Preferences/Bittorrent/MaxRatioAction", MaxRatioAction::Pause).toInt();
+    return value("Preferences/Bittorrent/MaxRatioAction", QVariant::fromValue(MaxRatioAction::Pause)).value<MaxRatioAction>();
 }
 
 void Preferences::setMaxRatioAction(MaxRatioAction act)
 {
-    setValue("Preferences/Bittorrent/MaxRatioAction", act);
+    setValue("Preferences/Bittorrent/MaxRatioAction", QVariant::fromValue(act));
 }
 
 // IP Filter
