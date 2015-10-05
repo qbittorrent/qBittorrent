@@ -38,7 +38,7 @@ addons:
     project:
       name: "qbittorrent/qBittorrent"
       description: "Build submitted via Travis CI"
-    build_command_prepend: "./bootstrap.sh && ./configure $qbtconf"
+    build_command_prepend: "./bootstrap.sh && ./configure $qbtconf && echo QMAKE_CC=$CC >> conf.pri && echo QMAKE_CXX=$CXX >> conf.pri"
     build_command: make
     branch_pattern: $coverity_branch
     notification_email: sledgehammer999@qbittorrent.org
