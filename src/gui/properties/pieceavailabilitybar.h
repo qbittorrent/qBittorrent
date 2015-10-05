@@ -37,48 +37,49 @@
 
 #define BAR_HEIGHT 18
 
-class PieceAvailabilityBar: public QWidget {
-  Q_OBJECT
-  Q_DISABLE_COPY(PieceAvailabilityBar)
+
+class PieceAvailabilityBar: public QWidget
+{
+    Q_OBJECT
+    Q_DISABLE_COPY(PieceAvailabilityBar)
 
 private:
-  QImage m_image;
+    QImage m_image;
 
-  // I used values, because it should be possible to change colors in runtime
+    // I used values, because it should be possible to change colors in runtime
 
-  // background color
-  int m_bgColor;
-  // border color
-  int m_borderColor;
-  // complete piece color
-  int m_pieceColor;
-  // buffered 256 levels gradient from bg_color to piece_color
-  QVector<int> m_pieceColors;
+    // background color
+    int m_bgColor;
+    // border color
+    int m_borderColor;
+    // complete piece color
+    int m_pieceColor;
+    // buffered 256 levels gradient from bg_color to piece_color
+    QVector<int> m_pieceColors;
 
-  // last used int vector, uses to better resize redraw
-  // TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
-  QVector<int> m_pieces;
+    // last used int vector, uses to better resize redraw
+    // TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
+    QVector<int> m_pieces;
 
-  // scale int vector to float vector
-  QVector<float> intToFloatVector(const QVector<int> &vecin, int reqSize);
+    // scale int vector to float vector
+    QVector<float> intToFloatVector(const QVector<int> &vecin, int reqSize);
 
-  // mix two colors by light model, ratio <0, 1>
-  int mixTwoColors(int &rgb1, int &rgb2, float ratio);
-  // draw new image and replace actual image
-  void updateImage();
+    // mix two colors by light model, ratio <0, 1>
+    int mixTwoColors(int &rgb1, int &rgb2, float ratio);
+    // draw new image and replace actual image
+    void updateImage();
 
 public:
-  PieceAvailabilityBar(QWidget *parent);
+    PieceAvailabilityBar(QWidget *parent);
 
-  void setAvailability(const QVector<int> &avail);
-  void updatePieceColors();
-  void clear();
+    void setAvailability(const QVector<int> &avail);
+    void updatePieceColors();
+    void clear();
 
-  void setColors(int background, int border, int available);
+    void setColors(int background, int border, int available);
 
 protected:
-  void paintEvent(QPaintEvent *);
-
+    void paintEvent(QPaintEvent *);
 };
 
 #endif // PIECEAVAILABILITYBAR_H
