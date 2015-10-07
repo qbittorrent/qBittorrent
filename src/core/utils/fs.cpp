@@ -54,13 +54,16 @@
 #include <winbase.h>
 #endif
 
-#ifndef DISABLE_GUI
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+
+#ifndef DISABLE_GUI
 #include <QDesktopServices>
+#endif
+
 #else
 #include <QStandardPaths>
 #endif
-#endif
+
 
 #include "misc.h"
 #include "fs.h"
