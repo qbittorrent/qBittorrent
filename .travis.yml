@@ -10,10 +10,12 @@ env:
     # Uncomment when Travis upgraded "Ubuntu 12.04 LTS" to a newer version whose repo will have a more up-to-date libtorrent package
     #- lt_branch=dist   gui=true
     #- lt_branch=dist   gui=false
-    - lt_branch=RC_1_0 gui=true qt=4
-    - lt_branch=RC_1_0 gui=true qt=5
-    - lt_branch=RC_1_0 gui=false qt=4
-    - lt_branch=RC_1_0 gui=false qt=5
+    - os=linux lt_branch=RC_1_0 gui=true
+    - os=linux lt_branch=RC_1_0 gui=false
+    - os=osx lt_branch=RC_1_0 gui=false qt=4
+    - os=osx lt_branch=RC_1_0 gui=true qt=4
+    - os=osx lt_branch=RC_1_0 gui=false qt=5
+    - os=osx lt_branch=RC_1_0 gui=true qt=5
   global:
     - secure: "OI9CUjj4lTb0HwwIZU5PbECU3hLlAL6KC8KsbwohG8/O3j5fLcnmDsK4Ad9us5cC39sS11Jcd1kDP2qRcCuST/glVNhLkcjKkiQerOfd5nQ/qL4JYfz/1mfP5mdpz9jHKzpLUIG+TXkbSTjP6VVmsb5KPT+3pKEdRFZB+Pu9+J8="
     - coverity_branch: coverity_scan
