@@ -214,14 +214,17 @@ QColor TorrentModelItem::getColorByState(State state) {
     case STATE_DOWNLOADING:
     case STATE_DOWNLOADING_META:
     case STATE_FORCED_DL:
-        return QColor(34, 139, 34); // Forest Green
+        if (!dark)
+            return QColor(34, 139, 34); // Forest Green
+        else
+            return QColor(50, 205, 50); // Lime Green
     case STATE_ALLOCATING:
     case STATE_STALLED_DL:
     case STATE_STALLED_UP:
         if (!dark)
             return QColor(0, 0, 0); // Black
         else
-            return QColor(255, 255, 255); // White
+            return QColor(204, 204, 204); // Gray 80
     case STATE_SEEDING:
     case STATE_FORCED_UP:
         if (!dark)
