@@ -354,14 +354,17 @@ QColor getColorByState(BitTorrent::TorrentState state)
     case BitTorrent::TorrentState::Downloading:
     case BitTorrent::TorrentState::ForcedDownloading:
     case BitTorrent::TorrentState::DownloadingMetadata:
-        return QColor(34, 139, 34); // Forest Green
+        if (!dark)
+            return QColor(34, 139, 34); // Forest Green
+        else
+            return QColor(50, 205, 50); // Lime Green
     case BitTorrent::TorrentState::Allocating:
     case BitTorrent::TorrentState::StalledDownloading:
     case BitTorrent::TorrentState::StalledUploading:
         if (!dark)
             return QColor(0, 0, 0); // Black
         else
-            return QColor(255, 255, 255); // White
+            return QColor(204, 204, 204); // Gray 80
     case BitTorrent::TorrentState::Uploading:
     case BitTorrent::TorrentState::ForcedUploading:
         if (!dark)
