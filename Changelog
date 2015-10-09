@@ -34,6 +34,7 @@
     - WINDOWS: Fix file selection on Explorer when the filename contains weird characters. Closes #3185. (sledgehammer999)
     - WINDOWS: Fix wrong default download directory in Windows. Closes #2625. (Chocobo1)
     - WINDOWS: Fix German translation of the installer. (netswap)
+    - LINUX: Fix broken .desktop file icon for some locales. See #3905. (sledgehammer999)
     - OTHER: Fix ppc64le detection during configure (sledgehammer999)
     - OTHER: Don't use sed in configure. Closes #3169. (pmzqla)
     - OTHER: Fix broken donation link. Closes #3771. (sledgehammer999)
