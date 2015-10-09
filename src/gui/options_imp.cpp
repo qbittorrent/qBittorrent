@@ -1329,6 +1329,7 @@ QString options_imp::languageToLocalizedString(const QLocale &locale)
       return QString::fromUtf8(C_LOCALE_ENGLISH_UNITEDKINGDOM);
     return QString::fromUtf8(C_LOCALE_ENGLISH);
   }
+  case QLocale::Esperanto: return QString::fromUtf8(C_LOCALE_ESPERANTO);
   case QLocale::French: return QString::fromUtf8(C_LOCALE_FRENCH);
   case QLocale::German: return QString::fromUtf8(C_LOCALE_GERMAN);
   case QLocale::Hungarian: return QString::fromUtf8(C_LOCALE_HUNGARIAN);

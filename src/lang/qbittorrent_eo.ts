@@ -1,85 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="hu">
+<TS version="2.0" language="eo">
 <context>
     <name>AboutDlg</name>
     <message>
         <location filename="../gui/about.ui" line="21"/>
         <source>About qBittorrent</source>
-        <translation>A qBittorrent névjegye</translation>
+        <translation>Pri qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="83"/>
         <source>About</source>
-        <translation>Névjegy</translation>
+        <translation>Pri</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="128"/>
         <source>Author</source>
-        <translation>Szerző</translation>
+        <translation>Aŭtoro</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="216"/>
         <location filename="../gui/about.ui" line="293"/>
         <source>Name:</source>
-        <translation>Név:</translation>
+        <translation>Nomo:</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="240"/>
         <location filename="../gui/about.ui" line="281"/>
         <source>Country:</source>
-        <translation>Ország:</translation>
+        <translation>Lando:</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="228"/>
         <location filename="../gui/about.ui" line="312"/>
         <source>E-mail:</source>
-        <translation>E-mail:</translation>
+        <translation>Retpoŝto:</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="262"/>
         <source>Greece</source>
-        <translation>Görögország</translation>
+        <translation>Grekujo</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="341"/>
         <source>Current maintainer</source>
-        <translation>Jelenlegi karbantartó</translation>
+        <translation>Aktuala prizorganto</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="354"/>
         <source>Original author</source>
-        <translation>Eredeti szerző - fejlesztő</translation>
+        <translation>Originala aŭtoro</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="412"/>
         <source>Libraries</source>
-        <translation>Könyvtárak</translation>
+        <translation>Bibliotekoj</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="424"/>
         <source>This version of qBittorrent was built against the following libraries:</source>
-        <translation>A qBittorrent ezen verziója a következő könyvtárak felhasználásával került kiadásra:</translation>
+        <translation>Ĉi tiu versio de qBittorrent konstruiĝis kun la sekvaj bibliotekoj:</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="184"/>
         <source>France</source>
-        <translation>Franciaország</translation>
+        <translation>Francujo</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="382"/>
         <source>Translation</source>
-        <translation>Fordítás</translation>
+        <translation>Traduko</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="399"/>
         <source>License</source>
-        <translation>Licenc</translation>
+        <translation>Permesilo</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="365"/>
         <source>Thanks to</source>
-        <translation>Külön köszönet</translation>
+        <translation>Dankon al</translation>
     </message>
 </context>
 <context>
@@ -87,236 +87,236 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="29"/>
         <source>Save as</source>
-        <translation>Mentés másként</translation>
+        <translation>Konservi kiel</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="53"/>
         <source>Browse...</source>
-        <translation>Keresés...</translation>
+        <translation>Folii...</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="62"/>
         <source>Set as default save path</source>
-        <translation>Beállít alapértelmezett mentési útvonalnak</translation>
+        <translation>Agordi kiel la defaŭlta dosierindiko por konservi</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="72"/>
         <source>Never show again</source>
-        <translation>Ne mutasd újra</translation>
+        <translation>Neniam remontri</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="89"/>
         <source>Torrent settings</source>
-        <translation>Torrent beállítások</translation>
+        <translation>Torentaj agordoj</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="95"/>
         <source>Start torrent</source>
-        <translation>Torrent indítása</translation>
+        <translation>Komenci la torenton</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="107"/>
         <source>Label:</source>
-        <translation>Címke:</translation>
+        <translation>Etikedo:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="126"/>
         <source>Skip hash check</source>
-        <translation>Újraellenőrzés kihagyása</translation>
+        <translation>Preterpasi la haketan kontrolon</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="136"/>
         <source>Torrent Information</source>
-        <translation>Torrent Információ</translation>
+        <translation>Informoj de la Torento</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="144"/>
         <source>Size:</source>
-        <translation>Méret:</translation>
+        <translation>Grando:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="158"/>
         <source>Comment:</source>
-        <translation>Megjegyzés:</translation>
+        <translation>Komento:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="172"/>
         <source>Date:</source>
-        <translation>Dátum:</translation>
+        <translation>Dato:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="186"/>
         <source>Info Hash:</source>
-        <translation>Hash információ</translation>
+        <translation>Informa Haketaĵo</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="277"/>
         <source>Normal</source>
-        <translation>Normál</translation>
+        <translation>Norma</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="282"/>
         <source>High</source>
-        <translation>Magas</translation>
+        <translation>Alta</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="287"/>
         <source>Maximum</source>
-        <translation>Maximum</translation>
+        <translation>Maksimuma</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="292"/>
         <source>Do not download</source>
-        <translation>Mellőzés</translation>
+        <translation>Ne elŝuti</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="192"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="643"/>
         <source>I/O Error</source>
-        <translation>I/O Hiba</translation>
+        <translation>Eneliga Eraro</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="192"/>
         <source>The torrent file does not exist.</source>
-        <translation>A torrent fájl nem létezik.</translation>
+        <translation>La torentodosiero ne ekzistas.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="207"/>
         <source>Invalid torrent</source>
-        <translation>Érvénytelen torrent</translation>
+        <translation>Nevalida torento</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="207"/>
         <source>Failed to load the torrent: %1</source>
-        <translation>Nem sikerült betölteni a torrentet: %1</translation>
+        <translation>Malsukcesis ŝargi la torenton: %1</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="213"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="236"/>
         <source>Already in download list</source>
-        <translation>Már a letöltési listában van</translation>
+        <translation>Jam en la elŝuta listo</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="213"/>
         <source>Torrent is already in download list. Merging trackers.</source>
-        <translation>A torrent már szerepel a letöltések között. A trackerek egyesítésre kerültek.</translation>
+        <translation>La torento jam estas en la elŝuta listo. Kunfandante la ŝanĝospurilojn.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="236"/>
         <source>Magnet link is already in download list. Merging trackers.</source>
-        <translation>A magnet link már szerepel a letöltések között. A trackerek egyesítésre kerültek.</translation>
+        <translation>La magnet-ligilo jam estas en la elŝuta listo. Kunfandante la ŝanĝospurilojn.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="317"/>
         <source>Free disk space: %1</source>
-        <translation>Szabad lemezterület: %1</translation>
+        <translation>Libera diskospaco: %1</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="644"/>
         <source>Unknown error</source>
-        <translation>Ismeretlen hiba</translation>
+        <translation>Nekonata eraro</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="660"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
-        <translation>Nem elérhető</translation>
+        <translation>Ne Disponeblas</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="661"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
-        <translation>Nem elérhető</translation>
+        <translation>Ne Disponeblas</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="670"/>
         <source>Not available</source>
-        <translation>Nem elérhető</translation>
+        <translation>Ne disponeblas</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="230"/>
         <source>Invalid magnet link</source>
-        <translation>Érvénytelen magnet link</translation>
+        <translation>Nevalida magnet-ligilo</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="230"/>
         <source>This magnet link was not recognized</source>
-        <translation>A magnet linket nem sikerült felismerni</translation>
+        <translation>Ĉi tiu magnet-ligilo ne estis rekonata</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="243"/>
         <source>Magnet link</source>
-        <translation>Magnet link</translation>
+        <translation>Magnet-ligilo</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="253"/>
         <source>Retrieving metadata...</source>
-        <translation>Metadata letöltése...</translation>
+        <translation>Ricevante metadatumojn...</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="315"/>
         <source>Not Available</source>
         <comment>This size is unavailable.</comment>
-        <translation>Nem elérhető</translation>
+        <translation>Ne Disponeblas</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="346"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="354"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="356"/>
         <source>Choose save path</source>
-        <translation>Mentési útvonal választása</translation>
+        <translation>Elektu la dosierindikon por konservi</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="406"/>
         <source>Rename the file</source>
-        <translation>Fájl átnevezése</translation>
+        <translation>Renomi la dosieron</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="407"/>
         <source>New name:</source>
-        <translation>Új név:</translation>
+        <translation>Nova nomo:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="411"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="436"/>
         <source>The file could not be renamed</source>
-        <translation>Nem sikerült átnevezni a fájlt </translation>
+        <translation>La dosiero ne eblis renomiĝi</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="412"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Ez a fájlnév tiltott karaktereket tartalmaz, kérlek válassz egy másikat.</translation>
+        <translation>La dosiernomo enhavas malpermesitajn signojn, bonvolu elekti alian.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="437"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="472"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Ez a név már használatban van ebben a mappában. Kérlek válassz másik nevet.</translation>
+        <translation>La nomo jam estas uzata en ĉi tiu dosierujo. Bonvolu uzi alian nomon.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="471"/>
         <source>The folder could not be renamed</source>
-        <translation>Nem sikerült átnevezni a mappát</translation>
+        <translation>La dosierujo ne eblis renomiĝi</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="529"/>
         <source>Rename...</source>
-        <translation>Átnevezés...</translation>
+        <translation>Renomi...</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="533"/>
         <source>Priority</source>
-        <translation>Priorítás</translation>
+        <translation>Prioritato</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="637"/>
         <source>Parsing metadata...</source>
-        <translation>Metadata értelmezése...</translation>
+        <translation>Sintakse analizante metadatumojn...</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="641"/>
         <source>Metadata retrieval complete</source>
-        <translation>Metadata sikeresen letöltve</translation>
+        <translation>La ricevo de metadatumoj finiĝis</translation>
     </message>
 </context>
 <context>
@@ -324,70 +324,70 @@
     <message>
         <location filename="../gui/advancedsettings.h" line="220"/>
         <source>Disk write cache size</source>
-        <translation>Lemez írási gyorsítótár mérete</translation>
+        <translation>Grando de la diska skriba kaŝmemoro</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="201"/>
         <source> MiB</source>
-        <translation> MiB</translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="240"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
-        <translation>Kimenő portok (Min) [0: Letiltva]</translation>
+        <translation>Elirantaj pordoj (minimume) [0: Malebligita]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="245"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
-        <translation>Kimenő portok (Max) [0: Letiltva]</translation>
+        <translation>Elirantaj pordoj (maksimume) [0: Malebligita]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="248"/>
         <source>Recheck torrents on completion</source>
-        <translation>Torrentek újraellenőrzése a letöltésük végeztével</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="254"/>
         <source>Transfer list refresh interval</source>
-        <translation>Átviteli lista frissítésének időköze</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="253"/>
         <source> ms</source>
         <comment> milliseconds</comment>
-        <translation> ms</translation>
+        <translation>ms</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="80"/>
         <source>Setting</source>
-        <translation>Beállítások</translation>
+        <translation>Agordo</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="80"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
-        <translation>Érték</translation>
+        <translation>Valoro</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="199"/>
         <source> (auto)</source>
-        <translation> (auto)</translation>
+        <translation>(aŭtomata)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="225"/>
         <source> s</source>
         <comment> seconds</comment>
-        <translation> s</translation>
+        <translation>s</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="226"/>
         <source>Disk cache expiry interval</source>
-        <translation>Merevlemez gyorsítótár lejáratának ideje</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="229"/>
         <source>Enable OS cache</source>
-        <translation>OS cache engedélyezése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="234"/>
@@ -398,89 +398,89 @@
     <message>
         <location filename="../gui/advancedsettings.h" line="257"/>
         <source>Resolve peer countries (GeoIP)</source>
-        <translation>Ügyfelek országának megjelenítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="260"/>
         <source>Resolve peer host names</source>
-        <translation>Host nevek feloldása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="265"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation>A félig nyitott kapcsolatok maximális száma [0: Kikapcsolva]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="268"/>
         <source>Strict super seeding</source>
-        <translation>Szigorú szuper seed</translation>
+        <translation>Strikte superfondsendi</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="288"/>
         <source>Network Interface (requires restart)</source>
-        <translation>Háltózati csatoló (újraindítást igényel)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="291"/>
         <source>Listen on IPv6 address (requires restart)</source>
-        <translation>Figyelés IPv6 címen (újraindítást igényel)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="316"/>
         <source>Confirm torrent recheck</source>
-        <translation>Újraellenőrzés megerősítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="319"/>
         <source>Exchange trackers with other peers</source>
-        <translation>Trackerek megosztása a többi klienssel</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="322"/>
         <source>Always announce to all trackers</source>
-        <translation>Mindig jelentsen az összes tracker felé</translation>
+        <translation>Ĉiam konekti al ĉiuj ŝanĝospuriloj</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="270"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
-        <translation>Bármely csatoló</translation>
+        <translation>Iu ajn interfaco</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="235"/>
         <source>Save resume data interval</source>
         <comment>How often the fastresume file is saved.</comment>
-        <translation>Folytatási adatfájl mentésének intervalluma</translation>
+        <translation>Konserv-intervalo de reaktivigaj datumoj</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="294"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation>Trackernek lejelentett IP cím (újraindítást igényel)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="297"/>
         <source>Display program on-screen notifications</source>
-        <translation>Tálcán megjelenő üzenetek engedélyezése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="300"/>
         <source>Enable embedded tracker</source>
-        <translation>Beépített tracker bekapcsolása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="305"/>
         <source>Embedded tracker port</source>
-        <translation>Beépített tracker portja</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="308"/>
         <source>Check for software updates</source>
-        <translation>Frissítések keresése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="312"/>
         <source>Use system icon theme</source>
-        <translation>Renszer ikon téma használata</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -488,32 +488,32 @@
     <message>
         <location filename="../app/application.cpp" line="165"/>
         <source>Information</source>
-        <translation>Információ</translation>
+        <translation>Informoj</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="166"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation>A qBittorrent irányításához webes felületen nyisd meg ezt a címet: http://localhost:%1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="167"/>
         <source>The Web UI administrator user name is: %1</source>
-        <translation>Web UI adminisztrátor felhasználó neve: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="170"/>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation>Web UI adminisztrátor jelszó még az alapértelmezett: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="171"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation>Ez biztonsági kockázatot jelent. Kérlek változtass jelszót a program beállításinál.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="343"/>
         <source>Saving torrent progress...</source>
-        <translation>Torrent állapotának mentése...</translation>
+        <translation>Konservante la torentan progreson...</translation>
     </message>
 </context>
 <context>
@@ -521,316 +521,316 @@
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="14"/>
         <source>Automated RSS Downloader</source>
-        <translation>Automata RSS letöltő</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="26"/>
         <source>Enable the automated RSS downloader</source>
-        <translation>Automatikus RSS letöltő engedélyezése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="48"/>
         <source>Download rules</source>
-        <translation>Letöltési szabályok</translation>
+        <translation>Elŝutaj reguloj</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="123"/>
         <source>Rule definition</source>
-        <translation>Szabály meghatározása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="138"/>
         <source>Must contain:</source>
-        <translation>Tartalmaznia kell:</translation>
+        <translation>Nepras enhavi:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="180"/>
         <source>Must not contain:</source>
-        <translation>Nem lehet benne:</translation>
+        <translation>Nepras ne enhavi:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="129"/>
         <source>Use regular expressions</source>
-        <translation>Reguláris kifejezések használata</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="494"/>
         <source>Import...</source>
-        <translation>Import...</translation>
+        <translation>Enporti...</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="501"/>
         <source>Export...</source>
-        <translation>Export...</translation>
+        <translation>Elporti...</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="272"/>
         <source>Assign label:</source>
-        <translation>Címke kiosztása:</translation>
+        <translation>Atribui etikedon:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="254"/>
         <source>Episode filter:</source>
-        <translation>Epizód szűrő:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="291"/>
         <source>Save to a different directory</source>
-        <translation>Külön könyvtárba mentés</translation>
+        <translation>Konservi en alian dosierujon</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="303"/>
         <source>Save to:</source>
-        <translation>Mentés helye:</translation>
+        <translation>Konservi al:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="338"/>
         <source>Ignore subsequent matches for (0 to disable)</source>
         <comment>... X days</comment>
-        <translation>Későbbi találatok figyelmen kívül hagyása eddig (0 a kikapcsoláshoz)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="361"/>
         <source> days</source>
-        <translation>nap</translation>
+        <translation>tagoj</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="402"/>
         <source>Add Paused:</source>
-        <translation>Hozzáad szüneteltetve:</translation>
+        <translation>Aldoni Paŭzinte:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="416"/>
         <source>Use global setting</source>
-        <translation>Globális beállítás használata</translation>
+        <translation>Uzi la mallokan agordon</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="421"/>
         <source>Always add paused</source>
-        <translation>Mindig szüneteltetve adja hozzá</translation>
+        <translation>Ĉiam aldoni paŭzinte</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="426"/>
         <source>Never add paused</source>
-        <translation>Sose adja hozzá szüneteltetve</translation>
+        <translation>Neniam aldoni paŭzinte</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="447"/>
         <source>Apply rule to feeds:</source>
-        <translation>Szabály a csatornákhoz:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="469"/>
         <source>Matching RSS articles</source>
-        <translation>Megfelelő cikkek</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="77"/>
         <source>Matches articles based on episode filter.</source>
-        <translation>Epizód szűrő alapján társítja a találatokat.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="77"/>
         <source>Example: </source>
-        <translation>Példa:</translation>
+        <translation>Ekzemplo:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="78"/>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
         <comment>example X will match</comment>
-        <translation>az első évad 2., 5., 8.-15., és a 30.- részeire fog szűrni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="79"/>
         <source>Episode filter rules: </source>
-        <translation>Epizód szűrő szabályok:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="79"/>
         <source>Season number is a mandatory non-zero value</source>
-        <translation>Évad szám egy kötelező nem-nulla érték</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="80"/>
         <source>Episode number is a mandatory non-zero value</source>
-        <translation>Epizód szám egy kötelező nem-nulla érték</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="81"/>
         <source>Filter must end with semicolon</source>
-        <translation>Szűrőnek pontosvesszővel kell végződnie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="82"/>
         <source>Three range types for episodes are supported: </source>
-        <translation>Epizódok esetén három tartomány típus támogatott:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="83"/>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation>Egy szám: &lt;b&gt;1x25;&lt;/b&gt; az első évad 25. epizódjának felel meg</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="84"/>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation>Normál tartomány: &lt;b&gt;1x25-40;&lt;/b&gt; az első évad 25-40. epizódjának felel meg</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="85"/>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one</source>
-        <translation>Korlátlan tartomány: &lt;b&gt;1x25-;&lt;/b&gt; az első évad 25. epizódjától kezdve minden rész</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="264"/>
         <source>Last match: </source>
-        <translation>Utolsó találat:</translation>
+        <translation>Lasta kongruo:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="266"/>
         <source> days ago.</source>
-        <translation>napja.</translation>
+        <translation>tagoj antaŭ.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="268"/>
         <source>Unknown</source>
-        <translation>Ismeretlen</translation>
+        <translation>Nekonata</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="361"/>
         <source>New rule name</source>
-        <translation>Új szabály neve</translation>
+        <translation>Nova regulnomo</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="361"/>
         <source>Please type the name of the new download rule.</source>
-        <translation>Kérlek add meg az új letöltési szabály nevét.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="365"/>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="483"/>
         <source>Rule name conflict</source>
-        <translation>Szabály név ütközés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="365"/>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="483"/>
         <source>A rule with this name already exists, please choose another name.</source>
-        <translation>Már van ilyen szabály név. Kérlek válassz másikat.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="383"/>
         <source>Are you sure you want to remove the download rule named %1?</source>
-        <translation>Biztosan el akarod távolítani ezt a szabályt %1?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="385"/>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation>Biztosan eltávolítod a kiválasztott szabályokat?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="386"/>
         <source>Rule deletion confirmation</source>
-        <translation>Szabály törlés megerősítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="402"/>
         <source>Destination directory</source>
-        <translation>Célmappa</translation>
+        <translation>Celdosierujo</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="410"/>
         <source>Invalid action</source>
-        <translation>Érvénytelen esemény</translation>
+        <translation>Nevalida ago</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="410"/>
         <source>The list is empty, there is nothing to export.</source>
-        <translation>A lista üres. Nincs mit exportálni.</translation>
+        <translation>La listo malplenas, estas nenio por elporti.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="414"/>
         <source>Where would you like to save the list?</source>
-        <translation>Hová szeretnéd menteni a listát?</translation>
+        <translation>Kie vi volas konservi la liston?</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="414"/>
         <source>Rules list (*.rssrules)</source>
-        <translation>Szabály lista (*.rssrules)</translation>
+        <translation>Listo da reguloj (*.rssrules)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="419"/>
         <source>I/O Error</source>
-        <translation>I/O Hiba</translation>
+        <translation>Eneliga Eraro</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="419"/>
         <source>Failed to create the destination file</source>
-        <translation>Fájl létrehozása sikertelen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="427"/>
         <source>Please point to the RSS download rules file</source>
-        <translation>Kérlek nyisd meg az RSS letöltési szabályokat tartalmazó fájlt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="427"/>
         <source>Rules list</source>
-        <translation>Szabály lista</translation>
+        <translation>Listo da reguloj</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="431"/>
         <source>Import Error</source>
-        <translation>Import Hiba</translation>
+        <translation>Enporta Eraro</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="431"/>
         <source>Failed to import the selected rules file</source>
-        <translation>Nem sikerült importálni a kiválasztott fájlt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="442"/>
         <source>Add new rule...</source>
-        <translation>Új szabály felvétele...</translation>
+        <translation>Aldoni novan regulon...</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="448"/>
         <source>Delete rule</source>
-        <translation>Szabály törlése</translation>
+        <translation>Forigi la regulon</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="450"/>
         <source>Rename rule...</source>
-        <translation>Szabály átnevezése...</translation>
+        <translation>Renomi la regulon...</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="452"/>
         <source>Delete selected rules</source>
-        <translation>Kiválasztott szabályok törlése</translation>
+        <translation>Forigi elektitajn regulojn</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="479"/>
         <source>Rule renaming</source>
-        <translation>Szabály átnevezése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="479"/>
         <source>Please type the new rule name</source>
-        <translation>Kérlek add meg a szabály új nevét</translation>
+        <translation>Bonvolu tajpi la nomon de la nova regulo</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="581"/>
         <source>Regex mode: use Perl-like regular expressions</source>
-        <translation>Regex mód: Perl-szerű reguláris kifejezések használata</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="585"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>Helyettesítő-jel mód: használhatod a &lt;ul&gt;&lt;li&gt;? karaktert hogy egy darab karaktert feleltess meg&lt;/li&gt;&lt;li&gt;* karaktert hogy nulla vagy több karaktert feleltess meg&lt;/li&gt;&lt;li&gt;A szóközök ÉS operátornak felelnek meg&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="587"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>Helyettesítő-jel mód: használhatod a &lt;ul&gt;&lt;li&gt;? karaktert hogy egy darab karaktert feleltess meg&lt;/li&gt;&lt;li&gt;* karaktert hogy nulla vagy több karaktert feleltess meg&lt;/li&gt;&lt;li&gt;A | karakter pedig a VAGY operátornak felelnek meg&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -838,26 +838,25 @@
     <message>
         <location filename="../gui/rss/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
-        <translation>Süti kezelés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/cookiesdlg.ui" line="36"/>
         <source>Key</source>
         <extracomment>As in Key/Value pair</extracomment>
-        <translation>Kulcs</translation>
+        <translation>Ŝlosilo</translation>
     </message>
     <message>
         <location filename="../gui/rss/cookiesdlg.ui" line="41"/>
         <source>Value</source>
         <extracomment>As in Key/Value pair</extracomment>
-        <translation>Érték</translation>
+        <translation>Valoro</translation>
     </message>
     <message>
         <location filename="../gui/rss/cookiesdlg.cpp" line="48"/>
         <source>Common keys for cookies are: &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation>Gyakori kulcsok sütik esetén: &apos;%1&apos;, &apos;%2&apos;.
-Ezt az információt a böngésző beállításaiból lehet kinyerni.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -865,52 +864,52 @@ Ezt az információt a böngésző beállításaiból lehet kinyerni.</translati
     <message>
         <location filename="../core/dnsupdater.cpp" line="192"/>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation>A dinamikus DNS-ed sikeresen frissítve.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="196"/>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation>Dinamikus DNS hiba: A szolgáltatás jelenleg nem elérhető. Újbóli próbálkozás 30 perc múlva.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="205"/>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
-        <translation>Dinamikus DNS hiba: a hostnév nem található a megadott felhasználói fióknál.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="210"/>
         <source>Dynamic DNS error: Invalid username/password.</source>
-        <translation>Dinamikus DNS hiba: Érvénytelen felhasználónév/jelszó.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="215"/>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation>Dinamikus DNS hiba: a qBittorrent feketelistára került a szolgáltató által, kérem jelezze ezt a http://bugs.qbittorrent.org címen.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="221"/>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation>Dinamikus DNS hiba: %1 választ küldött a kiszolgáló, kérem jelezze ezt a http://bugs.qbittorrent.org címen.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="227"/>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
-        <translation>Dinamikus DNS hiba: A felhasználónév letiltásra került visszaélés miatt.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="248"/>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
-        <translation>Dinamikus DNS hiba: a megadott kiszolgálónév érvénytelen.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="259"/>
         <source>Dynamic DNS error: supplied username is too short.</source>
-        <translation>Dinamikus DNS hiba: a megadott felhasználónév túl rövid.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/dnsupdater.cpp" line="270"/>
         <source>Dynamic DNS error: supplied password is too short.</source>
-        <translation>Dinamikus DNS hiba: a megadott jelszó túl rövid.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -919,13 +918,13 @@ Ezt az információt a böngésző beállításaiból lehet kinyerni.</translati
         <location filename="../gui/deletionconfirmationdlg.h" line="48"/>
         <source>Are you sure you want to delete &quot;%1&quot; from the transfer list?</source>
         <comment>Are you sure you want to delete &quot;ubuntu-linux-iso&quot; from the transfer list?</comment>
-        <translation>Biztosan törölni akarod a(z) &quot;%1&quot;-t a listából?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdlg.h" line="50"/>
         <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
-        <translation>Biztosan törölni akarod a következő %1 torrentet a listából?</translation>
+        <translation>Ĉu vi certas, ke vi volas forigi tiujn %1 torentojn de la transmetlisto?</translation>
     </message>
 </context>
 <context>
@@ -934,117 +933,117 @@ Ezt az információt a böngésző beállításaiból lehet kinyerni.</translati
         <location filename="../core/downloadthread.cpp" line="165"/>
         <location filename="../core/downloadthread.cpp" line="169"/>
         <source>I/O Error</source>
-        <translation>I/O Hiba</translation>
+        <translation>Eneliga Eraro</translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="261"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation>A távoli kiszolgálónév nem található (érvénytelen hosztnév)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="263"/>
         <source>The operation was canceled</source>
-        <translation>A művelet megszakítva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="265"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation>A távoli szerver lezárta a kapcsolatot a teljes válasz elküldése és feldolgozása előtt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="267"/>
         <source>The connection to the remote server timed out</source>
-        <translation>Időtúllépés a szervehez való kapcsolódás közben</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="269"/>
         <source>SSL/TLS handshake failed</source>
-        <translation>SSL/TLS kapcsolódás sikertelen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="271"/>
         <source>The remote server refused the connection</source>
-        <translation>A szerver visszautasította a kapcsolódást</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="273"/>
         <source>The connection to the proxy server was refused</source>
-        <translation>Kapcsolódás a proxy szerverhez sikertelen</translation>
+        <translation>La konekto al la prokurilo rifuziĝis</translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="275"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation>A proxy szerver idő előtt bontotta a kapcsolatot</translation>
+        <translation>La prokurilo fermis la konekton antaŭtempe</translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="277"/>
         <source>The proxy host name was not found</source>
-        <translation>Proxy szerver név ismeretlen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="279"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation>Időtúllépés a proxy szerverhez való kapcsolódáskor, vagy a szerver nem válaszolt időben az elküldött kérésre</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="281"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
-        <translation>A proxy szerver hitelesítést kíván, de nem fogadta el a megadott belépési adatokat</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="283"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation>Csatlakozás a távoli tartalomhoz megtagadva (401)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="285"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation>A kért művelet nem engedélyezett a távoli eszközön</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="287"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation>A távoli tartalom nem található a szeveren (404)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="289"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>A szerver hitelesítést igényel a tartalom kiszolgálásához, de nem fogadja el az általunk küldött hitelesítő adatokat</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="291"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation>A Network Access API nem teljesíti a kérést, mivel a protokoll ismeretlen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="293"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation>A kért művelet ismeretlen ennél a protokollnál</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="295"/>
         <source>An unknown network-related error was detected</source>
-        <translation>Ismeretlen hálózati hiba történt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="297"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation>Ismeretlen proxy hiba történt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="299"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation>Ismeretlen hiba a távoli tartalomban</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="301"/>
         <source>A breakdown in protocol was detected</source>
-        <translation>Hiba a protokollban</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/downloadthread.cpp" line="303"/>
         <source>Unknown error</source>
-        <translation>Ismeretlen hiba</translation>
+        <translation>Nekonata eraro</translation>
     </message>
 </context>
 <context>
@@ -1052,30 +1051,30 @@ Ezt az információt a böngésző beállításaiból lehet kinyerni.</translati
     <message>
         <location filename="../gui/executionlog.ui" line="27"/>
         <source>General</source>
-        <translation>Általános</translation>
+        <translation>Ĝenerala</translation>
     </message>
     <message>
         <location filename="../gui/executionlog.ui" line="33"/>
         <source>Blocked IPs</source>
-        <translation>Blokkolt IP címek</translation>
+        <translation>Blokitaj IP-adresoj</translation>
     </message>
     <message>
         <location filename="../gui/executionlog.cpp" line="102"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; tiltásra került</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/executionlog.cpp" line="104"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked %2</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; blokkolásra került %2</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; blokiĝis %2</translation>
     </message>
     <message>
         <location filename="../gui/executionlog.cpp" line="107"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
         <comment>x.y.z.w was banned</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; kitiltásra került</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; forbariĝis</translation>
     </message>
 </context>
 <context>
@@ -1083,12 +1082,12 @@ Ezt az információt a böngésző beállításaiból lehet kinyerni.</translati
     <message>
         <location filename="../gui/rss/feedlistwidget.cpp" line="41"/>
         <source>RSS feeds</source>
-        <translation>RSS források</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/feedlistwidget.cpp" line="43"/>
         <source>Unread</source>
-        <translation>Olvasatlan</translation>
+        <translation>Nelegita</translation>
     </message>
 </context>
 <context>
@@ -1096,263 +1095,263 @@ Ezt az információt a böngésző beállításaiból lehet kinyerni.</translati
     <message>
         <location filename="../webui/extra_translations.h" line="36"/>
         <source>File</source>
-        <translation>Fájl</translation>
+        <translation>Dosiero</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="37"/>
         <source>Edit</source>
-        <translation>Szerkesztés</translation>
+        <translation>Redakti</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="38"/>
         <source>Help</source>
-        <translation>Súgó</translation>
+        <translation>Helpo</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="40"/>
         <source>Download Torrents from their URL or Magnet link</source>
-        <translation>Torrent letöltése URL vagy Magnet linkről</translation>
+        <translation>Elŝuti Torentojn per URL aŭ Magnet-ligiloj</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="41"/>
         <source>Only one link per line</source>
-        <translation>Soronként csak egy linket</translation>
+        <translation>Nur po unu ligilo por linio</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="42"/>
         <source>Download local torrent</source>
-        <translation>Helyi torrent letöltése</translation>
+        <translation>Elŝuti lokan torenton</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="43"/>
         <source>Download</source>
-        <translation>Letöltés</translation>
+        <translation>Elŝuti</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="52"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation>A maximális kapcsolatok számának 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="53"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>A maximális kapcsolatok számának torrentenként 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="54"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>A maximális feltöltési szálak korlátnak torrentenként 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="55"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Nem sikerült menteni a beállításokat. A qBittorrent valószínüleg nem elérhető.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="56"/>
         <source>Language</source>
-        <translation>Nyelv</translation>
+        <translation>Lingvo</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="57"/>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>A bejövő kapcsolatokhoz használt portnak 1 és 65535 között kell lenni.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="58"/>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>A Web UI-hoz használt portnak 1 és 65535 között kell lenni.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="68"/>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Nem sikerült bejelentkezni, qBittorrent talán elérhetetlen.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="69"/>
         <source>Invalid Username or Password.</source>
-        <translation>Érvénytelen felhasználónév vagy jelszó.</translation>
+        <translation>Nevalida Uzantnomo aŭ Pasvorto.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="70"/>
         <source>Password</source>
-        <translation>Jelszó</translation>
+        <translation>Pasvorto</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="71"/>
         <source>Login</source>
-        <translation>Bejelentkezés</translation>
+        <translation>Ensaluti</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="72"/>
         <source>Upload Failed!</source>
-        <translation>Feltöltés sikertelen!</translation>
+        <translation>Alŝuto Malsukcesis!</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="73"/>
         <source>Original authors</source>
-        <translation>Eredeti szerző - fejlesztő</translation>
+        <translation>Originalaj aŭtoroj</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="74"/>
         <source>Upload limit:</source>
-        <translation>Feltöltési arány korlátozása</translation>
+        <translation>Alŝutlimo:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="75"/>
         <source>Download limit:</source>
-        <translation>Letöltési arány korlátozása</translation>
+        <translation>Elŝutlimo:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="76"/>
         <source>Apply</source>
-        <translation>Alkalmaz</translation>
+        <translation>Apliki</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="77"/>
         <source>Add</source>
-        <translation>Hozzáad</translation>
+        <translation>Aldoni</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="78"/>
         <source>Upload Torrents</source>
-        <translation>Torrentek feltöltéese</translation>
+        <translation>Alŝuti Torentojn</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="79"/>
         <source>All</source>
-        <translation>Összes</translation>
+        <translation>Ĉio</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="80"/>
         <source>Downloading</source>
-        <translation>Letöltés</translation>
+        <translation>Elŝutanta</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="81"/>
         <source>Seeding</source>
-        <translation>Seed</translation>
+        <translation>Fontsendanta</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="82"/>
         <source>Completed</source>
-        <translation>Elkészült</translation>
+        <translation>Finita</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="83"/>
         <source>Resumed</source>
-        <translation>Folytatva</translation>
+        <translation>Reaktiviĝita</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="84"/>
         <source>Paused</source>
-        <translation>Szüneteltetve</translation>
+        <translation>Paŭzinta</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="85"/>
         <source>Active</source>
-        <translation>Aktív</translation>
+        <translation>Aktiva</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="86"/>
         <source>Inactive</source>
-        <translation>Inaktív</translation>
+        <translation>Malaktiva</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="90"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
-        <translation>Letöltve</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="39"/>
         <source>Logout</source>
-        <translation>Kijelentkezés</translation>
+        <translation>Elsaluti</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="44"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Egészen biztos, hogy törlöd az átviteli listáról?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="45"/>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Letöltési korlátnak 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="46"/>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation>Letöltési korlátnak 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="47"/>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation>A feltöltési korlátnak 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="48"/>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation>A feltöltési korlátnak 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="49"/>
         <source>Maximum active downloads must be greater than -1.</source>
-        <translation>A maximum aktív letöltéseknek nagyobbnak kell lenni, mint -1.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="50"/>
         <source>Maximum active uploads must be greater than -1.</source>
-        <translation>A maximum aktív feltöltéseknek nagyobbnak kell lenni, mint -1.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="51"/>
         <source>Maximum active torrents must be greater than -1.</source>
-        <translation>A maximum aktív torrenteknek nagyobbnak kell lenni, mint -1.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="59"/>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>A Web UI felhasználói névnek legalább 3 karakter hosszúnak kell lennie.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="60"/>
         <source>The Web UI password must be at least 3 characters long.</source>
-        <translation>A Web UI felhasználói jelszónak legalább 3 karakter hosszúnak kell lennie.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="61"/>
         <source>Save</source>
-        <translation>Mentés</translation>
+        <translation>Konservi</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="62"/>
         <source>qBittorrent client is not reachable</source>
-        <translation>A qBittorent kliens nem elérhető</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="63"/>
         <source>HTTP Server</source>
-        <translation>HTTP Szerver</translation>
+        <translation>TTT-servilo</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="64"/>
         <source>The following parameters are supported:</source>
-        <translation>A következő paraméterek támogatottak:</translation>
+        <translation>La sekvaj parametroj estas subtenataj:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="65"/>
         <source>Torrent path</source>
-        <translation>Torrent útvonal</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="66"/>
         <source>Torrent name</source>
-        <translation>Torrent név</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="67"/>
         <source>qBittorrent has been shutdown.</source>
-        <translation>A qBittorrent leállításra került.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1361,19 +1360,19 @@ Ezt az információt a böngésző beállításaiból lehet kinyerni.</translati
         <location filename="../gui/transferlistfilterswidget.cpp" line="179"/>
         <source>All (0)</source>
         <comment>this is for the label filter</comment>
-        <translation>Összes (0)</translation>
+        <translation>Ĉio (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="182"/>
         <source>Unlabeled (0)</source>
-        <translation>Címke nélkül (0)</translation>
+        <translation>Senetekida (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="204"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="250"/>
         <source>All (%1)</source>
         <comment>this is for the label filter</comment>
-        <translation>Minden (%1)</translation>
+        <translation>Ĉio (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="207"/>
@@ -1381,7 +1380,7 @@ Ezt az információt a böngésző beállításaiból lehet kinyerni.</translati
         <location filename="../gui/transferlistfilterswidget.cpp" line="253"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="258"/>
         <source>Unlabeled (%1)</source>
-        <translation>Címke nélkül (%1)</translation>
+        <translation>Senetikeda (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="229"/>
@@ -1393,52 +1392,52 @@ Ezt az információt a böngésző beállításaiból lehet kinyerni.</translati
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="317"/>
         <source>Add label...</source>
-        <translation>Címke hozzáadasa...</translation>
+        <translation>Aldoni etikedon...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="321"/>
         <source>Remove label</source>
-        <translation>Címke eltávolítása</translation>
+        <translation>Forigi la etikedon</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="322"/>
         <source>Remove unused labels</source>
-        <translation>Nem használt címkék eltávolítása</translation>
+        <translation>Forigi neuzatajn etikedojn</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="324"/>
         <source>Resume torrents</source>
-        <translation>Torrentek folytatása</translation>
+        <translation>Reaktivigi la torentojn</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="325"/>
         <source>Pause torrents</source>
-        <translation>Torrentek szüneteltetése</translation>
+        <translation>Paŭzigi la torentojn</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="326"/>
         <source>Delete torrents</source>
-        <translation>Torrentek törlése</translation>
+        <translation>Forigi la torentojn</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="353"/>
         <source>New Label</source>
-        <translation>Új címke</translation>
+        <translation>Nova Etikedo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="353"/>
         <source>Label:</source>
-        <translation>Címke:</translation>
+        <translation>Etikedo:</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="359"/>
         <source>Invalid label name</source>
-        <translation>Érvénytelen címke név</translation>
+        <translation>Nevalida etikednomo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="359"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Kérlek ne használj speciális karaktereket a címke nevében.</translation>
+        <translation>Bonvolu ne uzi specialajn signojn en la etikednomo.</translation>
     </message>
 </context>
 <context>
@@ -1446,7 +1445,7 @@ Ezt az információt a böngésző beállításaiból lehet kinyerni.</translati
     <message>
         <location filename="../gui/lineedit/src/lineedit.cpp" line="30"/>
         <source>Clear the text</source>
-        <translation>Szöveg törlése</translation>
+        <translation>Vakigi la tekston</translation>
     </message>
 </context>
 <context>
@@ -1454,12 +1453,12 @@ Ezt az információt a böngésző beállításaiból lehet kinyerni.</translati
     <message>
         <location filename="../gui/loglistwidget.cpp" line="47"/>
         <source>Copy</source>
-        <translation>Másolás</translation>
+        <translation>Kopii</translation>
     </message>
     <message>
         <location filename="../gui/loglistwidget.cpp" line="48"/>
         <source>Clear</source>
-        <translation>Töröl</translation>
+        <translation>Vakigi</translation>
     </message>
 </context>
 <context>
@@ -1467,423 +1466,422 @@ Ezt az információt a böngésző beállításaiból lehet kinyerni.</translati
     <message>
         <location filename="../gui/mainwindow.ui" line="37"/>
         <source>&amp;Edit</source>
-        <translation>Sze&amp;rkesztés</translation>
+        <translation>&amp;Redakti</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="60"/>
         <source>&amp;Tools</source>
-        <translation>&amp;Eszközök</translation>
+        <translation>&amp;Iloj</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="80"/>
         <source>&amp;File</source>
-        <translation>&amp;Fájl</translation>
+        <translation>&amp;Dosiero</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="50"/>
         <source>&amp;Help</source>
-        <translation>&amp;Súgó</translation>
+        <translation>&amp;Helpo</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="64"/>
         <source>On Downloads &amp;Done</source>
-        <translation>A letöltések &amp;végeztével</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="90"/>
         <source>&amp;View</source>
-        <translation>&amp;Nézet</translation>
+        <translation>&amp;Vido</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="161"/>
         <source>&amp;Options...</source>
-        <translation>Beállítás&amp;ok...</translation>
+        <translation>&amp;Opcioj</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="174"/>
         <source>&amp;Resume</source>
-        <translation>&amp;Folytatás</translation>
+        <translation>&amp;Reaktivigi</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="206"/>
         <source>Torrent &amp;Creator</source>
-        <translation>Torrent &amp;készítő</translation>
+        <translation>Torent-&amp;kreanto</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="211"/>
         <source>Set Upload Limit...</source>
-        <translation>Feltöltési korlát megadása...</translation>
+        <translation>Agordi Alŝutlimon...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="216"/>
         <source>Set Download Limit...</source>
-        <translation>Letöltési korlát megadása...</translation>
+        <translation>Agordi Elŝutlimon...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="226"/>
         <source>Set Global Download Limit...</source>
-        <translation>Globális letöltési korlát megadása...</translation>
+        <translation>Agordi Mallokan Elŝutlimon...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="231"/>
         <source>Set Global Upload Limit...</source>
-        <translation>Globális feltöltési korlát megadása...</translation>
+        <translation>Agordi Mallokan Alŝutlimon...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="236"/>
         <source>Minimum Priority</source>
-        <translation>Minimum priorítás</translation>
+        <translation>Minimuma Prioritato</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="244"/>
         <source>Top Priority</source>
-        <translation>Top priorítás</translation>
+        <translation>Plejalta Prioritato</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="252"/>
         <source>Decrease Priority</source>
-        <translation>Priorítás csökkentése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="260"/>
         <source>Increase Priority</source>
-        <translation>Prioritás növelése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="271"/>
         <location filename="../gui/mainwindow.ui" line="274"/>
         <source>Alternative Speed Limits</source>
-        <translation>Alternatív sebességkorlátok</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="282"/>
         <source>&amp;Top Toolbar</source>
-        <translation>Felső &amp;eszköz panel</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="285"/>
         <source>Display Top Toolbar</source>
-        <translation>Felső eszköztár megjelenítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="293"/>
         <source>S&amp;peed in Title Bar</source>
-        <translation>&amp;Sebesség a címsoron</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="296"/>
         <source>Show Transfer Speed in Title Bar</source>
-        <translation>Átviteli sebesség mutatása a címsorban</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="304"/>
         <source>&amp;RSS Reader</source>
-        <translation>&amp;RSS olvasó</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="312"/>
         <source>Search &amp;Engine</source>
-        <translation>&amp;Keresőmotor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="317"/>
         <source>L&amp;ock qBittorrent</source>
-        <translation>qBittorrent zárolása</translation>
+        <translation>Ŝl&amp;osi na qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="331"/>
         <source>&amp;Import Existing Torrent...</source>
-        <translation>Létező torrent importálása...</translation>
+        <translation>E&amp;nporti Ekzistantan Torenton...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="334"/>
         <source>Import Torrent...</source>
-        <translation>Torrent importálása...</translation>
+        <translation>Enporti Torenton...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="339"/>
         <source>Do&amp;nate!</source>
-        <translation>Adomány!</translation>
+        <translation>Do&amp;naci!</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="347"/>
         <source>R&amp;esume All</source>
-        <translation>Összes &amp;folytatása</translation>
+        <translation>R&amp;eaktivigi Ĉion</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="360"/>
         <source>&amp;Log</source>
-        <translation>&amp;log</translation>
+        <translation>&amp;Protokolo</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="371"/>
         <source>&amp;Exit qBittorrent</source>
-        <translation>&amp;qBittorrent bezárása</translation>
+        <translation>Ĉ&amp;esigi na qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="379"/>
         <source>&amp;Suspend System</source>
-        <translation>&amp;Számítógép felfüggesztése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="387"/>
         <source>&amp;Hibernate System</source>
-        <translation>&amp;Rendszer hibernálása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="395"/>
         <source>S&amp;hutdown System</source>
-        <translation>Számítógép leállítása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="403"/>
         <source>&amp;Disabled</source>
-        <translation>&amp;Kikapcsolva</translation>
+        <translation>&amp;Malebligita</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="418"/>
         <source>&amp;Statistics</source>
-        <translation>&amp;Statisztika</translation>
+        <translation>&amp;Statistikoj</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="423"/>
         <source>Check for Updates</source>
-        <translation>Frissítések ellenőrzése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="426"/>
         <source>Check for Program Updates</source>
-        <translation>Frissítések keresése indításkor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="169"/>
         <source>&amp;About</source>
-        <translation>&amp;Névjegy</translation>
+        <translation>&amp;Pri</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="156"/>
         <source>Exit</source>
-        <translation>Kilépés</translation>
+        <translation>Ĉesigi</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="182"/>
         <source>&amp;Pause</source>
-        <translation>&amp;Szünet</translation>
+        <translation>&amp;Paŭzigi</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="190"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Törlés</translation>
+        <translation>&amp;Forigi</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="352"/>
         <source>P&amp;ause All</source>
-        <translation>Összes le&amp;állítása</translation>
+        <translation>&amp;Paŭzigi Ĉion</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="145"/>
         <source>&amp;Add Torrent File...</source>
-        <translation>Torrent hozzá&amp;adása...</translation>
+        <translation>Aldoni Torent&amp;dosieron...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="148"/>
         <source>Open</source>
-        <translation>Megnyitás</translation>
+        <translation>Malfermi</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="153"/>
         <source>E&amp;xit</source>
-        <translation>&amp;Kilépés</translation>
+        <translation>Ĉ&amp;esigi</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="164"/>
         <source>Options</source>
-        <translation>Beállítások</translation>
+        <translation>Opcioj</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="177"/>
         <source>Resume</source>
-        <translation>Folytatás</translation>
+        <translation>Reaktivigi</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="185"/>
         <source>Pause</source>
-        <translation>Szünet</translation>
+        <translation>Paŭzigi</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="193"/>
         <source>Delete</source>
-        <translation>Törlés</translation>
+        <translation>Forigi</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="201"/>
         <source>Open URL</source>
-        <translation>URL megnyitása</translation>
+        <translation>Malfermi na URL</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="221"/>
         <source>&amp;Documentation</source>
-        <translation>&amp;Dokumentáció</translation>
+        <translation>&amp;Dokumentado</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="320"/>
         <source>Lock</source>
-        <translation>Zárolás</translation>
+        <translation>Ŝlosi</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="408"/>
         <location filename="../gui/mainwindow.cpp" line="1365"/>
         <source>Show</source>
-        <translation>Mutat</translation>
+        <translation>Montri</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1552"/>
         <source>Check for program updates</source>
-        <translation>Frissítések keresése indításkor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="323"/>
         <source>Lock qBittorrent</source>
-        <translation>qBittorrent zárolása</translation>
+        <translation>Ŝlosi na qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="198"/>
         <source>Add Torrent &amp;Link...</source>
-        <translation>Torrent linkek hozzáadása</translation>
+        <translation>Aldoni Torent&amp;ligilon...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="342"/>
         <source>If you like qBittorrent, please donate!</source>
-        <translation>Ha kedveled a qBittorrentet, kélek támogasd!</translation>
+        <translation>Se qBittorrent plaĉas al vi, bonvolu donaci!</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="363"/>
         <location filename="../gui/mainwindow.cpp" line="1580"/>
         <source>Execution Log</source>
-        <translation>Napló</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="488"/>
         <source>Clear the password</source>
-        <translation>Jelszó törlése</translation>
+        <translation>Vakigi la pasvorton</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="192"/>
         <source>Filter torrent list...</source>
-        <translation>Torrent lista szűrése...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="162"/>
         <source>&amp;Set Password</source>
-        <translation>&amp;Jelszó beállítása</translation>
+        <translation>&amp;Agordi Pasvorton</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="164"/>
         <source>&amp;Clear Password</source>
-        <translation>&amp;Jelszó törlése</translation>
+        <translation>&amp;Vakigi la Pasvorton</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="209"/>
         <source>Transfers</source>
-        <translation>Átvitelek</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="353"/>
         <source>Torrent file association</source>
-        <translation>Torrent fájl társítás</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="354"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation>A qBittorrent nem az alapértelmezett .torrent vagy Magnet link kezelő alkalmazás.
-Szeretnéd alapértelmezetté tenni?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="385"/>
         <source>Icons Only</source>
-        <translation>Csak ikonok</translation>
+        <translation>Nur Bildsimboloj</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="387"/>
         <source>Text Only</source>
-        <translation>Csak szöveg</translation>
+        <translation>Nur Teksto</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="389"/>
         <source>Text Alongside Icons</source>
-        <translation>Szöveg az ikonok mellett</translation>
+        <translation>Teksto Apud Bildsimboloj</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="391"/>
         <source>Text Under Icons</source>
-        <translation>Szöveg az ikonok alatt</translation>
+        <translation>Teksto Sub Bildsimboloj</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="393"/>
         <source>Follow System Style</source>
-        <translation>Rendszer kinézetének követése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="473"/>
         <location filename="../gui/mainwindow.cpp" line="500"/>
         <location filename="../gui/mainwindow.cpp" line="807"/>
         <source>UI lock password</source>
-        <translation>UI jelszó</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="473"/>
         <location filename="../gui/mainwindow.cpp" line="500"/>
         <location filename="../gui/mainwindow.cpp" line="807"/>
         <source>Please type the UI lock password:</source>
-        <translation>Kérlek add meg az UI jelszavát:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="477"/>
         <source>The password should contain at least 3 characters</source>
-        <translation>A jelszónak legalább 3 karaktert kell tartalmaznia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="482"/>
         <source>Password update</source>
-        <translation>Jelszó frissítés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="482"/>
         <source>The UI lock password has been successfully updated</source>
-        <translation>Az UI jelszó sikeresen frissítve</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="488"/>
         <source>Are you sure you want to clear the password?</source>
-        <translation>Biztosan ki akarod törölni a jelszót?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="540"/>
         <source>Search</source>
-        <translation>Keresés</translation>
+        <translation>Serĉo</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="551"/>
         <source>Transfers (%1)</source>
-        <translation>Átvitelek (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="645"/>
         <source>Download completion</source>
-        <translation>Elkészült letöltés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="645"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation>%1 letöltve.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="652"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation>I/O Hiba</translation>
+        <translation>Eneliga Eraro</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="652"/>
@@ -1891,232 +1889,227 @@ Szeretnéd alapértelmezetté tenni?</translation>
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation>I/O hiba történt ennél a torrentnél %1.
-Indok: %2</translation>
+        <translation>Eneliga eraro ozakis por la torento %1.
+Kial: %2</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="718"/>
         <source>Recursive download confirmation</source>
-        <translation>Letöltés ismételt megerősítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="718"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation>A %1 torrent .torrent fájlokat is tartalmaz. Szeretnéd folytatni a letöltésükkel?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="719"/>
         <source>Yes</source>
-        <translation>Igen</translation>
+        <translation>Jes</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="720"/>
         <source>No</source>
-        <translation>Nem</translation>
+        <translation>Ne</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="721"/>
         <source>Never</source>
-        <translation>Soha</translation>
+        <translation>Neniam</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="743"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Teljes feltöltési sebesség korlát</translation>
+        <translation>Malloka Alŝutrapidlimo</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="759"/>
         <source>Global Download Speed Limit</source>
-        <translation>Teljes letöltési sebesség korlát</translation>
+        <translation>Malloka Elŝutrapidlimo</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="909"/>
         <source>&amp;No</source>
-        <translation>&amp;Nem</translation>
+        <translation>&amp;Ne</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="910"/>
         <source>&amp;Yes</source>
-        <translation>&amp;Igen</translation>
+        <translation>&amp;Jes</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="911"/>
         <source>&amp;Always Yes</source>
-        <translation>&amp;mindig igen</translation>
+        <translation>&amp;Ĉiam Jes</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1451"/>
         <location filename="../gui/mainwindow.cpp" line="1665"/>
         <source>Python found in %1</source>
-        <translation>Python verzió: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1466"/>
         <source>Old Python Interpreter</source>
-        <translation>Elavult Python bővítmény</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1476"/>
         <source>Undetermined Python version</source>
-        <translation>Ismeretlen Python verzió</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1466"/>
         <source>Your Python version %1 is outdated. Please upgrade to latest version for search engines to work. Minimum requirement: 2.7.0/3.3.0.</source>
-        <translation>A telepített Python verzió %1 elavult. A legújabb verzió szükséges a keresőmező működéséhez (minimum követelmény: 2.7.0/3.3.0).</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1476"/>
         <source>Couldn&apos;t determine your Python version (%1). Search engine disabled.</source>
-        <translation>Nem lehet megállapítani a Python verzióját (%1). A keresőmező ki lett kapcsolva.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1487"/>
         <location filename="../gui/mainwindow.cpp" line="1499"/>
         <source>Missing Python Interpreter</source>
-        <translation>Hiányzó Python Interpreter</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1488"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation>A kereső használatához Python szükséges, de úgy tűnik nincs telepítve.
-Szeretnéd most telepíteni?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1499"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
-        <translation>A keresőhöz Python szükséges, de nincs installálva.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1536"/>
         <source>Update Available</source>
-        <translation>Frissítés elérhető</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1537"/>
         <source>A new version is available.
 Update to version %1?</source>
-        <translation>Egy új verzió érhető el.
-Frissítés a %1 verzióra?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1546"/>
         <source>Already Using the Latest Version</source>
-        <translation>Már a legújabb verziót használod</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1547"/>
         <source>No updates available.
 You are already using the latest version.</source>
-        <translation>Nincs elérhető frissítés.
-A legfrissebb verziót használod.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1551"/>
         <source>&amp;Check for Updates</source>
-        <translation>&amp;Frissítések ellenőrzése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1649"/>
         <source>Checking for Updates...</source>
-        <translation>Frissítések keresése...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1650"/>
         <source>Already checking for program updates in the background</source>
-        <translation>A frissítések keresése már fut a háttérben</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1720"/>
         <source>Download error</source>
-        <translation>Letöltési hiba</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1720"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation>A Python telepítőt nem sikerült letölteni, mivel: %1.
-Kérlek telepítsd fel kézzel.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="477"/>
         <location filename="../gui/mainwindow.cpp" line="821"/>
         <source>Invalid password</source>
-        <translation>Érvénytelen jelszó</translation>
+        <translation>Nevalida pasvorto</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="518"/>
         <location filename="../gui/mainwindow.cpp" line="530"/>
         <source>RSS (%1)</source>
-        <translation>RSS (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="735"/>
         <source>URL download error</source>
-        <translation>URL letöltés hiba</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="735"/>
         <source>Couldn&apos;t download file at URL: %1, reason: %2.</source>
-        <translation>Nem sikerült letölteni url címről: %1, mert: %2.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="821"/>
         <source>The password is invalid</source>
-        <translation>A jelszó érvénytelen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1250"/>
         <location filename="../gui/mainwindow.cpp" line="1257"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation>Letöltési sebsesség: %1</translation>
+        <translation>Elŝutrapido: %1</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1253"/>
         <location filename="../gui/mainwindow.cpp" line="1259"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>Feltöltési sebesség: %1</translation>
+        <translation>Alŝutrapido: %1</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1264"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[L: %1/s, F: %2/s] qBittorrent %3</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1365"/>
         <source>Hide</source>
-        <translation>Elrejt</translation>
+        <translation>Kaŝi</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="906"/>
         <source>Exiting qBittorrent</source>
-        <translation>qBittorrent bezárása</translation>
+        <translation>Ĉesigante na qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="907"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation>Néhány átvitel még folyamatban van.
-Biztos, hogy bezárod a qBittorrentet?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1069"/>
         <source>Open Torrent Files</source>
-        <translation>Torrent Fájl Megnyitása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1070"/>
         <source>Torrent Files</source>
-        <translation>Torrent Fájlok</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1126"/>
         <source>Options were saved successfully.</source>
-        <translation>Beállítások sikeresen elmentve.</translation>
+        <translation>Opcioj konserviĝis sukcese.</translation>
     </message>
 </context>
 <context>
@@ -2124,12 +2117,12 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../gui/properties/peeraddition.h" line="96"/>
         <source>Invalid IP</source>
-        <translation>Érvénytelen IP</translation>
+        <translation>Nevalida IP-adreso</translation>
     </message>
     <message>
         <location filename="../gui/properties/peeraddition.h" line="97"/>
         <source>The IP you provided is invalid.</source>
-        <translation>A megadott IP cím érvénytelen.</translation>
+        <translation>Nevalida estas la IP-adreso, kiun vi enigis.</translation>
     </message>
 </context>
 <context>
@@ -2146,210 +2139,210 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="69"/>
         <source>IP</source>
-        <translation>IP</translation>
+        <translation>IP-adreso</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="70"/>
         <source>Port</source>
-        <translation>Port</translation>
+        <translation>Pordo</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="71"/>
         <source>Flags</source>
-        <translation>Flags</translation>
+        <translation>Flagoj</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="72"/>
         <source>Connection</source>
-        <translation>Kapcsolat</translation>
+        <translation>Konekto</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="73"/>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
-        <translation>Kliens</translation>
+        <translation>Kliento</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="74"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation>Folyamat</translation>
+        <translation>Progreso</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="75"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Letöltési sebesség</translation>
+        <translation>Elŝutrapido</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="76"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Feltöltési sebesség</translation>
+        <translation>Alŝutrapido</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="77"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
-        <translation>Letöltve</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="78"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation>Feltöltve</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="79"/>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don&apos;t.</comment>
-        <translation>Relevancia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="168"/>
         <source>Add a new peer...</source>
-        <translation>Új ügyfél hozzáadása...</translation>
+        <translation>Aldoni novan samtavolano...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="179"/>
         <source>Copy selected</source>
-        <translation>Kiválasztott másolása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="182"/>
         <source>Limit download rate...</source>
-        <translation>Letöltési arány korlátozása...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="183"/>
         <source>Limit upload rate...</source>
-        <translation>Feltöltési arány korlátozása...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="186"/>
         <source>Ban peer permanently</source>
-        <translation>Ügyfél kitiltása végleg</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="197"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="199"/>
         <source>Peer addition</source>
-        <translation>Ügyfél hozzáadása</translation>
+        <translation>Aldono de samtavolano</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="197"/>
         <source>The peer was added to this torrent.</source>
-        <translation>Ügyfél hozzáadva ehhez a torrenthez.</translation>
+        <translation>La samtavolano aldoniĝis al la torento.</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="199"/>
         <source>The peer could not be added to this torrent.</source>
-        <translation>Az ügyfélt nem lehet hozzáadni ehhez a torenthez.</translation>
+        <translation>La samtavolano ne eblis aldoniĝi al la torento.</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="232"/>
         <source>Are you sure? -- qBittorrent</source>
-        <translation>Egészen biztos? -- qBittorrent</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="232"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation>Biztos vagy benne, hogy végleg kitiltod a kiválaszott ügyfelet?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="233"/>
         <source>&amp;Yes</source>
-        <translation>&amp;Igen</translation>
+        <translation>&amp;Jes</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="233"/>
         <source>&amp;No</source>
-        <translation>&amp;Nem</translation>
+        <translation>&amp;Ne</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="240"/>
         <source>Manually banning peer %1...</source>
-        <translation>Ügyfél kitiltva %1...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="263"/>
         <source>Upload rate limiting</source>
-        <translation>Feltöltési arány korlátozása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="295"/>
         <source>Download rate limiting</source>
-        <translation>Letöltési arány korlátozása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="486"/>
         <source>interested(local) and choked(peer)</source>
-        <translation>érdekelt(helyi) és elfojtott(peer)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="492"/>
         <source>interested(local) and unchoked(peer)</source>
-        <translation>érdekelt(helyi) és nem elfojtott(peer)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="501"/>
         <source>interested(peer) and choked(local)</source>
-        <translation>érdekelt(peer) és elfojtott(helyi)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="507"/>
         <source>interested(peer) and unchoked(local)</source>
-        <translation>érdekelt(helyi) és nem elfojtott(helyi)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="515"/>
         <source>optimistic unchoke</source>
-        <translation>optimistic unchoke</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="522"/>
         <source>peer snubbed</source>
-        <translation>peer félretéve</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="529"/>
         <source>incoming connection</source>
-        <translation>bejövő kapcsolat</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="536"/>
         <source>not interested(local) and unchoked(peer)</source>
-        <translation>nem érdekelt(helyi) és nem elfojtott(peer)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="543"/>
         <source>not interested(peer) and unchoked(local)</source>
-        <translation>nem érdekelt(peer) és nem elfojtott(helyi)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="550"/>
         <source>peer from PEX</source>
-        <translation>peer PEX hálózatból</translation>
+        <translation>samtavolano de PEX</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="557"/>
         <source>peer from DHT</source>
-        <translation>peer DHT hálózatból</translation>
+        <translation>samtavolano de DHT</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="564"/>
         <source>encrypted traffic</source>
-        <translation>titkosított forgalom</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="571"/>
         <source>encrypted handshake</source>
-        <translation>titkosított kézfogás</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="589"/>
         <source>peer from LSD</source>
-        <translation>peer LSD hálózatból</translation>
+        <translation>samtavolano de LSD</translation>
     </message>
 </context>
 <context>
@@ -2357,60 +2350,60 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../gui/options.ui" line="96"/>
         <source>Downloads</source>
-        <translation>Letöltések</translation>
+        <translation>Elŝutoj</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="107"/>
         <source>Connection</source>
-        <translation>Kapcsolatok</translation>
+        <translation>Konekto</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="118"/>
         <source>Speed</source>
-        <translation>Sebesség</translation>
+        <translation>Rapido</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="140"/>
         <source>Web UI</source>
-        <translation>Webes felület</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="151"/>
         <source>Advanced</source>
-        <translation>Speciális</translation>
+        <translation>Speciala</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="227"/>
         <source>(Requires restart)</source>
-        <translation>(Újraindítást igényel)</translation>
+        <translation>(Nepras relanĉi)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="271"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
-        <translation>Alternatív sorkiemelés használata</translation>
+        <translation>Uzi alternajn vicokolorojn</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="313"/>
         <location filename="../gui/options.ui" line="339"/>
         <source>Start / Stop Torrent</source>
-        <translation>Torrent elindítása / megállítása</translation>
+        <translation>Komenci / Haltigi la Torenton</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="323"/>
         <location filename="../gui/options.ui" line="349"/>
         <source>No action</source>
-        <translation>Nincs művelet</translation>
+        <translation>Neniu ago</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="710"/>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>.!qB végződés használata félkész fájloknál</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="813"/>
         <source>Copy .torrent files to:</source>
-        <translation>.torrent fájlok másolása ide:</translation>
+        <translation>Kopii la .torrent-dosierojn al:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1018"/>
@@ -2419,148 +2412,144 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
-        <translation>A következő paraméterek támogatottak:⏎
-&lt;ul&gt;⏎
-&lt;li&gt;%f: Torrent útvonala&lt;/li&gt;⏎
-&lt;li&gt;%n: Torrent neve&lt;/li&gt;⏎
-&lt;/ul&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1132"/>
         <source>Connections Limits</source>
-        <translation>Kapcsolati Korlátok</translation>
+        <translation>Konektaj Limoj</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1285"/>
         <source>Proxy Server</source>
-        <translation>Proxy Szerver</translation>
+        <translation>Prokura Servilo</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1566"/>
         <source>Global Rate Limits</source>
-        <translation>Globális Sebességkorlátok</translation>
+        <translation>Mallokaj Rapidlimoj</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1681"/>
         <source>Apply rate limit to uTP connections</source>
-        <translation>Korlátok alkalmazása uTP kapcsolatokra is</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1688"/>
         <source>Apply rate limit to transport overhead</source>
-        <translation>Korlátok alkalmazása az átviteli többletre (overhead) is</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1708"/>
         <source>Alternative Global Rate Limits</source>
-        <translation>Alternatív Globális Sebességkorlátok</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1820"/>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>Alternatív sebességkorlátok ütemezése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2026"/>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Helyi Peerek Felkutatása (LPD) engedélyezése, több ügyfél</translation>
+        <translation>Ebligi na Local Peer Discovery por trovi pli samtavolanojn</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2038"/>
         <source>Encryption mode:</source>
-        <translation>Titkosítás módja:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2046"/>
         <source>Prefer encryption</source>
-        <translation>Titkosítás előnyben részesítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2051"/>
         <source>Require encryption</source>
-        <translation>Titkosítás megkövetelése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2056"/>
         <source>Disable encryption</source>
-        <translation>Titkosítás kikapcsolása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2091"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;További információk&lt;/a&gt;)</translation>
+        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Pli informoj&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2134"/>
         <source>Maximum active downloads:</source>
-        <translation>Maximum aktív letöltések száma:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2154"/>
         <source>Maximum active uploads:</source>
-        <translation>Maximum aktív feltöltések száma:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2174"/>
         <source>Maximum active torrents:</source>
-        <translation>Maximum aktív torrentek száma:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="546"/>
         <source>When adding a torrent</source>
-        <translation>Torrent hozzáadásakor</translation>
+        <translation>Aldonante torenton</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="85"/>
         <source>Behavior</source>
-        <translation>Viselkedés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="191"/>
         <source>Language</source>
-        <translation>Nyelv</translation>
+        <translation>Lingvo</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="562"/>
         <source>Display torrent content and some options</source>
-        <translation>Néhány egyéb opció illetve a torrent tartalmának megjelenítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1068"/>
         <source>Port used for incoming connections:</source>
-        <translation>Port a bejövő kapcsoaltokhoz:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1088"/>
         <source>Random</source>
-        <translation>Véletlenszerű</translation>
+        <translation>Hazarda</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1138"/>
         <source>Global maximum number of connections:</source>
-        <translation>Maximum kapcsolatok száma:</translation>
+        <translation>Malloka maksimuma nombro da konektoj:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1164"/>
         <source>Maximum number of connections per torrent:</source>
-        <translation>Kapcsolatok maximális száma torrentenként:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1187"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Feltöltési szálak száma torrentenként:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1584"/>
         <location filename="../gui/options.ui" line="1786"/>
         <source>Upload:</source>
-        <translation>Feltöltés:</translation>
+        <translation>Alŝuta:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1617"/>
         <location filename="../gui/options.ui" line="1796"/>
         <source>Download:</source>
-        <translation>Letöltések:</translation>
+        <translation>Elŝuta:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1610"/>
@@ -2573,38 +2562,38 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../gui/options.ui" line="780"/>
         <source>Remove folder</source>
-        <translation>Könyvtár eltávolítása</translation>
+        <translation>Forigi la dosieron</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1864"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation>-</translation>
+        <translation>al</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1919"/>
         <source>Every day</source>
-        <translation>Minden nap</translation>
+        <translation>Ĉiutage</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1924"/>
         <source>Week days</source>
-        <translation>Hétköznapok</translation>
+        <translation>Krom semajnfinoj</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1929"/>
         <source>Week ends</source>
-        <translation>Hétvégék</translation>
+        <translation>Semajnfinoj</translation>
     </message>
     <message utf8="true">
         <location filename="../gui/options.ui" line="2010"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation>Ügyfélcsere használata a kompatibilis kliensekkel (µTorrent, Vuze, ...)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1327"/>
         <source>Host:</source>
-        <translation>Host:</translation>
+        <translation>Gastigo:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1306"/>
@@ -2614,407 +2603,407 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../gui/options.ui" line="1293"/>
         <source>Type:</source>
-        <translation>Típus:</translation>
+        <translation>Tipo:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="20"/>
         <location filename="../gui/options.ui" line="1665"/>
         <source>Options</source>
-        <translation>Beállítások</translation>
+        <translation>Opcioj</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="287"/>
         <source>Action on double-click</source>
-        <translation>Dupla kattintás esetén</translation>
+        <translation>Duoble-klaka ago</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="296"/>
         <source>Downloading torrents:</source>
-        <translation>Aktív letöltéseknél:</translation>
+        <translation>Elŝutante torentojn:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="318"/>
         <location filename="../gui/options.ui" line="344"/>
         <source>Open destination folder</source>
-        <translation>Letöltési könyvtár megnyitása</translation>
+        <translation>Malfermi la celdosierujon</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="331"/>
         <source>Completed torrents:</source>
-        <translation>Letöltött torrenteknél:</translation>
+        <translation>Finitaj torentoj:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="363"/>
         <source>Desktop</source>
-        <translation>Asztal</translation>
+        <translation>Labortablo</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="376"/>
         <source>Show splash screen on start up</source>
-        <translation>Indítókép megjelenítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="386"/>
         <source>Start qBittorrent minimized</source>
-        <translation>qBittorrent indításai háttérben</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="412"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation>qBittorrent tálcára helyezése minimalizálásnál</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="422"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>Bezár gomb a tálcára küldi a programot</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="431"/>
         <source>Tray icon style:</source>
-        <translation>Tálca ikon stílusa:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="439"/>
         <source>Normal</source>
-        <translation>Normál</translation>
+        <translation>Norma</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="444"/>
         <source>Monochrome (Dark theme)</source>
-        <translation>Monokróm (Sötét téma)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="449"/>
         <source>Monochrome (Light theme)</source>
-        <translation>Monokróm (Világos téma)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="199"/>
         <source>User Interface Language:</source>
-        <translation>Felület nyelve:</translation>
+        <translation>Fasada Lingvo:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="255"/>
         <source>Transfer List</source>
-        <translation>Átviteli Lista</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="261"/>
         <source>Confirm when deleting torrents</source>
-        <translation>Torrent törlés megerősítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="369"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation>qBittorrent indítása a rendszer indulásakor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="393"/>
         <source>Confirmation on exit when torrents are active</source>
-        <translation>Megerősítés kérése aktív torrentek esetén</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="403"/>
         <source>Show qBittorrent in notification area</source>
-        <translation>qBittorrent ikon megjelenítése az értesítési területen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="462"/>
         <source>File association</source>
-        <translation>Fájl társítás</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="468"/>
         <source>Use qBittorrent for .torrent files</source>
-        <translation>qBittorrent használata a .torrent fájlok megnyitására</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="475"/>
         <source>Use qBittorrent for magnet links</source>
-        <translation>qBittorrent használata magnet linkek megnyitására</translation>
+        <translation>Uzi na qBittorrent por magnet-ligiloj</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="488"/>
         <source>Power Management</source>
-        <translation>Energia Gazdálkodás</translation>
+        <translation>Energiadministrado</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="494"/>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation>Alvó üzemmód tiltása ha aktív torrentek vannak</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="555"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation>Ne induljon el a letöltés automatikusan</translation>
+        <translation>Ne komenci la elŝuton aŭtomate</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="571"/>
         <source>Bring torrent dialog to the front</source>
-        <translation>Torrent ablak előrehozása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="593"/>
         <source>Hard Disk</source>
-        <translation>Merevlemez</translation>
+        <translation>Fiksita Disko</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="599"/>
         <source>Save files to location:</source>
-        <translation>Fájlok mentése a következő helyre: </translation>
+        <translation>Konservi dosierojn al la loko:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="647"/>
         <source>Append the label of the torrent to the save path</source>
-        <translation>A címke hozzfűzése a letöltési könyvtár nevéhez</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="657"/>
         <source>Pre-allocate disk space for all files</source>
-        <translation>Fájlok helyének lefoglalása előre</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="664"/>
         <source>Keep incomplete torrents in:</source>
-        <translation>Átmeneti fájlok helye:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="717"/>
         <source>Automatically add torrents from:</source>
-        <translation>Torrentek automatikus hozzáadása innen:</translation>
+        <translation>Aŭtomate aldoni torentojn de:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="770"/>
         <source>Add folder...</source>
-        <translation>Könyvtár hozzáadása...</translation>
+        <translation>Aldoni dosieron...</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="862"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>Elkészült letöltések .torrent fájlainak másolása a következő helyre:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="918"/>
         <source>Email notification upon download completion</source>
-        <translation>E-mail értesítés a letöltés végén</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="932"/>
         <source>Destination email:</source>
-        <translation>Cél e-mail cím:</translation>
+        <translation>Celretpoŝtadreso:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="942"/>
         <source>SMTP server:</source>
-        <translation>SMTP szerver:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="991"/>
         <source>This server requires a secure connection (SSL)</source>
-        <translation>Ez a szerver biztonságos kapcsolatot (SSL) igényel</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1003"/>
         <source>Run an external program on torrent completion</source>
-        <translation>Külső program indítása a letöltés végén</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1060"/>
         <source>Listening Port</source>
-        <translation>Használt Port</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1110"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>UPnP / NAT-PMP port átirányítás használata a routeremről</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1120"/>
         <source>Use different port on each startup</source>
-        <translation>Különféle portok használata minden indításnál</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1246"/>
         <source>Global maximum number of upload slots:</source>
-        <translation>Feltöltési slotok maximális száma:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1381"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation>Egyéb esetben, a proxy csak a trackerek felé történő kommunikáció során kerül majd használatra</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1384"/>
         <source>Use proxy for peer connections</source>
-        <translation>Proxy használata peer forgalomhoz</translation>
+        <translation>Uzi prokurilon por samtavolaj konektoj</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1391"/>
         <source>Disable connections not supported by proxies</source>
-        <translation>A proxik által nem támogatott kapcsolatok tiltása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1460"/>
         <source>Info: The password is saved unencrypted</source>
-        <translation>Info: A jelszó titkosítás nélkül kerül elmentésre</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1473"/>
         <source>IP Filtering</source>
-        <translation>IP szűrés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1514"/>
         <source>Reload the filter</source>
-        <translation>Szűrő újratöltése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1530"/>
         <source>Apply to trackers</source>
-        <translation>Alkalmazás a trackerekre</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1671"/>
         <source>Enable bandwidth management (uTP)</source>
-        <translation>Sávszélesség menedzsment (uTP) engedélyezése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1695"/>
         <source>Apply rate limit to peers on LAN</source>
-        <translation>Korlátok alkalmazása a LAN kapcsolatokra is</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1837"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation>Ettől</translation>
+        <translation>de</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1911"/>
         <source>When:</source>
-        <translation>Ekkor:</translation>
+        <translation>Kiam:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1994"/>
         <source>Privacy</source>
-        <translation>Adatvédelem</translation>
+        <translation>Privateco</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2000"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>DHT engedélyezése, hogy több ügyfélt találjon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2013"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>PeX (ügyfélcsere) engedélyezése, hogy többet találjon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2023"/>
         <source>Look for peers on your local network</source>
-        <translation>Ügyfél keresése a helyi hálózaton</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2081"/>
         <source>Enable when using a proxy or a VPN connection</source>
-        <translation>Bekapcsolás proxy vagy VPN kapcsolat esetén</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2084"/>
         <source>Enable anonymous mode</source>
-        <translation>Névtelen mód engedélyezése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2233"/>
         <source>Do not count slow torrents in these limits</source>
-        <translation>Hagyja figyelmen kívül a lassú torrenteket a korlátok betartásánál</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2254"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation>Torrentek megosztása eddig az arányig</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2283"/>
         <source>then</source>
-        <translation>aztán</translation>
+        <translation>poste</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2294"/>
         <source>Pause them</source>
-        <translation>Szüneteltetés</translation>
+        <translation>Paŭzigi ilin</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2299"/>
         <source>Remove them</source>
-        <translation>Eltávolítás</translation>
+        <translation>Forigi ilin</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2397"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation>UPnP / NAT-PMP használata a portok átirányítására</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2407"/>
         <source>Use HTTPS instead of HTTP</source>
-        <translation>HTTPS használata HTTP helyett</translation>
+        <translation>Uzi na HTTPS anstataŭ na HTTP</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2450"/>
         <source>Import SSL Certificate</source>
-        <translation>SSL Tanusítvány Importálása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2503"/>
         <source>Import SSL Key</source>
-        <translation>SSL Kulcs Importálása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2438"/>
         <source>Certificate:</source>
-        <translation>Tanusítvány:</translation>
+        <translation>Atestilo:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2491"/>
         <source>Key:</source>
-        <translation>Kulcs:</translation>
+        <translation>Ŝlosilo:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2525"/>
         <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Információ a tanusítványokról&lt;/a&gt;</translation>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Informoj pri atestiloj&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2570"/>
         <source>Bypass authentication for localhost</source>
-        <translation>Hitelesítés mellőzése helyi gép esetén</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2594"/>
         <source>Update my dynamic domain name</source>
-        <translation>Frissítsd a dinamikus domain nevem</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2606"/>
         <source>Service:</source>
-        <translation>Szolgáltatás:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2629"/>
         <source>Register</source>
-        <translation>Regisztráció</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2638"/>
         <source>Domain name:</source>
-        <translation>Domain név:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1301"/>
         <source>(None)</source>
-        <translation>(Nincs)</translation>
+        <translation>(Nenio)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="129"/>
@@ -3030,14 +3019,14 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
         <location filename="../gui/options.ui" line="1353"/>
         <location filename="../gui/options.ui" line="2362"/>
         <source>Port:</source>
-        <translation>Port:</translation>
+        <translation>Pordo:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="952"/>
         <location filename="../gui/options.ui" line="1404"/>
         <location filename="../gui/options.ui" line="2538"/>
         <source>Authentication</source>
-        <translation>Hitelesítés</translation>
+        <translation>Aŭtentokontrolo</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="964"/>
@@ -3045,7 +3034,7 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
         <location filename="../gui/options.ui" line="2577"/>
         <location filename="../gui/options.ui" line="2652"/>
         <source>Username:</source>
-        <translation>Felhasználónév:</translation>
+        <translation>Uzantnomo:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="974"/>
@@ -3053,22 +3042,22 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
         <location filename="../gui/options.ui" line="2584"/>
         <location filename="../gui/options.ui" line="2666"/>
         <source>Password:</source>
-        <translation>Jelszó:</translation>
+        <translation>Pasvorto:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2119"/>
         <source>Torrent Queueing</source>
-        <translation>Torrent Ütemezés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2243"/>
         <source>Share Ratio Limiting</source>
-        <translation>Megosztási Arány Korlátozása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2348"/>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation>Webes felület engedélyezése (Távoli elérés)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1311"/>
@@ -3078,22 +3067,22 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../gui/options.ui" line="1485"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation>Szűrő fájl helye (.dat, .p2p, .p2b):</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/preferences.cpp" line="76"/>
         <source>Detected unclean program exit. Using fallback file to restore settings.</source>
-        <translation>Nem rendes kilépés történt a programból. Az elmentett beállítások lesznek alkalmazva.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/preferences.cpp" line="169"/>
         <source>An access error occurred while trying to write the configuration file.</source>
-        <translation>Hiba történt a konfigurációs fájl írásakor.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/preferences.cpp" line="171"/>
         <source>A format error occurred while trying to write the configuration file.</source>
-        <translation>Formátum hiba történt a konfigurációs fájl írásakor.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3101,29 +3090,29 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../gui/previewselect.cpp" line="51"/>
         <source>Name</source>
-        <translation>Név</translation>
+        <translation>Nomo</translation>
     </message>
     <message>
         <location filename="../gui/previewselect.cpp" line="52"/>
         <source>Size</source>
-        <translation>Méret</translation>
+        <translation>Grando</translation>
     </message>
     <message>
         <location filename="../gui/previewselect.cpp" line="53"/>
         <source>Progress</source>
-        <translation>Állapot</translation>
+        <translation>Progreso</translation>
     </message>
     <message>
         <location filename="../gui/previewselect.cpp" line="80"/>
         <location filename="../gui/previewselect.cpp" line="117"/>
         <source>Preview impossible</source>
-        <translation>Bemutató hiba</translation>
+        <translation>Antaŭrigardo maleblas</translation>
     </message>
     <message>
         <location filename="../gui/previewselect.cpp" line="80"/>
         <location filename="../gui/previewselect.cpp" line="117"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Nincs előzetes az ilyen fájlhoz. Bocs</translation>
+        <translation>Bedaŭrinde, ni neeblas antaŭrigardi la dosieron</translation>
     </message>
 </context>
 <context>
@@ -3131,34 +3120,34 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../gui/properties/proplistdelegate.h" line="117"/>
         <source>Not downloaded</source>
-        <translation>Mellőzve</translation>
+        <translation>Ne elŝutita</translation>
     </message>
     <message>
         <location filename="../gui/properties/proplistdelegate.h" line="126"/>
         <location filename="../gui/properties/proplistdelegate.h" line="168"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation>Átlagos</translation>
+        <translation>Norma</translation>
     </message>
     <message>
         <location filename="../gui/properties/proplistdelegate.h" line="120"/>
         <location filename="../gui/properties/proplistdelegate.h" line="169"/>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation>Magas</translation>
+        <translation>Alta</translation>
     </message>
     <message>
         <location filename="../gui/properties/proplistdelegate.h" line="114"/>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
-        <translation>Kevert</translation>
+        <translation>Miksita</translation>
     </message>
     <message>
         <location filename="../gui/properties/proplistdelegate.h" line="123"/>
         <location filename="../gui/properties/proplistdelegate.h" line="170"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>Maximális</translation>
+        <translation>Maksimuma</translation>
     </message>
 </context>
 <context>
@@ -3166,27 +3155,27 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="45"/>
         <source>General</source>
-        <translation>Általános</translation>
+        <translation>Ĝenerala</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="50"/>
         <source>Trackers</source>
-        <translation>Trackerek</translation>
+        <translation>Ŝanĝospuriloj</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="54"/>
         <source>Peers</source>
-        <translation>Ügyfelek</translation>
+        <translation>Samtavolanoj</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="58"/>
         <source>HTTP Sources</source>
-        <translation>HTTP Források</translation>
+        <translation>HTTP-fontoj</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="62"/>
         <source>Content</source>
-        <translation>Tartalom</translation>
+        <translation>Enhavo</translation>
     </message>
 </context>
 <context>
@@ -3194,179 +3183,179 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="292"/>
         <source>Downloaded:</source>
-        <translation>Letöltve:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="134"/>
         <source>Availability:</source>
-        <translation>Elérhetőség:</translation>
+        <translation>Disponeblo:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="77"/>
         <source>Progress:</source>
-        <translation>Folyamat:</translation>
+        <translation>Progreso:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="184"/>
         <source>Transfer</source>
-        <translation>Átvitel</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="196"/>
         <source>Time Active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation>Aktív idő:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="228"/>
         <source>ETA:</source>
-        <translation>Várható befejezési idő:</translation>
+        <translation>ETA:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="324"/>
         <source>Uploaded:</source>
-        <translation>Feltöltve:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="356"/>
         <source>Seeds:</source>
-        <translation>Seedek:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="388"/>
         <source>Download Speed:</source>
-        <translation>Letöltési sebesség:</translation>
+        <translation>Elŝutrapido:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="420"/>
         <source>Upload Speed:</source>
-        <translation>Feltöltési sebesség:</translation>
+        <translation>Alŝutrapido:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="452"/>
         <source>Peers:</source>
-        <translation>Peerek:</translation>
+        <translation>Samtavolanoj:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="484"/>
         <source>Download Limit:</source>
-        <translation>Letöltési korlát:</translation>
+        <translation>Elŝutlimo:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="516"/>
         <source>Upload Limit:</source>
-        <translation>Feltöltési korlát:</translation>
+        <translation>Alŝutlimo:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="548"/>
         <source>Wasted:</source>
-        <translation>Elpazarolva:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="260"/>
         <source>Connections:</source>
-        <translation>Kapcsolatok:</translation>
+        <translation>Konektoj:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="679"/>
         <source>Information</source>
-        <translation>Információ</translation>
+        <translation>Informoj</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="959"/>
         <source>Comment:</source>
-        <translation>Megjegyzés:</translation>
+        <translation>Komento:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1144"/>
         <source>Torrent content:</source>
-        <translation>Torrent tartalma:</translation>
+        <translation>Enhavo de la torento:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1111"/>
         <source>Select All</source>
-        <translation>Összes kiválasztása</translation>
+        <translation>Elekti Ĉion</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1118"/>
         <source>Select None</source>
-        <translation>Egyiket sem</translation>
+        <translation>Elekti Nenion</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1201"/>
         <source>Normal</source>
-        <translation>Normál</translation>
+        <translation>Norma</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1196"/>
         <source>High</source>
-        <translation>Magas</translation>
+        <translation>Alta</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="580"/>
         <source>Share Ratio:</source>
-        <translation>Megosztási arány:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="612"/>
         <source>Reannounce In:</source>
-        <translation>Újra kapcsolódás:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="644"/>
         <source>Last Seen Complete:</source>
-        <translation>Legutóbb befejezettként látva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="691"/>
         <source>Total Size:</source>
-        <translation>Teljes méret:</translation>
+        <translation>Tuta Grando:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="723"/>
         <source>Pieces:</source>
-        <translation>Szeletek:</translation>
+        <translation>Pecoj:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="755"/>
         <source>Created By:</source>
-        <translation>Létrehozva általa:</translation>
+        <translation>Kreita de:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="787"/>
         <source>Added On:</source>
-        <translation>Hozáadva</translation>
+        <translation>Aldonita je:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="819"/>
         <source>Completed On:</source>
-        <translation>Elkészült:</translation>
+        <translation>Finita je:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="851"/>
         <source>Created On:</source>
-        <translation>Készítés ideje:</translation>
+        <translation>Kreita je:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="883"/>
         <source>Torrent Hash:</source>
-        <translation>Torrent hash:</translation>
+        <translation>Torenta Haketaĵo:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="918"/>
         <source>Save Path:</source>
-        <translation>Mentés helye:</translation>
+        <translation>Konserva Dosierindiko:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1191"/>
         <source>Maximum</source>
-        <translation>Maximális</translation>
+        <translation>Maksimuma</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1183"/>
         <location filename="../gui/properties/propertieswidget.ui" line="1186"/>
         <source>Do not download</source>
-        <translation>Mellőzés</translation>
+        <translation>Ne elŝuti</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="371"/>
@@ -3381,110 +3370,110 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
         <location filename="../gui/properties/propertieswidget.cpp" line="375"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation>Feltöltési idő: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="378"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation>%1 max</translation>
+        <translation>%1 maksimume</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="388"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="389"/>
         <source>(%1 total)</source>
         <comment>e.g. (10 total)</comment>
-        <translation>(%1 total)</translation>
+        <translation>(%1 tute)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="392"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="394"/>
         <source>(%1/s avg.)</source>
         <comment>e.g. (100KiB/s avg.)</comment>
-        <translation>(%1/s átlagosan)</translation>
+        <translation>(%1/s mez.)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="396"/>
         <source>Never</source>
-        <translation>Soha</translation>
+        <translation>Neniam</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="401"/>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
-        <translation>%1 x %2 (tartalmaz %3)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="550"/>
         <source>Open</source>
-        <translation>Megnyitás</translation>
+        <translation>Malfermi</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="551"/>
         <source>Open Containing Folder</source>
-        <translation>Tartalmazó mappa megnyitása</translation>
+        <translation>Malfermi la Enhavantan Dosierujon</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="552"/>
         <source>Rename...</source>
-        <translation>Átnevezés...</translation>
+        <translation>Renomi...</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="557"/>
         <source>Priority</source>
-        <translation>Elsőbbség</translation>
+        <translation>Prioritato</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="603"/>
         <source>New Web seed</source>
-        <translation>Új Web seed</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="609"/>
         <source>Remove Web seed</source>
-        <translation>Web seed eltávolítása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="611"/>
         <source>Copy Web seed URL</source>
-        <translation>Web seed URL másolása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="612"/>
         <source>Edit Web seed URL</source>
-        <translation>Web seed URL szerkesztése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="637"/>
         <source>Rename the file</source>
-        <translation>Fájl átnevezése</translation>
+        <translation>Renomi la dosieron</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="638"/>
         <source>New name:</source>
-        <translation>Új név:</translation>
+        <translation>Nova nomo:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="642"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="673"/>
         <source>The file could not be renamed</source>
-        <translation>A fájlt nem lehet átnevezni</translation>
+        <translation>La dosiero ne eblis renomiĝi</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="643"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Ez a név tiltott karaktereket tartalmaz, kérlek válassz másik nevet.</translation>
+        <translation type="unfinished">La dosiernomo enhavas malpermesitajn signojn, bonvolu elekti alian.</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="674"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="712"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Ilyen nevű fájl már van a könyvtárban. Kérlek válassz másik nevet.</translation>
+        <translation type="unfinished">La nomo jam estas uzata en ĉi tiu dosierujo. Bonvolu uzi alian nomon.</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="711"/>
         <source>The folder could not be renamed</source>
-        <translation>A könyvtárat nem lehet átnevezni</translation>
+        <translation>La dosierujo ne eblis renomiĝi</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="819"/>
@@ -3494,40 +3483,40 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="83"/>
         <source>Filter files...</source>
-        <translation>Fájlok szűrése...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="369"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="370"/>
         <source>session</source>
-        <translation>munkafolyamat</translation>
+        <translation>seanco</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="757"/>
         <source>New URL seed</source>
         <comment>New HTTP source</comment>
-        <translation>Új URL seed:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="758"/>
         <source>New URL seed:</source>
-        <translation>Új URL seed:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="764"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="820"/>
         <source>This URL seed is already in the list.</source>
-        <translation>Ez az URL seed már a listában van.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="812"/>
         <source>Web seed editing</source>
-        <translation>Web seed szerkesztés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="813"/>
         <source>Web seed URL:</source>
-        <translation>Web seed URL:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3535,125 +3524,125 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="135"/>
         <source>Peer ID: </source>
-        <translation>Peer ID: </translation>
+        <translation>Samtavolano-identigilo:</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="236"/>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="242"/>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation>%1 elérte a maximálisan megszabott arányt.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="237"/>
         <source>Removing torrent %1...</source>
-        <translation>Torrent eltávolítása %1...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="243"/>
         <source>Pausing torrent %1...</source>
-        <translation>Torrent szüneteltetése %1...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="410"/>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation>UPnP / NAT-PMP támogatás [BE]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="413"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation>UPnP / NAT-PMP támogatás [KI]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="418"/>
         <source>HTTP User-Agent is %1</source>
-        <translation>HTTP User-Agent is %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="445"/>
         <source>Anonymous mode [ON]</source>
-        <translation>Anonymous mód: [BE]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="447"/>
         <source>Anonymous mode [OFF]</source>
-        <translation>Anonymous mód: [KI]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="524"/>
         <source>PeX support [ON]</source>
-        <translation>PeX támogatása [BE]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="526"/>
         <source>PeX support [OFF]</source>
-        <translation>PeX támogatása [KI]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="529"/>
         <source>Restart is required to toggle PeX support</source>
-        <translation>A PeX támogatás átkapcsolása újraindítást igényel</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="534"/>
         <source>Local Peer Discovery support [ON]</source>
-        <translation>Helyi Peerek Felkutatása (LPD) támogatás [BE]</translation>
+        <translation>Subteno de Local Peer Discovery [ŜALTITA]</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="537"/>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Helyi Peerek Felkutatása (LPD) támogatás [KI]</translation>
+        <translation>Subteno de Local Peer Discovery [MALŜALTITA]</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="549"/>
         <source>Encryption support [ON]</source>
-        <translation>Titkosítás támogatás [BE]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="554"/>
         <source>Encryption support [FORCED]</source>
-        <translation>Titkosítás támogatás [KÉNYSZERÍTETT]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="559"/>
         <source>Encryption support [OFF]</source>
-        <translation>Titkosítás támogatás [KI]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="618"/>
         <source>Embedded Tracker [ON]</source>
-        <translation>Beágyazott Tracker [BE]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="620"/>
         <source>Failed to start the embedded tracker!</source>
-        <translation>Nem sikerült elindítani a beágyazott trackert!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="623"/>
         <source>Embedded Tracker [OFF]</source>
-        <translation>Beágyazott Tracker [KI]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="765"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; eltávolítva az átviteli listáról és a merevlemezről.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="767"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; eltávolítva az átviteli listáról.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="864"/>
         <source>Couldn&apos;t parse this Magnet URI: &apos;%1&apos;</source>
-        <translation>Nem sikerült betölteni ezt a Magnet URI-t: &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="869"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation>&apos;%1&apos; nem hiteles magnet URI.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="888"/>
@@ -3661,7 +3650,7 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1048"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation>&apos;%1&apos; már a letöltési listában.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="971"/>
@@ -3669,244 +3658,244 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1175"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation>&apos;%1&apos; felvéve a letöltési listára.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1020"/>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1025"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation>Nem sikerült dekódolni a következő torrent fájlt: &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1028"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>Ez a fájl sérült, vagy nem is torrent.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1063"/>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation>Hiba: A %1 torrent nem tartalmaz fájlokat.</translation>
+        <translation>Eraro: La torento %1 ne enhavas iun ajn dosieron.</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1168"/>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1173"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation>&apos;%1&apos; folytatva. (gyors folytatás)</translation>
+        <translation>&apos;%1&apos; reaktiviĝis. (rapida reaktiviĝo)</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1333"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
-        <translation>A &apos;%1&apos; tracker hozzá lett adva a &apos;%2&apos; torrenthez</translation>
+        <translation>Ŝanĝospurilo &apos;%1&apos; aldoniĝis al la torento &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1357"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
-        <translation>A seed URL &apos;%1&apos; hozzáadva a &apos;%2&apos; torrenthez</translation>
+        <translation>URL-fonto &apos;%1&apos; aldoniĝis al la torento &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1530"/>
         <source>DHT support [ON]</source>
-        <translation>DHT támogatás [ON]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1535"/>
         <source>DHT support [OFF]. Reason: %1</source>
-        <translation>DHT támogatás [OFF]. Indok: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1543"/>
         <source>DHT support [OFF]</source>
-        <translation>DHT funkció [KI]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1847"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
-        <translation>A qBittorrent próbálja a %1 portot használni minden interfészen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1851"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
-        <translation>Nem sikerült felhasználni egyik interfész portot sem: %1. Indok: %2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1859"/>
         <source>The network interface defined is invalid: %1</source>
-        <translation>A megadott hálózati csatoló érvénytelen: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1872"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation>A qBittorrent próbálja a %2 portot használni, a %1 interfészen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1876"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
-        <translation>Nem található a %1 helyi cím a figyeléshez</translation>
+        <translation>qBittorrent ne trovis lokan adreson de %1 por aŭskulti</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="1984"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation>%1 fájl rekurzív letöltése, beágyazva a %2 torrentbe</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2023"/>
         <source>Torrent name: %1</source>
-        <translation>Torrent neve: %1</translation>
+        <translation>Nomo de la torento: %1</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2024"/>
         <source>Torrent size: %1</source>
-        <translation>Torrent mérete: %1</translation>
+        <translation>Grando de la torento: %1</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2025"/>
         <source>Save path: %1</source>
-        <translation>Mentés helye: %1</translation>
+        <translation>Konserva dosierindiko: %1</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2026"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation>A torrent letöltve %1 alatt.</translation>
+        <translation>La torento elŝutiĝis en %1.</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2027"/>
         <source>Thank you for using qBittorrent.</source>
-        <translation>Köszönjük, hogy a qBittorentet használod.</translation>
+        <translation>Dankon pro uzi na qBittorrent.</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2030"/>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation>[qBittorrent] %1 letöltése befejeződött</translation>
+        <translation>[qBittorrent] %1 finiĝis elŝuti</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2167"/>
         <source>Unable to decode %1 torrent file.</source>
-        <translation>Nem sikerüt dekódolni a %1 torrent fájlt.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2375"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
-        <translation>Nem sikerült áthelyezni a torrentet: &apos;%1&apos;. Indok: %2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2380"/>
         <source>Attempting to move torrent: &apos;%1&apos; to path: &apos;%2&apos;.</source>
-        <translation>&apos;%1&apos; torrent mozgatásának megkísérlése ide: &apos;%2&apos;.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2443"/>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
-        <translation>I/O hiba történt, &apos;%1&apos; szüneteltetve.</translation>
+        <translation>Eneliga eraro okazis, &apos;%1&apos; paŭzis.</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2444"/>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2598"/>
         <source>Reason: %1</source>
-        <translation>Mivel: %1</translation>
+        <translation>Kial: %1</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2535"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation>UPnP/NAT-PMP: Port lefoglalása sikertelen, üzenet: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2540"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation>UPnP/NAT-PMP: Port lefoglalása sikeres, üzenet: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2554"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
-        <translation>IP szűrő miatt.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2557"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
-        <translation>port szűrő miatt.</translation>
+        <translation>pro porda filtro.</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2560"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
-        <translation>i2p kevert mód korlátozás miatt.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2563"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
-        <translation>mert alacsony porttal rendelkezik.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2566"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
-        <translation>mert a %1 ki van kapcsolva.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2569"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
-        <translation>mert a %1 ki van kapcsolva.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2593"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation>A fájl méretek nem egyeznek a torrentnél: %1, szüneteltetve.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2597"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation>Hibás gyors folytatási adat ennél a torrentnél: %1, újraellenőrzés...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2604"/>
         <source>URL seed lookup failed for url: %1, message: %2</source>
-        <translation>URL forrás meghatározása sikertelen: %1, hibaüzenet: %2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2619"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation>A qBittorrent sikeresen használatba vette a %2/%3 portot - a %1 interfészen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2646"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
-        <translation>Nem sikerült felhasználni a %2/%3 portot, a %1 interfészen. Indok: %4</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2679"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
-        <translation>Külső IP: %1</translation>
+        <translation>Ekstera IP-adreso: %1</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="2809"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation>&apos;%1&apos; letöltése, kérlek várj...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="3029"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>A következő IP szűrő sikeresen feldolgozva: %1 szabály alkalmazva.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/qbtsession.cpp" line="3035"/>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation>Hiba: az IP szűrő megnyitása sikertelen.</translation>
+        <translation>Eraro: Ne eblis sintakse analizi la enigitan IP-filtron.</translation>
     </message>
 </context>
 <context>
@@ -3914,112 +3903,112 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../webui/abstractwebapplication.cpp" line="110"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation>Az IP címe tiltásra került a túl gyakori hibás hitelesítési kérelmek miatt.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="350"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.
 </source>
-        <translation>Hiba: &apos;%1&apos; nem érvényes torrent fájl.
+        <translation>Eraro: &apos;%1&apos; ne estas valida torentdosiero.
 </translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="358"/>
         <source>I/O Error: Could not create temporary file.</source>
-        <translation>I/O Hiba: Nem sikerült létrehozni az ideiglenes fájlt.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="124"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
-        <translation>qBittorrent %1 elindult</translation>
+        <translation>qBittorrent %1 lanĉiĝis</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="135"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
-        <translation>A %1 egy ismeretlen parancssori paraméter.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="147"/>
         <location filename="../app/main.cpp" line="160"/>
         <source>%1 must be the single command line parameter.</source>
-        <translation>%1 egyedüli parancssori paraméter lehet csak.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="170"/>
         <source>%1 must specify the correct port (1 to 65535).</source>
-        <translation>A %1 helyes portot kell konfiguráljon (1 és 65535 között).</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="186"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
-        <translation>Nem lehet használni %1: a qBittorrent már fut ennél a felhasználónál.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="363"/>
         <source>Usage:</source>
-        <translation>Használat:</translation>
+        <translation>Uzo:</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="376"/>
         <source>Options:</source>
-        <translation>Beállítások:</translation>
+        <translation>Opcioj</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="378"/>
         <source>Displays program version</source>
-        <translation>Program verzió megjelenítése</translation>
+        <translation>Vidigas la version de la programaro</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="380"/>
         <source>Displays this help message</source>
-        <translation>Ezen súgó üzenet megjelenítése</translation>
+        <translation>Vidigas ĉi tiun helpmesaĝon</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="382"/>
         <source>Changes the Web UI port (current: %1)</source>
-        <translation>Web UI port megváltozatása (aktuális: %1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="385"/>
         <source>Disable splash screen</source>
-        <translation>Induló képernyő letiltása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="387"/>
         <source>Run in daemon-mode (background)</source>
-        <translation>daemon-mode -ban való futtatás (háttérben)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="389"/>
         <source>Downloads the torrents passed by the user</source>
-        <translation>A felhasználó által engedélyezett torrentek letöltése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="399"/>
         <source>Help</source>
-        <translation>Súgó</translation>
+        <translation>Helpo</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="408"/>
         <source>Run application with -h option to read about command line parameters.</source>
-        <translation>Az alkalmazást a -h paraméterrel indítva ismerkedhet meg a parancssori paraméterekkel.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="410"/>
         <source>Bad command line</source>
-        <translation>Rossz parancs</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="416"/>
         <source>Bad command line: </source>
-        <translation>Rossz parancs sor:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="429"/>
         <source>Legal Notice</source>
-        <translation>Jogi figyelmeztetés</translation>
+        <translation>Leĝa Noto</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="430"/>
@@ -4027,29 +4016,27 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation>A qBittorrent egy fájl megosztó program. Amikor futtatod, elérhetővé teszel tartalmakat mások számára a feltöltés révén. Kizárólag saját felelősségre ossz meg bármilyen tartalmat.
-
-Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="431"/>
         <source>Press %1 key to accept and continue...</source>
-        <translation>Nyomja meg a %1 billentyűt az elfogadás és folytatáshoz...</translation>
+        <translation>Premi la klavon %1 por akcepti kaj daŭrigi...</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="441"/>
         <source>Legal notice</source>
-        <translation>Jogi figyelmeztetés</translation>
+        <translation>Leĝa noto</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="442"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Nuligi</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="443"/>
         <source>I Agree</source>
-        <translation>Elfogadom</translation>
+        <translation>Mi Konsentas</translation>
     </message>
 </context>
 <context>
@@ -4057,102 +4044,102 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/rss/rss.ui" line="17"/>
         <source>Search</source>
-        <translation>Keresés</translation>
+        <translation>Serĉi</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="31"/>
         <source>New subscription</source>
-        <translation>Új feliratkozás</translation>
+        <translation>Nova abono</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="47"/>
         <location filename="../gui/rss/rss.ui" line="195"/>
         <location filename="../gui/rss/rss.ui" line="198"/>
         <source>Mark items read</source>
-        <translation>Elemek olvasottnak jelölése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="66"/>
         <source>Update all</source>
-        <translation>Összes frissítése</translation>
+        <translation>Ĝisdatigi ĉion</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="95"/>
         <source>RSS Downloader...</source>
-        <translation>RSS letöltő...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="102"/>
         <source>Settings...</source>
-        <translation>Beállítások...</translation>
+        <translation>Agordoj...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="124"/>
         <source>Torrents: (double-click to download)</source>
-        <translation>Torrent: (duplaklikk a letöltéshez)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="158"/>
         <location filename="../gui/rss/rss.ui" line="161"/>
         <source>Delete</source>
-        <translation>Törlés</translation>
+        <translation>Forigi</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="166"/>
         <source>Rename...</source>
-        <translation>Átnevezés...</translation>
+        <translation>Renomi...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="169"/>
         <source>Rename</source>
-        <translation>Átnevezés</translation>
+        <translation>Renomi...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="174"/>
         <location filename="../gui/rss/rss.ui" line="177"/>
         <source>Update</source>
-        <translation>Frissítés</translation>
+        <translation>Ĝisdatigi</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="182"/>
         <source>New subscription...</source>
-        <translation>Új feliratkozás...</translation>
+        <translation>Nova abono...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="187"/>
         <location filename="../gui/rss/rss.ui" line="190"/>
         <source>Update all feeds</source>
-        <translation>Összes csatorna frissítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="203"/>
         <source>Download torrent</source>
-        <translation>Torrent letöltése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="208"/>
         <source>Open news URL</source>
-        <translation>Új URL megnyitása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="213"/>
         <source>Copy feed URL</source>
-        <translation>Csatorna URL másolása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="218"/>
         <source>New folder...</source>
-        <translation>Új könyvtár...</translation>
+        <translation>Nova dosierujo...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="223"/>
         <source>Manage cookies...</source>
-        <translation>Sütik kezelése...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="63"/>
         <source>Refresh RSS streams</source>
-        <translation>RSS csatornák frissítése</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4160,77 +4147,77 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="215"/>
         <source>Stream URL:</source>
-        <translation>Folyam URL:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="215"/>
         <source>Please type a RSS stream URL</source>
-        <translation>Kérlek adj meg egy RSS hírfolyam linket</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="225"/>
         <source>This RSS feed is already in the list.</source>
-        <translation>Ez a hírcsatorna már fel van véve.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="170"/>
         <source>Please choose a folder name</source>
-        <translation>Kérem válasszon könyvtár nevet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="170"/>
         <source>Folder name:</source>
-        <translation>Könyvtár név:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="170"/>
         <source>New folder</source>
-        <translation>Új könyvtár</translation>
+        <translation>Nova dosierujo</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="251"/>
         <source>Deletion confirmation</source>
-        <translation>Törlés megerősítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="252"/>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation>Biztos vagy benne, hogy törlöd a kiválasztott RSS hírcsatornát?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="412"/>
         <source>Please choose a new name for this RSS feed</source>
-        <translation>Válassz új nevet ennek az RSS csatornának</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="412"/>
         <source>New feed name:</source>
-        <translation>Új forrás neve:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="416"/>
         <source>Name already in use</source>
-        <translation>A név már foglalt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="416"/>
         <source>This name is already used by another item, please choose another one.</source>
-        <translation>Ez a név már foglalt, kérlek válassz másikat.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="586"/>
         <source>Date: </source>
-        <translation>Dátum: </translation>
+        <translation>Dato:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="588"/>
         <source>Author: </source>
-        <translation>Szerző: </translation>
+        <translation>Aŭtoro:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss_imp.cpp" line="665"/>
         <source>Unread</source>
-        <translation>Olvasatlan</translation>
+        <translation>Nelegita</translation>
     </message>
 </context>
 <context>
@@ -4238,12 +4225,12 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/rss/rssfeed.cpp" line="371"/>
         <source>Automatic download %1 from %2 RSS feed failed because it doesn&apos;t contain a torrent or a magnet link...</source>
-        <translation>Az automatikus letöltés %1 a %2 RSS csatornáról hibába ütközött mert nem tartalmaz torrentet, vagy mágneslinket...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeed.cpp" line="376"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation>%1 torrent automatikus letöltése a %2 RSS forrásból...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4251,12 +4238,12 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/rss/rssparser.cpp" line="470"/>
         <source>Failed to open downloaded RSS file.</source>
-        <translation>Nem sikerült megnyitni a letöltött RSS fájlt.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rssparser.cpp" line="507"/>
         <source>Invalid RSS feed at %1.</source>
-        <translation>Érvénytelen RSS feed a következő címen %1.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4264,22 +4251,22 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/rss/rsssettingsdlg.ui" line="14"/>
         <source>RSS Reader Settings</source>
-        <translation>RSS olvasó beállításai</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsssettingsdlg.ui" line="47"/>
         <source>RSS feeds refresh interval:</source>
-        <translation>RSS csatornák firssítésének időköze:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsssettingsdlg.ui" line="70"/>
         <source>minutes</source>
-        <translation>perc</translation>
+        <translation>minutoj</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsssettingsdlg.ui" line="77"/>
         <source>Maximum number of articles per feed:</source>
-        <translation>Hírek maximális száma csatornánként:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4287,12 +4274,12 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../core/scannedfoldersmodel.cpp" line="97"/>
         <source>Watched Folder</source>
-        <translation>Megfigyelt könyvtár</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/scannedfoldersmodel.cpp" line="98"/>
         <source>Download here</source>
-        <translation>Letöltés ide</translation>
+        <translation>Elŝuti ĉi tien</translation>
     </message>
 </context>
 <context>
@@ -4300,47 +4287,47 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../searchengine/supportedengines.h" line="53"/>
         <source>All categories</source>
-        <translation>Összes kategória</translation>
+        <translation>Ĉiuj kategorioj</translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="54"/>
         <source>Movies</source>
-        <translation>Filmek</translation>
+        <translation>Filmoj</translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="55"/>
         <source>TV shows</source>
-        <translation>TV műsorok</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="56"/>
         <source>Music</source>
-        <translation>Zene</translation>
+        <translation>Muziko</translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="57"/>
         <source>Games</source>
-        <translation>Játék</translation>
+        <translation>Ludoj</translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="58"/>
         <source>Anime</source>
-        <translation>Anime</translation>
+        <translation>Animeo</translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="59"/>
         <source>Software</source>
-        <translation>Szoftver</translation>
+        <translation>Programaroj</translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="60"/>
         <source>Pictures</source>
-        <translation>Képek</translation>
+        <translation>Bildoj</translation>
     </message>
     <message>
         <location filename="../searchengine/supportedengines.h" line="61"/>
         <source>Books</source>
-        <translation>Könyvek</translation>
+        <translation>Libroj</translation>
     </message>
 </context>
 <context>
@@ -4350,88 +4337,88 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../searchengine/searchengine.cpp" line="215"/>
         <location filename="../searchengine/searchengine.cpp" line="472"/>
         <source>Search</source>
-        <translation>Keresés</translation>
+        <translation>Serĉi</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="198"/>
         <source>Please install Python to use the Search Engine.</source>
-        <translation>A keresőmotor használatához telepítsd a Pythont.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="228"/>
         <source>Empty search pattern</source>
-        <translation>Hiányzó kulcsszó</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="228"/>
         <source>Please type a search pattern first</source>
-        <translation>Kérlek adj meg kulcsszót a kereséshez</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="308"/>
         <source>Searching...</source>
-        <translation>Keresés...</translation>
+        <translation>Ŝerĉante...</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="311"/>
         <source>Stop</source>
-        <translation>Stop</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="198"/>
         <location filename="../searchengine/searchengine.cpp" line="446"/>
         <source>Search Engine</source>
-        <translation>Keresőmotor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="446"/>
         <location filename="../searchengine/searchengine.cpp" line="467"/>
         <source>Search has finished</source>
-        <translation>A keresés befejeződött</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="456"/>
         <source>An error occurred during search...</source>
-        <translation>Hiba a keresés közben...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="454"/>
         <location filename="../searchengine/searchengine.cpp" line="461"/>
         <source>Search aborted</source>
-        <translation>Keresés félbeszakítva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="115"/>
         <source>All enabled</source>
-        <translation>Mind engedélyezve</translation>
+        <translation>Ĉio ebliĝis</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="116"/>
         <source>All engines</source>
-        <translation>Összes motor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="119"/>
         <location filename="../searchengine/searchengine.cpp" line="172"/>
         <source>Multiple...</source>
-        <translation>Többszörös</translation>
+        <translation>Pluraj...</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="257"/>
         <location filename="../searchengine/searchengine.cpp" line="329"/>
         <source>Results &lt;i&gt;(%1)&lt;/i&gt;:</source>
         <comment>i.e: Search results</comment>
-        <translation>Eredmények &lt;i&gt;(%1)&lt;/i&gt;:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="465"/>
         <source>Search returned no results</source>
-        <translation>Eredménytelen keresés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="553"/>
         <source>Stopped</source>
-        <translation>Megállítva</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4440,7 +4427,7 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../searchengine/searchlistdelegate.h" line="60"/>
         <location filename="../searchengine/searchlistdelegate.h" line="64"/>
         <source>Unknown</source>
-        <translation>Ismeretlen</translation>
+        <translation>Nekonata</translation>
     </message>
 </context>
 <context>
@@ -4449,30 +4436,30 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../searchengine/searchtab.cpp" line="55"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation>Név</translation>
+        <translation>Nomo</translation>
     </message>
     <message>
         <location filename="../searchengine/searchtab.cpp" line="56"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation>Méret</translation>
+        <translation>Grando</translation>
     </message>
     <message>
         <location filename="../searchengine/searchtab.cpp" line="57"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
-        <translation>Feltöltők</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchtab.cpp" line="58"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation>Peerek</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchtab.cpp" line="59"/>
         <source>Search engine</source>
-        <translation>Kereső oldal</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4480,42 +4467,42 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../core/qtlibtorrent/shutdownconfirm.cpp" line="40"/>
         <source>Exit confirmation</source>
-        <translation>Kilépés megerősítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/shutdownconfirm.cpp" line="41"/>
         <source>Exit now</source>
-        <translation>Kilépés azonnal</translation>
+        <translation>Ĉesigi nun</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/shutdownconfirm.cpp" line="44"/>
         <source>Shutdown confirmation</source>
-        <translation>Leállítás megerősítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/shutdownconfirm.cpp" line="45"/>
         <source>Shutdown now</source>
-        <translation>Leállítás azonnal</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/shutdownconfirm.cpp" line="99"/>
         <source>qBittorrent will now exit unless you cancel within the next %1 seconds.</source>
-        <translation>A qBittorent ki fog lépni, hacsak nem vonod vissza a következő %1 másodpercen belül...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/shutdownconfirm.cpp" line="102"/>
         <source>The computer will now be switched off unless you cancel within the next %1 seconds.</source>
-        <translation>A számítógép ki fog kapcsolni, hacsak nem vonod vissza %1 másodpercen belül...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/shutdownconfirm.cpp" line="105"/>
         <source>The computer will now go to sleep mode unless you cancel within the next %1 seconds.</source>
-        <translation>A számítógép alvó állapotba fog lépni, hacsak nem vonod vissza %1 másodpercen belül...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/shutdownconfirm.cpp" line="108"/>
         <source>The computer will now go to hibernation mode unless you cancel within the next %1 seconds.</source>
-        <translation>A számítógép hibernált állapotba fog lépni, hacsak nem vonod vissza %1 másodpercen belül...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4523,7 +4510,7 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../core/smtp.cpp" line="479"/>
         <source>Email Notification Error:</source>
-        <translation>Email értesítés hiba:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4531,7 +4518,7 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/speedlimitdlg.cpp" line="78"/>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="unfinished">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -4539,87 +4526,87 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/statsdialog.ui" line="14"/>
         <source>Statistics</source>
-        <translation>Statisztika</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="20"/>
         <source>User statistics</source>
-        <translation>Felhasználói statisztikák</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="26"/>
         <source>Total peer connections:</source>
-        <translation>Összes peer-kapcsolatok száma:</translation>
+        <translation>Totala nombro da samtavolaj konektoj:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="33"/>
         <source>Global ratio:</source>
-        <translation>Globális megosztási arány:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="47"/>
         <source>Alltime download:</source>
-        <translation>Mindenkori letöltés:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="68"/>
         <source>Alltime upload:</source>
-        <translation>Mindenkori feltöltés:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="82"/>
         <source>Total waste (this session):</source>
-        <translation>Összes elpazarolt (legutóbbi indítás óta): </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="99"/>
         <source>Cache statistics</source>
-        <translation>Cache statisztika</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="105"/>
         <source>Read cache Hits:</source>
-        <translation>Olvasáshoz használt gyorsítótár - találatok:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="126"/>
         <source>Total buffers size:</source>
-        <translation>Teljes buffer mérete:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="136"/>
         <source>Performance statistics</source>
-        <translation>Teljesítmény statisztika</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="170"/>
         <source>Queued I/O jobs:</source>
-        <translation>Sorban várakozó I/O feladatok:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="177"/>
         <source>Write cache overload:</source>
-        <translation>Írási gyorsítótár túlterheltsége:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="184"/>
         <source>Average time in queue (ms):</source>
-        <translation>Általános idő várakozósorban (ms):</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="191"/>
         <source>Read cache overload:</source>
-        <translation>Olvasási gyorsítótár túlterheltsége:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="198"/>
         <source>Total queued size:</source>
-        <translation>Összes sorban várakozó mérete:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="243"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4628,70 +4615,70 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../gui/statusbar.cpp" line="61"/>
         <location filename="../gui/statusbar.cpp" line="173"/>
         <source>Connection status:</source>
-        <translation>Kapcsolat állapota:</translation>
+        <translation>Konekta stato:</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="61"/>
         <location filename="../gui/statusbar.cpp" line="173"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation>Nincsenek kapcsolatok. Ez lehet hálózat beállítási hiba miatt is.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="75"/>
         <location filename="../gui/statusbar.cpp" line="180"/>
         <source>DHT: %1 nodes</source>
-        <translation>DHT: %1 csomó</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="143"/>
         <source>qBittorrent needs to be restarted</source>
-        <translation>qBittorrent újraindítást igényel</translation>
+        <translation>qBittorrent devas relanĉiĝi</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="153"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation>A qBittorrent frissült új verzióra. Most újraindítást igényel a változások életbe lépéséhez.</translation>
+        <translation>qBittorrent ĵus ĝisdatiĝis kaj devas relanĉiĝi por la ŝanĝoj efiki.</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="165"/>
         <location filename="../gui/statusbar.cpp" line="170"/>
         <source>Connection Status:</source>
-        <translation>A kapcsolat állapota:</translation>
+        <translation>Konekta Stato:</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="165"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
-        <translation>Offline. Ez általában azt jelenti, hogy a qBittorrent nem tudja használni a bejövő kapcsolatokhoz a megadott portot.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="170"/>
         <source>Online</source>
-        <translation>Online</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="205"/>
         <source>Click to switch to alternative speed limits</source>
-        <translation>Alternatív sebesség korlát bekapcsolásához kattints ide</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="201"/>
         <source>Click to switch to regular speed limits</source>
-        <translation>Általános sebesség korlát bekapcsolásához kattints ide</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="215"/>
         <source>Manual change of rate limits mode. The scheduler is disabled.</source>
-        <translation>Átviteli sebességek kézi változtatása. Az ütemező kikapcsolva.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="223"/>
         <source>Global Download Speed Limit</source>
-        <translation>Teljes letöltési sebesség korlát</translation>
+        <translation>Malloka Elŝutrapidlimo</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="249"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Teljes feltöltési sebesség korlát</translation>
+        <translation>Malloka Alŝutrapidlimo</translation>
     </message>
 </context>
 <context>
@@ -4700,82 +4687,82 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../gui/transferlistfilterswidget.cpp" line="111"/>
         <source>All (0)</source>
         <comment>this is for the status filter</comment>
-        <translation>Összes (0)</translation>
+        <translation type="unfinished">Ĉio (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="114"/>
         <source>Downloading (0)</source>
-        <translation>Letöltés (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="117"/>
         <source>Seeding (0)</source>
-        <translation>Seed (0)</translation>
+        <translation>Fontsendanta (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="120"/>
         <source>Completed (0)</source>
-        <translation>Elkészült (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="123"/>
         <source>Resumed (0)</source>
-        <translation>Folytatott (0)</translation>
+        <translation>Reaktiviĝita (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="126"/>
         <source>Paused (0)</source>
-        <translation>Szüneteltetve (0)</translation>
+        <translation>Paŭzinta (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="129"/>
         <source>Active (0)</source>
-        <translation>Aktív (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="132"/>
         <source>Inactive (0)</source>
-        <translation>Inaktív (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="148"/>
         <source>All (%1)</source>
-        <translation>Összes (%1)</translation>
+        <translation type="unfinished">Ĉio (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="149"/>
         <source>Downloading (%1)</source>
-        <translation>Letöltés (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="150"/>
         <source>Seeding (%1)</source>
-        <translation>Seed (%1)</translation>
+        <translation>Fontsendanta (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="151"/>
         <source>Completed (%1)</source>
-        <translation>Elkészült (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="152"/>
         <source>Paused (%1)</source>
-        <translation>Szüneteltetve (%1)</translation>
+        <translation>Paŭzinta (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="153"/>
         <source>Resumed (%1)</source>
-        <translation>Folytatott (%1)</translation>
+        <translation>Reaktiviĝita (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="154"/>
         <source>Active (%1)</source>
-        <translation>Aktív (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="155"/>
         <source>Inactive (%1)</source>
-        <translation>Inaktív (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4783,22 +4770,22 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="54"/>
         <source>Name</source>
-        <translation>Név</translation>
+        <translation>Nomo</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="54"/>
         <source>Size</source>
-        <translation>Méret</translation>
+        <translation>Grando</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="55"/>
         <source>Progress</source>
-        <translation>Állapot</translation>
+        <translation type="unfinished">Progreso</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="55"/>
         <source>Priority</source>
-        <translation>Priorítás</translation>
+        <translation type="unfinished">Prioritato</translation>
     </message>
 </context>
 <context>
@@ -4806,54 +4793,54 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/torrentcreator/torrentcreatordlg.cpp" line="75"/>
         <source>Select a folder to add to the torrent</source>
-        <translation>Válaszd ki a torrenthez hozzáadandó könyvtárat</translation>
+        <translation>Elektu dosierujon por aldoni al la torento</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/torrentcreatordlg.cpp" line="88"/>
         <source>Select a file to add to the torrent</source>
-        <translation>Válaszd ki a torrenthez hozzáadandó fájlt</translation>
+        <translation>Elektu dosieron por aldoni al la torento</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/torrentcreatordlg.cpp" line="108"/>
         <source>No input path set</source>
-        <translation>Nincs bemeneti elérési út megadva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/torrentcreatordlg.cpp" line="108"/>
         <source>Please type an input path first</source>
-        <translation>Kérlek adj meg előbb egy bemeneti elérési utat</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/torrentcreatordlg.cpp" line="118"/>
         <source>Select destination torrent file</source>
-        <translation>Cél torrent fájl kiválasztása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/torrentcreatordlg.cpp" line="118"/>
         <source>Torrent Files</source>
-        <translation>Torrent fájlok</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/torrentcreatordlg.cpp" line="145"/>
         <location filename="../gui/torrentcreator/torrentcreatordlg.cpp" line="159"/>
         <location filename="../gui/torrentcreator/torrentcreatordlg.cpp" line="171"/>
         <source>Torrent creation</source>
-        <translation>Torrent létrehozása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/torrentcreatordlg.cpp" line="145"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation>Torrent készítése sikertelen, indok: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/torrentcreatordlg.cpp" line="159"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation>Az elkészült torrent fájl érvénytelen. Nem lesz hozzáadva az átviteli listához.</translation>
+        <translation>La kreita torentdosiero nevalidas. Ĝi ne aldoniĝos al la elŝutlisto.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/torrentcreatordlg.cpp" line="171"/>
         <source>Torrent was created successfully:</source>
-        <translation>Torrent sikeresen elkészült:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4861,74 +4848,74 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="14"/>
         <source>Torrent Import</source>
-        <translation>Torrent Import</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="53"/>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translation>Ez a program segítségedre lesz a már letöltött torrentek importálásában a qBittorrentbe.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="65"/>
         <source>Torrent file to import:</source>
-        <translation>Importálandó torrent fájl:</translation>
+        <translation>Torentdosiero por enporti:</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="109"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="90"/>
         <source>Content location:</source>
-        <translation>Tartalom helye:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="121"/>
         <source>Skip the data checking stage and start seeding immediately</source>
-        <translation>Adatok ellenőrzésének kihagyása, seedelés megkezdése azonnal</translation>
+        <translation>Preterpasi la datumkontrolan fazon kaj ekfontsendi tuj</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="131"/>
         <source>Import</source>
-        <translation>Import</translation>
+        <translation>Enporti</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="67"/>
         <source>Torrent file to import</source>
-        <translation>Importálandó torrent fájl</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="67"/>
         <source>Torrent files</source>
-        <translation>Torrent fájlok</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="90"/>
         <source>%1 Files</source>
         <comment>%1 is a file extension (e.g. PDF)</comment>
-        <translation>%1 fájlok</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="92"/>
         <source>Please provide the location of %1</source>
         <comment>%1 is a file name</comment>
-        <translation>Kérlek add meg a %1 helyét</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="125"/>
         <source>Please point to the location of the torrent: %1</source>
-        <translation>Kérlek add meg a következő torrent helyét: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="228"/>
         <source>Invalid torrent file</source>
-        <translation>Érvénytelen torrent fájl</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.cpp" line="228"/>
         <source>This is not a valid torrent file.</source>
-        <translation>Ez nem érvényes torrent fájl.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4937,167 +4924,167 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="429"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation>Név</translation>
+        <translation>Nomo</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="430"/>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
-        <translation>Méret</translation>
+        <translation>Grando</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="431"/>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation>Elkészült</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="432"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation>Állapot</translation>
+        <translation>Stato</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="433"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>Feltöltők</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="434"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation>Peerek</translation>
+        <translation>Samtavolanoj</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="435"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Letöltési sebesség</translation>
+        <translation type="unfinished">Elŝutrapido</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="436"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Feltöltési sebesség</translation>
+        <translation type="unfinished">Alŝutrapido</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="437"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation>Arány</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="438"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Idő</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="439"/>
         <source>Label</source>
-        <translation>Címke</translation>
+        <translation>Etikedo</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="440"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation>Hozáadva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="441"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Elkészült</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="442"/>
         <source>Tracker</source>
-        <translation>Tracker</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="443"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation>Letöltés limit</translation>
+        <translation>Elŝutlimo</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="444"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation>Feltöltés limit</translation>
+        <translation>Alŝutlimo</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="445"/>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation>Letöltve</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="446"/>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation>Feltöltve</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="447"/>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Munkamenet alatt letöltve</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="448"/>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Munkamenet alatt feltöltve</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="449"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation>Hátramaradt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="450"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation>Aktív idő</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="451"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation>Mentés útvonala</translation>
+        <translation>Konserva dosierindiko</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="452"/>
         <source>Completed</source>
         <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation>Elkészült</translation>
+        <translation type="unfinished">Finita</translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="453"/>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation>Arány Korlát</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="454"/>
         <source>Last Seen Complete</source>
         <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation>Legutóbb befejezettként látva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="455"/>
         <source>Last Activity</source>
         <comment>Time passed since a chunk was downloaded/uploaded</comment>
-        <translation>Utolsó aktivítás</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/qtlibtorrent/torrentmodel.cpp" line="456"/>
         <source>Total Size</source>
         <comment>i.e. Size including unwanted data</comment>
-        <translation>Teljes méret</translation>
+        <translation>Tuta Grando</translation>
     </message>
 </context>
 <context>
@@ -5106,84 +5093,84 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../gui/transferlistfilterswidget.cpp" line="424"/>
         <source>All (0)</source>
         <comment>this is for the label filter</comment>
-        <translation>Összes (0)</translation>
+        <translation type="unfinished">Ĉio (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="427"/>
         <source>Trackerless (0)</source>
-        <translation>Tracker nélkül (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="430"/>
         <source>Error (0)</source>
-        <translation>Hiba (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="433"/>
         <source>Warning (0)</source>
-        <translation>Figyelmeztetés (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="476"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="533"/>
         <source>Trackerless (%1)</source>
-        <translation>Tracker nélkül (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="482"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="528"/>
         <source>%1 (%2)</source>
         <comment>openbittorrent.com (10)</comment>
-        <translation>%1 (%2)</translation>
+        <translation type="unfinished">%1 (%2)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="558"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="590"/>
         <source>Error (%1)</source>
-        <translation>Hiba (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="571"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="605"/>
         <source>Warning (%1)</source>
-        <translation>Figyelmeztetés (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="626"/>
         <source>Couldn&apos;t decode favicon for URL `%1`. Trying to download favicon in PNG format.</source>
-        <translation>Nem lehet dekódolni az ikont a linkről &apos;%1&apos;. Az ikon PNG formátumban való letöltése folyamatban.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="631"/>
         <source>Couldn&apos;t decode favicon for URL `%1`.</source>
-        <translation>Nem lehet dekódolni az ikont a linkről &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="645"/>
         <source>Couldn&apos;t download favicon for URL `%1`. Reason: `%2`</source>
-        <translation>Nem lehet letölteni az ikont a linkről &apos;%1&apos;, oka: &apos;%2&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="654"/>
         <source>Resume torrents</source>
-        <translation>Torrentek folytatása</translation>
+        <translation type="unfinished">Reaktivigi la torentojn</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="655"/>
         <source>Pause torrents</source>
-        <translation>Torrentek szüneteltetése</translation>
+        <translation>Paŭzigi la torentojn</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="656"/>
         <source>Delete torrents</source>
-        <translation>Torrentek törlése</translation>
+        <translation type="unfinished">Forigi la torentojn</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="691"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="706"/>
         <source>All (%1)</source>
         <comment>this is for the tracker filter</comment>
-        <translation>Minden (%1)</translation>
+        <translation type="unfinished">Ĉio (%1)</translation>
     </message>
 </context>
 <context>
@@ -5191,109 +5178,109 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="64"/>
         <source>URL</source>
-        <translation>URL</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="65"/>
         <source>Status</source>
-        <translation>Állapot</translation>
+        <translation>Stato</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="66"/>
         <source>Peers</source>
-        <translation>Ügyfelek</translation>
+        <translation>Samtavolanoj</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="67"/>
         <source>Message</source>
-        <translation>Üzenet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="203"/>
         <location filename="../gui/properties/trackerlist.cpp" line="277"/>
         <source>Working</source>
-        <translation>Kapcsolódva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="204"/>
         <source>Disabled</source>
-        <translation>Tilt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="225"/>
         <source>This torrent is private</source>
-        <translation>Ez egy privát torrent</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="281"/>
         <source>Updating...</source>
-        <translation>Frissítés...</translation>
+        <translation>Ĝisdatiĝante...</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="285"/>
         <source>Not working</source>
-        <translation>Nincs kapcsolódva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="288"/>
         <source>Not contacted yet</source>
-        <translation>Még nem kapcsolódott</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="374"/>
         <source>Tracker URL:</source>
-        <translation>Tracker URL:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="374"/>
         <source>Tracker editing</source>
-        <translation>Tracker szerkesztés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="380"/>
         <location filename="../gui/properties/trackerlist.cpp" line="393"/>
         <source>Tracker editing failed</source>
-        <translation>Tracker szerkesztése sikertelen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="380"/>
         <source>The tracker URL entered is invalid.</source>
-        <translation>Érvénytelen a beírt tracker URL.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="393"/>
         <source>The tracker URL already exists.</source>
-        <translation>Ez a tracker URL már létezik.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="455"/>
         <source>Add a new tracker...</source>
-        <translation>Új tracker hozzáadása...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="461"/>
         <source>Copy tracker URL</source>
-        <translation>Tracker url másolása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="462"/>
         <source>Edit selected tracker URL</source>
-        <translation>Kiválasztott tracker URL szerkesztése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="470"/>
         <source>Force reannounce to selected trackers</source>
-        <translation>Erőltetett újrajelentés a kiválasztott trackerek felé</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="473"/>
         <source>Force reannounce to all trackers</source>
-        <translation>Erőltetett újrakapcsolódás minden trackerhez</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="460"/>
         <source>Remove tracker</source>
-        <translation>Tracker eltávolítása</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5301,47 +5288,47 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/properties/trackersadditiondlg.ui" line="14"/>
         <source>Trackers addition dialog</source>
-        <translation>Tracker hozzáadása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.ui" line="20"/>
         <source>List of trackers to add (one per line):</source>
-        <translation>Hozzáadandó trackerek listája (soronként egy):</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
         <location filename="../gui/properties/trackersadditiondlg.ui" line="44"/>
         <source>µTorrent compatible list URL:</source>
-        <translation>µTorrent kompatiblis URL lista:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.h" line="79"/>
         <source>I/O Error</source>
-        <translation>I/O Hiba</translation>
+        <translation>Eneliga Eraro</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.h" line="79"/>
         <source>Error while trying to open the downloaded file.</source>
-        <translation>Hiba történt a letöltött fájl megnyitásakor.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.h" line="124"/>
         <source>No change</source>
-        <translation>Nincs változás</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.h" line="124"/>
         <source>No additional trackers were found.</source>
-        <translation>Nem található több tracker.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.h" line="133"/>
         <source>Download error</source>
-        <translation>Letöltési hiba</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.h" line="133"/>
         <source>The trackers list could not be downloaded, reason: %1</source>
-        <translation>A tracker listát nem sikerült letölteni. Indok: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5349,106 +5336,106 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="95"/>
         <source>Downloading</source>
-        <translation>Letöltés</translation>
+        <translation type="unfinished">Elŝutanta</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="98"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
-        <translation>Metadata letöltése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="104"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
-        <translation>Lefoglalás</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="131"/>
         <source>Paused</source>
-        <translation>Leállítva</translation>
+        <translation>Paŭzinta</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="118"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
-        <translation>Sorban áll</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="111"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
-        <translation>Seed</translation>
+        <translation>Fontsendanta</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="107"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
-        <translation>Elakadt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="101"/>
         <source>[F] Downloading</source>
         <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation>[F] Letöltés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="114"/>
         <source>[F] Seeding</source>
         <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation>[F] Seed</translation>
+        <translation>[F] Fontsendanta</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="122"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
-        <translation>Ellenőrzés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="125"/>
         <source>Queued for checking</source>
         <comment>i.e. torrent is queued for hash checking</comment>
-        <translation>Ellenőrzésre várakozik</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="128"/>
         <source>Checking resume data</source>
         <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
-        <translation>Folytatáshoz szükséges adatok ellenőrzése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="134"/>
         <source>Completed</source>
-        <translation>Elkészült</translation>
+        <translation type="unfinished">Finita</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="137"/>
         <source>Missing Files</source>
-        <translation>Hiányzó fájlok</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="151"/>
         <source>/s</source>
         <comment>/second (.i.e per second)</comment>
-        <translation>/s</translation>
+        <translation type="unfinished">/s</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="159"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation>KiB/mp</translation>
+        <translation type="unfinished">KiB/s</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="167"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation>Feltöltési idő: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="230"/>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
-        <translation>%1 ideje</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5456,17 +5443,17 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="788"/>
         <source>Status</source>
-        <translation>Állapot</translation>
+        <translation>Stato</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="796"/>
         <source>Labels</source>
-        <translation>Címkék</translation>
+        <translation>Etikedoj</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="804"/>
         <source>Trackers</source>
-        <translation>Trackerek</translation>
+        <translation type="unfinished">Ŝanĝospuriloj</translation>
     </message>
 </context>
 <context>
@@ -5474,197 +5461,197 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="594"/>
         <source>Column visibility</source>
-        <translation>Oszlop beállítások</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="865"/>
         <source>Label</source>
-        <translation>Címke</translation>
+        <translation>Etikedo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="259"/>
         <source>Choose save path</source>
-        <translation>Mentés helye</translation>
+        <translation>Elektu la dosierindikon por konservi</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="512"/>
         <source>Torrent Download Speed Limiting</source>
-        <translation>Torrent letöltés sebességkorlátozás</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="545"/>
         <source>Torrent Upload Speed Limiting</source>
-        <translation>Torrent feltöltés sebességkorlátozás</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="582"/>
         <source>Recheck confirmation</source>
-        <translation>Újraellenőrzés megerősítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="582"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation>Biztos benne, hogy újraellenőrzi a kiválasztott torrenteket?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="666"/>
         <source>New Label</source>
-        <translation>Új címke</translation>
+        <translation>Nova Etikedo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="666"/>
         <source>Label:</source>
-        <translation>Címke:</translation>
+        <translation>Etikedo:</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="672"/>
         <source>Invalid label name</source>
-        <translation>Érvénytelen címke név</translation>
+        <translation>Nevalida etikednomo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="672"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Kérlek ne használj speciális karaktereket a címke nevében.</translation>
+        <translation>Bonvolu ne uzi specialajn signojn en la etikednomo.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="690"/>
         <source>Rename</source>
-        <translation>Átnevezés</translation>
+        <translation>Renomi...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="690"/>
         <source>New name:</source>
-        <translation>Új név:</translation>
+        <translation>Nova nomo:</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="731"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Folytatás</translation>
+        <translation type="unfinished">Reaktivigi</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="735"/>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation>Erőltetett folytatás</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="733"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Szünet</translation>
+        <translation>Paŭzigi</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="737"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>Törlés</translation>
+        <translation type="unfinished">Forigi</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="739"/>
         <source>Preview file...</source>
-        <translation>Fájl előnézete...</translation>
+        <translation>Antaŭrigardi la dosieron...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="741"/>
         <source>Limit share ratio...</source>
-        <translation>Megosztási arány korlát...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="743"/>
         <source>Limit upload rate...</source>
-        <translation>Feltöltési arány korlátozása...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="745"/>
         <source>Limit download rate...</source>
-        <translation>Letöltési arány korlátozása...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="747"/>
         <source>Open destination folder</source>
-        <translation>Célkönyvtár megnyitása</translation>
+        <translation type="unfinished">Malfermi la celdosierujon</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="749"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
-        <translation>Feljebb mozgat</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="751"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
-        <translation>Lejjebb mozgat</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="753"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation>Legfelülre mozgat</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="755"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation>Legalúlra mozgat</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="757"/>
         <source>Set location...</source>
-        <translation>Hely megadása...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="763"/>
         <source>Copy name</source>
-        <translation>Név másolása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="915"/>
         <source>Priority</source>
-        <translation>Priorítás</translation>
+        <translation type="unfinished">Prioritato</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="759"/>
         <source>Force recheck</source>
-        <translation>Kényszerített újraellenőrzés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="761"/>
         <source>Copy magnet link</source>
-        <translation>Magnet link másolása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="765"/>
         <source>Super seeding mode</source>
-        <translation>Szuper seed üzemmód</translation>
+        <translation>Superfontsendanta reĝimo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="768"/>
         <source>Rename...</source>
-        <translation>Átnevezés...</translation>
+        <translation>Renomi...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="770"/>
         <source>Download in sequential order</source>
-        <translation>Letöltés sorrendben</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="773"/>
         <source>Download first and last piece first</source>
-        <translation>Első és utolsó szelet letöltése először</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="866"/>
         <source>New...</source>
         <comment>New label...</comment>
-        <translation>Új...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="867"/>
         <source>Reset</source>
         <comment>Reset label</comment>
-        <translation>Visszaállítás</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5672,29 +5659,29 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Torrent fel/letöltés arány korlátozás</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation>Teljes arány limit használata</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="23"/>
         <location filename="../gui/updownratiodlg.ui" line="33"/>
         <location filename="../gui/updownratiodlg.ui" line="45"/>
         <source>buttonGroup</source>
-        <translation>buttonGroup</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation>Nincs arány limit</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation>Arány korlát beállítása</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5702,12 +5689,12 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../webui/webui.cpp" line="77"/>
         <source>The Web UI is listening on port %1</source>
-        <translation>A Web UI ezen a porton fut: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="79"/>
         <source>Web UI Error - Unable to bind Web UI to port %1</source>
-        <translation>Webes felület hiba - port használata sikertelen: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5715,32 +5702,32 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/about_imp.h" line="55"/>
         <source>An advanced BitTorrent client programmed in &lt;nobr&gt;C++&lt;/nobr&gt;, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Egy kifinomult C++-ban fejlesztett BitTorrent kliens, Qt és libtorrent-rasterbar programkönyvtárakra alapozva.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="57"/>
         <source>Copyright %1 2006-2015 The qBittorrent project</source>
-        <translation>Szerzői joggal védve ©2006-2015 A qBittorrent projekt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="59"/>
         <source>Home Page: </source>
-        <translation>Weblap:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="61"/>
         <source>Bug Tracker: </source>
-        <translation>Bug Tracker:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="63"/>
         <source>Forum: </source>
-        <translation>Fórum:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="66"/>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent - Freenode</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5748,17 +5735,17 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/properties/peer.ui" line="20"/>
         <source>Peer addition</source>
-        <translation>Ügyfél hozzáadása</translation>
+        <translation>Aldono de samtavolano</translation>
     </message>
     <message>
         <location filename="../gui/properties/peer.ui" line="36"/>
         <source>IP</source>
-        <translation>IP</translation>
+        <translation type="unfinished">IP-adreso</translation>
     </message>
     <message>
         <location filename="../gui/properties/peer.ui" line="59"/>
         <source>Port</source>
-        <translation>Port</translation>
+        <translation type="unfinished">Pordo</translation>
     </message>
 </context>
 <context>
@@ -5767,37 +5754,37 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../gui/login.ui" line="14"/>
         <location filename="../gui/login.ui" line="47"/>
         <source>Tracker authentication</source>
-        <translation>Tracker hitelesítés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="64"/>
         <source>Tracker:</source>
-        <translation>Tracker:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="86"/>
         <source>Login</source>
-        <translation>Belépés</translation>
+        <translation type="unfinished">Ensaluti</translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="94"/>
         <source>Username:</source>
-        <translation>Felhasználónév:</translation>
+        <translation>Uzantnomo:</translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="117"/>
         <source>Password:</source>
-        <translation>Jelszó:</translation>
+        <translation>Pasvorto:</translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="154"/>
         <source>Log in</source>
-        <translation>Bejelentkezés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="161"/>
         <source>Cancel</source>
-        <translation>Mégse</translation>
+        <translation type="unfinished">Nuligi</translation>
     </message>
 </context>
 <context>
@@ -5805,17 +5792,17 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/confirmdeletiondlg.ui" line="20"/>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>Törlés megerősítése - qBittorrent</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/confirmdeletiondlg.ui" line="67"/>
         <source>Remember choice</source>
-        <translation>Válasz megjegyzése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/confirmdeletiondlg.ui" line="94"/>
         <source>Also delete the files on the hard disk</source>
-        <translation>Fájlok törlése a merevlemezről is</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5823,143 +5810,143 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="308"/>
         <source>Cancel</source>
-        <translation>Mégse</translation>
+        <translation type="unfinished">Nuligi</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="14"/>
         <source>Torrent Creation Tool</source>
-        <translation>Torrent készítő</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="38"/>
         <source>Torrent file creation</source>
-        <translation>Torrent fájl létrehozása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="60"/>
         <source>Add file</source>
-        <translation>Fájl hozzáadása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="67"/>
         <source>Add folder</source>
-        <translation>Könyvtár hozzáadása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="48"/>
         <source>File or folder to add to the torrent:</source>
-        <translation>Fájl vagy könyvtár hozzáadása a torrenthez:</translation>
+        <translation>Dosiero aŭ dosierujo por aldoni al la torento:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="78"/>
         <source>Tracker URLs:</source>
-        <translation>Tracker URL:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="88"/>
         <source>Web seeds urls:</source>
-        <translation>Web seed url: </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="98"/>
         <source>Comment:</source>
-        <translation>Megjegyzés:</translation>
+        <translation type="unfinished">Komento:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="127"/>
         <source>You can separate tracker tiers / groups with an empty line.</source>
         <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation>A különböző tracker csoportok üres sorral választhatók el.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="148"/>
         <source>Piece size:</source>
-        <translation>Szelet mérete:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="165"/>
         <source>16 KiB</source>
-        <translation>16 KiB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="170"/>
         <source>32 KiB</source>
-        <translation>32 KiB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="175"/>
         <source>64 KiB</source>
-        <translation>64 KiB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="180"/>
         <source>128 KiB</source>
-        <translation>128 KiB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="185"/>
         <source>256 KiB</source>
-        <translation>256 KiB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="190"/>
         <source>512 KiB</source>
-        <translation>512 KiB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="195"/>
         <source>1 MiB</source>
-        <translation>1 MiB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="200"/>
         <source>2 MiB</source>
-        <translation>2 MiB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="205"/>
         <source>4 MiB</source>
-        <translation>4 MiB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="210"/>
         <source>8 MiB</source>
-        <translation>8 MiB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="215"/>
         <source>16 MiB</source>
-        <translation>16 MiB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="223"/>
         <source>Auto</source>
-        <translation>Auto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="248"/>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
-        <translation>Zárt (nem jelenik meg a DHT hálózaton)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="255"/>
         <source>Start seeding after creation</source>
-        <translation>Seed megkezdése létrehozás után</translation>
+        <translation>Ekfontsendi post kreado</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="265"/>
         <source>Ignore share ratio limits for this torrent</source>
-        <translation>Megosztási korlátok figyelmen kívül hagyása ennél a torrentnél</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="301"/>
         <source>Create and save...</source>
-        <translation>Létrehozás és mentés...</translation>
+        <translation>Krei kaj konservi...</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreator/createtorrent.ui" line="272"/>
         <source>Progress:</source>
-        <translation>Folyamat:</translation>
+        <translation type="unfinished">Progreso:</translation>
     </message>
 </context>
 <context>
@@ -5967,37 +5954,37 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../gui/downloadfromurldlg.ui" line="28"/>
         <source>Add torrent links</source>
-        <translation>Torrent linkek hozzáadása</translation>
+        <translation>Aldoni torentligilojn</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.ui" line="58"/>
         <source>One per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation>Egy link soronként (támogatottak a HTTP, Magnet linkek és az info-hashek)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.ui" line="80"/>
         <source>Download</source>
-        <translation>Letöltés</translation>
+        <translation type="unfinished">Elŝuti</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.ui" line="87"/>
         <source>Cancel</source>
-        <translation>Mégse</translation>
+        <translation type="unfinished">Nuligi</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.ui" line="14"/>
         <source>Download from urls</source>
-        <translation>Letöltés url címekről</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.h" line="96"/>
         <source>No URL entered</source>
-        <translation>Nem lett URL cím megadva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.h" line="96"/>
         <source>Please type at least one URL.</source>
-        <translation>Kérlek adj meg legalább egy url címet.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6005,58 +5992,58 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../searchengine/engineselect.ui" line="17"/>
         <source>Search plugins</source>
-        <translation>Kereső modulok</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="30"/>
         <source>Installed search engines:</source>
-        <translation>Telepített keresők:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="50"/>
         <source>Name</source>
-        <translation>Név</translation>
+        <translation>Nomo</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="55"/>
         <source>Version</source>
-        <translation>Verzió</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="60"/>
         <source>Url</source>
-        <translation>Url</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="65"/>
         <location filename="../searchengine/engineselect.ui" line="124"/>
         <source>Enabled</source>
-        <translation>Engedélyezve</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="83"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation>További kereső modulok letölthetőek innen: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="98"/>
         <source>Install a new one</source>
-        <translation>Új telepítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="105"/>
         <source>Check for updates</source>
-        <translation>Frissítések ellenőrzése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="112"/>
         <source>Close</source>
-        <translation>Bezárás</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="129"/>
         <source>Uninstall</source>
-        <translation>Eltávolít</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6064,22 +6051,22 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="195"/>
         <source>Uninstall warning</source>
-        <translation>Figyelemeztetés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="197"/>
         <source>Uninstall success</source>
-        <translation>Sikeresen eltávolítva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="362"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation>Úgy tűnik, a link nem egy keresőmotor kiegészítőre mutat.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="377"/>
         <source>Select search plugins</source>
-        <translation>Kereső modulok kiválasztása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="258"/>
@@ -6088,14 +6075,14 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../searchengine/engineselectdlg.cpp" line="298"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="301"/>
         <source>Search plugin install</source>
-        <translation>Kereső modul telepítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="138"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="209"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="321"/>
         <source>Yes</source>
-        <translation>Igen</translation>
+        <translation>Jes</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="141"/>
@@ -6103,18 +6090,18 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../searchengine/engineselectdlg.cpp" line="212"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="324"/>
         <source>No</source>
-        <translation>Nem</translation>
+        <translation>Ne</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="258"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>A %1 kereső modul egy újabb verziója már telepítve van.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="378"/>
         <source>qBittorrent search plugin</source>
-        <translation>qBittorrent kereső modul</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="429"/>
@@ -6122,78 +6109,77 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../searchengine/engineselectdlg.cpp" line="484"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="491"/>
         <source>Search plugin update</source>
-        <translation>Kereső modul frissítése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="463"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="484"/>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation>Sajnálom, a frissíŧési szerver ideiglenesen nem elérhető.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="429"/>
         <source>All your plugins are already up to date.</source>
-        <translation>A legújabb kereső modulokat használod.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="283"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>%1 kereső modult nem sikerült frissíteni, előző verzió megtartva.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="288"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>%1 kereső modul telepítése sikertelen.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="197"/>
         <source>All selected plugins were uninstalled successfully</source>
-        <translation>Minden kijelölt kereső modul sikeresen eltávolítva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="195"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation>Néhány modult nem lehet eltávolítani, mivel a program részét képezik.
-Csak azokat lehet letörölni, amiket saját kezüleg telepített.
-De a modulok kikapcsolásra kerültek.</translation>
+        <translation>Kelkaj kromprogramoj ne eblis malinstali, ĉar ili estas inkluzivitaj en qBittorrent. Nur malinstaleblas tiuj, kiuj vi aldonis.
+Tiuj kromprogramoj malebliĝis.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="298"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>%1 kereső modul sikeresen frissítve.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="301"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>%1 kereső modul sikeresen telepítve.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="362"/>
         <source>Invalid link</source>
-        <translation>Érvénytelen link</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="491"/>
         <source>Sorry, %1 search plugin installation failed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Sajnálom, a %1 kereső modul telepítése sikertelen.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="354"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="363"/>
         <source>New search engine plugin URL</source>
-        <translation>Új kereső modul URL címe</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="355"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="364"/>
         <source>URL:</source>
-        <translation>URL:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6201,7 +6187,7 @@ De a modulok kikapcsolásra kerültek.</translation>
     <message>
         <location filename="../app/stacktrace_win_dlg.ui" line="14"/>
         <source>Crash info</source>
-        <translation>Összeomlással kapcsolatos információ</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6213,7 +6199,7 @@ De a modulok kikapcsolásra kerültek.</translation>
         <location filename="../core/fs_utils.cpp" line="525"/>
         <location filename="../core/fs_utils.cpp" line="537"/>
         <source>Downloads</source>
-        <translation>Letöltések</translation>
+        <translation type="unfinished">Elŝutoj</translation>
     </message>
 </context>
 <context>
@@ -6222,102 +6208,102 @@ De a modulok kikapcsolásra kerültek.</translation>
         <location filename="../core/misc.cpp" line="92"/>
         <source>B</source>
         <comment>bytes</comment>
-        <translation>B</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/misc.cpp" line="93"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
-        <translation>KiB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/misc.cpp" line="94"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
-        <translation>MiB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/misc.cpp" line="95"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
-        <translation>GiB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/misc.cpp" line="96"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
-        <translation>TiB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/misc.cpp" line="320"/>
         <source>Python not detected</source>
-        <translation>Python nem található</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/misc.cpp" line="348"/>
         <source>Python version: %1</source>
-        <translation>Python verzió: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/misc.cpp" line="375"/>
         <source>/s</source>
         <comment>per second</comment>
-        <translation>/s</translation>
+        <translation type="unfinished">/s</translation>
     </message>
     <message>
         <location filename="../core/misc.cpp" line="485"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1ó %2p</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/misc.cpp" line="489"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation>%1nap %2ó</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/misc.cpp" line="363"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
-        <translation>Ismeretlen</translation>
+        <translation>Nekonata</translation>
     </message>
     <message>
         <location filename="../core/misc.cpp" line="243"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation>A qBittorrent most leállítja a számítógépet, mert az összes letöltés elkészült.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/misc.cpp" line="478"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
-        <translation>&lt; 1perc</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/misc.cpp" line="481"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
-        <translation>%1perc</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="379"/>
         <source>Working</source>
-        <translation>Kapcsolódva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="383"/>
         <source>Updating...</source>
-        <translation>Frissítés...</translation>
+        <translation type="unfinished">Ĝisdatiĝante...</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="385"/>
         <source>Not working</source>
-        <translation>Nincs kapcsolódva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="385"/>
         <source>Not contacted yet</source>
-        <translation>Még nem kapcsolódott</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6326,7 +6312,7 @@ De a modulok kikapcsolásra kerültek.</translation>
         <location filename="../gui/options_imp.cpp" line="1180"/>
         <location filename="../gui/options_imp.cpp" line="1182"/>
         <source>Choose export directory</source>
-        <translation>Export könyvtár kiválasztása</translation>
+        <translation>Elekti la elportan dosierujon</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1218"/>
@@ -6334,110 +6320,110 @@ De a modulok kikapcsolásra kerültek.</translation>
         <location filename="../gui/options_imp.cpp" line="1231"/>
         <location filename="../gui/options_imp.cpp" line="1233"/>
         <source>Choose a save directory</source>
-        <translation>Letöltési könyvtár megadása</translation>
+        <translation>Elektu konservan dosierujon</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1134"/>
         <source>Add directory to scan</source>
-        <translation>Könyvtár hozzáadása megfigyelésre</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1141"/>
         <source>Folder is already being watched.</source>
-        <translation>A könyvtár már megfigyelés alatt van.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1144"/>
         <source>Folder does not exist.</source>
-        <translation>A könyvtár nem létezik.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1147"/>
         <source>Folder is not readable.</source>
-        <translation>A könyvtár nem olvasható.</translation>
+        <translation>La dosierujo ne legeblas.</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1157"/>
         <source>Failure</source>
-        <translation>Hiba</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1157"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation>Hiba a &apos;%1&apos; könyvtár vizsgálata közben: %2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1204"/>
         <location filename="../gui/options_imp.cpp" line="1206"/>
         <source>Filters</source>
-        <translation>Szűrők</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1204"/>
         <location filename="../gui/options_imp.cpp" line="1206"/>
         <source>Choose an IP filter file</source>
-        <translation>Válassz egy IP szűrő fájlt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1272"/>
         <source>SSL Certificate</source>
-        <translation>SSL Tanusítvány</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1283"/>
         <source>SSL Key</source>
-        <translation>SSL Kulcs</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1314"/>
         <source>Parsing error</source>
-        <translation>Feldolgozási hiba</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1314"/>
         <source>Failed to parse the provided IP filter</source>
-        <translation>Megadott IP szűrő feldogozása sikertelen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1316"/>
         <source>Successfully refreshed</source>
-        <translation>Sikeresen frissítve</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1316"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>A következő IP szűrő sikeresen feldolgozva: %1 szabály alkalmazva.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1404"/>
         <source>Invalid key</source>
-        <translation>Érvénytelen kulcs</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1404"/>
         <source>This is not a valid SSL key.</source>
-        <translation>Érvénytelen SSL kulcs.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1419"/>
         <source>Invalid certificate</source>
-        <translation>Érvénytelen tanusítvány</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1419"/>
         <source>This is not a valid SSL certificate.</source>
-        <translation>Érvénytelen SSL tanusítvány.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1428"/>
         <source>The start time and the end time can&apos;t be the same.</source>
-        <translation>A kezdés és befejezés ideje nem lehet ugyanaz.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1431"/>
         <source>Time Error</source>
-        <translation>Idő Hiba</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6445,22 +6431,22 @@ De a modulok kikapcsolásra kerültek.</translation>
     <message>
         <location filename="../searchengine/pluginsource.ui" line="13"/>
         <source>Plugin source</source>
-        <translation>Modul forrás</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/pluginsource.ui" line="26"/>
         <source>Search plugin source:</source>
-        <translation>Kereső modul forrása:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/pluginsource.ui" line="35"/>
         <source>Local file</source>
-        <translation>Helyi fájl</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/pluginsource.ui" line="42"/>
         <source>Web link</source>
-        <translation>Webcím</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6468,22 +6454,22 @@ De a modulok kikapcsolásra kerültek.</translation>
     <message>
         <location filename="../gui/preview.ui" line="14"/>
         <source>Preview selection</source>
-        <translation>Kijelölés előnézete</translation>
+        <translation>Antaŭrigarda elekto</translation>
     </message>
     <message>
         <location filename="../gui/preview.ui" line="26"/>
         <source>The following files support previewing, please select one of them:</source>
-        <translation>A következő fájlokat lehet előtekinteni, kérem válasszon egyet közülük:</translation>
+        <translation>La sekvaj dosieroj subteni antaŭrigardadon, bonvolu elekti unu el ili:</translation>
     </message>
     <message>
         <location filename="../gui/preview.ui" line="61"/>
         <source>Preview</source>
-        <translation>Előnézet</translation>
+        <translation>Antaŭrigardi</translation>
     </message>
     <message>
         <location filename="../gui/preview.ui" line="68"/>
         <source>Cancel</source>
-        <translation>Mégse</translation>
+        <translation type="unfinished">Nuligi</translation>
     </message>
 </context>
 <context>
@@ -6492,32 +6478,32 @@ De a modulok kikapcsolásra kerültek.</translation>
         <location filename="../searchengine/search.ui" line="14"/>
         <location filename="../searchengine/search.ui" line="28"/>
         <source>Search</source>
-        <translation>Keresés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/search.ui" line="51"/>
         <source>Status:</source>
-        <translation>Állapot:</translation>
+        <translation>Stato:</translation>
     </message>
     <message>
         <location filename="../searchengine/search.ui" line="75"/>
         <source>Stopped</source>
-        <translation>Megállítva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/search.ui" line="107"/>
         <source>Download</source>
-        <translation>Letöltés</translation>
+        <translation type="unfinished">Elŝuti</translation>
     </message>
     <message>
         <location filename="../searchengine/search.ui" line="117"/>
         <source>Go to description page</source>
-        <translation>Leírás oldal megnyitása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/search.ui" line="137"/>
         <source>Search engines...</source>
-        <translation>Keresőmotorok...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

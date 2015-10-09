@@ -42,6 +42,7 @@ const char C_UTP[] = "μTP";
 const char C_LOCALE_ENGLISH[] = "English";
 const char C_LOCALE_ENGLISH_AUSTRALIA[] = "English(Australia)";
 const char C_LOCALE_ENGLISH_UNITEDKINGDOM[] = "English(United Kingdom)";
+const char C_LOCALE_ESPERANTO[] = "Esperanto";
 const char C_LOCALE_FRENCH[] = "Français";
 const char C_LOCALE_GERMAN[] = "Deutsch";
 const char C_LOCALE_HUNGARIAN[] = "Magyar";
