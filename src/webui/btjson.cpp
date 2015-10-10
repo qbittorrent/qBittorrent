@@ -200,20 +200,20 @@ public:
         if (type_ == QVariant::Invalid)
             type_ = torrent1.toMap().value(key_).type();
 
-        switch (type_) {
-        case QVariant::Int:
+        switch (static_cast<QMetaType::Type>(type_)) {
+        case QMetaType::Int:
             return greaterThan_ ? torrent1.toMap().value(key_).toInt() > torrent2.toMap().value(key_).toInt()
                    : torrent1.toMap().value(key_).toInt() < torrent2.toMap().value(key_).toInt();
-        case QVariant::LongLong:
+        case QMetaType::LongLong:
             return greaterThan_ ? torrent1.toMap().value(key_).toLongLong() > torrent2.toMap().value(key_).toLongLong()
                    : torrent1.toMap().value(key_).toLongLong() < torrent2.toMap().value(key_).toLongLong();
-        case QVariant::ULongLong:
+        case QMetaType::ULongLong:
             return greaterThan_ ? torrent1.toMap().value(key_).toULongLong() > torrent2.toMap().value(key_).toULongLong()
                    : torrent1.toMap().value(key_).toULongLong() < torrent2.toMap().value(key_).toULongLong();
         case QMetaType::Float:
             return greaterThan_ ? torrent1.toMap().value(key_).toFloat() > torrent2.toMap().value(key_).toFloat()
                    : torrent1.toMap().value(key_).toFloat() < torrent2.toMap().value(key_).toFloat();
-        case QVariant::Double:
+        case QMetaType::Double:
             return greaterThan_ ? torrent1.toMap().value(key_).toDouble() > torrent2.toMap().value(key_).toDouble()
                    : torrent1.toMap().value(key_).toDouble() < torrent2.toMap().value(key_).toDouble();
         default:
@@ -652,15 +652,15 @@ void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
     foreach (QString key, data.keys()) {
         removedItems.clear();
 
-        switch (data[key].type()) {
-        case QVariant::Map: {
+        switch (static_cast<QMetaType::Type>(data[key].type())) {
+        case QMetaType::QVariantMap: {
                 QVariantMap map;
                 processMap(prevData[key].toMap(), data[key].toMap(), map);
                 if (!map.isEmpty())
                     syncData[key] = map;
             }
             break;
-        case QVariant::Hash: {
+        case QMetaType::QVariantHash: {
                 QVariantMap map;
                 processHash(prevData[key].toHash(), data[key].toHash(), map, removedItems);
                 if (!map.isEmpty())
@@ -669,7 +669,7 @@ void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
                     syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
             }
             break;
-        case QVariant::List: {
+        case QMetaType::QVariantList: {
                 QVariantList list;
                 processList(prevData[key].toList(), data[key].toList(), list, removedItems);
                 if (!list.isEmpty())
@@ -678,14 +678,14 @@ void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
                     syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
             }
             break;
-        case QVariant::String:
-        case QVariant::LongLong:
+        case QMetaType::QString:
+        case QMetaType::LongLong:
         case QMetaType::Float:
-        case QVariant::Int:
-        case QVariant::Bool:
-        case QVariant::Double:
-        case QVariant::ULongLong:
-        case QVariant::UInt:
+        case QMetaType::Int:
+        case QMetaType::Bool:
+        case QMetaType::Double:
+        case QMetaType::ULongLong:
+        case QMetaType::UInt:
             if (prevData[key] != data[key])
                 syncData[key] = data[key];
             break;

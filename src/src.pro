@@ -24,7 +24,7 @@ nogui {
     TARGET = qbittorrent-nox
 } else {
     QT += xml
-    QT += concurrent
+    greaterThan(QT_MAJOR_VERSION, 4): QT += concurrent
     CONFIG(static) {
         DEFINES += QBT_STATIC_QT
         QTPLUGIN += qico
