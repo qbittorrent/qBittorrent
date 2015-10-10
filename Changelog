@@ -1,4 +1,4 @@
-* Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.4
+* Sat Oct 10 2015 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.4
     - FEATURE: Select the file of single file torrents when opening destination folder (pmzqla)
     - BUGFIX: Fix crash with invalid favicon. Closes #3632. (glassez)
     - BUGFIX: Try to download favicon.png when the download of favicon.ico fails (pmzqla)
