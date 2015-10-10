@@ -184,7 +184,6 @@ namespace BitTorrent
         QString actualSavePath() const;
         QString savePath() const;
         QString rootPath() const;
-        QString savePathParsed() const;
         int filesCount() const;
         int piecesCount() const;
         int piecesHave() const;
@@ -193,7 +192,6 @@ namespace BitTorrent
         QDateTime addedTime() const;
         qreal ratioLimit() const;
 
-        QString firstFileSavePath() const;
         QString filePath(int index) const;
         QString fileName(int index) const;
         qlonglong fileSize(int index) const;

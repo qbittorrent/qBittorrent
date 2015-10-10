@@ -465,17 +465,6 @@ void TorrentHandle::saveResumeData()
     m_needSaveResumeData = false;
 }
 
-QString TorrentHandle::savePathParsed() const
-{
-    QString p;
-    if (hasMetadata() && (filesCount() == 1))
-        p = firstFileSavePath();
-    else
-        p = savePath();
-
-    return Utils::Fs::toNativePath(p);
-}
-
 int TorrentHandle::filesCount() const
 {
     return m_torrentInfo.filesCount();
@@ -517,22 +506,6 @@ QDateTime TorrentHandle::addedTime() const
 qreal TorrentHandle::ratioLimit() const
 {
     return m_ratioLimit;
-}
-
-
-QString TorrentHandle::firstFileSavePath() const
-{
-    Q_ASSERT(hasMetadata());
-
-    QString fSavePath = savePath();
-    if (!fSavePath.endsWith("/"))
-        fSavePath += "/";
-    fSavePath += filePath(0);
-    // Remove .!qB extension
-    if (fSavePath.endsWith(".!qB", Qt::CaseInsensitive))
-        fSavePath.chop(4);
-
-    return fSavePath;
 }
 
 QString TorrentHandle::filePath(int index) const
