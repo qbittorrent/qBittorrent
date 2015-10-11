@@ -192,7 +192,6 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_state(TorrentState::Unknown)
     , m_renameCount(0)
     , m_name(data.name)
-    , m_addedTime(data.resumed ? data.addedTime : QDateTime::currentDateTime())
     , m_savePath(Utils::Fs::toNativePath(data.savePath))
     , m_label(data.label)
     , m_hasSeedStatus(data.resumed ? data.hasSeedStatus : false)
@@ -500,7 +499,7 @@ QString TorrentHandle::label() const
 
 QDateTime TorrentHandle::addedTime() const
 {
-    return m_addedTime;
+    return QDateTime::fromTime_t(m_nativeStatus.added_time);
 }
 
 qreal TorrentHandle::ratioLimit() const
@@ -1429,7 +1428,6 @@ void TorrentHandle::handleSaveResumeDataAlert(libtorrent::save_resume_data_alert
         resumeData["qBt-paused"] = isPaused();
         resumeData["qBt-forced"] = isForced();
     }
-    resumeData["qBt-addedTime"] = m_addedTime.toTime_t();
     resumeData["qBt-savePath"] = Utils::String::toStdString(m_savePath);
     resumeData["qBt-ratioLimit"] = Utils::String::toStdString(QString::number(m_ratioLimit));
     resumeData["qBt-label"] = Utils::String::toStdString(m_label);
