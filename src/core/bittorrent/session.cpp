@@ -1397,7 +1397,7 @@ void Session::saveResumeData()
             switch (a->type()) {
             case libt::save_resume_data_failed_alert::alert_type:
             case libt::save_resume_data_alert::alert_type:
-                TorrentHandlePrivate *torrent = m_torrents.take(static_cast<libt::torrent_alert *>(a)->handle.info_hash());
+                TorrentHandle *torrent = m_torrents.take(static_cast<libt::torrent_alert *>(a)->handle.info_hash());
                 if (torrent)
                     torrent->handleAlert(a);
                 break;
@@ -1429,7 +1429,7 @@ void Session::setDefaultTempPath(const QString &path)
 
     if (m_tempPath != tempPath) {
         m_tempPath = tempPath;
-        foreach (TorrentHandlePrivate *const torrent, m_torrents)
+        foreach (TorrentHandle *const torrent, m_torrents)
             torrent->handleTempPathChanged();
     }
 }
@@ -1460,7 +1460,7 @@ void Session::setAppendExtension(bool append)
     if (m_appendExtension != append) {
         m_appendExtension = append;
         // append or remove .!qB extension for incomplete files
-        foreach (TorrentHandlePrivate *const torrent, m_torrents)
+        foreach (TorrentHandle *const torrent, m_torrents)
             torrent->handleAppendExtensionToggled();
     }
 }
@@ -2098,7 +2098,7 @@ void Session::handleAlert(libt::alert *a)
 
 void Session::dispatchTorrentAlert(libt::alert *a)
 {
-    TorrentHandlePrivate *const torrent = m_torrents.value(static_cast<libt::torrent_alert*>(a)->handle.info_hash());
+    TorrentHandle *const torrent = m_torrents.value(static_cast<libt::torrent_alert*>(a)->handle.info_hash());
     if (torrent)
         torrent->handleAlert(a);
 }
@@ -2321,7 +2321,7 @@ void Session::handleStateUpdateAlert(libt::state_update_alert *p)
     foreach (const libt::torrent_status &status, p->status) {
         TorrentHandle *const torrent = m_torrents.value(status.info_hash);
         if (torrent) {
-            static_cast<TorrentHandlePrivate *>(torrent)->handleStateUpdate(status);
+            torrent->handleStateUpdate(status);
             emit torrentStatusUpdated(torrent);
         }
     }

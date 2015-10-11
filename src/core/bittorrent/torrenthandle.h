@@ -42,7 +42,6 @@
 
 #include "core/tristatebool.h"
 #include "private/speedmonitor.h"
-#include "private/torrenthandleprivate.h"
 #include "infohash.h"
 #include "torrentinfo.h"
 
@@ -70,9 +69,8 @@ namespace libtorrent
     struct tracker_reply_alert;
     struct tracker_warning_alert;
     struct fastresume_rejected_alert;
+    struct torrent_status;
 }
-
-struct SessionPrivate;
 
 namespace BitTorrent
 {
@@ -152,7 +150,7 @@ namespace BitTorrent
         int m_value;
     };
 
-    class TorrentHandle : public QObject, public TorrentHandlePrivate
+    class TorrentHandle : public QObject
     {
         Q_DISABLE_COPY(TorrentHandle)
 
@@ -292,9 +290,15 @@ namespace BitTorrent
         QString toMagnetUri() const;
 
         bool needSaveResumeData() const;
-        void saveResumeData();
 
+        // Session interface
         libtorrent::torrent_handle nativeHandle() const;
+
+        void handleAlert(libtorrent::alert *a);
+        void handleStateUpdate(const libtorrent::torrent_status &nativeStatus);
+        void handleTempPathChanged();
+        void handleAppendExtensionToggled();
+        void saveResumeData();
 
     private:
         typedef boost::function<void ()> EventTrigger;
@@ -304,11 +308,6 @@ namespace BitTorrent
         void updateStatus(const libtorrent::torrent_status &nativeStatus);
         void updateState();
         void updateTorrentInfo();
-
-        void handleAlert(libtorrent::alert *a);
-        void handleStateUpdate(const libtorrent::torrent_status &nativeStatus);
-        void handleTempPathChanged();
-        void handleAppendExtensionToggled();
 
         void handleStorageMovedAlert(libtorrent::storage_moved_alert *p);
         void handleStorageMovedFailedAlert(libtorrent::storage_moved_failed_alert *p);
@@ -341,7 +340,7 @@ namespace BitTorrent
         bool addUrlSeed(const QUrl &urlSeed);
         bool removeUrlSeed(const QUrl &urlSeed);
 
-        SessionPrivate *const m_session;
+        Session *const m_session;
         libtorrent::torrent_handle m_nativeHandle;
         libtorrent::torrent_status m_nativeStatus;
         TorrentState  m_state;
