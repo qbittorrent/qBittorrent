@@ -111,7 +111,7 @@ Utils::String::NaturalCompare::NaturalCompare()
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 #if defined(Q_OS_WIN)
     // Without ICU library, QCollator doesn't support `setNumericMode(true)` on OS older than Win7
-    if(SysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
+    if(QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
         return;
 #endif
     m_collator.setNumericMode(true);
@@ -124,7 +124,7 @@ bool Utils::String::NaturalCompare::operator()(const QString &l, const QString &
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 #if defined(Q_OS_WIN)
     // Without ICU library, QCollator doesn't support `setNumericMode(true)` on OS older than Win7
-    if(SysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
+    if(QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
         return lessThan(l, r);
 #endif
     return (m_collator.compare(l, r) < 0);
