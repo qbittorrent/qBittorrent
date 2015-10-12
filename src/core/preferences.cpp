@@ -835,7 +835,17 @@ void Preferences::setProxyType(int type)
     setValue("Preferences/Connection/ProxyType", type);
 }
 
-bool Preferences::proxyPeerConnections() const
+bool Preferences::getProxyAllowNonI2p() const
+{
+    return value("Preferences/Connection/ProxyAllowNonI2p", false).toBool();
+}
+
+void Preferences::setProxyAllowNonI2p(bool enabled)
+{
+    setValue("Preferences/Connection/ProxyAllowNonI2p", enabled);
+}
+
+bool Preferences::getProxyPeerConnections() const
 {
     return value("Preferences/Connection/ProxyPeerConnections", false).toBool();
 }

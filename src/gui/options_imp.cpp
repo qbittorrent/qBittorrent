@@ -234,6 +234,7 @@ options_imp::options_imp(QWidget *parent)
     connect(comboProxyType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(textProxyIP, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(spinProxyPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(checkAllowNonI2p, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
     connect(checkProxyPeerConnecs, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
     connect(checkForceProxy, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
     connect(isProxyOnlyForTorrents, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
@@ -453,6 +454,7 @@ void options_imp::saveOptions()
     pref->setProxyType(getProxyType());
     pref->setProxyIp(getProxyIp());
     pref->setProxyPort(getProxyPort());
+    pref->setProxyAllowNonI2p(checkAllowNonI2p->isChecked());
     pref->setProxyPeerConnections(checkProxyPeerConnecs->isChecked());
     pref->setForceProxy(checkForceProxy->isChecked());
     pref->setProxyOnlyForTorrents(isProxyOnlyForTorrents->isChecked());
@@ -530,7 +532,6 @@ int options_imp::getProxyType() const
     switch (comboProxyType->currentIndex()) {
     case 1:
         return Proxy::SOCKS4;
-        break;
     case 2:
         if (isProxyAuthEnabled())
             return Proxy::SOCKS5_PW;
@@ -539,6 +540,8 @@ int options_imp::getProxyType() const
         if (isProxyAuthEnabled())
             return Proxy::HTTP_PW;
         return Proxy::HTTP;
+    case 4:
+        return Proxy::I2P_PROXY;
     default:
         return -1;
     }
@@ -701,13 +704,17 @@ void options_imp::loadOptions()
     case Proxy::HTTP_PW:
         comboProxyType->setCurrentIndex(3);
         break;
+    case Proxy::I2P_PROXY:
+        comboProxyType->setCurrentIndex(4);
+        break;
     default:
         comboProxyType->setCurrentIndex(0);
     }
     enableProxy(comboProxyType->currentIndex());
     textProxyIP->setText(pref->getProxyIp());
     spinProxyPort->setValue(pref->getProxyPort());
-    checkProxyPeerConnecs->setChecked(pref->proxyPeerConnections());
+    checkAllowNonI2p->setChecked(pref->getProxyAllowNonI2p());
+    checkProxyPeerConnecs->setChecked(pref->getProxyPeerConnections());
     checkForceProxy->setChecked(pref->getForceProxy());
     isProxyOnlyForTorrents->setChecked(pref->isProxyOnlyForTorrents());
     checkProxyAuth->setChecked(pref->isProxyAuthEnabled());
@@ -1054,12 +1061,19 @@ void options_imp::enableProxy(int index)
         checkProxyPeerConnecs->setEnabled(true);
         checkForceProxy->setEnabled(true);
         isProxyOnlyForTorrents->setEnabled(true);
-        if (index > 1) {
+        if (index > 1 && index < 4) {
             checkProxyAuth->setEnabled(true);
         }
         else {
             checkProxyAuth->setEnabled(false);
             checkProxyAuth->setChecked(false);
+        }
+
+        if (index == 4) {
+            checkAllowNonI2p->setEnabled(true);
+        }
+        else {
+            checkAllowNonI2p->setEnabled(false);
         }
     }
     else {
@@ -1068,6 +1082,7 @@ void options_imp::enableProxy(int index)
         textProxyIP->setEnabled(false);
         lblProxyPort->setEnabled(false);
         spinProxyPort->setEnabled(false);
+        checkAllowNonI2p->setEnabled(false);
         checkProxyPeerConnecs->setEnabled(false);
         checkForceProxy->setEnabled(false);
         isProxyOnlyForTorrents->setEnabled(false);

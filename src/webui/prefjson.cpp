@@ -101,7 +101,8 @@ QByteArray prefjson::getPreferences()
     data["proxy_type"] = pref->getProxyType();
     data["proxy_ip"] = pref->getProxyIp();
     data["proxy_port"] = pref->getProxyPort();
-    data["proxy_peer_connections"] = pref->proxyPeerConnections();
+    data["proxy_allow_non_i2p_connections"] = pref->getProxyAllowNonI2p();
+    data["proxy_peer_connections"] = pref->getProxyPeerConnections();
     data["force_proxy"] = pref->getForceProxy();
     data["proxy_auth_enabled"] = pref->isProxyAuthEnabled();
     data["proxy_username"] = pref->getProxyUsername();
@@ -267,6 +268,8 @@ void prefjson::setPreferences(const QString& json)
         pref->setProxyIp(m["proxy_ip"].toString());
     if (m.contains("proxy_port"))
         pref->setProxyPort(m["proxy_port"].toUInt());
+    if (m.contains("proxy_allow_non_i2p_connections"))
+        pref->setProxyAllowNonI2p(m["proxy_allow_non_i2p_connections"].toBool());
     if (m.contains("proxy_peer_connections"))
         pref->setProxyPeerConnections(m["proxy_peer_connections"].toBool());
     if (m.contains("force_proxy"))

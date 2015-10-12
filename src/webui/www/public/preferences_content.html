@@ -69,10 +69,11 @@
 <fieldset class="settings">
   <legend>QBT_TR(Listening Port)QBT_TR</legend>
   <label for="port_value">QBT_TR(Port used for incoming connections:)QBT_TR</label>
-  <input type="text" id="port_value" style="width: 4em;"/><br/>
+  <input type="number" min="1" max="65535" id="port_value" style="width: 4em;"/>
+  <input type="button" onclick="createRandomPort();" value="QBT_TR(Random)QBT_TR" /><br/>
   <input type="checkbox" id="upnp_checkbox"/>
   <label for="upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR</label><br/>
-  <input type="checkbox" id="random_port_checkbox"/>
+  <input type="checkbox" id="random_port_checkbox" onclick="updateRandomPortCheckbox();"/>
   <label for="random_port_checkbox">QBT_TR(Use different port on each startup)QBT_TR</label>
 </fieldset>
 
@@ -84,28 +85,28 @@
     <input type="checkbox" id="max_connec_checkbox" onClick="updateMaxConnecEnabled();"/>
     <label for="max_connec_checkbox">QBT_TR(Global maximum number of connections:)QBT_TR</label>
   </td>
-  <td><input type="text" id="max_connec_value" style="width: 4em;"/></td>
+  <td><input type="number" min="2" max="2000" id="max_connec_value" style="width: 4em;"/></td>
   </tr>
   <tr>
   <td>
     <input type="checkbox" id="max_connec_per_torrent_checkbox" onClick="updateMaxConnecPerTorrentEnabled();"/>
     <label for="max_connec_per_torrent_checkbox">QBT_TR(Maximum number of connections per torrent:)QBT_TR</label>
   </td>
-  <td><input type="text" id="max_connec_per_torrent_value" style="width: 4em;"/></td>
+  <td><input type="number" min="2" max="2000" id="max_connec_per_torrent_value" style="width: 4em;"/></td>
   </tr>
   <tr>
   <td>
     <input type="checkbox" id="max_uploads_checkbox" onClick="updateMaxUploadsEnabled();"/>
     <label for="max_uploads_checkbox">QBT_TR(Global maximum number of upload slots:)QBT_TR</label>
   </td>
-  <td><input type="text" id="max_uploads_value" style="width: 4em;"/></td>
+  <td><input type="number" min="0" max="2000" id="max_uploads_value" style="width: 4em;"/></td>
   </tr>
   <tr>
   <td>
     <input type="checkbox" id="max_uploads_per_torrent_checkbox" onClick="updateMaxUploadsPerTorrentEnabled();"/>
     <label for="max_uploads_per_torrent_checkbox">QBT_TR(Maximum number of upload slots per torrent:)QBT_TR</label>
   </td>
-  <td><input type="text" id="max_uploads_per_torrent_value" style="width: 4em;"/></td>
+  <td><input type="number" min="0" max="500" id="max_uploads_per_torrent_value" style="width: 4em;"/></td>
   </tr>
   </table>
 </fieldset>
@@ -119,6 +120,7 @@
       <option value="socks4">QBT_TR(SOCKS4)QBT_TR</option>
       <option value="socks5">QBT_TR(SOCKS5)QBT_TR</option>
       <option value="http">QBT_TR(HTTP)QBT_TR</option>
+      <option value="i2p_proxy">QBT_TR(I2P_PROXY)QBT_TR</option>
     </select>
     </div>
     <div class="formRow">
@@ -127,7 +129,11 @@
     </div>
     <div class="formRow">
     <label for="peer_proxy_port_value" class="leftLabelSmall">QBT_TR(Port:)QBT_TR</label>
-    <input type="text" id="peer_proxy_port_value" style="width: 4em;"/>
+    <input type="number" min="1" max="65535" id="peer_proxy_port_value" style="width: 4em;"/>
+    </div>
+    <div class="formRow">
+    <input type="checkbox" id="proxy_allow_non_i2p_connections_checkbox"/>
+    <label for="proxy_allow_non_i2p_connections_checkbox">QBT_TR(Allow non I2P connections)QBT_TR</label>
     </div>
     <div class="formRow">
     <input type="checkbox" id="use_peer_proxy_checkbox"/>
@@ -170,14 +176,14 @@
     <input type="checkbox" id="up_limit_checkbox" onClick="updateUpLimitEnabled();"/>
     <label for ="up_limit_checkbox">QBT_TR(Upload:)QBT_TR</label>
   </td>
-  <td><input type="text" id="up_limit_value" style="width: 4em;"/>&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR</td>
+  <td><input type="number" min="1" max="1000000" id="up_limit_value" style="width: 4em;"/>&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR</td>
   </tr>
   <tr>
   <td>
     <input type="checkbox" id="dl_limit_checkbox" onClick="updateDlLimitEnabled();"/>
     <label for="dl_limit_checkbox">QBT_TR(Download:)QBT_TR</label>
   </td>
-  <td><input type="text" id="dl_limit_value" style="width: 4em;"/>&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR</td>
+  <td><input type="number" min="1" max="1000000" id="dl_limit_value" style="width: 4em;"/>&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR</td>
   </tr>
   </table>
   <fieldset class="settings">
@@ -199,14 +205,14 @@
     <input type="checkbox" id="alt_up_limit_checkbox" onClick="updateAltUpLimitEnabled();"/>
     <label for ="alt_up_limit_checkbox">QBT_TR(Upload:)QBT_TR</label>
   </td>
-  <td><input type="text" id="alt_up_limit_value" style="width: 4em;"/>&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR</td>
+  <td><input type="number" min="1" max="1000000" id="alt_up_limit_value" style="width: 4em;"/>&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR</td>
   </tr>
   <tr>
   <td>
     <input type="checkbox" id="alt_dl_limit_checkbox" onClick="updateAltDlLimitEnabled();"/>
     <label for="alt_dl_limit_checkbox">QBT_TR(Download:)QBT_TR</label>
   </td>
-  <td><input type="text" id="alt_dl_limit_value" style="width: 4em;"/>&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR</td>
+  <td><input type="number" min="1" max="1000000" id="alt_dl_limit_value" style="width: 4em;"/>&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR</td>
   </tr>
   </table>
 
@@ -260,15 +266,15 @@
   <label for="queueing_checkbox">QBT_TR(Torrent Queueing)QBT_TR</label></legend>
   <div class="formRow">
   <label for="max_active_dl_value" style="margin-left: 20px;" class="leftLabelLarge">QBT_TR(Maximum active downloads:)QBT_TR</label>
-  <input type="text" id="max_active_dl_value" style="width: 4em;"/>
+  <input type="number" min="-1" max="999" id="max_active_dl_value" style="width: 4em;"/>
   </div>
   <div class="formRow">
   <label for="max_active_up_value" style="margin-left: 20px;" class="leftLabelLarge">QBT_TR(Maximum active uploads:)QBT_TR</label>
-  <input type="text" id="max_active_up_value" style="width: 4em;"/>
+  <input type="number" min="-1" max="999" id="max_active_up_value" style="width: 4em;"/>
   </div>
   <div class="formRow">
   <label for="max_active_to_value" style="margin-left: 20px;" class="leftLabelLarge">QBT_TR(Maximum active torrents:)QBT_TR</label>
-  <input type="text" id="max_active_to_value" style="width: 4em;"/>
+  <input type="number" min="-1" max="999" id="max_active_to_value" style="width: 4em;"/>
   </div>
   <div class="formRow">
   <input type="checkbox" id="dont_count_slow_torrents_checkbox"/>
@@ -280,7 +286,7 @@
   <legend>QBT_TR(Share Ratio Limiting)QBT_TR</legend>
   <input type="checkbox" id="max_ratio_checkbox" onClick="updateMaxRatioEnabled();"/>
   <label for="max_ratio_checkbox">QBT_TR(Seed torrents until their ratio reaches)QBT_TR</label>
-  <input type="text" id="max_ratio_value" style="width: 4em;"/>
+  <input type="number" min="0" max="9998" step="0.05" id="max_ratio_value" style="width: 4em;"/>
   QBT_TR(then)QBT_TR
   <select id="max_ratio_act">
     <option value="0">QBT_TR(Pause them)QBT_TR</option>
@@ -344,7 +350,7 @@
 
 <fieldset class="settings">
   <legend>QBT_TR(HTTP Server)QBT_TR</legend>
-  <label for="webui_port_value">QBT_TR(Port:)QBT_TR</label><input type="text" id="webui_port_value" style="width: 4em;"/><br/>
+  <label for="webui_port_value">QBT_TR(Port:)QBT_TR</label><input type="number" min="1" max="65535" id="webui_port_value" style="width: 4em;"/><br/>
   <input type="checkbox" id="webui_upnp_checkbox"/>
   <label for="webui_upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP to forward the port from my router)QBT_TR</label><br/>
   <fieldset class="settings">
@@ -497,6 +503,18 @@ updateAutoRun = function() {
 }
 
 // Connection tab
+createRandomPort = function() {
+  $('port_value').setProperty('value', Math.floor(Math.random() * 64512 + 1024));
+}
+
+updateRandomPortCheckbox = function() {
+  if($('random_port_checkbox').getProperty('checked')) {
+    $('port_value').setProperty('disabled', true);
+  } else {
+    $('port_value').setProperty('disabled', false);
+  }
+}
+
 updateMaxConnecEnabled = function() {
   if($('max_connec_checkbox').getProperty('checked')) {
     $('max_connec_value').setProperty('disabled', false);
@@ -542,9 +560,15 @@ updatePeerProxySettings = function() {
     } else {
       $('peer_proxy_auth_checkbox').setProperty('disabled', false);
     }
+
+    if($('peer_proxy_type_select').getProperty('value') == "i2p_proxy")
+      $('proxy_allow_non_i2p_connections_checkbox').setProperty('disabled', false);
+    else
+      $('proxy_allow_non_i2p_connections_checkbox').setProperty('disabled', true);
   } else {
     $('peer_proxy_host_text').setProperty('disabled', true);
     $('peer_proxy_port_value').setProperty('disabled', true);
+    $('proxy_allow_non_i2p_connections_checkbox').setProperty('disabled', false);
     $('use_peer_proxy_checkbox').setProperty('disabled', true);
     $('force_proxy_checkbox').setProperty('disabled', true);
     $('peer_proxy_auth_checkbox').setProperty('disabled', true);
@@ -762,6 +786,8 @@ loadPreferences = function() {
                     // Listening Port
                     $('port_value').setProperty('value', pref.listen_port.toInt());
                     $('upnp_checkbox').setProperty('checked', pref.upnp);
+
+                    updateRandomPortCheckbox();
                     $('random_port_checkbox').setProperty('checked', pref.random_port);
 
                     // Connections Limits
@@ -815,12 +841,16 @@ loadPreferences = function() {
                       case 3: // HTTP_PW
                         $('peer_proxy_type_select').setProperty('value', 'http');
                         break;
+                      case 6: // I2P_PROXY
+                        $('peer_proxy_type_select').setProperty('value', 'i2p_proxy');
+                        break;
                       default: // NONE
-                      $('peer_proxy_type_select').setProperty('value', 'none');
+                        $('peer_proxy_type_select').setProperty('value', 'none');
                     }
                     updatePeerProxySettings();
                     $('peer_proxy_host_text').setProperty('value', pref.proxy_ip);
                     $('peer_proxy_port_value').setProperty('value', pref.proxy_port);
+                    $('proxy_allow_non_i2p_connections_checkbox').setProperty('checked', pref.proxy_allow_non_i2p_connections);
                     $('use_peer_proxy_checkbox').setProperty('checked', pref.proxy_peer_connections);
                     $('force_proxy_checkbox').setProperty('checked', pref.force_proxy);
                     $('peer_proxy_auth_checkbox').setProperty('checked', pref.proxy_auth_enabled);
@@ -839,6 +869,7 @@ loadPreferences = function() {
                     var up_limit = pref.up_limit.toInt();
                     if(up_limit <= 0) {
                       $('up_limit_checkbox').setProperty('checked', false);
+                      $('up_limit_value').setProperty('value', 100);
                     } else {
                       $('up_limit_checkbox').setProperty('checked', true);
                       $('up_limit_value').setProperty('value', up_limit);
@@ -847,6 +878,7 @@ loadPreferences = function() {
                     var dl_limit = pref.dl_limit.toInt();
                     if(dl_limit <= 0) {
                       $('dl_limit_checkbox').setProperty('checked', false);
+                      $('dl_limit_value').setProperty('value', 100);
                     } else {
                       $('dl_limit_checkbox').setProperty('checked', true);
                       $('dl_limit_value').setProperty('value', dl_limit);
@@ -861,6 +893,7 @@ loadPreferences = function() {
                     var alt_up_limit = pref.alt_up_limit.toInt();
                     if(alt_up_limit <= 0) {
                       $('alt_up_limit_checkbox').setProperty('checked', false);
+                      $('alt_up_limit_value').setProperty('value', 10);
                     } else {
                       $('alt_up_limit_checkbox').setProperty('checked', true);
                       $('alt_up_limit_value').setProperty('value', alt_up_limit);
@@ -869,6 +902,7 @@ loadPreferences = function() {
                     var alt_dl_limit = pref.alt_dl_limit.toInt();
                     if(alt_dl_limit <= 0) {
                       $('alt_dl_limit_checkbox').setProperty('checked', false);
+                      $('alt_dl_limit_value').setProperty('value', 10);
                     } else {
                       $('alt_dl_limit_checkbox').setProperty('checked', true);
                       $('alt_dl_limit_value').setProperty('value', alt_dl_limit);
@@ -1046,6 +1080,10 @@ applyPreferences = function() {
         } else {
           proxy_type = 1;
         }
+      } else {
+        if(proxy_type_str == "i2p_proxy") {
+          proxy_type = 6;
+        }
       }
     }
   }
@@ -1053,6 +1091,7 @@ applyPreferences = function() {
   settings.set('proxy_auth_enabled', proxy_auth_enabled);
   settings.set('proxy_ip', $('peer_proxy_host_text').getProperty('value'));
   settings.set('proxy_port', $('peer_proxy_port_value').getProperty('value').toInt());
+  settings.set('proxy_allow_non_i2p_connections', $('proxy_allow_non_i2p_connections_checkbox').getProperty('checked'));
   settings.set('proxy_peer_connections', $('use_peer_proxy_checkbox').getProperty('checked'));
   settings.set('force_proxy', $('force_proxy_checkbox').getProperty('checked'));
   settings.set('proxy_username', $('peer_proxy_username_text').getProperty('value'));

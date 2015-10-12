@@ -394,6 +394,7 @@ void Session::setSessionSettings()
         sessionSettings.force_proxy = pref->getForceProxy();
     else
         sessionSettings.force_proxy = false;
+    sessionSettings.allow_i2p_mixed = pref->getProxyAllowNonI2p();
     sessionSettings.no_connect_privileged_ports = false;
     sessionSettings.seed_choking_algorithm = libt::session_settings::fastest_upload;
     qDebug() << "Set session settings";
@@ -633,6 +634,10 @@ void Session::configure()
     case Proxy::SOCKS5_PW:
         qDebug("type: socks5_pw");
         proxySettings.type = libt::proxy_settings::socks5_pw;
+        break;
+    case Proxy::I2P_PROXY:
+        qDebug("type: i2p_proxy");
+        proxySettings.type = libt::proxy_settings::i2p_proxy;
         break;
     default:
         proxySettings.type = libt::proxy_settings::none;
@@ -1852,7 +1857,7 @@ void Session::setProxySettings(libt::proxy_settings proxySettings)
 {
     qDebug() << Q_FUNC_INFO;
 
-    proxySettings.proxy_peer_connections = Preferences::instance()->proxyPeerConnections();
+    proxySettings.proxy_peer_connections = Preferences::instance()->getProxyPeerConnections();
     m_nativeSession->set_proxy(proxySettings);
 
     // Define environment variables for urllib in search engine plugins
@@ -1860,6 +1865,7 @@ void Session::setProxySettings(libt::proxy_settings proxySettings)
         qputenv("http_proxy", QByteArray());
         qputenv("https_proxy", QByteArray());
         qputenv("sock_proxy", QByteArray());
+        qputenv("i2p_proxy", QByteArray());
     }
     else {
         QString proxy_str;
@@ -1872,6 +1878,7 @@ void Session::setProxySettings(libt::proxy_settings proxySettings)
             proxy_str = QString("http://%1:%2").arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
             break;
         case libt::proxy_settings::socks5:
+        case libt::proxy_settings::i2p_proxy:
             proxy_str = QString("%1:%2").arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
             break;
         case libt::proxy_settings::socks5_pw:
@@ -1883,11 +1890,14 @@ void Session::setProxySettings(libt::proxy_settings proxySettings)
             qputenv("http_proxy", QByteArray());
             qputenv("https_proxy", QByteArray());
             qputenv("sock_proxy", QByteArray());
+            qputenv("i2p_proxy", QByteArray());
             return;
         }
         qDebug("HTTP communications proxy string: %s", qPrintable(proxy_str));
         if ((proxySettings.type == libt::proxy_settings::socks5) || (proxySettings.type == libt::proxy_settings::socks5_pw))
             qputenv("sock_proxy", proxy_str.toLocal8Bit());
+        else if (proxySettings.type == libt::proxy_settings::i2p_proxy)
+            qputenv("i2p_proxy", proxy_str.toLocal8Bit());
         else {
             qputenv("http_proxy", proxy_str.toLocal8Bit());
             qputenv("https_proxy", proxy_str.toLocal8Bit());

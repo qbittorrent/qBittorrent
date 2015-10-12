@@ -520,8 +520,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>454</width>
-             <height>942</height>
+             <width>363</width>
+             <height>844</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1036,8 +1036,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>361</width>
-             <height>586</height>
+             <width>335</width>
+             <height>537</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1305,6 +1305,11 @@
                      <string>HTTP</string>
                     </property>
                    </item>
+                   <item>
+                    <property name="text">
+                     <string>I2P_PROXY</string>
+                    </property>
+                   </item>
                   </widget>
                  </item>
                  <item>
@@ -1360,6 +1365,16 @@
                   </widget>
                  </item>
                 </layout>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkAllowNonI2p">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Allow non I2P connections</string>
+                 </property>
+                </widget>
                </item>
                <item>
                 <widget class="QCheckBox" name="checkProxyPeerConnecs">
@@ -1951,7 +1966,7 @@
              <x>0</x>
              <y>0</y>
              <width>440</width>
-             <height>481</height>
+             <height>442</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">

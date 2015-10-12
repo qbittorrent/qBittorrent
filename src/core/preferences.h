@@ -65,7 +65,8 @@ namespace Proxy
         SOCKS5 = 2,
         HTTP_PW = 3,
         SOCKS5_PW = 4,
-        SOCKS4 = 5
+        SOCKS4 = 5,
+        I2P_PROXY = 6
     };
 }
 
@@ -245,7 +246,9 @@ public:
     void setProxyPassword(const QString &password);
     int getProxyType() const;
     void setProxyType(int type);
-    bool proxyPeerConnections() const;
+    bool getProxyAllowNonI2p() const;
+    void setProxyAllowNonI2p(bool enabled);
+    bool getProxyPeerConnections() const;
     void setProxyPeerConnections(bool enabled);
     bool getForceProxy() const;
     void setForceProxy(bool enabled);

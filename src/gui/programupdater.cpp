@@ -63,6 +63,7 @@ ProgramUpdater::ProgramUpdater(QObject *parent, bool invokedByUser) :
     case Proxy::SOCKS5:
     case Proxy::SOCKS5_PW:
       proxy.setType(QNetworkProxy::Socks5Proxy);
+      break;
     default:
       proxy.setType(QNetworkProxy::HttpProxy);
       break;
