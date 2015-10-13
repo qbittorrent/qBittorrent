@@ -552,7 +552,6 @@ updatePeerProxySettings = function() {
     $('peer_proxy_host_text').setProperty('disabled', false);
     $('peer_proxy_port_value').setProperty('disabled', false);
     $('use_peer_proxy_checkbox').setProperty('disabled', false);
-    $('force_proxy_checkbox').setProperty('disabled', false);
     if($('peer_proxy_type_select').getProperty('value') != "socks5") {
       $('peer_proxy_auth_checkbox').setProperty('checked', false);
       $('peer_proxy_auth_checkbox').setProperty('disabled', true);
@@ -561,14 +560,17 @@ updatePeerProxySettings = function() {
       $('peer_proxy_auth_checkbox').setProperty('disabled', false);
     }
 
-    if($('peer_proxy_type_select').getProperty('value') == "i2p_proxy")
+    if($('peer_proxy_type_select').getProperty('value') == "i2p_proxy") {
       $('proxy_allow_non_i2p_connections_checkbox').setProperty('disabled', false);
-    else
+      $('force_proxy_checkbox').setProperty('disabled', true);
+    } else {
       $('proxy_allow_non_i2p_connections_checkbox').setProperty('disabled', true);
+      $('force_proxy_checkbox').setProperty('disabled', false);
+    }
   } else {
     $('peer_proxy_host_text').setProperty('disabled', true);
     $('peer_proxy_port_value').setProperty('disabled', true);
-    $('proxy_allow_non_i2p_connections_checkbox').setProperty('disabled', false);
+    $('proxy_allow_non_i2p_connections_checkbox').setProperty('disabled', true);
     $('use_peer_proxy_checkbox').setProperty('disabled', true);
     $('force_proxy_checkbox').setProperty('disabled', true);
     $('peer_proxy_auth_checkbox').setProperty('disabled', true);
@@ -1245,19 +1247,19 @@ applyPreferences = function() {
   var json_str = JSON.encode(settings);
 
   new Request({url: 'command/setPreferences',
-			    method: 'post',
-			    data: {'json': json_str,
+                            method: 'post',
+                            data: {'json': json_str,
                                    },
                             onFailure: function() {
                               alert("QBT_TR(Unable to save program preferences, qBittorrent is probably unreachable.)QBT_TR");
                               window.parent.closeWindows();
                             },
-			    onSuccess: function() {
+                            onSuccess: function() {
                                 // Close window
                                 window.parent.location.reload();
-				window.parent.closeWindows();
-			    }
-		}).send();
+                                window.parent.closeWindows();
+                            }
+                }).send();
 };
 
 loadPreferences();
