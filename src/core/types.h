@@ -30,6 +30,7 @@
 #define TYPES_H
 
 #include <QVariant>
+#include <QDataStream>
 
 const qlonglong MAX_ETA = 8640000;
 
@@ -54,5 +55,20 @@ enum class ShutdownAction
     Suspend,
     Hibernate
 };
+
+template<typename T>
+inline QDataStream &operator<<(QDataStream &out, const T &val)
+{
+    return (out << static_cast<int>(val));
+}
+
+template<typename T>
+inline QDataStream &operator>>(QDataStream &in, T &val)
+{
+    int tmp;
+    in >> tmp;
+    val = static_cast<T>(tmp);
+    return in;
+}
 
 #endif // TYPES_H

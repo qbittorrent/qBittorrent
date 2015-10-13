@@ -63,6 +63,8 @@ Preferences::Preferences()
     , dirty(false)
     , lock(QReadWriteLock::Recursive)
 {
+    qRegisterMetaTypeStreamOperators<MaxRatioAction>("MaxRatioAction");
+
     QIniSettings *settings = new QIniSettings;
 #ifndef Q_OS_MAC
     QIniSettings *settings_new = new QIniSettings("qBittorrent", "qBittorrent_new");
