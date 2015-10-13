@@ -1060,7 +1060,6 @@ void options_imp::enableProxy(int index)
         spinProxyPort->setEnabled(true);
         checkProxyPeerConnecs->setEnabled(true);
         checkForceProxy->setEnabled(true);
-        isProxyOnlyForTorrents->setEnabled(true);
         if (index > 1 && index < 4) {
             checkProxyAuth->setEnabled(true);
         }
@@ -1071,9 +1070,11 @@ void options_imp::enableProxy(int index)
 
         if (index == 4) {
             checkAllowNonI2p->setEnabled(true);
+            isProxyOnlyForTorrents->setEnabled(false);
         }
         else {
             checkAllowNonI2p->setEnabled(false);
+            isProxyOnlyForTorrents->setEnabled(true);
         }
     }
     else {
