@@ -143,6 +143,10 @@
     <input type="checkbox" id="force_proxy_checkbox"/>
     <label for="force_proxy_checkbox">QBT_TR(Disable connections not supported by proxies)QBT_TR</label>
     </div>
+    <div class="formRow">
+    <input type="checkbox" id="proxy_only_for_torrents_checkbox"/>
+    <label for="proxy_only_for_torrents_checkbox">QBT_TR(Use proxy only for torrents)QBT_TR</label>
+    </div>
     <fieldset class="settings">
     <legend><input type="checkbox" id="peer_proxy_auth_checkbox" onclick="updatePeerProxyAuthSettings();"/>
     <label for="peer_proxy_auth_checkbox">QBT_TR(Authentication)QBT_TR</label></legend>
@@ -552,7 +556,8 @@ updatePeerProxySettings = function() {
     $('peer_proxy_host_text').setProperty('disabled', false);
     $('peer_proxy_port_value').setProperty('disabled', false);
     $('use_peer_proxy_checkbox').setProperty('disabled', false);
-    if($('peer_proxy_type_select').getProperty('value') != "socks5") {
+    $('force_proxy_checkbox').setProperty('disabled', false);
+    if($('peer_proxy_type_select').getProperty('value') != "socks5" && $('peer_proxy_type_select').getProperty('value') != "http") {
       $('peer_proxy_auth_checkbox').setProperty('checked', false);
       $('peer_proxy_auth_checkbox').setProperty('disabled', true);
       updatePeerProxyAuthSettings();
@@ -562,10 +567,10 @@ updatePeerProxySettings = function() {
 
     if($('peer_proxy_type_select').getProperty('value') == "i2p_proxy") {
       $('proxy_allow_non_i2p_connections_checkbox').setProperty('disabled', false);
-      $('force_proxy_checkbox').setProperty('disabled', true);
+      $('proxy_only_for_torrents_checkbox').setProperty('disabled', true);
     } else {
       $('proxy_allow_non_i2p_connections_checkbox').setProperty('disabled', true);
-      $('force_proxy_checkbox').setProperty('disabled', false);
+      $('proxy_only_for_torrents_checkbox').setProperty('disabled', false);
     }
   } else {
     $('peer_proxy_host_text').setProperty('disabled', true);
@@ -573,6 +578,7 @@ updatePeerProxySettings = function() {
     $('proxy_allow_non_i2p_connections_checkbox').setProperty('disabled', true);
     $('use_peer_proxy_checkbox').setProperty('disabled', true);
     $('force_proxy_checkbox').setProperty('disabled', true);
+    $('proxy_only_for_torrents_checkbox').setProperty('disabled', true);
     $('peer_proxy_auth_checkbox').setProperty('disabled', true);
     $('peer_proxy_auth_checkbox').setProperty('checked', false);
     updatePeerProxyAuthSettings();
@@ -855,6 +861,7 @@ loadPreferences = function() {
                     $('proxy_allow_non_i2p_connections_checkbox').setProperty('checked', pref.proxy_allow_non_i2p_connections);
                     $('use_peer_proxy_checkbox').setProperty('checked', pref.proxy_peer_connections);
                     $('force_proxy_checkbox').setProperty('checked', pref.force_proxy);
+                    $('proxy_only_for_torrents_checkbox').setProperty('checked', pref.proxy_only_for_torrents);
                     $('peer_proxy_auth_checkbox').setProperty('checked', pref.proxy_auth_enabled);
                     updatePeerProxyAuthSettings();
                     $('peer_proxy_username_text').setProperty('value', pref.proxy_username);
@@ -1096,6 +1103,7 @@ applyPreferences = function() {
   settings.set('proxy_allow_non_i2p_connections', $('proxy_allow_non_i2p_connections_checkbox').getProperty('checked'));
   settings.set('proxy_peer_connections', $('use_peer_proxy_checkbox').getProperty('checked'));
   settings.set('force_proxy', $('force_proxy_checkbox').getProperty('checked'));
+  settings.set('proxy_only_for_torrents', $('proxy_only_for_torrents_checkbox').getProperty('checked'));
   settings.set('proxy_username', $('peer_proxy_username_text').getProperty('value'));
   settings.set('proxy_password', $('peer_proxy_password_text').getProperty('value'));
 

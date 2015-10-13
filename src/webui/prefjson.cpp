@@ -104,6 +104,7 @@ QByteArray prefjson::getPreferences()
     data["proxy_allow_non_i2p_connections"] = pref->getProxyAllowNonI2p();
     data["proxy_peer_connections"] = pref->getProxyPeerConnections();
     data["force_proxy"] = pref->getForceProxy();
+    data["proxy_only_for_torrents"] = pref->isProxyOnlyForTorrents();
     data["proxy_auth_enabled"] = pref->isProxyAuthEnabled();
     data["proxy_username"] = pref->getProxyUsername();
     data["proxy_password"] = pref->getProxyPassword();
@@ -274,6 +275,8 @@ void prefjson::setPreferences(const QString& json)
         pref->setProxyPeerConnections(m["proxy_peer_connections"].toBool());
     if (m.contains("force_proxy"))
         pref->setForceProxy(m["force_proxy"].toBool());
+    if (m.contains("proxy_only_for_torrents"))
+        pref->setProxyOnlyForTorrents(m["proxy_only_for_torrents"].toBool());
     if (m.contains("proxy_auth_enabled"))
         pref->setProxyAuthEnabled(m["proxy_auth_enabled"].toBool());
     if (m.contains("proxy_username"))
