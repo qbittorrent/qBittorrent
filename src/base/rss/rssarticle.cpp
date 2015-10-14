@@ -32,8 +32,8 @@
 #include <QDebug>
 #include <iostream>
 
-#include "rssarticle.h"
 #include "rssfeed.h"
+#include "rssarticle.h"
 
 // public constructor
 RssArticle::RssArticle(RssFeed* parent, const QString& guid):

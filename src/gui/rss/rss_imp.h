@@ -35,9 +35,9 @@
 #include <QPointer>
 #include <QShortcut>
 
+#include "base/rss/rssfolder.h"
+#include "base/rss/rssmanager.h"
 #include "ui_rss.h"
-#include "rssfolder.h"
-#include "rssmanager.h"
 
 class FeedListWidget;
 

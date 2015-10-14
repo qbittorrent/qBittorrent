@@ -29,21 +29,22 @@
  */
 
 #include <QDebug>
-#include "rssfeed.h"
-#include "rssmanager.h"
+
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/magneturi.h"
-#include "rssfolder.h"
 #include "base/preferences.h"
 #include "base/qinisettings.h"
-#include "rssarticle.h"
-#include "rssparser.h"
 #include "base/utils/misc.h"
-#include "rssdownloadrulelist.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
 #include "base/utils/fs.h"
 #include "base/logger.h"
+#include "rssdownloadrulelist.h"
+#include "rssarticle.h"
+#include "rssparser.h"
+#include "rssfolder.h"
+#include "rssmanager.h"
+#include "rssfeed.h"
 
 bool rssArticleDateRecentThan(const RssArticlePtr& left, const RssArticlePtr& right)
 {
@@ -227,12 +228,12 @@ QString RssFeed::url() const
   return m_url;
 }
 
-QIcon RssFeed::icon() const
+QString RssFeed::iconPath() const
 {
   if (m_inErrorState)
-    return QIcon(":/icons/oxygen/unavailable.png");
+    return QLatin1String(":/icons/oxygen/unavailable.png");
 
-  return QIcon(m_icon);
+  return m_icon;
 }
 
 bool RssFeed::hasCustomIcon() const

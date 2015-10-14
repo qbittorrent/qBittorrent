@@ -28,8 +28,8 @@
  * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
-#include "rssfile.h"
 #include "rssfolder.h"
+#include "rssfile.h"
 
 QStringList RssFile::pathHierarchy() const {
   QStringList path;

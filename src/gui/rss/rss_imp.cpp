@@ -44,11 +44,11 @@
 #include "cookiesdlg.h"
 #include "base/preferences.h"
 #include "rsssettingsdlg.h"
-#include "rssmanager.h"
-#include "rssfolder.h"
-#include "rssarticle.h"
-#include "rssparser.h"
-#include "rssfeed.h"
+#include "base/rss/rssmanager.h"
+#include "base/rss/rssfolder.h"
+#include "base/rss/rssarticle.h"
+#include "base/rss/rssparser.h"
+#include "base/rss/rssfeed.h"
 #include "automatedrssdownloader.h"
 #include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
@@ -479,7 +479,7 @@ QTreeWidgetItem* RSSImp::createFolderListItem(const RssFilePtr& rssFile)
     Q_ASSERT(rssFile);
     QTreeWidgetItem* item = new QTreeWidgetItem;
     item->setData(0, Qt::DisplayRole, QVariant(rssFile->displayName() + QString::fromUtf8("  (") + QString::number(rssFile->unreadCount()) + QString(")")));
-    item->setData(0, Qt::DecorationRole, rssFile->icon());
+    item->setData(0, Qt::DecorationRole, QIcon(rssFile->iconPath()));
 
     return item;
 }
@@ -681,7 +681,7 @@ void RSSImp::updateFeedInfos(const QString& url, const QString& display_name, ui
     RssFeedPtr stream = qSharedPointerCast<RssFeed>(m_feedList->getRSSItem(item));
     item->setText(0, display_name + QString::fromUtf8("  (") + QString::number(nbUnread) + QString(")"));
     if (!stream->isLoading())
-        item->setData(0, Qt::DecorationRole, QVariant(stream->icon()));
+        item->setData(0, Qt::DecorationRole, QIcon(stream->iconPath()));
     // Update parent
     if (item->parent())
         updateItemInfos(item->parent());

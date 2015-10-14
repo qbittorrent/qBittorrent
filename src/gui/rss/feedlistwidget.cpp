@@ -28,10 +28,10 @@
  * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
-#include "feedlistwidget.h"
-#include "rssmanager.h"
-#include "rssfeed.h"
+#include "core/rss/rssmanager.h"
+#include "core/rss/rssfeed.h"
 #include "guiiconprovider.h"
+#include "feedlistwidget.h"
 
 FeedListWidget::FeedListWidget(QWidget *parent, const RssManagerPtr& rssmanager): QTreeWidget(parent), m_rssManager(rssmanager) {
   setContextMenuPolicy(Qt::CustomContextMenu);

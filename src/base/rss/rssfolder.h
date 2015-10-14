@@ -33,6 +33,7 @@
 
 #include <QHash>
 #include <QSharedPointer>
+
 #include "rssfile.h"
 
 class RssFolder;
@@ -61,7 +62,7 @@ public:
   QHash<QString, RssFeedPtr> getAllFeedsAsHash() const;
   virtual QString displayName() const;
   virtual QString id() const;
-  virtual QIcon icon() const;
+  virtual QString iconPath() const;
   bool hasChild(const QString &childId);
   virtual RssArticleList articleListByDateDesc() const;
   virtual RssArticleList unreadArticleListByDateDesc() const;

@@ -36,10 +36,10 @@
 
 #include "automatedrssdownloader.h"
 #include "ui_automatedrssdownloader.h"
-#include "rssdownloadrulelist.h"
+#include "base/rss/rssdownloadrulelist.h"
 #include "base/preferences.h"
-#include "rssmanager.h"
-#include "rssfeed.h"
+#include "base/rss/rssmanager.h"
+#include "base/rss/rssfeed.h"
 #include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
 #include "base/utils/fs.h"

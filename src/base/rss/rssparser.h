@@ -31,11 +31,12 @@
 #ifndef RSSPARSER_H
 #define RSSPARSER_H
 
-#include "rssarticle.h"
 #include <QMutex>
 #include <QQueue>
 #include <QThread>
 #include <QWaitCondition>
+
+#include "rssarticle.h"
 
 struct ParsingJob;
 

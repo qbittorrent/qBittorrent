@@ -36,6 +36,14 @@ HEADERS += \
     $$PWD/bittorrent/private/bandwidthscheduler.h \
     $$PWD/bittorrent/private/filterparserthread.h \
     $$PWD/bittorrent/private/statistics.h \
+    $$PWD/rss/rssmanager.h \
+    $$PWD/rss/rssfeed.h \
+    $$PWD/rss/rssfolder.h \
+    $$PWD/rss/rssfile.h \
+    $$PWD/rss/rssarticle.h \
+    $$PWD/rss/rssdownloadrule.h \
+    $$PWD/rss/rssdownloadrulelist.h \
+    $$PWD/rss/rssparser.h \
     $$PWD/utils/fs.h \
     $$PWD/utils/gzip.h \
     $$PWD/utils/misc.h \
@@ -79,6 +87,14 @@ SOURCES += \
     $$PWD/bittorrent/private/bandwidthscheduler.cpp \
     $$PWD/bittorrent/private/filterparserthread.cpp \
     $$PWD/bittorrent/private/statistics.cpp \
+    $$PWD/rss/rssmanager.cpp \
+    $$PWD/rss/rssfeed.cpp \
+    $$PWD/rss/rssfolder.cpp \
+    $$PWD/rss/rssarticle.cpp \
+    $$PWD/rss/rssdownloadrule.cpp \
+    $$PWD/rss/rssdownloadrulelist.cpp \
+    $$PWD/rss/rssfile.cpp \
+    $$PWD/rss/rssparser.cpp \
     $$PWD/utils/fs.cpp \
     $$PWD/utils/gzip.cpp \
     $$PWD/utils/misc.cpp \
