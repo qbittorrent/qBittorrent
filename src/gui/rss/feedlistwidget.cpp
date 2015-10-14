@@ -28,8 +28,8 @@
  * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
-#include "core/rss/rssmanager.h"
-#include "core/rss/rssfeed.h"
+#include "base/rss/rssmanager.h"
+#include "base/rss/rssfeed.h"
 #include "guiiconprovider.h"
 #include "feedlistwidget.h"
 

@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2010  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -34,36 +34,37 @@
 #include <QList>
 #include <QHash>
 #include <QVariantHash>
+
 #include "rssdownloadrule.h"
 
 class RssDownloadRuleList
 {
-  Q_DISABLE_COPY(RssDownloadRuleList)
+    Q_DISABLE_COPY(RssDownloadRuleList)
 
 public:
-  RssDownloadRuleList();
-  RssDownloadRulePtr findMatchingRule(const QString &feed_url, const QString &article_title) const;
-  // Operators
-  void saveRule(const RssDownloadRulePtr &rule);
-  void removeRule(const QString &name);
-  void renameRule(const QString &old_name, const QString &new_name);
-  RssDownloadRulePtr getRule(const QString &name) const;
-  inline QStringList ruleNames() const { return m_rules.keys(); }
-  inline bool isEmpty() const { return m_rules.isEmpty(); }
-  void saveRulesToStorage();
-  bool serialize(const QString& path);
-  bool unserialize(const QString& path);
-  void replace(RssDownloadRuleList* other);
+    RssDownloadRuleList();
+
+    RssDownloadRulePtr findMatchingRule(const QString &feedUrl, const QString &articleTitle) const;
+    // Operators
+    void saveRule(const RssDownloadRulePtr &rule);
+    void removeRule(const QString &name);
+    void renameRule(const QString &oldName, const QString &newName);
+    RssDownloadRulePtr getRule(const QString &name) const;
+    QStringList ruleNames() const;
+    bool isEmpty() const;
+    void saveRulesToStorage();
+    bool serialize(const QString &path);
+    bool unserialize(const QString &path);
+    void replace(RssDownloadRuleList *other);
 
 private:
-  void loadRulesFromStorage();
-  void loadRulesFromVariantHash(const QVariantHash& l);
-  QVariantHash toVariantHash() const;
+    void loadRulesFromStorage();
+    void loadRulesFromVariantHash(const QVariantHash &l);
+    QVariantHash toVariantHash() const;
 
 private:
-  QHash<QString, RssDownloadRulePtr> m_rules;
-  QHash<QString, QStringList> m_feedRules;
-
+    QHash<QString, RssDownloadRulePtr> m_rules;
+    QHash<QString, QStringList> m_feedRules;
 };
 
 #endif // RSSDOWNLOADFILTERLIST_H
