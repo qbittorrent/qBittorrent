@@ -28,15 +28,14 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "rssparser.h"
-#include "base/utils/fs.h"
-
 #include <QDebug>
 #include <QFile>
 #include <QRegExp>
 #include <QStringList>
 #include <QVariant>
-#include <QTextDocument>
+
+#include "base/utils/fs.h"
+#include "rssparser.h"
 
 struct ParsingJob {
   QString feedUrl;
@@ -343,10 +342,7 @@ void RssParser::parseAtomArticle(QXmlStreamReader& xml, const QString& feedUrl, 
 
     if (xml.isStartElement()) {
       if (xml.name() == "title") {
-        // Workaround for CDATA (QString cannot parse html escapes on it's own)
-        QTextDocument doc;
-        doc.setHtml(xml.readElementText());
-        article["title"] = doc.toPlainText().trimmed();
+        article["title"] = xml.readElementText().trimmed();
       }
       else if (xml.name() == "link") {
         QString link = ( xml.attributes().isEmpty() ?

@@ -31,7 +31,6 @@
 #ifndef RSSFILE_H
 #define RSSFILE_H
 
-#include <QIcon>
 #include <QList>
 #include <QStringList>
 #include <QSharedPointer>
@@ -55,7 +54,7 @@ public:
   virtual uint unreadCount() const = 0;
   virtual QString displayName() const = 0;
   virtual QString id() const = 0;
-  virtual QIcon icon() const = 0;
+  virtual QString iconPath() const = 0;
   virtual void rename(const QString &new_name) = 0;
   virtual void markAsRead() = 0;
   virtual RssFolder* parent() const = 0;

@@ -35,7 +35,8 @@
 #include <QWeakPointer>
 #include <QShortcut>
 #include <QRegExpValidator>
-#include "rssdownloadrule.h"
+
+#include "base/rss/rssdownloadrule.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

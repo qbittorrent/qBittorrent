@@ -39,9 +39,9 @@
 #include <QHash>
 #include <QUrl>
 
-#include "rssfile.h"
-#include "rssfeed.h"
-#include "rssmanager.h"
+#include "base/rss/rssfile.h"
+#include "base/rss/rssfeed.h"
+#include "base/rss/rssmanager.h"
 
 class FeedListWidget: public QTreeWidget {
   Q_OBJECT

@@ -32,11 +32,11 @@
 #include <QDebug>
 #include <QDir>
 
-#include "rssdownloadrule.h"
 #include "base/preferences.h"
+#include "base/utils/fs.h"
 #include "rssfeed.h"
 #include "rssarticle.h"
-#include "base/utils/fs.h"
+#include "rssdownloadrule.h"
 
 RssDownloadRule::RssDownloadRule(): m_enabled(false), m_useRegex(false), m_apstate(USE_GLOBAL)
 {

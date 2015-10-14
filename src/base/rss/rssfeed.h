@@ -66,7 +66,7 @@ public:
   virtual void rename(const QString &alias);
   virtual QString displayName() const;
   QString url() const;
-  virtual QIcon icon() const;
+  virtual QString iconPath() const;
   bool hasCustomIcon() const;
   void setIconPath(const QString &pathHierarchy);
   RssArticlePtr getItem(const QString &guid) const;

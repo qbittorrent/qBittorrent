@@ -30,12 +30,12 @@
 
 #include <QDebug>
 
-#include "guiiconprovider.h"
-#include "rssfolder.h"
-#include "rssarticle.h"
+#include "base/iconprovider.h"
 #include "base/bittorrent/session.h"
 #include "rssmanager.h"
 #include "rssfeed.h"
+#include "rssarticle.h"
+#include "rssfolder.h"
 
 RssFolder::RssFolder(RssFolder *parent, const QString &name): m_parent(parent), m_name(name) {
 }
@@ -231,9 +231,9 @@ QString RssFolder::id() const
   return m_name;
 }
 
-QIcon RssFolder::icon() const
+QString RssFolder::iconPath() const
 {
-  return GuiIconProvider::instance()->getIcon("inode-directory");
+  return IconProvider::instance()->getIconPath("inode-directory");
 }
 
 bool RssFolder::hasChild(const QString &childId) {
