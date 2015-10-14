@@ -1,6 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez, Arnaud Demaiziere
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,10 +32,13 @@
 #include "rssfolder.h"
 #include "rssfile.h"
 
-QStringList RssFile::pathHierarchy() const {
-  QStringList path;
-  if (parent())
-    path << parent()->pathHierarchy();
-  path << id();
-  return path;
+RssFile::~RssFile() {}
+
+QStringList RssFile::pathHierarchy() const
+{
+    QStringList path;
+    if (parent())
+        path << parent()->pathHierarchy();
+    path << id();
+    return path;
 }
