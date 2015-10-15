@@ -37,42 +37,45 @@
 
 #include "rssfolder.h"
 
-class RssDownloadRuleList;
-class RssParser;
-class RssManager;
-
-typedef QSharedPointer<RssManager> RssManagerPtr;
-
-class RssManager: public RssFolder
+namespace Rss
 {
-    Q_OBJECT
+    class DownloadRuleList;
+    class Parser;
+    class Manager;
 
-public:
-    RssManager();
-    ~RssManager();
+    typedef QSharedPointer<Manager> ManagerPtr;
 
-    RssParser *rssParser() const;
-    RssDownloadRuleList *downloadRules() const;
+    class Manager: public Folder
+    {
+        Q_OBJECT
 
-public slots:
-    void loadStreamList();
-    void saveStreamList() const;
-    void forwardFeedContentChanged(const QString &url);
-    void forwardFeedInfosChanged(const QString &url, const QString &displayName, uint unreadCount);
-    void forwardFeedIconChanged(const QString &url, const QString &iconPath);
-    void moveFile(const RssFilePtr &file, const RssFolderPtr &destinationFolder);
-    void updateRefreshInterval(uint val);
+    public:
+        Manager();
+        ~Manager();
 
-signals:
-    void feedContentChanged(const QString &url);
-    void feedInfosChanged(const QString &url, const QString &displayName, uint unreadCount);
-    void feedIconChanged(const QString &url, const QString &iconPath);
+        Parser *rssParser() const;
+        DownloadRuleList *downloadRules() const;
 
-private:
-    QTimer m_refreshTimer;
-    uint m_refreshInterval;
-    RssDownloadRuleList *m_downloadRules;
-    RssParser *m_rssParser;
-};
+    public slots:
+        void loadStreamList();
+        void saveStreamList() const;
+        void forwardFeedContentChanged(const QString &url);
+        void forwardFeedInfosChanged(const QString &url, const QString &displayName, uint unreadCount);
+        void forwardFeedIconChanged(const QString &url, const QString &iconPath);
+        void moveFile(const FilePtr &file, const FolderPtr &destinationFolder);
+        void updateRefreshInterval(uint val);
+
+    signals:
+        void feedContentChanged(const QString &url);
+        void feedInfosChanged(const QString &url, const QString &displayName, uint unreadCount);
+        void feedIconChanged(const QString &url, const QString &iconPath);
+
+    private:
+        QTimer m_refreshTimer;
+        uint m_refreshInterval;
+        DownloadRuleList *m_downloadRules;
+        Parser *m_rssParser;
+    };
+}
 
 #endif // RSSMANAGER_H

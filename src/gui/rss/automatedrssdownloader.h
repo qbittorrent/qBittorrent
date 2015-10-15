@@ -44,8 +44,11 @@ class AutomatedRssDownloader;
 }
 QT_END_NAMESPACE
 
-class RssDownloadRuleList;
-class RssManager;
+namespace Rss
+{
+    class DownloadRuleList;
+    class Manager;
+}
 
 QT_BEGIN_NAMESPACE
 class QListWidgetItem;
@@ -56,7 +59,7 @@ class AutomatedRssDownloader : public QDialog
   Q_OBJECT
 
 public:
-  explicit AutomatedRssDownloader(const QWeakPointer<RssManager>& manager, QWidget *parent = 0);
+  explicit AutomatedRssDownloader(const QWeakPointer<Rss::Manager>& manager, QWidget *parent = 0);
   ~AutomatedRssDownloader();
   bool isRssDownloaderEnabled() const;
 
@@ -86,16 +89,16 @@ private slots:
   void onFinished(int result);
 
 private:
-  RssDownloadRulePtr getCurrentRule() const;
+  Rss::DownloadRulePtr getCurrentRule() const;
   void initLabelCombobox();
-  void addFeedArticlesToTree(const RssFeedPtr& feed, const QStringList& articles);
+  void addFeedArticlesToTree(const Rss::FeedPtr& feed, const QStringList& articles);
 
 private:
   Ui::AutomatedRssDownloader *ui;
-  QWeakPointer<RssManager> m_manager;
+  QWeakPointer<Rss::Manager> m_manager;
   QListWidgetItem* m_editedRule;
-  RssDownloadRuleList *m_ruleList;
-  RssDownloadRuleList *m_editableRuleList;
+  Rss::DownloadRuleList *m_ruleList;
+  Rss::DownloadRuleList *m_editableRuleList;
   QRegExpValidator *m_episodeValidator;
   QShortcut *editHotkey;
   QShortcut *deleteHotkey;

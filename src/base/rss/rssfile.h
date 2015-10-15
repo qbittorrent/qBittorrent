@@ -36,42 +36,45 @@
 #include <QStringList>
 #include <QSharedPointer>
 
-class RssFolder;
-class RssFile;
-class RssArticle;
-
-typedef QSharedPointer<RssFile> RssFilePtr;
-typedef QSharedPointer<RssArticle> RssArticlePtr;
-typedef QList<RssArticlePtr> RssArticleList;
-typedef QList<RssFilePtr> RssFileList;
-
-/**
- * Parent interface for RssFolder and RssFeed.
- */
-class RssFile
+namespace Rss
 {
-public:
-    virtual ~RssFile();
+    class Folder;
+    class File;
+    class Article;
 
-    virtual uint unreadCount() const = 0;
-    virtual QString displayName() const = 0;
-    virtual QString id() const = 0;
-    virtual QString iconPath() const = 0;
-    virtual void rename(const QString &newName) = 0;
-    virtual void markAsRead() = 0;
-    virtual RssFolder *parent() const = 0;
-    virtual void setParent(RssFolder *parent) = 0;
-    virtual bool refresh() = 0;
-    virtual RssArticleList articleListByDateDesc() const = 0;
-    virtual RssArticleList unreadArticleListByDateDesc() const = 0;
-    virtual void removeAllSettings() = 0;
-    virtual void saveItemsToDisk() = 0;
-    virtual void recheckRssItemsForDownload() = 0;
+    typedef QSharedPointer<File> FilePtr;
+    typedef QSharedPointer<Article> ArticlePtr;
+    typedef QList<ArticlePtr> ArticleList;
+    typedef QList<FilePtr> FileList;
 
-    QStringList pathHierarchy() const;
+    /**
+     * Parent interface for Rss::Folder and Rss::Feed.
+     */
+    class File
+    {
+    public:
+        virtual ~File();
 
-protected:
-    uint m_unreadCount;
-};
+        virtual uint unreadCount() const = 0;
+        virtual QString displayName() const = 0;
+        virtual QString id() const = 0;
+        virtual QString iconPath() const = 0;
+        virtual void rename(const QString &newName) = 0;
+        virtual void markAsRead() = 0;
+        virtual Folder *parent() const = 0;
+        virtual void setParent(Folder *parent) = 0;
+        virtual bool refresh() = 0;
+        virtual ArticleList articleListByDateDesc() const = 0;
+        virtual ArticleList unreadArticleListByDateDesc() const = 0;
+        virtual void removeAllSettings() = 0;
+        virtual void saveItemsToDisk() = 0;
+        virtual void recheckRssItemsForDownload() = 0;
+
+        QStringList pathHierarchy() const;
+
+    protected:
+        uint m_unreadCount;
+    };
+}
 
 #endif // RSSFILE_H

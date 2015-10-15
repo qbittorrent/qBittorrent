@@ -36,20 +36,22 @@
 #include "rssfeed.h"
 #include "rssarticle.h"
 
+using namespace Rss;
+
 // public constructor
-RssArticle::RssArticle(RssFeed *parent, const QString &guid)
+Article::Article(Feed *parent, const QString &guid)
     : m_parent(parent)
     , m_guid(guid)
     , m_read(false)
 {
 }
 
-bool RssArticle::hasAttachment() const
+bool Article::hasAttachment() const
 {
     return !m_torrentUrl.isEmpty();
 }
 
-QVariantHash RssArticle::toHash() const
+QVariantHash Article::toHash() const
 {
     QVariantHash item;
     item["title"] = m_title;
@@ -63,13 +65,13 @@ QVariantHash RssArticle::toHash() const
     return item;
 }
 
-RssArticlePtr RssArticle::fromHash(RssFeed *parent, const QVariantHash &h)
+ArticlePtr Article::fromHash(Feed *parent, const QVariantHash &h)
 {
     const QString guid = h.value("id").toString();
     if (guid.isEmpty())
-        return RssArticlePtr();
+        return ArticlePtr();
 
-    RssArticlePtr art(new RssArticle(parent, guid));
+    ArticlePtr art(new Article(parent, guid));
     art->m_title = h.value("title", "").toString();
     art->m_torrentUrl = h.value("torrent_url", "").toString();
     art->m_link = h.value("news_link", "").toString();
@@ -81,42 +83,42 @@ RssArticlePtr RssArticle::fromHash(RssFeed *parent, const QVariantHash &h)
     return art;
 }
 
-RssFeed *RssArticle::parent() const
+Feed *Article::parent() const
 {
     return m_parent;
 }
 
-const QString &RssArticle::author() const
+const QString &Article::author() const
 {
     return m_author;
 }
 
-const QString &RssArticle::torrentUrl() const
+const QString &Article::torrentUrl() const
 {
     return m_torrentUrl;
 }
 
-const QString &RssArticle::link() const
+const QString &Article::link() const
 {
     return m_link;
 }
 
-QString RssArticle::description() const
+QString Article::description() const
 {
     return m_description.isNull() ? "" : m_description;
 }
 
-const QDateTime &RssArticle::date() const
+const QDateTime &Article::date() const
 {
     return m_date;
 }
 
-bool RssArticle::isRead() const
+bool Article::isRead() const
 {
     return m_read;
 }
 
-void RssArticle::markAsRead()
+void Article::markAsRead()
 {
     if (m_read) return;
 
@@ -126,17 +128,17 @@ void RssArticle::markAsRead()
     emit articleWasRead();
 }
 
-const QString &RssArticle::guid() const
+const QString &Article::guid() const
 {
     return m_guid;
 }
 
-const QString &RssArticle::title() const
+const QString &Article::title() const
 {
     return m_title;
 }
 
-void RssArticle::handleTorrentDownloadSuccess(const QString &url)
+void Article::handleTorrentDownloadSuccess(const QString &url)
 {
     if (url == m_torrentUrl)
         markAsRead();

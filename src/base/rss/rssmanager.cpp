@@ -41,16 +41,18 @@
 
 static const int MSECS_PER_MIN = 60000;
 
-RssManager::RssManager()
-    : m_downloadRules(new RssDownloadRuleList)
-    , m_rssParser(new RssParser(this))
+using namespace Rss;
+
+Manager::Manager()
+    : m_downloadRules(new DownloadRuleList)
+    , m_rssParser(new Parser(this))
 {
     connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(refresh()));
     m_refreshInterval = Preferences::instance()->getRSSRefreshInterval();
     m_refreshTimer.start(m_refreshInterval * MSECS_PER_MIN);
 }
 
-RssManager::~RssManager()
+Manager::~Manager()
 {
     qDebug("Deleting RSSManager...");
     delete m_downloadRules;
@@ -60,12 +62,12 @@ RssManager::~RssManager()
     qDebug("RSSManager deleted");
 }
 
-RssParser *RssManager::rssParser() const
+Parser *Manager::rssParser() const
 {
     return m_rssParser;
 }
 
-void RssManager::updateRefreshInterval(uint val)
+void Manager::updateRefreshInterval(uint val)
 {
     if (m_refreshInterval != val) {
         m_refreshInterval = val;
@@ -74,7 +76,7 @@ void RssManager::updateRefreshInterval(uint val)
     }
 }
 
-void RssManager::loadStreamList()
+void Manager::loadStreamList()
 {
     const Preferences *const pref = Preferences::instance();
     const QStringList streamsUrl = pref->getRssFeedsUrls();
@@ -93,14 +95,14 @@ void RssManager::loadStreamList()
         const QString feedUrl = path.takeLast();
         qDebug() << "Feed URL:" << feedUrl;
         // Create feed path (if it does not exists)
-        RssFolder *feedParent = this;
+        Folder *feedParent = this;
         foreach (const QString &folderName, path) {
             qDebug() << "Adding parent folder:" << folderName;
             feedParent = feedParent->addFolder(folderName).data();
         }
         // Create feed
         qDebug() << "Adding feed to parent folder";
-        RssFeedPtr stream = feedParent->addStream(this, feedUrl);
+        FeedPtr stream = feedParent->addStream(this, feedUrl);
         const QString &alias = aliases[i];
         if (!alias.isEmpty())
             stream->rename(alias);
@@ -109,24 +111,24 @@ void RssManager::loadStreamList()
     qDebug("NB RSS streams loaded: %d", streamsUrl.size());
 }
 
-void RssManager::forwardFeedContentChanged(const QString &url)
+void Manager::forwardFeedContentChanged(const QString &url)
 {
     emit feedContentChanged(url);
 }
 
-void RssManager::forwardFeedInfosChanged(const QString &url, const QString &displayName, uint unreadCount)
+void Manager::forwardFeedInfosChanged(const QString &url, const QString &displayName, uint unreadCount)
 {
     emit feedInfosChanged(url, displayName, unreadCount);
 }
 
-void RssManager::forwardFeedIconChanged(const QString &url, const QString &iconPath)
+void Manager::forwardFeedIconChanged(const QString &url, const QString &iconPath)
 {
     emit feedIconChanged(url, iconPath);
 }
 
-void RssManager::moveFile(const RssFilePtr &file, const RssFolderPtr &destinationFolder)
+void Manager::moveFile(const FilePtr &file, const FolderPtr &destinationFolder)
 {
-    RssFolder *srcFolder = file->parent();
+    Folder *srcFolder = file->parent();
     if (destinationFolder != srcFolder) {
         // Remove reference in old folder
         srcFolder->takeChild(file->id());
@@ -138,12 +140,12 @@ void RssManager::moveFile(const RssFilePtr &file, const RssFolderPtr &destinatio
     }
 }
 
-void RssManager::saveStreamList() const
+void Manager::saveStreamList() const
 {
     QStringList streamsUrl;
     QStringList aliases;
-    RssFeedList streams = getAllFeeds();
-    foreach (const RssFeedPtr &stream, streams) {
+    FeedList streams = getAllFeeds();
+    foreach (const FeedPtr &stream, streams) {
         // This backslash has nothing to do with path handling
         QString streamPath = stream->pathHierarchy().join("\\");
         if (streamPath.isNull())
@@ -157,7 +159,7 @@ void RssManager::saveStreamList() const
     pref->setRssFeedsAliases(aliases);
 }
 
-RssDownloadRuleList *RssManager::downloadRules() const
+DownloadRuleList *Manager::downloadRules() const
 {
     Q_ASSERT(m_downloadRules);
     return m_downloadRules;

@@ -36,68 +36,71 @@
 #include <QSharedPointer>
 #include <QDateTime>
 
-class RssFeed;
-typedef QSharedPointer<RssFeed> RssFeedPtr;
-
-class RssDownloadRule;
-typedef QSharedPointer<RssDownloadRule> RssDownloadRulePtr;
-
-class RssDownloadRule
+namespace Rss
 {
-public:
-    enum AddPausedState
+    class Feed;
+    typedef QSharedPointer<Feed> FeedPtr;
+
+    class DownloadRule;
+    typedef QSharedPointer<DownloadRule> DownloadRulePtr;
+
+    class DownloadRule
     {
-        USE_GLOBAL = 0,
-        ALWAYS_PAUSED,
-        NEVER_PAUSED
+    public:
+        enum AddPausedState
+        {
+            USE_GLOBAL = 0,
+            ALWAYS_PAUSED,
+            NEVER_PAUSED
+        };
+
+        DownloadRule();
+
+        static DownloadRulePtr fromVariantHash(const QVariantHash &ruleHash);
+        QVariantHash toVariantHash() const;
+        bool matches(const QString &articleTitle) const;
+        void setMustContain(const QString &tokens);
+        void setMustNotContain(const QString &tokens);
+        QStringList rssFeeds() const;
+        void setRssFeeds(const QStringList &rssFeeds);
+        QString name() const;
+        void setName(const QString &name);
+        QString savePath() const;
+        void setSavePath(const QString &savePath);
+        AddPausedState addPaused() const;
+        void setAddPaused(const AddPausedState &aps);
+        QString label() const;
+        void setLabel(const QString &label);
+        bool isEnabled() const;
+        void setEnabled(bool enable);
+        void setLastMatch(const QDateTime &d);
+        QDateTime lastMatch() const;
+        void setIgnoreDays(int d);
+        int ignoreDays() const;
+        QString mustContain() const;
+        QString mustNotContain() const;
+        bool useRegex() const;
+        void setUseRegex(bool enabled);
+        QString episodeFilter() const;
+        void setEpisodeFilter(const QString &e);
+        QStringList findMatchingArticles(const FeedPtr &feed) const;
+        // Operators
+        bool operator==(const DownloadRule &other) const;
+
+    private:
+        QString m_name;
+        QStringList m_mustContain;
+        QStringList m_mustNotContain;
+        QString m_episodeFilter;
+        QString m_savePath;
+        QString m_label;
+        bool m_enabled;
+        QStringList m_rssFeeds;
+        bool m_useRegex;
+        AddPausedState m_apstate;
+        QDateTime m_lastMatch;
+        int m_ignoreDays;
     };
-
-    RssDownloadRule();
-
-    static RssDownloadRulePtr fromVariantHash(const QVariantHash &ruleHash);
-    QVariantHash toVariantHash() const;
-    bool matches(const QString &articleTitle) const;
-    void setMustContain(const QString &tokens);
-    void setMustNotContain(const QString &tokens);
-    QStringList rssFeeds() const;
-    void setRssFeeds(const QStringList &rssFeeds);
-    QString name() const;
-    void setName(const QString &name);
-    QString savePath() const;
-    void setSavePath(const QString &savePath);
-    AddPausedState addPaused() const;
-    void setAddPaused(const AddPausedState &aps);
-    QString label() const;
-    void setLabel(const QString &label);
-    bool isEnabled() const;
-    void setEnabled(bool enable);
-    void setLastMatch(const QDateTime &d);
-    QDateTime lastMatch() const;
-    void setIgnoreDays(int d);
-    int ignoreDays() const;
-    QString mustContain() const;
-    QString mustNotContain() const;
-    bool useRegex() const;
-    void setUseRegex(bool enabled);
-    QString episodeFilter() const;
-    void setEpisodeFilter(const QString &e);
-    QStringList findMatchingArticles(const RssFeedPtr &feed) const;
-    // Operators
-    bool operator==(const RssDownloadRule &other) const;
-
-private:
-    QString m_name;
-    QStringList m_mustContain;
-    QStringList m_mustNotContain;
-    QString m_episodeFilter;
-    QString m_savePath;
-    QString m_label;
-    bool m_enabled;
-    QStringList m_rssFeeds;
-    bool m_useRegex;
-    AddPausedState m_apstate;
-    QDateTime m_lastMatch;
-    int m_ignoreDays;
-};
+}
 
 #endif // RSSDOWNLOADRULE_H

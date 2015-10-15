@@ -38,42 +38,45 @@
 
 #include "rssarticle.h"
 
-struct ParsingJob;
-
-class RssParser: public QThread
+namespace Rss
 {
-    Q_OBJECT
+    struct ParsingJob;
 
-public:
-    explicit RssParser(QObject *parent = 0);
-    virtual ~RssParser();
+    class Parser: public QThread
+    {
+        Q_OBJECT
 
-signals:
-    void newArticle(const QString &feedUrl, const QVariantHash &rssArticle);
-    void feedTitle(const QString &feedUrl, const QString &title);
-    void feedParsingFinished(const QString &feedUrl, const QString &error);
+    public:
+        explicit Parser(QObject *parent = 0);
+        virtual ~Parser();
 
-public slots:
-    void parseRssFile(const QString &feedUrl, const QString &filePath);
-    void clearFeedData(const QString &feedUrl);
+    signals:
+        void newArticle(const QString &feedUrl, const QVariantHash &rssArticle);
+        void feedTitle(const QString &feedUrl, const QString &title);
+        void feedParsingFinished(const QString &feedUrl, const QString &error);
 
-protected:
-    virtual void run();
+    public slots:
+        void parseRssFile(const QString &feedUrl, const QString &filePath);
+        void clearFeedData(const QString &feedUrl);
 
-private:
-    static QDateTime parseDate(const QString &string);
-    void parseRssArticle(QXmlStreamReader &xml, const QString &feedUrl);
-    void parseRSSChannel(QXmlStreamReader &xml, const QString &feedUrl);
-    void parseAtomArticle(QXmlStreamReader &xml, const QString &feedUrl, const QString &baseUrl);
-    void parseAtomChannel(QXmlStreamReader &xml, const QString &feedUrl);
-    void parseFeed(const ParsingJob &job);
-    void reportFailure(const ParsingJob &job, const QString &error);
+    protected:
+        virtual void run();
 
-    bool m_running;
-    QMutex m_mutex;
-    QQueue<ParsingJob> m_queue;
-    QWaitCondition m_waitCondition;
-    QHash<QString/*feedUrl*/, QString/*lastBuildDate*/> m_lastBuildDates; // Optimization
-};
+    private:
+        static QDateTime parseDate(const QString &string);
+        void parseRssArticle(QXmlStreamReader &xml, const QString &feedUrl);
+        void parseRSSChannel(QXmlStreamReader &xml, const QString &feedUrl);
+        void parseAtomArticle(QXmlStreamReader &xml, const QString &feedUrl, const QString &baseUrl);
+        void parseAtomChannel(QXmlStreamReader &xml, const QString &feedUrl);
+        void parseFeed(const ParsingJob &job);
+        void reportFailure(const ParsingJob &job, const QString &error);
+
+        bool m_running;
+        QMutex m_mutex;
+        QQueue<ParsingJob> m_queue;
+        QWaitCondition m_waitCondition;
+        QHash<QString/*feedUrl*/, QString/*lastBuildDate*/> m_lastBuildDates; // Optimization
+    };
+}
 
 #endif // RSSPARSER_H

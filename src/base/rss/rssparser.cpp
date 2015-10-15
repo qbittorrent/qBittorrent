@@ -37,11 +37,14 @@
 #include "base/utils/fs.h"
 #include "rssparser.h"
 
-struct ParsingJob
+namespace Rss
 {
-    QString feedUrl;
-    QString filePath;
-};
+    struct ParsingJob
+    {
+        QString feedUrl;
+        QString filePath;
+    };
+}
 
 static const char shortDay[][4] = {
     "Mon", "Tue", "Wed",
@@ -61,8 +64,24 @@ static const char shortMonth[][4] = {
     "Sep", "Oct", "Nov", "Dec"
 };
 
+using namespace Rss;
+
+Parser::Parser(QObject *parent)
+    : QThread(parent)
+    , m_running(true)
+{
+    start();
+}
+
+Parser::~Parser()
+{
+    m_running = false;
+    m_waitCondition.wakeOne();
+    wait();
+}
+
 // Ported to Qt from KDElibs4
-QDateTime RssParser::parseDate(const QString &string)
+QDateTime Parser::parseDate(const QString &string)
 {
     const QString str = string.trimmed();
     if (str.isEmpty())
@@ -208,21 +227,7 @@ QDateTime RssParser::parseDate(const QString &string)
     return result;
 }
 
-RssParser::RssParser(QObject *parent)
-    : QThread(parent)
-    , m_running(true)
-{
-    start();
-}
-
-RssParser::~RssParser()
-{
-    m_running = false;
-    m_waitCondition.wakeOne();
-    wait();
-}
-
-void RssParser::parseRssFile(const QString &feedUrl, const QString &filePath)
+void Parser::parseRssFile(const QString &feedUrl, const QString &filePath)
 {
     qDebug() << Q_FUNC_INFO << feedUrl << filePath;
     m_mutex.lock();
@@ -236,14 +241,14 @@ void RssParser::parseRssFile(const QString &feedUrl, const QString &filePath)
     m_mutex.unlock();
 }
 
-void RssParser::clearFeedData(const QString &feedUrl)
+void Parser::clearFeedData(const QString &feedUrl)
 {
     m_mutex.lock();
     m_lastBuildDates.remove(feedUrl);
     m_mutex.unlock();
 }
 
-void RssParser::run()
+void Parser::run()
 {
     while (m_running) {
         m_mutex.lock();
@@ -261,7 +266,7 @@ void RssParser::run()
     }
 }
 
-void RssParser::parseRssArticle(QXmlStreamReader &xml, const QString &feedUrl)
+void Parser::parseRssArticle(QXmlStreamReader &xml, const QString &feedUrl)
 {
     QVariantHash article;
 
@@ -325,7 +330,7 @@ void RssParser::parseRssArticle(QXmlStreamReader &xml, const QString &feedUrl)
     emit newArticle(feedUrl, article);
 }
 
-void RssParser::parseRSSChannel(QXmlStreamReader &xml, const QString &feedUrl)
+void Parser::parseRSSChannel(QXmlStreamReader &xml, const QString &feedUrl)
 {
     qDebug() << Q_FUNC_INFO << feedUrl;
     Q_ASSERT(xml.isStartElement() && xml.name() == "channel");
@@ -356,7 +361,7 @@ void RssParser::parseRSSChannel(QXmlStreamReader &xml, const QString &feedUrl)
     }
 }
 
-void RssParser::parseAtomArticle(QXmlStreamReader &xml, const QString &feedUrl, const QString &baseUrl)
+void Parser::parseAtomArticle(QXmlStreamReader &xml, const QString &feedUrl, const QString &baseUrl)
 {
     QVariantHash article;
     bool doubleContent = false;
@@ -446,7 +451,7 @@ void RssParser::parseAtomArticle(QXmlStreamReader &xml, const QString &feedUrl, 
     emit newArticle(feedUrl, article);
 }
 
-void RssParser::parseAtomChannel(QXmlStreamReader &xml, const QString &feedUrl)
+void Parser::parseAtomChannel(QXmlStreamReader &xml, const QString &feedUrl)
 {
     qDebug() << Q_FUNC_INFO << feedUrl;
     Q_ASSERT(xml.isStartElement() && xml.name() == "feed");
@@ -480,7 +485,7 @@ void RssParser::parseAtomChannel(QXmlStreamReader &xml, const QString &feedUrl)
 }
 
 // read and create items from a rss document
-void RssParser::parseFeed(const ParsingJob &job)
+void Parser::parseFeed(const ParsingJob &job)
 {
     qDebug() << Q_FUNC_INFO << job.feedUrl << job.filePath;
     QFile fileRss(job.filePath);
@@ -534,7 +539,7 @@ void RssParser::parseFeed(const ParsingJob &job)
     Utils::Fs::forceRemove(job.filePath);
 }
 
-void RssParser::reportFailure(const ParsingJob &job, const QString &error)
+void Parser::reportFailure(const ParsingJob &job, const QString &error)
 {
     emit feedParsingFinished(job.feedUrl, error);
     Utils::Fs::forceRemove(job.filePath);

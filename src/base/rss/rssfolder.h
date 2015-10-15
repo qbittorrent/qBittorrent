@@ -37,56 +37,59 @@
 
 #include "rssfile.h"
 
-class RssFolder;
-class RssFeed;
-class RssManager;
-
-typedef QHash<QString, RssFilePtr> RssFileHash;
-typedef QSharedPointer<RssFeed> RssFeedPtr;
-typedef QSharedPointer<RssFolder> RssFolderPtr;
-typedef QList<RssFeedPtr> RssFeedList;
-
-class RssFolder: public QObject, public RssFile
+namespace Rss
 {
-    Q_OBJECT
+    class Folder;
+    class Feed;
+    class Manager;
 
-public:
-    explicit RssFolder(RssFolder *parent = 0, const QString &name = QString());
-    ~RssFolder();
+    typedef QHash<QString, FilePtr> FileHash;
+    typedef QSharedPointer<Feed> FeedPtr;
+    typedef QSharedPointer<Folder> FolderPtr;
+    typedef QList<FeedPtr> FeedList;
 
-    RssFolder *parent() const;
-    void setParent(RssFolder *parent);
-    uint unreadCount() const;
-    RssFeedPtr addStream(RssManager *manager, const QString &url);
-    RssFolderPtr addFolder(const QString &name);
-    uint getNbFeeds() const;
-    RssFileList getContent() const;
-    RssFeedList getAllFeeds() const;
-    QHash<QString, RssFeedPtr> getAllFeedsAsHash() const;
-    QString displayName() const;
-    QString id() const;
-    QString iconPath() const;
-    bool hasChild(const QString &childId);
-    RssArticleList articleListByDateDesc() const;
-    RssArticleList unreadArticleListByDateDesc() const;
-    void removeAllSettings();
-    void saveItemsToDisk();
-    void removeAllItems();
-    void renameChildFolder(const QString &oldName, const QString &newName);
-    RssFilePtr takeChild(const QString &childId);
-    void recheckRssItemsForDownload();
+    class Folder: public QObject, public File
+    {
+        Q_OBJECT
 
-public slots:
-    bool refresh();
-    void addFile(const RssFilePtr &item);
-    void removeChild(const QString &childId);
-    void rename(const QString &newName);
-    void markAsRead();
+    public:
+        explicit Folder(Folder *parent = 0, const QString &name = QString());
+        ~Folder();
 
-private:
-    RssFolder *m_parent;
-    QString m_name;
-    RssFileHash m_children;
-};
+        Folder *parent() const;
+        void setParent(Folder *parent);
+        uint unreadCount() const;
+        FeedPtr addStream(Manager *manager, const QString &url);
+        FolderPtr addFolder(const QString &name);
+        uint getNbFeeds() const;
+        FileList getContent() const;
+        FeedList getAllFeeds() const;
+        QHash<QString, FeedPtr> getAllFeedsAsHash() const;
+        QString displayName() const;
+        QString id() const;
+        QString iconPath() const;
+        bool hasChild(const QString &childId);
+        ArticleList articleListByDateDesc() const;
+        ArticleList unreadArticleListByDateDesc() const;
+        void removeAllSettings();
+        void saveItemsToDisk();
+        void removeAllItems();
+        void renameChildFolder(const QString &oldName, const QString &newName);
+        FilePtr takeChild(const QString &childId);
+        void recheckRssItemsForDownload();
+
+    public slots:
+        bool refresh();
+        void addFile(const FilePtr &item);
+        void removeChild(const QString &childId);
+        void rename(const QString &newName);
+        void markAsRead();
+
+    private:
+        Folder *m_parent;
+        QString m_name;
+        FileHash m_children;
+    };
+}
 
 #endif // RSSFOLDER_H

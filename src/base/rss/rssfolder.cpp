@@ -38,61 +38,63 @@
 #include "rssarticle.h"
 #include "rssfolder.h"
 
-RssFolder::RssFolder(RssFolder *parent, const QString &name)
+using namespace Rss;
+
+Folder::Folder(Folder *parent, const QString &name)
     : m_parent(parent)
     , m_name(name)
 {
 }
 
-RssFolder::~RssFolder() {}
+Folder::~Folder() {}
 
-RssFolder *RssFolder::parent() const
+Folder *Folder::parent() const
 {
     return m_parent;
 }
 
-void RssFolder::setParent(RssFolder *parent)
+void Folder::setParent(Folder *parent)
 {
     m_parent = parent;
 }
 
-uint RssFolder::unreadCount() const
+uint Folder::unreadCount() const
 {
     uint nbUnread = 0;
 
-    RssFileHash::ConstIterator it = m_children.begin();
-    RssFileHash::ConstIterator itend = m_children.end();
+    FileHash::ConstIterator it = m_children.begin();
+    FileHash::ConstIterator itend = m_children.end();
     for ( ; it != itend; ++it)
         nbUnread += it.value()->unreadCount();
 
     return nbUnread;
 }
 
-void RssFolder::removeChild(const QString &childId)
+void Folder::removeChild(const QString &childId)
 {
     if (m_children.contains(childId)) {
-        RssFilePtr child = m_children.take(childId);
+        FilePtr child = m_children.take(childId);
         child->removeAllSettings();
     }
 }
 
-RssFolderPtr RssFolder::addFolder(const QString &name)
+FolderPtr Folder::addFolder(const QString &name)
 {
-    RssFolderPtr subfolder;
+    FolderPtr subfolder;
     if (!m_children.contains(name)) {
-        subfolder = RssFolderPtr(new RssFolder(this, name));
+        subfolder = FolderPtr(new Folder(this, name));
         m_children[name] = subfolder;
     }
     else {
-        subfolder = qSharedPointerDynamicCast<RssFolder>(m_children.value(name));
+        subfolder = qSharedPointerDynamicCast<Folder>(m_children.value(name));
     }
     return subfolder;
 }
 
-RssFeedPtr RssFolder::addStream(RssManager *manager, const QString &url)
+FeedPtr Folder::addStream(Manager *manager, const QString &url)
 {
     qDebug() << Q_FUNC_INFO << manager << url;
-    RssFeedPtr stream(new RssFeed(manager, this, url));
+    FeedPtr stream(new Feed(manager, this, url));
     Q_ASSERT(stream);
     qDebug() << "Stream URL is " << stream->url();
     Q_ASSERT(!m_children.contains(stream->url()));
@@ -102,10 +104,10 @@ RssFeedPtr RssFolder::addStream(RssManager *manager, const QString &url)
 }
 
 // Refresh All Children
-bool RssFolder::refresh()
+bool Folder::refresh()
 {
-    RssFileHash::ConstIterator it = m_children.begin();
-    RssFileHash::ConstIterator itend = m_children.end();
+    FileHash::ConstIterator it = m_children.begin();
+    FileHash::ConstIterator itend = m_children.end();
     bool refreshed = false;
     for ( ; it != itend; ++it) {
         if (it.value()->refresh())
@@ -114,47 +116,47 @@ bool RssFolder::refresh()
     return refreshed;
 }
 
-RssArticleList RssFolder::articleListByDateDesc() const
+ArticleList Folder::articleListByDateDesc() const
 {
-    RssArticleList news;
+    ArticleList news;
 
-    RssFileHash::ConstIterator it = m_children.begin();
-    RssFileHash::ConstIterator itend = m_children.end();
+    FileHash::ConstIterator it = m_children.begin();
+    FileHash::ConstIterator itend = m_children.end();
     for ( ; it != itend; ++it) {
         int n = news.size();
         news << it.value()->articleListByDateDesc();
-        std::inplace_merge(news.begin(), news.begin() + n, news.end(), rssArticleDateRecentThan);
+        std::inplace_merge(news.begin(), news.begin() + n, news.end(), articleDateRecentThan);
     }
     return news;
 }
 
-RssArticleList RssFolder::unreadArticleListByDateDesc() const
+ArticleList Folder::unreadArticleListByDateDesc() const
 {
-    RssArticleList unreadNews;
+    ArticleList unreadNews;
 
-    RssFileHash::ConstIterator it = m_children.begin();
-    RssFileHash::ConstIterator itend = m_children.end();
+    FileHash::ConstIterator it = m_children.begin();
+    FileHash::ConstIterator itend = m_children.end();
     for ( ; it != itend; ++it) {
         int n = unreadNews.size();
         unreadNews << it.value()->unreadArticleListByDateDesc();
-        std::inplace_merge(unreadNews.begin(), unreadNews.begin() + n, unreadNews.end(), rssArticleDateRecentThan);
+        std::inplace_merge(unreadNews.begin(), unreadNews.begin() + n, unreadNews.end(), articleDateRecentThan);
     }
     return unreadNews;
 }
 
-RssFileList RssFolder::getContent() const
+FileList Folder::getContent() const
 {
     return m_children.values();
 }
 
-uint RssFolder::getNbFeeds() const
+uint Folder::getNbFeeds() const
 {
     uint nbFeeds = 0;
 
-    RssFileHash::ConstIterator it = m_children.begin();
-    RssFileHash::ConstIterator itend = m_children.end();
+    FileHash::ConstIterator it = m_children.begin();
+    FileHash::ConstIterator itend = m_children.end();
     for ( ; it != itend; ++it) {
-        if (RssFolderPtr folder = qSharedPointerDynamicCast<RssFolder>(it.value()))
+        if (FolderPtr folder = qSharedPointerDynamicCast<Folder>(it.value()))
             nbFeeds += folder->getNbFeeds();
         else
             ++nbFeeds; // Feed
@@ -162,12 +164,12 @@ uint RssFolder::getNbFeeds() const
     return nbFeeds;
 }
 
-QString RssFolder::displayName() const
+QString Folder::displayName() const
 {
     return m_name;
 }
 
-void RssFolder::rename(const QString &newName)
+void Folder::rename(const QString &newName)
 {
     if (m_name == newName) return;
 
@@ -180,56 +182,56 @@ void RssFolder::rename(const QString &newName)
     }
 }
 
-void RssFolder::markAsRead()
+void Folder::markAsRead()
 {
-    RssFileHash::ConstIterator it = m_children.begin();
-    RssFileHash::ConstIterator itend = m_children.end();
+    FileHash::ConstIterator it = m_children.begin();
+    FileHash::ConstIterator itend = m_children.end();
     for ( ; it != itend; ++it) {
         it.value()->markAsRead();
     }
 }
 
-RssFeedList RssFolder::getAllFeeds() const
+FeedList Folder::getAllFeeds() const
 {
-    RssFeedList streams;
+    FeedList streams;
 
-    RssFileHash::ConstIterator it = m_children.begin();
-    RssFileHash::ConstIterator itend = m_children.end();
+    FileHash::ConstIterator it = m_children.begin();
+    FileHash::ConstIterator itend = m_children.end();
     for ( ; it != itend; ++it) {
-        if (RssFeedPtr feed = qSharedPointerDynamicCast<RssFeed>(it.value()))
+        if (FeedPtr feed = qSharedPointerDynamicCast<Feed>(it.value()))
             streams << feed;
-        else if (RssFolderPtr folder = qSharedPointerDynamicCast<RssFolder>(it.value()))
+        else if (FolderPtr folder = qSharedPointerDynamicCast<Folder>(it.value()))
             streams << folder->getAllFeeds();
     }
     return streams;
 }
 
-QHash<QString, RssFeedPtr> RssFolder::getAllFeedsAsHash() const
+QHash<QString, FeedPtr> Folder::getAllFeedsAsHash() const
 {
-    QHash<QString, RssFeedPtr> ret;
+    QHash<QString, FeedPtr> ret;
 
-    RssFileHash::ConstIterator it = m_children.begin();
-    RssFileHash::ConstIterator itend = m_children.end();
+    FileHash::ConstIterator it = m_children.begin();
+    FileHash::ConstIterator itend = m_children.end();
     for ( ; it != itend; ++it) {
-        if (RssFeedPtr feed = qSharedPointerDynamicCast<RssFeed>(it.value())) {
+        if (FeedPtr feed = qSharedPointerDynamicCast<Feed>(it.value())) {
             qDebug() << Q_FUNC_INFO << feed->url();
             ret[feed->url()] = feed;
         }
-        else if (RssFolderPtr folder = qSharedPointerDynamicCast<RssFolder>(it.value())) {
+        else if (FolderPtr folder = qSharedPointerDynamicCast<Folder>(it.value())) {
             ret.unite(folder->getAllFeedsAsHash());
         }
     }
     return ret;
 }
 
-void RssFolder::addFile(const RssFilePtr &item)
+void Folder::addFile(const FilePtr &item)
 {
-    if (RssFeedPtr feed = qSharedPointerDynamicCast<RssFeed>(item)) {
+    if (FeedPtr feed = qSharedPointerDynamicCast<Feed>(item)) {
         Q_ASSERT(!m_children.contains(feed->url()));
         m_children[feed->url()] = item;
         qDebug("Added feed %s to folder ./%s", qPrintable(feed->url()), qPrintable(m_name));
     }
-    else if (RssFolderPtr folder = qSharedPointerDynamicCast<RssFolder>(item)) {
+    else if (FolderPtr folder = qSharedPointerDynamicCast<Folder>(item)) {
         Q_ASSERT(!m_children.contains(folder->displayName()));
         m_children[folder->displayName()] = item;
         qDebug("Added folder %s to folder ./%s", qPrintable(folder->displayName()), qPrintable(m_name));
@@ -238,56 +240,56 @@ void RssFolder::addFile(const RssFilePtr &item)
     item->setParent(this);
 }
 
-void RssFolder::removeAllItems()
+void Folder::removeAllItems()
 {
     m_children.clear();
 }
 
-void RssFolder::removeAllSettings()
+void Folder::removeAllSettings()
 {
-    RssFileHash::ConstIterator it = m_children.begin();
-    RssFileHash::ConstIterator itend = m_children.end();
+    FileHash::ConstIterator it = m_children.begin();
+    FileHash::ConstIterator itend = m_children.end();
     for ( ; it != itend; ++it)
         it.value()->removeAllSettings();
 }
 
-void RssFolder::saveItemsToDisk()
+void Folder::saveItemsToDisk()
 {
-    foreach (const RssFilePtr &child, m_children.values())
+    foreach (const FilePtr &child, m_children.values())
         child->saveItemsToDisk();
 }
 
-QString RssFolder::id() const
+QString Folder::id() const
 {
     return m_name;
 }
 
-QString RssFolder::iconPath() const
+QString Folder::iconPath() const
 {
     return IconProvider::instance()->getIconPath("inode-directory");
 }
 
-bool RssFolder::hasChild(const QString &childId)
+bool Folder::hasChild(const QString &childId)
 {
     return m_children.contains(childId);
 }
 
-void RssFolder::renameChildFolder(const QString &oldName, const QString &newName)
+void Folder::renameChildFolder(const QString &oldName, const QString &newName)
 {
     Q_ASSERT(m_children.contains(oldName));
-    RssFilePtr folder = m_children.take(oldName);
+    FilePtr folder = m_children.take(oldName);
     m_children[newName] = folder;
 }
 
-RssFilePtr RssFolder::takeChild(const QString &childId)
+FilePtr Folder::takeChild(const QString &childId)
 {
     return m_children.take(childId);
 }
 
-void RssFolder::recheckRssItemsForDownload()
+void Folder::recheckRssItemsForDownload()
 {
-    RssFileHash::ConstIterator it = m_children.begin();
-    RssFileHash::ConstIterator itend = m_children.end();
+    FileHash::ConstIterator it = m_children.begin();
+    FileHash::ConstIterator itend = m_children.end();
     for ( ; it != itend; ++it)
         it.value()->recheckRssItemsForDownload();
 }
