@@ -37,34 +37,37 @@
 
 #include "rssdownloadrule.h"
 
-class RssDownloadRuleList
+namespace Rss
 {
-    Q_DISABLE_COPY(RssDownloadRuleList)
+    class DownloadRuleList
+    {
+        Q_DISABLE_COPY(DownloadRuleList)
 
-public:
-    RssDownloadRuleList();
+    public:
+        DownloadRuleList();
 
-    RssDownloadRulePtr findMatchingRule(const QString &feedUrl, const QString &articleTitle) const;
-    // Operators
-    void saveRule(const RssDownloadRulePtr &rule);
-    void removeRule(const QString &name);
-    void renameRule(const QString &oldName, const QString &newName);
-    RssDownloadRulePtr getRule(const QString &name) const;
-    QStringList ruleNames() const;
-    bool isEmpty() const;
-    void saveRulesToStorage();
-    bool serialize(const QString &path);
-    bool unserialize(const QString &path);
-    void replace(RssDownloadRuleList *other);
+        DownloadRulePtr findMatchingRule(const QString &feedUrl, const QString &articleTitle) const;
+        // Operators
+        void saveRule(const DownloadRulePtr &rule);
+        void removeRule(const QString &name);
+        void renameRule(const QString &oldName, const QString &newName);
+        DownloadRulePtr getRule(const QString &name) const;
+        QStringList ruleNames() const;
+        bool isEmpty() const;
+        void saveRulesToStorage();
+        bool serialize(const QString &path);
+        bool unserialize(const QString &path);
+        void replace(DownloadRuleList *other);
 
-private:
-    void loadRulesFromStorage();
-    void loadRulesFromVariantHash(const QVariantHash &l);
-    QVariantHash toVariantHash() const;
+    private:
+        void loadRulesFromStorage();
+        void loadRulesFromVariantHash(const QVariantHash &l);
+        QVariantHash toVariantHash() const;
 
-private:
-    QHash<QString, RssDownloadRulePtr> m_rules;
-    QHash<QString, QStringList> m_feedRules;
-};
+    private:
+        QHash<QString, DownloadRulePtr> m_rules;
+        QHash<QString, QStringList> m_feedRules;
+    };
+}
 
 #endif // RSSDOWNLOADFILTERLIST_H

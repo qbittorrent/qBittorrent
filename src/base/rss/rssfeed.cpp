@@ -47,12 +47,17 @@
 #include "rssmanager.h"
 #include "rssfeed.h"
 
-bool rssArticleDateRecentThan(const RssArticlePtr &left, const RssArticlePtr &right)
+namespace Rss
 {
-    return left->date() > right->date();
+    bool articleDateRecentThan(const ArticlePtr &left, const ArticlePtr &right)
+    {
+        return left->date() > right->date();
+    }
 }
 
-RssFeed::RssFeed(RssManager *manager, RssFolder *parent, const QString &url)
+using namespace Rss;
+
+Feed::Feed(Manager *manager, Folder *parent, const QString &url)
     : m_manager(manager)
     , m_parent(parent)
     , m_url (QUrl::fromEncoded(url.toUtf8()).toString())
@@ -78,23 +83,23 @@ RssFeed::RssFeed(RssManager *manager, RssFolder *parent, const QString &url)
     loadItemsFromDisk();
 }
 
-RssFeed::~RssFeed()
+Feed::~Feed()
 {
     if (!m_icon.startsWith(":/") && QFile::exists(m_icon))
         Utils::Fs::forceRemove(m_icon);
 }
 
-RssFolder *RssFeed::parent() const
+Folder *Feed::parent() const
 {
     return m_parent;
 }
 
-void RssFeed::setParent(RssFolder *parent)
+void Feed::setParent(Folder *parent)
 {
     m_parent = parent;
 }
 
-void RssFeed::saveItemsToDisk()
+void Feed::saveItemsToDisk()
 {
     qDebug() << Q_FUNC_INFO << m_url;
     if (!m_dirty) return;
@@ -104,8 +109,8 @@ void RssFeed::saveItemsToDisk()
     QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
     QVariantList oldItems;
 
-    RssArticleHash::ConstIterator it = m_articles.begin();
-    RssArticleHash::ConstIterator itend = m_articles.end();
+    ArticleHash::ConstIterator it = m_articles.begin();
+    ArticleHash::ConstIterator itend = m_articles.end();
     for ( ; it != itend; ++it) {
         oldItems << it.value()->toHash();
     }
@@ -115,7 +120,7 @@ void RssFeed::saveItemsToDisk()
     qBTRSS.setValue("old_items", allOldItems);
 }
 
-void RssFeed::loadItemsFromDisk()
+void Feed::loadItemsFromDisk()
 {
     QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
     QHash<QString, QVariant> allOldItems = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
@@ -124,13 +129,13 @@ void RssFeed::loadItemsFromDisk()
 
     foreach (const QVariant &var_it, oldItems) {
         QVariantHash item = var_it.toHash();
-        RssArticlePtr rssItem = RssArticle::fromHash(this, item);
+        ArticlePtr rssItem = Article::fromHash(this, item);
         if (rssItem)
             addArticle(rssItem);
     }
 }
 
-void RssFeed::addArticle(const RssArticlePtr &article)
+void Feed::addArticle(const ArticlePtr &article)
 {
     int maxArticles = Preferences::instance()->getRSSMaxArticlesPerFeed();
 
@@ -143,11 +148,11 @@ void RssFeed::addArticle(const RssArticlePtr &article)
         // Insert in hash table
         m_articles[article->guid()] = article;
         // Insertion sort
-        RssArticleList::Iterator lowerBound = qLowerBound(m_articlesByDate.begin(), m_articlesByDate.end(), article, rssArticleDateRecentThan);
+        ArticleList::Iterator lowerBound = qLowerBound(m_articlesByDate.begin(), m_articlesByDate.end(), article, articleDateRecentThan);
         m_articlesByDate.insert(lowerBound, article);
         int lbIndex = m_articlesByDate.indexOf(article);
         if (m_articlesByDate.size() > maxArticles) {
-            RssArticlePtr oldestArticle = m_articlesByDate.takeLast();
+            ArticlePtr oldestArticle = m_articlesByDate.takeLast();
             m_articles.remove(oldestArticle->guid());
             // Update unreadCount
             if (!oldestArticle->isRead())
@@ -164,7 +169,7 @@ void RssFeed::addArticle(const RssArticlePtr &article)
         // m_articles.contains(article->guid())
         // Try to download skipped articles
         if (Preferences::instance()->isRssDownloadingEnabled()) {
-            RssArticlePtr skipped = m_articles.value(article->guid(), RssArticlePtr());
+            ArticlePtr skipped = m_articles.value(article->guid(), ArticlePtr());
             if (skipped) {
                 if (!skipped->isRead())
                     downloadArticleTorrentIfMatching(m_manager->downloadRules(), skipped);
@@ -173,7 +178,7 @@ void RssFeed::addArticle(const RssArticlePtr &article)
     }
 }
 
-bool RssFeed::refresh()
+bool Feed::refresh()
 {
     if (m_loading) {
         qWarning() << Q_FUNC_INFO << "Feed" << displayName() << "is already being refreshed, ignoring request";
@@ -188,12 +193,12 @@ bool RssFeed::refresh()
     return true;
 }
 
-QString RssFeed::id() const
+QString Feed::id() const
 {
     return m_url;
 }
 
-void RssFeed::removeAllSettings()
+void Feed::removeAllSettings()
 {
     qDebug() << "Removing all settings / history for feed: " << m_url;
     QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
@@ -214,24 +219,24 @@ void RssFeed::removeAllSettings()
     }
 }
 
-bool RssFeed::isLoading() const
+bool Feed::isLoading() const
 {
     return m_loading;
 }
 
-QString RssFeed::title() const
+QString Feed::title() const
 {
     return m_title;
 }
 
-void RssFeed::rename(const QString &newName)
+void Feed::rename(const QString &newName)
 {
     qDebug() << "Renaming stream to" << newName;
     m_alias = newName;
 }
 
 // Return the alias if the stream has one, the url if it has no alias
-QString RssFeed::displayName() const
+QString Feed::displayName() const
 {
     if (!m_alias.isEmpty())
         return m_alias;
@@ -240,12 +245,12 @@ QString RssFeed::displayName() const
     return m_url;
 }
 
-QString RssFeed::url() const
+QString Feed::url() const
 {
     return m_url;
 }
 
-QString RssFeed::iconPath() const
+QString Feed::iconPath() const
 {
     if (m_inErrorState)
         return QLatin1String(":/icons/oxygen/unavailable.png");
@@ -253,31 +258,31 @@ QString RssFeed::iconPath() const
     return m_icon;
 }
 
-bool RssFeed::hasCustomIcon() const
+bool Feed::hasCustomIcon() const
 {
     return !m_icon.startsWith(":/");
 }
 
-void RssFeed::setIconPath(const QString &path)
+void Feed::setIconPath(const QString &path)
 {
     if (!path.isEmpty() && QFile::exists(path))
         m_icon = path;
 }
 
-RssArticlePtr RssFeed::getItem(const QString &guid) const
+ArticlePtr Feed::getItem(const QString &guid) const
 {
     return m_articles.value(guid);
 }
 
-uint RssFeed::count() const
+uint Feed::count() const
 {
     return m_articles.size();
 }
 
-void RssFeed::markAsRead()
+void Feed::markAsRead()
 {
-    RssArticleHash::ConstIterator it = m_articles.begin();
-    RssArticleHash::ConstIterator itend = m_articles.end();
+    ArticleHash::ConstIterator it = m_articles.begin();
+    ArticleHash::ConstIterator itend = m_articles.end();
     for ( ; it != itend; ++it) {
         it.value()->markAsRead();
     }
@@ -285,32 +290,32 @@ void RssFeed::markAsRead()
     m_manager->forwardFeedInfosChanged(m_url, displayName(), 0);
 }
 
-void RssFeed::markAsDirty(bool dirty)
+void Feed::markAsDirty(bool dirty)
 {
     m_dirty = dirty;
 }
 
-uint RssFeed::unreadCount() const
+uint Feed::unreadCount() const
 {
     return m_unreadCount;
 }
 
-RssArticleList RssFeed::articleListByDateDesc() const
+ArticleList Feed::articleListByDateDesc() const
 {
     return m_articlesByDate;
 }
 
-const RssArticleHash &RssFeed::articleHash() const
+const ArticleHash &Feed::articleHash() const
 {
     return m_articles;
 }
 
-RssArticleList RssFeed::unreadArticleListByDateDesc() const
+ArticleList Feed::unreadArticleListByDateDesc() const
 {
-    RssArticleList unreadNews;
+    ArticleList unreadNews;
 
-    RssArticleList::ConstIterator it = m_articlesByDate.begin();
-    RssArticleList::ConstIterator itend = m_articlesByDate.end();
+    ArticleList::ConstIterator it = m_articlesByDate.begin();
+    ArticleList::ConstIterator itend = m_articlesByDate.end();
     for ( ; it != itend; ++it) {
         if (!(*it)->isRead())
             unreadNews << *it;
@@ -319,14 +324,14 @@ RssArticleList RssFeed::unreadArticleListByDateDesc() const
 }
 
 // download the icon from the address
-QString RssFeed::iconUrl() const
+QString Feed::iconUrl() const
 {
     // XXX: This works for most sites but it is not perfect
     return QString("http://") + QUrl(m_url).host() + QString("/favicon.ico");
 }
 
 // read and store the downloaded rss' informations
-void RssFeed::handleFinishedDownload(const QString &url, const QString &filePath)
+void Feed::handleFinishedDownload(const QString &url, const QString &filePath)
 {
     if (url == m_url) {
         qDebug() << Q_FUNC_INFO << "Successfully downloaded RSS feed at" << url;
@@ -340,7 +345,7 @@ void RssFeed::handleFinishedDownload(const QString &url, const QString &filePath
     }
 }
 
-void RssFeed::handleDownloadFailure(const QString &url, const QString &error)
+void Feed::handleDownloadFailure(const QString &url, const QString &error)
 {
     if (url != m_url) return;
 
@@ -351,7 +356,7 @@ void RssFeed::handleDownloadFailure(const QString &url, const QString &error)
     qWarning() << "Reason:" << error;
 }
 
-void RssFeed::handleFeedTitle(const QString &feedUrl, const QString &title)
+void Feed::handleFeedTitle(const QString &feedUrl, const QString &title)
 {
     if (feedUrl != m_url) return;
     if (m_title == title) return;
@@ -363,10 +368,10 @@ void RssFeed::handleFeedTitle(const QString &feedUrl, const QString &title)
         m_manager->forwardFeedInfosChanged(feedUrl, title, m_unreadCount);
 }
 
-void RssFeed::downloadArticleTorrentIfMatching(RssDownloadRuleList *rules, const RssArticlePtr &article)
+void Feed::downloadArticleTorrentIfMatching(DownloadRuleList *rules, const ArticlePtr &article)
 {
     Q_ASSERT(Preferences::instance()->isRssDownloadingEnabled());
-    RssDownloadRulePtr matchingRule = rules->findMatchingRule(m_url, article->title());
+    DownloadRulePtr matchingRule = rules->findMatchingRule(m_url, article->title());
     if (!matchingRule) return;
 
     if (matchingRule->ignoreDays() > 0) {
@@ -400,28 +405,28 @@ void RssFeed::downloadArticleTorrentIfMatching(RssDownloadRuleList *rules, const
     BitTorrent::AddTorrentParams params;
     params.savePath = matchingRule->savePath();
     params.label = matchingRule->label();
-    if (matchingRule->addPaused() == RssDownloadRule::ALWAYS_PAUSED)
+    if (matchingRule->addPaused() == DownloadRule::ALWAYS_PAUSED)
         params.addPaused = TriStateBool::True;
-    else if (matchingRule->addPaused() == RssDownloadRule::NEVER_PAUSED)
+    else if (matchingRule->addPaused() == DownloadRule::NEVER_PAUSED)
         params.addPaused = TriStateBool::False;
     BitTorrent::Session::instance()->addTorrent(torrentUrl, params);
 }
 
-void RssFeed::recheckRssItemsForDownload()
+void Feed::recheckRssItemsForDownload()
 {
     Q_ASSERT(Preferences::instance()->isRssDownloadingEnabled());
-    RssDownloadRuleList *rules = m_manager->downloadRules();
-    foreach (const RssArticlePtr &article, m_articlesByDate) {
+    DownloadRuleList *rules = m_manager->downloadRules();
+    foreach (const ArticlePtr &article, m_articlesByDate) {
         if (!article->isRead())
             downloadArticleTorrentIfMatching(rules, article);
     }
 }
 
-void RssFeed::handleNewArticle(const QString &feedUrl, const QVariantHash &articleData)
+void Feed::handleNewArticle(const QString &feedUrl, const QVariantHash &articleData)
 {
     if (feedUrl != m_url) return;
 
-    RssArticlePtr article = RssArticle::fromHash(this, articleData);
+    ArticlePtr article = Article::fromHash(this, articleData);
     if (article.isNull()) {
         qDebug() << "Article hash corrupted or guid is uncomputable; feed url: " << feedUrl;
         return;
@@ -435,7 +440,7 @@ void RssFeed::handleNewArticle(const QString &feedUrl, const QVariantHash &artic
     //m_manager->forwardFeedContentChanged(m_url);
 }
 
-void RssFeed::handleFeedParsingFinished(const QString &feedUrl, const QString &error)
+void Feed::handleFeedParsingFinished(const QString &feedUrl, const QString &error)
 {
     if (feedUrl != m_url) return;
 
@@ -454,12 +459,12 @@ void RssFeed::handleFeedParsingFinished(const QString &feedUrl, const QString &e
     saveItemsToDisk();
 }
 
-void RssFeed::handleArticleStateChanged()
+void Feed::handleArticleStateChanged()
 {
     m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
 }
 
-void RssFeed::decrementUnreadCount()
+void Feed::decrementUnreadCount()
 {
     --m_unreadCount;
 }

@@ -32,9 +32,11 @@
 #include "rssfolder.h"
 #include "rssfile.h"
 
-RssFile::~RssFile() {}
+using namespace Rss;
 
-QStringList RssFile::pathHierarchy() const
+File::~File() {}
+
+QStringList File::pathHierarchy() const
 {
     QStringList path;
     if (parent())

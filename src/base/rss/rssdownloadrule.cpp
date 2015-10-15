@@ -38,14 +38,16 @@
 #include "rssarticle.h"
 #include "rssdownloadrule.h"
 
-RssDownloadRule::RssDownloadRule()
+using namespace Rss;
+
+DownloadRule::DownloadRule()
     : m_enabled(false)
     , m_useRegex(false)
     , m_apstate(USE_GLOBAL)
 {
 }
 
-bool RssDownloadRule::matches(const QString &articleTitle) const
+bool DownloadRule::matches(const QString &articleTitle) const
 {
     foreach (const QString &token, m_mustContain) {
         if (!token.isEmpty()) {
@@ -123,7 +125,7 @@ bool RssDownloadRule::matches(const QString &articleTitle) const
     return true;
 }
 
-void RssDownloadRule::setMustContain(const QString &tokens)
+void DownloadRule::setMustContain(const QString &tokens)
 {
     if (m_useRegex)
         m_mustContain = QStringList() << tokens;
@@ -131,7 +133,7 @@ void RssDownloadRule::setMustContain(const QString &tokens)
         m_mustContain = tokens.split(" ");
 }
 
-void RssDownloadRule::setMustNotContain(const QString &tokens)
+void DownloadRule::setMustNotContain(const QString &tokens)
 {
     if (m_useRegex)
         m_mustNotContain = QStringList() << tokens;
@@ -139,34 +141,34 @@ void RssDownloadRule::setMustNotContain(const QString &tokens)
         m_mustNotContain = tokens.split("|");
 }
 
-QStringList RssDownloadRule::rssFeeds() const
+QStringList DownloadRule::rssFeeds() const
 {
     return m_rssFeeds;
 }
 
-void RssDownloadRule::setRssFeeds(const QStringList &rssFeeds)
+void DownloadRule::setRssFeeds(const QStringList &rssFeeds)
 {
     m_rssFeeds = rssFeeds;
 }
 
-QString RssDownloadRule::name() const
+QString DownloadRule::name() const
 {
     return m_name;
 }
 
-void RssDownloadRule::setName(const QString &name)
+void DownloadRule::setName(const QString &name)
 {
     m_name = name;
 }
 
-QString RssDownloadRule::savePath() const
+QString DownloadRule::savePath() const
 {
     return m_savePath;
 }
 
-RssDownloadRulePtr RssDownloadRule::fromVariantHash(const QVariantHash &ruleHash)
+DownloadRulePtr DownloadRule::fromVariantHash(const QVariantHash &ruleHash)
 {
-    RssDownloadRulePtr rule(new RssDownloadRule);
+    DownloadRulePtr rule(new DownloadRule);
     rule->setName(ruleHash.value("name").toString());
     rule->setUseRegex(ruleHash.value("use_regex", false).toBool());
     rule->setMustContain(ruleHash.value("must_contain").toString());
@@ -182,7 +184,7 @@ RssDownloadRulePtr RssDownloadRule::fromVariantHash(const QVariantHash &ruleHash
     return rule;
 }
 
-QVariantHash RssDownloadRule::toVariantHash() const
+QVariantHash DownloadRule::toVariantHash() const
 {
     QVariantHash hash;
     hash["name"] = m_name;
@@ -200,12 +202,12 @@ QVariantHash RssDownloadRule::toVariantHash() const
     return hash;
 }
 
-bool RssDownloadRule::operator==(const RssDownloadRule &other) const
+bool DownloadRule::operator==(const DownloadRule &other) const
 {
     return m_name == other.name();
 }
 
-void RssDownloadRule::setSavePath(const QString &savePath)
+void DownloadRule::setSavePath(const QString &savePath)
 {
     if (!savePath.isEmpty() && (QDir(savePath) != QDir(Preferences::instance()->getSavePath())))
         m_savePath = Utils::Fs::fromNativePath(savePath);
@@ -213,93 +215,93 @@ void RssDownloadRule::setSavePath(const QString &savePath)
         m_savePath = QString();
 }
 
-RssDownloadRule::AddPausedState RssDownloadRule::addPaused() const
+DownloadRule::AddPausedState DownloadRule::addPaused() const
 {
     return m_apstate;
 }
 
-void RssDownloadRule::setAddPaused(const RssDownloadRule::AddPausedState &aps)
+void DownloadRule::setAddPaused(const DownloadRule::AddPausedState &aps)
 {
     m_apstate = aps;
 }
 
-QString RssDownloadRule::label() const
+QString DownloadRule::label() const
 {
     return m_label;
 }
 
-void RssDownloadRule::setLabel(const QString &label)
+void DownloadRule::setLabel(const QString &label)
 {
     m_label = label;
 }
 
-bool RssDownloadRule::isEnabled() const
+bool DownloadRule::isEnabled() const
 {
     return m_enabled;
 }
 
-void RssDownloadRule::setEnabled(bool enable)
+void DownloadRule::setEnabled(bool enable)
 {
     m_enabled = enable;
 }
 
-void RssDownloadRule::setLastMatch(const QDateTime &d)
+void DownloadRule::setLastMatch(const QDateTime &d)
 {
     m_lastMatch = d;
 }
 
-QDateTime RssDownloadRule::lastMatch() const
+QDateTime DownloadRule::lastMatch() const
 {
     return m_lastMatch;
 }
 
-void RssDownloadRule::setIgnoreDays(int d)
+void DownloadRule::setIgnoreDays(int d)
 {
     m_ignoreDays = d;
 }
 
-int RssDownloadRule::ignoreDays() const
+int DownloadRule::ignoreDays() const
 {
     return m_ignoreDays;
 }
 
-QString RssDownloadRule::mustContain() const
+QString DownloadRule::mustContain() const
 {
     return m_mustContain.join(" ");
 }
 
-QString RssDownloadRule::mustNotContain() const
+QString DownloadRule::mustNotContain() const
 {
     return m_mustNotContain.join("|");
 }
 
-bool RssDownloadRule::useRegex() const
+bool DownloadRule::useRegex() const
 {
     return m_useRegex;
 }
 
-void RssDownloadRule::setUseRegex(bool enabled)
+void DownloadRule::setUseRegex(bool enabled)
 {
     m_useRegex = enabled;
 }
 
-QString RssDownloadRule::episodeFilter() const
+QString DownloadRule::episodeFilter() const
 {
     return m_episodeFilter;
 }
 
-void RssDownloadRule::setEpisodeFilter(const QString &e)
+void DownloadRule::setEpisodeFilter(const QString &e)
 {
     m_episodeFilter = e;
 }
 
-QStringList RssDownloadRule::findMatchingArticles(const RssFeedPtr &feed) const
+QStringList DownloadRule::findMatchingArticles(const FeedPtr &feed) const
 {
     QStringList ret;
-    const RssArticleHash &feedArticles = feed->articleHash();
+    const ArticleHash &feedArticles = feed->articleHash();
 
-    RssArticleHash::ConstIterator artIt = feedArticles.begin();
-    RssArticleHash::ConstIterator artItend = feedArticles.end();
+    ArticleHash::ConstIterator artIt = feedArticles.begin();
+    ArticleHash::ConstIterator artItend = feedArticles.end();
     for ( ; artIt != artItend ; ++artIt) {
         const QString title = artIt.value()->title();
         if (matches(title))

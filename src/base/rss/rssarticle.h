@@ -37,53 +37,56 @@
 #include <QVariantHash>
 #include <QSharedPointer>
 
-class RssFeed;
-class RssArticle;
-
-typedef QSharedPointer<RssArticle> RssArticlePtr;
-
-// Item of a rss stream, single information
-class RssArticle: public QObject
+namespace Rss
 {
-    Q_OBJECT
+    class Feed;
+    class Article;
 
-public:
-    RssArticle(RssFeed *parent, const QString &guid);
+    typedef QSharedPointer<Article> ArticlePtr;
 
-    // Accessors
-    bool hasAttachment() const;
-    const QString &guid() const;
-    RssFeed *parent() const;
-    const QString &title() const;
-    const QString &author() const;
-    const QString &torrentUrl() const;
-    const QString &link() const;
-    QString description() const;
-    const QDateTime &date() const;
-    bool isRead() const;
-    // Setters
-    void markAsRead();
+    // Item of a rss stream, single information
+    class Article: public QObject
+    {
+        Q_OBJECT
 
-    // Serialization
-    QVariantHash toHash() const;
-    static RssArticlePtr fromHash(RssFeed *parent, const QVariantHash &hash);
+    public:
+        Article(Feed *parent, const QString &guid);
 
-signals:
-    void articleWasRead();
+        // Accessors
+        bool hasAttachment() const;
+        const QString &guid() const;
+        Feed *parent() const;
+        const QString &title() const;
+        const QString &author() const;
+        const QString &torrentUrl() const;
+        const QString &link() const;
+        QString description() const;
+        const QDateTime &date() const;
+        bool isRead() const;
+        // Setters
+        void markAsRead();
 
-public slots:
-    void handleTorrentDownloadSuccess(const QString &url);
+        // Serialization
+        QVariantHash toHash() const;
+        static ArticlePtr fromHash(Feed *parent, const QVariantHash &hash);
 
-private:
-    RssFeed *m_parent;
-    QString m_guid;
-    QString m_title;
-    QString m_torrentUrl;
-    QString m_link;
-    QString m_description;
-    QDateTime m_date;
-    QString m_author;
-    bool m_read;
-};
+    signals:
+        void articleWasRead();
+
+    public slots:
+        void handleTorrentDownloadSuccess(const QString &url);
+
+    private:
+        Feed *m_parent;
+        QString m_guid;
+        QString m_title;
+        QString m_torrentUrl;
+        QString m_link;
+        QString m_description;
+        QDateTime m_date;
+        QString m_author;
+        bool m_read;
+    };
+}
 
 #endif // RSSARTICLE_H
