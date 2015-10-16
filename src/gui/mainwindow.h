@@ -126,7 +126,7 @@ protected slots:
     void on_actionOpen_triggered();
     void updateGUI();
     void loadPreferences(bool configure_session = true);
-    void addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle *const, QString> &tracker);
+    void addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle*, QString> &tracker);
     void addTorrentFailed(const QString &error) const;
     void finishedTorrent(BitTorrent::TorrentHandle *const torrent) const;
     void askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHandle *const torrent);
@@ -164,7 +164,7 @@ private slots:
 private:
     QFileSystemWatcher *executable_watcher;
     // Bittorrent
-    QList<QPair<BitTorrent::TorrentHandle *const, QString> > unauthenticated_trackers; // Still needed?
+    QList<QPair<BitTorrent::TorrentHandle*, QString>> unauthenticated_trackers; // Still needed?
     // GUI related
     bool m_posInitialized;
     QTabWidget *tabs;

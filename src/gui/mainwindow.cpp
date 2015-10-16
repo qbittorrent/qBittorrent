@@ -1157,7 +1157,7 @@ void MainWindow::loadPreferences(bool configure_session)
     qDebug("GUI settings loaded");
 }
 
-void MainWindow::addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle *const, QString> &tracker)
+void MainWindow::addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle*, QString> &tracker)
 {
     // Trackers whose authentication was cancelled
     if (unauthenticated_trackers.indexOf(tracker) < 0)
@@ -1167,7 +1167,7 @@ void MainWindow::addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle
 // Called when a tracker requires authentication
 void MainWindow::trackerAuthenticationRequired(BitTorrent::TorrentHandle *const torrent)
 {
-    if (unauthenticated_trackers.indexOf(QPair<BitTorrent::TorrentHandle *const, QString>(torrent, torrent->currentTracker())) < 0)
+    if (unauthenticated_trackers.indexOf(qMakePair(torrent, torrent->currentTracker())) < 0)
         // Tracker login
         new trackerLogin(this, torrent);
 }

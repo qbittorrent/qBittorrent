@@ -39,7 +39,7 @@ trackerLogin::trackerLogin(QWidget *parent, BitTorrent::TorrentHandle *const tor
   setAttribute(Qt::WA_DeleteOnClose);
   login_logo->setPixmap(QPixmap(QString::fromUtf8(":/icons/oxygen/encrypted.png")));
   tracker_url->setText(torrent->currentTracker());
-  connect(this, SIGNAL(trackerLoginCancelled(QPair<BitTorrent::TorrentHandle *const, QString>)), parent, SLOT(addUnauthenticatedTracker(QPair<BitTorrent::TorrentHandle *const, QString>)));
+  connect(this, SIGNAL(trackerLoginCancelled(QPair<BitTorrent::TorrentHandle*, QString>)), parent, SLOT(addUnauthenticatedTracker(QPair<BitTorrent::TorrentHandle*, QString>)));
   show();
 }
 
@@ -53,6 +53,6 @@ void trackerLogin::on_loginButton_clicked() {
 
 void trackerLogin::on_cancelButton_clicked() {
   // Emit a signal to GUI to stop asking for authentication
-  emit trackerLoginCancelled(QPair<BitTorrent::TorrentHandle *const, QString>(m_torrent, m_torrent->currentTracker()));
+  emit trackerLoginCancelled(qMakePair(m_torrent, m_torrent->currentTracker()));
   close();
 }
