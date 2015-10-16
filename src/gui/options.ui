@@ -58,7 +58,7 @@
         <string>Behavior</string>
        </property>
        <property name="textAlignment">
-        <set>AlignCenter</set>
+        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -69,7 +69,7 @@
         <string>Downloads</string>
        </property>
        <property name="textAlignment">
-        <set>AlignCenter</set>
+        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -80,7 +80,7 @@
         <string>Connection</string>
        </property>
        <property name="textAlignment">
-        <set>AlignCenter</set>
+        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -91,7 +91,7 @@
         <string>Speed</string>
        </property>
        <property name="textAlignment">
-        <set>AlignCenter</set>
+        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -102,7 +102,7 @@
         <string>BitTorrent</string>
        </property>
        <property name="textAlignment">
-        <set>AlignCenter</set>
+        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -113,7 +113,7 @@
         <string>Web UI</string>
        </property>
        <property name="textAlignment">
-        <set>AlignCenter</set>
+        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -124,7 +124,7 @@
         <string>Advanced</string>
        </property>
        <property name="textAlignment">
-        <set>AlignCenter</set>
+        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -133,7 +133,7 @@
      </widget>
      <widget class="QStackedWidget" name="tabOption">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabOptionPage1">
        <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -162,8 +162,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>480</width>
-             <height>672</height>
+             <width>486</width>
+             <height>714</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -520,8 +520,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>487</width>
-             <height>965</height>
+             <width>486</width>
+             <height>1015</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -540,13 +540,6 @@
                <property name="bottomMargin">
                 <number>9</number>
                </property>
-               <item row="1" column="0">
-                <widget class="QCheckBox" name="checkStartPaused">
-                 <property name="text">
-                  <string comment="The torrent will be added to download list in pause state">Do not start the download automatically</string>
-                 </property>
-                </widget>
-               </item>
                <item row="0" column="0">
                 <widget class="QGroupBox" name="checkAdditionDialog">
                  <property name="title">
@@ -567,6 +560,20 @@
                    </widget>
                   </item>
                  </layout>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QCheckBox" name="checkStartPaused">
+                 <property name="text">
+                  <string comment="The torrent will be added to download list in pause state">Do not start the download automatically</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QCheckBox" name="checkEditableSavePath">
+                 <property name="text">
+                  <string>Enable editable save path</string>
+                 </property>
                 </widget>
                </item>
               </layout>
@@ -1036,8 +1043,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>480</width>
-             <height>658</height>
+             <width>429</width>
+             <height>688</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1566,8 +1573,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>502</width>
-             <height>538</height>
+             <width>340</width>
+             <height>472</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1950,8 +1957,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>555</width>
-             <height>410</height>
+             <width>527</width>
+             <height>437</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2313,8 +2320,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>419</width>
-             <height>537</height>
+             <width>405</width>
+             <height>549</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
