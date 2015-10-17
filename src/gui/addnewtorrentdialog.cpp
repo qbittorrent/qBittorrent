@@ -384,11 +384,6 @@ bool AddNewTorrentDialog::validateSavePath(QString savePath)
         return false;
     }
 
-    // Create dir if it doesn't exist
-    QDir savePathDir = QDir(savePath);
-    if (!savePathDir.exists())
-        savePathDir.mkpath(".");
-
     // Check if path already in combobox
     const int existingIndex = indexOfSavePath(savePath);
     if (existingIndex >= 0) {
@@ -669,6 +664,11 @@ void AddNewTorrentDialog::accept()
 
     if (!validateSavePath(savePath))
         return;
+
+    // Create dir if it doesn't exist
+    QDir savePathDir = QDir(savePath);
+    if (!savePathDir.exists())
+        savePathDir.mkpath(".");
 
     if (ui->default_save_path_cb->isChecked()) {
         pref->setSavePath(savePath);
