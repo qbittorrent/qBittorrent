@@ -29,6 +29,7 @@
  */
 
 #include <cmath>
+#include <QDebug>
 #include "downloadedpiecesbar.h"
 
 DownloadedPiecesBar::DownloadedPiecesBar(QWidget *parent): QWidget(parent)
@@ -150,6 +151,10 @@ void DownloadedPiecesBar::updateImage()
 {
   //  qDebug() << "updateImage";
   QImage image2(width() - 2, 1, QImage::Format_RGB888);
+  if (image2.isNull()) {
+      qDebug() << "QImage image2() allocation failed, width():" << width();
+      return;
+  }
 
   if (m_pieces.isEmpty()) {
     image2.fill(0xffffff);
