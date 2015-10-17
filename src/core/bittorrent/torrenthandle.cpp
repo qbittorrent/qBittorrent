@@ -148,7 +148,7 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &in)
         m_nativeHandle.func(__VA_ARGS__); \
     } \
     catch (std::exception &exc) { \
-        qDebug("torrent_handle::"#func"() throws exception: %s", exc.what()); \
+        qDebug() << Q_FUNC_INFO << " throws exception: " << exc.what(); \
     }
 
 #define SAFE_CALL_BOOL(func, ...) \
@@ -157,7 +157,7 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &in)
         return true; \
     } \
     catch (std::exception &exc) { \
-        qDebug("torrent_handle::"#func"() throws exception: %s", exc.what()); \
+        qDebug() << Q_FUNC_INFO << " throws exception: " << exc.what(); \
         return false; \
     }
 
@@ -167,7 +167,7 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &in)
         result = m_nativeHandle.func(); \
     } \
     catch (std::exception &exc) { \
-        qDebug("torrent_handle::"#func"() throws exception: %s", exc.what()); \
+        qDebug() << Q_FUNC_INFO << " throws exception: " << exc.what(); \
     } \
     return result;
 
@@ -176,7 +176,7 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &in)
         var = m_nativeHandle.func(__VA_ARGS__); \
     } \
     catch (std::exception &exc) { \
-        qDebug("torrent_handle::"#func"() throws exception: %s", exc.what()); \
+        qDebug() << Q_FUNC_INFO << " throws exception: " << exc.what(); \
     }
 
 const qreal TorrentHandle::USE_GLOBAL_RATIO = -2.;
@@ -1186,7 +1186,7 @@ void TorrentHandle::pause()
         m_nativeHandle.pause();
     }
     catch (std::exception &exc) {
-        qDebug("torrent_handle method inside TorrentHandleImpl::pause() throws exception: %s", exc.what());
+        qDebug() << Q_FUNC_INFO << " throws exception: " << exc.what();
     }
 }
 
@@ -1201,7 +1201,7 @@ void TorrentHandle::resume(bool forced)
         m_nativeHandle.resume();
     }
     catch (std::exception &exc) {
-        qDebug("torrent_handle method inside TorrentHandleImpl::resume() throws exception: %s", exc.what());
+        qDebug() << Q_FUNC_INFO << " throws exception: " << exc.what();
     }
 }
 
@@ -1279,13 +1279,13 @@ void TorrentHandle::handleStateUpdate(const libt::torrent_status &nativeStatus)
 void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
 {
     if (!isMoveInProgress()) {
-        qWarning("Unexpected TorrentHandleImpl::handleStorageMoved() call.");
+        qWarning() << "Unexpected " << Q_FUNC_INFO << " call.";
         return;
     }
 
     QString newPath = Utils::String::fromStdString(p->path);
     if (newPath != m_newPath) {
-        qWarning("TorrentHandleImpl::handleStorageMoved(): New path doesn't match a path in a queue.");
+        qWarning() << Q_FUNC_INFO << ": New path doesn't match a path in a queue.";
         return;
     }
 
@@ -1317,7 +1317,7 @@ void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
 void TorrentHandle::handleStorageMovedFailedAlert(libtorrent::storage_moved_failed_alert *p)
 {
     if (!isMoveInProgress()) {
-        qWarning("Unexpected TorrentHandleImpl::handleStorageMovedFailed() call.");
+        qWarning() << "Unexpected " << Q_FUNC_INFO << " call.";
         return;
     }
 

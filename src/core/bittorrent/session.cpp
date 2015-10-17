@@ -2092,7 +2092,7 @@ void Session::handleAlert(libt::alert *a)
         }
     }
     catch (std::exception &exc) {
-        qWarning() << "Caught exception in readAlerts(): " << Utils::String::fromStdString(exc.what());
+        qWarning() << "Caught exception in " << Q_FUNC_INFO << ": " << Utils::String::fromStdString(exc.what());
     }
 }
 
@@ -2411,7 +2411,7 @@ void torrentQueuePositionUp(const libt::torrent_handle &handle)
         handle.queue_position_up();
     }
     catch (std::exception &exc) {
-        qDebug() << "torrent_handle::queue_position_up() fails:" << exc.what();
+        qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
     }
 }
 
@@ -2421,7 +2421,7 @@ void torrentQueuePositionDown(const libt::torrent_handle &handle)
         handle.queue_position_down();
     }
     catch (std::exception &exc) {
-        qDebug() << "torrent_handle::queue_position_down() fails:" << exc.what();
+        qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
     }
 }
 
@@ -2431,7 +2431,7 @@ void torrentQueuePositionTop(const libt::torrent_handle &handle)
         handle.queue_position_top();
     }
     catch (std::exception &exc) {
-        qDebug() << "torrent_handle::queue_position_top() fails:" << exc.what();
+        qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
     }
 }
 
@@ -2441,6 +2441,6 @@ void torrentQueuePositionBottom(const libt::torrent_handle &handle)
         handle.queue_position_bottom();
     }
     catch (std::exception &exc) {
-        qDebug() << "torrent_handle::queue_position_bottom() fails:" << exc.what();
+        qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
     }
 }
