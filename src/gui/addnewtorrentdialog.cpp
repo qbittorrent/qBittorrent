@@ -361,7 +361,7 @@ bool AddNewTorrentDialog::validateSavePath(QString save_path)
     // Check if save path is valid
     bool valid = true;
     if (save_path.isEmpty() || !QDir::isAbsolutePath(save_path)) {
-        valid &= false;
+        valid = false;
     }
 
     save_path = QDir::cleanPath(save_path); // for example "/usr/../usr" -> "/usr"
