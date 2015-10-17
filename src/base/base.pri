@@ -43,7 +43,7 @@ HEADERS += \
     $$PWD/rss/rssarticle.h \
     $$PWD/rss/rssdownloadrule.h \
     $$PWD/rss/rssdownloadrulelist.h \
-    $$PWD/rss/rssparser.h \
+    $$PWD/rss/private/rssparser.h \
     $$PWD/utils/fs.h \
     $$PWD/utils/gzip.h \
     $$PWD/utils/misc.h \
@@ -94,7 +94,7 @@ SOURCES += \
     $$PWD/rss/rssdownloadrule.cpp \
     $$PWD/rss/rssdownloadrulelist.cpp \
     $$PWD/rss/rssfile.cpp \
-    $$PWD/rss/rssparser.cpp \
+    $$PWD/rss/private/rssparser.cpp \
     $$PWD/utils/fs.cpp \
     $$PWD/utils/gzip.cpp \
     $$PWD/utils/misc.cpp \

@@ -32,7 +32,6 @@
 #ifndef RSSARTICLE_H
 #define RSSARTICLE_H
 
-#include <QXmlStreamReader>
 #include <QDateTime>
 #include <QVariantHash>
 #include <QSharedPointer>

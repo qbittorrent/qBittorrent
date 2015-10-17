@@ -40,9 +40,9 @@
 #include "base/utils/fs.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
+#include "private/rssparser.h"
 #include "rssdownloadrulelist.h"
 #include "rssarticle.h"
-#include "rssparser.h"
 #include "rssfolder.h"
 #include "rssmanager.h"
 #include "rssfeed.h"
@@ -57,9 +57,8 @@ namespace Rss
 
 using namespace Rss;
 
-Feed::Feed(Manager *manager, Folder *parent, const QString &url)
+Feed::Feed(const QString &url, Manager *manager)
     : m_manager(manager)
-    , m_parent(parent)
     , m_url (QUrl::fromEncoded(url.toUtf8()).toString())
     , m_icon(":/icons/oxygen/application-rss+xml.png")
     , m_unreadCount(0)
@@ -69,34 +68,26 @@ Feed::Feed(Manager *manager, Folder *parent, const QString &url)
 {
     qDebug() << Q_FUNC_INFO << m_url;
     // Listen for new RSS downloads
-    connect(manager->rssParser(), SIGNAL(feedTitle(QString,QString)), SLOT(handleFeedTitle(QString,QString)));
-    connect(manager->rssParser(), SIGNAL(newArticle(QString,QVariantHash)), SLOT(handleNewArticle(QString,QVariantHash)));
-    connect(manager->rssParser(), SIGNAL(feedParsingFinished(QString,QString)), SLOT(handleFeedParsingFinished(QString,QString)));
+    Private::Parser *const parser = m_manager->rssParser();
+    connect(parser, SIGNAL(feedTitle(QString,QString)), SLOT(handleFeedTitle(QString,QString)));
+    connect(parser, SIGNAL(newArticle(QString,QVariantHash)), SLOT(handleNewArticle(QString,QVariantHash)));
+    connect(parser, SIGNAL(feedParsingFinished(QString,QString)), SLOT(handleParsingFinished(QString,QString)));
 
     // Download the RSS Feed icon
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(iconUrl(), true);
-    connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleFinishedDownload(QString, QString)));
-    connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
-    m_iconUrl = handler->url();
+    connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleIconDownloadFinished(QString, QString)));
 
     // Load old RSS articles
     loadItemsFromDisk();
+
+    refresh();
 }
 
 Feed::~Feed()
 {
     if (!m_icon.startsWith(":/") && QFile::exists(m_icon))
         Utils::Fs::forceRemove(m_icon);
-}
-
-Folder *Feed::parent() const
-{
-    return m_parent;
-}
-
-void Feed::setParent(Folder *parent)
-{
-    m_parent = parent;
+    m_manager->rssParser()->clearFeedData(m_url);
 }
 
 void Feed::saveItemsToDisk()
@@ -104,7 +95,7 @@ void Feed::saveItemsToDisk()
     qDebug() << Q_FUNC_INFO << m_url;
     if (!m_dirty) return;
 
-    markAsDirty(false);
+    m_dirty = false;
 
     QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
     QVariantList oldItems;
@@ -140,13 +131,15 @@ void Feed::addArticle(const ArticlePtr &article)
     int maxArticles = Preferences::instance()->getRSSMaxArticlesPerFeed();
 
     if (!m_articles.contains(article->guid())) {
-        markAsDirty();
+        m_dirty = true;
 
         // Update unreadCount
         if (!article->isRead())
             ++m_unreadCount;
         // Insert in hash table
         m_articles[article->guid()] = article;
+        if (!article->isRead()) // Optimization
+            connect(article.data(), SIGNAL(articleWasRead()), SLOT(handleArticleRead()), Qt::UniqueConnection);
         // Insertion sort
         ArticleList::Iterator lowerBound = qLowerBound(m_articlesByDate.begin(), m_articlesByDate.end(), article, articleDateRecentThan);
         m_articlesByDate.insert(lowerBound, article);
@@ -162,7 +155,7 @@ void Feed::addArticle(const ArticlePtr &article)
         // Check if article was inserted at the end of the list and will break max_articles limit
         if (Preferences::instance()->isRssDownloadingEnabled()) {
             if ((lbIndex < maxArticles) && !article->isRead())
-                downloadArticleTorrentIfMatching(m_manager->downloadRules(), article);
+                downloadArticleTorrentIfMatching(article);
         }
     }
     else {
@@ -172,7 +165,7 @@ void Feed::addArticle(const ArticlePtr &article)
             ArticlePtr skipped = m_articles.value(article->guid(), ArticlePtr());
             if (skipped) {
                 if (!skipped->isRead())
-                    downloadArticleTorrentIfMatching(m_manager->downloadRules(), skipped);
+                    downloadArticleTorrentIfMatching(skipped);
             }
         }
     }
@@ -186,10 +179,9 @@ bool Feed::refresh()
     }
     m_loading = true;
     // Download the RSS again
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(m_url, true);
-    connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleFinishedDownload(QString, QString)));
-    connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
-    m_url = handler->url(); // sync URL encoding
+    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(m_url);
+    connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), this, SLOT(handleRssDownloadFinished(QString, QByteArray)));
+    connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleRssDownloadFailed(QString, QString)));
     return true;
 }
 
@@ -290,11 +282,6 @@ void Feed::markAsRead()
     m_manager->forwardFeedInfosChanged(m_url, displayName(), 0);
 }
 
-void Feed::markAsDirty(bool dirty)
-{
-    m_dirty = dirty;
-}
-
 uint Feed::unreadCount() const
 {
     return m_unreadCount;
@@ -327,28 +314,27 @@ ArticleList Feed::unreadArticleListByDateDesc() const
 QString Feed::iconUrl() const
 {
     // XXX: This works for most sites but it is not perfect
-    return QString("http://") + QUrl(m_url).host() + QString("/favicon.ico");
+    return QString("http://%1/favicon.ico").arg(QUrl(m_url).host());
 }
 
-// read and store the downloaded rss' informations
-void Feed::handleFinishedDownload(const QString &url, const QString &filePath)
+void Feed::handleIconDownloadFinished(const QString &url, const QString &filePath)
 {
-    if (url == m_url) {
-        qDebug() << Q_FUNC_INFO << "Successfully downloaded RSS feed at" << url;
-        // Parse the download RSS
-        m_manager->rssParser()->parseRssFile(m_url, filePath);
-    }
-    else if (url == m_iconUrl) {
-        m_icon = filePath;
-        qDebug() << Q_FUNC_INFO << "icon path:" << m_icon;
-        m_manager->forwardFeedIconChanged(m_url, m_icon);
-    }
+    Q_UNUSED(url);
+
+    m_icon = filePath;
+    qDebug() << Q_FUNC_INFO << "icon path:" << m_icon;
+    m_manager->forwardFeedIconChanged(m_url, m_icon);
 }
 
-void Feed::handleDownloadFailure(const QString &url, const QString &error)
+void Feed::handleRssDownloadFinished(const QString &url, const QByteArray &data)
 {
-    if (url != m_url) return;
+    qDebug() << Q_FUNC_INFO << "Successfully downloaded RSS feed at" << url;
+    // Parse the download RSS
+    m_manager->rssParser()->parseFeedData(m_url, data);
+}
 
+void Feed::handleRssDownloadFailed(const QString &url, const QString &error)
+{
     m_inErrorState = true;
     m_loading = false;
     m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
@@ -368,9 +354,10 @@ void Feed::handleFeedTitle(const QString &feedUrl, const QString &title)
         m_manager->forwardFeedInfosChanged(feedUrl, title, m_unreadCount);
 }
 
-void Feed::downloadArticleTorrentIfMatching(DownloadRuleList *rules, const ArticlePtr &article)
+void Feed::downloadArticleTorrentIfMatching(const ArticlePtr &article)
 {
     Q_ASSERT(Preferences::instance()->isRssDownloadingEnabled());
+    DownloadRuleList *rules = m_manager->downloadRules();
     DownloadRulePtr matchingRule = rules->findMatchingRule(m_url, article->title());
     if (!matchingRule) return;
 
@@ -378,7 +365,6 @@ void Feed::downloadArticleTorrentIfMatching(DownloadRuleList *rules, const Artic
         QDateTime lastMatch = matchingRule->lastMatch();
         if (lastMatch.isValid()) {
             if (QDateTime::currentDateTime() < lastMatch.addDays(matchingRule->ignoreDays())) {
-                connect(article.data(), SIGNAL(articleWasRead()), SLOT(handleArticleStateChanged()), Qt::UniqueConnection);
                 article->markAsRead();
                 return;
             }
@@ -396,8 +382,7 @@ void Feed::downloadArticleTorrentIfMatching(DownloadRuleList *rules, const Artic
     }
 
     Logger::instance()->addMessage(tr("Automatically downloading '%1' torrent from '%2' RSS feed...").arg(article->title()).arg(displayName()));
-    connect(BitTorrent::Session::instance(), SIGNAL(downloadFromUrlFinished(QString)), article.data(), SLOT(handleTorrentDownloadSuccess(const QString &)), Qt::UniqueConnection);
-    if (BitTorrent::MagnetUri(torrent_url).isValid())
+    if (BitTorrent::MagnetUri(torrentUrl).isValid())
         article->markAsRead();
     else
         connect(BitTorrent::Session::instance(), SIGNAL(downloadFromUrlFinished(QString)), article.data(), SLOT(handleTorrentDownloadSuccess(const QString&)), Qt::UniqueConnection);
@@ -415,10 +400,9 @@ void Feed::downloadArticleTorrentIfMatching(DownloadRuleList *rules, const Artic
 void Feed::recheckRssItemsForDownload()
 {
     Q_ASSERT(Preferences::instance()->isRssDownloadingEnabled());
-    DownloadRuleList *rules = m_manager->downloadRules();
     foreach (const ArticlePtr &article, m_articlesByDate) {
         if (!article->isRead())
-            downloadArticleTorrentIfMatching(rules, article);
+            downloadArticleTorrentIfMatching(article);
     }
 }
 
@@ -440,7 +424,7 @@ void Feed::handleNewArticle(const QString &feedUrl, const QVariantHash &articleD
     //m_manager->forwardFeedContentChanged(m_url);
 }
 
-void Feed::handleFeedParsingFinished(const QString &feedUrl, const QString &error)
+void Feed::handleParsingFinished(const QString &feedUrl, const QString &error)
 {
     if (feedUrl != m_url) return;
 
@@ -459,12 +443,9 @@ void Feed::handleFeedParsingFinished(const QString &feedUrl, const QString &erro
     saveItemsToDisk();
 }
 
-void Feed::handleArticleStateChanged()
-{
-    m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
-}
-
-void Feed::decrementUnreadCount()
+void Feed::handleArticleRead()
 {
     --m_unreadCount;
+    m_dirty = true;
+    m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
 }
