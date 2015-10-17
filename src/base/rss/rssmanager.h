@@ -32,31 +32,44 @@
 #ifndef RSSMANAGER_H
 #define RSSMANAGER_H
 
+#include <QObject>
 #include <QTimer>
 #include <QSharedPointer>
-
-#include "rssfolder.h"
 
 namespace Rss
 {
     class DownloadRuleList;
-    class Parser;
+    class File;
+    class Folder;
+    class Feed;
     class Manager;
+
+    typedef QSharedPointer<File> FilePtr;
+    typedef QSharedPointer<Folder> FolderPtr;
+    typedef QSharedPointer<Feed> FeedPtr;
+
+    namespace Private
+    {
+        class Parser;
+    }
 
     typedef QSharedPointer<Manager> ManagerPtr;
 
-    class Manager: public Folder
+    class Manager: public QObject
     {
         Q_OBJECT
 
     public:
-        Manager();
+        explicit Manager(QObject *parent = 0);
         ~Manager();
 
-        Parser *rssParser() const;
         DownloadRuleList *downloadRules() const;
+        FolderPtr rootFolder() const;
+
+        Private::Parser *rssParser() const;
 
     public slots:
+        void refresh();
         void loadStreamList();
         void saveStreamList() const;
         void forwardFeedContentChanged(const QString &url);
@@ -74,7 +87,8 @@ namespace Rss
         QTimer m_refreshTimer;
         uint m_refreshInterval;
         DownloadRuleList *m_downloadRules;
-        Parser *m_rssParser;
+        Private::Parser *m_rssParser;
+        FolderPtr m_rootFolder;
     };
 }
 

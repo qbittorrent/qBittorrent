@@ -55,25 +55,27 @@ namespace Rss
     public:
         virtual ~File();
 
-        virtual uint unreadCount() const = 0;
-        virtual QString displayName() const = 0;
         virtual QString id() const = 0;
+        virtual QString displayName() const = 0;
+        virtual uint unreadCount() const = 0;
         virtual QString iconPath() const = 0;
-        virtual void rename(const QString &newName) = 0;
-        virtual void markAsRead() = 0;
-        virtual Folder *parent() const = 0;
-        virtual void setParent(Folder *parent) = 0;
-        virtual bool refresh() = 0;
         virtual ArticleList articleListByDateDesc() const = 0;
         virtual ArticleList unreadArticleListByDateDesc() const = 0;
+
+        virtual void rename(const QString &newName) = 0;
+        virtual void markAsRead() = 0;
+        virtual bool refresh() = 0;
         virtual void removeAllSettings() = 0;
         virtual void saveItemsToDisk() = 0;
         virtual void recheckRssItemsForDownload() = 0;
 
+        Folder *parentFolder() const;
         QStringList pathHierarchy() const;
 
     protected:
-        uint m_unreadCount;
+        friend class Folder;
+
+        Folder *m_parent = nullptr;
     };
 }
 

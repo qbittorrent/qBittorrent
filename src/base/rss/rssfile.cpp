@@ -36,11 +36,16 @@ using namespace Rss;
 
 File::~File() {}
 
+Folder *File::parentFolder() const
+{
+    return m_parent;
+}
+
 QStringList File::pathHierarchy() const
 {
     QStringList path;
-    if (parent())
-        path << parent()->pathHierarchy();
+    if (m_parent)
+        path << m_parent->pathHierarchy();
     path << id();
     return path;
 }

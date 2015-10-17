@@ -29,21 +29,26 @@
  */
 
 #include <QDebug>
+#include <QDateTime>
 #include <QFile>
 #include <QRegExp>
 #include <QStringList>
 #include <QVariant>
+#include <QXmlStreamReader>
 
 #include "base/utils/fs.h"
 #include "rssparser.h"
 
 namespace Rss
 {
-    struct ParsingJob
+    namespace Private
     {
-        QString feedUrl;
-        QString filePath;
-    };
+        struct ParsingJob
+        {
+            QString feedUrl;
+            QByteArray feedData;
+        };
+    }
 }
 
 static const char shortDay[][4] = {
@@ -64,7 +69,7 @@ static const char shortMonth[][4] = {
     "Sep", "Oct", "Nov", "Dec"
 };
 
-using namespace Rss;
+using namespace Rss::Private;
 
 Parser::Parser(QObject *parent)
     : QThread(parent)
@@ -227,11 +232,11 @@ QDateTime Parser::parseDate(const QString &string)
     return result;
 }
 
-void Parser::parseRssFile(const QString &feedUrl, const QString &filePath)
+void Parser::parseFeedData(const QString &feedUrl, const QByteArray &feedData)
 {
-    qDebug() << Q_FUNC_INFO << feedUrl << filePath;
+    qDebug() << Q_FUNC_INFO << feedUrl;
     m_mutex.lock();
-    ParsingJob job = { feedUrl, Utils::Fs::fromNativePath(filePath) };
+    ParsingJob job = { feedUrl, feedData };
     m_queue.enqueue(job);
     // Wake up thread.
     if (m_queue.count() == 1) {
@@ -487,14 +492,9 @@ void Parser::parseAtomChannel(QXmlStreamReader &xml, const QString &feedUrl)
 // read and create items from a rss document
 void Parser::parseFeed(const ParsingJob &job)
 {
-    qDebug() << Q_FUNC_INFO << job.feedUrl << job.filePath;
-    QFile fileRss(job.filePath);
-    if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        reportFailure(job, tr("Failed to open downloaded RSS file."));
-        return;
-    }
+    qDebug() << Q_FUNC_INFO << job.feedUrl;
 
-    QXmlStreamReader xml(&fileRss);
+    QXmlStreamReader xml(job.feedData);
     bool foundChannel = false;
     while (xml.readNextStartElement()) {
         if (xml.name() == "rss") {
@@ -533,14 +533,10 @@ void Parser::parseFeed(const ParsingJob &job)
         return;
     }
 
-    // Clean up
-    fileRss.close();
     emit feedParsingFinished(job.feedUrl, QString());
-    Utils::Fs::forceRemove(job.filePath);
 }
 
 void Parser::reportFailure(const ParsingJob &job, const QString &error)
 {
     emit feedParsingFinished(job.feedUrl, error);
-    Utils::Fs::forceRemove(job.filePath);
 }

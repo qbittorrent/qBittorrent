@@ -48,19 +48,12 @@ namespace Rss
     typedef QSharedPointer<Folder> FolderPtr;
     typedef QList<FeedPtr> FeedList;
 
-    class Folder: public QObject, public File
+    class Folder: public File
     {
-        Q_OBJECT
-
     public:
-        explicit Folder(Folder *parent = 0, const QString &name = QString());
-        ~Folder();
+        explicit Folder(const QString &name = QString());
 
-        Folder *parent() const;
-        void setParent(Folder *parent);
         uint unreadCount() const;
-        FeedPtr addStream(Manager *manager, const QString &url);
-        FolderPtr addFolder(const QString &name);
         uint getNbFeeds() const;
         FileList getContent() const;
         FeedList getAllFeeds() const;
@@ -71,22 +64,20 @@ namespace Rss
         bool hasChild(const QString &childId);
         ArticleList articleListByDateDesc() const;
         ArticleList unreadArticleListByDateDesc() const;
-        void removeAllSettings();
-        void saveItemsToDisk();
-        void removeAllItems();
-        void renameChildFolder(const QString &oldName, const QString &newName);
-        FilePtr takeChild(const QString &childId);
-        void recheckRssItemsForDownload();
 
-    public slots:
-        bool refresh();
-        void addFile(const FilePtr &item);
-        void removeChild(const QString &childId);
         void rename(const QString &newName);
         void markAsRead();
+        bool refresh();
+        void removeAllSettings();
+        void saveItemsToDisk();
+        void recheckRssItemsForDownload();
+        void removeAllItems();
+        FilePtr child(const QString &childId);
+        FilePtr takeChild(const QString &childId);
+        bool addFile(const FilePtr &item);
+        void removeChild(const QString &childId);
 
     private:
-        Folder *m_parent;
         QString m_name;
         FileHash m_children;
     };

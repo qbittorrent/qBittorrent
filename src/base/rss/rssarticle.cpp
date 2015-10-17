@@ -120,12 +120,10 @@ bool Article::isRead() const
 
 void Article::markAsRead()
 {
-    if (m_read) return;
-
-    m_read = true;
-    m_parent->decrementUnreadCount();
-    m_parent->markAsDirty();
-    emit articleWasRead();
+    if (!m_read) {
+        m_read = true;
+        emit articleWasRead();
+    }
 }
 
 const QString &Article::guid() const

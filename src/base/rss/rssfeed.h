@@ -58,11 +58,9 @@ namespace Rss
         Q_OBJECT
 
     public:
-        Feed(Manager *manager, Folder *parent, const QString &url);
+        Feed(const QString &url, Manager *manager);
         ~Feed();
 
-        Folder *parent() const;
-        void setParent(Folder *parent);
         bool refresh();
         QString id() const;
         void removeAllSettings();
@@ -78,38 +76,35 @@ namespace Rss
         ArticlePtr getItem(const QString &guid) const;
         uint count() const;
         void markAsRead();
-        void markAsDirty(bool dirty = true);
         uint unreadCount() const;
         ArticleList articleListByDateDesc() const;
         const ArticleHash &articleHash() const;
         ArticleList unreadArticleListByDateDesc() const;
-        void decrementUnreadCount();
         void recheckRssItemsForDownload();
 
     private slots:
-        void handleFinishedDownload(const QString &url, const QString &filePath);
-        void handleDownloadFailure(const QString &url, const QString &error);
+        void handleIconDownloadFinished(const QString &url, const QString &filePath);
+        void handleRssDownloadFinished(const QString &url, const QByteArray &data);
+        void handleRssDownloadFailed(const QString &url, const QString &error);
         void handleFeedTitle(const QString &feedUrl, const QString &title);
         void handleNewArticle(const QString &feedUrl, const QVariantHash &article);
-        void handleFeedParsingFinished(const QString &feedUrl, const QString &error);
-        void handleArticleStateChanged();
+        void handleParsingFinished(const QString &feedUrl, const QString &error);
+        void handleArticleRead();
 
     private:
         QString iconUrl() const;
         void loadItemsFromDisk();
         void addArticle(const ArticlePtr &article);
-        void downloadArticleTorrentIfMatching(DownloadRuleList *rules, const ArticlePtr &article);
+        void downloadArticleTorrentIfMatching(const ArticlePtr &article);
 
     private:
         Manager *m_manager;
         ArticleHash m_articles;
         ArticleList m_articlesByDate; // Articles sorted by date (more recent first)
-        Folder *m_parent;
         QString m_title;
         QString m_url;
         QString m_alias;
         QString m_icon;
-        QString m_iconUrl;
         uint m_unreadCount;
         bool m_dirty;
         bool m_inErrorState;

@@ -39,6 +39,7 @@
 #include "base/rss/rssdownloadrulelist.h"
 #include "base/preferences.h"
 #include "base/rss/rssmanager.h"
+#include "base/rss/rssfolder.h"
 #include "base/rss/rssfeed.h"
 #include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
@@ -524,7 +525,7 @@ void AutomatedRssDownloader::updateMatchingArticles()
   Rss::ManagerPtr manager = m_manager.toStrongRef();
   if (!manager)
     return;
-  const QHash<QString, Rss::FeedPtr> all_feeds = manager->getAllFeedsAsHash();
+  const QHash<QString, Rss::FeedPtr> all_feeds = manager->rootFolder()->getAllFeedsAsHash();
 
   saveEditedRule();
   foreach (const QListWidgetItem *rule_item, ui->listRules->selectedItems()) {

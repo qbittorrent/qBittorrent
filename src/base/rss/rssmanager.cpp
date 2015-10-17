@@ -33,19 +33,23 @@
 
 #include "base/logger.h"
 #include "base/preferences.h"
+#include "private/rssparser.h"
+#include "rssfolder.h"
 #include "rssfeed.h"
 #include "rssarticle.h"
 #include "rssdownloadrulelist.h"
-#include "rssparser.h"
 #include "rssmanager.h"
 
 static const int MSECS_PER_MIN = 60000;
 
 using namespace Rss;
+using namespace Rss::Private;
 
-Manager::Manager()
-    : m_downloadRules(new DownloadRuleList)
+Manager::Manager(QObject *parent)
+    : QObject(parent)
+    , m_downloadRules(new DownloadRuleList)
     , m_rssParser(new Parser(this))
+    , m_rootFolder(new Folder)
 {
     connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(refresh()));
     m_refreshInterval = Preferences::instance()->getRSSRefreshInterval();
@@ -57,14 +61,10 @@ Manager::~Manager()
     qDebug("Deleting RSSManager...");
     delete m_downloadRules;
     delete m_rssParser;
-    saveItemsToDisk();
+    m_rootFolder->saveItemsToDisk();
     saveStreamList();
+    m_rootFolder.clear();
     qDebug("RSSManager deleted");
-}
-
-Parser *Manager::rssParser() const
-{
-    return m_rssParser;
 }
 
 void Manager::updateRefreshInterval(uint val)
@@ -95,14 +95,22 @@ void Manager::loadStreamList()
         const QString feedUrl = path.takeLast();
         qDebug() << "Feed URL:" << feedUrl;
         // Create feed path (if it does not exists)
-        Folder *feedParent = this;
+        FolderPtr feedParent = m_rootFolder;
         foreach (const QString &folderName, path) {
-            qDebug() << "Adding parent folder:" << folderName;
-            feedParent = feedParent->addFolder(folderName).data();
+            if (!feedParent->hasChild(folderName)) {
+                qDebug() << "Adding parent folder:" << folderName;
+                FolderPtr folder(new Folder(folderName));
+                feedParent->addFile(folder);
+                feedParent = folder;
+            }
+            else {
+                feedParent = qSharedPointerDynamicCast<Folder>(feedParent->child(folderName));
+            }
         }
         // Create feed
         qDebug() << "Adding feed to parent folder";
-        FeedPtr stream = feedParent->addStream(this, feedUrl);
+        FeedPtr stream(new Feed(feedUrl, this));
+        feedParent->addFile(stream);
         const QString &alias = aliases[i];
         if (!alias.isEmpty())
             stream->rename(alias);
@@ -128,7 +136,7 @@ void Manager::forwardFeedIconChanged(const QString &url, const QString &iconPath
 
 void Manager::moveFile(const FilePtr &file, const FolderPtr &destinationFolder)
 {
-    Folder *srcFolder = file->parent();
+    Folder *srcFolder = file->parentFolder();
     if (destinationFolder != srcFolder) {
         // Remove reference in old folder
         srcFolder->takeChild(file->id());
@@ -144,7 +152,7 @@ void Manager::saveStreamList() const
 {
     QStringList streamsUrl;
     QStringList aliases;
-    FeedList streams = getAllFeeds();
+    FeedList streams = m_rootFolder->getAllFeeds();
     foreach (const FeedPtr &stream, streams) {
         // This backslash has nothing to do with path handling
         QString streamPath = stream->pathHierarchy().join("\\");
@@ -163,4 +171,19 @@ DownloadRuleList *Manager::downloadRules() const
 {
     Q_ASSERT(m_downloadRules);
     return m_downloadRules;
+}
+
+FolderPtr Manager::rootFolder() const
+{
+    return m_rootFolder;
+}
+
+Parser *Manager::rssParser() const
+{
+    return m_rssParser;
+}
+
+void Manager::refresh()
+{
+    m_rootFolder->refresh();
 }

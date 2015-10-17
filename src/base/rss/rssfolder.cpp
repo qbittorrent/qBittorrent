@@ -40,22 +40,9 @@
 
 using namespace Rss;
 
-Folder::Folder(Folder *parent, const QString &name)
-    : m_parent(parent)
-    , m_name(name)
+Folder::Folder(const QString &name)
+    : m_name(name)
 {
-}
-
-Folder::~Folder() {}
-
-Folder *Folder::parent() const
-{
-    return m_parent;
-}
-
-void Folder::setParent(Folder *parent)
-{
-    m_parent = parent;
 }
 
 uint Folder::unreadCount() const
@@ -76,31 +63,6 @@ void Folder::removeChild(const QString &childId)
         FilePtr child = m_children.take(childId);
         child->removeAllSettings();
     }
-}
-
-FolderPtr Folder::addFolder(const QString &name)
-{
-    FolderPtr subfolder;
-    if (!m_children.contains(name)) {
-        subfolder = FolderPtr(new Folder(this, name));
-        m_children[name] = subfolder;
-    }
-    else {
-        subfolder = qSharedPointerDynamicCast<Folder>(m_children.value(name));
-    }
-    return subfolder;
-}
-
-FeedPtr Folder::addStream(Manager *manager, const QString &url)
-{
-    qDebug() << Q_FUNC_INFO << manager << url;
-    FeedPtr stream(new Feed(manager, this, url));
-    Q_ASSERT(stream);
-    qDebug() << "Stream URL is " << stream->url();
-    Q_ASSERT(!m_children.contains(stream->url()));
-    m_children[stream->url()] = stream;
-    stream->refresh();
-    return stream;
 }
 
 // Refresh All Children
@@ -176,7 +138,8 @@ void Folder::rename(const QString &newName)
     Q_ASSERT(!m_parent->hasChild(newName));
     if (!m_parent->hasChild(newName)) {
         // Update parent
-        m_parent->renameChildFolder(m_name, newName);
+        FilePtr folder = m_parent->m_children.take(m_name);
+        m_parent->m_children[newName] = folder;
         // Actually rename
         m_name = newName;
     }
@@ -224,25 +187,27 @@ QHash<QString, FeedPtr> Folder::getAllFeedsAsHash() const
     return ret;
 }
 
-void Folder::addFile(const FilePtr &item)
+bool Folder::addFile(const FilePtr &item)
 {
-    if (FeedPtr feed = qSharedPointerDynamicCast<Feed>(item)) {
-        Q_ASSERT(!m_children.contains(feed->url()));
-        m_children[feed->url()] = item;
-        qDebug("Added feed %s to folder ./%s", qPrintable(feed->url()), qPrintable(m_name));
+    Q_ASSERT(!m_children.contains(item->id()));
+    if (!m_children.contains(item->id())) {
+        m_children[item->id()] = item;
+        // Update parent
+        item->m_parent = this;
+        return true;
     }
-    else if (FolderPtr folder = qSharedPointerDynamicCast<Folder>(item)) {
-        Q_ASSERT(!m_children.contains(folder->displayName()));
-        m_children[folder->displayName()] = item;
-        qDebug("Added folder %s to folder ./%s", qPrintable(folder->displayName()), qPrintable(m_name));
-    }
-    // Update parent
-    item->setParent(this);
+
+    return false;
 }
 
 void Folder::removeAllItems()
 {
     m_children.clear();
+}
+
+FilePtr Folder::child(const QString &childId)
+{
+    return m_children.value(childId);
 }
 
 void Folder::removeAllSettings()
@@ -272,13 +237,6 @@ QString Folder::iconPath() const
 bool Folder::hasChild(const QString &childId)
 {
     return m_children.contains(childId);
-}
-
-void Folder::renameChildFolder(const QString &oldName, const QString &newName)
-{
-    Q_ASSERT(m_children.contains(oldName));
-    FilePtr folder = m_children.take(oldName);
-    m_children[newName] = folder;
 }
 
 FilePtr Folder::takeChild(const QString &childId)
