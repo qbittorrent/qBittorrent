@@ -112,6 +112,7 @@ private:
     bool minimizeToTray() const;
     bool closeToTray() const;
     bool startMinimized() const;
+    bool openDestinationFolderOnBalloonClick() const;
     bool isSlashScreenDisabled() const;
     bool preventFromSuspend() const;
 #ifdef Q_OS_WIN

@@ -611,34 +611,72 @@ void MainWindow::readSettings()
 
 void MainWindow::balloonClicked()
 {
-    if (isHidden()) {
+    const Preferences* const pref = Preferences::instance();
+    if (baloonShowReason == BALLOON_REASON_TORRENT_FINISHED && pref->openDestinationFolderOnBalloonClick()) {
+        finishedTorrentBalloonClicked();
+    }
+    else {
+        if (isHidden()) {
+            if (ui_locked) {
+                // Ask for UI lock password
+                if (!unlockUI())
+                    return;
+            }
+            show();
+            if (isMinimized())
+                showNormal();
+        }
+
+        raise();
+        activateWindow();
+    }
+}
+
+void MainWindow::finishedTorrentBalloonClicked()
+{
+    const Preferences* const pref = Preferences::instance();
+    if (pref->openDestinationFolderOnBalloonClick() && !balloonClickDestinationPath.isEmpty()) {
         if (ui_locked) {
             // Ask for UI lock password
             if (!unlockUI())
                 return;
         }
-        show();
-        if (isMinimized())
-            showNormal();
+        if (balloonClickDestinationSingleFile) {
+            Utils::Misc::openFolderSelect(balloonClickDestinationPath);
+        }
+        else {
+            Utils::Misc::openPath(balloonClickDestinationPath);
+        }
     }
-
-    raise();
-    activateWindow();
 }
 
-void MainWindow::addTorrentFailed(const QString &error) const
+void MainWindow::addTorrentFailed(const QString &error)
 {
     showNotificationBaloon(tr("Error"), tr("Failed to add torrent: %1").arg(error));
 }
 
 // called when a torrent has finished
-void MainWindow::finishedTorrent(BitTorrent::TorrentHandle *const torrent) const
+void MainWindow::finishedTorrent(BitTorrent::TorrentHandle *const torrent)
 {
-    showNotificationBaloon(tr("Download completion"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
+    const Preferences* const pref = Preferences::instance();
+
+    if (systrayIcon && QSystemTrayIcon::supportsMessages() && pref->openDestinationFolderOnBalloonClick()) {
+        if (torrent->filesCount() == 1) {
+            balloonClickDestinationPath = QDir(torrent->rootPath()).absoluteFilePath(torrent->filePath(0));
+            balloonClickDestinationSingleFile = true;
+        }
+        else {
+            balloonClickDestinationPath = torrent->rootPath();
+            balloonClickDestinationSingleFile = false;
+        }
+    }
+
+    showNotificationBaloon(tr("Download completion"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()),
+                           BALLOON_REASON_TORRENT_FINISHED);
 }
 
 // Notification when disk is full
-void MainWindow::fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const
+void MainWindow::fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg)
 {
     showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occurred for torrent '%1'.\n Reason: %2", "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(torrent->name()).arg(msg));
 }
@@ -713,7 +751,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHand
         pref->disableRecursiveDownload();
 }
 
-void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const
+void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason)
 {
     // Display a message box
     showNotificationBaloon(tr("URL download error"), tr("Couldn't download file at URL '%1', reason: %2.").arg(url).arg(reason));
@@ -1201,7 +1239,7 @@ void MainWindow::updateGUI()
         setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true)).arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true)).arg(QString::fromUtf8(VERSION)));
 }
 
-void MainWindow::showNotificationBaloon(QString title, QString msg) const
+void MainWindow::showNotificationBaloon(QString title, QString msg, TrayIconBalloonShowReason reason)
 {
     if (!Preferences::instance()->useProgramNotification()) return;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
@@ -1225,8 +1263,10 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const
     if (!reply.isError())
         return;
 #endif
-    if (systrayIcon && QSystemTrayIcon::supportsMessages())
+    if (systrayIcon && QSystemTrayIcon::supportsMessages()) {
+        baloonShowReason = reason;
         systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
+    }
 }
 
 /*****************************************************

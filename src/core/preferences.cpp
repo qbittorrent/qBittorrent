@@ -348,6 +348,16 @@ void Preferences::setPreventFromSuspend(bool b)
     setValue("Preferences/General/PreventFromSuspend", b);
 }
 
+bool Preferences::openDestinationFolderOnBalloonClick() const
+{
+    return value("Preferences/General/OpenDestinationFolderOnBalloonClick", false).toBool();
+}
+
+void Preferences::setOpenDestinationFolderOnBalloonClick(bool b)
+{
+    setValue("Preferences/General/OpenDestinationFolderOnBalloonClick", b);
+}
+
 #ifdef Q_OS_WIN
 bool Preferences::WinStartup() const
 {

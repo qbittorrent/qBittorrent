@@ -153,6 +153,7 @@ options_imp::options_imp(QWidget *parent)
     connect(checkAssociateTorrents, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkAssociateMagnetLinks, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #endif
+    connect(checkOpenDestinationFolderOnBalloonClick, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     // Downloads tab
     connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(textTempPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -392,6 +393,7 @@ void options_imp::saveOptions()
     pref->setCloseToTray(closeToTray());
     pref->setMinimizeToTray(minimizeToTray());
     pref->setStartMinimized(startMinimized());
+    pref->setOpenDestinationFolderOnBalloonClick(openDestinationFolderOnBalloonClick());
     pref->setSplashScreenDisabled(isSlashScreenDisabled());
     pref->setConfirmOnExit(checkProgramExitConfirm->isChecked());
     pref->setPreventFromSuspend(preventFromSuspend());
@@ -561,6 +563,7 @@ void options_imp::loadOptions()
         checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
         checkCloseToSystray->setChecked(pref->closeToTray());
         comboTrayIcon->setCurrentIndex(pref->trayIconStyle());
+        checkOpenDestinationFolderOnBalloonClick->setChecked(pref->openDestinationFolderOnBalloonClick());
     }
 
     checkPreventFromSuspend->setChecked(pref->preventFromSuspend());
@@ -869,6 +872,13 @@ bool options_imp::closeToTray() const
 {
     if (!checkShowSystray->isChecked()) return false;
     return checkCloseToSystray->isChecked();
+}
+
+bool options_imp::openDestinationFolderOnBalloonClick() const
+{
+    if (!checkShowSystray->isChecked())
+        return false;
+    return checkOpenDestinationFolderOnBalloonClick->isChecked();
 }
 
 bool options_imp::isQueueingSystemEnabled() const

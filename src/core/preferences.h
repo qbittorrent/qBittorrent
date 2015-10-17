@@ -148,6 +148,8 @@ public:
     void setSplashScreenDisabled(bool b);
     bool preventFromSuspend() const;
     void setPreventFromSuspend(bool b);
+    bool openDestinationFolderOnBalloonClick() const;
+    void setOpenDestinationFolderOnBalloonClick(bool b);
 #ifdef Q_OS_WIN
     bool WinStartup() const;
     void setWinStartup(bool b);

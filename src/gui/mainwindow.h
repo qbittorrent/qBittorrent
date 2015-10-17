@@ -80,11 +80,12 @@ public:
     TransferListWidget* getTransferList() const { return transferList; }
     QMenu* getTrayIconMenu();
     PropertiesWidget *getProperties() const { return properties; }
+    enum TrayIconBalloonShowReason {BALLOON_REASON_UNKNOWN, BALLOON_REASON_TORRENT_FINISHED};
 
 public slots:
     void trackerAuthenticationRequired(BitTorrent::TorrentHandle *const torrent);
     void setTabText(int index, QString text) const;
-    void showNotificationBaloon(QString title, QString msg) const;
+    void showNotificationBaloon(QString title, QString msg, TrayIconBalloonShowReason reason = BALLOON_REASON_UNKNOWN);
     void downloadFromURLList(const QStringList& urls);
     void updateAltSpeedsBtn(bool alternative);
     void updateNbTorrents();
@@ -98,12 +99,13 @@ protected slots:
     void on_actionStatistics_triggered();
     void on_actionCreate_torrent_triggered();
     void balloonClicked();
+    void finishedTorrentBalloonClicked();
     void writeSettings();
     void readSettings();
     void on_actionExit_triggered();
     void createTrayIcon();
-    void fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const;
-    void handleDownloadFromUrlFailure(QString, QString) const;
+    void fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg);
+    void handleDownloadFromUrlFailure(QString, QString);
     void createSystrayDelayed();
     void tab_changed(int);
     void on_actionLock_qBittorrent_triggered();
@@ -127,8 +129,8 @@ protected slots:
     void updateGUI();
     void loadPreferences(bool configure_session = true);
     void addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle*, QString> &tracker);
-    void addTorrentFailed(const QString &error) const;
-    void finishedTorrent(BitTorrent::TorrentHandle *const torrent) const;
+    void addTorrentFailed(const QString &error);
+    void finishedTorrent(BitTorrent::TorrentHandle *const torrent);
     void askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHandle *const torrent);
     // Options slots
     void on_actionOptions_triggered();
@@ -205,6 +207,9 @@ private:
 #endif
     bool has_python;
     QMenu* toolbarMenu;
+    TrayIconBalloonShowReason baloonShowReason;
+    QString balloonClickDestinationPath;
+    bool balloonClickDestinationSingleFile;
 
 private slots:
     void on_actionSearch_engine_triggered();
