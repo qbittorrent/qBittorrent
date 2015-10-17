@@ -369,8 +369,10 @@ bool AddNewTorrentDialog::validateSavePath(QString save_path)
 
     // Check if folder names are valid
     foreach (const QString &folder_name, save_path.split(QDir::separator(), QString::SkipEmptyParts)) {
-        if (!Utils::Fs::isValidFileSystemName(folder_name))
-            valid &= false;
+        if (!Utils::Fs::isValidFileSystemName(folder_name)) {
+            valid = false;
+            break;
+        }
     }
 
     if (!valid) {
