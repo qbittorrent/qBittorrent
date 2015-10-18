@@ -131,16 +131,15 @@ QString GeoIPManager::lookup(const QHostAddress &hostAddr) const
     return QString();
 }
 
-// http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm
 QString GeoIPManager::CountryName(const QString &countryISOCode)
 {
     static QHash<QString, QString> countries;
     static bool initialized = false;
 
+    // ISO 3166-1 alpha-2 codes
+    // http://www.iso.org/iso/home/standards/country_codes/country_names_and_code_elements_txt-temp.htm
     if (!initialized) {
-        countries[QString()] = tr("N/A");
-        countries["AP"] = tr("Asia/Pacific Region");
-        countries["EU"] = tr("Europe");
+        // Officially assigned
         countries["AD"] = tr("Andorra");
         countries["AE"] = tr("United Arab Emirates");
         countries["AF"] = tr("Afghanistan");
@@ -148,7 +147,6 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
         countries["AI"] = tr("Anguilla");
         countries["AL"] = tr("Albania");
         countries["AM"] = tr("Armenia");
-        countries["AN"] = tr("Netherlands Antilles");
         countries["AO"] = tr("Angola");
         countries["AQ"] = tr("Antarctica");
         countries["AR"] = tr("Argentina");
@@ -156,6 +154,7 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
         countries["AT"] = tr("Austria");
         countries["AU"] = tr("Australia");
         countries["AW"] = tr("Aruba");
+        countries["AX"] = tr("Aland Islands");
         countries["AZ"] = tr("Azerbaijan");
         countries["BA"] = tr("Bosnia and Herzegovina");
         countries["BB"] = tr("Barbados");
@@ -166,9 +165,11 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
         countries["BH"] = tr("Bahrain");
         countries["BI"] = tr("Burundi");
         countries["BJ"] = tr("Benin");
+        countries["BL"] = tr("Saint Barthelemy");
         countries["BM"] = tr("Bermuda");
         countries["BN"] = tr("Brunei Darussalam");
-        countries["BO"] = tr("Bolivia");
+        countries["BO"] = tr("Bolivia, Plurinational State of");
+        countries["BQ"] = tr("Bonaire, Sint Eustatius and Saba");
         countries["BR"] = tr("Brazil");
         countries["BS"] = tr("Bahamas");
         countries["BT"] = tr("Bhutan");
@@ -182,7 +183,7 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
         countries["CF"] = tr("Central African Republic");
         countries["CG"] = tr("Congo");
         countries["CH"] = tr("Switzerland");
-        countries["CI"] = tr("Cote D'Ivoire");
+        countries["CI"] = tr("Cote d'Ivoire");
         countries["CK"] = tr("Cook Islands");
         countries["CL"] = tr("Chile");
         countries["CM"] = tr("Cameroon");
@@ -191,6 +192,7 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
         countries["CR"] = tr("Costa Rica");
         countries["CU"] = tr("Cuba");
         countries["CV"] = tr("Cape Verde");
+        countries["CW"] = tr("Curacao");
         countries["CX"] = tr("Christmas Island");
         countries["CY"] = tr("Cyprus");
         countries["CZ"] = tr("Czech Republic");
@@ -213,12 +215,12 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
         countries["FM"] = tr("Micronesia, Federated States of");
         countries["FO"] = tr("Faroe Islands");
         countries["FR"] = tr("France");
-        countries["FX"] = tr("France, Metropolitan");
         countries["GA"] = tr("Gabon");
         countries["GB"] = tr("United Kingdom");
         countries["GD"] = tr("Grenada");
         countries["GE"] = tr("Georgia");
         countries["GF"] = tr("French Guiana");
+        countries["GG"] = tr("Guernsey");
         countries["GH"] = tr("Ghana");
         countries["GI"] = tr("Gibraltar");
         countries["GL"] = tr("Greenland");
@@ -241,12 +243,14 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
         countries["ID"] = tr("Indonesia");
         countries["IE"] = tr("Ireland");
         countries["IL"] = tr("Israel");
+        countries["IM"] = tr("Isle of Man");
         countries["IN"] = tr("India");
         countries["IO"] = tr("British Indian Ocean Territory");
         countries["IQ"] = tr("Iraq");
         countries["IR"] = tr("Iran, Islamic Republic of");
         countries["IS"] = tr("Iceland");
         countries["IT"] = tr("Italy");
+        countries["JE"] = tr("Jersey");
         countries["JM"] = tr("Jamaica");
         countries["JO"] = tr("Jordan");
         countries["JP"] = tr("Japan");
@@ -271,17 +275,19 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
         countries["LT"] = tr("Lithuania");
         countries["LU"] = tr("Luxembourg");
         countries["LV"] = tr("Latvia");
-        countries["LY"] = tr("Libyan Arab Jamahiriya");
+        countries["LY"] = tr("Libya");
         countries["MA"] = tr("Morocco");
         countries["MC"] = tr("Monaco");
         countries["MD"] = tr("Moldova, Republic of");
+        countries["ME"] = tr("Montenegro");
+        countries["MF"] = tr("Saint Martin (French part)");
         countries["MG"] = tr("Madagascar");
         countries["MH"] = tr("Marshall Islands");
-        countries["MK"] = tr("Macedonia");
+        countries["MK"] = tr("Macedonia, The Former Yugoslav Republic of");
         countries["ML"] = tr("Mali");
         countries["MM"] = tr("Myanmar");
         countries["MN"] = tr("Mongolia");
-        countries["MO"] = tr("Macau");
+        countries["MO"] = tr("Macao");
         countries["MP"] = tr("Northern Mariana Islands");
         countries["MQ"] = tr("Martinique");
         countries["MR"] = tr("Mauritania");
@@ -314,15 +320,16 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
         countries["PK"] = tr("Pakistan");
         countries["PL"] = tr("Poland");
         countries["PM"] = tr("Saint Pierre and Miquelon");
-        countries["PN"] = tr("Pitcairn Islands");
+        countries["PN"] = tr("Pitcairn");
         countries["PR"] = tr("Puerto Rico");
-        countries["PS"] = tr("Palestinian Territory");
+        countries["PS"] = tr("Palestine, State of");
         countries["PT"] = tr("Portugal");
         countries["PW"] = tr("Palau");
         countries["PY"] = tr("Paraguay");
         countries["QA"] = tr("Qatar");
         countries["RE"] = tr("Reunion");
         countries["RO"] = tr("Romania");
+        countries["RS"] = tr("Serbia");
         countries["RU"] = tr("Russian Federation");
         countries["RW"] = tr("Rwanda");
         countries["SA"] = tr("Saudi Arabia");
@@ -331,7 +338,7 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
         countries["SD"] = tr("Sudan");
         countries["SE"] = tr("Sweden");
         countries["SG"] = tr("Singapore");
-        countries["SH"] = tr("Saint Helena");
+        countries["SH"] = tr("Saint Helena, Ascension and Tristan da Cunha");
         countries["SI"] = tr("Slovenia");
         countries["SJ"] = tr("Svalbard and Jan Mayen");
         countries["SK"] = tr("Slovakia");
@@ -340,8 +347,10 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
         countries["SN"] = tr("Senegal");
         countries["SO"] = tr("Somalia");
         countries["SR"] = tr("Suriname");
+        countries["SS"] = tr("South Sudan");
         countries["ST"] = tr("Sao Tome and Principe");
         countries["SV"] = tr("El Salvador");
+        countries["SX"] = tr("Sint Maarten (Dutch part)");
         countries["SY"] = tr("Syrian Arab Republic");
         countries["SZ"] = tr("Swaziland");
         countries["TC"] = tr("Turks and Caicos Islands");
@@ -351,10 +360,10 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
         countries["TH"] = tr("Thailand");
         countries["TJ"] = tr("Tajikistan");
         countries["TK"] = tr("Tokelau");
+        countries["TL"] = tr("Timor-Leste");
         countries["TM"] = tr("Turkmenistan");
         countries["TN"] = tr("Tunisia");
         countries["TO"] = tr("Tonga");
-        countries["TL"] = tr("Timor-Leste");
         countries["TR"] = tr("Turkey");
         countries["TT"] = tr("Trinidad and Tobago");
         countries["TV"] = tr("Tuvalu");
@@ -368,30 +377,20 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
         countries["UZ"] = tr("Uzbekistan");
         countries["VA"] = tr("Holy See (Vatican City State)");
         countries["VC"] = tr("Saint Vincent and the Grenadines");
-        countries["VE"] = tr("Venezuela");
+        countries["VE"] = tr("Venezuela, Bolivarian Republic of");
         countries["VG"] = tr("Virgin Islands, British");
         countries["VI"] = tr("Virgin Islands, U.S.");
-        countries["VN"] = tr("Vietnam");
+        countries["VN"] = tr("Viet Nam");
         countries["VU"] = tr("Vanuatu");
         countries["WF"] = tr("Wallis and Futuna");
         countries["WS"] = tr("Samoa");
         countries["YE"] = tr("Yemen");
         countries["YT"] = tr("Mayotte");
-        countries["RS"] = tr("Serbia");
         countries["ZA"] = tr("South Africa");
         countries["ZM"] = tr("Zambia");
-        countries["ME"] = tr("Montenegro");
         countries["ZW"] = tr("Zimbabwe");
-        countries["A1"] = tr("Anonymous Proxy");
-        countries["A2"] = tr("Satellite Provider");
-        countries["O1"] = tr("Other");
-        countries["AX"] = tr("Aland Islands");
-        countries["GG"] = tr("Guernsey");
-        countries["IM"] = tr("Isle of Man");
-        countries["JE"] = tr("Jersey");
-        countries["BL"] = tr("Saint Barthelemy");
-        countries["MF"] = tr("Saint Martin");
 
+        countries[QString()] = tr("N/A");
         initialized = true;
     }
 
