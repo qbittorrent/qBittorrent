@@ -57,7 +57,7 @@ initializeWindows = function() {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: 500,
-            height: 300
+            height: 360
         });
         updateMainData();
     });
@@ -88,7 +88,7 @@ initializeWindows = function() {
         new Event(e).stop();
         new MochaUI.Window({
             id: 'uploadPage',
-            title: "QBT_TR(Download local torrent)QBT_TR",
+            title: "QBT_TR(Upload local torrent)QBT_TR",
             loadMethod: 'iframe',
             contentURL: 'upload.html',
             scrollbars: true,
@@ -96,8 +96,8 @@ initializeWindows = function() {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 600,
-            height: 130
+            width: 500,
+            height: 200
         });
         updateMainData();
     });

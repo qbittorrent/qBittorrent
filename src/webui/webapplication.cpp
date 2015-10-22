@@ -44,6 +44,7 @@
 #include "core/bittorrent/trackerentry.h"
 #include "core/bittorrent/torrentinfo.h"
 #include "core/bittorrent/torrenthandle.h"
+#include "core/net/downloadmanager.h"
 #include "websessiondata.h"
 #include "webapplication.h"
 
@@ -112,6 +113,7 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(command, bottomPrio);
     ADD_ACTION(command, recheck);
     ADD_ACTION(command, setLabel);
+    ADD_ACTION(command, getSavePath);
     ADD_ACTION(version, api);
     ADD_ACTION(version, api_min);
     ADD_ACTION(version, qbittorrent);
@@ -306,9 +308,33 @@ void WebApplication::action_command_shutdown()
 void WebApplication::action_command_download()
 {
     CHECK_URI(0);
-    CHECK_PARAMETERS("urls");
     QString urls = request().posts["urls"];
     QStringList list = urls.split('\n');
+    QString savepath = request().posts["savepath"];
+    QString label = request().posts["label"];
+    QString cookie = request().posts["cookie"];
+    QList<QNetworkCookie> cookies;
+    if (!cookie.isEmpty()) {
+
+        QStringList cookiesStr = cookie.split("; ");
+        foreach (QString cookieStr, cookiesStr) {
+            cookieStr = cookieStr.trimmed();
+            int index = cookieStr.indexOf('=');
+            if (index > 1) {
+                QByteArray name = cookieStr.left(index).toLatin1();
+                QByteArray value = cookieStr.right(cookieStr.length() - index - 1).toLatin1();
+                QNetworkCookie c(name, value);
+                cookies << c;
+            }
+        }
+    }
+
+    savepath = savepath.trimmed();
+    label = label.trimmed();
+
+    BitTorrent::AddTorrentParams params;
+    params.savePath = savepath;
+    params.label = label;
 
     foreach (QString url, list) {
         url = url.trimmed();
@@ -320,7 +346,9 @@ void WebApplication::action_command_download()
             if ((url.size() == 40 && !url.contains(QRegExp("[^0-9A-Fa-f]")))
                 || (url.size() == 32 && !url.contains(QRegExp("[^2-7A-Za-z]"))))
                 url = "magnet:?xt=urn:btih:" + url;
-            BitTorrent::Session::instance()->addTorrent(url);
+
+            Net::DownloadManager::instance()->setCookiesFromUrl(cookies, QUrl::fromEncoded(url.toUtf8()));
+            BitTorrent::Session::instance()->addTorrent(url, params);
         }
     }
 }
@@ -329,6 +357,11 @@ void WebApplication::action_command_upload()
 {
     qDebug() << Q_FUNC_INFO;
     CHECK_URI(0);
+    QString savepath = request().posts["savepath"];
+    QString label = request().posts["label"];
+
+    savepath = savepath.trimmed();
+    label = label.trimmed();
 
     foreach(const Http::UploadedFile& torrent, request().files) {
         QString filePath = saveTmpFile(torrent.data);
@@ -340,7 +373,10 @@ void WebApplication::action_command_upload()
                 print(QObject::tr("Error: '%1' is not a valid torrent file.\n").arg(torrent.filename), Http::CONTENT_TYPE_TXT);
             }
             else {
-                if (!BitTorrent::Session::instance()->addTorrent(torrentInfo)) {
+                BitTorrent::AddTorrentParams params;
+                params.savePath = savepath;
+                params.label = label;
+                if (!BitTorrent::Session::instance()->addTorrent(torrentInfo, params)) {
                     status(500, "Internal Server Error");
                     print(QObject::tr("Error: Could not add torrent to session."), Http::CONTENT_TYPE_TXT);
                 }
@@ -683,6 +719,12 @@ void WebApplication::action_command_setLabel()
         if (torrent)
             torrent->setLabel(label);
     }
+}
+
+void WebApplication::action_command_getSavePath()
+{
+    CHECK_URI(0);
+    print(Preferences::instance()->getSavePath());
 }
 
 bool WebApplication::isPublicScope()
