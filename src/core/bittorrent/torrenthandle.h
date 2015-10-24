@@ -90,6 +90,7 @@ namespace BitTorrent
         bool disableTempPath;
         bool sequential;
         bool hasSeedStatus;
+        bool skipChecking;
         TriStateBool addForced;
         TriStateBool addPaused;
         // for new torrents
