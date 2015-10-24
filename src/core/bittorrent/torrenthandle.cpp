@@ -1766,6 +1766,17 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
     qDebug() << Q_FUNC_INFO;
     if (priorities.size() != filesCount()) return;
 
+    // Reset 'm_hasSeedStatus' if needed in order to react again to
+    // 'torrent_finished_alert' and eg show tray notifications
+    QVector<qreal> progress = filesProgress();
+    QVector<int> oldPriorities = filePriorities();
+    for (int i = 0; i < oldPriorities.size(); ++i) {
+        if ((oldPriorities[i] == 0) && (priorities[i] > 0) && (progress[i] < 1.0)) {
+            m_hasSeedStatus = false;
+            break;
+        }
+    }
+
     qDebug() << Q_FUNC_INFO << "Changing files priorities...";
     SAFE_CALL(prioritize_files, priorities.toStdVector());
 
