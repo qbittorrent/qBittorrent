@@ -35,6 +35,7 @@
 #include <QObject>
 #include <QTimer>
 #include <QSharedPointer>
+#include <QThread>
 
 namespace Rss
 {
@@ -48,11 +49,6 @@ namespace Rss
     typedef QSharedPointer<Folder> FolderPtr;
     typedef QSharedPointer<Feed> FeedPtr;
 
-    namespace Private
-    {
-        class Parser;
-    }
-
     typedef QSharedPointer<Manager> ManagerPtr;
 
     class Manager: public QObject
@@ -65,8 +61,7 @@ namespace Rss
 
         DownloadRuleList *downloadRules() const;
         FolderPtr rootFolder() const;
-
-        Private::Parser *rssParser() const;
+        QThread *workingThread() const;
 
     public slots:
         void refresh();
@@ -87,8 +82,8 @@ namespace Rss
         QTimer m_refreshTimer;
         uint m_refreshInterval;
         DownloadRuleList *m_downloadRules;
-        Private::Parser *m_rssParser;
         FolderPtr m_rootFolder;
+        QThread *m_workingThread;
     };
 }
 

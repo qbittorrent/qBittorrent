@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
@@ -51,6 +52,11 @@ namespace Rss
     typedef QSharedPointer<Feed> FeedPtr;
     typedef QList<FeedPtr> FeedList;
 
+    namespace Private
+    {
+        class Parser;
+    }
+
     bool articleDateRecentThan(const ArticlePtr &left, const ArticlePtr &right);
 
     class Feed: public QObject, public File
@@ -86,9 +92,9 @@ namespace Rss
         void handleIconDownloadFinished(const QString &url, const QString &filePath);
         void handleRssDownloadFinished(const QString &url, const QByteArray &data);
         void handleRssDownloadFailed(const QString &url, const QString &error);
-        void handleFeedTitle(const QString &feedUrl, const QString &title);
-        void handleNewArticle(const QString &feedUrl, const QVariantHash &article);
-        void handleParsingFinished(const QString &feedUrl, const QString &error);
+        void handleFeedTitle(const QString &title);
+        void handleNewArticle(const QVariantHash &article);
+        void handleParsingFinished(const QString &error);
         void handleArticleRead();
 
     private:
@@ -99,6 +105,7 @@ namespace Rss
 
     private:
         Manager *m_manager;
+        Private::Parser *m_parser;
         ArticleHash m_articles;
         ArticleList m_articlesByDate; // Articles sorted by date (more recent first)
         QString m_title;
