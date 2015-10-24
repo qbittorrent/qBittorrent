@@ -36,7 +36,7 @@
 PieceAvailabilityBar::PieceAvailabilityBar(QWidget *parent)
     : QWidget(parent)
 {
-    setFixedHeight(BAR_HEIGHT);
+    setToolTip(QString("%1\n%2").arg(tr("White: Unavailable pieces")).arg(tr("Blue: Available pieces")));
 
     m_bgColor = 0xffffff;
     m_borderColor = palette().color(QPalette::Dark).rgb();

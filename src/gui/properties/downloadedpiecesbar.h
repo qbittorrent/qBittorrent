@@ -37,8 +37,6 @@
 #include <QBitArray>
 #include <QVector>
 
-#define BAR_HEIGHT 18
-
 class DownloadedPiecesBar: public QWidget {
   Q_OBJECT
   Q_DISABLE_COPY(DownloadedPiecesBar)

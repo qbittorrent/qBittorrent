@@ -35,9 +35,6 @@
 #include <QPainter>
 #include <QImage>
 
-#define BAR_HEIGHT 18
-
-
 class PieceAvailabilityBar: public QWidget
 {
     Q_OBJECT

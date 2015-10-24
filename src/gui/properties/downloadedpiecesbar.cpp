@@ -34,7 +34,7 @@
 
 DownloadedPiecesBar::DownloadedPiecesBar(QWidget *parent): QWidget(parent)
 {
-  setFixedHeight(BAR_HEIGHT);
+  setToolTip(QString("%1\n%2\n%3").arg(tr("White: Missing pieces")).arg(tr("Green: Partial pieces")).arg(tr("Blue: Completed pieces")));
 
   m_bgColor = 0xffffff;
   m_borderColor = palette().color(QPalette::Dark).rgb();
