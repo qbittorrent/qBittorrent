@@ -801,6 +801,9 @@
                 <property name="text">
                  <string>Torrent Hash:</string>
                 </property>
+                <property name="textFormat">
+                 <enum>Qt::RichText</enum>
+                </property>
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                 </property>
@@ -832,6 +835,9 @@
                 </property>
                 <property name="text">
                  <string>Save Path:</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::RichText</enum>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
@@ -867,6 +873,9 @@
                 </property>
                 <property name="text">
                  <string>Comment:</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::RichText</enum>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
