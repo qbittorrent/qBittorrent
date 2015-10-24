@@ -1088,7 +1088,7 @@ bool Session::addTorrent_impl(const AddTorrentData &addData, const MagnetUri &ma
 
     // Seeding mode
     // Skip checking and directly start seeding (new in libtorrent v0.15)
-    if (addData.hasSeedStatus)
+    if (addData.skipChecking)
         p.flags |= libt::add_torrent_params::flag_seed_mode;
     else
         p.flags &= ~libt::add_torrent_params::flag_seed_mode;
@@ -2363,6 +2363,7 @@ bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out, MagnetUr
 {
     out = AddTorrentData();
     out.resumed = true;
+    out.skipChecking = false;
 
     libt::lazy_entry fast;
     libt::error_code ec;
