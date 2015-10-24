@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
@@ -67,11 +68,13 @@ Feed::Feed(const QString &url, Manager *manager)
     , m_loading(false)
 {
     qDebug() << Q_FUNC_INFO << m_url;
+    m_parser = new Private::Parser;
+    m_parser->moveToThread(m_manager->workingThread());
+    connect(this, SIGNAL(destroyed()), m_parser, SLOT(deleteLater()));
     // Listen for new RSS downloads
-    Private::Parser *const parser = m_manager->rssParser();
-    connect(parser, SIGNAL(feedTitle(QString,QString)), SLOT(handleFeedTitle(QString,QString)));
-    connect(parser, SIGNAL(newArticle(QString,QVariantHash)), SLOT(handleNewArticle(QString,QVariantHash)));
-    connect(parser, SIGNAL(feedParsingFinished(QString,QString)), SLOT(handleParsingFinished(QString,QString)));
+    connect(m_parser, SIGNAL(feedTitle(QString)), SLOT(handleFeedTitle(QString)));
+    connect(m_parser, SIGNAL(newArticle(QVariantHash)), SLOT(handleNewArticle(QVariantHash)));
+    connect(m_parser, SIGNAL(finished(QString)), SLOT(handleParsingFinished(QString)));
 
     // Download the RSS Feed icon
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(iconUrl(), true);
@@ -87,7 +90,6 @@ Feed::~Feed()
 {
     if (!m_icon.startsWith(":/") && QFile::exists(m_icon))
         Utils::Fs::forceRemove(m_icon);
-    m_manager->rssParser()->clearFeedData(m_url);
 }
 
 void Feed::saveItemsToDisk()
@@ -320,7 +322,6 @@ QString Feed::iconUrl() const
 void Feed::handleIconDownloadFinished(const QString &url, const QString &filePath)
 {
     Q_UNUSED(url);
-
     m_icon = filePath;
     qDebug() << Q_FUNC_INFO << "icon path:" << m_icon;
     m_manager->forwardFeedIconChanged(m_url, m_icon);
@@ -328,30 +329,31 @@ void Feed::handleIconDownloadFinished(const QString &url, const QString &filePat
 
 void Feed::handleRssDownloadFinished(const QString &url, const QByteArray &data)
 {
-    qDebug() << Q_FUNC_INFO << "Successfully downloaded RSS feed at" << url;
+    Q_UNUSED(url);
+    qDebug() << Q_FUNC_INFO << "Successfully downloaded RSS feed at" << m_url;
     // Parse the download RSS
-    m_manager->rssParser()->parseFeedData(m_url, data);
+    QMetaObject::invokeMethod(m_parser, "parse", Qt::QueuedConnection, Q_ARG(QByteArray, data));
 }
 
 void Feed::handleRssDownloadFailed(const QString &url, const QString &error)
 {
+    Q_UNUSED(url);
     m_inErrorState = true;
     m_loading = false;
     m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
-    qWarning() << "Failed to download RSS feed at" << url;
+    qWarning() << "Failed to download RSS feed at" << m_url;
     qWarning() << "Reason:" << error;
 }
 
-void Feed::handleFeedTitle(const QString &feedUrl, const QString &title)
+void Feed::handleFeedTitle(const QString &title)
 {
-    if (feedUrl != m_url) return;
     if (m_title == title) return;
 
     m_title = title;
 
     // Notify that we now have something better than a URL to display
     if (m_alias.isEmpty())
-        m_manager->forwardFeedInfosChanged(feedUrl, title, m_unreadCount);
+        m_manager->forwardFeedInfosChanged(m_url, title, m_unreadCount);
 }
 
 void Feed::downloadArticleTorrentIfMatching(const ArticlePtr &article)
@@ -406,13 +408,11 @@ void Feed::recheckRssItemsForDownload()
     }
 }
 
-void Feed::handleNewArticle(const QString &feedUrl, const QVariantHash &articleData)
+void Feed::handleNewArticle(const QVariantHash &articleData)
 {
-    if (feedUrl != m_url) return;
-
     ArticlePtr article = Article::fromHash(this, articleData);
     if (article.isNull()) {
-        qDebug() << "Article hash corrupted or guid is uncomputable; feed url: " << feedUrl;
+        qDebug() << "Article hash corrupted or guid is uncomputable; feed url: " << m_url;
         return;
     }
     Q_ASSERT(article);
@@ -424,12 +424,10 @@ void Feed::handleNewArticle(const QString &feedUrl, const QVariantHash &articleD
     //m_manager->forwardFeedContentChanged(m_url);
 }
 
-void Feed::handleParsingFinished(const QString &feedUrl, const QString &error)
+void Feed::handleParsingFinished(const QString &error)
 {
-    if (feedUrl != m_url) return;
-
     if (!error.isEmpty()) {
-        qWarning() << "Failed to parse RSS feed at" << feedUrl;
+        qWarning() << "Failed to parse RSS feed at" << m_url;
         qWarning() << "Reason:" << error;
     }
 

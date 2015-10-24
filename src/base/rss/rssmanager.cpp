@@ -33,7 +33,6 @@
 
 #include "base/logger.h"
 #include "base/preferences.h"
-#include "private/rssparser.h"
 #include "rssfolder.h"
 #include "rssfeed.h"
 #include "rssarticle.h"
@@ -48,9 +47,10 @@ using namespace Rss::Private;
 Manager::Manager(QObject *parent)
     : QObject(parent)
     , m_downloadRules(new DownloadRuleList)
-    , m_rssParser(new Parser(this))
     , m_rootFolder(new Folder)
+    , m_workingThread(new QThread(this))
 {
+    m_workingThread->start();
     connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(refresh()));
     m_refreshInterval = Preferences::instance()->getRSSRefreshInterval();
     m_refreshTimer.start(m_refreshInterval * MSECS_PER_MIN);
@@ -59,8 +59,9 @@ Manager::Manager(QObject *parent)
 Manager::~Manager()
 {
     qDebug("Deleting RSSManager...");
+    m_workingThread->quit();
+    m_workingThread->wait();
     delete m_downloadRules;
-    delete m_rssParser;
     m_rootFolder->saveItemsToDisk();
     saveStreamList();
     m_rootFolder.clear();
@@ -178,9 +179,9 @@ FolderPtr Manager::rootFolder() const
     return m_rootFolder;
 }
 
-Parser *Manager::rssParser() const
+QThread *Manager::workingThread() const
 {
-    return m_rssParser;
+    return m_workingThread;
 }
 
 void Manager::refresh()
