@@ -297,31 +297,35 @@ QString TorrentHandle::currentTracker() const
     return Utils::String::fromStdString(m_nativeStatus.current_tracker);
 }
 
-QString TorrentHandle::savePath() const
+QString TorrentHandle::savePath(bool actual) const
 {
-    return Utils::Fs::fromNativePath(m_savePath);
+    if (actual)
+        return Utils::Fs::fromNativePath(nativeActualSavePath());
+    else
+        return Utils::Fs::fromNativePath(m_savePath);
 }
 
-QString TorrentHandle::rootPath() const
+QString TorrentHandle::rootPath(bool actual) const
 {
-    if (filesCount() > 1) {
-        QString first_filepath = filePath(0);
-        const int slashIndex = first_filepath.indexOf("/");
-        if (slashIndex >= 0)
-            return QDir(actualSavePath()).absoluteFilePath(first_filepath.left(slashIndex));
-    }
+    QString firstFilePath = filePath(0);
+    const int slashIndex = firstFilePath.indexOf("/");
+    if (slashIndex >= 0)
+        return QDir(savePath(actual)).absoluteFilePath(firstFilePath.left(slashIndex));
+    else
+        return QDir(savePath(actual)).absoluteFilePath(firstFilePath);
+}
 
-    return actualSavePath();
+QString TorrentHandle::contentPath(bool actual) const
+{
+    if (filesCount() == 1)
+        return QDir(savePath(actual)).absoluteFilePath(filePath(0));
+    else
+        return rootPath(actual);
 }
 
 QString TorrentHandle::nativeActualSavePath() const
 {
     return Utils::String::fromStdString(m_nativeStatus.save_path);
-}
-
-QString TorrentHandle::actualSavePath() const
-{
-    return Utils::Fs::fromNativePath(nativeActualSavePath());
 }
 
 QList<TrackerEntry> TorrentHandle::trackers() const
@@ -533,7 +537,7 @@ QStringList TorrentHandle::absoluteFilePaths() const
 {
     if (!hasMetadata()) return  QStringList();
 
-    QDir saveDir(actualSavePath());
+    QDir saveDir(savePath(true));
     QStringList res;
     for (int i = 0; i < filesCount(); ++i)
         res << Utils::Fs::expandPathAbs(saveDir.absoluteFilePath(filePath(i)));
@@ -544,7 +548,7 @@ QStringList TorrentHandle::absoluteFilePathsUnwanted() const
 {
     if (!hasMetadata()) return  QStringList();
 
-    QDir saveDir(actualSavePath());
+    QDir saveDir(savePath(true));
     QStringList res;
     std::vector<int> fp;
     SAFE_GET(fp, file_priorities);
@@ -1489,7 +1493,7 @@ void TorrentHandle::handleFileRenamedAlert(libtorrent::file_renamed_alert *p)
         QString newPath = newPathParts.join("/");
         if (!newPathParts.isEmpty() && (oldPath != newPath)) {
             qDebug("oldPath(%s) != newPath(%s)", qPrintable(oldPath), qPrintable(newPath));
-            oldPath = QString("%1/%2").arg(actualSavePath()).arg(oldPath);
+            oldPath = QString("%1/%2").arg(savePath(true)).arg(oldPath);
             qDebug("Detected folder renaming, attempt to delete old folder: %s", qPrintable(oldPath));
             QDir().rmpath(oldPath);
         }
@@ -1784,7 +1788,7 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
     SAFE_CALL(prioritize_files, priorities.toStdVector());
 
     qDebug() << Q_FUNC_INFO << "Moving unwanted files to .unwanted folder and conversely...";
-    QString spath = actualSavePath();
+    QString spath = savePath(true);
     for (int i = 0; i < priorities.size(); ++i) {
         QString filepath = filePath(i);
         // Move unwanted files to a .unwanted subfolder

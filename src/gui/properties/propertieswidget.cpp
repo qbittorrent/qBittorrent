@@ -269,7 +269,7 @@ BitTorrent::TorrentHandle *PropertiesWidget::getCurrentTorrent() const
 void PropertiesWidget::updateSavePath(BitTorrent::TorrentHandle *const torrent)
 {
   if (m_torrent == torrent) {
-    save_path->setText(Utils::Fs::toNativePath(m_torrent->rootPath()));
+    save_path->setText(Utils::Fs::toNativePath(m_torrent->savePath()));
   }
 }
 
@@ -509,7 +509,7 @@ void PropertiesWidget::openDoubleClickedFile(const QModelIndex &index) {
 
 void PropertiesWidget::openFile(const QModelIndex &index) {
   int i = PropListModel->getFileIndex(index);
-  const QDir saveDir(m_torrent->actualSavePath());
+  const QDir saveDir(m_torrent->savePath(true));
   const QString filename = m_torrent->filePath(i);
   const QString file_path = Utils::Fs::expandPath(saveDir.absoluteFilePath(filename));
   qDebug("Trying to open file at %s", qPrintable(file_path));
@@ -532,13 +532,13 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
     }
     if (path_items.isEmpty())
       return;
-    const QDir saveDir(m_torrent->actualSavePath());
+    const QDir saveDir(m_torrent->savePath(true));
     const QString relative_path = path_items.join("/");
     absolute_path = Utils::Fs::expandPath(saveDir.absoluteFilePath(relative_path));
   }
   else {
     int i = PropListModel->getFileIndex(index);
-    const QDir saveDir(m_torrent->actualSavePath());
+    const QDir saveDir(m_torrent->savePath(true));
     const QString relative_path = m_torrent->filePath(i);
     absolute_path = Utils::Fs::expandPath(saveDir.absoluteFilePath(relative_path));
   }
@@ -691,7 +691,7 @@ void PropertiesWidget::renameSelectedFile() {
           return;
         }
       }
-      const bool force_recheck = QFile::exists(m_torrent->actualSavePath() + "/" + new_name);
+      const bool force_recheck = QFile::exists(m_torrent->savePath(true) + "/" + new_name);
       qDebug("Renaming %s to %s", qPrintable(old_name), qPrintable(new_name));
       m_torrent->renameFile(file_index, new_name);
       // Force recheck
@@ -736,7 +736,7 @@ void PropertiesWidget::renameSelectedFile() {
         if (current_name.startsWith(old_path)) {
           QString new_name = current_name;
           new_name.replace(0, old_path.length(), new_path);
-          if (!force_recheck && QDir(m_torrent->actualSavePath()).exists(new_name))
+          if (!force_recheck && QDir(m_torrent->savePath(true)).exists(new_name))
             force_recheck = true;
           new_name = Utils::Fs::expandPath(new_name);
           qDebug("Rename %s to %s", qPrintable(current_name), qPrintable(new_name));
@@ -748,7 +748,7 @@ void PropertiesWidget::renameSelectedFile() {
       // Rename folder in torrent files model too
       PropListModel->setData(index, new_name_last);
       // Remove old folder
-      const QDir old_folder(m_torrent->actualSavePath() + "/" + old_path);
+      const QDir old_folder(m_torrent->savePath(true) + "/" + old_path);
       int timeout = 10;
       while(!QDir().rmpath(old_folder.absolutePath()) && timeout > 0) {
         // FIXME: We should not sleep here (freezes the UI for 1 second)

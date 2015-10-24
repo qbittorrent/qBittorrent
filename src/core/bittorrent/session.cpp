@@ -813,11 +813,7 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
 
     // Remove it from session
     if (deleteLocalFiles) {
-        QString tmp = torrent->filePath(0);
-        tmp.truncate(tmp.indexOf("/"));  // get the torrent root directory name
-        if (!tmp.isEmpty())
-            m_savePathsToRemove[torrent->hash()] = torrent->actualSavePath() + tmp;
-
+        m_savePathsToRemove[torrent->hash()] = torrent->rootPath(true);
         m_nativeSession->remove_torrent(torrent->nativeHandle(), libt::session::delete_files);
     }
     else {
@@ -1722,7 +1718,7 @@ void Session::handleTorrentFinished(TorrentHandle *const torrent)
         const QString torrentRelpath = torrent->filePath(i);
         if (torrentRelpath.endsWith(".torrent", Qt::CaseInsensitive)) {
             qDebug("Found possible recursive torrent download.");
-            const QString torrentFullpath = torrent->actualSavePath() + "/" + torrentRelpath;
+            const QString torrentFullpath = torrent->savePath(true) + "/" + torrentRelpath;
             qDebug("Full subtorrent path is %s", qPrintable(torrentFullpath));
             TorrentInfo torrentInfo = TorrentInfo::loadFromFile(torrentFullpath);
             if (torrentInfo.isValid()) {
