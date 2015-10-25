@@ -43,6 +43,7 @@
 #else
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QStyle>
 #endif
 
 #ifdef Q_OS_WIN
@@ -639,3 +640,12 @@ void Utils::Misc::msleep(unsigned long msecs)
 {
     SleeperThread::msleep(msecs);
 }
+
+#ifndef DISABLE_GUI
+QSize Utils::Misc::smallIconSize()
+{
+    // Get DPI scaled icon size (device-dependent), see QT source
+    int s = QApplication::style()->pixelMetric(QStyle::PM_SmallIconSize);
+    return QSize(s, s);
+}
+#endif

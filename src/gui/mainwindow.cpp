@@ -179,7 +179,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     hSplitter = new QSplitter(Qt::Vertical, this);
     hSplitter->setChildrenCollapsible(false);
-    hSplitter->setContentsMargins(0, 4, 0, 0);
+    hSplitter->setFrameShape(QFrame::NoFrame);
 
     // Name filter
     search_filter = new LineEdit(this);
@@ -193,6 +193,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Transfer List tab
     transferList = new TransferListWidget(hSplitter, this);
+    //transferList->setStyleSheet("QTreeView {border: none;}");  // borderless
     properties = new PropertiesWidget(hSplitter, this, transferList);
     transferListFilters = new TransferListFiltersWidget(vSplitter, transferList);
     hSplitter->addWidget(transferList);
