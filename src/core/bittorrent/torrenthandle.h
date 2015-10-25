@@ -254,8 +254,8 @@ namespace BitTorrent
         qreal realRatio() const;
         int uploadPayloadRate() const;
         int downloadPayloadRate() const;
-        int totalPayloadUpload() const;
-        int totalPayloadDownload() const;
+        qlonglong totalPayloadUpload() const;
+        qlonglong totalPayloadDownload() const;
         int connectionsCount() const;
         int connectionsLimit() const;
         qlonglong nextAnnounce() const;
