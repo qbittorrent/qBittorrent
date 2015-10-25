@@ -133,7 +133,7 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &in)
     , savePath(in.savePath)
     , disableTempPath(in.disableTempPath)
     , sequential(in.sequential)
-    , hasSeedStatus(false)
+    , hasSeedStatus(in.skipChecking) // do not react on 'torrent_finished_alert' when skipping
     , skipChecking(in.skipChecking)
     , addForced(in.addForced)
     , addPaused(in.addPaused)
@@ -195,7 +195,7 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_name(data.name)
     , m_savePath(Utils::Fs::toNativePath(data.savePath))
     , m_label(data.label)
-    , m_hasSeedStatus(data.resumed ? data.hasSeedStatus : false)
+    , m_hasSeedStatus(data.hasSeedStatus)
     , m_ratioLimit(data.ratioLimit)
     , m_tempPathDisabled(data.disableTempPath)
     , m_hasMissingFiles(false)
@@ -1377,6 +1377,9 @@ void TorrentHandle::handleTorrentCheckedAlert(libtorrent::torrent_checked_alert 
 
     updateStatus();
     adjustActualSavePath();
+
+    if (progress() < 1.0)
+        m_hasSeedStatus = false;
 
     if (m_pauseAfterRecheck) {
         m_pauseAfterRecheck = false;
