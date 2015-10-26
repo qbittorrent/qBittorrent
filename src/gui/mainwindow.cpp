@@ -1163,8 +1163,9 @@ void MainWindow::on_actionOpen_triggered()
     // Open File Open Dialog
     // Note: it is possible to select more than one file
     const QStringList pathsList =
-        QFileDialog::getOpenFileNames(0, tr("Open Torrent Files"), pref->getMainLastDir(),
+        QFileDialog::getOpenFileNames(this, tr("Open Torrent Files"), pref->getMainLastDir(),
                                       tr("Torrent Files") + " (*.torrent)");
+
     const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     if (!pathsList.isEmpty()) {
         foreach (QString file, pathsList) {

@@ -409,7 +409,7 @@ void Application::processParams(const QStringList &params)
         param = param.trimmed();
 
         // Process strings indicating options specified by the user.
-        
+
         if (param.startsWith(QLatin1String("@savePath="))) {
             torrentParams.savePath = param.mid(10);
             continue;
