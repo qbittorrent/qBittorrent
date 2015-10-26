@@ -72,7 +72,6 @@ void AutoExpandableDialog::showEvent(QShowEvent *e) {
   // NOTE: For some strange reason QFontMetrics gets more accurate
   // when called from showEvent. Only 6 symbols off instead of 11 symbols off.
   int textW = ui->textEdit->fontMetrics().width(ui->textEdit->text()) + 4;
-  int screenW = QApplication::desktop()->width() / 4;
   int wd = textW;
 
   if (!windowTitle().isEmpty()) {
@@ -87,35 +86,9 @@ void AutoExpandableDialog::showEvent(QShowEvent *e) {
       wd = _w;
   }
 
-
   // Now resize the dialog to fit the contents
-  // Maximum value is whichever is smaller:
-  // 1. screen width / 4
-  // 2. max width of text from either of: label, title, textedit
+  // max width of text from either of: label, title, textedit
   // If the value is less than dialog default size default size is used
-  wd = textW < screenW ? textW : screenW;
   if (wd > width())
-    resize(width() - ui->horizontalLayout->sizeHint().width() + wd, height());
-
-  // Use old dialog behavior: prohibit resizing the dialog
-  setFixedHeight(height());
-
-  // Update geometry: center on screen
-  QDesktopWidget *desk = QApplication::desktop();
-  MainWindow *wnd = qobject_cast<MainWindow*>(QApplication::activeWindow());
-  QPoint p = QCursor::pos();
-
-  int screenNum = 0;
-  if (wnd == 0)
-    screenNum = desk->screenNumber(p);
-  else if (!wnd->isHidden())
-    screenNum = desk->screenNumber(wnd);
-  else
-    screenNum = desk->screenNumber(p);
-
-  QRect screenRes = desk->screenGeometry(screenNum);
-
-  QRect geom = geometry();
-  geom.moveCenter(QPoint(screenRes.width() / 2, screenRes.height() / 2));
-  setGeometry(geom);
+    resize(width() - ui->verticalLayout->sizeHint().width() + wd, height());
 }

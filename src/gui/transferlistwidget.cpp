@@ -328,7 +328,7 @@ void TransferListWidget::deleteSelectedTorrents(bool deleteLocalFiles)
     if (torrents.empty()) return;
 
     if (Preferences::instance()->confirmTorrentDeletion()
-        && !DeletionConfirmationDlg::askForDeletionConfirmation(deleteLocalFiles, torrents.size(), torrents[0]->name()))
+        && !DeletionConfirmationDlg::askForDeletionConfirmation(this, deleteLocalFiles, torrents.size(), torrents[0]->name()))
         return;
     foreach (BitTorrent::TorrentHandle *const torrent, torrents)
         BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
@@ -344,8 +344,9 @@ void TransferListWidget::deleteVisibleTorrents()
 
     bool deleteLocalFiles = false;
     if (Preferences::instance()->confirmTorrentDeletion()
-        && !DeletionConfirmationDlg::askForDeletionConfirmation(deleteLocalFiles, torrents.size(), torrents[0]->name()))
+        && !DeletionConfirmationDlg::askForDeletionConfirmation(this, deleteLocalFiles, torrents.size(), torrents[0]->name()))
         return;
+
     foreach (BitTorrent::TorrentHandle *const torrent, torrents)
         BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
 }

@@ -41,9 +41,9 @@ class AutoExpandableDialog;
 
 class AutoExpandableDialog : public QDialog {
   Q_OBJECT
-  
+
 public:
-  explicit AutoExpandableDialog(QWidget *parent = 0);
+  explicit AutoExpandableDialog(QWidget *parent);
   ~AutoExpandableDialog();
 
   static QString getText(QWidget *parent, const QString& title,  const QString& label,
@@ -52,7 +52,7 @@ public:
 
 protected:
   void showEvent(QShowEvent *e);
-  
+
 private:
   Ui::AutoExpandableDialog *ui;
 };
