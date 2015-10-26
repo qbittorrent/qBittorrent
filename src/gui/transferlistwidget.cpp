@@ -445,7 +445,7 @@ void TransferListWidget::setDlLimitSelectedTorrents()
 
     bool ok = false;
     const long newLimit = SpeedLimitDialog::askSpeedLimit(
-                &ok, tr("Torrent Download Speed Limiting"), oldLimit
+                this, &ok, tr("Torrent Download Speed Limiting"), oldLimit
                 , BitTorrent::Session::instance()->globalDownloadSpeedLimit());
     if (!ok) return;
 
@@ -470,7 +470,7 @@ void TransferListWidget::setUpLimitSelectedTorrents()
 
     bool ok = false;
     const long newLimit = SpeedLimitDialog::askSpeedLimit(
-                &ok, tr("Torrent Upload Speed Limiting"), oldLimit
+                this, &ok, tr("Torrent Upload Speed Limiting"), oldLimit
                 , BitTorrent::Session::instance()->globalUploadSpeedLimit());
     if (!ok) return;
 

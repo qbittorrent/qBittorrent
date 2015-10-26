@@ -862,10 +862,12 @@ void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const
 void MainWindow::on_actionSetGlobalUploadLimit_triggered()
 {
     qDebug() << Q_FUNC_INFO;
+
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     bool ok = false;
     const long newLimit = SpeedLimitDialog::askSpeedLimit(
-        &ok, tr("Global Upload Speed Limit"), session->uploadSpeedLimit());
+        this, &ok, tr("Global Upload Speed Limit"), session->uploadSpeedLimit());
+
     if (ok) {
         qDebug("Setting global upload rate limit to %.1fKb/s", newLimit / 1024.);
         session->setUploadSpeedLimit(newLimit);
@@ -875,10 +877,12 @@ void MainWindow::on_actionSetGlobalUploadLimit_triggered()
 void MainWindow::on_actionSetGlobalDownloadLimit_triggered()
 {
     qDebug() << Q_FUNC_INFO;
+
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     bool ok = false;
     const long newLimit = SpeedLimitDialog::askSpeedLimit(
-        &ok, tr("Global Download Speed Limit"), session->downloadSpeedLimit());
+        this, &ok, tr("Global Download Speed Limit"), session->downloadSpeedLimit());
+
     if (ok) {
         qDebug("Setting global download rate limit to %.1fKb/s", newLimit / 1024.);
         session->setDownloadSpeedLimit(newLimit);
