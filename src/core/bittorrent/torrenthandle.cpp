@@ -1055,12 +1055,12 @@ int TorrentHandle::downloadPayloadRate() const
     return m_nativeStatus.download_payload_rate;
 }
 
-int TorrentHandle::totalPayloadUpload() const
+qlonglong TorrentHandle::totalPayloadUpload() const
 {
     return m_nativeStatus.total_payload_upload;
 }
 
-int TorrentHandle::totalPayloadDownload() const
+qlonglong TorrentHandle::totalPayloadDownload() const
 {
     return m_nativeStatus.total_payload_download;
 }
