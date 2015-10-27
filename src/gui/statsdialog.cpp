@@ -44,12 +44,13 @@ StatsDialog::StatsDialog(QWidget *parent)
 {
   ui->setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
-  connect(ui->buttonOK, SIGNAL(clicked()), SLOT(close()));
+  connect(ui->buttonBox, SIGNAL(accepted()), SLOT(close()));
   updateUI();
   t = new QTimer(this);
   t->setInterval(1500);
   connect(t, SIGNAL(timeout()), SLOT(updateUI()));
   t->start();
+
   show();
 }
 
