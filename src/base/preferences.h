@@ -278,8 +278,6 @@ public:
     QSize getPrefSize(const QSize &defaultSize) const;
     void setPrefSize(const QSize &size);
 #endif
-    QPoint getPrefPos() const;
-    void setPrefPos(const QPoint &pos);
     QStringList getPrefHSplitterSizes() const;
     void setPrefHSplitterSizes(const QStringList &sizes);
     QByteArray getPeerListState() const;

@@ -1139,16 +1139,6 @@ void Preferences::setPrefSize(const QSize &size)
 }
 #endif
 
-QPoint Preferences::getPrefPos() const
-{
-    return value("Preferences/State/pos").toPoint();
-}
-
-void Preferences::setPrefPos(const QPoint &pos)
-{
-    setValue("Preferences/State/pos", pos);
-}
-
 QStringList Preferences::getPrefHSplitterSizes() const
 {
     return value("Preferences/State/hSplitterSizes").toStringList();
