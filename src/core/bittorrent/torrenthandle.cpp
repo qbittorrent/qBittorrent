@@ -1378,7 +1378,7 @@ void TorrentHandle::handleTorrentCheckedAlert(libtorrent::torrent_checked_alert 
     updateStatus();
     adjustActualSavePath();
 
-    if (progress() < 1.0)
+    if (progress() < 1.0 && wantedSize() > 0)
         m_hasSeedStatus = false;
 
     if (m_pauseAfterRecheck) {
