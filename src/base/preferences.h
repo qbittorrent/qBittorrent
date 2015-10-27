@@ -36,6 +36,7 @@
 #include <QTime>
 #include <QDateTime>
 #include <QList>
+#include <QSize>
 #include <QTimer>
 #include <QReadWriteLock>
 #include <QNetworkCookie>
@@ -274,10 +275,8 @@ public:
     void setMainVSplitterState(const QByteArray &state);
     QString getMainLastDir() const;
     void setMainLastDir(const QString &path);
-#ifndef DISABLE_GUI
     QSize getPrefSize(const QSize &defaultSize) const;
     void setPrefSize(const QSize &size);
-#endif
     QStringList getPrefHSplitterSizes() const;
     void setPrefHSplitterSizes(const QStringList &sizes);
     QByteArray getPeerListState() const;
@@ -292,8 +291,8 @@ public:
     void setPropVisible(const bool visible);
     QByteArray getPropTrackerListState() const;
     void setPropTrackerListState(const QByteArray &state);
-    QByteArray getRssGeometry() const;
-    void setRssGeometry(const QByteArray &geometry);
+    QSize getRssGeometrySize(const QSize &defaultSize) const;
+    void setRssGeometrySize(const QSize &geometry);
     QByteArray getRssHSplitterSizes() const;
     void setRssHSplitterSizes(const QByteArray &sizes);
     QStringList getRssOpenFolders() const;
