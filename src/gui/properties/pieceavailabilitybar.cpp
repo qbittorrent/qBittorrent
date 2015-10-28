@@ -67,23 +67,17 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
     // image.x(1) = pieces.x(1.7 >= x < 3.4)
 
     for (int x = 0; x < reqSize; ++x) {
-        // don't use previously calculated value "ratio" here!!!
-        // float cannot save irrational number like 7/9, if this number will be rounded up by std::ceil
-        // give you x2 == pieces.size(), and index out of range: pieces[x2]
-        // this code is safe, so keep that in mind when you try optimize more.
-        // tested with size = 3000000ul
-
         // R - real
-        const float fromR = (x * vecin.size()) / (float)reqSize;
-        const float toR = ((x + 1) * vecin.size()) / (float)reqSize;
+        const float fromR = x * ratio;
+        const float toR = (x + 1) * ratio;
 
         // C - integer
         int fromC = fromR;// std::floor not needed
         int toC = std::ceil(toR);
+        if (toC > vecin.size())
+            --toC;
 
         // position in pieces table
-        // libtorrent::bitfield::m_size is unsigned int(31 bits), so qlonglong is not needed
-        // tested with size = 3000000ul
         int x2 = fromC;
 
         // little speed up for really big pieces table, 10K+ size
@@ -95,7 +89,7 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
         // case when calculated range is (15.2 >= x < 15.7)
         if (x2 == toCMinusOne) {
             if (vecin[x2])
-                value += (toR - fromR) * vecin[x2];
+                value += ratio * vecin[x2];
             ++x2;
         }
         // case when (15.2 >= x < 17.8)
