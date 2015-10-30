@@ -90,6 +90,7 @@
      <string>&amp;View</string>
     </property>
     <addaction name="actionTop_tool_bar"/>
+    <addaction name="actionShowStatusbar"/>
     <addaction name="actionSpeed_in_title_bar"/>
     <addaction name="separator"/>
     <addaction name="actionSearch_engine"/>
@@ -283,6 +284,14 @@
    </property>
    <property name="toolTip">
     <string>Display Top Toolbar</string>
+   </property>
+  </action>
+  <action name="actionShowStatusbar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Status &amp;Bar</string>
    </property>
   </action>
   <action name="actionSpeed_in_title_bar">

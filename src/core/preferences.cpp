@@ -299,6 +299,16 @@ void Preferences::setToolbarDisplayed(bool displayed)
     setValue("Preferences/General/ToolbarDisplayed", displayed);
 }
 
+bool Preferences::isStatusbarDisplayed() const
+{
+    return value("Preferences/General/StatusbarDisplayed", true).toBool();
+}
+
+void Preferences::setStatusbarDisplayed(bool displayed)
+{
+    setValue("Preferences/General/StatusbarDisplayed", displayed);
+}
+
 bool Preferences::minimizeToTray() const
 {
     return value("Preferences/General/MinimizeToTray", false).toBool();
