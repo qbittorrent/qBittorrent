@@ -300,6 +300,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // View settings
     m_ui->actionTopToolBar->setChecked(pref->isToolbarDisplayed());
+    m_ui->actionShowStatusbar->setChecked(pref->isStatusbarDisplayed());
     m_ui->actionSpeedInTitleBar->setChecked(pref->speedInTitleBar());
     m_ui->actionRSSReader->setChecked(pref->isRSSWidgetEnabled());
     m_ui->actionSearchWidget->setChecked(pref->isSearchEnabled());
@@ -1284,6 +1285,8 @@ void MainWindow::loadPreferences(bool configureSession)
         m_ui->toolBar->setVisible(false);
     }
 
+    m_statusBar->setVisible(pref->isStatusbarDisplayed());
+
     if (pref->preventFromSuspend() && !m_preventTimer->isActive()) {
         m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
     }
@@ -1541,6 +1544,13 @@ void MainWindow::on_actionTopToolBar_triggered()
     bool isVisible = static_cast<QAction * >(sender())->isChecked();
     m_ui->toolBar->setVisible(isVisible);
     Preferences::instance()->setToolbarDisplayed(isVisible);
+}
+
+void MainWindow::on_actionShowStatusbar_triggered()
+{
+    bool isVisible = static_cast<QAction*>(sender())->isChecked();
+    m_statusBar->setVisible(isVisible);
+    Preferences::instance()->setStatusbarDisplayed(isVisible);
 }
 
 void MainWindow::on_actionSpeedInTitleBar_triggered()

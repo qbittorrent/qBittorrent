@@ -110,6 +110,7 @@
     </widget>
     <addaction name="separator"/>
     <addaction name="actionTopToolBar"/>
+    <addaction name="actionShowStatusbar"/>
     <addaction name="actionSpeedInTitleBar"/>
     <addaction name="separator"/>
     <addaction name="actionSearchWidget"/>
@@ -298,6 +299,14 @@
    </property>
    <property name="toolTip">
     <string>Display Top Toolbar</string>
+   </property>
+  </action>
+  <action name="actionShowStatusbar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Status &amp;Bar</string>
    </property>
   </action>
   <action name="actionSpeedInTitleBar">
