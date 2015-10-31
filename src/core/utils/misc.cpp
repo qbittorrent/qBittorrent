@@ -383,16 +383,16 @@ bool Utils::Misc::isPreviewable(const QString& extension)
         multimedia_extensions.insert("WAV");
         multimedia_extensions.insert("WMA");
         multimedia_extensions.insert("WMV");
-	multimedia_extensions.insert("PDF");
-	multimedia_extensions.insert("DJVU");
-	multimedia_extensions.insert("DJV");
-	multimedia_extensions.insert("FB2");
-	multimedia_extensions.insert("EPUB");
-	multimedia_extensions.insert("MOBI");
-	multimedia_extensions.insert("DOC");
-	multimedia_extensions.insert("DOCX");
-	multimedia_extensions.insert("XLS");
-	multimedia_extensions.insert("RTF");
+        multimedia_extensions.insert("PDF");
+        multimedia_extensions.insert("DJVU");
+        multimedia_extensions.insert("DJV");
+        multimedia_extensions.insert("FB2");
+        multimedia_extensions.insert("EPUB");
+        multimedia_extensions.insert("MOBI");
+        multimedia_extensions.insert("DOC");
+        multimedia_extensions.insert("DOCX");
+        multimedia_extensions.insert("XLS");
+        multimedia_extensions.insert("RTF");
     }
 
     if (extension.isEmpty())
