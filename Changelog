@@ -1,4 +1,4 @@
-* Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.5
+* Sat Oct 31 2015 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.5
     - BUGFIX: Fix difficult to reproduce crash. (glassez)
     - OTHER: Fix Windows' Qt5 build. (Gelmir)
 
