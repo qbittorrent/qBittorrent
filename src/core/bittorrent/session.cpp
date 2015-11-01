@@ -1026,7 +1026,7 @@ bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams 
 }
 
 // Add a torrent to the BitTorrent session
-bool Session::addTorrent_impl(const AddTorrentData &addData, const MagnetUri &magnetUri,
+bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri,
                               const TorrentInfo &torrentInfo, const QByteArray &fastresumeData)
 {
     libt::add_torrent_params p;
@@ -1098,21 +1098,21 @@ bool Session::addTorrent_impl(const AddTorrentData &addData, const MagnetUri &ma
     p.max_connections = pref->getMaxConnecsPerTorrent();
     p.max_uploads = pref->getMaxUploadsPerTorrent();
 
+    if (addData.savePath.isEmpty()) {
+        addData.savePath = m_defaultSavePath;
+        if (m_appendLabelToSavePath && !addData.label.isEmpty())
+            addData.savePath +=  QString("%1/").arg(addData.label);
+    }
+    else if (!addData.savePath.endsWith("/")) {
+        addData.savePath += "/";
+    }
+
     QString savePath;
     // Set actual save path (e.g. temporary folder)
-    if (isTempPathEnabled() && !addData.disableTempPath && !addData.hasSeedStatus) {
+    if (isTempPathEnabled() && !addData.disableTempPath && !addData.hasSeedStatus)
         savePath = m_tempPath;
-    }
-    else {
+    else
         savePath = addData.savePath;
-        if (savePath.isEmpty()) {
-            savePath = m_defaultSavePath;
-            if (m_appendLabelToSavePath && !addData.label.isEmpty())
-                savePath +=  QString("%1/").arg(addData.label);
-        }
-        else if (!savePath.endsWith("/"))
-            savePath += "/";
-    }
 
     p.save_path = Utils::String::toStdString(Utils::Fs::toNativePath(savePath));
     // Check if save path exists, creating it otherwise
