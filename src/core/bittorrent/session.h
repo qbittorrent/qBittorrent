@@ -61,6 +61,7 @@ namespace libtorrent
     struct torrent_finished_alert;
     struct torrent_removed_alert;
     struct torrent_deleted_alert;
+    struct torrent_delete_failed_alert;
     struct torrent_paused_alert;
     struct torrent_resumed_alert;
     struct save_resume_data_alert;
@@ -305,6 +306,7 @@ namespace BitTorrent
         void handleFileErrorAlert(libtorrent::file_error_alert *p);
         void handleTorrentRemovedAlert(libtorrent::torrent_removed_alert *p);
         void handleTorrentDeletedAlert(libtorrent::torrent_deleted_alert *p);
+        void handleTorrentDeleteFailedAlert(libtorrent::torrent_delete_failed_alert *p);
         void handlePortmapWarningAlert(libtorrent::portmap_error_alert *p);
         void handlePortmapAlert(libtorrent::portmap_alert *p);
         void handlePeerBlockedAlert(libtorrent::peer_blocked_alert *p);

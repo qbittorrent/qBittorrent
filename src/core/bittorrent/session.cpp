@@ -813,11 +813,11 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
 
     // Remove it from session
     if (deleteLocalFiles) {
-        QDir saveDir(torrent->actualSavePath());
-        if ((saveDir != QDir(m_defaultSavePath)) && (saveDir != QDir(m_tempPath))) {
-            m_savePathsToRemove[torrent->hash()] = saveDir.absolutePath();
-            qDebug() << "Save path to remove (async): " << saveDir.absolutePath();
-        }
+        QString tmp = torrent->filePath(0);
+        tmp.truncate(tmp.indexOf("/"));  // get the torrent root directory name
+        if (!tmp.isEmpty())
+            m_savePathsToRemove[torrent->hash()] = torrent->actualSavePath() + tmp;
+
         m_nativeSession->remove_torrent(torrent->nativeHandle(), libt::session::delete_files);
     }
     else {
@@ -2049,7 +2049,6 @@ void Session::handleAlert(libt::alert *a)
             handleMetadataReceivedAlert(static_cast<libt::metadata_received_alert*>(a));
             dispatchTorrentAlert(a);
             break;
-
         case libt::state_update_alert::alert_type:
             handleStateUpdateAlert(static_cast<libt::state_update_alert*>(a));
             break;
@@ -2064,6 +2063,9 @@ void Session::handleAlert(libt::alert *a)
             break;
         case libt::torrent_deleted_alert::alert_type:
             handleTorrentDeletedAlert(static_cast<libt::torrent_deleted_alert*>(a));
+            break;
+        case libt::torrent_delete_failed_alert::alert_type:
+            handleTorrentDeleteFailedAlert(static_cast<libt::torrent_delete_failed_alert*>(a));
             break;
         case libt::portmap_error_alert::alert_type:
             handlePortmapWarningAlert(static_cast<libt::portmap_error_alert*>(a));
@@ -2178,13 +2180,16 @@ void Session::handleTorrentRemovedAlert(libtorrent::torrent_removed_alert *p)
 
 void Session::handleTorrentDeletedAlert(libt::torrent_deleted_alert *p)
 {
+    m_savePathsToRemove.remove(p->info_hash);
+}
+
+void Session::handleTorrentDeleteFailedAlert(libt::torrent_delete_failed_alert *p)
+{
+    // libtorrent won't delete the directory if it contains files not listed in the torrent,
+    // so we remove the directory ourselves
     if (m_savePathsToRemove.contains(p->info_hash)) {
-        qDebug("A torrent was deleted from the hard disk, attempting to remove the root folder too...");
-        const QString dirpath = m_savePathsToRemove.take(p->info_hash);
-        qDebug() << "Removing save path: " << dirpath << "...";
-        bool ok = Utils::Fs::smartRemoveEmptyFolderTree(dirpath);
-        Q_UNUSED(ok);
-        qDebug() << "Folder was removed: " << ok;
+        QString path = m_savePathsToRemove.take(p->info_hash);
+        Utils::Fs::smartRemoveEmptyFolderTree(path);
     }
 }
 
