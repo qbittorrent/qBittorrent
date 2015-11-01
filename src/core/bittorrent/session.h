@@ -289,7 +289,7 @@ namespace BitTorrent
         void setAppendExtension(bool append);
 
         void startUpTorrents();
-        bool addTorrent_impl(const AddTorrentData &addData, const MagnetUri &magnetUri,
+        bool addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri,
                              const TorrentInfo &torrentInfo = TorrentInfo(),
                              const QByteArray &fastresumeData = QByteArray());
 

@@ -202,9 +202,6 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_pauseAfterRecheck(false)
     , m_needSaveResumeData(false)
 {
-    if (m_savePath.isEmpty())
-        m_savePath = Utils::Fs::toNativePath(m_session->defaultSavePath());
-
     initialize();
 
     if (!data.resumed) {
