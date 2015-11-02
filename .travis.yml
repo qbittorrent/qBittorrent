@@ -124,8 +124,8 @@ install:
       brew update > /dev/null && brew install colormake libtorrent-rasterbar ;
 
       # Qt
-      if [ "$qt" = 4 ]; then brew install qt ; fi ;
-      if [ "$qt" = 5 ]; then brew install qt5 && brew link --force qt5 ; fi ;
+      if [ "$qt" = 4 ]; then brew install qt && ln -s /usr/local/Cellar/qt/4.8.7_2/plugins /usr/local ; fi ;
+      if [ "$qt" = 5 ]; then brew install qt5 && brew link --force qt5 && ln -s /usr/local/Cellar/qt5/5.6.0/plugins /usr/local ; fi ;
     fi
 
 script:
@@ -137,7 +137,7 @@ script:
 after_success:
   - if [ "$gui" = true ]; then qbt_exe="qbittorrent" ; else qbt_exe="qbittorrent-nox" ; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cd "$qbt_path/bin" ; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then cd "$TRAVIS_BUILD_DIR/src/$qbt_exe.app/Contents/MacOS" ; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then cd "$TRAVIS_BUILD_DIR/src/" && macdeployqt "$qbt_exe.app" && cd "$qbt_exe.app/Contents/MacOS" ; fi
   - ./$qbt_exe --version
 
 after_script:
