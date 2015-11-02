@@ -964,6 +964,26 @@ void Preferences::setEncryptionSetting(int val)
     setValue("Preferences/Bittorrent/Encryption", val);
 }
 
+bool Preferences::isAddTrackersEnabled() const
+{
+    return value("Preferences/Bittorrent/AddTrackers", false).toBool();
+}
+
+void Preferences::setAddTrackersEnabled(bool enabled)
+{
+    setValue("Preferences/Bittorrent/AddTrackers", enabled);
+}
+
+QString Preferences::getTrackersList() const
+{
+    return value("Preferences/Bittorrent/TrackersList").toString();
+}
+
+void Preferences::setTrackersList(const QString &val)
+{
+    setValue("Preferences/Bittorrent/TrackersList", val);
+}
+
 qreal Preferences::getGlobalMaxRatio() const
 {
     return value("Preferences/Bittorrent/MaxRatio", -1).toDouble();

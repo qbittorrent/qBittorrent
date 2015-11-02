@@ -249,6 +249,8 @@ options_imp::options_imp(QWidget *parent)
     connect(spinMaxActiveUploads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
     connect(spinMaxActiveTorrents, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
     connect(checkIgnoreSlowTorrentsForQueueing, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(checkEnableAddTrackers, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(textTrackers, SIGNAL(textChanged()), this, SLOT(enableApplyButton()));
 #ifndef DISABLE_WEBUI
     // Web UI tab
     connect(checkWebUi, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -468,6 +470,8 @@ void options_imp::saveOptions()
     pref->setLSDEnabled(isLSDEnabled());
     pref->setEncryptionSetting(getEncryptionSetting());
     pref->enableAnonymousMode(checkAnonymousMode->isChecked());
+    pref->setAddTrackersEnabled(checkEnableAddTrackers->isChecked());
+    pref->setTrackersList(textTrackers->toPlainText());
     pref->setGlobalMaxRatio(getMaxRatio());
     pref->setMaxRatioAction(static_cast<MaxRatioAction>(comboRatioLimitAct->currentIndex()));
     // End Bittorrent preferences
@@ -783,6 +787,8 @@ void options_imp::loadOptions()
     checkLSD->setChecked(pref->isLSDEnabled());
     comboEncryption->setCurrentIndex(pref->getEncryptionSetting());
     checkAnonymousMode->setChecked(pref->isAnonymousModeEnabled());
+    checkEnableAddTrackers->setChecked(pref->isAddTrackersEnabled());
+    textTrackers->setPlainText(pref->getTrackersList());
 
     checkEnableQueueing->setChecked(pref->isQueueingSystemEnabled());
     spinMaxActiveDownloads->setValue(pref->getMaxActiveDownloads());

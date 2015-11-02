@@ -339,6 +339,7 @@ namespace BitTorrent
         bool m_appendExtension;
         uint m_refreshInterval;
         MaxRatioAction m_highRatioAction;
+        QList<BitTorrent::TrackerEntry> m_additionalTrackers;
         QString m_defaultSavePath;
         QString m_tempPath;
         QString m_filterPath;
