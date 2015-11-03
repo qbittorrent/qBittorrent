@@ -304,6 +304,42 @@ initializeWindows = function() {
         }
     };
 
+    newLabelFN = function () {
+        var h = myTable.selectedIds();
+        if (h.length) {
+            new MochaUI.Window({
+                id: 'newLabelPage',
+                title: "QBT_TR(New Label)QBT_TR",
+                loadMethod: 'iframe',
+                contentURL: 'newlabel.html?hashes=' + h.join('|'),
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                paddingVertical: 0,
+                paddingHorizontal: 0,
+                width: 250,
+                height: 100
+            });
+        }
+    };
+
+    updateLabelFN = function (labelHash) {
+        var labelName = '';
+        if (labelHash != 0)
+            var labelName = label_list[labelHash].name;
+        var h = myTable.selectedIds();
+        if (h.length) {
+            new Request({
+                url: 'command/setLabel',
+                method: 'post',
+                data: {
+                    hashes: h.join("|"),
+                    label: labelName
+                }
+            }).send();
+        }
+    };
+
     ['pauseAll', 'resumeAll'].each(function(item) {
         addClickEvent(item, function(e) {
             new Event(e).stop();

@@ -39,6 +39,7 @@
 #include "core/preferences.h"
 #include "btjson.h"
 #include "prefjson.h"
+#include "jsonutils.h"
 #include "core/bittorrent/session.h"
 #include "core/bittorrent/trackerentry.h"
 #include "core/bittorrent/torrentinfo.h"
@@ -110,6 +111,7 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(command, topPrio);
     ADD_ACTION(command, bottomPrio);
     ADD_ACTION(command, recheck);
+    ADD_ACTION(command, setLabel);
     ADD_ACTION(version, api);
     ADD_ACTION(version, api_min);
     ADD_ACTION(version, qbittorrent);
@@ -662,6 +664,25 @@ void WebApplication::action_command_recheck()
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(request().posts["hash"]);
     if (torrent)
         torrent->forceRecheck();
+}
+
+void WebApplication::action_command_setLabel()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("hashes" << "label");
+
+    QStringList hashes = request().posts["hashes"].split("|");
+    QString label = request().posts["label"].trimmed();
+    if (!Utils::Fs::isValidFileSystemName(label)) {
+        status(400, "Labels must not contain special characters");
+        return;
+    }
+
+    foreach (const QString &hash, hashes) {
+        BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+        if (torrent)
+            torrent->setLabel(label);
+    }
 }
 
 bool WebApplication::isPublicScope()
