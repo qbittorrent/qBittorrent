@@ -28,7 +28,6 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
   
   ; Put file there  
   File "qbittorrent.exe"
-  File "qbittorrent.pdb"
   File "qt.conf"
   File /oname=translations\qt_ar.qm "translations\qt_ar.qm"
   File /oname=translations\qt_bg.qm "translations\qt_bg.qm"
