@@ -1643,6 +1643,16 @@ void Preferences::removeTorrentLabel(const QString& label)
     setValue("TransferListFilters/customLabels", labels);
 }
 
+QString Preferences::getDefaultLabel() const
+{
+    return value("Preferences/Downloads/DefaultLabel").toString();
+}
+
+void Preferences::setDefaultLabel(const QString &defaultLabel)
+{
+    setValue("Preferences/Downloads/DefaultLabel", defaultLabel);
+}
+
 bool Preferences::recursiveDownloadDisabled() const
 {
     return value("Preferences/Advanced/DisableRecursiveDownload", false).toBool();

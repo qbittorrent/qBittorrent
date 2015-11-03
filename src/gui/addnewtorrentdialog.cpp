@@ -77,9 +77,16 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
 
     // Load labels
     const QStringList customLabels = pref->getTorrentLabels();
+    const QString defaultLabel = pref->getDefaultLabel();
+
+    if (!defaultLabel.isEmpty())
+        ui->label_combo->addItem(defaultLabel);
     ui->label_combo->addItem("");
+
     foreach (const QString& label, customLabels)
-        ui->label_combo->addItem(label);
+        if (label != defaultLabel)
+            ui->label_combo->addItem(label);
+
     ui->label_combo->model()->sort(0);
     ui->content_tree->header()->setSortIndicator(0, Qt::AscendingOrder);
     loadState();
@@ -586,6 +593,9 @@ void AddNewTorrentDialog::accept()
 
     // Label
     params.label = ui->label_combo->currentText();
+
+    if (ui->defaultLabel->isChecked())
+        pref->setDefaultLabel(params.label);
 
     // Save file priorities
     if (m_contentModel)
