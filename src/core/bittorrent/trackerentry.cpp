@@ -61,7 +61,7 @@ int TrackerEntry::tier() const
 
 TrackerEntry::Status TrackerEntry::status() const
 {
-    if (m_nativeEntry.verified)
+    if (m_nativeEntry.is_working())
         return Working;
     else if ((m_nativeEntry.fails == 0) && m_nativeEntry.updating)
         return Updating;
