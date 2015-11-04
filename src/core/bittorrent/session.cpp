@@ -635,11 +635,14 @@ void Session::configure()
     setGlobalMaxRatio(pref->getGlobalMaxRatio());
 
     // Ip Filter
-    FilterParserThread::processFilterList(m_nativeSession, pref->bannedIPs());
     if (pref->isFilteringEnabled())
         enableIPFilter(pref->getFilter());
     else
         disableIPFilter();
+    // Add the banned IPs after the possibly disabled IPFilter
+    // which creates an empty filter and overrides all previously
+    // applied bans.
+    FilterParserThread::processFilterList(m_nativeSession, pref->bannedIPs());
 
     // * Proxy settings
     libt::proxy_settings proxySettings;
