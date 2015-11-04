@@ -512,11 +512,22 @@ window.addEvent('load', function () {
                 $('prop_trackers').addClass("invisible");
                 $('prop_webseeds').addClass("invisible");
                 $('prop_files').addClass("invisible");
+                $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
             });
 
             $('PropTrackersLink').addEvent('click', function(e){
                 $('prop_trackers').removeClass("invisible");
+                $('prop_general').addClass("invisible");
+                $('prop_webseeds').addClass("invisible");
+                $('prop_files').addClass("invisible");
+                $('prop_peers').addClass("invisible");
+                updatePropertiesPanel();
+            });
+
+            $('PropPeersLink').addEvent('click', function(e){
+                $('prop_peers').removeClass("invisible");
+                $('prop_trackers').addClass("invisible");
                 $('prop_general').addClass("invisible");
                 $('prop_webseeds').addClass("invisible");
                 $('prop_files').addClass("invisible");
@@ -528,6 +539,7 @@ window.addEvent('load', function () {
                 $('prop_general').addClass("invisible");
                 $('prop_trackers').addClass("invisible");
                 $('prop_files').addClass("invisible");
+                $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
             });
 
@@ -536,6 +548,7 @@ window.addEvent('load', function () {
                 $('prop_general').addClass("invisible");
                 $('prop_trackers').addClass("invisible");
                 $('prop_webseeds').addClass("invisible");
+                $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
             });
 
