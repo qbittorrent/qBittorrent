@@ -350,6 +350,22 @@ void Preferences::setPreventFromSuspend(bool b)
     setValue("Preferences/General/PreventFromSuspend", b);
 }
 
+int Preferences::getTransferListFontScale() const
+{
+    int fontScale = value("Preferences/General/TransferListFontScale", 100).toInt();
+    if (fontScale < 100)
+        fontScale = 100;
+    else if (fontScale > 200)
+        fontScale = 200;
+
+    return fontScale;
+}
+
+void Preferences::setTransferListFontScale(int scale)
+{
+    setValue("Preferences/General/TransferListFontScale", scale);
+}
+
 #ifdef Q_OS_WIN
 bool Preferences::WinStartup() const
 {

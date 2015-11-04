@@ -93,13 +93,13 @@ public slots:
     void removeLabelFromRows(QString label);
     void renameSelectedTorrent();
 
-protected:
+private:
     QModelIndex mapToSource(const QModelIndex &index) const;
     QModelIndex mapFromSource(const QModelIndex &index) const;
     bool loadSettings();
     QList<BitTorrent::TorrentHandle *> getSelectedTorrents() const;
 
-protected slots:
+private slots:
     void torrentDoubleClicked(const QModelIndex& index);
     void displayListMenu(const QPoint&);
     void currentChanged(const QModelIndex& current, const QModelIndex&);
@@ -108,6 +108,7 @@ protected slots:
     void toggleSelectedFirstLastPiecePrio() const;
     void askNewLabelForSelection();
     void saveSettings();
+    void configure();
 
 signals:
     void currentTorrentChanged(BitTorrent::TorrentHandle *const torrent);
@@ -119,6 +120,9 @@ private:
     MainWindow *main_window;
     QShortcut *editHotkey;
     QShortcut *deleteHotkey;
+
+    bool m_fontSizeInPixels;
+    int m_fontBaseSize;
 };
 
 #endif // TRANSFERLISTWIDGET_H

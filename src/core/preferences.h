@@ -148,6 +148,8 @@ public:
     void setSplashScreenDisabled(bool b);
     bool preventFromSuspend() const;
     void setPreventFromSuspend(bool b);
+    int getTransferListFontScale() const;
+    void setTransferListFontScale(int scale);
 #ifdef Q_OS_WIN
     bool WinStartup() const;
     void setWinStartup(bool b);
