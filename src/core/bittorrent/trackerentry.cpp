@@ -61,7 +61,9 @@ int TrackerEntry::tier() const
 
 TrackerEntry::Status TrackerEntry::status() const
 {
-    if (m_nativeEntry.is_working())
+    // libtorrent::announce_entry::is_working() returns
+    // true when the tracker hasn't been tried yet.
+    if (m_nativeEntry.verified && m_nativeEntry.is_working())
         return Working;
     else if ((m_nativeEntry.fails == 0) && m_nativeEntry.updating)
         return Updating;
