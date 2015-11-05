@@ -126,7 +126,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   // Tracker list
   trackerList = new TrackerList(this);
   trackerUpButton->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
+  trackerUpButton->setIconSize(Utils::Misc::smallIconSize());
   trackerDownButton->setIcon(GuiIconProvider::instance()->getIcon("go-down"));
+  trackerDownButton->setIconSize(Utils::Misc::smallIconSize());
   connect(trackerUpButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionUp()));
   connect(trackerDownButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionDown()));
   horizontalLayout_trackers->insertWidget(0, trackerList);
