@@ -11,9 +11,6 @@
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="spacing">
-    <number>0</number>
-   </property>
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -31,7 +28,7 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="pageInfos">
+     <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <property name="leftMargin">
         <number>0</number>
@@ -959,11 +956,36 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="page_5">
-      <layout class="QVBoxLayout" name="peerpage_layout"/>
+     <widget class="QWidget" name="pagePeers">
+      <layout class="QVBoxLayout" name="peerpage_layout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+      </layout>
      </widget>
-     <widget class="QWidget" name="page_3">
+     <widget class="QWidget" name="pageSources">
       <layout class="QVBoxLayout" name="verticalLayout_9">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
         <widget class="QListWidget" name="listWebSeeds">
          <property name="contextMenuPolicy">
@@ -1043,8 +1065,21 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="speed_page">
-      <layout class="QVBoxLayout" name="speed_layout"/>
+     <widget class="QWidget" name="pageSpeed">
+      <layout class="QVBoxLayout" name="speed_layout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+      </layout>
      </widget>
     </widget>
    </item>
