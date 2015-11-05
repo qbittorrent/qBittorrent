@@ -79,8 +79,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   // Torrent content filtering
   m_contentFilterLine = new LineEdit(this);
   m_contentFilterLine->setPlaceholderText(tr("Filter files..."));
+  m_contentFilterLine->setMaximumSize(300, m_contentFilterLine->size().height());
   connect(m_contentFilterLine, SIGNAL(textChanged(QString)), this, SLOT(filterText(QString)));
-  contentFilterLayout->insertWidget(4, m_contentFilterLine);
+  contentFilterLayout->insertWidget(3, m_contentFilterLine);
 
   // SIGNAL/SLOTS
   connect(filesList, SIGNAL(clicked(const QModelIndex&)), filesList, SLOT(edit(const QModelIndex&)));
