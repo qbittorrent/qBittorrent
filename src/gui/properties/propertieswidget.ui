@@ -33,9 +33,6 @@
      </property>
      <widget class="QWidget" name="pageInfos">
       <layout class="QVBoxLayout" name="verticalLayout_7">
-       <property name="spacing">
-        <number>0</number>
-       </property>
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -912,6 +909,18 @@
      </widget>
      <widget class="QWidget" name="pageTrackers">
       <layout class="QHBoxLayout" name="horizontalLayout_trackers">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_10">
          <item>
@@ -928,54 +937,10 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="trackerUpButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-             <horstretch>31</horstretch>
-             <verstretch>27</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>31</width>
-             <height>27</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>31</width>
-             <height>27</height>
-            </size>
-           </property>
-           <property name="text">
-            <string notr="true"/>
-           </property>
-          </widget>
+          <widget class="QPushButton" name="trackerUpButton"/>
          </item>
          <item>
-          <widget class="QPushButton" name="trackerDownButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-             <horstretch>31</horstretch>
-             <verstretch>27</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>31</width>
-             <height>27</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>31</width>
-             <height>27</height>
-            </size>
-           </property>
-           <property name="text">
-            <string notr="true"/>
-           </property>
-          </widget>
+          <widget class="QPushButton" name="trackerDownButton"/>
          </item>
          <item>
           <spacer name="verticalSpacer_3">
