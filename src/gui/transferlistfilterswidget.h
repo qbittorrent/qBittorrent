@@ -45,7 +45,6 @@ namespace BitTorrent
 {
     class TorrentHandle;
     class TrackerEntry;
-    struct TorrentStatusReport;
 }
 
 class FiltersBase: public QListWidget
@@ -80,7 +79,7 @@ public:
     ~StatusFiltersWidget();
 
 private slots:
-    void updateTorrentNumbers(const BitTorrent::TorrentStatusReport &report);
+    void updateTorrentNumbers();
 
 private:
     // These 4 methods are virtual slots in the base class.

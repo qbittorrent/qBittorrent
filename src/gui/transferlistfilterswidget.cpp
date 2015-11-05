@@ -110,7 +110,7 @@ void FiltersBase::toggleFilter(bool checked)
 StatusFiltersWidget::StatusFiltersWidget(QWidget *parent, TransferListWidget *transferList)
     : FiltersBase(parent, transferList)
 {
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentsUpdated(const BitTorrent::TorrentStatusReport &)), SLOT(updateTorrentNumbers(const BitTorrent::TorrentStatusReport &)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentsUpdated()), SLOT(updateTorrentNumbers()));
 
     // Add status filters
     QListWidgetItem *all = new QListWidgetItem(this);
@@ -148,8 +148,10 @@ StatusFiltersWidget::~StatusFiltersWidget()
     Preferences::instance()->setTransSelFilter(currentRow());
 }
 
-void StatusFiltersWidget::updateTorrentNumbers(const BitTorrent::TorrentStatusReport &report)
+void StatusFiltersWidget::updateTorrentNumbers()
 {
+    auto report = BitTorrent::Session::instance()->torrentStatusReport();
+
     item(TorrentFilter::All)->setData(Qt::DisplayRole, QVariant(tr("All (%1)").arg(report.nbActive + report.nbInactive)));
     item(TorrentFilter::Downloading)->setData(Qt::DisplayRole, QVariant(tr("Downloading (%1)").arg(report.nbDownloading)));
     item(TorrentFilter::Seeding)->setData(Qt::DisplayRole, QVariant(tr("Seeding (%1)").arg(report.nbSeeding)));

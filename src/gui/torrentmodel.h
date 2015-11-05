@@ -97,6 +97,7 @@ private slots:
     void addTorrent(BitTorrent::TorrentHandle *const torrent);
     void handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent);
     void handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const torrent);
+    void handleTorrentsUpdated();
 
 private:
     QList<BitTorrent::TorrentHandle *> m_torrents;
