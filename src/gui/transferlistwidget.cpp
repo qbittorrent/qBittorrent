@@ -213,9 +213,9 @@ void TransferListWidget::torrentDoubleClicked(const QModelIndex& index)
         break;
     case OPEN_DEST:
         if (torrent->filesCount() == 1)
-            Utils::Misc::openFolderSelect(QDir(torrent->rootPath()).absoluteFilePath(torrent->filePath(0)));
+            Utils::Misc::openFolderSelect(torrent->contentPath(true));
         else
-            Utils::Misc::openPath(torrent->rootPath());
+            Utils::Misc::openPath(torrent->contentPath(true));
         break;
     }
 }
@@ -383,15 +383,11 @@ void TransferListWidget::openSelectedTorrentsFolder() const
 {
     QSet<QString> pathsList;
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents()) {
-        QString path;
-        if (torrent->filesCount() == 1) {
-            path = QDir(torrent->rootPath()).absoluteFilePath(torrent->filePath(0));
-            if (!pathsList.contains(path))
+        QString path = torrent->contentPath(true);
+        if (!pathsList.contains(path)) {
+            if (torrent->filesCount() == 1)
                 Utils::Misc::openFolderSelect(path);
-        }
-        else {
-            path = torrent->rootPath();
-            if (!pathsList.contains(path))
+            else
                 Utils::Misc::openPath(path);
         }
         pathsList.insert(path);
