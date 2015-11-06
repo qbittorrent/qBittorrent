@@ -1,0 +1,15 @@
+#cmakedefine QBT_USES_QT5
+#cmakedefine QBT_USE_GUI
+
+#ifndef QBT_USE_GUI
+#define DISABLE_GUI
+#define DISABLE_COUNTRIES_RESOLUTION
+#endif
+
+#cmakedefine QBT_USE_WEBUI
+
+#ifndef QBT_USE_WEBUI
+#define DISABLE_WEBUI
+#endif
+
+#cmakedefine STACKTRACE_WIN
