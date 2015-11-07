@@ -165,6 +165,7 @@ options_imp::options_imp(QWidget *parent)
     connect(checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkAdditionDialogFront, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(checkCreateSubfolder, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkExportDirFin, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(textExportDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -419,6 +420,7 @@ void options_imp::saveOptions()
     pref->useAdditionDialog(useAdditionDialog());
     pref->additionDialogFront(checkAdditionDialogFront->isChecked());
     pref->addTorrentsInPause(addTorrentsInPause());
+    pref->setTorrentCreateSubfolder(checkCreateSubfolder->isChecked());
     ScanFoldersModel::instance()->removeFromFSWatcher(removedScanDirs);
     ScanFoldersModel::instance()->addToFSWatcher(addedScanDirs);
     ScanFoldersModel::instance()->makePersistent();
@@ -587,6 +589,7 @@ void options_imp::loadOptions()
     checkAdditionDialog->setChecked(pref->useAdditionDialog());
     checkAdditionDialogFront->setChecked(pref->additionDialogFront());
     checkStartPaused->setChecked(pref->addTorrentsInPause());
+    checkCreateSubfolder->setChecked(pref->getTorrentCreateSubfolder());
 
     textSavePath->setText(Utils::Fs::toNativePath(pref->getSavePath()));
     if (pref->isTempPathEnabled())

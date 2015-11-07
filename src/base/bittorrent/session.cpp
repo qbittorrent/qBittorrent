@@ -109,6 +109,7 @@ AddTorrentParams::AddTorrentParams()
     , sequential(false)
     , ignoreShareRatio(false)
     , skipChecking(false)
+    , createSubfolder(true)
 {
 }
 
@@ -1001,7 +1002,7 @@ bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams 
 
 // Add a torrent to the BitTorrent session
 bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri,
-                              const TorrentInfo &torrentInfo, const QByteArray &fastresumeData)
+                              TorrentInfo torrentInfo, const QByteArray &fastresumeData)
 {
     libt::add_torrent_params p;
     InfoHash hash;
@@ -1014,6 +1015,11 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
         hash = magnetUri.hash();
     }
     else if (torrentInfo.isValid()) {
+        if (!addData.resumed && !addData.createSubfolder && torrentInfo.filesCount() > 1) {
+            libtorrent::file_storage files = torrentInfo.files();
+            files.set_name("");
+            torrentInfo.remapFiles(files);
+        }
         // Metadata
         p.ti = torrentInfo.nativeInfo();
         hash = torrentInfo.hash();

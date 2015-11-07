@@ -225,10 +225,28 @@ QStringList TorrentInfo::filesForPiece(int pieceIndex) const
     return res;
 }
 
+libtorrent::file_storage TorrentInfo::files() const
+{
+    if (!isValid()) return libtorrent::file_storage();
+    return m_nativeInfo->files();
+}
+
+libtorrent::file_storage TorrentInfo::origFiles() const
+{
+    if (!isValid()) return libtorrent::file_storage();
+    return m_nativeInfo->orig_files();
+}
+
 void TorrentInfo::renameFile(uint index, const QString &newPath)
 {
     if (!isValid()) return;
     m_nativeInfo->rename_file(index, Utils::String::toStdString(newPath));
+}
+
+void TorrentInfo::remapFiles(libtorrent::file_storage const &fileStorage)
+{
+    if (!isValid()) return;
+    m_nativeInfo->remap_files(fileStorage);
 }
 
 boost::intrusive_ptr<libtorrent::torrent_info> TorrentInfo::nativeInfo() const

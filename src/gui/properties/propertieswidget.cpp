@@ -314,8 +314,11 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent
       label_created_by_val->setText(m_torrent->creator());
 
       // List files in torrent
-      PropListModel->model()->setupModelData(m_torrent->info());
-      filesList->setExpanded(PropListModel->index(0, 0), true);
+      BitTorrent::TorrentInfo info = m_torrent->info();
+      libtorrent::file_storage files = info.files();
+      PropListModel->model()->setupModelData(info);
+      if (!(info.filesCount() > 1 && files.name().empty()))
+          filesList->setExpanded(PropListModel->index(0, 0), true);
 
       // Load file priorities
       PropListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
