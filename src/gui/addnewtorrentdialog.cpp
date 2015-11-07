@@ -35,6 +35,7 @@
 #include <QMenu>
 #include <QFileDialog>
 
+#include "base/preferences.h"
 #include "base/settingsstorage.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
@@ -95,6 +96,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
     connect(ui->savePathComboBox, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
     connect(ui->browseButton, SIGNAL(clicked()), SLOT(browseButton_clicked()));
     ui->defaultSavePathCheckBox->setVisible(false); // Default path is selected by default
+    ui->createSubfolderComboBox->setChecked(Preferences::instance()->getTorrentCreateSubfolder());
 
     ui->doNotDeleteTorrentCheckBox->setVisible(TorrentFileGuard::autoDeleteMode() != TorrentFileGuard::Never);
 
@@ -624,9 +626,8 @@ void AddNewTorrentDialog::accept()
 
     BitTorrent::AddTorrentParams params;
 
-    if (ui->skip_check_cb->isChecked())
-        // TODO: Check if destination actually exists
-        params.skipChecking = true;
+    // TODO: Check if destination actually exists
+    params.skipChecking = ui->skip_check_cb->isChecked();
 
     // Category
     params.category = ui->categoryComboBox->currentText();
@@ -639,6 +640,7 @@ void AddNewTorrentDialog::accept()
         params.filePriorities = m_contentModel->model()->getFilePriorities();
 
     params.addPaused = !ui->startTorrentCheckBox->isChecked();
+    params.createSubfolder = ui->createSubfolderComboBox->isChecked();
 
     QString savePath = ui->savePathComboBox->itemData(ui->savePathComboBox->currentIndex()).toString();
     if (ui->comboTTM->currentIndex() != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.

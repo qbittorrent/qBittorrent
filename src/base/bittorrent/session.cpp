@@ -1652,6 +1652,11 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
         p = magnetUri.addTorrentParams();
     }
     else if (torrentInfo.isValid()) {
+        if (!addData.resumed && !addData.createSubfolder && torrentInfo.filesCount() > 1) {
+            libtorrent::file_storage files = torrentInfo.files();
+            files.set_name("");
+            torrentInfo.remapFiles(files);
+        }
         // Metadata
         if (!addData.resumed && !addData.hasSeedStatus)
             findIncompleteFiles(torrentInfo, savePath);

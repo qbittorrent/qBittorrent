@@ -147,6 +147,7 @@ namespace BitTorrent
         QVector<int> filePriorities; // used if TorrentInfo is set
         bool ignoreShareRatio = false;
         bool skipChecking = false;
+        bool createSubfolder = true;
     };
 
     struct TorrentStatusReport

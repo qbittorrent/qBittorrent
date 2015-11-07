@@ -214,6 +214,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkAdditionDialogFront, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkCreateSubfolder, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->deleteTorrentBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->deleteCancelledTorrentBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -515,6 +516,7 @@ void OptionsDialog::saveOptions()
     AddNewTorrentDialog::setEnabled(useAdditionDialog());
     AddNewTorrentDialog::setTopLevel(m_ui->checkAdditionDialogFront->isChecked());
     session->setAddTorrentPaused(addTorrentsInPause());
+    pref->setTorrentCreateSubfolder(m_ui->checkCreateSubfolder->isChecked());
     ScanFoldersModel::instance()->removeFromFSWatcher(removedScanDirs);
     ScanFoldersModel::instance()->addToFSWatcher(addedScanDirs);
     ScanFoldersModel::instance()->makePersistent();
@@ -716,6 +718,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkAdditionDialog->setChecked(AddNewTorrentDialog::isEnabled());
     m_ui->checkAdditionDialogFront->setChecked(AddNewTorrentDialog::isTopLevel());
     m_ui->checkStartPaused->setChecked(session->isAddTorrentPaused());
+    m_ui->checkCreateSubfolder->setChecked(pref->getTorrentCreateSubfolder());
     const TorrentFileGuard::AutoDeleteMode autoDeleteMode = TorrentFileGuard::autoDeleteMode();
     m_ui->deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
     m_ui->deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);

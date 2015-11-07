@@ -263,6 +263,16 @@ void Preferences::setLastLocationPath(const QString &path)
     setValue("Preferences/Downloads/LastLocationPath", Utils::Fs::fromNativePath(path));
 }
 
+bool Preferences::getTorrentCreateSubfolder() const
+{
+    return value("Preferences/Downloads/CreateSubfolder", true).toBool();
+}
+
+void Preferences::setTorrentCreateSubfolder(bool b)
+{
+    setValue("Preferences/Downloads/CreateSubfolder", b);
+}
+
 QVariantHash Preferences::getScanDirs() const
 {
     return value("Preferences/Downloads/ScanDirsV2").toHash();

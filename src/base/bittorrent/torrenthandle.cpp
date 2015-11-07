@@ -152,6 +152,7 @@ TorrentState::operator int() const
     return m_value;
 }
 
+    , createSubfolder(in.createSubfolder)
 // TorrentHandle
 
 const qreal TorrentHandle::USE_GLOBAL_RATIO = -2.;
@@ -229,6 +230,9 @@ QString TorrentHandle::name() const
     QString name = m_name;
     if (name.isEmpty())
         name = QString::fromStdString(m_nativeStatus.name);
+
+    if (name.isEmpty())
+        name = QString::fromStdString(m_torrentInfo.origFiles().name());
 
     if (name.isEmpty())
         name = m_hash;

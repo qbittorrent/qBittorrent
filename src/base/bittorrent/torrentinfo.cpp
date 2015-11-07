@@ -276,6 +276,18 @@ TorrentInfo::PieceRange TorrentInfo::filePieces(int fileIndex) const
                         static_cast<int>((firstOffset + fileSize - 1) / pieceLength()));
 }
 
+libtorrent::file_storage TorrentInfo::files() const
+{
+    if (!isValid()) return libtorrent::file_storage();
+    return m_nativeInfo->files();
+}
+
+libtorrent::file_storage TorrentInfo::origFiles() const
+{
+    if (!isValid()) return libtorrent::file_storage();
+    return m_nativeInfo->orig_files();
+}
+
 void TorrentInfo::renameFile(uint index, const QString &newPath)
 {
     if (!isValid()) return;
@@ -291,6 +303,12 @@ int BitTorrent::TorrentInfo::fileIndex(const QString& fileName) const
             return i;
 
     return -1;
+}
+
+void TorrentInfo::remapFiles(libtorrent::file_storage const &fileStorage)
+{
+    if (!isValid()) return;
+    m_nativeInfo->remap_files(fileStorage);
 }
 
 TorrentInfo::NativePtr TorrentInfo::nativeInfo() const

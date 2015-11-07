@@ -138,6 +138,8 @@ public:
     void setLastLocationPath(const QString &path);
     QVariantHash getScanDirs() const;
     void setScanDirs(const QVariantHash &dirs);
+    bool getTorrentCreateSubfolder() const;
+    void setTorrentCreateSubfolder(bool b);
     QString getScanDirsLastPath() const;
     void setScanDirsLastPath(const QString &path);
     bool isMailNotificationEnabled() const;
