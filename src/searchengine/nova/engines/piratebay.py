@@ -2,7 +2,7 @@
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 #              Arthur (custparasite@gmx.se)
-#              Diego de las Heras (diegodelasheras@gmail.com)
+#              Diego de las Heras (ngosang@hotmail.es)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
