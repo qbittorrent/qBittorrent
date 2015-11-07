@@ -275,6 +275,7 @@ namespace BitTorrent
         void setProxySettings(libtorrent::proxy_settings proxySettings);
         void adjustLimits();
         void adjustLimits(libtorrent::session_settings &sessionSettings);
+        const QStringList getListeningIPs();
         void setListeningPort();
         void setDefaultSavePath(const QString &path);
         void setDefaultTempPath(const QString &path = QString());

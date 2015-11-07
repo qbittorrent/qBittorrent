@@ -147,6 +147,7 @@ Session::Session(QObject *parent)
     , m_highRatioAction(MaxRatioAction::Pause)
 {
     Preferences* const pref = Preferences::instance();
+    Logger* const logger = Logger::instance();
 
     initResumeFolder();
 
@@ -158,8 +159,20 @@ Session::Session(QObject *parent)
 
     // Construct session
     libt::fingerprint fingerprint(PEER_ID, VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_BUILD);
-    m_nativeSession = new libt::session(fingerprint, 0);
-    Logger::instance()->addMessage(tr("Peer ID: ") + Utils::String::fromStdString(fingerprint.to_string()));
+    const unsigned short port = pref->getSessionPort();
+    std::pair<int,int> ports(port, port);
+    const QString ip = getListeningIPs().first();
+
+    if (ip.isEmpty()) {
+        logger->addMessage(tr("qBittorrent is trying to listen on any interface port: %1", "e.g: qBittorrent is trying to listen on any interface port: TCP/6881").arg(QString::number(port)), Log::INFO);
+        m_nativeSession = new libt::session(fingerprint, ports, 0, 0);
+    }
+    else {
+        logger->addMessage(tr("qBittorrent is trying to listen on interface %1 port: %2", "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881").arg(ip).arg(port), Log::INFO);
+        m_nativeSession = new libt::session(fingerprint, ports, ip.toLatin1().constData(), 0);
+    }
+
+    logger->addMessage(tr("Peer ID: ") + Utils::String::fromStdString(fingerprint.to_string()));
 
     m_nativeSession->set_alert_dispatch(boost::bind(&Session::dispatchAlerts, this, _1));
 
@@ -1490,6 +1503,56 @@ void Session::networkConfigurationChange(const QNetworkConfiguration& cfg)
     }
 }
 
+const QStringList Session::getListeningIPs()
+{
+    Preferences* const pref = Preferences::instance();
+    Logger* const logger = Logger::instance();
+    QStringList IPs;
+
+    const QString ifaceName = pref->getNetworkInterface();
+    const bool listenIPv6 = pref->getListenIPv6();
+
+    if (ifaceName.isEmpty()) {
+        IPs.append(QString());
+        return IPs;
+    }
+
+    // Attempt to listen on provided interface
+    const QNetworkInterface networkIFace = QNetworkInterface::interfaceFromName(ifaceName);
+    if (!networkIFace.isValid()) {
+        qDebug("Invalid network interface: %s", qPrintable(ifaceName));
+        logger->addMessage(tr("The network interface defined is invalid: %1").arg(ifaceName), Log::CRITICAL);
+        IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
+        return IPs;
+    }
+
+    const QList<QNetworkAddressEntry> addresses = networkIFace.addressEntries();
+    qDebug("This network interface has %d IP addresses", addresses.size());
+    QHostAddress ip;
+    QString ipString;
+    QAbstractSocket::NetworkLayerProtocol protocol;
+    foreach (const QNetworkAddressEntry &entry, addresses) {
+        ip = entry.ip();
+        ipString = ip.toString();
+        protocol = ip.protocol();
+        Q_ASSERT(protocol == QAbstractSocket::IPv4Protocol || protocol == QAbstractSocket::IPv6Protocol);
+        if ((!listenIPv6 && (protocol == QAbstractSocket::IPv6Protocol))
+            || (listenIPv6 && (protocol == QAbstractSocket::IPv4Protocol)))
+            continue;
+        IPs.append(ipString);
+    }
+
+    // Make sure there is at least one IP
+    // At this point there was a valid network interface, with no suitable IP.
+    if (IPs.size() == 0) {
+        logger->addMessage(tr("qBittorrent didn't find an %1 local address to listen on", "qBittorrent didn't find an IPv4 local address to listen on").arg(listenIPv6 ? "IPv6" : "IPv4"), Log::CRITICAL);
+        IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
+        return IPs;
+    }
+
+    return IPs;
+}
+
 // Set the ports range in which is chosen the port
 // the BitTorrent session will listen to
 void Session::setListeningPort()
@@ -1501,49 +1564,25 @@ void Session::setListeningPort()
 
     std::pair<int,int> ports(port, port);
     libt::error_code ec;
-    const QString iface_name = pref->getNetworkInterface();
-    const bool listen_ipv6 = pref->getListenIPv6();
+    const QStringList IPs = getListeningIPs();
 
-    if (iface_name.isEmpty()) {
-        logger->addMessage(tr("qBittorrent is trying to listen on any interface port: %1", "e.g: qBittorrent is trying to listen on any interface port: TCP/6881").arg(QString::number(port)), Log::INFO);
-        m_nativeSession->listen_on(ports, ec, 0, libt::session::listen_no_system_port);
+    foreach (const QString ip, IPs) {
+        if (ip.isEmpty()) {
+            logger->addMessage(tr("qBittorrent is trying to listen on any interface port: %1", "e.g: qBittorrent is trying to listen on any interface port: TCP/6881").arg(QString::number(port)), Log::INFO);
+            m_nativeSession->listen_on(ports, ec, 0, libt::session::listen_no_system_port);
 
-        if (ec)
-            logger->addMessage(tr("qBittorrent failed to listen on any interface port: %1. Reason: %2", "e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface" ).arg(QString::number(port)).arg(Utils::String::fromStdString(ec.message())), Log::CRITICAL);
+            if (ec)
+                logger->addMessage(tr("qBittorrent failed to listen on any interface port: %1. Reason: %2", "e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface" ).arg(QString::number(port)).arg(Utils::String::fromStdString(ec.message())), Log::CRITICAL);
 
-        return;
-    }
+            return;
+        }
 
-    // Attempt to listen on provided interface
-    const QNetworkInterface network_iface = QNetworkInterface::interfaceFromName(iface_name);
-    if (!network_iface.isValid()) {
-        qDebug("Invalid network interface: %s", qPrintable(iface_name));
-        logger->addMessage(tr("The network interface defined is invalid: %1").arg(iface_name), Log::CRITICAL);
-        return;
-    }
-
-    const QList<QNetworkAddressEntry> addresses = network_iface.addressEntries();
-    qDebug("This network interface has %d IP addresses", addresses.size());
-    QHostAddress ip;
-    QString ipString;
-    QAbstractSocket::NetworkLayerProtocol protocol;
-    foreach (const QNetworkAddressEntry &entry, addresses) {
-        ip = entry.ip();
-        ipString = ip.toString();
-        protocol = ip.protocol();
-        Q_ASSERT(protocol == QAbstractSocket::IPv4Protocol || protocol == QAbstractSocket::IPv6Protocol);
-        if ((!listen_ipv6 && (protocol == QAbstractSocket::IPv6Protocol))
-            || (listen_ipv6 && (protocol == QAbstractSocket::IPv4Protocol)))
-            continue;
-        qDebug("Trying to listen on IP %s (%s)", qPrintable(ipString), qPrintable(iface_name));
-        m_nativeSession->listen_on(ports, ec, ipString.toLatin1().constData(), libt::session::listen_no_system_port);
+        m_nativeSession->listen_on(ports, ec, ip.toLatin1().constData(), libt::session::listen_no_system_port);
         if (!ec) {
-            logger->addMessage(tr("qBittorrent is trying to listen on interface %1 port: %2", "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881").arg(ipString).arg(port), Log::INFO);
+            logger->addMessage(tr("qBittorrent is trying to listen on interface %1 port: %2", "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881").arg(ip).arg(port), Log::INFO);
             return;
         }
     }
-
-    logger->addMessage(tr("qBittorrent didn't find an %1 local address to listen on", "qBittorrent didn't find an IPv4 local address to listen on").arg(listen_ipv6 ? "IPv6" : "IPv4"), Log::CRITICAL);
 }
 
 // Set download rate limit
