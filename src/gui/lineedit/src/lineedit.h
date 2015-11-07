@@ -16,23 +16,23 @@ class QToolButton;
 
 class LineEdit : public QLineEdit
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  LineEdit(QWidget *parent);
+    LineEdit(QWidget *parent);
 
 protected:
-  void resizeEvent(QResizeEvent *e);
+    void resizeEvent(QResizeEvent *e);
 
 #ifndef QBT_USES_QT5
 private slots:
-  void updateCloseButton(const QString &text);
+    void updateCloseButton(const QString &text);
 #endif
 
 private:
-  QToolButton *searchButton;
+    QToolButton *searchButton;
 #ifndef QBT_USES_QT5
-  QToolButton *clearButton;
+    QToolButton *clearButton;
 #endif
 };
 
