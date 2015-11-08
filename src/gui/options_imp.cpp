@@ -180,6 +180,7 @@ options_imp::options_imp(QWidget *parent)
     connect(mailNotifPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(autoRunBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(autoRun_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(spinSaveHistoryListSize, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
 
     autoRun_param->setText(QString::fromUtf8("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10")
                            .arg(tr("Supported parameters (case sensitive):"))
@@ -428,6 +429,7 @@ void options_imp::saveOptions()
     pref->setAutoRunProgram(autoRun_txt->text().trimmed());
     pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
     pref->setActionOnDblClOnTorrentFn(getActionOnDblClOnTorrentFn());
+    pref->setSaveHistoryListSize(getSaveHistoryListSize());
     // End Downloads preferences
 
     // Connection preferences
@@ -576,6 +578,7 @@ void options_imp::loadOptions()
     checkAdditionDialog->setChecked(pref->useAdditionDialog());
     checkAdditionDialogFront->setChecked(pref->additionDialogFront());
     checkStartPaused->setChecked(pref->addTorrentsInPause());
+    spinSaveHistoryListSize->setValue(pref->getSaveHistoryListSize());
 
     textSavePath->setText(Utils::Fs::toNativePath(pref->getSavePath()));
     if (pref->isTempPathEnabled())
@@ -889,6 +892,12 @@ bool options_imp::isLSDEnabled() const
 bool options_imp::isUPnPEnabled() const
 {
     return checkUPnP->isChecked();
+}
+
+//Return size of history for saved locations
+int options_imp::getSaveHistoryListSize() const
+{
+    return spinSaveHistoryListSize->value();
 }
 
 // Return Download & Upload limits in kbps

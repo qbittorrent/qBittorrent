@@ -521,7 +521,7 @@
              <x>0</x>
              <y>0</y>
              <width>487</width>
-             <height>965</height>
+             <height>997</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -555,8 +555,8 @@
                  <property name="checkable">
                   <bool>true</bool>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout_15">
-                  <item row="0" column="0">
+                 <layout class="QVBoxLayout" name="verticalLayout_11">
+                  <item>
                    <widget class="QCheckBox" name="checkAdditionDialogFront">
                     <property name="text">
                      <string>Bring torrent dialog to the front</string>
@@ -565,6 +565,43 @@
                      <bool>true</bool>
                     </property>
                    </widget>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout">
+                    <item>
+                     <widget class="QLabel" name="label_4">
+                      <property name="text">
+                       <string>Size of history for saved locations:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSpinBox" name="spinSaveHistoryListSize">
+                      <property name="minimum">
+                       <number>1</number>
+                      </property>
+                      <property name="maximum">
+                       <number>100</number>
+                      </property>
+                      <property name="value">
+                       <number>10</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_10">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>0</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
                   </item>
                  </layout>
                 </widget>
@@ -1036,7 +1073,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>480</width>
+             <width>450</width>
              <height>658</height>
             </rect>
            </property>
@@ -1566,8 +1603,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>502</width>
-             <height>538</height>
+             <width>376</width>
+             <height>444</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2699,8 +2736,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>493</width>
+             <height>538</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36">
