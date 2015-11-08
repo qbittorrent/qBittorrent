@@ -566,6 +566,57 @@
                     </property>
                    </widget>
                   </item>
+		  <item row="5" column="0">
+                   <widget class="QGroupBox" name="groupBox_5">
+                    <property name="title">
+                     <string/>
+                    </property>
+                    <widget class="QSpinBox" name="spinSaveHistoryListSize">
+                     <property name="geometry">
+                      <rect>
+                       <x>290</x>
+                       <y>0</y>
+                       <width>62</width>
+                       <height>31</height>
+                      </rect>
+                     </property>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimum">
+                      <number>1</number>
+                     </property>
+                     <property name="maximum">
+                      <number>100</number>
+                     </property>
+                     <property name="value">
+                      <number>10</number>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="label_4">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>-40</y>
+                       <width>321</width>
+                       <height>108</height>
+                      </rect>
+                     </property>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>Size of history for saved locations:</string>
+                     </property>
+                    </widget>
+                   </widget>
+                  </item>
                  </layout>
                 </widget>
                </item>

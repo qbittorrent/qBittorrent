@@ -465,6 +465,16 @@ void Preferences::additionDialogFront(bool b)
     setValue("Preferences/Downloads/NewAdditionDialogFront", b);
 }
 
+int Preferences::getSaveHistoryListSize() const
+{
+    return value("Preferences/Downloads/SaveHistoryListSize", 10).toInt();
+}
+
+void Preferences::setSaveHistoryListSize(int size)
+{
+    setValue("Preferences/Downloads/SaveHistoryListSize", size);
+}
+
 bool Preferences::addTorrentsInPause() const
 {
     return value("Preferences/Downloads/StartInPause", false).toBool();
