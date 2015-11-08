@@ -1,6 +1,6 @@
 #VERSION: 2.02
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
-#CONTRIBUTORS: Diego de las Heras (diegodelasheras@gmail.com)
+#CONTRIBUTORS: Diego de las Heras (ngosang@hotmail.es)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
