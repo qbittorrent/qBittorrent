@@ -667,8 +667,7 @@ void AddNewTorrentDialog::setupTreeview()
         setWindowTitle(m_torrentInfo.name());
 
         // Set torrent information
-        QString comment = m_torrentInfo.comment();
-        ui->comment_lbl->setText(comment.replace('\n', ' '));
+        ui->comment_lbl->setText(Utils::Misc::parseHtmlLinks(m_torrentInfo.comment()));
         ui->date_lbl->setText(!m_torrentInfo.creationDate().isNull() ? m_torrentInfo.creationDate().toString(Qt::DefaultLocaleLongDate) : tr("Not available"));
 
         // Prepare content tree
