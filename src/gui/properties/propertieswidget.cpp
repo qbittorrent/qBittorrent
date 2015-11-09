@@ -453,19 +453,19 @@ void PropertiesWidget::loadDynamicData() {
         	showPiecesAvailability(false);
         }
 
-        return;
+        break;
     }
 
     case PropTabBar::TRACKERS_TAB: {
         // Trackers
         trackerList->loadTrackers();
-        return;
+        break;
     }
 
     case PropTabBar::PEERS_TAB: {
         // Load peers
         peersList->loadPeers(m_torrent);
-        return;
+        break;
     }
 
     case PropTabBar::FILES_TAB: {
@@ -480,10 +480,10 @@ void PropertiesWidget::loadDynamicData() {
             // PropListModel->model()->updateFilesPriorities(h.file_priorities());
             filesList->setUpdatesEnabled(true);
         }
+        break;
     }
 
-    default:
-          return;
+    default:;
     }
 }
 
