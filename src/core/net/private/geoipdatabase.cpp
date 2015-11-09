@@ -392,6 +392,8 @@ QVariant GeoIPDatabase::readDataField(quint32 &offset) const
         else
             qDebug() << "* Invalid field size for type: Float";
         break;
+    default:
+        qDebug() << "* Unsupported data type: Unknown";
     }
 
     if (!usePointer)
