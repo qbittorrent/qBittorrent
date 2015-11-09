@@ -162,32 +162,30 @@ Session::Session(QObject *parent)
     const unsigned short port = pref->getSessionPort();
     std::pair<int,int> ports(port, port);
     const QString ip = getListeningIPs().first();
+    // Set severity level of libtorrent session
+    int alertMask = libt::alert::error_notification
+                    | libt::alert::peer_notification
+                    | libt::alert::port_mapping_notification
+                    | libt::alert::storage_notification
+                    | libt::alert::tracker_notification
+                    | libt::alert::status_notification
+                    | libt::alert::ip_block_notification
+                    | libt::alert::progress_notification
+                    | libt::alert::stats_notification
+                    ;
 
     if (ip.isEmpty()) {
         logger->addMessage(tr("qBittorrent is trying to listen on any interface port: %1", "e.g: qBittorrent is trying to listen on any interface port: TCP/6881").arg(QString::number(port)), Log::INFO);
-        m_nativeSession = new libt::session(fingerprint, ports, 0, 0);
+        m_nativeSession = new libt::session(fingerprint, ports, 0, 0, alertMask);
     }
     else {
         logger->addMessage(tr("qBittorrent is trying to listen on interface %1 port: %2", "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881").arg(ip).arg(port), Log::INFO);
-        m_nativeSession = new libt::session(fingerprint, ports, ip.toLatin1().constData(), 0);
+        m_nativeSession = new libt::session(fingerprint, ports, ip.toLatin1().constData(), 0, alertMask);
     }
 
     logger->addMessage(tr("Peer ID: ") + Utils::String::fromStdString(fingerprint.to_string()));
 
     m_nativeSession->set_alert_dispatch(boost::bind(&Session::dispatchAlerts, this, _1));
-
-    // Set severity level of libtorrent session
-    m_nativeSession->set_alert_mask(
-                libt::alert::error_notification
-                | libt::alert::peer_notification
-                | libt::alert::port_mapping_notification
-                | libt::alert::storage_notification
-                | libt::alert::tracker_notification
-                | libt::alert::status_notification
-                | libt::alert::ip_block_notification
-                | libt::alert::progress_notification
-                | libt::alert::stats_notification
-                );
 
     // Load previous state
     loadState();
