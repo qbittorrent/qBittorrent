@@ -162,8 +162,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>480</width>
-             <height>672</height>
+             <width>484</width>
+             <height>692</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -519,7 +519,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-282</y>
              <width>487</width>
              <height>965</height>
             </rect>
@@ -724,7 +724,7 @@
                       <property name="minimumSize">
                        <size>
                         <width>250</width>
-                        <height>75</height>
+                        <height>150</height>
                        </size>
                       </property>
                       <property name="selectionMode">
@@ -1821,6 +1821,12 @@
                  </property>
                  <property name="minimum">
                   <number>1</number>
+                      <property name="displayFormat">
+                       <string notr="true">hh:mm</string>
+                      </property>
+                      <property name="calendarPopup">
+                       <bool>false</bool>
+                      </property>
                  </property>
                  <property name="maximum">
                   <number>1000000</number>
@@ -1842,6 +1848,9 @@
                  <property name="text">
                   <string>KiB/s</string>
                  </property>
+                      <property name="displayFormat">
+                       <string notr="true">hh:mm</string>
+                      </property>
                 </widget>
                </item>
                <item row="0" column="4">
@@ -2730,8 +2739,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>498</width>
+             <height>366</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36">

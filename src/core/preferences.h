@@ -179,6 +179,8 @@ public:
     QList<bool> getDownloadInScanDirs() const;
     void setDownloadInScanDirs(const QList<bool> &list);
     QString getScanDirsLastPath() const;
+    void setDownloadPathsInScanDir(const QStringList &downloadpaths);
+    QStringList getDownloadPathsInScanDir() const;
     void setScanDirsLastPath(const QString &path);
     bool isTorrentExportEnabled() const;
     QString getTorrentExportDir() const;
