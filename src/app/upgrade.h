@@ -44,20 +44,9 @@
 #include "core/utils/fs.h"
 #include "core/utils/misc.h"
 
+#ifndef DISABLE_GUI
 bool userAcceptsUpgrade()
 {
-#ifdef DISABLE_GUI
-    std::cout << std::endl << "*** " << qPrintable(QObject::tr("Upgrade")) << " ***" << std::endl;
-    char ret = '\0';
-    do {
-        std::cout << qPrintable(QObject::tr("You updated from an older version that saved things differently. You must migrate to the new saving system. You will not be able to use an older version than v3.3.0 again. Continue? [y/n]")) << std::endl;
-        ret = getchar(); // Read pressed key
-    }
-    while ((ret != 'y') && (ret != 'Y') && (ret != 'n') && (ret != 'N'));
-
-    if ((ret == 'y') || (ret == 'Y'))
-        return true;
-#else
     QMessageBox msgBox;
     msgBox.setText(QObject::tr("You updated from an older version that saved things differently. You must migrate to the new saving system. If you continue, you will not be able to use an older version than v3.3.0 again."));
     msgBox.setWindowTitle(QObject::tr("Upgrade"));
@@ -68,10 +57,10 @@ bool userAcceptsUpgrade()
     msgBox.move(Utils::Misc::screenCenter(&msgBox));
     if (msgBox.exec() == QMessageBox::Ok)
         return true;
-#endif
 
     return false;
 }
+#endif
 
 bool upgradeResumeFile(const QString &filepath)
 {
@@ -112,11 +101,16 @@ bool upgrade()
 
     QStringList backupFiles = backupFolderDir.entryList(QStringList() << QLatin1String("*.fastresume"), QDir::Files, QDir::Unsorted);
     if (!backupFiles.isEmpty()) {
+#ifndef DISABLE_GUI
         if (!userAcceptsUpgrade()) return false;
+#endif
 
         QRegExp rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
         foreach (QString backupFile, backupFiles) {
             if (rx.indexIn(backupFile) != -1) {
+#ifdef DISABLE_GUI
+                QFile::copy(backupFolderDir.absoluteFilePath(backupFile), backupFolderDir.absoluteFilePath(backupFile + ".pre3_3_x"));
+#endif
                 if (!upgradeResumeFile(backupFolderDir.absoluteFilePath(backupFile)))
                     Logger::instance()->addMessage(QObject::tr("Couldn't migrate torrent with hash: %1").arg(rx.cap(1)), Log::WARNING);
             }
