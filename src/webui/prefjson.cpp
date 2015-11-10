@@ -58,16 +58,16 @@ QByteArray prefjson::getPreferences()
     data["temp_path"] = Utils::Fs::toNativePath(pref->getTempPath());
     data["preallocate_all"] = pref->preAllocateAllFiles();
     data["incomplete_files_ext"] = pref->useIncompleteFilesExtension();
-    QVariantList l;
+    QVariantList scanDirs;
     foreach (const QString& s, pref->getScanDirs()) {
-        l << Utils::Fs::toNativePath(s);
+        scanDirs << Utils::Fs::toNativePath(s);
     }
-    data["scan_dirs"] = l;
-  QVariantList l2;
-  foreach (const QString& s, pref->getDownloadPathsInScanDir()) {
-    l2 << fsutils::toNativePath(s);
-  }
-  data["download_paths"] = l2;
+    data["scan_dirs"] = scanDirs;
+    QVariantList ScanDirsDownloadPaths;
+    foreach (const QString& s, pref->getScanDirsDownloadPaths()) {
+        ScanDirsDownloadPaths << Utils::Fs::toNativePath(s);
+    }
+    data["scan_dirs_download_paths"] = ScanDirsDownloadPaths;
     QVariantList var_list;
     foreach (bool b, pref->getDownloadInScanDirs()) {
         var_list << b;
@@ -188,7 +188,7 @@ void prefjson::setPreferences(const QString& json)
         pref->preAllocateAllFiles(m["preallocate_all"].toBool());
     if (m.contains("incomplete_files_ext"))
         pref->useIncompleteFilesExtension(m["incomplete_files_ext"].toBool());
-    if (m.contains("scan_dirs") && m.contains("download_in_scan_dirs") && m.contains("download_paths")) {
+    if (m.contains("scan_dirs") && m.contains("download_in_scan_dirs") && m.contains("scan_dirs_download_paths")) {
         QVariantList download_at_path_tmp = m["download_in_scan_dirs"].toList();
         QList<bool> download_at_path;
         foreach (QVariant var, download_at_path_tmp) {
@@ -196,11 +196,11 @@ void prefjson::setPreferences(const QString& json)
         }
         QStringList old_folders = pref->getScanDirs();
         QStringList new_folders = m["scan_dirs"].toStringList();
-    QStringList download_paths = m["download_paths"].toStringList();
+        QStringList download_paths = m["scan_dirs_download_paths"].toStringList();
         if (download_at_path.size() == new_folders.size()) {
             pref->setScanDirs(new_folders);
             pref->setDownloadInScanDirs(download_at_path);
-      pref->setDownloadPathsInScanDir(download_paths);
+            pref->setScanDirsDownloadPaths(download_paths);
             foreach (const QString &old_folder, old_folders) {
                 // Update deleted folders
                 if (!new_folders.contains(old_folder)) {

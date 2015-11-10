@@ -162,8 +162,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>484</width>
-             <height>692</height>
+             <width>454</width>
+             <height>610</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -519,9 +519,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-282</y>
-             <width>487</width>
-             <height>965</height>
+             <y>0</y>
+             <width>454</width>
+             <height>942</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1036,8 +1036,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>480</width>
-             <height>658</height>
+             <width>361</width>
+             <height>586</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1566,8 +1566,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>502</width>
-             <height>538</height>
+             <width>275</width>
+             <height>401</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1819,12 +1819,8 @@
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
-                      <property name="displayFormat">
-                       <string notr="true">hh:mm</string>
-                      </property>
-                      <property name="calendarPopup">
-                       <bool>false</bool>
-                      </property>
+                 <property name="minimum">
+                  <number>1</number>
                  </property>
                  <property name="maximum">
                   <number>1000000</number>
@@ -1846,9 +1842,6 @@
                  <property name="text">
                   <string>KiB/s</string>
                  </property>
-                      <property name="displayFormat">
-                       <string notr="true">hh:mm</string>
-                      </property>
                 </widget>
                </item>
                <item row="0" column="4">
@@ -1957,8 +1950,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>555</width>
-             <height>410</height>
+             <width>440</width>
+             <height>481</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2351,8 +2344,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>419</width>
-             <height>537</height>
+             <width>332</width>
+             <height>480</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2737,8 +2730,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>498</width>
-             <height>366</height>
+             <width>89</width>
+             <height>28</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36">

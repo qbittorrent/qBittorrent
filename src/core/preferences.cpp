@@ -502,19 +502,19 @@ QList<bool> Preferences::getDownloadInScanDirs() const
     return Utils::Misc::boolListfromStringList(value("Preferences/Downloads/DownloadInScanDirs").toStringList());
 }
 
-void Preferences::setDownloadPathsInScanDir(const QStringList &downloadpaths)
-{
-  setValue(QString::fromUtf8("Preferences/Downloads/DownloadPaths"), downloadpaths);
-}
-
-QStringList Preferences::getDownloadPathsInScanDir() const
-{
-  return value(QString::fromUtf8("Preferences/Downloads/DownloadPaths"), QStringList()).toStringList();
-}
-
 void Preferences::setDownloadInScanDirs(const QList<bool> &list)
 {
-    setValue("Preferences/Downloads/DownloadInScanDirs", Utils::Misc::toStringList(list));
+    setValue("Preferences/Downloads/ScanDirsDownloadPaths", Utils::Misc::toStringList(list));
+}
+
+void Preferences::setScanDirsDownloadPaths(const QStringList &downloadpaths)
+{
+    setValue("Preferences/Downloads/ScanDirsDownloadPaths", downloadpaths);
+}
+
+QStringList Preferences::getScanDirsDownloadPaths() const
+{
+    return value("Preferences/Downloads/DownloadPaths").toStringList();
 }
 
 QString Preferences::getScanDirsLastPath() const
