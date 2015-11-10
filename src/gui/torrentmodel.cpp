@@ -342,6 +342,7 @@ QIcon getIconByState(BitTorrent::TorrentState state)
     case BitTorrent::TorrentState::CheckingResumeData:
         return getCheckingIcon();
     case BitTorrent::TorrentState::Unknown:
+    case BitTorrent::TorrentState::MissingFiles:
     case BitTorrent::TorrentState::Error:
         return getErrorIcon();
     default:
@@ -384,6 +385,7 @@ QColor getColorByState(BitTorrent::TorrentState state)
         else
             return QColor(79, 148, 205); // Steel Blue 3
     case BitTorrent::TorrentState::Error:
+    case BitTorrent::TorrentState::MissingFiles:
         return QColor(255, 0, 0); // red
     case BitTorrent::TorrentState::QueuedDownloading:
     case BitTorrent::TorrentState::QueuedUploading:

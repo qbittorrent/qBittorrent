@@ -135,8 +135,11 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       case BitTorrent::TorrentState::PausedUploading:
         display = tr("Completed");
         break;
+      case BitTorrent::TorrentState::MissingFiles:
+          display = tr("Missing Files");
+          break;
       case BitTorrent::TorrentState::Error:
-        display = tr("Missing Files");
+        display = tr("Errored", "torrent status, the torrent has an error");
         break;
       default:
          display = "";

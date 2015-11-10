@@ -139,6 +139,7 @@ namespace BitTorrent
             PausedDownloading,
             PausedUploading,
 
+            MissingFiles,
             Error
         };
 

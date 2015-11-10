@@ -80,6 +80,8 @@ QString TorrentState::toString() const
     switch (m_value) {
     case Error:
         return QLatin1String("error");
+    case MissingFiles:
+        return QLatin1String("missingFiles");
     case Uploading:
         return QLatin1String("uploading");
     case PausedUploading:
@@ -625,6 +627,7 @@ bool TorrentHandle::isDownloading() const
             || m_state == TorrentState::PausedDownloading
             || m_state == TorrentState::QueuedDownloading
             || m_state == TorrentState::ForcedDownloading
+            || m_state == TorrentState::MissingFiles
             || m_state == TorrentState::Error;
 }
 
@@ -723,7 +726,9 @@ TorrentState TorrentHandle::state() const
 void TorrentHandle::updateState()
 {
     if (isPaused()) {
-        if (hasError() || hasMissingFiles())
+        if (hasMissingFiles())
+            m_state = TorrentState::MissingFiles;
+        else if (hasError())
             m_state = TorrentState::Error;
         else
             m_state = isSeed() ? TorrentState::PausedUploading : TorrentState::PausedDownloading;
