@@ -46,6 +46,7 @@
 #include <QDropEvent>
 #include <QTemporaryFile>
 #include <QMimeData>
+#include <QClipboard>
 
 enum EngineColumns {ENGINE_NAME, ENGINE_VERSION, ENGINE_URL, ENGINE_STATE, ENGINE_ID};
 
@@ -248,6 +249,10 @@ bool engineSelectDlg::isUpdateNeeded(QString plugin_name, qreal new_version) con
 void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
   qDebug("Asked to install plugin at %s", qPrintable(path));
   qreal new_version = SearchEngine::getPluginVersion(path);
+  if (new_version == 0.0) {
+    QMessageBox::warning(this, tr("Invalid plugin"), tr("The search engine plugin is invalid, please contact the author."));
+    return;
+  }
   qDebug("Version to be installed: %.2f", new_version);
   if (!isUpdateNeeded(plugin_name, new_version)) {
     qDebug("Apparently update is not needed, we have a more recent version");
@@ -347,9 +352,16 @@ void engineSelectDlg::on_installButton_clicked() {
 
 void engineSelectDlg::askForPluginUrl() {
   bool ok(false);
+  QString clipTxt = qApp->clipboard()->text();
+  QString defaultUrl = "http://";
+  if ((clipTxt.startsWith("http://", Qt::CaseInsensitive)
+    || clipTxt.startsWith("https://", Qt::CaseInsensitive)
+    || clipTxt.startsWith("ftp://", Qt::CaseInsensitive))
+    && clipTxt.endsWith(".py"))
+    defaultUrl = clipTxt;
   QString url = AutoExpandableDialog::getText(this, tr("New search engine plugin URL"),
                                       tr("URL:"), QLineEdit::Normal,
-                                      "http://", &ok);
+                                      defaultUrl, &ok);
 
   while(true) {
     if (!ok || url.isEmpty())
