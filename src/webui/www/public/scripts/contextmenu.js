@@ -140,7 +140,7 @@ var ContextMenu = new Class({
         there_are_force_start = false;
         all_are_super_seeding = true;
 
-        var h = myTable.selectedIds();
+        var h = myTable.selectedRowsIds();
         h.each(function(item, index){
             var data = myTable.rows.get(item).full_data;
 
