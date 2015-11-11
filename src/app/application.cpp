@@ -366,7 +366,7 @@ void Application::allTorrentsFinished()
         // do nothing & skip confirm
     }
     else {
-        if (!ShutdownConfirmDlg::askForConfirmation(action)) return;
+        if (!ShutdownConfirmDlg::askForConfirmation(m_window, action)) return;
     }
 #endif // DISABLE_GUI
 
