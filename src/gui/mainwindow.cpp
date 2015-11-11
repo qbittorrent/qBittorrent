@@ -385,7 +385,7 @@ MainWindow::MainWindow(QWidget *parent)
     qDebug("GUI Built");
 #ifdef Q_OS_WIN
     if (!pref->neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet())) {
-        if (QMessageBox::question(0, tr("Torrent file association"),
+        if (QMessageBox::question(this, tr("Torrent file association"),
                                   tr("qBittorrent is not the default application to open torrent files or Magnet links.\nDo you want to associate qBittorrent to torrent files and Magnet links?"),
                                   QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
             Preferences::setTorrentFileAssoc(true);
@@ -841,7 +841,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHand
     if (pref->recursiveDownloadDisabled()) return;
     // Get Torrent name
     QString torrentName = torrent->name();
-    QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent '%1' contains torrent files, do you want to proceed with their download?").arg(torrentName));
+    QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent '%1' contains torrent files, do you want to proceed with their download?").arg(torrentName), QMessageBox::NoButton, this);
     QPushButton *yes = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
     /*QPushButton *no = */ confirmBox.addButton(tr("No"), QMessageBox::NoRole);
     QPushButton *never = confirmBox.addButton(tr("Never"), QMessageBox::NoRole);

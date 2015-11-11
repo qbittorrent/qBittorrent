@@ -258,9 +258,9 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
             }
         }
         if (peerCount < peersList.length())
-            QMessageBox::information(0, tr("Peer addition"), tr("Some peers could not be added. Check the Log for details."));
+            QMessageBox::information(this, tr("Peer addition"), tr("Some peers could not be added. Check the Log for details."));
         else if (peerCount > 0)
-            QMessageBox::information(0, tr("Peer addition"), tr("The peers were added to this torrent."));
+            QMessageBox::information(this, tr("Peer addition"), tr("The peers were added to this torrent."));
         return;
     }
     if (act == banAct) {
