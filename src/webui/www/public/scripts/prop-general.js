@@ -32,7 +32,7 @@ var loadTorrentData = function() {
         // Tab changed, don't do anything
         return;
     }
-    var current_hash = myTable.getCurrentTorrentHash();
+    var current_hash = torrentsTable.getCurrentTorrentHash();
     if (current_hash == "") {
         clearData();
         clearTimeout(loadTorrentDataTimer);

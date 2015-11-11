@@ -140,9 +140,9 @@ var ContextMenu = new Class({
         there_are_force_start = false;
         all_are_super_seeding = true;
 
-        var h = myTable.selectedRowsIds();
+        var h = torrentsTable.selectedRowsIds();
         h.each(function(item, index){
-            var data = myTable.rows.get(item).full_data;
+            var data = torrentsTable.rows.get(item).full_data;
 
             if (data['seq_dl'] != true)
                 all_are_seq_dl = false;
