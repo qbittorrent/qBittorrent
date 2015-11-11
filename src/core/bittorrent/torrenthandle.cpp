@@ -626,9 +626,7 @@ bool TorrentHandle::isDownloading() const
             || m_state == TorrentState::CheckingDownloading
             || m_state == TorrentState::PausedDownloading
             || m_state == TorrentState::QueuedDownloading
-            || m_state == TorrentState::ForcedDownloading
-            || m_state == TorrentState::MissingFiles
-            || m_state == TorrentState::Error;
+            || m_state == TorrentState::ForcedDownloading;
 }
 
 bool TorrentHandle::isUploading() const
@@ -665,6 +663,12 @@ bool TorrentHandle::isActive() const
 bool TorrentHandle::isInactive() const
 {
     return !isActive();
+}
+
+bool TorrentHandle::isErrored() const
+{
+    return m_state == TorrentState::MissingFiles
+            || m_state == TorrentState::Error;
 }
 
 bool TorrentHandle::isSeed() const

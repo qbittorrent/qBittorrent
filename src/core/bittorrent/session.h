@@ -134,6 +134,7 @@ namespace BitTorrent
         uint nbInactive = 0;
         uint nbPaused = 0;
         uint nbResumed = 0;
+        uint nbErrored = 0;
     };
 
     class Session : public QObject

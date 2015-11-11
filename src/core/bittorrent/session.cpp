@@ -2387,6 +2387,8 @@ void Session::handleStateUpdateAlert(libt::state_update_alert *p)
             ++m_torrentStatusReport.nbActive;
         if (torrent->isInactive())
             ++m_torrentStatusReport.nbInactive;
+        if (torrent->isErrored())
+            ++m_torrentStatusReport.nbErrored;
     }
 
     emit torrentsUpdated();

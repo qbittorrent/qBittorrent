@@ -252,6 +252,7 @@ namespace BitTorrent
         bool isCompleted() const;
         bool isActive() const;
         bool isInactive() const;
+        bool isErrored() const;
         bool isSequentialDownload() const;
         bool hasFirstLastPiecePriority() const;
         TorrentState state() const;
