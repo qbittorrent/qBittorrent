@@ -31,55 +31,35 @@
 
  **************************************************************/
 
-var dynamicTable = new Class({
+var DynamicTable = new Class({
 
         initialize : function () {},
 
-        setup : function (table, context_menu) {
-            this.table = $(table);
+        setup : function (tableId, tableHeaderId, context_menu) {
+            this.tableId = tableId;
+            this.tableHeaderId = tableHeaderId;
+            this.table = $(tableId);
             this.rows = new Hash();
             this.cur = new Array();
             this.columns = new Array();
             this.context_menu = context_menu;
-            this.sortedColumn = getLocalStorageItem('sorted_column', 'name');
-            this.reverseSort = getLocalStorageItem('reverse_sort', '0');
+            this.sortedColumn = getLocalStorageItem('sorted_column_' + this.tableId, 0);
+            this.reverseSort = getLocalStorageItem('reverse_sort_' + this.tableId, '0');
             this.initColumns();
             this.loadColumnsOrder();
             this.updateHeader();
         },
 
-        initColumns : function () {
-            this.newColumn('priority', 'width: 30px; cursor: pointer', '#');
-            this.newColumn('state_icon', 'width: 16px', '');
-            this.newColumn('name', 'min-width: 200px; cursor: pointer', 'QBT_TR(Name)QBT_TR');
-            this.newColumn('size', 'width: 100px; cursor: pointer', 'QBT_TR(Size)QBT_TR');
-            this.newColumn('progress', 'width: 80px; cursor: pointer', 'QBT_TR(Done)QBT_TR');
-            this.newColumn('num_seeds', 'width: 100px; cursor: pointer', 'QBT_TR(Seeds)QBT_TR');
-            this.newColumn('num_leechs', 'width: 100px; cursor: pointer', 'QBT_TR(Peers)QBT_TR');
-            this.newColumn('dlspeed', 'width: 100px; cursor: pointer', 'QBT_TR(Down Speed)QBT_TR');
-            this.newColumn('upspeed', 'width: 100px; cursor: pointer', 'QBT_TR(Up Speed)QBT_TR');
-            this.newColumn('eta', 'width: 100px; cursor: pointer', 'QBT_TR(ETA)QBT_TR');
-            this.newColumn('ratio', 'width: 100px; cursor: pointer', 'QBT_TR(Ratio)QBT_TR');
-            this.newColumn('label', 'width: 100px; cursor: pointer', 'QBT_TR(Label)QBT_TR');
-
-            this.columns['state_icon'].onclick = '';
-            this.columns['state_icon'].dataProperties[0] = 'state';
-
-            this.columns['num_seeds'].dataProperties.push('num_complete');
-
-            this.columns['num_leechs'].dataProperties.push('num_incomplete');
-
-            this.initColumnsFunctions();
-        },
+        initColumns : function () {},
 
         newColumn : function (name, style, caption) {
             var column = {};
             column['name'] = name;
-            column['visible'] = getLocalStorageItem('column_' + name + '_visible', '1');
+            column['visible'] = getLocalStorageItem('column_' + name + '_visible_' + this.tableId, '1');
             column['force_hide'] = false;
             column['caption'] = caption;
             column['style'] = style;
-            column['onclick'] = 'setSortedColumn(\'' + name + '\');';
+            column['onclick'] = 'this._this.setSortedColumn(\'' + name + '\');';
             column['dataProperties'] = [name];
             column['getRowValue'] = function (row, pos) {
                 if (pos == undefined)
@@ -99,12 +79,12 @@ var dynamicTable = new Class({
             this.columns.push(column);
             this.columns[name] = column;
 
-            $('torrentTableHeader').appendChild(new Element('th'));
+            $(this.tableHeaderId).appendChild(new Element('th'));
         },
 
         loadColumnsOrder : function () {
             columnsOrder = ['state_icon']; // status icon column is always the first
-            val = localStorage.getItem('columns_order');
+            val = localStorage.getItem('columns_order_' + this.tableId);
             if (val === null || val === undefined) return;
             val.split(',').forEach(function(v) {
                 if ((v in this.columns) && (!columnsOrder.contains(v)))
@@ -126,14 +106,15 @@ var dynamicTable = new Class({
                     val += ',';
                 val += this.columns[i].name;
             }
-            localStorage.setItem('columns_order', val);
+            localStorage.setItem('columns_order_' + this.tableId, val);
         },
 
         updateHeader : function () {
-            ths = $('torrentTableHeader').getElements('th');
+            var ths = $(this.tableHeaderId).getElements('th');
 
             for (var i = 0; i < ths.length; i++) {
                 th = ths[i];
+                th._this = this;
                 th.setAttribute('onclick', this.columns[i].onclick);
                 th.innerHTML = this.columns[i].caption;
                 th.setAttribute('style', this.columns[i].style);
@@ -154,7 +135,7 @@ var dynamicTable = new Class({
         updateColumn : function (columnName) {
             var pos = this.getColumnPos(columnName);
             var visible = ((this.columns[pos].visible != '0') && !this.columns[pos].force_hide);
-            var ths = $('torrentTableHeader').getElements('th');
+            var ths = $(this.tableHeaderId).getElements('th');
             if (visible)
                 ths[pos].removeClass('invisible');
             else
@@ -176,11 +157,12 @@ var dynamicTable = new Class({
                 // Toggle sort order
                 this.reverseSort = this.reverseSort == '0' ? '1' : '0';
             }
-            localStorage.setItem('sorted_column', column);
-            localStorage.setItem('reverse_sort', this.reverseSort);
+            localStorage.setItem('sorted_column_' + this.tableId, column);
+            localStorage.setItem('reverse_sort_' + this.tableId, this.reverseSort);
+            this.updateTable(false);
         },
 
-        getCurrentTorrentHash : function () {
+        getSelectedRowId : function () {
             if (this.cur.length > 0)
                 return this.cur[0];
             return '';
@@ -206,19 +188,19 @@ var dynamicTable = new Class({
             var trs = this.table.getElements('tr');
             for (var i = 0; i < trs.length; i++) {
                 var tr = trs[i];
-                this.cur.push(tr.hash);
+                this.cur.push(tr.rowId);
                 if (!tr.hasClass('selected'))
                     tr.addClass('selected');
             }
         },
 
-        selectRow : function (hash) {
+        selectRow : function (rowId) {
             this.cur.empty();
-            this.cur.push(hash);
+            this.cur.push(rowId);
             var trs = this.table.getElements('tr');
             for (var i = 0; i < trs.length; i++) {
                 var tr = trs[i];
-                if (tr.hash == hash) {
+                if (tr.rowId == rowId) {
                     if (!tr.hasClass('selected'))
                         tr.addClass('selected');
                 }
@@ -229,67 +211,22 @@ var dynamicTable = new Class({
         },
 
         updateRowData : function (data) {
-            var hash = data['hash'];
+            var rowId = data['rowId'];
             var row;
 
-            if (!this.rows.has(hash)) {
+            if (!this.rows.has(rowId)) {
                 row = {};
-                this.rows.set(hash, row);
+                this.rows.set(rowId, row);
                 row['full_data'] = {};
-                row['hash'] = hash;
+                row['rowId'] = rowId;
             }
             else
-                row = this.rows.get(hash);
+                row = this.rows.get(rowId);
 
             row['data'] = data;
 
             for(var x in data)
                 row['full_data'][x] = data[x];
-        },
-
-        applyFilter : function (row, filterName, labelName) {
-            var state = row['full_data'].state;
-            switch(filterName) {
-                case 'downloading':
-                    if (state != 'downloading' && !~state.indexOf('DL'))
-                        return false;
-                    break;
-                case 'seeding':
-                    if (state != 'uploading' && state != 'forcedUP' && state != 'stalledUP' && state != 'queuedUP' && state != 'checkingUP')
-                        return false;
-                    break;
-                case 'completed':
-                    if (state != 'uploading' && !~state.indexOf('UP'))
-                        return false;
-                    break;
-                case 'paused':
-                    if (state != 'pausedDL')
-                        return false;
-                    break;
-                case 'resumed':
-                    if (~state.indexOf('paused'))
-                        return false;
-                    break;
-                case 'active':
-                    if (state != 'downloading' && state != 'forcedDL' && state != 'uploading' && state != 'forcedUP')
-                        return false;
-                    break;
-                case 'inactive':
-                    if (state == 'downloading' || state == 'forcedDL' || state == 'uploading'  || state == 'forcedUP')
-                        return false;
-                    break;
-            }
-
-            if (labelName == LABELS_ALL)
-                return true;
-
-            if (labelName == LABELS_UNLABELLED && row['full_data'].label.length === 0)
-                return true;
-
-            if (labelName != genHash( row['full_data'].label) )
-                return false;
-
-            return true;
         },
 
         getFilteredAndSortedRows : function () {
@@ -298,13 +235,13 @@ var dynamicTable = new Class({
             var rows = this.rows.getValues();
 
             for (i = 0; i < rows.length; i++)
-                if (this.applyFilter(rows[i], selected_filter, selected_label)) {
-                    filteredRows.push(rows[i]);
-                    filteredRows[rows[i].hash] = rows[i];
-                }
+            {
+                filteredRows.push(rows[i]);
+                filteredRows[rows[i].rowId] = rows[i];
+            }
 
             filteredRows.sort(function (row1, row2) {
-                column = this.columns[this.sortedColumn];
+                var column = this.columns[this.sortedColumn];
                 res = column.compareRows(row1, row2);
                 if (this.reverseSort == '0')
                     return res;
@@ -314,10 +251,10 @@ var dynamicTable = new Class({
             return filteredRows;
         },
 
-        getTrByHash : function (hash) {
+        getTrByRowId : function (rowId) {
             trs = this.table.getElements('tr');
             for (var i = 0; i < trs.length; i++)
-                if (trs[i].hash == hash)
+                if (trs[i].rowId == rowId)
                     return trs[i];
             return null;
         },
@@ -337,10 +274,10 @@ var dynamicTable = new Class({
             var trs = this.table.getElements('tr');
 
             for (var rowPos = 0; rowPos < rows.length; rowPos++) {
-                var hash = rows[rowPos]['hash'];
+                var rowId = rows[rowPos]['rowId'];
                 tr_found = false;
                 for (j = rowPos; j < trs.length; j++)
-                    if (trs[j]['hash'] == hash) {
+                    if (trs[j]['rowId'] == rowId) {
                         trs[rowPos].removeClass('over');
                         tr_found = true;
                         if (rowPos == j)
@@ -357,59 +294,49 @@ var dynamicTable = new Class({
                     var tr = new Element('tr');
 
                     tr.addClass("menu-target");
-                    tr['hash'] = rows[rowPos]['hash'];
+                    tr['rowId'] = rows[rowPos]['rowId'];
 
+                    tr._this = this;
                     tr.addEvent('contextmenu', function (e) {
-                        if (!myTable.cur.contains(this.hash))
-                            myTable.selectRow(this.hash);
-                        return true;
-                    });
-                    tr.addEvent('dblclick', function (e) {
-                        e.stop();
-                        myTable.selectRow(this.hash);
-                        var row = myTable.rows.get(this.hash);
-                        var state = row['full_data'].state;
-                        if (~state.indexOf('paused'))
-                            startFN();
-                        else
-                            pauseFN();
+                        if (!this._this.cur.contains(this.rowId))
+                            this._this.selectRow(this.rowId);
                         return true;
                     });
                     tr.addEvent('click', function (e) {
                         e.stop();
                         if (e.control) {
                             // CTRL key was pressed
-                            if (myTable.cur.contains(this.hash)) {
+                            if (this._this.cur.contains(this.rowId)) {
                                 // remove it
-                                myTable.cur.erase(this.hash);
+                                this._this.cur.erase(this.rowId);
                                 // Remove selected style
                                 this.removeClass('selected');
                             }
                             else {
-                                myTable.cur.push(this.hash);
+                                this._this.cur.push(this.rowId);
                                 // Add selected style
                                 this.addClass('selected');
                             }
                         }
                         else {
-                            if (e.shift && myTable.cur.length == 1) {
+                            if (e.shift && this._this.cur.length == 1) {
                                 // Shift key was pressed
-                                var first_row_hash = myTable.cur[0];
-                                var last_row_hash = this.hash;
-                                myTable.cur.empty();
-                                var trs = myTable.table.getElements('tr');
+                                var first_row_id = this._this.cur[0];
+                                var last_row_id = this.rowId;
+                                this._this.cur.empty();
+                                var trs = this._this.table.getElements('tr');
                                 var select = false;
                                 for (var i = 0; i < trs.length; i++) {
                                     var tr = trs[i];
 
-                                    if ((tr.hash == first_row_hash) || (tr.hash == last_row_hash)) {
-                                        myTable.cur.push(tr.hash);
+                                    if ((tr.rowId == first_row_id) || (tr.rowId == last_row_id)) {
+                                        this._this.cur.push(tr.rowId);
                                         tr.addClass('selected');
                                         select = !select;
                                     }
                                     else {
                                         if (select) {
-                                            myTable.cur.push(tr.hash);
+                                            this._this.cur.push(tr.rowId);
                                             tr.addClass('selected');
                                         }
                                         else
@@ -418,12 +345,14 @@ var dynamicTable = new Class({
                                 }
                             } else {
                                 // Simple selection
-                                myTable.selectRow(this.hash);
+                                this._this.selectRow(this.rowId);
                                 updatePropertiesPanel();
                             }
                         }
                         return false;
                     });
+
+                    this.setupTrEvents(tr);
 
                     for (var j = 0 ; j < this.columns.length; j++) {
                         var td = new Element('td');
@@ -443,7 +372,8 @@ var dynamicTable = new Class({
                     }
 
                     // Update context menu
-                    this.context_menu.addTarget(tr);
+                    if (this.context_menu)
+                        this.context_menu.addTarget(tr);
 
                     this.updateRow(tr, true);
                 }
@@ -457,8 +387,10 @@ var dynamicTable = new Class({
             }
         },
 
+        setupTrEvents : function (tr) {},
+
         updateRow : function (tr, fullUpdate) {
-            var row = this.rows.get(tr.hash);
+            var row = this.rows.get(tr.rowId);
             data = row[fullUpdate ? 'full_data' : 'data'];
 
             tds = tr.getElements('td');
@@ -467,42 +399,53 @@ var dynamicTable = new Class({
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
-
-            /*
-            for(var prop in data)
-                for (var i = 0; i < this.columns.length; i++)
-                    for (var j = 0; j < this.columns[i].dataProperties.length; j++)
-                        if (this.columns[i].dataProperties[j] == prop)
-                            this.columns[i].updateTd(tds[i], row);
-
-            if (this.cur.contains(tr.hash)) {
-                if (!tr.hasClass('selected'))
-                    tr.addClass('selected');
-            }
-            else {
-                if (tr.hasClass('selected'))
-                    tr.removeClass('selected');
-            }
-            */
         },
 
-        removeRow : function (hash) {
-            this.cur.erase(hash);
-            var tr = this.getTrByHash(hash);
+        removeRow : function (rowId) {
+            this.cur.erase(rowId);
+            var tr = this.getTrByRowId(rowId);
             if (tr != null) {
                 tr.dispose();
-                this.rows.erase(hash);
+                this.rows.erase(rowId);
                 return true;
             }
             return false;
         },
 
-        selectedIds : function () {
+        selectedRowsIds : function () {
             return this.cur;
         },
 
         getRowIds : function () {
             return this.rows.getKeys();
+        },
+    });
+
+var TorrentsTable = new Class({
+        Extends: DynamicTable,
+
+        initColumns : function () {
+            this.newColumn('priority', 'width: 30px; cursor: pointer', '#');
+            this.newColumn('state_icon', 'width: 16px', '');
+            this.newColumn('name', 'min-width: 200px; cursor: pointer', 'QBT_TR(Name)QBT_TR');
+            this.newColumn('size', 'width: 100px; cursor: pointer', 'QBT_TR(Size)QBT_TR');
+            this.newColumn('progress', 'width: 80px; cursor: pointer', 'QBT_TR(Done)QBT_TR');
+            this.newColumn('num_seeds', 'width: 100px; cursor: pointer', 'QBT_TR(Seeds)QBT_TR');
+            this.newColumn('num_leechs', 'width: 100px; cursor: pointer', 'QBT_TR(Peers)QBT_TR');
+            this.newColumn('dlspeed', 'width: 100px; cursor: pointer', 'QBT_TR(Down Speed)QBT_TR');
+            this.newColumn('upspeed', 'width: 100px; cursor: pointer', 'QBT_TR(Up Speed)QBT_TR');
+            this.newColumn('eta', 'width: 100px; cursor: pointer', 'QBT_TR(ETA)QBT_TR');
+            this.newColumn('ratio', 'width: 100px; cursor: pointer', 'QBT_TR(Ratio)QBT_TR');
+            this.newColumn('label', 'width: 100px; cursor: pointer', 'QBT_TR(Label)QBT_TR');
+
+            this.columns['state_icon'].onclick = '';
+            this.columns['state_icon'].dataProperties[0] = 'state';
+
+            this.columns['num_seeds'].dataProperties.push('num_complete');
+
+            this.columns['num_leechs'].dataProperties.push('num_incomplete');
+
+            this.initColumnsFunctions();
         },
 
         initColumnsFunctions : function () {
@@ -659,10 +602,92 @@ var dynamicTable = new Class({
                     html = (Math.floor(100 * ratio) / 100).toFixed(2); //Don't round up
                 td.set('html', html);
             };
-        }
+        },
 
+        applyFilter : function (row, filterName, labelName) {
+            var state = row['full_data'].state;
+            switch(filterName) {
+                case 'downloading':
+                    if (state != 'downloading' && !~state.indexOf('DL'))
+                        return false;
+                    break;
+                case 'seeding':
+                    if (state != 'uploading' && state != 'forcedUP' && state != 'stalledUP' && state != 'queuedUP' && state != 'checkingUP')
+                        return false;
+                    break;
+                case 'completed':
+                    if (state != 'uploading' && !~state.indexOf('UP'))
+                        return false;
+                    break;
+                case 'paused':
+                    if (state != 'pausedDL')
+                        return false;
+                    break;
+                case 'resumed':
+                    if (~state.indexOf('paused'))
+                        return false;
+                    break;
+                case 'active':
+                    if (state != 'downloading' && state != 'forcedDL' && state != 'uploading' && state != 'forcedUP')
+                        return false;
+                    break;
+                case 'inactive':
+                    if (state == 'downloading' || state == 'forcedDL' || state == 'uploading'  || state == 'forcedUP')
+                        return false;
+                    break;
+            }
+
+            if (labelName == LABELS_ALL)
+                return true;
+
+            if (labelName == LABELS_UNLABELLED && row['full_data'].label.length === 0)
+                return true;
+
+            if (labelName != genHash( row['full_data'].label) )
+                return false;
+
+            return true;
+        },
+
+        getFilteredAndSortedRows : function () {
+            var filteredRows = new Array();
+
+            var rows = this.rows.getValues();
+
+            for (i = 0; i < rows.length; i++)
+                if (this.applyFilter(rows[i], selected_filter, selected_label)) {
+                    filteredRows.push(rows[i]);
+                    filteredRows[rows[i].rowId] = rows[i];
+                }
+
+            filteredRows.sort(function (row1, row2) {
+                var column = this.columns[this.sortedColumn];
+                res = column.compareRows(row1, row2);
+                if (this.reverseSort == '0')
+                    return res;
+                else
+                    return -res;
+            }.bind(this));
+            return filteredRows;
+        },
+
+        setupTrEvents : function (tr) {
+            tr.addEvent('dblclick', function (e) {
+                e.stop();
+                this._this.selectRow(this.rowId);
+                var row = this._this.rows.get(this.rowId);
+                var state = row['full_data'].state;
+                if (~state.indexOf('paused'))
+                    startFN();
+                else
+                    pauseFN();
+                return true;
+            });
+        },
+
+        getCurrentTorrentHash : function () {
+            return this.getSelectedRowId();
+        }
     });
-//dynamicTable.implement(new Options);
-//dynamicTable.implement(new Events);
 
 /*************************************************************/

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-myTable = new dynamicTable();
+myTable = new TorrentsTable();
 
 var updatePropertiesPanel = function(){};
 var updateMainData = function(){};
@@ -309,6 +309,7 @@ window.addEvent('load', function () {
                     if (response['torrents']) {
                         for (var key in response['torrents']) {
                             response['torrents'][key]['hash'] = key;
+                            response['torrents'][key]['rowId'] = key;
                             myTable.updateRowData(response['torrents'][key]);
                             if (addTorrentToLabelList(response['torrents'][key]))
                                 update_labels = true;
@@ -423,11 +424,6 @@ window.addEvent('load', function () {
 
     $('DlInfos').addEvent('click', globalDownloadLimitFN);
     $('UpInfos').addEvent('click', globalUploadLimitFN);
-
-    setSortedColumn = function (column) {
-        myTable.setSortedColumn(column);
-        updateMainData();
-    };
 
     $('showTopToolbarLink').addEvent('click', function(e) {
         showTopToolbar = !showTopToolbar;
