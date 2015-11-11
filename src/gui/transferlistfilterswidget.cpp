@@ -137,6 +137,9 @@ StatusFiltersWidget::StatusFiltersWidget(QWidget *parent, TransferListWidget *tr
     QListWidgetItem *inactive = new QListWidgetItem(this);
     inactive->setData(Qt::DisplayRole, QVariant(tr("Inactive (0)")));
     inactive->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterinactive.png"));
+    QListWidgetItem *errored = new QListWidgetItem(this);
+    errored->setData(Qt::DisplayRole, QVariant(tr("Errored (0)")));
+    errored->setData(Qt::DecorationRole, QIcon(":/icons/skin/error.png"));
 
     const Preferences* const pref = Preferences::instance();
     setCurrentRow(pref->getTransSelFilter(), QItemSelectionModel::SelectCurrent);
@@ -158,6 +161,7 @@ void StatusFiltersWidget::updateTorrentNumbers(const BitTorrent::TorrentStatusRe
     item(TorrentFilter::Resumed)->setData(Qt::DisplayRole, QVariant(tr("Resumed (%1)").arg(report.nbResumed)));
     item(TorrentFilter::Active)->setData(Qt::DisplayRole, QVariant(tr("Active (%1)").arg(report.nbActive)));
     item(TorrentFilter::Inactive)->setData(Qt::DisplayRole, QVariant(tr("Inactive (%1)").arg(report.nbInactive)));
+    item(TorrentFilter::Errored)->setData(Qt::DisplayRole, QVariant(tr("Errored (%1)").arg(report.nbErrored)));
 }
 
 void StatusFiltersWidget::showMenu(QPoint) {}

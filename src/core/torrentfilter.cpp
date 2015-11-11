@@ -39,6 +39,7 @@ const TorrentFilter TorrentFilter::PausedTorrent(TorrentFilter::Paused);
 const TorrentFilter TorrentFilter::ResumedTorrent(TorrentFilter::Resumed);
 const TorrentFilter TorrentFilter::ActiveTorrent(TorrentFilter::Active);
 const TorrentFilter TorrentFilter::InactiveTorrent(TorrentFilter::Inactive);
+const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
 
 using BitTorrent::TorrentHandle;
 using BitTorrent::TorrentState;
@@ -91,6 +92,8 @@ bool TorrentFilter::setTypeByName(const QString &filter)
         type = Active;
     else if (filter == "inactive")
         type = Inactive;
+    else if (filter == "errored")
+        type = Errored;
 
     return setType(type);
 }
@@ -144,6 +147,8 @@ bool TorrentFilter::matchState(BitTorrent::TorrentHandle *const torrent) const
         return torrent->isActive();
     case Inactive:
         return torrent->isInactive();
+    case Errored:
+        return torrent->isErrored();
     default: // All
         return true;
     }

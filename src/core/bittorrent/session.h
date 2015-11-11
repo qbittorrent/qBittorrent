@@ -134,6 +134,7 @@ namespace BitTorrent
         uint nbInactive;
         uint nbPaused;
         uint nbResumed;
+        uint nbErrored;
 
         TorrentStatusReport();
     };

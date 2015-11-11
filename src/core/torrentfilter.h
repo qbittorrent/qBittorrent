@@ -54,7 +54,8 @@ public:
         Resumed,
         Paused,
         Active,
-        Inactive
+        Inactive,
+        Errored
     };
 
     static const QString AnyLabel;
@@ -67,6 +68,7 @@ public:
     static const TorrentFilter ResumedTorrent;
     static const TorrentFilter ActiveTorrent;
     static const TorrentFilter InactiveTorrent;
+    static const TorrentFilter ErroredTorrent;
 
     TorrentFilter();
     // label: pass empty string for "no label" or null string (QString()) for "any label"
