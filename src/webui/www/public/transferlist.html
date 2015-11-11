@@ -9,7 +9,7 @@
 <script type="text/javascript">
 
     //create a context menu
-    var context_menu = new ContextMenu({
+    var torrents_table_context_menu = new ContextMenu({
         targets : '.menu-target',
         menu : 'contextmenu',
         actions : {
@@ -62,5 +62,5 @@
         }
     });
 
-    torrentsTable.setup('torrentsTable', 'torrentsTableHeader', context_menu);
+    torrentsTable.setup('torrentsTable', 'torrentsTableHeader', torrents_table_context_menu);
 </script>
