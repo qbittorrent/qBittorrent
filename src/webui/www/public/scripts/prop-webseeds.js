@@ -59,7 +59,7 @@ var loadWebSeedsData = function() {
         // Tab changed, don't do anything
         return;
     }
-    var new_hash = myTable.getCurrentTorrentHash();
+    var new_hash = torrentsTable.getCurrentTorrentHash();
     if (new_hash == "") {
         wsTable.removeAllRows();
         clearTimeout(loadWebSeedsDataTimer);

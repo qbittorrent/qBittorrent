@@ -119,7 +119,7 @@ initializeWindows = function() {
     }
 
     uploadLimitFN = function() {
-        var h = myTable.selectedRowsIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             var hash = h[0];
             new MochaUI.Window({
@@ -139,7 +139,7 @@ initializeWindows = function() {
     };
 
     toggleSequentialDownloadFN = function() {
-        var h = myTable.selectedRowsIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new Request({
                 url: 'command/toggleSequentialDownload',
@@ -153,7 +153,7 @@ initializeWindows = function() {
     };
 
     toggleFirstLastPiecePrioFN = function() {
-        var h = myTable.selectedRowsIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new Request({
                 url: 'command/toggleFirstLastPiecePrio',
@@ -167,7 +167,7 @@ initializeWindows = function() {
     };
 
     setSuperSeedingFN = function(val) {
-        var h = myTable.selectedRowsIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new Request({
                 url: 'command/setSuperSeeding',
@@ -182,7 +182,7 @@ initializeWindows = function() {
     };
 
     setForceStartFN = function() {
-        var h = myTable.selectedRowsIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new Request({
                 url: 'command/setForceStart',
@@ -213,7 +213,7 @@ initializeWindows = function() {
     }
 
     downloadLimitFN = function() {
-        var h = myTable.selectedRowsIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             var hash = h[0];
             new MochaUI.Window({
@@ -233,7 +233,7 @@ initializeWindows = function() {
     };
 
     deleteFN = function() {
-        var h = myTable.selectedRowsIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
@@ -257,7 +257,7 @@ initializeWindows = function() {
     });
 
     pauseFN = function() {
-        var h = myTable.selectedRowsIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             h.each(function(hash, index) {
                 new Request({
@@ -273,7 +273,7 @@ initializeWindows = function() {
     };
 
     startFN = function() {
-        var h = myTable.selectedRowsIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             h.each(function(hash, index) {
                 new Request({
@@ -289,7 +289,7 @@ initializeWindows = function() {
     };
 
     recheckFN = function() {
-        var h = myTable.selectedRowsIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             h.each(function(hash, index) {
                 new Request({
@@ -305,7 +305,7 @@ initializeWindows = function() {
     };
 
     newLabelFN = function () {
-        var h = myTable.selectedRowsIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new MochaUI.Window({
                 id: 'newLabelPage',
@@ -327,7 +327,7 @@ initializeWindows = function() {
         var labelName = '';
         if (labelHash != 0)
             var labelName = label_list[labelHash].name;
-        var h = myTable.selectedRowsIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new Request({
                 url: 'command/setLabel',
@@ -353,7 +353,7 @@ initializeWindows = function() {
     ['pause', 'resume', 'recheck'].each(function(item) {
         addClickEvent(item, function(e) {
             new Event(e).stop();
-            var h = myTable.selectedRowsIds();
+            var h = torrentsTable.selectedRowsIds();
             if (h.length) {
                 h.each(function(hash, index) {
                     new Request({
@@ -377,7 +377,7 @@ initializeWindows = function() {
     });
 
     setPriorityFN = function(cmd) {
-        var h = myTable.selectedRowsIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new Request({
                 url: 'command/' + cmd,

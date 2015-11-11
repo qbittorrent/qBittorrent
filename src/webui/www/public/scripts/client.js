@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-myTable = new TorrentsTable();
+torrentsTable = new TorrentsTable();
 
 var updatePropertiesPanel = function(){};
 var updateMainData = function(){};
@@ -99,7 +99,7 @@ window.addEvent('load', function () {
         selected_label = hash;
         localStorage.setItem('selected_label', selected_label);
         highlightSelectedLabel();
-        if (typeof myTable.table != 'undefined')
+        if (typeof torrentsTable.table != 'undefined')
             updateMainData();
     };
 
@@ -117,7 +117,7 @@ window.addEvent('load', function () {
         selected_filter = f;
         localStorage.setItem('selected_filter', f);
         // Reload torrents
-        if (typeof myTable.table != 'undefined')
+        if (typeof torrentsTable.table != 'undefined')
             updateMainData();
     }
 
@@ -230,9 +230,9 @@ window.addEvent('load', function () {
             return new Element('li', {id: hash, html: html});
         };
 
-        var all = myTable.getRowIds().length;
+        var all = torrentsTable.getRowIds().length;
         var unlabelled = 0;
-        Object.each(myTable.rows, function(row) {
+        Object.each(torrentsTable.rows, function(row) {
             if (row['full_data'].label.length === 0)
             unlabelled += 1;
         });
@@ -286,7 +286,7 @@ window.addEvent('load', function () {
                     var update_labels = false;
                     var full_update = (response['full_update'] == true);
                     if (full_update) {
-                        myTable.rows.erase();
+                        torrentsTable.rows.erase();
                         label_list = {};
                     }
                     if (response['rid']) {
@@ -310,19 +310,19 @@ window.addEvent('load', function () {
                         for (var key in response['torrents']) {
                             response['torrents'][key]['hash'] = key;
                             response['torrents'][key]['rowId'] = key;
-                            myTable.updateRowData(response['torrents'][key]);
+                            torrentsTable.updateRowData(response['torrents'][key]);
                             if (addTorrentToLabelList(response['torrents'][key]))
                                 update_labels = true;
                         }
                     }
                     if (response['torrents_removed'])
                         response['torrents_removed'].each(function (hash) {
-                            myTable.removeRow(hash);
+                            torrentsTable.removeRow(hash);
                             removeTorrentFromLabelList(hash);
                             update_labels = true; // Allways to update All label
                         });
-                    myTable.updateTable(full_update);
-                    myTable.altRow();
+                    torrentsTable.updateTable(full_update);
+                    torrentsTable.altRow();
                     if (response['server_state']) {
                         var tmp = response['server_state'];
                         for(var key in tmp)
@@ -341,7 +341,7 @@ window.addEvent('load', function () {
     };
 
     updateMainData = function() {
-        myTable.updateTable();
+        torrentsTable.updateTable();
         clearTimeout(syncMainDataTimer);
         syncMainDataTimer = syncMainData.delay(100);
     }
@@ -374,8 +374,8 @@ window.addEvent('load', function () {
 
         if (queueing_enabled != serverState.queueing) {
             queueing_enabled = serverState.queueing;
-            myTable.columns['priority'].force_hide = !queueing_enabled;
-            myTable.updateColumn('priority');
+            torrentsTable.columns['priority'].force_hide = !queueing_enabled;
+            torrentsTable.updateColumn('priority');
             if (queueing_enabled) {
                 $('queueingLinks').removeClass('invisible');
                 $('queueingButtons').removeClass('invisible');
@@ -565,7 +565,7 @@ var keyboardEvents = new Keyboard({
     defaultEventType: 'keydown',
     events: {
         'ctrl+a': function(event) {
-            myTable.selectAll();
+            torrentsTable.selectAll();
             event.preventDefault();
         },
         'delete': function(event) {
