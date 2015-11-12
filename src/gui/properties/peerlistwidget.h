@@ -54,52 +54,50 @@ QT_END_NAMESPACE
 
 namespace BitTorrent
 {
-
-class TorrentHandle;
-class PeerInfo;
-struct PeerAddress;
-
+    class TorrentHandle;
+    class PeerInfo;
+    struct PeerAddress;
 }
 
-class PeerListWidget : public QTreeView {
-  Q_OBJECT
+class PeerListWidget: public QTreeView
+{
+    Q_OBJECT
 
 public:
-  PeerListWidget(PropertiesWidget *parent);
-  ~PeerListWidget();
+    explicit PeerListWidget(PropertiesWidget *parent);
+    ~PeerListWidget();
 
-public slots:
-  void loadPeers(BitTorrent::TorrentHandle *const torrent, bool force_hostname_resolution = false);
-  QStandardItem *addPeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer);
-  void updatePeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer);
-  void handleResolved(const QString &ip, const QString &hostname);
-  void updatePeerHostNameResolutionState();
-  void updatePeerCountryResolutionState();
-  void clear();
+    void loadPeers(BitTorrent::TorrentHandle *const torrent, bool forceHostnameResolution = false);
+    QStandardItem *addPeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer);
+    void updatePeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer);
+    void handleResolved(const QString &ip, const QString &hostname);
+    void updatePeerHostNameResolutionState();
+    void updatePeerCountryResolutionState();
+    void clear();
 
-protected slots:
-  void loadSettings();
-  void saveSettings() const;
-  void showPeerListMenu(const QPoint&);
-  void banSelectedPeers();
-  void copySelectedPeers();
-  void handleSortColumnChanged(int col);
-
-private:
-  static void getFlags(const BitTorrent::PeerInfo &peer, QString &flags, QString &tooltip);
-  qreal getPeerRelevance(const QBitArray &allPieces, const QBitArray &peerPieces);
+private slots:
+    void loadSettings();
+    void saveSettings() const;
+    void showPeerListMenu(const QPoint&);
+    void banSelectedPeers();
+    void copySelectedPeers();
+    void handleSortColumnChanged(int col);
 
 private:
-  QStandardItemModel *m_listModel;
-  PeerListDelegate *m_listDelegate;
-  PeerListSortModel *m_proxyModel;
-  QHash<QString, QStandardItem*> m_peerItems;
-  QHash<QString, BitTorrent::PeerAddress> m_peerAddresses;
-  QSet<QString> m_missingFlags;
-  QPointer<Net::ReverseResolution> m_resolver;
-  PropertiesWidget *m_properties;
-  bool m_displayFlags;
-  QShortcut *copyHotkey;
+    static void getFlags(const BitTorrent::PeerInfo &peer, QString &flags, QString &tooltip);
+    qreal getPeerRelevance(const QBitArray &allPieces, const QBitArray &peerPieces);
+
+private:
+    QStandardItemModel *m_listModel;
+    PeerListDelegate *m_listDelegate;
+    PeerListSortModel *m_proxyModel;
+    QHash<QString, QStandardItem*> m_peerItems;
+    QHash<QString, BitTorrent::PeerAddress> m_peerAddresses;
+    QSet<QString> m_missingFlags;
+    QPointer<Net::ReverseResolution> m_resolver;
+    PropertiesWidget *m_properties;
+    bool m_displayFlags;
+    QShortcut *m_copyHotkey;
 };
 
 #endif // PEERLISTWIDGET_H
