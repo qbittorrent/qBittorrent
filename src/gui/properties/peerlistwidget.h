@@ -84,10 +84,6 @@ private slots:
     void handleSortColumnChanged(int col);
 
 private:
-    static void getFlags(const BitTorrent::PeerInfo &peer, QString &flags, QString &tooltip);
-    qreal getPeerRelevance(const QBitArray &allPieces, const QBitArray &peerPieces);
-
-private:
     QStandardItemModel *m_listModel;
     PeerListDelegate *m_listDelegate;
     PeerListSortModel *m_proxyModel;

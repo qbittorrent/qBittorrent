@@ -328,17 +328,15 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, BitTorrent::TorrentHan
         }
     }
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), peer.connectionType());
-    QString flags, tooltip;
-    getFlags(peer, flags, tooltip);
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), flags);
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), tooltip, Qt::ToolTipRole);
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flags());
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flagsDescription(), Qt::ToolTipRole);
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::CLIENT), peer.client());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::PROGRESS), peer.progress());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWN_SPEED), peer.payloadDownSpeed());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::UP_SPEED), peer.payloadUpSpeed());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_DOWN), peer.totalDownload());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_UP), peer.totalUpload());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::RELEVANCE), getPeerRelevance(torrent->pieces(), peer.pieces()));
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::RELEVANCE), peer.relevance());
     return m_listModel->item(row, PeerListDelegate::IP);
 }
 
@@ -356,18 +354,16 @@ void PeerListWidget::updatePeer(const QString &ip, BitTorrent::TorrentHandle *co
         }
     }
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), peer.connectionType());
-    QString flags, tooltip;
-    getFlags(peer, flags, tooltip);
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::PORT), peer.address().port);
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), flags);
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), tooltip, Qt::ToolTipRole);
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flags());
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flagsDescription(), Qt::ToolTipRole);
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::CLIENT), peer.client());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::PROGRESS), peer.progress());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWN_SPEED), peer.payloadDownSpeed());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::UP_SPEED), peer.payloadUpSpeed());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_DOWN), peer.totalDownload());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_UP), peer.totalUpload());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::RELEVANCE), getPeerRelevance(torrent->pieces(), peer.pieces()));
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::RELEVANCE), peer.relevance());
 }
 
 void PeerListWidget::handleResolved(const QString &ip, const QString &hostname)
@@ -390,136 +386,3 @@ void PeerListWidget::handleSortColumnChanged(int col)
     }
 }
 
-void PeerListWidget::getFlags(const BitTorrent::PeerInfo &peer, QString& flags, QString& tooltip)
-{
-    if (peer.isInteresting()) {
-        //d = Your client wants to download, but peer doesn't want to send (interested and choked)
-        if (peer.isRemoteChocked()) {
-            flags += "d ";
-            tooltip += tr("interested(local) and choked(peer)");
-            tooltip += ", ";
-        }
-        else {
-            //D = Currently downloading (interested and not choked)
-            flags += "D ";
-            tooltip += tr("interested(local) and unchoked(peer)");
-            tooltip += ", ";
-        }
-    }
-
-    if (peer.isRemoteInterested()) {
-        //u = Peer wants your client to upload, but your client doesn't want to (interested and choked)
-        if (peer.isChocked()) {
-            flags += "u ";
-            tooltip += tr("interested(peer) and choked(local)");
-            tooltip += ", ";
-        }
-        else {
-            //U = Currently uploading (interested and not choked)
-            flags += "U ";
-            tooltip += tr("interested(peer) and unchoked(local)");
-            tooltip += ", ";
-        }
-    }
-
-    //O = Optimistic unchoke
-    if (peer.optimisticUnchoke()) {
-        flags += "O ";
-        tooltip += tr("optimistic unchoke");
-        tooltip += ", ";
-    }
-
-    //S = Peer is snubbed
-    if (peer.isSnubbed()) {
-        flags += "S ";
-        tooltip += tr("peer snubbed");
-        tooltip += ", ";
-    }
-
-    //I = Peer is an incoming connection
-    if (!peer.isLocalConnection()) {
-        flags += "I ";
-        tooltip += tr("incoming connection");
-        tooltip += ", ";
-    }
-
-    //K = Peer is unchoking your client, but your client is not interested
-    if (!peer.isRemoteChocked() && !peer.isInteresting()) {
-        flags += "K ";
-        tooltip += tr("not interested(local) and unchoked(peer)");
-        tooltip += ", ";
-    }
-
-    //? = Your client unchoked the peer but the peer is not interested
-    if (!peer.isChocked() && !peer.isRemoteInterested()) {
-        flags += "? ";
-        tooltip += tr("not interested(peer) and unchoked(local)");
-        tooltip += ", ";
-    }
-
-    //X = Peer was included in peerlists obtained through Peer Exchange (PEX)
-    if (peer.fromPeX()) {
-        flags += "X ";
-        tooltip += tr("peer from PEX");
-        tooltip += ", ";
-    }
-
-    //H = Peer was obtained through DHT
-    if (peer.fromDHT()) {
-        flags += "H ";
-        tooltip += tr("peer from DHT");
-        tooltip += ", ";
-    }
-
-    //E = Peer is using Protocol Encryption (all traffic)
-    if (peer.isRC4Encrypted()) {
-        flags += "E ";
-        tooltip += tr("encrypted traffic");
-        tooltip += ", ";
-    }
-
-    //e = Peer is using Protocol Encryption (handshake)
-    if (peer.isPlaintextEncrypted()) {
-        flags += "e ";
-        tooltip += tr("encrypted handshake");
-        tooltip += ", ";
-    }
-
-    //P = Peer is using uTorrent uTP
-
-    if (peer.useUTPSocket()) {
-        flags += "P ";
-        tooltip += QString::fromUtf8(C_UTP);
-        tooltip += ", ";
-    }
-
-    //L = Peer is local
-    if (peer.fromLSD()) {
-        flags += "L";
-        tooltip += tr("peer from LSD");
-    }
-
-    flags = flags.trimmed();
-    tooltip = tooltip.trimmed();
-    if (tooltip.endsWith(',', Qt::CaseInsensitive))
-        tooltip.chop(1);
-}
-
-qreal PeerListWidget::getPeerRelevance(const QBitArray &allPieces, const QBitArray &peerPieces)
-{
-    int localMissing = 0;
-    int remoteHaves = 0;
-
-    for (int i = 0; i < allPieces.size(); ++i) {
-        if (!allPieces[i]) {
-            ++localMissing;
-            if (peerPieces[i])
-                ++remoteHaves;
-        }
-    }
-
-    if (localMissing == 0)
-        return 0.0;
-
-    return static_cast<qreal>(remoteHaves) / localMissing;
-}

@@ -33,9 +33,12 @@
 
 #include <QHostAddress>
 #include <QBitArray>
+#include <QCoreApplication>
 
 namespace BitTorrent
 {
+    class TorrentHandle;
+
     struct PeerAddress
     {
         QHostAddress ip;
@@ -47,8 +50,10 @@ namespace BitTorrent
 
     class PeerInfo
     {
+        Q_DECLARE_TR_FUNCTIONS(PeerInfo)
+
     public:
-        PeerInfo(const libtorrent::peer_info &nativeInfo);
+        PeerInfo(const TorrentHandle *torrent, const libtorrent::peer_info &nativeInfo);
 
         bool fromDHT() const;
         bool fromPeX() const;
@@ -89,12 +94,21 @@ namespace BitTorrent
         qlonglong totalDownload() const;
         QBitArray pieces() const;
         QString connectionType() const;
+        qreal relevance() const;
+        QString flags() const;
+        QString flagsDescription() const;
 #ifndef DISABLE_COUNTRIES_RESOLUTION
         QString country() const;
 #endif
 
     private:
+        void calcRelevance(const TorrentHandle *torrent);
+        void determineFlags();
+
         libtorrent::peer_info m_nativeInfo;
+        qreal m_relevance;
+        QString m_flags;
+        QString m_flagsDescription;
     };
 }
 

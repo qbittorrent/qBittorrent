@@ -46,6 +46,7 @@ public:
     static QByteArray getTorrents(QString filter = "all", QString label = QString(),
         QString sortedColumn = "name", bool reverse = false, int limit = 0, int offset = 0);
     static QByteArray getSyncMainData(int acceptedResponseId, QVariantMap &lastData, QVariantMap &lastAcceptedData);
+    static QByteArray getSyncTorrentPeersData(int acceptedResponseId, QString hash, QVariantMap &lastData, QVariantMap &lastAcceptedData);
     static QByteArray getTrackersForTorrent(const QString& hash);
     static QByteArray getWebSeedsForTorrent(const QString& hash);
     static QByteArray getPropertiesForTorrent(const QString& hash);

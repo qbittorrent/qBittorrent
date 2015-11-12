@@ -960,7 +960,7 @@ QList<PeerInfo> TorrentHandle::peers() const
     SAFE_CALL(get_peer_info, nativePeers);
 
     foreach (const libt::peer_info &peer, nativePeers)
-        peers << peer;
+        peers << PeerInfo(this, peer);
 
     return peers;
 }
