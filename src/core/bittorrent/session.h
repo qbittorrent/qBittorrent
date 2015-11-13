@@ -127,15 +127,13 @@ namespace BitTorrent
 
     struct TorrentStatusReport
     {
-        uint nbDownloading;
-        uint nbSeeding;
-        uint nbCompleted;
-        uint nbActive;
-        uint nbInactive;
-        uint nbPaused;
-        uint nbResumed;
-
-        TorrentStatusReport();
+        uint nbDownloading = 0;
+        uint nbSeeding = 0;
+        uint nbCompleted = 0;
+        uint nbActive = 0;
+        uint nbInactive = 0;
+        uint nbPaused = 0;
+        uint nbResumed = 0;
     };
 
     class Session : public QObject
@@ -161,6 +159,7 @@ namespace BitTorrent
 
         TorrentHandle *findTorrent(const InfoHash &hash) const;
         QHash<InfoHash, TorrentHandle *> torrents() const;
+        TorrentStatusReport torrentStatusReport() const;
         bool hasActiveTorrents() const;
         bool hasUnfinishedTorrents() const;
         SessionStatus status() const;
@@ -214,11 +213,10 @@ namespace BitTorrent
         void handleTorrentTrackerAuthenticationRequired(TorrentHandle *const torrent, const QString &trackerUrl);
 
     signals:
-        void torrentsUpdated(const BitTorrent::TorrentStatusReport &torrentStatusReport = BitTorrent::TorrentStatusReport());
+        void torrentsUpdated();
         void addTorrentFailed(const QString &error);
         void torrentAdded(BitTorrent::TorrentHandle *const torrent);
         void torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent);
-        void torrentStatusUpdated(BitTorrent::TorrentHandle *const torrent);
         void torrentPaused(BitTorrent::TorrentHandle *const torrent);
         void torrentResumed(BitTorrent::TorrentHandle *const torrent);
         void torrentFinished(BitTorrent::TorrentHandle *const torrent);
@@ -362,6 +360,7 @@ namespace BitTorrent
         QHash<InfoHash, TorrentHandle *> m_torrents;
         QHash<InfoHash, AddTorrentData> m_addingTorrents;
         QHash<QString, AddTorrentParams> m_downloadedTorrents;
+        TorrentStatusReport m_torrentStatusReport;
 
         QMutex m_alertsMutex;
         QWaitCondition m_alertsWaitCondition;

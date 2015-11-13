@@ -67,7 +67,7 @@ TorrentModel::TorrentModel(QObject *parent)
     // Listen for torrent changes
     connect(BitTorrent::Session::instance(), SIGNAL(torrentAdded(BitTorrent::TorrentHandle *const)), SLOT(addTorrent(BitTorrent::TorrentHandle *const)));
     connect(BitTorrent::Session::instance(), SIGNAL(torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const)), SLOT(handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle *const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentStatusUpdated(BitTorrent::TorrentHandle *const)), this, SLOT(handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentsUpdated()), SLOT(handleTorrentsUpdated()));
 
     connect(BitTorrent::Session::instance(), SIGNAL(torrentFinished(BitTorrent::TorrentHandle *const)), SLOT(handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const)));
     connect(BitTorrent::Session::instance(), SIGNAL(torrentMetadataLoaded(BitTorrent::TorrentHandle *const)), SLOT(handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const)));
@@ -305,6 +305,11 @@ void TorrentModel::handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const t
     const int row = m_torrents.indexOf(torrent);
     if (row >= 0)
         emit dataChanged(index(row, 0), index(row, columnCount() - 1));
+}
+
+void TorrentModel::handleTorrentsUpdated()
+{
+    emit dataChanged(index(0, 0), index(rowCount() - 1, columnCount() - 1));
 }
 
 // Static functions

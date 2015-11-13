@@ -112,19 +112,6 @@ AddTorrentParams::AddTorrentParams()
 {
 }
 
-// TorrentStatusReport
-
-TorrentStatusReport::TorrentStatusReport()
-    : nbDownloading(0)
-    , nbSeeding(0)
-    , nbCompleted(0)
-    , nbActive(0)
-    , nbInactive(0)
-    , nbPaused(0)
-    , nbResumed(0)
-{
-}
-
 // Session
 
 Session *Session::m_instance = 0;
@@ -987,6 +974,11 @@ void Session::bottomTorrentsPriority(const QStringList &hashes)
 QHash<InfoHash, TorrentHandle *> Session::torrents() const
 {
     return m_torrents;
+}
+
+TorrentStatusReport Session::torrentStatusReport() const
+{
+    return m_torrentStatusReport;
 }
 
 // source - .torrent file path/url or magnet uri (hash for preloaded torrent)
@@ -2375,31 +2367,29 @@ void Session::handleStateUpdateAlert(libt::state_update_alert *p)
 {
     foreach (const libt::torrent_status &status, p->status) {
         TorrentHandle *const torrent = m_torrents.value(status.info_hash);
-        if (torrent) {
+        if (torrent)
             torrent->handleStateUpdate(status);
-            emit torrentStatusUpdated(torrent);
-        }
     }
 
-    TorrentStatusReport torrentStatusReport;
+    m_torrentStatusReport = TorrentStatusReport();
     foreach (TorrentHandle *const torrent, m_torrents) {
         if (torrent->isDownloading())
-            ++torrentStatusReport.nbDownloading;
+            ++m_torrentStatusReport.nbDownloading;
         if (torrent->isUploading())
-            ++torrentStatusReport.nbSeeding;
+            ++m_torrentStatusReport.nbSeeding;
         if (torrent->isCompleted())
-            ++torrentStatusReport.nbCompleted;
+            ++m_torrentStatusReport.nbCompleted;
         if (torrent->isPaused())
-            ++torrentStatusReport.nbPaused;
+            ++m_torrentStatusReport.nbPaused;
         if (torrent->isResumed())
-            ++torrentStatusReport.nbResumed;
+            ++m_torrentStatusReport.nbResumed;
         if (torrent->isActive())
-            ++torrentStatusReport.nbActive;
+            ++m_torrentStatusReport.nbActive;
         if (torrent->isInactive())
-            ++torrentStatusReport.nbInactive;
+            ++m_torrentStatusReport.nbInactive;
     }
 
-    emit torrentsUpdated(torrentStatusReport);
+    emit torrentsUpdated();
 }
 
 bool readFile(const QString &path, QByteArray &buf)
