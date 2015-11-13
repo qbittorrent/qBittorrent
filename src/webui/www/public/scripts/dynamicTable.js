@@ -412,6 +412,16 @@ var DynamicTable = new Class({
             return false;
         },
 
+        clear : function () {
+            this.cur.empty();
+            this.rows.empty();
+            var trs = this.table.getElements('tr');
+            while (trs.length > 0) {
+                trs[trs.length - 1].dispose();
+                trs.pop();
+            }
+        },
+
         selectedRowsIds : function () {
             return this.cur;
         },
@@ -687,6 +697,119 @@ var TorrentsTable = new Class({
 
         getCurrentTorrentHash : function () {
             return this.getSelectedRowId();
+        }
+    });
+
+var TorrentPeersTable = new Class({
+        Extends: DynamicTable,
+
+        initColumns : function () {
+            this.newColumn('country', 'width: 4px', '');
+            this.newColumn('ip', 'width: 80px', 'QBT_TR(IP)QBT_TR');
+            this.newColumn('port', 'width: 35px', 'QBT_TR(Port)QBT_TR');
+            this.newColumn('client', 'width: 110px', 'QBT_TR(Client)QBT_TR');
+            this.newColumn('progress', 'width: 30px', 'QBT_TR(Progress)QBT_TR');
+            this.newColumn('dl_speed', 'width: 30px', 'QBT_TR(Down Speed)QBT_TR');
+            this.newColumn('up_speed', 'width: 30px', 'QBT_TR(Up Speed)QBT_TR');
+            this.newColumn('downloaded', 'width: 30px', 'QBT_TR(Downloaded)QBT_TR');
+            this.newColumn('uploaded', 'width: 30px', 'QBT_TR(Uploaded)QBT_TR');
+            this.newColumn('connection', 'width: 30px', 'QBT_TR(Connection)QBT_TR');
+            this.newColumn('flags', 'width: 30px', 'QBT_TR(Flags)QBT_TR');
+            this.newColumn('relevance', 'min-width: 30px', 'QBT_TR(Relevance)QBT_TR');
+
+            this.columns['country'].dataProperties.push('country_code');
+            this.columns['flags'].dataProperties.push('flags_desc');
+            this.initColumnsFunctions();
+        },
+
+        initColumnsFunctions : function () {
+
+            // country
+
+            this.columns['country'].updateTd = function (td, row) {
+                var country = this.getRowValue(row, 0);
+                var country_code = this.getRowValue(row, 1);
+
+                if (!country_code) {
+                    if (td.getChildren('img').length)
+                        td.getChildren('img')[0].dispose();
+                    return;
+                }
+
+                var img_path = 'images/flags/' + country_code + '.png';
+
+                if (td.getChildren('img').length) {
+                    var img = td.getChildren('img')[0];
+                    img.set('src', img_path);
+                    img.set('alt', country);
+                    img.set('title', country);
+                }
+                else
+                    td.adopt(new Element('img', {
+                        'src' : img_path,
+                        'alt' : country,
+                        'title' : country
+                    }));
+            };
+
+            // ip
+
+            this.columns['ip'].compareRows = function (row1, row2) {
+                var ip1 = this.getRowValue(row1);
+                var ip2 = this.getRowValue(row2);
+
+                var a = ip1.split(".");
+                var b = ip2.split(".");
+
+                for (var i = 0; i < 4; i++){
+                    if (a[i] != b[i])
+                        return a[i] - b[i];
+                }
+
+                return 0;
+            };
+
+            // progress, relevance
+
+            this.columns['progress'].updateTd = function (td, row) {
+                var progress = this.getRowValue(row);
+                var progressFormated = (progress * 100).round(1);
+                if (progressFormated == 100.0 && progress != 1.0)
+                    progressFormated = 99.9;
+                progressFormated += "%";
+                td.set('html', progressFormated);
+            };
+
+            this.columns['relevance'].updateTd = this.columns['progress'].updateTd;
+
+            // dl_speed, up_speed
+
+            this.columns['dl_speed'].updateTd = function (td, row) {
+                var speed = this.getRowValue(row);
+                if (speed == 0)
+                    td.set('html', '');
+                else
+                    td.set('html', friendlyUnit(speed, true));
+            };
+
+            this.columns['up_speed'].updateTd = this.columns['dl_speed'].updateTd;
+
+            // downloaded, uploaded
+
+            this.columns['downloaded'].updateTd = function (td, row) {
+                var downloaded = this.getRowValue(row);
+                td.set('html', friendlyUnit(downloaded, false));
+            };
+
+            this.columns['uploaded'].updateTd = this.columns['downloaded'].updateTd;
+
+            // flags
+
+            this.columns['flags'].updateTd = function (td, row) {
+                td.innerHTML = this.getRowValue(row, 0);
+                td.title = this.getRowValue(row, 1);
+            };
+
         }
     });
 
