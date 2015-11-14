@@ -321,6 +321,8 @@ namespace BitTorrent
         void dispatchAlerts(std::auto_ptr<libtorrent::alert> alertPtr);
         void getPendingAlerts(QVector<libtorrent::alert *> &out, ulong time = 0);
 
+        AddTorrentData addDataFromParams(const AddTorrentParams &params);
+
         // BitTorrent
         libtorrent::session *m_nativeSession;
 

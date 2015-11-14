@@ -97,9 +97,6 @@ namespace BitTorrent
         QVector<int> filePriorities;
         // for resumed torrents
         qreal ratioLimit;
-
-        AddTorrentData();
-        AddTorrentData(const AddTorrentParams &in);
     };
 
     struct TrackerInfo

@@ -122,26 +122,6 @@ TorrentState::operator int() const
     return m_value;
 }
 
-// AddTorrentData
-
-AddTorrentData::AddTorrentData() {}
-
-AddTorrentData::AddTorrentData(const AddTorrentParams &in)
-    : resumed(false)
-    , name(in.name)
-    , label(in.label)
-    , savePath(in.savePath)
-    , disableTempPath(in.disableTempPath)
-    , sequential(in.sequential)
-    , hasSeedStatus(in.skipChecking) // do not react on 'torrent_finished_alert' when skipping
-    , skipChecking(in.skipChecking)
-    , addForced(in.addForced)
-    , addPaused(in.addPaused)
-    , filePriorities(in.filePriorities)
-    , ratioLimit(in.ignoreShareRatio ? TorrentHandle::NO_RATIO_LIMIT : TorrentHandle::USE_GLOBAL_RATIO)
-{
-}
-
 // TorrentHandle
 
 #define SAFE_CALL(func, ...) \
@@ -892,12 +872,12 @@ int TorrentHandle::leechsCount() const
 
 int TorrentHandle::totalSeedsCount() const
 {
-	return m_nativeStatus.list_seeds;
+    return m_nativeStatus.list_seeds;
 }
 
 int TorrentHandle::totalPeersCount() const
 {
-	return m_nativeStatus.list_peers;
+    return m_nativeStatus.list_peers;
 }
 
 int TorrentHandle::totalLeechersCount() const

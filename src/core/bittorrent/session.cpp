@@ -755,7 +755,7 @@ void Session::handleDownloadFailed(const QString &url, const QString &reason)
 
 void Session::handleRedirectedToMagnet(const QString &url, const QString &magnetUri)
 {
-    addTorrent_impl(m_downloadedTorrents.take(url), MagnetUri(magnetUri));
+    addTorrent_impl(addDataFromParams(m_downloadedTorrents.take(url)), MagnetUri(magnetUri));
 }
 
 void Session::switchToAlternativeMode(bool alternative)
@@ -767,7 +767,7 @@ void Session::switchToAlternativeMode(bool alternative)
 void Session::handleDownloadFinished(const QString &url, const QString &filePath)
 {
     emit downloadFromUrlFinished(url);
-    addTorrent_impl(m_downloadedTorrents.take(url), MagnetUri(), TorrentInfo::loadFromFile(filePath));
+    addTorrent_impl(addDataFromParams(m_downloadedTorrents.take(url)), MagnetUri(), TorrentInfo::loadFromFile(filePath));
     Utils::Fs::forceRemove(filePath); // remove temporary file
 }
 
@@ -1001,7 +1001,7 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
 
         // use common 2nd step of torrent addition
         libt::add_torrent_alert *alert = new libt::add_torrent_alert(handle, libt::add_torrent_params(), libt::error_code());
-        m_addingTorrents.insert(hash, AddTorrentData(params));
+        m_addingTorrents.insert(hash, addDataFromParams(params));
         handleAddTorrentAlert(alert);
         delete alert;
         return true;
@@ -1022,10 +1022,10 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
         m_downloadedTorrents[handler->url()] = params;
     }
     else if (source.startsWith("magnet:", Qt::CaseInsensitive)) {
-        return addTorrent_impl(params, MagnetUri(source));
+        return addTorrent_impl(addDataFromParams(params), MagnetUri(source));
     }
     else {
-        return addTorrent_impl(params, MagnetUri(), TorrentInfo::loadFromFile(source));
+        return addTorrent_impl(addDataFromParams(params), MagnetUri(), TorrentInfo::loadFromFile(source));
     }
 
     return false;
@@ -1035,7 +1035,7 @@ bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams 
 {
     if (!torrentInfo.isValid()) return false;
 
-    return addTorrent_impl(params, MagnetUri(), torrentInfo);
+    return addTorrent_impl(addDataFromParams(params), MagnetUri(), torrentInfo);
 }
 
 // Add a torrent to the BitTorrent session
@@ -1110,15 +1110,6 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
     Preferences *const pref = Preferences::instance();
     p.max_connections = pref->getMaxConnecsPerTorrent();
     p.max_uploads = pref->getMaxUploadsPerTorrent();
-
-    if (addData.savePath.isEmpty()) {
-        addData.savePath = m_defaultSavePath;
-        if (m_appendLabelToSavePath && !addData.label.isEmpty())
-            addData.savePath +=  QString("%1/").arg(addData.label);
-    }
-    else if (!addData.savePath.endsWith("/")) {
-        addData.savePath += "/";
-    }
 
     QString savePath;
     // Set actual save path (e.g. temporary folder)
@@ -2489,4 +2480,34 @@ void torrentQueuePositionBottom(const libt::torrent_handle &handle)
     catch (std::exception &exc) {
         qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
     }
+}
+
+AddTorrentData Session::addDataFromParams(const AddTorrentParams &params)
+{
+    AddTorrentData data;
+
+    data.resumed = false;
+    data.name = params.name;
+    data.label = params.label;
+    data.savePath = params.savePath;
+    data.disableTempPath = params.disableTempPath;
+    data.sequential = params.sequential;
+    data.hasSeedStatus = params.skipChecking; // do not react on 'torrent_finished_alert' when skipping
+    data.skipChecking = params.skipChecking;
+    data.addForced = params.addForced;
+    data.addPaused = params.addPaused;
+    data.filePriorities = params.filePriorities;
+    data.ratioLimit = params.ignoreShareRatio ? TorrentHandle::NO_RATIO_LIMIT : TorrentHandle::USE_GLOBAL_RATIO;
+
+    // normalize save path
+    if (data.savePath.isEmpty()) {
+        data.savePath = m_defaultSavePath;
+        if (m_appendLabelToSavePath && !data.label.isEmpty())
+            data.savePath +=  QString("%1/").arg(data.label);
+    }
+    else if (!data.savePath.endsWith("/")) {
+        data.savePath += "/";
+    }
+
+    return data;
 }
