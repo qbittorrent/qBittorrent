@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>QBT_TR(Deletion confirmation - qBittorrent)QBT_TR</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        var hashes = new URI().getData('hashes').split('|');
+        window.addEvent('domready', function(){
+            $('cancelBtn').focus();
+            $('cancelBtn').addEvent('click', function(e){
+                new Event(e).stop();
+                window.parent.closeWindows();
+            });
+            $('confirmBtn').addEvent('click', function(e){
+                new Event(e).stop();
+                var cmd = 'command/delete';
+                if($('deleteFromDiskCB').get('checked'))
+                     cmd = 'command/deletePerm';
+                new Request({
+                    url: cmd,
+                    method: 'post',
+                    data: {
+                        'hashes': hashes.join('|')
+                    },
+                    onComplete: function() {
+                        window.parent.closeWindows();
+                    }
+                }).send();
+            });
+        });
+    </script>
+</head>
+<body>
+<br/>
+
+	<p>&nbsp;&nbsp;QBT_TR(Are you sure you want to delete the selected torrents from the transfer list?)QBT_TR</p>
+        &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="deleteFromDiskCB"/> <label for="deleteFromDiskCB"><i>QBT_TR(Also delete the files on the hard disk)QBT_TR</i></label><br/><br/>
+<div style="text-align: right;">
+	<input type="button" id="cancelBtn" value="QBT_TR(No)QBT_TR" />&nbsp;&nbsp;<input type="button" id="confirmBtn" value="QBT_TR(Yes)QBT_TR"/>&nbsp;&nbsp;
+</div>
+</body>
+</html>

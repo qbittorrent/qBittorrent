@@ -20,13 +20,10 @@
       <widget class="QComboBox" name="comboCategory"/>
      </item>
      <item>
+      <widget class="QComboBox" name="selectEngine"/>
+     </item>
+     <item>
       <widget class="QPushButton" name="search_button">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>29</height>
-        </size>
-       </property>
        <property name="text">
         <string>Search</string>
        </property>
@@ -118,6 +115,16 @@
          </property>
          <property name="text">
           <string>Go to description page</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="copyURLBtn">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Copy description page URL</string>
          </property>
         </widget>
        </item>

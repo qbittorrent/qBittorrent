@@ -47,32 +47,31 @@ class QStandardItemModel;
 QT_END_NAMESPACE
 
 class SearchTab: public QWidget, public Ui::search_engine {
-  Q_OBJECT
+    Q_OBJECT
 
 private:
-  QVBoxLayout *box;
-  QLabel *results_lbl;
-  QTreeView *resultsBrowser;
-  QStandardItemModel *SearchListModel;
-  SearchSortModel *proxyModel;
-  SearchListDelegate *SearchDelegate;
-  SearchEngine *parent;
+    QVBoxLayout *box;
+    QLabel *results_lbl;
+    QTreeView *resultsBrowser;
+    QStandardItemModel *SearchListModel;
+    SearchSortModel *proxyModel;
+    SearchListDelegate *SearchDelegate;
+    SearchEngine *parent;
 
 protected slots:
-  void downloadSelectedItem(const QModelIndex& index);
+    void downloadSelectedItem(const QModelIndex& index);
 
 public:
-  SearchTab(SearchEngine *parent);
-  ~SearchTab();
-  bool loadColWidthResultsList();
-  QLabel * getCurrentLabel();
-  QStandardItemModel* getCurrentSearchListModel() const;
-  QSortFilterProxyModel* getCurrentSearchListProxy() const;
-  QTreeView * getCurrentTreeView();
-  void setRowColor(int row, QString color);
-  QHeaderView* header() const;
-
-
+    SearchTab(SearchEngine *parent);
+    ~SearchTab();
+    bool loadColWidthResultsList();
+    QLabel * getCurrentLabel();
+    QStandardItemModel* getCurrentSearchListModel() const;
+    QSortFilterProxyModel* getCurrentSearchListProxy() const;
+    QTreeView * getCurrentTreeView();
+    void setRowColor(int row, QString color);
+    QHeaderView* header() const;
+    QString status;
 };
 
 #endif

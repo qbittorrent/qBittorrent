@@ -9,18 +9,17 @@ exists($$OUT_PWD/../conf.pri) {
     include(conf.pri)
 }
 
+# C++11 support
+lessThan(QT_MAJOR_VERSION, 5): QMAKE_CXXFLAGS += -std=c++11
+
 # COMPILATION SPECIFIC
-!nox:dbus {
-  QT += dbus
-}
+!nogui:dbus: QT += dbus
 
 QMAKE_CXXFLAGS += -Wformat -Wformat-security
-!haiku {
- QMAKE_LFLAGS_APP += -rdynamic
-}
+!haiku: QMAKE_LFLAGS_APP += -rdynamic
 
 # Man page
-nox {
+nogui {
     man.files = ../doc/qbittorrent-nox.1
 } else {
     man.files = ../doc/qbittorrent.1
@@ -29,62 +28,65 @@ nox {
 man.path = $$MANPREFIX/man1
 INSTALLS += man
 
+DIST_PATH = ../dist/unix
+
+# Systemd Service file
+nogui:systemd {
+    systemdService.files = $$DIST_PATH/systemd/qbittorrent-nox.service
+    systemdService.path = $$PREFIX/lib/systemd/system/
+    INSTALLS += systemdService
+}
+
 # Menu Icon
-!nox {
-      menuicon.files = Icons/qBittorrent.desktop
-      menuicon.path = $$PREFIX/share/applications/
-      INSTALLS += menuicon
-      icon16.files = menuicons/16x16/apps/qbittorrent.png
-      icon16.path = $$PREFIX/share/icons/hicolor/16x16/apps/
-      icon22.files = menuicons/22x22/apps/qbittorrent.png
-      icon22.path = $$PREFIX/share/icons/hicolor/22x22/apps/
-      icon24.files = menuicons/24x24/apps/qbittorrent.png
-      icon24.path = $$PREFIX/share/icons/hicolor/24x24/apps/
-      icon32.files = menuicons/32x32/apps/qbittorrent.png
-      icon32.path = $$PREFIX/share/icons/hicolor/32x32/apps/
-      icon36.files = menuicons/36x36/apps/qbittorrent.png
-      icon36.path = $$PREFIX/share/icons/hicolor/36x36/apps/
-      icon48.files = menuicons/48x48/apps/qbittorrent.png
-      icon48.path = $$PREFIX/share/icons/hicolor/48x48/apps/
-      icon64.files = menuicons/64x64/apps/qbittorrent.png
-      icon64.path = $$PREFIX/share/icons/hicolor/64x64/apps/
-      icon72.files = menuicons/72x72/apps/qbittorrent.png
-      icon72.path = $$PREFIX/share/icons/hicolor/72x72/apps/
-      icon96.files = menuicons/96x96/apps/qbittorrent.png
-      icon96.path = $$PREFIX/share/icons/hicolor/96x96/apps/
-      icon128.files = menuicons/128x128/apps/qbittorrent.png
-      icon128.path = $$PREFIX/share/icons/hicolor/128x128/apps/
-      icon192.files = menuicons/192x192/apps/qbittorrent.png
-      icon192.path = $$PREFIX/share/icons/hicolor/192x192/apps/
+!nogui {
+    menuicon.files = icons/qBittorrent.desktop
+    menuicon.path = $$DATADIR/applications/
+    INSTALLS += menuicon
 
-      INSTALLS += icon16 \
-          icon22 \
-          icon24 \
-          icon32 \
-          icon36 \
-          icon48 \
-          icon64 \
-          icon72 \
-          icon96 \
-          icon128 \
-          icon192
+    appdata.files = $$DIST_PATH/qBittorrent.appdata.xml
+    appdata.path = $$DATADIR/appdata/
+    INSTALLS += appdata
 
-      pixmap.files = menuicons/128x128/apps/qbittorrent.png
-      pixmap.path = $$PREFIX/share/pixmaps/
-      INSTALLS += pixmap
+    icon16.files = $$DIST_PATH/menuicons/16x16/apps/qbittorrent.png
+    icon16.path = $$DATADIR/icons/hicolor/16x16/apps/
+    icon22.files = $$DIST_PATH/menuicons/22x22/apps/qbittorrent.png
+    icon22.path = $$DATADIR/icons/hicolor/22x22/apps/
+    icon24.files = $$DIST_PATH/menuicons/24x24/apps/qbittorrent.png
+    icon24.path = $$DATADIR/icons/hicolor/24x24/apps/
+    icon32.files = $$DIST_PATH/menuicons/32x32/apps/qbittorrent.png
+    icon32.path = $$DATADIR/icons/hicolor/32x32/apps/
+    icon36.files = $$DIST_PATH/menuicons/36x36/apps/qbittorrent.png
+    icon36.path = $$DATADIR/icons/hicolor/36x36/apps/
+    icon48.files = $$DIST_PATH/menuicons/48x48/apps/qbittorrent.png
+    icon48.path = $$DATADIR/icons/hicolor/48x48/apps/
+    icon64.files = $$DIST_PATH/menuicons/64x64/apps/qbittorrent.png
+    icon64.path = $$DATADIR/icons/hicolor/64x64/apps/
+    icon72.files = $$DIST_PATH/menuicons/72x72/apps/qbittorrent.png
+    icon72.path = $$DATADIR/icons/hicolor/72x72/apps/
+    icon96.files = $$DIST_PATH/menuicons/96x96/apps/qbittorrent.png
+    icon96.path = $$DATADIR/icons/hicolor/96x96/apps/
+    icon128.files = $$DIST_PATH/menuicons/128x128/apps/qbittorrent.png
+    icon128.path = $$DATADIR/icons/hicolor/128x128/apps/
+    icon192.files = $$DIST_PATH/menuicons/192x192/apps/qbittorrent.png
+    icon192.path = $$DATADIR/icons/hicolor/192x192/apps/
+    INSTALLS += \
+        icon16 \
+        icon22 \
+        icon24 \
+        icon32 \
+        icon36 \
+        icon48 \
+        icon64 \
+        icon72 \
+        icon96 \
+        icon128 \
+        icon192
+
+    pixmap.files = $$DIST_PATH/menuicons/128x128/apps/qbittorrent.png
+    pixmap.path = $$DATADIR/pixmaps/
+    INSTALLS += pixmap
 }
 
 # INSTALL
 target.path = $$PREFIX/bin/
 INSTALLS += target
-
-dbus {
-  include(src/qtnotify/qtnotify.pri)
-}
-
-!nox {
-  # DEFINE added by configure
-  contains(DEFINES, WITH_GEOIP_EMBEDDED) {
-    message("You chose to embed GeoIP database in qBittorrent executable.")
-  }
-}

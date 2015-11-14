@@ -1,0 +1,428 @@
+/*
+
+Core.css for Mocha UI
+
+Theme: Default
+
+Copyright:
+	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	
+License:
+	MIT-style license.
+
+Required by:
+	Layout.js
+ 
+*/
+
+/* Layout
+---------------------------------------------------------------- */
+
+html, body {
+	background: #fff;	
+}	
+
+body {
+	margin: 0; /* Required */
+}
+
+#desktop {
+	position: relative;
+	min-width: 400px; /* Helps keep header content from wrapping */
+	height: 100%;
+	min-height: 100%;
+	overflow: hidden;
+	cursor: default; /* Fix for issue in IE7. IE7 wants to use the I-bar text cursor */
+}
+
+#desktopHeader {
+	background: #f2f2f2;
+}
+
+#desktopTitlebarWrapper {
+	position: relative;	
+	height: 45px;
+	overflow: hidden;
+	background: #718BA6 url(../images/skin/bg-header.gif) repeat-x;
+}
+
+#desktopTitlebar {
+	padding: 7px 8px 6px 8px;
+	height: 32px;
+	background: url(../images/skin/logo.gif) no-repeat;
+	background-position: left 0;
+}
+
+#desktopTitlebar h1.applicationTitle {
+	display: none;
+	margin: 0;
+	padding: 0 5px 0 0;
+	font-size: 20px;
+	line-height: 25px;
+	font-weight: bold;
+	color: #fff;
+}
+
+#desktopTitlebar h2.tagline {
+	padding: 7px 0 0 0;	
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;    
+	color: #d4dce4;    
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#desktopTitlebar h2.tagline .taglineEm {
+	color: #fff;
+	font-weight: bold;
+}
+
+#topNav {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	color: #d4dce4;
+	text-align: right;
+	padding: 13px 10px 0 0;
+}
+
+#topNav a {
+	color: #fff;
+	font-weight: normal;
+}
+
+#topNav a:hover {
+	text-decoration: none;
+}
+
+/* Navbar */
+
+#desktopNavbar {
+	background: #f2f2f2;
+	/*height: 30px;*/
+	margin: 0 0px;
+	overflow: hidden; /* Remove this line if you want the menu to be backward compatible with Firefox 2 */
+	/* Fixes by Chris */
+	/*background-color: #ccc;*/
+	height: 20px;
+	border-bottom: 1px solid #3f3f3f;
+}
+
+#desktopNavbar ul {	
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	font-size: 12px;
+}
+
+#desktopNavbar>ul>li {
+	float: left;
+}
+
+#desktopNavbar a {
+	display: block;
+}	
+	
+#desktopNavbar ul li a {
+	/*padding: 6px 10px 6px 10px;*/
+	color: #333;
+	font-weight: normal;
+	/* Fix by Chris */
+	padding: 2px 10px 6px 10px;
+}
+
+#desktopNavbar ul li a:hover {
+	color: #333;
+	/* Fix By Chris */
+        background-color: #fff;
+}
+
+#desktopNavbar ul li a.arrow-right, #desktopNavbar ul li a:hover.arrow-right {
+	background-image: url(../images/skin/arrow-right.gif);
+	background-repeat: no-repeat;
+	background-position: right 7px;	
+} 
+
+#desktopNavbar li ul {
+	border: 1px solid #3f3f3f;
+	background: #fff url(../images/skin/bg-dropdown.gif) repeat-y;
+	position: absolute;
+	left: -999em;
+	z-index: 8000;
+	/* Fix by Chris */
+	margin-top: -6px;
+}
+
+#desktopNavbar li:hover ul ul,
+#desktopNavbar li.ieHover ul ul,
+#desktopNavbar li:hover ul ul ul,
+#desktopNavbar li.ieHover ul ul ul {
+	left: -999em;
+}
+
+#desktopNavbar li ul ul { /* third-and-above-level lists */
+	margin: -22px 0 0 163px;
+}
+
+#desktopNavbar li ul li .check {
+	position: absolute;
+	top: 8px;
+	left: 6px;
+	width: 5px;
+	height: 5px;
+	background: #555;
+	overflow: hidden;
+	line-height: 1px;
+	font-size: 1px;
+}
+
+#desktopNavbar li ul li a {
+	position: relative;
+	/*padding: 1px 9px 1px 25px;*/
+	min-width: 120px;
+	color: #3f3f3f;
+	font-weight: normal;
+	/* Fix By Chris */
+	padding: 1px 10px 1px 20px; /* Reduce left padding */
+}
+
+#desktopNavbar li ul li a:hover {
+	background: #6C98D9;
+	color: #fff;
+	-moz-border-radius: 2px;	
+}
+
+#desktopNavbar li ul li a:hover .check {
+	background: #fff;
+}
+
+#desktopNavbar li:hover ul,
+#desktopNavbar li.ieHover ul,
+#desktopNavbar li li.ieHover ul,
+#desktopNavbar li li li.ieHover ul,
+#desktopNavbar li li:hover ul,
+#desktopNavbar li li li:hover ul { /* lists nested under hovered list items */
+	left: auto;
+}
+
+#desktopNavbar li:hover { /* For IE7 */
+    position: static;
+}
+
+li.divider {
+	margin-top: 2px;
+	padding-top: 3px;	
+	border-top: 1px solid #ebebeb;
+}	
+
+#pageWrapper {
+	position: relative;
+	overflow: hidden; /* This can be set to hidden or auto */
+	border-top: 1px solid #909090;
+	border-bottom: 1px solid #909090;
+	/*height: 100%;*/
+}
+
+/* Footer */
+
+#desktopFooterWrapper {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 30px;
+	overflow: hidden;
+}
+
+#desktopFooter {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	height: 24px;
+	padding: 6px 8px 0 8px;
+	background: #f2f2f2;
+}
+
+
+
+/* Panel Layout
+---------------------------------------------------------------- */
+
+/* Columns */
+
+.column {
+	position: relative;	
+	float: left;
+	overflow: hidden; /* Required by IE6 */
+}
+
+/* Panels */
+
+.panel {
+	position: relative;
+	overflow: auto;
+	background: #f8f8f8;	
+	border-bottom: 1px solid #b9b9b9;
+}
+
+.panelWrapper.collapsed .panel-header {
+	border-bottom: 0;	
+}
+
+.panelAlt {
+	background: #f2f2f2;	
+}
+
+.bottomPanel {
+	border-bottom: 0;	
+}	
+
+.pad {
+	padding: 8px;
+}
+
+#mainPanel {
+	background: #fff; 	
+}	
+
+.panel-header {
+	position: relative;	
+	background: #f1f1f1 url(../images/skin/bg-panel-header.gif) repeat-x;
+	height: 30px;
+	overflow: hidden;
+	border-bottom: 1px solid #d3d3d3;		
+}
+
+.panel-headerContent {
+	padding-top: 2px;
+}	
+
+.panel-headerContent.tabs {
+	background: url(../images/skin/tabs.gif) repeat-x;
+	background-position: left -68px;	
+}
+
+.panel-header h2 {
+	display: inline-block;
+	font-size: 12px;
+	margin: 0;
+	padding: 3px 8px 0 8px;
+	height: 22px;
+	overflow: hidden;
+	color: #333;
+}
+
+.panel-collapse {
+	background: url(../images/skin/collapse-expand.gif) left top no-repeat;
+}
+
+.panel-expand {
+	background: url(../images/skin/collapse-expand.gif) left -16px no-repeat;
+}
+
+.icon16 {
+	margin: 4px 0 0 2px;
+	cursor: pointer;
+}
+
+/* Column and Panel Handles */	
+
+.horizontalHandle {
+	height: 4px;
+	line-height: 1px;
+	font-size: 1px;
+	overflow: hidden;
+	background: #eee url(../images/skin/bg-handle-horizontal.gif) repeat-x;
+}
+
+.horizontalHandle.detached .handleIcon {
+	background: transparent;	
+}
+
+.horizontalHandle .handleIcon {	
+	margin: 0 auto;
+	height: 4px;
+	line-height: 1px;
+	font-size: 1px;
+	overflow: hidden;
+	background: url(../images/skin/handle-icon-horizontal.gif) center center no-repeat;
+}
+
+.columnHandle {
+	min-height: 10px;	
+	float: left;
+	width: 4px;
+	overflow: hidden;
+	background: #c3c3c3 url(../images/skin/handle-icon.gif) center center no-repeat;
+	border: 1px solid #909090;
+	border-top: 0;
+	border-bottom: 0;
+}
+
+/* Toolboxes */
+
+.toolbox {
+	float: right;
+	margin-top: 3px;
+	padding: 0 5px;
+	height: 24px;
+	overflow: hidden;
+	text-align: right;
+}
+
+.panel-header-toolbox {
+}
+
+div.toolbox.divider { /* Have to specify div here for IE6's sake */
+	background: url(../images/skin/toolbox-divider.gif) repeat-y;
+	padding-left: 8px;
+}
+
+.toolbox img.disabled {
+	cursor: default;
+}
+
+.iconWrapper {
+	display: inline-block;
+	height: 22px;
+	min-width: 22px;
+	overflow: hidden;
+	border: 1px solid transparent;
+}
+
+* html .iconWrapper {
+	padding: 1px;
+	border: 0;
+}
+
+.iconWrapper img {
+	cursor: pointer;
+	margin: 0;
+	padding: 3px;
+}
+
+.iconWrapper:hover {
+	border: 1px solid #a0a0a0;
+	-moz-border-radius: 3px;	
+}
+
+#spinnerWrapper {
+    width: 16px;
+    height: 16px;
+    background: url(../images/skin/spinner-placeholder.gif) no-repeat;
+    margin: 4px 5px 0 5px;
+}
+
+#spinner {
+	display: none;
+	background: url(../images/skin/spinner.gif) no-repeat;
+	width: 16px;
+	height: 16px;
+}	
+
+#desktopFooter td {
+	vertical-align: top;
+	text-align: center;
+}

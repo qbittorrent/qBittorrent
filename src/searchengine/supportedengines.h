@@ -41,8 +41,9 @@
 #include <QApplication>
 #include <QDebug>
 
-#include "fs_utils.h"
-#include "preferences.h"
+#include "core/utils/fs.h"
+#include "core/utils/misc.h"
+#include "core/preferences.h"
 
 class SearchCategories: public QObject, public QHash<QString, QString> {
   Q_OBJECT
@@ -113,6 +114,12 @@ public:
     qDeleteAll(this->values());
   }
 
+  QStringList enginesAll() const {
+    QStringList engines;
+    foreach (const SupportedEngine *engine, values()) engines << engine->getName();
+    return engines;
+  }
+
   QStringList enginesEnabled() const {
     QStringList engines;
     foreach (const SupportedEngine *engine, values()) {
@@ -142,9 +149,9 @@ public slots:
     QProcess nova;
     nova.setEnvironment(QProcess::systemEnvironment());
     QStringList params;
-    params << fsutils::toNativePath(fsutils::searchEngineLocation()+"/nova2.py");
+    params << Utils::Fs::toNativePath(Utils::Fs::searchEngineLocation()+"/nova2.py");
     params << "--capabilities";
-    nova.start("python", params, QIODevice::ReadOnly);
+    nova.start(Utils::Misc::pythonExecutable(), params, QIODevice::ReadOnly);
     nova.waitForStarted();
     nova.waitForFinished();
     QString capabilities = QString(nova.readAll());

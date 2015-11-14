@@ -1,29 +1,24 @@
-INCLUDEPATH += $$PWD
+HEADERS += \
+    $$PWD/webui.h \
+    $$PWD/btjson.h \
+    $$PWD/prefjson.h \
+    $$PWD/jsonutils.h \
+    $$PWD/extra_translations.h \
+    $$PWD/webapplication.h \
+    $$PWD/websessiondata.h \
+    $$PWD/abstractwebapplication.h
 
-HEADERS += $$PWD/httpserver.h \
-           $$PWD/httpconnection.h \
-           $$PWD/httprequestparser.h \
-           $$PWD/httpresponsegenerator.h \
-           $$PWD/btjson.h \
-           $$PWD/prefjson.h \
-           $$PWD/httpheader.h \
-           $$PWD/httprequestheader.h \
-           $$PWD/httpresponseheader.h \
-           $$PWD/jsonutils.h
-
-SOURCES += $$PWD/httpserver.cpp \
-           $$PWD/httpconnection.cpp \
-           $$PWD/httprequestparser.cpp \
-           $$PWD/httpresponsegenerator.cpp \
-           $$PWD/btjson.cpp \
-           $$PWD/prefjson.cpp \
-           $$PWD/httpheader.cpp \
-           $$PWD/httprequestheader.cpp \
-           $$PWD/httpresponseheader.cpp
+SOURCES += \
+    $$PWD/webui.cpp \
+    $$PWD/btjson.cpp \
+    $$PWD/prefjson.cpp \
+    $$PWD/webapplication.cpp \
+    $$PWD/abstractwebapplication.cpp
 
 # QJson JSON parser/serializer for using with Qt4
 lessThan(QT_MAJOR_VERSION, 5) {
-  include(qjson/qjson.pri)
+    !usesystemqjson: include(qjson/qjson.pri)
+    else: DEFINES += USE_SYSTEM_QJSON
 }
 
 RESOURCES += $$PWD/webui.qrc

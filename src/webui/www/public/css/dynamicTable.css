@@ -1,0 +1,84 @@
+
+
+/**************************************************************
+
+	Dynamic Table
+	v 0.4
+
+**************************************************************/
+
+#properties #torrentFiles table,
+#properties #trackers table,
+#transferList table {
+	border: 1px solid #ccc;
+	width: 100%;
+}
+
+#properties #torrentFiles th,
+#properties #trackers th,
+#transferList th {
+	background-color: #eee;
+	padding: 4px;
+}
+
+#properties #torrentFiles tr,
+#properties #trackers tr,
+#transferList tr {
+	background-color: #fff;
+	padding: 4px;
+}
+
+
+#myTable tr:nth-child(even),
+#filesTable tr:nth-child(even),
+#properties #torrentFiles tr.alt,
+#properties #trackers tr.alt,
+#transferList tr.alt {
+	background-color: #eee;
+	padding: 4px;
+}
+
+#properties #torrentFiles td,
+#properties #trackers td,
+#transferList td {
+	padding: 0 2px;
+}
+
+#properties #torrentFiles tr.selected,
+#properties #trackers tr.selected,
+#transferList tr.selected {
+	background-color: #354158;
+	color: #fff;
+}
+
+#myTable tr:hover,
+#filesTable tr:hover,
+#properties #torrentFiles tr.over,
+#properties #trackers tr.over,
+#transferList tr.over {
+	background-color: #ee6600;
+	color: #fff;
+}
+
+#myTable tr:hover,
+#properties #torrentFiles tr.over,
+#properties #trackers tr.over,
+#transferList tr.over {
+	cursor: pointer;
+}
+
+#transferList img.statusIcon {
+  margin-bottom: -4px;
+}
+
+#trackers th,
+#trackers td,
+#torrentFiles th,
+#torrentFiles td,
+#transferList th,
+#transferList td {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	max-width: 300px;
+}

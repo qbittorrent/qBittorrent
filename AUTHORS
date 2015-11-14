@@ -17,7 +17,7 @@ Contributors:
 * Nick Tiskov <daymansmail@gmail.com>
 
 Code from other projects:
-* files src/qtsingleapp/* src/lineedit/*
+* files src/qtsingleapplication/* src/lineedit/*
   copyright: Nokia Corporation
   license: LGPL
 
@@ -34,7 +34,7 @@ Code from other projects:
   license: GPLv2/3
 
 Images Authors:
-* files: src/Icons/*.png
+* files: src/icons/*.png
   copyright: Gnome Icon Theme
   license: GPLv2
   url: http://ftp.acc.umu.se/pub/GNOME/sources/gnome-icon-theme
@@ -44,21 +44,21 @@ Images Authors:
   license: LGPL
   url: http://www.oxygen-icons.org
 
-* files: src/Icons/flags/*.png
+* files: src/icons/flags/*.png
   copyright: Mark James <mjames@gmail.com>
   license: Public Domain
   url: http://www.famfamfam.com
 
-* files: src/Icons/skin/*.png
+* files: src/icons/skin/*.png
   files: src/menuicons/YYxYY/*.png
   copyright: Mateusz Tobola <tobejodok@qbittorrent.org>
   license: GPLv2
 
-* file: src/Icons/skin/tabs.gif
+* file: src/icons/skin/tabs.gif
   copyright: Greg Houston <gregory.houston@gmail.com>
   license: MIT
 
-* file: src/Icons/skin/qbittorrent_mono*
+* file: src/icons/skin/qbittorrent_mono*
   copyright: Daniel Eguren <deguren@gmail.com>
   license: LGPL
 
@@ -77,9 +77,12 @@ Images Authors:
 * file: src/search_engine/engines/torrentreactor.png
   copyright: Downloaded from torrentreactor.net
 
+* file: src/icons/oxygen/checked.png
+  copyright: Victor Buinsky <allok.victor@gmail.com>
+
 Translations authors:
 * files: src/lang/*.ts
-* file: src/Icons/qBittorrent.desktop
+* file: src/icons/qBittorrent.desktop
   copyright:
   - Arabic: SDERAWI (abz8868@msn.com), sn51234 (nesseyan@gmail.com) and  Ibrahim Saed ibraheem_alex(Transifex)
   - Armenian: Hrant Ohanyan (hrantohanyan@mail.am)

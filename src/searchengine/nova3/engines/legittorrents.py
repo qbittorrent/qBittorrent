@@ -1,5 +1,6 @@
-#VERSION: 1.02
+#VERSION: 2.00
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
+#         Douman (custparasite@gmx.se)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -28,82 +29,73 @@
 
 from novaprinter import prettyPrinter
 from helpers import retrieve_url, download_file
-import sgmllib
-import re
+from html.parser import HTMLParser
+from re import compile as re_compile
 
 class legittorrents(object):
-  url = 'http://www.legittorrents.info'
-  name = 'legittorrents'
-  supported_categories = {'all': '', 'movies': '1', 'tv': '13', 'music': '2', 'games': '3', 'anime': '5', 'books': '6'}
+    url = 'http://www.legittorrents.info'
+    name = 'Legit Torrents'
+    supported_categories = {'all': '0', 'movies': '1', 'tv': '13', 'music': '2', 'games': '3', 'anime': '5', 'books': '6'}
 
-  def __init__(self):
-    self.results = []
-    self.parser = self.SimpleSGMLParser(self.results, self.url)
+    def download_torrent(self, info):
+        print(download_file(info))
 
-  def download_torrent(self, info):
-    print(download_file(info))
+    class MyHtmlParseWithBlackJack(HTMLParser):
+        """ Parser class """
+        def __init__(self, url):
+            HTMLParser.__init__(self)
+            self.url = url
+            self.current_item = None
+            self.save_item_key = None
 
-  class SimpleSGMLParser(sgmllib.SGMLParser):
-    def __init__(self, results, url, *args):
-      sgmllib.SGMLParser.__init__(self)
-      self.url = url
-      self.td_counter = None
-      self.current_item = None
-      self.start_name = False
-      self.results = results
-
-    def start_a(self, attr):
-      params = dict(attr)
-      if 'href' in params and params['href'].startswith('download.php?'):
-        self.current_item['link'] = self.url + '/' + params['href'].strip()
-      elif 'href' in params and params['href'].startswith('index.php?page=torrent-details'):
-        self.current_item = {}
-        self.td_counter = 0
-        self.current_item['desc_link'] = self.url + '/' + params['href'].strip()
-
-    def handle_data(self, data):
-      if self.td_counter == 0:
-        if 'name' not in self.current_item:
-          self.current_item['name'] = data.strip()
-      elif self.td_counter == 3:
-        if 'seeds' not in self.current_item:
-          self.current_item['seeds'] = ''
-        self.current_item['seeds']+= data.strip()
-      elif self.td_counter == 4:
-        if 'leech' not in self.current_item:
-          self.current_item['leech'] = ''
-        self.current_item['leech']+= data.strip()
-
-    def start_td(self,attr):
-        if isinstance(self.td_counter,int):
-          self.td_counter += 1
-          if self.td_counter > 5:
-            self.td_counter = None
-            # Display item
+        def handle_starttag(self, tag, attrs):
+            """ Parser's start tag handler """
             if self.current_item:
-              self.current_item['engine_url'] = self.url
-              if not self.current_item['seeds'].isdigit():
-                self.current_item['seeds'] = 0
-              if not self.current_item['leech'].isdigit():
-                self.current_item['leech'] = 0
-              self.current_item['size'] = ''
-              prettyPrinter(self.current_item)
-              self.results.append('a')
+                params = dict(attrs)
+                if tag == "a":
+                    link = params["href"]
+                    if link.startswith("index") and "title" in params:
+                        #description link
+                        self.current_item["name"] = params["title"][14:]
+                        self.current_item["desc_link"] = "/".join((self.url, link))
+                    elif link.startswith("download"):
+                        self.current_item["link"] = "/".join((self.url, link))
+                elif tag == "td":
+                    if "class" in params and params["class"].startswith("#FF"):
+                        self.save_item_key = "leech" if "seeds" in self.current_item else "seeds"
 
-  def search(self, what, cat='all'):
-    ret = []
-    i = 1
-    while True and i<11:
-      results = []
-      parser = self.SimpleSGMLParser(results, self.url)
-      dat = retrieve_url(self.url+'/index.php?page=torrents&search=%s&category=%s&active=1&order=3&by=2&pages=%d'%(what, self.supported_categories[cat], i))
-      results_re = re.compile('(?s)<table width="100%" class="lista">.*')
-      for match in results_re.finditer(dat):
-        res_tab = match.group(0)
-        parser.feed(res_tab)
+            elif tag == "tr":
+                self.current_item = {}
+                self.current_item["size"] = ""
+                self.current_item["engine_url"] = self.url
+
+        def handle_endtag(self, tag):
+            """ Parser's end tag handler """
+            if self.current_item and tag == "tr":
+                if len(self.current_item) > 4:
+                    prettyPrinter(self.current_item)
+                self.current_item = None
+
+        def handle_data(self, data):
+            """ Parser's data handler """
+            if self.save_item_key:
+                self.current_item[self.save_item_key] = data.strip()
+                self.save_item_key = None
+
+    def search(self, what, cat='all'):
+        """ Performs search """
+        query = "".join((self.url, "/index.php?page=torrents&search=", what, "&category=", self.supported_categories.get(cat, '0'), "&active=1"))
+
+        get_table = re_compile('(?s)<table\sclass="lista".*>(.*)</table>')
+        data = get_table.search(retrieve_url(query)).group(0)
+        #extract first ten pages of next results
+        next_pages = re_compile('(?m)<option value="(.*)">[0-9]+</option>')
+        next_pages = ["".join((self.url, page)) for page in next_pages.findall(data)[:10]]
+
+        parser = self.MyHtmlParseWithBlackJack(self.url)
+        parser.feed(data)
         parser.close()
-        break
-      if len(results) <= 0:
-        break
-      i += 1
 
+        for page in next_pages:
+            parser.feed(get_table.search(retrieve_url(page)).group(0))
+            parser.close()

@@ -1,0 +1,94 @@
+<div id="prop_general">
+    <fieldset>
+    <legend><b>QBT_TR(Transfer)QBT_TR</b></legend>
+    <table style="width: 100%">
+    <tr>
+    <td class="generalLabel">QBT_TR(Time Active:)QBT_TR</td><td id="time_elapsed"></td>
+    <td class="generalLabel">QBT_TR(ETA:)QBT_TR</td><td id="eta"></td>
+    <td class="generalLabel">QBT_TR(Connections:)QBT_TR</td><td id="nb_connections"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Downloaded:)QBT_TR</td><td id="total_downloaded"></td>
+    <td class="generalLabel">QBT_TR(Uploaded:)QBT_TR</td><td id="total_uploaded"></td>
+    <td class="generalLabel">QBT_TR(Seeds:)QBT_TR</td><td id="seeds"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Download Speed:)QBT_TR</td><td id="dl_speed"></td>
+    <td class="generalLabel">QBT_TR(Upload Speed:)QBT_TR</td><td id="up_speed"></td>
+    <td class="generalLabel">QBT_TR(Peers:)QBT_TR</td><td id="peers"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Download Limit:)QBT_TR</td><td id="dl_limit"></td>
+    <td class="generalLabel">QBT_TR(Upload Limit:)QBT_TR</td><td id="up_limit"></td>
+    <td class="generalLabel">QBT_TR(Wasted:)QBT_TR</td><td id="total_wasted"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Share Ratio:)QBT_TR</td><td id="share_ratio"></td>
+    <td class="generalLabel">QBT_TR(Reannounce In:)QBT_TR</td><td id="reannounce"></td>
+    <td class="generalLabel">QBT_TR(Last Seen Complete:)QBT_TR</td><td id="last_seen"></td>
+    </tr>
+    </table>
+    </fieldset>
+    <fieldset>
+    <legend><b>QBT_TR(Information)QBT_TR</b></legend>
+    <table style="width: 100%">
+    <tr>
+    <td class="generalLabel">QBT_TR(Total Size:)QBT_TR</td><td id="total_size"></td>
+    <td class="generalLabel">QBT_TR(Pieces:)QBT_TR</td><td id="pieces"></td>
+    <td class="generalLabel">QBT_TR(Created By:)QBT_TR</td><td id="created_by"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Added On:)QBT_TR</td><td id="addition_date"></td>
+    <td class="generalLabel">QBT_TR(Completed On:)QBT_TR</td><td id="completion_date"></td>
+    <td class="generalLabel">QBT_TR(Created On:)QBT_TR</td><td id="creation_date"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Torrent Hash:)QBT_TR</td><td colspan="5" id="torrent_hash"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Save Path:)QBT_TR</td><td colspan="5" id="save_path"></td>
+    </tr><tr>
+    <td class="generalLabel">QBT_TR(Comment:)QBT_TR</td><td colspan="5" style="white-space: pre-wrap;" id="comment"></td>
+    </tr>
+    </table>
+    </fieldset>
+</div>
+
+<div id="prop_trackers" class="invisible">
+    <div id="trackers">
+        <table class="torrentTable" cellpadding="0" cellspacing="0" style="width: 100%">
+            <thead>
+                <tr>
+                    <th style="width: 30%;">QBT_TR(URL)QBT_TR <img src="theme/list-add" id="addTrackersPlus"/></th>
+                    <th style="width: 10%;">QBT_TR(Status)QBT_TR</th>
+                    <th style="width: 10%;">QBT_TR(Peers)QBT_TR</th>
+                    <th style="width: 50%;">QBT_TR(Message)QBT_TR</th>
+                </tr>
+            </thead>
+            <tbody id="trackersTable"></tbody>
+        </table>
+    </div>
+</div>
+
+<div id="prop_webseeds" class="invisible">
+    <div id="webseeds">
+        <table class="torrentTable" cellpadding="0" cellspacing="0" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>QBT_TR(URL)QBT_TR</th>
+                </tr>
+            </thead>
+            <tbody id="webseedsTable"></tbody>
+        </table>
+    </div>
+</div>
+
+<div id="prop_files" class="invisible">
+    <div id="torrentFiles">
+        <table class="torrentTable" cellpadding="0" cellspacing="0" style="width: 100%">
+            <thead>
+                <tr>
+                    <th style="width: 30px; border-right: 0"><input type="checkbox" id="tristate_cb" style="display: none;" onclick="javascript:switchCBState()" /><label id="all_files_cb" class="tristate" for="tristate_cb"></label></th>
+                    <th>QBT_TR(Name)QBT_TR</th>
+                    <th style="width: 150px;">QBT_TR(Size)QBT_TR</th>
+                    <th style="width: 90px;">QBT_TR(Progress)QBT_TR</th>
+                    <th style="width: 150px; border-right: 0">QBT_TR(Priority)QBT_TR</th>
+                </tr>
+            </thead>
+            <tbody id="filesTable"></tbody>
+        </table>
+    </div>
+</div>

@@ -9,12 +9,15 @@ AC_DEFUN([FIND_QT4],
                  [PKG_CHECK_VAR(QT_QMAKE,
                                 [QtCore >= 4.8.0],
                                 [moc_location],
-                                [QT_QMAKE=`AS_DIRNAME(["$QT_QMAKE"])`/qmake
-                                 AC_CHECK_FILE([$QT_QMAKE],
-                                               [],
-                                               [QT_QMAKE=""])
-                                ])
+                                [QT_QMAKE=`AS_DIRNAME(["$QT_QMAKE"])`])
                  ])
+
+AC_CHECK_FILE([$QT_QMAKE/qmake],
+              [QT_QMAKE="$QT_QMAKE/qmake"],
+              [AC_CHECK_FILE([$QT_QMAKE/qmake-qt4],
+                             [QT_QMAKE="$QT_QMAKE/qmake-qt4"],
+                             [QT_QMAKE=""])
+              ])
 
 AC_MSG_CHECKING([for Qt4 qmake >= 4.8.0])
 AS_IF([test "x$QT_QMAKE" != "x"],
@@ -30,13 +33,15 @@ AC_DEFUN([FIND_QT5],
 [PKG_CHECK_EXISTS([Qt5Core >= 5.2.0],
                  [PKG_CHECK_VAR(QT_QMAKE,
                                 [Qt5Core >= 5.2.0],
-                                [host_bins],
-                                [QT_QMAKE=[$QT_QMAKE]/qmake
-                                 AC_CHECK_FILE([$QT_QMAKE],
-                                               [],
-                                               [QT_QMAKE=""])
-                                ])
+                                [host_bins])
                  ])
+
+AC_CHECK_FILE([$QT_QMAKE/qmake],
+              [QT_QMAKE="$QT_QMAKE/qmake"],
+              [AC_CHECK_FILE([$QT_QMAKE/qmake-qt5],
+                             [QT_QMAKE="$QT_QMAKE/qmake-qt5"],
+                             [QT_QMAKE=""])
+              ])
 
 AC_MSG_CHECKING([for Qt5 qmake >= 5.2.0])
 AS_IF([test "x$QT_QMAKE" != "x"],
@@ -49,7 +54,7 @@ AS_IF([test "x$QT_QMAKE" != "x"],
 # Sets the HAVE_QTDBUS variable to true or false.
 # --------------------------------------
 AC_DEFUN([FIND_QTDBUS],
-[AS_IF([test "x$x$with_qt5" == "xyes"],
+[AS_IF([test "x$with_qt5" = "xyes"],
        [AC_MSG_CHECKING([for Qt5DBus >= 5.2.0])
        PKG_CHECK_EXISTS([Qt5DBus >= 5.2.0],
                         [AC_MSG_RESULT([found])

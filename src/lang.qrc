@@ -17,9 +17,11 @@
   <file>lang/qbittorrent_fr.qm</file>
   <file>lang/qbittorrent_gl.qm</file>
   <file>lang/qbittorrent_he.qm</file>
+  <file>lang/qbittorrent_hi_IN.qm</file>
   <file>lang/qbittorrent_hr.qm</file>
   <file>lang/qbittorrent_hu.qm</file>
   <file>lang/qbittorrent_hy.qm</file>
+  <file>lang/qbittorrent_id.qm</file>
   <file>lang/qbittorrent_it.qm</file>
   <file>lang/qbittorrent_ja.qm</file>
   <file>lang/qbittorrent_ka.qm</file>
@@ -33,6 +35,7 @@
   <file>lang/qbittorrent_ro.qm</file>
   <file>lang/qbittorrent_ru.qm</file>
   <file>lang/qbittorrent_sk.qm</file>
+  <file>lang/qbittorrent_sl.qm</file>
   <file>lang/qbittorrent_sr.qm</file>
   <file>lang/qbittorrent_sv.qm</file>
   <file>lang/qbittorrent_tr.qm</file>
@@ -40,5 +43,6 @@
   <file>lang/qbittorrent_vi.qm</file>
   <file>lang/qbittorrent_zh.qm</file>
   <file>lang/qbittorrent_zh_TW.qm</file>
+  <file>lang/qbittorrent_zh_HK.qm</file>
 </qresource>
 </RCC>

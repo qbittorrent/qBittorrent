@@ -197,7 +197,8 @@ test -x / || exit 1"
   as_suggested="  as_lineno_1=";as_suggested=$as_suggested$LINENO;as_suggested=$as_suggested" as_lineno_1a=\$LINENO
   as_lineno_2=";as_suggested=$as_suggested$LINENO;as_suggested=$as_suggested" as_lineno_2a=\$LINENO
   eval 'test \"x\$as_lineno_1'\$as_run'\" != \"x\$as_lineno_2'\$as_run'\" &&
-  test \"x\`expr \$as_lineno_1'\$as_run' + 1\`\" = \"x\$as_lineno_2'\$as_run'\"' || exit 1"
+  test \"x\`expr \$as_lineno_1'\$as_run' + 1\`\" = \"x\$as_lineno_2'\$as_run'\"' || exit 1
+test \$(( 1 + 1 )) = 2 || exit 1"
   if (eval "$as_required") 2>/dev/null; then :
   as_have_required=yes
 else
@@ -592,14 +593,18 @@ QBT_REMOVE_DEFINES
 QBT_ADD_DEFINES
 QBT_REMOVE_CONFIG
 QBT_ADD_CONFIG
+QBT_CONF_EXTRA_CFLAGS
+QBT_CONF_INCLUDES
 EXPAND_MANDIR
 EXPAND_DATADIR
 EXPAND_BINDIR
 EXPAND_PREFIX
-libtorrent_LIBS
-libtorrent_CFLAGS
 zlib_LIBS
 zlib_CFLAGS
+libtorrent_LIBS
+libtorrent_CFLAGS
+qjson_LIBS
+qjson_CFLAGS
 BOOST_SYSTEM_LIB
 BOOST_LDFLAGS
 BOOST_CPPFLAGS
@@ -655,6 +660,7 @@ build_os
 build_vendor
 build_cpu
 build
+SED
 ac_ct_CXX
 CXXFLAGS
 CXX
@@ -709,10 +715,12 @@ enable_option_checking
 enable_dependency_tracking
 enable_silent_rules
 with_qt5
-with_geoip_database_embedded
 with_qtsingleapplication
+with_qjson
 enable_debug
 enable_gui
+enable_systemd
+enable_webui
 enable_qt_dbus
 with_boost
 with_boost_libdir
@@ -733,10 +741,12 @@ PKG_CONFIG
 PKG_CONFIG_PATH
 PKG_CONFIG_LIBDIR
 QT_QMAKE
-zlib_CFLAGS
-zlib_LIBS
+qjson_CFLAGS
+qjson_LIBS
 libtorrent_CFLAGS
-libtorrent_LIBS'
+libtorrent_LIBS
+zlib_CFLAGS
+zlib_LIBS'
 
 
 # Initialize some variables set by options.
@@ -1364,19 +1374,20 @@ Optional Features:
   --enable-debug          Enable debug build
   --disable-gui           Disable the GUI for headless running. Disables
                           QtDBus and the GeoIP Database.
+  --enable-systemd        Install the systemd service file (headless only).
+  --disable-webui         Disable the WebUI.
   --disable-qt-dbus       Disable use of QtDBus (GUI only)
 
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
   --with-qt5              Compile using Qt5 (default=no)
-  --with-geoip-database-embedded
-                          Embed the GeoIP database in the qBittorrent
-                          executable (please follow instructions in
-                          src/geoip/README) (default=no)
   --with-qtsingleapplication=[system|shipped]
                           Use the shipped qtsingleapplication library or the
                           system one (default=shipped)
+  --with-qjson=[system|shipped]
+                          Use the shipped qjson library or the system one
+                          (default=shipped) (Qt4 only)
   --with-boost[=ARG]      use Boost library from a standard location
                           (ARG=yes), from the specified location (ARG=<path>),
                           or disable it (ARG=no) [ARG=yes]
@@ -1407,12 +1418,15 @@ Some influential environment variables:
   PKG_CONFIG_LIBDIR
               path overriding pkg-config's built-in search path
   QT_QMAKE    value of moc_location for QtCore >= 4.8.0, overriding pkg-config
-  zlib_CFLAGS C compiler flags for zlib, overriding pkg-config
-  zlib_LIBS   linker flags for zlib, overriding pkg-config
+  qjson_CFLAGS
+              C compiler flags for qjson, overriding pkg-config
+  qjson_LIBS  linker flags for qjson, overriding pkg-config
   libtorrent_CFLAGS
               C compiler flags for libtorrent, overriding pkg-config
   libtorrent_LIBS
               linker flags for libtorrent, overriding pkg-config
+  zlib_CFLAGS C compiler flags for zlib, overriding pkg-config
+  zlib_LIBS   linker flags for zlib, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -2787,8 +2801,8 @@ ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
 ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
-# expand $ac_aux_dir to an absolute path
-am_aux_dir=`cd $ac_aux_dir && pwd`
+# Expand $ac_aux_dir to an absolute path.
+am_aux_dir=`cd "$ac_aux_dir" && pwd`
 
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
@@ -3106,6 +3120,75 @@ ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
 ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for a sed that does not truncate output" >&5
+$as_echo_n "checking for a sed that does not truncate output... " >&6; }
+if ${ac_cv_path_SED+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+            ac_script=s/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb/
+     for ac_i in 1 2 3 4 5 6 7; do
+       ac_script="$ac_script$as_nl$ac_script"
+     done
+     echo "$ac_script" 2>/dev/null | sed 99q >conftest.sed
+     { ac_script=; unset ac_script;}
+     if test -z "$SED"; then
+  ac_path_SED_found=false
+  # Loop through the user's path and test for each of PROGNAME-LIST
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_prog in sed gsed; do
+    for ac_exec_ext in '' $ac_executable_extensions; do
+      ac_path_SED="$as_dir/$ac_prog$ac_exec_ext"
+      as_fn_executable_p "$ac_path_SED" || continue
+# Check for GNU ac_path_SED and select it if it is found.
+  # Check for GNU $ac_path_SED
+case `"$ac_path_SED" --version 2>&1` in
+*GNU*)
+  ac_cv_path_SED="$ac_path_SED" ac_path_SED_found=:;;
+*)
+  ac_count=0
+  $as_echo_n 0123456789 >"conftest.in"
+  while :
+  do
+    cat "conftest.in" "conftest.in" >"conftest.tmp"
+    mv "conftest.tmp" "conftest.in"
+    cp "conftest.in" "conftest.nl"
+    $as_echo '' >> "conftest.nl"
+    "$ac_path_SED" -f conftest.sed < "conftest.nl" >"conftest.out" 2>/dev/null || break
+    diff "conftest.out" "conftest.nl" >/dev/null 2>&1 || break
+    as_fn_arith $ac_count + 1 && ac_count=$as_val
+    if test $ac_count -gt ${ac_path_SED_max-0}; then
+      # Best one so far, save it but keep looking for a better one
+      ac_cv_path_SED="$ac_path_SED"
+      ac_path_SED_max=$ac_count
+    fi
+    # 10*(2^10) chars as input seems more than enough
+    test $ac_count -gt 10 && break
+  done
+  rm -f conftest.in conftest.tmp conftest.nl conftest.out;;
+esac
+
+      $ac_path_SED_found && break 3
+    done
+  done
+  done
+IFS=$as_save_IFS
+  if test -z "$ac_cv_path_SED"; then
+    as_fn_error $? "no acceptable sed could be found in \$PATH" "$LINENO" 5
+  fi
+else
+  ac_cv_path_SED=$SED
+fi
+
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_path_SED" >&5
+$as_echo "$ac_cv_path_SED" >&6; }
+ SED="$ac_cv_path_SED"
+  rm -f conftest.sed
+
 ac_ext=cpp
 ac_cpp='$CXXCPP $CPPFLAGS'
 ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
@@ -3183,7 +3266,7 @@ IFS=$ac_save_IFS
 case $host_os in *\ *) host_os=`echo "$host_os" | sed 's/ /-/g'`;; esac
 
 
-am__api_version='1.14'
+am__api_version='1.15'
 
 # Find a good install program.  We prefer a C program (faster),
 # so one script is as good as another.  But avoid the broken or
@@ -3372,7 +3455,7 @@ else
 $as_echo "$as_me: WARNING: 'missing' script is too old or missing" >&2;}
 fi
 
-if test x"${install_sh}" != xset; then
+if test x"${install_sh+set}" != xset; then
   case $am_aux_dir in
   *\ * | *\	*)
     install_sh="\${SHELL} '$am_aux_dir/install-sh'" ;;
@@ -3763,8 +3846,8 @@ MAKEINFO=${MAKEINFO-"${am_missing_run}makeinfo"}
 # <http://lists.gnu.org/archive/html/automake/2012-07/msg00014.html>
 mkdir_p='$(MKDIR_P)'
 
-# We need awk for the "check" target.  The system "awk" is bad on
-# some platforms.
+# We need awk for the "check" target (and possibly the TAP driver).  The
+# system "awk" is bad on some platforms.
 # Always define AMTAR for backward compatibility.  Yes, it's still used
 # in the wild :-(  We should find a proper way to deprecate it ...
 AMTAR='$${TAR-tar}'
@@ -4093,20 +4176,20 @@ fi
 
 
 
-# Check whether --with-geoip-database-embedded was given.
-if test "${with_geoip_database_embedded+set}" = set; then :
-  withval=$with_geoip_database_embedded;
-else
-  with_geoip_database_embedded=no
-fi
-
-
-
 # Check whether --with-qtsingleapplication was given.
 if test "${with_qtsingleapplication+set}" = set; then :
   withval=$with_qtsingleapplication;
 else
   with_qtsingleapplication=shipped
+fi
+
+
+
+# Check whether --with-qjson was given.
+if test "${with_qjson+set}" = set; then :
+  withval=$with_qjson;
+else
+  with_qjson=shipped
 fi
 
 
@@ -4126,6 +4209,22 @@ else
 fi
 
 
+# Check whether --enable-systemd was given.
+if test "${enable_systemd+set}" = set; then :
+  enableval=$enable_systemd;
+else
+  enable_systemd=no
+fi
+
+
+# Check whether --enable-webui was given.
+if test "${enable_webui+set}" = set; then :
+  enableval=$enable_webui;
+else
+  enable_webui=yes
+fi
+
+
 # Check whether --enable-qt-dbus was given.
 if test "${enable_qt_dbus+set}" = set; then :
   enableval=$enable_qt_dbus;
@@ -4137,7 +4236,7 @@ fi
 # Detect OS
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether OS is FreeBSD" >&5
 $as_echo_n "checking whether OS is FreeBSD... " >&6; }
-if test "x$host_os" == "x*freebsd*"; then :
+if expr "$host_os" : ".*freebsd.*" > /dev/null; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
       LIBS="-lexecinfo $LIBS"
@@ -4146,7 +4245,7 @@ else
 $as_echo "no" >&6; }
 fi
 
-# Require 0.26 pkg-config
+# Require 0.23 pkg-config
 
 
 
@@ -4255,7 +4354,7 @@ fi
 
 fi
 if test -n "$PKG_CONFIG"; then
-	_pkg_min_version=0.26
+	_pkg_min_version=0.23
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
 $as_echo_n "checking pkg-config is at least version $_pkg_min_version... " >&6; }
 	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
@@ -4267,7 +4366,7 @@ $as_echo "no" >&6; }
 		PKG_CONFIG=""
 	fi
 fi
-if test "x$PKG_CONFIG" == "x"; then :
+if test "x$PKG_CONFIG" = "x"; then :
   as_fn_error $? "Could not find pkg-config" "$LINENO" 5
 fi
 
@@ -4297,17 +4396,51 @@ case "x$enable_gui" in #(
   "xyes") :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
-               QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG nox" ;; #(
+               enable_systemd=no
+               QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG nogui" ;; #(
   "xno") :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
               enable_qt_dbus=no
-              enable_geoip_database=no
-              QBT_ADD_CONFIG="$QBT_ADD_CONFIG nox" ;; #(
+              QBT_ADD_CONFIG="$QBT_ADD_CONFIG nogui" ;; #(
   *) :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_gui" >&5
 $as_echo "$enable_gui" >&6; }
         as_fn_error $? "Unknown option \"$enable_gui\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
+esac
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to install the systemd service file" >&5
+$as_echo_n "checking whether to install the systemd service file... " >&6; }
+case "x$enable_systemd" in #(
+  "xyes") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+               QBT_ADD_CONFIG="$QBT_ADD_CONFIG systemd" ;; #(
+  "xno") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+              QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG systemd" ;; #(
+  *) :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_systemd" >&5
+$as_echo "$enable_systemd" >&6; }
+        as_fn_error $? "Unknown option \"$enable_systemd\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
+esac
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to enable the WebUI" >&5
+$as_echo_n "checking whether to enable the WebUI... " >&6; }
+case "x$enable_webui" in #(
+  "xyes") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+               QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG nowebui" ;; #(
+  "xno") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+              QBT_ADD_CONFIG="$QBT_ADD_CONFIG nowebui" ;; #(
+  *) :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_webui" >&5
+$as_echo "$enable_webui" >&6; }
+        as_fn_error $? "Unknown option \"$enable_webui\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
 esac
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether Qt5 should be enabled" >&5
@@ -4367,16 +4500,20 @@ $as_echo X"$QT_QMAKE" |
 	    s//\1/
 	    q
 	  }
-	  s/.*/./; q'`/qmake
-                                 as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE" >&5
-$as_echo_n "checking for $QT_QMAKE... " >&6; }
+	  s/.*/./; q'`
+fi
+
+fi
+
+as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake" >&5
+$as_echo_n "checking for $QT_QMAKE/qmake... " >&6; }
 if eval \${$as_ac_File+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   test "$cross_compiling" = yes &&
   as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
-if test -r "$QT_QMAKE"; then
+if test -r "$QT_QMAKE/qmake"; then
   eval "$as_ac_File=yes"
 else
   eval "$as_ac_File=no"
@@ -4386,7 +4523,27 @@ eval ac_res=\$$as_ac_File
 	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
 $as_echo "$ac_res" >&6; }
 if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
-
+  QT_QMAKE="$QT_QMAKE/qmake"
+else
+  as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake-qt4" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake-qt4" >&5
+$as_echo_n "checking for $QT_QMAKE/qmake-qt4... " >&6; }
+if eval \${$as_ac_File+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  test "$cross_compiling" = yes &&
+  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
+if test -r "$QT_QMAKE/qmake-qt4"; then
+  eval "$as_ac_File=yes"
+else
+  eval "$as_ac_File=no"
+fi
+fi
+eval ac_res=\$$as_ac_File
+	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+$as_echo "$ac_res" >&6; }
+if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+  QT_QMAKE="$QT_QMAKE/qmake-qt4"
 else
   QT_QMAKE=""
 fi
@@ -4394,7 +4551,6 @@ fi
 
 fi
 
-fi
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt4 qmake >= 4.8.0" >&5
 $as_echo_n "checking for Qt4 qmake >= 4.8.0... " >&6; }
@@ -4438,17 +4594,19 @@ QT_QMAKE=$pkg_cv_QT_QMAKE
 
 if test "x$QT_QMAKE" = x""; then :
 
-else
-  QT_QMAKE=$QT_QMAKE/qmake
-                                 as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE" >&5
-$as_echo_n "checking for $QT_QMAKE... " >&6; }
+fi
+
+fi
+
+as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake" >&5
+$as_echo_n "checking for $QT_QMAKE/qmake... " >&6; }
 if eval \${$as_ac_File+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   test "$cross_compiling" = yes &&
   as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
-if test -r "$QT_QMAKE"; then
+if test -r "$QT_QMAKE/qmake"; then
   eval "$as_ac_File=yes"
 else
   eval "$as_ac_File=no"
@@ -4458,7 +4616,27 @@ eval ac_res=\$$as_ac_File
 	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
 $as_echo "$ac_res" >&6; }
 if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
-
+  QT_QMAKE="$QT_QMAKE/qmake"
+else
+  as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake-qt5" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake-qt5" >&5
+$as_echo_n "checking for $QT_QMAKE/qmake-qt5... " >&6; }
+if eval \${$as_ac_File+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  test "$cross_compiling" = yes &&
+  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
+if test -r "$QT_QMAKE/qmake-qt5"; then
+  eval "$as_ac_File=yes"
+else
+  eval "$as_ac_File=no"
+fi
+fi
+eval ac_res=\$$as_ac_File
+	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+$as_echo "$ac_res" >&6; }
+if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+  QT_QMAKE="$QT_QMAKE/qmake-qt5"
 else
   QT_QMAKE=""
 fi
@@ -4466,7 +4644,6 @@ fi
 
 fi
 
-fi
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.2.0" >&5
 $as_echo_n "checking for Qt5 qmake >= 5.2.0... " >&6; }
@@ -4484,7 +4661,7 @@ fi
 $as_echo "$with_qt5" >&6; }
         as_fn_error $? "Unknown option \"$with_qt5\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
 esac
-if test "x$QT_QMAKE" == "x"; then :
+if test "x$QT_QMAKE" = "x"; then :
   as_fn_error $? "Could not find qmake" "$LINENO" 5
 
 fi
@@ -4495,7 +4672,7 @@ case "x$enable_qt_dbus" in #(
   "xyes") :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
-               if test "x$x$with_qt5" == "xyes"; then :
+               if test "x$with_qt5" = "xyes"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5DBus >= 5.2.0" >&5
 $as_echo_n "checking for Qt5DBus >= 5.2.0... " >&6; }
        if test -n "$PKG_CONFIG" && \
@@ -4533,7 +4710,7 @@ fi
 
 fi
 
-               if test "x$HAVE_QTDBUS" == "xfalse"; then :
+               if test "x$HAVE_QTDBUS" = "xfalse"; then :
   as_fn_error $? "Could not find QtDBus" "$LINENO" 5
 else
   QBT_ADD_CONFIG="$QBT_ADD_CONFIG dbus"
@@ -4829,13 +5006,13 @@ fi
 
 # HAVE_BOOST is set to an empty value when Boost is found. I don't know
 # how to test for a set vs unset variable.
-if test "x$BOOST_CPPFLAGS" == "x"; then :
+if test "x$BOOST_CPPFLAGS" = "x"; then :
   as_fn_error $? "Could not find Boost" "$LINENO" 5
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: Boost CPPFLGAS: $BOOST_CPPFLAGS" >&5
 $as_echo "$as_me: Boost CPPFLGAS: $BOOST_CPPFLAGS" >&6;}
-	  CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
-	  LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
+      CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
+      LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
 fi
 
 
@@ -5081,30 +5258,13 @@ fi
 
 # HAVE_BOOST_SYSTEM is set to an empty value when Boost.System is found.
 # I don't know how to test for a set vs unset variable.
-if test "x$BOOST_SYSTEM_LIB" == "x"; then :
+if test "x$BOOST_SYSTEM_LIB" = "x"; then :
   as_fn_error $? "Could not find Boost.System" "$LINENO" 5
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: Boost.System LIB: $BOOST_SYSTEM_LIB" >&5
 $as_echo "$as_me: Boost.System LIB: $BOOST_SYSTEM_LIB" >&6;}
-	  LIBS="$BOOST_SYSTEM_LIB $LIBS"
+      LIBS="$BOOST_SYSTEM_LIB $LIBS"
 fi
-
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to embed the GeoIP database" >&5
-$as_echo_n "checking whether to embed the GeoIP database... " >&6; }
-case "x$with_geoip_database_embedded" in #(
-  "xno") :
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-              QBT_REMOVE_DEFINES="$QBT_REMOVE_DEFINES WITH_GEOIP_EMBEDDED" ;; #(
-  "xyes") :
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-$as_echo "yes" >&6; }
-               QBT_ADD_DEFINES="$QBT_ADD_DEFINES WITH_GEOIP_EMBEDDED" ;; #(
-  *) :
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $with_geoip_database_embedded" >&5
-$as_echo "$with_geoip_database_embedded" >&6; }
-        as_fn_error $? "Unknown option \"$with_geoip_database_embedded\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
-esac
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking which qtsingleapplication to use" >&5
 $as_echo_n "checking which qtsingleapplication to use... " >&6; }
@@ -5122,6 +5282,211 @@ $as_echo "system" >&6; }
 $as_echo "$with_qtsingleapplication" >&6; }
         as_fn_error $? "Unknown option \"$with_qtsingleapplication\". Use either \"system\" or \"shipped\"." "$LINENO" 5 ;;
 esac
+
+if test "x$with_qt5" = "xno"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking which qjson to use" >&5
+$as_echo_n "checking which qjson to use... " >&6; }
+      case "x$with_qjson" in #(
+  "xshipped") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: shipped" >&5
+$as_echo "shipped" >&6; }
+                         QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG usesystemqjson" ;; #(
+  "xsystem") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: system" >&5
+$as_echo "system" >&6; }
+
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for qjson" >&5
+$as_echo_n "checking for qjson... " >&6; }
+
+if test -n "$qjson_CFLAGS"; then
+    pkg_cv_qjson_CFLAGS="$qjson_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"QJson >= 0.8.1\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "QJson >= 0.8.1") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_qjson_CFLAGS=`$PKG_CONFIG --cflags "QJson >= 0.8.1" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$qjson_LIBS"; then
+    pkg_cv_qjson_LIBS="$qjson_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"QJson >= 0.8.1\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "QJson >= 0.8.1") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_qjson_LIBS=`$PKG_CONFIG --libs "QJson >= 0.8.1" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        qjson_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "QJson >= 0.8.1" 2>&1`
+        else
+	        qjson_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "QJson >= 0.8.1" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$qjson_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (QJson >= 0.8.1) were not met:
+
+$qjson_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables qjson_CFLAGS
+and qjson_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details." "$LINENO" 5
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables qjson_CFLAGS
+and qjson_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details" "$LINENO" 5; }
+else
+	qjson_CFLAGS=$pkg_cv_qjson_CFLAGS
+	qjson_LIBS=$pkg_cv_qjson_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	CPPFLAGS="$qjson_CFLAGS $CPPFLAGS"
+                                          LIBS="$qjson_LIBS $LIBS"
+fi
+                         QBT_ADD_CONFIG="$QBT_ADD_CONFIG usesystemqjson" ;; #(
+  *) :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $with_qjson" >&5
+$as_echo "$with_qjson" >&6; }
+              as_fn_error $? "Unknown option \"$with_qjson\". Use either \"system\" or \"shipped\"." "$LINENO" 5 ;;
+esac
+
+fi
+
+
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for libtorrent" >&5
+$as_echo_n "checking for libtorrent... " >&6; }
+
+if test -n "$libtorrent_CFLAGS"; then
+    pkg_cv_libtorrent_CFLAGS="$libtorrent_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.0.6\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.0.6") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_libtorrent_CFLAGS=`$PKG_CONFIG --cflags "libtorrent-rasterbar >= 1.0.6" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$libtorrent_LIBS"; then
+    pkg_cv_libtorrent_LIBS="$libtorrent_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.0.6\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.0.6") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_libtorrent_LIBS=`$PKG_CONFIG --libs "libtorrent-rasterbar >= 1.0.6" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libtorrent-rasterbar >= 1.0.6" 2>&1`
+        else
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libtorrent-rasterbar >= 1.0.6" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$libtorrent_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (libtorrent-rasterbar >= 1.0.6) were not met:
+
+$libtorrent_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables libtorrent_CFLAGS
+and libtorrent_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details." "$LINENO" 5
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables libtorrent_CFLAGS
+and libtorrent_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details" "$LINENO" 5; }
+else
+	libtorrent_CFLAGS=$pkg_cv_libtorrent_CFLAGS
+	libtorrent_LIBS=$pkg_cv_libtorrent_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
+                  LIBS="$libtorrent_LIBS $LIBS"
+fi
 
 
 pkg_failed=no
@@ -5216,99 +5581,6 @@ $as_echo "yes" >&6; }
                  LIBS="$zlib_LIBS $LIBS"
 fi
 
-
-pkg_failed=no
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for libtorrent" >&5
-$as_echo_n "checking for libtorrent... " >&6; }
-
-if test -n "$libtorrent_CFLAGS"; then
-    pkg_cv_libtorrent_CFLAGS="$libtorrent_CFLAGS"
- elif test -n "$PKG_CONFIG"; then
-    if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 0.16.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 0.16.0") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-  pkg_cv_libtorrent_CFLAGS=`$PKG_CONFIG --cflags "libtorrent-rasterbar >= 0.16.0" 2>/dev/null`
-		      test "x$?" != "x0" && pkg_failed=yes
-else
-  pkg_failed=yes
-fi
- else
-    pkg_failed=untried
-fi
-if test -n "$libtorrent_LIBS"; then
-    pkg_cv_libtorrent_LIBS="$libtorrent_LIBS"
- elif test -n "$PKG_CONFIG"; then
-    if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 0.16.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 0.16.0") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-  pkg_cv_libtorrent_LIBS=`$PKG_CONFIG --libs "libtorrent-rasterbar >= 0.16.0" 2>/dev/null`
-		      test "x$?" != "x0" && pkg_failed=yes
-else
-  pkg_failed=yes
-fi
- else
-    pkg_failed=untried
-fi
-
-
-
-if test $pkg_failed = yes; then
-   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-
-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
-        _pkg_short_errors_supported=yes
-else
-        _pkg_short_errors_supported=no
-fi
-        if test $_pkg_short_errors_supported = yes; then
-	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libtorrent-rasterbar >= 0.16.0" 2>&1`
-        else
-	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libtorrent-rasterbar >= 0.16.0" 2>&1`
-        fi
-	# Put the nasty error message in config.log where it belongs
-	echo "$libtorrent_PKG_ERRORS" >&5
-
-	as_fn_error $? "Package requirements (libtorrent-rasterbar >= 0.16.0) were not met:
-
-$libtorrent_PKG_ERRORS
-
-Consider adjusting the PKG_CONFIG_PATH environment variable if you
-installed software in a non-standard prefix.
-
-Alternatively, you may set the environment variables libtorrent_CFLAGS
-and libtorrent_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details." "$LINENO" 5
-elif test $pkg_failed = untried; then
-     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
-$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
-as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
-is in your PATH or set the PKG_CONFIG environment variable to the full
-path to pkg-config.
-
-Alternatively, you may set the environment variables libtorrent_CFLAGS
-and libtorrent_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details.
-
-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
-See \`config.log' for more details" "$LINENO" 5; }
-else
-	libtorrent_CFLAGS=$pkg_cv_libtorrent_CFLAGS
-	libtorrent_LIBS=$pkg_cv_libtorrent_LIBS
-        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-$as_echo "yes" >&6; }
-	CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
-                 LIBS="$libtorrent_LIBS $LIBS"
-fi
-
 # These are required because autoconf doesn't expand these **particular**
 # vars automatically. And qmake cannot autoexpand them.
 
@@ -5376,7 +5648,40 @@ _ACEOF
   test "$exec_prefix_NONE" && exec_prefix=NONE
 
 
+# Original extract() function contributed by pmzqla
+# $*: Strings to parse
+# Set $QBT_CONF_DEFINES, $QBT_CONF_INCLUDES, $QBT_CONF_EXTRA_CFLAGS
+extract() {
+  if [ -z "$*" ]; then
+    echo "Input string required"
+    return 1
+  fi
+
+  # BSD sed needs an actual newline character in the substitute command
+  new_line='
+'
+  # Convert " -" to "\n" if not between quotes and remove possible leading white spaces
+  string=$(echo " $*" | $SED -e "s: -:\\${new_line}:g" -e 's:"\(.*\)\n\(.*\)":\"\1 -\2":g' -e "s:'\(.*\)\n\(.*\)':\'\1 -\2':g" -e 's/^[:space:]*//')
+  SAVEIFS=$IFS
+  IFS=$(printf "\n\b")
+  for i in $string; do
+    case "$(echo "$i" | cut -c1)" in
+      '') ;;
+      D) QBT_CONF_DEFINES="$(echo $i | cut -c2-) $QBT_CONF_DEFINES";;
+      I) QBT_CONF_INCLUDES="$(echo $i | cut -c2-) $QBT_CONF_INCLUDES";;
+      *) QBT_CONF_EXTRA_CFLAGS="-$i $QBT_CONF_EXTRA_CFLAGS";;
+    esac
+  done
+  IFS=$SAVEIFS
+}
+
+extract $CPPFLAGS
+QBT_ADD_DEFINES="$QBT_ADD_DEFINES $QBT_CONF_DEFINES"
+QBT_CONF_EXTRA_CFLAGS="$QBT_CONF_EXTRA_CFLAGS $CXXFLAGS"
+
 # Substitute the values of these vars in conf.pri.in
+
+
 
 
 
@@ -6692,6 +6997,1323 @@ if test -n "$ac_unrecognized_opts" && test "$enable_option_checking" != no; then
 $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
 
+if test "x$enable_systemd" = "xyes"; then :
+  ac_config_files="$ac_config_files dist/unix/systemd/qbittorrent-nox.service"
+
+cat >confcache <<\_ACEOF
+# This file is a shell script that caches the results of configure
+# tests run on this system so they can be shared between configure
+# scripts and configure runs, see configure's option --config-cache.
+# It is not useful on other systems.  If it contains results you don't
+# want to keep, you may remove or edit it.
+#
+# config.status only pays attention to the cache file if you give it
+# the --recheck option to rerun configure.
+#
+# `ac_cv_env_foo' variables (set or unset) will be overridden when
+# loading this file, other *unset* `ac_cv_foo' will be assigned the
+# following values.
+
+_ACEOF
+
+# The following way of writing the cache mishandles newlines in values,
+# but we know of no workaround that is simple, portable, and efficient.
+# So, we kill variables containing newlines.
+# Ultrix sh set writes to stderr and can't be redirected directly,
+# and sets the high bit in the cache file unless we assign to the vars.
+(
+  for ac_var in `(set) 2>&1 | sed -n 's/^\([a-zA-Z_][a-zA-Z0-9_]*\)=.*/\1/p'`; do
+    eval ac_val=\$$ac_var
+    case $ac_val in #(
+    *${as_nl}*)
+      case $ac_var in #(
+      *_cv_*) { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: cache variable $ac_var contains a newline" >&5
+$as_echo "$as_me: WARNING: cache variable $ac_var contains a newline" >&2;} ;;
+      esac
+      case $ac_var in #(
+      _ | IFS | as_nl) ;; #(
+      BASH_ARGV | BASH_SOURCE) eval $ac_var= ;; #(
+      *) { eval $ac_var=; unset $ac_var;} ;;
+      esac ;;
+    esac
+  done
+
+  (set) 2>&1 |
+    case $as_nl`(ac_space=' '; set) 2>&1` in #(
+    *${as_nl}ac_space=\ *)
+      # `set' does not quote correctly, so add quotes: double-quote
+      # substitution turns \\\\ into \\, and sed turns \\ into \.
+      sed -n \
+	"s/'/'\\\\''/g;
+	  s/^\\([_$as_cr_alnum]*_cv_[_$as_cr_alnum]*\\)=\\(.*\\)/\\1='\\2'/p"
+      ;; #(
+    *)
+      # `set' quotes correctly as required by POSIX, so do not add quotes.
+      sed -n "/^[_$as_cr_alnum]*_cv_[_$as_cr_alnum]*=/p"
+      ;;
+    esac |
+    sort
+) |
+  sed '
+     /^ac_cv_env_/b end
+     t clear
+     :clear
+     s/^\([^=]*\)=\(.*[{}].*\)$/test "${\1+set}" = set || &/
+     t end
+     s/^\([^=]*\)=\(.*\)$/\1=${\1=\2}/
+     :end' >>confcache
+if diff "$cache_file" confcache >/dev/null 2>&1; then :; else
+  if test -w "$cache_file"; then
+    if test "x$cache_file" != "x/dev/null"; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: updating cache $cache_file" >&5
+$as_echo "$as_me: updating cache $cache_file" >&6;}
+      if test ! -f "$cache_file" || test -h "$cache_file"; then
+	cat confcache >"$cache_file"
+      else
+        case $cache_file in #(
+        */* | ?:*)
+	  mv -f confcache "$cache_file"$$ &&
+	  mv -f "$cache_file"$$ "$cache_file" ;; #(
+        *)
+	  mv -f confcache "$cache_file" ;;
+	esac
+      fi
+    fi
+  else
+    { $as_echo "$as_me:${as_lineno-$LINENO}: not updating unwritable cache $cache_file" >&5
+$as_echo "$as_me: not updating unwritable cache $cache_file" >&6;}
+  fi
+fi
+rm -f confcache
+
+test "x$prefix" = xNONE && prefix=$ac_default_prefix
+# Let make expand exec_prefix.
+test "x$exec_prefix" = xNONE && exec_prefix='${prefix}'
+
+# Transform confdefs.h into DEFS.
+# Protect against shell expansion while executing Makefile rules.
+# Protect against Makefile macro expansion.
+#
+# If the first sed substitution is executed (which looks for macros that
+# take arguments), then branch to the quote section.  Otherwise,
+# look for a macro that doesn't take arguments.
+ac_script='
+:mline
+/\\$/{
+ N
+ s,\\\n,,
+ b mline
+}
+t clear
+:clear
+s/^[	 ]*#[	 ]*define[	 ][	 ]*\([^	 (][^	 (]*([^)]*)\)[	 ]*\(.*\)/-D\1=\2/g
+t quote
+s/^[	 ]*#[	 ]*define[	 ][	 ]*\([^	 ][^	 ]*\)[	 ]*\(.*\)/-D\1=\2/g
+t quote
+b any
+:quote
+s/[	 `~#$^&*(){}\\|;'\''"<>?]/\\&/g
+s/\[/\\&/g
+s/\]/\\&/g
+s/\$/$$/g
+H
+:any
+${
+	g
+	s/^\n//
+	s/\n/ /g
+	p
+}
+'
+DEFS=`sed -n "$ac_script" confdefs.h`
+
+
+ac_libobjs=
+ac_ltlibobjs=
+U=
+for ac_i in : $LIBOBJS; do test "x$ac_i" = x: && continue
+  # 1. Remove the extension, and $U if already installed.
+  ac_script='s/\$U\././;s/\.o$//;s/\.obj$//'
+  ac_i=`$as_echo "$ac_i" | sed "$ac_script"`
+  # 2. Prepend LIBOBJDIR.  When used with automake>=1.10 LIBOBJDIR
+  #    will be set to the directory where LIBOBJS objects are built.
+  as_fn_append ac_libobjs " \${LIBOBJDIR}$ac_i\$U.$ac_objext"
+  as_fn_append ac_ltlibobjs " \${LIBOBJDIR}$ac_i"'$U.lo'
+done
+LIBOBJS=$ac_libobjs
+
+LTLIBOBJS=$ac_ltlibobjs
+
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking that generated files are newer than configure" >&5
+$as_echo_n "checking that generated files are newer than configure... " >&6; }
+   if test -n "$am_sleep_pid"; then
+     # Hide warnings about reused PIDs.
+     wait $am_sleep_pid 2>/dev/null
+   fi
+   { $as_echo "$as_me:${as_lineno-$LINENO}: result: done" >&5
+$as_echo "done" >&6; }
+if test -z "${AMDEP_TRUE}" && test -z "${AMDEP_FALSE}"; then
+  as_fn_error $? "conditional \"AMDEP\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${am__fastdepCC_TRUE}" && test -z "${am__fastdepCC_FALSE}"; then
+  as_fn_error $? "conditional \"am__fastdepCC\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${am__fastdepCXX_TRUE}" && test -z "${am__fastdepCXX_FALSE}"; then
+  as_fn_error $? "conditional \"am__fastdepCXX\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+ if test -n "$EXEEXT"; then
+  am__EXEEXT_TRUE=
+  am__EXEEXT_FALSE='#'
+else
+  am__EXEEXT_TRUE='#'
+  am__EXEEXT_FALSE=
+fi
+
+if test -z "${am__EXEEXT_TRUE}" && test -z "${am__EXEEXT_FALSE}"; then
+  as_fn_error $? "conditional \"am__EXEEXT\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+
+: "${CONFIG_STATUS=./config.status}"
+ac_write_fail=0
+ac_clean_files_save=$ac_clean_files
+ac_clean_files="$ac_clean_files $CONFIG_STATUS"
+{ $as_echo "$as_me:${as_lineno-$LINENO}: creating $CONFIG_STATUS" >&5
+$as_echo "$as_me: creating $CONFIG_STATUS" >&6;}
+as_write_fail=0
+cat >$CONFIG_STATUS <<_ASEOF || as_write_fail=1
+#! $SHELL
+# Generated by $as_me.
+# Run this file to recreate the current configuration.
+# Compiler output produced by configure, useful for debugging
+# configure, is in config.log if it exists.
+
+debug=false
+ac_cs_recheck=false
+ac_cs_silent=false
+
+SHELL=\${CONFIG_SHELL-$SHELL}
+export SHELL
+_ASEOF
+cat >>$CONFIG_STATUS <<\_ASEOF || as_write_fail=1
+## -------------------- ##
+## M4sh Initialization. ##
+## -------------------- ##
+
+# Be more Bourne compatible
+DUALCASE=1; export DUALCASE # for MKS sh
+if test -n "${ZSH_VERSION+set}" && (emulate sh) >/dev/null 2>&1; then :
+  emulate sh
+  NULLCMD=:
+  # Pre-4.2 versions of Zsh do word splitting on ${1+"$@"}, which
+  # is contrary to our usage.  Disable this feature.
+  alias -g '${1+"$@"}'='"$@"'
+  setopt NO_GLOB_SUBST
+else
+  case `(set -o) 2>/dev/null` in #(
+  *posix*) :
+    set -o posix ;; #(
+  *) :
+     ;;
+esac
+fi
+
+
+as_nl='
+'
+export as_nl
+# Printing a long string crashes Solaris 7 /usr/bin/printf.
+as_echo='\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+as_echo=$as_echo$as_echo$as_echo$as_echo$as_echo
+as_echo=$as_echo$as_echo$as_echo$as_echo$as_echo$as_echo
+# Prefer a ksh shell builtin over an external printf program on Solaris,
+# but without wasting forks for bash or zsh.
+if test -z "$BASH_VERSION$ZSH_VERSION" \
+    && (test "X`print -r -- $as_echo`" = "X$as_echo") 2>/dev/null; then
+  as_echo='print -r --'
+  as_echo_n='print -rn --'
+elif (test "X`printf %s $as_echo`" = "X$as_echo") 2>/dev/null; then
+  as_echo='printf %s\n'
+  as_echo_n='printf %s'
+else
+  if test "X`(/usr/ucb/echo -n -n $as_echo) 2>/dev/null`" = "X-n $as_echo"; then
+    as_echo_body='eval /usr/ucb/echo -n "$1$as_nl"'
+    as_echo_n='/usr/ucb/echo -n'
+  else
+    as_echo_body='eval expr "X$1" : "X\\(.*\\)"'
+    as_echo_n_body='eval
+      arg=$1;
+      case $arg in #(
+      *"$as_nl"*)
+	expr "X$arg" : "X\\(.*\\)$as_nl";
+	arg=`expr "X$arg" : ".*$as_nl\\(.*\\)"`;;
+      esac;
+      expr "X$arg" : "X\\(.*\\)" | tr -d "$as_nl"
+    '
+    export as_echo_n_body
+    as_echo_n='sh -c $as_echo_n_body as_echo'
+  fi
+  export as_echo_body
+  as_echo='sh -c $as_echo_body as_echo'
+fi
+
+# The user is always right.
+if test "${PATH_SEPARATOR+set}" != set; then
+  PATH_SEPARATOR=:
+  (PATH='/bin;/bin'; FPATH=$PATH; sh -c :) >/dev/null 2>&1 && {
+    (PATH='/bin:/bin'; FPATH=$PATH; sh -c :) >/dev/null 2>&1 ||
+      PATH_SEPARATOR=';'
+  }
+fi
+
+
+# IFS
+# We need space, tab and new line, in precisely that order.  Quoting is
+# there to prevent editors from complaining about space-tab.
+# (If _AS_PATH_WALK were called with IFS unset, it would disable word
+# splitting by setting IFS to empty value.)
+IFS=" ""	$as_nl"
+
+# Find who we are.  Look in the path if we contain no directory separator.
+as_myself=
+case $0 in #((
+  *[\\/]* ) as_myself=$0 ;;
+  *) as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    test -r "$as_dir/$0" && as_myself=$as_dir/$0 && break
+  done
+IFS=$as_save_IFS
+
+     ;;
+esac
+# We did not find ourselves, most probably we were run as `sh COMMAND'
+# in which case we are not to be found in the path.
+if test "x$as_myself" = x; then
+  as_myself=$0
+fi
+if test ! -f "$as_myself"; then
+  $as_echo "$as_myself: error: cannot find myself; rerun with an absolute file name" >&2
+  exit 1
+fi
+
+# Unset variables that we do not need and which cause bugs (e.g. in
+# pre-3.0 UWIN ksh).  But do not cause bugs in bash 2.01; the "|| exit 1"
+# suppresses any "Segmentation fault" message there.  '((' could
+# trigger a bug in pdksh 5.2.14.
+for as_var in BASH_ENV ENV MAIL MAILPATH
+do eval test x\${$as_var+set} = xset \
+  && ( (unset $as_var) || exit 1) >/dev/null 2>&1 && unset $as_var || :
+done
+PS1='$ '
+PS2='> '
+PS4='+ '
+
+# NLS nuisances.
+LC_ALL=C
+export LC_ALL
+LANGUAGE=C
+export LANGUAGE
+
+# CDPATH.
+(unset CDPATH) >/dev/null 2>&1 && unset CDPATH
+
+
+# as_fn_error STATUS ERROR [LINENO LOG_FD]
+# ----------------------------------------
+# Output "`basename $0`: error: ERROR" to stderr. If LINENO and LOG_FD are
+# provided, also output the error to LOG_FD, referencing LINENO. Then exit the
+# script with STATUS, using 1 if that was 0.
+as_fn_error ()
+{
+  as_status=$1; test $as_status -eq 0 && as_status=1
+  if test "$4"; then
+    as_lineno=${as_lineno-"$3"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
+    $as_echo "$as_me:${as_lineno-$LINENO}: error: $2" >&$4
+  fi
+  $as_echo "$as_me: error: $2" >&2
+  as_fn_exit $as_status
+} # as_fn_error
+
+
+# as_fn_set_status STATUS
+# -----------------------
+# Set $? to STATUS, without forking.
+as_fn_set_status ()
+{
+  return $1
+} # as_fn_set_status
+
+# as_fn_exit STATUS
+# -----------------
+# Exit the shell with STATUS, even in a "trap 0" or "set -e" context.
+as_fn_exit ()
+{
+  set +e
+  as_fn_set_status $1
+  exit $1
+} # as_fn_exit
+
+# as_fn_unset VAR
+# ---------------
+# Portably unset VAR.
+as_fn_unset ()
+{
+  { eval $1=; unset $1;}
+}
+as_unset=as_fn_unset
+# as_fn_append VAR VALUE
+# ----------------------
+# Append the text in VALUE to the end of the definition contained in VAR. Take
+# advantage of any shell optimizations that allow amortized linear growth over
+# repeated appends, instead of the typical quadratic growth present in naive
+# implementations.
+if (eval "as_var=1; as_var+=2; test x\$as_var = x12") 2>/dev/null; then :
+  eval 'as_fn_append ()
+  {
+    eval $1+=\$2
+  }'
+else
+  as_fn_append ()
+  {
+    eval $1=\$$1\$2
+  }
+fi # as_fn_append
+
+# as_fn_arith ARG...
+# ------------------
+# Perform arithmetic evaluation on the ARGs, and store the result in the
+# global $as_val. Take advantage of shells that can avoid forks. The arguments
+# must be portable across $(()) and expr.
+if (eval "test \$(( 1 + 1 )) = 2") 2>/dev/null; then :
+  eval 'as_fn_arith ()
+  {
+    as_val=$(( $* ))
+  }'
+else
+  as_fn_arith ()
+  {
+    as_val=`expr "$@" || test $? -eq 1`
+  }
+fi # as_fn_arith
+
+
+if expr a : '\(a\)' >/dev/null 2>&1 &&
+   test "X`expr 00001 : '.*\(...\)'`" = X001; then
+  as_expr=expr
+else
+  as_expr=false
+fi
+
+if (basename -- /) >/dev/null 2>&1 && test "X`basename -- / 2>&1`" = "X/"; then
+  as_basename=basename
+else
+  as_basename=false
+fi
+
+if (as_dir=`dirname -- /` && test "X$as_dir" = X/) >/dev/null 2>&1; then
+  as_dirname=dirname
+else
+  as_dirname=false
+fi
+
+as_me=`$as_basename -- "$0" ||
+$as_expr X/"$0" : '.*/\([^/][^/]*\)/*$' \| \
+	 X"$0" : 'X\(//\)$' \| \
+	 X"$0" : 'X\(/\)' \| . 2>/dev/null ||
+$as_echo X/"$0" |
+    sed '/^.*\/\([^/][^/]*\)\/*$/{
+	    s//\1/
+	    q
+	  }
+	  /^X\/\(\/\/\)$/{
+	    s//\1/
+	    q
+	  }
+	  /^X\/\(\/\).*/{
+	    s//\1/
+	    q
+	  }
+	  s/.*/./; q'`
+
+# Avoid depending upon Character Ranges.
+as_cr_letters='abcdefghijklmnopqrstuvwxyz'
+as_cr_LETTERS='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+as_cr_Letters=$as_cr_letters$as_cr_LETTERS
+as_cr_digits='0123456789'
+as_cr_alnum=$as_cr_Letters$as_cr_digits
+
+ECHO_C= ECHO_N= ECHO_T=
+case `echo -n x` in #(((((
+-n*)
+  case `echo 'xy\c'` in
+  *c*) ECHO_T='	';;	# ECHO_T is single tab character.
+  xy)  ECHO_C='\c';;
+  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
+       ECHO_T='	';;
+  esac;;
+*)
+  ECHO_N='-n';;
+esac
+
+rm -f conf$$ conf$$.exe conf$$.file
+if test -d conf$$.dir; then
+  rm -f conf$$.dir/conf$$.file
+else
+  rm -f conf$$.dir
+  mkdir conf$$.dir 2>/dev/null
+fi
+if (echo >conf$$.file) 2>/dev/null; then
+  if ln -s conf$$.file conf$$ 2>/dev/null; then
+    as_ln_s='ln -s'
+    # ... but there are two gotchas:
+    # 1) On MSYS, both `ln -s file dir' and `ln file dir' fail.
+    # 2) DJGPP < 2.04 has no symlinks; `ln -s' creates a wrapper executable.
+    # In both cases, we have to default to `cp -pR'.
+    ln -s conf$$.file conf$$.dir 2>/dev/null && test ! -f conf$$.exe ||
+      as_ln_s='cp -pR'
+  elif ln conf$$.file conf$$ 2>/dev/null; then
+    as_ln_s=ln
+  else
+    as_ln_s='cp -pR'
+  fi
+else
+  as_ln_s='cp -pR'
+fi
+rm -f conf$$ conf$$.exe conf$$.dir/conf$$.file conf$$.file
+rmdir conf$$.dir 2>/dev/null
+
+
+# as_fn_mkdir_p
+# -------------
+# Create "$as_dir" as a directory, including parents if necessary.
+as_fn_mkdir_p ()
+{
+
+  case $as_dir in #(
+  -*) as_dir=./$as_dir;;
+  esac
+  test -d "$as_dir" || eval $as_mkdir_p || {
+    as_dirs=
+    while :; do
+      case $as_dir in #(
+      *\'*) as_qdir=`$as_echo "$as_dir" | sed "s/'/'\\\\\\\\''/g"`;; #'(
+      *) as_qdir=$as_dir;;
+      esac
+      as_dirs="'$as_qdir' $as_dirs"
+      as_dir=`$as_dirname -- "$as_dir" ||
+$as_expr X"$as_dir" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
+	 X"$as_dir" : 'X\(//\)[^/]' \| \
+	 X"$as_dir" : 'X\(//\)$' \| \
+	 X"$as_dir" : 'X\(/\)' \| . 2>/dev/null ||
+$as_echo X"$as_dir" |
+    sed '/^X\(.*[^/]\)\/\/*[^/][^/]*\/*$/{
+	    s//\1/
+	    q
+	  }
+	  /^X\(\/\/\)[^/].*/{
+	    s//\1/
+	    q
+	  }
+	  /^X\(\/\/\)$/{
+	    s//\1/
+	    q
+	  }
+	  /^X\(\/\).*/{
+	    s//\1/
+	    q
+	  }
+	  s/.*/./; q'`
+      test -d "$as_dir" && break
+    done
+    test -z "$as_dirs" || eval "mkdir $as_dirs"
+  } || test -d "$as_dir" || as_fn_error $? "cannot create directory $as_dir"
+
+
+} # as_fn_mkdir_p
+if mkdir -p . 2>/dev/null; then
+  as_mkdir_p='mkdir -p "$as_dir"'
+else
+  test -d ./-p && rmdir ./-p
+  as_mkdir_p=false
+fi
+
+
+# as_fn_executable_p FILE
+# -----------------------
+# Test if FILE is an executable regular file.
+as_fn_executable_p ()
+{
+  test -f "$1" && test -x "$1"
+} # as_fn_executable_p
+as_test_x='test -x'
+as_executable_p=as_fn_executable_p
+
+# Sed expression to map a string onto a valid CPP name.
+as_tr_cpp="eval sed 'y%*$as_cr_letters%P$as_cr_LETTERS%;s%[^_$as_cr_alnum]%_%g'"
+
+# Sed expression to map a string onto a valid variable name.
+as_tr_sh="eval sed 'y%*+%pp%;s%[^_$as_cr_alnum]%_%g'"
+
+
+exec 6>&1
+## ----------------------------------- ##
+## Main body of $CONFIG_STATUS script. ##
+## ----------------------------------- ##
+_ASEOF
+test $as_write_fail = 0 && chmod +x $CONFIG_STATUS || ac_write_fail=1
+
+cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
+# Save the log message, to keep $0 and so on meaningful, and to
+# report actual input values of CONFIG_FILES etc. instead of their
+# values after options handling.
+ac_log="
+This file was extended by qbittorrent $as_me v3.2.0alpha, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  CONFIG_FILES    = $CONFIG_FILES
+  CONFIG_HEADERS  = $CONFIG_HEADERS
+  CONFIG_LINKS    = $CONFIG_LINKS
+  CONFIG_COMMANDS = $CONFIG_COMMANDS
+  $ $0 $@
+
+on `(hostname || uname -n) 2>/dev/null | sed 1q`
+"
+
+_ACEOF
+
+case $ac_config_files in *"
+"*) set x $ac_config_files; shift; ac_config_files=$*;;
+esac
+
+
+
+cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
+# Files that config.status was made for.
+config_files="$ac_config_files"
+config_commands="$ac_config_commands"
+
+_ACEOF
+
+cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
+ac_cs_usage="\
+\`$as_me' instantiates files and other configuration actions
+from templates according to the current configuration.  Unless the files
+and actions are specified as TAGs, all are instantiated by default.
+
+Usage: $0 [OPTION]... [TAG]...
+
+  -h, --help       print this help, then exit
+  -V, --version    print version number and configuration settings, then exit
+      --config     print configuration, then exit
+  -q, --quiet, --silent
+                   do not print progress messages
+  -d, --debug      don't remove temporary files
+      --recheck    update $as_me by reconfiguring in the same conditions
+      --file=FILE[:TEMPLATE]
+                   instantiate the configuration file FILE
+
+Configuration files:
+$config_files
+
+Configuration commands:
+$config_commands
+
+Report bugs to <bugs.qbittorrent.org>.
+qbittorrent home page: <http://www.qbittorrent.org/>."
+
+_ACEOF
+cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
+ac_cs_config="`$as_echo "$ac_configure_args" | sed 's/^ //; s/[\\""\`\$]/\\\\&/g'`"
+ac_cs_version="\\
+qbittorrent config.status v3.2.0alpha
+configured by $0, generated by GNU Autoconf 2.69,
+  with options \\"\$ac_cs_config\\"
+
+Copyright (C) 2012 Free Software Foundation, Inc.
+This config.status script is free software; the Free Software Foundation
+gives unlimited permission to copy, distribute and modify it."
+
+ac_pwd='$ac_pwd'
+srcdir='$srcdir'
+INSTALL='$INSTALL'
+MKDIR_P='$MKDIR_P'
+AWK='$AWK'
+test -n "\$AWK" || AWK=awk
+_ACEOF
+
+cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
+# The default lists apply if the user does not specify any file.
+ac_need_defaults=:
+while test $# != 0
+do
+  case $1 in
+  --*=?*)
+    ac_option=`expr "X$1" : 'X\([^=]*\)='`
+    ac_optarg=`expr "X$1" : 'X[^=]*=\(.*\)'`
+    ac_shift=:
+    ;;
+  --*=)
+    ac_option=`expr "X$1" : 'X\([^=]*\)='`
+    ac_optarg=
+    ac_shift=:
+    ;;
+  *)
+    ac_option=$1
+    ac_optarg=$2
+    ac_shift=shift
+    ;;
+  esac
+
+  case $ac_option in
+  # Handling of the options.
+  -recheck | --recheck | --rechec | --reche | --rech | --rec | --re | --r)
+    ac_cs_recheck=: ;;
+  --version | --versio | --versi | --vers | --ver | --ve | --v | -V )
+    $as_echo "$ac_cs_version"; exit ;;
+  --config | --confi | --conf | --con | --co | --c )
+    $as_echo "$ac_cs_config"; exit ;;
+  --debug | --debu | --deb | --de | --d | -d )
+    debug=: ;;
+  --file | --fil | --fi | --f )
+    $ac_shift
+    case $ac_optarg in
+    *\'*) ac_optarg=`$as_echo "$ac_optarg" | sed "s/'/'\\\\\\\\''/g"` ;;
+    '') as_fn_error $? "missing file argument" ;;
+    esac
+    as_fn_append CONFIG_FILES " '$ac_optarg'"
+    ac_need_defaults=false;;
+  --he | --h |  --help | --hel | -h )
+    $as_echo "$ac_cs_usage"; exit ;;
+  -q | -quiet | --quiet | --quie | --qui | --qu | --q \
+  | -silent | --silent | --silen | --sile | --sil | --si | --s)
+    ac_cs_silent=: ;;
+
+  # This is an error.
+  -*) as_fn_error $? "unrecognized option: \`$1'
+Try \`$0 --help' for more information." ;;
+
+  *) as_fn_append ac_config_targets " $1"
+     ac_need_defaults=false ;;
+
+  esac
+  shift
+done
+
+ac_configure_extra_args=
+
+if $ac_cs_silent; then
+  exec 6>/dev/null
+  ac_configure_extra_args="$ac_configure_extra_args --silent"
+fi
+
+_ACEOF
+cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
+if \$ac_cs_recheck; then
+  set X $SHELL '$0' $ac_configure_args \$ac_configure_extra_args --no-create --no-recursion
+  shift
+  \$as_echo "running CONFIG_SHELL=$SHELL \$*" >&6
+  CONFIG_SHELL='$SHELL'
+  export CONFIG_SHELL
+  exec "\$@"
+fi
+
+_ACEOF
+cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
+exec 5>>config.log
+{
+  echo
+  sed 'h;s/./-/g;s/^.../## /;s/...$/ ##/;p;x;p;x' <<_ASBOX
+## Running $as_me. ##
+_ASBOX
+  $as_echo "$ac_log"
+} >&5
+
+_ACEOF
+cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
+#
+# INIT-COMMANDS
+#
+AMDEP_TRUE="$AMDEP_TRUE" ac_aux_dir="$ac_aux_dir"
+
+_ACEOF
+
+cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
+
+# Handling of arguments.
+for ac_config_target in $ac_config_targets
+do
+  case $ac_config_target in
+    "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
+    "conf.pri") CONFIG_FILES="$CONFIG_FILES conf.pri" ;;
+    "dist/unix/systemd/qbittorrent-nox.service") CONFIG_FILES="$CONFIG_FILES dist/unix/systemd/qbittorrent-nox.service" ;;
+
+  *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
+  esac
+done
+
+
+# If the user did not use the arguments to specify the items to instantiate,
+# then the envvar interface is used.  Set only those that are not.
+# We use the long form for the default assignment because of an extremely
+# bizarre bug on SunOS 4.1.3.
+if $ac_need_defaults; then
+  test "${CONFIG_FILES+set}" = set || CONFIG_FILES=$config_files
+  test "${CONFIG_COMMANDS+set}" = set || CONFIG_COMMANDS=$config_commands
+fi
+
+# Have a temporary directory for convenience.  Make it in the build tree
+# simply because there is no reason against having it here, and in addition,
+# creating and moving files from /tmp can sometimes cause problems.
+# Hook for its removal unless debugging.
+# Note that there is a small window in which the directory will not be cleaned:
+# after its creation but before its name has been assigned to `$tmp'.
+$debug ||
+{
+  tmp= ac_tmp=
+  trap 'exit_status=$?
+  : "${ac_tmp:=$tmp}"
+  { test ! -d "$ac_tmp" || rm -fr "$ac_tmp"; } && exit $exit_status
+' 0
+  trap 'as_fn_exit 1' 1 2 13 15
+}
+# Create a (secure) tmp directory for tmp files.
+
+{
+  tmp=`(umask 077 && mktemp -d "./confXXXXXX") 2>/dev/null` &&
+  test -d "$tmp"
+}  ||
+{
+  tmp=./conf$$-$RANDOM
+  (umask 077 && mkdir "$tmp")
+} || as_fn_error $? "cannot create a temporary directory in ." "$LINENO" 5
+ac_tmp=$tmp
+
+# Set up the scripts for CONFIG_FILES section.
+# No need to generate them if there are no CONFIG_FILES.
+# This happens for instance with `./config.status config.h'.
+if test -n "$CONFIG_FILES"; then
+
+
+ac_cr=`echo X | tr X '\015'`
+# On cygwin, bash can eat \r inside `` if the user requested igncr.
+# But we know of no other shell where ac_cr would be empty at this
+# point, so we can use a bashism as a fallback.
+if test "x$ac_cr" = x; then
+  eval ac_cr=\$\'\\r\'
+fi
+ac_cs_awk_cr=`$AWK 'BEGIN { print "a\rb" }' </dev/null 2>/dev/null`
+if test "$ac_cs_awk_cr" = "a${ac_cr}b"; then
+  ac_cs_awk_cr='\\r'
+else
+  ac_cs_awk_cr=$ac_cr
+fi
+
+echo 'BEGIN {' >"$ac_tmp/subs1.awk" &&
+_ACEOF
+
+
+{
+  echo "cat >conf$$subs.awk <<_ACEOF" &&
+  echo "$ac_subst_vars" | sed 's/.*/&!$&$ac_delim/' &&
+  echo "_ACEOF"
+} >conf$$subs.sh ||
+  as_fn_error $? "could not make $CONFIG_STATUS" "$LINENO" 5
+ac_delim_num=`echo "$ac_subst_vars" | grep -c '^'`
+ac_delim='%!_!# '
+for ac_last_try in false false false false false :; do
+  . ./conf$$subs.sh ||
+    as_fn_error $? "could not make $CONFIG_STATUS" "$LINENO" 5
+
+  ac_delim_n=`sed -n "s/.*$ac_delim\$/X/p" conf$$subs.awk | grep -c X`
+  if test $ac_delim_n = $ac_delim_num; then
+    break
+  elif $ac_last_try; then
+    as_fn_error $? "could not make $CONFIG_STATUS" "$LINENO" 5
+  else
+    ac_delim="$ac_delim!$ac_delim _$ac_delim!! "
+  fi
+done
+rm -f conf$$subs.sh
+
+cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
+cat >>"\$ac_tmp/subs1.awk" <<\\_ACAWK &&
+_ACEOF
+sed -n '
+h
+s/^/S["/; s/!.*/"]=/
+p
+g
+s/^[^!]*!//
+:repl
+t repl
+s/'"$ac_delim"'$//
+t delim
+:nl
+h
+s/\(.\{148\}\)..*/\1/
+t more1
+s/["\\]/\\&/g; s/^/"/; s/$/\\n"\\/
+p
+n
+b repl
+:more1
+s/["\\]/\\&/g; s/^/"/; s/$/"\\/
+p
+g
+s/.\{148\}//
+t nl
+:delim
+h
+s/\(.\{148\}\)..*/\1/
+t more2
+s/["\\]/\\&/g; s/^/"/; s/$/"/
+p
+b
+:more2
+s/["\\]/\\&/g; s/^/"/; s/$/"\\/
+p
+g
+s/.\{148\}//
+t delim
+' <conf$$subs.awk | sed '
+/^[^""]/{
+  N
+  s/\n//
+}
+' >>$CONFIG_STATUS || ac_write_fail=1
+rm -f conf$$subs.awk
+cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
+_ACAWK
+cat >>"\$ac_tmp/subs1.awk" <<_ACAWK &&
+  for (key in S) S_is_set[key] = 1
+  FS = ""
+
+}
+{
+  line = $ 0
+  nfields = split(line, field, "@")
+  substed = 0
+  len = length(field[1])
+  for (i = 2; i < nfields; i++) {
+    key = field[i]
+    keylen = length(key)
+    if (S_is_set[key]) {
+      value = S[key]
+      line = substr(line, 1, len) "" value "" substr(line, len + keylen + 3)
+      len += length(value) + length(field[++i])
+      substed = 1
+    } else
+      len += 1 + keylen
+  }
+
+  print line
+}
+
+_ACAWK
+_ACEOF
+cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
+if sed "s/$ac_cr//" < /dev/null > /dev/null 2>&1; then
+  sed "s/$ac_cr\$//; s/$ac_cr/$ac_cs_awk_cr/g"
+else
+  cat
+fi < "$ac_tmp/subs1.awk" > "$ac_tmp/subs.awk" \
+  || as_fn_error $? "could not setup config files machinery" "$LINENO" 5
+_ACEOF
+
+# VPATH may cause trouble with some makes, so we remove sole $(srcdir),
+# ${srcdir} and @srcdir@ entries from VPATH if srcdir is ".", strip leading and
+# trailing colons and then remove the whole line if VPATH becomes empty
+# (actually we leave an empty line to preserve line numbers).
+if test "x$srcdir" = x.; then
+  ac_vpsub='/^[	 ]*VPATH[	 ]*=[	 ]*/{
+h
+s///
+s/^/:/
+s/[	 ]*$/:/
+s/:\$(srcdir):/:/g
+s/:\${srcdir}:/:/g
+s/:@srcdir@:/:/g
+s/^:*//
+s/:*$//
+x
+s/\(=[	 ]*\).*/\1/
+G
+s/\n//
+s/^[^=]*=[	 ]*$//
+}'
+fi
+
+cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
+fi # test -n "$CONFIG_FILES"
+
+
+eval set X "  :F $CONFIG_FILES      :C $CONFIG_COMMANDS"
+shift
+for ac_tag
+do
+  case $ac_tag in
+  :[FHLC]) ac_mode=$ac_tag; continue;;
+  esac
+  case $ac_mode$ac_tag in
+  :[FHL]*:*);;
+  :L* | :C*:*) as_fn_error $? "invalid tag \`$ac_tag'" "$LINENO" 5;;
+  :[FH]-) ac_tag=-:-;;
+  :[FH]*) ac_tag=$ac_tag:$ac_tag.in;;
+  esac
+  ac_save_IFS=$IFS
+  IFS=:
+  set x $ac_tag
+  IFS=$ac_save_IFS
+  shift
+  ac_file=$1
+  shift
+
+  case $ac_mode in
+  :L) ac_source=$1;;
+  :[FH])
+    ac_file_inputs=
+    for ac_f
+    do
+      case $ac_f in
+      -) ac_f="$ac_tmp/stdin";;
+      *) # Look for the file first in the build tree, then in the source tree
+	 # (if the path is not absolute).  The absolute path cannot be DOS-style,
+	 # because $ac_f cannot contain `:'.
+	 test -f "$ac_f" ||
+	   case $ac_f in
+	   [\\/$]*) false;;
+	   *) test -f "$srcdir/$ac_f" && ac_f="$srcdir/$ac_f";;
+	   esac ||
+	   as_fn_error 1 "cannot find input file: \`$ac_f'" "$LINENO" 5;;
+      esac
+      case $ac_f in *\'*) ac_f=`$as_echo "$ac_f" | sed "s/'/'\\\\\\\\''/g"`;; esac
+      as_fn_append ac_file_inputs " '$ac_f'"
+    done
+
+    # Let's still pretend it is `configure' which instantiates (i.e., don't
+    # use $as_me), people would be surprised to read:
+    #    /* config.h.  Generated by config.status.  */
+    configure_input='Generated from '`
+	  $as_echo "$*" | sed 's|^[^:]*/||;s|:[^:]*/|, |g'
+	`' by configure.'
+    if test x"$ac_file" != x-; then
+      configure_input="$ac_file.  $configure_input"
+      { $as_echo "$as_me:${as_lineno-$LINENO}: creating $ac_file" >&5
+$as_echo "$as_me: creating $ac_file" >&6;}
+    fi
+    # Neutralize special characters interpreted by sed in replacement strings.
+    case $configure_input in #(
+    *\&* | *\|* | *\\* )
+       ac_sed_conf_input=`$as_echo "$configure_input" |
+       sed 's/[\\\\&|]/\\\\&/g'`;; #(
+    *) ac_sed_conf_input=$configure_input;;
+    esac
+
+    case $ac_tag in
+    *:-:* | *:-) cat >"$ac_tmp/stdin" \
+      || as_fn_error $? "could not create $ac_file" "$LINENO" 5 ;;
+    esac
+    ;;
+  esac
+
+  ac_dir=`$as_dirname -- "$ac_file" ||
+$as_expr X"$ac_file" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
+	 X"$ac_file" : 'X\(//\)[^/]' \| \
+	 X"$ac_file" : 'X\(//\)$' \| \
+	 X"$ac_file" : 'X\(/\)' \| . 2>/dev/null ||
+$as_echo X"$ac_file" |
+    sed '/^X\(.*[^/]\)\/\/*[^/][^/]*\/*$/{
+	    s//\1/
+	    q
+	  }
+	  /^X\(\/\/\)[^/].*/{
+	    s//\1/
+	    q
+	  }
+	  /^X\(\/\/\)$/{
+	    s//\1/
+	    q
+	  }
+	  /^X\(\/\).*/{
+	    s//\1/
+	    q
+	  }
+	  s/.*/./; q'`
+  as_dir="$ac_dir"; as_fn_mkdir_p
+  ac_builddir=.
+
+case "$ac_dir" in
+.) ac_dir_suffix= ac_top_builddir_sub=. ac_top_build_prefix= ;;
+*)
+  ac_dir_suffix=/`$as_echo "$ac_dir" | sed 's|^\.[\\/]||'`
+  # A ".." for each directory in $ac_dir_suffix.
+  ac_top_builddir_sub=`$as_echo "$ac_dir_suffix" | sed 's|/[^\\/]*|/..|g;s|/||'`
+  case $ac_top_builddir_sub in
+  "") ac_top_builddir_sub=. ac_top_build_prefix= ;;
+  *)  ac_top_build_prefix=$ac_top_builddir_sub/ ;;
+  esac ;;
+esac
+ac_abs_top_builddir=$ac_pwd
+ac_abs_builddir=$ac_pwd$ac_dir_suffix
+# for backward compatibility:
+ac_top_builddir=$ac_top_build_prefix
+
+case $srcdir in
+  .)  # We are building in place.
+    ac_srcdir=.
+    ac_top_srcdir=$ac_top_builddir_sub
+    ac_abs_top_srcdir=$ac_pwd ;;
+  [\\/]* | ?:[\\/]* )  # Absolute name.
+    ac_srcdir=$srcdir$ac_dir_suffix;
+    ac_top_srcdir=$srcdir
+    ac_abs_top_srcdir=$srcdir ;;
+  *) # Relative name.
+    ac_srcdir=$ac_top_build_prefix$srcdir$ac_dir_suffix
+    ac_top_srcdir=$ac_top_build_prefix$srcdir
+    ac_abs_top_srcdir=$ac_pwd/$srcdir ;;
+esac
+ac_abs_srcdir=$ac_abs_top_srcdir$ac_dir_suffix
+
+
+  case $ac_mode in
+  :F)
+  #
+  # CONFIG_FILE
+  #
+
+  case $INSTALL in
+  [\\/$]* | ?:[\\/]* ) ac_INSTALL=$INSTALL ;;
+  *) ac_INSTALL=$ac_top_build_prefix$INSTALL ;;
+  esac
+  ac_MKDIR_P=$MKDIR_P
+  case $MKDIR_P in
+  [\\/$]* | ?:[\\/]* ) ;;
+  */*) ac_MKDIR_P=$ac_top_build_prefix$MKDIR_P ;;
+  esac
+_ACEOF
+
+cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
+# If the template does not know about datarootdir, expand it.
+# FIXME: This hack should be removed a few years after 2.60.
+ac_datarootdir_hack=; ac_datarootdir_seen=
+ac_sed_dataroot='
+/datarootdir/ {
+  p
+  q
+}
+/@datadir@/p
+/@docdir@/p
+/@infodir@/p
+/@localedir@/p
+/@mandir@/p'
+case `eval "sed -n \"\$ac_sed_dataroot\" $ac_file_inputs"` in
+*datarootdir*) ac_datarootdir_seen=yes;;
+*@datadir@*|*@docdir@*|*@infodir@*|*@localedir@*|*@mandir@*)
+  { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: $ac_file_inputs seems to ignore the --datarootdir setting" >&5
+$as_echo "$as_me: WARNING: $ac_file_inputs seems to ignore the --datarootdir setting" >&2;}
+_ACEOF
+cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
+  ac_datarootdir_hack='
+  s&@datadir@&$datadir&g
+  s&@docdir@&$docdir&g
+  s&@infodir@&$infodir&g
+  s&@localedir@&$localedir&g
+  s&@mandir@&$mandir&g
+  s&\\\${datarootdir}&$datarootdir&g' ;;
+esac
+_ACEOF
+
+# Neutralize VPATH when `$srcdir' = `.'.
+# Shell code in configure.ac might set extrasub.
+# FIXME: do we really want to maintain this feature?
+cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
+ac_sed_extra="$ac_vpsub
+$extrasub
+_ACEOF
+cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
+:t
+/@[a-zA-Z_][a-zA-Z_0-9]*@/!b
+s|@configure_input@|$ac_sed_conf_input|;t t
+s&@top_builddir@&$ac_top_builddir_sub&;t t
+s&@top_build_prefix@&$ac_top_build_prefix&;t t
+s&@srcdir@&$ac_srcdir&;t t
+s&@abs_srcdir@&$ac_abs_srcdir&;t t
+s&@top_srcdir@&$ac_top_srcdir&;t t
+s&@abs_top_srcdir@&$ac_abs_top_srcdir&;t t
+s&@builddir@&$ac_builddir&;t t
+s&@abs_builddir@&$ac_abs_builddir&;t t
+s&@abs_top_builddir@&$ac_abs_top_builddir&;t t
+s&@INSTALL@&$ac_INSTALL&;t t
+s&@MKDIR_P@&$ac_MKDIR_P&;t t
+$ac_datarootdir_hack
+"
+eval sed \"\$ac_sed_extra\" "$ac_file_inputs" | $AWK -f "$ac_tmp/subs.awk" \
+  >$ac_tmp/out || as_fn_error $? "could not create $ac_file" "$LINENO" 5
+
+test -z "$ac_datarootdir_hack$ac_datarootdir_seen" &&
+  { ac_out=`sed -n '/\${datarootdir}/p' "$ac_tmp/out"`; test -n "$ac_out"; } &&
+  { ac_out=`sed -n '/^[	 ]*datarootdir[	 ]*:*=/p' \
+      "$ac_tmp/out"`; test -z "$ac_out"; } &&
+  { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: $ac_file contains a reference to the variable \`datarootdir'
+which seems to be undefined.  Please make sure it is defined" >&5
+$as_echo "$as_me: WARNING: $ac_file contains a reference to the variable \`datarootdir'
+which seems to be undefined.  Please make sure it is defined" >&2;}
+
+  rm -f "$ac_tmp/stdin"
+  case $ac_file in
+  -) cat "$ac_tmp/out" && rm -f "$ac_tmp/out";;
+  *) rm -f "$ac_file" && mv "$ac_tmp/out" "$ac_file";;
+  esac \
+  || as_fn_error $? "could not create $ac_file" "$LINENO" 5
+ ;;
+
+
+  :C)  { $as_echo "$as_me:${as_lineno-$LINENO}: executing $ac_file commands" >&5
+$as_echo "$as_me: executing $ac_file commands" >&6;}
+ ;;
+  esac
+
+
+  case $ac_file$ac_mode in
+    "depfiles":C) test x"$AMDEP_TRUE" != x"" || {
+  # Older Autoconf quotes --file arguments for eval, but not when files
+  # are listed without --file.  Let's play safe and only enable the eval
+  # if we detect the quoting.
+  case $CONFIG_FILES in
+  *\'*) eval set x "$CONFIG_FILES" ;;
+  *)   set x $CONFIG_FILES ;;
+  esac
+  shift
+  for mf
+  do
+    # Strip MF so we end up with the name of the file.
+    mf=`echo "$mf" | sed -e 's/:.*$//'`
+    # Check whether this is an Automake generated Makefile or not.
+    # We used to match only the files named 'Makefile.in', but
+    # some people rename them; so instead we look at the file content.
+    # Grep'ing the first line is not enough: some people post-process
+    # each Makefile.in and add a new line on top of each file to say so.
+    # Grep'ing the whole file is not good either: AIX grep has a line
+    # limit of 2048, but all sed's we know have understand at least 4000.
+    if sed -n 's,^#.*generated by automake.*,X,p' "$mf" | grep X >/dev/null 2>&1; then
+      dirpart=`$as_dirname -- "$mf" ||
+$as_expr X"$mf" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
+	 X"$mf" : 'X\(//\)[^/]' \| \
+	 X"$mf" : 'X\(//\)$' \| \
+	 X"$mf" : 'X\(/\)' \| . 2>/dev/null ||
+$as_echo X"$mf" |
+    sed '/^X\(.*[^/]\)\/\/*[^/][^/]*\/*$/{
+	    s//\1/
+	    q
+	  }
+	  /^X\(\/\/\)[^/].*/{
+	    s//\1/
+	    q
+	  }
+	  /^X\(\/\/\)$/{
+	    s//\1/
+	    q
+	  }
+	  /^X\(\/\).*/{
+	    s//\1/
+	    q
+	  }
+	  s/.*/./; q'`
+    else
+      continue
+    fi
+    # Extract the definition of DEPDIR, am__include, and am__quote
+    # from the Makefile without running 'make'.
+    DEPDIR=`sed -n 's/^DEPDIR = //p' < "$mf"`
+    test -z "$DEPDIR" && continue
+    am__include=`sed -n 's/^am__include = //p' < "$mf"`
+    test -z "$am__include" && continue
+    am__quote=`sed -n 's/^am__quote = //p' < "$mf"`
+    # Find all dependency output files, they are included files with
+    # $(DEPDIR) in their names.  We invoke sed twice because it is the
+    # simplest approach to changing $(DEPDIR) to its actual value in the
+    # expansion.
+    for file in `sed -n "
+      s/^$am__include $am__quote\(.*(DEPDIR).*\)$am__quote"'$/\1/p' <"$mf" | \
+	 sed -e 's/\$(DEPDIR)/'"$DEPDIR"'/g'`; do
+      # Make sure the directory exists.
+      test -f "$dirpart/$file" && continue
+      fdir=`$as_dirname -- "$file" ||
+$as_expr X"$file" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
+	 X"$file" : 'X\(//\)[^/]' \| \
+	 X"$file" : 'X\(//\)$' \| \
+	 X"$file" : 'X\(/\)' \| . 2>/dev/null ||
+$as_echo X"$file" |
+    sed '/^X\(.*[^/]\)\/\/*[^/][^/]*\/*$/{
+	    s//\1/
+	    q
+	  }
+	  /^X\(\/\/\)[^/].*/{
+	    s//\1/
+	    q
+	  }
+	  /^X\(\/\/\)$/{
+	    s//\1/
+	    q
+	  }
+	  /^X\(\/\).*/{
+	    s//\1/
+	    q
+	  }
+	  s/.*/./; q'`
+      as_dir=$dirpart/$fdir; as_fn_mkdir_p
+      # echo "creating $dirpart/$file"
+      echo '# dummy' > "$dirpart/$file"
+    done
+  done
+}
+ ;;
+
+  esac
+done # for ac_tag
+
+
+as_fn_exit 0
+_ACEOF
+ac_clean_files=$ac_clean_files_save
+
+test $ac_write_fail = 0 ||
+  as_fn_error $? "write failure creating $CONFIG_STATUS" "$LINENO" 5
+
+
+# configure is writing to config.log, and then calls config.status.
+# config.status does its own redirection, appending to config.log.
+# Unfortunately, on DOS this fails, as config.log is still kept open
+# by configure, so config.status won't be able to write to it; its
+# output is simply discarded.  So we exec the FD to /dev/null,
+# effectively closing config.log, so it can be properly (re)opened and
+# appended to by config.status.  When coming back to configure, we
+# need to make the FD available again.
+if test "$no_create" != yes; then
+  ac_cs_success=:
+  ac_config_status_args=
+  test "$silent" = yes &&
+    ac_config_status_args="$ac_config_status_args --quiet"
+  exec 5>/dev/null
+  $SHELL $CONFIG_STATUS $ac_config_status_args || ac_cs_success=false
+  exec 5>>config.log
+  # Use ||, not &&, to avoid exiting from the if with $? = 1, which
+  # would make configure fail if this is the last instruction.
+  $ac_cs_success || as_fn_exit 1
+fi
+if test -n "$ac_unrecognized_opts" && test "$enable_option_checking" != no; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: unrecognized options: $ac_unrecognized_opts" >&5
+$as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
+fi
+
+fi
 
 
 
@@ -6699,12 +8321,12 @@ fi
 $as_echo "$as_me: Running qmake to generate the makefile..." >&6;}
 CONFDIR="$( cd "$( dirname "$0" )" && pwd )"
 
-$QT_QMAKE $CONFDIR/qbittorrent.pro
+$QT_QMAKE -r $CONFDIR/qbittorrent.pro
 
 ret="$?"
 
 $as_echo
-if test "x$ret" == "x0"; then :
+if test "x$ret" = "x0"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: Good, your configure finished." >&5
 $as_echo "$as_me: Good, your configure finished." >&6;}
 else

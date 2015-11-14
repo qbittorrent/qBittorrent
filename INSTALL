@@ -14,15 +14,11 @@ qBittorrent - A BitTorrent client in C++ / Qt4
 
     - pkg-config executable
 
-    - libtorrent-rasterbar by Arvid Norberg (>= 0.15.0)
+    - libtorrent-rasterbar by Arvid Norberg (>= 1.0.6)
         -> http://www.libtorrent.net
         Be careful: another library (the one used by rTorrent) uses a similar name.
 
-    - libboost 1.34.x (libboost-filesystem°) + libasio
-      or
-    - libboost >= 1.35.x (libboost-system, libboost-filesystem°)
-      
-    °libboost-filesystem is not needed if libtorrent-rasterbar >= v0.16.x is used
+    - libboost >= 1.35.x (libboost-system)
 
     - python >= 2.3 (needed by search engine)
         * Run time only dependency
@@ -44,7 +40,7 @@ qBittorrent - A BitTorrent client in C++ / Qt4
 
     - pkg-config executable
 
-    - libtorrent-rasterbar by Arvid Norberg (>= v0.15.0)
+    - libtorrent-rasterbar by Arvid Norberg (>= v1.0.6)
         -> http://www.libtorrent.net
         Be careful: another library (the one used by rTorrent) uses a similar name.
 

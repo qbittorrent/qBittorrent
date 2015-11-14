@@ -8,6 +8,8 @@
   <file>nova/socks.py</file>
   <file>nova/engines/btdigg.png</file>
   <file>nova/engines/btdigg.py</file>
+  <file>nova/engines/demonoid.png</file>
+  <file>nova/engines/demonoid.py</file>
   <file>nova/engines/extratorrent.png</file>
   <file>nova/engines/extratorrent.py</file>
   <file>nova/engines/kickasstorrents.png</file>
@@ -20,8 +22,8 @@
   <file>nova/engines/piratebay.py</file>
   <file>nova/engines/torrentreactor.png</file>
   <file>nova/engines/torrentreactor.py</file>
-  <file>nova/engines/vertor.png</file>
-  <file>nova/engines/vertor.py</file>
+  <file>nova/engines/torrentz.png</file>
+  <file>nova/engines/torrentz.py</file>
   <file>nova3/helpers.py</file>
   <file>nova3/nova2.py</file>
   <file>nova3/nova2dl.py</file>
@@ -30,6 +32,8 @@
   <file>nova3/socks.py</file>
   <file>nova3/engines/btdigg.png</file>
   <file>nova3/engines/btdigg.py</file>
+  <file>nova3/engines/demonoid.png</file>
+  <file>nova3/engines/demonoid.py</file>
   <file>nova3/engines/extratorrent.png</file>
   <file>nova3/engines/extratorrent.py</file>
   <file>nova3/engines/kickasstorrents.png</file>
@@ -42,7 +46,7 @@
   <file>nova3/engines/piratebay.py</file>
   <file>nova3/engines/torrentreactor.png</file>
   <file>nova3/engines/torrentreactor.py</file>
-  <file>nova3/engines/vertor.png</file>
-  <file>nova3/engines/vertor.py</file>
+  <file>nova3/engines/torrentz.png</file>
+  <file>nova3/engines/torrentz.py</file>
 </qresource>
 </RCC>

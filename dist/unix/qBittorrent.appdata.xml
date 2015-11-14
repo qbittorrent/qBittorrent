@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2014 sledgehammer999 <sledgehammer999@qbittorrent.org> -->
+<component type="desktop">
+ <id>qBittorrent.desktop</id>
+ <metadata_license>CC0-1.0</metadata_license>
+ <project_license>GPL-2.0 and OpenSSL</project_license>
+ <name>qBittorrent</name>
+ <summary>A Bittorrent Client</summary>
+ <description>
+  <p>
+   Aiming to be a good alternative to all other bittorrent clients out
+   there, qBittorrent is fast, stable and provides unicode support as well
+   as many other features. Additionally, qBittorrent runs and provides those
+   same features on all major platforms (Linux, Mac OS X, Windows, OS/2, FreeBSD).
+  </p>
+  <p>
+   It is programmed in C++ / Qt and uses libtorrent (sometimes called
+   libtorrent-rasterbar) by Arvid Norberg. GeoLite data, created by MaxMind,
+   are included in qBittorrent. Its features include:
+  </p>
+  <ul>
+   <li>Polished µTorrent-like User Interface</li>
+   <li>Well-integrated and extensible Search Engine</li>
+   <li>All Bittorrent extensions (DHT, Peer Exchange, Full encryption, Magnet/BitComet URIs, ...)</li>
+   <li>Remote control through a Web user interface</li>
+   <li>Advanced control over trackers, peers and torrents</li>
+   <li>UPnP / NAT-PMP port forwarding support</li>
+   <li>Available in ~25 languages (Unicode support)</li>
+   <li>Torrent creation tool</li>
+   <li>Advanced RSS support with download filters (inc. regex)</li>
+   <li>Bandwidth scheduler</li>
+   <li>IP Filtering (eMule and PeerGuardian compatible)</li>
+   <li>IPv6 compliant</li>
+   <li>Sequential downloading (aka "Download in order")</li>
+  </ul>
+ </description>
+ <screenshots>
+  <screenshot type="default">
+   <image width="1200" height="675">
+    https://alexpl.fedorapeople.org/AppData/qbittorrent/screens/qbittorrent_01.png
+   </image>
+  </screenshot>
+  <screenshot>
+   <image width="1200" height="675">
+    https://alexpl.fedorapeople.org/AppData/qbittorrent/screens/qbittorrent_02.png
+   </image>
+  </screenshot>
+  <screenshot>
+   <image width="1200" height="675">
+    https://alexpl.fedorapeople.org/AppData/qbittorrent/screens/qbittorrent_03.png
+   </image>
+  </screenshot>
+  <screenshot>
+   <image width="1200" height="675">
+    https://alexpl.fedorapeople.org/AppData/qbittorrent/screens/qbittorrent_04.png
+   </image>
+  </screenshot>
+ </screenshots>
+ <url type="homepage">http://www.qbittorrent.org/</url>
+ <update_contact>sledgehammer999@qbittorrent.org</update_contact>
+</component>

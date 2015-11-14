@@ -1,7 +1,8 @@
-#VERSION: 2.00
+#VERSION: 2.11
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 #              Arthur (custparasite@gmx.se)
+#              Diego de las Heras (ngosang@hotmail.es)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -27,113 +28,159 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-from novaprinter import prettyPrinter
 from HTMLParser import HTMLParser
+from httplib import HTTPSConnection as https
+#qBt
+from novaprinter import prettyPrinter
 from helpers import download_file
-import urllib2
-
-PREVIOUS_IDS = set()
 
 class piratebay(object):
-    url = 'http://thepiratebay.se'
+    """ Search engine class """
+    url = 'https://thepiratebay.gd'
     name = 'The Pirate Bay'
     supported_categories = {'all': '0', 'music': '100', 'movies': '200', 'games': '400', 'software': '300'}
 
     def download_torrent(self, info):
+        """ Downloader """
         print(download_file(info))
 
     class MyHtmlParseWithBlackJack(HTMLParser):
-        def __init__(self, results, url):
+        """ Parser class """
+        def __init__(self, list_searches, url):
             HTMLParser.__init__(self)
+            self.list_searches = list_searches
             self.url = url
-            self.results = results
             self.current_item = None
-            self.size_found = False
-            self.unit_found = False
-            self.seed_found = False
-            self.skip_td = False
-            self.leech_found = False
-            self.dispatcher = {'a'      : self.handle_tag_a_ref,
-                               'font'   : self.handle_tag_font_size,
-                               'td'     : self.handle_tag_td_sl      }
+            self.save_item = None
+            self.result_table = False #table with results is found
+            self.result_tbody = False
+            self.add_query = True
+            self.result_query = False
 
-        def handle_tag_a_ref(self, attrs):
+        def handle_start_tag_default(self, attrs):
+            """ Default handler for start tag dispatcher """
+            pass
+
+        def handle_start_tag_a(self, attrs):
+            """ Handler for start tag a """
             params = dict(attrs)
-            #1
-            if params['href'].startswith('/torrent/'):
-                get_id = params['href'].split('/')[2]
-                if not get_id in PREVIOUS_IDS:
-                    self.current_item = {}
-                    self.current_item['desc_link'] = self.url + params['href'].strip()
-                    self.current_item['name'] = params['title'][12:].strip()
-                    self.current_item['id'] = get_id
-            #2
-            elif (not self.current_item is None) and (params['href'].startswith('magnet:')):
-                self.current_item['link'] = params['href'].strip()
+            link = params["href"]
+            if link.startswith("/torrent"):
+                self.current_item["desc_link"] = "".join((self.url, link))
+                self.save_item = "name"
+            elif link.startswith("magnet"):
+                self.current_item["link"] = link
+                # end of the 'name' item
+                self.current_item['name'] = self.current_item['name'].strip()
+                self.save_item = None
 
-        def handle_tag_font_size(self, attrs):
-            if not self.current_item is None:
-                params = dict(attrs)
-                #3
-                if params['class'] == "detDesc":
-                    self.size_found = True
+        def handle_start_tag_font(self, attrs):
+            """ Handler for start tag font """
+            for attr in attrs:
+                if attr[1] == "detDesc":
+                    self.save_item = "size"
+                    break
 
-        def handle_tag_td_sl(self, attrs):
-            if not self.current_item is None:
-                params = dict(attrs)
-                if not self.current_item is None:
-                    if self.seed_found:
-                        #5
-                        self.current_item['leech'] = ''
-                        self.leech_found = True
-                        self.seed_found = False
+        def handle_start_tag_td(self, attrs):
+            """ Handler for start tag td """
+            for attr in attrs:
+                if attr[1] == "right":
+                    if "seeds" in self.current_item.keys():
+                        self.save_item = "leech"
                     else:
-                        #4
-                        self.current_item['seeds'] = ''
-                        self.seed_found = True
+                        self.save_item = "seeds"
+                    break
 
         def handle_starttag(self, tag, attrs):
-            if tag in self.dispatcher:
-                self.dispatcher[tag](attrs)
+            """ Parser's start tag handler """
+            if self.current_item:
+                dispatcher = getattr(self, "_".join(("handle_start_tag", tag)), self.handle_start_tag_default)
+                dispatcher(attrs)
+
+            elif self.result_tbody:
+                if tag == "tr":
+                    self.current_item = {"engine_url" : self.url}
+
+            elif tag == "table":
+                self.result_table = "searchResult" == attrs[0][1]
+
+            elif self.add_query:
+                if self.result_query and tag == "a":
+                    if len(self.list_searches) < 10:
+                        self.list_searches.append(attrs[0][1])
+                    else:
+                        self.add_query = False
+                        self.result_query = False
+                elif tag == "div":
+                    self.result_query = "center" == attrs[0][1]
+
+        def handle_endtag(self, tag):
+            """ Parser's end tag handler """
+            if self.result_tbody:
+                if tag == "tr":
+                    prettyPrinter(self.current_item)
+                    self.current_item = None
+                elif tag == "font":
+                    self.save_item = None
+                elif tag == "table":
+                    self.result_table = self.result_tbody = False
+
+            elif self.result_table:
+                if tag == "thead":
+                    self.result_tbody = True
+                elif tag == "table":
+                    self.result_table = self.result_tbody = False
+
+            elif self.add_query and self.result_query:
+                if tag == "div":
+                    self.add_query = self.result_query = False
 
         def handle_data(self, data):
-            if not self.current_item is None:
-                if self.size_found:
-                    #with utf-8 you're going to have something like that: ['Uploaded', '10-02'], ['15:31,', 'Size', '240.34'], ['MiB,', 'ULed', 'by']
-                    temp = data.split()
-                    if 'Size' in temp:
-                        sizeIn = temp.index('Size')
-                        self.current_item['size'] = temp[sizeIn + 1]
-                        self.size_found = False
-                        self.unit_found = True
-                elif self.unit_found:
-                    temp = data.split()
-                    self.current_item['size'] = ' '.join((self.current_item['size'], temp[0]))
-                    self.unit_found = False
-                elif self.seed_found:
-                    self.current_item['seeds'] += data.rstrip()
-                elif self.leech_found:
-                    self.current_item['leech'] += data.rstrip()
-                    self.current_item['engine_url'] = self.url
-                    prettyPrinter(self.current_item)
-                    PREVIOUS_IDS.add(self.current_item['id'])
-                    self.results.append('a')
-                    self.current_item = None
-                    self.size_found = False
-                    self.unit_found = False
-                    self.seed_found = False
-                    self.leech_found = False
+            """ Parser's data handler """
+            if self.save_item:
+                if self.save_item == "size":
+                    temp_data = data.split()
+                    if "Size" in temp_data:
+                        self.current_item[self.save_item] = temp_data[2]
+                    elif "ULed" in temp_data:
+                        temp_string = self.current_item[self.save_item]
+                        self.current_item[self.save_item] = " ".join((temp_string, temp_data[0][:-1]))
+
+                elif self.save_item == "name":
+                    # names with special characters like '&' are splitted in several pieces
+                    if 'name' not in self.current_item:
+                        self.current_item['name'] = ''
+                    self.current_item['name'] += data
+
+                else:
+                    self.current_item[self.save_item] = data
+                    self.save_item = None
+
 
     def search(self, what, cat='all'):
-        ret = []
-        i = 0
-        while i < 11:
-            results = []
-            parser = self.MyHtmlParseWithBlackJack(results, self.url)
-            query = '%s/search/%s/%d/99/%s' % (self.url, what, i, self.supported_categories[cat])
-            dat = urllib2.urlopen(query)
-            parser.feed(dat.read().decode('utf-8'))
+        """ Performs search """
+        connection = https("thepiratebay.gd")
+
+        #prepare query. 7 is filtering by seeders
+        cat = cat.lower()
+        query = "/".join(("/search", what, "0", "7", self.supported_categories[cat]))
+
+        connection.request("GET", query)
+        response = connection.getresponse()
+        if response.status != 200:
+            return
+
+        list_searches = []
+        parser = self.MyHtmlParseWithBlackJack(list_searches, self.url)
+        parser.feed(response.read().decode('utf-8'))
+        parser.close()
+
+        parser.add_query = False
+        for search_query in list_searches:
+            connection.request("GET", search_query)
+            response = connection.getresponse()
+            parser.feed(response.read().decode('utf-8'))
             parser.close()
-            if len(results) <= 0:
-                break
-            i += 1
+
+        connection.close()
+        return

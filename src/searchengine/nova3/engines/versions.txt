@@ -1,8 +1,9 @@
-torrentreactor: 1.33
-mininova: 1.50
-piratebay: 2.00
-vertor: 1.3
-extratorrent: 1.2
-kickasstorrents: 1.24
-btdigg: 1.23
-legittorrents: 1.02
+btdigg: 1.30
+demonoid: 1.1
+extratorrent: 2.02
+kickasstorrents: 1.28
+legittorrents: 2.00
+mininova: 2.00
+piratebay: 2.11
+torrentreactor: 1.40
+torrentz: 2.16

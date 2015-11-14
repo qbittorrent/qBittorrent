@@ -1,10 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-#
-
-#VERSION: 1.23
+#VERSION: 1.30
 #AUTHORS: BTDigg team (research@btdigg.org)
-#
+
 #                    GNU GENERAL PUBLIC LICENSE
 #                       Version 3, 29 June 2007
 #
@@ -24,72 +20,52 @@ import urllib
 import urllib2
 import sys
 
-if sys.platform == 'win32':
-    import httplib
-    import socket
-    import ssl
-
-    class HTTPSConnection(httplib.HTTPConnection):
-        "This class allows communication via SSL."
-
-        default_port = httplib.HTTPS_PORT
-
-        def __init__(self, host, port=None, key_file=None, cert_file=None,
-                     strict=None, timeout=socket._GLOBAL_DEFAULT_TIMEOUT,
-                     source_address=None):
-            httplib.HTTPConnection.__init__(self, host, port, strict, timeout,
-                                    source_address)
-            self.key_file = key_file
-            self.cert_file = cert_file
-
-        def connect(self):
-            "Connect to a host on a given (SSL) port."
-
-            sock = socket.create_connection((self.host, self.port),
-                                            self.timeout, self.source_address)
-            if self._tunnel_host:
-                self.sock = sock
-                self._tunnel()
-            self.sock = ssl.wrap_socket(sock, self.key_file, self.cert_file, ssl_version=ssl.PROTOCOL_TLSv1)
-
-    httplib.HTTPSConnection =  HTTPSConnection
-
 from novaprinter import prettyPrinter
 
 class btdigg(object):
     url = 'https://btdigg.org'
-    name = 'BTDigg' 
+    name = 'BTDigg'
 
     supported_categories = {'all': ''}
-	
+
     def __init__(self):
         pass
-        
+
     def search(self, what, cat='all'):
         req = urllib.unquote(what)
-        u = urllib2.urlopen('https://api.btdigg.org/api/public-8e9a50f8335b964f/s01?%s' % (urllib.urlencode(dict(q = req)),))
-
-        try:
+        what_list = req.decode('utf8').split()
+        i = 0
+        results = 0
+        while i < 3:
+            u = urllib2.urlopen('https://api.btdigg.org/api/public-8e9a50f8335b964f/s01?%s' % urllib.urlencode(dict(q = req, p = i)))
             for line in u:
-                if line.startswith('#'):
-                    continue
+                try:
+                    line = line.decode('utf8')
+                    if line.startswith('#'):
+                        continue
 
-                info_hash, name, files, size, dl, seen = line.strip().split('\t')[:6]
-                name = name.translate(None, '|')
-                res = dict(link = 'magnet:?xt=urn:btih:%s&dn=%s' % (info_hash, urllib.quote(name)),
-                           name = name,
-                           size = size,
-                           seeds = int(dl),
-                           leech = int(dl),
-                           engine_url = self.url,
-                           desc_link = '%s/search?%s' % (self.url, urllib.urlencode(dict(info_hash = info_hash, q = req)),))
+                    info_hash, name, files, size, dl, seen = line.strip().split('\t')[:6]
+                    name = name.replace('|', '')
+                    # BTDigg returns unrelated results, we need to filter
+                    if not all(word in name.lower() for word in what_list):
+                        continue
 
-                prettyPrinter(res)
-        finally:
-            u.close()
-        
+                    res = dict(link = 'magnet:?xt=urn:btih:%s&dn=%s' % (info_hash, urllib.quote(name.encode('utf8'))),
+                               name = name,
+                               size = size,
+                               seeds = int(dl),
+                               leech = int(dl),
+                               engine_url = self.url,
+                               desc_link = '%s/search?%s' % (self.url, urllib.urlencode(dict(info_hash = info_hash, q = req))))
 
-      
+                    prettyPrinter(res)
+                    results += 1
+                except:
+                    pass
+
+            if results == 0:
+                break
+            i += 1
 
 if __name__ == "__main__":
     s = btdigg()

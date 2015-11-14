@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>QBT_TR(Download local torrent)QBT_TR</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/Window.css" type="text/css" />
+	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
+<script type="text/javascript">
+
+function stateChangeHandler() {
+	if (this.readyState == this.DONE) {
+		if (this.status == 200) {
+			window.parent.closeWindows();
+		} else {
+			if (this.responseText != "") {
+				alert(this.responseText);
+			} else {
+				alert("QBT_TR(Upload Failed!)QBT_TR");
+			}
+		}
+		$('upload_spinner').style.display = "none";
+	}
+}
+
+function uploadFiles(files) {
+	var xhr = new XMLHttpRequest();
+	if (xhr.upload) {
+		// start upload
+		var formData = new FormData();
+		for (var i = 0, file; file = files[i]; ++i)
+			formData.append(file.name, file);
+		xhr.onreadystatechange = stateChangeHandler;
+		xhr.open("POST", "command/upload");
+		// Bypass cache
+		xhr.setRequestHeader("Cache-Control", "no-cache");
+		xhr.send(formData);
+	}
+}
+
+function fileHandler(e) {
+	e.preventDefault();
+	$('upload_spinner').style.display = "block";
+	// fetch FileList object
+	var files = $('fileselect').files
+	// process all File objects
+	uploadFiles(files);
+}
+
+window.addEvent('load', function() {
+	// is XHR2 available?
+	var xhr = new XMLHttpRequest();
+	if (xhr.upload) {
+		$('uploadForm').addEvent('submit', fileHandler);
+	} else {
+		$('upload_frame').addEvent('load', function() { window.parent.closeWindows(); });
+		$('uploadForm').addEvent('submit', function() { $('upload_spinner').style.display = "block"; });
+	}
+});
+</script>
+</head>
+<body>
+<iframe id="upload_frame" name="upload_frame" class="invisible" src="javascript:false;"></iframe>
+<form action="command/upload" enctype="multipart/form-data" method="post" id="uploadForm" target="upload_frame" style="text-align: center;">
+<div style="margin-top: 25px; display: inline-block; border: 1px solid lightgrey; border-radius: 4px;">
+	<input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
+</div>
+<div id="submitbutton" style="margin-top: 30px;">
+	<button type="submit" style="font-size: 1em;">QBT_TR(Upload Torrents)QBT_TR</button>
+</div>
+</form>
+<div id="upload_spinner" class="mochaSpinner"></div>
+</body>
+</html>

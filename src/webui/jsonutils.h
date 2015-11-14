@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev
+ * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,42 +24,48 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : glassez@yandex.ru
  */
 
 #ifndef JSONUTILS_H
 #define JSONUTILS_H
 
+#include <QVariant>
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
 #else
 #include <QString>
+#ifndef USE_SYSTEM_QJSON
 #include "qjson/parser.h"
 #include "qjson/serializer.h"
+#else // USE_SYSTEM_QJSON
+#include <qjson/parser.h>
+#include <qjson/serializer.h>
+#endif // USE_SYSTEM_QJSON
 #endif
 
 namespace json {
 
-inline QByteArray toJson(const QVariant& var)
-{
+    inline QByteArray toJson(const QVariant& var)
+    {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-  return QJsonDocument::fromVariant(var).toJson();
+        return QJsonDocument::fromVariant(var).toJson(QJsonDocument::Compact);
 #else
-  return QJson::Serializer().serialize(var);
+        QJson::Serializer serializer;
+        serializer.setIndentMode(QJson::IndentCompact);
+        return serializer.serialize(var);
 #endif
-}
+    }
 
-inline QVariant fromJson(const QString& json)
-{
+    inline QVariant fromJson(const QString& json)
+    {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-  return QJsonDocument::fromJson(json.toUtf8()).toVariant();
+        return QJsonDocument::fromJson(json.toUtf8()).toVariant();
 #else
-  return QJson::Parser().parse(json.toUtf8());
+        return QJson::Parser().parse(json.toUtf8());
 #endif
-}
+    }
 
 }
 

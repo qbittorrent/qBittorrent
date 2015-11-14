@@ -1,10 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-#
-
-#VERSION: 1.23
+#VERSION: 1.30
 #AUTHORS: BTDigg team (research@btdigg.org)
-#
+
 #                    GNU GENERAL PUBLIC LICENSE
 #                       Version 3, 29 June 2007
 #
@@ -37,30 +33,39 @@ class btdigg(object):
         
     def search(self, what, cat='all'):
         req = urllib.parse.unquote(what)
-        u = urllib.request.urlopen('https://api.btdigg.org/api/public-8e9a50f8335b964f/s01?%s' % (urllib.parse.urlencode(dict(q = req)),))
-
-        try:
+        what_list = req.split()
+        i = 0
+        results = 0
+        while i < 3:
+            u = urllib.request.urlopen('https://api.btdigg.org/api/public-8e9a50f8335b964f/s01?%s' % urllib.parse.urlencode(dict(q = req, p = i)))
             for line in u:
-                line = line.decode('utf-8')
-                if line.startswith('#'):
-                    continue
+                try:
+                    line = line.decode('utf8')
+                    if line.startswith('#'):
+                        continue
 
-                info_hash, name, files, size, dl, seen = line.strip().split('\t')[:6]
-                name = name.replace('|', '')
-                res = dict(link = 'magnet:?xt=urn:btih:%s&dn=%s' % (info_hash, urllib.parse.quote(name)),
-                           name = name,
-                           size = size,
-                           seeds = int(dl),
-                           leech = int(dl),
-                           engine_url = self.url,
-                           desc_link = '%s/search?%s' % (self.url, urllib.parse.urlencode(dict(info_hash = info_hash, q = req)),))
+                    info_hash, name, files, size, dl, seen = line.strip().split('\t')[:6]
+                    name = name.replace('|', '')
+                    # BTDigg returns unrelated results, we need to filter
+                    if not all(word in name.lower() for word in what_list):
+                        continue
 
-                prettyPrinter(res)
-        finally:
-            u.close()
-        
+                    res = dict(link = 'magnet:?xt=urn:btih:%s&dn=%s' % (info_hash, urllib.parse.quote(name)),
+                               name = name,
+                               size = size,
+                               seeds = int(dl),
+                               leech = int(dl),
+                               engine_url = self.url,
+                               desc_link = '%s/search?%s' % (self.url, urllib.parse.urlencode(dict(info_hash = info_hash, q = req))))
 
-      
+                    prettyPrinter(res)
+                    results += 1
+                except:
+                    pass
+
+            if results == 0:
+                break
+            i += 1
 
 if __name__ == "__main__":
     s = btdigg()

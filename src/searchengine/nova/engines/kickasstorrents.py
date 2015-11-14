@@ -1,5 +1,6 @@
-#VERSION: 1.24
+#VERSION: 1.28
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
+#CONTRIBUTORS: Diego de las Heras (ngosang@hotmail.es)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -25,48 +26,45 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-
 from novaprinter import prettyPrinter
 from helpers import retrieve_url, download_file
 import json
 
 class kickasstorrents(object):
-  url = 'https://kickass.to'
-  name = 'kickasstorrents'
-  supported_categories = {'all': '', 'movies': 'Movies', 'tv': 'TV', 'music': 'Music', 'games': 'Games', 'software': 'Applications'}
+    url = 'https://kat.cr'
+    name = 'Kickass Torrents'
+    supported_categories = {'all': '', 'movies': 'Movies', 'tv': 'TV', 'music': 'Music', 'games': 'Games', 'software': 'Applications'}
 
-  def __init__(self):
-    self.results = []
+    def __init__(self):
+        pass
 
-  def download_torrent(self, info):
-    print download_file(info, info)
+    def download_torrent(self, info):
+        print download_file(info, info)
 
-  def search(self, what, cat='all'):
-    ret = []
-    i = 1
-    while True and i<11:
-      results = []
-      json_data = retrieve_url(self.url+'/json.php?q=%s&page=%d'%(what, i))
-      try:
-        json_dict = json.loads(json_data)
-      except:
-	i += 1
-	continue
-      if int(json_dict['total_results']) <= 0: return
-      results = json_dict['list']
-      for r in results:
-        try:
-          if cat != 'all' and self.supported_categories[cat] != r['category']: continue
-          res_dict = dict()
-          res_dict['name'] = r['title']
-          res_dict['size'] = str(r['size'])
-          res_dict['seeds'] = r['seeds']
-          res_dict['leech'] = r['leechs']
-          res_dict['link'] = r['torrentLink']
-          res_dict['desc_link'] = r['link']
-          res_dict['engine_url'] = self.url
-          prettyPrinter(res_dict)
-        except:
-          pass
-      i += 1
-      
+    def search(self, what, cat='all'):
+        i = 1
+        while True and i < 11:
+            json_data = retrieve_url(self.url+'/json.php?q=%s&page=%d'%(what, i))
+            try:
+                json_dict = json.loads(json_data)
+            except:
+                i += 1
+                continue
+            if int(json_dict['total_results']) <= 0:
+                return
+            for r in json_dict['list']:
+                try:
+                    if cat != 'all' and self.supported_categories[cat] != r['category']:
+                        continue
+                    res_dict = dict()
+                    res_dict['name'] = r['title']
+                    res_dict['size'] = str(r['size'])
+                    res_dict['seeds'] = r['seeds']
+                    res_dict['leech'] = r['leechs']
+                    res_dict['link'] = r['torrentLink']
+                    res_dict['desc_link'] = r['link'].replace('http://', 'https://')
+                    res_dict['engine_url'] = self.url
+                    prettyPrinter(res_dict)
+                except:
+                    pass
+            i += 1

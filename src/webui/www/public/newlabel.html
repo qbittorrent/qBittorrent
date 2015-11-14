@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>QBT_TR(New Label)QBT_TR</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        window.addEvent('domready', function() {
+            $('newLabel').focus();
+            $('newLabelButton').addEvent('click', function(e) {
+                new Event(e).stop();
+                // check field
+                var labelName = $('newLabel').value.trim();
+                if (labelName == null || labelName == "")
+                    return false;
+                if (labelName.match("[\\\\/:?\"*<>|]") !== null) {
+                    alert("QBT_TR(Invalid label name:\nPlease do not use any special characters in the label name.)QBT_TR");
+                    return false;
+                }
+                var hashesList = new URI().getData('hashes');
+                new Request({
+                    url: 'command/setLabel',
+                    method: 'post',
+                    data: {
+                        hashes: hashesList,
+                        label: labelName
+                    },
+                    onComplete: function() {
+                        window.parent.closeWindows();
+                    }
+                }).send();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div style="padding: 10px 10px 0px 10px;">
+        <p style="font-weight: bold;">QBT_TR(Label)QBT_TR:</p>
+        <input type="text" id="newLabel" value="" maxlength="100" style="width: 220px;"/>
+        <div style="text-align: center;">
+            <input type="button" value="QBT_TR(Add)QBT_TR" id="newLabelButton"/>
+        </div>
+    </div>
+</body>
+</html>

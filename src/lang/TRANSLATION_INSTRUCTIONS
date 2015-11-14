@@ -39,4 +39,4 @@ When you run lupdate Transifex needs to know that the source is updated. When cr
 you should go to the website, select the resource and hit "edit resource". From there you should update the
 "Source file URL". It should point to the exact file in the github repository(eg src/lang/qbittorrent_en.ts). Be sure to copy
 the 'raw' link presented by github and not the regular one. This will make Transifex fetch automatically the source file
-from the repo(maybe once a day). If you want to instantly update the resouce then on the correct branch run "tx push -s"
+from the repo (maybe once a day). If you want to instantly update the resource then on the correct branch run "tx push -s"

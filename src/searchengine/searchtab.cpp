@@ -36,107 +36,110 @@
 
 #include "searchtab.h"
 #include "searchlistdelegate.h"
-#include "misc.h"
+#include "core/utils/misc.h"
 #include "searchengine.h"
-#include "preferences.h"
+#include "core/preferences.h"
 
 SearchTab::SearchTab(SearchEngine *parent) : QWidget(), parent(parent)
 {
-  box=new QVBoxLayout();
-  results_lbl=new QLabel();
-  resultsBrowser = new QTreeView();
-  resultsBrowser->setSelectionMode(QAbstractItemView::ExtendedSelection);
-  box->addWidget(results_lbl);
-  box->addWidget(resultsBrowser);
+    box = new QVBoxLayout();
+    results_lbl = new QLabel();
+    resultsBrowser = new QTreeView();
+    resultsBrowser->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    box->addWidget(results_lbl);
+    box->addWidget(resultsBrowser);
 
-  setLayout(box);
-  // Set Search results list model
-  SearchListModel = new QStandardItemModel(0, SearchSortModel::NB_SEARCH_COLUMNS);
-  SearchListModel->setHeaderData(SearchSortModel::NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
-  SearchListModel->setHeaderData(SearchSortModel::SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
-  SearchListModel->setHeaderData(SearchSortModel::SEEDS, Qt::Horizontal, tr("Seeders", "i.e: Number of full sources"));
-  SearchListModel->setHeaderData(SearchSortModel::LEECHS, Qt::Horizontal, tr("Leechers", "i.e: Number of partial sources"));
-  SearchListModel->setHeaderData(SearchSortModel::ENGINE_URL, Qt::Horizontal, tr("Search engine"));
+    setLayout(box);
+    // Set Search results list model
+    SearchListModel = new QStandardItemModel(0, SearchSortModel::NB_SEARCH_COLUMNS);
+    SearchListModel->setHeaderData(SearchSortModel::NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
+    SearchListModel->setHeaderData(SearchSortModel::SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
+    SearchListModel->setHeaderData(SearchSortModel::SEEDS, Qt::Horizontal, tr("Seeders", "i.e: Number of full sources"));
+    SearchListModel->setHeaderData(SearchSortModel::LEECHS, Qt::Horizontal, tr("Leechers", "i.e: Number of partial sources"));
+    SearchListModel->setHeaderData(SearchSortModel::ENGINE_URL, Qt::Horizontal, tr("Search engine"));
 
-  proxyModel = new SearchSortModel();
-  proxyModel->setDynamicSortFilter(true);
-  proxyModel->setSourceModel(SearchListModel);
-  resultsBrowser->setModel(proxyModel);
+    proxyModel = new SearchSortModel();
+    proxyModel->setDynamicSortFilter(true);
+    proxyModel->setSourceModel(SearchListModel);
+    resultsBrowser->setModel(proxyModel);
 
-  SearchDelegate = new SearchListDelegate();
-  resultsBrowser->setItemDelegate(SearchDelegate);
+    SearchDelegate = new SearchListDelegate();
+    resultsBrowser->setItemDelegate(SearchDelegate);
 
-  resultsBrowser->hideColumn(SearchSortModel::DL_LINK); // Hide url column
-  resultsBrowser->hideColumn(SearchSortModel::DESC_LINK);
+    resultsBrowser->hideColumn(SearchSortModel::DL_LINK); // Hide url column
+    resultsBrowser->hideColumn(SearchSortModel::DESC_LINK);
 
-  resultsBrowser->setRootIsDecorated(false);
-  resultsBrowser->setAllColumnsShowFocus(true);
-  resultsBrowser->setSortingEnabled(true);
+    resultsBrowser->setRootIsDecorated(false);
+    resultsBrowser->setAllColumnsShowFocus(true);
+    resultsBrowser->setSortingEnabled(true);
 
-  // Connect signals to slots (search part)
-  connect(resultsBrowser, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(downloadSelectedItem(const QModelIndex&)));
+    // Connect signals to slots (search part)
+    connect(resultsBrowser, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(downloadSelectedItem(const QModelIndex&)));
 
-  // Load last columns width for search results list
-  if (!loadColWidthResultsList()) {
-    resultsBrowser->header()->resizeSection(0, 275);
-  }
+    // Load last columns width for search results list
+    if (!loadColWidthResultsList()) {
+        resultsBrowser->header()->resizeSection(0, 275);
+    }
 
-  // Sort by Seeds
-  resultsBrowser->sortByColumn(SearchSortModel::SEEDS, Qt::DescendingOrder);
+    // Sort by Seeds
+    resultsBrowser->sortByColumn(SearchSortModel::SEEDS, Qt::DescendingOrder);
 }
 
 void SearchTab::downloadSelectedItem(const QModelIndex& index) {
-  QString engine_url = proxyModel->data(proxyModel->index(index.row(), SearchSortModel::ENGINE_URL)).toString();
-  QString torrent_url = proxyModel->data(proxyModel->index(index.row(), SearchSortModel::DL_LINK)).toString();
-  setRowColor(index.row(), "red");
-  parent->downloadTorrent(engine_url, torrent_url);
+    QString engine_url = proxyModel->data(proxyModel->index(index.row(), SearchSortModel::ENGINE_URL)).toString();
+    QString torrent_url = proxyModel->data(proxyModel->index(index.row(), SearchSortModel::DL_LINK)).toString();
+    setRowColor(index.row(), "blue");
+    parent->downloadTorrent(engine_url, torrent_url);
 }
 
 SearchTab::~SearchTab() {
-  delete box;
-  delete results_lbl;
-  delete resultsBrowser;
-  delete SearchListModel;
-  delete proxyModel;
-  delete SearchDelegate;
+    delete box;
+    delete results_lbl;
+    delete resultsBrowser;
+    delete SearchListModel;
+    delete proxyModel;
+    delete SearchDelegate;
 }
 
 QHeaderView* SearchTab::header() const {
-  return resultsBrowser->header();
+    return resultsBrowser->header();
 }
 
 bool SearchTab::loadColWidthResultsList() {
-  QString line = Preferences::instance()->getSearchColsWidth();
-  if (line.isEmpty())
-    return false;
-  QStringList width_list = line.split(' ');
-  if (width_list.size() < SearchListModel->columnCount())
-    return false;
-  unsigned int listSize = width_list.size();
-  for (unsigned int i=0; i<listSize; ++i) {
-    resultsBrowser->header()->resizeSection(i, width_list.at(i).toInt());
-  }
-  return true;
+    QString line = Preferences::instance()->getSearchColsWidth();
+    if (line.isEmpty())
+        return false;
+
+    QStringList width_list = line.split(' ');
+    if (width_list.size() > SearchListModel->columnCount())
+        return false;
+
+    unsigned int listSize = width_list.size();
+    for (unsigned int i=0; i<listSize; ++i) {
+      resultsBrowser->header()->resizeSection(i, width_list.at(i).toInt());
+    }
+
+    return true;
 }
 
 QLabel* SearchTab::getCurrentLabel()
 {
-  return results_lbl;
+    return results_lbl;
 }
 
 QTreeView* SearchTab::getCurrentTreeView()
 {
-  return resultsBrowser;
+    return resultsBrowser;
 }
 
 QSortFilterProxyModel* SearchTab::getCurrentSearchListProxy() const
 {
-  return proxyModel;
+    return proxyModel;
 }
 
 QStandardItemModel* SearchTab::getCurrentSearchListModel() const
 {
-  return SearchListModel;
+    return SearchListModel;
 }
 
 // Set the color of a row in data model
