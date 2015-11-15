@@ -27,6 +27,7 @@
  */
 
 #include "advancedsettings.h"
+#include <QFont>
 #include <QHeaderView>
 #include <QHostAddress>
 #include <QNetworkInterface>
@@ -35,37 +36,52 @@
 enum AdvSettingsCols
 {
     PROPERTY,
-    VALUE
+    VALUE,
+    COL_COUNT
 };
 enum AdvSettingsRows
 {
-    DISK_CACHE,
-    DISK_CACHE_TTL,
-    OS_CACHE,
-    SAVE_RESUME_DATA_INTERVAL,
-    OUTGOING_PORT_MIN,
-    OUTGOING_PORT_MAX,
-    RECHECK_COMPLETED,
-    LIST_REFRESH,
-    RESOLVE_COUNTRIES,
-    RESOLVE_HOSTS,
-    MAX_HALF_OPEN,
-    SUPER_SEEDING,
+    // qBittorrent section
+    QBITTORRENT_HEADER,
+    // network interface
     NETWORK_IFACE,
     NETWORK_LISTEN_IPV6,
-    NETWORK_ADDRESS,
-    PROGRAM_NOTIFICATIONS,
-    TRACKER_STATUS,
-    TRACKER_PORT,
+    // behavior
+    SAVE_RESUME_DATA_INTERVAL,
+    CONFIRM_RECHECK_TORRENT,
+    RECHECK_COMPLETED,
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     UPDATE_CHECK,
 #endif
+    // UI related
+    LIST_REFRESH,
+    RESOLVE_HOSTS,
+    RESOLVE_COUNTRIES,
+    PROGRAM_NOTIFICATIONS,
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     USE_ICON_THEME,
 #endif
-    CONFIRM_RECHECK_TORRENT,
+
+    // libtorrent section
+    LIBTORRENT_HEADER,
+    // cache
+    DISK_CACHE,
+    DISK_CACHE_TTL,
+    OS_CACHE,
+    // ports
+    MAX_HALF_OPEN,
+    OUTGOING_PORT_MIN,
+    OUTGOING_PORT_MAX,
+    // embedded tracker
+    TRACKER_STATUS,
+    TRACKER_PORT,
+    // seeding
+    SUPER_SEEDING,
+    // tracker
     TRACKER_EXCHANGE,
     ANNOUNCE_ALL_TRACKERS,
+    NETWORK_ADDRESS,
+
     ROW_COUNT
 };
 
@@ -73,7 +89,7 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     : QTableWidget(parent)
 {
     // column
-    setColumnCount(2);
+    setColumnCount(COL_COUNT);
     QStringList header = { tr("Setting"), tr("Value", "Value set for this setting") };
     setHorizontalHeaderLabels(header);
     // row
@@ -161,6 +177,18 @@ void AdvancedSettings::updateCacheSpinSuffix(int value)
 void AdvancedSettings::loadAdvancedSettings()
 {
     const Preferences* const pref = Preferences::instance();
+    // add section headers
+    QFont boldFont;
+    boldFont.setBold(true);
+    addRow(QBITTORRENT_HEADER, tr("qBittorrent Section"), &labelQbtLink);
+    item(QBITTORRENT_HEADER, PROPERTY)->setFont(boldFont);
+    labelQbtLink.setText(QString("<a href=\"%1\">%2</a>").arg("https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-in-qBittorrent#Advanced").arg(tr("Open documentation")));
+    labelQbtLink.setOpenExternalLinks(true);
+
+    addRow(LIBTORRENT_HEADER, tr("libtorrent Section"), &labelLibtorrentLink);
+    item(LIBTORRENT_HEADER, PROPERTY)->setFont(boldFont);
+    labelLibtorrentLink.setText(QString("<a href=\"%1\">%2</a>").arg("http://www.libtorrent.org/reference.html").arg(tr("Open documentation")));
+    labelLibtorrentLink.setOpenExternalLinks(true);
     // Disk write cache
     spin_cache.setMinimum(0);
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.
