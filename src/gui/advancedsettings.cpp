@@ -150,42 +150,6 @@ void AdvancedSettings::saveAdvancedSettings()
     pref->setAnnounceToAllTrackers(cb_announce_all_trackers.isChecked());
 }
 
-void AdvancedSettings::setRow(int row, const QString &property, QSpinBox* editor)
-{
-    setItem(row, PROPERTY, new QTableWidgetItem(property));
-    bool ok; Q_UNUSED(ok);
-    ok = connect(editor, SIGNAL(valueChanged(int)), SIGNAL(settingsChanged()));
-    Q_ASSERT(ok);
-    setCellWidget(row, VALUE, editor);
-}
-
-void AdvancedSettings::setRow(int row, const QString &property, QComboBox* editor)
-{
-    setItem(row, PROPERTY, new QTableWidgetItem(property));
-    bool ok; Q_UNUSED(ok);
-    ok = connect(editor, SIGNAL(currentIndexChanged(int)), SIGNAL(settingsChanged()));
-    Q_ASSERT(ok);
-    setCellWidget(row, VALUE, editor);
-}
-
-void AdvancedSettings::setRow(int row, const QString &property, QCheckBox* editor)
-{
-    setItem(row, PROPERTY, new QTableWidgetItem(property));
-    bool ok; Q_UNUSED(ok);
-    ok = connect(editor, SIGNAL(stateChanged(int)), SIGNAL(settingsChanged()));
-    Q_ASSERT(ok);
-    setCellWidget(row, VALUE, editor);
-}
-
-void AdvancedSettings::setRow(int row, const QString &property, QLineEdit* editor)
-{
-    setItem(row, PROPERTY, new QTableWidgetItem(property));
-    bool ok; Q_UNUSED(ok);
-    ok = connect(editor, SIGNAL(textChanged(QString)), SIGNAL(settingsChanged()));
-    Q_ASSERT(ok);
-    setCellWidget(row, VALUE, editor);
-}
-
 void AdvancedSettings::updateCacheSpinSuffix(int value)
 {
     if (value <= 0)
@@ -209,55 +173,55 @@ void AdvancedSettings::loadAdvancedSettings()
 #endif
     spin_cache.setValue(pref->diskCacheSize());
     updateCacheSpinSuffix(spin_cache.value());
-    setRow(DISK_CACHE, tr("Disk write cache size"), &spin_cache);
+    addRow(DISK_CACHE, tr("Disk write cache size"), &spin_cache);
     // Disk cache expiry
     spin_cache_ttl.setMinimum(15);
     spin_cache_ttl.setMaximum(600);
     spin_cache_ttl.setValue(pref->diskCacheTTL());
     spin_cache_ttl.setSuffix(tr(" s", " seconds"));
-    setRow(DISK_CACHE_TTL, tr("Disk cache expiry interval"), &spin_cache_ttl);
+    addRow(DISK_CACHE_TTL, tr("Disk cache expiry interval"), &spin_cache_ttl);
     // Enable OS cache
     cb_os_cache.setChecked(pref->osCache());
-    setRow(OS_CACHE, tr("Enable OS cache"), &cb_os_cache);
+    addRow(OS_CACHE, tr("Enable OS cache"), &cb_os_cache);
     // Save resume data interval
     spin_save_resume_data_interval.setMinimum(1);
     spin_save_resume_data_interval.setMaximum(1440);
     spin_save_resume_data_interval.setValue(pref->saveResumeDataInterval());
     spin_save_resume_data_interval.setSuffix(tr(" m", " minutes"));
-    setRow(SAVE_RESUME_DATA_INTERVAL, tr("Save resume data interval", "How often the fastresume file is saved."), &spin_save_resume_data_interval);
+    addRow(SAVE_RESUME_DATA_INTERVAL, tr("Save resume data interval", "How often the fastresume file is saved."), &spin_save_resume_data_interval);
     // Outgoing port Min
     outgoing_ports_min.setMinimum(0);
     outgoing_ports_min.setMaximum(65535);
     outgoing_ports_min.setValue(pref->outgoingPortsMin());
-    setRow(OUTGOING_PORT_MIN, tr("Outgoing ports (Min) [0: Disabled]"), &outgoing_ports_min);
+    addRow(OUTGOING_PORT_MIN, tr("Outgoing ports (Min) [0: Disabled]"), &outgoing_ports_min);
     // Outgoing port Min
     outgoing_ports_max.setMinimum(0);
     outgoing_ports_max.setMaximum(65535);
     outgoing_ports_max.setValue(pref->outgoingPortsMax());
-    setRow(OUTGOING_PORT_MAX, tr("Outgoing ports (Max) [0: Disabled]"), &outgoing_ports_max);
+    addRow(OUTGOING_PORT_MAX, tr("Outgoing ports (Max) [0: Disabled]"), &outgoing_ports_max);
     // Recheck completed torrents
     cb_recheck_completed.setChecked(pref->recheckTorrentsOnCompletion());
-    setRow(RECHECK_COMPLETED, tr("Recheck torrents on completion"), &cb_recheck_completed);
+    addRow(RECHECK_COMPLETED, tr("Recheck torrents on completion"), &cb_recheck_completed);
     // Transfer list refresh interval
     spin_list_refresh.setMinimum(30);
     spin_list_refresh.setMaximum(99999);
     spin_list_refresh.setValue(pref->getRefreshInterval());
     spin_list_refresh.setSuffix(tr(" ms", " milliseconds"));
-    setRow(LIST_REFRESH, tr("Transfer list refresh interval"), &spin_list_refresh);
+    addRow(LIST_REFRESH, tr("Transfer list refresh interval"), &spin_list_refresh);
     // Resolve Peer countries
     cb_resolve_countries.setChecked(pref->resolvePeerCountries());
-    setRow(RESOLVE_COUNTRIES, tr("Resolve peer countries (GeoIP)"), &cb_resolve_countries);
+    addRow(RESOLVE_COUNTRIES, tr("Resolve peer countries (GeoIP)"), &cb_resolve_countries);
     // Resolve peer hosts
     cb_resolve_hosts.setChecked(pref->resolvePeerHostNames());
-    setRow(RESOLVE_HOSTS, tr("Resolve peer host names"), &cb_resolve_hosts);
+    addRow(RESOLVE_HOSTS, tr("Resolve peer host names"), &cb_resolve_hosts);
     // Max Half Open connections
     spin_maxhalfopen.setMinimum(0);
     spin_maxhalfopen.setMaximum(99999);
     spin_maxhalfopen.setValue(pref->getMaxHalfOpenConnections());
-    setRow(MAX_HALF_OPEN, tr("Maximum number of half-open connections [0: Unlimited]"), &spin_maxhalfopen);
+    addRow(MAX_HALF_OPEN, tr("Maximum number of half-open connections [0: Unlimited]"), &spin_maxhalfopen);
     // Super seeding
     cb_super_seeding.setChecked(pref->isSuperSeedingEnabled());
-    setRow(SUPER_SEEDING, tr("Strict super seeding"), &cb_super_seeding);
+    addRow(SUPER_SEEDING, tr("Strict super seeding"), &cb_super_seeding);
     // Network interface
     combo_iface.addItem(tr("Any interface", "i.e. Any network interface"));
     const QString current_iface = pref->getNetworkInterface();
@@ -277,39 +241,57 @@ void AdvancedSettings::loadAdvancedSettings()
         combo_iface.addItem(pref->getNetworkInterfaceName(), current_iface);
         combo_iface.setCurrentIndex(i);
     }
-    setRow(NETWORK_IFACE, tr("Network Interface (requires restart)"), &combo_iface);
+    addRow(NETWORK_IFACE, tr("Network Interface (requires restart)"), &combo_iface);
     // Listen on IPv6 address
     cb_listen_ipv6.setChecked(pref->getListenIPv6());
-    setRow(NETWORK_LISTEN_IPV6, tr("Listen on IPv6 address (requires restart)"), &cb_listen_ipv6);
+    addRow(NETWORK_LISTEN_IPV6, tr("Listen on IPv6 address (requires restart)"), &cb_listen_ipv6);
     // Network address
     txt_network_address.setText(pref->getNetworkAddress());
-    setRow(NETWORK_ADDRESS, tr("IP Address to report to trackers (requires restart)"), &txt_network_address);
+    addRow(NETWORK_ADDRESS, tr("IP Address to report to trackers (requires restart)"), &txt_network_address);
     // Program notifications
     cb_program_notifications.setChecked(pref->useProgramNotification());
-    setRow(PROGRAM_NOTIFICATIONS, tr("Display program on-screen notifications"), &cb_program_notifications);
+    addRow(PROGRAM_NOTIFICATIONS, tr("Display program on-screen notifications"), &cb_program_notifications);
     // Tracker State
     cb_tracker_status.setChecked(pref->isTrackerEnabled());
-    setRow(TRACKER_STATUS, tr("Enable embedded tracker"), &cb_tracker_status);
+    addRow(TRACKER_STATUS, tr("Enable embedded tracker"), &cb_tracker_status);
     // Tracker port
     spin_tracker_port.setMinimum(1);
     spin_tracker_port.setMaximum(65535);
     spin_tracker_port.setValue(pref->getTrackerPort());
-    setRow(TRACKER_PORT, tr("Embedded tracker port"), &spin_tracker_port);
+    addRow(TRACKER_PORT, tr("Embedded tracker port"), &spin_tracker_port);
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     cb_update_check.setChecked(pref->isUpdateCheckEnabled());
-    setRow(UPDATE_CHECK, tr("Check for software updates"), &cb_update_check);
+    addRow(UPDATE_CHECK, tr("Check for software updates"), &cb_update_check);
 #endif
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     cb_use_icon_theme.setChecked(pref->useSystemIconTheme());
-    setRow(USE_ICON_THEME, tr("Use system icon theme"), &cb_use_icon_theme);
+    addRow(USE_ICON_THEME, tr("Use system icon theme"), &cb_use_icon_theme);
 #endif
     // Torrent recheck confirmation
     cb_confirm_torrent_recheck.setChecked(pref->confirmTorrentRecheck());
-    setRow(CONFIRM_RECHECK_TORRENT, tr("Confirm torrent recheck"), &cb_confirm_torrent_recheck);
+    addRow(CONFIRM_RECHECK_TORRENT, tr("Confirm torrent recheck"), &cb_confirm_torrent_recheck);
     // Tracker exchange
     cb_enable_tracker_ext.setChecked(pref->trackerExchangeEnabled());
-    setRow(TRACKER_EXCHANGE, tr("Exchange trackers with other peers"), &cb_enable_tracker_ext);
+    addRow(TRACKER_EXCHANGE, tr("Exchange trackers with other peers"), &cb_enable_tracker_ext);
     // Announce to all trackers
     cb_announce_all_trackers.setChecked(pref->announceToAllTrackers());
-    setRow(ANNOUNCE_ALL_TRACKERS, tr("Always announce to all trackers"), &cb_announce_all_trackers);
+    addRow(ANNOUNCE_ALL_TRACKERS, tr("Always announce to all trackers"), &cb_announce_all_trackers);
+}
+
+template <typename T>
+void AdvancedSettings::addRow(int row, const QString &rowText, T* widget)
+{
+    setItem(row, PROPERTY, new QTableWidgetItem(rowText));
+    setCellWidget(row, VALUE, widget);
+
+    bool ok;
+    if (std::is_same<T, QCheckBox>::value)
+        ok = connect(widget, SIGNAL(stateChanged(int)), SIGNAL(settingsChanged()));
+    else if (std::is_same<T, QSpinBox>::value)
+        ok = connect(widget, SIGNAL(valueChanged(int)), SIGNAL(settingsChanged()));
+    else if (std::is_same<T, QComboBox>::value)
+        ok = connect(widget, SIGNAL(currentIndexChanged(int)), SIGNAL(settingsChanged()));
+    else if (std::is_same<T, QLineEdit>::value)
+        ok = connect(widget, SIGNAL(textChanged(QString)), SIGNAL(settingsChanged()));
+    Q_ASSERT(ok);
 }
