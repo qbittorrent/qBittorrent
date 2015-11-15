@@ -29,6 +29,7 @@
 #ifndef ADVANCEDSETTINGS_H
 #define ADVANCEDSETTINGS_H
 
+#include <QLabel>
 #include <QSpinBox>
 #include <QCheckBox>
 #include <QLineEdit>
@@ -56,6 +57,7 @@ private:
     void loadAdvancedSettings();
     template <typename T> void addRow(int row, const QString &rowText, T* widget);
 
+    QLabel labelQbtLink, labelLibtorrentLink;
     QSpinBox spin_cache, spin_save_resume_data_interval, outgoing_ports_min, outgoing_ports_max, spin_list_refresh, spin_maxhalfopen, spin_tracker_port, spin_cache_ttl;
     QCheckBox cb_os_cache, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
               cb_super_seeding, cb_program_notifications, cb_tracker_status,
