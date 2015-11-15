@@ -41,7 +41,7 @@ class AdvancedSettings: public QTableWidget
     Q_OBJECT
 
 public:
-    AdvancedSettings(QWidget *parent = 0);
+    AdvancedSettings(QWidget *parent);
 
 public slots:
     void saveAdvancedSettings();

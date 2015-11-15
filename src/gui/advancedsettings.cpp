@@ -72,21 +72,22 @@ enum AdvSettingsRows
 AdvancedSettings::AdvancedSettings(QWidget *parent)
     : QTableWidget(parent)
 {
-    // Set visual appearance
-    setEditTriggers(QAbstractItemView::NoEditTriggers);
-    setAlternatingRowColors(true);
+    // column
     setColumnCount(2);
-    QStringList header;
-    header << tr("Setting") << tr("Value", "Value set for this setting");
+    QStringList header = { tr("Setting"), tr("Value", "Value set for this setting") };
     setHorizontalHeaderLabels(header);
-    setColumnWidth(0, width() / 2);
-    horizontalHeader()->setStretchLastSection(true);
-    verticalHeader()->setVisible(false);
+    // row
     setRowCount(ROW_COUNT);
+    verticalHeader()->setVisible(false);
+    // etc.
+    setAlternatingRowColors(true);
+    setEditTriggers(QAbstractItemView::NoEditTriggers);
     // Signals
     connect(&spin_cache, SIGNAL(valueChanged(int)), SLOT(updateCacheSpinSuffix(int)));
     // Load settings
     loadAdvancedSettings();
+    resizeColumnToContents(0);
+    horizontalHeader()->setStretchLastSection(true);
 }
 
 void AdvancedSettings::saveAdvancedSettings()

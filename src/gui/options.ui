@@ -162,8 +162,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>454</width>
-             <height>610</height>
+             <width>480</width>
+             <height>672</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -520,8 +520,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>454</width>
-             <height>942</height>
+             <width>487</width>
+             <height>1040</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1033,8 +1033,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>361</width>
-             <height>586</height>
+             <width>450</width>
+             <height>658</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1563,8 +1563,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>275</width>
-             <height>401</height>
+             <width>376</width>
+             <height>444</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1947,8 +1947,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>440</width>
-             <height>481</height>
+             <width>555</width>
+             <height>527</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2341,8 +2341,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>332</width>
-             <height>480</height>
+             <width>419</width>
+             <height>537</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2707,47 +2707,19 @@
        </layout>
       </widget>
       <widget class="QWidget" name="tabAdvancedPage">
-       <layout class="QVBoxLayout" name="verticalLayout_35">
+       <layout class="QVBoxLayout" name="advPageLayout">
         <property name="leftMargin">
          <number>0</number>
         </property>
         <property name="topMargin">
          <number>0</number>
         </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
         <property name="bottomMargin">
          <number>0</number>
         </property>
-        <item>
-         <widget class="QScrollArea" name="scrollArea_advanced">
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents_10">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>98</width>
-             <height>28</height>
-            </rect>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_36">
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-           </layout>
-          </widget>
-         </widget>
-        </item>
        </layout>
       </widget>
      </widget>

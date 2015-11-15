@@ -279,10 +279,8 @@ options_imp::options_imp(QWidget *parent)
     // Tab selection mechanism
     connect(tabSelection, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
     // Load Advanced settings
-    QVBoxLayout *adv_layout = new QVBoxLayout();
-    advancedSettings = new AdvancedSettings();
-    adv_layout->addWidget(advancedSettings);
-    scrollArea_advanced->setLayout(adv_layout);
+    advancedSettings = new AdvancedSettings(tabAdvancedPage);
+    advPageLayout->addWidget(advancedSettings);
     connect(advancedSettings, SIGNAL(settingsChanged()), this, SLOT(enableApplyButton()));
 
     // Adapt size
@@ -312,8 +310,6 @@ options_imp::~options_imp()
     foreach (const QString &path, addedScanDirs)
         ScanFoldersModel::instance()->removePath(path);
     ScanFoldersModel::instance()->configure(); // reloads "removed" paths
-    delete scrollArea_advanced->layout();
-    delete advancedSettings;
 }
 
 void options_imp::changePage(QListWidgetItem *current, QListWidgetItem *previous)
