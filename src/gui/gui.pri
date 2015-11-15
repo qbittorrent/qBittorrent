@@ -75,6 +75,7 @@ SOURCES += \
     $$PWD/statsdialog.cpp \
     $$PWD/messageboxraised.cpp \
     $$PWD/statusbar.cpp \
+    $$PWD/advancedsettings.cpp \
     $$PWD/trackerlogin.cpp \
     $$PWD/options_imp.cpp \
     $$PWD/shutdownconfirm.cpp \
