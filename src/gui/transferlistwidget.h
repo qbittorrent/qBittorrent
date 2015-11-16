@@ -69,6 +69,7 @@ public slots:
     void pauseSelectedTorrents();
     void pauseVisibleTorrents();
     void deleteSelectedTorrents();
+    void deleteSelectedTorrentsWithShift();
     void deleteVisibleTorrents();
     void increasePrioSelectedTorrents();
     void decreasePrioSelectedTorrents();
@@ -119,6 +120,9 @@ private:
     MainWindow *main_window;
     QShortcut *editHotkey;
     QShortcut *deleteHotkey;
+    QShortcut *previewHotkey;
+    QShortcut *recheckHotkey;
+    QShortcut *deleteShiftHotkey;
 };
 
 #endif // TRANSFERLISTWIDGET_H
