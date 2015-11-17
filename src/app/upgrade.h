@@ -104,7 +104,7 @@ bool upgradeResumeFile(const QString &filepath)
     return false;
 }
 
-bool upgrade()
+bool upgrade(bool ask = true)
 {
     QString backupFolderPath = Utils::Fs::expandPathAbs(Utils::Fs::QDesktopServicesDataLocation() + "BT_backup");
     QDir backupFolderDir(backupFolderPath);
@@ -112,7 +112,7 @@ bool upgrade()
 
     QStringList backupFiles = backupFolderDir.entryList(QStringList() << QLatin1String("*.fastresume"), QDir::Files, QDir::Unsorted);
     if (!backupFiles.isEmpty()) {
-        if (!userAcceptsUpgrade()) return false;
+        if (ask && !userAcceptsUpgrade()) return false;
 
         QRegExp rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
         foreach (QString backupFile, backupFiles) {

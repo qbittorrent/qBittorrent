@@ -181,8 +181,16 @@ int main(int argc, char *argv[])
     if (!qputenv("QBITTORRENT", QByteArray(VERSION)))
         std::cerr << "Couldn't set environment variable...\n";
 
+#ifndef DISABLE_GUI
     if (!userAgreesWithLegalNotice())
         return EXIT_SUCCESS;
+#else
+    if (!params.shouldDaemonize
+        && isatty(fileno(stdin))
+        && isatty(fileno(stdout))
+        && !userAgreesWithLegalNotice())
+        return EXIT_SUCCESS;
+#endif
 
     // Check if qBittorrent is already running for this user
     if (app->isRunning()) {
@@ -202,7 +210,13 @@ int main(int argc, char *argv[])
         return EXIT_SUCCESS;
     }
 
+#ifndef DISABLE_GUI
     if (!upgrade()) return EXIT_FAILURE;
+#else
+    if (!upgrade(!params.shouldDaemonize
+                 && isatty(fileno(stdin))
+                 && isatty(fileno(stdout)))) return EXIT_FAILURE;
+#endif
 
     srand(time(0));
 #ifdef DISABLE_GUI
