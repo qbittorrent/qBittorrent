@@ -174,9 +174,6 @@ Session::Session(QObject *parent)
 
     m_nativeSession->set_alert_dispatch(boost::bind(&Session::dispatchAlerts, this, _1));
 
-    // Load previous state
-    loadState();
-
     // Enabling plugins
     //m_nativeSession->add_extension(&libt::create_metadata_plugin);
     m_nativeSession->add_extension(&libt::create_ut_metadata_plugin);
@@ -271,7 +268,6 @@ qreal Session::globalMaxRatio() const
 Session::~Session()
 {
     // Do some BT related saving
-    saveState();
     saveResumeData();
 
     // We must delete FilterParserThread
@@ -307,46 +303,6 @@ void Session::freeInstance()
 Session *Session::instance()
 {
     return m_instance;
-}
-
-void Session::loadState()
-{
-    const QString statePath = Utils::Fs::cacheLocation() + QLatin1String("/ses_state");
-    if (!QFile::exists(statePath)) return;
-
-    if (QFile(statePath).size() == 0) {
-        // Remove empty invalid state file
-        Utils::Fs::forceRemove(statePath);
-        return;
-    }
-
-    QFile file(statePath);
-    if (file.open(QIODevice::ReadOnly)) {
-        QByteArray buf = file.readAll();
-        // bdecode
-        libt::lazy_entry entry;
-        libt::error_code ec;
-        libt::lazy_bdecode(buf.constData(), buf.constData() + buf.size(), entry, ec);
-        if (!ec)
-            m_nativeSession->load_state(entry);
-    }
-}
-
-void Session::saveState()
-{
-    qDebug("Saving session state to disk...");
-
-    const QString state_path = Utils::Fs::cacheLocation() + QLatin1String("/ses_state");
-    libt::entry session_state;
-    m_nativeSession->save_state(session_state);
-    std::vector<char> out;
-    libt::bencode(std::back_inserter(out), session_state);
-
-    QFile session_file(state_path);
-    if (!out.empty() && session_file.open(QIODevice::WriteOnly)) {
-        session_file.write(&out[0], out.size());
-        session_file.close();
-    }
 }
 
 void Session::setSessionSettings()

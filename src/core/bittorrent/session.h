@@ -266,8 +266,6 @@ namespace BitTorrent
         bool hasPerTorrentRatioLimit() const;
 
         void initResumeFolder();
-        void loadState();
-        void saveState();
 
         // Session configuration
         void setSessionSettings();
