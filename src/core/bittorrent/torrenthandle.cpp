@@ -1277,6 +1277,7 @@ void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
     QString newPath = Utils::String::fromStdString(p->path);
     if (newPath != m_newPath) {
         qWarning() << Q_FUNC_INFO << ": New path doesn't match a path in a queue.";
+        m_newPath.clear();
         return;
     }
 
