@@ -47,6 +47,9 @@
 #include <QTemporaryFile>
 #include <QMimeData>
 #include <QClipboard>
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#include <QTableView>
+#endif
 
 enum EngineColumns {ENGINE_NAME, ENGINE_VERSION, ENGINE_URL, ENGINE_STATE, ENGINE_ID};
 
@@ -57,6 +60,14 @@ engineSelectDlg::engineSelectDlg(QWidget *parent, SupportedEngines *supported_en
 {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+  // This hack fixes reordering of first column with Qt5.
+  // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
+  QTableView unused;
+  unused.setVerticalHeader(pluginsTree->header());
+  pluginsTree->header()->setParent(pluginsTree);
+  unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
+#endif
   pluginsTree->setRootIsDecorated(false);
   pluginsTree->header()->resizeSection(0, 160);
   pluginsTree->header()->resizeSection(1, 80);

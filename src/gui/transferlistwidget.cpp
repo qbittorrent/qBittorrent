@@ -40,6 +40,9 @@
 #include <QRegExp>
 #include <QFileDialog>
 #include <QMessageBox>
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#include <QTableView>
+#endif
 
 #include "transferlistwidget.h"
 #include "core/bittorrent/session.h"
@@ -152,6 +155,15 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
 
     editHotkey = new QShortcut(QKeySequence("F2"), this, SLOT(renameSelectedTorrent()), 0, Qt::WidgetShortcut);
     deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedTorrents()), 0, Qt::WidgetShortcut);
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    // This hack fixes reordering of first column with Qt5.
+    // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
+    QTableView unused;
+    unused.setVerticalHeader(header());
+    header()->setParent(this);
+    unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
+#endif
 }
 
 TransferListWidget::~TransferListWidget()
