@@ -230,7 +230,9 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     }
 
     QRectF legend_background_rect(legend_top_left, QSizeF(legend_width, legend_height));
-    painter.fillRect(legend_background_rect, QColor(255, 255, 255, 128)); // 50% transparent
+    QColor legendBackgroundColor = QWidget::palette().color(QWidget::backgroundRole());
+    legendBackgroundColor.setAlpha(128);  // 50% transparent
+    painter.fillRect(legend_background_rect, legendBackgroundColor);
 
     int i = 0;
     for (QMap<GraphID, GraphProperties>::const_iterator it = m_properties.begin(); it != m_properties.end(); ++it) {
