@@ -250,6 +250,7 @@ namespace BitTorrent
         bool isActive() const;
         bool isInactive() const;
         bool isErrored() const;
+        bool isMoveInProgress() const;
         bool isSequentialDownload() const;
         bool hasFirstLastPiecePriority() const;
         TorrentState state() const;
@@ -368,7 +369,6 @@ namespace BitTorrent
         void handleMetadataReceivedAlert(libtorrent::metadata_received_alert *p);
         void handleStatsAlert(libtorrent::stats_alert *p);
 
-        bool isMoveInProgress() const;
         bool useTempPath() const;
         QString nativeActualSavePath() const;
 
