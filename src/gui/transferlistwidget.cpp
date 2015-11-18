@@ -30,12 +30,8 @@
 
 #include <QDebug>
 #include <QShortcut>
-#include <QStandardItemModel>
-#include <QSortFilterProxyModel>
 #include <QTimer>
 #include <QClipboard>
-#include <QColor>
-#include <QUrl>
 #include <QMenu>
 #include <QRegExp>
 #include <QFileDialog>
@@ -57,7 +53,6 @@
 #include "core/preferences.h"
 #include "torrentmodel.h"
 #include "deletionconfirmationdlg.h"
-#include "propertieswidget.h"
 #include "guiiconprovider.h"
 #include "core/utils/fs.h"
 #include "autoexpandabledialog.h"
