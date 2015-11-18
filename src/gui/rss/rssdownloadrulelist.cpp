@@ -85,12 +85,8 @@ void RssDownloadRuleList::loadRulesFromVariantHash(const QVariantHash &h)
 {
   QVariantHash::ConstIterator it = h.begin();
   QVariantHash::ConstIterator itend = h.end();
-  QStringList labels = Preferences::instance()->getTorrentLabels();
   for ( ; it != itend; ++it) {
     RssDownloadRulePtr rule = RssDownloadRule::fromVariantHash(it.value().toHash());
-    // Hack to readd labels forgotten before fix
-    if (!labels.contains(rule->label()))
-        Preferences::instance()->addTorrentLabelExternal(rule->label());
     if (rule && !rule->name().isEmpty())
       saveRule(rule);
   }
