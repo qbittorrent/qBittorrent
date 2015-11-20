@@ -397,8 +397,8 @@ void PropertiesWidget::loadDynamicData() {
         lbl_elapsed->setText(elapsed_txt);
 
         lbl_connections->setText(tr("%1 (%2 max)", "%1 and %2 are numbers, e.g. 3 (10 max)")
-                                .arg(m_torrent->connectionsCount() < 0 ? QString::fromUtf8(C_INFINITY) : QString::number(m_torrent->connectionsCount()))
-                                .arg(QString::number(m_torrent->connectionsLimit())));
+                                .arg(m_torrent->connectionsCount())
+                                .arg(m_torrent->connectionsLimit() < 0 ? QString::fromUtf8(C_INFINITY) : QString::number(m_torrent->connectionsLimit())));
 
         label_eta_val->setText(Utils::Misc::userFriendlyDuration(m_torrent->eta()));
 
