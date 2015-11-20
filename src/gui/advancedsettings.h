@@ -261,7 +261,7 @@ private slots:
         spin_maxhalfopen.setMinimum(0);
         spin_maxhalfopen.setMaximum(99999);
         spin_maxhalfopen.setValue(pref->getMaxHalfOpenConnections());
-        setRow(MAX_HALF_OPEN, tr("Maximum number of half-open connections [0: Disabled]"), &spin_maxhalfopen);
+        setRow(MAX_HALF_OPEN, tr("Maximum number of half-open connections [0: Unlimited]"), &spin_maxhalfopen);
         // Super seeding
         cb_super_seeding.setChecked(pref->isSuperSeedingEnabled());
         setRow(SUPER_SEEDING, tr("Strict super seeding"), &cb_super_seeding);
