@@ -5,7 +5,7 @@ VER_MAJOR = 3
 VER_MINOR = 3
 VER_BUGFIX = 0
 VER_BUILD = 0
-VER_STATUS = beta # Should be empty for stable releases!
+VER_STATUS = RC # Should be empty for stable releases!
 
 # Don't touch the rest part
 PROJECT_VERSION = $${VER_MAJOR}.$${VER_MINOR}.$${VER_BUGFIX}
