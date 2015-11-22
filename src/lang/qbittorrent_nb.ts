@@ -8081,32 +8081,32 @@ Disse programtilleggene ble deaktivert.</translation>
         <translation>Det oppgitte IP filteret ble vellykket analysert: %1 regler ble lagt til.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1478"/>
+        <location filename="../gui/options_imp.cpp" line="1479"/>
         <source>Invalid key</source>
         <translation>Ugyldig nøkkel</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1478"/>
+        <location filename="../gui/options_imp.cpp" line="1479"/>
         <source>This is not a valid SSL key.</source>
         <translation>Dette er ikke en gyldig SSL nøkkel.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1494"/>
+        <location filename="../gui/options_imp.cpp" line="1495"/>
         <source>Invalid certificate</source>
         <translation>Ugyldig sertifikat</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1494"/>
+        <location filename="../gui/options_imp.cpp" line="1495"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Dette er ikke et gyldig SSL sertifikat.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1504"/>
+        <location filename="../gui/options_imp.cpp" line="1505"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Starttidspunktet og sluttidspunktet kan ikke være det samme.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1507"/>
+        <location filename="../gui/options_imp.cpp" line="1508"/>
         <source>Time Error</source>
         <translation>Tidspunktsfeil</translation>
     </message>

@@ -84,6 +84,7 @@ TRANSLATIONS = \
     $$LANG_PATH/qbittorrent_en_GB.ts \
     $$LANG_PATH/qbittorrent_ca.ts \
     $$LANG_PATH/qbittorrent_es.ts \
+    $$LANG_PATH/qbittorrent_eo.ts \
     $$LANG_PATH/qbittorrent_pl.ts \
     $$LANG_PATH/qbittorrent_ko.ts \
     $$LANG_PATH/qbittorrent_de.ts \

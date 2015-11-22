@@ -8081,32 +8081,32 @@ Tie priedai buvo išjungti.</translation>
         <translation>Nurodytas IP filtras sėkmingai įkeltas. %1 taisyklės pritaikytos.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1478"/>
+        <location filename="../gui/options_imp.cpp" line="1479"/>
         <source>Invalid key</source>
         <translation>Netaisyklingas raktas</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1478"/>
+        <location filename="../gui/options_imp.cpp" line="1479"/>
         <source>This is not a valid SSL key.</source>
         <translation>Šis raktas nėra taisyklingas SSL raktas.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1494"/>
+        <location filename="../gui/options_imp.cpp" line="1495"/>
         <source>Invalid certificate</source>
         <translation>Netaisyklingas sertifikatas</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1494"/>
+        <location filename="../gui/options_imp.cpp" line="1495"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Šis sertifikatas nėra taisyklingas SSL sertifikatas.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1504"/>
+        <location filename="../gui/options_imp.cpp" line="1505"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Pradžios bei pabaigos laikai negali sutapti.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1507"/>
+        <location filename="../gui/options_imp.cpp" line="1508"/>
         <source>Time Error</source>
         <translation>Laiko klaida</translation>
     </message>
