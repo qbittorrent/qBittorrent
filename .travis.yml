@@ -81,7 +81,7 @@ before_install:
   - libt_path="$HOME/libt_install"
   - qbt_path="$HOME/qbt_install"
   - ltconf="$ltconf --prefix="$libt_path" --disable-geoip"
-  - qbtconf="$qbtconf --prefix="$qbt_path" PKG_CONFIG_PATH="$libt_path/lib/pkgconfig":$PKG_CONFIG_PATH"
+  - qbtconf="$qbtconf --prefix="$qbt_path" --with-qt4 PKG_CONFIG_PATH="$libt_path/lib/pkgconfig":$PKG_CONFIG_PATH"
 
   # Options for specific branches
   # Also setup a virtual display for after_success target when gui == true
@@ -89,7 +89,7 @@ before_install:
     elif [ "$TRAVIS_OS_NAME" = "linux" ]; then export "DISPLAY=:99.0" && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ;
     fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then qbtconf="$qbtconf --disable-qt-dbus" ; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ] && [ "$qt" = 5 ]; then qbtconf="$qbtconf --with-qt5" ; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ] && [ "$qt" = 5 ]; then qbtconf="$qbtconf --with-qt4=no" ; fi
 
   # Print settings
   - echo $lt_branch

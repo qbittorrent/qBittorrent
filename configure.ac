@@ -12,11 +12,11 @@ AM_INIT_AUTOMAKE
 
 # Define --wth-* and --enable-* arguments
 
-AC_ARG_WITH(qt5,
-            [AS_HELP_STRING([--with-qt5],
-                            [Compile using Qt5 (default=no)])],
+AC_ARG_WITH(qt4,
+            [AS_HELP_STRING([--with-qt4],
+                            [Compile using Qt4 (default=no)])],
             [],
-            [with_qt5=no])
+            [with_qt4=no])
 
 AC_ARG_WITH(qtsingleapplication,
             [AS_HELP_STRING([--with-qtsingleapplication=@<:@system|shipped@:>@],
@@ -121,16 +121,16 @@ AS_CASE(["x$enable_webui"],
         [AC_MSG_RESULT([$enable_webui])
         AC_MSG_ERROR([Unknown option "$enable_webui". Use either "yes" or "no".])])
 
-AC_MSG_CHECKING([whether Qt5 should be enabled])
-AS_CASE(["x$with_qt5"],
+AC_MSG_CHECKING([whether Qt4 should be enabled])
+AS_CASE(["x$with_qt4"],
         ["xno"],
               [AC_MSG_RESULT([no])
-              FIND_QT4()],
+              FIND_QT5()],
         ["xyes"],
                [AC_MSG_RESULT([yes])
-               FIND_QT5()],
-        [AC_MSG_RESULT([$with_qt5])
-        AC_MSG_ERROR([Unknown option "$with_qt5". Use either "yes" or "no".])])
+               FIND_QT4()],
+        [AC_MSG_RESULT([$with_qt4])
+        AC_MSG_ERROR([Unknown option "$with_qt4". Use either "yes" or "no".])])
 AS_IF([test "x$QT_QMAKE" = "x"],
       [AC_MSG_ERROR([Could not find qmake])
       ])
@@ -179,7 +179,7 @@ AS_CASE(["x$with_qtsingleapplication"],
         [AC_MSG_RESULT([$with_qtsingleapplication])
         AC_MSG_ERROR([Unknown option "$with_qtsingleapplication". Use either "system" or "shipped".])])
 
-AS_IF([test "x$with_qt5" = "xno"],
+AS_IF([test "x$with_qt4" = "xyes"],
       [AC_MSG_CHECKING([which qjson to use])
       AS_CASE(["x$with_qjson"],
               ["xshipped"],

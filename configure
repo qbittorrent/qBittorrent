@@ -690,6 +690,7 @@ infodir
 docdir
 oldincludedir
 includedir
+runstatedir
 localstatedir
 sharedstatedir
 sysconfdir
@@ -714,7 +715,7 @@ ac_user_opts='
 enable_option_checking
 enable_dependency_tracking
 enable_silent_rules
-with_qt5
+with_qt4
 with_qtsingleapplication
 with_qjson
 enable_debug
@@ -785,6 +786,7 @@ datadir='${datarootdir}'
 sysconfdir='${prefix}/etc'
 sharedstatedir='${prefix}/com'
 localstatedir='${prefix}/var'
+runstatedir='${localstatedir}/run'
 includedir='${prefix}/include'
 oldincludedir='/usr/include'
 docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
@@ -1037,6 +1039,15 @@ do
   | -silent | --silent | --silen | --sile | --sil)
     silent=yes ;;
 
+  -runstatedir | --runstatedir | --runstatedi | --runstated \
+  | --runstate | --runstat | --runsta | --runst | --runs \
+  | --run | --ru | --r)
+    ac_prev=runstatedir ;;
+  -runstatedir=* | --runstatedir=* | --runstatedi=* | --runstated=* \
+  | --runstate=* | --runstat=* | --runsta=* | --runst=* | --runs=* \
+  | --run=* | --ru=* | --r=*)
+    runstatedir=$ac_optarg ;;
+
   -sbindir | --sbindir | --sbindi | --sbind | --sbin | --sbi | --sb)
     ac_prev=sbindir ;;
   -sbindir=* | --sbindir=* | --sbindi=* | --sbind=* | --sbin=* \
@@ -1174,7 +1185,7 @@ fi
 for ac_var in	exec_prefix prefix bindir sbindir libexecdir datarootdir \
 		datadir sysconfdir sharedstatedir localstatedir includedir \
 		oldincludedir docdir infodir htmldir dvidir pdfdir psdir \
-		libdir localedir mandir
+		libdir localedir mandir runstatedir
 do
   eval ac_val=\$$ac_var
   # Remove trailing slashes.
@@ -1327,6 +1338,7 @@ Fine tuning of the installation directories:
   --sysconfdir=DIR        read-only single-machine data [PREFIX/etc]
   --sharedstatedir=DIR    modifiable architecture-independent data [PREFIX/com]
   --localstatedir=DIR     modifiable single-machine data [PREFIX/var]
+  --runstatedir=DIR       modifiable per-process data [LOCALSTATEDIR/run]
   --libdir=DIR            object code libraries [EPREFIX/lib]
   --includedir=DIR        C header files [PREFIX/include]
   --oldincludedir=DIR     C header files for non-gcc [/usr/include]
@@ -1381,7 +1393,7 @@ Optional Features:
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
-  --with-qt5              Compile using Qt5 (default=no)
+  --with-qt4              Compile using Qt4 (default=no)
   --with-qtsingleapplication=[system|shipped]
                           Use the shipped qtsingleapplication library or the
                           system one (default=shipped)
@@ -1417,7 +1429,7 @@ Some influential environment variables:
               directories to add to pkg-config's search path
   PKG_CONFIG_LIBDIR
               path overriding pkg-config's built-in search path
-  QT_QMAKE    value of moc_location for QtCore >= 4.8.0, overriding pkg-config
+  QT_QMAKE    value of host_bins for Qt5Core >= 5.2.0, overriding pkg-config
   qjson_CFLAGS
               C compiler flags for qjson, overriding pkg-config
   qjson_LIBS  linker flags for qjson, overriding pkg-config
@@ -4167,11 +4179,11 @@ fi
 # Define --wth-* and --enable-* arguments
 
 
-# Check whether --with-qt5 was given.
-if test "${with_qt5+set}" = set; then :
-  withval=$with_qt5;
+# Check whether --with-qt4 was given.
+if test "${with_qt4+set}" = set; then :
+  withval=$with_qt4;
 else
-  with_qt5=no
+  with_qt4=no
 fi
 
 
@@ -4443,13 +4455,106 @@ $as_echo "$enable_webui" >&6; }
         as_fn_error $? "Unknown option \"$enable_webui\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
 esac
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether Qt5 should be enabled" >&5
-$as_echo_n "checking whether Qt5 should be enabled... " >&6; }
-case "x$with_qt5" in #(
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether Qt4 should be enabled" >&5
+$as_echo_n "checking whether Qt4 should be enabled... " >&6; }
+case "x$with_qt4" in #(
   "xno") :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
               if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.2.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.2.0") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+
+if test -n "$QT_QMAKE"; then
+    pkg_cv_QT_QMAKE="$QT_QMAKE"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.2.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.2.0") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QT_QMAKE=`$PKG_CONFIG --variable="host_bins" "Qt5Core >= 5.2.0" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+QT_QMAKE=$pkg_cv_QT_QMAKE
+
+if test "x$QT_QMAKE" = x""; then :
+
+fi
+
+fi
+
+as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake" >&5
+$as_echo_n "checking for $QT_QMAKE/qmake... " >&6; }
+if eval \${$as_ac_File+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  test "$cross_compiling" = yes &&
+  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
+if test -r "$QT_QMAKE/qmake"; then
+  eval "$as_ac_File=yes"
+else
+  eval "$as_ac_File=no"
+fi
+fi
+eval ac_res=\$$as_ac_File
+	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+$as_echo "$ac_res" >&6; }
+if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+  QT_QMAKE="$QT_QMAKE/qmake"
+else
+  as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake-qt5" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake-qt5" >&5
+$as_echo_n "checking for $QT_QMAKE/qmake-qt5... " >&6; }
+if eval \${$as_ac_File+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  test "$cross_compiling" = yes &&
+  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
+if test -r "$QT_QMAKE/qmake-qt5"; then
+  eval "$as_ac_File=yes"
+else
+  eval "$as_ac_File=no"
+fi
+fi
+eval ac_res=\$$as_ac_File
+	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+$as_echo "$ac_res" >&6; }
+if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+  QT_QMAKE="$QT_QMAKE/qmake-qt5"
+else
+  QT_QMAKE=""
+fi
+
+
+fi
+
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.2.0" >&5
+$as_echo_n "checking for Qt5 qmake >= 5.2.0... " >&6; }
+if test "x$QT_QMAKE" != "x"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $QT_QMAKE" >&5
+$as_echo "$QT_QMAKE" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+$as_echo "not found" >&6; }
+
+fi
+ ;; #(
+  "xyes") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+               if test -n "$PKG_CONFIG" && \
     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"QtCore >= 4.8.0\""; } >&5
   ($PKG_CONFIG --exists --print-errors "QtCore >= 4.8.0") 2>&5
   ac_status=$?
@@ -4563,103 +4668,10 @@ $as_echo "not found" >&6; }
 
 fi
  ;; #(
-  "xyes") :
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-$as_echo "yes" >&6; }
-               if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.2.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.2.0") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-
-if test -n "$QT_QMAKE"; then
-    pkg_cv_QT_QMAKE="$QT_QMAKE"
- elif test -n "$PKG_CONFIG"; then
-    if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.2.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.2.0") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-  pkg_cv_QT_QMAKE=`$PKG_CONFIG --variable="host_bins" "Qt5Core >= 5.2.0" 2>/dev/null`
-		      test "x$?" != "x0" && pkg_failed=yes
-else
-  pkg_failed=yes
-fi
- else
-    pkg_failed=untried
-fi
-QT_QMAKE=$pkg_cv_QT_QMAKE
-
-if test "x$QT_QMAKE" = x""; then :
-
-fi
-
-fi
-
-as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake" >&5
-$as_echo_n "checking for $QT_QMAKE/qmake... " >&6; }
-if eval \${$as_ac_File+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  test "$cross_compiling" = yes &&
-  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
-if test -r "$QT_QMAKE/qmake"; then
-  eval "$as_ac_File=yes"
-else
-  eval "$as_ac_File=no"
-fi
-fi
-eval ac_res=\$$as_ac_File
-	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
-$as_echo "$ac_res" >&6; }
-if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
-  QT_QMAKE="$QT_QMAKE/qmake"
-else
-  as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake-qt5" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake-qt5" >&5
-$as_echo_n "checking for $QT_QMAKE/qmake-qt5... " >&6; }
-if eval \${$as_ac_File+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  test "$cross_compiling" = yes &&
-  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
-if test -r "$QT_QMAKE/qmake-qt5"; then
-  eval "$as_ac_File=yes"
-else
-  eval "$as_ac_File=no"
-fi
-fi
-eval ac_res=\$$as_ac_File
-	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
-$as_echo "$ac_res" >&6; }
-if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
-  QT_QMAKE="$QT_QMAKE/qmake-qt5"
-else
-  QT_QMAKE=""
-fi
-
-
-fi
-
-
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.2.0" >&5
-$as_echo_n "checking for Qt5 qmake >= 5.2.0... " >&6; }
-if test "x$QT_QMAKE" != "x"; then :
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $QT_QMAKE" >&5
-$as_echo "$QT_QMAKE" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
-$as_echo "not found" >&6; }
-
-fi
- ;; #(
   *) :
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $with_qt5" >&5
-$as_echo "$with_qt5" >&6; }
-        as_fn_error $? "Unknown option \"$with_qt5\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $with_qt4" >&5
+$as_echo "$with_qt4" >&6; }
+        as_fn_error $? "Unknown option \"$with_qt4\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
 esac
 if test "x$QT_QMAKE" = "x"; then :
   as_fn_error $? "Could not find qmake" "$LINENO" 5
@@ -4672,7 +4684,7 @@ case "x$enable_qt_dbus" in #(
   "xyes") :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
-               if test "x$with_qt5" = "xyes"; then :
+               if test "x$with_qt4" = "xno"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5DBus >= 5.2.0" >&5
 $as_echo_n "checking for Qt5DBus >= 5.2.0... " >&6; }
        if test -n "$PKG_CONFIG" && \
@@ -4783,8 +4795,11 @@ $as_echo_n "checking for boostlib >= $boost_lib_version_req... " >&6; }
                         libsubdirs="lib"
     ax_arch=`uname -m`
     case $ax_arch in
-      x86_64|ppc64|s390x|sparc64|aarch64)
-        libsubdirs="lib64 lib lib64"
+      x86_64)
+        libsubdirs="lib64 libx32 lib lib64"
+        ;;
+      ppc64|s390x|sparc64|aarch64|ppc64le)
+        libsubdirs="lib64 lib lib64 ppc64le"
         ;;
     esac
 
@@ -4875,6 +4890,10 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 
 
             if test "x$succeeded" != "xyes"; then
+        CPPFLAGS="$CPPFLAGS_SAVED"
+        LDFLAGS="$LDFLAGS_SAVED"
+        BOOST_CPPFLAGS=
+        BOOST_LDFLAGS=
         _version=0
         if test "$ac_boost_path" != ""; then
             if test -d "$ac_boost_path" && test -r "$ac_boost_path"; then
@@ -4887,6 +4906,11 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
                     VERSION_UNDERSCORE=`echo $_version | sed 's/\./_/'`
                     BOOST_CPPFLAGS="-I$ac_boost_path/include/boost-$VERSION_UNDERSCORE"
                 done
+                                if test -z "$BOOST_CPPFLAGS"; then
+                    if test -d "$ac_boost_path/boost" && test -r "$ac_boost_path/boost"; then
+                        BOOST_CPPFLAGS="-I$ac_boost_path"
+                    fi
+                fi
             fi
         else
             if test "$cross_compiling" != yes; then
@@ -5283,7 +5307,7 @@ $as_echo "$with_qtsingleapplication" >&6; }
         as_fn_error $? "Unknown option \"$with_qtsingleapplication\". Use either \"system\" or \"shipped\"." "$LINENO" 5 ;;
 esac
 
-if test "x$with_qt5" = "xno"; then :
+if test "x$with_qt4" = "xyes"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking which qjson to use" >&5
 $as_echo_n "checking which qjson to use... " >&6; }
       case "x$with_qjson" in #(

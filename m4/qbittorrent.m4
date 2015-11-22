@@ -54,7 +54,7 @@ AS_IF([test "x$QT_QMAKE" != "x"],
 # Sets the HAVE_QTDBUS variable to true or false.
 # --------------------------------------
 AC_DEFUN([FIND_QTDBUS],
-[AS_IF([test "x$with_qt5" = "xyes"],
+[AS_IF([test "x$with_qt4" = "xno"],
        [AC_MSG_CHECKING([for Qt5DBus >= 5.2.0])
        PKG_CHECK_EXISTS([Qt5DBus >= 5.2.0],
                         [AC_MSG_RESULT([found])
