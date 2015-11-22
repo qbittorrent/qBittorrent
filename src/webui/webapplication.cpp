@@ -47,7 +47,7 @@
 #include "websessiondata.h"
 #include "webapplication.h"
 
-static const int API_VERSION = 5;
+static const int API_VERSION = 6;
 static const int API_VERSION_MIN = 2;
 
 const QString WWW_FOLDER = ":/www/public/";
