@@ -10,18 +10,20 @@ int myFunction(int a)
     //code
 }
 
-myClass::myClass(int *parent)
+void myFunction() {} // empty body
+
+MyClass::MyClass(int *parent)
     : m_parent(parent)
 {
     //initialize
 }
 
-int myClass::myMethod(int a)
+int MyClass::myMethod(int a)
 {
     //code
 }
 
-class myOtherClass
+class MyOtherClass
 {
 public:
     //code
@@ -31,9 +33,17 @@ private:
     //code
 };
 
-namespace id
+namespace Name
 {
     //code
+}
+
+// Lambdas
+[](int arg1, int arg2) -> bool { return arg1 < arg2; }
+
+[this](int arg)
+{
+    this->acc += arg;
 }
 ```
 
@@ -73,6 +83,12 @@ case 2: {
 default:
     //code
 }
+```
+
+#### d. single-line blocks (lambdas, initializer lists etc.) ####
+```c++
+ {} // empty - space before {
+ { body } // spaces around { and before }
 ```
 
 ### 2. If blocks ###
@@ -125,10 +141,10 @@ UTF-8 and Unix-like line ending (LF). Unless some platform specific files need o
 Initialization lists should be vertical. This will allow for more easily readable diffs. The initialization colon should be indented and in its own line along with first argument. The rest of the arguments should be indented too and have the comma prepended.
 ```c++
 myClass::myClass(int a, int b, int c, int d)
-    : priv_a(a)
-    , priv_b(b)
-    , priv_c(c)
-    , priv_d(d)
+    : m_a(a)
+    , m_b(b)
+    , m_c(c)
+    , m_d(d)
 {
     //code
 }
@@ -137,7 +153,7 @@ myClass::myClass(int a, int b, int c, int d)
 ### 6. Enums.###
 Enums should be vertical. This will allow for more easily readable diffs. The members should be indented.
 ```c++
-enum days
+enum Days
 {
     Monday,
     Tuesday,
@@ -149,7 +165,41 @@ enum days
 };
 ```
 
-### 7. Misc.###
+### 7. Names.###
+All names should be camelCased.
+
+#### a. Type names and namespaces ####
+Type names and namespaces start with Upper case letter (except POD types).
+```c++
+class ClassName {}
+
+struct StructName {}
+
+enum EnumName {}
+
+typedef QList<ClassName> SomeList;
+
+namespace NamespaceName
+{
+}
+```
+
+#### b. Variable names ####
+Variable names start with lower case letter.
+```c++
+int myVar;
+```
+
+#### c. Private member variable names ####
+Private member variable names start with lower case letter and should have ```m_``` prefix.
+```c++
+class MyClass
+{
+    int m_myVar;
+}
+```
+
+### 8. Misc.###
 
 * Line breaks for long lines with operation:
 
