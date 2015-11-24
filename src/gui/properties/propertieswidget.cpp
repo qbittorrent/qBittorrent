@@ -857,7 +857,7 @@ void PropertiesWidget::filteredFilesChanged() {
 }
 
 void PropertiesWidget::filterText(const QString& filter) {
-  PropListModel->setFilterFixedString(filter);
+  PropListModel->setFilterWildcard(filter);
   if (filter.isEmpty()) {
     filesList->collapseAll();
     filesList->expand(PropListModel->index(0, 0));

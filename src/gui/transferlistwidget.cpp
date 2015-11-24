@@ -86,6 +86,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
     nameFilterModel->setSourceModel(listModel);
     nameFilterModel->setFilterKeyColumn(TorrentModel::TR_NAME);
     nameFilterModel->setFilterRole(Qt::DisplayRole);
+    nameFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     nameFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
 
     setModel(nameFilterModel);
@@ -874,7 +875,7 @@ void TransferListWidget::applyTrackerFilter(const QStringList &hashes)
 
 void TransferListWidget::applyNameFilter(const QString& name)
 {
-    nameFilterModel->setFilterRegExp(QRegExp(QRegExp::escape(name), Qt::CaseInsensitive));
+    nameFilterModel->setFilterWildcard(name);
 }
 
 void TransferListWidget::applyStatusFilter(int f)
