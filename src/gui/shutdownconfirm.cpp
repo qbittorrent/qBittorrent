@@ -60,7 +60,7 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
     // Set 'Cancel' as default button.
     setDefaultButton(QMessageBox::Cancel);
     m_timer.setInterval(1000); // 1sec
-    connect(&m_timer, SIGNAL(m_timeout()), this, SLOT(updateSeconds()));
+    connect(&m_timer, SIGNAL(timeout()), this, SLOT(updateSeconds()));
     show();
     // Move to center
     move(Utils::Misc::screenCenter(this));
