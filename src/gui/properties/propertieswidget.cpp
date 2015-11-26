@@ -855,7 +855,7 @@ void PropertiesWidget::filteredFilesChanged() {
 }
 
 void PropertiesWidget::filterText(const QString& filter) {
-  PropListModel->setFilterFixedString(filter);
+  PropListModel->setFilterRegExp(QRegExp(filter, Qt::CaseInsensitive, QRegExp::WildcardUnix));
   if (filter.isEmpty()) {
     filesList->collapseAll();
     filesList->expand(PropListModel->index(0, 0));

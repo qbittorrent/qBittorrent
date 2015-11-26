@@ -874,7 +874,7 @@ void TransferListWidget::applyTrackerFilter(const QStringList &hashes)
 
 void TransferListWidget::applyNameFilter(const QString& name)
 {
-    nameFilterModel->setFilterRegExp(QRegExp(QRegExp::escape(name), Qt::CaseInsensitive));
+    nameFilterModel->setFilterRegExp(QRegExp(name, Qt::CaseInsensitive, QRegExp::WildcardUnix));
 }
 
 void TransferListWidget::applyStatusFilter(int f)
