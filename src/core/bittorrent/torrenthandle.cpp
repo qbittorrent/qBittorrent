@@ -1128,6 +1128,7 @@ void TorrentHandle::setSequentialDownload(bool b)
 {
     if (b != isSequentialDownload()) {
         SAFE_CALL(set_sequential_download, b);
+        m_nativeStatus.sequential_download = b; // prevent return cached value
     }
 }
 
