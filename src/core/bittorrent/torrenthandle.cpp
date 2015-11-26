@@ -189,7 +189,6 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     if (!data.resumed) {
         setSequentialDownload(data.sequential);
         if (hasMetadata()) {
-            setFirstLastPiecePriority(data.sequential);
             if (m_session->isAppendExtensionEnabled())
                 appendExtensionsToIncompleteFiles();
         }
@@ -1088,11 +1087,6 @@ void TorrentHandle::setLabel(const QString &label)
     }
 }
 
-void TorrentHandle::setSequentialDownload(bool b)
-{
-    SAFE_CALL(set_sequential_download, b);
-}
-
 void TorrentHandle::move(QString path)
 {
     path = Utils::Fs::toNativePath(path);
@@ -1130,24 +1124,22 @@ void TorrentHandle::forceRecheck()
     SAFE_CALL(force_recheck);
 }
 
-void TorrentHandle::toggleSequentialDownload()
+void TorrentHandle::setSequentialDownload(bool b)
 {
-    if (hasMetadata()) {
-        bool was_sequential = isSequentialDownload();
-        SAFE_CALL(set_sequential_download, !was_sequential);
-        if (!was_sequential)
-            setFirstLastPiecePriority(true);
+    if (b != isSequentialDownload()) {
+        SAFE_CALL(set_sequential_download, b);
     }
 }
 
-void TorrentHandle::toggleFirstLastPiecePriority()
+void TorrentHandle::toggleSequentialDownload()
 {
-    if (hasMetadata())
-        setFirstLastPiecePriority(!hasFirstLastPiecePriority());
+    setSequentialDownload(!isSequentialDownload());
 }
 
 void TorrentHandle::setFirstLastPiecePriority(bool b)
 {
+    if (!hasMetadata()) return;
+
     std::vector<int> fp;
     SAFE_GET(fp, file_priorities);
 
@@ -1166,6 +1158,11 @@ void TorrentHandle::setFirstLastPiecePriority(bool b)
             SAFE_CALL(piece_priority, extremities.second, prio);
         }
     }
+}
+
+void TorrentHandle::toggleFirstLastPiecePriority()
+{
+    setFirstLastPiecePriority(!hasFirstLastPiecePriority());
 }
 
 void TorrentHandle::pause()
@@ -1756,8 +1753,11 @@ QString TorrentHandle::toMagnetUri() const
 
 void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
 {
-    qDebug() << Q_FUNC_INFO;
+    if (!hasMetadata()) return;
     if (priorities.size() != filesCount()) return;
+
+    // Save first/last piece first option state
+    bool firstLastPieceFirst = hasFirstLastPiecePriority();
 
     // Reset 'm_hasSeedStatus' if needed in order to react again to
     // 'torrent_finished_alert' and eg show tray notifications
@@ -1827,6 +1827,10 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
             }
         }
     }
+
+    // Restore first/last piece first option if necessary
+    if (firstLastPieceFirst)
+        setFirstLastPiecePriority(true);
 
     updateStatus();
 }

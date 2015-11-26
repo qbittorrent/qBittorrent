@@ -450,7 +450,7 @@ void PropertiesWidget::loadDynamicData() {
             downloaded_pieces->setProgress(m_torrent->pieces(), m_torrent->downloadingPieces());
         }
         else {
-        	showPiecesAvailability(false);
+            showPiecesAvailability(false);
         }
 
         break;
@@ -840,14 +840,9 @@ void PropertiesWidget::editWebSeed() {
 bool PropertiesWidget::applyPriorities() {
   qDebug("Saving files priorities");
   const QVector<int> priorities = PropListModel->model()->getFilePriorities();
-  // Save first/last piece first option state
-  bool first_last_piece_first = m_torrent->hasFirstLastPiecePriority();
   // Prioritize the files
   qDebug("prioritize files: %d", priorities[0]);
   m_torrent->prioritizeFiles(priorities);
-  // Restore first/last piece first option if necessary
-  if (first_last_piece_first)
-    m_torrent->setFirstLastPiecePriority(true);
   return true;
 }
 

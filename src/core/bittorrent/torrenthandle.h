@@ -304,8 +304,8 @@ namespace BitTorrent
         void setLabel(const QString &label);
         void setSequentialDownload(bool b);
         void toggleSequentialDownload();
-        void toggleFirstLastPiecePriority();
         void setFirstLastPiecePriority(bool b);
+        void toggleFirstLastPiecePriority();
         void pause();
         void resume(bool forced = false);
         void move(QString path);
