@@ -13,11 +13,17 @@
   <property name="contextMenuPolicy">
    <enum>Qt::CustomContextMenu</enum>
   </property>
-  <property name="windowTitle">
-   <string/>
-  </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout">
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="centralWidgetLayout">
+    <property name="leftMargin">
+     <number>7</number>
+    </property>
+    <property name="topMargin">
+     <number>3</number>
+    </property>
+    <property name="rightMargin">
+     <number>5</number>
+    </property>
     <property name="bottomMargin">
      <number>0</number>
     </property>
@@ -29,7 +35,7 @@
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>20</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -152,16 +158,10 @@
    <property name="text">
     <string>E&amp;xit</string>
    </property>
-   <property name="toolTip">
-    <string>Exit</string>
-   </property>
   </action>
   <action name="actionOptions">
    <property name="text">
     <string>&amp;Options...</string>
-   </property>
-   <property name="iconText">
-    <string>Options</string>
    </property>
   </action>
   <action name="actionAbout">
@@ -173,24 +173,15 @@
    <property name="text">
     <string>&amp;Resume</string>
    </property>
-   <property name="iconText">
-    <string>Resume</string>
-   </property>
   </action>
   <action name="actionPause">
    <property name="text">
     <string>&amp;Pause</string>
    </property>
-   <property name="iconText">
-    <string>Pause</string>
-   </property>
   </action>
   <action name="actionDelete">
    <property name="text">
     <string>&amp;Delete</string>
-   </property>
-   <property name="iconText">
-    <string>Delete</string>
    </property>
   </action>
   <action name="actionDownload_from_URL">
@@ -318,9 +309,6 @@
    </property>
    <property name="iconText">
     <string>Lock</string>
-   </property>
-   <property name="toolTip">
-    <string>Lock qBittorrent</string>
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+L</string>
