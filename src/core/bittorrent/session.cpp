@@ -1433,8 +1433,10 @@ void Session::networkOnlineStateChanged(const bool online)
 void Session::networkConfigurationChange(const QNetworkConfiguration& cfg)
 {
     const QString configuredInterfaceName = Preferences::instance()->getNetworkInterface();
+    if (configuredInterfaceName.isEmpty())
+        return;
     const QString changedInterface = cfg.name();
-    if (configuredInterfaceName.isEmpty() || configuredInterfaceName == changedInterface) {
+    if (configuredInterfaceName == changedInterface) {
         Logger::instance()->addMessage(tr("Network configuration of %1 has changed, refreshing session binding", "e.g: Network configuration of tun0 has changed, refreshing session binding").arg(changedInterface), Log::INFO);
         setListeningPort();
     }
