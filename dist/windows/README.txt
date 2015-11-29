@@ -41,7 +41,10 @@ installer-translations
 translations
 	qt_ar.qm
 	...
-        (all the .qm files found in dist/qt-translations in every source release)
+        (all the .qm files found in the 'translations' folder of your Qt install. Those files differ between Qt4 and Qt5.
+	 If you want to distribute Qt4 translations it is better to use the ones found in this repo under the path "dist/qt-translations".
+	 They contain extra languages not distributed via the official qt4 sources. To access those checkout commit 8ad82fc74893daaa100.
+	 Don't forget to edit the filelist in installer.nsi + uninstaller.nsi to include all your .qm files.)
 	qt_zh_TW.qm
 installer.nsi
 license.txt
