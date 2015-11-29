@@ -1701,7 +1701,8 @@ void Session::handleTorrentChecked(TorrentHandle *const torrent)
 
 void Session::handleTorrentFinished(TorrentHandle *const torrent)
 {
-    saveTorrentResumeData(torrent);
+    if (!torrent->hasError() && !torrent->hasMissingFiles())
+        saveTorrentResumeData(torrent);
     emit torrentFinished(torrent);
 
     qDebug("Checking if the torrent contains torrent files to download");
@@ -2153,9 +2154,12 @@ void Session::handleAddTorrentAlert(libtorrent::add_torrent_alert *p)
             torrent->resume();
         logger->addMessage(tr("'%1' added to download list.", "'torrent name' was added to download list.")
                            .arg(torrent->name()));
+
+        // In case of crash before the scheduled generation
+        // of the fastresumes.
+        saveTorrentResumeData(torrent);
     }
 
-    saveTorrentResumeData(torrent);
     if ((torrent->ratioLimit() >= 0) && !m_bigRatioTimer->isActive())
         m_bigRatioTimer->start();
 
