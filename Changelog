@@ -1,4 +1,4 @@
-* Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.0
+* Sun Nov 29 2015 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.0
     - FEATURE: Huge core code refactoring. Problems with labels, temp folders etc should be eliminated. Smoother UI should be observed too. (glassez)
     - FEATURE: Speed graph (Anton Lashkov)
     - FEATURE: Add multiple peers in Peers addition dialog. Closes #1563, #2245, #3133, #1419, #3287, #1419 (ngosang)
@@ -37,16 +37,18 @@
     - WEBUI: Added labels support. #648 (Felipe Barriga Richards, ngosnag)
     - WEBUI: Fix accessing the WebUI through IPv6 (ngosang)
     - WEBUI: Bump WebUI API_VERSION to 6.
+    - WEBUI: Change selected color to differentiate from the progressbar. (Daniel Peukert, ngosang)
     - SEARCH: Add "Copy description page URL" button in search tab. Closes #2371. (pmzqla)
     - SEARCH: Add https_proxy env variable. This forces Python to use the HTTP proxy for HTTPS connections. (pmzqla)
     - SEARCH: Detect new plugin URL from clipboard (ngosang)
+    - SEARCH: Update Torrentz trackers (ngosang)
     - WINDOWS: Fix german translation of the installer (netswap)
     - NOX: Don't ask the user questions in nox build when in non-interactive mode. Closes #3875. (sledgehammer999)
     - OTHER: Fixed typos, spelling correction (dartraiden)
     - OTHER: Fix need for restart to enable/disable peer countries resolution. (glassez)
     - OTHER: Unload the GeoIP db when disabled. (sledgehammer999)
     - OTHER: Reduce max value of "Disk cache size" to 1536MB for 32bit. Closes to #4028. (Chocobo1)
-    
+    - OTHER: Make "Download in sequential order" and "Download first and last piece first" options independent. (glassez)
 
 * Sun May 10 2015 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.0
     - FEATURE: Show actual protocol for listen success/failure in the log. Needs libtorrent v1.0.0 (Gelmir)
