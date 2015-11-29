@@ -562,7 +562,7 @@ void TransferListWidget::toggleSelectedTorrentsSequentialDownload() const
 void TransferListWidget::toggleSelectedFirstLastPiecePrio() const
 {
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents())
-        torrent->setFirstLastPiecePriority(!torrent->hasFirstLastPiecePriority());
+        torrent->toggleFirstLastPiecePriority();
 }
 
 void TransferListWidget::askNewLabelForSelection()
