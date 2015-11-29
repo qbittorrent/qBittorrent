@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[qbittorrent.qbittorrent_master]
+[qbittorrent.qbittorrent_v3_3_x]
 file_filter = src/lang/qbittorrent_<lang>.ts
 source_file = src/lang/qbittorrent_en.ts
 source_lang = en
