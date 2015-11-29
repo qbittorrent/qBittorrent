@@ -141,8 +141,12 @@ hr {
 }
 
 .selectedFilter {
-    background-color: #727E96;
-    color: #000;
+    background-color: #415A8D;
+    color: #FFFFFF;
+}
+
+.selectedFilter a {
+    color: #FFFFFF;
 }
 
 #properties {
