@@ -1,3 +1,5 @@
+Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.4.0
+
 * Sun Nov 29 2015 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.0
     - FEATURE: Huge core code refactoring. Problems with labels, temp folders etc should be eliminated. Smoother UI should be observed too. (glassez)
     - FEATURE: Speed graph (Anton Lashkov)
