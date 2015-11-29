@@ -969,41 +969,41 @@
         <translation>OFFLINE</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1438"/>
+        <location filename="../core/bittorrent/session.cpp" line="1440"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>Die Netzwerk-Konfiguration von %1 hat sich geändert - die Sitzungsbindung wird erneuert</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1721"/>
+        <location filename="../core/bittorrent/session.cpp" line="1724"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>&apos;%1&apos; Torrentdatei kann nicht dekodiert werden.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1827"/>
+        <location filename="../core/bittorrent/session.cpp" line="1830"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>Rekursiver Download von Datei &apos;%1&apos;, eingebettet in Torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2138"/>
+        <location filename="../core/bittorrent/session.cpp" line="2141"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>&apos;%1.torrent&apos; konnte nicht gespeichert werden</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2240"/>
+        <location filename="../core/bittorrent/session.cpp" line="2246"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>weil %1 deaktiviert ist.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2243"/>
+        <location filename="../core/bittorrent/session.cpp" line="2249"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>weil %1 deaktiviert ist.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2261"/>
+        <location filename="../core/bittorrent/session.cpp" line="2267"/>
         <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
         <translation>URL Überprüfung für die Seed-URL &apos;%1&apos; ist fehlgeschlagen; Grund: %2</translation>
     </message>
@@ -1047,142 +1047,142 @@
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="165"/>
-        <location filename="../core/bittorrent/session.cpp" line="1508"/>
+        <location filename="../core/bittorrent/session.cpp" line="1510"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent versucht auf allen beliebigen Ports zu lauschen: %1</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1512"/>
+        <location filename="../core/bittorrent/session.cpp" line="1514"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
         <translation>qBittorrent konnte auf keinen Interface Ports lauschen: %1. Grund: %2</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1461"/>
+        <location filename="../core/bittorrent/session.cpp" line="1463"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Das angegebene Netzwerkinterface ist ungültig: %1</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="169"/>
-        <location filename="../core/bittorrent/session.cpp" line="1519"/>
+        <location filename="../core/bittorrent/session.cpp" line="1521"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent versucht auf Interface %1 Port %2 zu lauschen </translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1485"/>
+        <location filename="../core/bittorrent/session.cpp" line="1487"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
         <translation>qBittorrent konnte auf die zu lauschende lokale Adresse %1  nicht finden</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1633"/>
+        <location filename="../core/bittorrent/session.cpp" line="1635"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Tracker &apos;%1&apos; wurde dem Torrent &apos;%2&apos; hinzugefügt</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1643"/>
+        <location filename="../core/bittorrent/session.cpp" line="1645"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>Tracker &apos;%1&apos; wurde vom Torrent &apos;%2&apos; entfernt</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1658"/>
+        <location filename="../core/bittorrent/session.cpp" line="1660"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>URL Seed &apos;%1&apos; wurde dem Torrent &apos;%2&apos; hinzugefügt</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1664"/>
+        <location filename="../core/bittorrent/session.cpp" line="1666"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>URL Seed &apos;%1&apos; wurde vom Torrent &apos;%2&apos; entfernt</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1943"/>
+        <location filename="../core/bittorrent/session.cpp" line="1946"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>Konnte Torrent %1 nicht fortsetzen.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1966"/>
+        <location filename="../core/bittorrent/session.cpp" line="1969"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Der IP-Filter wurde erfolgreich analysiert. Es wurden %1 Regeln angewendet.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1972"/>
+        <location filename="../core/bittorrent/session.cpp" line="1975"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Fehler: IP-Filter konnte nicht analysiert werden.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2100"/>
+        <location filename="../core/bittorrent/session.cpp" line="2103"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>Konnte den Torrent nicht hinzufügen. Grund: %1</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2121"/>
+        <location filename="../core/bittorrent/session.cpp" line="2124"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; fortgesetzt. (Schnelles Fortsetzen)</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2152"/>
+        <location filename="../core/bittorrent/session.cpp" line="2155"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; der Downloadliste hinzugefügt.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2204"/>
+        <location filename="../core/bittorrent/session.cpp" line="2210"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
         <translation>Ein I/O Fehler ist aufgetreten, &apos;%1&apos; angehalten. %2</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2212"/>
+        <location filename="../core/bittorrent/session.cpp" line="2218"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Fehler beim Portmapping, Meldung: %1</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2218"/>
+        <location filename="../core/bittorrent/session.cpp" line="2224"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Portmapping erfolgreich, Meldung: %1</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2228"/>
+        <location filename="../core/bittorrent/session.cpp" line="2234"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>wegen IP-Filter.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2231"/>
+        <location filename="../core/bittorrent/session.cpp" line="2237"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>wegen Port-Filter.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2234"/>
+        <location filename="../core/bittorrent/session.cpp" line="2240"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>auf Grund von Beschränkungen für den gemischten i2p-Modus.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2237"/>
+        <location filename="../core/bittorrent/session.cpp" line="2243"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>weil der Port niedrig ist.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2275"/>
+        <location filename="../core/bittorrent/session.cpp" line="2281"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent lauscht erfolgreich auf Interface %1 Port %2/%3</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2301"/>
+        <location filename="../core/bittorrent/session.cpp" line="2307"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
         <translation>qBittorrent konnte nicht auf Interface %1 Port %2/%3 lauschen. Grund: %4</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2310"/>
+        <location filename="../core/bittorrent/session.cpp" line="2316"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>Externe IP: %1</translation>
@@ -1191,17 +1191,17 @@
 <context>
     <name>BitTorrent::TorrentHandle</name>
     <message>
-        <location filename="../core/bittorrent/torrenthandle.cpp" line="1315"/>
+        <location filename="../core/bittorrent/torrenthandle.cpp" line="1313"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation>Konnte den Torrent &apos;%1&apos; nicht verschieben. Grund: %2</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/torrenthandle.cpp" line="1456"/>
+        <location filename="../core/bittorrent/torrenthandle.cpp" line="1454"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
         <translation>Dateigrößen des Torrent &apos;%1&apos; stimmen nicht überein, wird angehalten.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/torrenthandle.cpp" line="1462"/>
+        <location filename="../core/bittorrent/torrenthandle.cpp" line="1460"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation>Fortsetzungsdaten des Torrent &apos;%1&apos; wurden zurückgewiesen. Grund: &apos;%2&apos;. Prüfe erneut ...</translation>
     </message>
@@ -4545,7 +4545,7 @@ Soll qBittorrent wirklich beendet werden?</translation>
     <message>
         <location filename="../gui/options.ui" line="1872"/>
         <source>Apply rate limit to peers on LAN</source>
-        <translation>Verhältnisbegrenzung für Peers im LAN verwenden</translation>
+        <translation>Verhältnisbegrenzung auch für Peers im LAN verwenden</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1735"/>
@@ -5772,7 +5772,7 @@ Selbstverständlich geschieht dieses Teilen jeglicher Inhalte auf eigene Verantw
     <message>
         <location filename="../core/scanfoldersmodel.cpp" line="163"/>
         <source>Download path</source>
-        <translation type="unfinished"></translation>
+        <translation>Downloadpfad</translation>
     </message>
 </context>
 <context>
@@ -6348,7 +6348,7 @@ Selbstverständlich geschieht dieses Teilen jeglicher Inhalte auf eigene Verantw
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="141"/>
         <source>Errored (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlerhaft (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="158"/>
@@ -6393,7 +6393,7 @@ Selbstverständlich geschieht dieses Teilen jeglicher Inhalte auf eigene Verantw
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="166"/>
         <source>Errored (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlerhaft (%1)</translation>
     </message>
 </context>
 <context>
@@ -6831,7 +6831,7 @@ Selbstverständlich geschieht dieses Teilen jeglicher Inhalte auf eigene Verantw
         <location filename="../gui/properties/trackerlist.cpp" line="217"/>
         <location filename="../gui/properties/trackerlist.cpp" line="286"/>
         <source>Working</source>
-        <translation>Funktioniert</translation>
+        <translation>Arbeitet</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="218"/>
@@ -6851,7 +6851,7 @@ Selbstverständlich geschieht dieses Teilen jeglicher Inhalte auf eigene Verantw
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="294"/>
         <source>Not working</source>
-        <translation>Funktioniert nicht</translation>
+        <translation>Arbeitet nicht</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="298"/>
@@ -7049,7 +7049,7 @@ Selbstverständlich geschieht dieses Teilen jeglicher Inhalte auf eigene Verantw
         <location filename="../gui/transferlistdelegate.cpp" line="142"/>
         <source>Errored</source>
         <comment>torrent status, the torrent has an error</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fehlerhaft</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="172"/>
@@ -7687,12 +7687,12 @@ Selbstverständlich geschieht dieses Teilen jeglicher Inhalte auf eigene Verantw
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="264"/>
         <source>Invalid plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiges Plugin</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="264"/>
         <source>The search engine plugin is invalid, please contact the author.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Suchmaschinen-Plugin ist ungültig - bitte den Author kontaktieren.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="270"/>
@@ -7925,7 +7925,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
     <message>
         <location filename="../webui/btjson.cpp" line="388"/>
         <source>Working</source>
-        <translation>Funktioniert</translation>
+        <translation>Arbeitet</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="386"/>
@@ -7935,7 +7935,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
     <message>
         <location filename="../webui/btjson.cpp" line="390"/>
         <source>Not working</source>
-        <translation>Funktioniert nicht</translation>
+        <translation>Arbeitet nicht</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="384"/>

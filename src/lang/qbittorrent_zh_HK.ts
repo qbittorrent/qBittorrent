@@ -969,41 +969,41 @@
         <translation>停用</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1438"/>
+        <location filename="../core/bittorrent/session.cpp" line="1440"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>%1的網絡設定已更改，正在更新階段配對</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1721"/>
+        <location filename="../core/bittorrent/session.cpp" line="1724"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>無法解析Torrent檔「%1」</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1827"/>
+        <location filename="../core/bittorrent/session.cpp" line="1830"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>反復下載嵌入於Torrent「%2」的「%1」</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2138"/>
+        <location filename="../core/bittorrent/session.cpp" line="2141"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>無法儲存「%1.torrent」</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2240"/>
+        <location filename="../core/bittorrent/session.cpp" line="2246"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>因%1已被停用。</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2243"/>
+        <location filename="../core/bittorrent/session.cpp" line="2249"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>因%1已被停用。</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2261"/>
+        <location filename="../core/bittorrent/session.cpp" line="2267"/>
         <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
         <translation>網址「%1」搜尋URL種子失敗，訊息：%2</translation>
     </message>
@@ -1047,142 +1047,142 @@
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="165"/>
-        <location filename="../core/bittorrent/session.cpp" line="1508"/>
+        <location filename="../core/bittorrent/session.cpp" line="1510"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent正在嘗試監聽任何介面埠：%1</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1512"/>
+        <location filename="../core/bittorrent/session.cpp" line="1514"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
         <translation>qBittorrent監聽任何介面埠失敗：%1。理由：%2</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1461"/>
+        <location filename="../core/bittorrent/session.cpp" line="1463"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>定義的網絡介面無效：%1</translation>
     </message>
     <message>
         <location filename="../core/bittorrent/session.cpp" line="169"/>
-        <location filename="../core/bittorrent/session.cpp" line="1519"/>
+        <location filename="../core/bittorrent/session.cpp" line="1521"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent正在嘗試監聽介面%1的埠：%2</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1485"/>
+        <location filename="../core/bittorrent/session.cpp" line="1487"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
         <translation>qBittorrent未找到供監聽的%1本地位址</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1633"/>
+        <location filename="../core/bittorrent/session.cpp" line="1635"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>追蹤器「%1」已加入到Torrent「%2」</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1643"/>
+        <location filename="../core/bittorrent/session.cpp" line="1645"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>追蹤器「%1」已從Torrent「%2」刪除</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1658"/>
+        <location filename="../core/bittorrent/session.cpp" line="1660"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>已加入URL種子「%1」到Torrent「%2」</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1664"/>
+        <location filename="../core/bittorrent/session.cpp" line="1666"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>已從Torrent「%2」清除URL種子「%1」</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1943"/>
+        <location filename="../core/bittorrent/session.cpp" line="1946"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>無法復原Torrent檔案「%1」。</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1966"/>
+        <location filename="../core/bittorrent/session.cpp" line="1969"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>成功解析IP過濾器：已套用%1個規則。</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1972"/>
+        <location filename="../core/bittorrent/session.cpp" line="1975"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>錯誤：解析IP過濾器失敗。</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2100"/>
+        <location filename="../core/bittorrent/session.cpp" line="2103"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>無法加入Torrent。理由：%1</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2121"/>
+        <location filename="../core/bittorrent/session.cpp" line="2124"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
         <translation>「%1」已復原。（快速復原）</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2152"/>
+        <location filename="../core/bittorrent/session.cpp" line="2155"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>「%1」已加入到下載清單。</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2204"/>
+        <location filename="../core/bittorrent/session.cpp" line="2210"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
         <translation>發生入出錯誤，「%1」已暫停。%2</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2212"/>
+        <location filename="../core/bittorrent/session.cpp" line="2218"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP╱NAT-PMP：埠映射失敗，訊息：%1</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2218"/>
+        <location filename="../core/bittorrent/session.cpp" line="2224"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP╱NAT-PMP：埠映射成功，訊息：%1</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2228"/>
+        <location filename="../core/bittorrent/session.cpp" line="2234"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>由於IP過濾器。</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2231"/>
+        <location filename="../core/bittorrent/session.cpp" line="2237"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>由於埠過濾器。</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2234"/>
+        <location filename="../core/bittorrent/session.cpp" line="2240"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>由於i2p混合模式限制。</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2237"/>
+        <location filename="../core/bittorrent/session.cpp" line="2243"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>由於低埠。</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2275"/>
+        <location filename="../core/bittorrent/session.cpp" line="2281"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent成功監聽介面%1的埠：%2/%3</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2301"/>
+        <location filename="../core/bittorrent/session.cpp" line="2307"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
         <translation>qBittorrent監聽介面%1的埠%2/%3失敗。理由：%4</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2310"/>
+        <location filename="../core/bittorrent/session.cpp" line="2316"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>外部IP：%1</translation>
@@ -1191,17 +1191,17 @@
 <context>
     <name>BitTorrent::TorrentHandle</name>
     <message>
-        <location filename="../core/bittorrent/torrenthandle.cpp" line="1315"/>
+        <location filename="../core/bittorrent/torrenthandle.cpp" line="1313"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation>無法移動Torrent「%1」。理由：%2</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/torrenthandle.cpp" line="1456"/>
+        <location filename="../core/bittorrent/torrenthandle.cpp" line="1454"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
         <translation>檔案大小不符Torrent「%1」，正在暫停。</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/torrenthandle.cpp" line="1462"/>
+        <location filename="../core/bittorrent/torrenthandle.cpp" line="1460"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation>快速復原「%1」被拒。理由：%2。再檢查中…</translation>
     </message>
@@ -1331,7 +1331,7 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../core/net/private/geoipdatabase.cpp" line="101"/>
         <location filename="../core/net/private/geoipdatabase.cpp" line="131"/>
         <source>Unsupported database file size.</source>
-        <translation>不支援的資料庫檔案大小</translation>
+        <translation>不支援的資料庫檔案大小。</translation>
     </message>
     <message>
         <location filename="../core/net/private/geoipdatabase.cpp" line="236"/>
@@ -5770,7 +5770,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../core/scanfoldersmodel.cpp" line="163"/>
         <source>Download path</source>
-        <translation type="unfinished"></translation>
+        <translation>下載路徑</translation>
     </message>
 </context>
 <context>
@@ -6346,7 +6346,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="141"/>
         <source>Errored (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>出錯（0）</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="158"/>
@@ -6391,7 +6391,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="166"/>
         <source>Errored (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>出錯（%1）</translation>
     </message>
 </context>
 <context>
@@ -7047,7 +7047,7 @@ No further notices will be issued.</source>
         <location filename="../gui/transferlistdelegate.cpp" line="142"/>
         <source>Errored</source>
         <comment>torrent status, the torrent has an error</comment>
-        <translation type="unfinished"></translation>
+        <translation>出錯</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="172"/>
@@ -7685,12 +7685,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="264"/>
         <source>Invalid plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>無效的外掛程式</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="264"/>
         <source>The search engine plugin is invalid, please contact the author.</source>
-        <translation type="unfinished"></translation>
+        <translation>無效的搜尋引擎外掛，請連絡作者。</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="270"/>
@@ -7708,19 +7708,19 @@ No further notices will be issued.</source>
         <location filename="../searchengine/engineselectdlg.cpp" line="300"/>
         <source>&apos;%1&apos; search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>未能安裝搜尋引擎外掛「%1」</translation>
+        <translation>未能安裝搜尋引擎外掛「%1」。</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="310"/>
         <source>&apos;%1&apos; search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>成功更新搜尋引擎外掛「%1」</translation>
+        <translation>成功更新搜尋引擎外掛「%1」。</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="313"/>
         <source>&apos;%1&apos; search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>成功安裝搜尋引擎外掛「%1」</translation>
+        <translation>成功安裝搜尋引擎外掛「%1」。</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="381"/>
