@@ -215,7 +215,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(BitTorrent::Session::instance(), SIGNAL(trackerError(BitTorrent::TorrentHandle *const, const QString &)), transferListFilters, SLOT(trackerError(BitTorrent::TorrentHandle *const, const QString &)));
     connect(BitTorrent::Session::instance(), SIGNAL(trackerWarning(BitTorrent::TorrentHandle *const, const QString &)), transferListFilters, SLOT(trackerWarning(BitTorrent::TorrentHandle *const, const QString &)));
 
-    vboxLayout->addWidget(tabs);
+    centralWidgetLayout->addWidget(tabs);
 
     prioSeparator = toolBar->insertSeparator(actionTopPriority);
     prioSeparatorMenu = menu_Edit->insertSeparator(actionTopPriority);
