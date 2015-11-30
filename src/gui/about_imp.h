@@ -33,67 +33,67 @@
 
 #include "ui_about.h"
 #include <QFile>
-#include <QtGlobal>
 #include <libtorrent/version.hpp>
 #include <boost/version.hpp>
 #include "base/unicodestrings.h"
 
-class about : public QDialog, private Ui::AboutDlg{
-  Q_OBJECT
+class about: public QDialog, private Ui::AboutDlg
+{
+    Q_OBJECT
 
-  public:
-    ~about() {
-      qDebug("Deleting about dlg");
-    }
+public:
+    about(QWidget *parent) : QDialog(parent)
+    {
+        setupUi(this);
+        setAttribute(Qt::WA_DeleteOnClose);
 
-    about(QWidget *parent): QDialog(parent) {
-      setupUi(this);
-      setAttribute(Qt::WA_DeleteOnClose);
-      // About
-      QString aboutText =
-          QString::fromUtf8("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\"><html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\" font-size:11pt; font-weight:400; font-style:normal;\"><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">") +
-          tr("An advanced BitTorrent client programmed in <nobr>C++</nobr>, based on Qt toolkit and libtorrent-rasterbar.") +
-          QString::fromUtf8(" <br /><br />") +
-          trUtf8("Copyright %1 2006-2016 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT)) +
-          QString::fromUtf8("<br /><br />") +
-          tr("Home Page: ") +
-          QString::fromUtf8("<a href=\"http://www.qbittorrent.org\"><span style=\" text-decoration: underline; color:#0000ff;\">http://www.qbittorrent.org</span></a></p><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">") +
-          tr("Bug Tracker: ") +
-          QString::fromUtf8("<a href=\"http://bugs.qbittorrent.org\"><span style=\" text-decoration: underline; color:#0000ff;\">http://bugs.qbittorrent.org</span></a><br />") +
-          tr("Forum: ") +
-          QString::fromUtf8(
-              "<a href=\"http://forum.qbittorrent.org\"><span style=\" text-decoration: underline; color:#0000ff;\">http://forum.qbittorrent.org</span></a></p><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">") +
-          tr("IRC: #qbittorrent on Freenode") +
-          QString::fromUtf8(
-              "</p></body></html>");
-      lb_about->setText(aboutText);
-      // Set icons
-      logo->setPixmap(QPixmap(QString::fromUtf8(":/icons/skin/qbittorrent22.png")));
-      //Title
-      lb_name->setText(QString::fromUtf8("<b><h1>qBittorrent")+QString::fromUtf8(" " VERSION"</h1></b>"));
-      // Thanks
-      QFile thanksfile(":/thanks.html");
-      if (thanksfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        te_thanks->setHtml(QString::fromUtf8(thanksfile.readAll().constData()));
-        thanksfile.close();
-      }
-      // Translation
-      QFile translatorsfile(":/translators.html");
-      if (translatorsfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        te_translation->setHtml(QString::fromUtf8(translatorsfile.readAll().constData()));
-        translatorsfile.close();
-      }
-      // License
-      QFile licensefile(":/gpl.html");
-      if (licensefile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        te_license->setHtml(QString::fromUtf8(licensefile.readAll().constData()));
-        licensefile.close();
-      }
-      // Libraries
-      label_11->setText(QT_VERSION_STR);
-      label_12->setText(LIBTORRENT_VERSION);
-      label_13->setText(QString::number(BOOST_VERSION / 100000) + "." + QString::number((BOOST_VERSION / 100) % 1000) + "." + QString::number(BOOST_VERSION % 100));
-      show();
+        // Title & icon
+        logo->setPixmap(QPixmap(":/icons/skin/qbittorrent22.png"));
+        lb_name->setText("<b><h1>qBittorrent " VERSION "</h1></b>");
+
+        // About
+        QString aboutText = QString(
+            "<p style=\"white-space: pre-wrap;\">"
+            "%1\n\n"
+            "%2\n\n\n"
+            "%3 <a href=\"http://www.qbittorrent.org\">http://www.qbittorrent.org</a>\n"
+            "%4 <a href=\"http://forum.qbittorrent.org\">http://forum.qbittorrent.org</a>\n"
+            "%5 <a href=\"http://bugs.qbittorrent.org\">http://bugs.qbittorrent.org</a>"
+            "</p>")
+            .arg(tr("An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar."))
+            .arg(tr("Copyright %1 2006-2016 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT)))
+            .arg(tr("Home Page:"))
+            .arg(tr("Forum:"))
+            .arg(tr("Bug Tracker:"));
+        lb_about->setText(aboutText);
+
+        // Thanks
+        QFile thanksfile(":/thanks.html");
+        if (thanksfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            te_thanks->setHtml(QString::fromUtf8(thanksfile.readAll().constData()));
+            thanksfile.close();
+        }
+
+        // Translation
+        QFile translatorsfile(":/translators.html");
+        if (translatorsfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            te_translation->setHtml(QString::fromUtf8(translatorsfile.readAll().constData()));
+            translatorsfile.close();
+        }
+
+        // License
+        QFile licensefile(":/gpl.html");
+        if (licensefile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            te_license->setHtml(QString::fromUtf8(licensefile.readAll().constData()));
+            licensefile.close();
+        }
+
+        // Libraries
+        label_11->setText(QT_VERSION_STR);
+        label_12->setText(LIBTORRENT_VERSION);
+        label_13->setText(QString::number(BOOST_VERSION / 100000) + "." + QString::number((BOOST_VERSION / 100) % 1000) + "." + QString::number(BOOST_VERSION % 100));
+
+        show();
     }
 };
 
