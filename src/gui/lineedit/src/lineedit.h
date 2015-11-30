@@ -24,8 +24,10 @@ public:
 protected:
     void resizeEvent(QResizeEvent *e);
 
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 private slots:
     void updateCloseButton(const QString &text);
+#endif
 
 private:
     QToolButton *searchButton;

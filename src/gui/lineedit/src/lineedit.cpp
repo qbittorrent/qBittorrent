@@ -64,9 +64,9 @@ void LineEdit::resizeEvent(QResizeEvent *e)
 #endif
 }
 
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 void LineEdit::updateCloseButton(const QString &text)
 {
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
     clearButton->setVisible(!text.isEmpty());
-#endif
 }
+#endif
