@@ -64,7 +64,7 @@
 /*SEARCH ENGINE START*/
 SearchEngine::SearchEngine(MainWindow* parent)
     : QWidget(parent)
-    , search_pattern(new LineEdit)
+    , search_pattern(new LineEdit(this))
     , mp_mainWindow(parent)
 {
     setupUi(this);

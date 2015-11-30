@@ -12,26 +12,26 @@
 
 #include <QLineEdit>
 
-QT_BEGIN_NAMESPACE
 class QToolButton;
-QT_END_NAMESPACE
 
 class LineEdit : public QLineEdit
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  LineEdit(QWidget *parent = 0);
+    LineEdit(QWidget *parent);
 
 protected:
-  void resizeEvent(QResizeEvent *);
+    void resizeEvent(QResizeEvent *e);
 
 private slots:
-  void updateCloseButton(const QString &text);
+    void updateCloseButton(const QString &text);
 
 private:
-  QToolButton *clearButton;
-  QToolButton *searchButton;
+    QToolButton *searchButton;
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+    QToolButton *clearButton;
+#endif
 };
 
 #endif // LIENEDIT_H
