@@ -7,66 +7,35 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>504</width>
-    <height>320</height>
+    <width>545</width>
+    <height>295</height>
    </rect>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>504</width>
-    <height>320</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>About qBittorrent</string>
   </property>
-  <layout class="QVBoxLayout">
+  <layout class="QVBoxLayout" name="aboutDlgLayout">
    <item>
-    <layout class="QHBoxLayout">
+    <layout class="QHBoxLayout" name="titleHBoxLayout">
      <item>
-      <widget class="QLabel" name="logo">
-       <property name="minimumSize">
-        <size>
-         <width>22</width>
-         <height>22</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>22</width>
-         <height>22</height>
-        </size>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
+      <widget class="QLabel" name="logo"/>
      </item>
      <item>
       <widget class="QLabel" name="lb_name">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="text">
-        <string notr="true">&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::RichText</enum>
+        <string notr="true">qBittorrent</string>
        </property>
       </widget>
      </item>
      <item>
-      <spacer>
+      <spacer name="horizontalSpacer_6">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>0</width>
+         <height>0</height>
         </size>
        </property>
       </spacer>
@@ -78,16 +47,13 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab6">
+     <widget class="QWidget" name="aboutTab">
       <attribute name="title">
        <string>About</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_2">
+      <layout class="QGridLayout" name="aboutTabLayout">
        <item row="0" column="0">
         <widget class="QLabel" name="mascot_lbl">
-         <property name="text">
-          <string/>
-         </property>
          <property name="pixmap">
           <pixmap resource="../icons.qrc">:/icons/skin/mascot.png</pixmap>
          </property>
@@ -101,17 +67,13 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="text">
-          <string/>
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
          </property>
          <property name="textFormat">
           <enum>Qt::RichText</enum>
-         </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -123,250 +85,170 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab5">
+     <widget class="QWidget" name="authorTab">
       <attribute name="title">
        <string>Author</string>
       </attribute>
-      <layout class="QVBoxLayout">
-       <property name="spacing">
-        <number>6</number>
-       </property>
+      <layout class="QVBoxLayout" name="authorTabLayout">
        <item>
-        <widget class="QFrame" name="te_authors">
-         <layout class="QGridLayout" name="gridLayout">
-          <property name="horizontalSpacing">
-           <number>0</number>
-          </property>
-          <property name="verticalSpacing">
-           <number>6</number>
-          </property>
-          <property name="margin">
-           <number>0</number>
-          </property>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Current maintainer</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_18">
+            <property name="text">
+             <string>Greece</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="label_19">
+            <property name="text">
+             <string notr="true">sledgehammer999@qbittorrent.org</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string>Nationality:</string>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="0">
-           <spacer name="verticalSpacer">
+           <widget class="QLabel" name="label_16">
+            <property name="text">
+             <string>E-mail:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>Name:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_17">
+            <property name="text">
+             <string notr="true">Sledgehammer999</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <spacer name="horizontalSpacer">
             <property name="orientation">
-             <enum>Qt::Vertical</enum>
+             <enum>Qt::Horizontal</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>20</width>
-              <height>40</height>
+              <width>0</width>
+              <height>0</height>
              </size>
             </property>
            </spacer>
           </item>
-          <item row="4" column="0" colspan="2">
-           <widget class="QFrame" name="frame">
-            <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Original author</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>France</string>
             </property>
-            <property name="lineWidth">
-             <number>0</number>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_5">
-             <item row="0" column="2">
-              <spacer name="horizontalSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="2" column="1">
-              <widget class="QLabel" name="label_7">
-               <property name="text">
-                <string>France</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string notr="true">Christophe Dumez</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="1">
-              <widget class="QLabel" name="label_6">
-               <property name="text">
-                <string notr="true">chris@qbittorrent.org</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_3">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <underline>true</underline>
-                </font>
-               </property>
-               <property name="text">
-                <string>Name:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="label_5">
-               <property name="font">
-                <font>
-                 <underline>true</underline>
-                </font>
-               </property>
-               <property name="text">
-                <string>E-mail:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_4">
-               <property name="font">
-                <font>
-                 <underline>true</underline>
-                </font>
-               </property>
-               <property name="text">
-                <string>Country:</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QFrame" name="frame_2">
-            <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string notr="true">Christophe Dumez</string>
             </property>
-            <property name="frameShadow">
-             <enum>QFrame::Plain</enum>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string notr="true">chris@qbittorrent.org</string>
             </property>
-            <property name="lineWidth">
-             <number>0</number>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_4">
-             <item row="2" column="1">
-              <widget class="QLabel" name="label_18">
-               <property name="text">
-                <string>Greece</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QLabel" name="label_19">
-               <property name="text">
-                <string notr="true">sledgehammer999@qbittorrent.org</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_15">
-               <property name="font">
-                <font>
-                 <underline>true</underline>
-                </font>
-               </property>
-               <property name="text">
-                <string>Country:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_14">
-               <property name="font">
-                <font>
-                 <underline>true</underline>
-                </font>
-               </property>
-               <property name="text">
-                <string>Name:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLabel" name="label_17">
-               <property name="text">
-                <string notr="true">Sledgehammer999</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_16">
-               <property name="font">
-                <font>
-                 <underline>true</underline>
-                </font>
-               </property>
-               <property name="text">
-                <string>E-mail:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="2">
-              <spacer name="horizontalSpacer_2">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
            </widget>
           </item>
           <item row="0" column="0">
-           <widget class="QLabel" name="label_21">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
+           <widget class="QLabel" name="label_3">
             <property name="text">
-             <string>Current maintainer</string>
+             <string>Name:</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_20">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_5">
             <property name="text">
-             <string>Original author</string>
+             <string>E-mail:</string>
             </property>
            </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Nationality:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>
        </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab4">
+     <widget class="QWidget" name="thanksTab">
       <attribute name="title">
-       <string>Thanks to</string>
+       <string>Special Thanks</string>
       </attribute>
-      <layout class="QVBoxLayout">
-       <property name="spacing">
-        <number>6</number>
+      <layout class="QVBoxLayout" name="thanksTabLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
        <item>
         <widget class="QTextBrowser" name="te_thanks">
@@ -377,13 +259,22 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab3">
+     <widget class="QWidget" name="translationTab">
       <attribute name="title">
-       <string>Translation</string>
+       <string>Translators</string>
       </attribute>
-      <layout class="QVBoxLayout">
-       <property name="spacing">
-        <number>6</number>
+      <layout class="QVBoxLayout" name="translationTabLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
        <item>
         <widget class="QTextBrowser" name="te_translation">
@@ -394,101 +285,39 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab2">
+     <widget class="QWidget" name="licenseTab">
       <attribute name="title">
        <string>License</string>
       </attribute>
-      <layout class="QVBoxLayout">
-       <property name="spacing">
-        <number>6</number>
+      <layout class="QVBoxLayout" name="licenseTabLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
        <item>
         <widget class="QTextBrowser" name="te_license"/>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab1">
+     <widget class="QWidget" name="librariesTab">
       <attribute name="title">
        <string>Libraries</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QVBoxLayout" name="librariesTabLayout">
        <item>
         <widget class="QLabel" name="label">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
          <property name="text">
-          <string>This version of qBittorrent was built against the following libraries:</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
+          <string>qBittorrent was built with the following libraries:</string>
          </property>
         </widget>
-       </item>
-       <item>
-        <widget class="Line" name="line">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_8">
-           <property name="text">
-            <string notr="true">Qt:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_10">
-           <property name="text">
-            <string notr="true">Boost:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="label_11">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLabel" name="label_13">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="label_12">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_9">
-           <property name="text">
-            <string notr="true">Libtorrent:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </item>
        <item>
         <widget class="Line" name="line_2">
@@ -498,12 +327,106 @@
         </widget>
        </item>
        <item>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="2" column="2">
+          <widget class="QLabel" name="label_13">
+           <property name="textInteractionFlags">
+            <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string notr="true">Qt:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+           <property name="textInteractionFlags">
+            <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string notr="true">Libtorrent:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+           <property name="textInteractionFlags">
+            <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string notr="true">Boost:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+           <property name="textInteractionFlags">
+            <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_11">
+           <property name="textInteractionFlags">
+            <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_12">
+           <property name="textInteractionFlags">
+            <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Expanding</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
