@@ -160,6 +160,8 @@ public:
     void setTempPathEnabled(bool enabled);
     QString getTempPath() const;
     void setTempPath(const QString &path);
+    QString getDefaultLabel() const;
+    void setDefaultLabel(const QString &defaultLabel);
     bool useIncompleteFilesExtension() const;
     void useIncompleteFilesExtension(bool enabled);
     bool appendTorrentLabel() const;
