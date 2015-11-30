@@ -269,23 +269,20 @@ void AddNewTorrentDialog::showAdvancedSettings(bool show)
     if (show) {
         ui->adv_button->setText(QString::fromUtf8(C_UP));
         ui->settings_group->setVisible(true);
-        ui->info_group->setVisible(true);
+        ui->infoGroup->setVisible(true);
         if (m_hasMetadata && (m_torrentInfo.filesCount() > 1)) {
             ui->content_tree->setVisible(true);
-            setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         }
         else {
             ui->content_tree->setVisible(false);
-            setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
         }
         static_cast<QVBoxLayout*>(layout())->insertWidget(layout()->indexOf(ui->never_show_cb) + 1, ui->adv_button);
     }
     else {
         ui->adv_button->setText(QString::fromUtf8(C_DOWN));
         ui->settings_group->setVisible(false);
-        ui->info_group->setVisible(false);
+        ui->infoGroup->setVisible(false);
         ui->buttonsHLayout->insertWidget(0, layout()->takeAt(layout()->indexOf(ui->never_show_cb) + 1)->widget());
-        setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     }
     relayout();
 }
