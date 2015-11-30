@@ -547,6 +547,13 @@
                  </property>
                 </widget>
                </item>
+               <item row="2" column="0">
+                <widget class="QCheckBox" name="checkEditableSavePath">
+                 <property name="text">
+                  <string>Enable editable save path</string>
+                 </property>
+                </widget>
+               </item>
                <item row="0" column="0">
                 <widget class="QGroupBox" name="checkAdditionDialog">
                  <property name="title">

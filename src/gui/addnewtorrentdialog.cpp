@@ -34,6 +34,8 @@
 #include <QUrl>
 #include <QMenu>
 #include <QFileDialog>
+#include <QCompleter>
+#include <QDirModel>
 
 #include "core/preferences.h"
 #include "core/net/downloadmanager.h"
@@ -60,7 +62,6 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
     , m_contentModel(0)
     , m_contentDelegate(0)
     , m_hasMetadata(false)
-    , m_oldIndex(0)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -71,9 +72,28 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
     ui->start_torrent_cb->setChecked(!pref->addTorrentsInPause());
     ui->save_path_combo->addItem(Utils::Fs::toNativePath(pref->getSavePath()), pref->getSavePath());
     loadSavePathHistory();
-    connect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
+    connect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathIndexChanged(int)));
     connect(ui->browse_button, SIGNAL(clicked()), SLOT(browseButton_clicked()));
     ui->default_save_path_cb->setVisible(false); // Default path is selected by default
+
+    if (pref->editableSavePath()) {
+        // Make save path combo editable
+        ui->save_path_combo->setEditable(true);
+
+        // Autocomplete for dirs
+        QCompleter *fsCompleter = new QCompleter(this);
+        QDirModel *fsModel = new QDirModel(this);
+        fsModel->setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
+        fsCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+        fsCompleter->setModel(fsModel);
+        ui->save_path_combo->setCompleter(fsCompleter);
+
+        // Make "Default Save Path" checkbox visible after change of text
+        connect(ui->save_path_combo->lineEdit(), SIGNAL(textEdited(const QString &)), SLOT(onSavePathEditingStarted()));
+
+        // Validate user input when finished editing
+        connect(ui->save_path_combo->lineEdit(), SIGNAL(editingFinished()), SLOT(onSavePathEditingFinished()));
+    }
 
     // Load labels
     const QStringList customLabels = pref->getTorrentLabels();
@@ -161,12 +181,12 @@ void AddNewTorrentDialog::show(QString source, QWidget *parent)
     }
 }
 
-bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path)
+bool AddNewTorrentDialog::loadTorrent(const QString& torrentPath)
 {
-    if (torrent_path.startsWith("file://", Qt::CaseInsensitive))
-        m_filePath = QUrl::fromEncoded(torrent_path.toLocal8Bit()).toLocalFile();
+    if (torrentPath.startsWith("file://", Qt::CaseInsensitive))
+        m_filePath = QUrl::fromEncoded(torrentPath.toLocal8Bit()).toLocalFile();
     else
-        m_filePath = torrent_path;
+        m_filePath = torrentPath;
 
     if (!QFile::exists(m_filePath)) {
         MessageBoxRaised::critical(0, tr("I/O Error"), tr("The torrent file does not exist."));
@@ -202,9 +222,9 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path)
     return true;
 }
 
-bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
+bool AddNewTorrentDialog::loadMagnet(const QString &magnetUri)
 {
-    BitTorrent::MagnetUri magnet(magnet_uri);
+    BitTorrent::MagnetUri magnet(magnetUri);
     if (!magnet.isValid()) {
         MessageBoxRaised::critical(0, tr("Invalid magnet link"), tr("This magnet link was not recognized"));
         return false;
@@ -228,14 +248,14 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
     connect(BitTorrent::Session::instance(), SIGNAL(metadataLoaded(BitTorrent::TorrentInfo)), SLOT(updateMetadata(BitTorrent::TorrentInfo)));
 
     // Set dialog title
-    QString torrent_name = magnet.name();
-    setWindowTitle(torrent_name.isEmpty() ? tr("Magnet link") : torrent_name);
+    QString torrentName = magnet.name();
+    setWindowTitle(torrentName.isEmpty() ? tr("Magnet link") : torrentName);
 
     setupTreeview();
     // Set dialog position
     setdialogPosition();
 
-    BitTorrent::Session::instance()->loadMetadata(magnet_uri);
+    BitTorrent::Session::instance()->loadMetadata(magnetUri);
     setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
     ui->lblhash->setText(m_hash);
 
@@ -259,12 +279,11 @@ void AddNewTorrentDialog::showAdvancedSettings(bool show)
         ui->adv_button->setText(QString::fromUtf8(C_UP));
         ui->settings_group->setVisible(true);
         ui->info_group->setVisible(true);
-        if (m_hasMetadata && (m_torrentInfo.filesCount() > 1)) {
-            ui->content_tree->setVisible(true);
+        ui->content_tree->setVisible(true);
+        if (m_hasMetadata) {
             setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         }
         else {
-            ui->content_tree->setVisible(false);
             setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
         }
         static_cast<QVBoxLayout*>(layout())->insertWidget(layout()->indexOf(ui->never_show_cb) + 1, ui->adv_button);
@@ -281,16 +300,16 @@ void AddNewTorrentDialog::showAdvancedSettings(bool show)
 
 void AddNewTorrentDialog::saveSavePathHistory() const
 {
-    QDir selected_save_path(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString());
+    QDir selectedSavePath(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString());
     Preferences* const pref = Preferences::instance();
     // Get current history
     QStringList history = pref->getAddNewTorrentDialogPathHistory();
-    QList<QDir> history_dirs;
+    QList<QDir> historyDirs;
     foreach(const QString dir, history)
-        history_dirs << QDir(dir);
-    if (!history_dirs.contains(selected_save_path)) {
+        historyDirs << QDir(dir);
+    if (!historyDirs.contains(selectedSavePath)) {
         // Add save path to history
-        history.push_front(selected_save_path.absolutePath());
+        history.push_front(selectedSavePath.absolutePath());
         // Limit list size
         if (history.size() > 8)
             history.pop_back();
@@ -299,28 +318,28 @@ void AddNewTorrentDialog::saveSavePathHistory() const
     }
 }
 
-// save_path is a folder, not an absolute file path
-int AddNewTorrentDialog::indexOfSavePath(const QString &save_path)
+// savePath is a folder, not an absolute file path
+int AddNewTorrentDialog::indexOfSavePath(const QString &savePath)
 {
-    QDir saveDir(save_path);
+    QDir saveDir(savePath);
     for(int i = 0; i < ui->save_path_combo->count(); ++i)
         if (QDir(ui->save_path_combo->itemData(i).toString()) == saveDir)
             return i;
     return -1;
 }
 
-void AddNewTorrentDialog::updateFileNameInSavePaths(const QString &new_filename)
+void AddNewTorrentDialog::updateFileNameInSavePaths(const QString &newFilename)
 {
     for(int i = 0; i < ui->save_path_combo->count(); ++i) {
         const QDir folder(ui->save_path_combo->itemData(i).toString());
-        ui->save_path_combo->setItemText(i, Utils::Fs::toNativePath(folder.absoluteFilePath(new_filename)));
+        ui->save_path_combo->setItemText(i, Utils::Fs::toNativePath(folder.absoluteFilePath(newFilename)));
     }
 }
 
 void AddNewTorrentDialog::updateDiskSpaceLabel()
 {
     // Determine torrent size
-    qulonglong torrent_size = 0;
+    qulonglong torrentSize = 0;
 
     if (m_hasMetadata) {
         if (m_contentModel) {
@@ -328,91 +347,136 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
             Q_ASSERT(priorities.size() == m_torrentInfo.filesCount());
             for (int i = 0; i < priorities.size(); ++i)
                 if (priorities[i] > 0)
-                    torrent_size += m_torrentInfo.fileSize(i);
+                    torrentSize += m_torrentInfo.fileSize(i);
         }
         else {
-            torrent_size = m_torrentInfo.totalSize();
+            torrentSize = m_torrentInfo.totalSize();
         }
     }
 
-    QString size_string = torrent_size ? Utils::Misc::friendlyUnit(torrent_size) : QString(tr("Not Available", "This size is unavailable."));
-    size_string += " (";
-    size_string += tr("Free disk space: %1").arg(Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(
+    QString sizeString = torrentSize ? Utils::Misc::friendlyUnit(torrentSize) : QString(tr("Not Available", "This size is unavailable."));
+    sizeString += " (";
+    sizeString += tr("Free disk space: %1").arg(Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(
                                                                    ui->save_path_combo->itemData(
                                                                        ui->save_path_combo->currentIndex()).toString())));
-    size_string += ")";
-    ui->size_lbl->setText(size_string);
+    sizeString += ")";
+    ui->size_lbl->setText(sizeString);
 }
 
-void AddNewTorrentDialog::onSavePathChanged(int index)
+bool AddNewTorrentDialog::validateSavePath(QString savePath)
 {
+    // Check if save path is valid
+    bool valid = true;
+    if (savePath.isEmpty() || !QDir::isAbsolutePath(savePath)) {
+        valid = false;
+    }
+
+    savePath = QDir::cleanPath(savePath); // for example "/usr/../usr" -> "/usr"
+    savePath = Utils::Fs::toNativePath(savePath); // "\" in windows "/" in *nix
+
+    // Check if folder names are valid
+    foreach (const QString &folderName, savePath.split(QDir::separator(), QString::SkipEmptyParts)) {
+        if (!Utils::Fs::isValidFileSystemName(folderName)) {
+            valid = false;
+            break;
+        }
+    }
+
+    if (!valid) {
+        MessageBoxRaised::warning(this, tr("Save path invalid"),
+                                  tr("The save path is invalid. Please use a different save path."),
+                                  QMessageBox::Ok);
+        // If it's invalid reset to first path in combobox
+        ui->save_path_combo->setCurrentIndex(0);
+        return false;
+    }
+
+    // Check if path already in combobox
+    const int existingIndex = indexOfSavePath(savePath);
+    if (existingIndex >= 0) {
+        ui->save_path_combo->setCurrentIndex(existingIndex);
+    }
+    else {
+        // New path, prepend to combobox
+        ui->save_path_combo->insertItem(0, Utils::Fs::toNativePath(savePath), savePath);
+        ui->save_path_combo->setCurrentIndex(0);
+    }
+
     // Toggle default save path setting checkbox visibility
     ui->default_save_path_cb->setChecked(false);
-    ui->default_save_path_cb->setVisible(QDir(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString()) != QDir(Preferences::instance()->getSavePath()));
+    if (QDir(ui->save_path_combo->currentText()) != QDir(Preferences::instance()->getSavePath())) {
+        ui->default_save_path_cb->setVisible(true);
+        connect(ui->save_path_combo->lineEdit(), SIGNAL(textEdited(const QString &)), SLOT(onSavePathEditingStarted()));
+    }
+    else {
+        ui->default_save_path_cb->setVisible(false);
+    }
     relayout();
 
-    // Remember index
-    m_oldIndex = index;
-
     updateDiskSpaceLabel();
+
+    return true;
+}
+
+void AddNewTorrentDialog::onSavePathIndexChanged(int i)
+{
+    disconnect(ui->save_path_combo->lineEdit(), SIGNAL(editingFinished()), this, SLOT(onSavePathEditingFinished()));
+    disconnect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(onSavePathIndexChanged(int)));
+
+    QString newPath = ui->save_path_combo->itemText(i);
+    validateSavePath(newPath);
+
+    connect(ui->save_path_combo->lineEdit(), SIGNAL(editingFinished()), SLOT(onSavePathEditingFinished()));
+    connect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathIndexChanged(int)));
+}
+
+void AddNewTorrentDialog::onSavePathEditingFinished()
+{
+    disconnect(ui->save_path_combo->lineEdit(), SIGNAL(editingFinished()), this, SLOT(onSavePathEditingFinished()));
+    disconnect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(onSavePathIndexChanged(int)));
+
+    QString newPath = ui->save_path_combo->currentText();
+    validateSavePath(newPath);
+
+    connect(ui->save_path_combo->lineEdit(), SIGNAL(editingFinished()), SLOT(onSavePathEditingFinished()));
+    connect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathIndexChanged(int)));
 }
 
 void AddNewTorrentDialog::browseButton_clicked()
 {
-    disconnect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(onSavePathChanged(int)));
-    // User is asking for a new save path
-    QString cur_save_path = ui->save_path_combo->itemText(m_oldIndex);
-    QString new_path, old_filename, new_filename;
+    disconnect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(onSavePathIndexChanged(int)));
+    disconnect(ui->save_path_combo->lineEdit(), SIGNAL(editingFinished()), this, SLOT(onSavePathEditingFinished()));
 
-    if (m_torrentInfo.isValid() && (m_torrentInfo.filesCount() == 1)) {
-        old_filename = Utils::Fs::fileName(cur_save_path);
-        new_path = QFileDialog::getSaveFileName(this, tr("Choose save path"), cur_save_path, QString(), 0, QFileDialog::DontConfirmOverwrite);
-        if (!new_path.isEmpty())
-            new_path = Utils::Fs::branchPath(new_path, &new_filename);
-        qDebug() << "new_path: " << new_path;
-        qDebug() << "new_filename: " << new_filename;
-    }
-    else {
-        if (!cur_save_path.isEmpty() && QDir(cur_save_path).exists())
-            new_path = QFileDialog::getExistingDirectory(this, tr("Choose save path"), cur_save_path);
-        else
-            new_path = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
-    }
-    if (!new_path.isEmpty()) {
-        const int existing_index = indexOfSavePath(new_path);
-        if (existing_index >= 0) {
-            ui->save_path_combo->setCurrentIndex(existing_index);
-        }
-        else {
-            // New path, prepend to combo box
-            if (!new_filename.isEmpty())
-                ui->save_path_combo->insertItem(0, Utils::Fs::toNativePath(QDir(new_path).absoluteFilePath(new_filename)), new_path);
-            else
-                ui->save_path_combo->insertItem(0, Utils::Fs::toNativePath(new_path), new_path);
-            ui->save_path_combo->setCurrentIndex(0);
-        }
-        // Update file name in all save_paths
-        if (!new_filename.isEmpty() && !Utils::Fs::sameFileNames(old_filename, new_filename)) {
-            m_torrentInfo.renameFile(0, new_filename);
-            updateFileNameInSavePaths(new_filename);
-        }
+    // Get save path dir
+    QString newPath;
+    QString curSavePath = ui->save_path_combo->itemText(0);
+    if (!curSavePath.isEmpty() && QDir(curSavePath).exists())
+        newPath = QFileDialog::getExistingDirectory(this, tr("Choose save path"), curSavePath);
+    else
+        newPath = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
 
-        onSavePathChanged(0);
-    }
-    else {
-        // Restore index
-        ui->save_path_combo->setCurrentIndex(m_oldIndex);
-    }
-    connect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
+    if (!newPath.isEmpty())
+        validateSavePath(newPath);
+
+    connect(ui->save_path_combo->lineEdit(), SIGNAL(editingFinished()), SLOT(onSavePathEditingFinished()));
+    connect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathIndexChanged(int)));
+}
+
+void AddNewTorrentDialog::onSavePathEditingStarted()
+{
+    // Show "Default Save Path" check box
+    ui->default_save_path_cb->setVisible(true);
+    ui->default_save_path_cb->setChecked(false);
+    disconnect(ui->save_path_combo->lineEdit(), SIGNAL(textEdited(const QString &)), 0, 0);
 }
 
 void AddNewTorrentDialog::relayout()
 {
     qApp->processEvents();
-    int min_width = minimumWidth();
+    int minWidth = minimumWidth();
     setMinimumWidth(width());
     adjustSize();
-    setMinimumWidth(min_width);
+    setMinimumWidth(minWidth);
 }
 
 void AddNewTorrentDialog::renameSelectedFile()
@@ -425,11 +489,11 @@ void AddNewTorrentDialog::renameSelectedFile()
         return;
     // Ask for new name
     bool ok;
-    const QString new_name_last = AutoExpandableDialog::getText(this, tr("Rename the file"),
+    const QString newNameLast = AutoExpandableDialog::getText(this, tr("Rename the file"),
                                                                 tr("New name:"), QLineEdit::Normal,
                                                                 index.data().toString(), &ok).trimmed();
-    if (ok && !new_name_last.isEmpty()) {
-        if (!Utils::Fs::isValidFileSystemName(new_name_last)) {
+    if (ok && !newNameLast.isEmpty()) {
+        if (!Utils::Fs::isValidFileSystemName(newNameLast)) {
             MessageBoxRaised::warning(this, tr("The file could not be renamed"),
                                       tr("This file name contains forbidden characters, please choose a different one."),
                                       QMessageBox::Ok);
@@ -437,23 +501,23 @@ void AddNewTorrentDialog::renameSelectedFile()
         }
         if (m_contentModel->itemType(index) == TorrentContentModelItem::FileType) {
             // File renaming
-            const int file_index = m_contentModel->getFileIndex(index);
-            QString old_name = Utils::Fs::fromNativePath(m_torrentInfo.filePath(file_index));
-            qDebug("Old name: %s", qPrintable(old_name));
-            QStringList path_items = old_name.split("/");
-            path_items.removeLast();
-            path_items << new_name_last;
-            QString new_name = path_items.join("/");
-            if (Utils::Fs::sameFileNames(old_name, new_name)) {
+            const int fileIndex = m_contentModel->getFileIndex(index);
+            QString oldName = Utils::Fs::fromNativePath(m_torrentInfo.filePath(fileIndex));
+            qDebug("Old name: %s", qPrintable(oldName));
+            QStringList pathItems = oldName.split("/");
+            pathItems.removeLast();
+            pathItems << newNameLast;
+            QString newName = pathItems.join("/");
+            if (Utils::Fs::sameFileNames(oldName, newName)) {
                 qDebug("Name did not change");
                 return;
             }
-            new_name = Utils::Fs::expandPath(new_name);
-            qDebug("New name: %s", qPrintable(new_name));
+            newName = Utils::Fs::expandPath(newName);
+            qDebug("New name: %s", qPrintable(newName));
             // Check if that name is already used
             for (int i = 0; i < m_torrentInfo.filesCount(); ++i) {
-                if (i == file_index) continue;
-                if (Utils::Fs::sameFileNames(m_torrentInfo.filePath(i), new_name)) {
+                if (i == fileIndex) continue;
+                if (Utils::Fs::sameFileNames(m_torrentInfo.filePath(i), newName)) {
                     // Display error message
                     MessageBoxRaised::warning(this, tr("The file could not be renamed"),
                                               tr("This name is already in use in this folder. Please use a different name."),
@@ -461,32 +525,32 @@ void AddNewTorrentDialog::renameSelectedFile()
                     return;
                 }
             }
-            qDebug("Renaming %s to %s", qPrintable(old_name), qPrintable(new_name));
-            m_torrentInfo.renameFile(file_index, new_name);
+            qDebug("Renaming %s to %s", qPrintable(oldName), qPrintable(newName));
+            m_torrentInfo.renameFile(fileIndex, newName);
             // Rename in torrent files model too
-            m_contentModel->setData(index, new_name_last);
+            m_contentModel->setData(index, newNameLast);
         }
         else {
             // Folder renaming
-            QStringList path_items;
-            path_items << index.data().toString();
+            QStringList pathItems;
+            pathItems << index.data().toString();
             QModelIndex parent = m_contentModel->parent(index);
             while(parent.isValid()) {
-                path_items.prepend(parent.data().toString());
+                pathItems.prepend(parent.data().toString());
                 parent = m_contentModel->parent(parent);
             }
-            const QString old_path = path_items.join("/");
-            path_items.removeLast();
-            path_items << new_name_last;
-            QString new_path = path_items.join("/");
-            if (!new_path.endsWith("/")) new_path += "/";
+            const QString oldPath = pathItems.join("/");
+            pathItems.removeLast();
+            pathItems << newNameLast;
+            QString newPath = pathItems.join("/");
+            if (!newPath.endsWith("/")) newPath += "/";
             // Check for overwriting
             for (int i = 0; i < m_torrentInfo.filesCount(); ++i) {
-                const QString &current_name = m_torrentInfo.filePath(i);
+                const QString &currentName = m_torrentInfo.filePath(i);
 #if defined(Q_OS_UNIX) || defined(Q_WS_QWS)
-                if (current_name.startsWith(new_path, Qt::CaseSensitive)) {
+                if (currentName.startsWith(newPath, Qt::CaseSensitive)) {
 #else
-                if (current_name.startsWith(new_path, Qt::CaseInsensitive)) {
+                if (currentName.startsWith(newPath, Qt::CaseInsensitive)) {
 #endif
                     MessageBoxRaised::warning(this, tr("The folder could not be renamed"),
                                               tr("This name is already in use in this folder. Please use a different name."),
@@ -496,18 +560,18 @@ void AddNewTorrentDialog::renameSelectedFile()
             }
             // Replace path in all files
             for (int i = 0; i < m_torrentInfo.filesCount(); ++i) {
-                const QString &current_name = m_torrentInfo.filePath(i);
-                if (current_name.startsWith(old_path)) {
-                    QString new_name = current_name;
-                    new_name.replace(0, old_path.length(), new_path);
-                    new_name = Utils::Fs::expandPath(new_name);
-                    qDebug("Rename %s to %s", qPrintable(current_name), qPrintable(new_name));
-                    m_torrentInfo.renameFile(i, new_name);
+                const QString &currentName = m_torrentInfo.filePath(i);
+                if (currentName.startsWith(oldPath)) {
+                    QString newName = currentName;
+                    newName.replace(0, oldPath.length(), newPath);
+                    newName = Utils::Fs::expandPath(newName);
+                    qDebug("Rename %s to %s", qPrintable(currentName), qPrintable(newName));
+                    m_torrentInfo.renameFile(i, newName);
                 }
             }
 
             // Rename folder in torrent files model too
-            m_contentModel->setData(index, new_name_last);
+            m_contentModel->setData(index, newNameLast);
         }
     }
 }
@@ -531,11 +595,11 @@ void AddNewTorrentDialog::setdialogPosition()
 
 void AddNewTorrentDialog::loadSavePathHistory()
 {
-    QDir default_save_path(Preferences::instance()->getSavePath());
+    QDir defaultSavePath(Preferences::instance()->getSavePath());
     // Load save path history
-    QStringList raw_path_history = Preferences::instance()->getAddNewTorrentDialogPathHistory();
-    foreach (const QString &sp, raw_path_history)
-        if (QDir(sp) != default_save_path)
+    QStringList rawPathHistory = Preferences::instance()->getAddNewTorrentDialogPathHistory();
+    foreach (const QString &sp, rawPathHistory)
+        if (QDir(sp) != defaultSavePath)
             ui->save_path_combo->addItem(Utils::Fs::toNativePath(sp), sp);
 }
 
@@ -544,7 +608,7 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint&)
     QMenu myFilesLlistMenu;
     const QModelIndexList selectedRows = ui->content_tree->selectionModel()->selectedRows(0);
     QAction *actRename = 0;
-    if ((selectedRows.size() == 1) && (m_torrentInfo.filesCount() > 1)) {
+    if ((selectedRows.size() == 1)) {
         actRename = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
         myFilesLlistMenu.addSeparator();
     }
@@ -606,16 +670,23 @@ void AddNewTorrentDialog::accept()
     saveSavePathHistory();
     pref->useAdditionDialog(!ui->never_show_cb->isChecked());
 
-    QString savePath = ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString();
+    QString savePath = ui->save_path_combo->currentText();
+
+    if (!validateSavePath(savePath))
+        return;
+
+    // Create dir if it doesn't exist
+    QDir savePathDir = QDir(savePath);
+    if (!savePathDir.exists())
+        savePathDir.mkpath(".");
+
     if (ui->default_save_path_cb->isChecked()) {
         pref->setSavePath(savePath);
         pref->apply();
     }
-    else {
-        // if we don't use default save path...
-        if (QDir(savePath) != QDir(pref->getSavePath()))
-            params.savePath = savePath;
-    }
+
+    // Set save path
+    params.savePath = savePath;
 
     // Add torrent
     if (!m_hasMetadata)
@@ -681,30 +752,23 @@ void AddNewTorrentDialog::setupTreeview()
         ui->date_lbl->setText(!m_torrentInfo.creationDate().isNull() ? m_torrentInfo.creationDate().toString(Qt::DefaultLocaleLongDate) : tr("Not available"));
 
         // Prepare content tree
-        if (m_torrentInfo.filesCount() > 1) {
-            m_contentModel = new TorrentContentFilterModel(this);
-            connect(m_contentModel->model(), SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabel()));
-            ui->content_tree->setModel(m_contentModel);
-            ui->content_tree->hideColumn(PROGRESS);
-            m_contentDelegate = new PropListDelegate();
-            ui->content_tree->setItemDelegate(m_contentDelegate);
-            connect(ui->content_tree, SIGNAL(clicked(const QModelIndex &)), ui->content_tree, SLOT(edit(const QModelIndex &)));
-            connect(ui->content_tree, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayContentTreeMenu(const QPoint &)));
+        m_contentModel = new TorrentContentFilterModel(this);
+        connect(m_contentModel->model(), SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabel()));
+        ui->content_tree->setModel(m_contentModel);
+        ui->content_tree->hideColumn(PROGRESS);
+        m_contentDelegate = new PropListDelegate();
+        ui->content_tree->setItemDelegate(m_contentDelegate);
+        connect(ui->content_tree, SIGNAL(clicked(const QModelIndex &)), ui->content_tree, SLOT(edit(const QModelIndex &)));
+        connect(ui->content_tree, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayContentTreeMenu(const QPoint &)));
 
-            // List files in torrent
-            m_contentModel->model()->setupModelData(m_torrentInfo);
-            if (!m_headerState.isEmpty())
-                ui->content_tree->header()->restoreState(m_headerState);
+        // List files in torrent
+        m_contentModel->model()->setupModelData(m_torrentInfo);
+        if (!m_headerState.isEmpty()) {
+            ui->content_tree->header()->restoreState(m_headerState);
+        }
 
-            // Expand root folder
-            ui->content_tree->setExpanded(m_contentModel->index(0, 0), true);
-        }
-        else {
-            // Update save paths (append file name to them)
-            QString single_file_relpath = m_torrentInfo.filePath(0);
-            for (int i = 0; i < ui->save_path_combo->count(); ++i)
-                ui->save_path_combo->setItemText(i, Utils::Fs::toNativePath(QDir(ui->save_path_combo->itemText(i)).absoluteFilePath(single_file_relpath)));
-        }
+         // Expand root folder
+        ui->content_tree->setExpanded(m_contentModel->index(0, 0), true);
     }
 
     updateDiskSpaceLabel();

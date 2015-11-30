@@ -172,6 +172,8 @@ public:
     void preAllocateAllFiles(bool enabled);
     bool useAdditionDialog() const;
     void useAdditionDialog(bool b);
+    bool editableSavePath() const;
+    void editableSavePath(bool b);
     bool additionDialogFront() const;
     void additionDialogFront(bool b);
     bool addTorrentsInPause() const;

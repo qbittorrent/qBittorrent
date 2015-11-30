@@ -455,6 +455,16 @@ void Preferences::useAdditionDialog(bool b)
     setValue("Preferences/Downloads/NewAdditionDialog", b);
 }
 
+bool Preferences::editableSavePath() const
+{
+    return value("Preferences/Downloads/EditableSavePath", true).toBool();
+}
+
+void Preferences::editableSavePath(bool b)
+{
+    setValue("Preferences/Downloads/EditableSavePath", b);
+}
+
 bool Preferences::additionDialogFront() const
 {
     return value("Preferences/Downloads/NewAdditionDialogFront", true).toBool();

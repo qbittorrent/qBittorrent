@@ -161,6 +161,7 @@ options_imp::options_imp(QWidget *parent)
     connect(checkPreallocateAll, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkAdditionDialogFront, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(checkEditableSavePath, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkExportDirFin, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -414,6 +415,7 @@ void options_imp::saveOptions()
     pref->preAllocateAllFiles(preAllocateAllFiles());
     pref->useAdditionDialog(useAdditionDialog());
     pref->additionDialogFront(checkAdditionDialogFront->isChecked());
+    pref->editableSavePath(checkEditableSavePath->isChecked());
     pref->addTorrentsInPause(addTorrentsInPause());
     ScanFoldersModel::instance()->makePersistent();
     addedScanDirs.clear();
@@ -579,6 +581,7 @@ void options_imp::loadOptions()
     // Downloads preferences
     checkAdditionDialog->setChecked(pref->useAdditionDialog());
     checkAdditionDialogFront->setChecked(pref->additionDialogFront());
+    checkEditableSavePath->setChecked(pref->editableSavePath());
     checkStartPaused->setChecked(pref->addTorrentsInPause());
 
     textSavePath->setText(Utils::Fs::toNativePath(pref->getSavePath()));
