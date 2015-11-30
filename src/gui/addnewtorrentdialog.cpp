@@ -345,7 +345,7 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
 
     QString size_string = torrent_size ? Utils::Misc::friendlyUnit(torrent_size) : QString(tr("Not Available", "This size is unavailable."));
     size_string += " (";
-    size_string += tr("Free disk space: %1").arg(Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(
+    size_string += tr("Free space on disk: %1").arg(Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(
                                                                    ui->save_path_combo->itemData(
                                                                        ui->save_path_combo->currentIndex()).toString())));
     size_string += ")";
@@ -686,7 +686,7 @@ void AddNewTorrentDialog::setupTreeview()
 
         // Set torrent information
         ui->comment_lbl->setText(Utils::Misc::parseHtmlLinks(m_torrentInfo.comment()));
-        ui->date_lbl->setText(!m_torrentInfo.creationDate().isNull() ? m_torrentInfo.creationDate().toString(Qt::DefaultLocaleLongDate) : tr("Not available"));
+        ui->date_lbl->setText(!m_torrentInfo.creationDate().isNull() ? m_torrentInfo.creationDate().toString(Qt::DefaultLocaleShortDate) : tr("Not available"));
 
         // Prepare content tree
         if (m_torrentInfo.filesCount() > 1) {
