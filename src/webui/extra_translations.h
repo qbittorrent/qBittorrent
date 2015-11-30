@@ -39,7 +39,7 @@ static const char *__TRANSLATIONS__[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Logout"),
     QT_TRANSLATE_NOOP("HttpServer", "Download Torrents from their URL or Magnet link"),
     QT_TRANSLATE_NOOP("HttpServer", "Only one link per line"),
-    QT_TRANSLATE_NOOP("HttpServer", "Download local torrent"),
+    QT_TRANSLATE_NOOP("HttpServer", "Upload local torrent"),
     QT_TRANSLATE_NOOP("HttpServer", "Download"),
     QT_TRANSLATE_NOOP("HttpServer", "Are you sure you want to delete the selected torrents from the transfer list?"),
     QT_TRANSLATE_NOOP("HttpServer", "Global upload rate limit must be greater than 0 or disabled."),
@@ -84,6 +84,9 @@ static const char *__TRANSLATIONS__[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Paused"),
     QT_TRANSLATE_NOOP("HttpServer", "Active"),
     QT_TRANSLATE_NOOP("HttpServer", "Inactive")
+    QT_TRANSLATE_NOOP("HttpServer", "Save files to location:")
+    QT_TRANSLATE_NOOP("HttpServer", "Label:")
+    QT_TRANSLATE_NOOP("HttpServer", "Cookie:")
 };
 
 static const struct { const char *source; const char *comment; } __COMMENTED_TRANSLATIONS__[] = {

@@ -20,19 +20,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-window.addEvent('domready', function() {
-    $('urls').focus();
-    $('downButton').addEvent('click', function(e) {
-        new Event(e).stop();
-        new Request({
-            url: 'command/download',
-            method: 'post',
-            data: {
-                urls: $('urls').value
-            },
-            onComplete: function() {
-                window.parent.document.getElementById('downloadPage').parentNode.removeChild(window.parent.document.getElementById('downloadPage'));
-            }
+
+getSavePath = function() {
+        var req = new Request({
+                url: 'command/getSavePath',
+                method: 'get',
+                noCache: true,
+                onFailure: function() {
+                        alert("Could not contact qBittorrent");
+                },
+                onSuccess: function(data) {
+                        if (data) {
+                                $('savepath').setProperty('value', data);
+                        }
+                }
         }).send();
-    });
+}
+
+$(window).addEventListener("load", function() {
+	getSavePath();
 });
