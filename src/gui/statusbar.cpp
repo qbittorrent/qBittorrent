@@ -44,6 +44,8 @@
 StatusBar::StatusBar(QStatusBar *bar)
   : m_bar(bar)
 {
+  qApp->setStyleSheet("QStatusBar::item { border-width: 0; }");
+
   Preferences* const pref = Preferences::instance();
   connect(BitTorrent::Session::instance(), SIGNAL(speedLimitModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
   container = new QWidget(bar);
