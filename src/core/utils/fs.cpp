@@ -250,13 +250,15 @@ bool Utils::Fs::sameFiles(const QString& path1, const QString& path2)
     return same;
 }
 
-QString Utils::Fs::toValidFileSystemName(QString filename)
+QString Utils::Fs::toValidFileSystemName(const QString &filename)
 {
-    qDebug("toValidFSName: %s", qPrintable(filename));
-    const QRegExp regex("[\\\\/:?\"*<>|]");
-    filename.replace(regex, " ");
-    qDebug("toValidFSName, result: %s", qPrintable(filename));
-    return filename.trimmed();
+    static const QRegExp regex("[\\\\/:?\"*<>|]");
+
+    QString validName = filename.trimmed();
+    validName.replace(regex, " ");
+    qDebug() << "toValidFileSystemName:" << filename << "=>" << validName;
+
+    return validName;
 }
 
 bool Utils::Fs::isValidFileSystemName(const QString& filename)
