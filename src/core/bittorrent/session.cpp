@@ -466,7 +466,8 @@ void Session::configure()
         m_torrentExportEnabled = torrentExportEnabled;
         if (m_torrentExportEnabled) {
             qDebug("Torrent export is enabled, exporting the current torrents");
-            exportTorrentFiles(pref->getTorrentExportDir());
+            for (auto torrent: m_torrents)
+                exportTorrentFile(torrent);
         }
     }
 
@@ -1151,57 +1152,22 @@ void Session::exportTorrentFile(TorrentHandle *const torrent, TorrentExportFolde
     Q_ASSERT(((folder == TorrentExportFolder::Regular) && m_torrentExportEnabled) ||
              ((folder == TorrentExportFolder::Finished) && m_finishedTorrentExportEnabled));
 
+    QString validName = Utils::Fs::toValidFileSystemName(torrent->name());
     QString torrentFilename = QString("%1.torrent").arg(torrent->hash());
+    QString torrentExportFilename = QString("%1.torrent").arg(validName);
     QString torrentPath = QDir(m_resumeFolderPath).absoluteFilePath(torrentFilename);
     QDir exportPath(folder == TorrentExportFolder::Regular ? Preferences::instance()->getTorrentExportDir() : Preferences::instance()->getFinishedTorrentExportDir());
     if (exportPath.exists() || exportPath.mkpath(exportPath.absolutePath())) {
-        QString newTorrentPath = exportPath.absoluteFilePath(torrentFilename);
-        if (QFile::exists(newTorrentPath) && Utils::Fs::sameFiles(torrentPath, newTorrentPath)) {
-            // Append hash to torrent name to make it unique
-            newTorrentPath = exportPath.absoluteFilePath(torrent->name() + "-" + torrentFilename);
-        }
-        QFile::copy(torrentPath, newTorrentPath);
-    }
-}
-
-void Session::exportTorrentFiles(QString path)
-{
-    // NOTE: Maybe create files from current metadata here?
-    Q_ASSERT(m_torrentExportEnabled);
-
-    QDir exportDir(path);
-    if (!exportDir.exists()) {
-        if (!exportDir.mkpath(exportDir.absolutePath())) {
-            Logger::instance()->addMessage(tr("Error: Could not create torrent export directory: '%1'").arg(exportDir.absolutePath()), Log::CRITICAL);
-            return;
-        }
-    }
-
-    QDir resumeDataDir(m_resumeFolderPath);
-    foreach (TorrentHandle *const torrent, m_torrents) {
-        if (!torrent->isValid()) {
-            Logger::instance()->addMessage(tr("Torrent Export: torrent is invalid, skipping..."), Log::CRITICAL);
-            continue;
+        QString newTorrentPath = exportPath.absoluteFilePath(torrentExportFilename);
+        int counter = 0;
+        while (QFile::exists(newTorrentPath) && !Utils::Fs::sameFiles(torrentPath, newTorrentPath)) {
+            // Append number to torrent name to make it unique
+            torrentExportFilename = QString("%1 %2.torrent").arg(validName).arg(++counter);
+            newTorrentPath = exportPath.absoluteFilePath(torrentExportFilename);
         }
 
-        const QString srcPath(resumeDataDir.absoluteFilePath(QString("%1.torrent").arg(torrent->hash())));
-        if (QFile::exists(srcPath)) {
-            QString dstPath = exportDir.absoluteFilePath(QString("%1.torrent").arg(torrent->name()));
-            if (QFile::exists(dstPath)) {
-                if (!Utils::Fs::sameFiles(srcPath, dstPath)) {
-                    dstPath = exportDir.absoluteFilePath(QString("%1-%2.torrent").arg(torrent->name()).arg(torrent->hash()));
-                }
-                else {
-                    qDebug("Torrent Export: Destination file exists, skipping...");
-                    continue;
-                }
-            }
-            qDebug("Export Torrent: %s -> %s", qPrintable(srcPath), qPrintable(dstPath));
-            QFile::copy(srcPath, dstPath);
-        }
-        else {
-            Logger::instance()->addMessage(tr("Error: could not export torrent '%1', maybe it has not metadata yet.").arg(torrent->hash()), Log::CRITICAL);
-        }
+        if (!QFile::exists(newTorrentPath))
+            QFile::copy(torrentPath, newTorrentPath);
     }
 }
 
