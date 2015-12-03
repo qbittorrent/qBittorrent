@@ -369,9 +369,7 @@ void Session::setSessionSettings()
     // Include overhead in transfer limits
     sessionSettings.rate_limit_ip_overhead = pref->includeOverheadInLimits();
     // IP address to announce to trackers
-    QString announce_ip = pref->getNetworkAddress();
-    if (!announce_ip.isEmpty())
-        sessionSettings.announce_ip = Utils::String::toStdString(announce_ip);
+    sessionSettings.announce_ip = Utils::String::toStdString(pref->getNetworkAddress());
     // Super seeding
     sessionSettings.strict_super_seeding = pref->isSuperSeedingEnabled();
     // * Max Half-open connections
