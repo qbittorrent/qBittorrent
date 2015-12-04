@@ -67,6 +67,7 @@ options_imp::options_imp(QWidget *parent)
     setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
     setModal(true);
+
     // Icons
     tabSelection->item(TAB_UI)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop"));
     tabSelection->item(TAB_BITTORRENT)->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
@@ -79,6 +80,10 @@ options_imp::options_imp(QWidget *parent)
     tabSelection->item(TAB_WEBUI)->setHidden(true);
 #endif
     tabSelection->item(TAB_ADVANCED)->setIcon(GuiIconProvider::instance()->getIcon("preferences-other"));
+    for (int i = 0; i < tabSelection->count(); ++i) {
+        tabSelection->item(i)->setSizeHint(QSize(96, 64));  // uniform size for all icons
+    }
+
     IpFilterRefreshBtn->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
 
     hsplitter->setCollapsible(0, false);
