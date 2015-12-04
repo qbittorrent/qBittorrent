@@ -23,29 +23,11 @@
       <bool>false</bool>
      </property>
      <widget class="QListWidget" name="tabSelection">
-      <property name="autoScroll">
-       <bool>false</bool>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
-      <property name="iconSize">
-       <size>
-        <width>32</width>
-        <height>32</height>
-       </size>
-      </property>
-      <property name="isWrapping" stdset="0">
-       <bool>true</bool>
-      </property>
-      <property name="resizeMode">
-       <enum>QListView::Adjust</enum>
-      </property>
-      <property name="spacing">
-       <number>4</number>
-      </property>
-      <property name="gridSize">
-       <size>
-        <width>110</width>
-        <height>60</height>
-       </size>
+      <property name="flow">
+       <enum>QListView::TopToBottom</enum>
       </property>
       <property name="viewMode">
        <enum>QListView::IconMode</enum>
@@ -143,6 +125,9 @@
         <property name="topMargin">
          <number>0</number>
         </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
         <property name="bottomMargin">
          <number>0</number>
         </property>
@@ -162,7 +147,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>480</width>
+             <width>486</width>
              <height>702</height>
             </rect>
            </property>
@@ -543,6 +528,9 @@
          <number>0</number>
         </property>
         <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
          <number>0</number>
         </property>
         <property name="bottomMargin">
@@ -1056,6 +1044,9 @@
          <number>0</number>
         </property>
         <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
          <number>0</number>
         </property>
         <property name="bottomMargin">
@@ -1972,6 +1963,9 @@
         <property name="topMargin">
          <number>0</number>
         </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
         <property name="bottomMargin">
          <number>0</number>
         </property>
@@ -2358,12 +2352,15 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabOptionPage7">
-       <layout class="QVBoxLayout">
+      <widget class="QWidget" name="tabWebuiPage">
+       <layout class="QVBoxLayout" name="tabWebuiPageLayout">
         <property name="leftMargin">
          <number>0</number>
         </property>
         <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
          <number>0</number>
         </property>
         <property name="bottomMargin">
