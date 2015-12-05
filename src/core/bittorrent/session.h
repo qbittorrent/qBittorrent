@@ -293,7 +293,6 @@ namespace BitTorrent
 
         void updateRatioTimer();
         void exportTorrentFile(TorrentHandle *const torrent, TorrentExportFolder folder = TorrentExportFolder::Regular);
-        void exportTorrentFiles(QString path);
         void saveTorrentResumeData(TorrentHandle *const torrent);
 
         void handleAlert(libtorrent::alert *a);
