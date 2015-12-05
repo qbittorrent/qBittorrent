@@ -1399,6 +1399,8 @@ void Session::networkOnlineStateChanged(const bool online)
 void Session::networkConfigurationChange(const QNetworkConfiguration& cfg)
 {
     const QString configuredInterfaceName = Preferences::instance()->getNetworkInterface();
+    // Empty means "Any Interface". In this case libtorrent has binded to 0.0.0.0 so any change to any interface will
+    // be automatically picked up. Otherwise we would rebinding here to 0.0.0.0 again.
     if (configuredInterfaceName.isEmpty())
         return;
     const QString changedInterface = cfg.name();
