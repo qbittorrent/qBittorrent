@@ -68,16 +68,16 @@ SpeedPlotView::SpeedPlotView(QWidget *parent)
     m_properties[TRACKER_UP] = GraphProperties(tr("Tracker Upload"), bluePen);
     m_properties[TRACKER_DOWN] = GraphProperties(tr("Tracker Download"), greenPen);
 
-    m_yData[UP] = boost::circular_buffer<double>(HOUR6_SEC);
-    m_yData[DOWN] = boost::circular_buffer<double>(HOUR6_SEC);
-    m_yData[PAYLOAD_UP] = boost::circular_buffer<double>(HOUR6_SEC);
-    m_yData[PAYLOAD_DOWN] = boost::circular_buffer<double>(HOUR6_SEC);
-    m_yData[OVERHEAD_UP] = boost::circular_buffer<double>(HOUR6_SEC);
-    m_yData[OVERHEAD_DOWN] = boost::circular_buffer<double>(HOUR6_SEC);
-    m_yData[DHT_UP] = boost::circular_buffer<double>(HOUR6_SEC);
-    m_yData[DHT_DOWN] = boost::circular_buffer<double>(HOUR6_SEC);
-    m_yData[TRACKER_UP] = boost::circular_buffer<double>(HOUR6_SEC);
-    m_yData[TRACKER_DOWN] = boost::circular_buffer<double>(HOUR6_SEC);
+    m_yData[UP] = boost::circular_buffer<int>(HOUR6_SEC);
+    m_yData[DOWN] = boost::circular_buffer<int>(HOUR6_SEC);
+    m_yData[PAYLOAD_UP] = boost::circular_buffer<int>(HOUR6_SEC);
+    m_yData[PAYLOAD_DOWN] = boost::circular_buffer<int>(HOUR6_SEC);
+    m_yData[OVERHEAD_UP] = boost::circular_buffer<int>(HOUR6_SEC);
+    m_yData[OVERHEAD_DOWN] = boost::circular_buffer<int>(HOUR6_SEC);
+    m_yData[DHT_UP] = boost::circular_buffer<int>(HOUR6_SEC);
+    m_yData[DHT_DOWN] = boost::circular_buffer<int>(HOUR6_SEC);
+    m_yData[TRACKER_UP] = boost::circular_buffer<int>(HOUR6_SEC);
+    m_yData[TRACKER_DOWN] = boost::circular_buffer<int>(HOUR6_SEC);
 }
 
 void SpeedPlotView::setGraphEnable(GraphID id, bool enable)
@@ -85,12 +85,12 @@ void SpeedPlotView::setGraphEnable(GraphID id, bool enable)
     m_properties[id].m_enable = enable;
 }
 
-void SpeedPlotView::pushXPoint(double x)
+void SpeedPlotView::pushXPoint(uint x)
 {
     m_xData.push_back(x);
 }
 
-void SpeedPlotView::pushYPoint(GraphID id, double y)
+void SpeedPlotView::pushYPoint(GraphID id, int y)
 {
     m_yData[id].push_back(y);
 }
@@ -120,15 +120,15 @@ void SpeedPlotView::replot()
     this->viewport()->update();
 }
 
-double SpeedPlotView::maxYValue()
+int SpeedPlotView::maxYValue()
 {
-    double maxYValue = 0;
-    for (QMap<GraphID, boost::circular_buffer<double> >::const_iterator it = m_yData.begin(); it != m_yData.end(); ++it) {
+    int maxYValue = 0;
+    for (QMap<GraphID, boost::circular_buffer<int> >::const_iterator it = m_yData.begin(); it != m_yData.end(); ++it) {
 
         if (!m_properties[it.key()].m_enable)
             continue;
 
-        const boost::circular_buffer<double> &queue = it.value();
+        const boost::circular_buffer<int> &queue = it.value();
 
         for (int i = queue.size() - 1, j = 0; i >= 0 && j <= m_viewablePointsCount; --i, ++j) {
             if (queue[i] > maxYValue)
@@ -149,7 +149,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
 
     rect.adjust(4, 4, 0, -4); // Add padding
 
-    double max_y = maxYValue();
+    int max_y = maxYValue();
 
     rect.adjust(0, font_metrics.height(), 0, 0); // Add top padding for top speed text
 
@@ -200,15 +200,15 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     // draw graphs
     rect.adjust(3, 0, 0, 0); // Need, else graphs cross left gridline
 
-    double y_multiplier = (max_y == 0.0) ? 0.0 : rect.height() / max_y;
+    double y_multiplier = (max_y == 0) ? 0.0 : double(rect.height()) / max_y;
     double x_tick_size = double(rect.width()) / m_viewablePointsCount;
 
-    for (QMap<GraphID, boost::circular_buffer<double> >::const_iterator it = m_yData.begin(); it != m_yData.end(); ++it) {
+    for (QMap<GraphID, boost::circular_buffer<int> >::const_iterator it = m_yData.begin(); it != m_yData.end(); ++it) {
 
         if (!m_properties[it.key()].m_enable)
             continue;
 
-        const boost::circular_buffer<double> &queue = it.value();
+        const boost::circular_buffer<int> &queue = it.value();
         QVector<QPoint> points;
 
         for (int i = queue.size() - 1, j = 0; i >= 0 && j <= m_viewablePointsCount; --i, ++j) {
