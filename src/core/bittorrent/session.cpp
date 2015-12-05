@@ -1479,7 +1479,7 @@ void Session::setListeningPort()
             m_nativeSession->listen_on(ports, ec, 0, libt::session::listen_no_system_port);
 
             if (ec)
-                logger->addMessage(tr("qBittorrent failed to listen on any interface port: %1. Reason: %2", "e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface" ).arg(QString::number(port)).arg(Utils::String::fromStdString(ec.message())), Log::CRITICAL);
+                logger->addMessage(tr("qBittorrent failed to listen on any interface port: %1. Reason: %2.", "e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface" ).arg(QString::number(port)).arg(QString::fromLocal8Bit(ec.message().c_str())), Log::CRITICAL);
 
             return;
         }
@@ -2272,10 +2272,10 @@ void Session::handleListenFailedAlert(libt::listen_failed_alert *p)
         proto = "SOCKS5";
     qDebug() << "Failed listening on " << proto << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
     Logger::instance()->addMessage(
-                tr("qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4",
+                tr("qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.",
                    "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use")
                 .arg(p->endpoint.address().to_string(ec).c_str()).arg(proto).arg(QString::number(p->endpoint.port()))
-                .arg(Utils::String::fromStdString(p->error.message())), Log::CRITICAL);
+                .arg(QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
 }
 
 void Session::handleExternalIPAlert(libt::external_ip_alert *p)
