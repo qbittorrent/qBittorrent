@@ -42,7 +42,7 @@
 #include <QSplashScreen>
 #ifdef QBT_STATIC_QT
 #include <QtPlugin>
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
 Q_IMPORT_PLUGIN(QICOPlugin)
 #else
 Q_IMPORT_PLUGIN(qico)

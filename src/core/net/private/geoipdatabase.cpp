@@ -66,7 +66,7 @@ namespace
         Float = 15
     };
 
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#ifndef QBT_USES_QT5
     Q_IPV6ADDR createMappedAddress(quint32 ip4);
 #endif
 }
@@ -166,7 +166,7 @@ QDateTime GeoIPDatabase::buildEpoch() const
 
 QString GeoIPDatabase::lookup(const QHostAddress &hostAddr) const
 {
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#ifndef QBT_USES_QT5
     Q_IPV6ADDR addr = hostAddr.protocol() == QAbstractSocket::IPv4Protocol
             ? createMappedAddress(hostAddr.toIPv4Address())
             : hostAddr.toIPv6Address();
@@ -499,7 +499,7 @@ QVariant GeoIPDatabase::readArrayValue(quint32 &offset, quint32 count) const
 
 namespace
 {
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#ifndef QBT_USES_QT5
     Q_IPV6ADDR createMappedAddress(quint32 ip4)
     {
         Q_IPV6ADDR ip6;

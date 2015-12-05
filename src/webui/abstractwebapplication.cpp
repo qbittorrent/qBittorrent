@@ -260,7 +260,7 @@ void AbstractWebApplication::translateDocument(QString& data)
             if (isTranslationNeeded) {
                 size_t context_index = 0;
                 while ((context_index < context_count) && (translation == word)) {
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#ifndef QBT_USES_QT5
                     translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
 #else
                     translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, 1);

@@ -31,7 +31,7 @@
 
 #include <QStringList>
 #include <QUrl>
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
 #include <QUrlQuery>
 #endif
 #include <QDir>
@@ -117,7 +117,7 @@ bool RequestParser::parseStartingLine(const QString &line)
         m_request.path = url.path(); // Path
 
         // Parse GET parameters
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#ifndef QBT_USES_QT5
         QListIterator<QPair<QString, QString> > i(url.queryItems());
 #else
         QListIterator<QPair<QString, QString> > i(QUrlQuery(url).queryItems());
@@ -216,7 +216,7 @@ bool RequestParser::parseContent(const QByteArray& data)
     // Parse url-encoded POST data
     if (m_request.headers["content-type"].startsWith("application/x-www-form-urlencoded")) {
         QUrl url;
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#ifndef QBT_USES_QT5
         url.setEncodedQuery(data);
         QListIterator<QPair<QString, QString> > i(url.queryItems());
 #else

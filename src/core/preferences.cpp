@@ -1976,7 +1976,7 @@ void Preferences::setTrayIconStyle(TrayIcon::Style style)
 // in the same file.
 QByteArray Preferences::getAddNewTorrentDialogState() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     return value("AddNewTorrentDialog/qt5/treeHeaderState").toByteArray();
 #else
     return value("AddNewTorrentDialog/treeHeaderState").toByteArray();
@@ -1985,7 +1985,7 @@ QByteArray Preferences::getAddNewTorrentDialogState() const
 
 void Preferences::setAddNewTorrentDialogState(const QByteArray &state)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     setValue("AddNewTorrentDialog/qt5/treeHeaderState", state);
 #else
     setValue("AddNewTorrentDialog/treeHeaderState", state);
@@ -2074,7 +2074,7 @@ void Preferences::setMainGeometry(const QByteArray &geometry)
 
 QByteArray Preferences::getMainVSplitterState() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     return value("MainWindow/qt5/vsplitterState").toByteArray();
 #else
     return value("MainWindow/vsplitterState").toByteArray();
@@ -2083,7 +2083,7 @@ QByteArray Preferences::getMainVSplitterState() const
 
 void Preferences::setMainVSplitterState(const QByteArray &state)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     setValue("MainWindow/qt5/vsplitterState", state);
 #else
     setValue("MainWindow/vsplitterState", state);
@@ -2134,7 +2134,7 @@ void Preferences::setPrefHSplitterSizes(const QStringList &sizes)
 
 QByteArray Preferences::getPeerListState() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     return value("TorrentProperties/Peers/qt5/PeerListState").toByteArray();
 #else
     return value("TorrentProperties/Peers/PeerListState").toByteArray();
@@ -2143,7 +2143,7 @@ QByteArray Preferences::getPeerListState() const
 
 void Preferences::setPeerListState(const QByteArray &state)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     setValue("TorrentProperties/Peers/qt5/PeerListState", state);
 #else
     setValue("TorrentProperties/Peers/PeerListState", state);
@@ -2162,7 +2162,7 @@ void Preferences::setPropSplitterSizes(const QString &sizes)
 
 QByteArray Preferences::getPropFileListState() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     return value("TorrentProperties/qt5/FilesListState").toByteArray();
 #else
     return value("TorrentProperties/FilesListState").toByteArray();
@@ -2171,7 +2171,7 @@ QByteArray Preferences::getPropFileListState() const
 
 void Preferences::setPropFileListState(const QByteArray &state)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     setValue("TorrentProperties/qt5/FilesListState", state);
 #else
     setValue("TorrentProperties/FilesListState", state);
@@ -2200,7 +2200,7 @@ void Preferences::setPropVisible(const bool visible)
 
 QByteArray Preferences::getPropTrackerListState() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     return value("TorrentProperties/Trackers/qt5/TrackerListState").toByteArray();
 #else
     return value("TorrentProperties/Trackers/TrackerListState").toByteArray();
@@ -2209,7 +2209,7 @@ QByteArray Preferences::getPropTrackerListState() const
 
 void Preferences::setPropTrackerListState(const QByteArray &state)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     setValue("TorrentProperties/Trackers/qt5/TrackerListState", state);
 #else
     setValue("TorrentProperties/Trackers/TrackerListState", state);
@@ -2228,7 +2228,7 @@ void Preferences::setRssGeometry(const QByteArray &geometry)
 
 QByteArray Preferences::getRssHSplitterSizes() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     return value("RssFeedDownloader/qt5/hsplitterSizes").toByteArray();
 #else
     return value("RssFeedDownloader/hsplitterSizes").toByteArray();
@@ -2237,7 +2237,7 @@ QByteArray Preferences::getRssHSplitterSizes() const
 
 void Preferences::setRssHSplitterSizes(const QByteArray &sizes)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     setValue("RssFeedDownloader/qt5/hsplitterSizes", sizes);
 #else
     setValue("RssFeedDownloader/hsplitterSizes", sizes);
@@ -2256,7 +2256,7 @@ void Preferences::setRssOpenFolders(const QStringList &folders)
 
 QByteArray Preferences::getRssHSplitterState() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     return value("Rss/qt5/splitter_h").toByteArray();
 #else
     return value("Rss/splitter_h").toByteArray();
@@ -2265,7 +2265,7 @@ QByteArray Preferences::getRssHSplitterState() const
 
 void Preferences::setRssHSplitterState(const QByteArray &state)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     setValue("Rss/qt5/splitter_h", state);
 #else
     setValue("Rss/splitter_h", state);
@@ -2274,7 +2274,7 @@ void Preferences::setRssHSplitterState(const QByteArray &state)
 
 QByteArray Preferences::getRssVSplitterState() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     return value("Rss/qt5/splitter_v").toByteArray();
 #else
     return value("Rss/splitter_v").toByteArray();
@@ -2283,7 +2283,7 @@ QByteArray Preferences::getRssVSplitterState() const
 
 void Preferences::setRssVSplitterState(const QByteArray &state)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     setValue("Rss/qt5/splitter_v", state);
 #else
     setValue("Rss/splitter_v", state);
@@ -2422,7 +2422,7 @@ void Preferences::setTransSelFilter(const int &index)
 
 QByteArray Preferences::getTransHeaderState() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     return value("TransferList/qt5/HeaderState").toByteArray();
 #else
     return value("TransferList/HeaderState").toByteArray();
@@ -2431,7 +2431,7 @@ QByteArray Preferences::getTransHeaderState() const
 
 void Preferences::setTransHeaderState(const QByteArray &state)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     setValue("TransferList/qt5/HeaderState", state);
 #else
     setValue("TransferList/HeaderState", state);

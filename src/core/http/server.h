@@ -59,7 +59,7 @@ namespace Http
     #endif
 
     private:
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    #ifdef QBT_USES_QT5
         void incomingConnection(qintptr socketDescriptor);
     #else
         void incomingConnection(int socketDescriptor);

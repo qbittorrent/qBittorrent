@@ -32,7 +32,7 @@
 #include <QDebug>
 #include <QRegExp>
 #include <QStringList>
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
 #include <QUrlQuery>
 #endif
 
@@ -160,7 +160,7 @@ QUrl DNSUpdater::getUpdateUrl() const
     }
     url.setPath("/nic/update");
 
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#ifndef QBT_USES_QT5
     url.addQueryItem("hostname", m_domain);
     url.addQueryItem("myip", m_lastIP.toString());
 #else
