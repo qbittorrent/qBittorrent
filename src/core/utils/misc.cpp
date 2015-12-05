@@ -465,7 +465,7 @@ QList<bool> Utils::Misc::boolListfromStringList(const QStringList &l)
 {
     QList<bool> ret;
     foreach (const QString &s, l)
-        ret << (s=="1");
+        ret << (s == "1");
     return ret;
 }
 
