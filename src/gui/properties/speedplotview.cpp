@@ -34,6 +34,7 @@
 
 SpeedPlotView::SpeedPlotView(QWidget *parent)
     : QGraphicsView(parent)
+    , m_xData(HOUR6_SEC)
     , m_viewablePointsCount(MIN5_SEC)
     , m_maxCapacity(HOUR6_SEC)
 {
@@ -66,6 +67,17 @@ SpeedPlotView::SpeedPlotView(QWidget *parent)
     greenPen.setStyle(Qt::DotLine);
     m_properties[TRACKER_UP] = GraphProperties(tr("Tracker Upload"), bluePen);
     m_properties[TRACKER_DOWN] = GraphProperties(tr("Tracker Download"), greenPen);
+
+    m_yData[UP] = boost::circular_buffer<double>(HOUR6_SEC);
+    m_yData[DOWN] = boost::circular_buffer<double>(HOUR6_SEC);
+    m_yData[PAYLOAD_UP] = boost::circular_buffer<double>(HOUR6_SEC);
+    m_yData[PAYLOAD_DOWN] = boost::circular_buffer<double>(HOUR6_SEC);
+    m_yData[OVERHEAD_UP] = boost::circular_buffer<double>(HOUR6_SEC);
+    m_yData[OVERHEAD_DOWN] = boost::circular_buffer<double>(HOUR6_SEC);
+    m_yData[DHT_UP] = boost::circular_buffer<double>(HOUR6_SEC);
+    m_yData[DHT_DOWN] = boost::circular_buffer<double>(HOUR6_SEC);
+    m_yData[TRACKER_UP] = boost::circular_buffer<double>(HOUR6_SEC);
+    m_yData[TRACKER_DOWN] = boost::circular_buffer<double>(HOUR6_SEC);
 }
 
 void SpeedPlotView::setGraphEnable(GraphID id, bool enable)
@@ -75,18 +87,12 @@ void SpeedPlotView::setGraphEnable(GraphID id, bool enable)
 
 void SpeedPlotView::pushXPoint(double x)
 {
-    while (m_xData.size() >= m_maxCapacity)
-        m_xData.pop_front();
-
-    m_xData.append(x);
+    m_xData.push_back(x);
 }
 
 void SpeedPlotView::pushYPoint(GraphID id, double y)
 {
-    while (m_yData[id].size() >= m_maxCapacity)
-        m_yData[id].pop_front();
-
-    m_yData[id].append(y);
+    m_yData[id].push_back(y);
 }
 
 void SpeedPlotView::setViewableLastPoints(TimePeriod period)
@@ -117,16 +123,16 @@ void SpeedPlotView::replot()
 double SpeedPlotView::maxYValue()
 {
     double maxYValue = 0;
-    for (QMap<GraphID, QQueue<double> >::const_iterator it = m_yData.begin(); it != m_yData.end(); ++it) {
+    for (QMap<GraphID, boost::circular_buffer<double> >::const_iterator it = m_yData.begin(); it != m_yData.end(); ++it) {
 
         if (!m_properties[it.key()].m_enable)
             continue;
 
-        QQueue<double> &queue = m_yData[it.key()];
+        const boost::circular_buffer<double> &queue = it.value();
 
         for (int i = queue.size() - 1, j = 0; i >= 0 && j <= m_viewablePointsCount; --i, ++j) {
-            if (queue.at(i) > maxYValue)
-                maxYValue = queue.at(i);
+            if (queue[i] > maxYValue)
+                maxYValue = queue[i];
         }
     }
 
@@ -197,17 +203,32 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     double y_multiplier = (max_y == 0.0) ? 0.0 : rect.height() / max_y;
     double x_tick_size = double(rect.width()) / m_viewablePointsCount;
 
-    for (QMap<GraphID, QQueue<double> >::const_iterator it = m_yData.begin(); it != m_yData.end(); ++it) {
+    for (QMap<GraphID, boost::circular_buffer<double> >::const_iterator it = m_yData.begin(); it != m_yData.end(); ++it) {
 
         if (!m_properties[it.key()].m_enable)
             continue;
 
-        QQueue<double> &queue = m_yData[it.key()];
-        QVector<QPointF> points;
+        const boost::circular_buffer<double> &queue = it.value();
+        QVector<QPoint> points;
 
         for (int i = queue.size() - 1, j = 0; i >= 0 && j <= m_viewablePointsCount; --i, ++j) {
-            points.push_back(QPointF(rect.right() - j * x_tick_size,
-                                    rect.bottom() - queue.at(i) * y_multiplier));
+
+            int new_x = rect.right() - j * x_tick_size;
+            int new_y = rect.bottom() - queue[i] * y_multiplier;
+
+            if (points.size() > 1) {
+                QPoint &last_point = points[points.size()-1];
+                QPoint &prelast_point = points[points.size()-2];
+
+                if (last_point.x() == new_x && prelast_point.x() == new_x)
+                {
+                    last_point.setY(qMax(last_point.y(), new_y));
+                    prelast_point.setY(qMin(prelast_point.y(), new_y));
+                    continue;
+                }
+            }
+
+            points.push_back(QPoint(new_x, new_y));
         }
 
         painter.setPen(m_properties[it.key()].m_pen);
@@ -229,7 +250,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
         legend_height += 1.5 * font_metrics.height();
     }
 
-    QRectF legend_background_rect(legend_top_left, QSizeF(legend_width, legend_height));
+    QRectF legend_background_rect(QPoint(legend_top_left.x()-4, legend_top_left.y()-4), QSizeF(legend_width+8, legend_height+8));
     QColor legendBackgroundColor = QWidget::palette().color(QWidget::backgroundRole());
     legendBackgroundColor.setAlpha(128);  // 50% transparent
     painter.fillRect(legend_background_rect, legendBackgroundColor);

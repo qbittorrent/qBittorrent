@@ -29,9 +29,12 @@
 #ifndef SPEEDPLOTVIEW_H
 #define SPEEDPLOTVIEW_H
 
+#ifndef Q_MOC_RUN
+#include <boost/circular_buffer.hpp>
+#endif
+
 #include <QGraphicsView>
 #include <QMap>
-#include <QQueue>
 class QPen;
 
 class SpeedPlotView : public QGraphicsView
@@ -94,8 +97,8 @@ private:
         bool m_enable;
     };
 
-    QQueue<double> m_xData;
-    QMap<GraphID, QQueue<double> > m_yData;
+    boost::circular_buffer<double> m_xData;
+    QMap<GraphID, boost::circular_buffer<double> > m_yData;
     QMap<GraphID, GraphProperties> m_properties;
 
     PeriodInSeconds m_viewablePointsCount;
