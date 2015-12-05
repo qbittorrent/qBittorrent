@@ -68,8 +68,8 @@ public:
 
     void setGraphEnable(GraphID id, bool enable);
 
-    void pushXPoint(double x);
-    void pushYPoint(GraphID id, double y);
+    void pushXPoint(uint x);
+    void pushYPoint(GraphID id, int y);
 
     void setViewableLastPoints(TimePeriod period);
 
@@ -97,14 +97,14 @@ private:
         bool m_enable;
     };
 
-    boost::circular_buffer<double> m_xData;
-    QMap<GraphID, boost::circular_buffer<double> > m_yData;
+    boost::circular_buffer<uint> m_xData;
+    QMap<GraphID, boost::circular_buffer<int> > m_yData;
     QMap<GraphID, GraphProperties> m_properties;
 
     PeriodInSeconds m_viewablePointsCount;
     PeriodInSeconds m_maxCapacity;
 
-    double maxYValue();
+    int maxYValue();
 };
 
 #endif // SPEEDPLOTVIEW_H
