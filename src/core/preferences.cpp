@@ -504,7 +504,7 @@ QList<bool> Preferences::getDownloadInScanDirs() const
 
 void Preferences::setDownloadInScanDirs(const QList<bool> &list)
 {
-    setValue("Preferences/Downloads/ScanDirsDownloadPaths", Utils::Misc::toStringList(list));
+    setValue("Preferences/Downloads/DownloadInScanDirs", Utils::Misc::toStringList(list));
 }
 
 void Preferences::setScanDirsDownloadPaths(const QStringList &downloadpaths)
@@ -514,7 +514,7 @@ void Preferences::setScanDirsDownloadPaths(const QStringList &downloadpaths)
 
 QStringList Preferences::getScanDirsDownloadPaths() const
 {
-    return value("Preferences/Downloads/DownloadPaths").toStringList();
+    return value("Preferences/Downloads/ScanDirsDownloadPaths").toStringList();
 }
 
 QString Preferences::getScanDirsLastPath() const
