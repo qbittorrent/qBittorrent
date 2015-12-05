@@ -32,6 +32,7 @@
 #define TRANSFERLISTWIDGET_H
 
 #include <QTreeView>
+#include <QProgressDialog>
 
 namespace BitTorrent
 {
@@ -47,7 +48,27 @@ QT_BEGIN_NAMESPACE
 class QShortcut;
 class QSortFilterProxyModel;
 class QStandardItemModel;
+class QTimer;
 QT_END_NAMESPACE
+
+
+class MoveProgressDialog : public QProgressDialog
+{
+    Q_OBJECT
+
+public:
+    MoveProgressDialog(QWidget* parent, const QList<BitTorrent::TorrentHandle *> torrents);
+
+private slots:
+    void advance();
+
+private:
+    void updateText();
+
+    QTimer *m_timer;
+    const QList<BitTorrent::TorrentHandle *> m_torrents;
+    int listIter;
+};
 
 class TransferListWidget: public QTreeView
 {

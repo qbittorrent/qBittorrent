@@ -30,12 +30,8 @@
 
 #include <QDebug>
 #include <QShortcut>
-#include <QStandardItemModel>
-#include <QSortFilterProxyModel>
 #include <QTimer>
 #include <QClipboard>
-#include <QColor>
-#include <QUrl>
 #include <QMenu>
 #include <QRegExp>
 #include <QFileDialog>
@@ -57,13 +53,56 @@
 #include "core/preferences.h"
 #include "torrentmodel.h"
 #include "deletionconfirmationdlg.h"
-#include "propertieswidget.h"
 #include "guiiconprovider.h"
 #include "core/utils/fs.h"
 #include "autoexpandabledialog.h"
 #include "transferlistsortmodel.h"
 
 static QStringList extractHashes(const QList<BitTorrent::TorrentHandle *> &torrents);
+
+
+MoveProgressDialog::MoveProgressDialog(QWidget* parent, const QList<BitTorrent::TorrentHandle *> torrents)
+    : QProgressDialog(QString(), QString(), 0, torrents.size(), parent)
+    , m_torrents(torrents)
+{
+    setMinimumDuration(0);
+    setWindowModality(Qt::WindowModal);
+
+    listIter = 0;
+    updateText();  // initial call required
+
+    m_timer = new QTimer(this);
+    connect(m_timer, SIGNAL(timeout()), SLOT(advance()));
+    m_timer->start(1500);  // long delay to display dialog
+}
+
+void MoveProgressDialog::updateText()
+{
+    setValue(listIter);
+    setLabelText(QString(tr("Moving locations: %1/%2\n%3", "Moving locations: 1/10 (newline) torrent_name")).arg(listIter + 1).arg(m_torrents.size()).arg(m_torrents[listIter]->name()));
+}
+
+void MoveProgressDialog::advance()
+{
+    if (wasCanceled()) {
+        delete this;
+        return;
+    }
+
+    for (; listIter < m_torrents.size(); ++listIter) {
+        updateText();
+        if (m_torrents[listIter]->isMoveInProgress()) {
+            m_timer->start(200);
+            break;
+        }
+    }
+    if (listIter >= m_torrents.size()) {
+        setValue(listIter); // close dialog
+        delete this;
+        return;
+    }
+}
+
 
 TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
     : QTreeView(parent)
@@ -257,6 +296,8 @@ void TransferListWidget::setSelectedTorrentsLocation()
             // Actually move storage
             torrent->move(Utils::Fs::expandPathAbs(dir));
         }
+        // show progress dialog
+        new MoveProgressDialog(this, torrents);
     }
 }
 
