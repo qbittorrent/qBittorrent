@@ -100,7 +100,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(filesList->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
   connect(filesList->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#ifdef QBT_USES_QT5
   // set bar height relative to screen dpi
   int barHeight = devicePixelRatio() * 18;
 #else

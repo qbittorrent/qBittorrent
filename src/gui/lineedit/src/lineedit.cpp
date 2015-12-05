@@ -27,7 +27,7 @@ LineEdit::LineEdit(QWidget *parent)
 
     int clearButtonSizeHintWidth = 0;
     int clearButtonSizeHintHeight = 0;
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#ifndef QBT_USES_QT5
     QPixmap pixmap2(":/lineeditimages/clear_left.png");
     clearButton = new QToolButton(this);
     clearButton->setIcon(QIcon(pixmap2));
@@ -58,13 +58,13 @@ void LineEdit::resizeEvent(QResizeEvent *e)
 
     QSize sz = searchButton->sizeHint();
     searchButton->move(frameWidth, (e->size().height() - sz.height()) / 2);
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#ifndef QBT_USES_QT5
     QSize cz = clearButton->sizeHint();
     clearButton->move((e->size().width() - frameWidth - cz.width()), (e->size().height() - sz.height()) / 2);
 #endif
 }
 
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#ifndef QBT_USES_QT5
 void LineEdit::updateCloseButton(const QString &text)
 {
     clearButton->setVisible(!text.isEmpty());

@@ -55,7 +55,7 @@
 #include <winbase.h>
 #endif
 
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#ifndef QBT_USES_QT5
 
 #ifndef DISABLE_GUI
 #include <QDesktopServices>
@@ -182,7 +182,7 @@ bool Utils::Fs::forceRemove(const QString& file_path)
  */
 void Utils::Fs::removeDirRecursive(const QString& dirName)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     QDir(dirName).removeRecursively();
 #else
     QDir dir(dirName);
@@ -439,7 +439,7 @@ QString Utils::Fs::QDesktopServicesCacheLocation()
 
 QString Utils::Fs::QDesktopServicesDownloadLocation()
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
 #if defined(Q_OS_WIN)
     if (QSysInfo::windowsVersion() <= QSysInfo::WV_XP)  // Windows XP
         return QDir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).absoluteFilePath(

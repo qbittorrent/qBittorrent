@@ -90,7 +90,7 @@ options_imp::options_imp(QWidget *parent)
         }
     }
 
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#ifndef QBT_USES_QT5
     scanFoldersView->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #else
     scanFoldersView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);

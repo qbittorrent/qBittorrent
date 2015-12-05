@@ -41,7 +41,7 @@
 
 #include <QDebug>
 #include <QVariant>
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+#ifndef QBT_USES_QT5
 #include <QMetaType>
 #endif
 #if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
@@ -188,7 +188,7 @@ public:
     QTorrentCompare(QString key, bool greaterThan = false)
         : key_(key)
         , greaterThan_(greaterThan)
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+#ifndef QBT_USES_QT5
         , type_(QVariant::Invalid)
 #endif
     {
@@ -196,7 +196,7 @@ public:
 
     bool operator()(QVariant torrent1, QVariant torrent2)
     {
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+#ifndef QBT_USES_QT5
         if (type_ == QVariant::Invalid)
             type_ = torrent1.toMap().value(key_).type();
 
@@ -229,7 +229,7 @@ public:
 private:
     QString key_;
     bool greaterThan_;
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+#ifndef QBT_USES_QT5
     QVariant::Type type_;
 #endif
 };
@@ -793,7 +793,7 @@ QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantM
         lastAcceptedData.clear();
         syncData = data;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0) && QT_VERSION < QT_VERSION_CHECK(5, 5, 0))
+#if (QBT_USES_QT5 && QT_VERSION < QT_VERSION_CHECK(5, 5, 0))
         // QJsonDocument::fromVariant() supports QVariantHash only
         // since Qt5.5, so manually convert data["torrents"]
         QVariantMap torrentsMap;

@@ -5,6 +5,7 @@ CONFIG += qt thread silent
 # C++11 support
 CONFIG += c++11
 DEFINES += BOOST_NO_CXX11_RVALUE_REFERENCES
+greaterThan(QT_MAJOR_VERSION, 4): DEFINES += QBT_USES_QT5
 
 # Windows specific configuration
 win32: include(../winconf.pri)

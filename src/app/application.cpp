@@ -357,7 +357,7 @@ void Application::initializeTranslation()
     }
 
     if (m_qtTranslator.load(
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
             QString::fromUtf8("qtbase_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
         m_qtTranslator.load(
 #endif
