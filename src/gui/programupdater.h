@@ -37,7 +37,7 @@
 class QNetworkReply;
 class QNetworkAccessManager;
 
-class ProgramUpdater : public QObject
+class ProgramUpdater: public QObject
 {
     Q_OBJECT
 public:
@@ -48,18 +48,18 @@ public:
 
 protected:
     QString extractVersionNumber(const QString& title) const;
-    bool isVersionMoreRecent(const QString& new_version) const;
+    bool isVersionMoreRecent(const QString &remoteVersion) const;
 
 protected slots:
     void rssDownloadFinished(QNetworkReply* reply);
     void setUpdateUrl(QString title);
 
 signals:
-    void updateCheckFinished(bool update_available, QString version, bool invokedByUser);
+    void updateCheckFinished(bool updateAvailable, QString version, bool invokedByUser);
 
 private:
     QString m_updateUrl;
-    QNetworkAccessManager *mp_manager;
+    QNetworkAccessManager *m_networkManager;
     bool m_invokedByUser;
 };
 
