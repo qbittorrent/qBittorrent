@@ -47,12 +47,10 @@ public:
     void updateProgram();
 
 protected:
-    QString extractVersionNumber(const QString& title) const;
     bool isVersionMoreRecent(const QString &remoteVersion) const;
 
 protected slots:
     void rssDownloadFinished(QNetworkReply* reply);
-    void setUpdateUrl(QString title);
 
 signals:
     void updateCheckFinished(bool updateAvailable, QString version, bool invokedByUser);

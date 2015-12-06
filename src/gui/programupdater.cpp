@@ -42,13 +42,18 @@
 #include "base/utils/fs.h"
 #include "base/preferences.h"
 
+namespace
+{
+    const QUrl RSS_URL("http://www.fosshub.com/software/feedqBittorent");
+
 #ifdef Q_OS_MAC
-const QUrl RSS_URL("http://sourceforge.net/projects/qbittorrent/rss?path=/qbittorrent-mac");
-const QString FILE_EXT = "DMG";
+    const QString OS_TYPE("Mac OS X");
 #else
-const QUrl RSS_URL("http://sourceforge.net/projects/qbittorrent/rss?path=/qbittorrent-win32");
-const QString FILE_EXT = "EXE";
+    const QString OS_TYPE("Windows");
 #endif
+
+    QString getStringValue(QXmlStreamReader &xml);
+}
 
 ProgramUpdater::ProgramUpdater(QObject *parent, bool invokedByUser)
     : QObject(parent)
@@ -91,14 +96,9 @@ void ProgramUpdater::checkForUpdates()
             this, SLOT(rssDownloadFinished(QNetworkReply*)));
     // Send the request
     QNetworkRequest request(RSS_URL);
+    // Don't change this User-Agent. In case our updater goes haywire, the filehost can indetify it and contact us.
     request.setRawHeader("User-Agent", QString("qBittorrent/%1 ProgramUpdater (www.qbittorrent.org)").arg(VERSION).toLocal8Bit());
     m_networkManager->get(request);
-}
-
-void ProgramUpdater::setUpdateUrl(QString title)
-{
-    m_updateUrl = "http://downloads.sourceforge.net/project/qbittorrent" + title;
-    qDebug("The Update URL is %s", qPrintable(m_updateUrl));
 }
 
 void ProgramUpdater::rssDownloadFinished(QNetworkReply *reply)
@@ -106,51 +106,50 @@ void ProgramUpdater::rssDownloadFinished(QNetworkReply *reply)
     // Disconnect SIGNAL/SLOT
     disconnect(m_networkManager, 0, this, 0);
     qDebug("Finished downloading the new qBittorrent updates RSS");
-    QString new_version;
+    QString version;
+
     if (!reply->error()) {
         qDebug("No download error, good.");
         QXmlStreamReader xml(reply);
-        QString item_title;
-        bool in_title = false;
-        bool in_item = false;
+        bool inItem = false;
+        QString updateLink;
+        QString type;
+
         while (!xml.atEnd()) {
             xml.readNext();
+
             if (xml.isStartElement()) {
-                if (in_item && xml.name() == "title") {
-                    in_title = true;
-                    item_title = "";
-                }
-                else if (xml.name() == "item") {
-                    in_item = true;
-                }
+                if (xml.name() == "item")
+                    inItem = true;
+                else if (inItem && xml.name() == "link")
+                    updateLink = getStringValue(xml);
+                else if (inItem && xml.name() == "type")
+                    type = getStringValue(xml);
+                else if (inItem && xml.name() == "version")
+                    version = getStringValue(xml);
             }
             else if (xml.isEndElement()) {
-                if (in_item && xml.name() == "title") {
-                    in_title = false;
-                    const QString ext = Utils::Fs::fileExtension(item_title).toUpper();
-                    qDebug("Found an update with file extension: %s", qPrintable(ext));
-                    if (ext == FILE_EXT) {
-                        qDebug("The last update available is %s", qPrintable(item_title));
-                        new_version = extractVersionNumber(item_title);
-                        if (!new_version.isEmpty()) {
-                            qDebug("Detected version is %s", qPrintable(new_version));
-                            if (isVersionMoreRecent(new_version))
-                                setUpdateUrl(item_title);
+                if (inItem && xml.name() == "item") {
+                    if (type.compare(OS_TYPE, Qt::CaseInsensitive) == 0) {
+                        qDebug("The last update available is %s", qPrintable(version));
+                        if (!version.isEmpty()) {
+                            qDebug("Detected version is %s", qPrintable(version));
+                            if (isVersionMoreRecent(version))
+                                m_updateUrl = updateLink;
                         }
                         break;
                     }
+
+                    inItem = false;
+                    updateLink.clear();
+                    type.clear();
+                    version.clear();
                 }
-                else if (xml.name() == "item") {
-                    in_item = false;
-                }
-            }
-            else if (xml.isCharacters() && !xml.isWhitespace()) {
-                if (in_item && in_title)
-                    item_title += xml.text().toString();
             }
         }
     }
-    emit updateCheckFinished(!m_updateUrl.isEmpty(), new_version, m_invokedByUser);
+
+    emit updateCheckFinished(!m_updateUrl.isEmpty(), version, m_invokedByUser);
     // Clean up
     reply->deleteLater();
 }
@@ -160,23 +159,6 @@ void ProgramUpdater::updateProgram()
     Q_ASSERT(!m_updateUrl.isEmpty());
     QDesktopServices::openUrl(m_updateUrl);
     return;
-}
-
-// title on Windows: /qbittorrent-win32/qbittorrent-2.4.7/qbittorrent_2.4.7_setup.exe
-// title on Mac: /qbittorrent-mac/qbittorrent-2.4.4/qbittorrent-2.4.4.dmg
-QString ProgramUpdater::extractVersionNumber(const QString& title) const
-{
-    qDebug() << Q_FUNC_INFO << title;
-    QRegExp regVer("qbittorrent[_-]([0-9.]+)(_setup)?(\\.exe|\\.dmg)");
-    if (regVer.indexIn(title)  < 0) {
-        qWarning() << Q_FUNC_INFO << "Failed to extract version from file name:" << title;
-        return QString::null;
-    }
-    else {
-        QString version = regVer.cap(1);
-        qDebug() << Q_FUNC_INFO << "Extracted version:" << version;
-        return version;
-    }
 }
 
 bool ProgramUpdater::isVersionMoreRecent(const QString &remoteVersion) const
@@ -204,3 +186,14 @@ bool ProgramUpdater::isVersionMoreRecent(const QString &remoteVersion) const
     return false;
 }
 
+namespace
+{
+    QString getStringValue(QXmlStreamReader &xml)
+    {
+        xml.readNext();
+        if (xml.isCharacters() && !xml.isWhitespace())
+            return xml.text().toString();
+
+        return QString();
+    }
+}
