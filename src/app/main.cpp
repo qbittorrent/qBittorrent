@@ -72,8 +72,8 @@ Q_IMPORT_PLUGIN(qico)
 #include <cstdlib>
 #include <iostream>
 #include "application.h"
-#include "core/utils/misc.h"
-#include "core/preferences.h"
+#include "base/utils/misc.h"
+#include "base/preferences.h"
 
 #include "upgrade.h"
 

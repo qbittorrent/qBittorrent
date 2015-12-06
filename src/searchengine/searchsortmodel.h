@@ -2,7 +2,7 @@
 #define SEARCHSORTMODEL_H
 
 #include <QSortFilterProxyModel>
-#include "core/utils/string.h"
+#include "base/utils/string.h"
 
 class SearchSortModel : public QSortFilterProxyModel {
   Q_OBJECT

@@ -58,17 +58,17 @@
 #endif
 
 #include "application.h"
-#include "core/logger.h"
-#include "core/preferences.h"
-#include "core/utils/fs.h"
-#include "core/utils/misc.h"
-#include "core/iconprovider.h"
-#include "core/scanfoldersmodel.h"
-#include "core/net/smtp.h"
-#include "core/net/downloadmanager.h"
-#include "core/net/geoipmanager.h"
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/torrenthandle.h"
+#include "base/logger.h"
+#include "base/preferences.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/iconprovider.h"
+#include "base/scanfoldersmodel.h"
+#include "base/net/smtp.h"
+#include "base/net/downloadmanager.h"
+#include "base/net/geoipmanager.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/torrenthandle.h"
 
 static const char PARAMS_SEPARATOR[] = "|";
 

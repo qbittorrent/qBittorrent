@@ -30,7 +30,7 @@
 
 #include <QPainter>
 #include <QPen>
-#include "core/utils/misc.h"
+#include "base/utils/misc.h"
 
 SpeedPlotView::SpeedPlotView(QWidget *parent)
     : QGraphicsView(parent)

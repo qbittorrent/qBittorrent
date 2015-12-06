@@ -36,7 +36,7 @@
 #include <QModelIndex>
 #include <QPainter>
 #include <QProgressBar>
-#include "core/utils/misc.h"
+#include "base/utils/misc.h"
 #include "searchengine.h"
 
 class SearchListDelegate: public QItemDelegate {

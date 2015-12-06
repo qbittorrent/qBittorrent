@@ -34,10 +34,10 @@
 #include <QPalette>
 #include <QIcon>
 
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/torrenthandle.h"
-#include "core/torrentfilter.h"
-#include "core/utils/fs.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/torrentfilter.h"
+#include "base/utils/fs.h"
 #include "torrentmodel.h"
 
 static QIcon getIconByState(BitTorrent::TorrentState state);

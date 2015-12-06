@@ -29,14 +29,14 @@
  */
 
 #include "btjson.h"
-#include "core/utils/misc.h"
-#include "core/utils/fs.h"
-#include "core/preferences.h"
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/sessionstatus.h"
-#include "core/bittorrent/torrenthandle.h"
-#include "core/bittorrent/trackerentry.h"
-#include "core/torrentfilter.h"
+#include "base/utils/misc.h"
+#include "base/utils/fs.h"
+#include "base/preferences.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/sessionstatus.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/trackerentry.h"
+#include "base/torrentfilter.h"
 #include "jsonutils.h"
 
 #include <QDebug>

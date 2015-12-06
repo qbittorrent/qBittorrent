@@ -40,11 +40,11 @@
 #include <QMessageBox>
 #endif
 
-#include "core/logger.h"
-#include "core/utils/fs.h"
-#include "core/utils/misc.h"
-#include "core/utils/string.h"
-#include "core/qinisettings.h"
+#include "base/logger.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
+#include "base/qinisettings.h"
 
 bool userAcceptsUpgrade()
 {

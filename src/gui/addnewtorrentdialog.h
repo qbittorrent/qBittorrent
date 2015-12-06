@@ -35,8 +35,8 @@
 #include <QDialog>
 #include <QUrl>
 
-#include "core/bittorrent/infohash.h"
-#include "core/bittorrent/torrentinfo.h"
+#include "base/bittorrent/infohash.h"
+#include "base/bittorrent/torrentinfo.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

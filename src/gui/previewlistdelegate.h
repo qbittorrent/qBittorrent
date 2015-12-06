@@ -37,8 +37,8 @@
 #include <QModelIndex>
 #include <QPainter>
 #include <QApplication>
-#include "core/utils/misc.h"
-#include "core/utils/string.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
 #include "previewselect.h"
 
 #ifdef Q_OS_WIN

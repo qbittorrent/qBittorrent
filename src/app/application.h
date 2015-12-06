@@ -50,7 +50,7 @@ QT_END_NAMESPACE
 typedef QtSingleCoreApplication BaseApplication;
 #endif
 
-#include "core/utils/misc.h"
+#include "base/utils/misc.h"
 
 #ifndef DISABLE_WEBUI
 class WebUI;

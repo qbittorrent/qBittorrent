@@ -29,7 +29,7 @@
  */
 
 #include "speedlimitdlg.h"
-#include "core/unicodestrings.h"
+#include "base/unicodestrings.h"
 
 SpeedLimitDialog::SpeedLimitDialog(QWidget *parent): QDialog(parent)
 {

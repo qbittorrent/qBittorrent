@@ -32,19 +32,20 @@
 #include <QCryptographicHash>
 #include <queue>
 #include <vector>
-#include "core/iconprovider.h"
-#include "core/utils/misc.h"
-#include "core/utils/fs.h"
-#include "core/utils/string.h"
-#include "core/preferences.h"
+
+#include "base/iconprovider.h"
+#include "base/utils/misc.h"
+#include "base/utils/fs.h"
+#include "base/utils/string.h"
+#include "base/preferences.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/trackerentry.h"
+#include "base/bittorrent/torrentinfo.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/net/downloadmanager.h"
 #include "btjson.h"
 #include "prefjson.h"
 #include "jsonutils.h"
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/trackerentry.h"
-#include "core/bittorrent/torrentinfo.h"
-#include "core/bittorrent/torrenthandle.h"
-#include "core/net/downloadmanager.h"
 #include "websessiondata.h"
 #include "webapplication.h"
 

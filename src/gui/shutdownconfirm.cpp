@@ -30,7 +30,7 @@
  * Contact : hammered999@gmail.com
  */
 
-#include "core/types.h"
+#include "base/types.h"
 #include "shutdownconfirm.h"
 
 #include <QPushButton>

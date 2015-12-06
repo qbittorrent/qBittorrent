@@ -10,7 +10,7 @@
 #include <QComboBox>
 #include <QNetworkInterface>
 
-#include "core/preferences.h"
+#include "base/preferences.h"
 
 enum AdvSettingsCols
 {

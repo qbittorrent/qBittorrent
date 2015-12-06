@@ -33,8 +33,8 @@
 
 #include <QItemDelegate>
 #include <QPainter>
-#include "core/utils/misc.h"
-#include "core/utils/string.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
 
 class PeerListDelegate: public QItemDelegate {
   Q_OBJECT

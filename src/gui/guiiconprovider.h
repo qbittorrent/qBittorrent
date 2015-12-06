@@ -30,7 +30,7 @@
 #ifndef GUIICONPROVIDER_H
 #define GUIICONPROVIDER_H
 
-#include "core/iconprovider.h"
+#include "base/iconprovider.h"
 
 class QIcon;
 

@@ -36,14 +36,14 @@
 #include <QClipboard>
 #include <QMessageBox>
 
-#include "core/net/reverseresolution.h"
-#include "core/bittorrent/torrenthandle.h"
-#include "core/bittorrent/peerinfo.h"
-#include "core/preferences.h"
-#include "core/logger.h"
-#include "core/unicodestrings.h"
+#include "base/net/reverseresolution.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/peerinfo.h"
+#include "base/preferences.h"
+#include "base/logger.h"
+#include "base/unicodestrings.h"
 #include "propertieswidget.h"
-#include "core/net/geoipmanager.h"
+#include "base/net/geoipmanager.h"
 #include "peersadditiondlg.h"
 #include "speedlimitdlg.h"
 #include "guiiconprovider.h"

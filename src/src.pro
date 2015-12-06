@@ -61,7 +61,7 @@ win32: DEFINES += NOMINMAX
 INCLUDEPATH += $$PWD
 
 include(app/app.pri)
-include(core/core.pri)
+include(base/base.pri)
 !nowebui: include(webui/webui.pri)
 !nogui {
     include(gui/gui.pri)

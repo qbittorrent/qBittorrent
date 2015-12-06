@@ -39,10 +39,10 @@
 
 #include "rss_imp.h"
 #include "feedlistwidget.h"
-#include "core/bittorrent/session.h"
-#include "core/net/downloadmanager.h"
+#include "base/bittorrent/session.h"
+#include "base/net/downloadmanager.h"
 #include "cookiesdlg.h"
-#include "core/preferences.h"
+#include "base/preferences.h"
 #include "rsssettingsdlg.h"
 #include "rssmanager.h"
 #include "rssfolder.h"

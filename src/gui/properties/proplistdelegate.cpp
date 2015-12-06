@@ -45,8 +45,8 @@
 #endif
 #endif
 
-#include "core/utils/misc.h"
-#include "core/utils/string.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
 #include "propertieswidget.h"
 #include "proplistdelegate.h"
 #include "torrentcontentmodelitem.h"

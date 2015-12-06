@@ -33,13 +33,13 @@
 #include <QFontMetrics>
 #include <QDebug>
 
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/sessionstatus.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/sessionstatus.h"
 #include "speedlimitdlg.h"
 #include "guiiconprovider.h"
-#include "core/preferences.h"
-#include "core/utils/misc.h"
-#include "core/logger.h"
+#include "base/preferences.h"
+#include "base/utils/misc.h"
+#include "base/logger.h"
 
 StatusBar::StatusBar(QStatusBar *bar)
   : m_bar(bar)

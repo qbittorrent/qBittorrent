@@ -29,10 +29,10 @@
  */
 
 #include "engineselectdlg.h"
-#include "core/net/downloadmanager.h"
-#include "core/net/downloadhandler.h"
-#include "core/utils/fs.h"
-#include "core/utils/misc.h"
+#include "base/net/downloadmanager.h"
+#include "base/net/downloadhandler.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
 #include "ico.h"
 #include "searchengine.h"
 #include "pluginsource.h"
