@@ -29,7 +29,8 @@
 }
 
 
-#myTable tr:nth-child(even),
+#torrentsTable tr:nth-child(even),
+#torrentPeersTable tr:nth-child(even),
 #filesTable tr:nth-child(even),
 #properties #torrentFiles tr.alt,
 #properties #trackers tr.alt,
@@ -50,8 +51,13 @@
 	background-color: #415A8D;
 	color: #fff;
 }
+#torrentPeersTable tr.selected {
+	background-color: #354158;
+	color: #fff;
+}
 
-#myTable tr:hover,
+#torrentsTable tr:hover,
+#torrentPeersTable tr:hover,
 #filesTable tr:hover,
 #properties #torrentFiles tr.over,
 #properties #trackers tr.over,
@@ -60,7 +66,8 @@
 	color: #fff;
 }
 
-#myTable tr:hover,
+#torrentsTable tr:hover,
+#torrentsTable tr:hover,
 #properties #torrentFiles tr.over,
 #properties #trackers tr.over,
 #transferList tr.over {

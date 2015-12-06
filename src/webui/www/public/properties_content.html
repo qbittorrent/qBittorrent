@@ -63,6 +63,18 @@
     </div>
 </div>
 
+<div id="prop_peers" class="invisible">
+    <div id="peers">
+        <table class="torrentTable" cellpadding="0" cellspacing="0" style="width: 100%">
+            <thead>
+                <tr id="torrentPeersTableHeader">
+                </tr>
+            </thead>
+            <tbody id="torrentPeersTable"></tbody>
+        </table>
+    </div>
+</div>
+
 <div id="prop_webseeds" class="invisible">
     <div id="webseeds">
         <table class="torrentTable" cellpadding="0" cellspacing="0" style="width: 100%">
@@ -92,3 +104,7 @@
         </table>
     </div>
 </div>
+
+<script type="text/javascript">
+    torrentPeersTable.setup('torrentPeersTable', 'torrentPeersTableHeader', null);
+</script>

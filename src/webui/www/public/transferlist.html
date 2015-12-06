@@ -1,15 +1,15 @@
 <table class="torrentTable" cellpadding="0" cellspacing="0" style="-webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;">
     <thead>
-        <tr id="torrentTableHeader">
+        <tr id="torrentsTableHeader">
         </tr>
     </thead>
-    <tbody id="myTable"></tbody>
+    <tbody id="torrentsTable"></tbody>
 </table>
 
 <script type="text/javascript">
 
     //create a context menu
-    var context_menu = new ContextMenu({
+    var torrents_table_context_menu = new ContextMenu({
         targets : '.menu-target',
         menu : 'contextmenu',
         actions : {
@@ -62,5 +62,5 @@
         }
     });
 
-    myTable.setup('myTable', context_menu);
+    torrentsTable.setup('torrentsTable', 'torrentsTableHeader', torrents_table_context_menu);
 </script>

@@ -82,6 +82,7 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(query, propertiesWebSeeds);
     ADD_ACTION(query, propertiesFiles);
     ADD_ACTION(sync, maindata);
+    ADD_ACTION(sync, torrent_peers);
     ADD_ACTION(command, shutdown);
     ADD_ACTION(command, download);
     ADD_ACTION(command, upload);
@@ -276,6 +277,19 @@ void WebApplication::action_sync_maindata()
         session()->syncMainDataLastResponse,
         session()->syncMainDataLastAcceptedResponse), Http::CONTENT_TYPE_JSON);
 }
+
+// GET param:
+//   - hash (string): torrent hash
+//   - rid (int): last response id
+void WebApplication::action_sync_torrent_peers()
+{
+    CHECK_URI(0);
+    print(btjson::getSyncTorrentPeersData(request().gets["rid"].toInt(),
+        request().gets["hash"],
+        session()->syncTorrentPeersLastResponse,
+        session()->syncTorrentPeersLastAcceptedResponse), Http::CONTENT_TYPE_JSON);
+}
+
 
 void WebApplication::action_version_api()
 {

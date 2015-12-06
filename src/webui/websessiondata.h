@@ -35,6 +35,8 @@ struct WebSessionData
 {
     QVariantMap syncMainDataLastResponse;
     QVariantMap syncMainDataLastAcceptedResponse;
+    QVariantMap syncTorrentPeersLastResponse;
+    QVariantMap syncTorrentPeersLastAcceptedResponse;
 };
 
 #endif // WEBSESSIONDATA

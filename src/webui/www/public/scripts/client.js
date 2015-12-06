@@ -22,9 +22,11 @@
  * THE SOFTWARE.
  */
 
-myTable = new dynamicTable();
+torrentsTable = new TorrentsTable();
+torrentPeersTable = new TorrentPeersTable();
 
 var updatePropertiesPanel = function(){};
+var updateTorrentPeersData = function(){};
 var updateMainData = function(){};
 var alternativeSpeedLimits = false;
 var queueing_enabled = true;
@@ -99,7 +101,7 @@ window.addEvent('load', function () {
         selected_label = hash;
         localStorage.setItem('selected_label', selected_label);
         highlightSelectedLabel();
-        if (typeof myTable.table != 'undefined')
+        if (typeof torrentsTable.table != 'undefined')
             updateMainData();
     };
 
@@ -117,7 +119,7 @@ window.addEvent('load', function () {
         selected_filter = f;
         localStorage.setItem('selected_filter', f);
         // Reload torrents
-        if (typeof myTable.table != 'undefined')
+        if (typeof torrentsTable.table != 'undefined')
             updateMainData();
     }
 
@@ -230,9 +232,9 @@ window.addEvent('load', function () {
             return new Element('li', {id: hash, html: html});
         };
 
-        var all = myTable.getRowIds().length;
+        var all = torrentsTable.getRowIds().length;
         var unlabelled = 0;
-        Object.each(myTable.rows, function(row) {
+        Object.each(torrentsTable.rows, function(row) {
             if (row['full_data'].label.length === 0)
             unlabelled += 1;
         });
@@ -286,7 +288,7 @@ window.addEvent('load', function () {
                     var update_labels = false;
                     var full_update = (response['full_update'] == true);
                     if (full_update) {
-                        myTable.rows.erase();
+                        torrentsTable.clear();
                         label_list = {};
                     }
                     if (response['rid']) {
@@ -309,19 +311,20 @@ window.addEvent('load', function () {
                     if (response['torrents']) {
                         for (var key in response['torrents']) {
                             response['torrents'][key]['hash'] = key;
-                            myTable.updateRowData(response['torrents'][key]);
+                            response['torrents'][key]['rowId'] = key;
+                            torrentsTable.updateRowData(response['torrents'][key]);
                             if (addTorrentToLabelList(response['torrents'][key]))
                                 update_labels = true;
                         }
                     }
                     if (response['torrents_removed'])
                         response['torrents_removed'].each(function (hash) {
-                            myTable.removeRow(hash);
+                            torrentsTable.removeRow(hash);
                             removeTorrentFromLabelList(hash);
                             update_labels = true; // Allways to update All label
                         });
-                    myTable.updateTable(full_update);
-                    myTable.altRow();
+                    torrentsTable.updateTable(full_update);
+                    torrentsTable.altRow();
                     if (response['server_state']) {
                         var tmp = response['server_state'];
                         for(var key in tmp)
@@ -340,7 +343,7 @@ window.addEvent('load', function () {
     };
 
     updateMainData = function() {
-        myTable.updateTable();
+        torrentsTable.updateTable();
         clearTimeout(syncMainDataTimer);
         syncMainDataTimer = syncMainData.delay(100);
     }
@@ -373,8 +376,8 @@ window.addEvent('load', function () {
 
         if (queueing_enabled != serverState.queueing) {
             queueing_enabled = serverState.queueing;
-            myTable.columns['priority'].force_hide = !queueing_enabled;
-            myTable.updateColumn('priority');
+            torrentsTable.columns['priority'].force_hide = !queueing_enabled;
+            torrentsTable.updateColumn('priority');
             if (queueing_enabled) {
                 $('queueingLinks').removeClass('invisible');
                 $('queueingButtons').removeClass('invisible');
@@ -423,11 +426,6 @@ window.addEvent('load', function () {
 
     $('DlInfos').addEvent('click', globalDownloadLimitFN);
     $('UpInfos').addEvent('click', globalUploadLimitFN);
-
-    setSortedColumn = function (column) {
-        myTable.setSortedColumn(column);
-        updateMainData();
-    };
 
     $('showTopToolbarLink').addEvent('click', function(e) {
         showTopToolbar = !showTopToolbar;
@@ -489,7 +487,7 @@ window.addEvent('load', function () {
         },
         contentURL : 'properties_content.html',
         require : {
-            css : ['css/Tabs.css'],
+            css : ['css/Tabs.css', 'css/dynamicTable.css'],
             js : ['scripts/prop-general.js', 'scripts/prop-trackers.js', 'scripts/prop-webseeds.js', 'scripts/prop-files.js'],
         },
         tabsURL : 'properties.html',
@@ -501,6 +499,8 @@ window.addEvent('load', function () {
                     updateTorrentData();
                 else if (!$('prop_trackers').hasClass('invisible'))
                     updateTrackersData();
+                else if (!$('prop_peers').hasClass('invisible'))
+                    updateTorrentPeersData();
                 else if (!$('prop_webseeds').hasClass('invisible'))
                     updateWebSeedsData();
                 else if (!$('prop_files').hasClass('invisible'))
@@ -512,11 +512,22 @@ window.addEvent('load', function () {
                 $('prop_trackers').addClass("invisible");
                 $('prop_webseeds').addClass("invisible");
                 $('prop_files').addClass("invisible");
+                $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
             });
 
             $('PropTrackersLink').addEvent('click', function(e){
                 $('prop_trackers').removeClass("invisible");
+                $('prop_general').addClass("invisible");
+                $('prop_webseeds').addClass("invisible");
+                $('prop_files').addClass("invisible");
+                $('prop_peers').addClass("invisible");
+                updatePropertiesPanel();
+            });
+
+            $('PropPeersLink').addEvent('click', function(e){
+                $('prop_peers').removeClass("invisible");
+                $('prop_trackers').addClass("invisible");
                 $('prop_general').addClass("invisible");
                 $('prop_webseeds').addClass("invisible");
                 $('prop_files').addClass("invisible");
@@ -528,6 +539,7 @@ window.addEvent('load', function () {
                 $('prop_general').addClass("invisible");
                 $('prop_trackers').addClass("invisible");
                 $('prop_files').addClass("invisible");
+                $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
             });
 
@@ -536,6 +548,7 @@ window.addEvent('load', function () {
                 $('prop_general').addClass("invisible");
                 $('prop_trackers').addClass("invisible");
                 $('prop_webseeds').addClass("invisible");
+                $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
             });
 
@@ -556,7 +569,7 @@ var keyboardEvents = new Keyboard({
     defaultEventType: 'keydown',
     events: {
         'ctrl+a': function(event) {
-            myTable.selectAll();
+            torrentsTable.selectAll();
             event.preventDefault();
         },
         'delete': function(event) {
@@ -567,3 +580,78 @@ var keyboardEvents = new Keyboard({
 });
 
 keyboardEvents.activate();
+
+var loadTorrentPeersTimer;
+var syncTorrentPeersLastResponseId = 0;
+var show_flags = true;
+var loadTorrentPeersData = function(){
+    if ($('prop_peers').hasClass('invisible') ||
+        $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
+        syncTorrentPeersLastResponseId = 0;
+        torrentPeersTable.clear();
+        return;
+    }
+    var current_hash = torrentsTable.getCurrentTorrentHash();
+    if (current_hash == "") {
+        syncTorrentPeersLastResponseId = 0;
+        torrentPeersTable.clear();
+        clearTimeout(loadTorrentPeersTimer);
+        loadTorrentPeersTimer = loadTorrentPeersData.delay(syncMainDataTimerPeriod);
+        return;
+    }
+    var url = new URI('sync/torrent_peers');
+    url.setData('rid', syncTorrentPeersLastResponseId);
+    url.setData('hash', current_hash);
+    var request = new Request.JSON({
+        url: url,
+        noCache: true,
+        method: 'get',
+        onFailure: function() {
+            $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
+            clearTimeout(loadTorrentPeersTimer);
+            loadTorrentPeersTimer = loadTorrentPeersData.delay(5000);
+        },
+        onSuccess: function(response) {
+            $('error_div').set('html', '');
+            if (response) {
+                var full_update = (response['full_update'] == true);
+                if (full_update) {
+                    torrentPeersTable.clear();
+                }
+                if (response['rid']) {
+                    syncTorrentPeersLastResponseId = response['rid'];
+                }
+                if (response['peers']) {
+                    for (var key in response['peers']) {
+                        response['peers'][key]['rowId'] = key;
+                        torrentPeersTable.updateRowData(response['peers'][key]);
+                    }
+                }
+                if (response['peers_removed'])
+                    response['peers_removed'].each(function (hash) {
+                        torrentPeersTable.removeRow(hash);
+                    });
+                torrentPeersTable.updateTable(full_update);
+                torrentPeersTable.altRow();
+
+                if (response['show_flags']) {
+                    if (show_flags != response['show_flags']) {
+                        show_flags = response['show_flags'];
+                        torrentPeersTable.columns['country'].force_hide = !show_flags;
+                        torrentPeersTable.updateColumn('country');
+                    }
+                }
+            }
+            else {
+                torrentPeersTable.clear();
+            }
+            clearTimeout(loadTorrentPeersTimer);
+            loadTorrentPeersTimer = loadTorrentPeersData.delay(syncMainDataTimerPeriod);
+        }
+    }).send();
+};
+
+updateTorrentPeersData = function(){
+    clearTimeout(loadTorrentPeersTimer);
+    loadTorrentPeersData();
+};
