@@ -286,13 +286,20 @@ void AddNewTorrentDialog::saveSavePathHistory() const
     // Get current history
     QStringList history = pref->getAddNewTorrentDialogPathHistory();
     QList<QDir> history_dirs;
-    foreach(const QString dir, history)
+    int defaultSaveHistoryListSize = pref->getSaveHistoryListSize();
+    int i = 0;
+    foreach(const QString dir, history) {
+        i++;
+        if (i > defaultSaveHistoryListSize)
+            break;
         history_dirs << QDir(dir);
+    }
+
     if (!history_dirs.contains(selected_save_path)) {
         // Add save path to history
         history.push_front(selected_save_path.absolutePath());
         // Limit list size
-        if (history.size() > 8)
+        if (history.size() > defaultSaveHistoryListSize)
             history.pop_back();
         // Save history
         pref->setAddNewTorrentDialogPathHistory(history);
@@ -534,9 +541,15 @@ void AddNewTorrentDialog::loadSavePathHistory()
     QDir default_save_path(Preferences::instance()->getSavePath());
     // Load save path history
     QStringList raw_path_history = Preferences::instance()->getAddNewTorrentDialogPathHistory();
-    foreach (const QString &sp, raw_path_history)
+    int defaultSaveHistoryListSize = Preferences::instance()->getSaveHistoryListSize();
+    int i = 0;
+    foreach (const QString &sp, raw_path_history) {
+        i++;
+        if (i > defaultSaveHistoryListSize)
+            break;
         if (QDir(sp) != default_save_path)
             ui->save_path_combo->addItem(Utils::Fs::toNativePath(sp), sp);
+    }
 }
 
 void AddNewTorrentDialog::displayContentTreeMenu(const QPoint&)

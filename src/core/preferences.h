@@ -174,6 +174,8 @@ public:
     void useAdditionDialog(bool b);
     bool additionDialogFront() const;
     void additionDialogFront(bool b);
+    int getSaveHistoryListSize() const;
+    void setSaveHistoryListSize(int size);
     bool addTorrentsInPause() const;
     void addTorrentsInPause(bool b);
     QStringList getScanDirs() const;
@@ -436,7 +438,6 @@ public:
     void setConfirmTorrentRecheck(bool enabled);
     TrayIcon::Style trayIconStyle() const;
     void setTrayIconStyle(TrayIcon::Style style);
-
 
     // Stuff that don't appear in the Options GUI but are saved
     // in the same file.

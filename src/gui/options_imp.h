@@ -129,6 +129,7 @@ private:
     QString askForExportDir(const QString& currentExportPath);
     int getActionOnDblClOnTorrentDl() const;
     int getActionOnDblClOnTorrentFn() const;
+    int getSaveHistoryListSize() const;
     // Connection options
     int getPort() const;
     bool isUPnPEnabled() const;
