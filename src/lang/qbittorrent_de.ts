@@ -125,217 +125,222 @@
         <translation>Prüfsummenkontrolle überspringen</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="136"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="133"/>
+        <source>Set as default label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="143"/>
         <source>Torrent Information</source>
         <translation>Torrent-Informationen</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="144"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="151"/>
         <source>Size:</source>
         <translation>Größe:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="158"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="165"/>
         <source>Comment:</source>
         <translation>Kommentar:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="184"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="191"/>
         <source>Date:</source>
         <translation> Datum:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="198"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="205"/>
         <source>Info Hash:</source>
         <translation>Info-Hash:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="289"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="296"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="294"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="301"/>
         <source>High</source>
         <translation>Hoch</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="299"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="306"/>
         <source>Maximum</source>
         <translation>Maximum</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="304"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="311"/>
         <source>Do not download</source>
         <translation>Nicht herunterladen</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="165"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="636"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="172"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="646"/>
         <source>I/O Error</source>
         <translation>I/O Fehler</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="165"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="172"/>
         <source>The torrent file does not exist.</source>
         <translation>Die Torrent-Datei existiert nicht.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="173"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="180"/>
         <source>Invalid torrent</source>
         <translation>Ungültiger Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="173"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="180"/>
         <source>Failed to load the torrent: %1</source>
         <translation>Laden des Torrents fehlgeschlagen: %1</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="185"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="213"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="192"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="220"/>
         <source>Already in download list</source>
         <translation>Bereits in der Downloadliste</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="333"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="340"/>
         <source>Free disk space: %1</source>
         <translation>Freier Speicherplatz:  %1</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="662"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="672"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
         <translation>Nicht verfügbar</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="663"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="673"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
         <translation>Nicht verfügbar</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="671"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="681"/>
         <source>Not available</source>
         <translation>Nicht verfügbar</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="202"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="209"/>
         <source>Invalid magnet link</source>
         <translation>Ungültiger Magnet-Link</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="185"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="192"/>
         <source>Torrent is already in download list. Trackers were merged.</source>
         <translation>Torrent befindet sich bereits in der Downloadliste. Tracker wurden zusammengeführt.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="188"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="216"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="195"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="223"/>
         <source>Cannot add torrent</source>
         <translation>Kann torrent nicht hinzufügen</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="188"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="195"/>
         <source>Cannot add this torrent. Perhaps it is already in adding state.</source>
         <translation>Kann diesen Torrent nicht hinzufügen. Vielleicht wird er bereits gerade hinzugefügt.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="202"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="209"/>
         <source>This magnet link was not recognized</source>
         <translation>Dieser Magnet-Link wurde nicht erkannt</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="213"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="220"/>
         <source>Magnet link is already in download list. Trackers were merged.</source>
         <translation>Magnet-Link befindet sich bereits in der Downloadliste. Tracker wurden zusammengeführt.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="216"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="223"/>
         <source>Cannot add this torrent. Perhaps it is already in adding.</source>
         <translation>Kann diesen Torrent nicht hinzufügen. Vielleicht wird er bereits gerade hinzugefügt.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="225"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="232"/>
         <source>Magnet link</source>
         <translation>Magnet-Link</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="232"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="239"/>
         <source>Retrieving metadata...</source>
         <translation>Frage Metadaten ab ...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="331"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="338"/>
         <source>Not Available</source>
         <comment>This size is unavailable.</comment>
         <translation>Nicht verfügbar</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="362"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="370"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="372"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="369"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="377"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="379"/>
         <source>Choose save path</source>
         <translation>Speicherpfad auswählen</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="421"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="428"/>
         <source>Rename the file</source>
         <translation>Datei umbenennen</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="422"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="429"/>
         <source>New name:</source>
         <translation>Neuer Name:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="426"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="451"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="433"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="458"/>
         <source>The file could not be renamed</source>
         <translation>Die Datei konnte nicht umbenannt werden</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="427"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="434"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Der Dateiname enthält ungültige Zeichen - bitte einen anderen Namen wählen.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="452"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="485"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="459"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="492"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Der Dateiname wird in diesem Verzeichnis bereits verwendet - bitte einen anderen Namen wählen.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="484"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="491"/>
         <source>The folder could not be renamed</source>
         <translation>Das Verzeichnis konnte nicht umbenannt werden</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="541"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="548"/>
         <source>Rename...</source>
         <translation>Umbenennen ...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="545"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="552"/>
         <source>Priority</source>
         <translation>Priorität</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="637"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="647"/>
         <source>Invalid metadata</source>
         <translation>Ungültige Metadaten</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="644"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="654"/>
         <source>Parsing metadata...</source>
         <translation>Analysiere Metadaten ...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="648"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="658"/>
         <source>Metadata retrieval complete</source>
         <translation>Abfrage Metadaten komplett</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="708"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="718"/>
         <source>Download Error</source>
         <translation>Downloadfehler</translation>
     </message>
@@ -427,9 +432,8 @@
         <translation>Hostnamen der Peers auflösen</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="264"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation>Maximale Anzahl halboffener Verbindungen [0: Deaktiviert]</translation>
+        <translation type="obsolete">Maximale Anzahl halboffener Verbindungen [0: Deaktiviert]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="267"/>
@@ -472,6 +476,11 @@
         <source>Save resume data interval</source>
         <comment>How often the fastresume file is saved.</comment>
         <translation>Speicherintervall für Fortsetzungsdaten</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.h" line="264"/>
+        <source>Maximum number of half-open connections [0: Unlimited]</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="293"/>
@@ -858,331 +867,338 @@
 <context>
     <name>BitTorrent::Session</name>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="173"/>
+        <location filename="../base/bittorrent/session.cpp" line="173"/>
         <source>Peer ID: </source>
         <translation>Peer-ID:</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="316"/>
+        <location filename="../base/bittorrent/session.cpp" line="316"/>
         <source>HTTP User-Agent is &apos;%1&apos;</source>
         <translation>HTTP Benutzer-Agent ist &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="343"/>
+        <location filename="../base/bittorrent/session.cpp" line="343"/>
         <source>Anonymous mode [ON]</source>
         <translation>Anonymer Modus [EIN]</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="345"/>
+        <location filename="../base/bittorrent/session.cpp" line="345"/>
         <source>Anonymous mode [OFF]</source>
         <translation>Anonymer Modus [AUS]</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="535"/>
+        <location filename="../base/bittorrent/session.cpp" line="536"/>
         <source>PeX support [ON]</source>
         <translation>PeX-Unterstützung [EIN]</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="537"/>
+        <location filename="../base/bittorrent/session.cpp" line="538"/>
         <source>PeX support [OFF]</source>
         <translation>PeX-Unterstützung [AUS]</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="539"/>
+        <location filename="../base/bittorrent/session.cpp" line="540"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Neustart erforderlich, um PeX-Unterstützung umzuschalten</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="544"/>
+        <location filename="../base/bittorrent/session.cpp" line="545"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Lokale Peers (LPD) finden [EIN]</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="548"/>
+        <location filename="../base/bittorrent/session.cpp" line="549"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Lokale Peers (LPD) finden [AUS]</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="561"/>
+        <location filename="../base/bittorrent/session.cpp" line="562"/>
         <source>Encryption support [ON]</source>
         <translation>Verschlüsselungsunterstützung [EIN]</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="566"/>
+        <location filename="../base/bittorrent/session.cpp" line="567"/>
         <source>Encryption support [FORCED]</source>
         <translation>Verschlüsselungsunterstützung [ERZWUNGEN]</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="571"/>
+        <location filename="../base/bittorrent/session.cpp" line="572"/>
         <source>Encryption support [OFF]</source>
         <translation>Verschlüsselungsunterstützung [AUS]</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="649"/>
+        <location filename="../base/bittorrent/session.cpp" line="650"/>
         <source>Embedded Tracker [ON]</source>
         <translation>Eingebetteter Tracker [EIN]</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="651"/>
+        <location filename="../base/bittorrent/session.cpp" line="652"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>Starten des eingebetteten Trackers fehlgeschlagen!</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="654"/>
+        <location filename="../base/bittorrent/session.cpp" line="655"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>Eingebetteter Tracker [AUS]</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="692"/>
+        <location filename="../base/bittorrent/session.cpp" line="693"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removing...</source>
         <translation>&apos;%1&apos; hat das gesetzte maximale Verhältnis erreicht. Wird entfernt ...</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="698"/>
+        <location filename="../base/bittorrent/session.cpp" line="699"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Pausing...</source>
         <translation>&apos;%1&apos; hat das gesetzte maximale Verhältnis erreicht. Wird angehalten ...</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1175"/>
         <source>Error: Could not create torrent export directory: &apos;%1&apos;</source>
-        <translation>Fehler: Konnte das Verzeichnis für den Torrent-Export nicht erstellen: &apos;%1&apos;</translation>
+        <translation type="obsolete">Fehler: Konnte das Verzeichnis für den Torrent-Export nicht erstellen: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1203"/>
         <source>Error: could not export torrent &apos;%1&apos;, maybe it has not metadata yet.</source>
-        <translation>Fehler: Konnte den Torrent &apos;%1&apos; nicht exportieren - vielleicht fehlen noch Metadaten.</translation>
+        <translation type="obsolete">Fehler: Konnte den Torrent &apos;%1&apos; nicht exportieren - vielleicht fehlen noch Metadaten.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1430"/>
+        <location filename="../base/bittorrent/session.cpp" line="1396"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>Systemnetzwerkstatus auf %1 geändert</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1430"/>
+        <location filename="../base/bittorrent/session.cpp" line="1396"/>
         <source>ONLINE</source>
         <translation>ONLINE</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1430"/>
+        <location filename="../base/bittorrent/session.cpp" line="1396"/>
         <source>OFFLINE</source>
         <translation>OFFLINE</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1440"/>
+        <location filename="../base/bittorrent/session.cpp" line="1408"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>Die Netzwerk-Konfiguration von %1 hat sich geändert - die Sitzungsbindung wird erneuert</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1724"/>
+        <location filename="../base/bittorrent/session.cpp" line="1692"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>&apos;%1&apos; Torrentdatei kann nicht dekodiert werden.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1830"/>
+        <location filename="../base/bittorrent/session.cpp" line="1798"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>Rekursiver Download von Datei &apos;%1&apos;, eingebettet in Torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2141"/>
+        <location filename="../base/bittorrent/session.cpp" line="2109"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>&apos;%1.torrent&apos; konnte nicht gespeichert werden</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2246"/>
+        <location filename="../base/bittorrent/session.cpp" line="2214"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>weil %1 deaktiviert ist.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2249"/>
+        <location filename="../base/bittorrent/session.cpp" line="2217"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>weil %1 deaktiviert ist.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2267"/>
+        <location filename="../base/bittorrent/session.cpp" line="2235"/>
         <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
         <translation>URL Überprüfung für die Seed-URL &apos;%1&apos; ist fehlgeschlagen; Grund: %2</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="811"/>
+        <location filename="../base/bittorrent/session.cpp" line="812"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; wurde von der Transferliste und von der Festplatte entfernt.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="813"/>
+        <location filename="../base/bittorrent/session.cpp" line="814"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; wurde von der Übertragungsliste entfernt.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="972"/>
+        <location filename="../base/bittorrent/session.cpp" line="973"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Herunterladen von &apos;%1&apos; - bitte warten ...</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1183"/>
         <source>Torrent Export: torrent is invalid, skipping...</source>
-        <translation>Torrent-Export: Ungültiger Torrent - wird verworfen ...</translation>
+        <translation type="obsolete">Torrent-Export: Ungültiger Torrent - wird verworfen ...</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1276"/>
+        <location filename="../base/bittorrent/session.cpp" line="1242"/>
         <source>DHT support [ON]</source>
         <translation>DHT-Unterstützung [EIN]</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1281"/>
+        <location filename="../base/bittorrent/session.cpp" line="1247"/>
         <source>DHT support [OFF]. Reason: %1</source>
         <translation>DHT-Unterstützung [AUS]. Grund: %1</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1289"/>
+        <location filename="../base/bittorrent/session.cpp" line="1255"/>
         <source>DHT support [OFF]</source>
         <translation>DHT-Unterstützung [AUS]</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="165"/>
-        <location filename="../core/bittorrent/session.cpp" line="1510"/>
+        <location filename="../base/bittorrent/session.cpp" line="165"/>
+        <location filename="../base/bittorrent/session.cpp" line="1478"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent versucht auf allen beliebigen Ports zu lauschen: %1</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1514"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
-        <translation>qBittorrent konnte auf keinen Interface Ports lauschen: %1. Grund: %2</translation>
+        <translation type="obsolete">qBittorrent konnte auf keinen Interface Ports lauschen: %1. Grund: %2</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1463"/>
+        <location filename="../base/bittorrent/session.cpp" line="1431"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Das angegebene Netzwerkinterface ist ungültig: %1</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="169"/>
-        <location filename="../core/bittorrent/session.cpp" line="1521"/>
+        <location filename="../base/bittorrent/session.cpp" line="169"/>
+        <location filename="../base/bittorrent/session.cpp" line="1489"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent versucht auf Interface %1 Port %2 zu lauschen </translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1487"/>
+        <location filename="../base/bittorrent/session.cpp" line="1455"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
         <translation>qBittorrent konnte auf die zu lauschende lokale Adresse %1  nicht finden</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1635"/>
+        <location filename="../base/bittorrent/session.cpp" line="1482"/>
+        <source>qBittorrent failed to listen on any interface port: %1. Reason: %2.</source>
+        <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
+        <translation type="unfinished">qBittorrent konnte auf keinen Interface Ports lauschen: %1. Grund: %2. {1.?}</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1603"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Tracker &apos;%1&apos; wurde dem Torrent &apos;%2&apos; hinzugefügt</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1645"/>
+        <location filename="../base/bittorrent/session.cpp" line="1613"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>Tracker &apos;%1&apos; wurde vom Torrent &apos;%2&apos; entfernt</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1660"/>
+        <location filename="../base/bittorrent/session.cpp" line="1628"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>URL Seed &apos;%1&apos; wurde dem Torrent &apos;%2&apos; hinzugefügt</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1666"/>
+        <location filename="../base/bittorrent/session.cpp" line="1634"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>URL Seed &apos;%1&apos; wurde vom Torrent &apos;%2&apos; entfernt</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1946"/>
+        <location filename="../base/bittorrent/session.cpp" line="1914"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>Konnte Torrent %1 nicht fortsetzen.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1969"/>
+        <location filename="../base/bittorrent/session.cpp" line="1937"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Der IP-Filter wurde erfolgreich analysiert. Es wurden %1 Regeln angewendet.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="1975"/>
+        <location filename="../base/bittorrent/session.cpp" line="1943"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Fehler: IP-Filter konnte nicht analysiert werden.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2103"/>
+        <location filename="../base/bittorrent/session.cpp" line="2071"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>Konnte den Torrent nicht hinzufügen. Grund: %1</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2124"/>
+        <location filename="../base/bittorrent/session.cpp" line="2092"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; fortgesetzt. (Schnelles Fortsetzen)</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2155"/>
+        <location filename="../base/bittorrent/session.cpp" line="2123"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; der Downloadliste hinzugefügt.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2210"/>
+        <location filename="../base/bittorrent/session.cpp" line="2178"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
         <translation>Ein I/O Fehler ist aufgetreten, &apos;%1&apos; angehalten. %2</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2218"/>
+        <location filename="../base/bittorrent/session.cpp" line="2186"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Fehler beim Portmapping, Meldung: %1</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2224"/>
+        <location filename="../base/bittorrent/session.cpp" line="2192"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Portmapping erfolgreich, Meldung: %1</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2234"/>
+        <location filename="../base/bittorrent/session.cpp" line="2202"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>wegen IP-Filter.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2237"/>
+        <location filename="../base/bittorrent/session.cpp" line="2205"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>wegen Port-Filter.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2240"/>
+        <location filename="../base/bittorrent/session.cpp" line="2208"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>auf Grund von Beschränkungen für den gemischten i2p-Modus.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2243"/>
+        <location filename="../base/bittorrent/session.cpp" line="2211"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>weil der Port niedrig ist.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2281"/>
+        <location filename="../base/bittorrent/session.cpp" line="2249"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent lauscht erfolgreich auf Interface %1 Port %2/%3</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2307"/>
-        <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4</source>
+        <location filename="../base/bittorrent/session.cpp" line="2275"/>
+        <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
-        <translation>qBittorrent konnte nicht auf Interface %1 Port %2/%3 lauschen. Grund: %4</translation>
+        <translation type="unfinished">qBittorrent konnte nicht auf Interface %1 Port %2/%3 lauschen. Grund: %4. {1 ?} {2/%3.?}</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/session.cpp" line="2316"/>
+        <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4</source>
+        <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
+        <translation type="obsolete">qBittorrent konnte nicht auf Interface %1 Port %2/%3 lauschen. Grund: %4</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2284"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>Externe IP: %1</translation>
@@ -1191,17 +1207,17 @@
 <context>
     <name>BitTorrent::TorrentHandle</name>
     <message>
-        <location filename="../core/bittorrent/torrenthandle.cpp" line="1313"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1313"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation>Konnte den Torrent &apos;%1&apos; nicht verschieben. Grund: %2</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/torrenthandle.cpp" line="1454"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1454"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
         <translation>Dateigrößen des Torrent &apos;%1&apos; stimmen nicht überein, wird angehalten.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/torrenthandle.cpp" line="1460"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1460"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation>Fortsetzungsdaten des Torrent &apos;%1&apos; wurden zurückgewiesen. Grund: &apos;%2&apos;. Prüfe erneut ...</translation>
     </message>
@@ -1307,20 +1323,20 @@ Diese Information sollte in den Voreinstellungen des Webbrowsers enthalten sein.
 <context>
     <name>FilterParserThread</name>
     <message>
-        <location filename="../core/bittorrent/private/filterparserthread.cpp" line="65"/>
-        <location filename="../core/bittorrent/private/filterparserthread.cpp" line="159"/>
-        <location filename="../core/bittorrent/private/filterparserthread.cpp" line="267"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="65"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="159"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="267"/>
         <source>I/O Error: Could not open ip filter file in read mode.</source>
         <translation>E/A-Fehler: Konnte IP-Filterdatei nicht im Lesemodus öffnen.</translation>
     </message>
     <message>
-        <location filename="../core/bittorrent/private/filterparserthread.cpp" line="278"/>
-        <location filename="../core/bittorrent/private/filterparserthread.cpp" line="290"/>
-        <location filename="../core/bittorrent/private/filterparserthread.cpp" line="311"/>
-        <location filename="../core/bittorrent/private/filterparserthread.cpp" line="320"/>
-        <location filename="../core/bittorrent/private/filterparserthread.cpp" line="330"/>
-        <location filename="../core/bittorrent/private/filterparserthread.cpp" line="340"/>
-        <location filename="../core/bittorrent/private/filterparserthread.cpp" line="360"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="278"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="290"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="311"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="320"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="330"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="340"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="360"/>
         <source>Parsing Error: The filter file is not a valid PeerGuardian P2B file.</source>
         <translation>Syntax-Fehler: Die Filterdatei ist keine gültige PeerGuardian P2B-Datei.</translation>
     </message>
@@ -1328,43 +1344,43 @@ Diese Information sollte in den Voreinstellungen des Webbrowsers enthalten sein.
 <context>
     <name>GeoIPDatabase</name>
     <message>
-        <location filename="../core/net/private/geoipdatabase.cpp" line="101"/>
-        <location filename="../core/net/private/geoipdatabase.cpp" line="131"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="101"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="131"/>
         <source>Unsupported database file size.</source>
         <translation>Nicht unterstützte Dateigröße der Datenbank.</translation>
     </message>
     <message>
-        <location filename="../core/net/private/geoipdatabase.cpp" line="236"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="236"/>
         <source>Metadata error: &apos;%1&apos; entry not found.</source>
         <translation>Fehler in Metadaten: &apos;%1&apos;-Eintrag nicht gefunden.</translation>
     </message>
     <message>
-        <location filename="../core/net/private/geoipdatabase.cpp" line="237"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="237"/>
         <source>Metadata error: &apos;%1&apos; entry has invalid type.</source>
         <translation>Fehler in Metadaten: &apos;%1&apos;-Eintrag ist ein ungültiger Typ.</translation>
     </message>
     <message>
-        <location filename="../core/net/private/geoipdatabase.cpp" line="246"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="246"/>
         <source>Unsupported database version: %1.%2</source>
         <translation>Nicht unterstützte Version der Datenbank: %1.%2</translation>
     </message>
     <message>
-        <location filename="../core/net/private/geoipdatabase.cpp" line="253"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="253"/>
         <source>Unsupported IP version: %1</source>
         <translation>Nicht unterstützte IP-Version: %1</translation>
     </message>
     <message>
-        <location filename="../core/net/private/geoipdatabase.cpp" line="260"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="260"/>
         <source>Unsupported record size: %1</source>
         <translation>Nicht unterstützte Speichergröße: %1</translation>
     </message>
     <message>
-        <location filename="../core/net/private/geoipdatabase.cpp" line="273"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="273"/>
         <source>Invalid database type: %1</source>
         <translation>Ungültiger Datenbanktyp: %1</translation>
     </message>
     <message>
-        <location filename="../core/net/private/geoipdatabase.cpp" line="294"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="294"/>
         <source>Database corrupted: no data section found.</source>
         <translation>Fehlerhafte Datenbank: Kein Datenabschnitt gefunden. </translation>
     </message>
@@ -1397,9 +1413,8 @@ Diese Information sollte in den Voreinstellungen des Webbrowsers enthalten sein.
         <translation>Nur ein Link pro Zeile</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="42"/>
         <source>Download local torrent</source>
-        <translation>Lokalen Torrent herunterladen</translation>
+        <translation type="obsolete">Lokalen Torrent herunterladen</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="43"/>
@@ -1572,7 +1587,22 @@ Diese Information sollte in den Voreinstellungen des Webbrowsers enthalten sein.
         <translation>Inaktiv</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="90"/>
+        <location filename="../webui/extra_translations.h" line="87"/>
+        <source>Save files to location:</source>
+        <translation type="unfinished">Datei(en) hierhin speichern:</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="88"/>
+        <source>Label:</source>
+        <translation type="unfinished">Label:</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="89"/>
+        <source>Cookie:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="93"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Heruntergeladen</translation>
@@ -1581,6 +1611,11 @@ Diese Information sollte in den Voreinstellungen des Webbrowsers enthalten sein.
         <location filename="../webui/extra_translations.h" line="39"/>
         <source>Logout</source>
         <translation>Abmelden</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="42"/>
+        <source>Upload local torrent</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="44"/>
@@ -1722,7 +1757,7 @@ Diese Information sollte in den Voreinstellungen des Webbrowsers enthalten sein.
 <context>
     <name>LineEdit</name>
     <message>
-        <location filename="../gui/lineedit/src/lineedit.cpp" line="30"/>
+        <location filename="../gui/lineedit/src/lineedit.cpp" line="37"/>
         <source>Clear the text</source>
         <translation>Text löschen</translation>
     </message>
@@ -1743,37 +1778,37 @@ Diese Information sollte in den Voreinstellungen des Webbrowsers enthalten sein.
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../gui/mainwindow.ui" line="37"/>
+        <location filename="../gui/mainwindow.ui" line="43"/>
         <source>&amp;Edit</source>
         <translation>B&amp;earbeiten</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="60"/>
+        <location filename="../gui/mainwindow.ui" line="66"/>
         <source>&amp;Tools</source>
         <translation>&amp;Werkzeuge</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="80"/>
+        <location filename="../gui/mainwindow.ui" line="86"/>
         <source>&amp;File</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="50"/>
+        <location filename="../gui/mainwindow.ui" line="56"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="64"/>
+        <location filename="../gui/mainwindow.ui" line="70"/>
         <source>On Downloads &amp;Done</source>
         <translation>Wenn &amp;Downloads abgeschlossen sind</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="90"/>
+        <location filename="../gui/mainwindow.ui" line="96"/>
         <source>&amp;View</source>
         <translation>&amp;Ansicht</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="161"/>
+        <location filename="../gui/mainwindow.ui" line="164"/>
         <source>&amp;Options...</source>
         <translation>&amp;Optionen ...</translation>
     </message>
@@ -1783,153 +1818,153 @@ Diese Information sollte in den Voreinstellungen des Webbrowsers enthalten sein.
         <translation>Fo&amp;rtsetzen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="206"/>
+        <location filename="../gui/mainwindow.ui" line="197"/>
         <source>Torrent &amp;Creator</source>
         <translation>&amp;Torrent Ersteller</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="211"/>
+        <location filename="../gui/mainwindow.ui" line="202"/>
         <source>Set Upload Limit...</source>
         <translation>Upload Limit setzen ...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="216"/>
+        <location filename="../gui/mainwindow.ui" line="207"/>
         <source>Set Download Limit...</source>
         <translation>Download Limit setzen ...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="226"/>
+        <location filename="../gui/mainwindow.ui" line="217"/>
         <source>Set Global Download Limit...</source>
         <translation>Globales Download Limit setzen ...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="231"/>
+        <location filename="../gui/mainwindow.ui" line="222"/>
         <source>Set Global Upload Limit...</source>
         <translation>Globales Upload Limit setzen ...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="236"/>
+        <location filename="../gui/mainwindow.ui" line="227"/>
         <source>Minimum Priority</source>
         <translation>Niedrigste Priorität</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="244"/>
+        <location filename="../gui/mainwindow.ui" line="235"/>
         <source>Top Priority</source>
         <translation>Höchste Priorität</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="252"/>
+        <location filename="../gui/mainwindow.ui" line="243"/>
         <source>Decrease Priority</source>
         <translation>Priorität verringern</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="260"/>
+        <location filename="../gui/mainwindow.ui" line="251"/>
         <source>Increase Priority</source>
         <translation>Priorität erhöhen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="271"/>
-        <location filename="../gui/mainwindow.ui" line="274"/>
+        <location filename="../gui/mainwindow.ui" line="262"/>
+        <location filename="../gui/mainwindow.ui" line="265"/>
         <source>Alternative Speed Limits</source>
         <translation>Alternative Geschwindigkeitsbegrenzungen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="282"/>
+        <location filename="../gui/mainwindow.ui" line="273"/>
         <source>&amp;Top Toolbar</source>
         <translation>Obere Werkzeugleis&amp;te</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="285"/>
+        <location filename="../gui/mainwindow.ui" line="276"/>
         <source>Display Top Toolbar</source>
         <translation>Obere Werkzeugleiste anzeigen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="293"/>
+        <location filename="../gui/mainwindow.ui" line="284"/>
         <source>S&amp;peed in Title Bar</source>
         <translation>&amp;Geschwindigkeit in der Titelleiste</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="296"/>
+        <location filename="../gui/mainwindow.ui" line="287"/>
         <source>Show Transfer Speed in Title Bar</source>
         <translation>Übertragungsgeschwindigkeit in der Titelleiste anzeigen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="304"/>
+        <location filename="../gui/mainwindow.ui" line="295"/>
         <source>&amp;RSS Reader</source>
         <translation>&amp;RSS Reader</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="312"/>
+        <location filename="../gui/mainwindow.ui" line="303"/>
         <source>Search &amp;Engine</source>
         <translation>Suchmaschin&amp;e</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="317"/>
+        <location filename="../gui/mainwindow.ui" line="308"/>
         <source>L&amp;ock qBittorrent</source>
         <translation>qBitt&amp;orrent sperren</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="331"/>
+        <location filename="../gui/mainwindow.ui" line="319"/>
         <source>&amp;Import Existing Torrent...</source>
         <translation>Existierenden Torrent &amp;importieren ...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="334"/>
+        <location filename="../gui/mainwindow.ui" line="322"/>
         <source>Import Torrent...</source>
         <translation>Torrent importieren ...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="339"/>
+        <location filename="../gui/mainwindow.ui" line="327"/>
         <source>Do&amp;nate!</source>
         <translation>Spe&amp;nden!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="347"/>
+        <location filename="../gui/mainwindow.ui" line="335"/>
         <source>R&amp;esume All</source>
         <translation>Alle forts&amp;etzen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="360"/>
+        <location filename="../gui/mainwindow.ui" line="348"/>
         <source>&amp;Log</source>
         <translation>Protoko&amp;ll</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="371"/>
+        <location filename="../gui/mainwindow.ui" line="359"/>
         <source>&amp;Exit qBittorrent</source>
         <translation>qBittorrent b&amp;eenden</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="379"/>
+        <location filename="../gui/mainwindow.ui" line="367"/>
         <source>&amp;Suspend System</source>
         <translation>&amp;Standbymodus</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="387"/>
+        <location filename="../gui/mainwindow.ui" line="375"/>
         <source>&amp;Hibernate System</source>
         <translation>&amp;Ruhezustand</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="395"/>
+        <location filename="../gui/mainwindow.ui" line="383"/>
         <source>S&amp;hutdown System</source>
         <translation>System &amp;herunterfahren</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="403"/>
+        <location filename="../gui/mainwindow.ui" line="391"/>
         <source>&amp;Disabled</source>
         <translation>&amp;Deaktiviert</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="418"/>
+        <location filename="../gui/mainwindow.ui" line="406"/>
         <source>&amp;Statistics</source>
         <translation>&amp;Statistiken </translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="423"/>
+        <location filename="../gui/mainwindow.ui" line="411"/>
         <source>Check for Updates</source>
         <translation>Auf Aktualisierungen prüfen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="426"/>
+        <location filename="../gui/mainwindow.ui" line="414"/>
         <source>Check for Program Updates</source>
         <translation>Auf Programmaktualisierungen prüfen</translation>
     </message>
@@ -1939,77 +1974,72 @@ Diese Information sollte in den Voreinstellungen des Webbrowsers enthalten sein.
         <translation>&amp;Über</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="156"/>
         <source>Exit</source>
-        <translation>Beenden</translation>
+        <translation type="obsolete">Beenden</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="182"/>
+        <location filename="../gui/mainwindow.ui" line="179"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pausieren</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="190"/>
+        <location filename="../gui/mainwindow.ui" line="184"/>
         <source>&amp;Delete</source>
         <translation>&amp;Löschen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="352"/>
+        <location filename="../gui/mainwindow.ui" line="340"/>
         <source>P&amp;ause All</source>
         <translation>A&amp;lle anhalten</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="145"/>
+        <location filename="../gui/mainwindow.ui" line="151"/>
         <source>&amp;Add Torrent File...</source>
         <translation>Torrent-D&amp;atei hinzufügen...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="148"/>
+        <location filename="../gui/mainwindow.ui" line="154"/>
         <source>Open</source>
         <translation>Öffnen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="153"/>
+        <location filename="../gui/mainwindow.ui" line="159"/>
         <source>E&amp;xit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="164"/>
         <source>Options</source>
-        <translation>Optionen</translation>
+        <translation type="obsolete">Optionen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="177"/>
         <source>Resume</source>
-        <translation>Fortsetzen</translation>
+        <translation type="obsolete">Fortsetzen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="185"/>
         <source>Pause</source>
-        <translation>Pausieren</translation>
+        <translation type="obsolete">Pausieren</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="193"/>
         <source>Delete</source>
-        <translation>Löschen</translation>
+        <translation type="obsolete">Löschen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="201"/>
+        <location filename="../gui/mainwindow.ui" line="192"/>
         <source>Open URL</source>
         <translation>URL öffnen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="221"/>
+        <location filename="../gui/mainwindow.ui" line="212"/>
         <source>&amp;Documentation</source>
         <translation>&amp;Dokumentation</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="320"/>
+        <location filename="../gui/mainwindow.ui" line="311"/>
         <source>Lock</source>
         <translation>Sperren</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="408"/>
+        <location filename="../gui/mainwindow.ui" line="396"/>
         <location filename="../gui/mainwindow.cpp" line="1293"/>
         <source>Show</source>
         <translation>Zeige</translation>
@@ -2020,22 +2050,21 @@ Diese Information sollte in den Voreinstellungen des Webbrowsers enthalten sein.
         <translation>Auf Programm-Updates prüfen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="323"/>
         <source>Lock qBittorrent</source>
-        <translation>qBittorrent sperren</translation>
+        <translation type="obsolete">qBittorrent sperren</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="198"/>
+        <location filename="../gui/mainwindow.ui" line="189"/>
         <source>Add Torrent &amp;Link...</source>
         <translation>Torrent-&amp;Link hinzufügen...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="342"/>
+        <location filename="../gui/mainwindow.ui" line="330"/>
         <source>If you like qBittorrent, please donate!</source>
         <translation>Bitte spenden Sie wenn Ihnen qBittorrent gefällt!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="363"/>
+        <location filename="../gui/mainwindow.ui" line="351"/>
         <location filename="../gui/mainwindow.cpp" line="1508"/>
         <source>Execution Log</source>
         <translation>Ausführungs-Log</translation>
@@ -2414,52 +2443,52 @@ Soll qBittorrent wirklich beendet werden?</translation>
 <context>
     <name>Net::DNSUpdater</name>
     <message>
-        <location filename="../core/net/dnsupdater.cpp" line="200"/>
+        <location filename="../base/net/dnsupdater.cpp" line="200"/>
         <source>Your dynamic DNS was successfully updated.</source>
         <translation>Der dynamische DNS-Eintrag wurde erfolgreich aktualisiert.</translation>
     </message>
     <message>
-        <location filename="../core/net/dnsupdater.cpp" line="204"/>
+        <location filename="../base/net/dnsupdater.cpp" line="204"/>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
         <translation>Dynamischer DNS Fehler: Der Dienst ist vorübergehend nicht erreichbar. Ein neuer Versuch wird in 30 Minuten gestartet.</translation>
     </message>
     <message>
-        <location filename="../core/net/dnsupdater.cpp" line="213"/>
+        <location filename="../base/net/dnsupdater.cpp" line="213"/>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
         <translation>Dynamischer DNS Fehler: Der Hostname existiert nicht für den angegebenen Account.</translation>
     </message>
     <message>
-        <location filename="../core/net/dnsupdater.cpp" line="218"/>
+        <location filename="../base/net/dnsupdater.cpp" line="218"/>
         <source>Dynamic DNS error: Invalid username/password.</source>
         <translation>Dynamischer DNS Fehler: Ungültiger Benutzername/Passwort.</translation>
     </message>
     <message>
-        <location filename="../core/net/dnsupdater.cpp" line="223"/>
+        <location filename="../base/net/dnsupdater.cpp" line="223"/>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
         <translation>Dynamischer DNS Fehler: qBittorrent wurde durch den Dienst geblacklisted. Bitte melden sie einen Bug unter http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
-        <location filename="../core/net/dnsupdater.cpp" line="229"/>
+        <location filename="../base/net/dnsupdater.cpp" line="229"/>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
         <translation>Dynamischer DNS Fehler: Der Dienst hat %1 zurückgegeben. Bitte diesen Bug unter http://bugs.qbittorrent.org melden.</translation>
     </message>
     <message>
-        <location filename="../core/net/dnsupdater.cpp" line="235"/>
+        <location filename="../base/net/dnsupdater.cpp" line="235"/>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
         <translation>Dynamischer DNS Fehler: Der Benutzername wurde wegen Missbrauch geblockt.</translation>
     </message>
     <message>
-        <location filename="../core/net/dnsupdater.cpp" line="256"/>
+        <location filename="../base/net/dnsupdater.cpp" line="256"/>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
         <translation>Dynamischer DNS Fehler: Angegebener Domainname ist ungültig.</translation>
     </message>
     <message>
-        <location filename="../core/net/dnsupdater.cpp" line="267"/>
+        <location filename="../base/net/dnsupdater.cpp" line="267"/>
         <source>Dynamic DNS error: supplied username is too short.</source>
         <translation>Dynamischer DNS Fehler: Angegebener Benutzername ist zu kurz.</translation>
     </message>
     <message>
-        <location filename="../core/net/dnsupdater.cpp" line="278"/>
+        <location filename="../base/net/dnsupdater.cpp" line="278"/>
         <source>Dynamic DNS error: supplied password is too short.</source>
         <translation>Dynamischer DNS Fehler: Angegebenes Passwort ist zu kurz.</translation>
     </message>
@@ -2467,17 +2496,17 @@ Soll qBittorrent wirklich beendet werden?</translation>
 <context>
     <name>Net::DownloadHandler</name>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="104"/>
+        <location filename="../base/net/downloadhandler.cpp" line="104"/>
         <source>I/O Error</source>
         <translation>E/A-Fehler</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="117"/>
+        <location filename="../base/net/downloadhandler.cpp" line="117"/>
         <source>The file size is %1. It exceeds the download limit of %2.</source>
         <translation>Die Dateigröße beträgt %1. Sie überschreitet das Download-Limit von %2.</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="186"/>
+        <location filename="../base/net/downloadhandler.cpp" line="186"/>
         <source>Unexpected redirect to magnet URI.</source>
         <translation>Unerwartete Weiterleitung zu Magnet-URI.</translation>
     </message>
@@ -2485,1300 +2514,1300 @@ Soll qBittorrent wirklich beendet werden?</translation>
 <context>
     <name>Net::GeoIPManager</name>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="104"/>
-        <location filename="../core/net/geoipmanager.cpp" line="432"/>
+        <location filename="../base/net/geoipmanager.cpp" line="104"/>
+        <location filename="../base/net/geoipmanager.cpp" line="432"/>
         <source>GeoIP database loaded. Type: %1. Build time: %2.</source>
         <translation>GeoIP-Datenbank geladen. Typ: %1. Erstellungsdatum: %2.</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="108"/>
-        <location filename="../core/net/geoipmanager.cpp" line="453"/>
+        <location filename="../base/net/geoipmanager.cpp" line="108"/>
+        <location filename="../base/net/geoipmanager.cpp" line="453"/>
         <source>Couldn&apos;t load GeoIP database. Reason: %1</source>
         <translation>Konnte GeoIP-Datenbank nicht laden. Grund: %1</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="141"/>
-        <location filename="../core/net/geoipmanager.cpp" line="398"/>
+        <location filename="../base/net/geoipmanager.cpp" line="141"/>
+        <location filename="../base/net/geoipmanager.cpp" line="398"/>
         <source>N/A</source>
         <translation>N/V</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="142"/>
+        <location filename="../base/net/geoipmanager.cpp" line="142"/>
         <source>Asia/Pacific Region</source>
         <translation>Asien/Pazifikraum</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="143"/>
+        <location filename="../base/net/geoipmanager.cpp" line="143"/>
         <source>Europe</source>
         <translation>Europa</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="144"/>
+        <location filename="../base/net/geoipmanager.cpp" line="144"/>
         <source>Andorra</source>
         <translation>Andorra</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="145"/>
+        <location filename="../base/net/geoipmanager.cpp" line="145"/>
         <source>United Arab Emirates</source>
         <translation>Vereinigte Arabische Emirate</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="146"/>
+        <location filename="../base/net/geoipmanager.cpp" line="146"/>
         <source>Afghanistan</source>
         <translation>Afghanistan</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="147"/>
+        <location filename="../base/net/geoipmanager.cpp" line="147"/>
         <source>Antigua and Barbuda</source>
         <translation>Antigua und Barbuda</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="148"/>
+        <location filename="../base/net/geoipmanager.cpp" line="148"/>
         <source>Anguilla</source>
         <translation>Anguilla</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="149"/>
+        <location filename="../base/net/geoipmanager.cpp" line="149"/>
         <source>Albania</source>
         <translation>Albanien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="150"/>
+        <location filename="../base/net/geoipmanager.cpp" line="150"/>
         <source>Armenia</source>
         <translation>Armenien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="151"/>
+        <location filename="../base/net/geoipmanager.cpp" line="151"/>
         <source>Netherlands Antilles</source>
         <translation>Niederländische Antillen</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="152"/>
+        <location filename="../base/net/geoipmanager.cpp" line="152"/>
         <source>Angola</source>
         <translation>Angola</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="153"/>
+        <location filename="../base/net/geoipmanager.cpp" line="153"/>
         <source>Antarctica</source>
         <translation>Antarktika</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="154"/>
+        <location filename="../base/net/geoipmanager.cpp" line="154"/>
         <source>Argentina</source>
         <translation>Argentinien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="155"/>
+        <location filename="../base/net/geoipmanager.cpp" line="155"/>
         <source>American Samoa</source>
         <translation>Amerikanisch-Samoa</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="156"/>
+        <location filename="../base/net/geoipmanager.cpp" line="156"/>
         <source>Austria</source>
         <translation>Österreich</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="157"/>
+        <location filename="../base/net/geoipmanager.cpp" line="157"/>
         <source>Australia</source>
         <translation>Australien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="158"/>
+        <location filename="../base/net/geoipmanager.cpp" line="158"/>
         <source>Aruba</source>
         <translation>Aruba</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="159"/>
+        <location filename="../base/net/geoipmanager.cpp" line="159"/>
         <source>Azerbaijan</source>
         <translation>Aserbaidschan</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="160"/>
+        <location filename="../base/net/geoipmanager.cpp" line="160"/>
         <source>Bosnia and Herzegovina</source>
         <translation>Bosnien und Herzegowina</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="161"/>
+        <location filename="../base/net/geoipmanager.cpp" line="161"/>
         <source>Barbados</source>
         <translation>Barbados</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="162"/>
+        <location filename="../base/net/geoipmanager.cpp" line="162"/>
         <source>Bangladesh</source>
         <translation>Bangladesch</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="163"/>
+        <location filename="../base/net/geoipmanager.cpp" line="163"/>
         <source>Belgium</source>
         <translation>Belgien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="164"/>
+        <location filename="../base/net/geoipmanager.cpp" line="164"/>
         <source>Burkina Faso</source>
         <translation>Burkina Faso</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="165"/>
+        <location filename="../base/net/geoipmanager.cpp" line="165"/>
         <source>Bulgaria</source>
         <translation>Bulgarien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="166"/>
+        <location filename="../base/net/geoipmanager.cpp" line="166"/>
         <source>Bahrain</source>
         <translation>Bahrain</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="167"/>
+        <location filename="../base/net/geoipmanager.cpp" line="167"/>
         <source>Burundi</source>
         <translation>Burundi</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="168"/>
+        <location filename="../base/net/geoipmanager.cpp" line="168"/>
         <source>Benin</source>
         <translation>Benin</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="169"/>
+        <location filename="../base/net/geoipmanager.cpp" line="169"/>
         <source>Bermuda</source>
         <translation>Bermuda</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="170"/>
+        <location filename="../base/net/geoipmanager.cpp" line="170"/>
         <source>Brunei Darussalam</source>
         <translation>Brunei</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="171"/>
+        <location filename="../base/net/geoipmanager.cpp" line="171"/>
         <source>Bolivia</source>
         <translation>Bolivien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="172"/>
+        <location filename="../base/net/geoipmanager.cpp" line="172"/>
         <source>Brazil</source>
         <translation>Brasilien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="173"/>
+        <location filename="../base/net/geoipmanager.cpp" line="173"/>
         <source>Bahamas</source>
         <translation>Bahamas</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="174"/>
+        <location filename="../base/net/geoipmanager.cpp" line="174"/>
         <source>Bhutan</source>
         <translation>Bhutan</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="175"/>
+        <location filename="../base/net/geoipmanager.cpp" line="175"/>
         <source>Bouvet Island</source>
         <translation>Bouvetinsel</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="176"/>
+        <location filename="../base/net/geoipmanager.cpp" line="176"/>
         <source>Botswana</source>
         <translation>Botswana</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="177"/>
+        <location filename="../base/net/geoipmanager.cpp" line="177"/>
         <source>Belarus</source>
         <translation>Weißrussland</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="178"/>
+        <location filename="../base/net/geoipmanager.cpp" line="178"/>
         <source>Belize</source>
         <translation>Belize</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="179"/>
+        <location filename="../base/net/geoipmanager.cpp" line="179"/>
         <source>Canada</source>
         <translation>Kanada</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="180"/>
+        <location filename="../base/net/geoipmanager.cpp" line="180"/>
         <source>Cocos (Keeling) Islands</source>
         <translation>Kokos-Inseln (Keeling-Inseln)</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="181"/>
+        <location filename="../base/net/geoipmanager.cpp" line="181"/>
         <source>Congo, The Democratic Republic of the</source>
         <translation>Kongo</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="182"/>
+        <location filename="../base/net/geoipmanager.cpp" line="182"/>
         <source>Central African Republic</source>
         <translation>Zentralafrikanische Republik</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="183"/>
+        <location filename="../base/net/geoipmanager.cpp" line="183"/>
         <source>Congo</source>
         <translation>Kongo</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="184"/>
+        <location filename="../base/net/geoipmanager.cpp" line="184"/>
         <source>Switzerland</source>
         <translation>Schweiz</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="185"/>
+        <location filename="../base/net/geoipmanager.cpp" line="185"/>
         <source>Cote D&apos;Ivoire</source>
         <translation>Elfenbeinküste</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="186"/>
+        <location filename="../base/net/geoipmanager.cpp" line="186"/>
         <source>Cook Islands</source>
         <translation>Cookinseln</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="187"/>
+        <location filename="../base/net/geoipmanager.cpp" line="187"/>
         <source>Chile</source>
         <translation>Chile</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="188"/>
+        <location filename="../base/net/geoipmanager.cpp" line="188"/>
         <source>Cameroon</source>
         <translation>Kamerun</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="189"/>
+        <location filename="../base/net/geoipmanager.cpp" line="189"/>
         <source>China</source>
         <translation>China</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="190"/>
+        <location filename="../base/net/geoipmanager.cpp" line="190"/>
         <source>Colombia</source>
         <translation>Kolumbien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="191"/>
+        <location filename="../base/net/geoipmanager.cpp" line="191"/>
         <source>Costa Rica</source>
         <translation>Costa Rica</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="192"/>
+        <location filename="../base/net/geoipmanager.cpp" line="192"/>
         <source>Cuba</source>
         <translation>Kuba</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="193"/>
+        <location filename="../base/net/geoipmanager.cpp" line="193"/>
         <source>Cape Verde</source>
         <translation>Kap Verde</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="194"/>
+        <location filename="../base/net/geoipmanager.cpp" line="194"/>
         <source>Christmas Island</source>
         <translation>Weihnachtsinsel</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="195"/>
+        <location filename="../base/net/geoipmanager.cpp" line="195"/>
         <source>Cyprus</source>
         <translation>Zypern</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="196"/>
+        <location filename="../base/net/geoipmanager.cpp" line="196"/>
         <source>Czech Republic</source>
         <translation>Tschechien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="197"/>
+        <location filename="../base/net/geoipmanager.cpp" line="197"/>
         <source>Germany</source>
         <translation>Deutschland</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="198"/>
+        <location filename="../base/net/geoipmanager.cpp" line="198"/>
         <source>Djibouti</source>
         <translation>Dschibuti</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="199"/>
+        <location filename="../base/net/geoipmanager.cpp" line="199"/>
         <source>Denmark</source>
         <translation>Dänemark</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="200"/>
+        <location filename="../base/net/geoipmanager.cpp" line="200"/>
         <source>Dominica</source>
         <translation>Dominica</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="201"/>
+        <location filename="../base/net/geoipmanager.cpp" line="201"/>
         <source>Dominican Republic</source>
         <translation>Dominikanische Republik</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="202"/>
+        <location filename="../base/net/geoipmanager.cpp" line="202"/>
         <source>Algeria</source>
         <translation>Algerien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="203"/>
+        <location filename="../base/net/geoipmanager.cpp" line="203"/>
         <source>Ecuador</source>
         <translation>Ecuador</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="204"/>
+        <location filename="../base/net/geoipmanager.cpp" line="204"/>
         <source>Estonia</source>
         <translation>Estland</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="205"/>
+        <location filename="../base/net/geoipmanager.cpp" line="205"/>
         <source>Egypt</source>
         <translation>Ägypten</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="206"/>
+        <location filename="../base/net/geoipmanager.cpp" line="206"/>
         <source>Western Sahara</source>
         <translation>Westsahara</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="207"/>
+        <location filename="../base/net/geoipmanager.cpp" line="207"/>
         <source>Eritrea</source>
         <translation>Eritrea</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="208"/>
+        <location filename="../base/net/geoipmanager.cpp" line="208"/>
         <source>Spain</source>
         <translation>Spanien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="209"/>
+        <location filename="../base/net/geoipmanager.cpp" line="209"/>
         <source>Ethiopia</source>
         <translation>Äthiopien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="210"/>
+        <location filename="../base/net/geoipmanager.cpp" line="210"/>
         <source>Finland</source>
         <translation>Finnland</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="211"/>
+        <location filename="../base/net/geoipmanager.cpp" line="211"/>
         <source>Fiji</source>
         <translation>Fidschi</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="212"/>
+        <location filename="../base/net/geoipmanager.cpp" line="212"/>
         <source>Falkland Islands (Malvinas)</source>
         <translation>Falkland-Inseln</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="213"/>
+        <location filename="../base/net/geoipmanager.cpp" line="213"/>
         <source>Micronesia, Federated States of</source>
         <translation>Mikronesien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="214"/>
+        <location filename="../base/net/geoipmanager.cpp" line="214"/>
         <source>Faroe Islands</source>
         <translation>Färöer-Inseln</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="215"/>
+        <location filename="../base/net/geoipmanager.cpp" line="215"/>
         <source>France</source>
         <translation>Frankreich</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="216"/>
+        <location filename="../base/net/geoipmanager.cpp" line="216"/>
         <source>France, Metropolitan</source>
         <translation>Metropolitan-Frankreich</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="217"/>
+        <location filename="../base/net/geoipmanager.cpp" line="217"/>
         <source>Gabon</source>
         <translation>Gabun</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="218"/>
+        <location filename="../base/net/geoipmanager.cpp" line="218"/>
         <source>United Kingdom</source>
         <translation>Vereinigtes Königreich</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="219"/>
+        <location filename="../base/net/geoipmanager.cpp" line="219"/>
         <source>Grenada</source>
         <translation>Grenada</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="220"/>
+        <location filename="../base/net/geoipmanager.cpp" line="220"/>
         <source>Georgia</source>
         <translation>Georgien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="221"/>
+        <location filename="../base/net/geoipmanager.cpp" line="221"/>
         <source>French Guiana</source>
         <translation>Französisch-Guayana</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="222"/>
+        <location filename="../base/net/geoipmanager.cpp" line="222"/>
         <source>Ghana</source>
         <translation>Ghana</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="223"/>
+        <location filename="../base/net/geoipmanager.cpp" line="223"/>
         <source>Gibraltar</source>
         <translation>Gibraltar</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="224"/>
+        <location filename="../base/net/geoipmanager.cpp" line="224"/>
         <source>Greenland</source>
         <translation>Grönland</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="225"/>
+        <location filename="../base/net/geoipmanager.cpp" line="225"/>
         <source>Gambia</source>
         <translation>Gambia</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="226"/>
+        <location filename="../base/net/geoipmanager.cpp" line="226"/>
         <source>Guinea</source>
         <translation>Guinea</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="227"/>
+        <location filename="../base/net/geoipmanager.cpp" line="227"/>
         <source>Guadeloupe</source>
         <translation>Guadeloupe</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="228"/>
+        <location filename="../base/net/geoipmanager.cpp" line="228"/>
         <source>Equatorial Guinea</source>
         <translation>Äquatorialguinea</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="229"/>
+        <location filename="../base/net/geoipmanager.cpp" line="229"/>
         <source>Greece</source>
         <translation>Griechenland</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="230"/>
+        <location filename="../base/net/geoipmanager.cpp" line="230"/>
         <source>South Georgia and the South Sandwich Islands</source>
         <translation>Südgeorgien und die Südlichen Sandwichinseln</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="231"/>
+        <location filename="../base/net/geoipmanager.cpp" line="231"/>
         <source>Guatemala</source>
         <translation>Guatemala</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="232"/>
+        <location filename="../base/net/geoipmanager.cpp" line="232"/>
         <source>Guam</source>
         <translation>Guam</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="233"/>
+        <location filename="../base/net/geoipmanager.cpp" line="233"/>
         <source>Guinea-Bissau</source>
         <translation>Guinea-Bissau</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="234"/>
+        <location filename="../base/net/geoipmanager.cpp" line="234"/>
         <source>Guyana</source>
         <translation>Guyana</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="235"/>
+        <location filename="../base/net/geoipmanager.cpp" line="235"/>
         <source>Hong Kong</source>
         <translation>Hongkong</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="236"/>
+        <location filename="../base/net/geoipmanager.cpp" line="236"/>
         <source>Heard Island and McDonald Islands</source>
         <translation>Heard und die McDonaldinseln</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="237"/>
+        <location filename="../base/net/geoipmanager.cpp" line="237"/>
         <source>Honduras</source>
         <translation>Honduras</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="238"/>
+        <location filename="../base/net/geoipmanager.cpp" line="238"/>
         <source>Croatia</source>
         <translation>Kroatien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="239"/>
+        <location filename="../base/net/geoipmanager.cpp" line="239"/>
         <source>Haiti</source>
         <translation>Haiti</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="240"/>
+        <location filename="../base/net/geoipmanager.cpp" line="240"/>
         <source>Hungary</source>
         <translation>Ungarn</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="241"/>
+        <location filename="../base/net/geoipmanager.cpp" line="241"/>
         <source>Indonesia</source>
         <translation>Indonesien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="242"/>
+        <location filename="../base/net/geoipmanager.cpp" line="242"/>
         <source>Ireland</source>
         <translation>Irland</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="243"/>
+        <location filename="../base/net/geoipmanager.cpp" line="243"/>
         <source>Israel</source>
         <translation>Israel</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="244"/>
+        <location filename="../base/net/geoipmanager.cpp" line="244"/>
         <source>India</source>
         <translation>Indien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="245"/>
+        <location filename="../base/net/geoipmanager.cpp" line="245"/>
         <source>British Indian Ocean Territory</source>
         <translation>Das Britische Territorium im Indischen Ozean</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="246"/>
+        <location filename="../base/net/geoipmanager.cpp" line="246"/>
         <source>Iraq</source>
         <translation>Irak</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="247"/>
+        <location filename="../base/net/geoipmanager.cpp" line="247"/>
         <source>Iran, Islamic Republic of</source>
         <translation>Iran, Islamische Republik</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="248"/>
+        <location filename="../base/net/geoipmanager.cpp" line="248"/>
         <source>Iceland</source>
         <translation>Island</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="249"/>
+        <location filename="../base/net/geoipmanager.cpp" line="249"/>
         <source>Italy</source>
         <translation>Italien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="250"/>
+        <location filename="../base/net/geoipmanager.cpp" line="250"/>
         <source>Jamaica</source>
         <translation>Jamaika</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="251"/>
+        <location filename="../base/net/geoipmanager.cpp" line="251"/>
         <source>Jordan</source>
         <translation>Jordanien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="252"/>
+        <location filename="../base/net/geoipmanager.cpp" line="252"/>
         <source>Japan</source>
         <translation>Japan</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="253"/>
+        <location filename="../base/net/geoipmanager.cpp" line="253"/>
         <source>Kenya</source>
         <translation>Kenia</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="254"/>
+        <location filename="../base/net/geoipmanager.cpp" line="254"/>
         <source>Kyrgyzstan</source>
         <translation>Kirgisistan</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="255"/>
+        <location filename="../base/net/geoipmanager.cpp" line="255"/>
         <source>Cambodia</source>
         <translation>Kambodscha</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="256"/>
+        <location filename="../base/net/geoipmanager.cpp" line="256"/>
         <source>Kiribati</source>
         <translation>Kiribati</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="257"/>
+        <location filename="../base/net/geoipmanager.cpp" line="257"/>
         <source>Comoros</source>
         <translation>Komoren</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="258"/>
+        <location filename="../base/net/geoipmanager.cpp" line="258"/>
         <source>Saint Kitts and Nevis</source>
         <translation>St. Kitts und Nevis</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="259"/>
+        <location filename="../base/net/geoipmanager.cpp" line="259"/>
         <source>Korea, Democratic People&apos;s Republic of</source>
         <translation>Korea, Demokratische Volksrepublik</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="260"/>
+        <location filename="../base/net/geoipmanager.cpp" line="260"/>
         <source>Korea, Republic of</source>
         <translation>Korea, Republik</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="261"/>
+        <location filename="../base/net/geoipmanager.cpp" line="261"/>
         <source>Kuwait</source>
         <translation>Kuwait</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="262"/>
+        <location filename="../base/net/geoipmanager.cpp" line="262"/>
         <source>Cayman Islands</source>
         <translation>Kaimaninseln</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="263"/>
+        <location filename="../base/net/geoipmanager.cpp" line="263"/>
         <source>Kazakhstan</source>
         <translation>Kasachstan</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="264"/>
+        <location filename="../base/net/geoipmanager.cpp" line="264"/>
         <source>Lao People&apos;s Democratic Republic</source>
         <translation>Laos</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="265"/>
+        <location filename="../base/net/geoipmanager.cpp" line="265"/>
         <source>Lebanon</source>
         <translation>Libanon</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="266"/>
+        <location filename="../base/net/geoipmanager.cpp" line="266"/>
         <source>Saint Lucia</source>
         <translation>St. Lucia</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="267"/>
+        <location filename="../base/net/geoipmanager.cpp" line="267"/>
         <source>Liechtenstein</source>
         <translation>Liechtenstein</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="268"/>
+        <location filename="../base/net/geoipmanager.cpp" line="268"/>
         <source>Sri Lanka</source>
         <translation>Sri Lanka</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="269"/>
+        <location filename="../base/net/geoipmanager.cpp" line="269"/>
         <source>Liberia</source>
         <translation>Liberia</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="270"/>
+        <location filename="../base/net/geoipmanager.cpp" line="270"/>
         <source>Lesotho</source>
         <translation>Lesotho</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="271"/>
+        <location filename="../base/net/geoipmanager.cpp" line="271"/>
         <source>Lithuania</source>
         <translation>Litauen</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="272"/>
+        <location filename="../base/net/geoipmanager.cpp" line="272"/>
         <source>Luxembourg</source>
         <translation>Luxemburg</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="273"/>
+        <location filename="../base/net/geoipmanager.cpp" line="273"/>
         <source>Latvia</source>
         <translation>Lettland</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="274"/>
+        <location filename="../base/net/geoipmanager.cpp" line="274"/>
         <source>Libyan Arab Jamahiriya</source>
         <translation>Libyen</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="275"/>
+        <location filename="../base/net/geoipmanager.cpp" line="275"/>
         <source>Morocco</source>
         <translation>Marokko</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="276"/>
+        <location filename="../base/net/geoipmanager.cpp" line="276"/>
         <source>Monaco</source>
         <translation>Monaco</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="277"/>
+        <location filename="../base/net/geoipmanager.cpp" line="277"/>
         <source>Moldova, Republic of</source>
         <translation>Moldawien, Republik</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="278"/>
+        <location filename="../base/net/geoipmanager.cpp" line="278"/>
         <source>Madagascar</source>
         <translation>Madagaskar</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="279"/>
+        <location filename="../base/net/geoipmanager.cpp" line="279"/>
         <source>Marshall Islands</source>
         <translation>Marshallinseln</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="280"/>
+        <location filename="../base/net/geoipmanager.cpp" line="280"/>
         <source>Macedonia</source>
         <translation>Mazedonien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="281"/>
+        <location filename="../base/net/geoipmanager.cpp" line="281"/>
         <source>Mali</source>
         <translation>Mali</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="282"/>
+        <location filename="../base/net/geoipmanager.cpp" line="282"/>
         <source>Myanmar</source>
         <translation>Myanmar</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="283"/>
+        <location filename="../base/net/geoipmanager.cpp" line="283"/>
         <source>Mongolia</source>
         <translation>Mongolei</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="284"/>
+        <location filename="../base/net/geoipmanager.cpp" line="284"/>
         <source>Macau</source>
         <translation>Macau</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="285"/>
+        <location filename="../base/net/geoipmanager.cpp" line="285"/>
         <source>Northern Mariana Islands</source>
         <translation>Nördliche Marianen</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="286"/>
+        <location filename="../base/net/geoipmanager.cpp" line="286"/>
         <source>Martinique</source>
         <translation>Martinique</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="287"/>
+        <location filename="../base/net/geoipmanager.cpp" line="287"/>
         <source>Mauritania</source>
         <translation>Mauretanien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="288"/>
+        <location filename="../base/net/geoipmanager.cpp" line="288"/>
         <source>Montserrat</source>
         <translation>Montserrat</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="289"/>
+        <location filename="../base/net/geoipmanager.cpp" line="289"/>
         <source>Malta</source>
         <translation>Malta</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="290"/>
+        <location filename="../base/net/geoipmanager.cpp" line="290"/>
         <source>Mauritius</source>
         <translation>Mauritius</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="291"/>
+        <location filename="../base/net/geoipmanager.cpp" line="291"/>
         <source>Maldives</source>
         <translation>Malediven</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="292"/>
+        <location filename="../base/net/geoipmanager.cpp" line="292"/>
         <source>Malawi</source>
         <translation>Malawi</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="293"/>
+        <location filename="../base/net/geoipmanager.cpp" line="293"/>
         <source>Mexico</source>
         <translation>Mexiko</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="294"/>
+        <location filename="../base/net/geoipmanager.cpp" line="294"/>
         <source>Malaysia</source>
         <translation>Malaysia</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="295"/>
+        <location filename="../base/net/geoipmanager.cpp" line="295"/>
         <source>Mozambique</source>
         <translation>Mosambik</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="296"/>
+        <location filename="../base/net/geoipmanager.cpp" line="296"/>
         <source>Namibia</source>
         <translation>Namibia</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="297"/>
+        <location filename="../base/net/geoipmanager.cpp" line="297"/>
         <source>New Caledonia</source>
         <translation>Neukaledonien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="298"/>
+        <location filename="../base/net/geoipmanager.cpp" line="298"/>
         <source>Niger</source>
         <translation>Niger</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="299"/>
+        <location filename="../base/net/geoipmanager.cpp" line="299"/>
         <source>Norfolk Island</source>
         <translation>Norfolkinsel</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="300"/>
+        <location filename="../base/net/geoipmanager.cpp" line="300"/>
         <source>Nigeria</source>
         <translation>Nigeria</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="301"/>
+        <location filename="../base/net/geoipmanager.cpp" line="301"/>
         <source>Nicaragua</source>
         <translation>Nicaragua</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="302"/>
+        <location filename="../base/net/geoipmanager.cpp" line="302"/>
         <source>Netherlands</source>
         <translation>Niederlande</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="303"/>
+        <location filename="../base/net/geoipmanager.cpp" line="303"/>
         <source>Norway</source>
         <translation>Norwegen</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="304"/>
+        <location filename="../base/net/geoipmanager.cpp" line="304"/>
         <source>Nepal</source>
         <translation>Nepal</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="305"/>
+        <location filename="../base/net/geoipmanager.cpp" line="305"/>
         <source>Nauru</source>
         <translation>Nauru</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="306"/>
+        <location filename="../base/net/geoipmanager.cpp" line="306"/>
         <source>Niue</source>
         <translation>Niue</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="307"/>
+        <location filename="../base/net/geoipmanager.cpp" line="307"/>
         <source>New Zealand</source>
         <translation>Neuseeland</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="308"/>
+        <location filename="../base/net/geoipmanager.cpp" line="308"/>
         <source>Oman</source>
         <translation>Oman</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="309"/>
+        <location filename="../base/net/geoipmanager.cpp" line="309"/>
         <source>Panama</source>
         <translation>Panama</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="310"/>
+        <location filename="../base/net/geoipmanager.cpp" line="310"/>
         <source>Peru</source>
         <translation>Peru</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="311"/>
+        <location filename="../base/net/geoipmanager.cpp" line="311"/>
         <source>French Polynesia</source>
         <translation>Französisch-Polynesien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="312"/>
+        <location filename="../base/net/geoipmanager.cpp" line="312"/>
         <source>Papua New Guinea</source>
         <translation>Papua-Neuguinea</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="313"/>
+        <location filename="../base/net/geoipmanager.cpp" line="313"/>
         <source>Philippines</source>
         <translation>Philippinen</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="314"/>
+        <location filename="../base/net/geoipmanager.cpp" line="314"/>
         <source>Pakistan</source>
         <translation>Pakistan</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="315"/>
+        <location filename="../base/net/geoipmanager.cpp" line="315"/>
         <source>Poland</source>
         <translation>Polen</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="316"/>
+        <location filename="../base/net/geoipmanager.cpp" line="316"/>
         <source>Saint Pierre and Miquelon</source>
         <translation>Saint-Pierre und Miquelon</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="317"/>
+        <location filename="../base/net/geoipmanager.cpp" line="317"/>
         <source>Pitcairn Islands</source>
         <translation>Pitcairninseln</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="318"/>
+        <location filename="../base/net/geoipmanager.cpp" line="318"/>
         <source>Puerto Rico</source>
         <translation>Puerto Rico</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="319"/>
+        <location filename="../base/net/geoipmanager.cpp" line="319"/>
         <source>Palestinian Territory</source>
         <translation>Palästinensische Autonomiegebiete</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="320"/>
+        <location filename="../base/net/geoipmanager.cpp" line="320"/>
         <source>Portugal</source>
         <translation>Portugal</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="321"/>
+        <location filename="../base/net/geoipmanager.cpp" line="321"/>
         <source>Palau</source>
         <translation>Palau</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="322"/>
+        <location filename="../base/net/geoipmanager.cpp" line="322"/>
         <source>Paraguay</source>
         <translation>Paraguay</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="323"/>
+        <location filename="../base/net/geoipmanager.cpp" line="323"/>
         <source>Qatar</source>
         <translation>Katar</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="324"/>
+        <location filename="../base/net/geoipmanager.cpp" line="324"/>
         <source>Reunion</source>
         <translation>La Réunion</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="325"/>
+        <location filename="../base/net/geoipmanager.cpp" line="325"/>
         <source>Romania</source>
         <translation>Rumänien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="326"/>
+        <location filename="../base/net/geoipmanager.cpp" line="326"/>
         <source>Russian Federation</source>
         <translation>Russische Föderation</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="327"/>
+        <location filename="../base/net/geoipmanager.cpp" line="327"/>
         <source>Rwanda</source>
         <translation>Ruanda</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="328"/>
+        <location filename="../base/net/geoipmanager.cpp" line="328"/>
         <source>Saudi Arabia</source>
         <translation>Saudi-Arabien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="329"/>
+        <location filename="../base/net/geoipmanager.cpp" line="329"/>
         <source>Solomon Islands</source>
         <translation>Salomonen</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="330"/>
+        <location filename="../base/net/geoipmanager.cpp" line="330"/>
         <source>Seychelles</source>
         <translation>Seychellen</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="331"/>
+        <location filename="../base/net/geoipmanager.cpp" line="331"/>
         <source>Sudan</source>
         <translation>Sudan</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="332"/>
+        <location filename="../base/net/geoipmanager.cpp" line="332"/>
         <source>Sweden</source>
         <translation>Schweden</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="333"/>
+        <location filename="../base/net/geoipmanager.cpp" line="333"/>
         <source>Singapore</source>
         <translation>Singapur</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="334"/>
+        <location filename="../base/net/geoipmanager.cpp" line="334"/>
         <source>Saint Helena</source>
         <translation>St. Helena</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="335"/>
+        <location filename="../base/net/geoipmanager.cpp" line="335"/>
         <source>Slovenia</source>
         <translation>Slowenien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="336"/>
+        <location filename="../base/net/geoipmanager.cpp" line="336"/>
         <source>Svalbard and Jan Mayen</source>
         <translation>Spitzbergen (Inselgruppe)</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="337"/>
+        <location filename="../base/net/geoipmanager.cpp" line="337"/>
         <source>Slovakia</source>
         <translation>Slowakei</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="338"/>
+        <location filename="../base/net/geoipmanager.cpp" line="338"/>
         <source>Sierra Leone</source>
         <translation>Sierra Leone</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="339"/>
+        <location filename="../base/net/geoipmanager.cpp" line="339"/>
         <source>San Marino</source>
         <translation>San Marino</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="340"/>
+        <location filename="../base/net/geoipmanager.cpp" line="340"/>
         <source>Senegal</source>
         <translation>Senegal</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="341"/>
+        <location filename="../base/net/geoipmanager.cpp" line="341"/>
         <source>Somalia</source>
         <translation>Somalia</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="342"/>
+        <location filename="../base/net/geoipmanager.cpp" line="342"/>
         <source>Suriname</source>
         <translation>Suriname</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="343"/>
+        <location filename="../base/net/geoipmanager.cpp" line="343"/>
         <source>Sao Tome and Principe</source>
         <translation>São Tomé und Príncipe</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="344"/>
+        <location filename="../base/net/geoipmanager.cpp" line="344"/>
         <source>El Salvador</source>
         <translation>El Salvador</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="345"/>
+        <location filename="../base/net/geoipmanager.cpp" line="345"/>
         <source>Syrian Arab Republic</source>
         <translation>Arabische Republik Syrien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="346"/>
+        <location filename="../base/net/geoipmanager.cpp" line="346"/>
         <source>Swaziland</source>
         <translation>Swasiland</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="347"/>
+        <location filename="../base/net/geoipmanager.cpp" line="347"/>
         <source>Turks and Caicos Islands</source>
         <translation>Turks- und Caicosinseln</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="348"/>
+        <location filename="../base/net/geoipmanager.cpp" line="348"/>
         <source>Chad</source>
         <translation>Tschad</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="349"/>
+        <location filename="../base/net/geoipmanager.cpp" line="349"/>
         <source>French Southern Territories</source>
         <translation>Französische Süd- und Antarktisgebiete</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="350"/>
+        <location filename="../base/net/geoipmanager.cpp" line="350"/>
         <source>Togo</source>
         <translation>Togo</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="351"/>
+        <location filename="../base/net/geoipmanager.cpp" line="351"/>
         <source>Thailand</source>
         <translation>Thailand</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="352"/>
+        <location filename="../base/net/geoipmanager.cpp" line="352"/>
         <source>Tajikistan</source>
         <translation>Tadschikistan</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="353"/>
+        <location filename="../base/net/geoipmanager.cpp" line="353"/>
         <source>Tokelau</source>
         <translation>Tokelau</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="354"/>
+        <location filename="../base/net/geoipmanager.cpp" line="354"/>
         <source>Turkmenistan</source>
         <translation>Turkmenistan</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="355"/>
+        <location filename="../base/net/geoipmanager.cpp" line="355"/>
         <source>Tunisia</source>
         <translation>Tunesien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="356"/>
+        <location filename="../base/net/geoipmanager.cpp" line="356"/>
         <source>Tonga</source>
         <translation>Tonga</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="357"/>
+        <location filename="../base/net/geoipmanager.cpp" line="357"/>
         <source>Timor-Leste</source>
         <translation>Osttimor</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="358"/>
+        <location filename="../base/net/geoipmanager.cpp" line="358"/>
         <source>Turkey</source>
         <translation>Türkei</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="359"/>
+        <location filename="../base/net/geoipmanager.cpp" line="359"/>
         <source>Trinidad and Tobago</source>
         <translation>Trinidad und Tobago</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="360"/>
+        <location filename="../base/net/geoipmanager.cpp" line="360"/>
         <source>Tuvalu</source>
         <translation>Tuvalu</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="361"/>
+        <location filename="../base/net/geoipmanager.cpp" line="361"/>
         <source>Taiwan</source>
         <translation>Taiwan</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="362"/>
+        <location filename="../base/net/geoipmanager.cpp" line="362"/>
         <source>Tanzania, United Republic of</source>
         <translation>Tansania</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="363"/>
+        <location filename="../base/net/geoipmanager.cpp" line="363"/>
         <source>Ukraine</source>
         <translation>Ukraine</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="364"/>
+        <location filename="../base/net/geoipmanager.cpp" line="364"/>
         <source>Uganda</source>
         <translation>Uganda</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="365"/>
+        <location filename="../base/net/geoipmanager.cpp" line="365"/>
         <source>United States Minor Outlying Islands</source>
         <translation>Kleinere Inselbesitzungen der Vereinigten Staaten</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="366"/>
+        <location filename="../base/net/geoipmanager.cpp" line="366"/>
         <source>United States</source>
         <translation>Vereinigte Staaten</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="367"/>
+        <location filename="../base/net/geoipmanager.cpp" line="367"/>
         <source>Uruguay</source>
         <translation>Uruguay</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="368"/>
+        <location filename="../base/net/geoipmanager.cpp" line="368"/>
         <source>Uzbekistan</source>
         <translation>Usbekistan</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="369"/>
+        <location filename="../base/net/geoipmanager.cpp" line="369"/>
         <source>Holy See (Vatican City State)</source>
         <translation>Heiliger Stuhl (Staat der Vatikanstadt)</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="370"/>
+        <location filename="../base/net/geoipmanager.cpp" line="370"/>
         <source>Saint Vincent and the Grenadines</source>
         <translation>St. Vincent und die Grenadinen</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="371"/>
+        <location filename="../base/net/geoipmanager.cpp" line="371"/>
         <source>Venezuela</source>
         <translation>Venezuela</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="372"/>
+        <location filename="../base/net/geoipmanager.cpp" line="372"/>
         <source>Virgin Islands, British</source>
         <translation>Britische Jungferninseln</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="373"/>
+        <location filename="../base/net/geoipmanager.cpp" line="373"/>
         <source>Virgin Islands, U.S.</source>
         <translation>Amerikanische Jungferninseln</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="374"/>
+        <location filename="../base/net/geoipmanager.cpp" line="374"/>
         <source>Vietnam</source>
         <translation>Vietnam</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="375"/>
+        <location filename="../base/net/geoipmanager.cpp" line="375"/>
         <source>Vanuatu</source>
         <translation>Vanuatu</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="376"/>
+        <location filename="../base/net/geoipmanager.cpp" line="376"/>
         <source>Wallis and Futuna</source>
         <translation>Wallis und Futuna</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="377"/>
+        <location filename="../base/net/geoipmanager.cpp" line="377"/>
         <source>Samoa</source>
         <translation>Samoa</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="378"/>
+        <location filename="../base/net/geoipmanager.cpp" line="378"/>
         <source>Yemen</source>
         <translation>Jemen</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="379"/>
+        <location filename="../base/net/geoipmanager.cpp" line="379"/>
         <source>Mayotte</source>
         <translation>Mayotte</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="380"/>
+        <location filename="../base/net/geoipmanager.cpp" line="380"/>
         <source>Serbia</source>
         <translation>Serbien</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="381"/>
+        <location filename="../base/net/geoipmanager.cpp" line="381"/>
         <source>South Africa</source>
         <translation>Südafrika</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="382"/>
+        <location filename="../base/net/geoipmanager.cpp" line="382"/>
         <source>Zambia</source>
         <translation>Sambia</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="383"/>
+        <location filename="../base/net/geoipmanager.cpp" line="383"/>
         <source>Montenegro</source>
         <translation>Montenegro</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="384"/>
+        <location filename="../base/net/geoipmanager.cpp" line="384"/>
         <source>Zimbabwe</source>
         <translation>Simbabwe</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="385"/>
+        <location filename="../base/net/geoipmanager.cpp" line="385"/>
         <source>Anonymous Proxy</source>
         <translation>Anonymer Proxy</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="386"/>
+        <location filename="../base/net/geoipmanager.cpp" line="386"/>
         <source>Satellite Provider</source>
         <translation>Satelliten-Provider</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="387"/>
+        <location filename="../base/net/geoipmanager.cpp" line="387"/>
         <source>Other</source>
         <translation>Andere</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="388"/>
+        <location filename="../base/net/geoipmanager.cpp" line="388"/>
         <source>Aland Islands</source>
         <translation>Åland</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="389"/>
+        <location filename="../base/net/geoipmanager.cpp" line="389"/>
         <source>Guernsey</source>
         <translation>Britische Kanalinseln</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="390"/>
+        <location filename="../base/net/geoipmanager.cpp" line="390"/>
         <source>Isle of Man</source>
         <translation>Insel Man</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="391"/>
+        <location filename="../base/net/geoipmanager.cpp" line="391"/>
         <source>Jersey</source>
         <translation>Jersey</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="392"/>
+        <location filename="../base/net/geoipmanager.cpp" line="392"/>
         <source>Saint Barthelemy</source>
         <translation>Saint-Barthélemy</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="393"/>
+        <location filename="../base/net/geoipmanager.cpp" line="393"/>
         <source>Saint Martin</source>
         <translation>St. Martin</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="421"/>
+        <location filename="../base/net/geoipmanager.cpp" line="421"/>
         <source>Could not uncompress GeoIP database file.</source>
         <translation>Konnte GeoIP-Datenbank nicht entpacken.</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="442"/>
+        <location filename="../base/net/geoipmanager.cpp" line="442"/>
         <source>Couldn&apos;t save downloaded GeoIP database file.</source>
         <translation>Konnte die heruntergeladene GeoIP-Datenbank nicht speichern.</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="445"/>
+        <location filename="../base/net/geoipmanager.cpp" line="445"/>
         <source>Successfully updated GeoIP database.</source>
         <translation>Die GeoIP-Datenbank wurde erfolgreich aktualisiert.</translation>
     </message>
     <message>
-        <location filename="../core/net/geoipmanager.cpp" line="460"/>
+        <location filename="../base/net/geoipmanager.cpp" line="460"/>
         <source>Couldn&apos;t download GeoIP database file. Reason: %1</source>
         <translation>Konnte GeoIP-Datenbank nicht herunterladen. Grund: %1</translation>
     </message>
@@ -3786,12 +3815,12 @@ Soll qBittorrent wirklich beendet werden?</translation>
 <context>
     <name>Net::PortForwarder</name>
     <message>
-        <location filename="../core/net/portforwarder.cpp" line="110"/>
+        <location filename="../base/net/portforwarder.cpp" line="110"/>
         <source>UPnP / NAT-PMP support [ON]</source>
         <translation>UPnP / NAT-PMP Unterstützung [EIN]</translation>
     </message>
     <message>
-        <location filename="../core/net/portforwarder.cpp" line="119"/>
+        <location filename="../base/net/portforwarder.cpp" line="119"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
         <translation>UPnP / NAT-PMP Unterstützung [AUS]</translation>
     </message>
@@ -3799,206 +3828,265 @@ Soll qBittorrent wirklich beendet werden?</translation>
 <context>
     <name>Net::Smtp</name>
     <message>
-        <location filename="../core/net/smtp.cpp" line="501"/>
+        <location filename="../base/net/smtp.cpp" line="501"/>
         <source>Email Notification Error:</source>
         <translation>E-Mail-Benachrichtigungsfehler:</translation>
     </message>
 </context>
 <context>
+    <name>PeerInfo</name>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="293"/>
+        <source>interested(local) and choked(peer)</source>
+        <translation type="unfinished">Interessiert (Lokal) und verstopft (Peer)</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="299"/>
+        <source>interested(local) and unchoked(peer)</source>
+        <translation type="unfinished">Interessiert (Lokal) und frei verfügbar (Peer)</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="308"/>
+        <source>interested(peer) and choked(local)</source>
+        <translation type="unfinished">Interessiert (Peer) und verstopft (Lokal)</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="314"/>
+        <source>interested(peer) and unchoked(local)</source>
+        <translation type="unfinished">Interessiert (Peer) und frei verfügbar (Lokal)</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="322"/>
+        <source>optimistic unchoke</source>
+        <translation type="unfinished">Optimistische Freigabe</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="329"/>
+        <source>peer snubbed</source>
+        <translation type="unfinished">Peer abgewiesen</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="336"/>
+        <source>incoming connection</source>
+        <translation type="unfinished">eingehende Verbindung</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="343"/>
+        <source>not interested(local) and unchoked(peer)</source>
+        <translation type="unfinished">Nicht interessiert (Lokal) und frei verfügbar (Peer)</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="350"/>
+        <source>not interested(peer) and unchoked(local)</source>
+        <translation type="unfinished">Nicht interessiert (Peer) und frei verfügbar (Lokal) </translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="357"/>
+        <source>peer from PEX</source>
+        <translation type="unfinished">Peer von PEX</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="364"/>
+        <source>peer from DHT</source>
+        <translation type="unfinished">Peer von DHT</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="371"/>
+        <source>encrypted traffic</source>
+        <translation type="unfinished">verschlüsselter Datenverkehr</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="378"/>
+        <source>encrypted handshake</source>
+        <translation type="unfinished">verschlüsselter Handshake</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="393"/>
+        <source>peer from LSD</source>
+        <translation type="unfinished">Peer von LSD</translation>
+    </message>
+</context>
+<context>
     <name>PeerListWidget</name>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="68"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="70"/>
         <source>IP</source>
         <translation>IP</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="69"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="71"/>
         <source>Port</source>
         <translation>Port</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="70"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="72"/>
         <source>Flags</source>
         <translation>Flags</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="71"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="73"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="72"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="74"/>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
         <translation>Programm</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="73"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="75"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation>Fortschritt</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="74"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="76"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>DL-Rate</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="75"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="77"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>UL-Rate</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="76"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="78"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
         <translation>Runtergeladen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="77"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="79"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
         <translation>Hochgeladen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="78"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="80"/>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don&apos;t.</comment>
         <translation>Relevanz</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="166"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="168"/>
         <source>Add a new peer...</source>
         <translation>Füge einen neuen Peer hinzu ...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="172"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="174"/>
         <source>Copy selected</source>
         <translation>Ausgewählte kopieren</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="174"/>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="212"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="176"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="214"/>
         <source>Ban peer permanently</source>
         <translation>Peer dauerhaft bannen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="186"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="188"/>
         <source>Manually adding peer &apos;%1&apos;...</source>
         <translation>Peer &apos;%1&apos; von Hand hinzufügen ...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="190"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="192"/>
         <source>The peer &apos;%1&apos; could not be added to this torrent.</source>
         <translation>Der Peer &apos;%1&apos; konnte diesem Torrent nicht hinzugefügt werden.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="223"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="225"/>
         <source>Manually banning peer &apos;%1&apos;...</source>
         <translation>Peer &apos;%1&apos; von Hand bannen ...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="194"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="196"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="198"/>
         <source>Peer addition</source>
         <translation>Peer hinzufügen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="194"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="196"/>
         <source>Some peers could not be added. Check the Log for details.</source>
         <translation>Einige Peers konnten nicht hinzugefügt werden. Bitte das Log für weitere Details überprüfen.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="196"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="198"/>
         <source>The peers were added to this torrent.</source>
         <translation>Die Peers wurden diesem Torrent hinzugefügt.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="212"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="214"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
         <translation>Sollen die ausgewählten Peers wirklich dauerhaft gebannt werden?</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="213"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="215"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="213"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="215"/>
         <source>&amp;No</source>
         <translation>&amp;Nein</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="388"/>
         <source>interested(local) and choked(peer)</source>
-        <translation>Interessiert (Lokal) und verstopft (Peer)</translation>
+        <translation type="obsolete">Interessiert (Lokal) und verstopft (Peer)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="394"/>
         <source>interested(local) and unchoked(peer)</source>
-        <translation>Interessiert (Lokal) und frei verfügbar (Peer)</translation>
+        <translation type="obsolete">Interessiert (Lokal) und frei verfügbar (Peer)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="403"/>
         <source>interested(peer) and choked(local)</source>
-        <translation>Interessiert (Peer) und verstopft (Lokal)</translation>
+        <translation type="obsolete">Interessiert (Peer) und verstopft (Lokal)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="409"/>
         <source>interested(peer) and unchoked(local)</source>
-        <translation>Interessiert (Peer) und frei verfügbar (Lokal)</translation>
+        <translation type="obsolete">Interessiert (Peer) und frei verfügbar (Lokal)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="417"/>
         <source>optimistic unchoke</source>
-        <translation>Optimistische Freigabe</translation>
+        <translation type="obsolete">Optimistische Freigabe</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="424"/>
         <source>peer snubbed</source>
-        <translation>Peer abgewiesen</translation>
+        <translation type="obsolete">Peer abgewiesen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="431"/>
         <source>incoming connection</source>
-        <translation>eingehende Verbindung</translation>
+        <translation type="obsolete">eingehende Verbindung</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="438"/>
         <source>not interested(local) and unchoked(peer)</source>
-        <translation>Nicht interessiert (Lokal) und frei verfügbar (Peer)</translation>
+        <translation type="obsolete">Nicht interessiert (Lokal) und frei verfügbar (Peer)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="445"/>
         <source>not interested(peer) and unchoked(local)</source>
-        <translation>Nicht interessiert (Peer) und frei verfügbar (Lokal) </translation>
+        <translation type="obsolete">Nicht interessiert (Peer) und frei verfügbar (Lokal) </translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="452"/>
         <source>peer from PEX</source>
-        <translation>Peer von PEX</translation>
+        <translation type="obsolete">Peer von PEX</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="459"/>
         <source>peer from DHT</source>
-        <translation>Peer von DHT</translation>
+        <translation type="obsolete">Peer von DHT</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="466"/>
         <source>encrypted traffic</source>
-        <translation>verschlüsselter Datenverkehr</translation>
+        <translation type="obsolete">verschlüsselter Datenverkehr</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="473"/>
         <source>encrypted handshake</source>
-        <translation>verschlüsselter Handshake</translation>
+        <translation type="obsolete">verschlüsselter Handshake</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="488"/>
         <source>peer from LSD</source>
-        <translation>Peer von LSD</translation>
+        <translation type="obsolete">Peer von LSD</translation>
     </message>
 </context>
 <context>
@@ -4772,18 +4860,18 @@ Soll qBittorrent wirklich beendet werden?</translation>
         <translation>Pfad zur Filterdatei (.dat, .p2p, p2b):</translation>
     </message>
     <message>
-        <location filename="../core/preferences.cpp" line="79"/>
+        <location filename="../base/preferences.cpp" line="79"/>
         <source>Detected unclean program exit. Using fallback file to restore settings.</source>
         <translation>Es wurde ein fehlerhaftes Beenden von qBittorrent festgestellt.
 Es wird daher eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwendet.</translation>
     </message>
     <message>
-        <location filename="../core/preferences.cpp" line="174"/>
+        <location filename="../base/preferences.cpp" line="174"/>
         <source>An access error occurred while trying to write the configuration file.</source>
         <translation>Es ist ein Zugriffsfehler beim Schreiben der Sicherungsdatei aufgetreten.</translation>
     </message>
     <message>
-        <location filename="../core/preferences.cpp" line="176"/>
+        <location filename="../base/preferences.cpp" line="176"/>
         <source>A format error occurred while trying to write the configuration file.</source>
         <translation>Es ist ein Formatfehler beim Schreiben der Sicherungsdatei aufgetreten.</translation>
     </message>
@@ -4889,299 +4977,298 @@ Es wird daher eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwe
 <context>
     <name>PropertiesWidget</name>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="336"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="330"/>
         <source>Downloaded:</source>
         <translation>Runtergeladen:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="113"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="107"/>
         <source>Availability:</source>
         <translation>Verfügbarkeit:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="84"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="78"/>
         <source>Progress:</source>
         <translation>Fortschritt:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="160"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="154"/>
         <source>Transfer</source>
         <translation>Übertragungen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="552"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="546"/>
         <source>Time Active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
         <translation>Aktiv seit:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="581"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="575"/>
         <source>ETA:</source>
         <translation>Fertig in:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="510"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="504"/>
         <source>Uploaded:</source>
         <translation>Hochgeladen:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="439"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="433"/>
         <source>Seeds:</source>
         <translation>Seeds:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="455"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="449"/>
         <source>Download Speed:</source>
         <translation>DL-Geschwindigkeit:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="191"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="185"/>
         <source>Upload Speed:</source>
         <translation>UL-Geschwindigkeit:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="220"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="214"/>
         <source>Peers:</source>
         <translation>Peers:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="278"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="272"/>
         <source>Download Limit:</source>
         <translation>Grenze für Download:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="352"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="346"/>
         <source>Upload Limit:</source>
         <translation>Grenze für Upload:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="597"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="591"/>
         <source>Wasted:</source>
         <translation>Verworfen:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="236"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="230"/>
         <source>Connections:</source>
         <translation>Verbindungen:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="610"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="604"/>
         <source>Information</source>
         <translation>Informationen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="869"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="863"/>
         <source>Comment:</source>
         <translation>Kommentar:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="1054"/>
         <source>Torrent content:</source>
-        <translation>Inhalt des Torrents:</translation>
+        <translation type="obsolete">Inhalt des Torrents:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="1021"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="1020"/>
         <source>Select All</source>
         <translation>Alle Wählen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="1028"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="1027"/>
         <source>Select None</source>
         <translation>Keine Wählen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="1107"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="1103"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="1102"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="1098"/>
         <source>High</source>
         <translation>Hoch</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="294"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="288"/>
         <source>Share Ratio:</source>
         <translation>Share Verhältnis:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="410"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="404"/>
         <source>Reannounce In:</source>
         <translation>Erneute Anmeldung in:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="368"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="362"/>
         <source>Last Seen Complete:</source>
         <translation>Letzter Seeder (100%) gesehen:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="628"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="622"/>
         <source>Total Size:</source>
         <translation>Gesamtgröße:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="657"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="651"/>
         <source>Pieces:</source>
         <translation>Teile:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="686"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="680"/>
         <source>Created By:</source>
         <translation>Erstellt von:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="715"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="709"/>
         <source>Added On:</source>
         <translation>Hinzugefügt am:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="744"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="738"/>
         <source>Completed On:</source>
         <translation>Abgeschlossen am:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="773"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="767"/>
         <source>Created On:</source>
         <translation>Erstellt am:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="802"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="796"/>
         <source>Torrent Hash:</source>
         <translation>Torrent Prüfsumme:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="834"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="828"/>
         <source>Save Path:</source>
         <translation>Speicherpfad:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="1097"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="1093"/>
         <source>Maximum</source>
         <translation>Maximum</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="1089"/>
-        <location filename="../gui/properties/propertieswidget.ui" line="1092"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="1085"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="1088"/>
         <source>Do not download</source>
         <translation>Nicht herunterladen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="428"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="431"/>
         <source>Never</source>
         <translation>Niemals</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="435"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="438"/>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
         <translation>%1 x %2 (%3 fertig)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="380"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="383"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="386"/>
         <source>%1 (%2 this session)</source>
         <translation>%1 (%2 diese Sitzung)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="392"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="395"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
         <translation>&apos;%1&apos; (geseedet seit &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="399"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="402"/>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
         <translation>%1 (%2 max.)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="412"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="416"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="415"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="419"/>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
         <translation>%1 (%2 gesamt)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="420"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="424"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="423"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="427"/>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
         <translation>%1 (%2 durchschn.)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="565"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="568"/>
         <source>Open</source>
         <translation>Öffnen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="566"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="569"/>
         <source>Open Containing Folder</source>
         <translation>Öffne Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="567"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="570"/>
         <source>Rename...</source>
         <translation>Umbenennen ...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="572"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="575"/>
         <source>Priority</source>
         <translation>Priorität</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="618"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="621"/>
         <source>New Web seed</source>
         <translation>Neuer Webseed</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="624"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="627"/>
         <source>Remove Web seed</source>
         <translation>Webseed entfernen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="626"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="629"/>
         <source>Copy Web seed URL</source>
         <translation>Webseed-URL kopieren</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="627"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="630"/>
         <source>Edit Web seed URL</source>
         <translation>Webseed-URL editieren</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="652"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="655"/>
         <source>Rename the file</source>
         <translation>Datei umbenennen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="653"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="656"/>
         <source>New name:</source>
         <translation>Neuer Name:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="657"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="688"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="660"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="691"/>
         <source>The file could not be renamed</source>
         <translation>Die Datei konnte nicht umbenannt werden</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="658"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="661"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Der Dateiname enthält ungültige Zeichen - bitte einen anderen Dateinamen wählen.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="689"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="727"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="692"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="730"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Der Dateiname wird in diesem Verzeichnis bereits verwendet - bitte einen anderen Dateinamen wählen.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="726"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="729"/>
         <source>The folder could not be renamed</source>
         <translation>Das Verzeichnis konnte nicht umbenannt werden</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="829"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="832"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -5191,29 +5278,29 @@ Es wird daher eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwe
         <translation>Dateien filtern ...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="772"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="775"/>
         <source>New URL seed</source>
         <comment>New HTTP source</comment>
         <translation>Neuer URL Seed</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="773"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="776"/>
         <source>New URL seed:</source>
         <translation>Neuer URL Seed:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="779"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="830"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="782"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="833"/>
         <source>This URL seed is already in the list.</source>
         <translation>Dieser URL Seed befindet sich bereits in der Liste.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="822"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="825"/>
         <source>Web seed editing</source>
         <translation>Webseed-URL editieren</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="823"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="826"/>
         <source>Web seed URL:</source>
         <translation>Webseed-URL:</translation>
     </message>
@@ -5226,19 +5313,19 @@ Es wird daher eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwe
         <translation>Die IP-Adresse wurde wegen zu vieler Authentifizierungsversuche gebannt.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="340"/>
+        <location filename="../webui/webapplication.cpp" line="388"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.
 </source>
         <translation>Fehler: &apos;%1&apos; ist keine gültige Torrent-Datei.
 </translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="345"/>
+        <location filename="../webui/webapplication.cpp" line="396"/>
         <source>Error: Could not add torrent to session.</source>
         <translation>Fehler: Konnte Torrent in dieser Sitzung nicht hinzufügen.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="354"/>
+        <location filename="../webui/webapplication.cpp" line="405"/>
         <source>I/O Error: Could not create temporary file.</source>
         <translation>I/O-Fehler: Konnte temporäre Datei nicht erstellen.</translation>
     </message>
@@ -5391,138 +5478,138 @@ Selbstverständlich geschieht dieses Teilen jeglicher Inhalte auf eigene Verantw
         <translation>[qBittorrent] &apos;%1&apos; wurde vollständig heruntergeladen</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="204"/>
+        <location filename="../base/net/downloadhandler.cpp" line="204"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Der Hostname konnte nicht gefunden werden (ungültiger Hostname)</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="206"/>
+        <location filename="../base/net/downloadhandler.cpp" line="206"/>
         <source>The operation was canceled</source>
         <translation>Der Vorgang wurde abgebrochen</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="208"/>
+        <location filename="../base/net/downloadhandler.cpp" line="208"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Der Server hat die Verbindung beendet bevor die gesamte Antwort empfangen und verarbeitet werden konnte</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="210"/>
+        <location filename="../base/net/downloadhandler.cpp" line="210"/>
         <source>The connection to the remote server timed out</source>
         <translation>Zeitüberschreitung beim Verbinden mit dem Server</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="212"/>
+        <location filename="../base/net/downloadhandler.cpp" line="212"/>
         <source>SSL/TLS handshake failed</source>
         <translation>SSL/TLS Handshake fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="214"/>
+        <location filename="../base/net/downloadhandler.cpp" line="214"/>
         <source>The remote server refused the connection</source>
         <translation>Der Server hat die Verbindung verweigert</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="216"/>
+        <location filename="../base/net/downloadhandler.cpp" line="216"/>
         <source>The connection to the proxy server was refused</source>
         <translation>Die Verbindung zum Proxy-Server wurde verweigert</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="218"/>
+        <location filename="../base/net/downloadhandler.cpp" line="218"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Der Proxy-Server hat die Verbindung vorzeitig beendet</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="220"/>
+        <location filename="../base/net/downloadhandler.cpp" line="220"/>
         <source>The proxy host name was not found</source>
         <translation>Der Proxy-Hostname wurde nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="222"/>
+        <location filename="../base/net/downloadhandler.cpp" line="222"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>Zeitüberschreitung beim Verbindungsaufbau mit dem Proxy oder der Proxy hat nicht in angemessener Zeit auf die Anfrage reagiert</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="224"/>
+        <location filename="../base/net/downloadhandler.cpp" line="224"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
         <translation>Der Proxy benötigt Authentifizierung hat jedoch keine der angebotenen Zugangsdaten akzeptiert</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="226"/>
+        <location filename="../base/net/downloadhandler.cpp" line="226"/>
         <source>The access to the remote content was denied (401)</source>
         <translation>Der Zugriff auf den Inhalt wurde verweigert (401)</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="228"/>
+        <location filename="../base/net/downloadhandler.cpp" line="228"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>Der angeforderte Vorgang auf rechnerferne Inhalte ist nicht gestattet</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="230"/>
+        <location filename="../base/net/downloadhandler.cpp" line="230"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Die rechnerfernen Inhalte wurden auf dem Server nicht gefunden (404)</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="232"/>
+        <location filename="../base/net/downloadhandler.cpp" line="232"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation>Der Server verlangt Authentifizierung, aber die angebotenen Zugangsdaten wurden nicht akzeptiert</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="234"/>
+        <location filename="../base/net/downloadhandler.cpp" line="234"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>Die Network-Access-API konnte die Anfrage nicht bearbeiten da Protokoll unbekannt.</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="236"/>
+        <location filename="../base/net/downloadhandler.cpp" line="236"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>Der angeforderte Vorgang ist für dieses Protokoll ungültig</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="238"/>
+        <location filename="../base/net/downloadhandler.cpp" line="238"/>
         <source>An unknown network-related error was detected</source>
         <translation>Ein unbekannter Netzwerk-Fehler ist aufgetreten</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="240"/>
+        <location filename="../base/net/downloadhandler.cpp" line="240"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Ein unbekannter Proxy-Fehler ist aufgetreten</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="242"/>
+        <location filename="../base/net/downloadhandler.cpp" line="242"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Unbekannter Fehler in Zusammenhang mit dem Inhalt ist aufgetreten</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="244"/>
+        <location filename="../base/net/downloadhandler.cpp" line="244"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Es ist eine Störung im Protokoll aufgetreten</translation>
     </message>
     <message>
-        <location filename="../core/net/downloadhandler.cpp" line="246"/>
+        <location filename="../base/net/downloadhandler.cpp" line="246"/>
         <source>Unknown error</source>
         <translation>Unbekannter Fehler</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="50"/>
-        <location filename="../app/upgrade.h" line="63"/>
+        <location filename="../app/upgrade.h" line="52"/>
+        <location filename="../app/upgrade.h" line="65"/>
         <source>Upgrade</source>
         <translation>Aktualisieren</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="53"/>
+        <location filename="../app/upgrade.h" line="55"/>
         <source>You updated from an older version that saved things differently. You must migrate to the new saving system. You will not be able to use an older version than v3.3.0 again. Continue? [y/n]</source>
         <translation>Es wurde von einer älteren Version aktualisiert die eine andere Speicherart verwendete, daher muss die Speicherungsart aktualisiert werden. Es kann aber danach keine ältere Version als 3.3.0 mehr verwendet werden. Soll jetzt wirklich aktualisiert werden? [y/n]</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="62"/>
+        <location filename="../app/upgrade.h" line="64"/>
         <source>You updated from an older version that saved things differently. You must migrate to the new saving system. If you continue, you will not be able to use an older version than v3.3.0 again.</source>
         <translation>Es wurde von einer älteren Version aktualisiert die eine andere Speicherart verwendete, daher muss die Speicherungsart aktualisiert werden. Es kann aber danach keine ältere Version als 3.3.0 mehr verwendet werden.</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="121"/>
+        <location filename="../app/upgrade.h" line="138"/>
         <source>Couldn&apos;t migrate torrent with hash: %1</source>
         <translation>Konnte den Torrent mit hash %1 nicht migrieren.</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="124"/>
+        <location filename="../app/upgrade.h" line="141"/>
         <source>Couldn&apos;t migrate torrent. Invalid fastresume file name: %1</source>
         <translation>Konnte den Torrent nicht migrieren. Ungültiger Name der Fortsetzungsdatei: %1</translation>
     </message>
@@ -5711,12 +5798,12 @@ Selbstverständlich geschieht dieses Teilen jeglicher Inhalte auf eigene Verantw
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../gui/rss/rssfeed.cpp" line="368"/>
+        <location filename="../gui/rss/rssfeed.cpp" line="369"/>
         <source>Automatic download of &apos;%1&apos; from &apos;%2&apos; RSS feed failed because it doesn&apos;t contain a torrent or a magnet link...</source>
         <translation>Automatischer Download von &apos;%1&apos; vom RSS-Feed &apos;%2&apos; ist fehlgeschlagen weil er keinen Torrent oder Magnet-Link enthält ...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rssfeed.cpp" line="373"/>
+        <location filename="../gui/rss/rssfeed.cpp" line="374"/>
         <source>Automatically downloading &apos;%1&apos; torrent from &apos;%2&apos; RSS feed...</source>
         <translation>Lade Torrent &apos;%1&apos; automatisch von RSS-Feed &apos;%2&apos; ...</translation>
     </message>
@@ -5760,17 +5847,17 @@ Selbstverständlich geschieht dieses Teilen jeglicher Inhalte auf eigene Verantw
 <context>
     <name>ScanFoldersModel</name>
     <message>
-        <location filename="../core/scanfoldersmodel.cpp" line="157"/>
+        <location filename="../base/scanfoldersmodel.cpp" line="157"/>
         <source>Watched Folder</source>
         <translation>Überwachtes Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../core/scanfoldersmodel.cpp" line="160"/>
+        <location filename="../base/scanfoldersmodel.cpp" line="160"/>
         <source>Download here</source>
         <translation>Hier herunterladen</translation>
     </message>
     <message>
-        <location filename="../core/scanfoldersmodel.cpp" line="163"/>
+        <location filename="../base/scanfoldersmodel.cpp" line="163"/>
         <source>Download path</source>
         <translation>Downloadpfad</translation>
     </message>
@@ -7830,11 +7917,11 @@ Die Plugins wurden jedoch deaktiviert.</translation>
 <context>
     <name>fsutils</name>
     <message>
-        <location filename="../core/utils/fs.cpp" line="444"/>
-        <location filename="../core/utils/fs.cpp" line="451"/>
-        <location filename="../core/utils/fs.cpp" line="461"/>
-        <location filename="../core/utils/fs.cpp" line="494"/>
-        <location filename="../core/utils/fs.cpp" line="506"/>
+        <location filename="../base/utils/fs.cpp" line="446"/>
+        <location filename="../base/utils/fs.cpp" line="453"/>
+        <location filename="../base/utils/fs.cpp" line="463"/>
+        <location filename="../base/utils/fs.cpp" line="496"/>
+        <location filename="../base/utils/fs.cpp" line="508"/>
         <source>Downloads</source>
         <translation>Downloads</translation>
     </message>
@@ -7842,103 +7929,103 @@ Die Plugins wurden jedoch deaktiviert.</translation>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../core/utils/misc.cpp" line="82"/>
+        <location filename="../base/utils/misc.cpp" line="82"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../core/utils/misc.cpp" line="83"/>
+        <location filename="../base/utils/misc.cpp" line="83"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../core/utils/misc.cpp" line="84"/>
+        <location filename="../base/utils/misc.cpp" line="84"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../core/utils/misc.cpp" line="85"/>
+        <location filename="../base/utils/misc.cpp" line="85"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../core/utils/misc.cpp" line="86"/>
+        <location filename="../base/utils/misc.cpp" line="86"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TB</translation>
     </message>
     <message>
-        <location filename="../core/utils/misc.cpp" line="283"/>
+        <location filename="../base/utils/misc.cpp" line="283"/>
         <source>Python not detected</source>
         <translation>Python nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../core/utils/misc.cpp" line="311"/>
+        <location filename="../base/utils/misc.cpp" line="311"/>
         <source>Python version: %1</source>
         <translation>Python-Version: %1</translation>
     </message>
     <message>
-        <location filename="../core/utils/misc.cpp" line="338"/>
+        <location filename="../base/utils/misc.cpp" line="338"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../core/utils/misc.cpp" line="426"/>
+        <location filename="../base/utils/misc.cpp" line="426"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h %2m</translation>
     </message>
     <message>
-        <location filename="../core/utils/misc.cpp" line="430"/>
+        <location filename="../base/utils/misc.cpp" line="430"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1 T %2 h</translation>
     </message>
     <message>
-        <location filename="../core/utils/misc.cpp" line="326"/>
+        <location filename="../base/utils/misc.cpp" line="326"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Unbekannt</translation>
     </message>
     <message>
-        <location filename="../core/utils/misc.cpp" line="206"/>
+        <location filename="../base/utils/misc.cpp" line="206"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>qBittorrent wird den Computer jetzt herunterfahren, da alle Downloads vollständig sind.</translation>
     </message>
     <message>
-        <location filename="../core/utils/misc.cpp" line="419"/>
+        <location filename="../base/utils/misc.cpp" line="419"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 Min</translation>
     </message>
     <message>
-        <location filename="../core/utils/misc.cpp" line="422"/>
+        <location filename="../base/utils/misc.cpp" line="422"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 Min</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="388"/>
+        <location filename="../webui/btjson.cpp" line="457"/>
         <source>Working</source>
         <translation>Arbeitet</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="386"/>
+        <location filename="../webui/btjson.cpp" line="455"/>
         <source>Updating...</source>
         <translation>Aktualisiere ...</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="390"/>
+        <location filename="../webui/btjson.cpp" line="459"/>
         <source>Not working</source>
         <translation>Arbeitet nicht</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="384"/>
+        <location filename="../webui/btjson.cpp" line="453"/>
         <source>Not contacted yet</source>
         <translation>Noch nicht kontaktiert</translation>
     </message>
