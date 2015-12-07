@@ -480,7 +480,7 @@ var TorrentsTable = new Class({
                 else if (state == "checkingDL" || state == "checkingUP" ||
                         state == "queuedForChecking" || state == "checkingResumeData")
                     state = "checking";
-                else if (state == "unknown")
+                else if (state == "unknown" || state == "error" || state == "missingFiles")
                     state = "error";
 
                 var img_path = 'images/skin/' + state + '.png';
@@ -645,6 +645,10 @@ var TorrentsTable = new Class({
                     if (state == 'downloading' || state == 'forcedDL' || state == 'uploading'  || state == 'forcedUP')
                         return false;
                     break;
+                case 'errored':
+                    if (state != 'error' && state != "unknown" && state != "missingFiles")
+                        return false;
+                    break;
             }
 
             if (labelName == LABELS_ALL)
@@ -657,6 +661,16 @@ var TorrentsTable = new Class({
                 return false;
 
             return true;
+        },
+
+        getFilteredTorrentsNumber : function (filterName) {
+            var cnt = 0;
+            var rows = this.rows.getValues();
+
+            for (i = 0; i < rows.length; i++)
+                if (this.applyFilter(rows[i], filterName, LABELS_ALL)) cnt++;
+
+            return cnt;
         },
 
         getFilteredAndSortedRows : function () {
