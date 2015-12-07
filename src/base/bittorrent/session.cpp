@@ -1964,7 +1964,7 @@ void Session::getPendingAlerts(QVector<libt::alert *> &out, ulong time)
 
     QMutexLocker lock(&m_alertsMutex);
 
-    while (m_alerts.empty())
+    if (m_alerts.empty())
         m_alertsWaitCondition.wait(&m_alertsMutex, time);
 
     m_alerts.swap(out);
