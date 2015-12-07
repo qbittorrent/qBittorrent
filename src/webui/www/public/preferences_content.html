@@ -68,12 +68,19 @@
 
 <fieldset class="settings">
     <legend><input type="checkbox" id="autorun_checkbox" onclick="updateAutoRun();"/>
-    <label for="autorun_checkbox">QBT_TR(Run an external program on torrent completion)QBT_TR</label></legend>
+    <label for="autorun_checkbox">QBT_TR(Run external program on torrent completion)QBT_TR</label></legend>
     <input type="text" id="autorunProg_txt" style="width: 400px;"/><br/>
-    <i>QBT_TR(The following parameters are supported:)QBT_TR
+    <i>QBT_TR(Supported parameters (case sensitive):)QBT_TR
     <ul>
-    <li>%f: QBT_TR(Torrent path)QBT_TR</li>
-    <li>%n: QBT_TR(Torrent name)QBT_TR</li>
+    <li>QBT_TR(%N: Torrent name)QBT_TR</li>
+    <li>QBT_TR(%L: Label)QBT_TR</li>
+    <li>QBT_TR(%F: Content path (same as root path for multifile torrent))QBT_TR</li>
+    <li>QBT_TR(%R: Root path (first torrent subdirectory path))QBT_TR</li>
+    <li>QBT_TR(%D: Save path)QBT_TR</li>
+    <li>QBT_TR(%C: Number of files)QBT_TR</li>
+    <li>QBT_TR(%Z: Torrent size (bytes))QBT_TR</li>
+    <li>QBT_TR(%T: Current tracker)QBT_TR</li>
+    <li>QBT_TR(%I: Info hash)QBT_TR</li>
     </ul></i>
 </fieldset>
 </div>
