@@ -1,3 +1,27 @@
+* Tue Dec 08 2015 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.1
+    - FEATURE: New "Set as default label" option in Add torrent dialog. (takiz)
+    - FEATURE: Support wildcards for filtering torrent list and torrent content (vlakoff)
+    - BUGFIX: Fix -1 is displayed instead of the infinity symbol (Chocobo1)
+    - BUGFIX: Fix scan dirs settings saving. Closes #4254, #4239, #4187. (glassez)
+    - BUGFIX: Exported torrents now use name instead of hash. Closes #4205. (glassez)
+    - BUGFIX: Improve upgrade to v3.3.0. Now undownloaded magnets will be migrated too. Fixes #4195. (glassez)
+    - BUGFIX: Fix wrong encoding for listen failed error message. (glassez)
+    - BUGFIX: Fix RSS not automarking articles as read. (glassez)
+    - BUGFIX: Fix possible deadlock during application exit. (sledgehammer999)
+    - WEBUI: Cookies support on WebUI when downloading torrent from a URL. (Naikel Aparicio)
+    - WEBUI: Modified download and upload windows to allow autocompletion of browsers. (Naikel Aparicio)
+    - WEBUI: Fixed the spinner in the WebUI upload page. (Naikel Aparicio)
+    - WEBUI: Modified height of the WebUI download page. (Naikel Aparicio)
+    - WEBUI: Fixed all the JavaScript functions for download and upload pages. (Naikel Aparicio)
+    - WEBUI: Add seeds tab to WebUI (buinsky)
+    - WEBUI: Bump WebUI API_VERSION.
+    - COSMETIC: Cleanup "Trackers", "Peers", "HTTP Sources", "Speed" and "Content" page layout (Chocobo1)
+    - COSMETIC: Reduce mainwindow border width (Chocobo1)
+    - COSMETIC: Use QLineEdit built-in ClearButton (Qt5 only) (Chocobo1)
+    - COSMETIC: Change text description for half-open connection (Chocobo1)
+    - OTHER: Change update URL to FossHub. Closes #4188. (sledgehammer999)
+    
+
 * Sun Nov 29 2015 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.0
     - FEATURE: Huge core code refactoring. Problems with labels, temp folders etc should be eliminated. Smoother UI should be observed too. (glassez)
     - FEATURE: Speed graph (Anton Lashkov)
