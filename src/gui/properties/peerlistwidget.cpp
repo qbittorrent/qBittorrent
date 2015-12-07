@@ -282,14 +282,14 @@ void PeerListWidget::loadPeers(BitTorrent::TorrentHandle *const torrent, bool fo
         QString peerIp = addr.ip.toString();
         if (m_peerItems.contains(peerIp)) {
             // Update existing peer
-            updatePeer(peerIp, torrent, peer);
+            updatePeer(peerIp, peer);
             oldeersSet.remove(peerIp);
             if (forceHostnameResolution && m_resolver)
                 m_resolver->resolve(peerIp);
         }
         else {
             // Add new peer
-            m_peerItems[peerIp] = addPeer(peerIp, torrent, peer);
+            m_peerItems[peerIp] = addPeer(peerIp, peer);
             m_peerAddresses[peerIp] = addr;
             // Resolve peer host name is asked
             if (m_resolver)
@@ -307,7 +307,7 @@ void PeerListWidget::loadPeers(BitTorrent::TorrentHandle *const torrent, bool fo
     }
 }
 
-QStandardItem* PeerListWidget::addPeer(const QString& ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer)
+QStandardItem* PeerListWidget::addPeer(const QString &ip, const BitTorrent::PeerInfo &peer)
 {
     int row = m_listModel->rowCount();
     // Adding Peer to peer list
@@ -340,7 +340,7 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, BitTorrent::TorrentHan
     return m_listModel->item(row, PeerListDelegate::IP);
 }
 
-void PeerListWidget::updatePeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer)
+void PeerListWidget::updatePeer(const QString &ip, const BitTorrent::PeerInfo &peer)
 {
     QStandardItem *item = m_peerItems.value(ip);
     int row = item->row();
