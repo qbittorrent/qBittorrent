@@ -70,7 +70,6 @@ public:
     void loadPeers(BitTorrent::TorrentHandle *const torrent, bool forceHostnameResolution = false);
     QStandardItem *addPeer(const QString &ip, const BitTorrent::PeerInfo &peer);
     void updatePeer(const QString &ip, const BitTorrent::PeerInfo &peer);
-    void handleResolved(const QString &ip, const QString &hostname);
     void updatePeerHostNameResolutionState();
     void updatePeerCountryResolutionState();
     void clear();
@@ -82,6 +81,7 @@ private slots:
     void banSelectedPeers();
     void copySelectedPeers();
     void handleSortColumnChanged(int col);
+    void handleResolved(const QString &ip, const QString &hostname);
 
 private:
     QStandardItemModel *m_listModel;
