@@ -167,12 +167,12 @@ void Application::allTorrentsFinished()
     Preferences *const pref = Preferences::instance();
 
     bool will_shutdown = (pref->shutdownWhenDownloadsComplete()
-                          || pref->shutdownqBTWhenDownloadsComplete()
                           || pref->suspendWhenDownloadsComplete()
                           || pref->hibernateWhenDownloadsComplete());
+    bool will_exit_only = pref->shutdownqBTWhenDownloadsComplete();
 
     // Auto-Shutdown
-    if (will_shutdown) {
+    if (will_exit_only || will_shutdown) {
         bool suspend = pref->suspendWhenDownloadsComplete();
         bool hibernate = pref->hibernateWhenDownloadsComplete();
         bool shutdown = pref->shutdownWhenDownloadsComplete();
@@ -186,7 +186,21 @@ void Application::allTorrentsFinished()
         else if (shutdown)
             action = ShutdownAction::Shutdown;
 
-        if (!ShutdownConfirmDlg::askForConfirmation(action)) return;
+        if (will_exit_only) {
+            if (!pref->dontConfirmAutoExit()) {
+                bool exitConfirmed = false;
+                bool neverAskForExitConfirmationAgain = false;
+                ShutdownConfirmDlg::askForConfirmation(action, &exitConfirmed, &neverAskForExitConfirmationAgain);
+                if (neverAskForExitConfirmationAgain && exitConfirmed/*discard the request to never show again if dialog not accepted*/)
+                    pref->setDontConfirmAutoExit(true);
+                if (!exitConfirmed) return;
+            }
+        }
+        else { //exit and shutdown
+            bool shutdownConfirmed = false;
+            ShutdownConfirmDlg::askForConfirmation(action, &shutdownConfirmed);
+            if (!shutdownConfirmed) return;
+        }
 
         // Actually shut down
         if (suspend || hibernate || shutdown) {

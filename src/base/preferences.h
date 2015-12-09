@@ -360,6 +360,8 @@ public:
     void setHibernateWhenDownloadsComplete(bool hibernate);
     bool shutdownqBTWhenDownloadsComplete() const;
     void setShutdownqBTWhenDownloadsComplete(bool shutdown);
+    bool dontConfirmAutoExit() const;
+    void setDontConfirmAutoExit(bool dontConfirmAutoExit);
     uint diskCacheSize() const;
     void setDiskCacheSize(uint size);
     uint diskCacheTTL() const;
