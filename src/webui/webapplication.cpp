@@ -724,7 +724,7 @@ void WebApplication::action_command_setLabel()
 
     QStringList hashes = request().posts["hashes"].split("|");
     QString label = request().posts["label"].trimmed();
-    if (!Utils::Fs::isValidFileSystemName(label)) {
+    if (!Utils::Fs::isValidFileSystemName(label) && !label.isEmpty()) {
         status(400, "Labels must not contain special characters");
         return;
     }
