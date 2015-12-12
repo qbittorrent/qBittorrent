@@ -41,15 +41,17 @@
 #include <QDebug>
 
 #include <cstdlib>
-#include "options_imp.h"
+
 #include "base/preferences.h"
 #include "base/utils/fs.h"
-#include "advancedsettings.h"
 #include "base/scanfoldersmodel.h"
 #include "base/bittorrent/session.h"
-#include "guiiconprovider.h"
 #include "base/net/dnsupdater.h"
 #include "base/unicodestrings.h"
+#include "advancedsettings.h"
+#include "guiiconprovider.h"
+#include "scanfoldersdelegate.h"
+#include "options_imp.h"
 
 #ifndef QT_NO_OPENSSL
 #include <QSslKey>
@@ -91,11 +93,13 @@ options_imp::options_imp(QWidget *parent)
     }
 
 #ifndef QBT_USES_QT5
-    scanFoldersView->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    scanFoldersView->header()->setResizeMode(QHeaderView::ResizeToContents);
 #else
-    scanFoldersView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    scanFoldersView->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 #endif
     scanFoldersView->setModel(ScanFoldersModel::instance());
+    m_scanDelegate = new ScanFoldersDelegate(this, scanFoldersView);
+    scanFoldersView->setItemDelegate(m_scanDelegate);
     connect(ScanFoldersModel::instance(), SIGNAL(dataChanged(QModelIndex, QModelIndex)), this, SLOT(enableApplyButton()));
     connect(scanFoldersView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(handleScanFolderViewSelectionChanged()));
 
@@ -1200,7 +1204,7 @@ void options_imp::on_addScanFolderButton_clicked()
     const QString dir = QFileDialog::getExistingDirectory(this, tr("Add directory to scan"),
                                                           Utils::Fs::toNativePath(Utils::Fs::folderName(pref->getScanDirsLastPath())));
     if (!dir.isEmpty()) {
-        const ScanFoldersModel::PathStatus status = ScanFoldersModel::instance()->addPath(dir, true, "");
+        const ScanFoldersModel::PathStatus status = ScanFoldersModel::instance()->addPath(dir, ScanFoldersModel::DOWNLOAD_IN_WATCH_FOLDER, QString());
         QString error;
         switch (status) {
         case ScanFoldersModel::AlreadyInList:
@@ -1215,7 +1219,8 @@ void options_imp::on_addScanFolderButton_clicked()
         default:
             pref->setScanDirsLastPath(dir);
             addedScanDirs << dir;
-            scanFoldersView->resizeColumnsToContents();
+            for (int i = 0; i < ScanFoldersModel::instance()->columnCount(); ++i)
+                scanFoldersView->resizeColumnToContents(i);
             enableApplyButton();
         }
 

@@ -58,7 +58,7 @@ QByteArray prefjson::getPreferences()
     data["temp_path"] = Utils::Fs::toNativePath(pref->getTempPath());
     data["preallocate_all"] = pref->preAllocateAllFiles();
     data["incomplete_files_ext"] = pref->useIncompleteFilesExtension();
-    QVariantList scanDirs;
+    /*QVariantList scanDirs;
     foreach (const QString& s, pref->getScanDirs()) {
         scanDirs << Utils::Fs::toNativePath(s);
     }
@@ -72,7 +72,7 @@ QByteArray prefjson::getPreferences()
     foreach (bool b, pref->getDownloadInScanDirs()) {
         var_list << b;
     }
-    data["download_in_scan_dirs"] = var_list;
+    data["download_in_scan_dirs"] = var_list;*/
     data["export_dir"] = Utils::Fs::toNativePath(pref->getTorrentExportDir());
     data["export_dir_fin"] = Utils::Fs::toNativePath(pref->getFinishedTorrentExportDir());
     // Email notification upon download completion
@@ -188,7 +188,7 @@ void prefjson::setPreferences(const QString& json)
         pref->preAllocateAllFiles(m["preallocate_all"].toBool());
     if (m.contains("incomplete_files_ext"))
         pref->useIncompleteFilesExtension(m["incomplete_files_ext"].toBool());
-    if (m.contains("scan_dirs") && m.contains("download_in_scan_dirs") && m.contains("scan_dirs_download_paths")) {
+    /*if (m.contains("scan_dirs") && m.contains("download_in_scan_dirs") && m.contains("scan_dirs_download_paths")) {
         QVariantList download_at_path_tmp = m["download_in_scan_dirs"].toList();
         QList<bool> download_at_path;
         foreach (QVariant var, download_at_path_tmp) {
@@ -217,7 +217,7 @@ void prefjson::setPreferences(const QString& json)
                 ++i;
             }
         }
-    }
+    }*/
     if (m.contains("export_dir"))
         pref->setTorrentExportDir(m["export_dir"].toString());
     if (m.contains("export_dir_fin"))
