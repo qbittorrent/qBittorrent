@@ -176,13 +176,9 @@ public:
     void additionDialogFront(bool b);
     bool addTorrentsInPause() const;
     void addTorrentsInPause(bool b);
-    QStringList getScanDirs() const;
-    void setScanDirs(const QStringList &dirs);
-    QList<bool> getDownloadInScanDirs() const;
-    void setDownloadInScanDirs(const QList<bool> &list);
+    QVariantHash getScanDirs() const;
+    void setScanDirs(const QVariantHash &dirs);
     QString getScanDirsLastPath() const;
-    void setScanDirsDownloadPaths(const QStringList &downloadpaths);
-    QStringList getScanDirsDownloadPaths() const;
     void setScanDirsLastPath(const QString &path);
     bool isTorrentExportEnabled() const;
     QString getTorrentExportDir() const;
