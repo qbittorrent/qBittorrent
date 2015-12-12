@@ -42,6 +42,7 @@ HEADERS += \
     $$PWD/shutdownconfirm.h \
     $$PWD/torrentmodel.h \
     $$PWD/torrentcreatordlg.h \
+    $$PWD/scanfoldersdelegate.h \
     $$PWD/search/searchwidget.h \
     $$PWD/search/searchtab.h \
     $$PWD/search/pluginselectdlg.h \
@@ -79,6 +80,7 @@ SOURCES += \
     $$PWD/shutdownconfirm.cpp \
     $$PWD/torrentmodel.cpp \
     $$PWD/torrentcreatordlg.cpp \
+    $$PWD/scanfoldersdelegate.cpp \
     $$PWD/search/searchwidget.cpp \
     $$PWD/search/searchtab.cpp \
     $$PWD/search/pluginselectdlg.cpp \

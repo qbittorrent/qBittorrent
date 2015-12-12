@@ -475,46 +475,15 @@ void Preferences::addTorrentsInPause(bool b)
     setValue("Preferences/Downloads/StartInPause", b);
 }
 
-QStringList Preferences::getScanDirs() const
+QVariantHash Preferences::getScanDirs() const
 {
-    QStringList originalList = value("Preferences/Downloads/ScanDirs").toStringList();
-    if (originalList.isEmpty())
-        return originalList;
-
-    QStringList newList;
-    foreach (const QString& s, originalList)
-        newList << Utils::Fs::fromNativePath(s);
-    return newList;
+    return value("Preferences/Downloads/ScanDirsV2").toHash();
 }
 
 // This must be called somewhere with data from the model
-void Preferences::setScanDirs(const QStringList &dirs)
+void Preferences::setScanDirs(const QVariantHash &dirs)
 {
-    QStringList newList;
-    if (!dirs.isEmpty())
-        foreach (const QString& s, dirs)
-            newList << Utils::Fs::fromNativePath(s);
-    setValue("Preferences/Downloads/ScanDirs", newList);
-}
-
-QList<bool> Preferences::getDownloadInScanDirs() const
-{
-    return Utils::Misc::boolListfromStringList(value("Preferences/Downloads/DownloadInScanDirs").toStringList());
-}
-
-void Preferences::setDownloadInScanDirs(const QList<bool> &list)
-{
-    setValue("Preferences/Downloads/DownloadInScanDirs", Utils::Misc::toStringList(list));
-}
-
-void Preferences::setScanDirsDownloadPaths(const QStringList &downloadpaths)
-{
-    setValue("Preferences/Downloads/ScanDirsDownloadPaths", downloadpaths);
-}
-
-QStringList Preferences::getScanDirsDownloadPaths() const
-{
-    return value("Preferences/Downloads/ScanDirsDownloadPaths").toStringList();
+    setValue("Preferences/Downloads/ScanDirsV2", dirs);
 }
 
 QString Preferences::getScanDirsLastPath() const
