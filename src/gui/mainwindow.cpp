@@ -104,7 +104,9 @@ MainWindow::MainWindow(QWidget *parent)
     , m_posInitialized(false)
     , force_exit(false)
     , unlockDlgShowing(false)
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     , m_wasUpdateCheckEnabled(false)
+#endif
     , has_python(false)
 {
     setupUi(this);
