@@ -36,6 +36,7 @@ HEADERS += \
     $$PWD/bittorrent/private/bandwidthscheduler.h \
     $$PWD/bittorrent/private/filterparserthread.h \
     $$PWD/bittorrent/private/statistics.h \
+    $$PWD/bittorrent/private/resumedatasavingmanager.h \
     $$PWD/rss/rssmanager.h \
     $$PWD/rss/rssfeed.h \
     $$PWD/rss/rssfolder.h \
@@ -87,6 +88,7 @@ SOURCES += \
     $$PWD/bittorrent/private/bandwidthscheduler.cpp \
     $$PWD/bittorrent/private/filterparserthread.cpp \
     $$PWD/bittorrent/private/statistics.cpp \
+    $$PWD/bittorrent/private/resumedatasavingmanager.cpp \
     $$PWD/rss/rssmanager.cpp \
     $$PWD/rss/rssfeed.cpp \
     $$PWD/rss/rssfolder.cpp \

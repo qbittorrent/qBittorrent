@@ -43,6 +43,7 @@ using namespace BitTorrent;
 #include <QTimer>
 #include <QProcess>
 #include <QCoreApplication>
+#include <QThread>
 
 #include <queue>
 #include <vector>
@@ -80,6 +81,7 @@ using namespace BitTorrent;
 #include "private/filterparserthread.h"
 #include "private/statistics.h"
 #include "private/bandwidthscheduler.h"
+#include "private/resumedatasavingmanager.h"
 #include "trackerentry.h"
 #include "tracker.h"
 #include "magneturi.h"
@@ -205,6 +207,11 @@ Session::Session(QObject *parent)
     connect(&m_networkManager, SIGNAL(configurationRemoved(const QNetworkConfiguration&)), SLOT(networkConfigurationChange(const QNetworkConfiguration&)));
     connect(&m_networkManager, SIGNAL(configurationChanged(const QNetworkConfiguration&)), SLOT(networkConfigurationChange(const QNetworkConfiguration&)));
 
+    m_ioThread = new QThread(this);
+    m_resumeDataSavingManager = new ResumeDataSavingManager(m_resumeFolderPath);
+    m_resumeDataSavingManager->moveToThread(m_ioThread);
+    connect(m_ioThread, SIGNAL(finished()), m_resumeDataSavingManager, SLOT(deleteLater()));
+    m_ioThread->start();
     m_resumeDataTimer->start();
 
     // initialize PortForwarder instance
@@ -281,6 +288,9 @@ Session::~Session()
 
     qDebug("Deleting the session");
     delete m_nativeSession;
+
+    m_ioThread->quit();
+    m_ioThread->wait();
 
     m_resumeFolderLock.close();
     m_resumeFolderLock.remove();
@@ -1710,7 +1720,17 @@ void Session::handleTorrentFinished(TorrentHandle *const torrent)
 void Session::handleTorrentResumeDataReady(TorrentHandle *const torrent, const libtorrent::entry &data)
 {
     --m_numResumeData;
-    writeResumeDataFile(torrent, data);
+
+    // Separated thread is used for the blocking IO which results in slow processing of many torrents.
+    // Encoding data in parallel while doing IO saves time. Copying libtorrent::entry objects around
+    // isn't cheap too.
+
+    QByteArray out;
+    libt::bencode(std::back_inserter(out), data);
+
+    QMetaObject::invokeMethod(m_resumeDataSavingManager, "saveResumeData",
+                              Q_ARG(QString, torrent->hash()), Q_ARG(QByteArray, out),
+                              Q_ARG(int, torrent->queuePosition()));
 }
 
 void Session::handleTorrentResumeDataFailed(TorrentHandle *const torrent)
@@ -2354,28 +2374,6 @@ bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out, MagnetUr
     out.addForced = fast.dict_find_int_value("qBt-forced");
 
     return true;
-}
-
-bool Session::writeResumeDataFile(TorrentHandle *const torrent, const libt::entry &data)
-{
-    const QDir resumeDataDir(m_resumeFolderPath);
-
-    QStringList filters(QString("%1.fastresume.*").arg(torrent->hash()));
-    const QStringList files = resumeDataDir.entryList(filters, QDir::Files, QDir::Unsorted);
-    foreach (const QString &file, files)
-        Utils::Fs::forceRemove(resumeDataDir.absoluteFilePath(file));
-
-    QString filename = QString("%1.fastresume.%2").arg(torrent->hash()).arg(torrent->queuePosition());
-    QString filepath = resumeDataDir.absoluteFilePath(filename);
-
-    qDebug("Saving resume data in %s", qPrintable(filepath));
-    QFile resumeFile(filepath);
-    QVector<char> out;
-    libt::bencode(std::back_inserter(out), data);
-    if (resumeFile.open(QIODevice::WriteOnly))
-        return (resumeFile.write(&out[0], out.size()) == out.size());
-
-    return false;
 }
 
 void torrentQueuePositionUp(const libt::torrent_handle &handle)
