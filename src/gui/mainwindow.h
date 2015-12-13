@@ -202,6 +202,7 @@ private:
     QTimer *preventTimer;
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     QTimer programUpdateTimer;
+    bool m_wasUpdateCheckEnabled;
 #endif
     bool has_python;
     QMenu* toolbarMenu;

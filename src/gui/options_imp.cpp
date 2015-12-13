@@ -1000,10 +1000,9 @@ void options_imp::on_buttonBox_accepted()
             tabSelection->setCurrentRow(TAB_SPEED);
             return;
         }
-        saveOptions();
         applyButton->setEnabled(false);
         this->hide();
-        emit status_changed();
+        saveOptions();
     }
     saveWindowState();
     accept();
@@ -1017,7 +1016,6 @@ void options_imp::applySettings(QAbstractButton* button)
             return;
         }
         saveOptions();
-        emit status_changed();
     }
 }
 

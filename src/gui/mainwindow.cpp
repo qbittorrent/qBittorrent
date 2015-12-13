@@ -104,6 +104,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_posInitialized(false)
     , force_exit(false)
     , unlockDlgShowing(false)
+    , m_wasUpdateCheckEnabled(false)
     , has_python(false)
 {
     setupUi(this);
@@ -336,6 +337,8 @@ MainWindow::MainWindow(QWidget *parent)
     updateNbTorrents();
     connect(transferList->getSourceModel(), SIGNAL(rowsInserted(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
     connect(transferList->getSourceModel(), SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
+
+    connect(pref, SIGNAL(changed()), this, SLOT(optionsSaved()));
 
     qDebug("GUI Built");
 #ifdef Q_OS_WIN
@@ -1108,7 +1111,7 @@ void MainWindow::loadPreferences(bool configure_session)
         toolBar->setVisible(false);
     }
 
-    if (pref->preventFromSuspend()) {
+    if (pref->preventFromSuspend() && !preventTimer->isActive()) {
         preventTimer->start(PREVENT_SUSPEND_INTERVAL);
     }
     else {
@@ -1149,10 +1152,14 @@ void MainWindow::loadPreferences(bool configure_session)
     properties->reloadPreferences();
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    if (pref->isUpdateCheckEnabled())
+    if (pref->isUpdateCheckEnabled() && !m_wasUpdateCheckEnabled) {
+        m_wasUpdateCheckEnabled = true;
         checkProgramUpdate();
-    else
+    }
+    else if (!pref->isUpdateCheckEnabled() && m_wasUpdateCheckEnabled) {
+        m_wasUpdateCheckEnabled = false;
         programUpdateTimer.stop();
+    }
 #endif
 
     qDebug("GUI settings loaded");
@@ -1336,14 +1343,10 @@ void MainWindow::createTrayIcon()
 // Display Program Options
 void MainWindow::on_actionOptions_triggered()
 {
-    if (options) {
-        // Get focus
+    if (options)
         options->setFocus();
-    }
-    else {
+    else
         options = new options_imp(this);
-        connect(options, SIGNAL(status_changed()), this, SLOT(optionsSaved()));
-    }
 }
 
 void MainWindow::on_actionTop_tool_bar_triggered()

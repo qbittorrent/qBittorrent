@@ -70,10 +70,6 @@ public:
 public slots:
     void showConnectionTab();
 
-signals:
-    void status_changed() const;
-    void exitWithCancel();
-
 private slots:
     void enableProxy(int comboIndex);
     void on_buttonBox_accepted();
