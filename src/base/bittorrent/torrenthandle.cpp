@@ -1368,6 +1368,8 @@ void TorrentHandle::handleTorrentCheckedAlert(libtorrent::torrent_checked_alert 
 
     if (progress() < 1.0 && wantedSize() > 0)
         m_hasSeedStatus = false;
+    else if (progress() == 1.0)
+        m_hasSeedStatus = true;
 
     if (m_pauseAfterRecheck) {
         m_pauseAfterRecheck = false;
