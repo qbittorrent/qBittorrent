@@ -97,7 +97,7 @@ namespace libt = libtorrent;
 using namespace BitTorrent;
 
 static bool readFile(const QString &path, QByteArray &buf);
-static bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out, MagnetUri &magnetUri);
+static bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out, int &prio, MagnetUri &magnetUri);
 
 static void torrentQueuePositionUp(const libt::torrent_handle &handle);
 static void torrentQueuePositionDown(const libt::torrent_handle &handle);
@@ -1729,8 +1729,7 @@ void Session::handleTorrentResumeDataReady(TorrentHandle *const torrent, const l
     libt::bencode(std::back_inserter(out), data);
 
     QMetaObject::invokeMethod(m_resumeDataSavingManager, "saveResumeData",
-                              Q_ARG(QString, torrent->hash()), Q_ARG(QByteArray, out),
-                              Q_ARG(int, torrent->queuePosition()));
+                              Q_ARG(QString, torrent->hash()), Q_ARG(QByteArray, out));
 }
 
 void Session::handleTorrentResumeDataFailed(TorrentHandle *const torrent)
@@ -1897,47 +1896,55 @@ void Session::startUpTorrents()
 
     const QDir resumeDataDir(m_resumeFolderPath);
     QStringList fastresumes = resumeDataDir.entryList(
-                QStringList(QLatin1String("*.fastresume.*")), QDir::Files, QDir::Unsorted);
-
-    typedef QPair<int, QString> PrioHashPair;
-    typedef std::vector<PrioHashPair> PrioHashVector;
-    typedef std::greater<PrioHashPair> PrioHashGreater;
-    std::priority_queue<PrioHashPair, PrioHashVector, PrioHashGreater> torrentQueue;
-    // Fastresume file name format:
-    //     <torrent_info_hash>.fastresume.<torrent_queue_position>
-    // E.g.:
-    //     fc8a15a2faf2734dbb1dc5f7afdc5c9beaeb1f59.fastresume.2
-    QRegExp rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume\\.(\\d+)$"));
-    foreach (const QString &fastresume, fastresumes) {
-        if (rx.indexIn(fastresume) != -1) {
-            PrioHashPair p = qMakePair(rx.cap(2).toInt(), rx.cap(1));
-            torrentQueue.push(p);
-        }
-    }
+                QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
 
     QString filePath;
     Logger *const logger = Logger::instance();
 
-    qDebug("Starting up torrents");
-    qDebug("Priority queue size: %ld", (long)torrentQueue.size());
-    // Resume downloads
-    while (!torrentQueue.empty()) {
-        const int prio = torrentQueue.top().first;
-        const QString hash = torrentQueue.top().second;
-        torrentQueue.pop();
+    typedef struct
+    {
+        QString hash;
+        MagnetUri magnetUri;
+        AddTorrentData addTorrentData;
+        QByteArray data;
+    } TorrentResumeData;
 
+    qDebug("Starting up torrents");
+    qDebug("Queue size: %d", fastresumes.size());
+    // Resume downloads
+    QMap<int, TorrentResumeData> queuedResumeData;
+    QRegExp rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
+    foreach (const QString &fastresumeName, fastresumes) {
+        if (rx.indexIn(fastresumeName) == -1) continue;
+
+        QString hash = rx.cap(1);
         QString fastresumePath =
-                resumeDataDir.absoluteFilePath(QString("%1.fastresume.%2").arg(hash).arg(prio));
+                resumeDataDir.absoluteFilePath(fastresumeName);
         QByteArray data;
         AddTorrentData resumeData;
         MagnetUri magnetUri;
-        if (readFile(fastresumePath, data) && loadTorrentResumeData(data, resumeData, magnetUri)) {
-            filePath = resumeDataDir.filePath(QString("%1.torrent").arg(hash));
-            qDebug("Starting up torrent %s ...", qPrintable(hash));
-            if (!addTorrent_impl(resumeData, magnetUri, TorrentInfo::loadFromFile(filePath), data))
-                logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
-                                   .arg(Utils::Fs::toNativePath(hash)), Log::CRITICAL);
+        int queuePosition;
+        if (readFile(fastresumePath, data) && loadTorrentResumeData(data, resumeData, queuePosition, magnetUri)) {
+            if (queuePosition == 0) {
+                filePath = resumeDataDir.filePath(QString("%1.torrent").arg(hash));
+                qDebug("Starting up torrent %s ...", qPrintable(hash));
+                if (!addTorrent_impl(resumeData, magnetUri, TorrentInfo::loadFromFile(filePath), data))
+                    logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
+                                       .arg(hash), Log::CRITICAL);
+            }
+            else {
+                queuedResumeData[queuePosition] = { hash, magnetUri, resumeData, data };
+            }
         }
+    }
+
+    // starting up downloading torrents (queue position > 0)
+    foreach (const TorrentResumeData &torrentResumeData, queuedResumeData) {
+        filePath = resumeDataDir.filePath(QString("%1.torrent").arg(torrentResumeData.hash));
+        qDebug("Starting up torrent %s ...", qPrintable(torrentResumeData.hash));
+        if (!addTorrent_impl(torrentResumeData.addTorrentData, torrentResumeData.magnetUri, TorrentInfo::loadFromFile(filePath), torrentResumeData.data))
+            logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
+                               .arg(torrentResumeData.hash), Log::CRITICAL);
     }
 }
 
@@ -2351,7 +2358,7 @@ bool readFile(const QString &path, QByteArray &buf)
     return true;
 }
 
-bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out, MagnetUri &magnetUri)
+bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out, int &prio,  MagnetUri &magnetUri)
 {
     out = AddTorrentData();
     out.resumed = true;
@@ -2372,6 +2379,8 @@ bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out, MagnetUr
     magnetUri = MagnetUri(Utils::String::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
     out.addPaused = fast.dict_find_int_value("qBt-paused");
     out.addForced = fast.dict_find_int_value("qBt-forced");
+
+    prio = fast.dict_find_int_value("qBt-queuePosition");
 
     return true;
 }

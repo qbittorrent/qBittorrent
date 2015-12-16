@@ -1432,6 +1432,7 @@ void TorrentHandle::handleSaveResumeDataAlert(libtorrent::save_resume_data_alert
     resumeData["qBt-name"] = Utils::String::toStdString(m_name);
     resumeData["qBt-seedStatus"] = m_hasSeedStatus;
     resumeData["qBt-tempPathDisabled"] = m_tempPathDisabled;
+    resumeData["qBt-queuePosition"] = queuePosition();
 
     m_session->handleTorrentResumeDataReady(this, resumeData);
 }

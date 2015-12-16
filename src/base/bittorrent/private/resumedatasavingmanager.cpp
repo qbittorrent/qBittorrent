@@ -37,14 +37,9 @@ ResumeDataSavingManager::ResumeDataSavingManager(const QString &resumeFolderPath
 {
 }
 
-void ResumeDataSavingManager::saveResumeData(QString infoHash, QByteArray data, int priority) const
+void ResumeDataSavingManager::saveResumeData(QString infoHash, QByteArray data) const
 {
-    QStringList filters(QString("%1.fastresume.*").arg(infoHash));
-    const QStringList files = m_resumeDataDir.entryList(filters, QDir::Files, QDir::Unsorted);
-    foreach (const QString &file, files)
-        Utils::Fs::forceRemove(m_resumeDataDir.absoluteFilePath(file));
-
-    QString filename = QString("%1.fastresume.%2").arg(infoHash).arg(priority);
+    QString filename = QString("%1.fastresume").arg(infoHash);
     QString filepath = m_resumeDataDir.absoluteFilePath(filename);
 
     qDebug() << "Saving resume data in" << filepath;
