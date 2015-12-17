@@ -1889,7 +1889,6 @@ void Session::startUpTorrents()
     QStringList fastresumes = resumeDataDir.entryList(
                 QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
 
-    QString filePath;
     Logger *const logger = Logger::instance();
 
     typedef struct
@@ -1900,28 +1899,41 @@ void Session::startUpTorrents()
         QByteArray data;
     } TorrentResumeData;
 
+    auto startupTorrent = [this, logger, resumeDataDir](const TorrentResumeData &params)
+    {
+        QString filePath = resumeDataDir.filePath(QString("%1.torrent").arg(params.hash));
+        qDebug() << "Starting up torrent" << params.hash << "...";
+        if (!addTorrent_impl(params.addTorrentData, params.magnetUri, TorrentInfo::loadFromFile(filePath), params.data))
+            logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
+                               .arg(params.hash), Log::CRITICAL);
+    };
+
     qDebug("Starting up torrents");
     qDebug("Queue size: %d", fastresumes.size());
     // Resume downloads
     QMap<int, TorrentResumeData> queuedResumeData;
+    int nextQueuePosition = 1;
     QRegExp rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
     foreach (const QString &fastresumeName, fastresumes) {
         if (rx.indexIn(fastresumeName) == -1) continue;
 
         QString hash = rx.cap(1);
-        QString fastresumePath =
-                resumeDataDir.absoluteFilePath(fastresumeName);
+        QString fastresumePath = resumeDataDir.absoluteFilePath(fastresumeName);
         QByteArray data;
         AddTorrentData resumeData;
         MagnetUri magnetUri;
         int queuePosition;
         if (readFile(fastresumePath, data) && loadTorrentResumeData(data, resumeData, queuePosition, magnetUri)) {
-            if (queuePosition == 0) {
-                filePath = resumeDataDir.filePath(QString("%1.torrent").arg(hash));
-                qDebug("Starting up torrent %s ...", qPrintable(hash));
-                if (!addTorrent_impl(resumeData, magnetUri, TorrentInfo::loadFromFile(filePath), data))
-                    logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
-                                       .arg(hash), Log::CRITICAL);
+            if (queuePosition <= nextQueuePosition) {
+                startupTorrent({ hash, magnetUri, resumeData, data });
+
+                if (queuePosition == nextQueuePosition) {
+                    ++nextQueuePosition;
+                    while (queuedResumeData.contains(nextQueuePosition)) {
+                        startupTorrent(queuedResumeData.take(nextQueuePosition));
+                        ++nextQueuePosition;
+                    }
+                }
             }
             else {
                 queuedResumeData[queuePosition] = { hash, magnetUri, resumeData, data };
@@ -1930,13 +1942,8 @@ void Session::startUpTorrents()
     }
 
     // starting up downloading torrents (queue position > 0)
-    foreach (const TorrentResumeData &torrentResumeData, queuedResumeData) {
-        filePath = resumeDataDir.filePath(QString("%1.torrent").arg(torrentResumeData.hash));
-        qDebug("Starting up torrent %s ...", qPrintable(torrentResumeData.hash));
-        if (!addTorrent_impl(torrentResumeData.addTorrentData, torrentResumeData.magnetUri, TorrentInfo::loadFromFile(filePath), torrentResumeData.data))
-            logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
-                               .arg(torrentResumeData.hash), Log::CRITICAL);
-    }
+    foreach (const TorrentResumeData &torrentResumeData, queuedResumeData)
+        startupTorrent(torrentResumeData);
 }
 
 quint64 Session::getAlltimeDL() const
