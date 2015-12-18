@@ -2525,38 +2525,29 @@ void Preferences::setToolbarTextPosition(const int position)
     setValue("Toolbar/textPosition", position);
 }
 
-QList<QByteArray> Preferences::getHostNameCookies(const QString &host_name) const
+void Preferences::moveRSSCookies()
 {
-    QMap<QString, QVariant> hosts_table = value("Rss/hosts_cookies").toMap();
-    if (!hosts_table.contains(host_name)) return QList<QByteArray>();
-    QByteArray raw_cookies = hosts_table.value(host_name).toByteArray();
-    return raw_cookies.split(':');
-}
-
-QList<QNetworkCookie> Preferences::getHostNameQNetworkCookies(const QString& host_name) const
-{
-    QList<QNetworkCookie> cookies;
-    const QList<QByteArray> raw_cookies = getHostNameCookies(host_name);
-    foreach (const QByteArray& raw_cookie, raw_cookies) {
-        QList<QByteArray> cookie_parts = raw_cookie.split('=');
-        if (cookie_parts.size() == 2) {
-            qDebug("Loading cookie: %s = %s", cookie_parts.first().constData(), cookie_parts.last().constData());
-            cookies << QNetworkCookie(cookie_parts.first(), cookie_parts.last());
+    QList<QNetworkCookie> cookies = getNetworkCookies();
+    QVariantMap hostsTable = value("Rss/hosts_cookies").toMap();
+    foreach (const QString &key, hostsTable.keys()) {
+        QVariant value = hostsTable[key];
+        QList<QByteArray> rawCookies = value.toByteArray().split(':');
+        foreach (const QByteArray &rawCookie, rawCookies) {
+            foreach (QNetworkCookie cookie, QNetworkCookie::parseCookies(rawCookie)) {
+                cookie.setDomain(key);
+                cookie.setPath("/");
+                cookie.setExpirationDate(QDateTime::currentDateTime().addYears(10));
+                cookies << cookie;
+            }
         }
     }
-    return cookies;
-}
 
-void Preferences::setHostNameCookies(const QString &host_name, const QList<QByteArray> &cookies)
-{
-    QMap<QString, QVariant> hosts_table = value("Rss/hosts_cookies").toMap();
-    QByteArray raw_cookies = "";
-    foreach (const QByteArray& cookie, cookies)
-        raw_cookies += cookie + ":";
-    if (raw_cookies.endsWith(":"))
-        raw_cookies.chop(1);
-    hosts_table.insert(host_name, raw_cookies);
-    setValue("Rss/hosts_cookies", hosts_table);
+    setNetworkCookies(cookies);
+
+    QWriteLocker locker(&lock);
+    dirty = true;
+    timer.start();
+    m_data.remove("Rss/hosts_cookies");
 }
 
 QList<QNetworkCookie> Preferences::getNetworkCookies() const

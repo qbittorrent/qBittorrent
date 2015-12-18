@@ -538,13 +538,12 @@ public:
     void setRssFeedsUrls(const QStringList &rssFeeds);
     QStringList getRssFeedsAliases() const;
     void setRssFeedsAliases(const QStringList &rssAliases);
-    QList<QByteArray> getHostNameCookies(const QString &host_name) const;
-    QList<QNetworkCookie> getHostNameQNetworkCookies(const QString& host_name) const;
-    void setHostNameCookies(const QString &host_name, const QList<QByteArray> &cookies);
 
     // Network
     QList<QNetworkCookie> getNetworkCookies() const;
     void setNetworkCookies(const QList<QNetworkCookie> &cookies);
+    // Temporary method for upgrade purposes
+    void moveRSSCookies();
 
     // SpeedWidget
     int getSpeedWidgetPeriod() const;
