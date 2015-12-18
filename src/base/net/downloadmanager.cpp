@@ -27,11 +27,13 @@
  * exception statement from your version.
  */
 
+#include <QDateTime>
 #include <QNetworkRequest>
 #include <QNetworkProxy>
 #include <QNetworkCookieJar>
 #include <QNetworkReply>
 #include <QNetworkCookie>
+#include <QNetworkCookieJar>
 #include <QSslError>
 #include <QUrl>
 #include <QDebug>
@@ -39,6 +41,71 @@
 #include "base/preferences.h"
 #include "downloadhandler.h"
 #include "downloadmanager.h"
+
+namespace
+{
+    class NetworkCookieJar: public QNetworkCookieJar
+    {
+    public:
+        explicit NetworkCookieJar(QObject *parent = 0)
+            : QNetworkCookieJar(parent)
+        {
+            QDateTime now = QDateTime::currentDateTime();
+            QList<QNetworkCookie> cookies = Preferences::instance()->getNetworkCookies();
+            foreach (const QNetworkCookie &cookie, Preferences::instance()->getNetworkCookies()) {
+                if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
+                    cookies.removeAll(cookie);
+            }
+
+            setAllCookies(cookies);
+        }
+
+        ~NetworkCookieJar()
+        {
+            QDateTime now = QDateTime::currentDateTime();
+            QList<QNetworkCookie> cookies = allCookies();
+            foreach (const QNetworkCookie &cookie, allCookies()) {
+                if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
+                    cookies.removeAll(cookie);
+            }
+
+            Preferences::instance()->setNetworkCookies(cookies);
+        }
+
+#ifndef QBT_USES_QT5
+        virtual bool deleteCookie(const QNetworkCookie &cookie)
+        {
+            auto myCookies = allCookies();
+            myCookies.removeAll(cookie);
+            setAllCookies(myCookies);
+        }
+#endif
+
+        QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const override
+        {
+            QDateTime now = QDateTime::currentDateTime();
+            QList<QNetworkCookie> cookies = QNetworkCookieJar::cookiesForUrl(url);
+            foreach (const QNetworkCookie &cookie, QNetworkCookieJar::cookiesForUrl(url)) {
+                if (!cookie.isSessionCookie() && (cookie.expirationDate() <= now))
+                    cookies.removeAll(cookie);
+            }
+
+            return cookies;
+        }
+
+        bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url) override
+        {
+            QDateTime now = QDateTime::currentDateTime();
+            QList<QNetworkCookie> cookies = cookieList;
+            foreach (const QNetworkCookie &cookie, cookieList) {
+                if (!cookie.isSessionCookie() && (cookie.expirationDate() <= now))
+                    cookies.removeAll(cookie);
+            }
+
+            return QNetworkCookieJar::setCookiesFromUrl(cookies, url);
+        }
+    };
+}
 
 using namespace Net;
 
@@ -50,10 +117,7 @@ DownloadManager::DownloadManager(QObject *parent)
 #ifndef QT_NO_OPENSSL
     connect(&m_networkManager, SIGNAL(sslErrors(QNetworkReply *, QList<QSslError>)), this, SLOT(ignoreSslErrors(QNetworkReply *, QList<QSslError>)));
 #endif
-}
-
-DownloadManager::~DownloadManager()
-{
+    m_networkManager.setCookieJar(new NetworkCookieJar(this));
 }
 
 void DownloadManager::initInstance()
@@ -92,20 +156,25 @@ DownloadHandler *DownloadManager::downloadUrl(const QString &url, bool saveToFil
     request.setRawHeader("Referer", request.url().toEncoded().data());
 
     qDebug("Downloading %s...", request.url().toEncoded().data());
+    qDebug() << "Cookies:" << m_networkManager.cookieJar()->cookiesForUrl(request.url());
     // accept gzip
     request.setRawHeader("Accept-Encoding", "gzip");
     return new DownloadHandler(m_networkManager.get(request), this, saveToFile, limit, handleRedirectToMagnet);
 }
 
-QList<QNetworkCookie> DownloadManager::cookiesForUrl(const QString &url) const
+QList<QNetworkCookie> DownloadManager::cookiesForUrl(const QUrl &url) const
 {
     return m_networkManager.cookieJar()->cookiesForUrl(url);
 }
 
 bool DownloadManager::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url)
 {
-    qDebug("Setting %d cookies for url: %s", cookieList.size(), qPrintable(url.toString()));
     return m_networkManager.cookieJar()->setCookiesFromUrl(cookieList, url);
+}
+
+bool DownloadManager::deleteCookie(const QNetworkCookie &cookie)
+{
+    return static_cast<NetworkCookieJar *>(m_networkManager.cookieJar())->deleteCookie(cookie);
 }
 
 void DownloadManager::applyProxySettings()
