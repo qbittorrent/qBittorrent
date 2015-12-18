@@ -31,12 +31,14 @@
 #include "cookiesdlg.h"
 #include "ui_cookiesdlg.h"
 #include "guiiconprovider.h"
+#include "base/net/downloadmanager.h"
 
 #include <QNetworkCookie>
+#include <QDateTime>
 
 enum CookiesCols { COOKIE_KEY, COOKIE_VALUE};
 
-CookiesDlg::CookiesDlg(QWidget *parent, const QList<QByteArray> &raw_cookies) :
+CookiesDlg::CookiesDlg(const QUrl &url, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CookiesDlg)
 {
@@ -46,13 +48,13 @@ CookiesDlg::CookiesDlg(QWidget *parent, const QList<QByteArray> &raw_cookies) :
   ui->del_btn->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
 
   ui->infos_lbl->setText(tr("Common keys for cookies are: '%1', '%2'.\nYou should get this information from your Web browser preferences.").arg("uid").arg("pass"));
-  foreach (const QByteArray &raw_cookie, raw_cookies) {
-    QList<QByteArray> cookie_parts = raw_cookie.split('=');
-    if (cookie_parts.size() != 2) continue;
+
+  QList<QNetworkCookie> cookies = Net::DownloadManager::instance()->cookiesForUrl(url);
+  foreach (const QNetworkCookie &cookie, cookies) {
     const int i = ui->cookiesTable->rowCount();
     ui->cookiesTable->setRowCount(i+1);
-    ui->cookiesTable->setItem(i, COOKIE_KEY, new QTableWidgetItem(cookie_parts.first().data()));
-    ui->cookiesTable->setItem(i, COOKIE_VALUE, new QTableWidgetItem(cookie_parts.last().data()));
+    ui->cookiesTable->setItem(i, COOKIE_KEY, new QTableWidgetItem(QString(cookie.name())));
+    ui->cookiesTable->setItem(i, COOKIE_VALUE, new QTableWidgetItem(QString(cookie.value())));
   }
 }
 
@@ -75,8 +77,9 @@ void CookiesDlg::on_del_btn_clicked() {
   }
 }
 
-QList<QByteArray> CookiesDlg::getCookies() const {
-  QList<QByteArray> ret;
+QList<QNetworkCookie> CookiesDlg::getCookies() const {
+  QList<QNetworkCookie> ret;
+  auto now = QDateTime::currentDateTime();
   for (int i=0; i<ui->cookiesTable->rowCount(); ++i) {
     QString key;
     if (ui->cookiesTable->item(i, COOKIE_KEY))
@@ -85,20 +88,23 @@ QList<QByteArray> CookiesDlg::getCookies() const {
     if (ui->cookiesTable->item(i, COOKIE_VALUE))
       value = ui->cookiesTable->item(i, COOKIE_VALUE)->text().trimmed();
     if (!key.isEmpty() && !value.isEmpty()) {
-      const QString raw_cookie = key+"="+value;
-      qDebug("Cookie: %s", qPrintable(raw_cookie));
-      ret << raw_cookie.toLocal8Bit();
+      QNetworkCookie cookie(key.toUtf8(), value.toUtf8());
+      // TODO: Delete this hack when advanced Cookie dialog will be implemented.
+      cookie.setExpirationDate(now.addYears(10));
+      qDebug("Cookie: %s", cookie.toRawForm().data());
+      ret << cookie;
     }
   }
   return ret;
 }
 
-QList<QByteArray> CookiesDlg::askForCookies(QWidget *parent, const QList<QByteArray> &raw_cookies, bool *ok) {
-  CookiesDlg dlg(parent, raw_cookies);
+bool CookiesDlg::askForCookies(QWidget *parent, const QUrl &url, QList<QNetworkCookie> &out)
+{
+  CookiesDlg dlg(url, parent);
   if (dlg.exec()) {
-    *ok = true;
-    return dlg.getCookies();
+      out = dlg.getCookies();
+      return true;
   }
-  *ok = false;
-  return QList<QByteArray>();
+
+  return false;
 }

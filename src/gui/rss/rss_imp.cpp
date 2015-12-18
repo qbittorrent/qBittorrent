@@ -142,18 +142,19 @@ void RSSImp::displayItemsListMenu(const QPoint&)
 void RSSImp::on_actionManage_cookies_triggered()
 {
     Q_ASSERT(!m_feedList->selectedItems().empty());
-    // Get feed hostname
-    QString feed_url = m_feedList->getItemID(m_feedList->selectedItems().first());
-    QString feed_hostname = QUrl::fromEncoded(feed_url.toUtf8()).host();
-    qDebug("RSS Feed hostname is: %s", qPrintable(feed_hostname));
-    Q_ASSERT(!feed_hostname.isEmpty());
-    bool ok = false;
-    Preferences* const pref = Preferences::instance();
-    QList<QByteArray> raw_cookies = CookiesDlg::askForCookies(this, pref->getHostNameCookies(feed_hostname), &ok);
-    if (ok) {
-        qDebug() << "Settings cookies for host name: " << feed_hostname;
-        pref->setHostNameCookies(feed_hostname, raw_cookies);
-        Net::DownloadManager::instance()->setCookiesFromUrl(pref->getHostNameQNetworkCookies(feed_hostname), feed_hostname);
+
+    // TODO: Create advanced application wide Cookie dialog and use it everywhere.
+    QUrl feedUrl = QUrl::fromEncoded(m_feedList->getItemID(m_feedList->selectedItems().first()).toUtf8());
+    QList<QNetworkCookie> cookies;
+    if (CookiesDlg::askForCookies(this, feedUrl, cookies)) {
+        auto downloadManager = Net::DownloadManager::instance();
+        QList<QNetworkCookie> oldCookies = downloadManager->cookiesForUrl(feedUrl);
+        foreach (const QNetworkCookie &oldCookie, oldCookies) {
+            if (!cookies.contains(oldCookie))
+                downloadManager->deleteCookie(oldCookie);
+        }
+
+        downloadManager->setCookiesFromUrl(cookies, feedUrl);
     }
 }
 
