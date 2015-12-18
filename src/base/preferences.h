@@ -542,6 +542,10 @@ public:
     QList<QNetworkCookie> getHostNameQNetworkCookies(const QString& host_name) const;
     void setHostNameCookies(const QString &host_name, const QList<QByteArray> &cookies);
 
+    // Network
+    QList<QNetworkCookie> getNetworkCookies() const;
+    void setNetworkCookies(const QList<QNetworkCookie> &cookies);
+
     // SpeedWidget
     int getSpeedWidgetPeriod() const;
     void setSpeedWidgetPeriod(const int period);

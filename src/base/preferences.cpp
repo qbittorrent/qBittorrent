@@ -1027,12 +1027,12 @@ void Preferences::setFilteringEnabled(bool enabled)
 
 bool Preferences::isFilteringTrackerEnabled() const
 {
-	return value("Preferences/IPFilter/FilterTracker", false).toBool();
+    return value("Preferences/IPFilter/FilterTracker", false).toBool();
 }
 
 void Preferences::setFilteringTrackerEnabled(bool enabled)
 {
-	setValue("Preferences/IPFilter/FilterTracker", enabled);
+    setValue("Preferences/IPFilter/FilterTracker", enabled);
 }
 
 QString Preferences::getFilter() const
@@ -2559,11 +2559,32 @@ void Preferences::setHostNameCookies(const QString &host_name, const QList<QByte
     setValue("Rss/hosts_cookies", hosts_table);
 }
 
-int Preferences::getSpeedWidgetPeriod() const {
+QList<QNetworkCookie> Preferences::getNetworkCookies() const
+{
+    QList<QNetworkCookie> cookies;
+    QStringList rawCookies = value("Network/Cookies").toStringList();
+    foreach (const QString &rawCookie, rawCookies)
+        cookies << QNetworkCookie::parseCookies(rawCookie.toUtf8());
+
+    return cookies;
+}
+
+void Preferences::setNetworkCookies(const QList<QNetworkCookie> &cookies)
+{
+    QStringList rawCookies;
+    foreach (const QNetworkCookie &cookie, cookies)
+        rawCookies << cookie.toRawForm();
+
+    setValue("Network/Cookies", rawCookies);
+}
+
+int Preferences::getSpeedWidgetPeriod() const
+{
     return value("SpeedWidget/period", 1).toInt();
 }
 
-void Preferences::setSpeedWidgetPeriod(const int period) {
+void Preferences::setSpeedWidgetPeriod(const int period)
+{
     setValue("SpeedWidget/period", period);
 }
 
