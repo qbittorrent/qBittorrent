@@ -42,6 +42,9 @@
 #include "downloadhandler.h"
 #include "downloadmanager.h"
 
+// Spoof Firefox 38 user agent to avoid web server banning
+const char DEFAULT_USER_AGENT[] = "Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0";
+
 namespace
 {
     class NetworkCookieJar: public QNetworkCookieJar
@@ -139,7 +142,7 @@ DownloadManager *DownloadManager::instance()
     return m_instance;
 }
 
-DownloadHandler *DownloadManager::downloadUrl(const QString &url, bool saveToFile, qint64 limit, bool handleRedirectToMagnet)
+DownloadHandler *DownloadManager::downloadUrl(const QString &url, bool saveToFile, qint64 limit, bool handleRedirectToMagnet, const QString &userAgent)
 {
     // Update proxy settings
     applyProxySettings();
@@ -149,8 +152,10 @@ DownloadHandler *DownloadManager::downloadUrl(const QString &url, bool saveToFil
     const QUrl qurl = QUrl::fromEncoded(url.toUtf8());
     QNetworkRequest request(qurl);
 
-    // Spoof Firefox 38 user agent to avoid web server banning
-    request.setRawHeader("User-Agent", "Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0");
+    if (userAgent.isEmpty())
+        request.setRawHeader("User-Agent", DEFAULT_USER_AGENT);
+    else
+        request.setRawHeader("User-Agent", userAgent.toUtf8());
 
     // Spoof HTTP Referer to allow adding torrent link from Torcache/KickAssTorrents
     request.setRawHeader("Referer", request.url().toEncoded().data());
