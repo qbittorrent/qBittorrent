@@ -28,23 +28,20 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
 #include <QXmlStreamReader>
-#include <QNetworkProxy>
 #include <QDesktopServices>
 #include <QDebug>
 #include <QRegExp>
 #include <QStringList>
 
-#include "programupdater.h"
 #include "base/utils/fs.h"
-#include "base/preferences.h"
+#include "base/net/downloadmanager.h"
+#include "base/net/downloadhandler.h"
+#include "programupdater.h"
 
 namespace
 {
-    const QUrl RSS_URL("http://www.fosshub.com/software/feedqBittorent");
+    const QString RSS_URL("http://www.fosshub.com/software/feedqBittorent");
 
 #ifdef Q_OS_MAC
     const QString OS_TYPE("Mac OS X");
@@ -59,99 +56,73 @@ ProgramUpdater::ProgramUpdater(QObject *parent, bool invokedByUser)
     : QObject(parent)
     , m_invokedByUser(invokedByUser)
 {
-    m_networkManager = new QNetworkAccessManager(this);
-    Preferences* const pref = Preferences::instance();
-    // Proxy support
-    if (pref->isProxyEnabled()) {
-        QNetworkProxy proxy;
-        switch(pref->getProxyType()) {
-        case Proxy::SOCKS4:
-        case Proxy::SOCKS5:
-        case Proxy::SOCKS5_PW:
-            proxy.setType(QNetworkProxy::Socks5Proxy);
-        default:
-            proxy.setType(QNetworkProxy::HttpProxy);
-            break;
-        }
-        proxy.setHostName(pref->getProxyIp());
-        proxy.setPort(pref->getProxyPort());
-        // Proxy authentication
-        if (pref->isProxyAuthEnabled()) {
-            proxy.setUser(pref->getProxyUsername());
-            proxy.setPassword(pref->getProxyPassword());
-        }
-        m_networkManager->setProxy(proxy);
-    }
-}
-
-ProgramUpdater::~ProgramUpdater()
-{
-    delete m_networkManager;
 }
 
 void ProgramUpdater::checkForUpdates()
 {
-    // SIGNAL/SLOT
-    connect(m_networkManager, SIGNAL(finished(QNetworkReply*)),
-            this, SLOT(rssDownloadFinished(QNetworkReply*)));
-    // Send the request
-    QNetworkRequest request(RSS_URL);
-    // Don't change this User-Agent. In case our updater goes haywire, the filehost can indetify it and contact us.
-    request.setRawHeader("User-Agent", QString("qBittorrent/%1 ProgramUpdater (www.qbittorrent.org)").arg(VERSION).toLocal8Bit());
-    m_networkManager->get(request);
+    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(
+                RSS_URL, false, 0, false,
+                // Don't change this User-Agent. In case our updater goes haywire,
+                // the filehost can identify it and contact us.
+                QString("qBittorrent/%1 ProgramUpdater (www.qbittorrent.org)").arg(VERSION));
+    connect(handler, SIGNAL(downloadFinished(QString,QByteArray)), SLOT(rssDownloadFinished(QString,QByteArray)));
+    connect(handler, SIGNAL(downloadFailed(QString,QString)), SLOT(rssDownloadFailed(QString,QString)));
 }
 
-void ProgramUpdater::rssDownloadFinished(QNetworkReply *reply)
+void ProgramUpdater::rssDownloadFinished(const QString &url, const QByteArray &data)
 {
-    // Disconnect SIGNAL/SLOT
-    disconnect(m_networkManager, 0, this, 0);
+    Q_UNUSED(url);
+
     qDebug("Finished downloading the new qBittorrent updates RSS");
     QString version;
 
-    if (!reply->error()) {
-        qDebug("No download error, good.");
-        QXmlStreamReader xml(reply);
-        bool inItem = false;
-        QString updateLink;
-        QString type;
+    QXmlStreamReader xml(data);
+    bool inItem = false;
+    QString updateLink;
+    QString type;
 
-        while (!xml.atEnd()) {
-            xml.readNext();
+    while (!xml.atEnd()) {
+        xml.readNext();
 
-            if (xml.isStartElement()) {
-                if (xml.name() == "item")
-                    inItem = true;
-                else if (inItem && xml.name() == "link")
-                    updateLink = getStringValue(xml);
-                else if (inItem && xml.name() == "type")
-                    type = getStringValue(xml);
-                else if (inItem && xml.name() == "version")
-                    version = getStringValue(xml);
-            }
-            else if (xml.isEndElement()) {
-                if (inItem && xml.name() == "item") {
-                    if (type.compare(OS_TYPE, Qt::CaseInsensitive) == 0) {
-                        qDebug("The last update available is %s", qPrintable(version));
-                        if (!version.isEmpty()) {
-                            qDebug("Detected version is %s", qPrintable(version));
-                            if (isVersionMoreRecent(version))
-                                m_updateUrl = updateLink;
-                        }
-                        break;
+        if (xml.isStartElement()) {
+            if (xml.name() == "item")
+                inItem = true;
+            else if (inItem && xml.name() == "link")
+                updateLink = getStringValue(xml);
+            else if (inItem && xml.name() == "type")
+                type = getStringValue(xml);
+            else if (inItem && xml.name() == "version")
+                version = getStringValue(xml);
+        }
+        else if (xml.isEndElement()) {
+            if (inItem && xml.name() == "item") {
+                if (type.compare(OS_TYPE, Qt::CaseInsensitive) == 0) {
+                    qDebug("The last update available is %s", qPrintable(version));
+                    if (!version.isEmpty()) {
+                        qDebug("Detected version is %s", qPrintable(version));
+                        if (isVersionMoreRecent(version))
+                            m_updateUrl = updateLink;
                     }
-
-                    inItem = false;
-                    updateLink.clear();
-                    type.clear();
-                    version.clear();
+                    break;
                 }
+
+                inItem = false;
+                updateLink.clear();
+                type.clear();
+                version.clear();
             }
         }
     }
 
     emit updateCheckFinished(!m_updateUrl.isEmpty(), version, m_invokedByUser);
-    // Clean up
-    reply->deleteLater();
+}
+
+void ProgramUpdater::rssDownloadFailed(const QString &url, const QString &error)
+{
+    Q_UNUSED(url);
+
+    qDebug() << "Downloading the new qBittorrent updates RSS failed:" << error;
+    emit updateCheckFinished(false, QString(), m_invokedByUser);
 }
 
 void ProgramUpdater::updateProgram()
