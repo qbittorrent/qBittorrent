@@ -33,15 +33,15 @@
 
 #include <QObject>
 #include <QHostAddress>
-#include <QNetworkReply>
 #include <QDateTime>
 #include <QTimer>
+
 #include "base/preferences.h"
 
 namespace Net
-{ 
+{
     // Based on http://www.dyndns.com/developers/specs/
-    class DNSUpdater : public QObject
+    class DNSUpdater: public QObject
     {
         Q_OBJECT
 
@@ -56,15 +56,25 @@ namespace Net
 
     private slots:
         void checkPublicIP();
-        void ipRequestFinished(QNetworkReply *reply);
+        void ipRequestFinished(const QString &url, const QByteArray &data);
+        void ipRequestFailed(const QString &url, const QString &error);
         void updateDNSService();
-        void ipUpdateFinished(QNetworkReply *reply);
+        void ipUpdateFinished(const QString &url, const QByteArray &data);
+        void ipUpdateFailed(const QString &url, const QString &error);
 
     private:
-        QUrl getUpdateUrl() const;
+        enum State
+        {
+            OK,
+            INVALID_CREDS,
+            FATAL
+        };
+
+        static const int IP_CHECK_INTERVAL_MS = 1800000; // 30 min
+
+        QString getUpdateUrl() const;
         void processIPUpdateReply(const QString &reply);
 
-    private:
         QHostAddress m_lastIP;
         QDateTime m_lastIPCheckTime;
         QTimer m_ipCheckTimer;
@@ -74,16 +84,6 @@ namespace Net
         QString m_domain;
         QString m_username;
         QString m_password;
-
-    private:
-        static const int IP_CHECK_INTERVAL_MS = 1800000; // 30 min
-
-        enum State
-        {
-            OK,
-            INVALID_CREDS,
-            FATAL
-        };
     };
 }
 
