@@ -46,18 +46,17 @@ class ScanFoldersDelegate : public QItemDelegate
 
 public:
     ScanFoldersDelegate(QObject *parent, QTreeView *foldersView);
-    ~ScanFoldersDelegate();
 
+private slots:
+    void comboboxIndexChanged(int index);
+
+private:
+    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
+    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const;
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void setEditorData(QWidget *editor, const QModelIndex &index) const;
     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &index) const;
 
-public slots:
-    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
-    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const;
-    void comboboxIndexChanged(int index);
-
-private:
     QTreeView *m_folderView;
 };
 
