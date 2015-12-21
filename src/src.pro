@@ -34,7 +34,7 @@ nogui {
 }
 nowebui: DEFINES += DISABLE_WEBUI
 strace_win: DEFINES += STACKTRACE_WIN
-QT += network
+QT += network xml
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 # Vars
@@ -63,16 +63,14 @@ INCLUDEPATH += $$PWD
 include(app/app.pri)
 include(base/base.pri)
 !nowebui: include(webui/webui.pri)
-!nogui {
-    include(gui/gui.pri)
-    include(searchengine/searchengine.pri)
-}
+!nogui: include(gui/gui.pri)
 
 # Resource files
 QMAKE_RESOURCE_FLAGS += -compress 9 -threshold 5
 RESOURCES += \
     icons.qrc \
-    lang.qrc
+    lang.qrc \
+    searchengine.qrc
 
 # Translations
 TRANSLATIONS = \

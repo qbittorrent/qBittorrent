@@ -34,6 +34,7 @@
 #include "notifications.h"
 #endif
 
+#include <QDebug>
 #include <QFileDialog>
 #include <QFileSystemWatcher>
 #include <QMessageBox>
@@ -50,10 +51,11 @@
 #include "mainwindow.h"
 #include "transferlistwidget.h"
 #include "base/utils/misc.h"
+#include "base/utils/fs.h"
 #include "torrentcreatordlg.h"
 #include "downloadfromurldlg.h"
 #include "addnewtorrentdialog.h"
-#include "searchengine.h"
+#include "search/searchwidget.h"
 #include "rss_imp.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
@@ -531,7 +533,7 @@ void MainWindow::displaySearchTab(bool enable)
     if (enable) {
         // RSS tab
         if (!searchEngine) {
-            searchEngine = new SearchEngine(this);
+            searchEngine = new SearchWidget(this);
             tabs->insertTab(1, searchEngine, GuiIconProvider::instance()->getIcon("edit-find"), tr("Search"));
         }
     }

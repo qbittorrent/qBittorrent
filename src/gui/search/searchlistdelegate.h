@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -28,51 +28,18 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef SEARCH_TAB_H
-#define SEARCH_TAB_H
+#ifndef SEARCHLISTDELEGATE_H
+#define SEARCHLISTDELEGATE_H
 
-#include "ui_search.h"
-#include "searchsortmodel.h"
+#include <QItemDelegate>
 
-#define ENGINE_URL_COLUMN 4
-#define URL_COLUMN 5
-
-class SearchListDelegate;
-class SearchEngine;
-
-QT_BEGIN_NAMESPACE
-class QTreeView;
-class QHeaderView;
-class QStandardItemModel;
-QT_END_NAMESPACE
-
-class SearchTab: public QWidget, public Ui::search_engine {
-    Q_OBJECT
-
-private:
-    QVBoxLayout *box;
-    QLabel *results_lbl;
-    QTreeView *resultsBrowser;
-    QStandardItemModel *SearchListModel;
-    SearchSortModel *proxyModel;
-    SearchListDelegate *SearchDelegate;
-    SearchEngine *parent;
-
-protected slots:
-    void downloadSelectedItem(const QModelIndex& index);
-
+class SearchListDelegate: public QItemDelegate
+{
 public:
-    SearchTab(SearchEngine *parent);
-    ~SearchTab();
-    bool loadColWidthResultsList();
-    QLabel * getCurrentLabel();
-    QStandardItemModel* getCurrentSearchListModel() const;
-    QSortFilterProxyModel* getCurrentSearchListProxy() const;
-    QTreeView * getCurrentTreeView();
-    void setRowColor(int row, QString color);
-    QHeaderView* header() const;
-    QString status;
+    explicit SearchListDelegate(QObject *parent = 0);
+
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const;
 };
 
 #endif
-

@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2013  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,42 +24,31 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#ifndef PLUGIN_SOURCE_H
-#define PLUGIN_SOURCE_H
+#include "searchsortmodel.h"
 
-#include <QDialog>
-#include "ui_pluginsource.h"
+SearchSortModel::SearchSortModel(QObject *parent)
+    : QSortFilterProxyModel(parent)
+{
+}
 
-class pluginSourceDlg: public QDialog, private Ui::pluginSourceDlg {
-  Q_OBJECT
+bool SearchSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
+{
+    if ((sortColumn() == NAME) || (sortColumn() == ENGINE_URL)) {
+        QVariant vL = sourceModel()->data(left);
+        QVariant vR = sourceModel()->data(right);
+        if (!(vL.isValid() && vR.isValid()))
+            return QSortFilterProxyModel::lessThan(left, right);
+        Q_ASSERT(vL.isValid());
+        Q_ASSERT(vR.isValid());
 
-  signals:
-    void askForUrl();
-    void askForLocalFile();
+        bool res = false;
+        if (Utils::String::naturalSort(vL.toString(), vR.toString(), res))
+            return res;
 
-  protected slots:
-    void on_localButton_clicked() {
-      emit askForLocalFile();
-      close();
+        return QSortFilterProxyModel::lessThan(left, right);
     }
 
-    void on_urlButton_clicked() {
-      emit askForUrl();
-      close();
-    }
-
-  public:
-    pluginSourceDlg(QWidget* parent): QDialog(parent) {
-      setupUi(this);
-      setAttribute(Qt::WA_DeleteOnClose);
-      show();
-    }
-
-    ~pluginSourceDlg() {}
-};
-
-#endif
+    return QSortFilterProxyModel::lessThan(left, right);
+}

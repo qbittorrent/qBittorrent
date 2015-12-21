@@ -137,6 +137,10 @@ void AddNewTorrentDialog::show(QString source, QWidget *parent)
         qDebug("Converting bc link to magnet link");
         source = Utils::Misc::bcLinkToMagnet(source);
     }
+    else if (((source.size() == 40) && !source.contains(QRegExp("[^0-9A-Fa-f]")))
+             || ((source.size() == 32) && !source.contains(QRegExp("[^2-7A-Za-z]")))) {
+        source = "magnet:?xt=urn:btih:" + source;
+    }
 
     AddNewTorrentDialog *dlg = new AddNewTorrentDialog(parent);
 

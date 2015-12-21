@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>search_engine</class>
- <widget class="QWidget" name="search_engine">
+ <class>SearchWidget</class>
+ <widget class="QWidget" name="SearchWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -20,10 +20,10 @@
       <widget class="QComboBox" name="comboCategory"/>
      </item>
      <item>
-      <widget class="QComboBox" name="selectEngine"/>
+      <widget class="QComboBox" name="selectPlugin"/>
      </item>
      <item>
-      <widget class="QPushButton" name="search_button">
+      <widget class="QPushButton" name="searchButton">
        <property name="text">
         <string>Search</string>
        </property>
@@ -53,7 +53,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="search_status">
+      <widget class="QLabel" name="searchStatus">
        <property name="minimumSize">
         <size>
          <width>200</width>
@@ -99,7 +99,7 @@
      <item>
       <layout class="QHBoxLayout">
        <item>
-        <widget class="QPushButton" name="download_button">
+        <widget class="QPushButton" name="downloadButton">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -142,9 +142,9 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="enginesButton">
+        <widget class="QPushButton" name="pluginsButton">
          <property name="text">
-          <string>Search engines...</string>
+          <string>Search plugins...</string>
          </property>
         </widget>
        </item>

@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>pluginSourceDlg</class>
- <widget class="QDialog" name="pluginSourceDlg" >
+ <class>PluginSourceDlg</class>
+ <widget class="QDialog" name="PluginSourceDlg" >
   <property name="geometry" >
    <rect>
     <x>0</x>
