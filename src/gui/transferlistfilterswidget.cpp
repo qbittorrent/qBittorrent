@@ -626,6 +626,8 @@ void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString&
     }
 
     QListWidgetItem *trackerItem = item(rowFromTracker(host));
+    if (!trackerItem) return;
+
     QIcon icon(filePath);
     //Detect a non-decodable icon
     QList<QSize> sizes = icon.availableSizes();
