@@ -733,9 +733,9 @@ int TrackerFiltersList::rowFromTracker(const QString &tracker) const
     return -1;
 }
 
-QString TrackerFiltersList::getHost(const QString &trakcer) const
+QString TrackerFiltersList::getHost(const QString &tracker) const
 {
-    QUrl url(trakcer);
+    QUrl url(tracker);
     QString longHost = url.host();
     QString tld = url.topLevelDomain();
     // We get empty tld when it is invalid or an IPv4/IPv6 address,

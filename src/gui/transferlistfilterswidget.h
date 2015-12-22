@@ -154,7 +154,7 @@ private:
     virtual void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const torrent);
     QString trackerFromRow(int row) const;
     int rowFromTracker(const QString &tracker) const;
-    QString getHost(const QString &trakcer) const;
+    QString getHost(const QString &tracker) const;
     QStringList getHashes(int row);
     void downloadFavicon(const QString &url);
 
