@@ -1364,12 +1364,13 @@ void TorrentHandle::handleTorrentCheckedAlert(libtorrent::torrent_checked_alert 
     qDebug("%s have just finished checking", qPrintable(hash()));
 
     updateStatus();
-    adjustActualSavePath();
 
-    if (progress() < 1.0 && wantedSize() > 0)
+    if ((progress() < 1.0) && (wantedSize() > 0))
         m_hasSeedStatus = false;
     else if (progress() == 1.0)
         m_hasSeedStatus = true;
+
+    adjustActualSavePath();
 
     if (m_pauseAfterRecheck) {
         m_pauseAfterRecheck = false;
@@ -1696,7 +1697,7 @@ bool TorrentHandle::isMoveInProgress() const
 
 bool TorrentHandle::useTempPath() const
 {
-    return !m_tempPathDisabled && m_session->isTempPathEnabled() && !isSeed();
+    return !m_tempPathDisabled && m_session->isTempPathEnabled() && !(isSeed() || m_hasSeedStatus);
 }
 
 void TorrentHandle::updateStatus()
