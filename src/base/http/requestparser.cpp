@@ -319,7 +319,7 @@ bool RequestParser::parseFormData(const QByteArray& data)
         ufile.type = disposition["content-type"];
         ufile.data = data.mid(header_end + EOH.length());
 
-        m_request.files[disposition["name"]] = ufile;
+        m_request.files.append(ufile);
     }
     else {
         m_request.posts[disposition["name"]] = QString::fromUtf8(data.mid(header_end + EOH.length()));

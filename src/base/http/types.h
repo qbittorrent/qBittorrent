@@ -32,6 +32,7 @@
 #include <QString>
 #include <QMap>
 #include <QHostAddress>
+#include <QVector>
 
 typedef QMap<QString, QString> QStringMap;
 
@@ -70,7 +71,7 @@ namespace Http
         QStringMap headers;
         QStringMap gets;
         QStringMap posts;
-        QMap<QString, UploadedFile> files;
+        QVector<UploadedFile> files;
     };
 
     struct ResponseStatus
