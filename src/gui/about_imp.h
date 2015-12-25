@@ -48,8 +48,8 @@ public:
         setAttribute(Qt::WA_DeleteOnClose);
 
         // Title & icon
-        logo->setPixmap(QPixmap(":/icons/skin/qbittorrent22.png"));
-        lb_name->setText("<b><h1>qBittorrent " VERSION "</h1></b>");
+        logo->setPixmap(QPixmap(":/icons/skin/qbittorrent32.png"));
+        lb_name->setText("<b><h2>qBittorrent " VERSION "</h2></b>");
 
         // About
         QString aboutText = QString(
