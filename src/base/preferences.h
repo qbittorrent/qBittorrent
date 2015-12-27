@@ -418,6 +418,12 @@ public:
     static void setTorrentFileAssoc(bool set);
     static void setMagnetLinkAssoc(bool set);
 #endif
+#ifdef Q_OS_MAC
+    static bool isTorrentFileAssocSet();
+    static bool isMagnetLinkAssocSet();
+    static void setTorrentFileAssoc();
+    static void setMagnetLinkAssoc();
+#endif
     bool isTrackerEnabled() const;
     void setTrackerEnabled(bool enabled);
     int getTrackerPort() const;
