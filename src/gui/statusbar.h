@@ -61,18 +61,19 @@ public slots:
 
 private:
     QStatusBar *m_bar;
-    QPushButton *dlSpeedLbl;
-    QPushButton *upSpeedLbl;
-    QLabel *DHTLbl;
-    QFrame *statusSep1;
-    QFrame *statusSep2;
-    QFrame *statusSep3;
-    QFrame *statusSep4;
-    QPushButton *connecStatusLblIcon;
-    QPushButton *altSpeedsBtn;
-    QTimer *refreshTimer;
-    QWidget *container;
-    QHBoxLayout *layout;
+    QPushButton *m_dlSpeedLbl;
+    QPushButton *m_upSpeedLbl;
+    QLabel *m_DHTLbl;
+    QFrame *m_statusSep1;
+    QFrame *m_statusSep2;
+    QFrame *m_statusSep3;
+    QFrame *m_statusSep4;
+    QPushButton *m_connecStatusLblIcon;
+    QPushButton *m_altSpeedsBtn;
+    QTimer *m_refreshTimer;
+    QWidget *m_container;
+    QHBoxLayout *m_layout;
+
 };
 
 #endif // STATUSBAR_H

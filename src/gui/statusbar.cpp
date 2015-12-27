@@ -54,86 +54,86 @@ StatusBar::StatusBar(QStatusBar *bar)
 
     Preferences* const pref = Preferences::instance();
     connect(BitTorrent::Session::instance(), SIGNAL(speedLimitModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
-    container = new QWidget(bar);
-    layout = new QHBoxLayout(container);
-    layout->setContentsMargins(0, 0, 0, 0);
+    m_container = new QWidget(bar);
+    m_layout = new QHBoxLayout(m_container);
+    m_layout->setContentsMargins(0,0,0,0);
 
-    container->setLayout(layout);
-    connecStatusLblIcon = new QPushButton(bar);
-    connecStatusLblIcon->setFlat(true);
-    connecStatusLblIcon->setFocusPolicy(Qt::NoFocus);
-    connecStatusLblIcon->setCursor(Qt::PointingHandCursor);
-    connecStatusLblIcon->setIcon(QIcon(":/icons/skin/firewalled.png"));
-    connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>") + tr("Connection status:") + QString::fromUtf8("</b><br>") + QString::fromUtf8("<i>") + tr("No direct connections. This may indicate network configuration problems.") + QString::fromUtf8("</i>"));
-    dlSpeedLbl = new QPushButton(bar);
-    dlSpeedLbl->setIcon(QIcon(":/icons/skin/download.png"));
-    connect(dlSpeedLbl, SIGNAL(clicked()), this, SLOT(capDownloadSpeed()));
-    dlSpeedLbl->setFlat(true);
-    dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
-    dlSpeedLbl->setCursor(Qt::PointingHandCursor);
+    m_container->setLayout(m_layout);
+    m_connecStatusLblIcon = new QPushButton(bar);
+    m_connecStatusLblIcon->setFlat(true);
+    m_connecStatusLblIcon->setFocusPolicy(Qt::NoFocus);
+    m_connecStatusLblIcon->setCursor(Qt::PointingHandCursor);
+    m_connecStatusLblIcon->setIcon(QIcon(":/icons/skin/firewalled.png"));
+    m_connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>") + tr("Connection status:") + QString::fromUtf8("</b><br>") + QString::fromUtf8("<i>") + tr("No direct connections. This may indicate network configuration problems.") + QString::fromUtf8("</i>"));
+    m_dlSpeedLbl = new QPushButton(bar);
+    m_dlSpeedLbl->setIcon(QIcon(":/icons/skin/download.png"));
+    connect(m_dlSpeedLbl, SIGNAL(clicked()), this, SLOT(capDownloadSpeed()));
+    m_dlSpeedLbl->setFlat(true);
+    m_dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
+    m_dlSpeedLbl->setCursor(Qt::PointingHandCursor);
 
-    upSpeedLbl = new QPushButton(bar);
-    upSpeedLbl->setIcon(QIcon(":/icons/skin/seeding.png"));
-    connect(upSpeedLbl, SIGNAL(clicked()), this, SLOT(capUploadSpeed()));
-    upSpeedLbl->setFlat(true);
-    upSpeedLbl->setFocusPolicy(Qt::NoFocus);
-    upSpeedLbl->setCursor(Qt::PointingHandCursor);
-    DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), bar);
-    DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+    m_upSpeedLbl = new QPushButton(bar);
+    m_upSpeedLbl->setIcon(QIcon(":/icons/skin/seeding.png"));
+    connect(m_upSpeedLbl, SIGNAL(clicked()), this, SLOT(capUploadSpeed()));
+    m_upSpeedLbl->setFlat(true);
+    m_upSpeedLbl->setFocusPolicy(Qt::NoFocus);
+    m_upSpeedLbl->setCursor(Qt::PointingHandCursor);
+    m_DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), bar);
+    m_DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
 
-    altSpeedsBtn = new QPushButton(bar);
-    altSpeedsBtn->setFlat(true);
-    altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
-    altSpeedsBtn->setCursor(Qt::PointingHandCursor);
+    m_altSpeedsBtn = new QPushButton(bar);
+    m_altSpeedsBtn->setFlat(true);
+    m_altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
+    m_altSpeedsBtn->setCursor(Qt::PointingHandCursor);
     updateAltSpeedsBtn(pref->isAltBandwidthEnabled());
-    connect(altSpeedsBtn, SIGNAL(clicked()), this, SLOT(toggleAlternativeSpeeds()));
+    connect(m_altSpeedsBtn, SIGNAL(clicked()), this, SLOT(toggleAlternativeSpeeds()));
 
     // Because on some platforms the default icon size is bigger
     // and it will result in taller/fatter statusbar, even if the
     // icons are actually 16x16
-    connecStatusLblIcon->setIconSize(QSize(16, 16));
-    dlSpeedLbl->setIconSize(QSize(16, 16));
-    upSpeedLbl->setIconSize(QSize(16, 16));
-    altSpeedsBtn->setIconSize(QSize(28, 16));
+    m_connecStatusLblIcon->setIconSize(QSize(16, 16));
+    m_dlSpeedLbl->setIconSize(QSize(16, 16));
+    m_upSpeedLbl->setIconSize(QSize(16, 16));
+    m_altSpeedsBtn->setIconSize(QSize(28, 16));
 
     // Set to the known maximum width(plus some padding)
     // so the speed widgets will take the rest of the space
-    connecStatusLblIcon->setMaximumWidth(16 + 6);
-    altSpeedsBtn->setMaximumWidth(28 + 6);
+    m_connecStatusLblIcon->setMaximumWidth(16 + 6);
+    m_altSpeedsBtn->setMaximumWidth(28 + 6);
 
-    statusSep1 = new QFrame(bar);
-    statusSep1->setFrameStyle(QFrame::VLine);
-    statusSep1->setFrameShadow(QFrame::Raised);
-    statusSep2 = new QFrame(bar);
-    statusSep2->setFrameStyle(QFrame::VLine);
-    statusSep2->setFrameShadow(QFrame::Raised);
-    statusSep3 = new QFrame(bar);
-    statusSep3->setFrameStyle(QFrame::VLine);
-    statusSep3->setFrameShadow(QFrame::Raised);
-    statusSep4 = new QFrame(bar);
-    statusSep4->setFrameStyle(QFrame::VLine);
-    statusSep4->setFrameShadow(QFrame::Raised);
-    layout->addWidget(DHTLbl);
-    layout->addWidget(statusSep1);
-    layout->addWidget(connecStatusLblIcon);
-    layout->addWidget(statusSep2);
-    layout->addWidget(altSpeedsBtn);
-    layout->addWidget(statusSep4);
-    layout->addWidget(dlSpeedLbl);
-    layout->addWidget(statusSep3);
-    layout->addWidget(upSpeedLbl);
+    m_statusSep1 = new QFrame(bar);
+    m_statusSep1->setFrameStyle(QFrame::VLine);
+    m_statusSep1->setFrameShadow(QFrame::Raised);
+    m_statusSep2 = new QFrame(bar);
+    m_statusSep2->setFrameStyle(QFrame::VLine);
+    m_statusSep2->setFrameShadow(QFrame::Raised);
+    m_statusSep3 = new QFrame(bar);
+    m_statusSep3->setFrameStyle(QFrame::VLine);
+    m_statusSep3->setFrameShadow(QFrame::Raised);
+    m_statusSep4 = new QFrame(bar);
+    m_statusSep4->setFrameStyle(QFrame::VLine);
+    m_statusSep4->setFrameShadow(QFrame::Raised);
+    m_layout->addWidget(m_DHTLbl);
+    m_layout->addWidget(m_statusSep1);
+    m_layout->addWidget(m_connecStatusLblIcon);
+    m_layout->addWidget(m_statusSep2);
+    m_layout->addWidget(m_altSpeedsBtn);
+    m_layout->addWidget(m_statusSep4);
+    m_layout->addWidget(m_dlSpeedLbl);
+    m_layout->addWidget(m_statusSep3);
+    m_layout->addWidget(m_upSpeedLbl);
 
-    bar->addPermanentWidget(container);
-    container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    bar->addPermanentWidget(m_container);
+    m_container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     bar->setStyleSheet("QWidget {margin: 0;}");
-    container->adjustSize();
+    m_container->adjustSize();
     bar->adjustSize();
     // Is DHT enabled
-    DHTLbl->setVisible(pref->isDHTEnabled());
-    refreshTimer = new QTimer(bar);
+    m_DHTLbl->setVisible(pref->isDHTEnabled());
+    m_refreshTimer = new QTimer(bar);
     refreshStatusBar();
-    connect(refreshTimer, SIGNAL(timeout()), this, SLOT(refreshStatusBar()));
-    refreshTimer->start(1500);
+    connect(m_refreshTimer, SIGNAL(timeout()), this, SLOT(refreshStatusBar()));
+    m_refreshTimer->start(1500);
 }
 
 StatusBar::~StatusBar()
@@ -143,28 +143,28 @@ StatusBar::~StatusBar()
 
 QPushButton* StatusBar::connectionStatusButton() const
 {
-    return connecStatusLblIcon;
+    return m_connecStatusLblIcon;
 }
 
 void StatusBar::showRestartRequired()
 {
     // Restart required notification
-    const QString restart_text = tr("qBittorrent needs to be restarted");
+    const QString restartText = tr("qBittorrent needs to be restarted");
     QLabel *restartIconLbl = new QLabel(m_bar);
-    restartIconLbl->setPixmap(QPixmap(":/icons/oxygen/dialog-warning.png").scaled(QSize(24, 24)));
-    restartIconLbl->setToolTip(restart_text);
+    restartIconLbl->setPixmap(QPixmap(":/icons/oxygen/dialog-warning.png").scaled(QSize(24,24)));
+    restartIconLbl->setToolTip(restartText);
     m_bar->insertWidget(0, restartIconLbl);
     QLabel *restartLbl = new QLabel(m_bar);
     restartLbl->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
     m_bar->insertWidget(1, restartLbl);
     QFontMetrics fm(restartLbl->font());
-    restartLbl->setText(fm.elidedText(restart_text, Qt::ElideRight, restartLbl->width()));
+    restartLbl->setText(fm.elidedText(restartText, Qt::ElideRight, restartLbl->width()));
     Logger::instance()->addMessage(tr("qBittorrent was just updated and needs to be restarted for the changes to be effective."), Log::CRITICAL);
 }
 
 void StatusBar::stopTimer()
 {
-    refreshTimer->stop();
+    m_refreshTimer->stop();
 }
 
 void StatusBar::refreshStatusBar()
@@ -172,28 +172,28 @@ void StatusBar::refreshStatusBar()
     // Update connection status
     const BitTorrent::SessionStatus sessionStatus = BitTorrent::Session::instance()->status();
     if (!BitTorrent::Session::instance()->isListening()) {
-        connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/icons/skin/disconnected.png")));
-        connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>") + tr("Connection Status:") + QString::fromUtf8("</b><br>") + tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
+        m_connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/icons/skin/disconnected.png")));
+        m_connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>") + tr("Connection Status:") + QString::fromUtf8("</b><br>") + tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
     }
     else {
         if (sessionStatus.hasIncomingConnections()) {
             // Connection OK
-            connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/icons/skin/connected.png")));
-            connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>") + tr("Connection Status:") + QString::fromUtf8("</b><br>") + tr("Online"));
+            m_connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/icons/skin/connected.png")));
+            m_connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>") + tr("Connection Status:") + QString::fromUtf8("</b><br>") + tr("Online"));
         }
         else {
-            connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/icons/skin/firewalled.png")));
-            connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>") + tr("Connection status:") + QString::fromUtf8("</b><br>") + QString::fromUtf8("<i>") + tr("No direct connections. This may indicate network configuration problems.") + QString::fromUtf8("</i>"));
+            m_connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/icons/skin/firewalled.png")));
+            m_connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>") + tr("Connection status:") + QString::fromUtf8("</b><br>") + QString::fromUtf8("<i>") + tr("No direct connections. This may indicate network configuration problems.") + QString::fromUtf8("</i>"));
         }
     }
     // Update Number of DHT nodes
     if (BitTorrent::Session::instance()->isDHTEnabled()) {
-        DHTLbl->setVisible(true);
+        m_DHTLbl->setVisible(true);
         //statusSep1->setVisible(true);
-        DHTLbl->setText(tr("DHT: %1 nodes").arg(QString::number(sessionStatus.dhtNodes())));
+        m_DHTLbl->setText(tr("DHT: %1 nodes").arg(QString::number(sessionStatus.dhtNodes())));
     }
     else {
-        DHTLbl->setVisible(false);
+        m_DHTLbl->setVisible(false);
         //statusSep1->setVisible(false);
     }
     // Update speed labels
@@ -201,25 +201,25 @@ void StatusBar::refreshStatusBar()
     int speedLimit = BitTorrent::Session::instance()->downloadRateLimit();
     if (speedLimit)
         speedLbl = "[" + Utils::Misc::friendlyUnit(speedLimit, true) + "] " + speedLbl;
-    dlSpeedLbl->setText(speedLbl);
+    m_dlSpeedLbl->setText(speedLbl);
     speedLimit = BitTorrent::Session::instance()->uploadRateLimit();
     speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate(), true) + " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload()) + ")";
     if (speedLimit)
         speedLbl = "[" + Utils::Misc::friendlyUnit(speedLimit, true) + "] " + speedLbl;
-    upSpeedLbl->setText(speedLbl);
+    m_upSpeedLbl->setText(speedLbl);
 }
 
 void StatusBar::updateAltSpeedsBtn(bool alternative)
 {
     if (alternative) {
-        altSpeedsBtn->setIcon(QIcon(":/icons/slow.png"));
-        altSpeedsBtn->setToolTip(tr("Click to switch to regular speed limits"));
-        altSpeedsBtn->setDown(true);
+        m_altSpeedsBtn->setIcon(QIcon(":/icons/slow.png"));
+        m_altSpeedsBtn->setToolTip(tr("Click to switch to regular speed limits"));
+        m_altSpeedsBtn->setDown(true);
     }
     else {
-        altSpeedsBtn->setIcon(QIcon(":/icons/slow_off.png"));
-        altSpeedsBtn->setToolTip(tr("Click to switch to alternative speed limits"));
-        altSpeedsBtn->setDown(false);
+        m_altSpeedsBtn->setIcon(QIcon(":/icons/slow_off.png"));
+        m_altSpeedsBtn->setToolTip(tr("Click to switch to alternative speed limits"));
+        m_altSpeedsBtn->setDown(false);
     }
     refreshStatusBar();
 }
@@ -235,12 +235,12 @@ void StatusBar::toggleAlternativeSpeeds()
 void StatusBar::capDownloadSpeed()
 {
     bool ok = false;
-    int cur_limit = BitTorrent::Session::instance()->downloadRateLimit();
-    long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), cur_limit);
+    int curLimit = BitTorrent::Session::instance()->downloadRateLimit();
+    long newLimit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), curLimit);
     if (ok) {
         Preferences* const pref = Preferences::instance();
         bool alt = pref->isAltBandwidthEnabled();
-        if (new_limit <= 0) {
+        if (newLimit <= 0) {
             qDebug("Setting global download rate limit to Unlimited");
             BitTorrent::Session::instance()->setDownloadRateLimit(-1);
             if (!alt)
@@ -249,12 +249,12 @@ void StatusBar::capDownloadSpeed()
                 pref->setAltGlobalDownloadLimit(-1);
         }
         else {
-            qDebug("Setting global download rate limit to %.1fKb/s", new_limit / 1024.);
-            BitTorrent::Session::instance()->setDownloadRateLimit(new_limit);
+            qDebug("Setting global download rate limit to %.1fKb/s", newLimit / 1024.);
+            BitTorrent::Session::instance()->setDownloadRateLimit(newLimit);
             if (!alt)
-                pref->setGlobalDownloadLimit(new_limit / 1024.);
+                pref->setGlobalDownloadLimit(newLimit / 1024.);
             else
-                pref->setAltGlobalDownloadLimit(new_limit / 1024.);
+                pref->setAltGlobalDownloadLimit(newLimit / 1024.);
         }
         refreshStatusBar();
     }
@@ -263,12 +263,12 @@ void StatusBar::capDownloadSpeed()
 void StatusBar::capUploadSpeed()
 {
     bool ok = false;
-    int cur_limit = BitTorrent::Session::instance()->uploadRateLimit();
-    long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), cur_limit);
+    int curLimit = BitTorrent::Session::instance()->uploadRateLimit();
+    long newLimit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), curLimit);
     if (ok) {
         Preferences* const pref = Preferences::instance();
         bool alt = pref->isAltBandwidthEnabled();
-        if (new_limit <= 0) {
+        if (newLimit <= 0) {
             qDebug("Setting global upload rate limit to Unlimited");
             BitTorrent::Session::instance()->setUploadRateLimit(-1);
             if (!alt)
@@ -277,12 +277,12 @@ void StatusBar::capUploadSpeed()
                 Preferences::instance()->setAltGlobalUploadLimit(-1);
         }
         else {
-            qDebug("Setting global upload rate limit to %.1fKb/s", new_limit / 1024.);
-            BitTorrent::Session::instance()->setUploadRateLimit(new_limit);
+            qDebug("Setting global upload rate limit to %.1fKb/s", newLimit / 1024.);
+            BitTorrent::Session::instance()->setUploadRateLimit(newLimit);
             if (!alt)
-                Preferences::instance()->setGlobalUploadLimit(new_limit / 1024.);
+                Preferences::instance()->setGlobalUploadLimit(newLimit / 1024.);
             else
-                Preferences::instance()->setAltGlobalUploadLimit(new_limit / 1024.);
+                Preferences::instance()->setAltGlobalUploadLimit(newLimit / 1024.);
         }
         refreshStatusBar();
     }
