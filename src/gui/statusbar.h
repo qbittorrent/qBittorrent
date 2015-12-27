@@ -40,6 +40,11 @@ class QTimer;
 class QPushButton;
 class QHBoxLayout;
 
+namespace BitTorrent
+{
+    class SessionStatus;
+}
+
 class StatusBar: public QObject
 {
     Q_OBJECT
@@ -74,6 +79,9 @@ private:
     QWidget *m_container;
     QHBoxLayout *m_layout;
 
+    void updateConnectionStatus(const BitTorrent::SessionStatus &sessionStatus);
+    void updateDHTNodesNumber(const BitTorrent::SessionStatus &sessionStatus);
+    void updateSpeedLabels(const BitTorrent::SessionStatus &sessionStatus);
 };
 
 #endif // STATUSBAR_H
