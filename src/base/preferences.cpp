@@ -51,6 +51,10 @@
 #include <winreg.h>
 #endif
 
+#ifdef Q_OS_MAC
+#include <CoreServices/CoreServices.h>
+#endif
+
 #include <cstdlib>
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -1907,6 +1911,62 @@ void Preferences::setMagnetLinkAssoc(bool set)
     }
 
     SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
+}
+#endif
+
+#ifdef Q_OS_MAC
+namespace
+{
+    CFStringRef torrentExtension = CFSTR("torrent");
+    CFStringRef magnetUrlScheme = CFSTR("magnet");
+}
+
+bool Preferences::isTorrentFileAssocSet()
+{
+    bool isSet = false;
+    CFStringRef torrentId = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, torrentExtension, NULL);
+    if (torrentId != NULL) {
+        CFStringRef defaultHandlerId = LSCopyDefaultRoleHandlerForContentType(torrentId, kLSRolesViewer);
+        if (defaultHandlerId != NULL) {
+            CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
+            isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
+            CFRelease(defaultHandlerId);
+        }    
+        CFRelease(torrentId);
+    }
+    return isSet;
+}
+
+bool Preferences::isMagnetLinkAssocSet()
+{
+    bool isSet = false;
+    CFStringRef defaultHandlerId = LSCopyDefaultHandlerForURLScheme(magnetUrlScheme);
+    if (defaultHandlerId != NULL) {
+        CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
+        isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
+        CFRelease(defaultHandlerId);
+    }
+    return isSet;
+}
+
+void Preferences::setTorrentFileAssoc()
+{
+    if (isTorrentFileAssocSet())
+        return;
+    CFStringRef torrentId = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, torrentExtension, NULL);
+    if (torrentId != NULL) {
+        CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
+        LSSetDefaultRoleHandlerForContentType(torrentId, kLSRolesViewer, myBundleId);
+        CFRelease(torrentId);
+    }
+}
+
+void Preferences::setMagnetLinkAssoc()
+{
+    if (isMagnetLinkAssocSet())
+        return;
+    CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
+    LSSetDefaultHandlerForURLScheme(magnetUrlScheme, myBundleId);
 }
 #endif
 
