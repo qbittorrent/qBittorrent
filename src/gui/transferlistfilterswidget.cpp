@@ -626,10 +626,12 @@ void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString&
     }
 
     QListWidgetItem *trackerItem = item(rowFromTracker(host));
+    if (!trackerItem) return;
+
     QIcon icon(filePath);
     //Detect a non-decodable icon
     QList<QSize> sizes = icon.availableSizes();
-    bool invalid = (sizes.size() > 0 ? icon.pixmap(sizes.first()).isNull() : true);
+    bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
     if (invalid) {
         if (url.endsWith(".ico", Qt::CaseInsensitive)) {
             Logger::instance()->addMessage(tr("Couldn't decode favicon for URL '%1'. Trying to download favicon in PNG format.").arg(url),
@@ -731,9 +733,9 @@ int TrackerFiltersList::rowFromTracker(const QString &tracker) const
     return -1;
 }
 
-QString TrackerFiltersList::getHost(const QString &trakcer) const
+QString TrackerFiltersList::getHost(const QString &tracker) const
 {
-    QUrl url(trakcer);
+    QUrl url(tracker);
     QString longHost = url.host();
     QString tld = url.topLevelDomain();
     // We get empty tld when it is invalid or an IPv4/IPv6 address,
