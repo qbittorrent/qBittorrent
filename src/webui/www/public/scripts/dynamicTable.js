@@ -616,6 +616,9 @@ var TorrentsTable = new Class({
 
         applyFilter : function (row, filterName, labelName) {
             var state = row['full_data'].state;
+            var inactive = false;
+            var r;
+
             switch(filterName) {
                 case 'downloading':
                     if (state != 'downloading' && !~state.indexOf('DL'))
@@ -630,19 +633,21 @@ var TorrentsTable = new Class({
                         return false;
                     break;
                 case 'paused':
-                    if (state != 'pausedDL')
+                    if (!~state.indexOf('paused'))
                         return false;
                     break;
                 case 'resumed':
                     if (~state.indexOf('paused'))
                         return false;
                     break;
-                case 'active':
-                    if (state != 'downloading' && state != 'forcedDL' && state != 'uploading' && state != 'forcedUP')
-                        return false;
-                    break;
                 case 'inactive':
-                    if (state == 'downloading' || state == 'forcedDL' || state == 'uploading'  || state == 'forcedUP')
+                    inactive = true;
+                case 'active':
+                    if (state == 'stalledDL')
+                        r = (row['full_data'].upspeed > 0)
+                    else
+                        r = state == 'metaDL' || state == 'downloading' || state == 'forcedDL' || state == 'uploading' || state == 'forcedUP';
+                    if (r == inactive)
                         return false;
                     break;
                 case 'errored':
