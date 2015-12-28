@@ -8,12 +8,13 @@ osx_image: xcode7
 env:
   matrix:
     # Uncomment when Travis upgraded "Ubuntu 12.04 LTS" to a newer version whose repo will have a more up-to-date libtorrent package
-    #- lt_branch=dist   gui=true
-    #- lt_branch=dist   gui=false
-    - lt_branch=RC_1_0 gui=true qt=4
-    - lt_branch=RC_1_0 gui=true qt=5
-    - lt_branch=RC_1_0 gui=false qt=4
-    - lt_branch=RC_1_0 gui=false qt=5
+    #- lt_branch=dist gui=true
+    #- lt_branch=dist gui=false
+    - lt_branch=RC_1_0 qt=5 gui=true
+    - lt_branch=RC_1_0 qt=5 gui=false
+    - lt_branch=RC_1_0 qt=4 gui=true
+    - lt_branch=RC_1_0 qt=4 gui=false
+
   global:
     - secure: "OI9CUjj4lTb0HwwIZU5PbECU3hLlAL6KC8KsbwohG8/O3j5fLcnmDsK4Ad9us5cC39sS11Jcd1kDP2qRcCuST/glVNhLkcjKkiQerOfd5nQ/qL4JYfz/1mfP5mdpz9jHKzpLUIG+TXkbSTjP6VVmsb5KPT+3pKEdRFZB+Pu9+J8="
     - coverity_branch: coverity_scan
@@ -21,9 +22,9 @@ env:
 matrix:
   exclude:
     - os: linux
-      env: lt_branch=RC_1_0 gui=true qt=5
+      env: lt_branch=RC_1_0 qt=5 gui=true
     - os: linux
-      env: lt_branch=RC_1_0 gui=false qt=5
+      env: lt_branch=RC_1_0 qt=5 gui=false
 
 branches:
   except:
@@ -89,7 +90,8 @@ before_install:
     elif [ "$TRAVIS_OS_NAME" = "linux" ]; then export "DISPLAY=:99.0" && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ;
     fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then qbtconf="$qbtconf --disable-qt-dbus" ; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ] && [ "$qt" = 5 ]; then qbtconf="$qbtconf --with-qt4=no" ; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" -a "$qt" = 4 ]; then brew install qt; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" -a "$qt" = 5 ]; then qbtconf="$qbtconf --with-qt4=no" ; fi
 
   # Print settings
   - echo $lt_branch
@@ -101,14 +103,14 @@ before_install:
 install:
   - if [ "$TRAVIS_OS_NAME" = "linux" -a "$lt_branch" != "dist" ]; then cd "$HOME" && pwd && git clone --depth 1 https://github.com/arvidn/libtorrent.git --branch $lt_branch ; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" -a "$lt_branch" != "dist" ]; then cd libtorrent && ./autotool.sh && ./configure $ltconf && make install && cd "$TRAVIS_BUILD_DIR" ; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update > /dev/null && brew install colormake libtorrent-rasterbar; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ] && [ "$qt" = 4 ]; then brew install qt; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ] && [ "$qt" = 5 ]; then brew install qt5 && brew link --force qt5; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update > /dev/null && brew install colormake libtorrent-rasterbar ; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" -a "$qt" = 5 ]; then brew install qt5 && brew link --force qt5 ; fi
 
 script:
   - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ]; then exit ; fi # Skip usual build when running coverity scan
   - ./bootstrap.sh && ./configure $qbtconf
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then echo QMAKE_CC=$CC >> conf.pri && echo QMAKE_CXX=$CXX >> conf.pri ; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then echo "QMAKE_CC=$CC" >> conf.pri && echo "QMAKE_CXX=$CXX" >> conf.pri ; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then sed -i "" -e 's/^\(CXXFLAGS.*\)$/\1 -Wno-unused-local-typedefs/' src/Makefile ; fi
   - make && make install
 
 after_success:
