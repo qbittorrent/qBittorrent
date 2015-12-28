@@ -480,7 +480,7 @@ var TorrentsTable = new Class({
                 else if (state == "checkingDL" || state == "checkingUP" ||
                         state == "queuedForChecking" || state == "checkingResumeData")
                     state = "checking";
-                else if (state == "unknown")
+                else if (state == "unknown" || state == "error" || state == "missingFiles")
                     state = "error";
 
                 var img_path = 'images/skin/' + state + '.png';
@@ -616,6 +616,9 @@ var TorrentsTable = new Class({
 
         applyFilter : function (row, filterName, labelName) {
             var state = row['full_data'].state;
+            var inactive = false;
+            var r;
+
             switch(filterName) {
                 case 'downloading':
                     if (state != 'downloading' && !~state.indexOf('DL'))
@@ -630,19 +633,25 @@ var TorrentsTable = new Class({
                         return false;
                     break;
                 case 'paused':
-                    if (state != 'pausedDL')
+                    if (!~state.indexOf('paused'))
                         return false;
                     break;
                 case 'resumed':
                     if (~state.indexOf('paused'))
                         return false;
                     break;
+                case 'inactive':
+                    inactive = true;
                 case 'active':
-                    if (state != 'downloading' && state != 'forcedDL' && state != 'uploading' && state != 'forcedUP')
+                    if (state == 'stalledDL')
+                        r = (row['full_data'].upspeed > 0)
+                    else
+                        r = state == 'metaDL' || state == 'downloading' || state == 'forcedDL' || state == 'uploading' || state == 'forcedUP';
+                    if (r == inactive)
                         return false;
                     break;
-                case 'inactive':
-                    if (state == 'downloading' || state == 'forcedDL' || state == 'uploading'  || state == 'forcedUP')
+                case 'errored':
+                    if (state != 'error' && state != "unknown" && state != "missingFiles")
                         return false;
                     break;
             }
@@ -657,6 +666,16 @@ var TorrentsTable = new Class({
                 return false;
 
             return true;
+        },
+
+        getFilteredTorrentsNumber : function (filterName) {
+            var cnt = 0;
+            var rows = this.rows.getValues();
+
+            for (i = 0; i < rows.length; i++)
+                if (this.applyFilter(rows[i], filterName, LABELS_ALL)) cnt++;
+
+            return cnt;
         },
 
         getFilteredAndSortedRows : function () {

@@ -115,6 +115,7 @@ window.addEvent('load', function () {
         $("resumed_filter").removeClass("selectedFilter");
         $("active_filter").removeClass("selectedFilter");
         $("inactive_filter").removeClass("selectedFilter");
+        $("errored_filter").removeClass("selectedFilter");
         $(f + "_filter").addClass("selectedFilter");
         selected_filter = f;
         localStorage.setItem('selected_filter', f);
@@ -217,6 +218,22 @@ window.addEvent('load', function () {
             }
             labelList.appendChild(el);
         });
+    };
+
+    var updateFilter = function(filter, filterTitle) {
+        $(filter + '_filter').firstChild.childNodes[1].nodeValue = filterTitle.replace('%1', torrentsTable.getFilteredTorrentsNumber(filter));
+    };
+
+    var updateFiltersList = function() {
+        updateFilter('all', 'QBT_TR(All (%1))QBT_TR');
+        updateFilter('downloading', 'QBT_TR(Downloading (%1))QBT_TR');
+        updateFilter('seeding', 'QBT_TR(Seeding (%1))QBT_TR');
+        updateFilter('completed', 'QBT_TR(Completed (%1))QBT_TR');
+        updateFilter('resumed', 'QBT_TR(Resumed (%1))QBT_TR');
+        updateFilter('paused', 'QBT_TR(Paused (%1))QBT_TR');
+        updateFilter('active', 'QBT_TR(Active (%1))QBT_TR');
+        updateFilter('inactive', 'QBT_TR(Inactive (%1))QBT_TR');
+        updateFilter('errored', 'QBT_TR(Errored (%1))QBT_TR');
     };
 
     var updateLabelList = function() {
@@ -331,6 +348,7 @@ window.addEvent('load', function () {
                             serverState[key] = tmp[key];
                         processServerState();
                     }
+                    updateFiltersList();
                     if (update_labels) {
                         updateLabelList();
                         updateContextMenu();
