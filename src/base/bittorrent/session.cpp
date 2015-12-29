@@ -1448,7 +1448,7 @@ const QStringList Session::getListeningIPs()
         protocol = ip.protocol();
         Q_ASSERT(protocol == QAbstractSocket::IPv4Protocol || protocol == QAbstractSocket::IPv6Protocol);
         if (!listenIPv6 && (protocol == QAbstractSocket::IPv6Protocol))
-          continue;
+            continue;
         IPs.append(ipString);
     }
 
