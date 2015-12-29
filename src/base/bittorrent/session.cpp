@@ -1447,15 +1447,14 @@ const QStringList Session::getListeningIPs()
         ipString = ip.toString();
         protocol = ip.protocol();
         Q_ASSERT(protocol == QAbstractSocket::IPv4Protocol || protocol == QAbstractSocket::IPv6Protocol);
-        if ((!listenIPv6 && (protocol == QAbstractSocket::IPv6Protocol))
-            || (listenIPv6 && (protocol == QAbstractSocket::IPv4Protocol)))
+        if (!listenIPv6 && (protocol == QAbstractSocket::IPv6Protocol))
             continue;
         IPs.append(ipString);
     }
 
     // Make sure there is at least one IP
     // At this point there was a valid network interface, with no suitable IP.
-    if (IPs.size() == 0) {
+    if (IPs.isEmpty()) {
         logger->addMessage(tr("qBittorrent didn't find an %1 local address to listen on", "qBittorrent didn't find an IPv4 local address to listen on").arg(listenIPv6 ? "IPv6" : "IPv4"), Log::CRITICAL);
         IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
         return IPs;
