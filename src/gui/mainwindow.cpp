@@ -78,6 +78,8 @@
 #include "base/logger.h"
 #include "autoexpandabledialog.h"
 #ifdef Q_OS_MAC
+#include <QtMacExtras>
+#include <QtMac>
 void qt_mac_set_dock_menu(QMenu *menu);
 #endif
 #include "lineedit.h"
@@ -266,6 +268,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 #ifdef Q_OS_MAC
     setUnifiedTitleAndToolBarOnMac(true);
+    void QtMac::setBadgeLabelText(tr("D: %1/s", "D = Download").arg(misc::friendlyUnit(QBtSession::instance()->getSessionStatus().payload_download_rate)));
+    void QtMac::setBadgeLabelText(tr("U: %1/s", "U = Upload").arg(misc::friendlyUnit(QBtSession::instance()->getSessionStatus().payload_upload_rate)));
 #endif
 
     // View settings
