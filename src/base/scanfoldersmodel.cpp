@@ -33,6 +33,7 @@
 #include <QString>
 #include <QStringList>
 #include <QTemporaryFile>
+#include <QTextStream>
 
 #include "utils/misc.h"
 #include "utils/fs.h"
@@ -321,9 +322,13 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
 
         if (file.endsWith(".magnet")) {
             QFile f(file);
-            if (f.open(QIODevice::ReadOnly)) {
-                BitTorrent::Session::instance()->addTorrent(QString::fromLocal8Bit(f.readAll()), params);
-                f.remove();
+            if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                QTextStream str(&f);
+                while (!str.atEnd())
+                    BitTorrent::Session::instance()->addTorrent(str.readLine(), params);
+
+                f.close();
+                Utils::Fs::forceRemove(file);
             }
             else {
                 qDebug("Failed to open magnet file: %s", qPrintable(f.errorString()));
