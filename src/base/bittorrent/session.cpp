@@ -100,16 +100,6 @@ static void torrentQueuePositionDown(const libt::torrent_handle &handle);
 static void torrentQueuePositionTop(const libt::torrent_handle &handle);
 static void torrentQueuePositionBottom(const libt::torrent_handle &handle);
 
-// AddTorrentParams
-
-AddTorrentParams::AddTorrentParams()
-    : disableTempPath(false)
-    , sequential(false)
-    , ignoreShareRatio(false)
-    , skipChecking(false)
-{
-}
-
 // Session
 
 Session *Session::m_instance = 0;
@@ -713,7 +703,7 @@ void Session::handleDownloadFailed(const QString &url, const QString &reason)
 
 void Session::handleRedirectedToMagnet(const QString &url, const QString &magnetUri)
 {
-    addTorrent_impl(addDataFromParams(m_downloadedTorrents.take(url)), MagnetUri(magnetUri));
+    addTorrent_impl(m_downloadedTorrents.take(url), MagnetUri(magnetUri));
 }
 
 void Session::switchToAlternativeMode(bool alternative)
@@ -725,7 +715,7 @@ void Session::switchToAlternativeMode(bool alternative)
 void Session::handleDownloadFinished(const QString &url, const QString &filePath)
 {
     emit downloadFromUrlFinished(url);
-    addTorrent_impl(addDataFromParams(m_downloadedTorrents.take(url)), MagnetUri(), TorrentInfo::loadFromFile(filePath));
+    addTorrent_impl(m_downloadedTorrents.take(url), MagnetUri(), TorrentInfo::loadFromFile(filePath));
     Utils::Fs::forceRemove(filePath); // remove temporary file
 }
 
@@ -939,30 +929,9 @@ TorrentStatusReport Session::torrentStatusReport() const
     return m_torrentStatusReport;
 }
 
-// source - .torrent file path/url or magnet uri (hash for preloaded torrent)
+// source - .torrent file path/url or magnet uri
 bool Session::addTorrent(QString source, const AddTorrentParams &params)
 {
-    InfoHash hash = source;
-    if (hash.isValid() && m_loadedMetadata.contains(hash)) {
-        // Adding preloaded torrent
-        m_loadedMetadata.remove(hash);
-        libt::torrent_handle handle = m_nativeSession->find_torrent(hash);
-        --m_extraLimit;
-
-        try {
-            handle.auto_managed(false);
-            handle.pause();
-        }
-        catch (std::exception &) {}
-
-        adjustLimits();
-
-        // use common 2nd step of torrent addition
-        m_addingTorrents.insert(hash, addDataFromParams(params));
-        createTorrentHandle(handle);
-        return true;
-    }
-
     MagnetUri magnetUri(source);
     if (magnetUri.isValid()) {
         return addTorrent_impl(params, magnetUri);
@@ -977,7 +946,7 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
         m_downloadedTorrents[handler->url()] = params;
     }
     else {
-        return addTorrent_impl(addDataFromParams(params), MagnetUri(), TorrentInfo::loadFromFile(source));
+        return addTorrent_impl(params, MagnetUri(), TorrentInfo::loadFromFile(source));
     }
 
     return false;
@@ -987,13 +956,26 @@ bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams 
 {
     if (!torrentInfo.isValid()) return false;
 
-    return addTorrent_impl(addDataFromParams(params), MagnetUri(), torrentInfo);
+    return addTorrent_impl(params, MagnetUri(), torrentInfo);
 }
 
 // Add a torrent to the BitTorrent session
 bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri,
                               const TorrentInfo &torrentInfo, const QByteArray &fastresumeData)
 {
+    if (!addData.resumed) {
+        // manage save path
+        QString defaultSavePath = this->defaultSavePath();
+        if (addData.savePath.isEmpty())
+            addData.savePath = defaultSavePath;
+        if (!addData.savePath.endsWith("/"))
+            addData.savePath += "/";
+        if (useAppendLabelToSavePath()) {
+            if ((addData.savePath == defaultSavePath) && !addData.label.isEmpty())
+                addData.savePath += QString("%1/").arg(addData.label);
+        }
+    }
+
     libt::add_torrent_params p;
     InfoHash hash;
     std::vector<char> buf(fastresumeData.constData(), fastresumeData.constData() + fastresumeData.size());
@@ -1001,8 +983,29 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
 
     bool fromMagnetUri = magnetUri.isValid();
     if (fromMagnetUri) {
-        p = magnetUri.addTorrentParams();
         hash = magnetUri.hash();
+
+        if (m_loadedMetadata.contains(hash)) {
+            // Adding preloaded torrent
+            m_loadedMetadata.remove(hash);
+            libt::torrent_handle handle = m_nativeSession->find_torrent(hash);
+            --m_extraLimit;
+
+            try {
+                handle.auto_managed(false);
+                handle.pause();
+            }
+            catch (std::exception &) {}
+
+            adjustLimits();
+
+            // use common 2nd step of torrent addition
+            m_addingTorrents.insert(hash, addData);
+            createTorrentHandle(handle);
+            return true;
+        }
+
+        p = magnetUri.addTorrentParams();
     }
     else if (torrentInfo.isValid()) {
         // Metadata
@@ -2347,6 +2350,11 @@ bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out, MagnetUr
     if (ec || (fast.type() != libt::lazy_entry::dict_t)) return false;
 
     out.savePath = Utils::Fs::fromNativePath(Utils::String::fromStdString(fast.dict_find_string_value("qBt-savePath")));
+    if (out.savePath.isEmpty()) {
+        Logger::instance()->addMessage("Empty torrent save path was loaded from .fastresume file! Using default one...", Log::WARNING);
+        out.savePath = Preferences::instance()->getSavePath();
+    }
+
     out.ratioLimit = Utils::String::fromStdString(fast.dict_find_string_value("qBt-ratioLimit")).toDouble();
     out.label = Utils::String::fromStdString(fast.dict_find_string_value("qBt-label"));
     out.name = Utils::String::fromStdString(fast.dict_find_string_value("qBt-name"));
@@ -2420,34 +2428,4 @@ void torrentQueuePositionBottom(const libt::torrent_handle &handle)
     catch (std::exception &exc) {
         qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
     }
-}
-
-AddTorrentData Session::addDataFromParams(const AddTorrentParams &params)
-{
-    AddTorrentData data;
-
-    data.resumed = false;
-    data.name = params.name;
-    data.label = params.label;
-    data.savePath = params.savePath;
-    data.disableTempPath = params.disableTempPath;
-    data.sequential = params.sequential;
-    data.hasSeedStatus = params.skipChecking; // do not react on 'torrent_finished_alert' when skipping
-    data.skipChecking = params.skipChecking;
-    data.addForced = params.addForced;
-    data.addPaused = params.addPaused;
-    data.filePriorities = params.filePriorities;
-    data.ratioLimit = params.ignoreShareRatio ? TorrentHandle::NO_RATIO_LIMIT : TorrentHandle::USE_GLOBAL_RATIO;
-
-    // normalize save path
-    if (data.savePath.isEmpty()) {
-        data.savePath = m_defaultSavePath;
-        if (m_appendLabelToSavePath && !data.label.isEmpty())
-            data.savePath +=  QString("%1/").arg(data.label);
-    }
-    else if (!data.savePath.endsWith("/")) {
-        data.savePath += "/";
-    }
-
-    return data;
 }
