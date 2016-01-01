@@ -745,6 +745,9 @@
                       <attribute name="headerDefaultSectionSize">
                        <number>80</number>
                       </attribute>
+                      <attribute name="headerStretchLastSection">
+                       <bool>false</bool>
+                      </attribute>
                      </widget>
                     </item>
                     <item>
@@ -2724,7 +2727,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>89</width>
+             <width>98</width>
              <height>28</height>
             </rect>
            </property>

@@ -46,50 +46,14 @@ ScanFoldersDelegate::ScanFoldersDelegate(QObject *parent, QTreeView *foldersView
 {
 }
 
-void ScanFoldersDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
-{
-    painter->save();
-
-    switch(index.column()) {
-    case ScanFoldersModel::WATCH:
-        QItemDelegate::paint(painter, option, index);
-        break;
-
-    case ScanFoldersModel::DOWNLOAD: {
-        QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
-        QItemDelegate::drawBackground(painter, opt, index);
-        QString text;
-
-        switch (index.data().toInt()) {
-        case ScanFoldersModel::DOWNLOAD_IN_WATCH_FOLDER:
-            text = tr("Watch Folder");
-            break;
-        case ScanFoldersModel::DEFAULT_LOCATION:
-            text = tr("Default Folder");
-            break;
-        case ScanFoldersModel::CUSTOM_LOCATION:
-            text = index.data(Qt::UserRole).toString();
-            break;
-        }
-        QItemDelegate::drawDisplay(painter, opt, option.rect, text);
-        break;
-    }
-
-    default:
-        break;
-    }
-
-    painter->restore();
-}
-
 void ScanFoldersDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     QComboBox *combobox = static_cast<QComboBox*>(editor);
     // Set combobox index
-    if (index.data().toInt() == ScanFoldersModel::CUSTOM_LOCATION)
+    if (index.data(Qt::UserRole).toInt() == ScanFoldersModel::CUSTOM_LOCATION)
         combobox->setCurrentIndex(4); // '4' is the index of the item after the separator in the QComboBox menu
     else
-        combobox->setCurrentIndex(index.data().toInt());
+        combobox->setCurrentIndex(index.data(Qt::UserRole).toInt());
 }
 
 QWidget *ScanFoldersDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &index) const
@@ -102,9 +66,9 @@ QWidget *ScanFoldersDelegate::createEditor(QWidget *parent, const QStyleOptionVi
     editor->addItem(tr("Watch Folder"));
     editor->addItem(tr("Default Folder"));
     editor->addItem(tr("Browse..."));
-    if (index.data().toInt() == ScanFoldersModel::CUSTOM_LOCATION) {
+    if (index.data(Qt::UserRole).toInt() == ScanFoldersModel::CUSTOM_LOCATION) {
         editor->insertSeparator(3);
-        editor->addItem(index.data(Qt::UserRole).toString());
+        editor->addItem(index.data().toString());
     }
 
     connect(editor, SIGNAL(currentIndexChanged(int)), this, SLOT(comboboxIndexChanged(int)));
@@ -128,7 +92,7 @@ void ScanFoldersDelegate::setModelData(QWidget *editor, QAbstractItemModel *mode
     switch (value) {
     case ScanFoldersModel::DOWNLOAD_IN_WATCH_FOLDER:
     case ScanFoldersModel::DEFAULT_LOCATION:
-        model->setData(index, value, Qt::DisplayRole);
+        model->setData(index, value, Qt::UserRole);
         break;
 
     case ScanFoldersModel::CUSTOM_LOCATION:
@@ -136,10 +100,10 @@ void ScanFoldersDelegate::setModelData(QWidget *editor, QAbstractItemModel *mode
                     index,
                     QFileDialog::getExistingDirectory(
                         0, tr("Choose save path"),
-                        index.data().toInt() == ScanFoldersModel::CUSTOM_LOCATION ?
-                            index.data(Qt::UserRole).toString() :
+                        index.data(Qt::UserRole).toInt() == ScanFoldersModel::CUSTOM_LOCATION ?
+                            index.data().toString() :
                             Preferences::instance()->getSavePath()),
-                    Qt::UserRole);
+                    Qt::DisplayRole);
         break;
 
     default:
