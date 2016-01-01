@@ -122,11 +122,21 @@ QVariant ScanFoldersModel::data(const QModelIndex &index, int role) const
             value = Utils::Fs::toNativePath(pathData->watchPath);
         break;
     case DOWNLOAD:
-        if (role == Qt::DisplayRole) {
+        if (role == Qt::UserRole) {
             value = pathData->downloadType;
         }
-        else if ((role == Qt::UserRole) && (pathData->downloadType == CUSTOM_LOCATION)) {
-            value = pathData->downloadPath;
+        else if (role == Qt::DisplayRole) {
+            switch (pathData->downloadType) {
+            case DOWNLOAD_IN_WATCH_FOLDER:
+                value = tr("Watch Folder");
+                break;
+            case DEFAULT_LOCATION:
+                value = tr("Default Folder");
+                break;
+            case CUSTOM_LOCATION:
+                value = pathData->downloadPath;
+                break;
+            }
         }
         break;
     }
@@ -178,7 +188,7 @@ bool ScanFoldersModel::setData(const QModelIndex &index, const QVariant &value, 
         || (index.column() != DOWNLOAD))
         return false;
 
-    if (role == Qt::DisplayRole) {
+    if (role == Qt::UserRole) {
         PathType type = static_cast<PathType>(value.toInt());
         if (type == CUSTOM_LOCATION)
             return false;
@@ -187,7 +197,7 @@ bool ScanFoldersModel::setData(const QModelIndex &index, const QVariant &value, 
         m_pathList[index.row()]->downloadPath.clear();
         emit dataChanged(index, index);
     }
-    else if (role == Qt::UserRole) {
+    else if (role == Qt::DisplayRole) {
         QString path = value.toString();
         if (path.isEmpty()) // means we didn't pass CUSTOM_LOCATION type
             return false;
