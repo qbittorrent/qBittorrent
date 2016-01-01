@@ -172,6 +172,7 @@ private:
     QAbstractButton *applyButton;
     AdvancedSettings *advancedSettings;
     QList<QString> addedScanDirs;
+    QList<QString> removedScanDirs;
     // SSL Cert / key
     QByteArray m_sslCert, m_sslKey;
 };

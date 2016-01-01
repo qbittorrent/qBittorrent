@@ -268,22 +268,29 @@ void ScanFoldersModel::addToFSWatcher(const QStringList &watchPaths)
     }
 }
 
-void ScanFoldersModel::removePath(int row)
+void ScanFoldersModel::removePath(int row, bool removeFromFSWatcher)
 {
     Q_ASSERT((row >= 0) && (row < rowCount()));
     beginRemoveRows(QModelIndex(), row, row);
-    m_fsWatcher->removePath(m_pathList.at(row)->watchPath);
+    if (removeFromFSWatcher)
+        m_fsWatcher->removePath(m_pathList.at(row)->watchPath);
     delete m_pathList.takeAt(row);
     endRemoveRows();
 }
 
-bool ScanFoldersModel::removePath(const QString &path)
+bool ScanFoldersModel::removePath(const QString &path, bool removeFromFSWatcher)
 {
     const int row = findPathData(path);
     if (row == -1) return false;
 
-    removePath(row);
+    removePath(row, removeFromFSWatcher);
     return true;
+}
+
+void ScanFoldersModel::removeFromFSWatcher(const QStringList &watchPaths)
+{
+    foreach (const QString &path, watchPaths)
+        m_fsWatcher->removePath(path);
 }
 
 bool ScanFoldersModel::downloadInWatchFolder(const QString &filePath) const
