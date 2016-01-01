@@ -230,6 +230,22 @@ ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &watchPath,
     return Ok;
 }
 
+ScanFoldersModel::PathStatus ScanFoldersModel::updatePath(const QString &watchPath, const PathType& downloadType, const QString &downloadPath)
+{
+    QDir watchDir(watchPath);
+    const QString &canonicalWatchPath = watchDir.canonicalPath();
+    int row = findPathData(canonicalWatchPath);
+    if (row == -1) return DoesNotExist;
+
+    QDir downloadDir(downloadPath);
+    const QString &canonicalDownloadPath = downloadDir.canonicalPath();
+
+    m_pathList.at(row)->downloadType = downloadType;
+    m_pathList.at(row)->downloadPath = Utils::Fs::toNativePath(canonicalDownloadPath);
+
+    return Ok;
+}
+
 void ScanFoldersModel::addToFSWatcher(const QStringList &watchPaths)
 {
     if (!m_fsWatcher)
