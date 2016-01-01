@@ -309,6 +309,7 @@ options_imp::~options_imp()
     qDebug("-> destructing Options");
     foreach (const QString &path, addedScanDirs)
         ScanFoldersModel::instance()->removePath(path);
+    ScanFoldersModel::instance()->configure(); // reloads "removed" paths
     delete scrollArea_advanced->layout();
     delete advancedSettings;
 }
@@ -419,8 +420,10 @@ void options_imp::saveOptions()
     pref->useAdditionDialog(useAdditionDialog());
     pref->additionDialogFront(checkAdditionDialogFront->isChecked());
     pref->addTorrentsInPause(addTorrentsInPause());
+    ScanFoldersModel::instance()->removeFromFSWatcher(removedScanDirs);
     ScanFoldersModel::instance()->addToFSWatcher(addedScanDirs);
     ScanFoldersModel::instance()->makePersistent();
+    removedScanDirs.clear();
     addedScanDirs.clear();
     pref->setTorrentExportDir(getTorrentExportDir());
     pref->setFinishedTorrentExportDir(getFinishedTorrentExportDir());
@@ -1237,7 +1240,11 @@ void options_imp::on_removeScanFolderButton_clicked()
     if (selected.isEmpty())
         return;
     Q_ASSERT(selected.count() == ScanFoldersModel::instance()->columnCount());
-    ScanFoldersModel::instance()->removePath(selected.first().row());
+    foreach (const QModelIndex &index, selected) {
+        if (index.column() == ScanFoldersModel::WATCH)
+            removedScanDirs << index.data().toString();
+    }
+    ScanFoldersModel::instance()->removePath(selected.first().row(), false);
 }
 
 void options_imp::handleScanFolderViewSelectionChanged()

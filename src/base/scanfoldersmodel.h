@@ -85,13 +85,16 @@ public:
     PathStatus updatePath(const QString &watchPath, const PathType& downloadType, const QString &downloadPath);
     // PRECONDITION: The paths must have been added with addPath() first.
     void addToFSWatcher(const QStringList &watchPaths);
-    void removePath(int row);
-    bool removePath(const QString &path);
+    void removePath(int row, bool removeFromFSWatcher = true);
+    bool removePath(const QString &path, bool removeFromFSWatcher = true);
+    void removeFromFSWatcher(const QStringList &watchPaths);
 
     void makePersistent();
 
-private slots:
+public slots:
     void configure();
+
+private slots:
     void addTorrentsToSession(const QStringList &pathList);
 
 private:
