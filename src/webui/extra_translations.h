@@ -87,6 +87,8 @@ static const char *__TRANSLATIONS__[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Save files to location:")
     QT_TRANSLATE_NOOP("HttpServer", "Label:")
     QT_TRANSLATE_NOOP("HttpServer", "Cookie:")
+    QT_TRANSLATE_NOOP("HttpServer", "Type folder here")
+    QT_TRANSLATE_NOOP("HttpServer", "Other...")
 };
 
 static const struct { const char *source; const char *comment; } __COMMENTED_TRANSLATIONS__[] = {
