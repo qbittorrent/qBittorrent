@@ -203,7 +203,7 @@ bool ScanFoldersModel::setData(const QModelIndex &index, const QVariant &value, 
     return true;
 }
 
-ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &watchPath, const PathType &downloadType, const QString &downloadPath)
+ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &watchPath, const PathType &downloadType, const QString &downloadPath, bool addToFSWatcher)
 {
     QDir watchDir(watchPath);
     if (!watchDir.exists()) return DoesNotExist;
@@ -225,8 +225,21 @@ ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &watchPath,
     endInsertRows();
 
     // Start scanning
-    m_fsWatcher->addPath(canonicalWatchPath);
+    if (addToFSWatcher)
+        m_fsWatcher->addPath(canonicalWatchPath);
     return Ok;
+}
+
+void ScanFoldersModel::addToFSWatcher(const QStringList &watchPaths)
+{
+    if (!m_fsWatcher)
+        return; // addPath() wasn't called before this
+
+    foreach (const QString &path, watchPaths) {
+        QDir watchDir(path);
+        const QString &canonicalWatchPath = watchDir.canonicalPath();
+        m_fsWatcher->addPath(canonicalWatchPath);
+    }
 }
 
 void ScanFoldersModel::removePath(int row)

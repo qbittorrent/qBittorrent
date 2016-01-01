@@ -81,7 +81,9 @@ public:
 
     // TODO: removePaths(); singular version becomes private helper functions;
     // also: remove functions should take modelindexes
-    PathStatus addPath(const QString &watchPath, const PathType& downloadType, const QString &downloadPath);
+    PathStatus addPath(const QString &watchPath, const PathType& downloadType, const QString &downloadPath, bool addToFSWatcher = true);
+    // PRECONDITION: The paths must have been added with addPath() first.
+    void addToFSWatcher(const QStringList &watchPaths);
     void removePath(int row);
     bool removePath(const QString &path);
 
