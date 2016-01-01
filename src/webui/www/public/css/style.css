@@ -408,6 +408,37 @@ td.generalLabel {
     border: 1px solid black;
 }
 
+.select-watched-folder-editable {
+    position:relative;
+    background-color: white;
+    border: solid grey 1px;
+    width: 160px;
+    height: 20px;
+}
+
+.select-watched-folder-editable select {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    border: none;
+    width: 160px;
+    margin: 0;
+}
+
+.select-watched-folder-editable input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 140px;
+    padding: 1px;
+    border: none;
+}
+
+.select-watched-folder-editable select:focus, .select-editable input:focus {
+    outline: none;
+}
+
 /*
  * Workaround to prevent the transfer list from
  * disappearing when zooming in the browser.
