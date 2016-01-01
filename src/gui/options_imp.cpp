@@ -418,6 +418,7 @@ void options_imp::saveOptions()
     pref->useAdditionDialog(useAdditionDialog());
     pref->additionDialogFront(checkAdditionDialogFront->isChecked());
     pref->addTorrentsInPause(addTorrentsInPause());
+    ScanFoldersModel::instance()->addToFSWatcher(addedScanDirs);
     ScanFoldersModel::instance()->makePersistent();
     addedScanDirs.clear();
     pref->setTorrentExportDir(getTorrentExportDir());
@@ -1203,7 +1204,7 @@ void options_imp::on_addScanFolderButton_clicked()
     const QString dir = QFileDialog::getExistingDirectory(this, tr("Add directory to scan"),
                                                           Utils::Fs::toNativePath(Utils::Fs::folderName(pref->getScanDirsLastPath())));
     if (!dir.isEmpty()) {
-        const ScanFoldersModel::PathStatus status = ScanFoldersModel::instance()->addPath(dir, ScanFoldersModel::DOWNLOAD_IN_WATCH_FOLDER, QString());
+        const ScanFoldersModel::PathStatus status = ScanFoldersModel::instance()->addPath(dir, ScanFoldersModel::DOWNLOAD_IN_WATCH_FOLDER, QString(), false);
         QString error;
         switch (status) {
         case ScanFoldersModel::AlreadyInList:
