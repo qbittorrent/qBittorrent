@@ -1209,7 +1209,7 @@ void options_imp::on_addScanFolderButton_clicked()
         QString error;
         switch (status) {
         case ScanFoldersModel::AlreadyInList:
-            error = tr("Folder is already being watched.").arg(dir);
+            error = tr("Folder is already being watched.");
             break;
         case ScanFoldersModel::DoesNotExist:
             error = tr("Folder does not exist.");
