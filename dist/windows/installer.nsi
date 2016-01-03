@@ -4,13 +4,12 @@
     FindFirst $0 $1 "$INSTDIR\uninst.exe"
     FindClose $0
     StrCmp $1 "" done
-        
+
     ;Run the uninstaller of the previous install.
-    DetailPrint $(inst_unist)    
+    DetailPrint $(inst_unist)
     ExecWait '"$INSTDIR\uninst.exe" /S _?=$INSTDIR'
     Delete "$INSTDIR\uninst.exe"
-    
-  
+
     done:
 
 SectionEnd
@@ -177,7 +176,18 @@ Function .onInit
 
   !insertmacro Init "installer"
   !insertmacro MUI_LANGDLL_DISPLAY
-	
+
+  ;Search if qBittorrent is already installed.
+  FindFirst $0 $1 "$INSTDIR\uninst.exe"
+  FindClose $0
+  StrCmp $1 "" done
+
+  ;Inform the user
+  MessageBox MB_OKCANCEL|MB_ICONINFORMATION $(inst_uninstall_question) /SD IDOK IDOK done
+  Quit
+
+  done:
+
 FunctionEnd
 
 Function check_instance

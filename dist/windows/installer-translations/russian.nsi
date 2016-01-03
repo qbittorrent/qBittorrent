@@ -16,6 +16,8 @@ LangString inst_firewall ${LANG_RUSSIAN} "Добавить в список ис�
 LangString inst_firewallinfo ${LANG_RUSSIAN} "Добавление в список исключений брандмауера"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_RUSSIAN} "qBittorrent запущен. Пожалуйста, закройте qBittorrent и перезапустите программу установки."
+;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+LangString inst_uninstall_question ${LANG_RUSSIAN} "A previous installation was detected. It will be uninstalled without deleting user settings."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_RUSSIAN} "Деинсталлируем старую версию."
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
