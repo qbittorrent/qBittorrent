@@ -1469,7 +1469,7 @@ void MainWindow::handleUpdateCheckFinished(bool update_available, QString new_ve
     QMessageBox::StandardButton answer = QMessageBox::Yes;
     if (update_available) {
         answer = QMessageBox::question(this, tr("qBittorrent Update Available"),
-                                       tr("A new version is available.\nUpdate to version %1?").arg(new_version),
+                                       tr("A new version is available.\nDo you want to download %1?").arg(new_version),
                                        QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
         if (answer == QMessageBox::Yes) {
             // The user want to update, let's download the update

@@ -16,6 +16,8 @@ LangString inst_firewall ${LANG_SPANISHINTERNATIONAL} "Añadir regla al Firewall
 LangString inst_firewallinfo ${LANG_SPANISHINTERNATIONAL} "Añadiendo regla al Firewall de Windows"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_SPANISHINTERNATIONAL} "qBittorrent se está ejecutando. Ciérrelo antes de continuar."
+;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+LangString inst_uninstall_question ${LANG_SPANISHINTERNATIONAL} "A previous installation was detected. It will be uninstalled without deleting user settings."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_SPANISHINTERNATIONAL} "Desinstalando la versión anterior."
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
