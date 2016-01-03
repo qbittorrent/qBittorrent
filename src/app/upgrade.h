@@ -118,14 +118,15 @@ bool upgrade(bool ask = true)
     QString oldResumeFilename = oldResumeSettings->fileName();
     QVariantHash oldResumeData = oldResumeSettings->value("torrents").toHash();
     delete oldResumeSettings;
-    if (oldResumeData.isEmpty())
+    bool oldResumeWasEmpty = oldResumeData.isEmpty();
+    if (oldResumeWasEmpty)
         Utils::Fs::forceRemove(oldResumeFilename);
 
 
     QString backupFolderPath = Utils::Fs::expandPathAbs(Utils::Fs::QDesktopServicesDataLocation() + "BT_backup");
     QDir backupFolderDir(backupFolderPath);
     QStringList backupFiles = backupFolderDir.entryList(QStringList() << QLatin1String("*.fastresume"), QDir::Files, QDir::Unsorted);
-    if (backupFiles.isEmpty() && oldResumeData.isEmpty()) return true;
+    if (backupFiles.isEmpty() && oldResumeWasEmpty) return true;
     if (ask && !userAcceptsUpgrade()) return false;
 
     int maxPrio = 0;
@@ -168,8 +169,17 @@ bool upgrade(bool ask = true)
         }
     }
 
-    if (!oldResumeData.isEmpty())
-        QFile(oldResumeFilename).rename(oldResumeFilename + ".bak");
+    if (!oldResumeWasEmpty) {
+        int counter = 0;
+        QString backupResumeFilename = oldResumeFilename + ".bak";
+
+        while (QFile::exists(backupResumeFilename)) {
+            ++counter;
+            backupResumeFilename = oldResumeFilename + ".bak" + QString::number(counter);
+        }
+
+        QFile::rename(oldResumeFilename, backupResumeFilename);
+    }
 
     return true;
 }
