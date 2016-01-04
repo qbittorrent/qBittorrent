@@ -1652,11 +1652,9 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
         p = magnetUri.addTorrentParams();
     }
     else if (torrentInfo.isValid()) {
-        if (!addData.resumed && !addData.createSubfolder && torrentInfo.filesCount() > 1) {
-            libtorrent::file_storage files = torrentInfo.files();
-            files.set_name("");
-            torrentInfo.remapFiles(files);
-        }
+        if (!addData.resumed && !addData.hasRootFolder)
+            torrentInfo.stripRootFolder();
+
         // Metadata
         if (!addData.resumed && !addData.hasSeedStatus)
             findIncompleteFiles(torrentInfo, savePath);
@@ -3651,6 +3649,7 @@ namespace
         torrentData.name = QString::fromStdString(fast.dict_find_string_value("qBt-name"));
         torrentData.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
         torrentData.disableTempPath = fast.dict_find_int_value("qBt-tempPathDisabled");
+        torrentData.hasRootFolder = fast.dict_find_int_value("qBt-hasRootFolder");
 
         magnetUri = MagnetUri(QString::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
         torrentData.addPaused = fast.dict_find_int_value("qBt-paused");

@@ -98,7 +98,7 @@ namespace BitTorrent
         bool sequential;
         bool hasSeedStatus;
         bool skipChecking;
-        bool createSubfolder;
+        bool hasRootFolder;
         TriStateBool addForced;
         TriStateBool addPaused;
         // for new torrents
@@ -235,6 +235,8 @@ namespace BitTorrent
         QString category() const;
         bool belongsToCategory(const QString &category) const;
         bool setCategory(const QString &category);
+
+        bool hasRootFolder() const;
 
         int filesCount() const;
         int piecesCount() const;
@@ -396,7 +398,7 @@ namespace BitTorrent
         Session *const m_session;
         libtorrent::torrent_handle m_nativeHandle;
         libtorrent::torrent_status m_nativeStatus;
-        TorrentState  m_state;
+        TorrentState m_state;
         TorrentInfo m_torrentInfo;
         SpeedMonitor m_speedMonitor;
 
@@ -422,6 +424,7 @@ namespace BitTorrent
         qreal m_ratioLimit;
         bool m_tempPathDisabled;
         bool m_hasMissingFiles;
+        bool m_hasRootFolder;
 
         bool m_pauseAfterRecheck;
         bool m_needSaveResumeData;

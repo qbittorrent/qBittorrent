@@ -98,12 +98,9 @@ namespace BitTorrent
         PieceRange filePieces(const QString &file) const;
         PieceRange filePieces(int fileIndex) const;
 
-        libtorrent::file_storage files() const;
-        libtorrent::file_storage origFiles() const;
-
         void renameFile(uint index, const QString &newPath);
+        void stripRootFolder();
 
-        void remapFiles(libtorrent::file_storage const &fileStorage);
         NativePtr nativeInfo() const;
 
     private:

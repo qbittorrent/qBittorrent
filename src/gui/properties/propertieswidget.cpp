@@ -315,10 +315,8 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent
         label_created_by_val->setText(m_torrent->creator().toHtmlEscaped());
 
         // List files in torrent
-        BitTorrent::TorrentInfo info = m_torrent->info();
-        libtorrent::file_storage files = info.files();
-        PropListModel->model()->setupModelData(info);
-        if (!(info.filesCount() > 1 && files.name().empty()))
+        PropListModel->model()->setupModelData(m_torrent->info());
+        if ((m_torrent->filesCount() > 1) && (PropListModel->model()->rowCount() == 1))
             filesList->setExpanded(PropListModel->index(0, 0), true);
 
         // Load file priorities
