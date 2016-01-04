@@ -127,7 +127,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="133"/>
         <source>Set as default label</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать в качестве метки по умолчанию</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="143"/>
@@ -480,7 +480,7 @@
     <message>
         <location filename="../gui/advancedsettings.h" line="264"/>
         <source>Maximum number of half-open connections [0: Unlimited]</source>
-        <translation type="unfinished"></translation>
+        <translation>Макс. кол-во полуоткрытых соединений [0: Неограничено]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="293"/>
@@ -1085,7 +1085,7 @@
         <location filename="../base/bittorrent/session.cpp" line="1482"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2.</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
-        <translation type="unfinished">попытка использования порта %1 провалилась. Причина: %2. {1.?}</translation>
+        <translation>попытка использования порта %1 на любом интерфейсе провалилась. Причина: %2.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1603"/>
@@ -1190,7 +1190,7 @@
         <location filename="../base/bittorrent/session.cpp" line="2275"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
-        <translation type="unfinished">попытка использования порта %2/%3 на интерфейсе %1 провалилась. Причина: %4. {1 ?} {2/%3.?}</translation>
+        <translation>попытка использования на интерфейсе %1 порта %2/%3  провалилась. Причина: %4.</translation>
     </message>
     <message>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4</source>
@@ -1589,12 +1589,12 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="87"/>
         <source>Save files to location:</source>
-        <translation type="unfinished">Путь сохранения по умолчанию:</translation>
+        <translation>Место сохранения файлов:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="88"/>
         <source>Label:</source>
-        <translation type="unfinished">Метка:</translation>
+        <translation>Метка:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="89"/>
@@ -1615,7 +1615,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="42"/>
         <source>Upload local torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузить локальный торрент</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="44"/>
