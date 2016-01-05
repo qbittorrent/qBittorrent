@@ -45,6 +45,7 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "base/qinisettings.h"
+#include "base/preferences.h"
 
 bool userAcceptsUpgrade()
 {
@@ -114,6 +115,9 @@ bool upgradeResumeFile(const QString &filepath, const QVariantHash &oldTorrent, 
 
 bool upgrade(bool ask = true)
 {
+    // Move RSS cookies to common storage
+    Preferences::instance()->moveRSSCookies();
+
     QIniSettings *oldResumeSettings = new QIniSettings("qBittorrent", "qBittorrent-resume");
     QString oldResumeFilename = oldResumeSettings->fileName();
     QVariantHash oldResumeData = oldResumeSettings->value("torrents").toHash();

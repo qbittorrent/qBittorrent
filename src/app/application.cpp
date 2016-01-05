@@ -462,10 +462,10 @@ void Application::cleanup()
 #ifndef DISABLE_COUNTRIES_RESOLUTION
     Net::GeoIPManager::freeInstance();
 #endif
+    Net::DownloadManager::freeInstance();
     Preferences::freeInstance();
     Logger::freeInstance();
     IconProvider::freeInstance();
-    Net::DownloadManager::freeInstance();
 #ifndef DISABLE_GUI
 #ifdef Q_OS_WIN
     typedef BOOL (WINAPI *PSHUTDOWNBRDESTROY)(HWND);

@@ -32,22 +32,24 @@
 #define COOKIESDLG_H
 
 #include <QDialog>
+#include <QList>
 
-QT_BEGIN_NAMESPACE
+class QNetworkCookie;
+class QUrl;
+
 namespace Ui {
     class CookiesDlg;
 }
-QT_END_NAMESPACE
 
 class CookiesDlg : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit CookiesDlg(QWidget *parent = 0, const QList<QByteArray> &raw_cookies = QList<QByteArray>());
+    explicit CookiesDlg(const QUrl &url, QWidget *parent = 0);
     ~CookiesDlg();
-    QList<QByteArray> getCookies() const;
-    static QList<QByteArray> askForCookies(QWidget *parent, const QList<QByteArray> &raw_cookies, bool *ok);
+    QList<QNetworkCookie> getCookies() const;
+    static bool askForCookies(QWidget *parent, const QUrl &url, QList<QNetworkCookie> &out);
 
   protected slots:
     void on_add_btn_clicked();

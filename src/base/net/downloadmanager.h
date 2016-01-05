@@ -33,12 +33,10 @@
 #include <QObject>
 #include <QNetworkAccessManager>
 
-QT_BEGIN_NAMESPACE
 class QNetworkReply;
 class QNetworkCookie;
 class QSslError;
 class QUrl;
-QT_END_NAMESPACE
 
 namespace Net
 {
@@ -53,9 +51,10 @@ namespace Net
         static void freeInstance();
         static DownloadManager *instance();
 
-        DownloadHandler *downloadUrl(const QString &url, bool saveToFile = false, qint64 limit = 0, bool handleRedirectToMagnet = false);
-        QList<QNetworkCookie> cookiesForUrl(const QString &url) const;
+        DownloadHandler *downloadUrl(const QString &url, bool saveToFile = false, qint64 limit = 0, bool handleRedirectToMagnet = false, const QString &userAgent = "");
+        QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const;
         bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url);
+        bool deleteCookie(const QNetworkCookie &cookie);
 
     private slots:
     #ifndef QT_NO_OPENSSL
@@ -63,8 +62,7 @@ namespace Net
     #endif
 
     private:
-        DownloadManager(QObject *parent = 0);
-        ~DownloadManager();
+        explicit DownloadManager(QObject *parent = 0);
 
         void applyProxySettings();
 

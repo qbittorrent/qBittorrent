@@ -28,7 +28,6 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QNetworkAccessManager>
 #include <QDebug>
 #include <QRegExp>
 #include <QStringList>
@@ -37,6 +36,8 @@
 #endif
 
 #include "base/logger.h"
+#include "base/net/downloadmanager.h"
+#include "base/net/downloadhandler.h"
 #include "dnsupdater.h"
 
 using namespace Net;
@@ -76,65 +77,62 @@ DNSUpdater::~DNSUpdater()
 void DNSUpdater::checkPublicIP()
 {
     Q_ASSERT(m_state == OK);
-    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
-    connect(manager, SIGNAL(finished(QNetworkReply *)), SLOT(ipRequestFinished(QNetworkReply *)));
+
+    DownloadHandler *handler = DownloadManager::instance()->downloadUrl(
+                "http://checkip.dyndns.org", false, 0, false,
+                QString("qBittorrent/%1").arg(VERSION));
+    connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), SLOT(ipRequestFinished(QString, QByteArray)));
+    connect(handler, SIGNAL(downloadFailed(QString, QString)), SLOT(ipRequestFailed(QString, QString)));
+
     m_lastIPCheckTime = QDateTime::currentDateTime();
-    QNetworkRequest request;
-    request.setUrl(QUrl("http://checkip.dyndns.org"));
-    request.setRawHeader("User-Agent", "qBittorrent/" VERSION);
-    manager->get(request);
 }
 
-void DNSUpdater::ipRequestFinished(QNetworkReply *reply)
+void DNSUpdater::ipRequestFinished(const QString &url, const QByteArray &data)
 {
-    qDebug() << Q_FUNC_INFO;
-    if (reply->error()) {
-        // Error
-        qWarning() << Q_FUNC_INFO << "Error:" << reply->errorString();
-    }
-    else {
-        // Parse response
-        QRegExp ipregex("Current IP Address:\\s+([^<]+)</body>");
-        QString ret = reply->readAll();
-        if (ipregex.indexIn(ret) >= 0) {
-            QString ip_str = ipregex.cap(1);
-            qDebug() << Q_FUNC_INFO << "Regular expression captured the following IP:" << ip_str;
-            QHostAddress new_ip(ip_str);
-            if (!new_ip.isNull()) {
-                if (m_lastIP != new_ip) {
-                    qDebug() << Q_FUNC_INFO << "The IP address changed, report the change to DynDNS...";
-                    qDebug() << m_lastIP.toString() << "->" << new_ip.toString();
-                    m_lastIP = new_ip;
-                    updateDNSService();
-                }
-            }
-            else {
-                qWarning() << Q_FUNC_INFO << "Failed to construct a QHostAddress from the IP string";
+    Q_UNUSED(url);
+
+    // Parse response
+    QRegExp ipregex("Current IP Address:\\s+([^<]+)</body>");
+    if (ipregex.indexIn(data) >= 0) {
+        QString ipStr = ipregex.cap(1);
+        qDebug() << Q_FUNC_INFO << "Regular expression captured the following IP:" << ipStr;
+        QHostAddress newIp(ipStr);
+        if (!newIp.isNull()) {
+            if (m_lastIP != newIp) {
+                qDebug() << Q_FUNC_INFO << "The IP address changed, report the change to DynDNS...";
+                qDebug() << m_lastIP.toString() << "->" << newIp.toString();
+                m_lastIP = newIp;
+                updateDNSService();
             }
         }
         else {
-            qWarning() << Q_FUNC_INFO << "Regular expression failed to capture the IP address";
+            qWarning() << Q_FUNC_INFO << "Failed to construct a QHostAddress from the IP string";
         }
     }
-    // Clean up
-    reply->deleteLater();
-    sender()->deleteLater();
+    else {
+        qWarning() << Q_FUNC_INFO << "Regular expression failed to capture the IP address";
+    }
+}
+
+void DNSUpdater::ipRequestFailed(const QString &url, const QString &error)
+{
+    Q_UNUSED(url);
+    qWarning() << "IP request failed:" << error;
 }
 
 void DNSUpdater::updateDNSService()
 {
     qDebug() << Q_FUNC_INFO;
-    // Prepare request
-    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
-    connect(manager, SIGNAL(finished(QNetworkReply *)), SLOT(ipUpdateFinished(QNetworkReply *)));
+
     m_lastIPCheckTime = QDateTime::currentDateTime();
-    QNetworkRequest request;
-    request.setUrl(getUpdateUrl());
-    request.setRawHeader("User-Agent", "qBittorrent/" VERSION);
-    manager->get(request);
+    DownloadHandler *handler = DownloadManager::instance()->downloadUrl(
+                getUpdateUrl(), false, 0, false,
+                QString("qBittorrent/%1").arg(VERSION));
+    connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), SLOT(ipUpdateFinished(QString, QByteArray)));
+    connect(handler, SIGNAL(downloadFailed(QString, QString)), SLOT(ipUpdateFailed(QString, QString)));
 }
 
-QUrl DNSUpdater::getUpdateUrl() const
+QString DNSUpdater::getUpdateUrl() const
 {
     QUrl url;
 #ifdef QT_NO_OPENSSL
@@ -172,22 +170,20 @@ QUrl DNSUpdater::getUpdateUrl() const
     Q_ASSERT(url.isValid());
 
     qDebug() << Q_FUNC_INFO << url.toString();
-    return url;
+    return url.toString();
 }
 
-void DNSUpdater::ipUpdateFinished(QNetworkReply *reply)
+void DNSUpdater::ipUpdateFinished(const QString &url, const QByteArray &data)
 {
-    if (reply->error()) {
-        // Error
-        qWarning() << Q_FUNC_INFO << "Error:" << reply->errorString();
-    }
-    else {
-        // Parse reply
-        processIPUpdateReply(reply->readAll());
-    }
-    // Clean up
-    reply->deleteLater();
-    sender()->deleteLater();
+    Q_UNUSED(url);
+    // Parse reply
+    processIPUpdateReply(data);
+}
+
+void DNSUpdater::ipUpdateFailed(const QString &url, const QString &error)
+{
+    Q_UNUSED(url);
+    qWarning() << "IP update failed:" << error;
 }
 
 void DNSUpdater::processIPUpdateReply(const QString &reply)
@@ -196,16 +192,19 @@ void DNSUpdater::processIPUpdateReply(const QString &reply)
     qDebug() << Q_FUNC_INFO << reply;
     QString code = reply.split(" ").first();
     qDebug() << Q_FUNC_INFO << "Code:" << code;
-    if (code == "good" || code == "nochg") {
+
+    if ((code == "good") || (code == "nochg")) {
         logger->addMessage(tr("Your dynamic DNS was successfully updated."), Log::INFO);
         return;
     }
+
     if ((code == "911") || (code == "dnserr")) {
         logger->addMessage(tr("Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes."), Log::CRITICAL);
         m_lastIP.clear();
         // It will retry in 30 minutes because the timer was not stopped
         return;
     }
+
     // Everything bellow is an error, stop updating until the user updates something
     m_ipCheckTimer.stop();
     m_lastIP.clear();
@@ -214,23 +213,27 @@ void DNSUpdater::processIPUpdateReply(const QString &reply)
         m_state = INVALID_CREDS;
         return;
     }
+
     if (code == "badauth") {
         logger->addMessage(tr("Dynamic DNS error: Invalid username/password."), Log::CRITICAL);
         m_state = INVALID_CREDS;
         return;
     }
+
     if (code == "badagent") {
         logger->addMessage(tr("Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org."),
                            Log::CRITICAL);
         m_state = FATAL;
         return;
     }
+
     if (code == "!donator") {
         logger->addMessage(tr("Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.").arg("!donator"),
                            Log::CRITICAL);
         m_state = FATAL;
         return;
     }
+
     if (code == "abuse") {
         logger->addMessage(tr("Dynamic DNS error: Your username was blocked due to abuse."), Log::CRITICAL);
         m_state = FATAL;
