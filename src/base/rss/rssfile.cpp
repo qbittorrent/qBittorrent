@@ -1,6 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez, Arnaud Demaiziere
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,49 +29,23 @@
  * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
-#ifndef RSSMANAGER_H
-#define RSSMANAGER_H
-
-#include <QTimer>
-#include <QSharedPointer>
-
 #include "rssfolder.h"
+#include "rssfile.h"
 
-class RssDownloadRuleList;
-class RssParser;
+using namespace Rss;
 
-class RssManager;
-typedef QSharedPointer<RssManager> RssManagerPtr;
+File::~File() {}
 
-class RssManager: public RssFolder {
-  Q_OBJECT
+Folder *File::parentFolder() const
+{
+    return m_parent;
+}
 
-public:
-  RssManager();
-  virtual ~RssManager();
-
-  RssParser* rssParser() const;
-  RssDownloadRuleList* downloadRules() const;
-
-public slots:
-  void loadStreamList();
-  void saveStreamList() const;
-  void forwardFeedContentChanged(const QString& url);
-  void forwardFeedInfosChanged(const QString& url, const QString& displayName, uint unreadCount);
-  void forwardFeedIconChanged(const QString& url, const QString& iconPath);
-  void moveFile(const RssFilePtr& file, const RssFolderPtr& destinationFolder);
-  void updateRefreshInterval(uint val);
-
-signals:
-  void feedContentChanged(const QString& url);
-  void feedInfosChanged(const QString& url, const QString& displayName, uint unreadCount);
-  void feedIconChanged(const QString& url, const QString& iconPath);
-
-private:
-  QTimer m_refreshTimer;
-  uint m_refreshInterval;
-  RssDownloadRuleList* m_downloadRules;
-  RssParser* m_rssParser;
-};
-
-#endif // RSSMANAGER_H
+QStringList File::pathHierarchy() const
+{
+    QStringList path;
+    if (m_parent)
+        path << m_parent->pathHierarchy();
+    path << id();
+    return path;
+}

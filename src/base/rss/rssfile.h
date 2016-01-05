@@ -1,6 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez, Arnaud Demaiziere
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,45 +32,51 @@
 #ifndef RSSFILE_H
 #define RSSFILE_H
 
-#include <QIcon>
 #include <QList>
 #include <QStringList>
 #include <QSharedPointer>
 
-class RssFolder;
-class RssFile;
-class RssArticle;
+namespace Rss
+{
+    class Folder;
+    class File;
+    class Article;
 
-typedef QSharedPointer<RssFile> RssFilePtr;
-typedef QSharedPointer<RssArticle> RssArticlePtr;
-typedef QList<RssArticlePtr> RssArticleList;
-typedef QList<RssFilePtr> RssFileList;
+    typedef QSharedPointer<File> FilePtr;
+    typedef QSharedPointer<Article> ArticlePtr;
+    typedef QList<ArticlePtr> ArticleList;
+    typedef QList<FilePtr> FileList;
 
-/**
- * Parent interface for RssFolder and RssFeed.
- */
-class RssFile {
-public:
-  virtual ~RssFile() {}
+    /**
+     * Parent interface for Rss::Folder and Rss::Feed.
+     */
+    class File
+    {
+    public:
+        virtual ~File();
 
-  virtual uint unreadCount() const = 0;
-  virtual QString displayName() const = 0;
-  virtual QString id() const = 0;
-  virtual QIcon icon() const = 0;
-  virtual void rename(const QString &new_name) = 0;
-  virtual void markAsRead() = 0;
-  virtual RssFolder* parent() const = 0;
-  virtual void setParent(RssFolder* parent) = 0;
-  virtual bool refresh() = 0;
-  virtual RssArticleList articleListByDateDesc() const = 0;
-  virtual RssArticleList unreadArticleListByDateDesc() const = 0;
-  virtual void removeAllSettings() = 0;
-  virtual void saveItemsToDisk() = 0;
-  virtual void recheckRssItemsForDownload() = 0;
-  QStringList pathHierarchy() const;
+        virtual QString id() const = 0;
+        virtual QString displayName() const = 0;
+        virtual uint unreadCount() const = 0;
+        virtual QString iconPath() const = 0;
+        virtual ArticleList articleListByDateDesc() const = 0;
+        virtual ArticleList unreadArticleListByDateDesc() const = 0;
 
-protected:
-  uint m_unreadCount;
-};
+        virtual void rename(const QString &newName) = 0;
+        virtual void markAsRead() = 0;
+        virtual bool refresh() = 0;
+        virtual void removeAllSettings() = 0;
+        virtual void saveItemsToDisk() = 0;
+        virtual void recheckRssItemsForDownload() = 0;
+
+        Folder *parentFolder() const;
+        QStringList pathHierarchy() const;
+
+    protected:
+        friend class Folder;
+
+        Folder *m_parent = nullptr;
+    };
+}
 
 #endif // RSSFILE_H

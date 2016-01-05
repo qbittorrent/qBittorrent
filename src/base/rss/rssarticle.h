@@ -1,6 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez, Arnaud Demaiziere
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,58 +32,60 @@
 #ifndef RSSARTICLE_H
 #define RSSARTICLE_H
 
-#include <QXmlStreamReader>
 #include <QDateTime>
 #include <QVariantHash>
 #include <QSharedPointer>
 
-class RssFeed;
-class RssArticle;
+namespace Rss
+{
+    class Feed;
+    class Article;
 
-typedef QSharedPointer<RssArticle> RssArticlePtr;
+    typedef QSharedPointer<Article> ArticlePtr;
 
-// Item of a rss stream, single information
-class RssArticle : public QObject {
-  Q_OBJECT
+    // Item of a rss stream, single information
+    class Article: public QObject
+    {
+        Q_OBJECT
 
-public:
-  RssArticle(RssFeed* parent, const QString& guid);
-  // Accessors
-  bool hasAttachment() const;
-  const QString& guid() const;
-  RssFeed* parent() const;
-  const QString& title() const;
-  const QString& author() const;
-  const QString& torrentUrl() const;
-  const QString& link() const;
-  QString description() const;
-  const QDateTime& date() const;
-  bool isRead() const;
-  // Setters
-  void markAsRead();
-  // Serialization
-  QVariantHash toHash() const;
+    public:
+        Article(Feed *parent, const QString &guid);
 
-signals:
-  void articleWasRead();
+        // Accessors
+        bool hasAttachment() const;
+        const QString &guid() const;
+        Feed *parent() const;
+        const QString &title() const;
+        const QString &author() const;
+        const QString &torrentUrl() const;
+        const QString &link() const;
+        QString description() const;
+        const QDateTime &date() const;
+        bool isRead() const;
+        // Setters
+        void markAsRead();
 
-public slots:
-  void handleTorrentDownloadSuccess(const QString& url);
+        // Serialization
+        QVariantHash toHash() const;
+        static ArticlePtr fromHash(Feed *parent, const QVariantHash &hash);
 
-  friend RssArticlePtr hashToRssArticle(RssFeed* parent, const QVariantHash& hash);
+    signals:
+        void articleWasRead();
 
-private:
-  RssFeed* m_parent;
-  QString m_guid;
-  QString m_title;
-  QString m_torrentUrl;
-  QString m_link;
-  QString m_description;
-  QDateTime m_date;
-  QString m_author;
-  bool m_read;
-};
+    public slots:
+        void handleTorrentDownloadSuccess(const QString &url);
 
-RssArticlePtr hashToRssArticle(RssFeed* parent, const QVariantHash& hash);
+    private:
+        Feed *m_parent;
+        QString m_guid;
+        QString m_title;
+        QString m_torrentUrl;
+        QString m_link;
+        QString m_description;
+        QDateTime m_date;
+        QString m_author;
+        bool m_read;
+    };
+}
 
 #endif // RSSARTICLE_H
