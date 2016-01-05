@@ -47,7 +47,7 @@
 #endif
 
 #ifdef Q_OS_WIN
-#include <ShlObj.h>
+#include <shlobj.h>
 #include <winreg.h>
 #endif
 

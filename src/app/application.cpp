@@ -37,7 +37,7 @@
 #ifndef DISABLE_GUI
 #include "gui/guiiconprovider.h"
 #ifdef Q_OS_WIN
-#include <Windows.h>
+#include <windows.h>
 #include <QSharedMemory>
 #include <QSessionManager>
 #endif // Q_OS_WIN
