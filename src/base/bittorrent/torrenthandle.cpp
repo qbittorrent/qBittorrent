@@ -312,6 +312,9 @@ QString TorrentHandle::savePath(bool actual) const
 
 QString TorrentHandle::rootPath(bool actual) const
 {
+    if ((filesCount() > 1) && !hasRootFolder())
+        return QString();
+
     QString firstFilePath = filePath(0);
     const int slashIndex = firstFilePath.indexOf("/");
     if (slashIndex >= 0)
@@ -324,8 +327,10 @@ QString TorrentHandle::contentPath(bool actual) const
 {
     if (filesCount() == 1)
         return QDir(savePath(actual)).absoluteFilePath(filePath(0));
-    else
+    else if (hasRootFolder())
         return rootPath(actual);
+    else
+        return savePath(actual);
 }
 
 bool TorrentHandle::isAutoTMMEnabled() const

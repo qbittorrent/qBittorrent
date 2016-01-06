@@ -1405,7 +1405,9 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
 
     // Remove it from session
     if (deleteLocalFiles) {
-        m_savePathsToRemove[torrent->hash()] = torrent->rootPath(true);
+        QString rootPath = torrent->rootPath(true);
+        if (!rootPath.isEmpty())
+            m_savePathsToRemove[torrent->hash()] = rootPath;
         m_nativeSession->remove_torrent(torrent->nativeHandle(), libt::session::delete_files);
     }
     else {

@@ -207,6 +207,9 @@ namespace BitTorrent
         //    file4
         //
         //
+        // Torrent A* (Torrent A in "strip root folder" mode)
+        //
+        //
         // Torrent B (singlefile)
         //
         // torrentB/
@@ -223,6 +226,7 @@ namespace BitTorrent
         // |   |           rootPath           |                contentPath                 |
         // |---|------------------------------|--------------------------------------------|
         // | A | /home/user/torrents/torrentA | /home/user/torrents/torrentA               |
+        // | A*|           <empty>            | /home/user/torrents                        |
         // | B | /home/user/torrents/torrentB | /home/user/torrents/torrentB/subdir1/file1 |
         // | C | /home/user/torrents/file1    | /home/user/torrents/file1                  |
 
