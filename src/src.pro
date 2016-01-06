@@ -25,7 +25,7 @@ nogui {
     TARGET = qbittorrent-nox
 } else {
     QT += xml
-    greaterThan(QT_MAJOR_VERSION, 4): QT += concurrent
+    greaterThan(QT_MAJOR_VERSION, 4): QT += concurrent widgets
     CONFIG(static) {
         DEFINES += QBT_STATIC_QT
         QTPLUGIN += qico
@@ -35,7 +35,6 @@ nogui {
 nowebui: DEFINES += DISABLE_WEBUI
 strace_win: DEFINES += STACKTRACE_WIN
 QT += network xml
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 # Vars
 LANG_PATH = lang
