@@ -141,10 +141,8 @@ class piratebay(object):
                 if self.save_item == "size":
                     temp_data = data.split()
                     if "Size" in temp_data:
-                        self.current_item[self.save_item] = temp_data[2]
-                    elif "ULed" in temp_data:
-                        temp_string = self.current_item[self.save_item]
-                        self.current_item[self.save_item] = " ".join((temp_string, temp_data[0][:-1]))
+                        indx = temp_data.index("Size")
+                        self.current_item[self.save_item] = temp_data[indx + 1] + " " + temp_data[indx + 2]
 
                 elif self.save_item == "name":
                     # names with special characters like '&' are splitted in several pieces
