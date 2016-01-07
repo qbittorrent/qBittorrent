@@ -1,4 +1,4 @@
-#VERSION: 2.11
+#VERSION: 2.12
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 #              Arthur (custparasite@gmx.se)
@@ -36,7 +36,7 @@ from helpers import download_file
 
 class piratebay(object):
     """ Search engine class """
-    url = 'https://thepiratebay.gd'
+    url = 'https://thepiratebay.ms'
     name = 'The Pirate Bay'
     supported_categories = {'all': '0', 'music': '100', 'movies': '200', 'games': '400', 'software': '300'}
 
@@ -157,7 +157,7 @@ class piratebay(object):
 
     def search(self, what, cat='all'):
         """ Performs search """
-        connection = https("thepiratebay.gd")
+        connection = https("thepiratebay.ms")
 
         #prepare query. 7 is filtering by seeders
         cat = cat.lower()
