@@ -196,7 +196,7 @@ namespace BitTorrent
         bool addTorrent(QString source, const AddTorrentParams &params = AddTorrentParams());
         bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = AddTorrentParams());
         bool deleteTorrent(const QString &hash, bool deleteLocalFiles = false);
-        bool loadMetadata(const QString &magnetUri);
+        bool loadMetadata(const MagnetUri &magnetUri);
         bool cancelLoadMetadata(const InfoHash &hash);
 
         void recursiveTorrentDownload(const InfoHash &hash);

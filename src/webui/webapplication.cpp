@@ -354,14 +354,6 @@ void WebApplication::action_command_download()
     foreach (QString url, list) {
         url = url.trimmed();
         if (!url.isEmpty()) {
-            if (url.startsWith("bc://bt/", Qt::CaseInsensitive)) {
-                qDebug("Converting bc link to magnet link");
-                url = Utils::Misc::bcLinkToMagnet(url);
-            }
-            if ((url.size() == 40 && !url.contains(QRegExp("[^0-9A-Fa-f]")))
-                || (url.size() == 32 && !url.contains(QRegExp("[^2-7A-Za-z]"))))
-                url = "magnet:?xt=urn:btih:" + url;
-
             Net::DownloadManager::instance()->setCookiesFromUrl(cookies, QUrl::fromEncoded(url.toUtf8()));
             BitTorrent::Session::instance()->addTorrent(url, params);
         }

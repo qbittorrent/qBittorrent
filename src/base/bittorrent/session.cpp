@@ -963,16 +963,11 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
         return true;
     }
 
-    if (source.startsWith("bc://bt/", Qt::CaseInsensitive)) {
-        qDebug("Converting bc link to magnet link");
-        source = Utils::Misc::bcLinkToMagnet(source);
+    MagnetUri magnetUri(source);
+    if (magnetUri.isValid()) {
+        return addTorrent_impl(params, magnetUri);
     }
-    else if (((source.size() == 40) && !source.contains(QRegExp("[^0-9A-Fa-f]")))
-             || ((source.size() == 32) && !source.contains(QRegExp("[^2-7A-Za-z]")))) {
-        source = "magnet:?xt=urn:btih:" + source;
-    }
-
-    if (Utils::Misc::isUrl(source)) {
+    else if (Utils::Misc::isUrl(source)) {
         Logger::instance()->addMessage(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));
         // Launch downloader
         Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, true, 10485760 /* 10MB */, true);
@@ -980,9 +975,6 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
         connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleDownloadFailed(QString, QString)));
         connect(handler, SIGNAL(redirectedToMagnet(QString, QString)), this, SLOT(handleRedirectedToMagnet(QString, QString)));
         m_downloadedTorrents[handler->url()] = params;
-    }
-    else if (source.startsWith("magnet:", Qt::CaseInsensitive)) {
-        return addTorrent_impl(addDataFromParams(params), MagnetUri(source));
     }
     else {
         return addTorrent_impl(addDataFromParams(params), MagnetUri(), TorrentInfo::loadFromFile(source));
@@ -1091,15 +1083,12 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
 
 // Add a torrent to the BitTorrent session in hidden mode
 // and force it to load its metadata
-bool Session::loadMetadata(const QString &magnetUri)
+bool Session::loadMetadata(const MagnetUri &magnetUri)
 {
-    Q_ASSERT(magnetUri.startsWith("magnet:", Qt::CaseInsensitive));
+    if (!magnetUri.isValid()) return false;
 
-    MagnetUri magnet(magnetUri);
-    if (!magnet.isValid()) return false;
-
-    InfoHash hash = magnet.hash();
-    QString name = magnet.name();
+    InfoHash hash = magnetUri.hash();
+    QString name = magnetUri.name();
 
     // We should not add torrent if it already
     // processed or adding to session
@@ -1111,7 +1100,7 @@ bool Session::loadMetadata(const QString &magnetUri)
     qDebug(" -> Hash: %s", qPrintable(hash));
     qDebug(" -> Name: %s", qPrintable(name));
 
-    libt::add_torrent_params p = magnet.addTorrentParams();
+    libt::add_torrent_params p = magnetUri.addTorrentParams();
 
     // Flags
     // Preallocation mode
