@@ -383,6 +383,15 @@ td.generalLabel {
     margin-bottom: -3px;
 }
 
+.torrentTable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .torrentTable th {
     padding: 5px 10px;
 }
@@ -454,4 +463,12 @@ td.generalLabel {
 
 .combo_priority {
     font-size: 1em;
+}
+
+td.statusBarSeparator {
+    width: 22px;
+    background-image: url('../images/skin/toolbox-divider.gif');
+    background-repeat: no-repeat;
+    background-position: center 1px;
+    background-size: 2px 18px;
 }
