@@ -17,7 +17,7 @@ LangString inst_firewallinfo ${LANG_GERMAN} "Füge Regel in der Windows Firewall
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_GERMAN} "qBittorrent läuft gerade. Bitte das Programm vor der Installation beenden."
 ;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
-LangString inst_uninstall_question ${LANG_GERMAN} "A previous installation was detected. It will be uninstalled without deleting user settings."
+LangString inst_uninstall_question ${LANG_GERMAN} "Eine ältere Installation wurde festgestellt. Diese wird deinstalliert ohne die Benutzereinstellungen zu löschen."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_GERMAN} "Vorherige Version wird deinstalliert."
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
