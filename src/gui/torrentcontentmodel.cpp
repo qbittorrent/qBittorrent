@@ -54,7 +54,7 @@ QIcon get_file_icon() {
 TorrentContentModel::TorrentContentModel(QObject *parent):
   QAbstractItemModel(parent),
     m_rootItem(new TorrentContentModelFolder(QList<QVariant>() << tr("Name") << tr("Size")
-                                         << tr("Progress") << tr("Priority")))
+                                         << tr("Progress") << tr("Download Priority")))
 {
 }
 
