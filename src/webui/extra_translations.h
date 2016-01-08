@@ -37,6 +37,7 @@ static const char *__TRANSLATIONS__[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Edit"),
     QT_TRANSLATE_NOOP("HttpServer", "Help"),
     QT_TRANSLATE_NOOP("HttpServer", "Logout"),
+    QT_TRANSLATE_NOOP("HttpServer", "Exit qBittorrent"),
     QT_TRANSLATE_NOOP("HttpServer", "Download Torrents from their URL or Magnet link"),
     QT_TRANSLATE_NOOP("HttpServer", "Only one link per line"),
     QT_TRANSLATE_NOOP("HttpServer", "Upload local torrent"),
@@ -83,16 +84,37 @@ static const char *__TRANSLATIONS__[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Resumed"),
     QT_TRANSLATE_NOOP("HttpServer", "Paused"),
     QT_TRANSLATE_NOOP("HttpServer", "Active"),
-    QT_TRANSLATE_NOOP("HttpServer", "Inactive")
-    QT_TRANSLATE_NOOP("HttpServer", "Save files to location:")
-    QT_TRANSLATE_NOOP("HttpServer", "Label:")
-    QT_TRANSLATE_NOOP("HttpServer", "Cookie:")
-    QT_TRANSLATE_NOOP("HttpServer", "Type folder here")
-    QT_TRANSLATE_NOOP("HttpServer", "Other...")
+    QT_TRANSLATE_NOOP("HttpServer", "Inactive"),
+    QT_TRANSLATE_NOOP("HttpServer", "Save files to location:"),
+    QT_TRANSLATE_NOOP("HttpServer", "Label:"),
+    QT_TRANSLATE_NOOP("HttpServer", "Cookie:"),
+    QT_TRANSLATE_NOOP("HttpServer", "Type folder here"),
+    QT_TRANSLATE_NOOP("HttpServer", "Run an external program on torrent completion"),
+    QT_TRANSLATE_NOOP("HttpServer", "Enable bandwidth management (uTP)"),
+    QT_TRANSLATE_NOOP("HttpServer", "Apply rate limit to uTP connections"),
+    QT_TRANSLATE_NOOP("HttpServer", "Alternative Global Rate Limits"),
+    QT_TRANSLATE_NOOP("HttpServer", "More information"),
+    QT_TRANSLATE_NOOP("HttpServer", "Information about certificates"),
+    QT_TRANSLATE_NOOP("HttpServer", "Save Files to"),
+    QT_TRANSLATE_NOOP("HttpServer", "Watch Folder"),
+    QT_TRANSLATE_NOOP("HttpServer", "Default Folder")
 };
 
 static const struct { const char *source; const char *comment; } __COMMENTED_TRANSLATIONS__[] = {
-    QT_TRANSLATE_NOOP3("HttpServer", "Downloaded", "Is the file downloaded or not?")
+    QT_TRANSLATE_NOOP3("HttpServer", "Downloaded", "Is the file downloaded or not?"),
+    QT_TRANSLATE_NOOP3("HttpServer", "from", "from time1 to time2"),
+    QT_TRANSLATE_NOOP3("HttpServer", "to", "from time1 to time2"),
+    QT_TRANSLATE_NOOP3("HttpServer", "Other...", "Save Files to: Watch Folder / Default Folder / Other..."),
+    QT_TRANSLATE_NOOP3("HttpServer", "Every day", "Schedule the use of alternative rate limits on ..."),
+    QT_TRANSLATE_NOOP3("HttpServer", "Week days", "Schedule the use of alternative rate limits on ..."),
+    QT_TRANSLATE_NOOP3("HttpServer", "Week ends", "Schedule the use of alternative rate limits on ..."),
+    QT_TRANSLATE_NOOP3("HttpServer", "Monday", "Schedule the use of alternative rate limits on ..."),
+    QT_TRANSLATE_NOOP3("HttpServer", "Tuesday", "Schedule the use of alternative rate limits on ..."),
+    QT_TRANSLATE_NOOP3("HttpServer", "Wednesday", "Schedule the use of alternative rate limits on ..."),
+    QT_TRANSLATE_NOOP3("HttpServer", "Thursday", "Schedule the use of alternative rate limits on ..."),
+    QT_TRANSLATE_NOOP3("HttpServer", "Friday", "Schedule the use of alternative rate limits on ..."),
+    QT_TRANSLATE_NOOP3("HttpServer", "Saturday", "Schedule the use of alternative rate limits on ..."),
+    QT_TRANSLATE_NOOP3("HttpServer", "Sunday", "Schedule the use of alternative rate limits on ...")
 };
 
 #endif // EXTRA_TRANSLATIONS_H

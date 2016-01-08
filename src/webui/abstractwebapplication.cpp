@@ -234,14 +234,15 @@ QString AbstractWebApplication::generateSid()
 
 void AbstractWebApplication::translateDocument(QString& data)
 {
-    const QRegExp regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR");
+    const QRegExp regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR(\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\])?");
     const QRegExp mnemonic("\\(?&([a-zA-Z]?\\))?");
     const std::string contexts[] = {
         "TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget",
         "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
         "options_imp", "Preferences", "TrackersAdditionDlg", "ScanFoldersModel",
         "PropTabBar", "TorrentModel", "downloadFromURL", "MainWindow", "misc",
-        "StatusBar", "AboutDlg", "about", "PeerListWidget", "StatusFiltersWidget"
+        "StatusBar", "AboutDlg", "about", "PeerListWidget", "StatusFiltersWidget",
+        "LabelFiltersList"
     };
     const size_t context_count = sizeof(contexts) / sizeof(contexts[0]);
     int i = 0;
@@ -258,14 +259,24 @@ void AbstractWebApplication::translateDocument(QString& data)
 
             QString translation = word;
             if (isTranslationNeeded) {
-                size_t context_index = 0;
-                while ((context_index < context_count) && (translation == word)) {
+                QString context = regex.cap(4);
+                if (context.length() > 0) {
 #ifndef QBT_USES_QT5
-                    translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
+                    translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
 #else
-                    translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, 1);
+                    translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, 1);
 #endif
-                    ++context_index;
+                }
+                else {
+                    size_t context_index = 0;
+                    while ((context_index < context_count) && (translation == word)) {
+#ifndef QBT_USES_QT5
+                        translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
+#else
+                        translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, 1);
+#endif
+                        ++context_index;
+                    }
                 }
             }
             // Remove keyboard shortcuts
