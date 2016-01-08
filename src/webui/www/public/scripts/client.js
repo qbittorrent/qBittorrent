@@ -255,8 +255,8 @@ window.addEvent('load', function () {
             if (row['full_data'].label.length === 0)
             unlabelled += 1;
         });
-        labelList.appendChild(create_link(LABELS_ALL, 'QBT_TR(All)QBT_TR', all));
-        labelList.appendChild(create_link(LABELS_UNLABELLED, 'QBT_TR(Unlabeled)QBT_TR', unlabelled));
+        labelList.appendChild(create_link(LABELS_ALL, 'QBT_TR(All (0))QBT_TR'.replace(' (0)', ''), all));
+        labelList.appendChild(create_link(LABELS_UNLABELLED, 'QBT_TR(Unlabeled (0))QBT_TR'.replace(' (0)', ''), unlabelled));
 
         var sortedLabels = []
         Object.each(label_list, function(label) {

@@ -730,8 +730,8 @@ var TorrentPeersTable = new Class({
             this.newColumn('progress', 'width: 30px', 'QBT_TR(Progress)QBT_TR');
             this.newColumn('dl_speed', 'width: 30px', 'QBT_TR(Down Speed)QBT_TR');
             this.newColumn('up_speed', 'width: 30px', 'QBT_TR(Up Speed)QBT_TR');
-            this.newColumn('downloaded', 'width: 30px', 'QBT_TR(Downloaded)QBT_TR');
-            this.newColumn('uploaded', 'width: 30px', 'QBT_TR(Uploaded)QBT_TR');
+            this.newColumn('downloaded', 'width: 30px', 'QBT_TR(Downloaded)QBT_TR[CONTEXT=PeerListWidget]');
+            this.newColumn('uploaded', 'width: 30px', 'QBT_TR(Uploaded)QBT_TR[CONTEXT=PeerListWidget]');
             this.newColumn('connection', 'width: 30px', 'QBT_TR(Connection)QBT_TR');
             this.newColumn('flags', 'width: 30px', 'QBT_TR(Flags)QBT_TR');
             this.newColumn('relevance', 'min-width: 30px', 'QBT_TR(Relevance)QBT_TR');
