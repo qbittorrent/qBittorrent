@@ -42,7 +42,7 @@ class TorrentContentModelFolder;
 
 class TorrentContentModelItem {
 public:
-  enum TreeItemColumns {COL_NAME, COL_SIZE, COL_PROGRESS, COL_PRIO, NB_COL};
+  enum TreeItemColumns {COL_NAME, COL_SIZE, COL_PROGRESS, COL_PRIO, COL_REMAINING, NB_COL};
   enum ItemType { FileType, FolderType };
 
   TorrentContentModelItem(TorrentContentModelFolder* parent);
@@ -57,6 +57,7 @@ public:
 
   qulonglong size() const;
   qreal progress() const;
+  qulonglong remaining() const;
 
   int priority() const;
   virtual void setPriority(int new_prio, bool update_parent = true) = 0;
@@ -72,6 +73,7 @@ protected:
   // Non-root item members
   QString m_name;
   qulonglong m_size;
+  qulonglong m_remaining;
   int m_priority;
   qreal m_progress;
 };
