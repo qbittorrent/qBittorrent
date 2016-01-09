@@ -37,6 +37,7 @@
 TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder* parent)
   : m_parentItem(parent)
   , m_size(0)
+  , m_remaining(0)
   , m_priority(prio::NORMAL)
   , m_progress(0)
 {
@@ -75,6 +76,14 @@ qreal TorrentContentModelItem::progress() const
     return 1;
 }
 
+qulonglong TorrentContentModelItem::remaining() const
+{
+  Q_ASSERT(!isRootItem());
+  if (m_priority == prio::IGNORED) return 0;
+
+  return m_remaining;
+}
+
 int TorrentContentModelItem::priority() const
 {
   Q_ASSERT(!isRootItem());
@@ -100,6 +109,8 @@ QVariant TorrentContentModelItem::data(int column) const
     return progress();
   case COL_SIZE:
     return m_size;
+  case COL_REMAINING:
+    return remaining();
   default:
     Q_ASSERT(false);
     return QVariant();

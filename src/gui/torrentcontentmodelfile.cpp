@@ -69,5 +69,6 @@ void TorrentContentModelFile::setPriority(int new_prio, bool update_parent)
 void TorrentContentModelFile::setProgress(qreal progress)
 {
   m_progress = progress;
+  m_remaining = (qulonglong)(m_size * (1.0 - m_progress));
   Q_ASSERT(m_progress <= 1.);
 }
