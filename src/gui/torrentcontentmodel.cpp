@@ -41,13 +41,13 @@
 
 namespace
 {
-    QIcon get_directory_icon()
+    QIcon getDirectoryIcon()
     {
         static QIcon cached = GuiIconProvider::instance()->getIcon("inode-directory");
         return cached;
     }
 
-    QIcon get_file_icon()
+    QIcon getFileIcon()
     {
         static QIcon cached = GuiIconProvider::instance()->getIcon("text-plain");
         return cached;
@@ -180,9 +180,9 @@ QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
     TorrentContentModelItem* item = static_cast<TorrentContentModelItem*>(index.internalPointer());
     if ((index.column() == 0) && (role == Qt::DecorationRole)) {
         if (item->itemType() == TorrentContentModelItem::FolderType)
-            return get_directory_icon();
+            return getDirectoryIcon();
         else
-            return get_file_icon();
+            return getFileIcon();
     }
     if ((index.column() == 0) && (role == Qt::CheckStateRole)) {
         if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::IGNORED)
@@ -290,10 +290,10 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
     qDebug("Torrent contains %d files", info.filesCount());
     m_filesIndex.reserve(info.filesCount());
 
-    TorrentContentModelFolder* current_parent;
+    TorrentContentModelFolder* currentParent;
     // Iterate over files
     for (int i = 0; i < info.filesCount(); ++i) {
-        current_parent = m_rootItem;
+        currentParent = m_rootItem;
         QString path = Utils::Fs::fromNativePath(info.filePath(i));
         // Iterate of parts of the path to create necessary folders
         QStringList pathFolders = path.split("/", QString::SkipEmptyParts);
@@ -301,16 +301,16 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
         foreach (const QString& pathPart, pathFolders) {
             if (pathPart == ".unwanted")
                 continue;
-            TorrentContentModelFolder* new_parent = current_parent->childFolderWithName(pathPart);
-            if (!new_parent) {
-                new_parent = new TorrentContentModelFolder(pathPart, current_parent);
-                current_parent->appendChild(new_parent);
+            TorrentContentModelFolder* newParent = currentParent->childFolderWithName(pathPart);
+            if (!newParent) {
+                newParent = new TorrentContentModelFolder(pathPart, currentParent);
+                currentParent->appendChild(newParent);
             }
-            current_parent = new_parent;
+            currentParent = newParent;
         }
         // Actually create the file
-        TorrentContentModelFile* fileItem = new TorrentContentModelFile(info.fileName(i), info.fileSize(i), current_parent, i);
-        current_parent->appendChild(fileItem);
+        TorrentContentModelFile* fileItem = new TorrentContentModelFile(info.fileName(i), info.fileSize(i), currentParent, i);
+        currentParent->appendChild(fileItem);
         m_filesIndex.push_back(fileItem);
     }
     emit layoutChanged();
