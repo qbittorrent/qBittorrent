@@ -129,10 +129,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     actionOpen->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
     actionDownload_from_URL->setIcon(GuiIconProvider::instance()->getIcon("insert-link"));
-    actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/seeding.png")));
-    actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/download.png")));
-    actionSet_global_upload_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/seeding.png")));
-    actionSet_global_download_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/download.png")));
+    actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/uploadLimit.png")));
+    actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/downloadLimit.png")));
+    actionSet_global_upload_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/uploadLimit.png")));
+    actionSet_global_download_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/downloadLimit.png")));
     actionCreate_torrent->setIcon(GuiIconProvider::instance()->getIcon("document-edit"));
     actionAbout->setIcon(GuiIconProvider::instance()->getIcon("help-about"));
     actionStatistics->setIcon(GuiIconProvider::instance()->getIcon("view-statistics"));
