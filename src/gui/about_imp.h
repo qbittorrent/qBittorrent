@@ -54,10 +54,12 @@ public:
         QString aboutText = QString(
             "<p style=\"white-space: pre-wrap;\">"
             "%1\n\n"
-            "%2\n\n\n"
-            "%3 <a href=\"http://www.qbittorrent.org\">http://www.qbittorrent.org</a>\n"
-            "%4 <a href=\"http://forum.qbittorrent.org\">http://forum.qbittorrent.org</a>\n"
-            "%5 <a href=\"http://bugs.qbittorrent.org\">http://bugs.qbittorrent.org</a>"
+            "%2\n\n"
+            "<table>"
+            "<tr><td>%3</td><td><a href=\"http://www.qbittorrent.org\">http://www.qbittorrent.org</a></td></tr>"
+            "<tr><td>%4</td><td><a href=\"http://forum.qbittorrent.org\">http://forum.qbittorrent.org</a></td></tr>"
+            "<tr><td>%5</td><td><a href=\"http://bugs.qbittorrent.org\">http://bugs.qbittorrent.org</a></td></tr>"
+            "</table>"
             "</p>")
             .arg(tr("An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar."))
             .arg(tr("Copyright %1 2006-2016 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT)))
