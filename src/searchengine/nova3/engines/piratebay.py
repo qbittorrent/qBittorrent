@@ -1,4 +1,4 @@
-#VERSION: 2.11
+#VERSION: 2.12
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 #              Arthur (custparasite@gmx.se)
@@ -36,7 +36,7 @@ from helpers import download_file
 
 class piratebay(object):
     """ Search engine class """
-    url = 'https://thepiratebay.gd'
+    url = 'https://thepiratebay.ms'
     name = 'The Pirate Bay'
     supported_categories = {'all': '0', 'music': '100', 'movies': '200', 'games': '400', 'software': '300'}
 
@@ -141,10 +141,8 @@ class piratebay(object):
                 if self.save_item == "size":
                     temp_data = data.split()
                     if "Size" in temp_data:
-                        self.current_item[self.save_item] = temp_data[2]
-                    elif "ULed" in temp_data:
-                        temp_string = self.current_item[self.save_item]
-                        self.current_item[self.save_item] = " ".join((temp_string, temp_data[0][:-1]))
+                        indx = temp_data.index("Size")
+                        self.current_item[self.save_item] = temp_data[indx + 1] + " " + temp_data[indx + 2]
 
                 elif self.save_item == "name":
                     # names with special characters like '&' are splitted in several pieces
@@ -159,7 +157,7 @@ class piratebay(object):
 
     def search(self, what, cat='all'):
         """ Performs search """
-        connection = https("thepiratebay.gd")
+        connection = https("thepiratebay.ms")
 
         #prepare query. 7 is filtering by seeders
         cat = cat.lower()
