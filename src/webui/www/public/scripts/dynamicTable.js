@@ -194,6 +194,10 @@ var DynamicTable = new Class({
             }
         },
 
+        deselectAll : function () {
+            this.cur.empty();
+        },
+
         selectRow : function (rowId) {
             this.cur.empty();
             this.cur.push(rowId);
@@ -423,7 +427,7 @@ var DynamicTable = new Class({
         },
 
         selectedRowsIds : function () {
-            return this.cur;
+            return this.cur.slice();
         },
 
         getRowIds : function () {
