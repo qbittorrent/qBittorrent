@@ -48,7 +48,7 @@
 
 #ifdef Q_OS_WIN
 #include <windows.h>
-#include <PowrProf.h>
+#include <powrprof.h>
 const int UNLEN = 256;
 #else
 #include <unistd.h>
