@@ -18,7 +18,11 @@
    <item>
     <layout class="QHBoxLayout" name="titleHBoxLayout">
      <item>
-      <widget class="QLabel" name="logo"/>
+      <widget class="QLabel" name="logo">
+       <property name="pixmap">
+        <pixmap resource="../icons.qrc">:/icons/skin/qbittorrent32.png</pixmap>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="lb_name">

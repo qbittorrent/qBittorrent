@@ -47,8 +47,7 @@ public:
         setupUi(this);
         setAttribute(Qt::WA_DeleteOnClose);
 
-        // Title & icon
-        logo->setPixmap(QPixmap(":/icons/skin/qbittorrent32.png"));
+        // Title
         lb_name->setText("<b><h2>qBittorrent " VERSION "</h2></b>");
 
         // About
