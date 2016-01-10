@@ -370,5 +370,7 @@
   <file>icons/oxygen/go-top.png</file>
   <file>icons/oxygen/checked.png</file>
   <file>icons/oxygen/office-chart-line.png</file>
+  <file>icons/skin/downloadLimit.png</file>
+  <file>icons/skin/uploadLimit.png</file>
 </qresource>
 </RCC>

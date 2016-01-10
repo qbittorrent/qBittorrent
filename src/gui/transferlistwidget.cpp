@@ -638,9 +638,9 @@ void TransferListWidget::displayListMenu(const QPoint&)
     connect(&actionPreview_file, SIGNAL(triggered()), this, SLOT(previewSelectedTorrents()));
     QAction actionSet_max_ratio(QIcon(QString::fromUtf8(":/icons/skin/ratio.png")), tr("Limit share ratio..."), 0);
     connect(&actionSet_max_ratio, SIGNAL(triggered()), this, SLOT(setMaxRatioSelectedTorrents()));
-    QAction actionSet_upload_limit(QIcon(QString::fromUtf8(":/icons/skin/seeding.png")), tr("Limit upload rate..."), 0);
+    QAction actionSet_upload_limit(QIcon(QString::fromUtf8(":/icons/skin/uploadLimit.png")), tr("Limit upload rate..."), 0);
     connect(&actionSet_upload_limit, SIGNAL(triggered()), this, SLOT(setUpLimitSelectedTorrents()));
-    QAction actionSet_download_limit(QIcon(QString::fromUtf8(":/icons/skin/download.png")), tr("Limit download rate..."), 0);
+    QAction actionSet_download_limit(QIcon(QString::fromUtf8(":/icons/skin/downloadLimit.png")), tr("Limit download rate..."), 0);
     connect(&actionSet_download_limit, SIGNAL(triggered()), this, SLOT(setDlLimitSelectedTorrents()));
     QAction actionOpen_destination_folder(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open destination folder"), 0);
     connect(&actionOpen_destination_folder, SIGNAL(triggered()), this, SLOT(openSelectedTorrentsFolder()));
@@ -777,8 +777,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
     listMenu.addSeparator();
     if (one_not_seed)
         listMenu.addAction(&actionSet_download_limit);
-    listMenu.addAction(&actionSet_max_ratio);
     listMenu.addAction(&actionSet_upload_limit);
+    listMenu.addAction(&actionSet_max_ratio);
     if (!one_not_seed && all_same_super_seeding && one_has_metadata) {
         actionSuper_seeding_mode.setChecked(super_seeding_mode);
         listMenu.addAction(&actionSuper_seeding_mode);
