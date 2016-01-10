@@ -181,6 +181,8 @@ var ContextMenu = new Class({
             show_f_l_piece_prio = false;
 
         if (all_are_downloaded) {
+            this.hideItem('DownloadLimit');
+            this.menu.getElement('a[href$=UploadLimit]').parentNode.addClass('separator');
             this.hideItem('SequentialDownload');
             this.hideItem('FirstLastPiecePrio');
             this.showItem('SuperSeeding');
@@ -204,6 +206,8 @@ var ContextMenu = new Class({
             this.setItemChecked('SequentialDownload', all_are_seq_dl);
             this.setItemChecked('FirstLastPiecePrio', all_are_f_l_piece_prio);
 
+            this.showItem('DownloadLimit');
+            this.menu.getElement('a[href$=UploadLimit]').parentNode.removeClass('separator');
             this.hideItem('SuperSeeding');
         }
 
