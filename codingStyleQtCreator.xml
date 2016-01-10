@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QtCreatorCodeStyle>
+<!-- Written by QtCreator 3.2.82, 2014-11-26T02:08:28. -->
+<qtcreator>
+ <data>
+  <variable>CodeStyleData</variable>
+  <valuemap type="QVariantMap">
+   <value type="bool" key="AlignAssignments">true</value>
+   <value type="bool" key="AutoSpacesForTabs">false</value>
+   <value type="bool" key="BindStarToIdentifier">false</value>
+   <value type="bool" key="BindStarToLeftSpecifier">true</value>
+   <value type="bool" key="BindStarToRightSpecifier">false</value>
+   <value type="bool" key="BindStarToTypeName">true</value>
+   <value type="bool" key="ExtraPaddingForConditionsIfConfusingAlign">false</value>
+   <value type="bool" key="IndentAccessSpecifiers">false</value>
+   <value type="bool" key="IndentBlockBody">true</value>
+   <value type="bool" key="IndentBlockBraces">false</value>
+   <value type="bool" key="IndentBlocksRelativeToSwitchLabels">false</value>
+   <value type="bool" key="IndentClassBraces">false</value>
+   <value type="bool" key="IndentControlFlowRelativeToSwitchLabels">true</value>
+   <value type="bool" key="IndentDeclarationsRelativeToAccessSpecifiers">true</value>
+   <value type="bool" key="IndentEnumBraces">false</value>
+   <value type="bool" key="IndentFunctionBody">true</value>
+   <value type="bool" key="IndentFunctionBraces">false</value>
+   <value type="bool" key="IndentNamespaceBody">true</value>
+   <value type="bool" key="IndentNamespaceBraces">false</value>
+   <value type="int" key="IndentSize">4</value>
+   <value type="bool" key="IndentStatementsRelativeToSwitchLabels">true</value>
+   <value type="bool" key="IndentSwitchLabels">false</value>
+   <value type="int" key="PaddingMode">1</value>
+   <value type="bool" key="SpacesForTabs">true</value>
+   <value type="int" key="TabSize">4</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>DisplayName</variable>
+  <value type="QString">qBittorrent</value>
+ </data>
+</qtcreator>
