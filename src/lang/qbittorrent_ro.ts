@@ -97,7 +97,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="62"/>
         <source>Set as default save path</source>
-        <translation>Configurează drept cale de salvare implicită</translation>
+        <translation>Stabilește drept cale de salvare implicită</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="72"/>
@@ -127,7 +127,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="133"/>
         <source>Set as default label</source>
-        <translation type="unfinished"></translation>
+        <translation>Stabilește ca etichetă implicită</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="143"/>
@@ -175,172 +175,172 @@
         <translation>Nu descărca</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="172"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="646"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="176"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="650"/>
         <source>I/O Error</source>
         <translation>Eroare Intrare/Ieșire</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="172"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="176"/>
         <source>The torrent file does not exist.</source>
         <translation>Fișierul torrent nu există.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="180"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="184"/>
         <source>Invalid torrent</source>
         <translation>Torrent nevalid</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="180"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="184"/>
         <source>Failed to load the torrent: %1</source>
         <translation>A eșuat încărcarea torrentului: %1</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="192"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="220"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="196"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="224"/>
         <source>Already in download list</source>
         <translation>Este deja în lista de descărcări</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="340"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="344"/>
         <source>Free disk space: %1</source>
         <translation>Spațiu liber pe disc: %1</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="672"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="676"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
         <translation>Nu este disponibil</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="673"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="677"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
         <translation>Nu este disponibil</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="681"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="685"/>
         <source>Not available</source>
         <translation>Nu este disponibil</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="209"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="213"/>
         <source>Invalid magnet link</source>
         <translation>Legătură magnet nevalidă</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="192"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="196"/>
         <source>Torrent is already in download list. Trackers were merged.</source>
-        <translation>Torrentul este deja în lista de descărcări. Urmăritoarele au fost combinate.</translation>
+        <translation>Torrentul este deja în lista de descărcări. Tracker-ele au fost combinate.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="195"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="223"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="199"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="227"/>
         <source>Cannot add torrent</source>
         <translation>Nu se poate adăuga torrentul</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="195"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="199"/>
         <source>Cannot add this torrent. Perhaps it is already in adding state.</source>
         <translation>Acest torrent nu poate fi adăugat. Probabil este deja într-o stare de adăugare.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="209"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="213"/>
         <source>This magnet link was not recognized</source>
         <translation>Această legătură magnet nu a fost recunoscută</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="220"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="224"/>
         <source>Magnet link is already in download list. Trackers were merged.</source>
-        <translation>Legătura magnet este deja în lista de descărcări. Urmăritoarele au fost combinate.</translation>
+        <translation>Legătura magnet este deja în lista de descărcări. Tracker-ele au fost combinate.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="223"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="227"/>
         <source>Cannot add this torrent. Perhaps it is already in adding.</source>
         <translation>Acest torrent nu poate fi adăugat. Probabil este deja într-o stare de adăugare.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="232"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="236"/>
         <source>Magnet link</source>
         <translation>Legătură magnet</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="239"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="243"/>
         <source>Retrieving metadata...</source>
         <translation>Se obțin metadatele...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="338"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="342"/>
         <source>Not Available</source>
         <comment>This size is unavailable.</comment>
         <translation>Nu este disponibil</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="369"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="377"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="379"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="373"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="381"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="383"/>
         <source>Choose save path</source>
         <translation>Alegeți calea de salvare</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="428"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="432"/>
         <source>Rename the file</source>
         <translation>Redenumire fișier</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="429"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="433"/>
         <source>New name:</source>
         <translation>Nume nou:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="433"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="458"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="437"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="462"/>
         <source>The file could not be renamed</source>
         <translation>Fișierul nu a putut fi redenumit</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="434"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="438"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Numele fișierului conține caractere interzise, alegeți un nume diferit.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="459"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="492"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="463"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="496"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Acest nume este deja utilizat în dosar. Utilizați un nume diferit.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="491"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="495"/>
         <source>The folder could not be renamed</source>
         <translation>Dosarul nu a putut fi redenumit</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="548"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="552"/>
         <source>Rename...</source>
         <translation>Redenumire...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="552"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="556"/>
         <source>Priority</source>
         <translation>Prioritate</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="647"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="651"/>
         <source>Invalid metadata</source>
         <translation>Metadate nevalide</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="654"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="658"/>
         <source>Parsing metadata...</source>
         <translation>Se analizează metadatele...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="658"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="662"/>
         <source>Metadata retrieval complete</source>
         <translation>Metadatele au fost obținute</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="718"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="722"/>
         <source>Download Error</source>
         <translation>Eroare descărcare</translation>
     </message>
@@ -432,10 +432,6 @@
         <translation>Rezolvă numele de gazdă ale partenerilor</translation>
     </message>
     <message>
-        <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation type="obsolete">Număr maxim de conexiuni semi-deschise [0: Dezactivat]</translation>
-    </message>
-    <message>
         <location filename="../gui/advancedsettings.h" line="267"/>
         <source>Strict super seeding</source>
         <translation>Doar super-contribuire</translation>
@@ -458,12 +454,12 @@
     <message>
         <location filename="../gui/advancedsettings.h" line="318"/>
         <source>Exchange trackers with other peers</source>
-        <translation>Schimbă urmăritoare cu alți parteneri</translation>
+        <translation>Schimbă trackere cu alți parteneri</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="321"/>
         <source>Always announce to all trackers</source>
-        <translation>Anunță întotdeauna toate urmăritoarele</translation>
+        <translation>Anunță întotdeauna tuturor tracker-elor</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="269"/>
@@ -475,17 +471,17 @@
         <location filename="../gui/advancedsettings.h" line="234"/>
         <source>Save resume data interval</source>
         <comment>How often the fastresume file is saved.</comment>
-        <translation>Salvare interval reluare date</translation>
+        <translation>Interval salvare date de reluare</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="264"/>
         <source>Maximum number of half-open connections [0: Unlimited]</source>
-        <translation type="unfinished"></translation>
+        <translation>Număr maxim de conexiuni semi-deschise [0: Nelimitate]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="293"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation>Adresa IP de raportat urmăritoarelor (necesită repornire)</translation>
+        <translation>Adresa IP de raportat tracker-elor (necesită restartare)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="296"/>
@@ -495,12 +491,12 @@
     <message>
         <location filename="../gui/advancedsettings.h" line="299"/>
         <source>Enable embedded tracker</source>
-        <translation>Activează urmăritorul încorporat</translation>
+        <translation>Activează tracker-ul încorporat</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="304"/>
         <source>Embedded tracker port</source>
-        <translation>Port urmăritor încorporat</translation>
+        <translation>Port tracker încorporat</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="307"/>
@@ -661,205 +657,205 @@
         <translation>&amp;Exportare...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="77"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="78"/>
         <source>Matches articles based on episode filter.</source>
         <translation>Articole care se potrivesc bazate pe filtrul episod.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="77"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="78"/>
         <source>Example: </source>
         <translation>Exemple: </translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="78"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="79"/>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
         <comment>example X will match</comment>
         <translation> va potrivi 2, 5, 8 din 15, 30 și episoadele ulterioare al sezonului unu</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="79"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="80"/>
         <source>Episode filter rules: </source>
         <translation>Reguli filtru episod: </translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="79"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="80"/>
         <source>Season number is a mandatory non-zero value</source>
         <translation>Numărul sezonului este obligatoriu nu o valoare zero</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="80"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="81"/>
         <source>Episode number is a mandatory non-zero value</source>
         <translation>Numărul episodului este obligatoriu nu o valoare zero</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="81"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="82"/>
         <source>Filter must end with semicolon</source>
         <translation>Filtrul trebuie să se termine cu punct și virgulă</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="82"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="83"/>
         <source>Three range types for episodes are supported: </source>
         <translation>Sunt suportate trei tipuri de gamă pentru episoade: </translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="83"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="84"/>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
         <translation>Un singur număr: &lt;b&gt;1x25;&lt;/b&gt; se potrivește cu episodul 25 al sezonului unu</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="84"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="85"/>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
         <translation>Gamă normală: &lt;b&gt;1x25-40;&lt;/b&gt; se potrivește cu episoadele de la 25 la 40 ale sezonului unu</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="85"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="86"/>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one</source>
         <translation>Gamă infinită: &lt;b&gt;1x25-;&lt;/b&gt; se potrivește cu episoadele 25 și următoarele pentru sezonul unu</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="266"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="267"/>
         <source>Last Match: %1 days ago</source>
         <translation>Ultima potrivire:  acum %1 zile</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="268"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="269"/>
         <source>Last Match: Unknown</source>
         <translation>Ultima potrivire: necunoscută</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="361"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="362"/>
         <source>New rule name</source>
         <translation>Nume regulă nouă</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="361"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="362"/>
         <source>Please type the name of the new download rule.</source>
         <translation>Introduceți numele noii reguli de descărcare.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="365"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="483"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="366"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="484"/>
         <source>Rule name conflict</source>
         <translation>Conflict nume regulă</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="365"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="483"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="366"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="484"/>
         <source>A rule with this name already exists, please choose another name.</source>
         <translation>O regulă cu acest nume există deja, alegeți alt nume.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="383"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="384"/>
         <source>Are you sure you want to remove the download rule named &apos;%1&apos;?</source>
         <translation>Sigur doriți să eliminați regula de descărcare numită „%1”?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="385"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="386"/>
         <source>Are you sure you want to remove the selected download rules?</source>
         <translation>Sigur doriți să eliminați regulile de descărcare selectate?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="386"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="387"/>
         <source>Rule deletion confirmation</source>
         <translation>Confirmare ștergere regulă</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="402"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="403"/>
         <source>Destination directory</source>
         <translation>Director destinație</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="410"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="411"/>
         <source>Invalid action</source>
         <translation>Acțiune nevalidă</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="410"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="411"/>
         <source>The list is empty, there is nothing to export.</source>
         <translation>Lista este goală, nu este nimic de exportat.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="414"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="415"/>
         <source>Where would you like to save the list?</source>
         <translation>Unde doriți să salvați lista?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="414"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="415"/>
         <source>Rules list (*.rssrules)</source>
         <translation>Listă reguli (*.rssrules)</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="419"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="420"/>
         <source>I/O Error</source>
         <translation>Eroare Intrare/Ieșire</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="419"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="420"/>
         <source>Failed to create the destination file</source>
         <translation>A eșuat crearea fișierului destinație</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="427"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="428"/>
         <source>Please point to the RSS download rules file</source>
         <translation>Indicați locația fișierului cu regulile de descărcare RSS</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="427"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="428"/>
         <source>Rules list</source>
         <translation>Listă reguli</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="431"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="432"/>
         <source>Import Error</source>
         <translation>Eroare importare</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="431"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="432"/>
         <source>Failed to import the selected rules file</source>
         <translation>A eșuat importarea fișierului de reguli selectat</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="442"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="443"/>
         <source>Add new rule...</source>
         <translation>Adăugare regulă nouă...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="448"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="449"/>
         <source>Delete rule</source>
         <translation>Șterge regula</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="450"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="451"/>
         <source>Rename rule...</source>
         <translation>Redenumire regulă...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="452"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="453"/>
         <source>Delete selected rules</source>
         <translation>Șterge regulile selectate</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="479"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="480"/>
         <source>Rule renaming</source>
         <translation>Redenumire regulă</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="479"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="480"/>
         <source>Please type the new rule name</source>
         <translation>Introduceți noul nume al regulii</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="581"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="582"/>
         <source>Regex mode: use Perl-like regular expressions</source>
         <translation>Mod regex: utilizează expresii regulare similare Perl</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="585"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="586"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Mod metacaracter: puteți utiliza&lt;ul&gt;&lt;li&gt;? pentru a potrivi oricare caracter&lt;/li&gt;&lt;li&gt;* pentru a potrivi zero sau mai multe caractere&lt;/li&gt;&lt;li&gt;Spațiile albe se socotesc ca și operatori ȘI&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="587"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="588"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Mod metacaracter: puteți utiliza&lt;ul&gt;&lt;li&gt;? pentru a potrivi oricare caracter&lt;/li&gt;&lt;li&gt;* pentru a potrivi zero mai multe caractere&lt;/li&gt;&lt;li&gt;| este utilizat ca și operator SAU&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
@@ -929,17 +925,17 @@
     <message>
         <location filename="../base/bittorrent/session.cpp" line="650"/>
         <source>Embedded Tracker [ON]</source>
-        <translation>Urmăritor încorporat [PORNIT]</translation>
+        <translation>Tracker încorporat [PORNIT]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="652"/>
         <source>Failed to start the embedded tracker!</source>
-        <translation>A eșuat pornirea urmăritorului încorporat!</translation>
+        <translation>A eșuat pornirea tracker-ului încorporat!</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="655"/>
         <source>Embedded Tracker [OFF]</source>
-        <translation>Urmăritor încorporat [OPRIT]</translation>
+        <translation>Tracker încorporat [OPRIT]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="693"/>
@@ -952,65 +948,57 @@
         <translation>„%1” a atins raportul de partajare maxim pe care l-ați definit. Se suspendă...</translation>
     </message>
     <message>
-        <source>Error: Could not create torrent export directory: &apos;%1&apos;</source>
-        <translation type="obsolete">Eroare: Nu s-a putut crea dosarul de export torrent: „%1”</translation>
-    </message>
-    <message>
-        <source>Error: could not export torrent &apos;%1&apos;, maybe it has not metadata yet.</source>
-        <translation type="obsolete">Eroare: nu s-a putut exporta torrentul „%1”, poate nu are încă metadate.</translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="1396"/>
+        <location filename="../base/bittorrent/session.cpp" line="1400"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>Starea rețelei sistemului s-a schimbat la %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1396"/>
+        <location filename="../base/bittorrent/session.cpp" line="1400"/>
         <source>ONLINE</source>
         <translation>CONECTAT</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1396"/>
+        <location filename="../base/bittorrent/session.cpp" line="1400"/>
         <source>OFFLINE</source>
         <translation>DECONECTAT</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1408"/>
+        <location filename="../base/bittorrent/session.cpp" line="1412"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>Configurația rețelei %1 a fost schimbată, se reîmprospătează asocierea sesiunii</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1692"/>
+        <location filename="../base/bittorrent/session.cpp" line="1696"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>Nu s-a putut decoda fișierul torrent „%1”.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1798"/>
+        <location filename="../base/bittorrent/session.cpp" line="1802"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>Descărcare recursivă a fișierului „%1” încorporat în torrentul „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2109"/>
+        <location filename="../base/bittorrent/session.cpp" line="2113"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>Nu s-a putut salva „%1.torrent”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2214"/>
+        <location filename="../base/bittorrent/session.cpp" line="2218"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>fiindcă %1  este dezactivat.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2217"/>
+        <location filename="../base/bittorrent/session.cpp" line="2221"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>fiindcă %1 este dezactivat.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2235"/>
+        <location filename="../base/bittorrent/session.cpp" line="2239"/>
         <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
         <translation>Rezolvarea adresei sursei a eșuat pentru URL-ul: „%1”, mesaj: %2</translation>
     </message>
@@ -1027,178 +1015,164 @@
         <translation>„%1” a fost eliminat din lista de transferuri.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="973"/>
+        <location filename="../base/bittorrent/session.cpp" line="977"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Se descarcă „%1”, așteptați...</translation>
     </message>
     <message>
-        <source>Torrent Export: torrent is invalid, skipping...</source>
-        <translation type="obsolete">Exportare torrent: torrentul nu este valid, se omite...</translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="1242"/>
+        <location filename="../base/bittorrent/session.cpp" line="1246"/>
         <source>DHT support [ON]</source>
         <translation>Suport DHT [PORNIT]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1247"/>
+        <location filename="../base/bittorrent/session.cpp" line="1251"/>
         <source>DHT support [OFF]. Reason: %1</source>
         <translation>Suport DHT [OPRIT]. Motivul: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1255"/>
+        <location filename="../base/bittorrent/session.cpp" line="1259"/>
         <source>DHT support [OFF]</source>
         <translation>Suport DHT [OPRIT]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="165"/>
-        <location filename="../base/bittorrent/session.cpp" line="1478"/>
+        <location filename="../base/bittorrent/session.cpp" line="1482"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent încearcă să asculte pe oricare port de interfață: %1</translation>
     </message>
     <message>
-        <source>qBittorrent failed to listen on any interface port: %1. Reason: %2</source>
-        <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
-        <translation type="obsolete">qBitorrent nu a putut asculta pe niciun port al interfeței %1. Motiv: %2</translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="1431"/>
+        <location filename="../base/bittorrent/session.cpp" line="1435"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Interfața de rețea definită nu este validă: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="169"/>
-        <location filename="../base/bittorrent/session.cpp" line="1489"/>
+        <location filename="../base/bittorrent/session.cpp" line="1493"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent încearcă să asculte pe interfața %1 portul: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1455"/>
+        <location filename="../base/bittorrent/session.cpp" line="1459"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
         <translation>qBittorrent nu a găsit o adresă locală %1 pe care să asculte</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1482"/>
+        <location filename="../base/bittorrent/session.cpp" line="1486"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2.</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
-        <translation type="unfinished">qBitorrent nu a putut asculta pe niciun port al interfeței %1. Motiv: %2. {1.?}</translation>
+        <translation>qBittorrent nu a putut asculta pe niciun port al interfeței: %1. Motivul: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1603"/>
+        <location filename="../base/bittorrent/session.cpp" line="1607"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
-        <translation>Urmăritorul „%1” a fost adăugat torrentului „%2”</translation>
+        <translation>Tracker-ul „%1” a fost adăugat torrentului „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1613"/>
+        <location filename="../base/bittorrent/session.cpp" line="1617"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
-        <translation>Urmăritorul „%1” a fost șters de la torrentul „%2”</translation>
+        <translation>Tracker-ul „%1” a fost șters de la torrentul „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1628"/>
+        <location filename="../base/bittorrent/session.cpp" line="1632"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Sursa URL „%1” a fost adăugată torrentului „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1634"/>
+        <location filename="../base/bittorrent/session.cpp" line="1638"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>Sursa URL „%1” a fost ștearsă de la torrentul „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1914"/>
+        <location filename="../base/bittorrent/session.cpp" line="1918"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>Nu se poate relua descărcarea torrent: „%1”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1937"/>
+        <location filename="../base/bittorrent/session.cpp" line="1941"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>S-a analizat cu succes filtrul IP furnizat: %1 reguli au fost aplicate.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1943"/>
+        <location filename="../base/bittorrent/session.cpp" line="1947"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Eroare: Eșec în analiza filtrului IP furnizat.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2071"/>
+        <location filename="../base/bittorrent/session.cpp" line="2075"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>Nu s-a putut adăuga torrentul. Motivul: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2092"/>
+        <location filename="../base/bittorrent/session.cpp" line="2096"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
         <translation>„%1” reluat. (reluare rapidă)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2123"/>
+        <location filename="../base/bittorrent/session.cpp" line="2127"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>„%1” a fost adăugat în lista de descărcare.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2178"/>
+        <location filename="../base/bittorrent/session.cpp" line="2182"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
         <translation>A apărut o eroare de Intrare/Ieșire, „%1” suspendat. %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2186"/>
+        <location filename="../base/bittorrent/session.cpp" line="2190"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Eșec în maparea portului, mesaj: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2192"/>
+        <location filename="../base/bittorrent/session.cpp" line="2196"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Maparea portului încheiată cu succes, mesaj: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2202"/>
+        <location filename="../base/bittorrent/session.cpp" line="2206"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>datorită filtrării IP.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2205"/>
+        <location filename="../base/bittorrent/session.cpp" line="2209"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>datorită filtrării portului.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2208"/>
+        <location filename="../base/bittorrent/session.cpp" line="2212"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>datorită restricțiilor modului mixt i2p.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2211"/>
+        <location filename="../base/bittorrent/session.cpp" line="2215"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>fiindcă are un port mic.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2249"/>
+        <location filename="../base/bittorrent/session.cpp" line="2253"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent ascultă cu succes pe interfața %1 portul: %2/%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2275"/>
+        <location filename="../base/bittorrent/session.cpp" line="2279"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
-        <translation type="unfinished">qBittorrent a eșuat în ascultarea interfeței %1 portul: %2/%3. Motivul: %4. {1 ?} {2/%3.?}</translation>
+        <translation>qBittorrent nu a putut asculta pe interfața %1 portul: %2/%3. Motivul: %4.</translation>
     </message>
     <message>
-        <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4</source>
-        <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
-        <translation type="obsolete">qBittorrent a eșuat în ascultarea interfeței %1 portul: %2/%3. Motivul: %4</translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="2284"/>
+        <location filename="../base/bittorrent/session.cpp" line="2288"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>IP extern: %1</translation>
@@ -1212,12 +1186,12 @@
         <translation>Nu s-a putut muta torrentul: „%1”. Motivul: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1454"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1457"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
         <translation>Nepotrivire dimensiuni fișiere pentru torrentul „%1”, se suspendă.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1460"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1463"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation>Datele pentru reluare rapidă au fost respinse pentru torrentul „%1”. Motivul %2. Se verifică din nou...</translation>
     </message>
@@ -1242,7 +1216,7 @@
         <translation>Valoare</translation>
     </message>
     <message>
-        <location filename="../gui/rss/cookiesdlg.cpp" line="48"/>
+        <location filename="../gui/rss/cookiesdlg.cpp" line="50"/>
         <source>Common keys for cookies are: &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
         <translation>Chei uzuale pentru cookie sunt: „%1”, „%2”.
@@ -1255,7 +1229,7 @@ Puteți obține aceste informații din preferințele navigatorului dumneavoastr�
         <location filename="../gui/deletionconfirmationdlg.h" line="48"/>
         <source>Are you sure you want to delete &apos;%1&apos; from the transfer list?</source>
         <comment>Are you sure you want to delete &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
-        <translation>Sunteți sigur că doriți să ștergeți „%1” din lista de transferuri?</translation>
+        <translation>Sigur doriți să ștergeți „%1” din lista de transferuri?</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdlg.h" line="50"/>
@@ -1310,12 +1284,12 @@ Puteți obține aceste informații din preferințele navigatorului dumneavoastr�
 <context>
     <name>FeedListWidget</name>
     <message>
-        <location filename="../gui/rss/feedlistwidget.cpp" line="41"/>
+        <location filename="../gui/rss/feedlistwidget.cpp" line="42"/>
         <source>RSS feeds</source>
         <translation>Fluxuri RSS</translation>
     </message>
     <message>
-        <location filename="../gui/rss/feedlistwidget.cpp" line="43"/>
+        <location filename="../gui/rss/feedlistwidget.cpp" line="44"/>
         <source>Unread</source>
         <translation>Necitite</translation>
     </message>
@@ -1411,10 +1385,6 @@ Puteți obține aceste informații din preferințele navigatorului dumneavoastr�
         <location filename="../webui/extra_translations.h" line="41"/>
         <source>Only one link per line</source>
         <translation>Doar unul pe linie</translation>
-    </message>
-    <message>
-        <source>Download local torrent</source>
-        <translation type="obsolete">Descarcă torrent local</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="43"/>
@@ -1544,7 +1514,7 @@ Puteți obține aceste informații din preferințele navigatorului dumneavoastr�
     <message>
         <location filename="../webui/extra_translations.h" line="78"/>
         <source>Upload Torrents</source>
-        <translation>Încărcare torrente</translation>
+        <translation>Încarcă torrentele</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="79"/>
@@ -1589,20 +1559,30 @@ Puteți obține aceste informații din preferințele navigatorului dumneavoastr�
     <message>
         <location filename="../webui/extra_translations.h" line="87"/>
         <source>Save files to location:</source>
-        <translation type="unfinished">Salvează fișierele în:</translation>
+        <translation>Salvează fișierele în locația:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="88"/>
         <source>Label:</source>
-        <translation type="unfinished">Etichetă:</translation>
+        <translation>Etichetă:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="89"/>
         <source>Cookie:</source>
+        <translation>Fișier cookie:</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="90"/>
+        <source>Type folder here</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="93"/>
+        <location filename="../webui/extra_translations.h" line="91"/>
+        <source>Other...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="95"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Descărcat</translation>
@@ -1615,7 +1595,7 @@ Puteți obține aceste informații din preferințele navigatorului dumneavoastr�
     <message>
         <location filename="../webui/extra_translations.h" line="42"/>
         <source>Upload local torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Încărcare torrent local</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="44"/>
@@ -1716,7 +1696,7 @@ Puteți obține aceste informații din preferințele navigatorului dumneavoastr�
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="335"/>
         <source>Remove unused labels</source>
-        <translation>Înlătură etichetele neutilizate</translation>
+        <translation>Elimină etichetele neutilizate</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="337"/>
@@ -1825,22 +1805,22 @@ Puteți obține aceste informații din preferințele navigatorului dumneavoastr�
     <message>
         <location filename="../gui/mainwindow.ui" line="202"/>
         <source>Set Upload Limit...</source>
-        <translation>Definire limită de încărcare...</translation>
+        <translation>Stabilire limită de încărcare...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="207"/>
         <source>Set Download Limit...</source>
-        <translation>Definire limită de descărcare...</translation>
+        <translation>Stabilire limită de descărcare...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="217"/>
         <source>Set Global Download Limit...</source>
-        <translation>Definire limită de descărcare globală...</translation>
+        <translation>Stabilire limită de descărcare globală...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="222"/>
         <source>Set Global Upload Limit...</source>
-        <translation>Definire limită de încărcare globală...</translation>
+        <translation>Stabilire limită de încărcare globală...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="227"/>
@@ -1866,7 +1846,7 @@ Puteți obține aceste informații din preferințele navigatorului dumneavoastr�
         <location filename="../gui/mainwindow.ui" line="262"/>
         <location filename="../gui/mainwindow.ui" line="265"/>
         <source>Alternative Speed Limits</source>
-        <translation>Limite alternative de viteză</translation>
+        <translation>Limite de viteză alternative</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="273"/>
@@ -1974,10 +1954,6 @@ Puteți obține aceste informații din preferințele navigatorului dumneavoastr�
         <translation>&amp;Despre</translation>
     </message>
     <message>
-        <source>Exit</source>
-        <translation type="obsolete">Închide programul</translation>
-    </message>
-    <message>
         <location filename="../gui/mainwindow.ui" line="179"/>
         <source>&amp;Pause</source>
         <translation>&amp;Suspendare</translation>
@@ -2008,22 +1984,6 @@ Puteți obține aceste informații din preferințele navigatorului dumneavoastr�
         <translation>Î&amp;nchide programul</translation>
     </message>
     <message>
-        <source>Options</source>
-        <translation type="obsolete">Opțiuni</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <translation type="obsolete">Reluare</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="obsolete">Suspendă</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="obsolete">Șterge</translation>
-    </message>
-    <message>
         <location filename="../gui/mainwindow.ui" line="192"/>
         <source>Open URL</source>
         <translation>Deschide URL</translation>
@@ -2040,18 +2000,14 @@ Puteți obține aceste informații din preferințele navigatorului dumneavoastr�
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="396"/>
-        <location filename="../gui/mainwindow.cpp" line="1293"/>
+        <location filename="../gui/mainwindow.cpp" line="1304"/>
         <source>Show</source>
         <translation>Arată</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1480"/>
+        <location filename="../gui/mainwindow.cpp" line="1487"/>
         <source>Check for program updates</source>
         <translation>Verifică pentru actualizări program</translation>
-    </message>
-    <message>
-        <source>Lock qBittorrent</source>
-        <translation type="obsolete">Blocare qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="189"/>
@@ -2065,215 +2021,221 @@ Puteți obține aceste informații din preferințele navigatorului dumneavoastr�
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="351"/>
-        <location filename="../gui/mainwindow.cpp" line="1508"/>
+        <location filename="../gui/mainwindow.cpp" line="1515"/>
         <source>Execution Log</source>
         <translation>Jurnal de execuție</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="478"/>
+        <location filename="../gui/mainwindow.cpp" line="485"/>
         <source>Clear the password</source>
         <translation>Eliminare parolă</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="187"/>
+        <location filename="../gui/mainwindow.cpp" line="192"/>
         <source>Filter torrent list...</source>
-        <translation>Filtrare listă torrente...</translation>
+        <translation>Filtrare listă de torrente...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="158"/>
+        <location filename="../gui/mainwindow.cpp" line="163"/>
         <source>&amp;Set Password</source>
-        <translation>&amp;Alegere parolă</translation>
+        <translation>&amp;Stabilire parolă</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="160"/>
+        <location filename="../gui/mainwindow.cpp" line="165"/>
         <source>&amp;Clear Password</source>
         <translation>&amp;Elimină parola</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="205"/>
+        <location filename="../gui/mainwindow.cpp" line="210"/>
         <source>Transfers</source>
         <translation>Transferuri</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="343"/>
+        <location filename="../gui/mainwindow.cpp" line="350"/>
         <source>Torrent file association</source>
         <translation>Asociere fișiere torrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="344"/>
+        <location filename="../gui/mainwindow.cpp" line="351"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>qBittorrent nu este aplicația implicită pentru deschiderea fișierelor torrent sau a legăturilor magnet.
 Doriți să asociați qBittorrent cu fișierele torrent și legăturile magnet?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="375"/>
+        <location filename="../gui/mainwindow.cpp" line="382"/>
         <source>Icons Only</source>
         <translation>Doar pictograme</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="377"/>
+        <location filename="../gui/mainwindow.cpp" line="384"/>
         <source>Text Only</source>
         <translation>Doar Text</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="379"/>
+        <location filename="../gui/mainwindow.cpp" line="386"/>
         <source>Text Alongside Icons</source>
         <translation>Text alături de pictograme</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="381"/>
+        <location filename="../gui/mainwindow.cpp" line="388"/>
         <source>Text Under Icons</source>
         <translation>Text sub pictograme</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="383"/>
+        <location filename="../gui/mainwindow.cpp" line="390"/>
         <source>Follow System Style</source>
         <translation>Utilizează stilul sistemului</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="463"/>
-        <location filename="../gui/mainwindow.cpp" line="490"/>
-        <location filename="../gui/mainwindow.cpp" line="792"/>
+        <location filename="../gui/mainwindow.cpp" line="470"/>
+        <location filename="../gui/mainwindow.cpp" line="497"/>
+        <location filename="../gui/mainwindow.cpp" line="799"/>
         <source>UI lock password</source>
         <translation>Parolă de blocare interfață</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="463"/>
-        <location filename="../gui/mainwindow.cpp" line="490"/>
-        <location filename="../gui/mainwindow.cpp" line="792"/>
+        <location filename="../gui/mainwindow.cpp" line="470"/>
+        <location filename="../gui/mainwindow.cpp" line="497"/>
+        <location filename="../gui/mainwindow.cpp" line="799"/>
         <source>Please type the UI lock password:</source>
         <translation>Introduceți parola pentru blocarea interfeței:</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="467"/>
+        <location filename="../gui/mainwindow.cpp" line="474"/>
         <source>The password should contain at least 3 characters</source>
         <translation>Parola ar trebui să aibă cel puțin 3 caractere</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="472"/>
+        <location filename="../gui/mainwindow.cpp" line="479"/>
         <source>Password update</source>
         <translation>Actualizare parolă</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="472"/>
+        <location filename="../gui/mainwindow.cpp" line="479"/>
         <source>The UI lock password has been successfully updated</source>
         <translation>Parola pentru blocarea interfeței a fost actualizată cu succes</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="478"/>
+        <location filename="../gui/mainwindow.cpp" line="485"/>
         <source>Are you sure you want to clear the password?</source>
         <translation>Sigur doriți să eliminați parola?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="530"/>
+        <location filename="../gui/mainwindow.cpp" line="537"/>
         <source>Search</source>
         <translation>Caută</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="541"/>
+        <location filename="../gui/mainwindow.cpp" line="548"/>
         <source>Transfers (%1)</source>
         <translation>Transferuri (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="632"/>
+        <location filename="../gui/mainwindow.cpp" line="639"/>
         <source>Error</source>
         <translation>Eroare</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="632"/>
+        <location filename="../gui/mainwindow.cpp" line="639"/>
         <source>Failed to add torrent: %1</source>
         <translation>Eșec la adăugarea torrentului: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="638"/>
+        <location filename="../gui/mainwindow.cpp" line="645"/>
         <source>Download completion</source>
         <translation>Descărcare finalizată</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="644"/>
+        <location filename="../gui/mainwindow.cpp" line="651"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Eroare Intrare/Ieșire</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="705"/>
+        <location filename="../gui/mainwindow.cpp" line="712"/>
         <source>Recursive download confirmation</source>
         <translation>Confirmare descărcare recursivă</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="706"/>
+        <location filename="../gui/mainwindow.cpp" line="713"/>
         <source>Yes</source>
         <translation>Da</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="707"/>
+        <location filename="../gui/mainwindow.cpp" line="714"/>
         <source>No</source>
         <translation>Nu</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="708"/>
+        <location filename="../gui/mainwindow.cpp" line="715"/>
         <source>Never</source>
         <translation>Niciodată</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="728"/>
+        <location filename="../gui/mainwindow.cpp" line="735"/>
         <source>Global Upload Speed Limit</source>
         <translation>Limită viteză de încărcare globală</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="744"/>
+        <location filename="../gui/mainwindow.cpp" line="751"/>
         <source>Global Download Speed Limit</source>
         <translation>Limită viteză de descărare globală</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="894"/>
+        <location filename="../gui/mainwindow.cpp" line="901"/>
         <source>&amp;No</source>
         <translation>&amp;Nu</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="895"/>
+        <location filename="../gui/mainwindow.cpp" line="902"/>
         <source>&amp;Yes</source>
         <translation>&amp;Da</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="896"/>
+        <location filename="../gui/mainwindow.cpp" line="903"/>
         <source>&amp;Always Yes</source>
         <translation>&amp;Întotdeauna Da</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1379"/>
+        <location filename="../gui/mainwindow.cpp" line="1386"/>
         <source>Python found in %1</source>
         <translation>Python găsit în %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1394"/>
+        <location filename="../gui/mainwindow.cpp" line="1401"/>
         <source>Old Python Interpreter</source>
         <translation>Interpretor Python vechi</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1464"/>
+        <location filename="../gui/mainwindow.cpp" line="1471"/>
         <source>qBittorrent Update Available</source>
         <translation>Este disponibilă o actualizare pentru qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1474"/>
+        <location filename="../gui/mainwindow.cpp" line="1472"/>
+        <source>A new version is available.
+Do you want to download %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1481"/>
         <source>Already Using the Latest qBittorrent Version</source>
         <translation>Folosiți deja ultima versiune qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1404"/>
+        <location filename="../gui/mainwindow.cpp" line="1411"/>
         <source>Undetermined Python version</source>
         <translation>Versiune Python nedeterminată</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="638"/>
+        <location filename="../gui/mainwindow.cpp" line="645"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>„%1” s-a descărcat.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="644"/>
+        <location filename="../gui/mainwindow.cpp" line="651"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -2282,160 +2244,159 @@ Doriți să asociați qBittorrent cu fișierele torrent și legăturile magnet?<
 Motivul: %2</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="705"/>
+        <location filename="../gui/mainwindow.cpp" line="712"/>
         <source>The torrent &apos;%1&apos; contains torrent files, do you want to proceed with their download?</source>
         <translation>Torentul „%1” conține fișiere torrent, doriți să continuați descărcarea lor?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="720"/>
+        <location filename="../gui/mainwindow.cpp" line="727"/>
         <source>Couldn&apos;t download file at URL &apos;%1&apos;, reason: %2.</source>
         <translation>Nu s-a putut descărca fișierul la URL-ul: „%1”, motivul: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1394"/>
+        <location filename="../gui/mainwindow.cpp" line="1401"/>
         <source>Your Python version %1 is outdated. Please upgrade to latest version for search engines to work. Minimum requirement: 2.7.0/3.3.0.</source>
         <translation>Versiunea dumneavoastră de Python %1 este învechită. Actualizați la ultima versiune pentru ca motoarele de căutare să funcționeze. Cerințe minime: 2.7.0/3.3.0.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1404"/>
+        <location filename="../gui/mainwindow.cpp" line="1411"/>
         <source>Couldn&apos;t determine your Python version (%1). Search engine disabled.</source>
         <translation>Nu s-a putut determina versiunea Python (%1). Motoarele de căutare au fost dezactivate.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1415"/>
-        <location filename="../gui/mainwindow.cpp" line="1427"/>
+        <location filename="../gui/mainwindow.cpp" line="1422"/>
+        <location filename="../gui/mainwindow.cpp" line="1434"/>
         <source>Missing Python Interpreter</source>
         <translation>Interpretorul Python lipsește</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1416"/>
+        <location filename="../gui/mainwindow.cpp" line="1423"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>Python este necesar pentru a putea folosi motorul de căutare, dar nu pare a fi instalat.
 Doriți să îl instalați acum?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1427"/>
+        <location filename="../gui/mainwindow.cpp" line="1434"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation>Python este necesar pentru a putea folosi motorul de căutare, dar nu pare a fi instalat.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1465"/>
         <source>A new version is available.
 Update to version %1?</source>
-        <translation>Este disponibilă o nouă versiune.
-Actualizați la versiunea %1?</translation>
+        <translation type="obsolete">Este disponibilă o nouă versiune.
+Doriți să treceți la versiunea %1?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1475"/>
+        <location filename="../gui/mainwindow.cpp" line="1482"/>
         <source>No updates available.
 You are already using the latest version.</source>
         <translation>Nu sunt disponibile actualizări.
 Utilizați deja ultima versiune.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1479"/>
+        <location filename="../gui/mainwindow.cpp" line="1486"/>
         <source>&amp;Check for Updates</source>
         <translation>&amp;Verifică dacă sunt actualizări</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1577"/>
+        <location filename="../gui/mainwindow.cpp" line="1584"/>
         <source>Checking for Updates...</source>
         <translation>Se verifică dacă sunt actualizări...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1578"/>
+        <location filename="../gui/mainwindow.cpp" line="1585"/>
         <source>Already checking for program updates in the background</source>
         <translation>Se caută deja actualizări de program în fundal</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1593"/>
+        <location filename="../gui/mainwindow.cpp" line="1600"/>
         <source>Python found in &apos;%1&apos;</source>
         <translation>Python găsit în „%1”</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1646"/>
+        <location filename="../gui/mainwindow.cpp" line="1653"/>
         <source>Download error</source>
         <translation>Eroare la descărcare</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1646"/>
+        <location filename="../gui/mainwindow.cpp" line="1653"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>Programul de instalare Python nu a putut fi descărcat, motivul: %1.
 Instalați-l manual.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="467"/>
-        <location filename="../gui/mainwindow.cpp" line="806"/>
+        <location filename="../gui/mainwindow.cpp" line="474"/>
+        <location filename="../gui/mainwindow.cpp" line="813"/>
         <source>Invalid password</source>
         <translation>Parolă nevalidă</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="508"/>
-        <location filename="../gui/mainwindow.cpp" line="520"/>
+        <location filename="../gui/mainwindow.cpp" line="515"/>
+        <location filename="../gui/mainwindow.cpp" line="527"/>
         <source>RSS (%1)</source>
         <translation>RSS (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="720"/>
+        <location filename="../gui/mainwindow.cpp" line="727"/>
         <source>URL download error</source>
         <translation>Eroarea la descărcarea URL</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="806"/>
+        <location filename="../gui/mainwindow.cpp" line="813"/>
         <source>The password is invalid</source>
         <translation>Parola nu este validă</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1188"/>
-        <location filename="../gui/mainwindow.cpp" line="1195"/>
+        <location filename="../gui/mainwindow.cpp" line="1199"/>
+        <location filename="../gui/mainwindow.cpp" line="1206"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Viteză descărcare: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1191"/>
-        <location filename="../gui/mainwindow.cpp" line="1197"/>
+        <location filename="../gui/mainwindow.cpp" line="1202"/>
+        <location filename="../gui/mainwindow.cpp" line="1208"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Viteză încărcare: %1 </translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1202"/>
+        <location filename="../gui/mainwindow.cpp" line="1213"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[D: %1/s, Î: %2/s] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1293"/>
+        <location filename="../gui/mainwindow.cpp" line="1304"/>
         <source>Hide</source>
         <translation>Ascunde</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="891"/>
+        <location filename="../gui/mainwindow.cpp" line="898"/>
         <source>Exiting qBittorrent</source>
         <translation>Închidere qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="892"/>
+        <location filename="../gui/mainwindow.cpp" line="899"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Unele fișiere sunt în curs de transfer.
 Sigur doriți să închideți qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1033"/>
+        <location filename="../gui/mainwindow.cpp" line="1040"/>
         <source>Open Torrent Files</source>
         <translation>Deschide fișiere torrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1034"/>
+        <location filename="../gui/mainwindow.cpp" line="1041"/>
         <source>Torrent Files</source>
         <translation>Fișiere torrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1069"/>
+        <location filename="../gui/mainwindow.cpp" line="1076"/>
         <source>Options were saved successfully.</source>
         <translation>Opțiunile au fost salvate cu succes.</translation>
     </message>
@@ -2443,17 +2404,17 @@ Sigur doriți să închideți qBittorrent?</translation>
 <context>
     <name>Net::DNSUpdater</name>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="200"/>
+        <location filename="../base/net/dnsupdater.cpp" line="197"/>
         <source>Your dynamic DNS was successfully updated.</source>
         <translation>DNS-ul dinamic a fost actualizat cu succes.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="204"/>
+        <location filename="../base/net/dnsupdater.cpp" line="202"/>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
         <translation>Eroare DNS dinamic: Serviciul este temporar indisponibil, va fi reâncercat în 30 de minute.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="213"/>
+        <location filename="../base/net/dnsupdater.cpp" line="212"/>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
         <translation>Eroare DNS dinamic: numele gazdă furnizat nu există în contul specificat.</translation>
     </message>
@@ -2463,32 +2424,32 @@ Sigur doriți să închideți qBittorrent?</translation>
         <translation>Eroare DNS dinamic: Parolă/nume utilizator nevalid(ă).</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="223"/>
+        <location filename="../base/net/dnsupdater.cpp" line="224"/>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
         <translation>Eroare DNS dinamic: qBittorrent a fost interzis de serviciu; raportați problema la http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="229"/>
+        <location filename="../base/net/dnsupdater.cpp" line="231"/>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation>Eroare DNS dinamic: valoarea %1 a fost returnată de către serviciu, raportați problema la http://bugs.qbittorrent.org.</translation>
+        <translation>Eroare DNS dinamic: valoarea %1 a fost întoarsă de către serviciu, raportați problema la http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="235"/>
+        <location filename="../base/net/dnsupdater.cpp" line="238"/>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
         <translation>Eroare DNS dinamic: Numele dumneavoastră de utilizator a fost blocat datorită abuzului.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="256"/>
+        <location filename="../base/net/dnsupdater.cpp" line="259"/>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
         <translation>Eroare DNS dinamic: numele de domeniu furnizat este nevalid.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="267"/>
+        <location filename="../base/net/dnsupdater.cpp" line="270"/>
         <source>Dynamic DNS error: supplied username is too short.</source>
         <translation>Eroare DNS dinamic: numele de utilizator furnizat este prea scurt.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="278"/>
+        <location filename="../base/net/dnsupdater.cpp" line="281"/>
         <source>Dynamic DNS error: supplied password is too short.</source>
         <translation>Eroare DNS dinamic: parola furnizată este prea scurtă.</translation>
     </message>
@@ -2515,154 +2476,161 @@ Sigur doriți să închideți qBittorrent?</translation>
     <name>Net::GeoIPManager</name>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="104"/>
-        <location filename="../base/net/geoipmanager.cpp" line="432"/>
+        <location filename="../base/net/geoipmanager.cpp" line="431"/>
         <source>GeoIP database loaded. Type: %1. Build time: %2.</source>
         <translation>Baza de date GeoIP încărcată. Tipul: %1. Data construirii: %2.</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="108"/>
-        <location filename="../base/net/geoipmanager.cpp" line="453"/>
+        <location filename="../base/net/geoipmanager.cpp" line="452"/>
         <source>Couldn&apos;t load GeoIP database. Reason: %1</source>
         <translation>Nu s-a putut încărca baza de date GeoIP. Motivul: %1</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="141"/>
-        <location filename="../base/net/geoipmanager.cpp" line="398"/>
+        <location filename="../base/net/geoipmanager.cpp" line="380"/>
+        <source>Venezuela, Bolivarian Republic of</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="383"/>
+        <source>Viet Nam</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="393"/>
+        <location filename="../base/net/geoipmanager.cpp" line="397"/>
         <source>N/A</source>
         <translation>Indisponibil</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="142"/>
         <source>Asia/Pacific Region</source>
-        <translation>Regiunea Asia-Pacific</translation>
+        <translation type="obsolete">Regiunea Asia-Pacific</translation>
+    </message>
+    <message>
+        <source>Europe</source>
+        <translation type="obsolete">Europa</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="143"/>
-        <source>Europe</source>
-        <translation>Europa</translation>
-    </message>
-    <message>
-        <location filename="../base/net/geoipmanager.cpp" line="144"/>
         <source>Andorra</source>
         <translation>Andorra</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="145"/>
+        <location filename="../base/net/geoipmanager.cpp" line="144"/>
         <source>United Arab Emirates</source>
         <translation>Emiratele Arabe Unite</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="146"/>
+        <location filename="../base/net/geoipmanager.cpp" line="145"/>
         <source>Afghanistan</source>
         <translation>Afganistan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="147"/>
+        <location filename="../base/net/geoipmanager.cpp" line="146"/>
         <source>Antigua and Barbuda</source>
         <translation>Antigua și Barbuda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="148"/>
+        <location filename="../base/net/geoipmanager.cpp" line="147"/>
         <source>Anguilla</source>
         <translation>Anguilla</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="149"/>
+        <location filename="../base/net/geoipmanager.cpp" line="148"/>
         <source>Albania</source>
         <translation>Albania</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="150"/>
+        <location filename="../base/net/geoipmanager.cpp" line="149"/>
         <source>Armenia</source>
         <translation>Armenia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="151"/>
         <source>Netherlands Antilles</source>
-        <translation>Antilele Olandeze</translation>
+        <translation type="obsolete">Antilele Olandeze</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="152"/>
+        <location filename="../base/net/geoipmanager.cpp" line="150"/>
         <source>Angola</source>
         <translation>Angola</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="153"/>
+        <location filename="../base/net/geoipmanager.cpp" line="151"/>
         <source>Antarctica</source>
         <translation>Antarctica</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="154"/>
+        <location filename="../base/net/geoipmanager.cpp" line="152"/>
         <source>Argentina</source>
         <translation>Argentina</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="155"/>
+        <location filename="../base/net/geoipmanager.cpp" line="153"/>
         <source>American Samoa</source>
         <translation>Samoa Americană</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="156"/>
+        <location filename="../base/net/geoipmanager.cpp" line="154"/>
         <source>Austria</source>
         <translation>Austria</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="157"/>
+        <location filename="../base/net/geoipmanager.cpp" line="155"/>
         <source>Australia</source>
         <translation>Australia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="158"/>
+        <location filename="../base/net/geoipmanager.cpp" line="156"/>
         <source>Aruba</source>
         <translation>Aruba</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="159"/>
+        <location filename="../base/net/geoipmanager.cpp" line="158"/>
         <source>Azerbaijan</source>
         <translation>Azerbaidjan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="160"/>
+        <location filename="../base/net/geoipmanager.cpp" line="159"/>
         <source>Bosnia and Herzegovina</source>
         <translation>Bosnia și Herțegovina</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="161"/>
+        <location filename="../base/net/geoipmanager.cpp" line="160"/>
         <source>Barbados</source>
         <translation>Barbados</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="162"/>
+        <location filename="../base/net/geoipmanager.cpp" line="161"/>
         <source>Bangladesh</source>
         <translation>Bangladeș</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="163"/>
+        <location filename="../base/net/geoipmanager.cpp" line="162"/>
         <source>Belgium</source>
         <translation>Belgia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="164"/>
+        <location filename="../base/net/geoipmanager.cpp" line="163"/>
         <source>Burkina Faso</source>
         <translation>Burkina Faso</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="165"/>
+        <location filename="../base/net/geoipmanager.cpp" line="164"/>
         <source>Bulgaria</source>
         <translation>Bulgaria</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="166"/>
+        <location filename="../base/net/geoipmanager.cpp" line="165"/>
         <source>Bahrain</source>
         <translation>Bahrain</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="167"/>
+        <location filename="../base/net/geoipmanager.cpp" line="166"/>
         <source>Burundi</source>
         <translation>Burundi</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="168"/>
+        <location filename="../base/net/geoipmanager.cpp" line="167"/>
         <source>Benin</source>
         <translation>Benin</translation>
     </message>
@@ -2677,1137 +2645,1187 @@ Sigur doriți să închideți qBittorrent?</translation>
         <translation>Brunei</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="171"/>
         <source>Bolivia</source>
-        <translation>Bolivia</translation>
+        <translation type="obsolete">Bolivia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="172"/>
+        <location filename="../base/net/geoipmanager.cpp" line="173"/>
         <source>Brazil</source>
         <translation>Brazilia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="173"/>
+        <location filename="../base/net/geoipmanager.cpp" line="174"/>
         <source>Bahamas</source>
         <translation>Bahamas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="174"/>
+        <location filename="../base/net/geoipmanager.cpp" line="175"/>
         <source>Bhutan</source>
         <translation>Bhutan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="175"/>
+        <location filename="../base/net/geoipmanager.cpp" line="176"/>
         <source>Bouvet Island</source>
         <translation>Insula Bouvet</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="176"/>
+        <location filename="../base/net/geoipmanager.cpp" line="177"/>
         <source>Botswana</source>
         <translation>Botswana</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="177"/>
+        <location filename="../base/net/geoipmanager.cpp" line="178"/>
         <source>Belarus</source>
         <translation>Belarus</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="178"/>
+        <location filename="../base/net/geoipmanager.cpp" line="179"/>
         <source>Belize</source>
         <translation>Belize</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="179"/>
+        <location filename="../base/net/geoipmanager.cpp" line="180"/>
         <source>Canada</source>
         <translation>Canada</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="180"/>
+        <location filename="../base/net/geoipmanager.cpp" line="181"/>
         <source>Cocos (Keeling) Islands</source>
         <translation>Insulele Cocos (Keeling)</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="181"/>
+        <location filename="../base/net/geoipmanager.cpp" line="182"/>
         <source>Congo, The Democratic Republic of the</source>
         <translation>Congo, Republica Democrată</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="182"/>
+        <location filename="../base/net/geoipmanager.cpp" line="183"/>
         <source>Central African Republic</source>
         <translation>Republica Central Africană</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="183"/>
+        <location filename="../base/net/geoipmanager.cpp" line="184"/>
         <source>Congo</source>
         <translation>Congo</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="184"/>
+        <location filename="../base/net/geoipmanager.cpp" line="185"/>
         <source>Switzerland</source>
         <translation>Elveția</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="185"/>
         <source>Cote D&apos;Ivoire</source>
-        <translation>Coasta de Fildeș</translation>
+        <translation type="obsolete">Coasta de Fildeș</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="186"/>
+        <location filename="../base/net/geoipmanager.cpp" line="187"/>
         <source>Cook Islands</source>
         <translation>Insulele Cook</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="187"/>
+        <location filename="../base/net/geoipmanager.cpp" line="188"/>
         <source>Chile</source>
         <translation>Chile</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="188"/>
+        <location filename="../base/net/geoipmanager.cpp" line="189"/>
         <source>Cameroon</source>
         <translation>Camerun</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="189"/>
+        <location filename="../base/net/geoipmanager.cpp" line="190"/>
         <source>China</source>
         <translation>China</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="190"/>
+        <location filename="../base/net/geoipmanager.cpp" line="191"/>
         <source>Colombia</source>
         <translation>Columbia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="191"/>
+        <location filename="../base/net/geoipmanager.cpp" line="192"/>
         <source>Costa Rica</source>
         <translation>Costa Rica</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="192"/>
+        <location filename="../base/net/geoipmanager.cpp" line="193"/>
         <source>Cuba</source>
         <translation>Cuba</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="193"/>
+        <location filename="../base/net/geoipmanager.cpp" line="194"/>
         <source>Cape Verde</source>
         <translation>Insulele Capului Verde</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="194"/>
+        <location filename="../base/net/geoipmanager.cpp" line="195"/>
+        <source>Curacao</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="196"/>
         <source>Christmas Island</source>
         <translation>Insula Crăciunului</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="195"/>
+        <location filename="../base/net/geoipmanager.cpp" line="197"/>
         <source>Cyprus</source>
         <translation>Cipru</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="196"/>
+        <location filename="../base/net/geoipmanager.cpp" line="198"/>
         <source>Czech Republic</source>
         <translation>Cehia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="197"/>
+        <location filename="../base/net/geoipmanager.cpp" line="199"/>
         <source>Germany</source>
         <translation>Germania</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="198"/>
+        <location filename="../base/net/geoipmanager.cpp" line="200"/>
         <source>Djibouti</source>
         <translation>Djibouti</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="199"/>
+        <location filename="../base/net/geoipmanager.cpp" line="201"/>
         <source>Denmark</source>
         <translation>Danemarca</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="200"/>
+        <location filename="../base/net/geoipmanager.cpp" line="202"/>
         <source>Dominica</source>
         <translation>Dominica</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="201"/>
+        <location filename="../base/net/geoipmanager.cpp" line="203"/>
         <source>Dominican Republic</source>
         <translation>Republica Dominicană</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="202"/>
+        <location filename="../base/net/geoipmanager.cpp" line="204"/>
         <source>Algeria</source>
         <translation>Algeria</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="203"/>
+        <location filename="../base/net/geoipmanager.cpp" line="205"/>
         <source>Ecuador</source>
         <translation>Ecuador</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="204"/>
+        <location filename="../base/net/geoipmanager.cpp" line="206"/>
         <source>Estonia</source>
         <translation>Estonia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="205"/>
+        <location filename="../base/net/geoipmanager.cpp" line="207"/>
         <source>Egypt</source>
         <translation>Egipt</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="206"/>
+        <location filename="../base/net/geoipmanager.cpp" line="208"/>
         <source>Western Sahara</source>
         <translation>Sahara de vest</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="207"/>
+        <location filename="../base/net/geoipmanager.cpp" line="209"/>
         <source>Eritrea</source>
         <translation>Eritreea</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="208"/>
+        <location filename="../base/net/geoipmanager.cpp" line="210"/>
         <source>Spain</source>
         <translation>Spania</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="209"/>
+        <location filename="../base/net/geoipmanager.cpp" line="211"/>
         <source>Ethiopia</source>
         <translation>Etiopia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="210"/>
+        <location filename="../base/net/geoipmanager.cpp" line="212"/>
         <source>Finland</source>
         <translation>Finlanda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="211"/>
+        <location filename="../base/net/geoipmanager.cpp" line="213"/>
         <source>Fiji</source>
         <translation>Fiji</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="212"/>
+        <location filename="../base/net/geoipmanager.cpp" line="214"/>
         <source>Falkland Islands (Malvinas)</source>
         <translation>Insulele Falkland (Malvine)</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="213"/>
+        <location filename="../base/net/geoipmanager.cpp" line="215"/>
         <source>Micronesia, Federated States of</source>
         <translation>Statele Federale ale Micronesiei</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="214"/>
+        <location filename="../base/net/geoipmanager.cpp" line="216"/>
         <source>Faroe Islands</source>
         <translation>Insulele Feroe</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="215"/>
+        <location filename="../base/net/geoipmanager.cpp" line="217"/>
         <source>France</source>
         <translation>Franța</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="216"/>
         <source>France, Metropolitan</source>
-        <translation>Franța, Metropolitană</translation>
+        <translation type="obsolete">Franța, Metropolitană</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="217"/>
+        <location filename="../base/net/geoipmanager.cpp" line="218"/>
         <source>Gabon</source>
         <translation>Gabon</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="218"/>
+        <location filename="../base/net/geoipmanager.cpp" line="219"/>
         <source>United Kingdom</source>
         <translation>Regatul Unit</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="219"/>
+        <location filename="../base/net/geoipmanager.cpp" line="220"/>
         <source>Grenada</source>
         <translation>Grenada</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="220"/>
+        <location filename="../base/net/geoipmanager.cpp" line="221"/>
         <source>Georgia</source>
         <translation>Georgia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="221"/>
+        <location filename="../base/net/geoipmanager.cpp" line="222"/>
         <source>French Guiana</source>
         <translation>Guiana Franceză</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="222"/>
+        <location filename="../base/net/geoipmanager.cpp" line="224"/>
         <source>Ghana</source>
         <translation>Ghana</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="223"/>
+        <location filename="../base/net/geoipmanager.cpp" line="225"/>
         <source>Gibraltar</source>
         <translation>Gibraltar</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="224"/>
+        <location filename="../base/net/geoipmanager.cpp" line="226"/>
         <source>Greenland</source>
         <translation>Groenlanda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="225"/>
+        <location filename="../base/net/geoipmanager.cpp" line="227"/>
         <source>Gambia</source>
         <translation>Gambia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="226"/>
+        <location filename="../base/net/geoipmanager.cpp" line="228"/>
         <source>Guinea</source>
         <translation>Guinea</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="227"/>
+        <location filename="../base/net/geoipmanager.cpp" line="229"/>
         <source>Guadeloupe</source>
         <translation>Guadalupe</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="228"/>
+        <location filename="../base/net/geoipmanager.cpp" line="230"/>
         <source>Equatorial Guinea</source>
         <translation>Guineea Ecuatorială</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="229"/>
+        <location filename="../base/net/geoipmanager.cpp" line="231"/>
         <source>Greece</source>
         <translation>Grecia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="230"/>
+        <location filename="../base/net/geoipmanager.cpp" line="232"/>
         <source>South Georgia and the South Sandwich Islands</source>
         <translation>Georgia de Sud și Insulele Sandwich de Sud</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="231"/>
+        <location filename="../base/net/geoipmanager.cpp" line="233"/>
         <source>Guatemala</source>
         <translation>Guatemala</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="232"/>
+        <location filename="../base/net/geoipmanager.cpp" line="234"/>
         <source>Guam</source>
         <translation>Guam</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="233"/>
+        <location filename="../base/net/geoipmanager.cpp" line="235"/>
         <source>Guinea-Bissau</source>
         <translation>Guineea-Bissau</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="234"/>
+        <location filename="../base/net/geoipmanager.cpp" line="236"/>
         <source>Guyana</source>
         <translation>Guyana</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="235"/>
+        <location filename="../base/net/geoipmanager.cpp" line="237"/>
         <source>Hong Kong</source>
         <translation>Hong Kong</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="236"/>
+        <location filename="../base/net/geoipmanager.cpp" line="238"/>
         <source>Heard Island and McDonald Islands</source>
         <translation>Insula Heard și Insulele McDonald</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="237"/>
+        <location filename="../base/net/geoipmanager.cpp" line="239"/>
         <source>Honduras</source>
         <translation>Honduras</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="238"/>
+        <location filename="../base/net/geoipmanager.cpp" line="240"/>
         <source>Croatia</source>
         <translation>Croația</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="239"/>
+        <location filename="../base/net/geoipmanager.cpp" line="241"/>
         <source>Haiti</source>
         <translation>Haiti</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="240"/>
+        <location filename="../base/net/geoipmanager.cpp" line="242"/>
         <source>Hungary</source>
         <translation>Ungaria</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="241"/>
+        <location filename="../base/net/geoipmanager.cpp" line="243"/>
         <source>Indonesia</source>
         <translation>Indonezia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="242"/>
+        <location filename="../base/net/geoipmanager.cpp" line="244"/>
         <source>Ireland</source>
         <translation>Irlanda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="243"/>
+        <location filename="../base/net/geoipmanager.cpp" line="245"/>
         <source>Israel</source>
         <translation>Israel</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="244"/>
+        <location filename="../base/net/geoipmanager.cpp" line="247"/>
         <source>India</source>
         <translation>India</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="245"/>
+        <location filename="../base/net/geoipmanager.cpp" line="248"/>
         <source>British Indian Ocean Territory</source>
         <translation>Teritoriul Oceanului Indian Britanic</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="246"/>
+        <location filename="../base/net/geoipmanager.cpp" line="249"/>
         <source>Iraq</source>
         <translation>Irac</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="247"/>
+        <location filename="../base/net/geoipmanager.cpp" line="250"/>
         <source>Iran, Islamic Republic of</source>
         <translation>Iran</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="248"/>
+        <location filename="../base/net/geoipmanager.cpp" line="251"/>
         <source>Iceland</source>
         <translation>Islanda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="249"/>
+        <location filename="../base/net/geoipmanager.cpp" line="252"/>
         <source>Italy</source>
         <translation>Italia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="250"/>
+        <location filename="../base/net/geoipmanager.cpp" line="254"/>
         <source>Jamaica</source>
         <translation>Jamaica</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="251"/>
+        <location filename="../base/net/geoipmanager.cpp" line="255"/>
         <source>Jordan</source>
         <translation>Iordania</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="252"/>
+        <location filename="../base/net/geoipmanager.cpp" line="256"/>
         <source>Japan</source>
         <translation>Japonia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="253"/>
+        <location filename="../base/net/geoipmanager.cpp" line="257"/>
         <source>Kenya</source>
         <translation>Kenya</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="254"/>
+        <location filename="../base/net/geoipmanager.cpp" line="258"/>
         <source>Kyrgyzstan</source>
         <translation>Kârgâzstan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="255"/>
+        <location filename="../base/net/geoipmanager.cpp" line="259"/>
         <source>Cambodia</source>
         <translation>Cambogia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="256"/>
+        <location filename="../base/net/geoipmanager.cpp" line="260"/>
         <source>Kiribati</source>
         <translation>Kiribati</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="257"/>
+        <location filename="../base/net/geoipmanager.cpp" line="261"/>
         <source>Comoros</source>
         <translation>Insulele Comore</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="258"/>
+        <location filename="../base/net/geoipmanager.cpp" line="262"/>
         <source>Saint Kitts and Nevis</source>
         <translation>Sfântul Cristofor și Nevis</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="259"/>
+        <location filename="../base/net/geoipmanager.cpp" line="263"/>
         <source>Korea, Democratic People&apos;s Republic of</source>
         <translation> Republica Populară Democrată Coreeană</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="260"/>
+        <location filename="../base/net/geoipmanager.cpp" line="264"/>
         <source>Korea, Republic of</source>
         <translation>Republica Coreea </translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="261"/>
+        <location filename="../base/net/geoipmanager.cpp" line="265"/>
         <source>Kuwait</source>
         <translation>Kuweit</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="262"/>
+        <location filename="../base/net/geoipmanager.cpp" line="266"/>
         <source>Cayman Islands</source>
         <translation>Insulele Cayman</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="263"/>
+        <location filename="../base/net/geoipmanager.cpp" line="267"/>
         <source>Kazakhstan</source>
         <translation>Kazahstan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="264"/>
+        <location filename="../base/net/geoipmanager.cpp" line="268"/>
         <source>Lao People&apos;s Democratic Republic</source>
         <translation>Republica Populară Democrată Laos</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="265"/>
+        <location filename="../base/net/geoipmanager.cpp" line="269"/>
         <source>Lebanon</source>
         <translation>Liban</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="266"/>
+        <location filename="../base/net/geoipmanager.cpp" line="270"/>
         <source>Saint Lucia</source>
         <translation>Sfânta Lucia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="267"/>
+        <location filename="../base/net/geoipmanager.cpp" line="271"/>
         <source>Liechtenstein</source>
         <translation>Liechtenstein</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="268"/>
+        <location filename="../base/net/geoipmanager.cpp" line="272"/>
         <source>Sri Lanka</source>
         <translation>Sri Lanka</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="269"/>
+        <location filename="../base/net/geoipmanager.cpp" line="273"/>
         <source>Liberia</source>
         <translation>Liberia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="270"/>
+        <location filename="../base/net/geoipmanager.cpp" line="274"/>
         <source>Lesotho</source>
         <translation>Lesotho</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="271"/>
+        <location filename="../base/net/geoipmanager.cpp" line="275"/>
         <source>Lithuania</source>
         <translation>Lituania</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="272"/>
+        <location filename="../base/net/geoipmanager.cpp" line="276"/>
         <source>Luxembourg</source>
         <translation>Luxemburg</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="273"/>
+        <location filename="../base/net/geoipmanager.cpp" line="277"/>
         <source>Latvia</source>
         <translation>Letonia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="274"/>
         <source>Libyan Arab Jamahiriya</source>
-        <translation>Libia</translation>
+        <translation type="obsolete">Libia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="275"/>
+        <location filename="../base/net/geoipmanager.cpp" line="279"/>
         <source>Morocco</source>
         <translation>Maroc</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="276"/>
+        <location filename="../base/net/geoipmanager.cpp" line="280"/>
         <source>Monaco</source>
         <translation>Monaco</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="277"/>
+        <location filename="../base/net/geoipmanager.cpp" line="281"/>
         <source>Moldova, Republic of</source>
         <translation>Republica Moldova</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="278"/>
+        <location filename="../base/net/geoipmanager.cpp" line="284"/>
         <source>Madagascar</source>
         <translation>Madagascar</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="279"/>
+        <location filename="../base/net/geoipmanager.cpp" line="285"/>
         <source>Marshall Islands</source>
         <translation>Insulele Marshall</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="280"/>
         <source>Macedonia</source>
-        <translation>Macedonia</translation>
+        <translation type="obsolete">Macedonia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="281"/>
+        <location filename="../base/net/geoipmanager.cpp" line="287"/>
         <source>Mali</source>
         <translation>Mali</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="282"/>
+        <location filename="../base/net/geoipmanager.cpp" line="288"/>
         <source>Myanmar</source>
         <translation>Birmania</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="283"/>
+        <location filename="../base/net/geoipmanager.cpp" line="289"/>
         <source>Mongolia</source>
         <translation>Mongolia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="284"/>
         <source>Macau</source>
-        <translation>Macau</translation>
+        <translation type="obsolete">Macau</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="285"/>
+        <location filename="../base/net/geoipmanager.cpp" line="291"/>
         <source>Northern Mariana Islands</source>
         <translation>Comunitatea Insulelor Mariane de Nord</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="286"/>
+        <location filename="../base/net/geoipmanager.cpp" line="292"/>
         <source>Martinique</source>
         <translation>Martinica</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="287"/>
+        <location filename="../base/net/geoipmanager.cpp" line="293"/>
         <source>Mauritania</source>
         <translation>Mauritania</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="288"/>
+        <location filename="../base/net/geoipmanager.cpp" line="294"/>
         <source>Montserrat</source>
         <translation>Montserrat</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="289"/>
+        <location filename="../base/net/geoipmanager.cpp" line="295"/>
         <source>Malta</source>
         <translation>Malta</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="290"/>
+        <location filename="../base/net/geoipmanager.cpp" line="296"/>
         <source>Mauritius</source>
         <translation>Republica Mauritius</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="291"/>
+        <location filename="../base/net/geoipmanager.cpp" line="297"/>
         <source>Maldives</source>
         <translation>Insulele Maldive</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="292"/>
+        <location filename="../base/net/geoipmanager.cpp" line="298"/>
         <source>Malawi</source>
         <translation>Republica Malawi</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="293"/>
+        <location filename="../base/net/geoipmanager.cpp" line="299"/>
         <source>Mexico</source>
         <translation>Mexic</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="294"/>
+        <location filename="../base/net/geoipmanager.cpp" line="300"/>
         <source>Malaysia</source>
         <translation>Malaezia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="295"/>
+        <location filename="../base/net/geoipmanager.cpp" line="301"/>
         <source>Mozambique</source>
         <translation>Mozambic</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="296"/>
+        <location filename="../base/net/geoipmanager.cpp" line="302"/>
         <source>Namibia</source>
         <translation>Namibia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="297"/>
+        <location filename="../base/net/geoipmanager.cpp" line="303"/>
         <source>New Caledonia</source>
         <translation>Noua Caledonie</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="298"/>
+        <location filename="../base/net/geoipmanager.cpp" line="304"/>
         <source>Niger</source>
         <translation>Nigeria</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="299"/>
+        <location filename="../base/net/geoipmanager.cpp" line="305"/>
         <source>Norfolk Island</source>
         <translation>Insula Norfolk</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="300"/>
+        <location filename="../base/net/geoipmanager.cpp" line="306"/>
         <source>Nigeria</source>
         <translation>Nigeria</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="301"/>
+        <location filename="../base/net/geoipmanager.cpp" line="307"/>
         <source>Nicaragua</source>
         <translation>Nicaragua</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="302"/>
+        <location filename="../base/net/geoipmanager.cpp" line="308"/>
         <source>Netherlands</source>
         <translation>Olanda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="303"/>
+        <location filename="../base/net/geoipmanager.cpp" line="309"/>
         <source>Norway</source>
         <translation>Norvegia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="304"/>
+        <location filename="../base/net/geoipmanager.cpp" line="310"/>
         <source>Nepal</source>
         <translation>Nepal</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="305"/>
+        <location filename="../base/net/geoipmanager.cpp" line="311"/>
         <source>Nauru</source>
         <translation>Nauru</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="306"/>
+        <location filename="../base/net/geoipmanager.cpp" line="312"/>
         <source>Niue</source>
         <translation>Niue</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="307"/>
+        <location filename="../base/net/geoipmanager.cpp" line="313"/>
         <source>New Zealand</source>
         <translation>Noua Zeelandă</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="308"/>
+        <location filename="../base/net/geoipmanager.cpp" line="314"/>
         <source>Oman</source>
         <translation>Oman</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="309"/>
+        <location filename="../base/net/geoipmanager.cpp" line="315"/>
         <source>Panama</source>
         <translation>Panama</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="310"/>
+        <location filename="../base/net/geoipmanager.cpp" line="316"/>
         <source>Peru</source>
         <translation>Peru</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="311"/>
+        <location filename="../base/net/geoipmanager.cpp" line="317"/>
         <source>French Polynesia</source>
         <translation>Polinezia Franceză</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="312"/>
+        <location filename="../base/net/geoipmanager.cpp" line="318"/>
         <source>Papua New Guinea</source>
         <translation>Papua Noua Guinee</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="313"/>
+        <location filename="../base/net/geoipmanager.cpp" line="319"/>
         <source>Philippines</source>
         <translation>Filipine</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="314"/>
+        <location filename="../base/net/geoipmanager.cpp" line="320"/>
         <source>Pakistan</source>
         <translation>Pakistan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="315"/>
+        <location filename="../base/net/geoipmanager.cpp" line="321"/>
         <source>Poland</source>
         <translation>Polonia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="316"/>
+        <location filename="../base/net/geoipmanager.cpp" line="322"/>
         <source>Saint Pierre and Miquelon</source>
         <translation>Saint Pierre și Miquelon</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="317"/>
         <source>Pitcairn Islands</source>
-        <translation>Insulele Pitcairn</translation>
+        <translation type="obsolete">Insulele Pitcairn</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="318"/>
+        <location filename="../base/net/geoipmanager.cpp" line="324"/>
         <source>Puerto Rico</source>
         <translation>Puerto Rico</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="319"/>
         <source>Palestinian Territory</source>
-        <translation>Palestina</translation>
+        <translation type="obsolete">Palestina</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="320"/>
+        <location filename="../base/net/geoipmanager.cpp" line="326"/>
         <source>Portugal</source>
         <translation>Portugalia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="321"/>
+        <location filename="../base/net/geoipmanager.cpp" line="327"/>
         <source>Palau</source>
         <translation>Palau</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="322"/>
+        <location filename="../base/net/geoipmanager.cpp" line="328"/>
         <source>Paraguay</source>
         <translation>Paraguai</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="323"/>
+        <location filename="../base/net/geoipmanager.cpp" line="329"/>
         <source>Qatar</source>
         <translation>Qatar</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="324"/>
+        <location filename="../base/net/geoipmanager.cpp" line="330"/>
         <source>Reunion</source>
         <translation>Reunion</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="325"/>
+        <location filename="../base/net/geoipmanager.cpp" line="331"/>
         <source>Romania</source>
         <translation>România</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="326"/>
+        <location filename="../base/net/geoipmanager.cpp" line="333"/>
         <source>Russian Federation</source>
         <translation>Federația Rusă</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="327"/>
+        <location filename="../base/net/geoipmanager.cpp" line="334"/>
         <source>Rwanda</source>
         <translation>Ruanda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="328"/>
+        <location filename="../base/net/geoipmanager.cpp" line="335"/>
         <source>Saudi Arabia</source>
         <translation>Arabia Saudită</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="329"/>
+        <location filename="../base/net/geoipmanager.cpp" line="336"/>
         <source>Solomon Islands</source>
         <translation>Insulele Solomon</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="330"/>
+        <location filename="../base/net/geoipmanager.cpp" line="337"/>
         <source>Seychelles</source>
         <translation>Seișele</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="331"/>
+        <location filename="../base/net/geoipmanager.cpp" line="338"/>
         <source>Sudan</source>
         <translation>Sudan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="332"/>
+        <location filename="../base/net/geoipmanager.cpp" line="339"/>
         <source>Sweden</source>
         <translation>Suedia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="333"/>
+        <location filename="../base/net/geoipmanager.cpp" line="340"/>
         <source>Singapore</source>
         <translation>Singapore</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="334"/>
         <source>Saint Helena</source>
-        <translation>Sfânta Elena</translation>
+        <translation type="obsolete">Sfânta Elena</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="335"/>
+        <location filename="../base/net/geoipmanager.cpp" line="342"/>
         <source>Slovenia</source>
         <translation>Slovenia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="336"/>
+        <location filename="../base/net/geoipmanager.cpp" line="343"/>
         <source>Svalbard and Jan Mayen</source>
         <translation>Svalbard și Jan Mayen</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="337"/>
+        <location filename="../base/net/geoipmanager.cpp" line="344"/>
         <source>Slovakia</source>
         <translation>Slovacia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="338"/>
+        <location filename="../base/net/geoipmanager.cpp" line="345"/>
         <source>Sierra Leone</source>
         <translation>Sierra Leone</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="339"/>
+        <location filename="../base/net/geoipmanager.cpp" line="346"/>
         <source>San Marino</source>
         <translation>San Marino</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="340"/>
+        <location filename="../base/net/geoipmanager.cpp" line="347"/>
         <source>Senegal</source>
         <translation>Senegal</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="341"/>
+        <location filename="../base/net/geoipmanager.cpp" line="348"/>
         <source>Somalia</source>
         <translation>Somalia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="342"/>
+        <location filename="../base/net/geoipmanager.cpp" line="349"/>
         <source>Suriname</source>
         <translation>Surinam</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="343"/>
+        <location filename="../base/net/geoipmanager.cpp" line="351"/>
         <source>Sao Tome and Principe</source>
         <translation>São Tomé și Príncipe</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="344"/>
+        <location filename="../base/net/geoipmanager.cpp" line="352"/>
         <source>El Salvador</source>
         <translation>El Salvador</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="345"/>
+        <location filename="../base/net/geoipmanager.cpp" line="354"/>
         <source>Syrian Arab Republic</source>
         <translation>Siria</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="346"/>
+        <location filename="../base/net/geoipmanager.cpp" line="355"/>
         <source>Swaziland</source>
         <translation>Elveția</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="347"/>
+        <location filename="../base/net/geoipmanager.cpp" line="356"/>
         <source>Turks and Caicos Islands</source>
         <translation>Insulele Turks și Caicos </translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="348"/>
+        <location filename="../base/net/geoipmanager.cpp" line="357"/>
         <source>Chad</source>
         <translation>Republica Ciad</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="349"/>
+        <location filename="../base/net/geoipmanager.cpp" line="358"/>
         <source>French Southern Territories</source>
         <translation>Teritoriile Sudice Franceze</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="350"/>
+        <location filename="../base/net/geoipmanager.cpp" line="359"/>
         <source>Togo</source>
         <translation>Togo</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="351"/>
+        <location filename="../base/net/geoipmanager.cpp" line="360"/>
         <source>Thailand</source>
         <translation>Tailanda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="352"/>
+        <location filename="../base/net/geoipmanager.cpp" line="361"/>
         <source>Tajikistan</source>
         <translation>Tadjikistan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="353"/>
+        <location filename="../base/net/geoipmanager.cpp" line="362"/>
         <source>Tokelau</source>
         <translation>Tokelau</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="354"/>
+        <location filename="../base/net/geoipmanager.cpp" line="364"/>
         <source>Turkmenistan</source>
         <translation>Turkmenistan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="355"/>
+        <location filename="../base/net/geoipmanager.cpp" line="365"/>
         <source>Tunisia</source>
         <translation>Tunisia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="356"/>
+        <location filename="../base/net/geoipmanager.cpp" line="366"/>
         <source>Tonga</source>
         <translation>Tonga</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="357"/>
+        <location filename="../base/net/geoipmanager.cpp" line="363"/>
         <source>Timor-Leste</source>
         <translation>Timor-Leste</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="358"/>
+        <location filename="../base/net/geoipmanager.cpp" line="171"/>
+        <source>Bolivia, Plurinational State of</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="172"/>
+        <source>Bonaire, Sint Eustatius and Saba</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="186"/>
+        <source>Cote d&apos;Ivoire</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="278"/>
+        <source>Libya</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="283"/>
+        <source>Saint Martin (French part)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="286"/>
+        <source>Macedonia, The Former Yugoslav Republic of</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="290"/>
+        <source>Macao</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="323"/>
+        <source>Pitcairn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="325"/>
+        <source>Palestine, State of</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="341"/>
+        <source>Saint Helena, Ascension and Tristan da Cunha</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="350"/>
+        <source>South Sudan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="353"/>
+        <source>Sint Maarten (Dutch part)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="367"/>
         <source>Turkey</source>
         <translation>Turcia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="359"/>
+        <location filename="../base/net/geoipmanager.cpp" line="368"/>
         <source>Trinidad and Tobago</source>
         <translation>Trinidad și Tobago</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="360"/>
+        <location filename="../base/net/geoipmanager.cpp" line="369"/>
         <source>Tuvalu</source>
         <translation>Tuvalu</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="361"/>
+        <location filename="../base/net/geoipmanager.cpp" line="370"/>
         <source>Taiwan</source>
         <translation>Taiwan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="362"/>
+        <location filename="../base/net/geoipmanager.cpp" line="371"/>
         <source>Tanzania, United Republic of</source>
         <translation>Tanzania</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="363"/>
+        <location filename="../base/net/geoipmanager.cpp" line="372"/>
         <source>Ukraine</source>
         <translation>Ucraina</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="364"/>
+        <location filename="../base/net/geoipmanager.cpp" line="373"/>
         <source>Uganda</source>
         <translation>Uganda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="365"/>
+        <location filename="../base/net/geoipmanager.cpp" line="374"/>
         <source>United States Minor Outlying Islands</source>
         <translation>Insulele Minore Îndepartate ale Statelor Unite</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="366"/>
+        <location filename="../base/net/geoipmanager.cpp" line="375"/>
         <source>United States</source>
         <translation>Statele Unite</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="367"/>
+        <location filename="../base/net/geoipmanager.cpp" line="376"/>
         <source>Uruguay</source>
         <translation>Uruguai</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="368"/>
+        <location filename="../base/net/geoipmanager.cpp" line="377"/>
         <source>Uzbekistan</source>
         <translation>Uzbekistan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="369"/>
+        <location filename="../base/net/geoipmanager.cpp" line="378"/>
         <source>Holy See (Vatican City State)</source>
         <translation>Vatican</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="370"/>
+        <location filename="../base/net/geoipmanager.cpp" line="379"/>
         <source>Saint Vincent and the Grenadines</source>
         <translation>Sfântul Vicențiu și Grenadinele</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="371"/>
         <source>Venezuela</source>
-        <translation>Venezuela</translation>
+        <translation type="obsolete">Venezuela</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="372"/>
+        <location filename="../base/net/geoipmanager.cpp" line="381"/>
         <source>Virgin Islands, British</source>
         <translation>Insulele Virgine Britanice</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="373"/>
+        <location filename="../base/net/geoipmanager.cpp" line="382"/>
         <source>Virgin Islands, U.S.</source>
         <translation>Insulele Virgine Americane</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="374"/>
         <source>Vietnam</source>
-        <translation>Vietnam</translation>
+        <translation type="obsolete">Vietnam</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="375"/>
+        <location filename="../base/net/geoipmanager.cpp" line="384"/>
         <source>Vanuatu</source>
         <translation>Vanuatu</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="376"/>
+        <location filename="../base/net/geoipmanager.cpp" line="385"/>
         <source>Wallis and Futuna</source>
         <translation>Wallis și Futuna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="377"/>
+        <location filename="../base/net/geoipmanager.cpp" line="386"/>
         <source>Samoa</source>
         <translation>Samoa</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="378"/>
+        <location filename="../base/net/geoipmanager.cpp" line="387"/>
         <source>Yemen</source>
         <translation>Yemen</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="379"/>
+        <location filename="../base/net/geoipmanager.cpp" line="388"/>
         <source>Mayotte</source>
         <translation>Mayotte</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="380"/>
+        <location filename="../base/net/geoipmanager.cpp" line="332"/>
         <source>Serbia</source>
         <translation>Serbia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="381"/>
+        <location filename="../base/net/geoipmanager.cpp" line="389"/>
         <source>South Africa</source>
         <translation>Africa de Sud</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="382"/>
+        <location filename="../base/net/geoipmanager.cpp" line="390"/>
         <source>Zambia</source>
         <translation>Zambia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="383"/>
+        <location filename="../base/net/geoipmanager.cpp" line="282"/>
         <source>Montenegro</source>
         <translation>Muntenegru</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="384"/>
+        <location filename="../base/net/geoipmanager.cpp" line="391"/>
         <source>Zimbabwe</source>
         <translation>ZImbabwe</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="385"/>
         <source>Anonymous Proxy</source>
-        <translation>Proxy anonim</translation>
+        <translation type="obsolete">Proxy anonim</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="386"/>
         <source>Satellite Provider</source>
-        <translation>Furnizor satelit</translation>
+        <translation type="obsolete">Furnizor satelit</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="387"/>
         <source>Other</source>
-        <translation>Altele</translation>
+        <translation type="obsolete">Altele</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="388"/>
+        <location filename="../base/net/geoipmanager.cpp" line="157"/>
         <source>Aland Islands</source>
         <translation>Insulele Åland</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="389"/>
+        <location filename="../base/net/geoipmanager.cpp" line="223"/>
         <source>Guernsey</source>
         <translation>Guernsey</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="390"/>
+        <location filename="../base/net/geoipmanager.cpp" line="246"/>
         <source>Isle of Man</source>
         <translation>Insula Man</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="391"/>
+        <location filename="../base/net/geoipmanager.cpp" line="253"/>
         <source>Jersey</source>
         <translation>Insula Jersey</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="392"/>
+        <location filename="../base/net/geoipmanager.cpp" line="168"/>
         <source>Saint Barthelemy</source>
         <translation>Sfântul Bartolomeu</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="393"/>
         <source>Saint Martin</source>
-        <translation>Sfântul Martin</translation>
+        <translation type="obsolete">Sfântul Martin</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="421"/>
+        <location filename="../base/net/geoipmanager.cpp" line="420"/>
         <source>Could not uncompress GeoIP database file.</source>
         <translation>Nu s-a putut decomprima fișierul cu baza de date GeoIP. </translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="442"/>
+        <location filename="../base/net/geoipmanager.cpp" line="441"/>
         <source>Couldn&apos;t save downloaded GeoIP database file.</source>
         <translation>Nu s-a putut salva fișierul descărcat cu baza de date GeoIP. </translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="445"/>
+        <location filename="../base/net/geoipmanager.cpp" line="444"/>
         <source>Successfully updated GeoIP database.</source>
         <translation>Baza de date GeoIP a fost actualizată cu succes.</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="460"/>
+        <location filename="../base/net/geoipmanager.cpp" line="459"/>
         <source>Couldn&apos;t download GeoIP database file. Reason: %1</source>
         <translation>Nu s-a putut descărca fișierul cu baza de date GeoIP. Motivul: %1</translation>
     </message>
@@ -3838,72 +3856,72 @@ Sigur doriți să închideți qBittorrent?</translation>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="293"/>
         <source>interested(local) and choked(peer)</source>
-        <translation type="unfinished">interesat(local) și sufocat(partener)</translation>
+        <translation>interesat(local) și copleșit(partener)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="299"/>
         <source>interested(local) and unchoked(peer)</source>
-        <translation type="unfinished">interesat(local) și nesufocat(partener)</translation>
+        <translation>interesat(local) și decopleșit(partener)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="308"/>
         <source>interested(peer) and choked(local)</source>
-        <translation type="unfinished">interesat(partener) și sufocat(local)</translation>
+        <translation>interesat(partener) și copleșit(local)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="314"/>
         <source>interested(peer) and unchoked(local)</source>
-        <translation type="unfinished">interesat(partener) și nesufocat(local)</translation>
+        <translation>interesat(partener) și decopleșit(local)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="322"/>
         <source>optimistic unchoke</source>
-        <translation type="unfinished">desufocare optimistă</translation>
+        <translation>decopleșire optimistă</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="329"/>
         <source>peer snubbed</source>
-        <translation type="unfinished">partener ignorat</translation>
+        <translation>partener ignorat</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="336"/>
         <source>incoming connection</source>
-        <translation type="unfinished">conexiune de intrare</translation>
+        <translation>conexiune de intrare</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="343"/>
         <source>not interested(local) and unchoked(peer)</source>
-        <translation type="unfinished">neinteresat(local) și nesufocat(partener)</translation>
+        <translation>neinteresat(local) și decopleșit(partener)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="350"/>
         <source>not interested(peer) and unchoked(local)</source>
-        <translation type="unfinished">neinteresat(partener) și nesufocat(local)</translation>
+        <translation>neinteresat(partener) și decopleșit(local)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="357"/>
         <source>peer from PEX</source>
-        <translation type="unfinished">partener prin PEX</translation>
+        <translation>partener din PEX</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="364"/>
         <source>peer from DHT</source>
-        <translation type="unfinished">partener prin DHT</translation>
+        <translation>partener din DHT</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="371"/>
         <source>encrypted traffic</source>
-        <translation type="unfinished">trafic criptat</translation>
+        <translation>trafic criptat</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="378"/>
         <source>encrypted handshake</source>
-        <translation type="unfinished">inițializare criptată</translation>
+        <translation>inițializare criptată</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="393"/>
         <source>peer from LSD</source>
-        <translation type="unfinished">partener prin LSD</translation>
+        <translation>partener din LSD</translation>
     </message>
 </context>
 <context>
@@ -3971,122 +3989,72 @@ Sigur doriți să închideți qBittorrent?</translation>
         <translation>Relevanță</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="168"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="81"/>
+        <source>Files</source>
+        <comment>i.e. files that are being downloaded right now</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="169"/>
         <source>Add a new peer...</source>
         <translation>Adăugare un partener nou...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="174"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="175"/>
         <source>Copy selected</source>
         <translation>Copiază selecția</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="176"/>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="214"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="177"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="215"/>
         <source>Ban peer permanently</source>
         <translation>Blochează permanent partenerul</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="188"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="189"/>
         <source>Manually adding peer &apos;%1&apos;...</source>
         <translation>Se adaugă manual partenerul „%1”...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="192"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="193"/>
         <source>The peer &apos;%1&apos; could not be added to this torrent.</source>
         <translation>Partenerul „%1” nu a putut fi adăugat la acest torrent.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="225"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="226"/>
         <source>Manually banning peer &apos;%1&apos;...</source>
         <translation>Se blochează manual partenerul „%1”...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="196"/>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="198"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="197"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="199"/>
         <source>Peer addition</source>
         <translation>Adăugare partener</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="196"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="197"/>
         <source>Some peers could not be added. Check the Log for details.</source>
         <translation>Unii parteneri nu au putut fi adăugați. Verificați jurnalul pentru detalii.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="198"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="199"/>
         <source>The peers were added to this torrent.</source>
         <translation>Partenerii au fost adăugați la acest torrent.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="214"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="215"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
         <translation>Sigur doriți să blocați permanent partenerii selectați?</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="215"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="216"/>
         <source>&amp;Yes</source>
         <translation>&amp;Da</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="215"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="216"/>
         <source>&amp;No</source>
         <translation>&amp;Nu</translation>
-    </message>
-    <message>
-        <source>interested(local) and choked(peer)</source>
-        <translation type="obsolete">interesat(local) și sufocat(partener)</translation>
-    </message>
-    <message>
-        <source>interested(local) and unchoked(peer)</source>
-        <translation type="obsolete">interesat(local) și nesufocat(partener)</translation>
-    </message>
-    <message>
-        <source>interested(peer) and choked(local)</source>
-        <translation type="obsolete">interesat(partener) și sufocat(local)</translation>
-    </message>
-    <message>
-        <source>interested(peer) and unchoked(local)</source>
-        <translation type="obsolete">interesat(partener) și nesufocat(local)</translation>
-    </message>
-    <message>
-        <source>optimistic unchoke</source>
-        <translation type="obsolete">desufocare optimistă</translation>
-    </message>
-    <message>
-        <source>peer snubbed</source>
-        <translation type="obsolete">partener ignorat</translation>
-    </message>
-    <message>
-        <source>incoming connection</source>
-        <translation type="obsolete">conexiune de intrare</translation>
-    </message>
-    <message>
-        <source>not interested(local) and unchoked(peer)</source>
-        <translation type="obsolete">neinteresat(local) și nesufocat(partener)</translation>
-    </message>
-    <message>
-        <source>not interested(peer) and unchoked(local)</source>
-        <translation type="obsolete">neinteresat(partener) și nesufocat(local)</translation>
-    </message>
-    <message>
-        <source>peer from PEX</source>
-        <translation type="obsolete">partener prin PEX</translation>
-    </message>
-    <message>
-        <source>peer from DHT</source>
-        <translation type="obsolete">partener prin DHT</translation>
-    </message>
-    <message>
-        <source>encrypted traffic</source>
-        <translation type="obsolete">trafic criptat</translation>
-    </message>
-    <message>
-        <source>encrypted handshake</source>
-        <translation type="obsolete">inițializare criptată</translation>
-    </message>
-    <message>
-        <source>peer from LSD</source>
-        <translation type="obsolete">partener prin LSD</translation>
     </message>
 </context>
 <context>
@@ -4123,6 +4091,204 @@ Sigur doriți să închideți qBittorrent?</translation>
         <location filename="../gui/properties/pieceavailabilitybar.cpp" line="39"/>
         <source>Blue: Available pieces</source>
         <translation>Albastru: Bucăți disponibile</translation>
+    </message>
+</context>
+<context>
+    <name>PluginSelectDlg</name>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="17"/>
+        <source>Search plugins</source>
+        <translation type="unfinished">Extensii de căutare</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="30"/>
+        <source>Installed search plugins:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="50"/>
+        <source>Name</source>
+        <translation type="unfinished">Nume</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="55"/>
+        <source>Version</source>
+        <translation type="unfinished">Versiune</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="60"/>
+        <source>Url</source>
+        <translation type="unfinished">URL</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="65"/>
+        <location filename="../gui/search/pluginselectdlg.ui" line="124"/>
+        <source>Enabled</source>
+        <translation type="unfinished">Activat</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="83"/>
+        <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
+        <translation type="unfinished">Puteți să obțineți noi extensii pentru motoare de căutare aici: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="98"/>
+        <source>Install a new one</source>
+        <translation type="unfinished">Instalează unul nou</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="105"/>
+        <source>Check for updates</source>
+        <translation type="unfinished">Caută actualizări</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="112"/>
+        <source>Close</source>
+        <translation type="unfinished">Închide</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="129"/>
+        <source>Uninstall</source>
+        <translation type="unfinished">Dezinstalează</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="162"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="224"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="283"/>
+        <source>Yes</source>
+        <translation type="unfinished">Da</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="166"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="205"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="228"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="287"/>
+        <source>No</source>
+        <translation type="unfinished">Nu</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="211"/>
+        <source>Uninstall warning</source>
+        <translation type="unfinished">Atenționare la dezinstalare</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="211"/>
+        <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
+Those plugins were disabled.</source>
+        <translation type="unfinished">Unele extensii nu au putut fi dezinstalate deoarece vin incluse în qBittorrent.
+Doar cele pe care le-ați adăugat manual pot fi dezinstalate.
+Cu toate acestea, acele extensii au fost dezactivate.</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="213"/>
+        <source>Uninstall success</source>
+        <translation type="unfinished">Dezinstalare cu succes</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="213"/>
+        <source>All selected plugins were uninstalled successfully</source>
+        <translation type="unfinished">Toate extensiile selectate au fost dezinstalate cu succes</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="333"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="340"/>
+        <source>New search engine plugin URL</source>
+        <translation type="unfinished">URL nou pentru extensia motor de căutare</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="334"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="341"/>
+        <source>URL:</source>
+        <translation type="unfinished">URL:</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="338"/>
+        <source>Invalid link</source>
+        <translation type="unfinished">Legătură nevalidă</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="338"/>
+        <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
+        <translation type="unfinished">Legătura nu pare a indica spre o extensie motor de căutare.</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="354"/>
+        <source>Select search plugins</source>
+        <translation type="unfinished">Alegeți extensiile de căutare</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="355"/>
+        <source>qBittorrent search plugin</source>
+        <translation type="unfinished">Extensie de căutare qBittorrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="395"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="408"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="437"/>
+        <source>Search plugin update</source>
+        <translation type="unfinished">Actualizare extensie de căutare</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="395"/>
+        <source>All your plugins are already up to date.</source>
+        <translation type="unfinished">Toate extensiile sunt deja actualizate.</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="408"/>
+        <source>Sorry, couldn&apos;t check for plugin updates. %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="415"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="421"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="430"/>
+        <source>Search plugin install</source>
+        <translation type="unfinished">Instalare extensie de căutare</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="415"/>
+        <source>&quot;%1&quot; search engine plugin was successfully installed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="421"/>
+        <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="430"/>
+        <source>&quot;%1&quot; search engine plugin was successfully updated.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="437"/>
+        <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PluginSourceDlg</name>
+    <message>
+        <location filename="../gui/search/pluginsourcedlg.ui" line="13"/>
+        <source>Plugin source</source>
+        <translation type="unfinished">Sursă extensie</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginsourcedlg.ui" line="26"/>
+        <source>Search plugin source:</source>
+        <translation type="unfinished">Sursă extensie de căutare:</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginsourcedlg.ui" line="35"/>
+        <source>Local file</source>
+        <translation type="unfinished">Fișier local</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginsourcedlg.ui" line="42"/>
+        <source>Web link</source>
+        <translation type="unfinished">Legătură Web</translation>
     </message>
 </context>
 <context>
@@ -4181,89 +4347,89 @@ Sigur doriți să închideți qBittorrent?</translation>
         <translation>Adaugă extensia .!qB fișierelor incomplete</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="804"/>
+        <location filename="../gui/options.ui" line="801"/>
         <source>Copy .torrent files to:</source>
         <translation>Copiază fișierele .torrent în:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1121"/>
+        <location filename="../gui/options.ui" line="1118"/>
         <source>Connections Limits</source>
         <translation>Limite conexiune</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1274"/>
+        <location filename="../gui/options.ui" line="1271"/>
         <source>Proxy Server</source>
         <translation>Server proxy</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1577"/>
+        <location filename="../gui/options.ui" line="1574"/>
         <source>Global Rate Limits</source>
         <translation>Limite de viteză globale</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1879"/>
+        <location filename="../gui/options.ui" line="1876"/>
         <source>Apply rate limit to transport overhead</source>
         <translation>Aplică limitarea ratei suprasarcinii transportului</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1672"/>
+        <location filename="../gui/options.ui" line="1669"/>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>Planifică utilizarea limitelor alternative viteză</translation>
+        <translation>Planifică utilizarea limitelor de viteză alternative</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1684"/>
+        <location filename="../gui/options.ui" line="1681"/>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>De la:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1708"/>
+        <location filename="../gui/options.ui" line="1705"/>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
         <translation>Până la:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1993"/>
+        <location filename="../gui/options.ui" line="1990"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Activează descoperirea partenerilor locali pentru a găsi mai mulți parteneri</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2005"/>
+        <location filename="../gui/options.ui" line="2002"/>
         <source>Encryption mode:</source>
         <translation>Mod criptare:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2013"/>
+        <location filename="../gui/options.ui" line="2010"/>
         <source>Prefer encryption</source>
         <translation>Preferă criptarea</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2018"/>
+        <location filename="../gui/options.ui" line="2015"/>
         <source>Require encryption</source>
         <translation>Necesită criptarea</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2023"/>
+        <location filename="../gui/options.ui" line="2020"/>
         <source>Disable encryption</source>
         <translation>Dezactivează criptarea</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2058"/>
+        <location filename="../gui/options.ui" line="2055"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Mai multe informații&lt;/a&gt;)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2101"/>
+        <location filename="../gui/options.ui" line="2098"/>
         <source>Maximum active downloads:</source>
         <translation>Numărul maxim de descărcări active:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2121"/>
+        <location filename="../gui/options.ui" line="2118"/>
         <source>Maximum active uploads:</source>
         <translation>Număr maxim de încărcări active:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2141"/>
+        <location filename="../gui/options.ui" line="2138"/>
         <source>Maximum active torrents:</source>
         <translation>Număr maxim de torrente active:</translation>
     </message>
@@ -4288,82 +4454,82 @@ Sigur doriți să închideți qBittorrent?</translation>
         <translation>Afișează conținutul torrentului și câteva opțiuni</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="994"/>
+        <location filename="../gui/options.ui" line="991"/>
         <source>Run external program on torrent completion</source>
         <translation>Rulează un program extern la încheierea descărcării torrentului</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1057"/>
+        <location filename="../gui/options.ui" line="1054"/>
         <source>Port used for incoming connections:</source>
         <translation>Portul utilizat pentru conexiunile de intrare:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1077"/>
+        <location filename="../gui/options.ui" line="1074"/>
         <source>Random</source>
         <translation>Aleator</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1127"/>
+        <location filename="../gui/options.ui" line="1124"/>
         <source>Global maximum number of connections:</source>
         <translation>Număr maxim global de conexiuni:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1153"/>
+        <location filename="../gui/options.ui" line="1150"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Numărul maxim de conexiuni per torrent:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1176"/>
+        <location filename="../gui/options.ui" line="1173"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Număr maxim de sloturi de încărcare per torrent:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1599"/>
-        <location filename="../gui/options.ui" line="1790"/>
+        <location filename="../gui/options.ui" line="1596"/>
+        <location filename="../gui/options.ui" line="1787"/>
         <source>Upload:</source>
         <translation>Încărcare:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1643"/>
-        <location filename="../gui/options.ui" line="1797"/>
+        <location filename="../gui/options.ui" line="1640"/>
+        <location filename="../gui/options.ui" line="1794"/>
         <source>Download:</source>
         <translation>Descărcare:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1606"/>
-        <location filename="../gui/options.ui" line="1629"/>
-        <location filename="../gui/options.ui" line="1836"/>
-        <location filename="../gui/options.ui" line="1843"/>
+        <location filename="../gui/options.ui" line="1603"/>
+        <location filename="../gui/options.ui" line="1626"/>
+        <location filename="../gui/options.ui" line="1833"/>
+        <location filename="../gui/options.ui" line="1840"/>
         <source>KiB/s</source>
         <translation>KiO/s</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="771"/>
+        <location filename="../gui/options.ui" line="768"/>
         <source>Remove folder</source>
         <translation>Elimină dosarul</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1749"/>
+        <location filename="../gui/options.ui" line="1746"/>
         <source>Every day</source>
         <translation>Zilnic</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/options.ui" line="1977"/>
+        <location filename="../gui/options.ui" line="1974"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Schimbă parteneri cu clienții Bittorrent compatibili (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1316"/>
+        <location filename="../gui/options.ui" line="1313"/>
         <source>Host:</source>
         <translation>Gazdă:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1295"/>
+        <location filename="../gui/options.ui" line="1292"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1282"/>
+        <location filename="../gui/options.ui" line="1279"/>
         <source>Type:</source>
         <translation>Tip:</translation>
     </message>
@@ -4536,262 +4702,262 @@ Sigur doriți să închideți qBittorrent?</translation>
         <translation>Adaugă automat torrente din:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="761"/>
+        <location filename="../gui/options.ui" line="758"/>
         <source>Add folder...</source>
         <translation>Adăugare dosar...</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="853"/>
+        <location filename="../gui/options.ui" line="850"/>
         <source>Copy .torrent files for finished downloads to:</source>
         <translation>Copiază fișierele .torrent pentru descărcările încheiate în:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="909"/>
+        <location filename="../gui/options.ui" line="906"/>
         <source>Email notification upon download completion</source>
         <translation>Trimite notificări prin poșta electronică la finalizarea descărcării</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="923"/>
+        <location filename="../gui/options.ui" line="920"/>
         <source>Destination email:</source>
         <translation>Email destinație:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="933"/>
+        <location filename="../gui/options.ui" line="930"/>
         <source>SMTP server:</source>
         <translation>Server SMTP:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="982"/>
+        <location filename="../gui/options.ui" line="979"/>
         <source>This server requires a secure connection (SSL)</source>
         <translation>Acest server necesită o conexiune securizată (SSL)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1049"/>
+        <location filename="../gui/options.ui" line="1046"/>
         <source>Listening Port</source>
         <translation>Port ascultat</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1099"/>
+        <location filename="../gui/options.ui" line="1096"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Utilizează înaintare port UPnP / NAT-PMP de la routerul meu</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1109"/>
+        <location filename="../gui/options.ui" line="1106"/>
         <source>Use different port on each startup</source>
         <translation>Utilizează port diferit la fiecare pornire</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1235"/>
+        <location filename="../gui/options.ui" line="1232"/>
         <source>Global maximum number of upload slots:</source>
         <translation>Număr maxim global de sloturi de încărcare:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1370"/>
+        <location filename="../gui/options.ui" line="1367"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation>Altfel, serverul proxy este utilizat doar pentru conexiuni urmăritor</translation>
+        <translation>Altfel, serverul proxy este utilizat doar pentru conexiuni la tracker</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1373"/>
+        <location filename="../gui/options.ui" line="1370"/>
         <source>Use proxy for peer connections</source>
         <translation>Utilizează proxy pentru conexiuni la parteneri</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1380"/>
+        <location filename="../gui/options.ui" line="1377"/>
         <source>Disable connections not supported by proxies</source>
         <translation>Dezactivează conexiunile care nu sunt suportate de proxy-uri</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1393"/>
+        <location filename="../gui/options.ui" line="1390"/>
         <source>Use proxy only for torrents</source>
         <translation>Utilizează proxy doar pentru torrente</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1390"/>
+        <location filename="../gui/options.ui" line="1387"/>
         <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
         <translation>Fluxurile RSS, motoarele de căutare, actualizările de software sau orice altceva în afară de transferuri de torrente și operațiuni conexe (precum schimbul de parteneri) vor utiliza o conexiune directă</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1462"/>
+        <location filename="../gui/options.ui" line="1459"/>
         <source>Info: The password is saved unencrypted</source>
         <translation>Informare: Parola este salvată necriptat</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1475"/>
+        <location filename="../gui/options.ui" line="1472"/>
         <source>IP Filtering</source>
         <translation>Filtrare IP</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1516"/>
+        <location filename="../gui/options.ui" line="1513"/>
         <source>Reload the filter</source>
         <translation>Reîncarcă filtrul</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1532"/>
+        <location filename="../gui/options.ui" line="1529"/>
         <source>Apply to trackers</source>
-        <translation>Aplică urmăritoarelor</translation>
+        <translation>Aplică tracker-elor</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1872"/>
+        <location filename="../gui/options.ui" line="1869"/>
         <source>Apply rate limit to peers on LAN</source>
         <translation>Aplică limitarea ratei partenerilor din rețeaua locală</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1735"/>
+        <location filename="../gui/options.ui" line="1732"/>
         <source>When:</source>
         <translation>Când:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1754"/>
+        <location filename="../gui/options.ui" line="1751"/>
         <source>Weekdays</source>
         <translation>Zile lucrătoare</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1759"/>
+        <location filename="../gui/options.ui" line="1756"/>
         <source>Weekends</source>
         <translation>Zile libere</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1866"/>
+        <location filename="../gui/options.ui" line="1863"/>
         <source>Rate Limits Settings</source>
         <translation>Configurări limitare rată</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/options.ui" line="1886"/>
+        <location filename="../gui/options.ui" line="1883"/>
         <source>Enable µTP protocol</source>
         <translation>Activează protocolul µTP</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/options.ui" line="1893"/>
+        <location filename="../gui/options.ui" line="1890"/>
         <source>Apply rate limit to µTP protocol</source>
         <translation>Aplică limitarea ratei protocolului µTP</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1961"/>
+        <location filename="../gui/options.ui" line="1958"/>
         <source>Privacy</source>
         <translation>Confidențialitate</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1967"/>
+        <location filename="../gui/options.ui" line="1964"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Activează rețeaua descentralizată (DHT) pentru a găsi mai mulți parteneri</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1980"/>
+        <location filename="../gui/options.ui" line="1977"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Activează schimbul de parteneri (PeX) pentru a găsi mai mulți parteneri</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1990"/>
+        <location filename="../gui/options.ui" line="1987"/>
         <source>Look for peers on your local network</source>
         <translation>Caută parteneri în rețeaua locală</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2048"/>
+        <location filename="../gui/options.ui" line="2045"/>
         <source>Enable when using a proxy or a VPN connection</source>
         <translation>Activează când este utilizată o conexiune VPN sau proxy</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2051"/>
+        <location filename="../gui/options.ui" line="2048"/>
         <source>Enable anonymous mode</source>
         <translation>Activează modul anonim</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2200"/>
+        <location filename="../gui/options.ui" line="2197"/>
         <source>Do not count slow torrents in these limits</source>
         <translation>Nu socoti torrentele lente în aceste limite</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2221"/>
+        <location filename="../gui/options.ui" line="2218"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation>Contribuie torrentele până când raportul de partajare atinge</translation>
+        <translation>Contribuie torrentele până când raportul lor de partajare atinge</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2250"/>
+        <location filename="../gui/options.ui" line="2247"/>
         <source>then</source>
         <translation>apoi</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2261"/>
+        <location filename="../gui/options.ui" line="2258"/>
         <source>Pause them</source>
         <translation>Suspendă-le</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2266"/>
+        <location filename="../gui/options.ui" line="2263"/>
         <source>Remove them</source>
         <translation>Elimină-le</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2285"/>
+        <location filename="../gui/options.ui" line="2282"/>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation>Adăugare automată a acestor urmăritoare la descărcările noi:</translation>
+        <translation>Adăugă automat aceste trackere noilor descărcări:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2404"/>
+        <location filename="../gui/options.ui" line="2401"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>Utilizează UPnP / NAT-PMP pentru a înainta portul din routerul meu</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2414"/>
+        <location filename="../gui/options.ui" line="2411"/>
         <source>Use HTTPS instead of HTTP</source>
         <translation>Utilizează HTTPS în loc de HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2457"/>
+        <location filename="../gui/options.ui" line="2454"/>
         <source>Import SSL Certificate</source>
         <translation>Importare certificat SSL</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2510"/>
+        <location filename="../gui/options.ui" line="2507"/>
         <source>Import SSL Key</source>
         <translation>Importare cheie SSL</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2445"/>
+        <location filename="../gui/options.ui" line="2442"/>
         <source>Certificate:</source>
         <translation>Certificat:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1666"/>
+        <location filename="../gui/options.ui" line="1663"/>
         <source>Alternative Rate Limits</source>
-        <translation>Limite rată alternative</translation>
+        <translation>Limite de rată alternative</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2498"/>
+        <location filename="../gui/options.ui" line="2495"/>
         <source>Key:</source>
         <translation>Cheie:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2532"/>
+        <location filename="../gui/options.ui" line="2529"/>
         <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Informații despre certificate&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2577"/>
+        <location filename="../gui/options.ui" line="2574"/>
         <source>Bypass authentication for localhost</source>
         <translation>Ocolește autentificarea pentru gazda locală</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2601"/>
+        <location filename="../gui/options.ui" line="2598"/>
         <source>Update my dynamic domain name</source>
         <translation>Actualizează numele meu de domeniu dinamic</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2613"/>
+        <location filename="../gui/options.ui" line="2610"/>
         <source>Service:</source>
         <translation>Serviciu:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2636"/>
+        <location filename="../gui/options.ui" line="2633"/>
         <source>Register</source>
         <translation>Înregistrează</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2645"/>
+        <location filename="../gui/options.ui" line="2642"/>
         <source>Domain name:</source>
         <translation>Nume de domeniu:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1290"/>
+        <location filename="../gui/options.ui" line="1287"/>
         <source>(None)</source>
         <translation>(Niciunul)</translation>
     </message>
@@ -4801,61 +4967,61 @@ Sigur doriți să închideți qBittorrent?</translation>
         <translation>BitTorrent</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1305"/>
+        <location filename="../gui/options.ui" line="1302"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1342"/>
-        <location filename="../gui/options.ui" line="2369"/>
+        <location filename="../gui/options.ui" line="1339"/>
+        <location filename="../gui/options.ui" line="2366"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="943"/>
-        <location filename="../gui/options.ui" line="1406"/>
-        <location filename="../gui/options.ui" line="2545"/>
+        <location filename="../gui/options.ui" line="940"/>
+        <location filename="../gui/options.ui" line="1403"/>
+        <location filename="../gui/options.ui" line="2542"/>
         <source>Authentication</source>
         <translation>Autentificare</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="955"/>
-        <location filename="../gui/options.ui" line="1420"/>
-        <location filename="../gui/options.ui" line="2584"/>
-        <location filename="../gui/options.ui" line="2659"/>
+        <location filename="../gui/options.ui" line="952"/>
+        <location filename="../gui/options.ui" line="1417"/>
+        <location filename="../gui/options.ui" line="2581"/>
+        <location filename="../gui/options.ui" line="2656"/>
         <source>Username:</source>
         <translation>Nume utilizator:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="965"/>
-        <location filename="../gui/options.ui" line="1440"/>
-        <location filename="../gui/options.ui" line="2591"/>
-        <location filename="../gui/options.ui" line="2673"/>
+        <location filename="../gui/options.ui" line="962"/>
+        <location filename="../gui/options.ui" line="1437"/>
+        <location filename="../gui/options.ui" line="2588"/>
+        <location filename="../gui/options.ui" line="2670"/>
         <source>Password:</source>
         <translation>Parolă:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2086"/>
+        <location filename="../gui/options.ui" line="2083"/>
         <source>Torrent Queueing</source>
         <translation>Coadă torrente</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2210"/>
+        <location filename="../gui/options.ui" line="2207"/>
         <source>Share Ratio Limiting</source>
         <translation>Limitare raport partajare</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2355"/>
+        <location filename="../gui/options.ui" line="2352"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Activează interfața Web (control la distanță)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1300"/>
+        <location filename="../gui/options.ui" line="1297"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1487"/>
+        <location filename="../gui/options.ui" line="1484"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Cale filtru (.dat, .p2p, .p2b):</translation>
     </message>
@@ -4950,7 +5116,7 @@ Sigur doriți să închideți qBittorrent?</translation>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="51"/>
         <source>Trackers</source>
-        <translation>Urmăritoare</translation>
+        <translation>Trackere</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="55"/>
@@ -4999,7 +5165,7 @@ Sigur doriți să închideți qBittorrent?</translation>
         <location filename="../gui/properties/propertieswidget.ui" line="546"/>
         <source>Time Active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation>Timp Activ:</translation>
+        <translation>Timp activ:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="575"/>
@@ -5019,12 +5185,12 @@ Sigur doriți să închideți qBittorrent?</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="449"/>
         <source>Download Speed:</source>
-        <translation>Viteză descărcare:</translation>
+        <translation>Viteză de descărcare:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="185"/>
         <source>Upload Speed:</source>
-        <translation>Viteză încărcare:</translation>
+        <translation>Viteză de încărcare:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="214"/>
@@ -5039,7 +5205,7 @@ Sigur doriți să închideți qBittorrent?</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="346"/>
         <source>Upload Limit:</source>
-        <translation>Limită încărcare:</translation>
+        <translation>Limită de încărcare:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="591"/>
@@ -5060,10 +5226,6 @@ Sigur doriți să închideți qBittorrent?</translation>
         <location filename="../gui/properties/propertieswidget.ui" line="863"/>
         <source>Comment:</source>
         <translation>Comentariu:</translation>
-    </message>
-    <message>
-        <source>Torrent content:</source>
-        <translation type="obsolete">Conținut torrent:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1020"/>
@@ -5088,7 +5250,7 @@ Sigur doriți să închideți qBittorrent?</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="288"/>
         <source>Share Ratio:</source>
-        <translation>Raport partajare:</translation>
+        <translation>Raport de partajare:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="404"/>
@@ -5138,7 +5300,7 @@ Sigur doriți să închideți qBittorrent?</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="828"/>
         <source>Save Path:</source>
-        <translation>Cale salvare:</translation>
+        <translation>Cale de salvare:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1093"/>
@@ -5185,7 +5347,7 @@ Sigur doriți să închideți qBittorrent?</translation>
         <location filename="../gui/properties/propertieswidget.cpp" line="419"/>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
-        <translation>%1 (%2 total)</translation>
+        <translation>%1 (%2 în total)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="423"/>
@@ -5237,7 +5399,7 @@ Sigur doriți să închideți qBittorrent?</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="655"/>
         <source>Rename the file</source>
-        <translation>Redenumește fișierul</translation>
+        <translation>Redenumire fișier</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="656"/>
@@ -5483,7 +5645,7 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="206"/>
         <source>The operation was canceled</source>
-        <translation>Operația a fost anulată</translation>
+        <translation>Operația a fost abandonată</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="208"/>
@@ -5586,28 +5748,28 @@ Nu vor fi emise alte notificări.</translation>
         <translation>Eroare necunoscută</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="52"/>
-        <location filename="../app/upgrade.h" line="65"/>
+        <location filename="../app/upgrade.h" line="53"/>
+        <location filename="../app/upgrade.h" line="66"/>
         <source>Upgrade</source>
         <translation>Actualizează</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="55"/>
+        <location filename="../app/upgrade.h" line="56"/>
         <source>You updated from an older version that saved things differently. You must migrate to the new saving system. You will not be able to use an older version than v3.3.0 again. Continue? [y/n]</source>
         <translation>Ați actualizat de la o versiune mai veche ce a salvat setările în mod diferit. Trebuie să migrați setările la noul sistem de salvare. Nu veți mai putea folosi o versiune mai veche de v3.3.0 altă dată. Continuați? [d/n]</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="64"/>
+        <location filename="../app/upgrade.h" line="65"/>
         <source>You updated from an older version that saved things differently. You must migrate to the new saving system. If you continue, you will not be able to use an older version than v3.3.0 again.</source>
         <translation>Ați actualizat de la o versiune mai veche ce a salvat setările în mod diferit. Trebuie să migrați setările la noul sistem de salvare. Dacă alegeți să continuați nu veți mai putea folosi o versiune mai veche de v3.3.0 altă dată. </translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="138"/>
+        <location filename="../app/upgrade.h" line="143"/>
         <source>Couldn&apos;t migrate torrent with hash: %1</source>
         <translation>Nu s-a reușit migrarea torrentului cu indexul: %1</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="141"/>
+        <location filename="../app/upgrade.h" line="146"/>
         <source>Couldn&apos;t migrate torrent. Invalid fastresume file name: %1</source>
         <translation>Nu s-a reușit migrarea torrentului. Nume fișier nevalid: %1</translation>
     </message>
@@ -5718,17 +5880,17 @@ Nu vor fi emise alte notificări.</translation>
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="218"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="219"/>
         <source>Stream URL:</source>
         <translation>URL flux:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="218"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="219"/>
         <source>Please type a RSS stream URL</source>
         <translation>Introduceți un URL pentru fluxul RSS</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="228"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="229"/>
         <source>This RSS feed is already in the list.</source>
         <translation>Acest flux RSS este deja în listă.</translation>
     </message>
@@ -5748,75 +5910,92 @@ Nu vor fi emise alte notificări.</translation>
         <translation>Dosar nou</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="254"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="257"/>
         <source>Deletion confirmation</source>
         <translation>Confirmare ștergere</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="255"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="258"/>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation>Sunteți sigur că doriți să ștergeți fluxurile RSS selectate?</translation>
+        <translation>Sigur doriți să ștergeți fluxurile RSS selectate?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="406"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="405"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Alegeți un nume nou pentru acest flux RSS</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="406"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="405"/>
         <source>New feed name:</source>
         <translation>Nume flux nou:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="410"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="409"/>
         <source>Name already in use</source>
         <translation>Numele este deja utilizat</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="410"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="409"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Numele este deja folosit de un alt element, alegeți alt nume.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="580"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="579"/>
         <source>Date: </source>
         <translation>Dată:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="582"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="581"/>
         <source>Author: </source>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="659"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="658"/>
         <source>Unread</source>
         <translation>Necitite</translation>
     </message>
 </context>
 <context>
-    <name>RssFeed</name>
+    <name>Rss::Feed</name>
     <message>
-        <location filename="../gui/rss/rssfeed.cpp" line="369"/>
+        <location filename="../base/rss/rssfeed.cpp" line="381"/>
         <source>Automatic download of &apos;%1&apos; from &apos;%2&apos; RSS feed failed because it doesn&apos;t contain a torrent or a magnet link...</source>
-        <translation>Descărcare automată a fluxului RSS „%1” de la „%2” a eșuat deoarece nu conține un torrent sau o legătură magnet...</translation>
+        <translation type="unfinished">Descărcare automată a fluxului RSS „%1” de la „%2” a eșuat deoarece nu conține un torrent sau o legătură magnet...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rssfeed.cpp" line="374"/>
+        <location filename="../base/rss/rssfeed.cpp" line="386"/>
         <source>Automatically downloading &apos;%1&apos; torrent from &apos;%2&apos; RSS feed...</source>
-        <translation>Descărcare automată a %1 torrent de la %2 fluxuri RSS...</translation>
+        <translation type="unfinished">Descărcare automată a %1 torrent de la %2 fluxuri RSS...</translation>
+    </message>
+</context>
+<context>
+    <name>Rss::Private::Parser</name>
+    <message>
+        <location filename="../base/rss/private/rssparser.cpp" line="248"/>
+        <source>Invalid RSS feed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RssFeed</name>
+    <message>
+        <source>Automatic download of &apos;%1&apos; from &apos;%2&apos; RSS feed failed because it doesn&apos;t contain a torrent or a magnet link...</source>
+        <translation type="obsolete">Descărcare automată a fluxului RSS „%1” de la „%2” a eșuat deoarece nu conține un torrent sau o legătură magnet...</translation>
+    </message>
+    <message>
+        <source>Automatically downloading &apos;%1&apos; torrent from &apos;%2&apos; RSS feed...</source>
+        <translation type="obsolete">Descărcare automată a %1 torrent de la %2 fluxuri RSS...</translation>
     </message>
 </context>
 <context>
     <name>RssParser</name>
     <message>
-        <location filename="../gui/rss/rssparser.cpp" line="464"/>
         <source>Failed to open downloaded RSS file.</source>
-        <translation>A eșuat deschiderea fișierului RSS descărcat.</translation>
+        <translation type="obsolete">A eșuat deschiderea fișierului RSS descărcat.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rssparser.cpp" line="501"/>
         <source>Invalid RSS feed at &apos;%1&apos;.</source>
-        <translation>Flux RSS nevalid la „%1”.</translation>
+        <translation type="obsolete">Flux RSS nevalid la „%1”.</translation>
     </message>
 </context>
 <context>
@@ -5843,201 +6022,407 @@ Nu vor fi emise alte notificări.</translation>
     </message>
 </context>
 <context>
+    <name>ScanFoldersDelegate</name>
+    <message>
+        <location filename="../gui/scanfoldersdelegate.cpp" line="66"/>
+        <source>Watch Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/scanfoldersdelegate.cpp" line="67"/>
+        <source>Default Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/scanfoldersdelegate.cpp" line="68"/>
+        <source>Browse...</source>
+        <translation type="unfinished">Răsfoire...</translation>
+    </message>
+    <message>
+        <location filename="../gui/scanfoldersdelegate.cpp" line="102"/>
+        <source>Choose save path</source>
+        <translation type="unfinished">Alegeți calea de salvare</translation>
+    </message>
+</context>
+<context>
     <name>ScanFoldersModel</name>
     <message>
-        <location filename="../base/scanfoldersmodel.cpp" line="157"/>
+        <location filename="../base/scanfoldersmodel.cpp" line="131"/>
+        <source>Watch Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/scanfoldersmodel.cpp" line="134"/>
+        <source>Default Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/scanfoldersmodel.cpp" line="156"/>
         <source>Watched Folder</source>
         <translation>Dosar urmărit</translation>
     </message>
     <message>
-        <location filename="../base/scanfoldersmodel.cpp" line="160"/>
-        <source>Download here</source>
-        <translation>Descarcă aici</translation>
+        <location filename="../base/scanfoldersmodel.cpp" line="159"/>
+        <source>Save Files to</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/scanfoldersmodel.cpp" line="163"/>
+        <source>Download here</source>
+        <translation type="obsolete">Descarcă aici</translation>
+    </message>
+    <message>
         <source>Download path</source>
-        <translation>Cale descărcare</translation>
+        <translation type="obsolete">Cale descărcare</translation>
     </message>
 </context>
 <context>
     <name>SearchCategories</name>
     <message>
-        <location filename="../searchengine/supportedengines.h" line="53"/>
         <source>All categories</source>
-        <translation>Toate categoriile</translation>
+        <translation type="obsolete">Toate categoriile</translation>
     </message>
     <message>
-        <location filename="../searchengine/supportedengines.h" line="54"/>
         <source>Movies</source>
-        <translation>Filme artistice</translation>
+        <translation type="obsolete">Filme artistice</translation>
     </message>
     <message>
-        <location filename="../searchengine/supportedengines.h" line="55"/>
         <source>TV shows</source>
-        <translation>Filme seriale</translation>
+        <translation type="obsolete">Filme seriale</translation>
     </message>
     <message>
-        <location filename="../searchengine/supportedengines.h" line="56"/>
         <source>Music</source>
-        <translation>Muzică</translation>
+        <translation type="obsolete">Muzică</translation>
     </message>
     <message>
-        <location filename="../searchengine/supportedengines.h" line="57"/>
         <source>Games</source>
-        <translation>Jocuri</translation>
+        <translation type="obsolete">Jocuri</translation>
     </message>
     <message>
-        <location filename="../searchengine/supportedengines.h" line="58"/>
         <source>Anime</source>
-        <translation>Animații</translation>
+        <translation type="obsolete">Animații</translation>
     </message>
     <message>
-        <location filename="../searchengine/supportedengines.h" line="59"/>
         <source>Software</source>
-        <translation>Aplicații</translation>
+        <translation type="obsolete">Aplicații</translation>
     </message>
     <message>
-        <location filename="../searchengine/supportedengines.h" line="60"/>
         <source>Pictures</source>
-        <translation>Imagini</translation>
+        <translation type="obsolete">Imagini</translation>
     </message>
     <message>
-        <location filename="../searchengine/supportedengines.h" line="61"/>
         <source>Books</source>
-        <translation>Cărți</translation>
+        <translation type="obsolete">Cărți</translation>
     </message>
 </context>
 <context>
     <name>SearchEngine</name>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="190"/>
-        <location filename="../searchengine/searchengine.cpp" line="220"/>
-        <location filename="../searchengine/searchengine.cpp" line="479"/>
         <source>Search</source>
-        <translation>Căutare</translation>
+        <translation type="obsolete">Caută</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="203"/>
         <source>Please install Python to use the Search Engine.</source>
-        <translation>Instalați Python pentru a putea utiliza Motorul de Căutare.</translation>
+        <translation type="obsolete">Instalați Python pentru a putea utiliza Motorul de Căutare.</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="233"/>
         <source>Empty search pattern</source>
-        <translation>Model de căutare gol</translation>
+        <translation type="obsolete">Model de căutare gol</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="233"/>
         <source>Please type a search pattern first</source>
-        <translation>Introduceți un model de căutare mai întâi</translation>
+        <translation type="obsolete">Introduceți un model de căutare mai întâi</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="313"/>
         <source>Searching...</source>
-        <translation>Se caută...</translation>
+        <translation type="obsolete">Se caută...</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="316"/>
         <source>Stop</source>
-        <translation>Oprire</translation>
+        <translation type="obsolete">Oprește</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="203"/>
-        <location filename="../searchengine/searchengine.cpp" line="453"/>
         <source>Search Engine</source>
-        <translation>Motor de căutare</translation>
+        <translation type="obsolete">Motor de căutare</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="453"/>
-        <location filename="../searchengine/searchengine.cpp" line="474"/>
         <source>Search has finished</source>
-        <translation>Căutarea s-a finalizat</translation>
+        <translation type="obsolete">Căutarea s-a finalizat</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="463"/>
         <source>An error occurred during search...</source>
-        <translation>A apărut o eroare în timpul căutării...</translation>
+        <translation type="obsolete">A apărut o eroare în timpul căutării...</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="461"/>
-        <location filename="../searchengine/searchengine.cpp" line="468"/>
         <source>Search aborted</source>
-        <translation>Căutare abandonată</translation>
+        <translation type="obsolete">Căutarea a fost abandonată</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="118"/>
         <source>All enabled</source>
-        <translation>Toate activate</translation>
+        <translation type="obsolete">Toate activate</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="119"/>
         <source>All engines</source>
-        <translation>Toate motoarele</translation>
+        <translation type="obsolete">Toate motoarele</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="122"/>
-        <location filename="../searchengine/searchengine.cpp" line="177"/>
         <source>Multiple...</source>
-        <translation>Multiple...</translation>
+        <translation type="obsolete">Multiple...</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="262"/>
-        <location filename="../searchengine/searchengine.cpp" line="334"/>
         <source>Results &lt;i&gt;(%1)&lt;/i&gt;:</source>
         <comment>i.e: Search results</comment>
-        <translation>Rezultate &lt;i&gt;(%1)&lt;/i&gt;:</translation>
+        <translation type="obsolete">Rezultate &lt;i&gt;(%1)&lt;/i&gt;:</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="472"/>
         <source>Search returned no results</source>
-        <translation>Căutarea nu a returnat rezultate</translation>
+        <translation type="obsolete">Căutarea nu a întors niciun rezultat</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="561"/>
         <source>Stopped</source>
-        <translation>Oprit</translation>
+        <translation type="obsolete">Oprită</translation>
+    </message>
+    <message>
+        <location filename="../base/searchengine.cpp" line="171"/>
+        <source>Unknown search engine plugin file format.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/searchengine.cpp" line="185"/>
+        <source>A more recent version of this plugin is already installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/searchengine.cpp" line="213"/>
+        <location filename="../base/searchengine.cpp" line="216"/>
+        <source>Plugin is not supported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/searchengine.cpp" line="337"/>
+        <source>Update server is temporarily unavailable. %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/searchengine.cpp" line="355"/>
+        <location filename="../base/searchengine.cpp" line="357"/>
+        <source>Failed to download the plugin file. %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/searchengine.cpp" line="597"/>
+        <source>An incorrect update info received.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/searchengine.cpp" line="621"/>
+        <source>All categories</source>
+        <translation type="unfinished">Toate categoriile</translation>
+    </message>
+    <message>
+        <location filename="../base/searchengine.cpp" line="622"/>
+        <source>Movies</source>
+        <translation type="unfinished">Filme artistice</translation>
+    </message>
+    <message>
+        <location filename="../base/searchengine.cpp" line="623"/>
+        <source>TV shows</source>
+        <translation type="unfinished">Filme seriale</translation>
+    </message>
+    <message>
+        <location filename="../base/searchengine.cpp" line="624"/>
+        <source>Music</source>
+        <translation type="unfinished">Muzică</translation>
+    </message>
+    <message>
+        <location filename="../base/searchengine.cpp" line="625"/>
+        <source>Games</source>
+        <translation type="unfinished">Jocuri</translation>
+    </message>
+    <message>
+        <location filename="../base/searchengine.cpp" line="626"/>
+        <source>Anime</source>
+        <translation type="unfinished">Animații</translation>
+    </message>
+    <message>
+        <location filename="../base/searchengine.cpp" line="627"/>
+        <source>Software</source>
+        <translation type="unfinished">Aplicații</translation>
+    </message>
+    <message>
+        <location filename="../base/searchengine.cpp" line="628"/>
+        <source>Pictures</source>
+        <translation type="unfinished">Imagini</translation>
+    </message>
+    <message>
+        <location filename="../base/searchengine.cpp" line="629"/>
+        <source>Books</source>
+        <translation type="unfinished">Cărți</translation>
     </message>
 </context>
 <context>
     <name>SearchListDelegate</name>
     <message>
-        <location filename="../searchengine/searchlistdelegate.h" line="60"/>
-        <location filename="../searchengine/searchlistdelegate.h" line="64"/>
+        <location filename="../gui/search/searchlistdelegate.cpp" line="57"/>
+        <location filename="../gui/search/searchlistdelegate.cpp" line="61"/>
         <source>Unknown</source>
-        <translation>Necunoscut</translation>
+        <translation>Necunoscută</translation>
     </message>
 </context>
 <context>
     <name>SearchTab</name>
     <message>
-        <location filename="../searchengine/searchtab.cpp" line="66"/>
+        <location filename="../gui/search/searchtab.cpp" line="72"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>Nume</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchtab.cpp" line="67"/>
+        <location filename="../gui/search/searchtab.cpp" line="73"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>Dimensiune</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchtab.cpp" line="68"/>
+        <location filename="../gui/search/searchtab.cpp" line="74"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
         <translation>Surse</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchtab.cpp" line="69"/>
+        <location filename="../gui/search/searchtab.cpp" line="75"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation>Surse parțiale</translation>
+        <translation>Descărcători</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchtab.cpp" line="70"/>
+        <location filename="../gui/search/searchtab.cpp" line="76"/>
         <source>Search engine</source>
         <translation>Motor de căutare</translation>
+    </message>
+</context>
+<context>
+    <name>SearchWidget</name>
+    <message>
+        <location filename="../gui/search/searchwidget.ui" line="14"/>
+        <location filename="../gui/search/searchwidget.ui" line="28"/>
+        <location filename="../gui/search/searchwidget.cpp" line="178"/>
+        <location filename="../gui/search/searchwidget.cpp" line="199"/>
+        <location filename="../gui/search/searchwidget.cpp" line="293"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.ui" line="51"/>
+        <source>Status:</source>
+        <translation type="unfinished">Stare:</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.ui" line="75"/>
+        <location filename="../gui/search/searchwidget.cpp" line="361"/>
+        <source>Stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.ui" line="107"/>
+        <source>Download</source>
+        <translation type="unfinished">Descarcă</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.ui" line="117"/>
+        <source>Go to description page</source>
+        <translation type="unfinished">Mergi la pagina cu descrierea</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.ui" line="127"/>
+        <source>Copy description page URL</source>
+        <translation type="unfinished">Copiază URL-ul paginii cu descrierea</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.ui" line="147"/>
+        <source>Search plugins...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="118"/>
+        <source>All enabled</source>
+        <translation type="unfinished">Toate activate</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="119"/>
+        <source>All plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="122"/>
+        <location filename="../gui/search/searchwidget.cpp" line="164"/>
+        <source>Multiple...</source>
+        <translation type="unfinished">Multiple...</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="191"/>
+        <location filename="../gui/search/searchwidget.cpp" line="280"/>
+        <location filename="../gui/search/searchwidget.cpp" line="299"/>
+        <source>Search Engine</source>
+        <translation type="unfinished">Motor de căutare</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="191"/>
+        <source>Please install Python to use the Search Engine.</source>
+        <translation type="unfinished">Instalați Python pentru a putea utiliza Motorul de Căutare.</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="209"/>
+        <source>Empty search pattern</source>
+        <translation type="unfinished">Model de căutare gol</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="209"/>
+        <source>Please type a search pattern first</source>
+        <translation type="unfinished">Introduceți un model de căutare mai întâi</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="236"/>
+        <location filename="../gui/search/searchwidget.cpp" line="338"/>
+        <source>Results &lt;i&gt;(%1)&lt;/i&gt;:</source>
+        <comment>i.e: Search results</comment>
+        <translation type="unfinished">Rezultate &lt;i&gt;(%1)&lt;/i&gt;:</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="268"/>
+        <source>Searching...</source>
+        <translation type="unfinished">Se caută...</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="271"/>
+        <source>Stop</source>
+        <translation type="unfinished">Oprește</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="280"/>
+        <location filename="../gui/search/searchwidget.cpp" line="289"/>
+        <source>Search has finished</source>
+        <translation type="unfinished">Căutarea s-a finalizat</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="285"/>
+        <location filename="../gui/search/searchwidget.cpp" line="304"/>
+        <source>Search aborted</source>
+        <translation type="unfinished">Căutarea a fost abandonată</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="287"/>
+        <source>Search returned no results</source>
+        <translation type="unfinished">Căutarea nu a întors niciun rezultat</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="299"/>
+        <source>Search has failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="306"/>
+        <source>An error occurred during search...</source>
+        <translation type="unfinished">A apărut o eroare în timpul căutării...</translation>
     </message>
 </context>
 <context>
@@ -6136,12 +6521,12 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="67"/>
         <source>Tracker Upload</source>
-        <translation>Încărcare urmăritor</translation>
+        <translation>Încărcare tracker</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="68"/>
         <source>Tracker Download</source>
-        <translation>Descărcare urmăritor</translation>
+        <translation>Descărcare tracker</translation>
     </message>
 </context>
 <context>
@@ -6219,12 +6604,12 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="87"/>
         <source>Tracker Upload</source>
-        <translation>Încărcare urmăritor</translation>
+        <translation>Încărcare tracker</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="88"/>
         <source>Tracker Download</source>
-        <translation>Descărcare urmăritor</translation>
+        <translation>Descărcare tracker</translation>
     </message>
 </context>
 <context>
@@ -6484,24 +6869,28 @@ Nu vor fi emise alte notificări.</translation>
 <context>
     <name>TorrentContentModel</name>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="56"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="59"/>
         <source>Name</source>
         <translation>Nume</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="56"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="59"/>
         <source>Size</source>
         <translation>Dimensiune</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="57"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="59"/>
         <source>Progress</source>
         <translation>Progres</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="57"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="59"/>
+        <source>Download Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Priority</source>
-        <translation>Prioritate</translation>
+        <translation type="obsolete">Prioritate</translation>
     </message>
 </context>
 <context>
@@ -6519,7 +6908,7 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="114"/>
         <source>No input path set</source>
-        <translation>Nu s-a configurat calea de intrare</translation>
+        <translation>Nicio cale de intrare stabilită</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="114"/>
@@ -6717,7 +7106,7 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="110"/>
         <source>Tracker</source>
-        <translation>Urmăritor</translation>
+        <translation>Tracker</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="111"/>
@@ -6747,7 +7136,7 @@ Nu vor fi emise alte notificări.</translation>
         <location filename="../gui/torrentmodel.cpp" line="115"/>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Descărcat sesiune</translation>
+        <translation>Descărcat în sesiune</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="116"/>
@@ -6815,7 +7204,7 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="431"/>
         <source>Trackerless (0)</source>
-        <translation>Fără urmăritor (0)</translation>
+        <translation>Fără tracker (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="434"/>
@@ -6831,7 +7220,7 @@ Nu vor fi emise alte notificări.</translation>
         <location filename="../gui/transferlistfilterswidget.cpp" line="478"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="535"/>
         <source>Trackerless (%1)</source>
-        <translation>Fără urmăritor (%1)</translation>
+        <translation>Fără tracker (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="484"/>
@@ -6853,38 +7242,38 @@ Nu vor fi emise alte notificări.</translation>
         <translation>Cu avertismente (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="635"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="637"/>
         <source>Couldn&apos;t decode favicon for URL &apos;%1&apos;. Trying to download favicon in PNG format.</source>
         <translation>Nu s-a putut decodifica favicon-ul pentru URL-ul „%1”. Se încearcă descărcarea lui în formatul PNG.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="640"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="642"/>
         <source>Couldn&apos;t decode favicon for URL &apos;%1&apos;.</source>
         <translation>Nu s-a putut decodifica favicon-ul pentru URL-ul „%1”.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="654"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="656"/>
         <source>Couldn&apos;t download favicon for URL &apos;%1&apos;. Reason: %2</source>
         <translation>Nu s-a putut descărca favicon-ul pentru URL-ul „%1”. Motivul: %2</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="663"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="665"/>
         <source>Resume torrents</source>
         <translation>Reia torrentele</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="664"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="666"/>
         <source>Pause torrents</source>
         <translation>Suspendă torrentele</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="665"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="667"/>
         <source>Delete torrents</source>
         <translation>Șterge torrentele</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="699"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="713"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="701"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="715"/>
         <source>All (%1)</source>
         <comment>this is for the tracker filter</comment>
         <translation>Toate (%1)</translation>
@@ -6946,58 +7335,58 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="380"/>
         <source>Tracker URL:</source>
-        <translation>URL urmăritor:</translation>
+        <translation>URL tracker:</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="380"/>
         <source>Tracker editing</source>
-        <translation>Editare urmăritor</translation>
+        <translation>Editare tracker</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="386"/>
         <location filename="../gui/properties/trackerlist.cpp" line="397"/>
         <source>Tracker editing failed</source>
-        <translation>Editarea urmăritorului a eșuat</translation>
+        <translation>Editarea tracker-ului a eșuat</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="386"/>
         <source>The tracker URL entered is invalid.</source>
-        <translation>URL-ul urmăritorului introdus nu este valid.</translation>
+        <translation>URL-ul tracker-ului este nevalid.</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="397"/>
         <source>The tracker URL already exists.</source>
-        <translation>URL-ul urmăritorului există deja.</translation>
+        <translation>URL-ul tracker-ului există deja.</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="448"/>
         <source>Add a new tracker...</source>
-        <translation>Adăugare urmăritor nou...</translation>
+        <translation>Adaugă un nou tracker...</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="454"/>
         <source>Copy tracker URL</source>
-        <translation>Copiază URL-ul urmăritorului</translation>
+        <translation>Copiază URL-ul tracker-ului</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="455"/>
         <source>Edit selected tracker URL</source>
-        <translation>Editează URL-ul urmăritorului selectat</translation>
+        <translation>Editează URL-ul tracker-ului selectat</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="460"/>
         <source>Force reannounce to selected trackers</source>
-        <translation>Forțează reanunțarea urmăritoarelor selectate</translation>
+        <translation>Forțează reanunțarea tracker-elor selectate</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="462"/>
         <source>Force reannounce to all trackers</source>
-        <translation>Forțează reanunțarea tuturor urmăritoarelor</translation>
+        <translation>Forțează reanunțarea tuturor tracker-elor</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="453"/>
         <source>Remove tracker</source>
-        <translation>Elimină urmăritorul</translation>
+        <translation>Elimină tracker</translation>
     </message>
 </context>
 <context>
@@ -7005,12 +7394,12 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.ui" line="14"/>
         <source>Trackers addition dialog</source>
-        <translation>Dialog adăugare urmăritoare</translation>
+        <translation>Dialog adăugare trackere</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.ui" line="20"/>
         <source>List of trackers to add (one per line):</source>
-        <translation>Listă urmăritoare de adăugat (unul pe linie):</translation>
+        <translation>Listă trackere de adăugat (unul pe linie):</translation>
     </message>
     <message utf8="true">
         <location filename="../gui/properties/trackersadditiondlg.ui" line="44"/>
@@ -7035,7 +7424,7 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.cpp" line="111"/>
         <source>No additional trackers were found.</source>
-        <translation>Niciun urmăritor adițional găsit.</translation>
+        <translation>Niciun tracker adițional găsit.</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.cpp" line="119"/>
@@ -7045,7 +7434,7 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.cpp" line="119"/>
         <source>The trackers list could not be downloaded, reason: %1</source>
-        <translation>Lista de urmăritoare nu a putut fi descărcată, motivul: %1</translation>
+        <translation>Lista de trackere nu a putut fi descărcată, motivul: %1</translation>
     </message>
 </context>
 <context>
@@ -7152,19 +7541,19 @@ Nu vor fi emise alte notificări.</translation>
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="792"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="794"/>
         <source>Status</source>
         <translation>Stare</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="800"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="802"/>
         <source>Labels</source>
         <translation>Etichete</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="808"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="810"/>
         <source>Trackers</source>
-        <translation>Urmăritoare</translation>
+        <translation>Trackere</translation>
     </message>
 </context>
 <context>
@@ -7310,7 +7699,7 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="655"/>
         <source>Set location...</source>
-        <translation>Configurare locație...</translation>
+        <translation>Stabilire locație...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="661"/>
@@ -7362,7 +7751,7 @@ Nu vor fi emise alte notificări.</translation>
         <location filename="../gui/transferlistwidget.cpp" line="765"/>
         <source>Reset</source>
         <comment>Reset label</comment>
-        <translation>Resetare</translation>
+        <translation>Restabilește</translation>
     </message>
 </context>
 <context>
@@ -7375,7 +7764,7 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation>Utilizează limitarea globală a ratei</translation>
+        <translation>Utilizează limita globală a raportului</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="23"/>
@@ -7387,12 +7776,12 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation>Configurare fără limitare rată</translation>
+        <translation>Stabilește nicio limită a raportului</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation>Configurare limitare raport la</translation>
+        <translation>Stabilește limita raportului la</translation>
     </message>
 </context>
 <context>
@@ -7446,7 +7835,7 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../gui/properties/peersadditiondlg.ui" line="14"/>
         <source>Add Peers</source>
-        <translation>Adaugă parteneri</translation>
+        <translation>Adăugare parteneri</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondlg.ui" line="20"/>
@@ -7465,12 +7854,12 @@ Nu vor fi emise alte notificări.</translation>
         <location filename="../gui/login.ui" line="14"/>
         <location filename="../gui/login.ui" line="47"/>
         <source>Tracker authentication</source>
-        <translation>Autentificare urmăritor</translation>
+        <translation>Autentificare tracker</translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="64"/>
         <source>Tracker:</source>
-        <translation>Urmăritor:</translation>
+        <translation>Tracker:</translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="86"/>
@@ -7551,7 +7940,7 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="78"/>
         <source>Tracker URLs:</source>
-        <translation>URL-uri urmăritor:</translation>
+        <translation>URL-uri Tracker:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="88"/>
@@ -7567,7 +7956,7 @@ Nu vor fi emise alte notificări.</translation>
         <location filename="../gui/torrentcreatordlg.ui" line="127"/>
         <source>You can separate tracker tiers / groups with an empty line.</source>
         <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation>Puteți separa nivelurile/grupurile de urmăritoare cu o linie goală.</translation>
+        <translation>Puteți separa niveluri/grupuri de trackere cu o linie goală.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="148"/>
@@ -7701,207 +8090,156 @@ Nu vor fi emise alte notificări.</translation>
 <context>
     <name>engineSelect</name>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="17"/>
         <source>Search plugins</source>
-        <translation>Extensii de căutare</translation>
+        <translation type="obsolete">Extensii de căutare</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="30"/>
         <source>Installed search engines:</source>
-        <translation>Motoare de căutare instalate:</translation>
+        <translation type="obsolete">Motoare de căutare instalate:</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="50"/>
         <source>Name</source>
-        <translation>Nume</translation>
+        <translation type="obsolete">Nume</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="55"/>
         <source>Version</source>
-        <translation>Versiune</translation>
+        <translation type="obsolete">Versiune</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="60"/>
         <source>Url</source>
-        <translation>URL</translation>
+        <translation type="obsolete">URL</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="65"/>
-        <location filename="../searchengine/engineselect.ui" line="124"/>
         <source>Enabled</source>
-        <translation>Activat</translation>
+        <translation type="obsolete">Activat</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="83"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation>Puteți să obțineți noi extensii pentru motoare de căutare aici: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation type="obsolete">Puteți să obțineți noi extensii pentru motoare de căutare aici: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="98"/>
         <source>Install a new one</source>
-        <translation>Instalează unul nou</translation>
+        <translation type="obsolete">Instalează unul nou</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="105"/>
         <source>Check for updates</source>
-        <translation>Caută actualizări</translation>
+        <translation type="obsolete">Caută actualizări</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="112"/>
         <source>Close</source>
-        <translation>Închide</translation>
+        <translation type="obsolete">Închide</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselect.ui" line="129"/>
         <source>Uninstall</source>
-        <translation>Dezinstalează</translation>
+        <translation type="obsolete">Dezinstalează</translation>
     </message>
 </context>
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="203"/>
         <source>Uninstall warning</source>
-        <translation>Atenționare la dezinstalare</translation>
+        <translation type="obsolete">Atenționare la dezinstalare</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="205"/>
         <source>Uninstall success</source>
-        <translation>Dezinstalare cu succes</translation>
+        <translation type="obsolete">Dezinstalare cu succes</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="264"/>
         <source>Invalid plugin</source>
-        <translation>Modul nevalid</translation>
+        <translation type="obsolete">Modul nevalid</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="264"/>
         <source>The search engine plugin is invalid, please contact the author.</source>
-        <translation>Modulul motorului de căutare nu este valid, încercați să contactați autorul.</translation>
+        <translation type="obsolete">Modulul motorului de căutare nu este valid, încercați să contactați autorul.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="270"/>
         <source>A more recent version of &apos;%1&apos; search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>O versiune mai recentă a extensiei motor de căutare „%1” este deja instalată.</translation>
+        <translation type="obsolete">O versiune mai recentă a extensiei motor de căutare „%1” este deja instalată.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="295"/>
         <source>&apos;%1&apos; search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Extensia motor de căutare „%1” nu a putut fi actualizată, se păstrează versiunea anterioară.</translation>
+        <translation type="obsolete">Extensia motor de căutare „%1” nu a putut fi actualizată, se păstrează versiunea anterioară.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="300"/>
         <source>&apos;%1&apos; search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Extensia motor de căutare „%1” nu a putut fi instalată.</translation>
+        <translation type="obsolete">Extensia motor de căutare „%1” nu a putut fi instalată.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="310"/>
         <source>&apos;%1&apos; search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Extensia motor de căutare „%1” a fost actualizată cu succes.</translation>
+        <translation type="obsolete">Extensia motor de căutare „%1” a fost actualizată cu succes.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="313"/>
         <source>&apos;%1&apos; search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Extensia motor de căutare „%1” a fost instalată cu succes.</translation>
+        <translation type="obsolete">Extensia motor de căutare „%1” a fost instalată cu succes.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="381"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation>Legătura nu pare a indica spre o extensie motor de căutare.</translation>
+        <translation type="obsolete">Legătura nu pare a indica spre o extensie motor de căutare.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="396"/>
         <source>Select search plugins</source>
-        <translation>Alegeți extensiile de căutare</translation>
+        <translation type="obsolete">Alegeți extensiile de căutare</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="517"/>
         <source>Sorry, &apos;%1&apos; search plugin installation failed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Instalarea extensiei de căutare „%1” a eșuat.</translation>
+        <translation type="obsolete">Instalarea extensiei de căutare „%1” a eșuat.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="270"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="295"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="300"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="310"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="313"/>
         <source>Search plugin install</source>
-        <translation>Instalare extensie de căutare</translation>
+        <translation type="obsolete">Instalare extensie de căutare</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="146"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="217"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="333"/>
         <source>Yes</source>
-        <translation>Da</translation>
+        <translation type="obsolete">Da</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="149"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="183"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="220"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="336"/>
         <source>No</source>
-        <translation>Nu</translation>
+        <translation type="obsolete">Nu</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="397"/>
         <source>qBittorrent search plugin</source>
-        <translation>Extensie de căutare qBittorrent</translation>
+        <translation type="obsolete">Extensie de căutare qBittorrent</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="448"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="489"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="510"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="517"/>
         <source>Search plugin update</source>
-        <translation>Actualizare extensie de căutare</translation>
+        <translation type="obsolete">Actualizare extensie de căutare</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="489"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="510"/>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation>Ne pare rău, serverul de actualizări este temporar indisponibil.</translation>
+        <translation type="obsolete">Ne pare rău, serverul de actualizări este temporar indisponibil.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="448"/>
         <source>All your plugins are already up to date.</source>
-        <translation>Toate extensiile sunt deja actualizate.</translation>
+        <translation type="obsolete">Toate extensiile sunt deja actualizate.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="205"/>
         <source>All selected plugins were uninstalled successfully</source>
-        <translation>Toate extensiile selectate au fost dezinstalate cu succes</translation>
+        <translation type="obsolete">Toate extensiile selectate au fost dezinstalate cu succes</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="203"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation>Unele extensii nu au putut fi dezinstalate deoarece vin incluse în qBittorrent.
+        <translation type="obsolete">Unele extensii nu au putut fi dezinstalate deoarece vin incluse în qBittorrent.
 Doar cele pe care le-ați adăugat manual pot fi dezinstalate.
 Cu toate acestea, acele extensii au fost dezactivate.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="381"/>
         <source>Invalid link</source>
-        <translation>Legătură nevalidă</translation>
+        <translation type="obsolete">Legătură nevalidă</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="373"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="382"/>
         <source>New search engine plugin URL</source>
-        <translation>URL nou pentru extensia motor de căutare</translation>
+        <translation type="obsolete">URL nou pentru extensia motor de căutare</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="374"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="383"/>
         <source>URL:</source>
-        <translation>URL:</translation>
+        <translation type="obsolete">URL:</translation>
     </message>
 </context>
 <context>
@@ -8031,169 +8369,169 @@ Cu toate acestea, acele extensii au fost dezactivate.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1249"/>
-        <location filename="../gui/options_imp.cpp" line="1251"/>
+        <location filename="../gui/options_imp.cpp" line="1259"/>
+        <location filename="../gui/options_imp.cpp" line="1261"/>
         <source>Choose export directory</source>
         <translation>Alegeți un director pentru export</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1289"/>
-        <location filename="../gui/options_imp.cpp" line="1291"/>
-        <location filename="../gui/options_imp.cpp" line="1302"/>
-        <location filename="../gui/options_imp.cpp" line="1304"/>
+        <location filename="../gui/options_imp.cpp" line="1299"/>
+        <location filename="../gui/options_imp.cpp" line="1301"/>
+        <location filename="../gui/options_imp.cpp" line="1312"/>
+        <location filename="../gui/options_imp.cpp" line="1314"/>
         <source>Choose a save directory</source>
         <translation>Alegeți un director pentru salvare</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1202"/>
+        <location filename="../gui/options_imp.cpp" line="1207"/>
         <source>Add directory to scan</source>
         <translation>Adăugați director de scanat</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="185"/>
+        <location filename="../gui/options_imp.cpp" line="188"/>
         <source>Supported parameters (case sensitive):</source>
         <translation>Parametrii suportați (sensibil la majuscule):</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="186"/>
+        <location filename="../gui/options_imp.cpp" line="189"/>
         <source>%N: Torrent name</source>
         <translation>%N: Nume torrent</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="187"/>
+        <location filename="../gui/options_imp.cpp" line="190"/>
         <source>%L: Label</source>
         <translation>%L: Etichetă</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="188"/>
+        <location filename="../gui/options_imp.cpp" line="191"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: Cale conținut (aceeași cu calea rădăcină pentru torrent cu mai multe fișiere)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="189"/>
+        <location filename="../gui/options_imp.cpp" line="192"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
         <translation>%R: Cale rădăcină (cale subdirector a primului torrent)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="190"/>
+        <location filename="../gui/options_imp.cpp" line="193"/>
         <source>%D: Save path</source>
-        <translation>%D: Cale salvare</translation>
+        <translation>%D: Cale de salvare</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="191"/>
+        <location filename="../gui/options_imp.cpp" line="194"/>
         <source>%C: Number of files</source>
         <translation>%C: Număr de fișiere</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="192"/>
+        <location filename="../gui/options_imp.cpp" line="195"/>
         <source>%Z: Torrent size (bytes)</source>
         <translation>%Z: Dimensiune torrent (octeți)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="193"/>
+        <location filename="../gui/options_imp.cpp" line="196"/>
         <source>%T: Current tracker</source>
-        <translation>%T: Urmăritor curent</translation>
+        <translation>%T: Tracker curent</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="194"/>
+        <location filename="../gui/options_imp.cpp" line="197"/>
         <source>%I: Info hash</source>
         <translation>%I: Informații indexare</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1209"/>
+        <location filename="../gui/options_imp.cpp" line="1214"/>
         <source>Folder is already being watched.</source>
         <translation>Dosarul este deja sub supraveghere.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1212"/>
+        <location filename="../gui/options_imp.cpp" line="1217"/>
         <source>Folder does not exist.</source>
         <translation>Dosarul nu există.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1215"/>
+        <location filename="../gui/options_imp.cpp" line="1220"/>
         <source>Folder is not readable.</source>
         <translation>Dosarul nu poate fi citit.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1225"/>
+        <location filename="../gui/options_imp.cpp" line="1231"/>
         <source>Failure</source>
         <translation>Eșec</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1225"/>
+        <location filename="../gui/options_imp.cpp" line="1231"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Eșec la adăugarea dosarului scanat „%1”: %2</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1275"/>
-        <location filename="../gui/options_imp.cpp" line="1277"/>
+        <location filename="../gui/options_imp.cpp" line="1285"/>
+        <location filename="../gui/options_imp.cpp" line="1287"/>
         <source>Filters</source>
         <translation>Filtre</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1275"/>
-        <location filename="../gui/options_imp.cpp" line="1277"/>
+        <location filename="../gui/options_imp.cpp" line="1285"/>
+        <location filename="../gui/options_imp.cpp" line="1287"/>
         <source>Choose an IP filter file</source>
         <translation>Alegeți un fișier de filtru IP</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1344"/>
+        <location filename="../gui/options_imp.cpp" line="1354"/>
         <source>SSL Certificate</source>
         <translation>Certificat SSL</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1356"/>
+        <location filename="../gui/options_imp.cpp" line="1366"/>
         <source>SSL Key</source>
         <translation>Cheie SSL</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1389"/>
+        <location filename="../gui/options_imp.cpp" line="1399"/>
         <source>Parsing error</source>
         <translation>Eroare analizare</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1389"/>
+        <location filename="../gui/options_imp.cpp" line="1399"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>A eșuat analiza filtrului IP furnizat</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1391"/>
+        <location filename="../gui/options_imp.cpp" line="1401"/>
         <source>Successfully refreshed</source>
         <translation>Reîmprospătat cu succes</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1391"/>
+        <location filename="../gui/options_imp.cpp" line="1401"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>S-a analizat cu succes filtrul IP furnizat: %1 reguli au fost aplicate.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1479"/>
+        <location filename="../gui/options_imp.cpp" line="1489"/>
         <source>Invalid key</source>
         <translation>Cheie nevalidă</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1479"/>
+        <location filename="../gui/options_imp.cpp" line="1489"/>
         <source>This is not a valid SSL key.</source>
         <translation>Aceasta nu este o cheie SSL validă.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1495"/>
+        <location filename="../gui/options_imp.cpp" line="1505"/>
         <source>Invalid certificate</source>
         <translation>Certificat nevalid</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1495"/>
+        <location filename="../gui/options_imp.cpp" line="1505"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Acesta nu este un certificat SSL valid.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1505"/>
+        <location filename="../gui/options_imp.cpp" line="1515"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Timpul de pornire și timpul de încheiere nu pot fi același.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1508"/>
+        <location filename="../gui/options_imp.cpp" line="1518"/>
         <source>Time Error</source>
         <translation>Eroare timp</translation>
     </message>
@@ -8201,24 +8539,20 @@ Cu toate acestea, acele extensii au fost dezactivate.</translation>
 <context>
     <name>pluginSourceDlg</name>
     <message>
-        <location filename="../searchengine/pluginsource.ui" line="13"/>
         <source>Plugin source</source>
-        <translation>Sursă extensie</translation>
+        <translation type="obsolete">Sursă extensie</translation>
     </message>
     <message>
-        <location filename="../searchengine/pluginsource.ui" line="26"/>
         <source>Search plugin source:</source>
-        <translation>Sursă extensie de căutare:</translation>
+        <translation type="obsolete">Sursă extensie de căutare:</translation>
     </message>
     <message>
-        <location filename="../searchengine/pluginsource.ui" line="35"/>
         <source>Local file</source>
-        <translation>Fișier local</translation>
+        <translation type="obsolete">Fișier local</translation>
     </message>
     <message>
-        <location filename="../searchengine/pluginsource.ui" line="42"/>
         <source>Web link</source>
-        <translation>Legătură Web</translation>
+        <translation type="obsolete">Legătură Web</translation>
     </message>
 </context>
 <context>
@@ -8226,7 +8560,7 @@ Cu toate acestea, acele extensii au fost dezactivate.</translation>
     <message>
         <location filename="../gui/preview.ui" line="14"/>
         <source>Preview selection</source>
-        <translation>Previzualizează selecția</translation>
+        <translation>Previzualizeazare selecție</translation>
     </message>
     <message>
         <location filename="../gui/preview.ui" line="26"/>
@@ -8236,51 +8570,43 @@ Cu toate acestea, acele extensii au fost dezactivate.</translation>
     <message>
         <location filename="../gui/preview.ui" line="61"/>
         <source>Preview</source>
-        <translation>Previzualizare</translation>
+        <translation>Previzualizează</translation>
     </message>
     <message>
         <location filename="../gui/preview.ui" line="68"/>
         <source>Cancel</source>
-        <translation>Anulare</translation>
+        <translation>Renunță</translation>
     </message>
 </context>
 <context>
     <name>search_engine</name>
     <message>
-        <location filename="../searchengine/search.ui" line="14"/>
-        <location filename="../searchengine/search.ui" line="28"/>
         <source>Search</source>
-        <translation>Caută</translation>
+        <translation type="obsolete">Căutare</translation>
     </message>
     <message>
-        <location filename="../searchengine/search.ui" line="51"/>
         <source>Status:</source>
-        <translation>Stare:</translation>
+        <translation type="obsolete">Stare:</translation>
     </message>
     <message>
-        <location filename="../searchengine/search.ui" line="75"/>
         <source>Stopped</source>
-        <translation>Oprit</translation>
+        <translation type="obsolete">Oprit</translation>
     </message>
     <message>
-        <location filename="../searchengine/search.ui" line="107"/>
         <source>Download</source>
-        <translation>Descarcă</translation>
+        <translation type="obsolete">Descarcă</translation>
     </message>
     <message>
-        <location filename="../searchengine/search.ui" line="117"/>
         <source>Go to description page</source>
-        <translation>Mergi la pagina cu descrierea</translation>
+        <translation type="obsolete">Mergi la pagina cu descrierea</translation>
     </message>
     <message>
-        <location filename="../searchengine/search.ui" line="127"/>
         <source>Copy description page URL</source>
-        <translation>Copiază URL-ul paginii cu descrierea</translation>
+        <translation type="obsolete">Copiază URL-ul paginii cu descrierea</translation>
     </message>
     <message>
-        <location filename="../searchengine/search.ui" line="147"/>
         <source>Search engines...</source>
-        <translation>Motoare de căutare...</translation>
+        <translation type="obsolete">Motoare de căutare...</translation>
     </message>
 </context>
 </TS>
