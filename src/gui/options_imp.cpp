@@ -126,6 +126,9 @@ options_imp::options_imp(QWidget *parent)
 
 #ifndef Q_OS_WIN
     checkStartup->setVisible(false);
+#endif
+
+#if !(defined(Q_OS_WIN) || defined(Q_OS_MAC))
     groupFileAssociation->setVisible(false);
 #endif
 
@@ -152,7 +155,7 @@ options_imp::options_imp(QWidget *parent)
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && !defined(QT_DBUS_LIB)
     checkPreventFromSuspend->setDisabled(true);
 #endif
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     connect(checkAssociateTorrents, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkAssociateMagnetLinks, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #endif
@@ -407,6 +410,18 @@ void options_imp::saveOptions()
     Preferences::setTorrentFileAssoc(checkAssociateTorrents->isChecked());
     Preferences::setMagnetLinkAssoc(checkAssociateMagnetLinks->isChecked());
 #endif
+#ifdef Q_OS_MAC
+    if (checkAssociateTorrents->isChecked()) {
+        Preferences::setTorrentFileAssoc();
+        checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
+        checkAssociateTorrents->setEnabled(!checkAssociateTorrents->isChecked());
+    }
+    if (checkAssociateMagnetLinks->isChecked()) {
+        Preferences::setMagnetLinkAssoc();
+        checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
+        checkAssociateMagnetLinks->setEnabled(!checkAssociateMagnetLinks->isChecked());
+    }
+#endif
     // End General preferences
 
     // Downloads preferences
@@ -580,6 +595,12 @@ void options_imp::loadOptions()
     checkStartup->setChecked(pref->WinStartup());
     checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
     checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
+#endif
+#ifdef Q_OS_MAC
+    checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
+    checkAssociateTorrents->setEnabled(!checkAssociateTorrents->isChecked());
+    checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
+    checkAssociateMagnetLinks->setEnabled(!checkAssociateMagnetLinks->isChecked());
 #endif
     // End General preferences
 
