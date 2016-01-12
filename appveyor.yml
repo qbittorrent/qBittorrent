@@ -1,0 +1,52 @@
+version: '{branch}-{build}'
+
+# Do not build on tags (GitHub only)
+skip_tags: true
+
+os: Visual Studio 2015
+
+environment:
+  REPO_DIR: &REPO_DIR c:\qbittorrent
+  CACHE_DIR: &CACHE_DIR c:\qbt_cache
+
+  QBT_VER_URL: http://builds.shiki.hu/appveyor/version
+  QBT_LIB_URL: http://builds.shiki.hu/appveyor/qbt_libraries.7z
+
+# project directory
+clone_folder: *REPO_DIR
+
+# cache size should < 100MB (after compressing with fastest option):
+# see: https://www.appveyor.com/docs/build-cache#save-update-cache-before-build-finishes
+cache:
+  - *CACHE_DIR
+
+install:
+  # check if library needs update
+  - appveyor DownloadFile "%QBT_VER_URL%" -FileName "c:\version_new" && SET /P newVersion=<"c:\version_new"
+  - IF EXIST "%CACHE_DIR%\version" (SET /P oldVersion=<"%CACHE_DIR%\version")
+  - IF NOT EXIST "%CACHE_DIR%\version" (SET updateCache=1)
+  - IF NOT "%oldVersion%" == "%newVersion%" (SET updateCache=1)
+  # update library
+  - IF "%updateCache%" == "1" (ECHO "--- Will redownload libraries ---" &&
+      RMDIR /S /Q "%CACHE_DIR%" & MKDIR "%CACHE_DIR%" &&
+      appveyor DownloadFile "%QBT_LIB_URL%" -FileName "c:\qbt_lib.7z" && 7z x "c:\qbt_lib.7z" -o"%CACHE_DIR%" > nul &&
+      COPY "c:\version_new" "%CACHE_DIR%\version")
+  # Qt stay compressed in cache
+  - 7z x "%CACHE_DIR%\qt5_32.7z" -o"c:\qbt" > nul
+
+before_build:
+  # setup env
+  - CALL "c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\vcvars32.bat"
+  - SET PATH=%PATH%;c:\qbt\qt5_32\bin;%CACHE_DIR%\jom;
+  # setup project
+  - COPY /Y "%CACHE_DIR%\winconf.pri" "%REPO_DIR%"
+  - COPY /Y "%CACHE_DIR%\winconf-msvc.pri" "%REPO_DIR%"
+  # workarounds
+  - MKLINK /J "c:\qbt\base" "%CACHE_DIR%\base"
+
+build_script:
+  - cd "%REPO_DIR%"
+  - qmake qbittorrent.pro && cd src && qmake src.pro
+  - jom -j2 -f Makefile.Release
+
+test: off
