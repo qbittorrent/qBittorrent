@@ -17,7 +17,7 @@ OS version:
 * **Screenshots**! A screenshot is worth a thousand words. just upload it. [(How?)](https://help.github.com/articles/file-attachments-on-issues-and-pull-requests)
 
 ### Good to know
-* **Patience**. The dev team is small and resource limited. Devs finding their free time, analyzing the problem and fixing the issue, it all takes time. :clock3:
+* **Be patient**. The dev team is small and resource limited. Devs finding their free time, analyzing the problem and fixing the issue, it all takes time. :clock3:
 * If you can code, why not become a **contributor** by fixing the issue and open a pull request? :wink:
 * Harsh words or threats won't help your situation. What's worse, your complain will (very likely) to be **ignored**. :fearful:
 
@@ -25,7 +25,7 @@ OS version:
 # Opening a pull request
 
 ### Must read
-* Read our [**coding guidelines**](https://github.com/qbittorrent/qBittorrent/blob/master/CODING_GUIDELINES.md). There are some scripts to help you: [uncrustify script](https://gist.github.com/sledgehammer999/1cb1d9224d7fec8fa632), [astyle script](https://gist.github.com/Chocobo1/539cee860d1eef0acfa6), [(related thread)](https://github.com/qbittorrent/qBittorrent/issues/2192).
+* Read our [**coding guidelines**](https://github.com/qbittorrent/qBittorrent/blob/master/CODING_GUIDELINES.md). There are some scripts to help you: [uncrustify script](https://raw.githubusercontent.com/qbittorrent/qBittorrent/master/uncrustify.cfg), [astyle script](https://gist.github.com/Chocobo1/539cee860d1eef0acfa6), [(related thread)](https://github.com/qbittorrent/qBittorrent/issues/2192).
 * Keep the title **short** and provide a **clear** description about what your pull request does.
 * Provide **screenshots** for UI related changes.
 * Keep your git commit history **clean** and **precise**. Commits like `xxx fixup` should not appear.
