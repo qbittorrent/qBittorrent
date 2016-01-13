@@ -420,9 +420,14 @@ div.toolbox.divider { /* Have to specify div here for IE6's sake */
 	background: url(../images/skin/spinner.gif) no-repeat;
 	width: 16px;
 	height: 16px;
-}	
+}
 
 #desktopFooter td {
 	vertical-align: top;
-	text-align: center;
+	text-align: left;
+}
+
+td.speedLabel {
+    cursor:pointer;
+    min-width: 18em;
 }

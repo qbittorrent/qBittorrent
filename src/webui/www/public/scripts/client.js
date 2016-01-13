@@ -373,17 +373,15 @@ window.addEvent('load', function () {
     }
 
     var processServerState = function () {
-        var transfer_info = "";
+        var transfer_info = friendlyUnit(serverState.dl_info_speed, true);
         if (serverState.dl_rate_limit > 0)
-            transfer_info += "[" + friendlyUnit(serverState.dl_rate_limit, true) + "] ";
-        transfer_info += friendlyUnit(serverState.dl_info_speed, true);
-        transfer_info += " (" + friendlyUnit(serverState.dl_info_data, false) + ")"
+            transfer_info += " [" + friendlyUnit(serverState.dl_rate_limit, true) + "]";
+        transfer_info += " (" + friendlyUnit(serverState.dl_info_data, false) + ")";
         $("DlInfos").set('html', transfer_info);
-        transfer_info = "";
+        transfer_info = friendlyUnit(serverState.up_info_speed, true);
         if (serverState.up_rate_limit > 0)
-            transfer_info += "[" + friendlyUnit(serverState.up_rate_limit, true) + "] ";
-        transfer_info += friendlyUnit(serverState.up_info_speed, true)
-        transfer_info += " (" + friendlyUnit(serverState.up_info_data, false) + ")"
+            transfer_info += " [" + friendlyUnit(serverState.up_rate_limit, true) + "]";
+        transfer_info += " (" + friendlyUnit(serverState.up_info_data, false) + ")";
         $("UpInfos").set('html', transfer_info);
         if (speedInTitle) {
             document.title = "QBT_TR([D:%1 U:%2])QBT_TR".replace("%1", friendlyUnit(serverState.dl_info_speed, true)).replace("%2", friendlyUnit(serverState.up_info_speed, true));
