@@ -65,12 +65,15 @@ StatusBar::StatusBar(QStatusBar *bar)
     m_connecStatusLblIcon->setCursor(Qt::PointingHandCursor);
     m_connecStatusLblIcon->setIcon(QIcon(":/icons/skin/firewalled.png"));
     m_connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>") + tr("Connection status:") + QString::fromUtf8("</b><br>") + QString::fromUtf8("<i>") + tr("No direct connections. This may indicate network configuration problems.") + QString::fromUtf8("</i>"));
+
     m_dlSpeedLbl = new QPushButton(bar);
     m_dlSpeedLbl->setIcon(QIcon(":/icons/skin/download.png"));
     connect(m_dlSpeedLbl, SIGNAL(clicked()), this, SLOT(capDownloadSpeed()));
     m_dlSpeedLbl->setFlat(true);
     m_dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
     m_dlSpeedLbl->setCursor(Qt::PointingHandCursor);
+    m_dlSpeedLbl->setStyleSheet("text-align:left;");
+    m_dlSpeedLbl->setMinimumWidth(200);
 
     m_upSpeedLbl = new QPushButton(bar);
     m_upSpeedLbl->setIcon(QIcon(":/icons/skin/seeding.png"));
@@ -78,6 +81,9 @@ StatusBar::StatusBar(QStatusBar *bar)
     m_upSpeedLbl->setFlat(true);
     m_upSpeedLbl->setFocusPolicy(Qt::NoFocus);
     m_upSpeedLbl->setCursor(Qt::PointingHandCursor);
+    m_upSpeedLbl->setStyleSheet("text-align:left;");
+    m_upSpeedLbl->setMinimumWidth(200);
+
     m_DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), bar);
     m_DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
 
@@ -124,7 +130,6 @@ StatusBar::StatusBar(QStatusBar *bar)
     m_layout->addWidget(m_upSpeedLbl);
 
     bar->addPermanentWidget(m_container);
-    m_container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     bar->setStyleSheet("QWidget {margin: 0;}");
     m_container->adjustSize();
     bar->adjustSize();
@@ -199,15 +204,17 @@ void StatusBar::updateDHTNodesNumber(const BitTorrent::SessionStatus &sessionSta
 
 void StatusBar::updateSpeedLabels(const BitTorrent::SessionStatus &sessionStatus)
 {
-    QString speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate(), true) + " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload()) + ")";
+    QString speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate(), true);
     int speedLimit = BitTorrent::Session::instance()->downloadRateLimit();
     if (speedLimit)
-        speedLbl = "[" + Utils::Misc::friendlyUnit(speedLimit, true) + "] " + speedLbl;
+        speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + "]";
+    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload()) + ")";
     m_dlSpeedLbl->setText(speedLbl);
     speedLimit = BitTorrent::Session::instance()->uploadRateLimit();
-    speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate(), true) + " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload()) + ")";
+    speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate(), true);
     if (speedLimit)
-        speedLbl = "[" + Utils::Misc::friendlyUnit(speedLimit, true) + "] " + speedLbl;
+        speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + "]";
+    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload()) + ")";
     m_upSpeedLbl->setText(speedLbl);
 }
 
