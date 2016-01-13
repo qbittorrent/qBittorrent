@@ -79,8 +79,19 @@ namespace
         virtual bool deleteCookie(const QNetworkCookie &cookie)
         {
             auto myCookies = allCookies();
-            myCookies.removeAll(cookie);
-            setAllCookies(myCookies);
+
+            QList<QNetworkCookie>::Iterator it;
+            for (it = myCookies.begin(); it != myCookies.end(); ++it) {
+                if ((it->name() == cookie.name())
+                        && (it->domain() == cookie.domain())
+                        && (it->path() == cookie.path())) {
+                    myCookies.erase(it);
+                    setAllCookies(myCookies);
+                    return true;
+                }
+            }
+
+            return false;
         }
 #endif
 
