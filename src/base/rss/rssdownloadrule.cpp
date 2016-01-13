@@ -44,6 +44,7 @@ DownloadRule::DownloadRule()
     : m_enabled(false)
     , m_useRegex(false)
     , m_apstate(USE_GLOBAL)
+    , m_ignoreDays(0)
 {
 }
 
