@@ -72,6 +72,9 @@
 SearchWidget::SearchWidget(MainWindow *mainWindow)
     : QWidget(mainWindow)
     , m_mainWindow(mainWindow)
+    , m_isNewQueryString(false)
+    , m_noSearchResults(true)
+    , m_nbSearchResults(0)
 {
     setupUi(this);
 
