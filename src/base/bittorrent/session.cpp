@@ -576,7 +576,7 @@ void Session::configure()
     m_nativeSession->set_pe_settings(encryptionSettings);
 
     // * Add trackers
-    m_additionalTrackers.empty();
+    m_additionalTrackers.clear();
     if (pref->isAddTrackersEnabled()) {
         foreach (QString tracker, pref->getTrackersList().split("\n")) {
             tracker = tracker.trimmed();
