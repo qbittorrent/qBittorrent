@@ -34,7 +34,11 @@
 #include "guiiconprovider.h"
 #include "feedlistwidget.h"
 
-FeedListWidget::FeedListWidget(QWidget *parent, const Rss::ManagerPtr& rssmanager): QTreeWidget(parent), m_rssManager(rssmanager) {
+FeedListWidget::FeedListWidget(QWidget *parent, const Rss::ManagerPtr& rssmanager)
+    : QTreeWidget(parent)
+    , m_rssManager(rssmanager)
+    , m_currentFeed(nullptr)
+{
   setContextMenuPolicy(Qt::CustomContextMenu);
   setDragDropMode(QAbstractItemView::InternalMove);
   setSelectionMode(QAbstractItemView::ExtendedSelection);
