@@ -68,6 +68,7 @@ struct WebSession
     WebSession(const QString& id)
         : id(id)
     {
+        updateTimestamp();
     }
 
     void updateTimestamp()
@@ -349,7 +350,6 @@ bool AbstractWebApplication::sessionStart()
 {
     if (session_ == 0) {
         session_ = new WebSession(generateSid());
-        session_->updateTimestamp();
         sessions_[session_->id] = session_;
 
         QNetworkCookie cookie(C_SID, session_->id.toUtf8());

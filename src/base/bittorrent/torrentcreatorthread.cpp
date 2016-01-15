@@ -60,6 +60,9 @@ bool fileFilter(const std::string &f)
 
 TorrentCreatorThread::TorrentCreatorThread(QObject *parent)
     : QThread(parent)
+    , m_private(false)
+    , m_pieceSize(0)
+    , m_abort(false)
 {
 }
 
