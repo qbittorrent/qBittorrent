@@ -2,31 +2,6 @@
 
 #include <QDateTime>
 
-namespace Log
-{
-    Msg::Msg() {}
-
-    Msg::Msg(int id, MsgType type, const QString &message)
-        : id(id)
-        , timestamp(QDateTime::currentMSecsSinceEpoch())
-        , type(type)
-        , message(message)
-    {
-    }
-
-    Peer::Peer() {}
-
-    Peer::Peer(int id, const QString &ip, bool blocked, const QString &reason)
-        : id(id)
-        , timestamp(QDateTime::currentMSecsSinceEpoch())
-        , ip(ip)
-        , blocked(blocked)
-        , reason(reason)
-    {
-    }
-
-}
-
 Logger* Logger::m_instance = 0;
 
 Logger::Logger()
@@ -61,7 +36,7 @@ void Logger::addMessage(const QString &message, const Log::MsgType &type)
 {
     QWriteLocker locker(&lock);
 
-    Log::Msg temp(msgCounter++, type, message);
+    Log::Msg temp = { msgCounter++, QDateTime::currentMSecsSinceEpoch(), type, message };
     m_messages.push_back(temp);
 
     if (m_messages.size() >= MAX_LOG_MESSAGES)
@@ -74,7 +49,7 @@ void Logger::addPeer(const QString &ip, bool blocked, const QString &reason)
 {
     QWriteLocker locker(&lock);
 
-    Log::Peer temp(peerCounter++, ip, blocked, reason);
+    Log::Peer temp = { peerCounter++, QDateTime::currentMSecsSinceEpoch(), ip, blocked, reason };
     m_peers.push_back(temp);
 
     if (m_peers.size() >= MAX_LOG_MESSAGES)
