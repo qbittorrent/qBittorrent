@@ -191,7 +191,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
 
 bool TransferListSortModel::lowerPositionThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    const TorrentModel *model = dynamic_cast<TorrentModel*>(sourceModel());
+    const TorrentModel *model = static_cast<TorrentModel*>(sourceModel());
 
     // Sort according to TR_PRIORITY
     const int queueL = model->data(model->index(left.row(), TorrentModel::TR_PRIORITY)).toInt();

@@ -167,9 +167,12 @@ TorrentContentModelItem::ItemType TorrentContentModel::itemType(const QModelInde
 
 int TorrentContentModel::getFileIndex(const QModelIndex& index)
 {
-    TorrentContentModelFile* item = dynamic_cast<TorrentContentModelFile*>(static_cast<TorrentContentModelItem*>(index.internalPointer()));
-    Q_ASSERT(item);
-    return item->fileIndex();
+    TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+    if (item->itemType() == TorrentContentModelItem::FileType)
+        return static_cast<TorrentContentModelFile*>(item)->fileIndex();
+
+    Q_ASSERT(item->itemType() == TorrentContentModelItem::FileType);
+    return -1;
 }
 
 QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
