@@ -532,6 +532,7 @@ window.addEvent('load', function () {
                 $('prop_files').addClass("invisible");
                 $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
+                localStorage.setItem('selected_tab', this.id);
             });
 
             $('PropTrackersLink').addEvent('click', function(e){
@@ -541,6 +542,7 @@ window.addEvent('load', function () {
                 $('prop_files').addClass("invisible");
                 $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
+                localStorage.setItem('selected_tab', this.id);
             });
 
             $('PropPeersLink').addEvent('click', function(e){
@@ -550,6 +552,7 @@ window.addEvent('load', function () {
                 $('prop_webseeds').addClass("invisible");
                 $('prop_files').addClass("invisible");
                 updatePropertiesPanel();
+                localStorage.setItem('selected_tab', this.id);
             });
 
             $('PropWebSeedsLink').addEvent('click', function(e){
@@ -559,6 +562,7 @@ window.addEvent('load', function () {
                 $('prop_files').addClass("invisible");
                 $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
+                localStorage.setItem('selected_tab', this.id);
             });
 
             $('PropFilesLink').addEvent('click', function(e){
@@ -568,11 +572,14 @@ window.addEvent('load', function () {
                 $('prop_webseeds').addClass("invisible");
                 $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
+                localStorage.setItem('selected_tab', this.id);
             });
 
             $('propertiesPanel_collapseToggle').addEvent('click', function(e){
                 updatePropertiesPanel();
             });
+
+            $(getLocalStorageItem('selected_tab', 'PropGeneralLink')).click();
         },
         column : 'mainColumn',
         height : prop_h
