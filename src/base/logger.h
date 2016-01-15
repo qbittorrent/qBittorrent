@@ -20,8 +20,6 @@ namespace Log
 
     struct Msg
     {
-        Msg();
-        Msg(int id, MsgType type, const QString &message);
         int id;
         qint64 timestamp;
         MsgType type;
@@ -30,8 +28,6 @@ namespace Log
 
     struct Peer
     {
-        Peer(int id, const QString &ip, bool blocked, const QString &reason);
-        Peer();
         int id;
         qint64 timestamp;
         QString ip;
