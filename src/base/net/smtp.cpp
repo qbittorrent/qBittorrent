@@ -96,6 +96,7 @@ Smtp::Smtp(QObject *parent)
     : QObject(parent)
     , m_state(Init)
     , m_useSsl(false)
+    , m_authType(AuthPlain)
 {
 #ifndef QT_NO_OPENSSL
     m_socket = new QSslSocket(this);
