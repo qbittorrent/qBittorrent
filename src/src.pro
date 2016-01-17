@@ -21,7 +21,7 @@ os2: include(../os2conf.pri)
 
 nogui {
     QT -= gui
-    DEFINES += DISABLE_GUI DISABLE_COUNTRIES_RESOLUTION
+    DEFINES += DISABLE_GUI
     TARGET = qbittorrent-nox
 } else {
     QT += xml
