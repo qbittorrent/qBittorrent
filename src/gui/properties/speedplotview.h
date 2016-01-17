@@ -87,6 +87,13 @@ private:
         HOUR6_SEC = 6 * 60 * 60
     };
 
+    enum PointsToSave
+    {
+        MIN5_BUF_SIZE = 5 * 60,
+        MIN30_BUF_SIZE = 10 * 60,
+        HOUR6_BUF_SIZE = 20 * 60
+    };
+
     struct GraphProperties
     {
         GraphProperties();
@@ -97,14 +104,27 @@ private:
         bool m_enable;
     };
 
-    boost::circular_buffer<uint> m_xData;
-    QMap<GraphID, boost::circular_buffer<int> > m_yData;
+    boost::circular_buffer<uint> m_xData5Min;
+    boost::circular_buffer<uint> m_xData30Min;
+    boost::circular_buffer<uint> m_xData6Hour;
+    QMap<GraphID, boost::circular_buffer<int> > m_yData5Min;
+    QMap<GraphID, boost::circular_buffer<int> > m_yData30Min;
+    QMap<GraphID, boost::circular_buffer<int> > m_yData6Hour;
     QMap<GraphID, GraphProperties> m_properties;
 
-    PeriodInSeconds m_viewablePointsCount;
-    PeriodInSeconds m_maxCapacity;
+    TimePeriod m_period;
+    int m_viewablePointsCount;
+
+    int m_counter30Min;
+    int m_counter6Hour;
 
     int maxYValue();
+
+    void initBuffers(int capacity, boost::circular_buffer<uint> &xBuffer,
+                     QMap<SpeedPlotView::GraphID, boost::circular_buffer<int> > &yBuffers);
+
+    boost::circular_buffer<uint> &getCurrentXData();
+    QMap<SpeedPlotView::GraphID, boost::circular_buffer<int> > &getCurrentYData();
 };
 
 #endif // SPEEDPLOTVIEW_H
