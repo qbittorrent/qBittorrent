@@ -163,15 +163,12 @@ void SpeedWidget::graphUpdate()
 void SpeedWidget::onPeriodChange(int period)
 {
     m_plot->setViewableLastPoints(static_cast<SpeedPlotView::TimePeriod>(period));
-    graphUpdate();
 }
 
 void SpeedWidget::onGraphChange(int id)
 {
     QAction *action = m_graphsMenuActions.at(id);
     m_plot->setGraphEnable(static_cast<SpeedPlotView::GraphID>(id), action->isChecked());
-
-    graphUpdate();
 }
 
 void SpeedWidget::loadSettings()
