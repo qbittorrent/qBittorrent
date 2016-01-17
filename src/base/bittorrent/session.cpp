@@ -62,10 +62,6 @@ using namespace BitTorrent;
 #include <libtorrent/extensions/smart_ban.hpp>
 //#include <libtorrent/extensions/metadata_transfer.hpp>
 
-#ifndef DISABLE_COUNTRIES_RESOLUTION
-#include "base/net/geoipmanager.h"
-#endif
-
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
