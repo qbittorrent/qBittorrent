@@ -127,7 +127,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="133"/>
         <source>Set as default label</source>
-        <translation type="unfinished"></translation>
+        <translation>Tetapkan sebagai label baku</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="143"/>
@@ -424,12 +424,12 @@
     <message>
         <location filename="../gui/advancedsettings.h" line="256"/>
         <source>Resolve peer countries (GeoIP)</source>
-        <translation>Singkap negara rekanan (GeoIP)</translation>
+        <translation>Singkap negara rekan (GeoIP)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="259"/>
         <source>Resolve peer host names</source>
-        <translation>Singkap nama hos rekanan</translation>
+        <translation>Singkap nama host rekan</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="267"/>
@@ -454,7 +454,7 @@
     <message>
         <location filename="../gui/advancedsettings.h" line="318"/>
         <source>Exchange trackers with other peers</source>
-        <translation>Bertukar pelacak dengan rekanan lainnya</translation>
+        <translation>Bertukar pelacak dengan rekan lainnya</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="321"/>
@@ -476,7 +476,7 @@
     <message>
         <location filename="../gui/advancedsettings.h" line="264"/>
         <source>Maximum number of half-open connections [0: Unlimited]</source>
-        <translation type="unfinished"></translation>
+        <translation>Jumlah maksimum koneksi terbuka-setengah [0: Tidak terbatas]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.h" line="293"/>
@@ -863,316 +863,316 @@
 <context>
     <name>BitTorrent::Session</name>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="173"/>
+        <location filename="../base/bittorrent/session.cpp" line="169"/>
         <source>Peer ID: </source>
-        <translation>ID Rekanan:</translation>
+        <translation>ID Rekan:</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="316"/>
+        <location filename="../base/bittorrent/session.cpp" line="312"/>
         <source>HTTP User-Agent is &apos;%1&apos;</source>
         <translation>User-Agent HTTP adalah &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="343"/>
+        <location filename="../base/bittorrent/session.cpp" line="339"/>
         <source>Anonymous mode [ON]</source>
         <translation>Mode anonim [NYALA]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="345"/>
+        <location filename="../base/bittorrent/session.cpp" line="341"/>
         <source>Anonymous mode [OFF]</source>
         <translation>Mode anonim [MATI]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="536"/>
+        <location filename="../base/bittorrent/session.cpp" line="532"/>
         <source>PeX support [ON]</source>
         <translation>Dukungan PeX [NYALA]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="538"/>
+        <location filename="../base/bittorrent/session.cpp" line="534"/>
         <source>PeX support [OFF]</source>
         <translation>Dukungan PeX [MATI]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="540"/>
+        <location filename="../base/bittorrent/session.cpp" line="536"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Wajib memulai ulang untuk menjungkit dukungan PeX</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="545"/>
+        <location filename="../base/bittorrent/session.cpp" line="541"/>
         <source>Local Peer Discovery support [ON]</source>
-        <translation>Dukungan Penemuan Rekanan Lokal [NYALA]</translation>
+        <translation>Dukungan Pencarian Rekan Lokal [NYALA]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="549"/>
+        <location filename="../base/bittorrent/session.cpp" line="545"/>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Dukungan Penemuan Rekanan Lokal [MATI]</translation>
+        <translation>Dukungan Pencarian Rekan Lokal [MATI]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="562"/>
+        <location filename="../base/bittorrent/session.cpp" line="558"/>
         <source>Encryption support [ON]</source>
         <translation>Dukungan enkripsi [NYALA]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="567"/>
+        <location filename="../base/bittorrent/session.cpp" line="563"/>
         <source>Encryption support [FORCED]</source>
         <translation>Dukungan enkripsi [DIPAKSA]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="572"/>
+        <location filename="../base/bittorrent/session.cpp" line="568"/>
         <source>Encryption support [OFF]</source>
         <translation>Dukungan enkripsi [MATI]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="650"/>
+        <location filename="../base/bittorrent/session.cpp" line="646"/>
         <source>Embedded Tracker [ON]</source>
         <translation>Pelacak Tertanam [NYALA]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="652"/>
+        <location filename="../base/bittorrent/session.cpp" line="648"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>Gagal memulai pelacak tertanam!</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="655"/>
+        <location filename="../base/bittorrent/session.cpp" line="651"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>Pelacak Tertanam [MATI]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="693"/>
+        <location filename="../base/bittorrent/session.cpp" line="689"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removing...</source>
         <translation>&apos;%1&apos; telah mencapai rasio maksimum yang Anda tetapkan. Membuang...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="699"/>
+        <location filename="../base/bittorrent/session.cpp" line="695"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Pausing...</source>
         <translation>&apos;%1&apos; telah mencapai rasio maksimum yang Anda tetapkan. Menangguhkan...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1400"/>
+        <location filename="../base/bittorrent/session.cpp" line="1396"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>Status jaringan sistem berubah menjadi %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1400"/>
+        <location filename="../base/bittorrent/session.cpp" line="1396"/>
         <source>ONLINE</source>
         <translation>DARING</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1400"/>
+        <location filename="../base/bittorrent/session.cpp" line="1396"/>
         <source>OFFLINE</source>
         <translation>LURING</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1412"/>
+        <location filename="../base/bittorrent/session.cpp" line="1408"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>Konfigurasi jaringan dari %1 telah berubah, menyegarkan jalinan sesi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1696"/>
+        <location filename="../base/bittorrent/session.cpp" line="1692"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>Tidak bisa mengawakode &apos;%1&apos; berkas torrent.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1802"/>
+        <location filename="../base/bittorrent/session.cpp" line="1798"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>Mengunduh rekursif berkas &apos;%1&apos; yang tertanam di dalam torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2113"/>
+        <location filename="../base/bittorrent/session.cpp" line="2109"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>Tidak bisa menyimpan &apos;%1.torrent&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2218"/>
+        <location filename="../base/bittorrent/session.cpp" line="2214"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>karena %1 dinonaktifkan.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2221"/>
+        <location filename="../base/bittorrent/session.cpp" line="2217"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>karena %1 dinonaktifkan.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2239"/>
+        <location filename="../base/bittorrent/session.cpp" line="2235"/>
         <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
         <translation>Pencarian bibit URL gagal untuk URL: &apos;%1&apos;, pesan: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="812"/>
+        <location filename="../base/bittorrent/session.cpp" line="808"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; telah dibuang dari daftar transfer dan diska.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="814"/>
+        <location filename="../base/bittorrent/session.cpp" line="810"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; telah dibuang dari daftar transfer.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="977"/>
+        <location filename="../base/bittorrent/session.cpp" line="973"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Mengunduh &apos;%1&apos;, mohon tunggu...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1246"/>
+        <location filename="../base/bittorrent/session.cpp" line="1242"/>
         <source>DHT support [ON]</source>
         <translation>Dukungan DHT [NYALA]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1251"/>
+        <location filename="../base/bittorrent/session.cpp" line="1247"/>
         <source>DHT support [OFF]. Reason: %1</source>
         <translation>Dukungan DHT [MATI]. Alasan: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1259"/>
+        <location filename="../base/bittorrent/session.cpp" line="1255"/>
         <source>DHT support [OFF]</source>
         <translation>Dukungan DHT [MATI]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="165"/>
-        <location filename="../base/bittorrent/session.cpp" line="1482"/>
+        <location filename="../base/bittorrent/session.cpp" line="161"/>
+        <location filename="../base/bittorrent/session.cpp" line="1478"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent sedang mencoba mendengarkan semua port antarmuka: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1435"/>
+        <location filename="../base/bittorrent/session.cpp" line="1431"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Antarmuka jaringan yang dijabarkan tidak valid: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="169"/>
-        <location filename="../base/bittorrent/session.cpp" line="1493"/>
+        <location filename="../base/bittorrent/session.cpp" line="165"/>
+        <location filename="../base/bittorrent/session.cpp" line="1489"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent sedang mencoba mendengarkan port antarmuka %1: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1459"/>
+        <location filename="../base/bittorrent/session.cpp" line="1455"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
         <translation>qBittorrent tidak menemukan alamat lokal %1 untuk didengarkan</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1486"/>
+        <location filename="../base/bittorrent/session.cpp" line="1482"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2.</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent gagal mendengarkan semua port antarmuka: %1. Alasan: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1607"/>
+        <location filename="../base/bittorrent/session.cpp" line="1603"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Pelacak &apos;%1&apos; telah ditambahkan ke torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1617"/>
+        <location filename="../base/bittorrent/session.cpp" line="1613"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>Pelacak &apos;%1&apos; telah dihapus dari torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1632"/>
+        <location filename="../base/bittorrent/session.cpp" line="1628"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Bibit URL &apos;%1&apos; telah ditambahkan ke torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1638"/>
+        <location filename="../base/bittorrent/session.cpp" line="1634"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>Bibit URL &apos;%1&apos; telah dihapus dari torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1918"/>
+        <location filename="../base/bittorrent/session.cpp" line="1914"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>Tidak bisa melanjutkan torrent &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1941"/>
+        <location filename="../base/bittorrent/session.cpp" line="1937"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Berhasil mengurai penyaring IP yang diberikan: %1 aturan diterapkan.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1947"/>
+        <location filename="../base/bittorrent/session.cpp" line="1943"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Galat: Gagal mengurai penyaring IP yang diberikan.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2075"/>
+        <location filename="../base/bittorrent/session.cpp" line="2071"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>Tidak bisa menambahkan torrent. Alasan: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2096"/>
+        <location filename="../base/bittorrent/session.cpp" line="2092"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; dilanjutkan. (lanjut cepat)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2127"/>
+        <location filename="../base/bittorrent/session.cpp" line="2123"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; ditambahkan ke daftar unduh.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2182"/>
+        <location filename="../base/bittorrent/session.cpp" line="2178"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
         <translation>Sebuah galat I/O telah terjadi, &apos;%1&apos; ditangguhkan. %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2190"/>
+        <location filename="../base/bittorrent/session.cpp" line="2186"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Pemetaan port gagal, pesan: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2196"/>
+        <location filename="../base/bittorrent/session.cpp" line="2192"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Pemetaan port sukses, pesan: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2206"/>
+        <location filename="../base/bittorrent/session.cpp" line="2202"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>disebabkan oleh penyaring IP.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2209"/>
+        <location filename="../base/bittorrent/session.cpp" line="2205"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>disebabkan oleh penyaring port.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2212"/>
+        <location filename="../base/bittorrent/session.cpp" line="2208"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>disebabkan oleh pembatasan mode campuran i2p.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2215"/>
+        <location filename="../base/bittorrent/session.cpp" line="2211"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>karena memiliki port yang rendah.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2253"/>
+        <location filename="../base/bittorrent/session.cpp" line="2249"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent berhasil mendengarkan port antarmuka %1: %2/%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2279"/>
+        <location filename="../base/bittorrent/session.cpp" line="2275"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent gagal mendengarkan port antarmuka %1: %2/%3. Alasan: %4.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2288"/>
+        <location filename="../base/bittorrent/session.cpp" line="2284"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>IP eksternal: %1</translation>
@@ -1284,12 +1284,12 @@ Anda seharusnya mendapatkan informasi ini dari preferensi peramban Web Anda.</tr
 <context>
     <name>FeedListWidget</name>
     <message>
-        <location filename="../gui/rss/feedlistwidget.cpp" line="42"/>
+        <location filename="../gui/rss/feedlistwidget.cpp" line="46"/>
         <source>RSS feeds</source>
         <translation>Umpan RSS</translation>
     </message>
     <message>
-        <location filename="../gui/rss/feedlistwidget.cpp" line="44"/>
+        <location filename="../gui/rss/feedlistwidget.cpp" line="48"/>
         <source>Unread</source>
         <translation>Belum dibaca</translation>
     </message>
@@ -1378,211 +1378,338 @@ Anda seharusnya mendapatkan informasi ini dari preferensi peramban Web Anda.</tr
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="40"/>
+        <source>Exit qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="41"/>
         <source>Download Torrents from their URL or Magnet link</source>
         <translation>Unduh Torrent dari URL mereka atau tautan Magnet</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="41"/>
+        <location filename="../webui/extra_translations.h" line="42"/>
         <source>Only one link per line</source>
         <translation>Hanya satu tautan per baris</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="43"/>
+        <location filename="../webui/extra_translations.h" line="44"/>
         <source>Download</source>
         <translation>Unduh</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="45"/>
+        <location filename="../webui/extra_translations.h" line="46"/>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
         <translation>Batas laju unggah global harus lebih besar dari 0 atau nonaktif.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="46"/>
+        <location filename="../webui/extra_translations.h" line="47"/>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
         <translation>Batas laju unduh global harus lebih besar dari 0 atau nonaktif.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="47"/>
+        <location filename="../webui/extra_translations.h" line="48"/>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
         <translation>Batas laju unggah alternatif harus lebih besar dari 0 atau nonaktif.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="48"/>
+        <location filename="../webui/extra_translations.h" line="49"/>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
         <translation>Batas laju unduh alternatif harus lebih besar dari 0 atau nonaktif.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="49"/>
+        <location filename="../webui/extra_translations.h" line="50"/>
         <source>Maximum active downloads must be greater than -1.</source>
         <translation>Unduhan aktif maksimum harus lebih besar dari -1.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="50"/>
+        <location filename="../webui/extra_translations.h" line="51"/>
         <source>Maximum active uploads must be greater than -1.</source>
         <translation>Unggahan aktif maksimum harus lebih besar dari -1.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="51"/>
+        <location filename="../webui/extra_translations.h" line="52"/>
         <source>Maximum active torrents must be greater than -1.</source>
         <translation>Torrent aktif maksimum harus lebih besar dari -1.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="52"/>
+        <location filename="../webui/extra_translations.h" line="53"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
         <translation>Jumlah maksimum batas koneksi harus lebih besar dari 0 atau nonaktif.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="53"/>
+        <location filename="../webui/extra_translations.h" line="54"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
         <translation>Jumlah maksimum batas koneksi per torrent harus lebih besar dari 0 atau nonaktif.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="54"/>
+        <location filename="../webui/extra_translations.h" line="55"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Jumlah maksimum batas slot unggah per torrent harus lebih besar dari 0 atau nonaktif.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="55"/>
+        <location filename="../webui/extra_translations.h" line="56"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>Tidak bisa menyimpan preferensi program, qBittorrent mungkin tidak terjangkau.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="56"/>
+        <location filename="../webui/extra_translations.h" line="57"/>
         <source>Language</source>
         <translation>Bahasa</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="57"/>
+        <location filename="../webui/extra_translations.h" line="58"/>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
         <translation>Port yang digunakan untuk koneksi masuk harus antara 1 dan 65535.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="58"/>
+        <location filename="../webui/extra_translations.h" line="59"/>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
         <translation>Port yang digunakan untuk Web UI harus antara 1 dan 65535.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="68"/>
+        <location filename="../webui/extra_translations.h" line="69"/>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
         <translation>Tidak bisa masuk, qBittorrent mungkin tidak terjangkau.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="69"/>
+        <location filename="../webui/extra_translations.h" line="70"/>
         <source>Invalid Username or Password.</source>
         <translation>Nama Pengguna atau Sandi tidak valid.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="70"/>
+        <location filename="../webui/extra_translations.h" line="71"/>
         <source>Password</source>
         <translation>Sandi</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="71"/>
+        <location filename="../webui/extra_translations.h" line="72"/>
         <source>Login</source>
         <translation>Masuk</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="72"/>
+        <location filename="../webui/extra_translations.h" line="73"/>
         <source>Upload Failed!</source>
         <translation>Gagal Mengunggah!</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="73"/>
+        <location filename="../webui/extra_translations.h" line="74"/>
         <source>Original authors</source>
         <translation>Pengembang asli</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="74"/>
+        <location filename="../webui/extra_translations.h" line="75"/>
         <source>Upload limit:</source>
         <translation>Batas unggah:</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="75"/>
+        <location filename="../webui/extra_translations.h" line="76"/>
         <source>Download limit:</source>
         <translation>Batas unduh:</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="76"/>
+        <location filename="../webui/extra_translations.h" line="77"/>
         <source>Apply</source>
         <translation>Terapkan</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="77"/>
+        <location filename="../webui/extra_translations.h" line="78"/>
         <source>Add</source>
         <translation>Tambah</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="78"/>
+        <location filename="../webui/extra_translations.h" line="79"/>
         <source>Upload Torrents</source>
         <translation>Unggah Torrent</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="79"/>
+        <location filename="../webui/extra_translations.h" line="80"/>
         <source>All</source>
         <translation>Semua</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="80"/>
+        <location filename="../webui/extra_translations.h" line="81"/>
         <source>Downloading</source>
         <translation>Mengunduh</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="81"/>
+        <location filename="../webui/extra_translations.h" line="82"/>
         <source>Seeding</source>
         <translation>Membibit</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="82"/>
+        <location filename="../webui/extra_translations.h" line="83"/>
         <source>Completed</source>
         <translation>Komplet</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="83"/>
+        <location filename="../webui/extra_translations.h" line="84"/>
         <source>Resumed</source>
         <translation>Dilanjutkan</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="84"/>
+        <location filename="../webui/extra_translations.h" line="85"/>
         <source>Paused</source>
         <translation>Ditangguhkan</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="85"/>
+        <location filename="../webui/extra_translations.h" line="86"/>
         <source>Active</source>
         <translation>Aktif</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="86"/>
+        <location filename="../webui/extra_translations.h" line="87"/>
         <source>Inactive</source>
         <translation>Tidak aktif</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="87"/>
-        <source>Save files to location:</source>
-        <translation type="unfinished">Simpan berkas ke lokasi:</translation>
-    </message>
-    <message>
         <location filename="../webui/extra_translations.h" line="88"/>
-        <source>Label:</source>
-        <translation type="unfinished">Label:</translation>
+        <source>Save files to location:</source>
+        <translation>Simpan berkas ke lokasi:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="89"/>
-        <source>Cookie:</source>
-        <translation type="unfinished"></translation>
+        <source>Label:</source>
+        <translation>Label:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="90"/>
-        <source>Type folder here</source>
-        <translation type="unfinished"></translation>
+        <source>Cookie:</source>
+        <translation>Kuki:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="91"/>
-        <source>Other...</source>
+        <source>Type folder here</source>
+        <translation>Tulis folder di sini</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="92"/>
+        <source>Run an external program on torrent completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="93"/>
+        <source>Enable bandwidth management (uTP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="94"/>
+        <source>Apply rate limit to uTP connections</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="95"/>
+        <source>Alternative Global Rate Limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="96"/>
+        <source>More information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="97"/>
+        <source>Information about certificates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="98"/>
+        <source>Save Files to</source>
+        <translation type="unfinished">Simpan Berkas ke</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="99"/>
+        <source>Watch Folder</source>
+        <translation type="unfinished">Folder Dimonitor</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="100"/>
+        <source>Default Folder</source>
+        <translation type="unfinished">Folder Bawaan</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="105"/>
+        <source>from</source>
+        <comment>from time1 to time2</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="106"/>
+        <source>to</source>
+        <comment>from time1 to time2</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="107"/>
+        <source>Other...</source>
+        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
+        <translation type="unfinished">Lainnya...</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="108"/>
+        <source>Every day</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation type="unfinished">Setiap hari</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="109"/>
+        <source>Week days</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="110"/>
+        <source>Week ends</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="111"/>
+        <source>Monday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="112"/>
+        <source>Tuesday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="113"/>
+        <source>Wednesday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="114"/>
+        <source>Thursday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="115"/>
+        <source>Friday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="116"/>
+        <source>Saturday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="117"/>
+        <source>Sunday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation type="obsolete">Lainnya...</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="104"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Terunduh</translation>
@@ -1593,57 +1720,57 @@ Anda seharusnya mendapatkan informasi ini dari preferensi peramban Web Anda.</tr
         <translation>Keluar</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="42"/>
+        <location filename="../webui/extra_translations.h" line="43"/>
         <source>Upload local torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Unggah torrent lokal</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="44"/>
+        <location filename="../webui/extra_translations.h" line="45"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
         <translation>Apakah Anda yakin ingin menghapus torrent yang dipilih dari daftar transfer?</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="59"/>
+        <location filename="../webui/extra_translations.h" line="60"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Panjang nama pengguna Web UI minimal harus 3 karakter.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="60"/>
+        <location filename="../webui/extra_translations.h" line="61"/>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation>Panjang sandi Web UI minimal harus 3 karakter.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="61"/>
+        <location filename="../webui/extra_translations.h" line="62"/>
         <source>Save</source>
         <translation>Simpan</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="62"/>
+        <location filename="../webui/extra_translations.h" line="63"/>
         <source>qBittorrent client is not reachable</source>
         <translation>Klien qBittorrent tidak terjangkau</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="63"/>
+        <location filename="../webui/extra_translations.h" line="64"/>
         <source>HTTP Server</source>
         <translation>Server HTTP</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="64"/>
+        <location filename="../webui/extra_translations.h" line="65"/>
         <source>The following parameters are supported:</source>
         <translation>Parameter berikut didukung:</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="65"/>
+        <location filename="../webui/extra_translations.h" line="66"/>
         <source>Torrent path</source>
         <translation>Jalur torrent</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="66"/>
+        <location filename="../webui/extra_translations.h" line="67"/>
         <source>Torrent name</source>
         <translation>Nama torrent</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="67"/>
+        <location filename="../webui/extra_translations.h" line="68"/>
         <source>qBittorrent has been shutdown.</source>
         <translation>qBittorrent telah dimatikan.</translation>
     </message>
@@ -2216,7 +2343,8 @@ Apakah Anda ingin mengasosiasikan qBittorrent dengan berkas torrent atau tautan 
         <location filename="../gui/mainwindow.cpp" line="1472"/>
         <source>A new version is available.
 Do you want to download %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Versi baru tersedia.
+Apakah Anda ingin mengunduh %1?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1481"/>
@@ -2280,12 +2408,6 @@ Apakah Anda ingin memasangnya sekarang?</translation>
         <location filename="../gui/mainwindow.cpp" line="1434"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation>Python dibutuhkan untuk dapat menggunakan mesin pencari tetapi sepertinya belum dipasang.</translation>
-    </message>
-    <message>
-        <source>A new version is available.
-Update to version %1?</source>
-        <translation type="obsolete">Versi baru tersedia.
-Mutakhirkan ke versi %1?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1482"/>
@@ -2489,26 +2611,18 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="380"/>
         <source>Venezuela, Bolivarian Republic of</source>
-        <translation type="unfinished"></translation>
+        <translation>Venezuela</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="383"/>
         <source>Viet Nam</source>
-        <translation type="unfinished"></translation>
+        <translation>Vietnam</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="393"/>
         <location filename="../base/net/geoipmanager.cpp" line="397"/>
         <source>N/A</source>
         <translation>T/A</translation>
-    </message>
-    <message>
-        <source>Asia/Pacific Region</source>
-        <translation type="obsolete">Kawasan Asia/Pasifik</translation>
-    </message>
-    <message>
-        <source>Europe</source>
-        <translation type="obsolete">Eropa</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="143"/>
@@ -2544,10 +2658,6 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <location filename="../base/net/geoipmanager.cpp" line="149"/>
         <source>Armenia</source>
         <translation>Armenia</translation>
-    </message>
-    <message>
-        <source>Netherlands Antilles</source>
-        <translation type="obsolete">Antillen Belanda</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="150"/>
@@ -2645,10 +2755,6 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <translation>Brunei Darussalam</translation>
     </message>
     <message>
-        <source>Bolivia</source>
-        <translation type="obsolete">Bolivia</translation>
-    </message>
-    <message>
         <location filename="../base/net/geoipmanager.cpp" line="173"/>
         <source>Brazil</source>
         <translation>Brazil</translation>
@@ -2714,10 +2820,6 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <translation>Swiss</translation>
     </message>
     <message>
-        <source>Cote D&apos;Ivoire</source>
-        <translation type="obsolete">Pantai Gading</translation>
-    </message>
-    <message>
         <location filename="../base/net/geoipmanager.cpp" line="187"/>
         <source>Cook Islands</source>
         <translation>Kepulauan Cook</translation>
@@ -2760,7 +2862,7 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="195"/>
         <source>Curacao</source>
-        <translation type="unfinished"></translation>
+        <translation>Curacao</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="196"/>
@@ -2871,10 +2973,6 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <location filename="../base/net/geoipmanager.cpp" line="217"/>
         <source>France</source>
         <translation>Perancis</translation>
-    </message>
-    <message>
-        <source>France, Metropolitan</source>
-        <translation type="obsolete">Perancis Metropolitan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="218"/>
@@ -3162,10 +3260,6 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <translation>Latvia</translation>
     </message>
     <message>
-        <source>Libyan Arab Jamahiriya</source>
-        <translation type="obsolete">Libya</translation>
-    </message>
-    <message>
         <location filename="../base/net/geoipmanager.cpp" line="279"/>
         <source>Morocco</source>
         <translation>Maroko</translation>
@@ -3191,10 +3285,6 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <translation>Kepulauan Marshall</translation>
     </message>
     <message>
-        <source>Macedonia</source>
-        <translation type="obsolete">Makedonia</translation>
-    </message>
-    <message>
         <location filename="../base/net/geoipmanager.cpp" line="287"/>
         <source>Mali</source>
         <translation>Mali</translation>
@@ -3208,10 +3298,6 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <location filename="../base/net/geoipmanager.cpp" line="289"/>
         <source>Mongolia</source>
         <translation>Mongolia</translation>
-    </message>
-    <message>
-        <source>Macau</source>
-        <translation type="obsolete">Makau</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="291"/>
@@ -3374,17 +3460,9 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <translation>Saint Pierre dan Miquelon</translation>
     </message>
     <message>
-        <source>Pitcairn Islands</source>
-        <translation type="obsolete">Kepulauan Pitcairn</translation>
-    </message>
-    <message>
         <location filename="../base/net/geoipmanager.cpp" line="324"/>
         <source>Puerto Rico</source>
         <translation>Puerto Riko</translation>
-    </message>
-    <message>
-        <source>Palestinian Territory</source>
-        <translation type="obsolete">Palestina</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="326"/>
@@ -3455,10 +3533,6 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <location filename="../base/net/geoipmanager.cpp" line="340"/>
         <source>Singapore</source>
         <translation>Singapura</translation>
-    </message>
-    <message>
-        <source>Saint Helena</source>
-        <translation type="obsolete">Saint Helena</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="342"/>
@@ -3578,62 +3652,62 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="171"/>
         <source>Bolivia, Plurinational State of</source>
-        <translation type="unfinished"></translation>
+        <translation>Bolivia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="172"/>
         <source>Bonaire, Sint Eustatius and Saba</source>
-        <translation type="unfinished"></translation>
+        <translation>Bonaire, Sint Eustatius dan Saba</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="186"/>
         <source>Cote d&apos;Ivoire</source>
-        <translation type="unfinished"></translation>
+        <translation>Pantai Gading</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="278"/>
         <source>Libya</source>
-        <translation type="unfinished"></translation>
+        <translation>Libya</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="283"/>
         <source>Saint Martin (French part)</source>
-        <translation type="unfinished"></translation>
+        <translation>Saint Martin (Perancis)</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="286"/>
         <source>Macedonia, The Former Yugoslav Republic of</source>
-        <translation type="unfinished"></translation>
+        <translation>Republik Makedonia bekas Yugoslavia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="290"/>
         <source>Macao</source>
-        <translation type="unfinished"></translation>
+        <translation>Makau</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="323"/>
         <source>Pitcairn</source>
-        <translation type="unfinished"></translation>
+        <translation>Pitcairn</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="325"/>
         <source>Palestine, State of</source>
-        <translation type="unfinished"></translation>
+        <translation>Palestina</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="341"/>
         <source>Saint Helena, Ascension and Tristan da Cunha</source>
-        <translation type="unfinished"></translation>
+        <translation>Saint Helena, Ascension, dan Tristan da Cunha</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="350"/>
         <source>South Sudan</source>
-        <translation type="unfinished"></translation>
+        <translation>Sudan Selatan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="353"/>
         <source>Sint Maarten (Dutch part)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sint Maarten (Belanda)</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="367"/>
@@ -3701,10 +3775,6 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <translation>Saint Vincent dan Grenadine</translation>
     </message>
     <message>
-        <source>Venezuela</source>
-        <translation type="obsolete">Venezuela</translation>
-    </message>
-    <message>
         <location filename="../base/net/geoipmanager.cpp" line="381"/>
         <source>Virgin Islands, British</source>
         <translation>Kepulauan Virgin, Inggris</translation>
@@ -3713,10 +3783,6 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <location filename="../base/net/geoipmanager.cpp" line="382"/>
         <source>Virgin Islands, U.S.</source>
         <translation>Kepulauan Virgin, Amerika Serikat</translation>
-    </message>
-    <message>
-        <source>Vietnam</source>
-        <translation type="obsolete">Vietnam</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="384"/>
@@ -3769,18 +3835,6 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <translation>Zimbabwe</translation>
     </message>
     <message>
-        <source>Anonymous Proxy</source>
-        <translation type="obsolete">Proksi Anonim</translation>
-    </message>
-    <message>
-        <source>Satellite Provider</source>
-        <translation type="obsolete">Penyedia Satelit</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <translation type="obsolete">Lainnya</translation>
-    </message>
-    <message>
         <location filename="../base/net/geoipmanager.cpp" line="157"/>
         <source>Aland Islands</source>
         <translation>Kepulauan Aland</translation>
@@ -3804,10 +3858,6 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <location filename="../base/net/geoipmanager.cpp" line="168"/>
         <source>Saint Barthelemy</source>
         <translation>Saint Barthelemy</translation>
-    </message>
-    <message>
-        <source>Saint Martin</source>
-        <translation type="obsolete">Saint Martin</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="420"/>
@@ -3846,7 +3896,7 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
 <context>
     <name>Net::Smtp</name>
     <message>
-        <location filename="../base/net/smtp.cpp" line="501"/>
+        <location filename="../base/net/smtp.cpp" line="502"/>
         <source>Email Notification Error:</source>
         <translation>Galat Notifikasi Surel:</translation>
     </message>
@@ -3886,7 +3936,7 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="336"/>
         <source>incoming connection</source>
-        <translation type="unfinished"></translation>
+        <translation>koneksi masuk</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="343"/>
@@ -3901,17 +3951,17 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="357"/>
         <source>peer from PEX</source>
-        <translation type="unfinished"></translation>
+        <translation>rekan dari PEX</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="364"/>
         <source>peer from DHT</source>
-        <translation type="unfinished"></translation>
+        <translation>rekan dari DHT</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="371"/>
         <source>encrypted traffic</source>
-        <translation type="unfinished"></translation>
+        <translation>lalu lintas terenkripsi</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="378"/>
@@ -3921,7 +3971,7 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="393"/>
         <source>peer from LSD</source>
-        <translation type="unfinished"></translation>
+        <translation>rekan dari LSD</translation>
     </message>
 </context>
 <context>
@@ -3992,12 +4042,12 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <location filename="../gui/properties/peerlistwidget.cpp" line="81"/>
         <source>Files</source>
         <comment>i.e. files that are being downloaded right now</comment>
-        <translation type="unfinished"></translation>
+        <translation>Berkas</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="169"/>
         <source>Add a new peer...</source>
-        <translation>Tambah rekanan baru...</translation>
+        <translation>Tambah rekan baru...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="175"/>
@@ -4008,43 +4058,43 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <location filename="../gui/properties/peerlistwidget.cpp" line="177"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="215"/>
         <source>Ban peer permanently</source>
-        <translation>Cekal rekanan secara permanen</translation>
+        <translation>Cekal rekan secara permanen</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="189"/>
         <source>Manually adding peer &apos;%1&apos;...</source>
-        <translation>Secara manual menambahkan rekanan &apos;%1&apos;...</translation>
+        <translation>Secara manual menambahkan rekan &apos;%1&apos;...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="193"/>
         <source>The peer &apos;%1&apos; could not be added to this torrent.</source>
-        <translation>Rekanan &apos;%1&apos; tidak bisa ditambahkan ke torrent ini.</translation>
+        <translation>Rekan &apos;%1&apos; tidak bisa ditambahkan ke torrent ini.</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="226"/>
         <source>Manually banning peer &apos;%1&apos;...</source>
-        <translation>Secara manual mencekal rekanan &apos;%1&apos;...</translation>
+        <translation>Secara manual mencekal rekan &apos;%1&apos;...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="197"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="199"/>
         <source>Peer addition</source>
-        <translation>Tambahan rekanan</translation>
+        <translation>Tambahan rekan</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="197"/>
         <source>Some peers could not be added. Check the Log for details.</source>
-        <translation>Beberapa rekanan tidak bisa ditambahkan. Periksa Log untuk detail lebih lanjut.</translation>
+        <translation>Beberapa rekan tidak bisa ditambahkan. Periksa Log untuk detail lebih lanjut.</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="199"/>
         <source>The peers were added to this torrent.</source>
-        <translation>Rekanan telah ditambahkan ke torrent ini.</translation>
+        <translation>Rekan telah ditambahkan ke torrent ini.</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="215"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation>Apakah Anda yakin ingin mencekal secara permanen rekanan yang dipilih?</translation>
+        <translation>Apakah Anda yakin ingin mencekal secara permanen rekan yang dipilih?</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="216"/>
@@ -4062,22 +4112,22 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
     <message>
         <location filename="../gui/properties/peersadditiondlg.cpp" line="58"/>
         <source>No peer entered</source>
-        <translation>Tidak ada rekanan yang dimasukkan</translation>
+        <translation>Tidak ada rekan yang dimasukkan</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondlg.cpp" line="59"/>
         <source>Please type at least one peer.</source>
-        <translation>Mohon ketik paling tidak satu rekanan.</translation>
+        <translation>Mohon ketik paling tidak satu rekan.</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondlg.cpp" line="69"/>
         <source>Invalid peer</source>
-        <translation>Rekanan tidak valid</translation>
+        <translation>Rekan tidak valid</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondlg.cpp" line="70"/>
         <source>The peer &apos;%1&apos; is invalid.</source>
-        <translation>Rekanan &apos;%1&apos; tidak valid.</translation>
+        <translation>Rekan &apos;%1&apos; tidak valid.</translation>
     </message>
 </context>
 <context>
@@ -4098,65 +4148,65 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="17"/>
         <source>Search plugins</source>
-        <translation type="unfinished">Pengaya pencarian</translation>
+        <translation>Plugin pencarian</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="30"/>
         <source>Installed search plugins:</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin pencarian terpasang:</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="50"/>
         <source>Name</source>
-        <translation type="unfinished">Nama</translation>
+        <translation>Nama</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="55"/>
         <source>Version</source>
-        <translation type="unfinished">Versi</translation>
+        <translation>Versi</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="60"/>
         <source>Url</source>
-        <translation type="unfinished">Url</translation>
+        <translation>Url</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="65"/>
         <location filename="../gui/search/pluginselectdlg.ui" line="124"/>
         <source>Enabled</source>
-        <translation type="unfinished">Diaktifkan</translation>
+        <translation>Diaktifkan</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="83"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished">Anda bisa mendapatkan mesin pencari baru di sini: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation>Anda bisa mendapatkan mesin pencari baru di sini: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="98"/>
         <source>Install a new one</source>
-        <translation type="unfinished">Pasang satu yang baru</translation>
+        <translation>Pasang yang baru</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="105"/>
         <source>Check for updates</source>
-        <translation type="unfinished">Periksa pemutakhiran</translation>
+        <translation>Periksa pemutakhiran</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="112"/>
         <source>Close</source>
-        <translation type="unfinished">Tutup</translation>
+        <translation>Tutup</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="129"/>
         <source>Uninstall</source>
-        <translation type="unfinished">Bongkar</translation>
+        <translation>Bongkar</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="162"/>
         <location filename="../gui/search/pluginselectdlg.cpp" line="224"/>
         <location filename="../gui/search/pluginselectdlg.cpp" line="283"/>
         <source>Yes</source>
-        <translation type="unfinished">Ya</translation>
+        <translation>Ya</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="166"/>
@@ -4164,107 +4214,107 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
         <location filename="../gui/search/pluginselectdlg.cpp" line="228"/>
         <location filename="../gui/search/pluginselectdlg.cpp" line="287"/>
         <source>No</source>
-        <translation type="unfinished">Tidak</translation>
+        <translation>Tidak</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="211"/>
         <source>Uninstall warning</source>
-        <translation type="unfinished">Peringatan pembongkaran</translation>
+        <translation>Peringatan pembongkaran</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="211"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation type="unfinished">Beberapa pengaya tidak bisa dibuang karena mereka disertakan qBittorrent secara bawaan. Hanya yang Anda tambahkan sendiri yang bisa Anda buang.
-Pengaya tersebut dinonfungsikan.</translation>
+        <translation>Beberapa plugin tidak bisa dibuang karena mereka disertakan qBittorrent secara bawaan. Hanya yang Anda tambahkan sendiri yang bisa Anda buang.
+Plugin tersebut telah dinonfungsikan.</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="213"/>
         <source>Uninstall success</source>
-        <translation type="unfinished">Berhasil dibongkar</translation>
+        <translation>Berhasil dibongkar</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="213"/>
         <source>All selected plugins were uninstalled successfully</source>
-        <translation type="unfinished">Semua pengaya yang dipilih telah berhasil dibuang.</translation>
+        <translation>Semua plugin yang dipilih telah berhasil dibongkar.</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="333"/>
         <location filename="../gui/search/pluginselectdlg.cpp" line="340"/>
         <source>New search engine plugin URL</source>
-        <translation type="unfinished">URL pengaya mesin pencarian baru</translation>
+        <translation>URL plugin mesin pencarian baru</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="334"/>
         <location filename="../gui/search/pluginselectdlg.cpp" line="341"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="338"/>
         <source>Invalid link</source>
-        <translation type="unfinished">Tautan tidak valid</translation>
+        <translation>Tautan tidak valid</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="338"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="unfinished">Tautan sepertinya tidak mengarah ke pengaya mesin pencarian.</translation>
+        <translation>Tautan sepertinya tidak mengarah ke plugin mesin pencarian.</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="354"/>
         <source>Select search plugins</source>
-        <translation type="unfinished">Pilih pengaya pencarian</translation>
+        <translation>Pilih plugin pencarian</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="355"/>
         <source>qBittorrent search plugin</source>
-        <translation type="unfinished">Pengaya pencarian qBittorrent</translation>
+        <translation>Plugin pencarian qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="395"/>
         <location filename="../gui/search/pluginselectdlg.cpp" line="408"/>
         <location filename="../gui/search/pluginselectdlg.cpp" line="437"/>
         <source>Search plugin update</source>
-        <translation type="unfinished">Pemutakhiran pengaya pencarian</translation>
+        <translation>Pemutakhiran plugin pencarian</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="395"/>
         <source>All your plugins are already up to date.</source>
-        <translation type="unfinished">Semua pengaya Anda telah dimutakhirkan.</translation>
+        <translation>Semua plugin Anda telah dimutakhirkan.</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="408"/>
         <source>Sorry, couldn&apos;t check for plugin updates. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Maaf, tidak bisa memeriksa pemutakhiran plugin: %1</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="415"/>
         <location filename="../gui/search/pluginselectdlg.cpp" line="421"/>
         <location filename="../gui/search/pluginselectdlg.cpp" line="430"/>
         <source>Search plugin install</source>
-        <translation type="unfinished">Pemasangan pengaya pencarian</translation>
+        <translation>Pemasangan plugin pencarian</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="415"/>
         <source>&quot;%1&quot; search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Plugin mesin pencarian &quot;%1&quot; telah berhasil dipasang.</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="421"/>
         <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Tidak bisa memasang plugin mesin pencarian &quot;%1&quot;. %2</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="430"/>
         <source>&quot;%1&quot; search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Plugin mesin pencarian &quot;%1&quot; telah berhasil dimutakhirkan.</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="437"/>
         <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Tidak bisa memutakhirkan plugin mesin pencarian &quot;%1&quot;. %2</translation>
     </message>
 </context>
 <context>
@@ -4272,22 +4322,22 @@ Pengaya tersebut dinonfungsikan.</translation>
     <message>
         <location filename="../gui/search/pluginsourcedlg.ui" line="13"/>
         <source>Plugin source</source>
-        <translation type="unfinished">Sumber pengaya</translation>
+        <translation>Sumber plugin</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginsourcedlg.ui" line="26"/>
         <source>Search plugin source:</source>
-        <translation type="unfinished">Sumber pengaya pencarian:</translation>
+        <translation>Sumber plugin pencarian:</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginsourcedlg.ui" line="35"/>
         <source>Local file</source>
-        <translation type="unfinished">Berkas lokal</translation>
+        <translation>Berkas lokal</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginsourcedlg.ui" line="42"/>
         <source>Web link</source>
-        <translation type="unfinished">Tautan web</translation>
+        <translation>Tautan web</translation>
     </message>
 </context>
 <context>
@@ -4390,7 +4440,7 @@ Pengaya tersebut dinonfungsikan.</translation>
     <message>
         <location filename="../gui/options.ui" line="1990"/>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Aktifkan Penemuan Rekanan Lokal untuk menemukan lebih banyak rekanan</translation>
+        <translation>Aktifkan Pencarian Rekan Lokal untuk menemukan lebih banyak rekan</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2002"/>
@@ -4515,7 +4565,7 @@ Pengaya tersebut dinonfungsikan.</translation>
     <message utf8="true">
         <location filename="../gui/options.ui" line="1974"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation>Pertukaran rekanan dengan aplikasi Bittorrent yang kompatibel (µTorrent, Vuze, ...)</translation>
+        <translation>Pertukaran rekan dengan aplikasi Bittorrent yang kompatibel (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1313"/>
@@ -4758,7 +4808,7 @@ Pengaya tersebut dinonfungsikan.</translation>
     <message>
         <location filename="../gui/options.ui" line="1370"/>
         <source>Use proxy for peer connections</source>
-        <translation>Gunakan proksi untuk koneksi rekanan</translation>
+        <translation>Gunakan proksi untuk koneksi rekan</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1377"/>
@@ -4773,7 +4823,7 @@ Pengaya tersebut dinonfungsikan.</translation>
     <message>
         <location filename="../gui/options.ui" line="1387"/>
         <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
-        <translation>Umpan RSS, mesin pencari, pemutakhiran perangkat lunak atau hal yang lain selain pengunduhan torrent atau yang terkait (seperti pertukaran rekanan) akan menggunakan sambungan langsung.</translation>
+        <translation>Umpan RSS, mesin pencari, pemutakhiran perangkat lunak atau hal yang lain selain pengunduhan torrent atau yang terkait (seperti pertukaran rekan) akan menggunakan sambungan langsung.</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1459"/>
@@ -4798,7 +4848,7 @@ Pengaya tersebut dinonfungsikan.</translation>
     <message>
         <location filename="../gui/options.ui" line="1869"/>
         <source>Apply rate limit to peers on LAN</source>
-        <translation>Terapkan batas laju untuk rekanan pada LAN</translation>
+        <translation>Terapkan batas laju untuk rekan pada LAN</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1732"/>
@@ -4838,17 +4888,17 @@ Pengaya tersebut dinonfungsikan.</translation>
     <message>
         <location filename="../gui/options.ui" line="1964"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Aktifkan DHT (jaringan desentralisasi) untuk menemukan lebih banyak rekanan</translation>
+        <translation>Aktifkan DHT (jaringan desentralisasi) untuk menemukan lebih banyak rekan</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1977"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Aktifkan Pertukaran Rekanan (PeX) untuk menemukan lebih banyak rekanan</translation>
+        <translation>Aktifkan Pertukaran Rekan (PeX) untuk menemukan lebih banyak rekan</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1987"/>
         <source>Look for peers on your local network</source>
-        <translation>Temukan rekanan di jaringan lokal Anda</translation>
+        <translation>Temukan rekan di jaringan lokal Anda</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2045"/>
@@ -5012,7 +5062,7 @@ Pengaya tersebut dinonfungsikan.</translation>
     <message>
         <location filename="../gui/options.ui" line="2352"/>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation>Aktifkan Antarmuka Pengguna Web (Pengendali jauh)</translation>
+        <translation>Aktifkan Antarmuka Pengguna Web (Pengendali rajuh)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1297"/>
@@ -5025,17 +5075,17 @@ Pengaya tersebut dinonfungsikan.</translation>
         <translation>Jalur penyaring (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <location filename="../base/preferences.cpp" line="79"/>
+        <location filename="../base/preferences.cpp" line="83"/>
         <source>Detected unclean program exit. Using fallback file to restore settings.</source>
         <translation>Mendeteksi kerusakan berkas ketika program keluar. Menggunakan berkas cadangan untuk kembali ke pengaturan sebelumnya.</translation>
     </message>
     <message>
-        <location filename="../base/preferences.cpp" line="174"/>
+        <location filename="../base/preferences.cpp" line="178"/>
         <source>An access error occurred while trying to write the configuration file.</source>
         <translation>Sebuah galat akses terjadi ketika mencoba untuk menyimpan berkas konfigurasi.</translation>
     </message>
     <message>
-        <location filename="../base/preferences.cpp" line="176"/>
+        <location filename="../base/preferences.cpp" line="180"/>
         <source>A format error occurred while trying to write the configuration file.</source>
         <translation>Sebuah galat format terjadi ketika mencoba untuk menyimpan berkas konfigurasi.</translation>
     </message>
@@ -5120,7 +5170,7 @@ Pengaya tersebut dinonfungsikan.</translation>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="55"/>
         <source>Peers</source>
-        <translation>Rekanan</translation>
+        <translation>Rekan</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="59"/>
@@ -5194,7 +5244,7 @@ Pengaya tersebut dinonfungsikan.</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="214"/>
         <source>Peers:</source>
-        <translation>Rekanan:</translation>
+        <translation>Rekan:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="272"/>
@@ -5468,7 +5518,7 @@ Pengaya tersebut dinonfungsikan.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="110"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="111"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Alamat IP Anda telah dicekal setelah terlalu banyak percobaan otentikasi yang gagal.</translation>
     </message>
@@ -5960,12 +6010,12 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     <message>
         <location filename="../base/rss/rssfeed.cpp" line="381"/>
         <source>Automatic download of &apos;%1&apos; from &apos;%2&apos; RSS feed failed because it doesn&apos;t contain a torrent or a magnet link...</source>
-        <translation type="unfinished">Pengunduhan otomatis &apos;%1&apos; dari &apos;%2&apos; umpan RSS gagal karena tidak mengandung tautan torrent atau magnet...</translation>
+        <translation>Pengunduhan otomatis &apos;%1&apos; dari &apos;%2&apos; umpan RSS gagal karena tidak mengandung tautan torrent atau magnet...</translation>
     </message>
     <message>
         <location filename="../base/rss/rssfeed.cpp" line="386"/>
         <source>Automatically downloading &apos;%1&apos; torrent from &apos;%2&apos; RSS feed...</source>
-        <translation type="unfinished">Secara otomatis mengunduh &apos;%1&apos; torrent dari &apos;%2&apos; umpan RSS...</translation>
+        <translation>Secara otomatis mengunduh &apos;%1&apos; torrent dari &apos;%2&apos; umpan RSS...</translation>
     </message>
 </context>
 <context>
@@ -5973,29 +6023,7 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     <message>
         <location filename="../base/rss/private/rssparser.cpp" line="248"/>
         <source>Invalid RSS feed.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>RssFeed</name>
-    <message>
-        <source>Automatic download of &apos;%1&apos; from &apos;%2&apos; RSS feed failed because it doesn&apos;t contain a torrent or a magnet link...</source>
-        <translation type="obsolete">Pengunduhan otomatis &apos;%1&apos; dari &apos;%2&apos; umpan RSS gagal karena tidak mengandung tautan torrent atau magnet...</translation>
-    </message>
-    <message>
-        <source>Automatically downloading &apos;%1&apos; torrent from &apos;%2&apos; RSS feed...</source>
-        <translation type="obsolete">Secara otomatis mengunduh &apos;%1&apos; torrent dari &apos;%2&apos; umpan RSS...</translation>
-    </message>
-</context>
-<context>
-    <name>RssParser</name>
-    <message>
-        <source>Failed to open downloaded RSS file.</source>
-        <translation type="obsolete">Gagal membuka berkas RSS yang diunduh.</translation>
-    </message>
-    <message>
-        <source>Invalid RSS feed at &apos;%1&apos;.</source>
-        <translation type="obsolete">Umpan RSS tidak valid pada &apos;%1&apos;.</translation>
+        <translation>Umpan RSS tidak valid.</translation>
     </message>
 </context>
 <context>
@@ -6026,22 +6054,22 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     <message>
         <location filename="../gui/scanfoldersdelegate.cpp" line="66"/>
         <source>Watch Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Folder Dimonitor</translation>
     </message>
     <message>
         <location filename="../gui/scanfoldersdelegate.cpp" line="67"/>
         <source>Default Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Folder Bawaan</translation>
     </message>
     <message>
         <location filename="../gui/scanfoldersdelegate.cpp" line="68"/>
         <source>Browse...</source>
-        <translation type="unfinished">Telusuri...</translation>
+        <translation>Telusuri...</translation>
     </message>
     <message>
         <location filename="../gui/scanfoldersdelegate.cpp" line="102"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Pilih jalur penyimpanan</translation>
+        <translation>Pilih jalur penyimpanan</translation>
     </message>
 </context>
 <context>
@@ -6049,12 +6077,12 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="131"/>
         <source>Watch Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Folder Dimonitor</translation>
     </message>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="134"/>
         <source>Default Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Folder Bawaan</translation>
     </message>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="156"/>
@@ -6064,199 +6092,87 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="159"/>
         <source>Save Files to</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Download here</source>
-        <translation type="obsolete">Unduh di sini</translation>
-    </message>
-    <message>
-        <source>Download path</source>
-        <translation type="obsolete">Jalur unduhan</translation>
-    </message>
-</context>
-<context>
-    <name>SearchCategories</name>
-    <message>
-        <source>All categories</source>
-        <translation type="obsolete">Semua kategori</translation>
-    </message>
-    <message>
-        <source>Movies</source>
-        <translation type="obsolete">Film</translation>
-    </message>
-    <message>
-        <source>TV shows</source>
-        <translation type="obsolete">Acara Tv</translation>
-    </message>
-    <message>
-        <source>Music</source>
-        <translation type="obsolete">Musik</translation>
-    </message>
-    <message>
-        <source>Games</source>
-        <translation type="obsolete">Permainan</translation>
-    </message>
-    <message>
-        <source>Anime</source>
-        <translation type="obsolete">Anime</translation>
-    </message>
-    <message>
-        <source>Software</source>
-        <translation type="obsolete">Perangkat lunak</translation>
-    </message>
-    <message>
-        <source>Pictures</source>
-        <translation type="obsolete">Gambar</translation>
-    </message>
-    <message>
-        <source>Books</source>
-        <translation type="obsolete">Buku</translation>
+        <translation>Simpan Berkas ke</translation>
     </message>
 </context>
 <context>
     <name>SearchEngine</name>
     <message>
-        <source>Search</source>
-        <translation type="obsolete">Cari</translation>
-    </message>
-    <message>
-        <source>Please install Python to use the Search Engine.</source>
-        <translation type="obsolete">Mohon pasang Python untuk menggunakan Mesin Pencari.</translation>
-    </message>
-    <message>
-        <source>Empty search pattern</source>
-        <translation type="obsolete">Pola pencarian kosong</translation>
-    </message>
-    <message>
-        <source>Please type a search pattern first</source>
-        <translation type="obsolete">Mohon ketik pola pencarian telebih dahulu</translation>
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="obsolete">Mencari...</translation>
-    </message>
-    <message>
-        <source>Stop</source>
-        <translation type="obsolete">Hentikan</translation>
-    </message>
-    <message>
-        <source>Search Engine</source>
-        <translation type="obsolete">Mesin Pencari</translation>
-    </message>
-    <message>
-        <source>Search has finished</source>
-        <translation type="obsolete">Pencarian telah selesai</translation>
-    </message>
-    <message>
-        <source>An error occurred during search...</source>
-        <translation type="obsolete">Sebuah galat terjadi saat pencarian...</translation>
-    </message>
-    <message>
-        <source>Search aborted</source>
-        <translation type="obsolete">Pencarian dibatalkan</translation>
-    </message>
-    <message>
-        <source>All enabled</source>
-        <translation type="obsolete">Semua diaktifkan</translation>
-    </message>
-    <message>
-        <source>All engines</source>
-        <translation type="obsolete">Semua mesin</translation>
-    </message>
-    <message>
-        <source>Multiple...</source>
-        <translation type="obsolete">Banyak...</translation>
-    </message>
-    <message>
-        <source>Results &lt;i&gt;(%1)&lt;/i&gt;:</source>
-        <comment>i.e: Search results</comment>
-        <translation type="obsolete">Hasil &lt;i&gt;(%1)&lt;/i&gt;:</translation>
-    </message>
-    <message>
-        <source>Search returned no results</source>
-        <translation type="obsolete">Pencarian tidak menghasilkan apa-apa</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation type="obsolete">Dihentikan</translation>
-    </message>
-    <message>
         <location filename="../base/searchengine.cpp" line="171"/>
         <source>Unknown search engine plugin file format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Format berkas plugin mesin pencarian tidak dikenal.</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="185"/>
         <source>A more recent version of this plugin is already installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Versi yang lebih baru dari plugin mesin pencarian ini telah terpasang.</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="213"/>
         <location filename="../base/searchengine.cpp" line="216"/>
         <source>Plugin is not supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin tidak didukung.</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="337"/>
         <source>Update server is temporarily unavailable. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Server pemutakhiran sementara tidak tersedia. %1</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="355"/>
         <location filename="../base/searchengine.cpp" line="357"/>
         <source>Failed to download the plugin file. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Gagal mengunduh berkas plugin. %1</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="597"/>
         <source>An incorrect update info received.</source>
-        <translation type="unfinished"></translation>
+        <translation>Menerima info pemutakhiran yang tidak benar.</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="621"/>
         <source>All categories</source>
-        <translation type="unfinished">Semua kategori</translation>
+        <translation>Semua kategori</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="622"/>
         <source>Movies</source>
-        <translation type="unfinished">Film</translation>
+        <translation>Film</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="623"/>
         <source>TV shows</source>
-        <translation type="unfinished">Acara Tv</translation>
+        <translation>Acara TV</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="624"/>
         <source>Music</source>
-        <translation type="unfinished">Musik</translation>
+        <translation>Musik</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="625"/>
         <source>Games</source>
-        <translation type="unfinished">Permainan</translation>
+        <translation>Permainan</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="626"/>
         <source>Anime</source>
-        <translation type="unfinished">Anime</translation>
+        <translation>Anime</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="627"/>
         <source>Software</source>
-        <translation type="unfinished">Perangkat lunak</translation>
+        <translation>Perangkat Lunak</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="628"/>
         <source>Pictures</source>
-        <translation type="unfinished">Gambar</translation>
+        <translation>Gambar</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="629"/>
         <source>Books</source>
-        <translation type="unfinished">Buku</translation>
+        <translation>Buku</translation>
     </message>
 </context>
 <context>
@@ -6305,124 +6221,124 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="14"/>
         <location filename="../gui/search/searchwidget.ui" line="28"/>
-        <location filename="../gui/search/searchwidget.cpp" line="178"/>
-        <location filename="../gui/search/searchwidget.cpp" line="199"/>
-        <location filename="../gui/search/searchwidget.cpp" line="293"/>
+        <location filename="../gui/search/searchwidget.cpp" line="181"/>
+        <location filename="../gui/search/searchwidget.cpp" line="202"/>
+        <location filename="../gui/search/searchwidget.cpp" line="296"/>
         <source>Search</source>
-        <translation type="unfinished">Cari</translation>
+        <translation>Cari</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="51"/>
         <source>Status:</source>
-        <translation type="unfinished">Status:</translation>
+        <translation>Status:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="75"/>
-        <location filename="../gui/search/searchwidget.cpp" line="361"/>
+        <location filename="../gui/search/searchwidget.cpp" line="364"/>
         <source>Stopped</source>
-        <translation type="unfinished">Dihentikan</translation>
+        <translation>Dihentikan</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="107"/>
         <source>Download</source>
-        <translation type="unfinished">Unduh</translation>
+        <translation>Unduh</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="117"/>
         <source>Go to description page</source>
-        <translation type="unfinished">Pergi ke halaman deskripsi</translation>
+        <translation>Kunjungi halaman deskripsi</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="127"/>
         <source>Copy description page URL</source>
-        <translation type="unfinished">Salin URL halaman deskripsi</translation>
+        <translation>Salin URL halaman deskripsi</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="147"/>
         <source>Search plugins...</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin pencarian...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="118"/>
+        <location filename="../gui/search/searchwidget.cpp" line="121"/>
         <source>All enabled</source>
-        <translation type="unfinished">Semua diaktifkan</translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchwidget.cpp" line="119"/>
-        <source>All plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Semua diaktifkan</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="122"/>
-        <location filename="../gui/search/searchwidget.cpp" line="164"/>
+        <source>All plugins</source>
+        <translation>Semua plugin</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="125"/>
+        <location filename="../gui/search/searchwidget.cpp" line="167"/>
         <source>Multiple...</source>
-        <translation type="unfinished">Banyak...</translation>
+        <translation>Banyak...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="191"/>
-        <location filename="../gui/search/searchwidget.cpp" line="280"/>
-        <location filename="../gui/search/searchwidget.cpp" line="299"/>
+        <location filename="../gui/search/searchwidget.cpp" line="194"/>
+        <location filename="../gui/search/searchwidget.cpp" line="283"/>
+        <location filename="../gui/search/searchwidget.cpp" line="302"/>
         <source>Search Engine</source>
-        <translation type="unfinished">Mesin Pencari</translation>
+        <translation>Mesin Pencari</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="191"/>
+        <location filename="../gui/search/searchwidget.cpp" line="194"/>
         <source>Please install Python to use the Search Engine.</source>
-        <translation type="unfinished">Mohon pasang Python untuk menggunakan Mesin Pencari.</translation>
+        <translation>Mohon pasang Python untuk menggunakan Mesin Pencari.</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="209"/>
+        <location filename="../gui/search/searchwidget.cpp" line="212"/>
         <source>Empty search pattern</source>
-        <translation type="unfinished">Pola pencarian kosong</translation>
+        <translation>Pola pencarian kosong</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="209"/>
+        <location filename="../gui/search/searchwidget.cpp" line="212"/>
         <source>Please type a search pattern first</source>
-        <translation type="unfinished">Mohon ketik pola pencarian telebih dahulu</translation>
+        <translation>Mohon ketik pola pencarian telebih dahulu</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="236"/>
-        <location filename="../gui/search/searchwidget.cpp" line="338"/>
+        <location filename="../gui/search/searchwidget.cpp" line="239"/>
+        <location filename="../gui/search/searchwidget.cpp" line="341"/>
         <source>Results &lt;i&gt;(%1)&lt;/i&gt;:</source>
         <comment>i.e: Search results</comment>
-        <translation type="unfinished">Hasil &lt;i&gt;(%1)&lt;/i&gt;:</translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchwidget.cpp" line="268"/>
-        <source>Searching...</source>
-        <translation type="unfinished">Mencari...</translation>
+        <translation>Hasil &lt;i&gt;(%1)&lt;/i&gt;:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="271"/>
+        <source>Searching...</source>
+        <translation>Mencari...</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="274"/>
         <source>Stop</source>
-        <translation type="unfinished">Hentikan</translation>
+        <translation>Hentikan</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="280"/>
-        <location filename="../gui/search/searchwidget.cpp" line="289"/>
+        <location filename="../gui/search/searchwidget.cpp" line="283"/>
+        <location filename="../gui/search/searchwidget.cpp" line="292"/>
         <source>Search has finished</source>
-        <translation type="unfinished">Pencarian telah selesai</translation>
+        <translation>Pencarian telah selesai</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="285"/>
-        <location filename="../gui/search/searchwidget.cpp" line="304"/>
+        <location filename="../gui/search/searchwidget.cpp" line="288"/>
+        <location filename="../gui/search/searchwidget.cpp" line="307"/>
         <source>Search aborted</source>
-        <translation type="unfinished">Pencarian dibatalkan</translation>
+        <translation>Pencarian dibatalkan</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="287"/>
+        <location filename="../gui/search/searchwidget.cpp" line="290"/>
         <source>Search returned no results</source>
-        <translation type="unfinished">Pencarian tidak menghasilkan apa-apa</translation>
+        <translation>Pencarian tidak menghasilkan apa-apa</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="299"/>
+        <location filename="../gui/search/searchwidget.cpp" line="302"/>
         <source>Search has failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Pencarian telah gagal</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="306"/>
+        <location filename="../gui/search/searchwidget.cpp" line="309"/>
         <source>An error occurred during search...</source>
-        <translation type="unfinished">Sebuah galat terjadi saat pencarian...</translation>
+        <translation>Terjadi kesalahan saat pencarian...</translation>
     </message>
 </context>
 <context>
@@ -6627,7 +6543,7 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     <message>
         <location filename="../gui/statsdialog.ui" line="26"/>
         <source>Total peer connections:</source>
-        <translation>Total koneksi rekanan:</translation>
+        <translation>Total koneksi rekan:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="33"/>
@@ -6886,11 +6802,7 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="59"/>
         <source>Download Priority</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="obsolete">Prioritas</translation>
+        <translation>Prioritas Unduh</translation>
     </message>
 </context>
 <context>
@@ -7060,7 +6972,7 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
         <location filename="../gui/torrentmodel.cpp" line="102"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation>Rekanan</translation>
+        <translation>Rekan</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="103"/>
@@ -7294,7 +7206,7 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="71"/>
         <source>Peers</source>
-        <translation>Rekanan</translation>
+        <translation>Rekan</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="72"/>
@@ -7835,12 +7747,12 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     <message>
         <location filename="../gui/properties/peersadditiondlg.ui" line="14"/>
         <source>Add Peers</source>
-        <translation>Tambah Rekanan</translation>
+        <translation>Tambah Rekan</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondlg.ui" line="20"/>
         <source>List of peers to add (one per line):</source>
-        <translation>Daftar rekanan untuk ditambahkan (satu per baris):</translation>
+        <translation>Daftar rekan untuk ditambahkan (satu per baris):</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondlg.ui" line="37"/>
@@ -8088,160 +8000,6 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     </message>
 </context>
 <context>
-    <name>engineSelect</name>
-    <message>
-        <source>Search plugins</source>
-        <translation type="obsolete">Pengaya pencarian</translation>
-    </message>
-    <message>
-        <source>Installed search engines:</source>
-        <translation type="obsolete">Mesin pencari terpasang:</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Nama</translation>
-    </message>
-    <message>
-        <source>Version</source>
-        <translation type="obsolete">Versi</translation>
-    </message>
-    <message>
-        <source>Url</source>
-        <translation type="obsolete">Url</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="obsolete">Diaktifkan</translation>
-    </message>
-    <message>
-        <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="obsolete">Anda bisa mendapatkan mesin pencari baru di sini: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <source>Install a new one</source>
-        <translation type="obsolete">Pasang satu yang baru</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="obsolete">Periksa pemutakhiran</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="obsolete">Tutup</translation>
-    </message>
-    <message>
-        <source>Uninstall</source>
-        <translation type="obsolete">Bongkar</translation>
-    </message>
-</context>
-<context>
-    <name>engineSelectDlg</name>
-    <message>
-        <source>Uninstall warning</source>
-        <translation type="obsolete">Peringatan pembongkaran</translation>
-    </message>
-    <message>
-        <source>Uninstall success</source>
-        <translation type="obsolete">Berhasil dibongkar</translation>
-    </message>
-    <message>
-        <source>Invalid plugin</source>
-        <translation type="obsolete">Plugin tidak valid</translation>
-    </message>
-    <message>
-        <source>The search engine plugin is invalid, please contact the author.</source>
-        <translation type="obsolete">Plugin mesin pencari tidak valid, silahkan hubungi pengembang.</translation>
-    </message>
-    <message>
-        <source>A more recent version of &apos;%1&apos; search engine plugin is already installed.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation type="obsolete">Versi yang lebih baru dari pengaya mesin pencari &apos;%1&apos; telah dipasang.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; search engine plugin could not be updated, keeping old version.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation type="obsolete">Pengaya mesin pencarian &apos;%1&apos; tidak bisa dimutakhirkan, tetap pada versi lama.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; search engine plugin could not be installed.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation type="obsolete">Pengaya mesin pencarian &apos;%1&apos; tidak bisa dipasang.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; search engine plugin was successfully updated.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation type="obsolete">Pengaya mesin pencarian &apos;%1&apos; telah berhasil dimutakhirkan.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; search engine plugin was successfully installed.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation type="obsolete">Pengaya mesin pencarian &apos;%1&apos; telah berhasil dipasang.</translation>
-    </message>
-    <message>
-        <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="obsolete">Tautan sepertinya tidak mengarah ke pengaya mesin pencarian.</translation>
-    </message>
-    <message>
-        <source>Select search plugins</source>
-        <translation type="obsolete">Pilih pengaya pencarian</translation>
-    </message>
-    <message>
-        <source>Sorry, &apos;%1&apos; search plugin installation failed.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation type="obsolete">Maaf, pemasangan pengaya pencarian &apos;%1&apos; gagal.</translation>
-    </message>
-    <message>
-        <source>Search plugin install</source>
-        <translation type="obsolete">Pemasangan pengaya pencarian</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="obsolete">Ya</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="obsolete">Tidak</translation>
-    </message>
-    <message>
-        <source>qBittorrent search plugin</source>
-        <translation type="obsolete">Pengaya pencarian qBittorrent</translation>
-    </message>
-    <message>
-        <source>Search plugin update</source>
-        <translation type="obsolete">Pemutakhiran pengaya pencarian</translation>
-    </message>
-    <message>
-        <source>Sorry, update server is temporarily unavailable.</source>
-        <translation type="obsolete">Maaf, server pemutakhiran sementara tidak tersedia.</translation>
-    </message>
-    <message>
-        <source>All your plugins are already up to date.</source>
-        <translation type="obsolete">Semua pengaya Anda telah dimutakhirkan.</translation>
-    </message>
-    <message>
-        <source>All selected plugins were uninstalled successfully</source>
-        <translation type="obsolete">Semua pengaya yang dipilih telah berhasil dibuang.</translation>
-    </message>
-    <message>
-        <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
-Those plugins were disabled.</source>
-        <translation type="obsolete">Beberapa pengaya tidak bisa dibuang karena mereka disertakan qBittorrent secara bawaan. Hanya yang Anda tambahkan sendiri yang bisa Anda buang.
-Pengaya tersebut dinonfungsikan.</translation>
-    </message>
-    <message>
-        <source>Invalid link</source>
-        <translation type="obsolete">Tautan tidak valid</translation>
-    </message>
-    <message>
-        <source>New search engine plugin URL</source>
-        <translation type="obsolete">URL pengaya mesin pencarian baru</translation>
-    </message>
-    <message>
-        <source>URL:</source>
-        <translation type="obsolete">URL:</translation>
-    </message>
-</context>
-<context>
     <name>errorDialog</name>
     <message>
         <location filename="../app/stacktrace_win_dlg.ui" line="14"/>
@@ -8368,190 +8126,171 @@ Pengaya tersebut dinonfungsikan.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1259"/>
-        <location filename="../gui/options_imp.cpp" line="1261"/>
+        <location filename="../gui/options_imp.cpp" line="1280"/>
+        <location filename="../gui/options_imp.cpp" line="1282"/>
         <source>Choose export directory</source>
         <translation>Pilih direktori ekspor</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1299"/>
-        <location filename="../gui/options_imp.cpp" line="1301"/>
-        <location filename="../gui/options_imp.cpp" line="1312"/>
-        <location filename="../gui/options_imp.cpp" line="1314"/>
+        <location filename="../gui/options_imp.cpp" line="1320"/>
+        <location filename="../gui/options_imp.cpp" line="1322"/>
+        <location filename="../gui/options_imp.cpp" line="1333"/>
+        <location filename="../gui/options_imp.cpp" line="1335"/>
         <source>Choose a save directory</source>
         <translation>Pilih direktori simpan</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1207"/>
+        <location filename="../gui/options_imp.cpp" line="1228"/>
         <source>Add directory to scan</source>
         <translation>Tambah direktori untuk dipindai</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="188"/>
+        <location filename="../gui/options_imp.cpp" line="191"/>
         <source>Supported parameters (case sensitive):</source>
         <translation>Parameter yang didukung (sensitif besar kecil huruf):</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="189"/>
+        <location filename="../gui/options_imp.cpp" line="192"/>
         <source>%N: Torrent name</source>
         <translation>%N: Nama torrent</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="190"/>
+        <location filename="../gui/options_imp.cpp" line="193"/>
         <source>%L: Label</source>
         <translation>%L: Label</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="191"/>
+        <location filename="../gui/options_imp.cpp" line="194"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: Jalur konten (sama dengan jalur root untuk torrent multi-berkas)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="192"/>
+        <location filename="../gui/options_imp.cpp" line="195"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
         <translation>%R: Jalur root (jalur subdirektori torrent pertama)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="193"/>
+        <location filename="../gui/options_imp.cpp" line="196"/>
         <source>%D: Save path</source>
         <translation>%D: Jalur simpan</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="194"/>
+        <location filename="../gui/options_imp.cpp" line="197"/>
         <source>%C: Number of files</source>
         <translation>%C: Jumlah berkas</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="195"/>
+        <location filename="../gui/options_imp.cpp" line="198"/>
         <source>%Z: Torrent size (bytes)</source>
         <translation>%Z: Ukuran torrent (bita)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="196"/>
+        <location filename="../gui/options_imp.cpp" line="199"/>
         <source>%T: Current tracker</source>
         <translation>%T: Tracker saat ini</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="197"/>
+        <location filename="../gui/options_imp.cpp" line="200"/>
         <source>%I: Info hash</source>
         <translation>%I: Info hash</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1214"/>
+        <location filename="../gui/options_imp.cpp" line="1235"/>
         <source>Folder is already being watched.</source>
         <translation>Folder telah dimonitor.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1217"/>
+        <location filename="../gui/options_imp.cpp" line="1238"/>
         <source>Folder does not exist.</source>
         <translation>Folder tidak ada.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1220"/>
+        <location filename="../gui/options_imp.cpp" line="1241"/>
         <source>Folder is not readable.</source>
         <translation>Folder tidak bisa dibaca.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1231"/>
+        <location filename="../gui/options_imp.cpp" line="1252"/>
         <source>Failure</source>
         <translation>Kegagalan</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1231"/>
+        <location filename="../gui/options_imp.cpp" line="1252"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Gagal untuk menambah Folder Pindaian  &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1285"/>
-        <location filename="../gui/options_imp.cpp" line="1287"/>
+        <location filename="../gui/options_imp.cpp" line="1306"/>
+        <location filename="../gui/options_imp.cpp" line="1308"/>
         <source>Filters</source>
         <translation>Penyaring</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1285"/>
-        <location filename="../gui/options_imp.cpp" line="1287"/>
+        <location filename="../gui/options_imp.cpp" line="1306"/>
+        <location filename="../gui/options_imp.cpp" line="1308"/>
         <source>Choose an IP filter file</source>
         <translation>Pilih berkas penyaring IP</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1354"/>
+        <location filename="../gui/options_imp.cpp" line="1375"/>
         <source>SSL Certificate</source>
         <translation>Sertifikat SSL</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1366"/>
+        <location filename="../gui/options_imp.cpp" line="1387"/>
         <source>SSL Key</source>
         <translation>Kunci SSL</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1399"/>
+        <location filename="../gui/options_imp.cpp" line="1420"/>
         <source>Parsing error</source>
         <translation>Galat penguraian</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1399"/>
+        <location filename="../gui/options_imp.cpp" line="1420"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Gagal mengurai penyaring IP yang diberikan</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1401"/>
+        <location filename="../gui/options_imp.cpp" line="1422"/>
         <source>Successfully refreshed</source>
         <translation>Berhasil disegarkan</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1401"/>
+        <location filename="../gui/options_imp.cpp" line="1422"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Berhasil mengurai penyaring IP yang diberikan: %1 aturan diterapkan.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1489"/>
+        <location filename="../gui/options_imp.cpp" line="1510"/>
         <source>Invalid key</source>
         <translation>Kunci tidak valid</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1489"/>
+        <location filename="../gui/options_imp.cpp" line="1510"/>
         <source>This is not a valid SSL key.</source>
         <translation>Ini bukan kunci SSL yang valid.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1505"/>
+        <location filename="../gui/options_imp.cpp" line="1526"/>
         <source>Invalid certificate</source>
         <translation>Sertifikat tidak valid</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1505"/>
+        <location filename="../gui/options_imp.cpp" line="1526"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Ini bukan Sertifikat SSL yang valid.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1515"/>
+        <location filename="../gui/options_imp.cpp" line="1536"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Waktu mulai dan berakhir tidak boleh sama.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1518"/>
+        <location filename="../gui/options_imp.cpp" line="1539"/>
         <source>Time Error</source>
         <translation>Galat Waktu</translation>
-    </message>
-</context>
-<context>
-    <name>pluginSourceDlg</name>
-    <message>
-        <source>Plugin source</source>
-        <translation type="obsolete">Sumber pengaya</translation>
-    </message>
-    <message>
-        <source>Search plugin source:</source>
-        <translation type="obsolete">Sumber pengaya pencarian:</translation>
-    </message>
-    <message>
-        <source>Local file</source>
-        <translation type="obsolete">Berkas lokal</translation>
-    </message>
-    <message>
-        <source>Web link</source>
-        <translation type="obsolete">Tautan web</translation>
     </message>
 </context>
 <context>
@@ -8575,37 +8314,6 @@ Pengaya tersebut dinonfungsikan.</translation>
         <location filename="../gui/preview.ui" line="68"/>
         <source>Cancel</source>
         <translation>Batal</translation>
-    </message>
-</context>
-<context>
-    <name>search_engine</name>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">Cari</translation>
-    </message>
-    <message>
-        <source>Status:</source>
-        <translation type="obsolete">Status:</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation type="obsolete">Dihentikan</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="obsolete">Unduh</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="obsolete">Pergi ke halaman deskripsi</translation>
-    </message>
-    <message>
-        <source>Copy description page URL</source>
-        <translation type="obsolete">Salin URL halaman deskripsi</translation>
-    </message>
-    <message>
-        <source>Search engines...</source>
-        <translation type="obsolete">Mesin pencari...</translation>
     </message>
 </context>
 </TS>
