@@ -59,7 +59,7 @@
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2006-2015 The qBittorrent project</string>
+	<string>Copyright © 2006-2016 The qBittorrent project</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
