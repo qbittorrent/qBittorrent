@@ -33,7 +33,7 @@ OutFile "qbittorrent_${PROG_VERSION}_setup.exe"
 ;Installer Version Information
 VIAddVersionKey "ProductName" "qBittorrent"
 VIAddVersionKey "CompanyName" "The qBittorrent project"
-VIAddVersionKey "LegalCopyright" "Copyright ©2006-2015 The qBittorrent project"
+VIAddVersionKey "LegalCopyright" "Copyright ©2006-2016 The qBittorrent project"
 VIAddVersionKey "FileDescription" "qBittorrent - A Bittorrent Client"
 VIAddVersionKey "FileVersion" "${PROG_VERSION}"
 
