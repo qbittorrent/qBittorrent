@@ -89,16 +89,6 @@
       <string>Torrent settings</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,1">
-      <item row="0" column="0">
-       <widget class="QCheckBox" name="start_torrent_cb">
-        <property name="text">
-         <string>Start torrent</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="1">
        <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,1">
         <item row="0" column="0">
@@ -131,6 +121,26 @@
        <widget class="QCheckBox" name="defaultLabel">
         <property name="text">
          <string>Set as default label</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="start_torrent_cb">
+        <property name="text">
+         <string>Start torrent</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="create_subfolder_cb">
+        <property name="text">
+         <string>Create subfolder</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
         </property>
        </widget>
       </item>

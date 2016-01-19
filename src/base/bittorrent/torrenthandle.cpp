@@ -124,6 +124,7 @@ TorrentState::operator int() const
     return m_value;
 }
 
+    , createSubfolder(in.createSubfolder)
 // TorrentHandle
 
 #define SAFE_CALL(func, ...) \
@@ -212,6 +213,9 @@ QString TorrentHandle::name() const
     QString name = m_name;
     if (name.isEmpty())
         name = Utils::String::fromStdString(m_nativeStatus.name);
+
+    if (name.isEmpty())
+        name = Utils::String::fromStdString(m_torrentInfo.origFiles().name());
 
     if (name.isEmpty())
         name = m_hash;

@@ -69,6 +69,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
 
     Preferences* const pref = Preferences::instance();
     ui->start_torrent_cb->setChecked(!pref->addTorrentsInPause());
+    ui->create_subfolder_cb->setChecked(pref->getTorrentCreateSubfolder());
     ui->save_path_combo->addItem(Utils::Fs::toNativePath(pref->getSavePath()), pref->getSavePath());
     loadSavePathHistory();
     connect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
@@ -591,9 +592,8 @@ void AddNewTorrentDialog::accept()
     Preferences *const pref = Preferences::instance();
     BitTorrent::AddTorrentParams params;
 
-    if (ui->skip_check_cb->isChecked())
-        // TODO: Check if destination actually exists
-        params.skipChecking = true;
+    // TODO: Check if destination actually exists
+    params.skipChecking = ui->skip_check_cb->isChecked();
 
     // Label
     params.label = ui->label_combo->currentText();
@@ -606,6 +606,7 @@ void AddNewTorrentDialog::accept()
         params.filePriorities = m_contentModel->model()->getFilePriorities();
 
     params.addPaused = !ui->start_torrent_cb->isChecked();
+    params.createSubfolder = ui->create_subfolder_cb->isChecked();
 
     saveSavePathHistory();
     pref->useAdditionDialog(!ui->never_show_cb->isChecked());

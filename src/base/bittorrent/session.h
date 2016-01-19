@@ -121,6 +121,7 @@ namespace BitTorrent
         QVector<int> filePriorities; // used if TorrentInfo is set
         bool ignoreShareRatio;
         bool skipChecking;
+        bool createSubfolder;
 
         AddTorrentParams();
     };
@@ -288,7 +289,7 @@ namespace BitTorrent
 
         void startUpTorrents();
         bool addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri,
-                             const TorrentInfo &torrentInfo = TorrentInfo(),
+                             TorrentInfo torrentInfo = TorrentInfo(),
                              const QByteArray &fastresumeData = QByteArray());
 
         void updateRatioTimer();

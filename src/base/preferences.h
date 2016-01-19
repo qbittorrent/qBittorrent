@@ -178,6 +178,8 @@ public:
     void addTorrentsInPause(bool b);
     QVariantHash getScanDirs() const;
     void setScanDirs(const QVariantHash &dirs);
+    bool getTorrentCreateSubfolder() const;
+    void setTorrentCreateSubfolder(bool b);
     QString getScanDirsLastPath() const;
     void setScanDirsLastPath(const QString &path);
     bool isTorrentExportEnabled() const;

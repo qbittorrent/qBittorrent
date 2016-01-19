@@ -91,6 +91,7 @@ namespace BitTorrent
         bool sequential;
         bool hasSeedStatus;
         bool skipChecking;
+        bool createSubfolder;
         TriStateBool addForced;
         TriStateBool addPaused;
         // for new torrents
