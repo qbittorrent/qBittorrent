@@ -1,3 +1,8 @@
+* Thu Jan 21 2016 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.3
+    - BUGFIX: Temporarily disable "filename" column of peers view. It has a bug that causes frequent crashes. See issue #4597.
+    - WEBUI: Move style of dynamic table header to CSS (buinsky)
+    - WEBUI: Fix unnecessary updates of torrent peers table (buinsky)
+
 * Tue Jan 19 2016 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.2
     - FEATURE: Add a new column to peers list that shows list of files which are downloaded right now from a peer. (evsh)
     - FEATURE: Improve the "Watch folders" UI. Closes #4300. You'll need to redo your watch folders settings. (sledgehammer999, glassez)
