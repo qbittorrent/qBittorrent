@@ -26,6 +26,7 @@
  * exception statement from your version.
  */
 
+#include <libtorrent/version.hpp>
 #include "cachestatus.h"
 
 using namespace BitTorrent;
@@ -50,7 +51,11 @@ qreal CacheStatus::readRatio() const
 
 int CacheStatus::jobQueueLength() const
 {
+#if LIBTORRENT_VERSION_NUM < 10100
     return m_nativeStatus.job_queue_length;
+#else
+    return m_nativeStatus.queued_jobs;
+#endif
 }
 
 int CacheStatus::averageJobTime() const
