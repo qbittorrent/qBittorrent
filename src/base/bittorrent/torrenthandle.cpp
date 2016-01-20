@@ -40,6 +40,9 @@
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/create_torrent.hpp>
 #include <libtorrent/magnet_uri.hpp>
+#if LIBTORRENT_VERSION_NUM >= 10100
+#include <libtorrent/time.hpp>
+#endif
 
 #include <boost/bind.hpp>
 
@@ -1067,7 +1070,11 @@ int TorrentHandle::connectionsLimit() const
 
 qlonglong TorrentHandle::nextAnnounce() const
 {
+#if LIBTORRENT_VERSION_NUM < 10100
     return m_nativeStatus.next_announce.total_seconds();
+#else
+    return libt::duration_cast<libt::seconds>(m_nativeStatus.next_announce).count();
+#endif
 }
 
 void TorrentHandle::setName(const QString &name)
@@ -1690,7 +1697,11 @@ libtorrent::torrent_handle TorrentHandle::nativeHandle() const
 void TorrentHandle::updateTorrentInfo()
 {
     if (!hasMetadata()) return;
+#if LIBTORRENT_VERSION_NUM < 10100
     m_torrentInfo = TorrentInfo(m_nativeStatus.torrent_file);
+#else
+    m_torrentInfo = TorrentInfo(m_nativeStatus.torrent_file.lock());
+#endif
 }
 
 void TorrentHandle::initialize()

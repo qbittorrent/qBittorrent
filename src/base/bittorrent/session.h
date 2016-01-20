@@ -38,6 +38,8 @@
 #include <QWaitCondition>
 #include <QNetworkConfigurationManager>
 
+#include <libtorrent/version.hpp>
+
 #include "base/tristatebool.h"
 #include "base/types.h"
 #include "torrentinfo.h"
@@ -52,7 +54,16 @@ namespace libtorrent
     struct session_settings;
     struct session_status;
 
+#if LIBTORRENT_VERSION_NUM < 10100
     struct proxy_settings;
+#else
+    namespace aux
+    {
+        struct proxy_settings;
+    }
+
+    typedef aux::proxy_settings proxy_settings;
+#endif
 
     class alert;
     struct torrent_alert;
