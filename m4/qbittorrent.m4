@@ -12,9 +12,9 @@ AC_DEFUN([FIND_QT4],
                                 [QT_QMAKE=`AS_DIRNAME(["$QT_QMAKE"])`])
                  ])
 
-AC_CHECK_FILE([$QT_QMAKE/qmake],
+AS_IF([$QT_QMAKE/qmake],
               [QT_QMAKE="$QT_QMAKE/qmake"],
-              [AC_CHECK_FILE([$QT_QMAKE/qmake-qt4],
+              [AS_IF([$QT_QMAKE/qmake-qt4],
                              [QT_QMAKE="$QT_QMAKE/qmake-qt4"],
                              [QT_QMAKE=""])
               ])
@@ -36,9 +36,9 @@ AC_DEFUN([FIND_QT5],
                                 [host_bins])
                  ])
 
-AC_CHECK_FILE([$QT_QMAKE/qmake],
+AS_IF([$QT_QMAKE/qmake],
               [QT_QMAKE="$QT_QMAKE/qmake"],
-              [AC_CHECK_FILE([$QT_QMAKE/qmake-qt5],
+              [AS_IF([$QT_QMAKE/qmake-qt5],
                              [QT_QMAKE="$QT_QMAKE/qmake-qt5"],
                              [QT_QMAKE=""])
               ])
