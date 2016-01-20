@@ -212,7 +212,10 @@ var DynamicTable = new Class({
                 if (tr.hasClass('selected'))
                     tr.removeClass('selected');
             }
+            this.onSelectedRowChanged();
         },
+
+        onSelectedRowChanged : function () {},
 
         updateRowData : function (data) {
             var rowId = data['rowId'];
@@ -350,7 +353,6 @@ var DynamicTable = new Class({
                             } else {
                                 // Simple selection
                                 this._this.selectRow(this.rowId);
-                                updatePropertiesPanel();
                             }
                         }
                         return false;
@@ -720,6 +722,10 @@ var TorrentsTable = new Class({
 
         getCurrentTorrentHash : function () {
             return this.getSelectedRowId();
+        },
+
+        onSelectedRowChanged : function () {
+            updatePropertiesPanel();
         }
     });
 
