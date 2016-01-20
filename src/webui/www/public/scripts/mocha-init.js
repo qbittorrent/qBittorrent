@@ -323,7 +323,7 @@ initializeWindows = function() {
         }
     };
 
-    updateCategoryFN = function (categoryHash) {
+    setCategoryFN = function (categoryHash) {
         var categoryName = '';
         if (categoryHash != 0)
             var categoryName = category_list[categoryHash].name;
