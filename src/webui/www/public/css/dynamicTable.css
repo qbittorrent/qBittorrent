@@ -88,3 +88,7 @@
 	white-space: nowrap;
 	max-width: 300px;
 }
+
+tr.dynamicTableHeader {
+    cursor: pointer;
+}
