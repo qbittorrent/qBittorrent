@@ -408,8 +408,3 @@ QString PeerInfo::flagsDescription() const
 {
     return m_flagsDescription;
 }
-
-int PeerInfo::downloadingPieceIndex() const
-{
-    return m_nativeInfo.downloading_piece_index;
-}

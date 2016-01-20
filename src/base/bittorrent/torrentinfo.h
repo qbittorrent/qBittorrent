@@ -75,7 +75,6 @@ namespace BitTorrent
         QList<TrackerEntry> trackers() const;
         QList<QUrl> urlSeeds() const;
         QByteArray metadata() const;
-        QStringList filesForPiece(int pieceIndex) const;
 
         void renameFile(uint index, const QString &newPath);
         boost::intrusive_ptr<libtorrent::torrent_info> nativeInfo() const;

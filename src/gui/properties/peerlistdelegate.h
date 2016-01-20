@@ -41,7 +41,7 @@ class PeerListDelegate: public QItemDelegate {
 
 public:
   enum PeerListColumns {COUNTRY, IP, PORT, CONNECTION, FLAGS, CLIENT, PROGRESS, DOWN_SPEED, UP_SPEED,
-                        TOT_DOWN, TOT_UP, RELEVANCE, DOWNLOADING_PIECE, IP_HIDDEN, COL_COUNT};
+                        TOT_DOWN, TOT_UP, RELEVANCE, IP_HIDDEN, COL_COUNT};
 
 public:
   PeerListDelegate(QObject *parent) : QItemDelegate(parent) {}

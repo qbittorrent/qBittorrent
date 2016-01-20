@@ -211,20 +211,6 @@ QByteArray TorrentInfo::metadata() const
     return QByteArray(m_nativeInfo->metadata().get(), m_nativeInfo->metadata_size());
 }
 
-QStringList TorrentInfo::filesForPiece(int pieceIndex) const
-{
-    if (pieceIndex < 0)
-        return QStringList();
-
-    std::vector<libtorrent::file_slice> files(
-        nativeInfo()->map_block(pieceIndex, 0, nativeInfo()->piece_length()));
-    QStringList res;
-    for (const libtorrent::file_slice& s: files) {
-        res.append(filePath(s.file_index));
-    }
-    return res;
-}
-
 void TorrentInfo::renameFile(uint index, const QString &newPath)
 {
     if (!isValid()) return;
