@@ -228,7 +228,9 @@ window.addEvent('load', function () {
             var html = '<a href="#" onclick="setCategoryFilter(' + hash + ');return false;">' +
                 '<img src="theme/inode-directory"/>' +
                 escapeHtml(text) + ' (' + count + ')' + '</a>';
-            return new Element('li', {id: hash, html: html});
+            var el = new Element('li', {id: hash, html: html});
+            categoriesFilterContextMenu.addTarget(el);
+            return el;
         };
 
         var all = torrentsTable.getRowIds().length;

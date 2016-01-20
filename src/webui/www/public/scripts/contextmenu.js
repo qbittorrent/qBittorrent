@@ -313,3 +313,7 @@ var TorrentsTableContextMenu = new Class({
         });
     }
 });
+
+var CategoriesFilterContextMenu = new Class({
+    Extends: ContextMenu
+});
