@@ -100,7 +100,6 @@ namespace BitTorrent
 #ifndef DISABLE_COUNTRIES_RESOLUTION
         QString country() const;
 #endif
-        int downloadingPieceIndex() const;
 
     private:
         void calcRelevance(const TorrentHandle *torrent);
