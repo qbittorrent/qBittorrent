@@ -36,9 +36,9 @@ AC_DEFUN([FIND_QT5],
                                 [host_bins])
                  ])
 
-AS_IF([$QT_QMAKE/qmake],
+AS_IF([test -f "$QT_QMAKE/qmake"],
               [QT_QMAKE="$QT_QMAKE/qmake"],
-              [AS_IF([$QT_QMAKE/qmake-qt5],
+              [AS_IF([test -f "$QT_QMAKE/qmake-qt5"]
                              [QT_QMAKE="$QT_QMAKE/qmake-qt5"],
                              [QT_QMAKE=""])
               ])
