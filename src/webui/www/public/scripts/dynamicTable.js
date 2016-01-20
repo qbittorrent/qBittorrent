@@ -439,18 +439,18 @@ var TorrentsTable = new Class({
         Extends: DynamicTable,
 
         initColumns : function () {
-            this.newColumn('priority', 'width: 30px; cursor: pointer', '#');
-            this.newColumn('state_icon', 'width: 16px', '');
-            this.newColumn('name', 'min-width: 200px; cursor: pointer', 'QBT_TR(Name)QBT_TR');
-            this.newColumn('size', 'width: 100px; cursor: pointer', 'QBT_TR(Size)QBT_TR');
-            this.newColumn('progress', 'width: 80px; cursor: pointer', 'QBT_TR(Done)QBT_TR');
-            this.newColumn('num_seeds', 'width: 100px; cursor: pointer', 'QBT_TR(Seeds)QBT_TR');
-            this.newColumn('num_leechs', 'width: 100px; cursor: pointer', 'QBT_TR(Peers)QBT_TR');
-            this.newColumn('dlspeed', 'width: 100px; cursor: pointer', 'QBT_TR(Down Speed)QBT_TR');
-            this.newColumn('upspeed', 'width: 100px; cursor: pointer', 'QBT_TR(Up Speed)QBT_TR');
-            this.newColumn('eta', 'width: 100px; cursor: pointer', 'QBT_TR(ETA)QBT_TR');
-            this.newColumn('ratio', 'width: 100px; cursor: pointer', 'QBT_TR(Ratio)QBT_TR');
-            this.newColumn('label', 'width: 100px; cursor: pointer', 'QBT_TR(Label)QBT_TR');
+            this.newColumn('priority', 'width: 30px', '#');
+            this.newColumn('state_icon', 'width: 16px; cursor: default', '');
+            this.newColumn('name', 'min-width: 200px', 'QBT_TR(Name)QBT_TR');
+            this.newColumn('size', 'width: 100px', 'QBT_TR(Size)QBT_TR');
+            this.newColumn('progress', 'width: 80px', 'QBT_TR(Done)QBT_TR');
+            this.newColumn('num_seeds', 'width: 100px', 'QBT_TR(Seeds)QBT_TR');
+            this.newColumn('num_leechs', 'width: 100px', 'QBT_TR(Peers)QBT_TR');
+            this.newColumn('dlspeed', 'width: 100px', 'QBT_TR(Down Speed)QBT_TR');
+            this.newColumn('upspeed', 'width: 100px', 'QBT_TR(Up Speed)QBT_TR');
+            this.newColumn('eta', 'width: 100px', 'QBT_TR(ETA)QBT_TR');
+            this.newColumn('ratio', 'width: 100px', 'QBT_TR(Ratio)QBT_TR');
+            this.newColumn('label', 'width: 100px', 'QBT_TR(Label)QBT_TR');
 
             this.columns['state_icon'].onclick = '';
             this.columns['state_icon'].dataProperties[0] = 'state';
