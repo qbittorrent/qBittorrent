@@ -1,12 +1,11 @@
 var ContextMenu = new Class({
-
     //implements
     Implements: [Options, Events],
 
     //options
     options: {
         actions: {},
-        menu: 'contextmenu',
+        menu: 'menu_id',
         stopEvent: true,
         targets: 'body',
         trigger: 'contextmenu',
@@ -128,6 +127,74 @@ var ContextMenu = new Class({
         }.bind(this));
     },
 
+    updateMenuItems: function () {},
+
+    //show menu
+    show: function (trigger) {
+        this.updateMenuItems();
+        this.fx.start(1);
+        this.fireEvent('show');
+        this.shown = true;
+        return this;
+    },
+
+    //hide the menu
+    hide: function (trigger) {
+        if (this.shown) {
+            this.fx.start(0);
+            //this.menu.fade('out');
+            this.fireEvent('hide');
+            this.shown = false;
+        }
+        return this;
+    },
+
+    setItemChecked: function (item, checked) {
+        this.menu.getElement('a[href$=' + item + ']').firstChild.style.opacity =
+             checked ? '1' : '0';
+        return this;
+    },
+
+    getItemChecked: function (item) {
+        return '0' != this.menu.getElement('a[href$=' + item + ']').firstChild.style.opacity;
+    },
+
+    //hide an item
+    hideItem: function (item) {
+        this.menu.getElement('a[href$=' + item + ']').parentNode.addClass('invisible');
+        return this;
+    },
+
+    //show an item
+    showItem: function (item) {
+        this.menu.getElement('a[href$=' + item + ']').parentNode.removeClass('invisible');
+        return this;
+    },
+
+    //disable the entire menu
+    disable: function () {
+        this.options.disabled = true;
+        return this;
+    },
+
+    //enable the entire menu
+    enable: function () {
+        this.options.disabled = false;
+        return this;
+    },
+
+    //execute an action
+    execute: function (action, element) {
+        if (this.options.actions[action]) {
+            this.options.actions[action](element, this);
+        }
+        return this;
+    }
+});
+
+var TorrentsTableContextMenu = new Class({
+    Extends: ContextMenu,
+
     updateMenuItems: function () {
         all_are_seq_dl = true;
         there_are_seq_dl = false;
@@ -220,69 +287,29 @@ var ContextMenu = new Class({
             this.hideItem('ForceStart');
         else if (!there_are_paused && !there_are_force_start)
             this.hideItem('Start');
-
     },
 
-    //show menu
-    show: function(trigger) {
-        this.updateMenuItems();
-        this.fx.start(1);
-        this.fireEvent('show');
-        this.shown = true;
-        return this;
-    },
+    updateCategoriesSubMenu : function (category_list) {
+        var categoryList = $('contextCategoryList');
+        categoryList.empty();
+        categoryList.appendChild(new Element('li', {html: '<a href="javascript:newCategoryFN();"><img src="theme/list-add" alt="QBT_TR(New...)QBT_TR"/> QBT_TR(New...)QBT_TR</a>'}));
+        categoryList.appendChild(new Element('li', {html: '<a href="javascript:updateCategoryFN(0);"><img src="theme/edit-clear" alt="QBT_TR(Reset)QBT_TR"/> QBT_TR(Reset)QBT_TR</a>'}));
 
-    //hide the menu
-    hide: function(trigger) {
-        if (this.shown) {
-            this.fx.start(0);
-            //this.menu.fade('out');
-            this.fireEvent('hide');
-            this.shown = false;
-        }
-        return this;
-    },
+        var sortedCategories = []
+        Object.each(category_list, function (category) {
+            sortedCategories.push(category.name);
+        });
+        sortedCategories.sort();
 
-    setItemChecked: function(item, checked) {
-        this.menu.getElement('a[href$=' + item + ']').firstChild.style.opacity =
-             checked ? '1' : '0';
-        return this;
-    },
-
-    getItemChecked: function(item) {
-        return '0' != this.menu.getElement('a[href$=' + item + ']').firstChild.style.opacity;
-    },
-
-    //hide an item
-    hideItem: function(item) {
-        this.menu.getElement('a[href$=' + item + ']').parentNode.addClass('invisible');
-        return this;
-    },
-
-    //show an item
-    showItem: function(item) {
-        this.menu.getElement('a[href$=' + item + ']').parentNode.removeClass('invisible');
-        return this;
-    },
-
-    //disable the entire menu
-    disable: function() {
-        this.options.disabled = true;
-        return this;
-    },
-
-    //enable the entire menu
-    enable: function() {
-        this.options.disabled = false;
-        return this;
-    },
-
-    //execute an action
-    execute: function(action, element) {
-        if (this.options.actions[action]) {
-            this.options.actions[action](element, this);
-        }
-        return this;
+        var first = true;
+        Object.each(sortedCategories, function (categoryName) {
+            var categoryHash = genHash(categoryName);
+            var el = new Element('li', {html: '<a href="javascript:updateCategoryFN(\'' + categoryHash + '\');"><img src="theme/inode-directory"/> ' + escapeHtml(categoryName) + '</a>'});
+            if (first) {
+                el.addClass('separator');
+                first = false;
+            }
+            categoryList.appendChild(el);
+        });
     }
-
 });

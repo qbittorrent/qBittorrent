@@ -202,30 +202,6 @@ window.addEvent('load', function () {
         return false;
     };
 
-    var updateContextMenu = function () {
-        var categoryList = $('contextCategoryList');
-        categoryList.empty();
-        categoryList.appendChild(new Element('li', {html: '<a href="javascript:newCategoryFN();"><img src="theme/list-add" alt="QBT_TR(New...)QBT_TR"/> QBT_TR(New...)QBT_TR</a>'}));
-        categoryList.appendChild(new Element('li', {html: '<a href="javascript:updateCategoryFN(0);"><img src="theme/edit-clear" alt="QBT_TR(Reset)QBT_TR"/> QBT_TR(Reset)QBT_TR</a>'}));
-
-        var sortedCategories = []
-        Object.each(category_list, function(category) {
-            sortedCategories.push(category.name);
-        });
-        sortedCategories.sort();
-
-        var first = true;
-        Object.each(sortedCategories, function(categoryName) {
-            var categoryHash = genHash(categoryName);
-            var el = new Element('li', {html: '<a href="javascript:updateCategoryFN(\'' + categoryHash + '\');"><img src="theme/inode-directory"/> ' + categoryName + '</a>'});
-            if (first) {
-                el.addClass('separator');
-                first = false;
-            }
-            categoryList.appendChild(el);
-        });
-    };
-
     var updateFilter = function(filter, filterTitle) {
         $(filter + '_filter').firstChild.childNodes[1].nodeValue = filterTitle.replace('%1', torrentsTable.getFilteredTorrentsNumber(filter));
     };
@@ -251,7 +227,7 @@ window.addEvent('load', function () {
         var create_link = function(hash, text, count) {
             var html = '<a href="#" onclick="setCategoryFilter(' + hash + ');return false;">' +
                 '<img src="theme/inode-directory"/>' +
-                text + ' (' + count + ')' + '</a>';
+                escapeHtml(text) + ' (' + count + ')' + '</a>';
             return new Element('li', {id: hash, html: html});
         };
 
@@ -357,7 +333,7 @@ window.addEvent('load', function () {
                     updateFiltersList();
                     if (update_categories) {
                         updateCategoryList();
-                        updateContextMenu();
+                        torrentsTableContextMenu.updateCategoriesSubMenu(category_list);
                     }
                 }
                 clearTimeout(syncMainDataTimer);
