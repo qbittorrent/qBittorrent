@@ -156,7 +156,7 @@ AX_BOOST_BASE([1.35])
 # how to test for a set vs unset variable.
 AS_IF([test "x$BOOST_CPPFLAGS" = "x"],
       [AC_MSG_ERROR([Could not find Boost])],
-      [AC_MSG_NOTICE([Boost CPPFLGAS: $BOOST_CPPFLAGS])
+      [AC_MSG_NOTICE([Boost CPPFLAGS: $BOOST_CPPFLAGS])
       CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
       LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"])
 
