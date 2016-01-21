@@ -620,7 +620,7 @@ var TorrentsTable = new Class({
             };
         },
 
-        applyFilter : function (row, filterName, categoryName) {
+        applyFilter : function (row, filterName, categoryHash) {
             var state = row['full_data'].state;
             var inactive = false;
             var r;
@@ -662,25 +662,24 @@ var TorrentsTable = new Class({
                     break;
             }
 
-            if (categoryName == CATEGORIES_ALL)
+            if (categoryHash == CATEGORIES_ALL)
                 return true;
 
-            if (categoryName == CATEGORIES_UNCATEGORIZED && row['full_data'].category.length === 0)
+            if (categoryHash == CATEGORIES_UNCATEGORIZED && row['full_data'].category.length === 0)
                 return true;
 
-            if (categoryName != genHash(row['full_data'].category))
+            if (categoryHash != genHash(row['full_data'].category))
                 return false;
 
             return true;
         },
 
-        getFilteredTorrentsNumber : function (filterName) {
+        getFilteredTorrentsNumber : function (filterName, categoryHash) {
             var cnt = 0;
             var rows = this.rows.getValues();
 
             for (i = 0; i < rows.length; i++)
-                if (this.applyFilter(rows[i], filterName, CATEGORIES_ALL)) cnt++;
-
+                if (this.applyFilter(rows[i], filterName, categoryHash)) cnt++;
             return cnt;
         },
 
