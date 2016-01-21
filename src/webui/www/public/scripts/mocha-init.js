@@ -360,10 +360,26 @@ initializeWindows = function() {
     removeCategoryFN = function (categoryHash) {
         var categoryName = category_list[categoryHash].name;
         new Request({
-            url: 'command/removeCategory',
+            url: 'command/removeCategories',
             method: 'post',
             data: {
-                category: categoryName
+                categories: categoryName
+            }
+        }).send();
+        setCategoryFilter(CATEGORIES_ALL);
+    };
+
+    deleteUnusedCategoriesFN = function () {
+        var categories = [];
+        for (var hash in category_list) {
+            if (torrentsTable.getFilteredTorrentsNumber('all', hash) == 0)
+                categories.push(category_list[hash].name);
+        }
+        new Request({
+            url: 'command/removeCategories',
+            method: 'post',
+            data: {
+                categories: categories.join('\n')
             }
         }).send();
         setCategoryFilter(CATEGORIES_ALL);

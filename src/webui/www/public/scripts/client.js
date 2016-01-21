@@ -203,7 +203,7 @@ window.addEvent('load', function () {
     };
 
     var updateFilter = function(filter, filterTitle) {
-        $(filter + '_filter').firstChild.childNodes[1].nodeValue = filterTitle.replace('%1', torrentsTable.getFilteredTorrentsNumber(filter));
+        $(filter + '_filter').firstChild.childNodes[1].nodeValue = filterTitle.replace('%1', torrentsTable.getFilteredTorrentsNumber(filter, CATEGORIES_ALL));
     };
 
     var updateFiltersList = function() {
