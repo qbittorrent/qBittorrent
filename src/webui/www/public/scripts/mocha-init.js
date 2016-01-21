@@ -357,6 +357,18 @@ initializeWindows = function() {
         updateMainData();
     };
 
+    removeCategoryFN = function (categoryHash) {
+        var categoryName = category_list[categoryHash].name;
+        new Request({
+            url: 'command/removeCategory',
+            method: 'post',
+            data: {
+                category: categoryName
+            }
+        }).send();
+        setCategoryFilter(CATEGORIES_ALL);
+    };
+
     ['pauseAll', 'resumeAll'].each(function(item) {
         addClickEvent(item, function(e) {
             new Event(e).stop();
