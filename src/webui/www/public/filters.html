@@ -22,6 +22,9 @@
         actions : {
             CreateCategory : function (element, ref) {
                 createCategoryFN();
+            },
+            DeleteCategory : function (element, ref) {
+                removeCategoryFN(element.id);
             }
         },
         offsets : {

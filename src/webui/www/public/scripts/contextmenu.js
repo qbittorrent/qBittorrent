@@ -315,5 +315,12 @@ var TorrentsTableContextMenu = new Class({
 });
 
 var CategoriesFilterContextMenu = new Class({
-    Extends: ContextMenu
+    Extends: ContextMenu,
+    updateMenuItems: function () {
+        var id = this.options.element.id;
+        if (id != CATEGORIES_ALL && id != CATEGORIES_UNCATEGORIZED)
+            this.showItem('DeleteCategory');
+        else
+            this.hideItem('DeleteCategory');
+    }
 });
