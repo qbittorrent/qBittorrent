@@ -19,6 +19,11 @@
     var categoriesFilterContextMenu = new CategoriesFilterContextMenu({
         targets : '.categoriesFilterContextMenuTarget',
         menu : 'categoriesFilterMenu',
+        actions : {
+            CreateCategory : function (element, ref) {
+                createCategoryFN();
+            }
+        },
         offsets : {
             x : -15,
             y : 2
