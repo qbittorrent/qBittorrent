@@ -304,7 +304,7 @@ initializeWindows = function() {
         }
     };
 
-    newCategoryFN = function () {
+    torrentNewCategoryFN = function () {
         var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new MochaUI.Window({
@@ -323,7 +323,7 @@ initializeWindows = function() {
         }
     };
 
-    setCategoryFN = function (categoryHash) {
+    torrentSetCategoryFN = function (categoryHash) {
         var categoryName = '';
         if (categoryHash != 0)
             var categoryName = category_list[categoryHash].name;
@@ -338,6 +338,23 @@ initializeWindows = function() {
                 }
             }).send();
         }
+    };
+
+    createCategoryFN = function () {
+        new MochaUI.Window({
+            id: 'newCategoryPage',
+            title: "QBT_TR(New Category)QBT_TR",
+            loadMethod: 'iframe',
+            contentURL: 'newcategory.html',
+            scrollbars: false,
+            resizable: false,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 250,
+            height: 100
+        });
+        updateMainData();
     };
 
     ['pauseAll', 'resumeAll'].each(function(item) {
