@@ -53,6 +53,57 @@ var ContextMenu = new Class({
         });
     },
 
+    adjustMenuPosition: function(e) {
+        this.updateMenuItems();
+
+        // draw the menu off-screen to know the menu dimentions
+        this.menu.setStyles({
+            left: '-999em',
+            top: '-999em'
+        });
+
+        // position the menu
+        var xPos = e.page.x + this.options.offsets.x;
+        var yPos = e.page.y + this.options.offsets.y;
+        if (xPos + this.menu.offsetWidth > document.documentElement.clientWidth)
+            xPos -= this.menu.offsetWidth;
+        if (yPos + this.menu.offsetHeight > document.documentElement.clientHeight)
+            yPos -= this.menu.offsetHeight;
+        if (xPos < 0)
+            xPos = 0;
+        if (yPos < 0)
+            yPos = 0;
+        this.menu.setStyles({
+            left: xPos,
+            top: yPos,
+            position: 'absolute',
+            'z-index': '2000'
+        });
+
+        // position the sub-menu
+        var uls = this.menu.getElementsByTagName('ul');
+        for (var i = 0; i < uls.length; i++) {
+            var ul = uls[i];
+            var rectParent = ul.parentNode.getBoundingClientRect();
+            var xPosOrigin = rectParent.left;
+            var yPosOrigin = rectParent.bottom;
+            var xPos = xPosOrigin + rectParent.width - 1;
+            var yPos = yPosOrigin - rectParent.height - 1;
+            if (xPos + ul.offsetWidth > document.documentElement.clientWidth)
+                xPos -= (ul.offsetWidth + rectParent.width - 2);
+            if (yPos + ul.offsetHeight > document.documentElement.clientHeight)
+                yPos -= (ul.offsetHeight - rectParent.height - 2);
+            if (xPos < 0)
+                xPos = 0;
+            if (yPos < 0)
+                yPos = 0;
+            ul.setStyles({
+                'margin-left': xPos - xPosOrigin,
+                'margin-top': yPos - yPosOrigin
+            });
+        }
+    },
+
     addTarget: function(t) {
         this.targets[this.targets.length] = t;
         t.addEvent(this.options.trigger, function(e) {
@@ -64,13 +115,7 @@ var ContextMenu = new Class({
                 }
                 //record this as the trigger
                 this.options.element = $(t);
-                //position the menu
-                this.menu.setStyles({
-                    top: (e.page.y + this.options.offsets.y),
-                    left: (e.page.x + this.options.offsets.x),
-                    position: 'absolute',
-                    'z-index': '2000'
-                });
+                this.adjustMenuPosition(e);
                 //show the menu
                 this.show();
             }
@@ -94,13 +139,7 @@ var ContextMenu = new Class({
                     }
                     //record this as the trigger
                     this.options.element = $(el);
-                    //position the menu
-                    this.menu.setStyles({
-                        top: (e.page.y + this.options.offsets.y),
-                        left: (e.page.x + this.options.offsets.x),
-                        position: 'absolute',
-                        'z-index': '2000'
-                    });
+                    this.adjustMenuPosition(e);
                     //show the menu
                     this.show();
                 }
@@ -131,7 +170,6 @@ var ContextMenu = new Class({
 
     //show menu
     show: function (trigger) {
-        this.updateMenuItems();
         this.fx.start(1);
         this.fireEvent('show');
         this.shown = true;
