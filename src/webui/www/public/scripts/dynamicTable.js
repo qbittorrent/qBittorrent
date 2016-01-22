@@ -683,6 +683,17 @@ var TorrentsTable = new Class({
             return cnt;
         },
 
+        getFilteredTorrentsHashes : function (filterName, categoryHash) {
+            var rowsHashes = [];
+            var rows = this.rows.getValues();
+
+            for (i = 0; i < rows.length; i++)
+                if (this.applyFilter(rows[i], filterName, categoryHash))
+                    rowsHashes.push(rows[i]['rowId']);
+
+            return rowsHashes;
+        },
+
         getFilteredAndSortedRows : function () {
             var filteredRows = new Array();
 
