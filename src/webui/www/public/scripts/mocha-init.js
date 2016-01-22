@@ -417,6 +417,25 @@ initializeWindows = function() {
         }
     };
 
+    deleteTorrentsByCategoryFN = function (categoryHash) {
+        var h = torrentsTable.getFilteredTorrentsHashes('all', categoryHash);
+        if (h.length) {
+            new MochaUI.Window({
+                id: 'confirmDeletionPage',
+                title: "QBT_TR(Deletion confirmation)QBT_TR",
+                loadMethod: 'iframe',
+                contentURL: 'confirmdeletion.html?hashes=' + h.join("|"),
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                padding: 10,
+                width: 424,
+                height: 140
+            });
+            updateMainData();
+        }
+    };
+
     ['pauseAll', 'resumeAll'].each(function(item) {
         addClickEvent(item, function(e) {
             new Event(e).stop();
