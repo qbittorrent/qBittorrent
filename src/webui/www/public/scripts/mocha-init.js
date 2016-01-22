@@ -401,6 +401,22 @@ initializeWindows = function() {
         }
     };
 
+    pauseTorrentsByCategoryFN = function (categoryHash) {
+        var h = torrentsTable.getFilteredTorrentsHashes('all', categoryHash);
+        if (h.length) {
+            h.each(function (hash, index) {
+                new Request({
+                    url: 'command/pause',
+                    method: 'post',
+                    data: {
+                        hash: hash
+                    }
+                }).send();
+            });
+            updateMainData();
+        }
+    };
+
     ['pauseAll', 'resumeAll'].each(function(item) {
         addClickEvent(item, function(e) {
             new Event(e).stop();
