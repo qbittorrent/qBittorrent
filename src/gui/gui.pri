@@ -49,7 +49,8 @@ HEADERS += \
     $$PWD/search/pluginsourcedlg.h \
     $$PWD/search/searchlistdelegate.h \
     $$PWD/search/searchsortmodel.h \
-    $$PWD/cookiesmodel.h
+    $$PWD/cookiesmodel.h \
+    $$PWD/cookiesdialog.h
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -89,7 +90,8 @@ SOURCES += \
     $$PWD/search/pluginsourcedlg.cpp \
     $$PWD/search/searchlistdelegate.cpp \
     $$PWD/search/searchsortmodel.cpp \
-    $$PWD/cookiesmodel.cpp
+    $$PWD/cookiesmodel.cpp \
+    $$PWD/cookiesdialog.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
@@ -116,6 +118,7 @@ FORMS += \
     $$PWD/search/searchwidget.ui \
     $$PWD/search/pluginselectdlg.ui \
     $$PWD/search/pluginsourcedlg.ui \
-    $$PWD/search/searchtab.ui
+    $$PWD/search/searchtab.ui \
+    $$PWD/cookiesdialog.ui
 
 RESOURCES += $$PWD/about.qrc

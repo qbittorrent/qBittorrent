@@ -77,6 +77,7 @@
     </widget>
     <addaction name="actionCreate_torrent"/>
     <addaction name="separator"/>
+    <addaction name="actionManageCookies"/>
     <addaction name="actionOptions"/>
     <addaction name="separator"/>
     <addaction name="menuAuto_Shutdown_on_downloads_completion"/>
@@ -412,6 +413,14 @@
    </property>
    <property name="toolTip">
     <string>Check for Program Updates</string>
+   </property>
+  </action>
+  <action name="actionManageCookies">
+   <property name="text">
+    <string>Manage Cookies...</string>
+   </property>
+   <property name="toolTip">
+    <string>Manage stored network cookies</string>
    </property>
   </action>
   <action name="actionExecutionLogs">

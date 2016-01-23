@@ -54,6 +54,8 @@ namespace Net
         DownloadHandler *downloadUrl(const QString &url, bool saveToFile = false, qint64 limit = 0, bool handleRedirectToMagnet = false, const QString &userAgent = "");
         QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const;
         bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url);
+        QList<QNetworkCookie> allCookies() const;
+        void setAllCookies(const QList<QNetworkCookie> &cookieList);
         bool deleteCookie(const QNetworkCookie &cookie);
 
     private slots:
