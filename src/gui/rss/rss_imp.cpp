@@ -41,7 +41,6 @@
 #include "feedlistwidget.h"
 #include "base/bittorrent/session.h"
 #include "base/net/downloadmanager.h"
-#include "cookiesdlg.h"
 #include "base/preferences.h"
 #include "rsssettingsdlg.h"
 #include "base/rss/rssmanager.h"
@@ -84,8 +83,6 @@ void RSSImp::displayRSSListMenu(const QPoint& pos)
                 myRSSListMenu.addSeparator();
                 if (m_feedList->isFolder(selectedItems.first()))
                     myRSSListMenu.addAction(actionNew_folder);
-                else
-                    myRSSListMenu.addAction(actionManage_cookies);
             }
         }
         else {
@@ -136,25 +133,6 @@ void RSSImp::displayItemsListMenu(const QPoint&)
         myItemListMenu.addAction(actionOpen_news_URL);
     if (hasTorrent || hasLink)
         myItemListMenu.exec(QCursor::pos());
-}
-
-void RSSImp::on_actionManage_cookies_triggered()
-{
-    Q_ASSERT(!m_feedList->selectedItems().empty());
-
-    // TODO: Create advanced application wide Cookie dialog and use it everywhere.
-    QUrl feedUrl = QUrl::fromEncoded(m_feedList->getItemID(m_feedList->selectedItems().first()).toUtf8());
-    QList<QNetworkCookie> cookies;
-    if (CookiesDlg::askForCookies(this, feedUrl, cookies)) {
-        auto downloadManager = Net::DownloadManager::instance();
-        QList<QNetworkCookie> oldCookies = downloadManager->cookiesForUrl(feedUrl);
-        foreach (const QNetworkCookie &oldCookie, oldCookies) {
-            if (!cookies.contains(oldCookie))
-                downloadManager->deleteCookie(oldCookie);
-        }
-
-        downloadManager->setCookiesFromUrl(cookies, feedUrl);
-    }
 }
 
 void RSSImp::askNewFolder()
@@ -713,7 +691,6 @@ RSSImp::RSSImp(QWidget *parent):
     actionCopy_feed_URL->setIcon(GuiIconProvider::instance()->getIcon("edit-copy"));
     actionDelete->setIcon(GuiIconProvider::instance()->getIcon("edit-delete"));
     actionDownload_torrent->setIcon(GuiIconProvider::instance()->getIcon("download"));
-    actionManage_cookies->setIcon(GuiIconProvider::instance()->getIcon("preferences-web-browser-cookies"));
     actionMark_items_read->setIcon(GuiIconProvider::instance()->getIcon("mail-mark-read"));
     actionNew_folder->setIcon(GuiIconProvider::instance()->getIcon("folder-new"));
     actionNew_subscription->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
