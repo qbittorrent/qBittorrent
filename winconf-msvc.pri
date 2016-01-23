@@ -24,7 +24,7 @@ CONFIG(debug, debug|release) {
           libboost_system-vc90-mt-sgd-1_51.lib
 } else {
   LIBS += libtorrent.lib \
-          libboost_system-vc90-mt-s-1_51.lib
+          libboost_system.lib
 }
 
 LIBS += advapi32.lib shell32.lib crypt32.lib User32.lib
