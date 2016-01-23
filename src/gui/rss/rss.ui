@@ -197,11 +197,6 @@
     <string>New folder...</string>
    </property>
   </action>
-  <action name="actionManage_cookies">
-   <property name="text">
-    <string>Manage cookies...</string>
-   </property>
-  </action>
  </widget>
  <customwidgets>
   <customwidget>
