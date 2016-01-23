@@ -1,3 +1,4 @@
+var lastShownContexMenu = null;
 var ContextMenu = new Class({
     //implements
     Implements: [Options, Events],
@@ -170,9 +171,12 @@ var ContextMenu = new Class({
 
     //show menu
     show: function (trigger) {
+        if (lastShownContexMenu && lastShownContexMenu != this)
+            lastShownContexMenu.hide();
         this.fx.start(1);
         this.fireEvent('show');
         this.shown = true;
+        lastShownContexMenu = this;
         return this;
     },
 
