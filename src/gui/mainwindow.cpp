@@ -91,6 +91,7 @@ void qt_mac_set_dock_menu(QMenu *menu);
 #include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
 #endif
+#include "cookiesdialog.h"
 
 #define TIME_TRAY_BALLOON 5000
 #define PREVENT_SUSPEND_INTERVAL 60000
@@ -166,6 +167,7 @@ MainWindow::MainWindow(QWidget *parent)
     actionStart_All->setIcon(GuiIconProvider::instance()->getIcon("media-playback-start"));
     action_Import_Torrent->setIcon(GuiIconProvider::instance()->getIcon("document-import"));
     menuAuto_Shutdown_on_downloads_completion->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
+    actionManageCookies->setIcon(GuiIconProvider::instance()->getIcon("preferences-web-browser-cookies"));
 
     QMenu *startAllMenu = new QMenu(this);
     startAllMenu->addAction(actionStart_All);
@@ -260,6 +262,8 @@ MainWindow::MainWindow(QWidget *parent)
 #else
     actionCheck_for_updates->setVisible(false);
 #endif
+
+    connect(actionManageCookies, SIGNAL(triggered()), SLOT(manageCookies()));
 
     m_pwr = new PowerManagement(this);
     preventTimer = new QTimer(this);
@@ -473,6 +477,11 @@ void MainWindow::addToolbarContextMenu()
     default:
         followSystemStyle->setChecked(true);
     }
+}
+
+void MainWindow::manageCookies()
+{
+    CookiesDialog(this).exec();
 }
 
 void MainWindow::toolbarMenuRequested(QPoint point)

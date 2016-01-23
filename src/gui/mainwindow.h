@@ -166,6 +166,7 @@ private slots:
     void pythonDownloadFailure(const QString &url, const QString &error);
 #endif
     void addToolbarContextMenu();
+    void manageCookies();
 
 private:
     QFileSystemWatcher *executable_watcher;
