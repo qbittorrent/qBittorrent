@@ -6,7 +6,7 @@
 #include <QReadWriteLock>
 #include <QObject>
 
-const int MAX_LOG_MESSAGES = 1000;
+const int MAX_LOG_MESSAGES = 20000;
 
 namespace Log
 {
