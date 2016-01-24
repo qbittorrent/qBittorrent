@@ -36,25 +36,25 @@ QT_BEGIN_NAMESPACE
 class QKeyEvent;
 QT_END_NAMESPACE
 
-class LogListWidget : public QListWidget
+class LogListWidget: public QListWidget
 {
     Q_OBJECT
 
 public:
-  explicit LogListWidget(int max_lines = 100, QWidget *parent = 0);
+    explicit LogListWidget(int max_lines = 100, QWidget *parent = 0);
 
 public slots:
-  void appendLine(const QString &line);
+    void appendLine(const QString &line);
 
 protected slots:
-  void copySelection();
-  void clearLog();
+    void copySelection();
+    void clearLog();
 
 protected:
-  void keyPressEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event);
 
 private:
-  int m_maxLines;
+    int m_maxLines;
 
 };
 
