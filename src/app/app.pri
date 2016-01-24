@@ -14,8 +14,14 @@ usesystemqtsingleapplication {
     }
 }
 
-HEADERS += $$PWD/application.h
-SOURCES += $$PWD/application.cpp
+HEADERS += \
+    $$PWD/application.h \
+    $$PWD/filelogger.h
+
+SOURCES += \
+    $$PWD/application.cpp \
+    $$PWD/filelogger.cpp \
+    $$PWD/main.cpp
 
 unix: HEADERS += $$PWD/stacktrace.h
 strace_win {
@@ -25,8 +31,6 @@ strace_win {
         FORMS += $$PWD/stacktrace_win_dlg.ui
     }
 }
-
-SOURCES += $$PWD/main.cpp
 
 # upgrade code
 HEADERS += $$PWD/upgrade.h
