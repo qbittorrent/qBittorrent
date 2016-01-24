@@ -58,6 +58,7 @@
 #endif
 
 #include "application.h"
+#include "filelogger.h"
 #include "base/logger.h"
 #include "base/settingsstorage.h"
 #include "base/preferences.h"
@@ -105,8 +106,18 @@ Application::Application(const QString &id, int &argc, char **argv)
 
     connect(this, SIGNAL(messageReceived(const QString &)), SLOT(processMessage(const QString &)));
     connect(this, SIGNAL(aboutToQuit()), SLOT(cleanup()));
+    connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
 
+    configure();
     Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(VERSION));
+}
+
+void Application::configure()
+{
+    if (Preferences::instance()->fileLogEnabled() && !m_fileLogger)
+        m_fileLogger = new FileLogger;
+    else
+        delete m_fileLogger;
 }
 
 void Application::processMessage(const QString &message)
@@ -469,6 +480,7 @@ void Application::cleanup()
     Net::DownloadManager::freeInstance();
     Preferences::freeInstance();
     SettingsStorage::freeInstance();
+    delete m_fileLogger;
     Logger::freeInstance();
     IconProvider::freeInstance();
 #ifndef DISABLE_GUI

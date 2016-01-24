@@ -56,6 +56,8 @@ typedef QtSingleCoreApplication BaseApplication;
 class WebUI;
 #endif
 
+class FileLogger;
+
 namespace BitTorrent
 {
     class TorrentHandle;
@@ -83,6 +85,7 @@ protected:
 #endif
 
 private slots:
+    void configure();
     void processMessage(const QString &message);
     void torrentFinished(BitTorrent::TorrentHandle *const torrent);
     void allTorrentsFinished();
@@ -102,6 +105,9 @@ private:
 #ifndef DISABLE_WEBUI
     QPointer<WebUI> m_webui;
 #endif
+
+    // FileLog
+    QPointer<FileLogger> m_fileLogger;
 
     QTranslator m_qtTranslator;
     QTranslator m_translator;
