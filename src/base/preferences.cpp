@@ -60,6 +60,8 @@
 
 Preferences* Preferences::m_instance = 0;
 
+static const QString LOG_FOLDER("logs");
+
 Preferences::Preferences()
     : m_randomPort(rand() % 64512 + 1024)
 {
@@ -881,6 +883,88 @@ int Preferences::executionLogMessageTypes() const
 void Preferences::setExecutionLogMessageTypes(const int &value)
 {
     setValue("MainWindow/ExecutionLog/Types", value);
+}
+
+// File log
+bool Preferences::fileLogEnabled() const
+{
+    return value("Application/FileLogger/Enabled", true).toBool();
+}
+
+void Preferences::setFileLogEnabled(bool enabled)
+{
+    setValue("Application/FileLogger/Enabled", enabled);
+}
+
+QString Preferences::fileLogPath() const
+{
+    return value("Application/FileLogger/Path", QVariant(Utils::Fs::QDesktopServicesDataLocation() + LOG_FOLDER)).toString();
+}
+
+void Preferences::setFileLogPath(const QString &path)
+{
+    setValue("Application/FileLogger/Path", path);
+}
+
+bool Preferences::fileLogBackup() const
+{
+    return value("Application/FileLogger/Backup", true).toBool();
+}
+
+void Preferences::setFileLogBackup(bool backup)
+{
+    setValue("Application/FileLogger/Backup", backup);
+}
+
+bool Preferences::fileLogDeleteOld() const
+{
+    return value("Application/FileLogger/DeleteOld", true).toBool();
+}
+
+void Preferences::setFileLogDeleteOld(bool deleteOld)
+{
+    setValue("Application/FileLogger/DeleteOld", deleteOld);
+}
+
+int Preferences::fileLogMaxSize() const
+{
+    int val = value("Application/FileLogger/MaxSize", 10).toInt();
+    if (val < 1)
+        return 1;
+    if (val > 1000)
+        return 1000;
+    return val;
+}
+
+void Preferences::setFileLogMaxSize(const int &size)
+{
+    setValue("Application/FileLogger/MaxSize", std::min(std::max(size, 1), 1000));
+}
+
+int Preferences::fileLogAge() const
+{
+    int val = value("Application/FileLogger/Age", 6).toInt();
+    if (val < 1)
+        return 1;
+    if (val > 365)
+        return 365;
+    return val;
+}
+
+void Preferences::setFileLogAge(const int &age)
+{
+    setValue("Application/FileLogger/Age", std::min(std::max(age, 1), 365));
+}
+
+int Preferences::fileLogAgeType() const
+{
+    int val = value("Application/FileLogger/AgeType", 1).toInt();
+    return (val < 0 || val > 2) ? 1 : val;
+}
+
+void Preferences::setFileLogAgeType(const int &ageType)
+{
+    setValue("Application/FileLogger/AgeType", (ageType < 0 || ageType > 2) ? 1 : ageType);
 }
 
 // Queueing system
