@@ -155,13 +155,8 @@ protected:
     void displayRSSTab(bool enable);
     void displaySearchTab(bool enable);
 
-private:
-    QIcon getSystrayIcon() const;
-#ifdef Q_OS_WIN
-    bool addPythonPathToEnv();
-    void installPython();
-
 private slots:
+#ifdef Q_OS_WIN
     void pythonDownloadSuccess(const QString &url, const QString &filePath);
     void pythonDownloadFailure(const QString &url, const QString &error);
 #endif
@@ -169,6 +164,12 @@ private slots:
     void manageCookies();
 
 private:
+    QIcon getSystrayIcon() const;
+#ifdef Q_OS_WIN
+    bool addPythonPathToEnv();
+    void installPython();
+#endif
+
     QFileSystemWatcher *executable_watcher;
     // Bittorrent
     QList<QPair<BitTorrent::TorrentHandle*, QString>> unauthenticated_trackers; // Still needed?
