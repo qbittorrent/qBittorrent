@@ -39,6 +39,8 @@
 #include "torrentmodel.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/types.h"
+#include "base/preferences.h"
 #include "base/unicodestrings.h"
 
 #ifdef Q_OS_WIN
@@ -54,6 +56,7 @@ TransferListDelegate::TransferListDelegate(QObject *parent) : QItemDelegate(pare
 TransferListDelegate::~TransferListDelegate() {}
 
 void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const {
+  const bool hideValues = Preferences::instance()->getHideZeroValues();
   QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
   painter->save();
   switch(index.column()) {
@@ -66,10 +69,14 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
   case TorrentModel::TR_SIZE:
   case TorrentModel::TR_TOTAL_SIZE: {
       QItemDelegate::drawBackground(painter, opt, index);
+      qlonglong size = index.data().toLongLong();
+      if (hideValues && !size)
+        break;
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-      QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
+      QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(size));
       break;
     }
+
   case TorrentModel::TR_ETA: {
       QItemDelegate::drawBackground(painter, opt, index);
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
@@ -152,6 +159,8 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
   case TorrentModel::TR_DLSPEED: {
       QItemDelegate::drawBackground(painter, opt, index);
       const qulonglong speed = index.data().toULongLong();
+      if (hideValues && !speed)
+        break;
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed, true));
       break;
@@ -160,6 +169,8 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
   case TorrentModel::TR_DLLIMIT: {
     QItemDelegate::drawBackground(painter, opt, index);
     const qlonglong limit = index.data().toLongLong();
+    if (hideValues && !limit)
+      break;
     opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
     QItemDelegate::drawDisplay(painter, opt, opt.rect, limit > 0 ? Utils::Misc::friendlyUnit(limit, true) : QString::fromUtf8(C_INFINITY));
     break;
@@ -185,6 +196,8 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       QItemDelegate::drawBackground(painter, opt, index);
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       const qreal ratio = index.data().toDouble();
+      if (hideValues && (ratio <= 0))
+        break;
       QItemDelegate::drawDisplay(painter, opt, opt.rect,
                                  ((ratio == -1) || (ratio > BitTorrent::TorrentHandle::MAX_RATIO)) ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(ratio, 2));
       break;
@@ -224,17 +237,20 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
       break;
     }
   case TorrentModel::TR_LAST_ACTIVITY: {
-      QString elapsedString;
-      long long elapsed = index.data().toLongLong();
       QItemDelegate::drawBackground(painter, opt, index);
-      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+      qlonglong elapsed = index.data().toLongLong();
+      if (hideValues && ((elapsed < 0) || (elapsed >= MAX_ETA)))
+        break;
+
+      QString elapsedString;
       if (elapsed == 0)
         // Show '< 1m ago' when elapsed time is 0
         elapsed = 1;
-      if (elapsed < 0)
+      else if (elapsed < 0)
         elapsedString = Utils::Misc::userFriendlyDuration(elapsed);
       else
         elapsedString = tr("%1 ago", "e.g.: 1h 20m ago").arg(Utils::Misc::userFriendlyDuration(elapsed));
+      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       QItemDelegate::drawDisplay(painter, opt, option.rect, elapsedString);
       break;
     }
