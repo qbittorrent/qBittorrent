@@ -38,59 +38,60 @@
 #include "guiiconprovider.h"
 
 LogListWidget::LogListWidget(int max_lines, QWidget *parent) :
-  QListWidget(parent),
-  m_maxLines(max_lines)
+    QListWidget(parent),
+    m_maxLines(max_lines)
 {
-  // Allow multiple selections
-  setSelectionMode(QAbstractItemView::ExtendedSelection);
-  // Context menu
-  QAction *copyAct = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy"), this);
-  QAction *clearAct = new QAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Clear"), this);
-  connect(copyAct, SIGNAL(triggered()), SLOT(copySelection()));
-  connect(clearAct, SIGNAL(triggered()), SLOT(clearLog()));
-  addAction(copyAct);
-  addAction(clearAct);
-  setContextMenuPolicy(Qt::ActionsContextMenu);
+    // Allow multiple selections
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    // Context menu
+    QAction *copyAct = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy"), this);
+    QAction *clearAct = new QAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Clear"), this);
+    connect(copyAct, SIGNAL(triggered()), SLOT(copySelection()));
+    connect(clearAct, SIGNAL(triggered()), SLOT(clearLog()));
+    addAction(copyAct);
+    addAction(clearAct);
+    setContextMenuPolicy(Qt::ActionsContextMenu);
 }
 
 void LogListWidget::keyPressEvent(QKeyEvent *event)
 {
-  if (event->matches(QKeySequence::Copy)) {
-    copySelection();
-    return;
-  }
-  if (event->matches(QKeySequence::SelectAll)) {
-    selectAll();
-    return;
-  }
+    if (event->matches(QKeySequence::Copy)) {
+        copySelection();
+        return;
+    }
+    if (event->matches(QKeySequence::SelectAll)) {
+        selectAll();
+        return;
+    }
 }
 
 void LogListWidget::appendLine(const QString &line)
 {
-  QListWidgetItem *item = new QListWidgetItem;
-  // We need to use QLabel here to support rich text
-  QLabel *lbl = new QLabel(line);
-  lbl->setContentsMargins(4, 2, 4, 2);
-  item->setSizeHint(lbl->sizeHint());
-  insertItem(0, item);
-  setItemWidget(item, lbl);
-  const int nbLines = count();
-  // Limit log size
-  if (nbLines > m_maxLines)
-    delete takeItem(nbLines - 1);
+    QListWidgetItem *item = new QListWidgetItem;
+    // We need to use QLabel here to support rich text
+    QLabel *lbl = new QLabel(line);
+    lbl->setContentsMargins(4, 2, 4, 2);
+    item->setSizeHint(lbl->sizeHint());
+    insertItem(0, item);
+    setItemWidget(item, lbl);
+    const int nbLines = count();
+    // Limit log size
+    if (nbLines > m_maxLines)
+        delete takeItem(nbLines - 1);
 }
 
 void LogListWidget::copySelection()
 {
-  static QRegExp html_tag("<[^>]+>");
-  QList<QListWidgetItem*> items = selectedItems();
-  QStringList strings;
-  foreach (QListWidgetItem* it, items)
-    strings << static_cast<QLabel*>(itemWidget(it))->text().replace(html_tag, "");
+    static QRegExp html_tag("<[^>]+>");
+    QList<QListWidgetItem*> items = selectedItems();
+    QStringList strings;
+    foreach (QListWidgetItem* it, items)
+        strings << static_cast<QLabel*>(itemWidget(it))->text().replace(html_tag, "");
 
-  QApplication::clipboard()->setText(strings.join("\n"));
+    QApplication::clipboard()->setText(strings.join("\n"));
 }
 
-void LogListWidget::clearLog() {
-  clear();
+void LogListWidget::clearLog()
+{
+    clear();
 }
