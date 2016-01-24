@@ -32,20 +32,14 @@
 #define EXECUTIONLOG_H
 
 #include <QWidget>
+#include "base/logger.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
     class ExecutionLog;
 }
 QT_END_NAMESPACE
-class Logger;
 class LogListWidget;
-
-namespace Log
-{
-    struct Msg;
-    struct Peer;
-}
 
 class ExecutionLog: public QWidget
 {
@@ -53,6 +47,7 @@ class ExecutionLog: public QWidget
 
 public:
     explicit ExecutionLog(QWidget *parent = 0);
+    void showMsgTypes(const Log::MsgTypes &types);
     ~ExecutionLog();
 
 private slots:
