@@ -38,7 +38,8 @@ static const char *__TRANSLATIONS__[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Help"),
     QT_TRANSLATE_NOOP("HttpServer", "Logout"),
     QT_TRANSLATE_NOOP("HttpServer", "Exit qBittorrent"),
-    QT_TRANSLATE_NOOP("HttpServer", "Download Torrents from their URL or Magnet link"),
+    QT_TRANSLATE_NOOP("HttpServer", "Download from URLs"),
+    QT_TRANSLATE_NOOP("HttpServer", "Download Torrents from their URLs or Magnet links"),
     QT_TRANSLATE_NOOP("HttpServer", "Only one link per line"),
     QT_TRANSLATE_NOOP("HttpServer", "Upload local torrent"),
     QT_TRANSLATE_NOOP("HttpServer", "Download"),
@@ -76,7 +77,6 @@ static const char *__TRANSLATIONS__[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Download limit:"),
     QT_TRANSLATE_NOOP("HttpServer", "Apply"),
     QT_TRANSLATE_NOOP("HttpServer", "Add"),
-    QT_TRANSLATE_NOOP("HttpServer", "Upload Torrents"),
     QT_TRANSLATE_NOOP("HttpServer", "All"),
     QT_TRANSLATE_NOOP("HttpServer", "Downloading"),
     QT_TRANSLATE_NOOP("HttpServer", "Seeding"),
@@ -114,7 +114,8 @@ static const struct { const char *source; const char *comment; } __COMMENTED_TRA
     QT_TRANSLATE_NOOP3("HttpServer", "Thursday", "Schedule the use of alternative rate limits on ..."),
     QT_TRANSLATE_NOOP3("HttpServer", "Friday", "Schedule the use of alternative rate limits on ..."),
     QT_TRANSLATE_NOOP3("HttpServer", "Saturday", "Schedule the use of alternative rate limits on ..."),
-    QT_TRANSLATE_NOOP3("HttpServer", "Sunday", "Schedule the use of alternative rate limits on ...")
+    QT_TRANSLATE_NOOP3("HttpServer", "Sunday", "Schedule the use of alternative rate limits on ..."),
+    QT_TRANSLATE_NOOP3("HttpServer", "Upload Torrents", "Upload torrent files to qBittorent using WebUI")
 };
 
 #endif // EXTRA_TRANSLATIONS_H
