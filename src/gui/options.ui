@@ -163,7 +163,7 @@
              <x>0</x>
              <y>0</y>
              <width>480</width>
-             <height>672</height>
+             <height>698</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -254,6 +254,13 @@
                  </property>
                  <property name="checked">
                   <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkHideZero">
+                 <property name="text">
+                  <string>Hide zero and infinity values</string>
                  </property>
                 </widget>
                </item>
