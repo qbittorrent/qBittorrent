@@ -273,9 +273,20 @@ MainWindow::MainWindow(QWidget *parent)
     actionSpeed_in_title_bar->setChecked(pref->speedInTitleBar());
     actionRSS_Reader->setChecked(pref->isRSSEnabled());
     actionSearch_engine->setChecked(pref->isSearchEnabled());
-    actionExecution_Logs->setChecked(pref->isExecutionLogEnabled());
+    actionExecutionLogs->setChecked(pref->isExecutionLogEnabled());
+
+    Log::MsgTypes flags(pref->executionLogMessageTypes());
+    actionNormalMessages->setChecked(flags & Log::NORMAL);
+    actionInformationMessages->setChecked(flags & Log::INFO);
+    actionWarningMessages->setChecked(flags & Log::WARNING);
+    actionCriticalMessages->setChecked(flags & Log::CRITICAL);
+
     displayRSSTab(actionRSS_Reader->isChecked());
-    on_actionExecution_Logs_triggered(actionExecution_Logs->isChecked());
+    on_actionExecutionLogs_triggered(actionExecutionLogs->isChecked());
+    on_actionNormalMessages_triggered(actionNormalMessages->isChecked());
+    on_actionInformationMessages_triggered(actionInformationMessages->isChecked());
+    on_actionWarningMessages_triggered(actionWarningMessages->isChecked());
+    on_actionCriticalMessages_triggered(actionCriticalMessages->isChecked());
     if (actionSearch_engine->isChecked())
         QTimer::singleShot(0, this, SLOT(on_actionSearch_engine_triggered()));
 
@@ -1507,7 +1518,7 @@ void MainWindow::minimizeWindow()
     setWindowState(windowState() ^ Qt::WindowMinimized);
 }
 
-void MainWindow::on_actionExecution_Logs_triggered(bool checked)
+void MainWindow::on_actionExecutionLogs_triggered(bool checked)
 {
     if (checked) {
         Q_ASSERT(!m_executionLog);
@@ -1518,7 +1529,64 @@ void MainWindow::on_actionExecution_Logs_triggered(bool checked)
     else if (m_executionLog) {
         delete m_executionLog;
     }
+
+    actionNormalMessages->setEnabled(checked);
+    actionInformationMessages->setEnabled(checked);
+    actionWarningMessages->setEnabled(checked);
+    actionCriticalMessages->setEnabled(checked);
     Preferences::instance()->setExecutionLogEnabled(checked);
+}
+
+void MainWindow::on_actionNormalMessages_triggered(bool checked)
+{
+    if (!m_executionLog)
+        return;
+
+    Preferences* const pref = Preferences::instance();
+
+    Log::MsgTypes flags(pref->executionLogMessageTypes());
+    checked ? (flags |= Log::NORMAL) : (flags &= ~Log::NORMAL);
+    m_executionLog->showMsgTypes(flags);
+    pref->setExecutionLogMessageTypes(flags);
+}
+
+void MainWindow::on_actionInformationMessages_triggered(bool checked)
+{
+    if (!m_executionLog)
+        return;
+
+    Preferences* const pref = Preferences::instance();
+
+    Log::MsgTypes flags(pref->executionLogMessageTypes());
+    checked ? (flags |= Log::INFO) : (flags &= ~Log::INFO);
+    m_executionLog->showMsgTypes(flags);
+    pref->setExecutionLogMessageTypes(flags);
+}
+
+void MainWindow::on_actionWarningMessages_triggered(bool checked)
+{
+    if (!m_executionLog)
+        return;
+
+    Preferences* const pref = Preferences::instance();
+
+    Log::MsgTypes flags(pref->executionLogMessageTypes());
+    checked ? (flags |= Log::WARNING) : (flags &= ~Log::WARNING);
+    m_executionLog->showMsgTypes(flags);
+    pref->setExecutionLogMessageTypes(flags);
+}
+
+void MainWindow::on_actionCriticalMessages_triggered(bool checked)
+{
+    if (!m_executionLog)
+        return;
+
+    Preferences* const pref = Preferences::instance();
+
+    Log::MsgTypes flags(pref->executionLogMessageTypes());
+    checked ? (flags |= Log::CRITICAL) : (flags &= ~Log::CRITICAL);
+    m_executionLog->showMsgTypes(flags);
+    pref->setExecutionLogMessageTypes(flags);
 }
 
 void MainWindow::on_actionAutoExit_qBittorrent_toggled(bool enabled)

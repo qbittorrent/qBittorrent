@@ -871,6 +871,18 @@ void Preferences::setExecutionLogEnabled(bool b)
     setValue("Preferences/ExecutionLog/enabled", b);
 }
 
+int Preferences::executionLogMessageTypes() const
+{
+    // as default value we need all the bits set
+    // -1 is considered the portable way to achieve that
+    return value("Preferences/ExecutionLog/MessageTypes", -1).toInt();
+}
+
+void Preferences::setExecutionLogMessageTypes(const int &value)
+{
+    setValue("Preferences/ExecutionLog/MessageTypes", value);
+}
+
 // Queueing system
 bool Preferences::isQueueingSystemEnabled() const
 {

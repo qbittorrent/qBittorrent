@@ -35,17 +35,19 @@
 #include <QPalette>
 #include "executionlog.h"
 #include "ui_executionlog.h"
-#include "base/logger.h"
+#include "base/preferences.h"
 #include "guiiconprovider.h"
 #include "loglistwidget.h"
 
 ExecutionLog::ExecutionLog(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::ExecutionLog)
-    , m_msgList(new LogListWidget(MAX_LOG_MESSAGES))
     , m_peerList(new LogListWidget(MAX_LOG_MESSAGES))
 {
     ui->setupUi(this);
+
+    m_msgList = new LogListWidget(MAX_LOG_MESSAGES,
+                                  Log::MsgTypes(Preferences::instance()->executionLogMessageTypes()));
 
     ui->tabConsole->setTabIcon(0, GuiIconProvider::instance()->getIcon("view-calendar-journal"));
     ui->tabConsole->setTabIcon(1, GuiIconProvider::instance()->getIcon("view-filter"));
@@ -66,6 +68,11 @@ ExecutionLog::~ExecutionLog()
     delete m_msgList;
     delete m_peerList;
     delete ui;
+}
+
+void ExecutionLog::showMsgTypes(const Log::MsgTypes &types)
+{
+    m_msgList->showMsgTypes(types);
 }
 
 void ExecutionLog::addLogMessage(const Log::Msg &msg)
@@ -89,7 +96,7 @@ void ExecutionLog::addLogMessage(const Log::Msg &msg)
     }
 
     text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - <font color='" + color.name() + "'>" + msg.message + "</font>";
-    m_msgList->appendLine(text);
+    m_msgList->appendLine(text, msg.type);
 }
 
 void ExecutionLog::addPeerMessage(const Log::Peer& peer)
@@ -102,5 +109,5 @@ void ExecutionLog::addPeerMessage(const Log::Peer& peer)
     else
         text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(peer.ip);
 
-    m_peerList->appendLine(text);
+    m_peerList->appendLine(text, Log::NORMAL);
 }
