@@ -214,7 +214,11 @@ private slots:
     void on_actionTop_tool_bar_triggered();
     void on_action_Import_Torrent_triggered();
     void on_actionDonate_money_triggered();
-    void on_actionExecution_Logs_triggered(bool checked);
+    void on_actionExecutionLogs_triggered(bool checked);
+    void on_actionNormalMessages_triggered(bool checked);
+    void on_actionInformationMessages_triggered(bool checked);
+    void on_actionWarningMessages_triggered(bool checked);
+    void on_actionCriticalMessages_triggered(bool checked);
     void on_actionAutoExit_qBittorrent_toggled(bool );
     void on_actionAutoSuspend_system_toggled(bool );
     void on_actionAutoHibernate_system_toggled(bool );

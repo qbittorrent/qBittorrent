@@ -276,6 +276,8 @@ public:
     // Execution Log
     bool isExecutionLogEnabled() const;
     void setExecutionLogEnabled(bool b);
+    int executionLogMessageTypes() const;
+    void setExecutionLogMessageTypes(const int &value);
 
     // Queueing system
     bool isQueueingSystemEnabled() const;

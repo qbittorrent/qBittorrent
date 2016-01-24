@@ -35,7 +35,7 @@
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -95,12 +95,23 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
+    <widget class="QMenu" name="menuLog">
+     <property name="title">
+      <string>&amp;Log</string>
+     </property>
+     <addaction name="actionExecutionLogs"/>
+     <addaction name="separator"/>
+     <addaction name="actionNormalMessages"/>
+     <addaction name="actionInformationMessages"/>
+     <addaction name="actionWarningMessages"/>
+     <addaction name="actionCriticalMessages"/>
+    </widget>
     <addaction name="actionTop_tool_bar"/>
     <addaction name="actionSpeed_in_title_bar"/>
     <addaction name="separator"/>
     <addaction name="actionSearch_engine"/>
     <addaction name="actionRSS_Reader"/>
-    <addaction name="actionExecution_Logs"/>
+    <addaction name="menuLog"/>
     <addaction name="separator"/>
     <addaction name="actionStatistics"/>
     <addaction name="separator"/>
@@ -340,17 +351,6 @@
     <string>P&amp;ause All</string>
    </property>
   </action>
-  <action name="actionExecution_Logs">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Log</string>
-   </property>
-   <property name="toolTip">
-    <string>Execution Log</string>
-   </property>
-  </action>
   <action name="actionAutoExit_qBittorrent">
    <property name="checkable">
     <bool>true</bool>
@@ -414,9 +414,47 @@
     <string>Check for Program Updates</string>
    </property>
   </action>
+  <action name="actionExecutionLogs">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show</string>
+   </property>
+  </action>
+  <action name="actionNormalMessages">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Normal Messages</string>
+   </property>
+  </action>
+  <action name="actionInformationMessages">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Information Messages</string>
+   </property>
+  </action>
+  <action name="actionWarningMessages">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Warning Messages</string>
+   </property>
+  </action>
+  <action name="actionCriticalMessages">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Critical Messages</string>
+   </property>
+  </action>
  </widget>
- <resources>
-  <include location="../icons.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
