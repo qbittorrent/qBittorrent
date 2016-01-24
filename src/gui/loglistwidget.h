@@ -48,7 +48,6 @@ public slots:
 
 protected slots:
     void copySelection();
-    void clearLog();
 
 protected:
     void keyPressEvent(QKeyEvent *event);
