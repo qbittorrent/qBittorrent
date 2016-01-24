@@ -38,7 +38,7 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_Edit">
+   <widget class="QMenu" name="menuEdit">
     <property name="title">
      <string>&amp;Edit</string>
     </property>
@@ -51,44 +51,44 @@
     <addaction name="actionDecreasePriority"/>
     <addaction name="actionBottomPriority"/>
    </widget>
-   <widget class="QMenu" name="menu_Help">
+   <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>&amp;Help</string>
     </property>
     <addaction name="actionDocumentation"/>
-    <addaction name="actionCheck_for_updates"/>
+    <addaction name="actionCheckForUpdates"/>
     <addaction name="separator"/>
-    <addaction name="actionDonate_money"/>
+    <addaction name="actionDonateMoney"/>
     <addaction name="actionAbout"/>
    </widget>
-   <widget class="QMenu" name="menu_Options">
+   <widget class="QMenu" name="menuOptions">
     <property name="title">
      <string>&amp;Tools</string>
     </property>
-    <widget class="QMenu" name="menuAuto_Shutdown_on_downloads_completion">
+    <widget class="QMenu" name="menuAutoShutdownOnDownloadsCompletion">
      <property name="title">
       <string>On Downloads &amp;Done</string>
      </property>
-     <addaction name="actionAutoShutdown_Disabled"/>
-     <addaction name="actionAutoExit_qBittorrent"/>
-     <addaction name="actionAutoSuspend_system"/>
-     <addaction name="actionAutoHibernate_system"/>
-     <addaction name="actionAutoShutdown_system"/>
+     <addaction name="actionAutoShutdownDisabled"/>
+     <addaction name="actionAutoExit"/>
+     <addaction name="actionAutoSuspend"/>
+     <addaction name="actionAutoHibernate"/>
+     <addaction name="actionAutoShutdown"/>
     </widget>
-    <addaction name="actionCreate_torrent"/>
+    <addaction name="actionCreateTorrent"/>
     <addaction name="separator"/>
     <addaction name="actionManageCookies"/>
     <addaction name="actionOptions"/>
     <addaction name="separator"/>
-    <addaction name="menuAuto_Shutdown_on_downloads_completion"/>
+    <addaction name="menuAutoShutdownOnDownloadsCompletion"/>
    </widget>
-   <widget class="QMenu" name="menu_File">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>&amp;File</string>
     </property>
     <addaction name="actionOpen"/>
-    <addaction name="actionDownload_from_URL"/>
-    <addaction name="action_Import_Torrent"/>
+    <addaction name="actionDownloadFromURL"/>
+    <addaction name="actionImportTorrent"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -107,22 +107,25 @@
      <addaction name="actionWarningMessages"/>
      <addaction name="actionCriticalMessages"/>
     </widget>
-    <addaction name="actionTop_tool_bar"/>
-    <addaction name="actionSpeed_in_title_bar"/>
     <addaction name="separator"/>
     <addaction name="actionSearch_engine"/>
     <addaction name="actionRSS_Reader"/>
     <addaction name="menuLog"/>
+    <addaction name="actionTopToolBar"/>
+    <addaction name="actionSpeedInTitleBar"/>
+    <addaction name="separator"/>
+    <addaction name="actionSearchWidget"/>
+    <addaction name="actionRSSReader"/>
     <addaction name="separator"/>
     <addaction name="actionStatistics"/>
     <addaction name="separator"/>
-    <addaction name="actionLock_qBittorrent"/>
+    <addaction name="actionLock"/>
    </widget>
-   <addaction name="menu_File"/>
-   <addaction name="menu_Edit"/>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
    <addaction name="menuView"/>
-   <addaction name="menu_Options"/>
-   <addaction name="menu_Help"/>
+   <addaction name="menuOptions"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="movable">
@@ -143,7 +146,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionDownload_from_URL"/>
+   <addaction name="actionDownloadFromURL"/>
    <addaction name="actionOpen"/>
    <addaction name="actionDelete"/>
    <addaction name="separator"/>
@@ -155,7 +158,7 @@
    <addaction name="actionBottomPriority"/>
    <addaction name="separator"/>
    <addaction name="actionOptions"/>
-   <addaction name="actionLock_qBittorrent"/>
+   <addaction name="actionLock"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
@@ -196,7 +199,7 @@
     <string>&amp;Delete</string>
    </property>
   </action>
-  <action name="actionDownload_from_URL">
+  <action name="actionDownloadFromURL">
    <property name="text">
     <string>Add Torrent &amp;Link...</string>
    </property>
@@ -204,17 +207,17 @@
     <string>Open URL</string>
    </property>
   </action>
-  <action name="actionCreate_torrent">
+  <action name="actionCreateTorrent">
    <property name="text">
     <string>Torrent &amp;Creator</string>
    </property>
   </action>
-  <action name="actionSet_upload_limit">
+  <action name="actionSetUploadLimit">
    <property name="text">
     <string>Set Upload Limit...</string>
    </property>
   </action>
-  <action name="actionSet_download_limit">
+  <action name="actionSetDownloadLimit">
    <property name="text">
     <string>Set Download Limit...</string>
    </property>
@@ -224,12 +227,12 @@
     <string>&amp;Documentation</string>
    </property>
   </action>
-  <action name="actionSet_global_download_limit">
+  <action name="actionSetGlobalDownloadLimit">
    <property name="text">
     <string>Set Global Download Limit...</string>
    </property>
   </action>
-  <action name="actionSet_global_upload_limit">
+  <action name="actionSetGlobalUploadLimit">
    <property name="text">
     <string>Set Global Upload Limit...</string>
    </property>
@@ -266,7 +269,7 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionUse_alternative_speed_limits">
+  <action name="actionUseAlternativeSpeedLimits">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -277,7 +280,7 @@
     <string>Alternative Speed Limits</string>
    </property>
   </action>
-  <action name="actionTop_tool_bar">
+  <action name="actionTopToolBar">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -288,7 +291,7 @@
     <string>Display Top Toolbar</string>
    </property>
   </action>
-  <action name="actionSpeed_in_title_bar">
+  <action name="actionSpeedInTitleBar">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -299,7 +302,7 @@
     <string>Show Transfer Speed in Title Bar</string>
    </property>
   </action>
-  <action name="actionRSS_Reader">
+  <action name="actionRSSReader">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -307,7 +310,7 @@
     <string>&amp;RSS Reader</string>
    </property>
   </action>
-  <action name="actionSearch_engine">
+  <action name="actionSearchWidget">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -315,7 +318,7 @@
     <string>Search &amp;Engine</string>
    </property>
   </action>
-  <action name="actionLock_qBittorrent">
+  <action name="actionLock">
    <property name="text">
     <string>L&amp;ock qBittorrent</string>
    </property>
@@ -326,7 +329,7 @@
     <string notr="true">Ctrl+L</string>
    </property>
   </action>
-  <action name="action_Import_Torrent">
+  <action name="actionImportTorrent">
    <property name="text">
     <string>&amp;Import Existing Torrent...</string>
    </property>
@@ -334,7 +337,7 @@
     <string>Import Torrent...</string>
    </property>
   </action>
-  <action name="actionDonate_money">
+  <action name="actionDonateMoney">
    <property name="text">
     <string>Do&amp;nate!</string>
    </property>
@@ -342,17 +345,28 @@
     <string>If you like qBittorrent, please donate!</string>
    </property>
   </action>
-  <action name="actionStart_All">
+  <action name="actionStartAll">
    <property name="text">
     <string>R&amp;esume All</string>
    </property>
   </action>
-  <action name="actionPause_All">
+  <action name="actionPauseAll">
    <property name="text">
     <string>P&amp;ause All</string>
    </property>
   </action>
-  <action name="actionAutoExit_qBittorrent">
+  <action name="actionExecutionLogs">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Log</string>
+   </property>
+   <property name="toolTip">
+    <string>Execution Log</string>
+   </property>
+  </action>
+  <action name="actionAutoExit">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -360,7 +374,7 @@
     <string>&amp;Exit qBittorrent</string>
    </property>
   </action>
-  <action name="actionAutoSuspend_system">
+  <action name="actionAutoSuspend">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -368,7 +382,7 @@
     <string>&amp;Suspend System</string>
    </property>
   </action>
-  <action name="actionAutoHibernate_system">
+  <action name="actionAutoHibernate">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -376,7 +390,7 @@
     <string>&amp;Hibernate System</string>
    </property>
   </action>
-  <action name="actionAutoShutdown_system">
+  <action name="actionAutoShutdown">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -384,7 +398,7 @@
     <string>S&amp;hutdown System</string>
    </property>
   </action>
-  <action name="actionAutoShutdown_Disabled">
+  <action name="actionAutoShutdownDisabled">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -407,7 +421,7 @@
     <string>&amp;Statistics</string>
    </property>
   </action>
-  <action name="actionCheck_for_updates">
+  <action name="actionCheckForUpdates">
    <property name="text">
     <string>Check for Updates</string>
    </property>

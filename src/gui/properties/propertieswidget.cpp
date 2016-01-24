@@ -373,7 +373,7 @@ void PropertiesWidget::reloadPreferences() {
 
 void PropertiesWidget::loadDynamicData() {
     // Refresh only if the torrent handle is valid and if visible
-    if (!m_torrent || (main_window->getCurrentTabWidget() != transferList) || (state != VISIBLE)) return;
+    if (!m_torrent || (main_window->currentTabWidget() != transferList) || (state != VISIBLE)) return;
 
     // Transfer infos
     switch(stackedProperties->currentIndex()) {

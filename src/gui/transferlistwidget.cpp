@@ -311,7 +311,7 @@ void TransferListWidget::pauseVisibleTorrents()
 
 void TransferListWidget::deleteSelectedTorrents()
 {
-    if (main_window->getCurrentTabWidget() != this) return;
+    if (main_window->currentTabWidget() != this) return;
 
     const QList<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
     if (torrents.empty()) return;
@@ -343,26 +343,26 @@ void TransferListWidget::deleteVisibleTorrents()
 void TransferListWidget::increasePrioSelectedTorrents()
 {
     qDebug() << Q_FUNC_INFO;
-    if (main_window->getCurrentTabWidget() == this)
+    if (main_window->currentTabWidget() == this)
         BitTorrent::Session::instance()->increaseTorrentsPriority(extractHashes(getSelectedTorrents()));
 }
 
 void TransferListWidget::decreasePrioSelectedTorrents()
 {
     qDebug() << Q_FUNC_INFO;
-    if (main_window->getCurrentTabWidget() == this)
+    if (main_window->currentTabWidget() == this)
         BitTorrent::Session::instance()->decreaseTorrentsPriority(extractHashes(getSelectedTorrents()));
 }
 
 void TransferListWidget::topPrioSelectedTorrents()
 {
-    if (main_window->getCurrentTabWidget() == this)
+    if (main_window->currentTabWidget() == this)
         BitTorrent::Session::instance()->topTorrentsPriority(extractHashes(getSelectedTorrents()));
 }
 
 void TransferListWidget::bottomPrioSelectedTorrents()
 {
-    if (main_window->getCurrentTabWidget() == this)
+    if (main_window->currentTabWidget() == this)
         BitTorrent::Session::instance()->bottomTorrentsPriority(extractHashes(getSelectedTorrents()));
 }
 
