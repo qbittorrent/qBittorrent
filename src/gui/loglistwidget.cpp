@@ -47,7 +47,7 @@ LogListWidget::LogListWidget(int max_lines, QWidget *parent) :
     QAction *copyAct = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy"), this);
     QAction *clearAct = new QAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Clear"), this);
     connect(copyAct, SIGNAL(triggered()), SLOT(copySelection()));
-    connect(clearAct, SIGNAL(triggered()), SLOT(clearLog()));
+    connect(clearAct, SIGNAL(triggered()), SLOT(clear()));
     addAction(copyAct);
     addAction(clearAct);
     setContextMenuPolicy(Qt::ActionsContextMenu);
@@ -55,14 +55,10 @@ LogListWidget::LogListWidget(int max_lines, QWidget *parent) :
 
 void LogListWidget::keyPressEvent(QKeyEvent *event)
 {
-    if (event->matches(QKeySequence::Copy)) {
+    if (event->matches(QKeySequence::Copy))
         copySelection();
-        return;
-    }
-    if (event->matches(QKeySequence::SelectAll)) {
+    else if (event->matches(QKeySequence::SelectAll))
         selectAll();
-        return;
-    }
 }
 
 void LogListWidget::appendLine(const QString &line)
@@ -89,9 +85,4 @@ void LogListWidget::copySelection()
         strings << static_cast<QLabel*>(itemWidget(it))->text().replace(html_tag, "");
 
     QApplication::clipboard()->setText(strings.join("\n"));
-}
-
-void LogListWidget::clearLog()
-{
-    clear();
 }
