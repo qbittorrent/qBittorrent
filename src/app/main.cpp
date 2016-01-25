@@ -365,7 +365,7 @@ void showSplashScreen()
     painter.setPen(QPen(Qt::white));
     painter.setFont(QFont("Arial", 22, QFont::Black));
     painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
-    QSplashScreen *splash = new QSplashScreen(splash_img, Qt::WindowStaysOnTopHint);
+    QSplashScreen *splash = new QSplashScreen(splash_img);
     QTimer::singleShot(1500, splash, SLOT(deleteLater()));
     splash->show();
     qApp->processEvents();
