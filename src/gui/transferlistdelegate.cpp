@@ -58,9 +58,11 @@ TransferListDelegate::TransferListDelegate(QObject *parent)
 
 void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
-    const bool hideValues = Preferences::instance()->getHideZeroValues();
-    QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
     painter->save();
+    const bool hideValues = Preferences::instance()->getHideZeroValues();
+
+    QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
+    QItemDelegate::drawBackground(painter, opt, index);
     switch (index.column()) {
     case TorrentModel::TR_AMOUNT_DOWNLOADED:
     case TorrentModel::TR_AMOUNT_UPLOADED:
@@ -70,7 +72,6 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     case TorrentModel::TR_COMPLETED:
     case TorrentModel::TR_SIZE:
     case TorrentModel::TR_TOTAL_SIZE: {
-        QItemDelegate::drawBackground(painter, opt, index);
         qlonglong size = index.data().toLongLong();
         if (hideValues && !size)
             break;
@@ -79,19 +80,17 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         break;
     }
     case TorrentModel::TR_ETA: {
-        QItemDelegate::drawBackground(painter, opt, index);
         opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
         QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::userFriendlyDuration(index.data().toLongLong()));
         break;
     }
     case TorrentModel::TR_SEEDS:
     case TorrentModel::TR_PEERS: {
-        QString display = QString::number(index.data().toLongLong());
+        QString display = index.data().toString();
         qlonglong total = index.data(Qt::UserRole).toLongLong();
+        // Scrape was successful, we have total values
         if (total > 0)
-            // Scrape was successful, we have total values
             display += " (" + QString::number(total) + ")";
-        QItemDelegate::drawBackground(painter, opt, index);
         opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
         QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
         break;
@@ -99,13 +98,11 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     case TorrentModel::TR_STATUS: {
         const int state = index.data().toInt();
         QString display = getStatusString(state);
-        QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
         break;
     }
     case TorrentModel::TR_UPSPEED:
     case TorrentModel::TR_DLSPEED: {
-        QItemDelegate::drawBackground(painter, opt, index);
         const qulonglong speed = index.data().toULongLong();
         if (hideValues && !speed)
             break;
@@ -115,7 +112,6 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     }
     case TorrentModel::TR_UPLIMIT:
     case TorrentModel::TR_DLLIMIT: {
-        QItemDelegate::drawBackground(painter, opt, index);
         const qlonglong limit = index.data().toLongLong();
         if (hideValues && !limit)
             break;
@@ -124,30 +120,28 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         break;
     }
     case TorrentModel::TR_TIME_ELAPSED: {
-        QItemDelegate::drawBackground(painter, opt, index);
-        qlonglong seeding_time = index.data(Qt::UserRole).toLongLong();
+        qlonglong elapsedTime = index.data().toLongLong();
+        qlonglong seedingTime = index.data(Qt::UserRole).toLongLong();
         QString txt;
-        if (seeding_time > 0)
+        if (seedingTime > 0)
             txt += tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
-                   .arg(Utils::Misc::userFriendlyDuration(index.data().toLongLong()))
-                   .arg(Utils::Misc::userFriendlyDuration(seeding_time));
+                   .arg(Utils::Misc::userFriendlyDuration(elapsedTime))
+                   .arg(Utils::Misc::userFriendlyDuration(seedingTime));
         QItemDelegate::drawDisplay(painter, opt, opt.rect, txt);
         break;
     }
     case TorrentModel::TR_ADD_DATE:
     case TorrentModel::TR_SEED_DATE:
-        QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, opt.rect, index.data().toDateTime().toLocalTime().toString(Qt::DefaultLocaleShortDate));
         break;
     case TorrentModel::TR_RATIO_LIMIT:
     case TorrentModel::TR_RATIO: {
-        QItemDelegate::drawBackground(painter, opt, index);
-        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
         const qreal ratio = index.data().toDouble();
         if (hideValues && (ratio <= 0))
             break;
-        QItemDelegate::drawDisplay(painter, opt, opt.rect,
-                                   ((ratio == -1) || (ratio > BitTorrent::TorrentHandle::MAX_RATIO)) ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(ratio, 2));
+        QString str = ((ratio == -1) || (ratio > BitTorrent::TorrentHandle::MAX_RATIO)) ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(ratio, 2);
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, str);
         break;
     }
     case TorrentModel::TR_PRIORITY: {
@@ -157,7 +151,6 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
             QItemDelegate::paint(painter, opt, index);
         }
         else {
-            QItemDelegate::drawBackground(painter, opt, index);
             QItemDelegate::drawDisplay(painter, opt, opt.rect, "*");
         }
         break;
@@ -186,7 +179,6 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         break;
     }
     case TorrentModel::TR_LAST_ACTIVITY: {
-        QItemDelegate::drawBackground(painter, opt, index);
         qlonglong elapsed = index.data().toLongLong();
         if (hideValues && ((elapsed < 0) || (elapsed >= MAX_ETA)))
             break;
@@ -217,8 +209,6 @@ QWidget* TransferListDelegate::createEditor(QWidget*, const QStyleOptionViewItem
 
 QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
-    QSize size = QItemDelegate::sizeHint(option, index);
-
     static int iconHeight = -1;
     if (iconHeight == -1) {
         QIcon icon(":/icons/skin/downloading.png");
@@ -226,6 +216,7 @@ QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem & option, const 
         iconHeight = icSizes[0].height();
     }
 
+    QSize size = QItemDelegate::sizeHint(option, index);
     if (size.height() < iconHeight)
         size.setHeight(iconHeight);
 
