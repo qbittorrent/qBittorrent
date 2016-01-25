@@ -47,7 +47,6 @@ class TransferListDelegate: public QItemDelegate
 
 public:
     TransferListDelegate(QObject *parent);
-    ~TransferListDelegate();
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const;
     QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const;
 
@@ -56,6 +55,9 @@ public:
     // the rows shrink if the text's height is smaller than the icon's height.
     // This happens because icon from the 'name' column is no longer drawn.
     QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
+
+private:
+    QString getStatusString(const int state) const;
 };
 
 #endif // TRANSFERLISTDELEGATE_H

@@ -56,10 +56,6 @@ TransferListDelegate::TransferListDelegate(QObject *parent)
 {
 }
 
-TransferListDelegate::~TransferListDelegate()
-{
-}
-
 void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
     const bool hideValues = Preferences::instance()->getHideZeroValues();
@@ -102,59 +98,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     }
     case TorrentModel::TR_STATUS: {
         const int state = index.data().toInt();
-        QString display;
-        switch (state) {
-        case BitTorrent::TorrentState::Downloading:
-            display = tr("Downloading");
-            break;
-        case BitTorrent::TorrentState::StalledDownloading:
-            display = tr("Stalled", "Torrent is waiting for download to begin");
-            break;
-        case BitTorrent::TorrentState::DownloadingMetadata:
-            display = tr("Downloading metadata", "used when loading a magnet link");
-            break;
-        case BitTorrent::TorrentState::ForcedDownloading:
-            display = tr("[F] Downloading", "used when the torrent is forced started. You probably shouldn't translate the F.");
-            break;
-        case BitTorrent::TorrentState::Allocating:
-            display = tr("Allocating", "qBittorrent is allocating the files on disk");
-            break;
-        case BitTorrent::TorrentState::Uploading:
-        case BitTorrent::TorrentState::StalledUploading:
-            display = tr("Seeding", "Torrent is complete and in upload-only mode");
-            break;
-        case BitTorrent::TorrentState::ForcedUploading:
-            display = tr("[F] Seeding", "used when the torrent is forced started. You probably shouldn't translate the F.");
-            break;
-        case BitTorrent::TorrentState::QueuedDownloading:
-        case BitTorrent::TorrentState::QueuedUploading:
-            display = tr("Queued", "i.e. torrent is queued");
-            break;
-        case BitTorrent::TorrentState::CheckingDownloading:
-        case BitTorrent::TorrentState::CheckingUploading:
-            display = tr("Checking", "Torrent local data is being checked");
-            break;
-        case BitTorrent::TorrentState::QueuedForChecking:
-            display = tr("Queued for checking", "i.e. torrent is queued for hash checking");
-            break;
-        case BitTorrent::TorrentState::CheckingResumeData:
-            display = tr("Checking resume data", "used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.");
-            break;
-        case BitTorrent::TorrentState::PausedDownloading:
-            display = tr("Paused");
-            break;
-        case BitTorrent::TorrentState::PausedUploading:
-            display = tr("Completed");
-            break;
-        case BitTorrent::TorrentState::MissingFiles:
-            display = tr("Missing Files");
-            break;
-        case BitTorrent::TorrentState::Error:
-            display = tr("Errored", "torrent status, the torrent has an error");
-            break;
-        default:
-            display = "";
-        }
+        QString display = getStatusString(state);
         QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
         break;
@@ -286,4 +230,64 @@ QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem & option, const 
         size.setHeight(iconHeight);
 
     return size;
+}
+
+QString TransferListDelegate::getStatusString(const int state) const
+{
+    QString str;
+
+    switch (state) {
+    case BitTorrent::TorrentState::Downloading:
+        str = tr("Downloading");
+        break;
+    case BitTorrent::TorrentState::StalledDownloading:
+        str = tr("Stalled", "Torrent is waiting for download to begin");
+        break;
+    case BitTorrent::TorrentState::DownloadingMetadata:
+        str = tr("Downloading metadata", "used when loading a magnet link");
+        break;
+    case BitTorrent::TorrentState::ForcedDownloading:
+        str = tr("[F] Downloading", "used when the torrent is forced started. You probably shouldn't translate the F.");
+        break;
+    case BitTorrent::TorrentState::Allocating:
+        str = tr("Allocating", "qBittorrent is allocating the files on disk");
+        break;
+    case BitTorrent::TorrentState::Uploading:
+    case BitTorrent::TorrentState::StalledUploading:
+        str = tr("Seeding", "Torrent is complete and in upload-only mode");
+        break;
+    case BitTorrent::TorrentState::ForcedUploading:
+        str = tr("[F] Seeding", "used when the torrent is forced started. You probably shouldn't translate the F.");
+        break;
+    case BitTorrent::TorrentState::QueuedDownloading:
+    case BitTorrent::TorrentState::QueuedUploading:
+        str = tr("Queued", "i.e. torrent is queued");
+        break;
+    case BitTorrent::TorrentState::CheckingDownloading:
+    case BitTorrent::TorrentState::CheckingUploading:
+        str = tr("Checking", "Torrent local data is being checked");
+        break;
+    case BitTorrent::TorrentState::QueuedForChecking:
+        str = tr("Queued for checking", "i.e. torrent is queued for hash checking");
+        break;
+    case BitTorrent::TorrentState::CheckingResumeData:
+        str = tr("Checking resume data", "used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.");
+        break;
+    case BitTorrent::TorrentState::PausedDownloading:
+        str = tr("Paused");
+        break;
+    case BitTorrent::TorrentState::PausedUploading:
+        str = tr("Completed");
+        break;
+    case BitTorrent::TorrentState::MissingFiles:
+        str = tr("Missing Files");
+        break;
+    case BitTorrent::TorrentState::Error:
+        str = tr("Errored", "torrent status, the torrent has an error");
+        break;
+    default:
+        str = "";
+    }
+
+    return str;
 }
