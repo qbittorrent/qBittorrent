@@ -195,11 +195,7 @@ void FileSystemWatcher::addTorrentsFromDir(const QDir &dir, QStringList &torrent
     foreach (const QString &file, files) {
         const QString fileAbsPath = dir.absoluteFilePath(file);
         if (fileAbsPath.endsWith(".magnet")) {
-            QFile f(fileAbsPath);
-            if (f.open(QIODevice::ReadOnly)
-                && !BitTorrent::MagnetUri(QString::fromLocal8Bit(f.readAll())).isValid()) {
-                torrents << fileAbsPath;
-            }
+            torrents << fileAbsPath;
         }
         else if (BitTorrent::TorrentInfo::loadFromFile(fileAbsPath).isValid()) {
             torrents << fileAbsPath;
