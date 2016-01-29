@@ -7,6 +7,17 @@
     <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
     <script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
     <script type="text/javascript">
+        var newLabelKeyboardEvents = new Keyboard({
+            defaultEventType: 'keydown',
+            events: {
+                'enter': function (event) {
+                    $('newLabelButton').click();
+                    event.preventDefault();
+                }
+            }
+        });
+        newLabelKeyboardEvents.activate();
+
         window.addEvent('domready', function() {
             $('newLabel').focus();
             $('newLabelButton').addEvent('click', function(e) {
