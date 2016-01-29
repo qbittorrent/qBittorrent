@@ -1,7 +1,7 @@
 #VERSION: 2.12
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
-#              Arthur (custparasite@gmx.se)
+#              Douman (douman@gmx.se)
 #              Diego de las Heras (ngosang@hotmail.es)
 
 # Redistribution and use in source and binary forms, with or without
@@ -28,6 +28,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import logging
 from html.parser import HTMLParser
 from http.client import HTTPSConnection as https
 #qBt
@@ -166,6 +167,7 @@ class piratebay(object):
         connection.request("GET", query)
         response = connection.getresponse()
         if response.status != 200:
+            logging.warning("Unable to retrieve search results from %s", self.name)
             return
 
         list_searches = []

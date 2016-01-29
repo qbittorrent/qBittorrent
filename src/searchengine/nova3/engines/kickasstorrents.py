@@ -26,9 +26,10 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import logging
 from novaprinter import prettyPrinter
 from helpers import retrieve_url, download_file
-import json
+from json import loads as json_loads
 
 class kickasstorrents(object):
     url = 'https://kat.cr'
@@ -42,16 +43,20 @@ class kickasstorrents(object):
         print(download_file(info, info))
 
     def search(self, what, cat='all'):
-        i = 1
-        while True and i < 11:
-            json_data = retrieve_url(self.url+'/json.php?q=%s&page=%d'%(what, i))
+        base_query = self.url + '/json.php?q=%s&order=seeders&sort=desc' % what
+        for i in range(1, 12):
+            query = base_query + "&page=%d" % i
+
+            json_data = retrieve_url(query)
             try:
-                json_dict = json.loads(json_data)
-            except:
-                i += 1
+                json_dict = json_loads(json_data)
+            except JSONDecodeError:
+                logging.warning("Unable to parse %s result for request=%s", self.url, query)
                 continue
+
             if int(json_dict['total_results']) <= 0:
                 return
+
             for r in json_dict['list']:
                 try:
                     if cat != 'all' and self.supported_categories[cat] != r['category']:
@@ -66,5 +71,5 @@ class kickasstorrents(object):
                     res_dict['engine_url'] = self.url
                     prettyPrinter(res_dict)
                 except:
+                    logging.debug("Bad content from %s is found. Skip it. Content=%s", self.name, r)
                     pass
-            i += 1

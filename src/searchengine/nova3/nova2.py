@@ -38,6 +38,7 @@ from os import path
 from glob import glob
 from sys import argv
 from multiprocessing import Pool, cpu_count
+import logging
 
 THREADED = True
 try:
@@ -75,7 +76,8 @@ def initialize_engines():
             #bind class name
             globals()[engi] = getattr(engine_module, engi)
             supported_engines.append(engi)
-        except:
+        except Exception as error:
+            logging.error("Cannot import engine=%s. Error: %s", engi, error)
             pass
 
     return supported_engines
@@ -133,11 +135,25 @@ def run_search(engine_list):
             engine.search(what)
 
         return True
-    except:
+    except Exception as error:
+        logging.error("Search engine(%s) failed to find query=%s with category=%s. Error=%s", engine.name, what, cat, error)
         return False
 
+def init_logging(level=logging.WARNING):
+    """ Initialize python logging
+
+        @param level Specify loging level. Default Warning
+    """
+    logging.basicConfig(level=level,
+                        format='%(asctime)s - [%(levelname)s] %(filename)s:%(lineno)d - %(message)s',
+                        datefmt='%Y-%m-%d %H:%M:%S')
+
 def main(args):
+    init_logging()
+    logging.info("Start search")
+    logging.debug("Number of available threads=%d", MAX_THREADS)
     supported_engines = initialize_engines()
+    logging.debug("Supported engines: %s", supported_engines)
 
     if not args:
         raise SystemExit("./nova2.py [all|engine1[,engine2]*] <category> <keywords>\n"
@@ -161,6 +177,7 @@ def main(args):
         engines_list = [engine for engine in engines_list
                         if engine in supported_engines]
 
+    logging.debug("Used engines: %s", engines_list)
     if not engines_list:
         #engine list is empty. Nothing to do here
         return
@@ -171,6 +188,8 @@ def main(args):
         raise SystemExit(" - ".join(('Invalid category', cat)))
 
     what = urllib.parse.quote(' '.join(args[2:]))
+    logging.info("Start searching \"%s\" in category \"%s\"", what, cat)
+
     if THREADED:
         #child process spawning is controlled min(number of searches, number of cpu)
         with Pool(min(len(engines_list), MAX_THREADS)) as pool:
@@ -178,6 +197,8 @@ def main(args):
     else:
         #py3 note: map is needed to be evaluated for content to be executed
         all(map(run_search, ([globals()[engine], what, cat] for engine in engines_list)))
+
+    logging.info("Finished search")
 
 if __name__ == "__main__":
     main(argv[1:])

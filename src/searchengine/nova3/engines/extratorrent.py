@@ -26,6 +26,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import logging
 from html.parser import HTMLParser
 from http.client import HTTPConnection as http
 #qBt
@@ -147,6 +148,7 @@ class extratorrent(object):
         connection.request("GET", query)
         response = connection.getresponse()
         if response.status != 200:
+            logging.warning("Unable to retrieve search results from %s", self.name)
             return
 
         list_searches = []

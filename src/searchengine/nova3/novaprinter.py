@@ -24,6 +24,8 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import logging
+
 def prettyPrinter(dictionary):
     dictionary['size'] = anySizeToBytes(dictionary['size'])
     outtext = "|".join((dictionary["link"], dictionary["name"].replace("|", " "), str(dictionary["size"]), str(dictionary["seeds"]), str(dictionary["leech"]), dictionary["engine_url"]))
@@ -48,16 +50,22 @@ def anySizeToBytes(size_string):
             if len(unit) > 0:
                 size = size[:-len(unit)]
         except:
+            logging.error("Failed to convert size string \"%s\" to bytes", size_string)
             return -1
+
     if len(size) == 0:
+        logging.error("Failed to convert size string \"%s\" to bytes", size_string)
         return -1
+
     size = float(size)
     if len(unit) == 0:
         return int(size)
+
     short_unit = unit.upper()[0]
 
     # convert
     units_dict = {'T': 40, 'G': 30, 'M': 20, 'K': 10}
     if short_unit in units_dict:
         size = size * 2**units_dict[short_unit]
+
     return int(size)
