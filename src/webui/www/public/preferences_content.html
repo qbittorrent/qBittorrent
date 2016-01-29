@@ -964,7 +964,7 @@ loadPreferences = function() {
                     // Share Ratio Limiting
                     $('max_ratio_checkbox').setProperty('checked', pref.max_ratio_enabled);
                     if (pref.max_ratio_enabled)
-                        $('max_ratio_value').setProperty('value', pref.max_ratio.toInt());
+                        $('max_ratio_value').setProperty('value', pref.max_ratio);
                     else
                         $('max_ratio_value').setProperty('value', 1);
                     var max_ratio_act = pref.max_ratio_act.toInt();
@@ -1211,7 +1211,7 @@ applyPreferences = function() {
   // Share Ratio Limiting
   var max_ratio = -1;
   if($('max_ratio_checkbox').getProperty('checked')) {
-    max_ratio = $('max_ratio_value').getProperty('value').toInt();
+    max_ratio = $('max_ratio_value').getProperty('value');
     if(isNaN(max_ratio) || max_ratio < 0 || max_ratio > 9998) {
       alert("QBT_TR(Share ratio limit must be between 0 and 9998.)QBT_TR");
       return;
