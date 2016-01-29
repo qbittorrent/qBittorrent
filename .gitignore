@@ -30,3 +30,4 @@ src/qbittorrent.app
 aclocal.m4
 autom4te.cache/*
 config.status
+src/icons/oxygen/build-icons/node_modules/
