@@ -347,7 +347,7 @@ void prefjson::setPreferences(const QString& json)
         pref->setIgnoreSlowTorrentsForQueueing(m["dont_count_slow_torrents"].toBool());
     // Share Ratio Limiting
     if (m.contains("max_ratio_enabled"))
-        pref->setGlobalMaxRatio(m["max_ratio"].toInt());
+        pref->setGlobalMaxRatio(m["max_ratio"].toReal());
     else
         pref->setGlobalMaxRatio(-1);
     if (m.contains("max_ratio_act"))

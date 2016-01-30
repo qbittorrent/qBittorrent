@@ -969,7 +969,7 @@ void Preferences::setTrackersList(const QString &val)
 
 qreal Preferences::getGlobalMaxRatio() const
 {
-    return value("Preferences/Bittorrent/MaxRatio", -1).toDouble();
+    return value("Preferences/Bittorrent/MaxRatio", -1).toReal();
 }
 
 void Preferences::setGlobalMaxRatio(qreal ratio)
