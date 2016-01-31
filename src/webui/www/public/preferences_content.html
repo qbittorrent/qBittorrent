@@ -1239,14 +1239,13 @@ applyPreferences = function() {
 
   // Authentication
   var web_ui_username = $('webui_username_text').getProperty('value');
-  var web_ui_password = $('webui_password_text').getProperty('value');
-    // Add some username/password length checking
   if(web_ui_username.length < 3) {
     alert("QBT_TR(The Web UI username must be at least 3 characters long.)QBT_TR");
     return;
   }
-  if(web_ui_password.length < 3) {
-    alert("QBT_TR(The Web UI password must be at least 3 characters long.)QBT_TR");
+  var web_ui_password = $('webui_password_text').getProperty('value');
+  if(web_ui_password.length < 6) {
+    alert("QBT_TR(The Web UI password must be at least 6 characters long.)QBT_TR");
     return;
   }
   settings.set('web_ui_username', web_ui_username);

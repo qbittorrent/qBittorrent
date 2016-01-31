@@ -58,8 +58,6 @@ static const char *__TRANSLATIONS__[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Language"),
     QT_TRANSLATE_NOOP("HttpServer", "The port used for incoming connections must be between 1 and 65535."),
     QT_TRANSLATE_NOOP("HttpServer", "The port used for the Web UI must be between 1 and 65535."),
-    QT_TRANSLATE_NOOP("HttpServer", "The Web UI username must be at least 3 characters long."),
-    QT_TRANSLATE_NOOP("HttpServer", "The Web UI password must be at least 3 characters long."),
     QT_TRANSLATE_NOOP("HttpServer", "Save"),
     QT_TRANSLATE_NOOP("HttpServer", "qBittorrent client is not reachable"),
     QT_TRANSLATE_NOOP("HttpServer", "HTTP Server"),
