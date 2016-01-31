@@ -40,6 +40,10 @@
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/create_torrent.hpp>
 #include <libtorrent/magnet_uri.hpp>
+#if LIBTORRENT_VERSION_NUM >= 10100
+#include <libtorrent/time.hpp>
+#endif
+
 #include <boost/bind.hpp>
 
 #ifdef Q_OS_WIN
@@ -433,7 +437,7 @@ bool TorrentHandle::connectPeer(const PeerAddress &peerAddress)
     libt::address addr = libt::address::from_string(Utils::String::toStdString(peerAddress.ip.toString()), ec);
     if (ec) return false;
 
-    libt::asio::ip::tcp::endpoint ep(addr, peerAddress.port);
+    boost::asio::ip::tcp::endpoint ep(addr, peerAddress.port);
     SAFE_CALL_BOOL(connect_peer, ep);
 }
 
@@ -847,7 +851,7 @@ qulonglong TorrentHandle::eta() const
 
 QVector<qreal> TorrentHandle::filesProgress() const
 {
-    std::vector<libt::size_type> fp;
+    std::vector<boost::int64_t> fp;
     QVector<qreal> result;
     SAFE_CALL(file_progress, fp, libt::torrent_handle::piece_granularity);
 
@@ -1022,9 +1026,9 @@ qreal TorrentHandle::maxRatio(bool *usesGlobalRatio) const
 
 qreal TorrentHandle::realRatio() const
 {
-    libt::size_type upload = m_nativeStatus.all_time_upload;
+    boost::int64_t upload = m_nativeStatus.all_time_upload;
     // special case for a seeder who lost its stats, also assume nobody will import a 99% done torrent
-    libt::size_type download = (m_nativeStatus.all_time_download < m_nativeStatus.total_done * 0.01) ? m_nativeStatus.total_done : m_nativeStatus.all_time_download;
+    boost::int64_t download = (m_nativeStatus.all_time_download < m_nativeStatus.total_done * 0.01) ? m_nativeStatus.total_done : m_nativeStatus.all_time_download;
 
     if (download == 0)
         return (upload == 0) ? 0.0 : MAX_RATIO;
@@ -1066,7 +1070,11 @@ int TorrentHandle::connectionsLimit() const
 
 qlonglong TorrentHandle::nextAnnounce() const
 {
+#if LIBTORRENT_VERSION_NUM < 10100
     return m_nativeStatus.next_announce.total_seconds();
+#else
+    return libt::duration_cast<libt::seconds>(m_nativeStatus.next_announce).count();
+#endif
 }
 
 void TorrentHandle::setName(const QString &name)
@@ -1689,8 +1697,11 @@ libtorrent::torrent_handle TorrentHandle::nativeHandle() const
 void TorrentHandle::updateTorrentInfo()
 {
     if (!hasMetadata()) return;
-
+#if LIBTORRENT_VERSION_NUM < 10100
     m_torrentInfo = TorrentInfo(m_nativeStatus.torrent_file);
+#else
+    m_torrentInfo = TorrentInfo(m_nativeStatus.torrent_file.lock());
+#endif
 }
 
 void TorrentHandle::initialize()

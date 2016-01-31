@@ -38,6 +38,8 @@
 #include <QWaitCondition>
 #include <QNetworkConfigurationManager>
 
+#include <libtorrent/version.hpp>
+
 #include "base/tristatebool.h"
 #include "base/types.h"
 #include "torrentinfo.h"
@@ -45,12 +47,23 @@
 namespace libtorrent
 {
     class session;
+    struct torrent_handle;
     class entry;
     struct add_torrent_params;
     struct pe_settings;
-    struct proxy_settings;
     struct session_settings;
     struct session_status;
+
+#if LIBTORRENT_VERSION_NUM < 10100
+    struct proxy_settings;
+#else
+    namespace aux
+    {
+        struct proxy_settings;
+    }
+
+    typedef aux::proxy_settings proxy_settings;
+#endif
 
     class alert;
     struct torrent_alert;
@@ -312,6 +325,8 @@ namespace BitTorrent
         void handleListenSucceededAlert(libtorrent::listen_succeeded_alert *p);
         void handleListenFailedAlert(libtorrent::listen_failed_alert *p);
         void handleExternalIPAlert(libtorrent::external_ip_alert *p);
+
+        void createTorrentHandle(const libtorrent::torrent_handle &nativeHandle);
 
         void saveResumeData();
         bool writeResumeDataFile(TorrentHandle *const torrent, const libtorrent::entry &data);

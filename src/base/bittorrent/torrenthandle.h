@@ -38,6 +38,11 @@
 #include <QHash>
 
 #include <libtorrent/torrent_handle.hpp>
+#include <libtorrent/version.hpp>
+#if LIBTORRENT_VERSION_NUM >= 10100
+#include <libtorrent/torrent_status.hpp>
+#endif
+
 #include <boost/function.hpp>
 
 #include "base/tristatebool.h"
