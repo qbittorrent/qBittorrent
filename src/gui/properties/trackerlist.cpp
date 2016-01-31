@@ -284,7 +284,7 @@ void TrackerList::loadTrackers() {
     switch (entry.status()) {
     case BitTorrent::TrackerEntry::Working:
         item->setText(COL_STATUS, tr("Working"));
-        item->setText(COL_MSG, "");
+        item->setText(COL_MSG, error_message);
         break;
     case BitTorrent::TrackerEntry::Updating:
         item->setText(COL_STATUS, tr("Updating..."));

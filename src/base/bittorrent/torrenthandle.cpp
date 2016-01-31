@@ -1343,6 +1343,11 @@ void TorrentHandle::handleStorageMovedFailedAlert(libtorrent::storage_moved_fail
 
 void TorrentHandle::handleTrackerReplyAlert(libtorrent::tracker_reply_alert *p)
 {
+    if (m_previousWarningUrl == p->url) {
+        m_previousWarningUrl = "";
+        return;
+    }
+
     QString trackerUrl = Utils::String::fromStdString(p->url);
     qDebug("Received a tracker reply from %s (Num_peers = %d)", qPrintable(trackerUrl), p->num_peers);
     // Connection was successful now. Remove possible old errors
@@ -1359,6 +1364,7 @@ void TorrentHandle::handleTrackerWarningAlert(libtorrent::tracker_warning_alert 
     qDebug("Received a tracker warning for %s: %s", qPrintable(trackerUrl), qPrintable(message));
     // Connection was successful now but there is a warning message
     m_trackerInfos[trackerUrl].lastMessage = message; // Store warning message
+    m_previousWarningUrl = p->url;
 
     m_session->handleTorrentTrackerWarning(this, trackerUrl);
 }

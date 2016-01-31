@@ -38,6 +38,7 @@
 #include <QHash>
 
 #include <libtorrent/torrent_handle.hpp>
+#include <libtorrent/alert_types.hpp>
 #include <libtorrent/version.hpp>
 #if LIBTORRENT_VERSION_NUM >= 10100
 #include <libtorrent/torrent_status.hpp>
@@ -417,6 +418,7 @@ namespace BitTorrent
         bool m_pauseAfterRecheck;
         bool m_needSaveResumeData;
         QHash<QString, TrackerInfo> m_trackerInfos;
+        std::string m_previousWarningUrl = "";
     };
 }
 
