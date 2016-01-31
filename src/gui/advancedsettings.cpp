@@ -97,6 +97,7 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     verticalHeader()->setVisible(false);
     // etc.
     setAlternatingRowColors(true);
+    setSelectionMode(QAbstractItemView::NoSelection);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     // Signals
     connect(&spin_cache, SIGNAL(valueChanged(int)), SLOT(updateCacheSpinSuffix(int)));
