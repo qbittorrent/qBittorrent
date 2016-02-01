@@ -86,11 +86,11 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     }
     case TorrentModel::TR_SEEDS:
     case TorrentModel::TR_PEERS: {
-        QString display = index.data().toString();
+        qlonglong value = index.data().toLongLong();
         qlonglong total = index.data(Qt::UserRole).toLongLong();
-        // Scrape was successful, we have total values
-        if (total > 0)
-            display += " (" + QString::number(total) + ")";
+        if (hideValues && (!value && !total))
+            break;
+        QString display = QString::number(value) + " (" + QString::number(total) + ")";
         opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
         QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
         break;
