@@ -59,7 +59,13 @@ TransferListDelegate::TransferListDelegate(QObject *parent)
 void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
     painter->save();
-    const bool hideValues = Preferences::instance()->getHideZeroValues();
+    bool isHideState = true;
+    if (Preferences::instance()->getHideZeroComboValues() == 1) {  // paused torrents only
+        QModelIndex stateIndex = index.sibling(index.row(), TorrentModel::TR_STATUS);
+        if (stateIndex.data().toInt() != BitTorrent::TorrentState::PausedDownloading)
+            isHideState = false;
+    }
+    const bool hideValues = Preferences::instance()->getHideZeroValues() & isHideState;
 
     QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
     QItemDelegate::drawBackground(painter, opt, index);
