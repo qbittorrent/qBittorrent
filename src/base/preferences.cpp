@@ -283,6 +283,16 @@ void Preferences::setHideZeroValues(bool b)
     setValue("Preferences/General/HideZeroValues", b);
 }
 
+int Preferences::getHideZeroComboValues() const
+{
+    return value("Preferences/General/HideZeroComboValues", 0).toInt();
+}
+
+void Preferences::setHideZeroComboValues(int n)
+{
+    setValue("Preferences/General/HideZeroComboValues", n);
+}
+
 bool Preferences::useRandomPort() const
 {
     return value("Preferences/General/UseRandomPort", false).toBool();
