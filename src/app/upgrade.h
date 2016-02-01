@@ -88,7 +88,7 @@ bool upgradeResumeFile(const QString &filepath, const QVariantHash &oldTorrent, 
     libtorrent::lazy_entry fastOld;
     libtorrent::error_code ec;
     libtorrent::lazy_bdecode(data.constData(), data.constData() + data.size(), fastOld, ec);
-    if ((fastOld.type() != libtorrent::lazy_entry::dict_t) && !ec) return false;
+    if (ec || (fastOld.type() != libtorrent::lazy_entry::dict_t)) return false;
 
     libtorrent::entry fastNew;
     fastNew = fastOld;
