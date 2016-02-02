@@ -345,6 +345,12 @@ div.formRow {
     display: block;
 }
 
+.filterTitle {
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-left: 5px;
+}
+
 ul.filterList {
     margin: 0 0 0 16px;
     padding-left: 0;
@@ -394,10 +400,12 @@ td.generalLabel {
 
 .torrentTable th {
     padding: 5px 10px;
+    white-space: nowrap;
 }
 
 .torrentTable td {
     padding: 0px 3px;
+    white-space: nowrap;
 }
 
 .torrentTable thead tr {
