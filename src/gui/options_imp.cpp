@@ -519,7 +519,6 @@ void options_imp::saveOptions()
             pref->setWebUiHttpsKey(m_sslKey);
         }
         pref->setWebUiUsername(webUiUsername());
-        // FIXME: Check that the password is valid (not empty at least)
         pref->setWebUiPassword(webUiPassword());
         pref->setWebUiLocalAuthEnabled(!checkBypassLocalAuth->isChecked());
         // DynDNS
@@ -1024,6 +1023,10 @@ void options_imp::on_buttonBox_accepted()
             tabSelection->setCurrentRow(TAB_SPEED);
             return;
         }
+        if (!webUIAuthenticationOk()) {
+            tabSelection->setCurrentRow(TAB_WEBUI);
+            return;
+        }
         applyButton->setEnabled(false);
         this->hide();
         saveOptions();
@@ -1037,6 +1040,10 @@ void options_imp::applySettings(QAbstractButton* button)
     if (button == applyButton) {
         if (!schedTimesOk()) {
             tabSelection->setCurrentRow(TAB_SPEED);
+            return;
+        }
+        if (!webUIAuthenticationOk()) {
+            tabSelection->setCurrentRow(TAB_WEBUI);
             return;
         }
         saveOptions();
@@ -1526,15 +1533,22 @@ void options_imp::setSslCertificate(const QByteArray &cert, bool interactive)
 
 bool options_imp::schedTimesOk()
 {
-    QString msg;
-
-    if (schedule_from->time() == schedule_to->time())
-        msg = tr("The start time and the end time can't be the same.");
-
-    if (!msg.isEmpty()) {
-        QMessageBox::critical(this, tr("Time Error"), msg);
+    if (schedule_from->time() == schedule_to->time()) {
+        QMessageBox::warning(this, tr("Time Error"), tr("The start time and the end time can't be the same."));
         return false;
     }
+    return true;
+}
 
+bool options_imp::webUIAuthenticationOk()
+{
+    if (webUiUsername().length() < 3) {
+        QMessageBox::warning(this, tr("Length Error"), tr("The Web UI username must be at least 3 characters long."));
+        return false;
+    }
+    if (webUiPassword().length() < 6) {
+        QMessageBox::warning(this, tr("Length Error"), tr("The Web UI password must be at least 6 characters long."));
+        return false;
+    }
     return true;
 }

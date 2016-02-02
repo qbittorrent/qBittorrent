@@ -166,6 +166,7 @@ private:
     void setSslKey(const QByteArray &key, bool interactive = true);
     void setSslCertificate(const QByteArray &cert, bool interactive = true);
     bool schedTimesOk();
+    bool webUIAuthenticationOk();
 
 private:
     QButtonGroup choiceLanguage;
