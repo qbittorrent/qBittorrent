@@ -106,6 +106,8 @@ static const char KEY_TORRENT_LABEL[] = "label";
 static const char KEY_TORRENT_SUPER_SEEDING[] = "super_seeding";
 static const char KEY_TORRENT_FORCE_START[] = "force_start";
 static const char KEY_TORRENT_SAVE_PATH[] = "save_path";
+static const char KEY_TORRENT_ADDED_ON[] = "added_on";
+static const char KEY_TORRENT_COMPLETION_ON[] = "completion_on";
 
 // Peer keys
 static const char KEY_PEER_IP[] = "ip";
@@ -707,6 +709,8 @@ QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
     ret[KEY_TORRENT_SUPER_SEEDING] = torrent->superSeeding();
     ret[KEY_TORRENT_FORCE_START] = torrent->isForced();
     ret[KEY_TORRENT_SAVE_PATH] = Utils::Fs::toNativePath(torrent->savePath());
+    ret[KEY_TORRENT_ADDED_ON] = torrent->addedTime();
+    ret[KEY_TORRENT_COMPLETION_ON] = torrent->completedTime();
 
     return ret;
 }
