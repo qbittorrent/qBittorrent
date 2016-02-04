@@ -26,6 +26,10 @@
  * exception statement from your version.
  */
 
+#include <QByteArray>
+#include <QRegExp>
+#include <QStringList>
+
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/magnet_uri.hpp>
@@ -33,17 +37,45 @@
 #include "base/utils/string.h"
 #include "magneturi.h"
 
+namespace
+{
+    QString bcLinkToMagnet(QString bcLink)
+    {
+        QByteArray rawBc = bcLink.toUtf8();
+        rawBc = rawBc.mid(8); // skip bc://bt/
+        rawBc = QByteArray::fromBase64(rawBc); // Decode base64
+        // Format is now AA/url_encoded_filename/size_bytes/info_hash/ZZ
+        QStringList parts = QString(rawBc).split("/");
+        if (parts.size() != 5) return QString();
+
+        QString filename = parts.at(1);
+        QString hash = parts.at(3);
+        QString magnet = "magnet:?xt=urn:btih:" + hash;
+        magnet += "&dn=" + filename;
+        return magnet;
+    }
+}
+
 namespace libt = libtorrent;
 using namespace BitTorrent;
 
-MagnetUri::MagnetUri(const QString &url)
+MagnetUri::MagnetUri(const QString &source)
     : m_valid(false)
-    , m_url(url)
+    , m_url(source)
 {
-    if (url.isEmpty()) return;
+    if (source.isEmpty()) return;
+
+    if (source.startsWith("bc://bt/", Qt::CaseInsensitive)) {
+        qDebug("Creating magnet link from bc link");
+        m_url = bcLinkToMagnet(source);
+    }
+    else if (((source.size() == 40) && !source.contains(QRegExp("[^0-9A-Fa-f]")))
+             || ((source.size() == 32) && !source.contains(QRegExp("[^2-7A-Za-z]")))) {
+        m_url = "magnet:?xt=urn:btih:" + source;
+    }
 
     libt::error_code ec;
-    libt::parse_magnet_uri(url.toUtf8().constData(), m_addTorrentParams, ec);
+    libt::parse_magnet_uri(m_url.toUtf8().constData(), m_addTorrentParams, ec);
     if (ec) return;
 
     m_valid = true;

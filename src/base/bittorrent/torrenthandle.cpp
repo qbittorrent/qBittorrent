@@ -65,10 +65,31 @@ static const char QB_EXT[] = ".!qB";
 namespace libt = libtorrent;
 using namespace BitTorrent;
 
-// TrackerInfo
+// AddTorrentData
 
-TrackerInfo::TrackerInfo()
-    : numPeers(0)
+AddTorrentData::AddTorrentData()
+    : resumed(false)
+    , disableTempPath(false)
+    , sequential(false)
+    , hasSeedStatus(false)
+    , skipChecking(false)
+    , ratioLimit(TorrentHandle::USE_GLOBAL_RATIO)
+{
+}
+
+AddTorrentData::AddTorrentData(const AddTorrentParams &params)
+    : resumed(false)
+    , name(params.name)
+    , label(params.label)
+    , savePath(params.savePath)
+    , disableTempPath(params.disableTempPath)
+    , sequential(params.sequential)
+    , hasSeedStatus(params.skipChecking) // do not react on 'torrent_finished_alert' when skipping
+    , skipChecking(params.skipChecking)
+    , addForced(params.addForced)
+    , addPaused(params.addPaused)
+    , filePriorities(params.filePriorities)
+    , ratioLimit(params.ignoreShareRatio ? TorrentHandle::NO_RATIO_LIMIT : TorrentHandle::USE_GLOBAL_RATIO)
 {
 }
 
@@ -188,7 +209,11 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_pauseAfterRecheck(false)
     , m_needSaveResumeData(false)
 {
-    initialize();
+    Q_ASSERT(!m_savePath.isEmpty());
+
+    updateStatus();
+    m_hash = InfoHash(m_nativeStatus.info_hash);
+    adjustActualSavePath();
 
     if (!data.resumed) {
         setSequentialDownload(data.sequential);
@@ -1702,13 +1727,6 @@ void TorrentHandle::updateTorrentInfo()
 #else
     m_torrentInfo = TorrentInfo(m_nativeStatus.torrent_file.lock());
 #endif
-}
-
-void TorrentHandle::initialize()
-{
-    updateStatus();
-    m_hash = InfoHash(m_nativeStatus.info_hash);
-    adjustActualSavePath();
 }
 
 bool TorrentHandle::isMoveInProgress() const

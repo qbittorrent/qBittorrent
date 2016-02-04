@@ -127,15 +127,13 @@ namespace BitTorrent
         QString name;
         QString label;
         QString savePath;
-        bool disableTempPath; // e.g. for imported torrents
-        bool sequential;
+        bool disableTempPath = false; // e.g. for imported torrents
+        bool sequential = false;
         TriStateBool addForced;
         TriStateBool addPaused;
         QVector<int> filePriorities; // used if TorrentInfo is set
-        bool ignoreShareRatio;
-        bool skipChecking;
-
-        AddTorrentParams();
+        bool ignoreShareRatio = false;
+        bool skipChecking = false;
     };
 
     struct TorrentStatusReport
@@ -196,7 +194,7 @@ namespace BitTorrent
         bool addTorrent(QString source, const AddTorrentParams &params = AddTorrentParams());
         bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = AddTorrentParams());
         bool deleteTorrent(const QString &hash, bool deleteLocalFiles = false);
-        bool loadMetadata(const QString &magnetUri);
+        bool loadMetadata(const MagnetUri &magnetUri);
         bool cancelLoadMetadata(const InfoHash &hash);
 
         void recursiveTorrentDownload(const InfoHash &hash);
@@ -333,8 +331,6 @@ namespace BitTorrent
 
         void dispatchAlerts(std::auto_ptr<libtorrent::alert> alertPtr);
         void getPendingAlerts(QVector<libtorrent::alert *> &out, ulong time = 0);
-
-        AddTorrentData addDataFromParams(const AddTorrentParams &params);
 
         // BitTorrent
         libtorrent::session *m_nativeSession;

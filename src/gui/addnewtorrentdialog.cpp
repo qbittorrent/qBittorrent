@@ -133,15 +133,6 @@ void AddNewTorrentDialog::saveState()
 
 void AddNewTorrentDialog::show(QString source, QWidget *parent)
 {
-    if (source.startsWith("bc://bt/", Qt::CaseInsensitive)) {
-        qDebug("Converting bc link to magnet link");
-        source = Utils::Misc::bcLinkToMagnet(source);
-    }
-    else if (((source.size() == 40) && !source.contains(QRegExp("[^0-9A-Fa-f]")))
-             || ((source.size() == 32) && !source.contains(QRegExp("[^2-7A-Za-z]")))) {
-        source = "magnet:?xt=urn:btih:" + source;
-    }
-
     AddNewTorrentDialog *dlg = new AddNewTorrentDialog(parent);
 
     if (Utils::Misc::isUrl(source)) {
@@ -153,8 +144,9 @@ void AddNewTorrentDialog::show(QString source, QWidget *parent)
     }
     else {
         bool ok = false;
-        if (source.startsWith("magnet:", Qt::CaseInsensitive))
-            ok = dlg->loadMagnet(source);
+        BitTorrent::MagnetUri magnetUri(source);
+        if (magnetUri.isValid())
+            ok = dlg->loadMagnet(magnetUri);
         else
             ok = dlg->loadTorrent(source);
 
@@ -165,12 +157,12 @@ void AddNewTorrentDialog::show(QString source, QWidget *parent)
     }
 }
 
-bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path)
+bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
 {
-    if (torrent_path.startsWith("file://", Qt::CaseInsensitive))
-        m_filePath = QUrl::fromEncoded(torrent_path.toLocal8Bit()).toLocalFile();
+    if (torrentPath.startsWith("file://", Qt::CaseInsensitive))
+        m_filePath = QUrl::fromEncoded(torrentPath.toLocal8Bit()).toLocalFile();
     else
-        m_filePath = torrent_path;
+        m_filePath = torrentPath;
 
     if (!QFile::exists(m_filePath)) {
         MessageBoxRaised::critical(0, tr("I/O Error"), tr("The torrent file does not exist."));
@@ -212,21 +204,20 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path)
     return true;
 }
 
-bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
+bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
 {
-    BitTorrent::MagnetUri magnet(magnet_uri);
-    if (!magnet.isValid()) {
+    if (!magnetUri.isValid()) {
         MessageBoxRaised::critical(0, tr("Invalid magnet link"), tr("This magnet link was not recognized"));
         return false;
     }
 
-    m_hash = magnet.hash();
+    m_hash = magnetUri.hash();
     // Prevent showing the dialog if download is already present
     if (BitTorrent::Session::instance()->isKnownTorrent(m_hash)) {
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(m_hash);
         if (torrent) {
-            torrent->addTrackers(magnet.trackers());
-            torrent->addUrlSeeds(magnet.urlSeeds());
+            torrent->addTrackers(magnetUri.trackers());
+            torrent->addUrlSeeds(magnetUri.urlSeeds());
             MessageBoxRaised::information(0, tr("Already in download list"), tr("Magnet link is already in download list. Trackers were merged."), QMessageBox::Ok);
         }
         else {
@@ -238,14 +229,14 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
     connect(BitTorrent::Session::instance(), SIGNAL(metadataLoaded(BitTorrent::TorrentInfo)), SLOT(updateMetadata(BitTorrent::TorrentInfo)));
 
     // Set dialog title
-    QString torrent_name = magnet.name();
+    QString torrent_name = magnetUri.name();
     setWindowTitle(torrent_name.isEmpty() ? tr("Magnet link") : torrent_name);
 
     setupTreeview();
     // Set dialog position
     setdialogPosition();
 
-    BitTorrent::Session::instance()->loadMetadata(magnet_uri);
+    BitTorrent::Session::instance()->loadMetadata(magnetUri);
     setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
     ui->lblhash->setText(m_hash);
 
@@ -732,7 +723,7 @@ void AddNewTorrentDialog::handleDownloadFailed(const QString &url, const QString
 void AddNewTorrentDialog::handleRedirectedToMagnet(const QString &url, const QString &magnetUri)
 {
     Q_UNUSED(url)
-    if (loadMagnet(magnetUri))
+    if (loadMagnet(BitTorrent::MagnetUri(magnetUri)))
         open();
     else
         this->deleteLater();
