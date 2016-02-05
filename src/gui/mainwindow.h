@@ -32,8 +32,12 @@
 #define GUI_H
 
 #include <QProcess>
-#include <QSystemTrayIcon>
 #include <QPointer>
+
+#ifndef Q_OS_MAC
+#include <QSystemTrayIcon>
+#endif
+
 #include "ui_mainwindow.h"
 #include "statsdialog.h"
 
@@ -93,7 +97,6 @@ public slots:
 
 protected slots:
     // GUI related slots
-    void toggleVisibility(QSystemTrayIcon::ActivationReason e = QSystemTrayIcon::Trigger);
     void on_actionAbout_triggered();
     void on_actionStatistics_triggered();
     void on_actionCreate_torrent_triggered();
@@ -101,10 +104,14 @@ protected slots:
     void writeSettings();
     void readSettings();
     void on_actionExit_triggered();
+#ifndef Q_OS_MAC
+    void toggleVisibility(QSystemTrayIcon::ActivationReason e = QSystemTrayIcon::Trigger);
     void createTrayIcon();
+    void createSystrayDelayed();
+    void updateTrayIconMenu();
+#endif
     void fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const;
     void handleDownloadFromUrlFailure(QString, QString) const;
-    void createSystrayDelayed();
     void tab_changed(int);
     void on_actionLock_qBittorrent_triggered();
     void defineUILockPassword();
@@ -113,7 +120,6 @@ protected slots:
     void notifyOfUpdate(QString);
     void showConnectionSettings();
     void minimizeWindow();
-    void updateTrayIconMenu();
     // Keyboard shortcuts
     void createKeyboardShortcuts();
     void displayTransferTab() const;
@@ -150,7 +156,9 @@ protected:
     void displaySearchTab(bool enable);
 
 private:
+#ifndef Q_OS_MAC
     QIcon getSystrayIcon() const;
+#endif
 #ifdef Q_OS_WIN
     bool addPythonPathToEnv();
     void installPython();
@@ -174,8 +182,10 @@ private:
     QPointer<StatsDialog> statsDlg;
     QPointer<TorrentCreatorDlg> createTorrentDlg;
     QPointer<downloadFromURL> downloadFromURLDialog;
+#ifndef Q_OS_MAC
     QPointer<QSystemTrayIcon> systrayIcon;
     QPointer<QTimer> systrayCreator;
+#endif
     QPointer<QMenu> myTrayIconMenu;
     TransferListWidget *transferList;
     TransferListFiltersWidget *transferListFilters;

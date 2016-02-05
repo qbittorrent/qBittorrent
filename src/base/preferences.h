@@ -138,14 +138,16 @@ public:
     void setHideZeroComboValues(int n);
     bool useRandomPort() const;
     void setRandomPort(bool b);
+#ifndef Q_OS_MAC
     bool systrayIntegration() const;
     void setSystrayIntegration(bool enabled);
-    bool isToolbarDisplayed() const;
-    void setToolbarDisplayed(bool displayed);
     bool minimizeToTray() const;
     void setMinimizeToTray(bool b);
     bool closeToTray() const;
     void setCloseToTray(bool b);
+#endif
+    bool isToolbarDisplayed() const;
+    void setToolbarDisplayed(bool displayed);
     bool startMinimized() const;
     void setStartMinimized(bool b);
     bool isSplashScreenDisabled() const;
@@ -440,8 +442,10 @@ public:
     void setConfirmTorrentDeletion(bool enabled);
     bool confirmTorrentRecheck() const;
     void setConfirmTorrentRecheck(bool enabled);
+#ifndef Q_OS_MAC
     TrayIcon::Style trayIconStyle() const;
     void setTrayIconStyle(TrayIcon::Style style);
+#endif
 
 
     // Stuff that don't appear in the Options GUI but are saved

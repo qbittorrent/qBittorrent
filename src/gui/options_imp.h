@@ -104,9 +104,11 @@ private:
     static QString languageToLocalizedString(const QLocale &locale);
     // General options
     QString getLocale() const;
+#ifndef Q_OS_MAC
     bool systrayIntegration() const;
     bool minimizeToTray() const;
     bool closeToTray() const;
+#endif
     bool startMinimized() const;
     bool isSlashScreenDisabled() const;
     bool preventFromSuspend() const;
