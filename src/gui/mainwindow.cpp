@@ -904,12 +904,20 @@ void MainWindow::closeEvent(QCloseEvent *e)
         }
     }
 
-    //abort search if any
-    if (searchEngine) delete searchEngine;
-
-    hide();
+#ifdef Q_OS_MAC
+    // This is for on_actionExit_triggered() to work
+    if (force_exit) {
+#endif
+        //abort search if any
+        if (searchEngine) delete searchEngine;
+#ifdef Q_OS_MAC
+    }
+#endif
 
 #ifndef Q_OS_MAC
+    hide();
+
+
     // Hide tray icon
     if (systrayIcon)
         systrayIcon->hide();
@@ -917,7 +925,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
     // Accept exit
     e->accept();
-    qApp->exit();
+#ifdef Q_OS_MAC
+    // This is for on_actionExit_triggered() to work
+    if (force_exit)
+#endif
+        qApp->exit();
 }
 
 // Display window to create a torrent
