@@ -1374,9 +1374,11 @@ QMenu* MainWindow::getTrayIconMenu()
         return myTrayIconMenu;
     // Tray icon Menu
     myTrayIconMenu = new QMenu(this);
+#ifndef Q_OS_MAC
     connect(myTrayIconMenu, SIGNAL(aboutToShow()), SLOT(updateTrayIconMenu()));
     myTrayIconMenu->addAction(actionToggleVisibility);
     myTrayIconMenu->addSeparator();
+#endif
     myTrayIconMenu->addAction(actionOpen);
     myTrayIconMenu->addAction(actionDownload_from_URL);
     myTrayIconMenu->addSeparator();
@@ -1389,8 +1391,10 @@ QMenu* MainWindow::getTrayIconMenu()
     myTrayIconMenu->addSeparator();
     myTrayIconMenu->addAction(actionStart_All);
     myTrayIconMenu->addAction(actionPause_All);
+#ifndef Q_OS_MAC
     myTrayIconMenu->addSeparator();
     myTrayIconMenu->addAction(actionExit);
+#endif
     if (ui_locked)
         myTrayIconMenu->setEnabled(false);
     return myTrayIconMenu;
