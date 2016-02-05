@@ -251,6 +251,10 @@ int main(int argc, char *argv[])
     signal(SIGSEGV, sigAbnormalHandler);
 #endif
 
+#ifdef Q_OS_MAC
+    // On OS X the standard is to not show icons in the menus
+    app->setAttribute(Qt::AA_DontShowIconsInMenus);
+#endif
     return app->exec(params.torrents);
 }
 
