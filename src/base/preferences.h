@@ -132,6 +132,10 @@ public:
     void showSpeedInTitleBar(bool show);
     bool useAlternatingRowColors() const;
     void setAlternatingRowColors(bool b);
+    bool getHideZeroValues() const;
+    void setHideZeroValues(bool b);
+    int getHideZeroComboValues() const;
+    void setHideZeroComboValues(int n);
     bool useRandomPort() const;
     void setRandomPort(bool b);
     bool systrayIntegration() const;

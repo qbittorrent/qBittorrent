@@ -273,6 +273,26 @@ void Preferences::setAlternatingRowColors(bool b)
     setValue("Preferences/General/AlternatingRowColors", b);
 }
 
+bool Preferences::getHideZeroValues() const
+{
+    return value("Preferences/General/HideZeroValues", false).toBool();
+}
+
+void Preferences::setHideZeroValues(bool b)
+{
+    setValue("Preferences/General/HideZeroValues", b);
+}
+
+int Preferences::getHideZeroComboValues() const
+{
+    return value("Preferences/General/HideZeroComboValues", 0).toInt();
+}
+
+void Preferences::setHideZeroComboValues(int n)
+{
+    setValue("Preferences/General/HideZeroComboValues", n);
+}
+
 bool Preferences::useRandomPort() const
 {
     return value("Preferences/General/UseRandomPort", false).toBool();
@@ -1900,7 +1920,7 @@ bool Preferences::isTorrentFileAssocSet()
             CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
             isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
             CFRelease(defaultHandlerId);
-        }    
+        }
         CFRelease(torrentId);
     }
     return isSet;

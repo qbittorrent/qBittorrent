@@ -185,9 +185,9 @@ QVariant TorrentModel::data(const QModelIndex &index, int role) const
     case TR_STATUS:
         return static_cast<int>(torrent->state());
     case TR_SEEDS:
-        return (role == Qt::DisplayRole) ? torrent->seedsCount() : torrent->completeCount();
+        return (role == Qt::DisplayRole) ? torrent->seedsCount() : torrent->totalSeedsCount();
     case TR_PEERS:
-        return (role == Qt::DisplayRole) ? (torrent->peersCount() - torrent->seedsCount()) : torrent->incompleteCount();
+        return (role == Qt::DisplayRole) ? torrent->leechsCount() : torrent->totalLeechersCount();
     case TR_DLSPEED:
         return torrent->downloadPayloadRate();
     case TR_UPSPEED:

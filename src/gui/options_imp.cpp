@@ -141,6 +141,8 @@ options_imp::options_imp(QWidget *parent)
     connect(comboI18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(confirmDeletion, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkAltRowColors, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(checkHideZero, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(comboHideZero, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(checkShowSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkCloseToSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkMinimizeToSysTray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -392,6 +394,8 @@ void options_imp::saveOptions()
     pref->setLocale(locale);
     pref->setConfirmTorrentDeletion(confirmDeletion->isChecked());
     pref->setAlternatingRowColors(checkAltRowColors->isChecked());
+    pref->setHideZeroValues(checkHideZero->isChecked());
+    pref->setHideZeroComboValues(comboHideZero->currentIndex());
     pref->setSystrayIntegration(systrayIntegration());
     pref->setTrayIconStyle(TrayIcon::Style(comboTrayIcon->currentIndex()));
     pref->setCloseToTray(closeToTray());
@@ -572,6 +576,8 @@ void options_imp::loadOptions()
     setLocale(pref->getLocale());
     confirmDeletion->setChecked(pref->confirmTorrentDeletion());
     checkAltRowColors->setChecked(pref->useAlternatingRowColors());
+    checkHideZero->setChecked(pref->getHideZeroValues());
+    comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
 
     checkShowSplash->setChecked(!pref->isSplashScreenDisabled());
     checkStartMinimized->setChecked(pref->startMinimized());

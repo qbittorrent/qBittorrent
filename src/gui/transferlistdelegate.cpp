@@ -39,6 +39,8 @@
 #include "torrentmodel.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/types.h"
+#include "base/preferences.h"
 #include "base/unicodestrings.h"
 
 #ifdef Q_OS_WIN
@@ -49,218 +51,240 @@
 #endif
 #endif
 
-TransferListDelegate::TransferListDelegate(QObject *parent) : QItemDelegate(parent) {}
+TransferListDelegate::TransferListDelegate(QObject *parent)
+    : QItemDelegate(parent)
+{
+}
 
-TransferListDelegate::~TransferListDelegate() {}
+void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const
+{
+    painter->save();
+    bool isHideState = true;
+    if (Preferences::instance()->getHideZeroComboValues() == 1) {  // paused torrents only
+        QModelIndex stateIndex = index.sibling(index.row(), TorrentModel::TR_STATUS);
+        if (stateIndex.data().toInt() != BitTorrent::TorrentState::PausedDownloading)
+            isHideState = false;
+    }
+    const bool hideValues = Preferences::instance()->getHideZeroValues() & isHideState;
 
-void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const {
-  QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
-  painter->save();
-  switch(index.column()) {
-  case TorrentModel::TR_AMOUNT_DOWNLOADED:
-  case TorrentModel::TR_AMOUNT_UPLOADED:
-  case TorrentModel::TR_AMOUNT_DOWNLOADED_SESSION:
-  case TorrentModel::TR_AMOUNT_UPLOADED_SESSION:
-  case TorrentModel::TR_AMOUNT_LEFT:
-  case TorrentModel::TR_COMPLETED:
-  case TorrentModel::TR_SIZE:
-  case TorrentModel::TR_TOTAL_SIZE: {
-      QItemDelegate::drawBackground(painter, opt, index);
-      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-      QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
-      break;
-    }
-  case TorrentModel::TR_ETA: {
-      QItemDelegate::drawBackground(painter, opt, index);
-      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-      QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::userFriendlyDuration(index.data().toLongLong()));
-      break;
-    }
-  case TorrentModel::TR_SEEDS:
-  case TorrentModel::TR_PEERS: {
-      QString display = QString::number(index.data().toLongLong());
-      qlonglong total = index.data(Qt::UserRole).toLongLong();
-      if (total > 0) {
-        // Scrape was successful, we have total values
-        display += " ("+QString::number(total)+")";
-      }
-      QItemDelegate::drawBackground(painter, opt, index);
-      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-      QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
-      break;
-    }
-  case TorrentModel::TR_STATUS: {
-      const int state = index.data().toInt();
-      QString display;
-      switch(state) {
-      case BitTorrent::TorrentState::Downloading:
-        display = tr("Downloading");
-        break;
-      case BitTorrent::TorrentState::StalledDownloading:
-        display = tr("Stalled", "Torrent is waiting for download to begin");
-        break;
-      case BitTorrent::TorrentState::DownloadingMetadata:
-        display = tr("Downloading metadata", "used when loading a magnet link");
-        break;
-      case BitTorrent::TorrentState::ForcedDownloading:
-        display = tr("[F] Downloading", "used when the torrent is forced started. You probably shouldn't translate the F.");
-        break;
-      case BitTorrent::TorrentState::Allocating:
-        display = tr("Allocating", "qBittorrent is allocating the files on disk");
-        break;
-      case BitTorrent::TorrentState::Uploading:
-      case BitTorrent::TorrentState::StalledUploading:
-        display = tr("Seeding", "Torrent is complete and in upload-only mode");
-        break;
-      case BitTorrent::TorrentState::ForcedUploading:
-        display = tr("[F] Seeding", "used when the torrent is forced started. You probably shouldn't translate the F.");
-        break;
-      case BitTorrent::TorrentState::QueuedDownloading:
-      case BitTorrent::TorrentState::QueuedUploading:
-        display = tr("Queued", "i.e. torrent is queued");
-        break;
-      case BitTorrent::TorrentState::CheckingDownloading:
-      case BitTorrent::TorrentState::CheckingUploading:
-        display = tr("Checking", "Torrent local data is being checked");
-        break;
-      case BitTorrent::TorrentState::QueuedForChecking:
-        display = tr("Queued for checking", "i.e. torrent is queued for hash checking");
-        break;
-      case BitTorrent::TorrentState::CheckingResumeData:
-        display = tr("Checking resume data", "used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.");
-        break;
-      case BitTorrent::TorrentState::PausedDownloading:
-        display = tr("Paused");
-        break;
-      case BitTorrent::TorrentState::PausedUploading:
-        display = tr("Completed");
-        break;
-      case BitTorrent::TorrentState::MissingFiles:
-          display = tr("Missing Files");
-          break;
-      case BitTorrent::TorrentState::Error:
-        display = tr("Errored", "torrent status, the torrent has an error");
-        break;
-      default:
-         display = "";
-      }
-      QItemDelegate::drawBackground(painter, opt, index);
-      QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
-      break;
-    }
-  case TorrentModel::TR_UPSPEED:
-  case TorrentModel::TR_DLSPEED: {
-      QItemDelegate::drawBackground(painter, opt, index);
-      const qulonglong speed = index.data().toULongLong();
-      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-      QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed, true));
-      break;
-    }
-  case TorrentModel::TR_UPLIMIT:
-  case TorrentModel::TR_DLLIMIT: {
+    QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
     QItemDelegate::drawBackground(painter, opt, index);
-    const qlonglong limit = index.data().toLongLong();
-    opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-    QItemDelegate::drawDisplay(painter, opt, opt.rect, limit > 0 ? Utils::Misc::friendlyUnit(limit, true) : QString::fromUtf8(C_INFINITY));
-    break;
-  }
-  case TorrentModel::TR_TIME_ELAPSED: {
-    QItemDelegate::drawBackground(painter, opt, index);
-    qlonglong seeding_time = index.data(Qt::UserRole).toLongLong();
-    QString txt;
-    if (seeding_time > 0)
-      txt += tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
-            .arg(Utils::Misc::userFriendlyDuration(index.data().toLongLong()))
-            .arg(Utils::Misc::userFriendlyDuration(seeding_time));
-    QItemDelegate::drawDisplay(painter, opt, opt.rect, txt);
-    break;
-  }
-  case TorrentModel::TR_ADD_DATE:
-  case TorrentModel::TR_SEED_DATE:
-    QItemDelegate::drawBackground(painter, opt, index);
-    QItemDelegate::drawDisplay(painter, opt, opt.rect, index.data().toDateTime().toLocalTime().toString(Qt::DefaultLocaleShortDate));
-    break;
-  case TorrentModel::TR_RATIO_LIMIT:
-  case TorrentModel::TR_RATIO: {
-      QItemDelegate::drawBackground(painter, opt, index);
-      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-      const qreal ratio = index.data().toDouble();
-      QItemDelegate::drawDisplay(painter, opt, opt.rect,
-                                 ((ratio == -1) || (ratio > BitTorrent::TorrentHandle::MAX_RATIO)) ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(ratio, 2));
-      break;
+    switch (index.column()) {
+    case TorrentModel::TR_AMOUNT_DOWNLOADED:
+    case TorrentModel::TR_AMOUNT_UPLOADED:
+    case TorrentModel::TR_AMOUNT_DOWNLOADED_SESSION:
+    case TorrentModel::TR_AMOUNT_UPLOADED_SESSION:
+    case TorrentModel::TR_AMOUNT_LEFT:
+    case TorrentModel::TR_COMPLETED:
+    case TorrentModel::TR_SIZE:
+    case TorrentModel::TR_TOTAL_SIZE: {
+        qlonglong size = index.data().toLongLong();
+        if (hideValues && !size)
+            break;
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+        QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(size));
+        break;
     }
-  case TorrentModel::TR_PRIORITY: {
-      const int priority = index.data().toInt();
-      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-      if (priority > 0)
-        QItemDelegate::paint(painter, opt, index);
-      else {
-        QItemDelegate::drawBackground(painter, opt, index);
-        QItemDelegate::drawDisplay(painter, opt, opt.rect, "*");
-      }
-      break;
+    case TorrentModel::TR_ETA: {
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+        QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::userFriendlyDuration(index.data().toLongLong()));
+        break;
     }
-  case TorrentModel::TR_PROGRESS: {
-      QStyleOptionProgressBarV2 newopt;
-      qreal progress = index.data().toDouble()*100.;
-      newopt.rect = opt.rect;
-      newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
-      newopt.progress = (int)progress;
-      newopt.maximum = 100;
-      newopt.minimum = 0;
-      newopt.state |= QStyle::State_Enabled;
-      newopt.textVisible = true;
+    case TorrentModel::TR_SEEDS:
+    case TorrentModel::TR_PEERS: {
+        qlonglong value = index.data().toLongLong();
+        qlonglong total = index.data(Qt::UserRole).toLongLong();
+        if (hideValues && (!value && !total))
+            break;
+        QString display = QString::number(value) + " (" + QString::number(total) + ")";
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
+        break;
+    }
+    case TorrentModel::TR_STATUS: {
+        const int state = index.data().toInt();
+        QString display = getStatusString(state);
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
+        break;
+    }
+    case TorrentModel::TR_UPSPEED:
+    case TorrentModel::TR_DLSPEED: {
+        const qulonglong speed = index.data().toULongLong();
+        if (hideValues && !speed)
+            break;
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed, true));
+        break;
+    }
+    case TorrentModel::TR_UPLIMIT:
+    case TorrentModel::TR_DLLIMIT: {
+        const qlonglong limit = index.data().toLongLong();
+        if (hideValues && !limit)
+            break;
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, limit > 0 ? Utils::Misc::friendlyUnit(limit, true) : QString::fromUtf8(C_INFINITY));
+        break;
+    }
+    case TorrentModel::TR_TIME_ELAPSED: {
+        qlonglong elapsedTime = index.data().toLongLong();
+        qlonglong seedingTime = index.data(Qt::UserRole).toLongLong();
+        QString txt;
+        if (seedingTime > 0)
+            txt += tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
+                   .arg(Utils::Misc::userFriendlyDuration(elapsedTime))
+                   .arg(Utils::Misc::userFriendlyDuration(seedingTime));
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, txt);
+        break;
+    }
+    case TorrentModel::TR_ADD_DATE:
+    case TorrentModel::TR_SEED_DATE:
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, index.data().toDateTime().toLocalTime().toString(Qt::DefaultLocaleShortDate));
+        break;
+    case TorrentModel::TR_RATIO_LIMIT:
+    case TorrentModel::TR_RATIO: {
+        const qreal ratio = index.data().toDouble();
+        if (hideValues && (ratio <= 0))
+            break;
+        QString str = ((ratio == -1) || (ratio > BitTorrent::TorrentHandle::MAX_RATIO)) ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(ratio, 2);
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, str);
+        break;
+    }
+    case TorrentModel::TR_PRIORITY: {
+        const int priority = index.data().toInt();
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+        if (priority > 0) {
+            QItemDelegate::paint(painter, opt, index);
+        }
+        else {
+            QItemDelegate::drawDisplay(painter, opt, opt.rect, "*");
+        }
+        break;
+    }
+    case TorrentModel::TR_PROGRESS: {
+        QStyleOptionProgressBarV2 newopt;
+        qreal progress = index.data().toDouble() * 100.;
+        newopt.rect = opt.rect;
+        newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
+        newopt.progress = (int)progress;
+        newopt.maximum = 100;
+        newopt.minimum = 0;
+        newopt.state |= QStyle::State_Enabled;
+        newopt.textVisible = true;
 #ifndef Q_OS_WIN
-      QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
+        QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
-      // XXX: To avoid having the progress text on the right of the bar
+        // XXX: To avoid having the progress text on the right of the bar
 #ifndef QBT_USES_QT5
         QPlastiqueStyle st;
 #else
         QProxyStyle st("fusion");
 #endif
-      st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
+        st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
-      break;
+        break;
     }
-  case TorrentModel::TR_LAST_ACTIVITY: {
-      QString elapsedString;
-      long long elapsed = index.data().toLongLong();
-      QItemDelegate::drawBackground(painter, opt, index);
-      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-      if (elapsed == 0)
-        // Show '< 1m ago' when elapsed time is 0
-        elapsed = 1;
-      if (elapsed < 0)
-        elapsedString = Utils::Misc::userFriendlyDuration(elapsed);
-      else
-        elapsedString = tr("%1 ago", "e.g.: 1h 20m ago").arg(Utils::Misc::userFriendlyDuration(elapsed));
-      QItemDelegate::drawDisplay(painter, opt, option.rect, elapsedString);
-      break;
+    case TorrentModel::TR_LAST_ACTIVITY: {
+        qlonglong elapsed = index.data().toLongLong();
+        if (hideValues && ((elapsed < 0) || (elapsed >= MAX_ETA)))
+            break;
+
+        QString elapsedString;
+        if (elapsed == 0)
+            // Show '< 1m ago' when elapsed time is 0
+            elapsed = 1;
+        else if (elapsed < 0)
+            elapsedString = Utils::Misc::userFriendlyDuration(elapsed);
+        else
+            elapsedString = tr("%1 ago", "e.g.: 1h 20m ago").arg(Utils::Misc::userFriendlyDuration(elapsed));
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+        QItemDelegate::drawDisplay(painter, opt, option.rect, elapsedString);
+        break;
     }
-  default:
-    QItemDelegate::paint(painter, option, index);
-  }
-  painter->restore();
+    default:
+        QItemDelegate::paint(painter, option, index);
+    }
+    painter->restore();
 }
 
-QWidget* TransferListDelegate::createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const {
-  // No editor here
-  return 0;
+QWidget* TransferListDelegate::createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const
+{
+    // No editor here
+    return 0;
 }
 
-QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const {
-  QSize size = QItemDelegate::sizeHint(option, index);
+QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const
+{
+    static int iconHeight = -1;
+    if (iconHeight == -1) {
+        QIcon icon(":/icons/skin/downloading.png");
+        QList<QSize> icSizes(icon.availableSizes());
+        iconHeight = icSizes[0].height();
+    }
 
-  static int icon_height = -1;
-  if (icon_height == -1) {
-    QIcon icon(":/icons/skin/downloading.png");
-    QList<QSize> ic_sizes(icon.availableSizes());
-    icon_height = ic_sizes[0].height();
-  }
+    QSize size = QItemDelegate::sizeHint(option, index);
+    if (size.height() < iconHeight)
+        size.setHeight(iconHeight);
 
-  if (size.height() < icon_height)
-    size.setHeight(icon_height);
+    return size;
+}
 
-  return size;
+QString TransferListDelegate::getStatusString(const int state) const
+{
+    QString str;
+
+    switch (state) {
+    case BitTorrent::TorrentState::Downloading:
+        str = tr("Downloading");
+        break;
+    case BitTorrent::TorrentState::StalledDownloading:
+        str = tr("Stalled", "Torrent is waiting for download to begin");
+        break;
+    case BitTorrent::TorrentState::DownloadingMetadata:
+        str = tr("Downloading metadata", "used when loading a magnet link");
+        break;
+    case BitTorrent::TorrentState::ForcedDownloading:
+        str = tr("[F] Downloading", "used when the torrent is forced started. You probably shouldn't translate the F.");
+        break;
+    case BitTorrent::TorrentState::Allocating:
+        str = tr("Allocating", "qBittorrent is allocating the files on disk");
+        break;
+    case BitTorrent::TorrentState::Uploading:
+    case BitTorrent::TorrentState::StalledUploading:
+        str = tr("Seeding", "Torrent is complete and in upload-only mode");
+        break;
+    case BitTorrent::TorrentState::ForcedUploading:
+        str = tr("[F] Seeding", "used when the torrent is forced started. You probably shouldn't translate the F.");
+        break;
+    case BitTorrent::TorrentState::QueuedDownloading:
+    case BitTorrent::TorrentState::QueuedUploading:
+        str = tr("Queued", "i.e. torrent is queued");
+        break;
+    case BitTorrent::TorrentState::CheckingDownloading:
+    case BitTorrent::TorrentState::CheckingUploading:
+        str = tr("Checking", "Torrent local data is being checked");
+        break;
+    case BitTorrent::TorrentState::QueuedForChecking:
+        str = tr("Queued for checking", "i.e. torrent is queued for hash checking");
+        break;
+    case BitTorrent::TorrentState::CheckingResumeData:
+        str = tr("Checking resume data", "used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.");
+        break;
+    case BitTorrent::TorrentState::PausedDownloading:
+        str = tr("Paused");
+        break;
+    case BitTorrent::TorrentState::PausedUploading:
+        str = tr("Completed");
+        break;
+    case BitTorrent::TorrentState::MissingFiles:
+        str = tr("Missing Files");
+        break;
+    case BitTorrent::TorrentState::Error:
+        str = tr("Errored", "torrent status, the torrent has an error");
+        break;
+    default:
+        str = "";
+    }
+
+    return str;
 }
