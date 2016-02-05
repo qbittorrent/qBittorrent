@@ -36,6 +36,7 @@
 #include <QString>
 #include <QDir>
 #include <QFile>
+#include <QRegExp>
 #ifndef DISABLE_GUI
 #include <QMessageBox>
 #endif
@@ -76,7 +77,7 @@ bool userAcceptsUpgrade()
     return false;
 }
 
-bool upgradeResumeFile(const QString &filepath, const QVariantHash &oldTorrent, int &maxPrio)
+bool upgradeResumeFile(const QString &filepath, const QVariantHash &oldTorrent = QVariantHash())
 {
     QFile file1(filepath);
     if (!file1.open(QIODevice::ReadOnly))
@@ -93,19 +94,32 @@ bool upgradeResumeFile(const QString &filepath, const QVariantHash &oldTorrent, 
     libtorrent::entry fastNew;
     fastNew = fastOld;
 
-    int priority = fastOld.dict_find_int_value("qBt-queuePosition");
-    if (priority > maxPrio)
-        maxPrio = priority;
+    bool v3_3 = false;
+    int queuePosition = 0;
+    QString outFilePath = filepath;
+    QRegExp rx(QLatin1String("([A-Fa-f0-9]{40})\\.fastresume\\.(\\d+)$"));
+    if (rx.indexIn(filepath) != -1) {
+        // old v3.3.x format
+        queuePosition = rx.cap(2).toInt();
+        v3_3 = true;
+        outFilePath.replace(QRegExp("\\.\\d+$"), "");
+    }
+    else {
+        queuePosition = fastOld.dict_find_int_value("qBt-queuePosition", 0);
+        fastNew["qBt-name"] = Utils::String::toStdString(oldTorrent.value("name").toString());
+        fastNew["qBt-tempPathDisabled"] = false;
+    }
 
-    fastNew["qBt-name"] = Utils::String::toStdString(oldTorrent.value("name").toString());
-    fastNew["qBt-tempPathDisabled"] = false;
+    // in versions < 3.3 we have -1 for seeding torrents, so we convert it to 0
+    fastNew["qBt-queuePosition"] = (queuePosition >= 0 ? queuePosition : 0);
 
-    QFile file2(QString("%1.%2").arg(filepath).arg(priority > 0 ? priority : 0));
+    QFile file2(outFilePath);
     QVector<char> out;
     libtorrent::bencode(std::back_inserter(out), fastNew);
     if (file2.open(QIODevice::WriteOnly)) {
         if (file2.write(&out[0], out.size()) == out.size()) {
-            Utils::Fs::forceRemove(filepath);
+            if (v3_3)
+                Utils::Fs::forceRemove(filepath);
             return true;
         }
     }
@@ -118,26 +132,35 @@ bool upgrade(bool ask = true)
     // Move RSS cookies to common storage
     Preferences::instance()->moveRSSCookies();
 
+    QString backupFolderPath = Utils::Fs::expandPathAbs(Utils::Fs::QDesktopServicesDataLocation() + "BT_backup");
+    QDir backupFolderDir(backupFolderPath);
+
+    // ****************************************************************************************
+    // Silently converts old v3.3.x .fastresume files
+    QStringList backupFiles_3_3 = backupFolderDir.entryList(
+                QStringList(QLatin1String("*.fastresume.*")), QDir::Files, QDir::Unsorted);
+    foreach (const QString &backupFile, backupFiles_3_3)
+        upgradeResumeFile(backupFolderDir.absoluteFilePath(backupFile));
+    // ****************************************************************************************
+
     QIniSettings *oldResumeSettings = new QIniSettings("qBittorrent", "qBittorrent-resume");
     QString oldResumeFilename = oldResumeSettings->fileName();
     QVariantHash oldResumeData = oldResumeSettings->value("torrents").toHash();
     delete oldResumeSettings;
-    bool oldResumeWasEmpty = oldResumeData.isEmpty();
-    if (oldResumeWasEmpty)
+
+    if (oldResumeData.isEmpty()) {
         Utils::Fs::forceRemove(oldResumeFilename);
+        return true;
+    }
 
-
-    QString backupFolderPath = Utils::Fs::expandPathAbs(Utils::Fs::QDesktopServicesDataLocation() + "BT_backup");
-    QDir backupFolderDir(backupFolderPath);
-    QStringList backupFiles = backupFolderDir.entryList(QStringList() << QLatin1String("*.fastresume"), QDir::Files, QDir::Unsorted);
-    if (backupFiles.isEmpty() && oldResumeWasEmpty) return true;
     if (ask && !userAcceptsUpgrade()) return false;
 
-    int maxPrio = 0;
+    QStringList backupFiles = backupFolderDir.entryList(
+                QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
     QRegExp rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
     foreach (QString backupFile, backupFiles) {
         if (rx.indexIn(backupFile) != -1) {
-            if (upgradeResumeFile(backupFolderDir.absoluteFilePath(backupFile), oldResumeData[rx.cap(1)].toHash(), maxPrio))
+            if (upgradeResumeFile(backupFolderDir.absoluteFilePath(backupFile), oldResumeData[rx.cap(1)].toHash()))
                 oldResumeData.remove(rx.cap(1));
             else
                 Logger::instance()->addMessage(QObject::tr("Couldn't migrate torrent with hash: %1").arg(rx.cap(1)), Log::WARNING);
@@ -162,7 +185,10 @@ bool upgrade(bool ask = true)
             resumeData["qBt-seedStatus"] = oldTorrent.value("seed").toBool();
             resumeData["qBt-tempPathDisabled"] = false;
 
-            QString filename = QString("%1.fastresume.%2").arg(hash).arg(++maxPrio);
+            int queuePosition = oldTorrent.value("priority", 0).toInt();
+            resumeData["qBt-queuePosition"] = (queuePosition >= 0 ? queuePosition : 0);
+
+            QString filename = QString("%1.fastresume").arg(hash);
             QString filepath = backupFolderDir.absoluteFilePath(filename);
 
             QFile resumeFile(filepath);
@@ -173,17 +199,13 @@ bool upgrade(bool ask = true)
         }
     }
 
-    if (!oldResumeWasEmpty) {
-        int counter = 0;
-        QString backupResumeFilename = oldResumeFilename + ".bak";
-
-        while (QFile::exists(backupResumeFilename)) {
-            ++counter;
-            backupResumeFilename = oldResumeFilename + ".bak" + QString::number(counter);
-        }
-
-        QFile::rename(oldResumeFilename, backupResumeFilename);
+    int counter = 0;
+    QString backupResumeFilename = oldResumeFilename + ".bak";
+    while (QFile::exists(backupResumeFilename)) {
+        ++counter;
+        backupResumeFilename = oldResumeFilename + ".bak" + QString::number(counter);
     }
+    QFile::rename(oldResumeFilename, backupResumeFilename);
 
     return true;
 }

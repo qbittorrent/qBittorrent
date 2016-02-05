@@ -99,6 +99,7 @@ namespace libtorrent
     struct external_ip_alert;
 }
 
+class QThread;
 class QTimer;
 class QStringList;
 class QString;
@@ -108,6 +109,7 @@ template<typename T> class QList;
 class FilterParserThread;
 class BandwidthScheduler;
 class Statistics;
+class ResumeDataSavingManager;
 
 typedef QPair<QString, QString> QStringPair;
 
@@ -327,7 +329,6 @@ namespace BitTorrent
         void createTorrentHandle(const libtorrent::torrent_handle &nativeHandle);
 
         void saveResumeData();
-        bool writeResumeDataFile(TorrentHandle *const torrent, const libtorrent::entry &data);
 
         void dispatchAlerts(std::auto_ptr<libtorrent::alert> alertPtr);
         void getPendingAlerts(QVector<libtorrent::alert *> &out, ulong time = 0);
@@ -366,6 +367,9 @@ namespace BitTorrent
         QPointer<BandwidthScheduler> m_bwScheduler;
         // Tracker
         QPointer<Tracker> m_tracker;
+        // fastresume data writing thread
+        QThread *m_ioThread;
+        ResumeDataSavingManager *m_resumeDataSavingManager;
 
         QHash<InfoHash, TorrentInfo> m_loadedMetadata;
         QHash<InfoHash, TorrentHandle *> m_torrents;
