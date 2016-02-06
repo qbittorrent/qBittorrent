@@ -87,7 +87,6 @@ private:
     void loadSavePathHistory();
     void saveSavePathHistory() const;
     int indexOfSavePath(const QString& save_path);
-    void updateFileNameInSavePaths(const QString& new_filename);
     void loadState();
     void saveState();
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = QString());
