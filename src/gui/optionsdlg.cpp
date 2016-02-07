@@ -298,9 +298,14 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkLSD, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboEncryption, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
     connect(m_ui->spinMaxRatio, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
             this, &ThisType::enableApplyButton);
     connect(m_ui->comboRatioLimitAct, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
+    connect(m_ui->spinMaxSeedingMinutes, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),
+            this, &ThisType::enableApplyButton);
     // Proxy tab
     connect(m_ui->comboProxyType, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textProxyIP, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -601,6 +606,7 @@ void OptionsDialog::saveOptions()
     session->setAddTrackersEnabled(m_ui->checkEnableAddTrackers->isChecked());
     session->setAdditionalTrackers(m_ui->textTrackers->toPlainText());
     session->setGlobalMaxRatio(getMaxRatio());
+    session->setGlobalMaxSeedingMinutes(getMaxSeedingMinutes());
     session->setMaxRatioAction(static_cast<MaxRatioAction>(m_ui->comboRatioLimitAct->currentIndex()));
     // End Bittorrent preferences
 
@@ -990,8 +996,19 @@ void OptionsDialog::loadOptions()
         // Disable
         m_ui->checkMaxRatio->setChecked(false);
         m_ui->spinMaxRatio->setEnabled(false);
-        m_ui->comboRatioLimitAct->setEnabled(false);
     }
+    if (session->globalMaxSeedingMinutes() >= 0) {
+        // Enable
+        m_ui->checkMaxSeedingMinutes->setChecked(true);
+        m_ui->spinMaxSeedingMinutes->setEnabled(true);
+        m_ui->spinMaxSeedingMinutes->setValue(session->globalMaxSeedingMinutes());
+    }
+    else {
+        // Disable
+        m_ui->checkMaxSeedingMinutes->setChecked(false);
+        m_ui->spinMaxSeedingMinutes->setEnabled(false);
+    }
+    m_ui->comboRatioLimitAct->setEnabled((session->globalMaxSeedingMinutes() >= 0) || (session->globalMaxRatio() >= 0.));
     m_ui->comboRatioLimitAct->setCurrentIndex(session->maxRatioAction());
     // End Bittorrent preferences
 
@@ -1122,6 +1139,14 @@ qreal OptionsDialog::getMaxRatio() const
     return -1;
 }
 
+// Return Seeding Minutes
+int OptionsDialog::getMaxSeedingMinutes() const
+{
+    if (m_ui->checkMaxSeedingMinutes->isChecked())
+        return m_ui->spinMaxSeedingMinutes->value();
+    return -1;
+}
+
 // Return max connections number
 int OptionsDialog::getMaxConnecs() const
 {
@@ -1209,6 +1234,12 @@ bool OptionsDialog::useAdditionDialog() const
 void OptionsDialog::enableApplyButton()
 {
     applyButton->setEnabled(true);
+}
+
+void OptionsDialog::toggleComboRatioLimitAct()
+{
+    // Verify if the share action button must be enabled
+    m_ui->comboRatioLimitAct->setEnabled(m_ui->checkMaxRatio->isChecked() || m_ui->checkMaxSeedingMinutes->isChecked());
 }
 
 void OptionsDialog::enableProxy(int index)

@@ -1852,15 +1852,15 @@
                     <property name="wrapping">
                      <bool>true</bool>
                     </property>
-                    <property name="displayFormat">
-                     <string notr="true">hh:mm</string>
-                    </property>
                     <property name="time">
                      <time>
                       <hour>20</hour>
                       <minute>0</minute>
                       <second>0</second>
                      </time>
+                    </property>
+                    <property name="displayFormat">
+                     <string notr="true">hh:mm</string>
                     </property>
                    </widget>
                   </item>
@@ -1876,18 +1876,18 @@
                     <property name="wrapping">
                      <bool>true</bool>
                     </property>
-                    <property name="displayFormat">
-                     <string notr="true">hh:mm</string>
-                    </property>
-                    <property name="calendarPopup">
-                     <bool>false</bool>
-                    </property>
                     <property name="time">
                      <time>
                       <hour>8</hour>
                       <minute>0</minute>
                       <second>0</second>
                      </time>
+                    </property>
+                    <property name="displayFormat">
+                     <string notr="true">hh:mm</string>
+                    </property>
+                    <property name="calendarPopup">
+                     <bool>false</bool>
                     </property>
                    </widget>
                   </item>
@@ -2374,66 +2374,144 @@
               <property name="title">
                <string>Share Ratio Limiting</string>
               </property>
-              <layout class="QVBoxLayout">
-               <property name="bottomMargin">
-                <number>9</number>
-               </property>
-               <item>
-                <layout class="QHBoxLayout">
+              <layout class="QGridLayout" name="gridLayout_91">
+               <item row="0" column="0" rowspan="3" colspan="3">
+                <widget class="QCheckBox" name="checkMaxRatio">
+                 <property name="text">
+                  <string>Seed torrents until their ratio reaches</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="6" rowspan="2">
+                <spacer name="horizontalSpacer_161">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>109</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="5" column="2">
+                <widget class="QLabel" name="label">
+                 <property name="text">
+                  <string>then</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="4" colspan="2">
+                <widget class="QComboBox" name="comboRatioLimitAct">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <item>
-                  <widget class="QCheckBox" name="checkMaxRatio">
-                   <property name="text">
-                    <string>Seed torrents until their ratio reaches</string>
-                   </property>
-                  </widget>
+                  <property name="text">
+                   <string>Pause them</string>
+                  </property>
                  </item>
                  <item>
-                  <widget class="QDoubleSpinBox" name="spinMaxRatio">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignHCenter</set>
-                   </property>
-                   <property name="minimum">
-                    <double>0.000000000000000</double>
-                   </property>
-                   <property name="maximum">
-                    <double>9998.000000000000000</double>
-                   </property>
-                   <property name="singleStep">
-                    <double>0.050000000000000</double>
-                   </property>
-                   <property name="value">
-                    <double>1.000000000000000</double>
-                   </property>
-                  </widget>
+                  <property name="text">
+                   <string>Remove them</string>
+                  </property>
                  </item>
-                 <item>
-                  <widget class="QLabel" name="label">
-                   <property name="text">
-                    <string>then</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QComboBox" name="comboRatioLimitAct">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>Pause them</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Remove them</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                </layout>
+                </widget>
+               </item>
+               <item row="5" column="6">
+                <spacer name="horizontalSpacer_20">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>121</width>
+                   <height>28</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="5" column="1">
+                <spacer name="horizontalSpacer_171">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>100</width>
+                   <height>42</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="3" column="6">
+                <spacer name="horizontalSpacer_191">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="3" column="4">
+                <widget class="QSpinBox" name="spinMaxSeedingMinutes">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="maximum">
+                  <number>9999999</number>
+                 </property>
+                 <property name="value">
+                  <number>1440</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="4">
+                <widget class="QDoubleSpinBox" name="spinMaxRatio">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignHCenter</set>
+                 </property>
+                 <property name="minimum">
+                  <double>0.000000000000000</double>
+                 </property>
+                 <property name="maximum">
+                  <double>9998.000000000000000</double>
+                 </property>
+                 <property name="singleStep">
+                  <double>0.050000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>1.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="5">
+                <widget class="QLabel" name="label_11">
+                 <property name="text">
+                  <string>minutes</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="4">
+                <widget class="QCheckBox" name="checkMaxSeedingMinutes">
+                 <property name="text">
+                  <string>Seed torrents until their seeding time reaches</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -2506,7 +2584,7 @@
            <item>
             <layout class="QGridLayout" name="gridLayout_5">
              <item row="0" column="0">
-              <widget class="QLabel" name="label_11">
+              <widget class="QLabel" name="label_111">
                <property name="text">
                 <string>Feeds refresh interval:</string>
                </property>
@@ -3035,16 +3113,129 @@
  <tabstops>
   <tabstop>tabOption</tabstop>
   <tabstop>comboI18n</tabstop>
+  <tabstop>browseSaveDirButton</tabstop>
   <tabstop>checkStartPaused</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>
+  <tabstop>textWebUiUsername</tabstop>
+  <tabstop>checkWebUi</tabstop>
+  <tabstop>textSavePath</tabstop>
+  <tabstop>scrollArea_7</tabstop>
+  <tabstop>scrollArea_2</tabstop>
+  <tabstop>spinWebUiPort</tabstop>
+  <tabstop>textWebUiPassword</tabstop>
+  <tabstop>buttonBox</tabstop>
+  <tabstop>tabSelection</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>confirmDeletion</tabstop>
+  <tabstop>checkAltRowColors</tabstop>
+  <tabstop>actionTorrentDlOnDblClBox</tabstop>
+  <tabstop>actionTorrentFnOnDblClBox</tabstop>
+  <tabstop>checkStartup</tabstop>
+  <tabstop>checkShowSplash</tabstop>
+  <tabstop>checkStartMinimized</tabstop>
+  <tabstop>checkProgramExitConfirm</tabstop>
+  <tabstop>checkShowSystray</tabstop>
+  <tabstop>checkMinimizeToSysTray</tabstop>
+  <tabstop>checkCloseToSystray</tabstop>
+  <tabstop>comboTrayIcon</tabstop>
+  <tabstop>checkAssociateTorrents</tabstop>
+  <tabstop>checkAssociateMagnetLinks</tabstop>
+  <tabstop>checkPreventFromSuspend</tabstop>
+  <tabstop>checkAdditionDialog</tabstop>
+  <tabstop>checkAdditionDialogFront</tabstop>
+  <tabstop>checkPreallocateAll</tabstop>
+  <tabstop>checkTempFolder</tabstop>
+  <tabstop>textTempPath</tabstop>
+  <tabstop>browseTempDirButton</tabstop>
+  <tabstop>checkAppendqB</tabstop>
+  <tabstop>scanFoldersView</tabstop>
+  <tabstop>addScanFolderButton</tabstop>
+  <tabstop>removeScanFolderButton</tabstop>
+  <tabstop>checkExportDir</tabstop>
+  <tabstop>textExportDir</tabstop>
+  <tabstop>browseExportDirButton</tabstop>
+  <tabstop>checkExportDirFin</tabstop>
+  <tabstop>textExportDirFin</tabstop>
+  <tabstop>browseExportDirFinButton</tabstop>
+  <tabstop>groupMailNotification</tabstop>
+  <tabstop>dest_email_txt</tabstop>
+  <tabstop>smtp_server_txt</tabstop>
+  <tabstop>groupMailNotifAuth</tabstop>
+  <tabstop>mailNotifUsername</tabstop>
+  <tabstop>mailNotifPassword</tabstop>
+  <tabstop>checkSmtpSSL</tabstop>
+  <tabstop>autoRunBox</tabstop>
+  <tabstop>autoRun_txt</tabstop>
+  <tabstop>scrollArea_3</tabstop>
+  <tabstop>randomButton</tabstop>
+  <tabstop>checkRandomPort</tabstop>
+  <tabstop>checkMaxConnecs</tabstop>
+  <tabstop>spinMaxConnec</tabstop>
+  <tabstop>checkMaxConnecsPerTorrent</tabstop>
+  <tabstop>spinMaxConnecPerTorrent</tabstop>
+  <tabstop>checkMaxUploadsPerTorrent</tabstop>
+  <tabstop>spinMaxUploadsPerTorrent</tabstop>
+  <tabstop>checkMaxUploads</tabstop>
+  <tabstop>spinMaxUploads</tabstop>
+  <tabstop>comboProxyType</tabstop>
+  <tabstop>textProxyIP</tabstop>
+  <tabstop>spinProxyPort</tabstop>
+  <tabstop>checkProxyPeerConnecs</tabstop>
+  <tabstop>checkForceProxy</tabstop>
+  <tabstop>isProxyOnlyForTorrents</tabstop>
+  <tabstop>checkProxyAuth</tabstop>
+  <tabstop>textProxyUsername</tabstop>
+  <tabstop>textProxyPassword</tabstop>
+  <tabstop>checkIPFilter</tabstop>
+  <tabstop>textFilterPath</tabstop>
+  <tabstop>browseFilterButton</tabstop>
+  <tabstop>IpFilterRefreshBtn</tabstop>
+  <tabstop>checkIpFilterTrackers</tabstop>
+  <tabstop>scrollArea_9</tabstop>
+  <tabstop>spinUploadLimit</tabstop>
+  <tabstop>checkUploadLimit</tabstop>
+  <tabstop>spinDownloadLimit</tabstop>
+  <tabstop>checkDownloadLimit</tabstop>
+  <tabstop>check_schedule</tabstop>
+  <tabstop>schedule_to</tabstop>
+  <tabstop>schedule_from</tabstop>
+  <tabstop>schedule_days</tabstop>
+  <tabstop>checkUploadLimitAlt</tabstop>
+  <tabstop>checkDownloadLimitAlt</tabstop>
+  <tabstop>spinUploadLimitAlt</tabstop>
+  <tabstop>spinDownloadLimitAlt</tabstop>
+  <tabstop>checkLimitLocalPeerRate</tabstop>
+  <tabstop>checkLimitTransportOverhead</tabstop>
+  <tabstop>checkuTP</tabstop>
+  <tabstop>checkLimituTPConnections</tabstop>
+  <tabstop>scrollArea_4</tabstop>
+  <tabstop>checkDHT</tabstop>
+  <tabstop>checkPeX</tabstop>
   <tabstop>checkLSD</tabstop>
   <tabstop>comboEncryption</tabstop>
+  <tabstop>checkAnonymousMode</tabstop>
+  <tabstop>checkEnableQueueing</tabstop>
+  <tabstop>spinMaxActiveDownloads</tabstop>
+  <tabstop>spinMaxActiveUploads</tabstop>
+  <tabstop>spinMaxActiveTorrents</tabstop>
+  <tabstop>checkIgnoreSlowTorrentsForQueueing</tabstop>
   <tabstop>checkMaxRatio</tabstop>
   <tabstop>spinMaxRatio</tabstop>
-  <tabstop>spinWebUiPort</tabstop>
-  <tabstop>textWebUiUsername</tabstop>
-  <tabstop>textWebUiPassword</tabstop>
+  <tabstop>checkMaxSeedingMinutes</tabstop>
+  <tabstop>spinMaxSeedingMinutes</tabstop>
+  <tabstop>comboRatioLimitAct</tabstop>
+  <tabstop>checkWebUIUPnP</tabstop>
+  <tabstop>checkWebUiHttps</tabstop>
+  <tabstop>btnWebUiCrt</tabstop>
+  <tabstop>btnWebUiKey</tabstop>
+  <tabstop>checkBypassLocalAuth</tabstop>
+  <tabstop>checkDynDNS</tabstop>
+  <tabstop>comboDNSService</tabstop>
+  <tabstop>registerDNSBtn</tabstop>
+  <tabstop>domainNameTxt</tabstop>
+  <tabstop>DNSUsernameTxt</tabstop>
+  <tabstop>DNSPasswordTxt</tabstop>
  </tabstops>
  <resources>
   <include location="../icons.qrc"/>
@@ -3131,9 +3322,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkMaxRatio</sender>
+   <sender>checkMaxUploads</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinMaxRatio</receiver>
+   <receiver>spinMaxUploads</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -3147,9 +3338,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkMaxRatio</sender>
+   <sender>checkDownloadLimitAlt</sender>
    <signal>toggled(bool)</signal>
-   <receiver>comboRatioLimitAct</receiver>
+   <receiver>spinDownloadLimitAlt</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -3163,9 +3354,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkMaxUploads</sender>
+   <sender>checkUploadLimitAlt</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinMaxUploads</receiver>
+   <receiver>spinUploadLimitAlt</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -3179,9 +3370,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkDownloadLimitAlt</sender>
+   <sender>checkMaxRatio</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinDownloadLimitAlt</receiver>
+   <receiver>spinMaxRatio</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -3195,9 +3386,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkUploadLimitAlt</sender>
+   <sender>checkMaxSeedingMinutes</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinUploadLimitAlt</receiver>
+   <receiver>spinMaxSeedingMinutes</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">

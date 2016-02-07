@@ -245,6 +245,8 @@ namespace BitTorrent
 
         qreal globalMaxRatio() const;
         void setGlobalMaxRatio(qreal ratio);
+        int globalMaxSeedingMinutes() const;
+        void setGlobalMaxSeedingMinutes(int minutes);
         bool isDHTEnabled() const;
         void setDHTEnabled(bool enabled);
         bool isLSDEnabled() const;
@@ -395,7 +397,7 @@ namespace BitTorrent
         void bottomTorrentsPriority(const QStringList &hashes);
 
         // TorrentHandle interface
-        void handleTorrentRatioLimitChanged(TorrentHandle *const torrent);
+        void handleTorrentShareLimitChanged(TorrentHandle *const torrent);
         void handleTorrentSavePathChanged(TorrentHandle *const torrent);
         void handleTorrentCategoryChanged(TorrentHandle *const torrent, const QString &oldCategory);
         void handleTorrentSavingModeChanged(TorrentHandle *const torrent);
@@ -455,7 +457,7 @@ namespace BitTorrent
         void configureDeferred();
         void readAlerts();
         void refresh();
-        void processBigRatios();
+        void processShareLimits();
         void generateResumeData(bool final = false);
         void handleIPFilterParsed(int ruleCount);
         void handleIPFilterError();
@@ -473,6 +475,7 @@ namespace BitTorrent
         ~Session();
 
         bool hasPerTorrentRatioLimit() const;
+        bool hasPerTorrentSeedingTimeLimit() const;
 
         void initResumeFolder();
 
@@ -503,7 +506,7 @@ namespace BitTorrent
                              const QByteArray &fastresumeData = QByteArray());
         bool findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) const;
 
-        void updateRatioTimer();
+        void updateSeedingLimitTimer();
         void exportTorrentFile(TorrentHandle *const torrent, TorrentExportFolder folder = TorrentExportFolder::Regular);
         void saveTorrentResumeData(TorrentHandle *const torrent, bool finalSave = false);
 
@@ -578,6 +581,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isAddTrackersEnabled;
         CachedSettingValue<QString> m_additionalTrackers;
         CachedSettingValue<qreal> m_globalMaxRatio;
+        CachedSettingValue<int> m_globalMaxSeedingMinutes;
         CachedSettingValue<bool> m_isAddTorrentPaused;
         CachedSettingValue<bool> m_isCreateTorrentSubfolder;
         CachedSettingValue<bool> m_isAppendExtensionEnabled;
@@ -628,7 +632,7 @@ namespace BitTorrent
         bool m_useProxy;
 
         QTimer *m_refreshTimer;
-        QTimer *m_bigRatioTimer;
+        QTimer *m_seedingLimitTimer;
         QTimer *m_resumeDataTimer;
         Statistics *m_statistics;
         // IP filtering
