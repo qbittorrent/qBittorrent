@@ -335,7 +335,7 @@ void Preferences::setStartMinimized(bool b)
 
 bool Preferences::isSplashScreenDisabled() const
 {
-    return value("Preferences/General/NoSplashScreen", false).toBool();
+    return value("Preferences/General/NoSplashScreen", true).toBool();
 }
 
 void Preferences::setSplashScreenDisabled(bool b)
@@ -1900,7 +1900,7 @@ bool Preferences::isTorrentFileAssocSet()
             CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
             isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
             CFRelease(defaultHandlerId);
-        }    
+        }
         CFRelease(torrentId);
     }
     return isSet;
