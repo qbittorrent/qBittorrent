@@ -77,6 +77,7 @@ public:
 private slots:
     void loadSettings();
     void saveSettings() const;
+    void displayToggleColumnsMenu(const QPoint&);
     void showPeerListMenu(const QPoint&);
     void banSelectedPeers();
     void copySelectedPeers();
