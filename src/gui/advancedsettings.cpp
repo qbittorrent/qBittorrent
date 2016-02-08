@@ -312,14 +312,12 @@ void AdvancedSettings::addRow(int row, const QString &rowText, T* widget)
     setItem(row, PROPERTY, new QTableWidgetItem(rowText));
     setCellWidget(row, VALUE, widget);
 
-    bool ok;
     if (std::is_same<T, QCheckBox>::value)
-        ok = connect(widget, SIGNAL(stateChanged(int)), SIGNAL(settingsChanged()));
+        connect(widget, SIGNAL(stateChanged(int)), SIGNAL(settingsChanged()));
     else if (std::is_same<T, QSpinBox>::value)
-        ok = connect(widget, SIGNAL(valueChanged(int)), SIGNAL(settingsChanged()));
+        connect(widget, SIGNAL(valueChanged(int)), SIGNAL(settingsChanged()));
     else if (std::is_same<T, QComboBox>::value)
-        ok = connect(widget, SIGNAL(currentIndexChanged(int)), SIGNAL(settingsChanged()));
+        connect(widget, SIGNAL(currentIndexChanged(int)), SIGNAL(settingsChanged()));
     else if (std::is_same<T, QLineEdit>::value)
-        ok = connect(widget, SIGNAL(textChanged(QString)), SIGNAL(settingsChanged()));
-    Q_ASSERT(ok);
+        connect(widget, SIGNAL(textChanged(QString)), SIGNAL(settingsChanged()));
 }
