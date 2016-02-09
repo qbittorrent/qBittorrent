@@ -347,7 +347,7 @@ void TrackerList::askForTrackers() {
   if (!torrent) return;
 
   QList<BitTorrent::TrackerEntry> trackers;
-  foreach (const QString &tracker, TrackersAdditionDlg::askForTrackers(torrent))
+  foreach (const QString &tracker, TrackersAdditionDlg::askForTrackers(this, torrent))
       trackers << tracker;
   torrent->addTrackers(trackers);
 }

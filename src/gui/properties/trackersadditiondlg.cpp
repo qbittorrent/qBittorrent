@@ -43,7 +43,7 @@
 #include "guiiconprovider.h"
 #include "ui_trackersadditiondlg.h"
 
-TrackersAdditionDlg::TrackersAdditionDlg(BitTorrent::TorrentHandle *const torrent, QWidget *parent)
+TrackersAdditionDlg::TrackersAdditionDlg(QWidget *parent, BitTorrent::TorrentHandle *const torrent)
     : QDialog(parent)
     , m_ui(new Ui::TrackersAdditionDlg())
     , m_torrent(torrent)
@@ -132,10 +132,10 @@ void TrackersAdditionDlg::getTrackerError(const QString &, const QString &error)
     QMessageBox::warning(this, tr("Download error"), tr("The trackers list could not be downloaded, reason: %1").arg(error), QMessageBox::Ok);
 }
 
-QStringList TrackersAdditionDlg::askForTrackers(BitTorrent::TorrentHandle *const torrent)
+QStringList TrackersAdditionDlg::askForTrackers(QWidget *parent, BitTorrent::TorrentHandle *const torrent)
 {
     QStringList trackers;
-    TrackersAdditionDlg dlg(torrent);
+    TrackersAdditionDlg dlg(parent, torrent);
     if (dlg.exec() == QDialog::Accepted)
         return dlg.newTrackers();
 
