@@ -61,7 +61,7 @@ public:
         TR_UPSPEED,
         TR_ETA,
         TR_RATIO,
-        TR_LABEL,
+        TR_CATEGORY,
         TR_ADD_DATE,
         TR_SEED_DATE,
         TR_TRACKER,

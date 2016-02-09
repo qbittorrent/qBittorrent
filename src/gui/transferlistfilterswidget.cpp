@@ -177,162 +177,156 @@ void StatusFiltersWidget::handleNewTorrent(BitTorrent::TorrentHandle *const) {}
 
 void StatusFiltersWidget::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const) {}
 
-LabelFiltersList::LabelFiltersList(QWidget *parent, TransferListWidget *transferList)
+CategoryFiltersList::CategoryFiltersList(QWidget *parent, TransferListWidget *transferList)
     : FiltersBase(parent, transferList)
-    , m_totalTorrents(0)
-    , m_totalLabeled(0)
 {
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentLabelChanged(BitTorrent::TorrentHandle *const, QString)), SLOT(torrentChangedLabel(BitTorrent::TorrentHandle *const, QString)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentCategoryChanged(BitTorrent::TorrentHandle *const, QString)), SLOT(torrentCategoryChanged(BitTorrent::TorrentHandle *const, QString)));
+    connect(BitTorrent::Session::instance(), SIGNAL(categoryAdded(QString)), SLOT(addItem(QString)));
+    connect(BitTorrent::Session::instance(), SIGNAL(categoryRemoved(QString)), SLOT(categoryRemoved(QString)));
+    connect(BitTorrent::Session::instance(), SIGNAL(subcategoriesSupportChanged()), SLOT(subcategoriesSupportChanged()));
 
-    // Add Label filters
-    QListWidgetItem *allLabels = new QListWidgetItem(this);
-    allLabels->setData(Qt::DisplayRole, QVariant(tr("All (0)", "this is for the label filter")));
-    allLabels->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("inode-directory"));
-    QListWidgetItem *noLabel = new QListWidgetItem(this);
-    noLabel->setData(Qt::DisplayRole, QVariant(tr("Unlabeled (0)")));
-    noLabel->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("inode-directory"));
+    refresh();
+    toggleFilter(Preferences::instance()->getCategoryFilterState());
+}
 
-    const Preferences* const pref = Preferences::instance();
-    QStringList labelList = pref->getTorrentLabels();
-    for (int i=0; i < labelList.size(); ++i)
-        addItem(labelList[i], false);
+void CategoryFiltersList::refresh()
+{
+    clear();
+    m_categories.clear();
+    m_totalTorrents = 0;
+    m_totalCategorized = 0;
+
+    QListWidgetItem *allCategories = new QListWidgetItem(this);
+    allCategories->setData(Qt::DisplayRole, QVariant(tr("All (0)", "this is for the category filter")));
+    allCategories->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("inode-directory"));
+    QListWidgetItem *noCategory = new QListWidgetItem(this);
+    noCategory->setData(Qt::DisplayRole, QVariant(tr("Uncategorized (0)")));
+    noCategory->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("inode-directory"));
+
+    foreach (const QString &category, BitTorrent::Session::instance()->categories())
+        addItem(category, false);
+
+    foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
+        handleNewTorrent(torrent);
 
     setCurrentRow(0, QItemSelectionModel::SelectCurrent);
-    toggleFilter(pref->getLabelFilterState());
 }
 
-LabelFiltersList::~LabelFiltersList()
+void CategoryFiltersList::addItem(const QString &category, bool hasTorrent)
 {
-    Preferences::instance()->setTorrentLabels(m_labels.keys());
-}
+    if (category.isEmpty()) return;
 
-void LabelFiltersList::addItem(QString &label, bool hasTorrent)
-{
-    int labelCount = 0;
-    QListWidgetItem *labelItem = 0;
-    label = Utils::Fs::toValidFileSystemName(label.trimmed());
-    item(0)->setText(tr("All (%1)", "this is for the label filter").arg(m_totalTorrents));
+    int torrentsInCategory = 0;
+    QListWidgetItem *categoryItem = 0;
 
-    if (label.isEmpty()) {
-        item(1)->setText(tr("Unlabeled (%1)").arg(m_totalTorrents - m_totalLabeled));
-        return;
-    }
-
-    bool exists = m_labels.contains(label);
+    bool exists = m_categories.contains(category);
     if (exists) {
-        labelCount = m_labels.value(label);
-        labelItem = item(rowFromLabel(label));
+        torrentsInCategory = m_categories.value(category);
+        categoryItem = item(rowFromCategory(category));
     }
     else {
-        labelItem = new QListWidgetItem();
-        labelItem->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("inode-directory"));
+        categoryItem = new QListWidgetItem();
+        categoryItem->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("inode-directory"));
     }
 
-    if (hasTorrent) {
-        ++m_totalLabeled;
-        ++labelCount;
-    }
-    item(1)->setText(tr("Unlabeled (%1)").arg(m_totalTorrents - m_totalLabeled));
+    if (hasTorrent)
+        ++torrentsInCategory;
 
-    Preferences::instance()->addTorrentLabel(label);
-    m_labels.insert(label, labelCount);
-    labelItem->setText(tr("%1 (%2)", "label_name (10)").arg(label).arg(labelCount));
-    if (exists)
-        return;
+    m_categories.insert(category, torrentsInCategory);
+    categoryItem->setText(tr("%1 (%2)", "category_name (10)").arg(category).arg(torrentsInCategory));
+    if (exists) return;
 
     Q_ASSERT(count() >= 2);
-    for (int i = 2; i<count(); ++i) {
+    for (int i = 2; i < count(); ++i) {
         bool less = false;
-        if (!(Utils::String::naturalSort(label, item(i)->text(), less)))
-            less = (label.localeAwareCompare(item(i)->text()) < 0);
+        if (!(Utils::String::naturalSort(category, item(i)->text(), less)))
+            less = (category.localeAwareCompare(item(i)->text()) < 0);
         if (less) {
-            insertItem(i, labelItem);
+            insertItem(i, categoryItem);
             updateGeometry();
             return;
         }
     }
-    QListWidget::addItem(labelItem);
+    QListWidget::addItem(categoryItem);
     updateGeometry();
 }
 
-void LabelFiltersList::removeItem(const QString &label)
+void CategoryFiltersList::removeItem(const QString &category)
 {
-    item(0)->setText(tr("All (%1)", "this is for the label filter").arg(m_totalTorrents));
-    if (label.isEmpty()) {
-        // In case we here from torrentAboutToBeDeleted()
-        item(1)->setText(tr("Unlabeled (%1)").arg(m_totalTorrents - m_totalLabeled));
-        return;
-    }
+    if (category.isEmpty()) return;
 
-    --m_totalLabeled;
-    item(1)->setText(tr("Unlabeled (%1)").arg(m_totalTorrents - m_totalLabeled));
+    int torrentsInCategory = m_categories.value(category) - 1;
+    int row = rowFromCategory(category);
+    if (row < 2) return;
 
-    int labelCount = m_labels.value(label) - 1;
-    int row = rowFromLabel(label);
-    if (row < 2)
-        return;
-
-    QListWidgetItem *labelItem = item(row);
-    labelItem->setText(tr("%1 (%2)", "label_name (10)").arg(label).arg(labelCount));
-    m_labels.insert(label, labelCount);
+    QListWidgetItem *categoryItem = item(row);
+    categoryItem->setText(tr("%1 (%2)", "category_name (10)").arg(category).arg(torrentsInCategory));
+    m_categories.insert(category, torrentsInCategory);
 }
 
-void LabelFiltersList::removeSelectedLabel()
+void CategoryFiltersList::removeSelectedCategory()
 {
     QList<QListWidgetItem*> items = selectedItems();
     if (items.size() == 0) return;
 
-    const int labelRow = row(items.first());
-    if (labelRow < 2) return;
+    const int categoryRow = row(items.first());
+    if (categoryRow < 2) return;
 
-    const QString &label = labelFromRow(labelRow);
-    Q_ASSERT(m_labels.contains(label));
-    m_labels.remove(label);
-    // Select first label
-    setCurrentRow(0, QItemSelectionModel::SelectCurrent);
-    // Un display filter
-    delete takeItem(labelRow);
-    transferList->removeLabelFromRows(label);
-    // Save custom labels to remember it was deleted
-    Preferences::instance()->removeTorrentLabel(label);
+    BitTorrent::Session::instance()->removeCategory(categoryFromRow(categoryRow));
     updateGeometry();
 }
 
-void LabelFiltersList::removeUnusedLabels()
+void CategoryFiltersList::removeUnusedCategories()
 {
-    QStringList unusedLabels;
-    QHash<QString, int>::const_iterator i;
-    for (i = m_labels.begin(); i != m_labels.end(); ++i) {
-        if (i.value() == 0)
-            unusedLabels << i.key();
-    }
-    foreach (const QString &label, unusedLabels) {
-        m_labels.remove(label);
-        delete takeItem(rowFromLabel(label));
-        Preferences::instance()->removeTorrentLabel(label);
-    }
-
-    if (!unusedLabels.isEmpty())
-        updateGeometry();
+    foreach (const QString &category, m_categories.keys())
+        if (m_categories[category] == 0)
+            BitTorrent::Session::instance()->removeCategory(category);
+    updateGeometry();
 }
 
-void LabelFiltersList::torrentChangedLabel(BitTorrent::TorrentHandle *const torrent, const QString &oldLabel)
+void CategoryFiltersList::torrentCategoryChanged(BitTorrent::TorrentHandle *const torrent, const QString &oldCategory)
 {
-    qDebug("Torrent label changed from %s to %s", qPrintable(oldLabel), qPrintable(torrent->label()));
-    removeItem(oldLabel);
-    QString newLabel = torrent->label();
-    addItem(newLabel, true);
+    qDebug() << "Torrent category changed from" << oldCategory << "to" << torrent->category();
+
+    if (torrent->category().isEmpty() && !oldCategory.isEmpty())
+        --m_totalCategorized;
+    else if (!torrent->category().isEmpty() && oldCategory.isEmpty())
+        ++m_totalCategorized;
+
+    item(1)->setText(tr("Uncategorized (%1)").arg(m_totalTorrents - m_totalCategorized));
+
+    if (BitTorrent::Session::instance()->isSubcategoriesEnabled()) {
+        foreach (const QString &subcategory, BitTorrent::Session::expandCategory(oldCategory))
+            removeItem(subcategory);
+        foreach (const QString &subcategory, BitTorrent::Session::expandCategory(torrent->category()))
+            addItem(subcategory, true);
+    }
+    else {
+        removeItem(oldCategory);
+        addItem(torrent->category(), true);
+    }
 }
 
-void LabelFiltersList::showMenu(QPoint)
+void CategoryFiltersList::categoryRemoved(const QString &category)
+{
+    m_categories.remove(category);
+    delete takeItem(rowFromCategory(category));
+}
+
+void CategoryFiltersList::subcategoriesSupportChanged()
+{
+    refresh();
+}
+
+void CategoryFiltersList::showMenu(QPoint)
 {
     QMenu menu(this);
-    QAction *addAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("Add label..."));
+    QAction *addAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("Add category..."));
     QAction *removeAct = 0;
     QAction *removeUnusedAct = 0;
     if (!selectedItems().empty() && row(selectedItems().first()) > 1)
-        removeAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove label"));
-    removeUnusedAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove unused labels"));
+        removeAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove category"));
+    removeUnusedAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove unused categories"));
     menu.addSeparator();
     QAction *startAct = menu.addAction(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume torrents"));
     QAction *pauseAct = menu.addAction(GuiIconProvider::instance()->getIcon("media-playback-pause"), tr("Pause torrents"));
@@ -343,10 +337,10 @@ void LabelFiltersList::showMenu(QPoint)
         return;
 
     if (act == removeAct) {
-        removeSelectedLabel();
+        removeSelectedCategory();
     }
     else if (act == removeUnusedAct) {
-        removeUnusedLabels();
+        removeUnusedCategories();
     }
     else if (act == deleteTorrentsAct) {
         transferList->deleteVisibleTorrents();
@@ -359,64 +353,90 @@ void LabelFiltersList::showMenu(QPoint)
     }
     else if (act == addAct) {
         bool ok;
-        QString label = "";
+        QString category = "";
         bool invalid;
         do {
             invalid = false;
-            label = AutoExpandableDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, label, &ok);
-            if (ok && !label.isEmpty()) {
-                if (Utils::Fs::isValidFileSystemName(label)) {
-                    addItem(label, false);
+            category = AutoExpandableDialog::getText(this, tr("New Category"), tr("Category:"), QLineEdit::Normal, category, &ok);
+            if (ok && !category.isEmpty()) {
+                if (!BitTorrent::Session::isValidCategoryName(category)) {
+                    QMessageBox::warning(this, tr("Invalid category name"),
+                                         tr("Category name must not contain '\\'.\n"
+                                            "Category name must not start/end with '/'.\n"
+                                            "Category name must not contain '//' sequence."));
+                    invalid = true;
                 }
                 else {
-                    QMessageBox::warning(this, tr("Invalid label name"), tr("Please don't use any special characters in the label name."));
-                    invalid = true;
+                    BitTorrent::Session::instance()->addCategory(category);
                 }
             }
         } while (invalid);
     }
 }
 
-void LabelFiltersList::applyFilter(int row)
+void CategoryFiltersList::applyFilter(int row)
 {
-    transferList->applyLabelFilter(labelFromRow(row));
+    if (row >= 0)
+        transferList->applyCategoryFilter(categoryFromRow(row));
 }
 
-void LabelFiltersList::handleNewTorrent(BitTorrent::TorrentHandle *const torrent)
+void CategoryFiltersList::handleNewTorrent(BitTorrent::TorrentHandle *const torrent)
 {
     Q_ASSERT(torrent);
+
     ++m_totalTorrents;
-    QString label = torrent->label();
-    addItem(label, true);
-    // FIXME: Drop this confusion.
-    // labelFilters->addItem() may have changed the label, update the model accordingly.
-    torrent->setLabel(label);
+    if (!torrent->category().isEmpty())
+        ++m_totalCategorized;
+
+    item(0)->setText(tr("All (%1)", "this is for the category filter").arg(m_totalTorrents));
+    item(1)->setText(tr("Uncategorized (%1)").arg(m_totalTorrents - m_totalCategorized));
+
+    if (BitTorrent::Session::instance()->isSubcategoriesEnabled()) {
+        foreach (const QString &subcategory, BitTorrent::Session::expandCategory(torrent->category()))
+            addItem(subcategory, true);
+    }
+    else {
+        addItem(torrent->category(), true);
+    }
 }
 
-void LabelFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const torrent)
+void CategoryFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const torrent)
 {
     Q_ASSERT(torrent);
+
     --m_totalTorrents;
-    removeItem(torrent->label());
+    if (!torrent->category().isEmpty())
+        --m_totalCategorized;
+
+    item(0)->setText(tr("All (%1)", "this is for the category filter").arg(m_totalTorrents));
+    item(1)->setText(tr("Uncategorized (%1)").arg(m_totalTorrents - m_totalCategorized));
+
+    if (BitTorrent::Session::instance()->isSubcategoriesEnabled()) {
+        foreach (const QString &subcategory, BitTorrent::Session::expandCategory(torrent->category()))
+            removeItem(subcategory);
+    }
+    else {
+        removeItem(torrent->category());
+    }
 }
 
-QString LabelFiltersList::labelFromRow(int row) const
+QString CategoryFiltersList::categoryFromRow(int row) const
 {
     if (row == 0) return QString(); // All
-    if (row == 1) return QLatin1String(""); // Unlabeled
+    if (row == 1) return QLatin1String(""); // Uncategorized
 
-    const QString &label = item(row)->text();
-    QStringList parts = label.split(" ");
+    const QString &category = item(row)->text();
+    QStringList parts = category.split(" ");
     Q_ASSERT(parts.size() >= 2);
     parts.removeLast(); // Remove trailing number
     return parts.join(" ");
 }
 
-int LabelFiltersList::rowFromLabel(const QString &label) const
+int CategoryFiltersList::rowFromCategory(const QString &category) const
 {
-    Q_ASSERT(!label.isEmpty());
+    Q_ASSERT(!category.isEmpty());
     for (int i = 2; i<count(); ++i)
-        if (label == labelFromRow(i)) return i;
+        if (category == categoryFromRow(i)) return i;
     return -1;
 }
 
@@ -425,7 +445,7 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
     , m_totalTorrents(0)
 {
     QListWidgetItem *allTrackers = new QListWidgetItem(this);
-    allTrackers->setData(Qt::DisplayRole, QVariant(tr("All (0)", "this is for the label filter")));
+    allTrackers->setData(Qt::DisplayRole, QVariant(tr("All (0)", "this is for the tracker filter")));
     allTrackers->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("network-server"));
     QListWidgetItem *noTracker = new QListWidgetItem(this);
     noTracker->setData(Qt::DisplayRole, QVariant(tr("Trackerless (0)")));
@@ -799,13 +819,13 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     StatusFiltersWidget *statusFilters = new StatusFiltersWidget(this, transferList);
     frameLayout->addWidget(statusFilters);
 
-    QCheckBox *labelLabel = new QCheckBox(tr("Labels"), this);
-    labelLabel->setChecked(pref->getLabelFilterState());
-    labelLabel->setFont(font);
-    frameLayout->addWidget(labelLabel);
+    QCheckBox *categoryLabel = new QCheckBox(tr("Categories"), this);
+    categoryLabel->setChecked(pref->getCategoryFilterState());
+    categoryLabel->setFont(font);
+    frameLayout->addWidget(categoryLabel);
 
-    LabelFiltersList *labelFilters = new LabelFiltersList(this, transferList);
-    frameLayout->addWidget(labelFilters);
+    CategoryFiltersList *categoryFilters = new CategoryFiltersList(this, transferList);
+    frameLayout->addWidget(categoryFilters);
 
     QCheckBox *trackerLabel = new QCheckBox(tr("Trackers"), this);
     trackerLabel->setChecked(pref->getTrackerFilterState());
@@ -817,9 +837,8 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
 
     connect(statusLabel, SIGNAL(toggled(bool)), statusFilters, SLOT(toggleFilter(bool)));
     connect(statusLabel, SIGNAL(toggled(bool)), pref, SLOT(setStatusFilterState(const bool)));
-    connect(labelLabel, SIGNAL(toggled(bool)), labelFilters, SLOT(toggleFilter(bool)));
-    connect(labelLabel, SIGNAL(toggled(bool)), pref, SLOT(setLabelFilterState(const bool)));
-    connect(pref, SIGNAL(externalLabelAdded(QString&)), labelFilters, SLOT(addItem(QString&)));
+    connect(categoryLabel, SIGNAL(toggled(bool)), categoryFilters, SLOT(toggleFilter(bool)));
+    connect(categoryLabel, SIGNAL(toggled(bool)), pref, SLOT(setCategoryFilterState(const bool)));
     connect(trackerLabel, SIGNAL(toggled(bool)), trackerFilters, SLOT(toggleFilter(bool)));
     connect(trackerLabel, SIGNAL(toggled(bool)), pref, SLOT(setTrackerFilterState(const bool)));
     connect(this, SIGNAL(trackerSuccess(const QString &, const QString &)), trackerFilters, SLOT(trackerSuccess(const QString &, const QString &)));

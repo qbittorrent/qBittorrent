@@ -106,7 +106,6 @@ class Preferences: public QObject
 
 signals:
     void changed();
-    void externalLabelAdded(QString&);
 
 public:
     static void initInstance();
@@ -152,28 +151,12 @@ public:
 #endif
 
     // Downloads
-    QString getSavePath() const;
-    void setSavePath(const QString &save_path);
-    bool isTempPathEnabled() const;
-    void setTempPathEnabled(bool enabled);
-    QString getTempPath() const;
-    void setTempPath(const QString &path);
-    QString getDefaultLabel() const;
-    void setDefaultLabel(const QString &defaultLabel);
     bool useIncompleteFilesExtension() const;
     void useIncompleteFilesExtension(bool enabled);
-    bool appendTorrentLabel() const;
-    void setAppendTorrentLabel(bool b);
     QString lastLocationPath() const;
     void setLastLocationPath(const QString &path);
     bool preAllocateAllFiles() const;
     void preAllocateAllFiles(bool enabled);
-    bool useAdditionDialog() const;
-    void useAdditionDialog(bool b);
-    bool additionDialogFront() const;
-    void additionDialogFront(bool b);
-    bool addTorrentsInPause() const;
-    void addTorrentsInPause(bool b);
     QVariantHash getScanDirs() const;
     void setScanDirs(const QVariantHash &dirs);
     QString getScanDirsLastPath() const;
@@ -275,8 +258,6 @@ public:
     void setTrackersList(const QString &val);
     qreal getGlobalMaxRatio() const;
     void setGlobalMaxRatio(qreal ratio);
-    MaxRatioAction getMaxRatioAction() const;
-    void setMaxRatioAction(MaxRatioAction act);
 
     // IP Filter
     bool isFilteringEnabled() const;
@@ -400,11 +381,6 @@ public:
     bool useSystemIconTheme() const;
     void useSystemIconTheme(bool enabled);
 #endif
-    QStringList getTorrentLabels() const;
-    void setTorrentLabels(const QStringList& labels);
-    void addTorrentLabelExternal(const QString &label);
-    void addTorrentLabel(const QString& label);
-    void removeTorrentLabel(const QString& label);
     bool recursiveDownloadDisabled() const;
     void disableRecursiveDownload(bool disable = true);
 #ifdef Q_OS_WIN
@@ -437,19 +413,8 @@ public:
     TrayIcon::Style trayIconStyle() const;
     void setTrayIconStyle(TrayIcon::Style style);
 
-
     // Stuff that don't appear in the Options GUI but are saved
     // in the same file.
-    QByteArray getAddNewTorrentDialogState() const;
-    void setAddNewTorrentDialogState(const QByteArray &state);
-    int getAddNewTorrentDialogPos() const;
-    void setAddNewTorrentDialogPos(const int &pos);
-    int getAddNewTorrentDialogWidth() const;
-    void setAddNewTorrentDialogWidth(const int &width);
-    bool getAddNewTorrentDialogExpanded() const;
-    void setAddNewTorrentDialogExpanded(const bool expanded);
-    QStringList getAddNewTorrentDialogPathHistory() const;
-    void setAddNewTorrentDialogPathHistory(const QStringList &history);
     QDateTime getDNSLastUpd() const;
     void setDNSLastUpd(const QDateTime &date);
     QString getDNSLastIP() const;
@@ -511,7 +476,7 @@ public:
     QByteArray getTorImportGeometry() const;
     void setTorImportGeometry(const QByteArray &geometry);
     bool getStatusFilterState() const;
-    bool getLabelFilterState() const;
+    bool getCategoryFilterState() const;
     bool getTrackerFilterState() const;
     int getTransSelFilter() const;
     void setTransSelFilter(const int &index);
@@ -548,7 +513,7 @@ public:
 
 public slots:
     void setStatusFilterState(bool checked);
-    void setLabelFilterState(bool checked);
+    void setCategoryFilterState(bool checked);
     void setTrackerFilterState(bool checked);
 
     void apply();

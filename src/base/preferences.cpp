@@ -33,6 +33,7 @@
 #include <QCryptographicHash>
 #include <QPair>
 #include <QDir>
+#include <QSettings>
 
 #ifndef DISABLE_GUI
 #include <QApplication>
@@ -62,7 +63,6 @@ Preferences* Preferences::m_instance = 0;
 Preferences::Preferences()
     : m_randomPort(rand() % 64512 + 1024)
 {
-    qRegisterMetaTypeStreamOperators<MaxRatioAction>("MaxRatioAction");
 }
 
 Preferences *Preferences::instance()
@@ -277,40 +277,6 @@ void Preferences::setWinStartup(bool b)
 #endif
 
 // Downloads
-QString Preferences::getSavePath() const
-{
-    QString save_path = value("Preferences/Downloads/SavePath").toString();
-    if (!save_path.isEmpty())
-        return Utils::Fs::fromNativePath(save_path);
-    return Utils::Fs::QDesktopServicesDownloadLocation();
-}
-
-void Preferences::setSavePath(const QString &save_path)
-{
-    setValue("Preferences/Downloads/SavePath", Utils::Fs::fromNativePath(save_path));
-}
-
-bool Preferences::isTempPathEnabled() const
-{
-    return value("Preferences/Downloads/TempPathEnabled", false).toBool();
-}
-
-void Preferences::setTempPathEnabled(bool enabled)
-{
-    setValue("Preferences/Downloads/TempPathEnabled", enabled);
-}
-
-QString Preferences::getTempPath() const
-{
-    const QString temp = QDir(getSavePath()).absoluteFilePath("temp");
-    return Utils::Fs::fromNativePath(value("Preferences/Downloads/TempPath", temp).toString());
-}
-
-void Preferences::setTempPath(const QString &path)
-{
-    setValue("Preferences/Downloads/TempPath", Utils::Fs::fromNativePath(path));
-}
-
 bool Preferences::useIncompleteFilesExtension() const
 {
     return value("Preferences/Downloads/UseIncompleteExtension", false).toBool();
@@ -319,16 +285,6 @@ bool Preferences::useIncompleteFilesExtension() const
 void Preferences::useIncompleteFilesExtension(bool enabled)
 {
     setValue("Preferences/Downloads/UseIncompleteExtension", enabled);
-}
-
-bool Preferences::appendTorrentLabel() const
-{
-    return value("Preferences/Downloads/AppendLabel", false).toBool();
-}
-
-void Preferences::setAppendTorrentLabel(bool b)
-{
-    setValue("Preferences/Downloads/AppendLabel", b);
 }
 
 QString Preferences::lastLocationPath() const
@@ -349,36 +305,6 @@ bool Preferences::preAllocateAllFiles() const
 void Preferences::preAllocateAllFiles(bool enabled)
 {
     return setValue("Preferences/Downloads/PreAllocation", enabled);
-}
-
-bool Preferences::useAdditionDialog() const
-{
-    return value("Preferences/Downloads/NewAdditionDialog", true).toBool();
-}
-
-void Preferences::useAdditionDialog(bool b)
-{
-    setValue("Preferences/Downloads/NewAdditionDialog", b);
-}
-
-bool Preferences::additionDialogFront() const
-{
-    return value("Preferences/Downloads/NewAdditionDialogFront", true).toBool();
-}
-
-void Preferences::additionDialogFront(bool b)
-{
-    setValue("Preferences/Downloads/NewAdditionDialogFront", b);
-}
-
-bool Preferences::addTorrentsInPause() const
-{
-    return value("Preferences/Downloads/StartInPause", false).toBool();
-}
-
-void Preferences::addTorrentsInPause(bool b)
-{
-    setValue("Preferences/Downloads/StartInPause", b);
 }
 
 QVariantHash Preferences::getScanDirs() const
@@ -876,16 +802,6 @@ qreal Preferences::getGlobalMaxRatio() const
 void Preferences::setGlobalMaxRatio(qreal ratio)
 {
     setValue("Preferences/Bittorrent/MaxRatio", ratio);
-}
-
-MaxRatioAction Preferences::getMaxRatioAction() const
-{
-    return value("Preferences/Bittorrent/MaxRatioAction", QVariant::fromValue(MaxRatioAction::Pause)).value<MaxRatioAction>();
-}
-
-void Preferences::setMaxRatioAction(MaxRatioAction act)
-{
-    setValue("Preferences/Bittorrent/MaxRatioAction", QVariant::fromValue(act));
 }
 
 // IP Filter
@@ -1501,51 +1417,6 @@ void Preferences::useSystemIconTheme(bool enabled)
 }
 #endif
 
-QStringList Preferences::getTorrentLabels() const
-{
-    return value("TransferListFilters/customLabels").toStringList();
-}
-
-void Preferences::setTorrentLabels(const QStringList& labels)
-{
-    setValue("TransferListFilters/customLabels", labels);
-}
-
-void Preferences::addTorrentLabelExternal(const QString &label)
-{
-    addTorrentLabel(label);
-    QString toEmit = label;
-    emit externalLabelAdded(toEmit);
-}
-
-void Preferences::addTorrentLabel(const QString& label)
-{
-    QStringList labels = value("TransferListFilters/customLabels").toStringList();
-    if (labels.contains(label))
-        return;
-    labels << label;
-    setValue("TransferListFilters/customLabels", labels);
-}
-
-void Preferences::removeTorrentLabel(const QString& label)
-{
-    QStringList labels = value("TransferListFilters/customLabels").toStringList();
-    if (!labels.contains(label))
-        return;
-    labels.removeOne(label);
-    setValue("TransferListFilters/customLabels", labels);
-}
-
-QString Preferences::getDefaultLabel() const
-{
-    return value("Preferences/Downloads/DefaultLabel").toString();
-}
-
-void Preferences::setDefaultLabel(const QString &defaultLabel)
-{
-    setValue("Preferences/Downloads/DefaultLabel", defaultLabel);
-}
-
 bool Preferences::recursiveDownloadDisabled() const
 {
     return value("Preferences/Advanced/DisableRecursiveDownload", false).toBool();
@@ -1904,63 +1775,6 @@ void Preferences::setTrayIconStyle(TrayIcon::Style style)
 
 // Stuff that don't appear in the Options GUI but are saved
 // in the same file.
-QByteArray Preferences::getAddNewTorrentDialogState() const
-{
-#ifdef QBT_USES_QT5
-    return value("AddNewTorrentDialog/qt5/treeHeaderState").toByteArray();
-#else
-    return value("AddNewTorrentDialog/treeHeaderState").toByteArray();
-#endif
-}
-
-void Preferences::setAddNewTorrentDialogState(const QByteArray &state)
-{
-#ifdef QBT_USES_QT5
-    setValue("AddNewTorrentDialog/qt5/treeHeaderState", state);
-#else
-    setValue("AddNewTorrentDialog/treeHeaderState", state);
-#endif
-}
-
-int Preferences::getAddNewTorrentDialogPos() const
-{
-    return value("AddNewTorrentDialog/y", -1).toInt();
-}
-
-void Preferences::setAddNewTorrentDialogPos(const int &pos)
-{
-    setValue("AddNewTorrentDialog/y", pos);
-}
-
-int Preferences::getAddNewTorrentDialogWidth() const
-{
-    return value("AddNewTorrentDialog/width", -1).toInt();
-}
-
-void Preferences::setAddNewTorrentDialogWidth(const int &width)
-{
-    setValue("AddNewTorrentDialog/width", width);
-}
-
-bool Preferences::getAddNewTorrentDialogExpanded() const
-{
-    return value("AddNewTorrentDialog/expanded", false).toBool();
-}
-
-void Preferences::setAddNewTorrentDialogExpanded(const bool expanded)
-{
-    setValue("AddNewTorrentDialog/expanded", expanded);
-}
-
-QStringList Preferences::getAddNewTorrentDialogPathHistory() const
-{
-    return value("TorrentAdditionDlg/save_path_history").toStringList();
-}
-
-void Preferences::setAddNewTorrentDialogPathHistory(const QStringList &history)
-{
-    setValue("TorrentAdditionDlg/save_path_history", history);
-}
 
 QDateTime Preferences::getDNSLastUpd() const
 {
@@ -2320,14 +2134,14 @@ void Preferences::setStatusFilterState(const bool checked)
     setValue("TransferListFilters/statusFilterState", checked);
 }
 
-bool Preferences::getLabelFilterState() const
+bool Preferences::getCategoryFilterState() const
 {
-    return value("TransferListFilters/labelFilterState", true).toBool();
+    return value("TransferListFilters/CategoryFilterState", true).toBool();
 }
 
-void Preferences::setLabelFilterState(const bool checked)
+void Preferences::setCategoryFilterState(const bool checked)
 {
-    setValue("TransferListFilters/labelFilterState", checked);
+    setValue("TransferListFilters/CategoryFilterState", checked);
 }
 
 bool Preferences::getTrackerFilterState() const
@@ -2499,7 +2313,19 @@ void Preferences::upgrade()
 
     setNetworkCookies(cookies);
 
+    QStringList labels = value("TransferListFilters/customLabels").toStringList();
+    if (!labels.isEmpty()) {
+        QVariantMap categories = value("BitTorrent/Session/Categories").toMap();
+        foreach (const QString &label, labels) {
+            if (!categories.contains(label))
+                categories[label] = "";
+        }
+        setValue("BitTorrent/Session/Categories", categories);
+        SettingsStorage::instance()->removeValue("TransferListFilters/customLabels");
+    }
+
     SettingsStorage::instance()->removeValue("Rss/hosts_cookies");
+    SettingsStorage::instance()->removeValue("Preferences/Downloads/AppendLabel");
 }
 
 void Preferences::apply()

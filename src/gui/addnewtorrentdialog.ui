@@ -18,6 +18,50 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="spacing">
+         <number>20</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="savingModeLabel">
+          <property name="text">
+           <string>Saving Management:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="simpleModeRadioButton">
+          <property name="text">
+           <string>Simple</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="advancedModeRadioButton">
+          <property name="text">
+           <string>Advanced</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QComboBox" name="savePathComboBox">
@@ -33,7 +77,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="browse_button">
+         <widget class="QPushButton" name="browseButton">
           <property name="text">
            <string>Browse...</string>
           </property>
@@ -42,7 +86,7 @@
        </layout>
       </item>
       <item>
-       <widget class="QCheckBox" name="default_save_path_cb">
+       <widget class="QCheckBox" name="defaultSavePathCheckBox">
         <property name="text">
          <string>Set as default save path</string>
         </property>
@@ -75,14 +119,14 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="1" column="2">
-       <widget class="QCheckBox" name="defaultLabel">
+       <widget class="QCheckBox" name="defaultCategoryCheckbox">
         <property name="text">
-         <string>Set as default label</string>
+         <string>Set as default category</string>
         </property>
        </widget>
       </item>
       <item row="0" column="2">
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       <layout class="QHBoxLayout" name="horizontalLayout_1">
         <item>
          <widget class="QLabel" name="label_5">
           <property name="sizePolicy">
@@ -92,12 +136,12 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Set label:</string>
+           <string>Category:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="label_combo">
+         <widget class="QComboBox" name="categoryComboBox">
           <property name="minimumSize">
            <size>
             <width>140</width>
@@ -115,7 +159,7 @@
        </layout>
       </item>
       <item row="0" column="0">
-       <widget class="QCheckBox" name="start_torrent_cb">
+       <widget class="QCheckBox" name="startTorrentCheckBox">
         <property name="text">
          <string>Start torrent</string>
         </property>
@@ -231,7 +275,7 @@
        </layout>
       </item>
       <item>
-       <widget class="TorrentContentTreeView" name="content_tree">
+       <widget class="TorrentContentTreeView" name="contentTreeView">
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -311,6 +355,20 @@
    <header>torrentcontenttreeview.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>savePathComboBox</tabstop>
+  <tabstop>browseButton</tabstop>
+  <tabstop>simpleModeRadioButton</tabstop>
+  <tabstop>advancedModeRadioButton</tabstop>
+  <tabstop>defaultSavePathCheckBox</tabstop>
+  <tabstop>never_show_cb</tabstop>
+  <tabstop>adv_button</tabstop>
+  <tabstop>startTorrentCheckBox</tabstop>
+  <tabstop>categoryComboBox</tabstop>
+  <tabstop>defaultCategoryCheckbox</tabstop>
+  <tabstop>skip_check_cb</tabstop>
+  <tabstop>contentTreeView</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -320,8 +378,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
+     <x>403</x>
+     <y>579</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -336,8 +394,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
+     <x>403</x>
+     <y>579</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
@@ -345,5 +403,57 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>simpleModeRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>AddNewTorrentDialog</receiver>
+   <slot>savingModeChanged(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>154</x>
+     <y>39</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>122</x>
+     <y>6</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>advancedModeRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>AddNewTorrentDialog</receiver>
+   <slot>savingModeChanged(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>218</x>
+     <y>44</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>209</x>
+     <y>7</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>categoryComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>AddNewTorrentDialog</receiver>
+   <slot>categoryChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>337</x>
+     <y>205</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>403</x>
+     <y>160</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>savingModeChanged(bool)</slot>
+  <slot>categoryChanged(int)</slot>
+ </slots>
 </ui>

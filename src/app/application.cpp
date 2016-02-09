@@ -229,7 +229,7 @@ void Application::processParams(const QStringList &params)
     foreach (QString param, params) {
         param = param.trimmed();
 #ifndef DISABLE_GUI
-        if (Preferences::instance()->useAdditionDialog())
+        if (AddNewTorrentDialog::isEnabled())
             AddNewTorrentDialog::show(param, m_window);
         else
 #endif

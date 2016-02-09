@@ -2,41 +2,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>QBT_TR(New Label)QBT_TR</title>
+    <title>QBT_TR(New Category)QBT_TR</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
     <script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
     <script type="text/javascript">
-        var newLabelKeyboardEvents = new Keyboard({
+        var newCategoryKeyboardEvents = new Keyboard({
             defaultEventType: 'keydown',
             events: {
                 'enter': function (event) {
-                    $('newLabelButton').click();
+                    $('newCategoryButton').click();
                     event.preventDefault();
                 }
             }
         });
-        newLabelKeyboardEvents.activate();
+        newCategoryKeyboardEvents.activate();
 
         window.addEvent('domready', function() {
-            $('newLabel').focus();
-            $('newLabelButton').addEvent('click', function(e) {
+            $('newCategory').focus();
+            $('newCategoryButton').addEvent('click', function(e) {
                 new Event(e).stop();
                 // check field
-                var labelName = $('newLabel').value.trim();
-                if (labelName == null || labelName == "")
+                var categoryName = $('newCategory').value.trim();
+                if (categoryName == null || categoryName == "")
                     return false;
-                if (labelName.match("[\\\\/:?\"*<>|]") !== null) {
-                    alert("QBT_TR(Invalid label name:\nPlease do not use any special characters in the label name.)QBT_TR");
+                if (categoryName.match("^([^\\\\\\/]|[^\\\\\\/]([^\\\\\\/]|\\/(?=[^\\/]))*[^\\\\\\/])$") === null) {
+                    alert("QBT_TR(Invalid category name:\nPlease do not use any special characters in the category name.)QBT_TR");
                     return false;
                 }
                 var hashesList = new URI().getData('hashes');
                 new Request({
-                    url: 'command/setLabel',
+                    url: 'command/setCategory',
                     method: 'post',
                     data: {
                         hashes: hashesList,
-                        label: labelName
+                        category: categoryName
                     },
                     onComplete: function() {
                         window.parent.closeWindows();
@@ -48,10 +48,10 @@
 </head>
 <body>
     <div style="padding: 10px 10px 0px 10px;">
-        <p style="font-weight: bold;">QBT_TR(Label)QBT_TR:</p>
-        <input type="text" id="newLabel" value="" maxlength="100" style="width: 220px;"/>
+        <p style="font-weight: bold;">QBT_TR(Category)QBT_TR:</p>
+        <input type="text" id="newCategory" value="" maxlength="100" style="width: 220px;"/>
         <div style="text-align: center;">
-            <input type="button" value="QBT_TR(Add)QBT_TR" id="newLabelButton"/>
+            <input type="button" value="QBT_TR(Add)QBT_TR" id="newCategoryButton"/>
         </div>
     </div>
 </body>

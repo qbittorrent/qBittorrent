@@ -1,33 +1,33 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>QBT_TR(Add Torrent Link)QBT_TR</title>
-	<link rel="stylesheet" href="css/style.css" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>QBT_TR(Add Torrent Link)QBT_TR</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
         <link rel="stylesheet" href="css/Window.css" type="text/css" />
-	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
-	<script type="text/javascript" src="scripts/download.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scripts/download.js" charset="utf-8"></script>
 </head>
 <body>
 <iframe id="download_frame" name="download_frame" class="invisible" src="javascript:false;"></iframe>
 <form action="command/download" enctype="multipart/form-data" method="post" id="downloadForm" style="text-align: center;" target="download_frame">
 <center>
-	<br/>
-	<h2 class="vcenter">QBT_TR(Download Torrents from their URLs or Magnet links)QBT_TR</h2>
-	<textarea id="urls" rows="10" name="urls"></textarea>
+    <br/>
+    <h2 class="vcenter">QBT_TR(Download Torrents from their URLs or Magnet links)QBT_TR</h2>
+    <textarea id="urls" rows="10" name="urls"></textarea>
 <p>QBT_TR(Only one link per line)QBT_TR</p>
 <fieldset class="settings" style="border: 0; text-align: left;">
 <div class="formRow" style="margin-top: 6px;">
-	<label for="savepath" class="leftLabelLarge">QBT_TR(Save files to location:)QBT_TR</label>
-	<input type="text" id="savepath" name="savepath" style="width: 16em;"/>
+    <label for="savepath" class="leftLabelLarge">QBT_TR(Save files to location:)QBT_TR</label>
+    <input type="text" id="savepath" name="savepath" style="width: 16em;"/>
 </div>
 <div class="formRow">
-	<label for="cookie" class="leftLabelLarge">QBT_TR(Cookie:)QBT_TR</label>
-	<input type="text" id="cookie" name="cookie" style="width: 16em;"/>
+    <label for="cookie" class="leftLabelLarge">QBT_TR(Cookie:)QBT_TR</label>
+    <input type="text" id="cookie" name="cookie" style="width: 16em;"/>
 </div>
 <div class="formRow">
-	<label for="label" class="leftLabelLarge">QBT_TR(Label:)QBT_TR</label>
-	<input type="text" id="label" name="label" style="width: 16em;"/>
+    <label for="category" class="leftLabelLarge">QBT_TR(Category:)QBT_TR</label>
+    <input type="text" id="category" name="category" style="width: 16em;"/>
 </div>
 <div id="submitbutton" style="margin-top: 12px; text-align: center;">
     <button type="submit" id="submitButton">QBT_TR(Download)QBT_TR</button>
@@ -39,13 +39,13 @@
 var submitted = false;
 
 $('downloadForm').addEventListener("submit", function() {
-	$('download_spinner').style.display = "block";
+    $('download_spinner').style.display = "block";
         submitted = true;
 });
 
 $('download_frame').addEventListener("load", function() {
-	if (submitted)
-	        window.parent.closeWindows();
+    if (submitted)
+            window.parent.closeWindows();
 });
 </script>
 <div id="download_spinner" class="mochaSpinner"></div>

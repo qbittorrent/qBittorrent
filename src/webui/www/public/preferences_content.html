@@ -73,7 +73,7 @@
     <i>QBT_TR(Supported parameters (case sensitive):)QBT_TR
     <ul>
     <li>QBT_TR(%N: Torrent name)QBT_TR</li>
-    <li>QBT_TR(%L: Label)QBT_TR</li>
+    <li>QBT_TR(%L: Category)QBT_TR</li>
     <li>QBT_TR(%F: Content path (same as root path for multifile torrent))QBT_TR</li>
     <li>QBT_TR(%R: Root path (first torrent subdirectory path))QBT_TR</li>
     <li>QBT_TR(%D: Save path)QBT_TR</li>
@@ -1263,19 +1263,19 @@ applyPreferences = function() {
   var json_str = JSON.encode(settings);
 
   new Request({url: 'command/setPreferences',
-			    method: 'post',
-			    data: {'json': json_str,
+                method: 'post',
+                data: {'json': json_str,
                                    },
                             onFailure: function() {
                               alert("QBT_TR(Unable to save program preferences, qBittorrent is probably unreachable.)QBT_TR");
                               window.parent.closeWindows();
                             },
-			    onSuccess: function() {
+                onSuccess: function() {
                                 // Close window
                                 window.parent.location.reload();
-				window.parent.closeWindows();
-			    }
-		}).send();
+                window.parent.closeWindows();
+                }
+        }).send();
 };
 
 loadPreferences();

@@ -90,7 +90,7 @@ private slots:
 
 private:
   Rss::DownloadRulePtr getCurrentRule() const;
-  void initLabelCombobox();
+  void initCategoryCombobox();
   void addFeedArticlesToTree(const Rss::FeedPtr& feed, const QStringList& articles);
 
 private:

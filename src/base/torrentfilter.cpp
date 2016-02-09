@@ -29,7 +29,7 @@
 #include "bittorrent/torrenthandle.h"
 #include "torrentfilter.h"
 
-const QString TorrentFilter::AnyLabel;
+const QString TorrentFilter::AnyCategory;
 const QStringSet TorrentFilter::AnyHash = (QStringSet() << QString());
 
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
@@ -49,16 +49,16 @@ TorrentFilter::TorrentFilter()
 {
 }
 
-TorrentFilter::TorrentFilter(Type type, QStringSet hashSet, QString label)
+TorrentFilter::TorrentFilter(Type type, QStringSet hashSet, QString category)
     : m_type(type)
-    , m_label(label)
+    , m_category(category)
     , m_hashSet(hashSet)
 {
 }
 
-TorrentFilter::TorrentFilter(QString filter, QStringSet hashSet, QString label)
+TorrentFilter::TorrentFilter(QString filter, QStringSet hashSet, QString category)
     : m_type(All)
-    , m_label(label)
+    , m_category(category)
     , m_hashSet(hashSet)
 {
     setTypeByName(filter);
@@ -108,13 +108,13 @@ bool TorrentFilter::setHashSet(const QStringSet &hashSet)
     return false;
 }
 
-bool TorrentFilter::setLabel(const QString &label)
+bool TorrentFilter::setCategory(const QString &category)
 {
     // QString::operator==() doesn't distinguish between empty and null strings.
-    if ((m_label != label)
-            || (m_label.isNull() && !label.isNull())
-            || (!m_label.isNull() && label.isNull())) {
-        m_label = label;
+    if ((m_category != category)
+            || (m_category.isNull() && !category.isNull())
+            || (!m_category.isNull() && category.isNull())) {
+        m_category = category;
         return true;
     }
 
@@ -125,7 +125,7 @@ bool TorrentFilter::match(TorrentHandle *const torrent) const
 {
     if (!torrent) return false;
 
-    return (matchState(torrent) && matchHash(torrent) && matchLabel(torrent));
+    return (matchState(torrent) && matchHash(torrent) && matchCategory(torrent));
 }
 
 bool TorrentFilter::matchState(BitTorrent::TorrentHandle *const torrent) const
@@ -160,9 +160,8 @@ bool TorrentFilter::matchHash(BitTorrent::TorrentHandle *const torrent) const
     else return m_hashSet.contains(torrent->hash());
 }
 
-bool TorrentFilter::matchLabel(BitTorrent::TorrentHandle *const torrent) const
+bool TorrentFilter::matchCategory(BitTorrent::TorrentHandle *const torrent) const
 {
-    if (m_label.isNull()) return true;
-    else if (m_label.isEmpty()) return torrent->label().isEmpty();
-    else return (torrent->label() == m_label);
+    if (m_category.isNull()) return true;
+    else return (torrent->belongsToCategory(m_category));
 }

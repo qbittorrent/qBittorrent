@@ -114,9 +114,6 @@ private:
     bool WinStartup() const;
 #endif
     // Downloads
-    QString getSavePath() const;
-    bool isTempPathEnabled() const;
-    QString getTempPath() const;
     bool preAllocateAllFiles() const;
     bool useAdditionDialog() const;
     bool addTorrentsInPause() const;

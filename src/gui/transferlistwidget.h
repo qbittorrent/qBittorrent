@@ -59,7 +59,7 @@ public:
     TorrentModel* getSourceModel() const;
 
 public slots:
-    void setSelectionLabel(QString label);
+    void setSelectionCategory(QString category);
     void setSelectedTorrentsLocation();
     void pauseAllTorrents();
     void resumeAllTorrents();
@@ -86,11 +86,10 @@ public slots:
     void displayDLHoSMenu(const QPoint&);
     void applyNameFilter(const QString& name);
     void applyStatusFilter(int f);
-    void applyLabelFilter(QString label);
+    void applyCategoryFilter(QString category);
     void applyTrackerFilterAll();
     void applyTrackerFilter(const QStringList &hashes);
     void previewFile(QString filePath);
-    void removeLabelFromRows(QString label);
     void renameSelectedTorrent();
 
 protected:
@@ -106,7 +105,8 @@ protected slots:
     void toggleSelectedTorrentsSuperSeeding() const;
     void toggleSelectedTorrentsSequentialDownload() const;
     void toggleSelectedFirstLastPiecePrio() const;
-    void askNewLabelForSelection();
+    void setSelectedASMEnabled(bool enabled) const;
+    void askNewCategoryForSelection();
     void saveSettings();
 
 signals:
