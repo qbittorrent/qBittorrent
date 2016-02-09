@@ -250,22 +250,23 @@ bool Utils::Fs::sameFiles(const QString& path1, const QString& path2)
     return same;
 }
 
-QString Utils::Fs::toValidFileSystemName(const QString &filename)
+QString Utils::Fs::toValidFileSystemName(const QString &name, bool allowSeparators)
 {
-    static const QRegExp regex("[\\\\/:?\"*<>|]");
+    QRegExp regex(allowSeparators ? "[:?\"*<>|]+" : "[\\\\/:?\"*<>|]+");
 
-    QString validName = filename.trimmed();
+    QString validName = name.trimmed();
     validName.replace(regex, " ");
-    qDebug() << "toValidFileSystemName:" << filename << "=>" << validName;
+    qDebug() << "toValidFileSystemName:" << name << "=>" << validName;
 
     return validName;
 }
 
-bool Utils::Fs::isValidFileSystemName(const QString& filename)
+bool Utils::Fs::isValidFileSystemName(const QString &name, bool allowSeparators)
 {
-    if (filename.isEmpty()) return false;
-    const QRegExp regex("[\\\\/:?\"*<>|]");
-    return !filename.contains(regex);
+    if (name.isEmpty()) return false;
+
+    QRegExp regex(allowSeparators ? "[:?\"*<>|]" : "[\\\\/:?\"*<>|]");
+    return !name.contains(regex);
 }
 
 qlonglong Utils::Fs::freeDiskSpaceOnPath(QString path)

@@ -51,6 +51,7 @@
 #include "advancedsettings.h"
 #include "guiiconprovider.h"
 #include "scanfoldersdelegate.h"
+#include "addnewtorrentdialog.h"
 #include "options_imp.h"
 
 #ifndef QT_NO_OPENSSL
@@ -179,8 +180,12 @@ options_imp::options_imp(QWidget *parent)
     connect(comboFileLogAgeType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     // Downloads tab
     connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(radioBtnEnableSubcategories, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(radioBtnAdvancedMode, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(radioBtnRelocateOnCategoryChanged, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(radioBtnRelocateOnCategorySavePathChanged, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(radioBtnRelocateOnDefaultSavePathChanged, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(textTempPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(checkAppendLabel, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkAppendqB, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkPreallocateAll, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -457,16 +462,22 @@ void options_imp::saveOptions()
     pref->setFileLogAgeType(comboFileLogAgeType->currentIndex());
     // End General preferences
 
+    auto session = BitTorrent::Session::instance();
+
     // Downloads preferences
-    pref->setSavePath(getSavePath());
-    pref->setTempPathEnabled(isTempPathEnabled());
-    pref->setTempPath(getTempPath());
-    pref->setAppendTorrentLabel(checkAppendLabel->isChecked());
+    session->setDefaultSavePath(Utils::Fs::expandPathAbs(textSavePath->text()));
+    session->setSubcategoriesEnabled(radioBtnEnableSubcategories->isChecked());
+    session->setASMDisabledByDefault(radioBtnSimpleMode->isChecked());
+    session->setDisableASMWhenCategoryChanged(radioBtnDisableASMOnCategoryChanged->isChecked());
+    session->setDisableASMWhenCategorySavePathChanged(radioBtnDisableASMOnCategorySavePathChanged->isChecked());
+    session->setDisableASMWhenDefaultSavePathChanged(radioBtnDisableASMOnDefaultSavePathChanged->isChecked());
+    session->setTempPathEnabled(checkTempFolder->isChecked());
+    session->setTempPath(Utils::Fs::expandPathAbs(textTempPath->text()));
     pref->useIncompleteFilesExtension(checkAppendqB->isChecked());
     pref->preAllocateAllFiles(preAllocateAllFiles());
-    pref->useAdditionDialog(useAdditionDialog());
-    pref->additionDialogFront(checkAdditionDialogFront->isChecked());
-    pref->addTorrentsInPause(addTorrentsInPause());
+    AddNewTorrentDialog::setEnabled(useAdditionDialog());
+    AddNewTorrentDialog::setTopLevel(checkAdditionDialogFront->isChecked());
+    session->setAddTorrentPaused(addTorrentsInPause());
     ScanFoldersModel::instance()->removeFromFSWatcher(removedScanDirs);
     ScanFoldersModel::instance()->addToFSWatcher(addedScanDirs);
     ScanFoldersModel::instance()->makePersistent();
@@ -528,7 +539,7 @@ void options_imp::saveOptions()
     pref->setAddTrackersEnabled(checkEnableAddTrackers->isChecked());
     pref->setTrackersList(textTrackers->toPlainText());
     pref->setGlobalMaxRatio(getMaxRatio());
-    pref->setMaxRatioAction(static_cast<MaxRatioAction>(comboRatioLimitAct->currentIndex()));
+    session->setMaxRatioAction(static_cast<MaxRatioAction>(comboRatioLimitAct->currentIndex()));
     // End Bittorrent preferences
     // Misc preferences
     // * IPFilter
@@ -654,18 +665,21 @@ void options_imp::loadOptions()
     comboFileLogAgeType->setCurrentIndex(pref->fileLogAgeType());
     // End General preferences
 
-    // Downloads preferences
-    checkAdditionDialog->setChecked(pref->useAdditionDialog());
-    checkAdditionDialogFront->setChecked(pref->additionDialogFront());
-    checkStartPaused->setChecked(pref->addTorrentsInPause());
+    auto session = BitTorrent::Session::instance();
 
-    textSavePath->setText(Utils::Fs::toNativePath(pref->getSavePath()));
-    if (pref->isTempPathEnabled())
-        checkTempFolder->setChecked(true);
-    else
-        checkTempFolder->setChecked(false);
-    textTempPath->setText(Utils::Fs::toNativePath(pref->getTempPath()));
-    checkAppendLabel->setChecked(pref->appendTorrentLabel());
+    // Downloads preferences
+    checkAdditionDialog->setChecked(AddNewTorrentDialog::isEnabled());
+    checkAdditionDialogFront->setChecked(AddNewTorrentDialog::isTopLevel());
+    checkStartPaused->setChecked(session->isAddTorrentPaused());
+
+    textSavePath->setText(Utils::Fs::toNativePath(session->defaultSavePath()));
+    (session->isSubcategoriesEnabled() ? radioBtnEnableSubcategories : radioBtnDisableSubcategories)->setChecked(true);
+    (session->isASMDisabledByDefault() ? radioBtnSimpleMode : radioBtnAdvancedMode)->setChecked(true);
+    (session->isDisableASMWhenCategoryChanged() ? radioBtnDisableASMOnCategoryChanged : radioBtnRelocateOnCategoryChanged)->setChecked(true);
+    (session->isDisableASMWhenCategorySavePathChanged() ? radioBtnDisableASMOnCategorySavePathChanged : radioBtnRelocateOnCategorySavePathChanged)->setChecked(true);
+    (session->isDisableASMWhenDefaultSavePathChanged() ? radioBtnDisableASMOnDefaultSavePathChanged : radioBtnRelocateOnDefaultSavePathChanged)->setChecked(true);
+    checkTempFolder->setChecked(session->isTempPathEnabled());
+    textTempPath->setText(Utils::Fs::toNativePath(session->tempPath()));
     checkAppendqB->setChecked(pref->useIncompleteFilesExtension());
     checkPreallocateAll->setChecked(pref->preAllocateAllFiles());
 
@@ -888,7 +902,7 @@ void options_imp::loadOptions()
         spinMaxRatio->setEnabled(false);
         comboRatioLimitAct->setEnabled(false);
     }
-    comboRatioLimitAct->setCurrentIndex(static_cast<int>(pref->getMaxRatioAction()));
+    comboRatioLimitAct->setCurrentIndex(session->maxRatioAction());
     // End Bittorrent preferences
 
     // Web UI preferences
@@ -1016,26 +1030,6 @@ qreal options_imp::getMaxRatio() const
     if (checkMaxRatio->isChecked())
         return spinMaxRatio->value();
     return -1;
-}
-
-// Return Save Path
-QString options_imp::getSavePath() const
-{
-    if (textSavePath->text().trimmed().isEmpty()) {
-        QString save_path = Preferences::instance()->getSavePath();
-        textSavePath->setText(Utils::Fs::toNativePath(save_path));
-    }
-    return Utils::Fs::expandPathAbs(textSavePath->text());
-}
-
-QString options_imp::getTempPath() const
-{
-    return Utils::Fs::expandPathAbs(textTempPath->text());
-}
-
-bool options_imp::isTempPathEnabled() const
-{
-    return checkTempFolder->isChecked();
 }
 
 // Return max connections number

@@ -352,7 +352,7 @@ void RSSImp::downloadSelectedTorrents()
 
         if (article->torrentUrl().isEmpty())
             continue;
-        if (Preferences::instance()->useAdditionDialog())
+        if (AddNewTorrentDialog::isEnabled())
             AddNewTorrentDialog::show(article->torrentUrl());
         else
             BitTorrent::Session::instance()->addTorrent(article->torrentUrl());

@@ -28,11 +28,6 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "prefjson.h"
-#include "base/preferences.h"
-#include "base/scanfoldersmodel.h"
-#include "base/utils/fs.h"
-
 #ifndef QT_NO_OPENSSL
 #include <QSslCertificate>
 #include <QSslKey>
@@ -40,7 +35,13 @@
 #include <QStringList>
 #include <QTranslator>
 #include <QCoreApplication>
+
+#include "base/preferences.h"
+#include "base/scanfoldersmodel.h"
+#include "base/utils/fs.h"
+#include "base/bittorrent/session.h"
 #include "jsonutils.h"
+#include "prefjson.h"
 
 prefjson::prefjson()
 {
@@ -49,13 +50,14 @@ prefjson::prefjson()
 QByteArray prefjson::getPreferences()
 {
     const Preferences* const pref = Preferences::instance();
+    auto session = BitTorrent::Session::instance();
     QVariantMap data;
 
     // Downloads
     // Hard Disk
-    data["save_path"] = Utils::Fs::toNativePath(pref->getSavePath());
-    data["temp_path_enabled"] = pref->isTempPathEnabled();
-    data["temp_path"] = Utils::Fs::toNativePath(pref->getTempPath());
+    data["save_path"] = Utils::Fs::toNativePath(session->defaultSavePath());
+    data["temp_path_enabled"] = session->isTempPathEnabled();
+    data["temp_path"] = Utils::Fs::toNativePath(session->tempPath());
     data["preallocate_all"] = pref->preAllocateAllFiles();
     data["incomplete_files_ext"] = pref->useIncompleteFilesExtension();
     QVariantHash dirs = pref->getScanDirs();
@@ -140,7 +142,7 @@ QByteArray prefjson::getPreferences()
     // Share Ratio Limiting
     data["max_ratio_enabled"] = (pref->getGlobalMaxRatio() >= 0.);
     data["max_ratio"] = pref->getGlobalMaxRatio();
-    data["max_ratio_act"] = static_cast<int>(pref->getMaxRatioAction());
+    data["max_ratio_act"] = BitTorrent::Session::instance()->maxRatioAction();
 
     // Web UI
     // Language
@@ -168,16 +170,17 @@ QByteArray prefjson::getPreferences()
 void prefjson::setPreferences(const QString& json)
 {
     Preferences* const pref = Preferences::instance();
+    auto session = BitTorrent::Session::instance();
     const QVariantMap m = json::fromJson(json).toMap();
 
     // Downloads
     // Hard Disk
     if (m.contains("save_path"))
-        pref->setSavePath(m["save_path"].toString());
+        session->setDefaultSavePath(m["save_path"].toString());
     if (m.contains("temp_path_enabled"))
-        pref->setTempPathEnabled(m["temp_path_enabled"].toBool());
+        session->setTempPathEnabled(m["temp_path_enabled"].toBool());
     if (m.contains("temp_path"))
-        pref->setTempPath(m["temp_path"].toString());
+        session->setTempPath(m["temp_path"].toString());
     if (m.contains("preallocate_all"))
         pref->preAllocateAllFiles(m["preallocate_all"].toBool());
     if (m.contains("incomplete_files_ext"))
@@ -351,7 +354,8 @@ void prefjson::setPreferences(const QString& json)
     else
         pref->setGlobalMaxRatio(-1);
     if (m.contains("max_ratio_act"))
-        pref->setMaxRatioAction(static_cast<MaxRatioAction>(m["max_ratio_act"].toInt()));
+        BitTorrent::Session::instance()->setMaxRatioAction(
+                    static_cast<MaxRatioAction>(m["max_ratio_act"].toInt()));
 
     // Web UI
     // Language

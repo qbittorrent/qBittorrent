@@ -29,24 +29,9 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-#include <QVariant>
-#include <QDataStream>
+#include <QMap>
 
 const qlonglong MAX_ETA = 8640000;
-
-enum class MaxRatioAction
-{
-    Pause,
-    Remove
-};
-
-Q_DECLARE_METATYPE(MaxRatioAction)
-
-enum class TorrentExportFolder
-{
-    Regular,
-    Finished
-};
 
 enum class ShutdownAction
 {
@@ -56,19 +41,6 @@ enum class ShutdownAction
     Hibernate
 };
 
-template<typename T>
-inline QDataStream &operator<<(QDataStream &out, const T &val)
-{
-    return (out << static_cast<int>(val));
-}
-
-template<typename T>
-inline QDataStream &operator>>(QDataStream &in, T &val)
-{
-    int tmp;
-    in >> tmp;
-    val = static_cast<T>(tmp);
-    return in;
-}
+typedef QMap<QString, QString> QStringMap;
 
 #endif // TYPES_H

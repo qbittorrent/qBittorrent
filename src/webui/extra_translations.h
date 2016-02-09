@@ -84,7 +84,7 @@ static const char *__TRANSLATIONS__[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Active"),
     QT_TRANSLATE_NOOP("HttpServer", "Inactive"),
     QT_TRANSLATE_NOOP("HttpServer", "Save files to location:"),
-    QT_TRANSLATE_NOOP("HttpServer", "Label:"),
+    QT_TRANSLATE_NOOP("HttpServer", "Category:"),
     QT_TRANSLATE_NOOP("HttpServer", "Cookie:"),
     QT_TRANSLATE_NOOP("HttpServer", "Type folder here"),
     QT_TRANSLATE_NOOP("HttpServer", "Run an external program on torrent completion"),

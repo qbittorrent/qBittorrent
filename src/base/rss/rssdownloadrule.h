@@ -69,8 +69,8 @@ namespace Rss
         void setSavePath(const QString &savePath);
         AddPausedState addPaused() const;
         void setAddPaused(const AddPausedState &aps);
-        QString label() const;
-        void setLabel(const QString &label);
+        QString category() const;
+        void setCategory(const QString &category);
         bool isEnabled() const;
         void setEnabled(bool enable);
         void setLastMatch(const QDateTime &d);
@@ -93,7 +93,7 @@ namespace Rss
         QStringList m_mustNotContain;
         QString m_episodeFilter;
         QString m_savePath;
-        QString m_label;
+        QString m_category;
         bool m_enabled;
         QStringList m_rssFeeds;
         bool m_useRegex;

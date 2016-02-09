@@ -102,7 +102,7 @@ static const char KEY_TORRENT_ETA[] = "eta";
 static const char KEY_TORRENT_STATE[] = "state";
 static const char KEY_TORRENT_SEQUENTIAL_DOWNLOAD[] = "seq_dl";
 static const char KEY_TORRENT_FIRST_LAST_PIECE_PRIO[] = "f_l_piece_prio";
-static const char KEY_TORRENT_LABEL[] = "label";
+static const char KEY_TORRENT_CATEGORY[] = "category";
 static const char KEY_TORRENT_SUPER_SEEDING[] = "super_seeding";
 static const char KEY_TORRENT_FORCE_START[] = "force_start";
 static const char KEY_TORRENT_SAVE_PATH[] = "save_path";
@@ -279,13 +279,13 @@ private:
  *   - "seq_dl": Torrent sequential download state
  *   - "f_l_piece_prio": Torrent first last piece priority state
  *   - "force_start": Torrent force start state
- *   - "label": Torrent label
+ *   - "category": Torrent category
  */
-QByteArray btjson::getTorrents(QString filter, QString label,
+QByteArray btjson::getTorrents(QString filter, QString category,
                                QString sortedColumn, bool reverse, int limit, int offset)
 {
     QVariantList torrentList;
-    TorrentFilter torrentFilter(filter, TorrentFilter::AnyHash, label);
+    TorrentFilter torrentFilter(filter, TorrentFilter::AnyHash, category);
     foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents()) {
         if (torrentFilter.match(torrent))
             torrentList.append(toMap(torrent));
@@ -317,8 +317,8 @@ QByteArray btjson::getTorrents(QString filter, QString label,
  *  - "full_update": full data update flag
  *  - "torrents": dictionary contains information about torrents.
  *  - "torrents_removed": a list of hashes of removed torrents
- *  - "labels": list of labels
- *  - "labels_removed": list of removed labels
+ *  - "categories": list of categories
+ *  - "categories_removed": list of removed categories
  *  - "server_state": map contains information about the state of the server
  * The keys of the 'torrents' dictionary are hashes of torrents.
  * Each value of the 'torrents' dictionary contains map. The map can contain following keys:
@@ -362,11 +362,11 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
 
     data["torrents"] = torrents;
 
-    QVariantList labels;
-    foreach (QString s, Preferences::instance()->getTorrentLabels())
-        labels << s;
+    QVariantList categories;
+    foreach (const QString &category, BitTorrent::Session::instance()->categories())
+        categories << category;
 
-    data["labels"] = labels;
+    data["categories"] = categories;
 
     QVariantMap serverState = getTranserInfoMap();
     serverState[KEY_SYNC_MAINDATA_QUEUEING] = BitTorrent::Session::instance()->isQueueingEnabled();
@@ -705,7 +705,7 @@ QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
     ret[KEY_TORRENT_SEQUENTIAL_DOWNLOAD] = torrent->isSequentialDownload();
     if (torrent->hasMetadata())
         ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = torrent->hasFirstLastPiecePriority();
-    ret[KEY_TORRENT_LABEL] = torrent->label();
+    ret[KEY_TORRENT_CATEGORY] = torrent->category();
     ret[KEY_TORRENT_SUPER_SEEDING] = torrent->superSeeding();
     ret[KEY_TORRENT_FORCE_START] = torrent->isForced();
     ret[KEY_TORRENT_SAVE_PATH] = Utils::Fs::toNativePath(torrent->savePath());
@@ -760,6 +760,7 @@ void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
         case QMetaType::Double:
         case QMetaType::ULongLong:
         case QMetaType::UInt:
+        case QMetaType::QDateTime:
             if (prevData[key] != data[key])
                 syncData[key] = data[key];
             break;

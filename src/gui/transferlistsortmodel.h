@@ -44,8 +44,8 @@ public:
     TransferListSortModel(QObject *parent = 0);
 
     void setStatusFilter(TorrentFilter::Type filter);
-    void setLabelFilter(const QString &label);
-    void disableLabelFilter();
+    void setCategoryFilter(const QString &category);
+    void disableCategoryFilter();
     void setTrackerFilter(const QStringList &hashes);
     void disableTrackerFilter();
 

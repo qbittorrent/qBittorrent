@@ -80,7 +80,7 @@ AddTorrentData::AddTorrentData()
 AddTorrentData::AddTorrentData(const AddTorrentParams &params)
     : resumed(false)
     , name(params.name)
-    , label(params.label)
+    , category(params.category)
     , savePath(params.savePath)
     , disableTempPath(params.disableTempPath)
     , sequential(params.sequential)
@@ -201,7 +201,8 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_renameCount(0)
     , m_name(data.name)
     , m_savePath(Utils::Fs::toNativePath(data.savePath))
-    , m_label(data.label)
+    , m_category(data.category)
+    , m_useASM(data.savePath.isEmpty())
     , m_hasSeedStatus(data.hasSeedStatus)
     , m_ratioLimit(data.ratioLimit)
     , m_tempPathDisabled(data.disableTempPath)
@@ -209,7 +210,8 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_pauseAfterRecheck(false)
     , m_needSaveResumeData(false)
 {
-    Q_ASSERT(!m_savePath.isEmpty());
+    if (m_useASM)
+        m_savePath = Utils::Fs::toNativePath(m_session->categorySavePath(m_category));
 
     updateStatus();
     m_hash = InfoHash(m_nativeStatus.info_hash);
@@ -328,6 +330,22 @@ QString TorrentHandle::contentPath(bool actual) const
         return QDir(savePath(actual)).absoluteFilePath(filePath(0));
     else
         return rootPath(actual);
+}
+
+bool TorrentHandle::isASMEnabled() const
+{
+    return m_useASM;
+}
+
+void TorrentHandle::setASMEnabled(bool enabled)
+{
+    if (m_useASM == enabled) return;
+
+    m_useASM = enabled;
+    m_session->handleTorrentSavingModeChanged(this);
+
+    if (m_useASM)
+        move_impl(m_session->categorySavePath(m_category));
 }
 
 QString TorrentHandle::nativeActualSavePath() const
@@ -507,9 +525,22 @@ qreal TorrentHandle::progress() const
     return progress;
 }
 
-QString TorrentHandle::label() const
+QString TorrentHandle::category() const
 {
-    return m_label;
+    return m_category;
+}
+
+bool TorrentHandle::belongsToCategory(const QString &category) const
+{
+    if (m_category.isEmpty()) return category.isEmpty();
+    if (!Session::isValidCategoryName(category)) return false;
+
+    if (m_category == category) return true;
+
+    if (m_session->isSubcategoriesEnabled() && m_category.startsWith(category + "/"))
+        return true;
+
+    return false;
 }
 
 QDateTime TorrentHandle::addedTime() const
@@ -1110,17 +1141,41 @@ void TorrentHandle::setName(const QString &name)
     }
 }
 
-void TorrentHandle::setLabel(const QString &label)
+bool TorrentHandle::setCategory(const QString &category)
 {
-    if (m_label != label) {
-        QString oldLabel = m_label;
-        m_label = label;
+    if (m_category != category) {
+        if (!category.isEmpty()) {
+            if (!Session::isValidCategoryName(category)) return false;
+            if (!m_session->categories().contains(category))
+                if (!m_session->addCategory(category))
+                    return false;
+        }
+
+        QString oldCategory = m_category;
+        m_category = category;
         m_needSaveResumeData = true;
-        m_session->handleTorrentLabelChanged(this, oldLabel);
+        m_session->handleTorrentCategoryChanged(this, oldCategory);
+
+        if (m_useASM) {
+            if (!m_session->isDisableASMWhenCategoryChanged())
+                move_impl(m_session->categorySavePath(m_category));
+            else
+                setASMEnabled(false);
+        }
     }
+
+    return true;
 }
 
 void TorrentHandle::move(QString path)
+{
+    m_useASM = false;
+    m_session->handleTorrentSavingModeChanged(this);
+
+    move_impl(path);
+}
+
+void TorrentHandle::move_impl(QString path)
 {
     path = Utils::Fs::toNativePath(path);
     if (path == savePath()) return;
@@ -1469,9 +1524,9 @@ void TorrentHandle::handleSaveResumeDataAlert(libtorrent::save_resume_data_alert
         resumeData["qBt-paused"] = isPaused();
         resumeData["qBt-forced"] = isForced();
     }
-    resumeData["qBt-savePath"] = Utils::String::toStdString(m_savePath);
+    resumeData["qBt-savePath"] = m_useASM ? "" : Utils::String::toStdString(m_savePath);
     resumeData["qBt-ratioLimit"] = Utils::String::toStdString(QString::number(m_ratioLimit));
-    resumeData["qBt-label"] = Utils::String::toStdString(m_label);
+    resumeData["qBt-category"] = Utils::String::toStdString(m_category);
     resumeData["qBt-name"] = Utils::String::toStdString(m_name);
     resumeData["qBt-seedStatus"] = m_hasSeedStatus;
     resumeData["qBt-tempPathDisabled"] = m_tempPathDisabled;
@@ -1532,12 +1587,6 @@ void TorrentHandle::handleFileRenamedAlert(libtorrent::file_renamed_alert *p)
 
     updateStatus();
 
-    if (filesCount() == 1) {
-        // Single-file torrent
-        // Renaming a file corresponds to changing the save path
-        m_session->handleTorrentSavePathChanged(this);
-    }
-
     --m_renameCount;
     while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
         m_moveFinishedTriggers.takeFirst()();
@@ -1596,6 +1645,12 @@ void TorrentHandle::handleMetadataReceivedAlert(libt::metadata_received_alert *p
 void TorrentHandle::handleTempPathChanged()
 {
     adjustActualSavePath();
+}
+
+void TorrentHandle::handleCategorySavePathChanged()
+{
+    if (m_useASM)
+        move_impl(m_session->categorySavePath(m_category));
 }
 
 void TorrentHandle::handleAppendExtensionToggled()

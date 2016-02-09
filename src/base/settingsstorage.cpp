@@ -47,9 +47,44 @@ namespace
     #endif
     }
 
+#ifdef QBT_USES_QT5
+    typedef QHash<QString, QString> MappingTable;
+#else
+    class MappingTable: public QHash<QString, QString>
+    {
+    public:
+        MappingTable(std::initializer_list<std::pair<QString, QString>> list)
+        {
+            reserve(static_cast<int>(list.size()));
+            for (std::initializer_list<std::pair<QString, QString>>::const_iterator it = list.begin(); it != list.end(); ++it)
+                insert(it->first, it->second);
+        }
+    };
+#endif
+
     QString mapKey(const QString &key)
     {
-        static const QHash<QString, QString> keyMapping = {};
+        static const MappingTable keyMapping = {
+
+            { "BitTorrent/Session/MaxRatioAction", "Preferences/Bittorrent/MaxRatioAction" },
+            { "BitTorrent/Session/DefaultSavePath", "Preferences/Downloads/SavePath" },
+            { "BitTorrent/Session/TempPath", "Preferences/Downloads/TempPath" },
+            { "BitTorrent/Session/TempPathEnabled", "Preferences/Downloads/TempPathEnabled" },
+            { "BitTorrent/Session/AddTorrentPaused", "Preferences/Downloads/StartInPause" },
+#ifdef QBT_USES_QT5
+            { "AddNewTorrentDialog/TreeHeaderState", "AddNewTorrentDialog/qt5/treeHeaderState" },
+#else
+            { "AddNewTorrentDialog/TreeHeaderState", "AddNewTorrentDialog/treeHeaderState" },
+#endif
+            { "AddNewTorrentDialog/Width", "AddNewTorrentDialog/width" },
+            { "AddNewTorrentDialog/Position", "AddNewTorrentDialog/y" },
+            { "AddNewTorrentDialog/Expanded", "AddNewTorrentDialog/expanded" },
+            { "AddNewTorrentDialog/SavePathHistory", "TorrentAdditionDlg/save_path_history" },
+            { "AddNewTorrentDialog/Enabled", "Preferences/Downloads/NewAdditionDialog" },
+            { "AddNewTorrentDialog/TopLevel", "Preferences/Downloads/NewAdditionDialogFront" }
+
+        };
+
         return keyMapping.value(key, key);
     }
 }

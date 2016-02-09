@@ -452,7 +452,7 @@ var TorrentsTable = new Class({
             this.newColumn('upspeed', 'width: 100px', 'QBT_TR(Up Speed)QBT_TR');
             this.newColumn('eta', 'width: 100px', 'QBT_TR(ETA)QBT_TR');
             this.newColumn('ratio', 'width: 100px', 'QBT_TR(Ratio)QBT_TR');
-            this.newColumn('label', 'width: 100px', 'QBT_TR(Label)QBT_TR');
+            this.newColumn('category', 'width: 100px', 'QBT_TR(Category)QBT_TR');
 
             this.columns['state_icon'].onclick = '';
             this.columns['state_icon'].dataProperties[0] = 'state';
@@ -620,7 +620,7 @@ var TorrentsTable = new Class({
             };
         },
 
-        applyFilter : function (row, filterName, labelName) {
+        applyFilter : function (row, filterName, categoryName) {
             var state = row['full_data'].state;
             var inactive = false;
             var r;
@@ -662,13 +662,13 @@ var TorrentsTable = new Class({
                     break;
             }
 
-            if (labelName == LABELS_ALL)
+            if (categoryName == CATEGORIES_ALL)
                 return true;
 
-            if (labelName == LABELS_UNLABELLED && row['full_data'].label.length === 0)
+            if (categoryName == CATEGORIES_UNCATEGORIZED && row['full_data'].category.length === 0)
                 return true;
 
-            if (labelName != genHash( row['full_data'].label) )
+            if (categoryName != genHash(row['full_data'].category))
                 return false;
 
             return true;
@@ -679,7 +679,7 @@ var TorrentsTable = new Class({
             var rows = this.rows.getValues();
 
             for (i = 0; i < rows.length; i++)
-                if (this.applyFilter(rows[i], filterName, LABELS_ALL)) cnt++;
+                if (this.applyFilter(rows[i], filterName, CATEGORIES_ALL)) cnt++;
 
             return cnt;
         },
@@ -690,7 +690,7 @@ var TorrentsTable = new Class({
             var rows = this.rows.getValues();
 
             for (i = 0; i < rows.length; i++)
-                if (this.applyFilter(rows[i], selected_filter, selected_label)) {
+                if (this.applyFilter(rows[i], selected_filter, selected_category)) {
                     filteredRows.push(rows[i]);
                     filteredRows[rows[i].rowId] = rows[i];
                 }

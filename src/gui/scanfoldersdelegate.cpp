@@ -36,7 +36,7 @@
 #include <QItemSelectionModel>
 
 #include "base/scanfoldersmodel.h"
-#include "base/preferences.h"
+#include "base/bittorrent/session.h"
 #include "scanfoldersdelegate.h"
 
 
@@ -102,7 +102,7 @@ void ScanFoldersDelegate::setModelData(QWidget *editor, QAbstractItemModel *mode
                         0, tr("Choose save path"),
                         index.data(Qt::UserRole).toInt() == ScanFoldersModel::CUSTOM_LOCATION ?
                             index.data().toString() :
-                            Preferences::instance()->getSavePath()),
+                            BitTorrent::Session::instance()->defaultSavePath()),
                     Qt::DisplayRole);
         break;
 

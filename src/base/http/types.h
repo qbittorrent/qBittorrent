@@ -34,7 +34,7 @@
 #include <QHostAddress>
 #include <QVector>
 
-typedef QMap<QString, QString> QStringMap;
+#include "base/types.h"
 
 namespace Http
 {

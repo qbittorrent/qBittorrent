@@ -259,7 +259,7 @@ void SearchWidget::saveResultsColumnsWidth()
 
 void SearchWidget::downloadTorrent(QString url)
 {
-    if (Preferences::instance()->useAdditionDialog())
+    if (AddNewTorrentDialog::isEnabled())
         AddNewTorrentDialog::show(url, this);
     else
         BitTorrent::Session::instance()->addTorrent(url);

@@ -32,6 +32,7 @@
 
 #include <QFile>
 #include <QHash>
+#include <QMap>
 #include <QPointer>
 #include <QVector>
 #include <QMutex>
@@ -110,8 +111,19 @@ class FilterParserThread;
 class BandwidthScheduler;
 class Statistics;
 class ResumeDataSavingManager;
+class SettingsStorage;
 
-typedef QPair<QString, QString> QStringPair;
+enum MaxRatioAction
+{
+    Pause,
+    Remove
+};
+
+enum TorrentExportFolder
+{
+    Regular,
+    Finished
+};
 
 namespace BitTorrent
 {
@@ -127,7 +139,7 @@ namespace BitTorrent
     struct AddTorrentParams
     {
         QString name;
-        QString label;
+        QString category;
         QString savePath;
         bool disableTempPath = false; // e.g. for imported torrents
         bool sequential = false;
@@ -165,11 +177,49 @@ namespace BitTorrent
         bool isPexEnabled() const;
         bool isQueueingEnabled() const;
         qreal globalMaxRatio() const;
-        bool isTempPathEnabled() const;
         bool isAppendExtensionEnabled() const;
-        bool useAppendLabelToSavePath() const;
+
         QString defaultSavePath() const;
+        void setDefaultSavePath(QString path);
         QString tempPath() const;
+        void setTempPath(QString path);
+        bool isTempPathEnabled() const;
+        void setTempPathEnabled(bool enabled);
+
+        static bool isValidCategoryName(const QString &name);
+        // returns category itself and all top level categories
+        static QStringList expandCategory(const QString &category);
+
+        QStringList categories() const;
+        QString categorySavePath(const QString &categoryName) const;
+        bool addCategory(const QString &name, const QString &savePath = "");
+        bool editCategory(const QString &name, const QString &savePath);
+        bool removeCategory(const QString &name);
+        bool isSubcategoriesEnabled() const;
+        void setSubcategoriesEnabled(bool value);
+
+        // Advanced Saving Management subsystem (ASM)
+        //
+        // Each torrent can be either in Simple mode or in Advanced mode
+        // In Simple mode torrent has explicit save path
+        // In Advanced Mode torrent has implicit save path (based on Default
+        //     save path and Category save path)
+        // In Advanced Mode torrent save path can be changed in following cases:
+        //     1. Default save path changed
+        //     2. Torrent category save path changed
+        //     3. Torrent category changed
+        //     (unless otherwise is specified)
+        bool isASMDisabledByDefault() const;
+        void setASMDisabledByDefault(bool value);
+        bool isDisableASMWhenCategoryChanged() const;
+        void setDisableASMWhenCategoryChanged(bool value);
+        bool isDisableASMWhenDefaultSavePathChanged() const;
+        void setDisableASMWhenDefaultSavePathChanged(bool value);
+        bool isDisableASMWhenCategorySavePathChanged() const;
+        void setDisableASMWhenCategorySavePathChanged(bool value);
+
+        bool isAddTorrentPaused() const;
+        void setAddTorrentPaused(bool value);
 
         TorrentHandle *findTorrent(const InfoHash &hash) const;
         QHash<InfoHash, TorrentHandle *> torrents() const;
@@ -183,6 +233,9 @@ namespace BitTorrent
         int downloadRateLimit() const;
         int uploadRateLimit() const;
         bool isListening() const;
+
+        MaxRatioAction maxRatioAction() const;
+        void setMaxRatioAction(MaxRatioAction act);
 
         void changeSpeedLimitMode(bool alternative);
         void setDownloadRateLimit(int rate);
@@ -208,7 +261,8 @@ namespace BitTorrent
         // TorrentHandle interface
         void handleTorrentRatioLimitChanged(TorrentHandle *const torrent);
         void handleTorrentSavePathChanged(TorrentHandle *const torrent);
-        void handleTorrentLabelChanged(TorrentHandle *const torrent, const QString &oldLabel);
+        void handleTorrentCategoryChanged(TorrentHandle *const torrent, const QString &oldCategory);
+        void handleTorrentSavingModeChanged(TorrentHandle *const torrent);
         void handleTorrentMetadataReceived(TorrentHandle *const torrent);
         void handleTorrentPaused(TorrentHandle *const torrent);
         void handleTorrentResumed(TorrentHandle *const torrent);
@@ -236,7 +290,8 @@ namespace BitTorrent
         void torrentFinished(BitTorrent::TorrentHandle *const torrent);
         void torrentFinishedChecking(BitTorrent::TorrentHandle *const torrent);
         void torrentSavePathChanged(BitTorrent::TorrentHandle *const torrent);
-        void torrentLabelChanged(BitTorrent::TorrentHandle *const torrent, const QString &oldLabel);
+        void torrentCategoryChanged(BitTorrent::TorrentHandle *const torrent, const QString &oldCategory);
+        void torrentSavingModeChanged(BitTorrent::TorrentHandle *const torrent);
         void allTorrentsFinished();
         void metadataLoaded(const BitTorrent::TorrentInfo &info);
         void torrentMetadataLoaded(BitTorrent::TorrentHandle *const torrent);
@@ -254,6 +309,9 @@ namespace BitTorrent
         void trackerlessStateChanged(BitTorrent::TorrentHandle *const torrent, bool trackerless);
         void downloadFromUrlFailed(const QString &url, const QString &reason);
         void downloadFromUrlFinished(const QString &url);
+        void categoryAdded(const QString &categoryName);
+        void categoryRemoved(const QString &categoryName);
+        void subcategoriesSupportChanged();
 
     private slots:
         void configure();
@@ -287,8 +345,6 @@ namespace BitTorrent
         void adjustLimits(libtorrent::session_settings &sessionSettings);
         const QStringList getListeningIPs();
         void setListeningPort();
-        void setDefaultSavePath(const QString &path);
-        void setDefaultTempPath(const QString &path = QString());
         void preAllocateAllFiles(bool b);
         void setMaxConnectionsPerTorrent(int max);
         void setMaxUploadsPerTorrent(int max);
@@ -296,7 +352,6 @@ namespace BitTorrent
         void enableDHT(bool enable);
         void changeSpeedLimitMode_impl(bool alternative);
 
-        void setAppendLabelToSavePath(bool append);
         void setAppendExtension(bool append);
 
         void startUpTorrents();
@@ -333,6 +388,8 @@ namespace BitTorrent
         void dispatchAlerts(std::auto_ptr<libtorrent::alert> alertPtr);
         void getPendingAlerts(QVector<libtorrent::alert *> &out, ulong time = 0);
 
+        SettingsStorage *m_settings;
+
         // BitTorrent
         libtorrent::session *m_nativeSession;
 
@@ -346,10 +403,9 @@ namespace BitTorrent
         qreal m_globalMaxRatio;
         int m_numResumeData;
         int m_extraLimit;
-        bool m_appendLabelToSavePath;
         bool m_appendExtension;
         uint m_refreshInterval;
-        MaxRatioAction m_highRatioAction;
+        MaxRatioAction m_maxRatioAction;
         QList<BitTorrent::TrackerEntry> m_additionalTrackers;
         QString m_defaultSavePath;
         QString m_tempPath;
@@ -376,6 +432,7 @@ namespace BitTorrent
         QHash<InfoHash, AddTorrentData> m_addingTorrents;
         QHash<QString, AddTorrentParams> m_downloadedTorrents;
         TorrentStatusReport m_torrentStatusReport;
+        QStringMap m_categories;
 
         QMutex m_alertsMutex;
         QWaitCondition m_alertsWaitCondition;

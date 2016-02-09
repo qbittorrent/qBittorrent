@@ -47,15 +47,15 @@ void TransferListSortModel::setStatusFilter(TorrentFilter::Type filter)
         invalidateFilter();
 }
 
-void TransferListSortModel::setLabelFilter(const QString &label)
+void TransferListSortModel::setCategoryFilter(const QString &category)
 {
-    if (m_filter.setLabel(label))
+    if (m_filter.setCategory(category))
         invalidateFilter();
 }
 
-void TransferListSortModel::disableLabelFilter()
+void TransferListSortModel::disableCategoryFilter()
 {
-    if (m_filter.setLabel(TorrentFilter::AnyLabel))
+    if (m_filter.setCategory(TorrentFilter::AnyCategory))
         invalidateFilter();
 }
 

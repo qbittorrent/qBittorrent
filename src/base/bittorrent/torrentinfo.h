@@ -92,7 +92,7 @@ namespace BitTorrent
         NativePtr nativeInfo() const;
 
     private:
-        NativeConstPtr m_nativeInfo;
+        NativePtr m_nativeInfo;
     };
 }
 
