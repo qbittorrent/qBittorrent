@@ -245,7 +245,7 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
     QAction *act = menu.exec(QCursor::pos());
     if (act == 0) return;
     if (act == addPeerAct) {
-        QList<BitTorrent::PeerAddress> peersList = PeersAdditionDlg::askForPeers();
+        QList<BitTorrent::PeerAddress> peersList = PeersAdditionDlg::askForPeers(this);
         int peerCount = 0;
         foreach (const BitTorrent::PeerAddress &addr, peersList) {
             if (torrent->connectPeer(addr)) {

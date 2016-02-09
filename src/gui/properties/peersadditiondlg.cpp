@@ -51,9 +51,9 @@ PeersAdditionDlg::~PeersAdditionDlg()
     delete m_ui;
 }
 
-QList<BitTorrent::PeerAddress> PeersAdditionDlg::askForPeers()
+QList<BitTorrent::PeerAddress> PeersAdditionDlg::askForPeers(QWidget *parent)
 {
-    PeersAdditionDlg dlg;
+    PeersAdditionDlg dlg(parent);
     dlg.exec();
     return dlg.m_peersList;
 }
