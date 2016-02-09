@@ -4,6 +4,7 @@ HEADERS += \
     $$PWD/filesystemwatcher.h \
     $$PWD/qinisettings.h \
     $$PWD/logger.h \
+    $$PWD/settingsstorage.h \
     $$PWD/preferences.h \
     $$PWD/iconprovider.h \
     $$PWD/http/irequesthandler.h \
@@ -58,6 +59,7 @@ SOURCES += \
     $$PWD/tristatebool.cpp \
     $$PWD/filesystemwatcher.cpp \
     $$PWD/logger.cpp \
+    $$PWD/settingsstorage.cpp \
     $$PWD/preferences.cpp \
     $$PWD/iconprovider.cpp \
     $$PWD/http/connection.cpp \

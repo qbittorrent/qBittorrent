@@ -41,7 +41,7 @@
 #include <QNetworkCookie>
 #include <QVariant>
 
-#include "base/types.h"
+#include "types.h"
 
 enum scheduler_days
 {
@@ -89,26 +89,20 @@ namespace DNS
     };
 }
 
+class SettingsStorage;
+
 class Preferences: public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(Preferences)
 
-private:
     Preferences();
-    ~Preferences();
 
-    static Preferences* m_instance;
-    QHash<QString, QVariant> m_data;
-    int m_randomPort;
-    bool dirty;
-    QTimer timer;
-    mutable QReadWriteLock lock;
     const QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;
     void setValue(const QString &key, const QVariant &value);
 
-private slots:
-    bool save();
+    static Preferences* m_instance;
+    int m_randomPort;
 
 signals:
     void changed();
@@ -526,11 +520,6 @@ public:
     int getToolbarTextPosition() const;
     void setToolbarTextPosition(const int position);
 
-    // Temp code.
-    // See TorrentStatistics::loadStats() for details.
-    QVariantHash getStats() const;
-    void removeStats();
-
     //From old RssSettings class
     bool isRSSEnabled() const;
     void setRSSEnabled(const bool enabled);
@@ -548,14 +537,14 @@ public:
     // Network
     QList<QNetworkCookie> getNetworkCookies() const;
     void setNetworkCookies(const QList<QNetworkCookie> &cookies);
-    // Temporary method for upgrade purposes
-    void moveRSSCookies();
 
     // SpeedWidget
     int getSpeedWidgetPeriod() const;
     void setSpeedWidgetPeriod(const int period);
     bool getSpeedWidgetGraphEnable(int id) const;
     void setSpeedWidgetGraphEnable(int id, const bool enable);
+
+    void upgrade();
 
 public slots:
     void setStatusFilterState(bool checked);

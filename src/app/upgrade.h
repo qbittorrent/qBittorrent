@@ -129,8 +129,8 @@ bool upgradeResumeFile(const QString &filepath, const QVariantHash &oldTorrent =
 
 bool upgrade(bool ask = true)
 {
-    // Move RSS cookies to common storage
-    Preferences::instance()->moveRSSCookies();
+    // Upgrade preferences
+    Preferences::instance()->upgrade();
 
     QString backupFolderPath = Utils::Fs::expandPathAbs(Utils::Fs::QDesktopServicesDataLocation() + "BT_backup");
     QDir backupFolderDir(backupFolderPath);

@@ -59,6 +59,7 @@
 
 #include "application.h"
 #include "base/logger.h"
+#include "base/settingsstorage.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -80,6 +81,7 @@ Application::Application(const QString &id, int &argc, char **argv)
 #endif
 {
     Logger::initInstance();
+    SettingsStorage::initInstance();
     Preferences::initInstance();
 
 #if defined(Q_OS_MACX) && !defined(DISABLE_GUI)
@@ -146,7 +148,7 @@ void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
         QString program = pref->getAutoRunProgram();
 
         program.replace("%N", torrent->name());
-        program.replace("%L", torrent->label());
+        program.replace("%L", torrent->category());
         program.replace("%F", Utils::Fs::toNativePath(torrent->contentPath()));
         program.replace("%R", Utils::Fs::toNativePath(torrent->rootPath()));
         program.replace("%D", Utils::Fs::toNativePath(torrent->savePath()));
@@ -466,6 +468,7 @@ void Application::cleanup()
 #endif
     Net::DownloadManager::freeInstance();
     Preferences::freeInstance();
+    SettingsStorage::freeInstance();
     Logger::freeInstance();
     IconProvider::freeInstance();
 #ifndef DISABLE_GUI
