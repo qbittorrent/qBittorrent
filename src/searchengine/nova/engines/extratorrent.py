@@ -1,4 +1,4 @@
-#VERSION: 2.02
+#VERSION: 2.03
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 #CONTRIBUTORS: Diego de las Heras (ngosang@hotmail.es)
 
