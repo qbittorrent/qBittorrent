@@ -27,7 +27,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 from HTMLParser import HTMLParser
-from httplib
+from httplib import HTTPConnection, HTTPSConnection
 #qBt
 from novaprinter import prettyPrinter
 from helpers import download_file
@@ -142,9 +142,9 @@ class extratorrent(object):
         """ Performs search """
         (proto, host) = self.url.split('://')
         if proto.lower() == 'https':
-            connection = httplib.HTTPSConnection(host)
+            connection = HTTPSConnection(host)
         else:
-            connection = httplib.HTTPConnection(host)
+            connection = HTTPConnection(host)
 
         query = "".join(("/advanced_search/?with=", what, "&s_cat=", self.supported_categories[cat]))
 
