@@ -1,4 +1,4 @@
-#VERSION: 2.02
+#VERSION: 2.03
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 #CONTRIBUTORS: Diego de las Heras (ngosang@hotmail.es)
 
@@ -27,10 +27,9 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 from html.parser import HTMLParser
-from http.client import HTTPConnection as http
 #qBt
 from novaprinter import prettyPrinter
-from helpers import download_file
+from helpers import download_file, retrieve_url
 
 class extratorrent(object):
     """ Search engine class """
@@ -140,25 +139,18 @@ class extratorrent(object):
 
     def search(self, what, cat="all"):
         """ Performs search """
-        connection = http("extratorrent.cc")
+        query = "".join((self.url, "/advanced_search/?with=", what, "&s_cat=", self.supported_categories[cat]))
 
-        query = "".join(("/advanced_search/?with=", what, "&s_cat=", self.supported_categories[cat]))
-
-        connection.request("GET", query)
-        response = connection.getresponse()
-        if response.status != 200:
-            return
+        response = retrieve_url(query)
 
         list_searches = []
         parser = self.MyHtmlParseWithBlackJack(list_searches, self.url)
-        parser.feed(response.read().decode('utf-8'))
+        parser.feed(response)
         parser.close()
 
         for search_query in list_searches:
-            connection.request("GET", search_query)
-            response = connection.getresponse()
-            parser.feed(response.read().decode('utf-8'))
+            response = retrieve_url(self.url + search_query)
+            parser.feed(response)
             parser.close()
 
-        connection.close()
         return

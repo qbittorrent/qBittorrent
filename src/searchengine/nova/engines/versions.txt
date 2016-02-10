@@ -1,9 +1,9 @@
 btdigg: 1.30
-demonoid: 1.1
-extratorrent: 2.02
+demonoid: 1.2
+extratorrent: 2.03
 kickasstorrents: 1.28
 legittorrents: 2.00
-mininova: 2.00
-piratebay: 2.13
+mininova: 2.01
+piratebay: 2.14
 torrentreactor: 1.40
 torrentz: 2.17
