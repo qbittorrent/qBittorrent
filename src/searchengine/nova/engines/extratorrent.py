@@ -27,14 +27,14 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 from HTMLParser import HTMLParser
-from httplib import HTTPConnection as http
+from httplib
 #qBt
 from novaprinter import prettyPrinter
 from helpers import download_file
 
 class extratorrent(object):
     """ Search engine class """
-    url = 'http://extratorrent.cc'
+    url = 'https://extratorrent.cc'
     name = 'ExtraTorrent'
     supported_categories = {'all'       : '0',
                             'movies'    : '4',
@@ -140,7 +140,11 @@ class extratorrent(object):
 
     def search(self, what, cat="all"):
         """ Performs search """
-        connection = http("extratorrent.cc")
+        (proto, host) = self.url.split('://')
+        if proto.lower() == 'https':
+            connection = httplib.HTTPSConnection(host)
+        else:
+            connection = httplib.HTTPConnection(host)
 
         query = "".join(("/advanced_search/?with=", what, "&s_cat=", self.supported_categories[cat]))
 
