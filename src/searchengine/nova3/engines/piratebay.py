@@ -1,4 +1,4 @@
-#VERSION: 2.13
+#VERSION: 2.14
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 #              Arthur (custparasite@gmx.se)
@@ -29,10 +29,9 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 from html.parser import HTMLParser
-from http.client import HTTPSConnection as https
 #qBt
 from novaprinter import prettyPrinter
-from helpers import download_file
+from helpers import download_file, retrieve_url
 
 class piratebay(object):
     """ Search engine class """
@@ -157,28 +156,21 @@ class piratebay(object):
 
     def search(self, what, cat='all'):
         """ Performs search """
-        connection = https("thepiratebay.se")
-
         #prepare query. 7 is filtering by seeders
         cat = cat.lower()
-        query = "/".join(("/search", what, "0", "7", self.supported_categories[cat]))
+        query = "/".join((self.url, "search", what, "0", "7", self.supported_categories[cat]))
 
-        connection.request("GET", query)
-        response = connection.getresponse()
-        if response.status != 200:
-            return
+        response = retrieve_url(query)
 
         list_searches = []
         parser = self.MyHtmlParseWithBlackJack(list_searches, self.url)
-        parser.feed(response.read().decode('utf-8'))
+        parser.feed(response)
         parser.close()
 
         parser.add_query = False
         for search_query in list_searches:
-            connection.request("GET", search_query)
-            response = connection.getresponse()
-            parser.feed(response.read().decode('utf-8'))
+            response = retrieve_url(self.url + search_query)
+            parser.feed(response)
             parser.close()
 
-        connection.close()
         return
