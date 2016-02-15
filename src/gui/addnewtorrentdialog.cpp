@@ -193,9 +193,15 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
                 MessageBoxRaised::critical(0, tr("Already in download list"), tr("Torrent is already in download list. Trackers weren't merged because it is a private torrent."), QMessageBox::Ok);
             }
             else {
-                torrent->addTrackers(m_torrentInfo.trackers());
-                torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
-                MessageBoxRaised::information(0, tr("Already in download list"), tr("Torrent is already in download list. Trackers were merged."), QMessageBox::Ok);
+                QMessageBox::StandardButton mergeTrackersReply;
+                mergeTrackersReply = QMessageBox::question(0, tr("Already in download list"), tr("Torrent is already in download list. Do you want to merge trackers?"), QMessageBox::Yes|QMessageBox::No);
+                if (mergeTrackersReply == QMessageBox::Yes) {
+                    torrent->addTrackers(m_torrentInfo.trackers());
+                    torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
+                    MessageBoxRaised::information(0, tr("Already in download list"), tr("Torrent is already in download list. Trackers were merged."), QMessageBox::Ok);
+                } else {
+                    MessageBoxRaised::information(0, tr("Already in download list"), tr("Torrent is already in download list. Trackers were not merged."), QMessageBox::Ok);
+                }
             }
         }
         else {
