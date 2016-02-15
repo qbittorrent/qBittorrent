@@ -266,6 +266,8 @@ void AddNewTorrentDialog::showEvent(QShowEvent *event)
 
 void AddNewTorrentDialog::showAdvancedSettings(bool show)
 {
+    const int minimumW = minimumWidth();
+    setMinimumWidth(width());  // to remain the same width
     if (show) {
         ui->adv_button->setText(QString::fromUtf8(C_UP));
         ui->settings_group->setVisible(true);
@@ -284,7 +286,8 @@ void AddNewTorrentDialog::showAdvancedSettings(bool show)
         ui->infoGroup->setVisible(false);
         ui->buttonsHLayout->insertWidget(0, layout()->takeAt(layout()->indexOf(ui->never_show_cb) + 1)->widget());
     }
-    relayout();
+    adjustSize();
+    setMinimumWidth(minimumW);
 }
 
 void AddNewTorrentDialog::saveSavePathHistory() const
@@ -357,7 +360,6 @@ void AddNewTorrentDialog::onSavePathChanged(int index)
     // Toggle default save path setting checkbox visibility
     ui->default_save_path_cb->setChecked(false);
     ui->default_save_path_cb->setVisible(QDir(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString()) != QDir(Preferences::instance()->getSavePath()));
-    relayout();
 
     // Remember index
     m_oldIndex = index;
@@ -412,15 +414,6 @@ void AddNewTorrentDialog::browseButton_clicked()
         ui->save_path_combo->setCurrentIndex(m_oldIndex);
     }
     connect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
-}
-
-void AddNewTorrentDialog::relayout()
-{
-    qApp->processEvents();
-    int min_width = minimumWidth();
-    setMinimumWidth(width());
-    adjustSize();
-    setMinimumWidth(min_width);
 }
 
 void AddNewTorrentDialog::renameSelectedFile()

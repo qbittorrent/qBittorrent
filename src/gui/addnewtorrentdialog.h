@@ -68,7 +68,6 @@ private slots:
     void displayContentTreeMenu(const QPoint&);
     void updateDiskSpaceLabel();
     void onSavePathChanged(int);
-    void relayout();
     void renameSelectedFile();
     void setdialogPosition();
     void updateMetadata(const BitTorrent::TorrentInfo &info);
