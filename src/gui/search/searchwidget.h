@@ -40,7 +40,6 @@
 class MainWindow;
 class LineEdit;
 class SearchEngine;
-struct SearchResult;
 class SearchTab;
 
 class SearchWidget: public QWidget, private Ui::SearchWidget
@@ -52,26 +51,21 @@ public:
     explicit SearchWidget(MainWindow *mainWindow);
     ~SearchWidget();
 
-    void downloadTorrent(QString url);
     void giveFocusToSearchInput();
 
 private slots:
     // Search slots
-    void tab_changed(int); //to prevent the use of the download button when the tab is empty
+    void currentTabChanged(int); //to prevent the use of the download button when the tab is empty
     void on_searchButton_clicked();
-    void on_downloadButton_clicked();
-    void on_goToDescBtn_clicked();
-    void on_copyURLBtn_clicked();
     void on_pluginsButton_clicked();
 
     void closeTab(int index);
-    void appendSearchResults(const QList<SearchResult> &results);
     void searchStarted();
-    void searchFinished(bool cancelled);
+    void searchFinished(bool);
     void searchFailed();
     void selectMultipleBox(const QString &text);
+    void tabStatusUpdated();
 
-    void saveResultsColumnsWidth();
     void fillCatCombobox();
     void fillPluginComboBox();
     void searchTextEdited(QString);
@@ -83,13 +77,9 @@ private:
     LineEdit *m_searchPattern;
     SearchEngine *m_searchEngine;
     QPointer<SearchTab> m_currentSearchTab; // Selected tab
-    QPointer<SearchTab> m_activeSearchTab; // Tab with running search
-    QList<QPointer<SearchTab> > m_allTabs; // To store all tabs
+    QList<QPointer<SearchTab>> m_allTabs; // To store all tabs
     MainWindow *m_mainWindow;
     bool m_isNewQueryString;
-    bool m_noSearchResults;
-    QByteArray m_searchResultLineTruncated;
-    unsigned long m_nbSearchResults;
 };
 
 #endif // SEARCHWIDGET_H
