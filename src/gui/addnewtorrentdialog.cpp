@@ -272,7 +272,7 @@ void AddNewTorrentDialog::showAdvancedSettings(bool show)
         ui->adv_button->setText(QString::fromUtf8(C_UP));
         ui->settings_group->setVisible(true);
         ui->infoGroup->setVisible(true);
-        if (m_hasMetadata && (m_torrentInfo.filesCount() > 1)) {
+        if (m_hasMetadata && (hasSingleFileInFolder() || m_torrentInfo.filesCount() > 1)) {
             ui->content_tree->setVisible(true);
         }
         else {
@@ -374,7 +374,8 @@ void AddNewTorrentDialog::browseButton_clicked()
     QString cur_save_path = ui->save_path_combo->itemText(m_oldIndex);
     QString new_path, old_filename, new_filename;
 
-    if (m_torrentInfo.isValid() && (m_torrentInfo.filesCount() == 1)) {
+    if (m_torrentInfo.isValid()
+      && (m_torrentInfo.filesCount() == 1 && !isFileInFolder(m_torrentInfo.filePath(0)))) {
         old_filename = Utils::Fs::fileName(cur_save_path);
         new_path = QFileDialog::getSaveFileName(this, tr("Choose save path"), cur_save_path, QString(), 0, QFileDialog::DontConfirmOverwrite);
         if (!new_path.isEmpty())
@@ -545,7 +546,7 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint&)
     QMenu myFilesLlistMenu;
     const QModelIndexList selectedRows = ui->content_tree->selectionModel()->selectedRows(0);
     QAction *actRename = 0;
-    if ((selectedRows.size() == 1) && (m_torrentInfo.filesCount() > 1)) {
+    if (selectedRows.size() == 1 && (hasSingleFileInFolder() || m_torrentInfo.filesCount() > 1)) {
         actRename = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
         myFilesLlistMenu.addSeparator();
     }
@@ -682,7 +683,7 @@ void AddNewTorrentDialog::setupTreeview()
         ui->date_lbl->setText(!m_torrentInfo.creationDate().isNull() ? m_torrentInfo.creationDate().toString(Qt::DefaultLocaleShortDate) : tr("Not available"));
 
         // Prepare content tree
-        if (m_torrentInfo.filesCount() > 1) {
+        if (hasSingleFileInFolder() || m_torrentInfo.filesCount() > 1) {
             m_contentModel = new TorrentContentFilterModel(this);
             connect(m_contentModel->model(), SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabel()));
             ui->content_tree->setModel(m_contentModel);
@@ -736,4 +737,15 @@ void AddNewTorrentDialog::handleDownloadFinished(const QString &url, const QStri
         open();
     else
         this->deleteLater();
+}
+
+bool AddNewTorrentDialog::isFileInFolder(const QString &filePath)
+{
+    return filePath.contains('/');
+}
+
+bool AddNewTorrentDialog::hasSingleFileInFolder()
+{
+    bool first_file_is_in_folder = isFileInFolder(m_torrentInfo.filePath(0));
+    return m_torrentInfo.filesCount() == 1 && first_file_is_in_folder;
 }
