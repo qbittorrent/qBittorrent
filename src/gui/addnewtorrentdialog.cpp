@@ -266,28 +266,28 @@ void AddNewTorrentDialog::showEvent(QShowEvent *event)
 
 void AddNewTorrentDialog::showAdvancedSettings(bool show)
 {
+    const int minimumW = minimumWidth();
+    setMinimumWidth(width());  // to remain the same width
     if (show) {
         ui->adv_button->setText(QString::fromUtf8(C_UP));
         ui->settings_group->setVisible(true);
-        ui->info_group->setVisible(true);
+        ui->infoGroup->setVisible(true);
         if (m_hasMetadata && (m_torrentInfo.filesCount() > 1)) {
             ui->content_tree->setVisible(true);
-            setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         }
         else {
             ui->content_tree->setVisible(false);
-            setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
         }
         static_cast<QVBoxLayout*>(layout())->insertWidget(layout()->indexOf(ui->never_show_cb) + 1, ui->adv_button);
     }
     else {
         ui->adv_button->setText(QString::fromUtf8(C_DOWN));
         ui->settings_group->setVisible(false);
-        ui->info_group->setVisible(false);
+        ui->infoGroup->setVisible(false);
         ui->buttonsHLayout->insertWidget(0, layout()->takeAt(layout()->indexOf(ui->never_show_cb) + 1)->widget());
-        setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     }
-    relayout();
+    adjustSize();
+    setMinimumWidth(minimumW);
 }
 
 void AddNewTorrentDialog::saveSavePathHistory() const
@@ -348,7 +348,7 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
 
     QString size_string = torrent_size ? Utils::Misc::friendlyUnit(torrent_size) : QString(tr("Not Available", "This size is unavailable."));
     size_string += " (";
-    size_string += tr("Free disk space: %1").arg(Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(
+    size_string += tr("Free space on disk: %1").arg(Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(
                                                                    ui->save_path_combo->itemData(
                                                                        ui->save_path_combo->currentIndex()).toString())));
     size_string += ")";
@@ -360,7 +360,6 @@ void AddNewTorrentDialog::onSavePathChanged(int index)
     // Toggle default save path setting checkbox visibility
     ui->default_save_path_cb->setChecked(false);
     ui->default_save_path_cb->setVisible(QDir(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString()) != QDir(Preferences::instance()->getSavePath()));
-    relayout();
 
     // Remember index
     m_oldIndex = index;
@@ -415,15 +414,6 @@ void AddNewTorrentDialog::browseButton_clicked()
         ui->save_path_combo->setCurrentIndex(m_oldIndex);
     }
     connect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
-}
-
-void AddNewTorrentDialog::relayout()
-{
-    qApp->processEvents();
-    int min_width = minimumWidth();
-    setMinimumWidth(width());
-    adjustSize();
-    setMinimumWidth(min_width);
 }
 
 void AddNewTorrentDialog::renameSelectedFile()
@@ -689,7 +679,7 @@ void AddNewTorrentDialog::setupTreeview()
 
         // Set torrent information
         ui->comment_lbl->setText(Utils::Misc::parseHtmlLinks(m_torrentInfo.comment()));
-        ui->date_lbl->setText(!m_torrentInfo.creationDate().isNull() ? m_torrentInfo.creationDate().toString(Qt::DefaultLocaleLongDate) : tr("Not available"));
+        ui->date_lbl->setText(!m_torrentInfo.creationDate().isNull() ? m_torrentInfo.creationDate().toString(Qt::DefaultLocaleShortDate) : tr("Not available"));
 
         // Prepare content tree
         if (m_torrentInfo.filesCount() > 1) {
