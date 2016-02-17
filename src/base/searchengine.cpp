@@ -156,8 +156,7 @@ void SearchEngine::installPlugin(const QString &source)
 
     if (Utils::Misc::isUrl(source)) {
         Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, true);
-        connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(pluginDownloaded(QString, QString)));
-        connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(pluginDownloadFailed(QString, QString)));
+        connect(handler, SIGNAL(downloadFinished(Net::DownloadHandler*)), this, SLOT(pluginDownloaded(Net::DownloadHandler*)));
     }
     else {
         QString path = source;
@@ -247,8 +246,7 @@ void SearchEngine::checkForUpdates()
 {
     // Download version file from update server on sourceforge
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(m_updateUrl + "versions.txt");
-    connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), this, SLOT(versionInfoDownloaded(QString, QByteArray)));
-    connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(versionInfoDownloadFailed(QString, QString)));
+    connect(handler, SIGNAL(downloadFinished(Net::DownloadHandler*)), this, SLOT(versionInfoDownloaded(Net::DownloadHandler*)));
 }
 
 void SearchEngine::cancelSearch()
@@ -325,36 +323,36 @@ void SearchEngine::processFinished(int exitcode)
         emit searchFailed();
 }
 
-void SearchEngine::versionInfoDownloaded(const QString &url, const QByteArray &data)
+void SearchEngine::versionInfoDownloaded(Net::DownloadHandler *downloadHandler)
 {
-    Q_UNUSED(url)
-    parseVersionInfo(data);
-}
+    downloadHandler->deleteLater();
 
-void SearchEngine::versionInfoDownloadFailed(const QString &url, const QString &reason)
-{
-    Q_UNUSED(url)
-    emit checkForUpdatesFailed(tr("Update server is temporarily unavailable. %1").arg(reason));
-}
-
-void SearchEngine::pluginDownloaded(const QString &url, QString filePath)
-{
-    filePath = Utils::Fs::fromNativePath(filePath);
-
-    QString pluginName = Utils::Fs::fileName(url);
-    pluginName.chop(pluginName.size() - pluginName.lastIndexOf(".")); // Remove extension
-    installPlugin_impl(pluginName, filePath);
-    Utils::Fs::forceRemove(filePath);
-}
-
-void SearchEngine::pluginDownloadFailed(const QString &url, const QString &reason)
-{
-    QString pluginName = url.split('/').last();
-    pluginName.replace(".py", "", Qt::CaseInsensitive);
-    if (pluginInfo(pluginName))
-        emit pluginUpdateFailed(pluginName, tr("Failed to download the plugin file. %1").arg(reason));
+    if (downloadHandler->error() == Net::DownloadHandler::NoError)
+        parseVersionInfo(downloadHandler->data());
     else
-        emit pluginInstallationFailed(pluginName, tr("Failed to download the plugin file. %1").arg(reason));
+       emit checkForUpdatesFailed(tr("Update server is temporarily unavailable. %1").arg(downloadHandler->errorString()));
+}
+
+void SearchEngine::pluginDownloaded(Net::DownloadHandler *downloadHandler)
+{
+    downloadHandler->deleteLater();
+
+    if (downloadHandler->error() == Net::DownloadHandler::NoError) {
+        QString filePath = Utils::Fs::fromNativePath(downloadHandler->filePath());
+
+        QString pluginName = Utils::Fs::fileName(downloadHandler->url());
+        pluginName.chop(pluginName.size() - pluginName.lastIndexOf(".")); // Remove extension
+        installPlugin_impl(pluginName, filePath);
+        Utils::Fs::forceRemove(filePath);
+    }
+    else {
+        QString pluginName = downloadHandler->url().split('/').last();
+        pluginName.replace(".py", "", Qt::CaseInsensitive);
+        if (pluginInfo(pluginName))
+            emit pluginUpdateFailed(pluginName, tr("Failed to download the plugin file. %1").arg(downloadHandler->errorString()));
+        else
+            emit pluginInstallationFailed(pluginName, tr("Failed to download the plugin file. %1").arg(downloadHandler->errorString()));
+    }
 }
 
 // Update nova.py search plugin if necessary

@@ -43,6 +43,11 @@ namespace BitTorrent
     class MagnetUri;
 }
 
+namespace Net
+{
+    class DownloadHandler;
+}
+
 namespace Ui
 {
     class AddNewTorrentDialog;
@@ -72,9 +77,7 @@ private slots:
     void setdialogPosition();
     void updateMetadata(const BitTorrent::TorrentInfo &info);
     void browseButton_clicked();
-    void handleDownloadFailed(const QString &url, const QString &reason);
-    void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
-    void handleDownloadFinished(const QString &url, const QString &filePath);
+    void handleDownloadFinished(Net::DownloadHandler *downloadHandler);
 
 protected slots:
     virtual void accept();

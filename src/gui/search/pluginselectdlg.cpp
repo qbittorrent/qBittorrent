@@ -295,8 +295,7 @@ void PluginSelectDlg::addNewPlugin(QString pluginName)
     else {
         // Icon is missing, we must download it
         Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(plugin->url + "/favicon.ico", true);
-        connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(iconDownloaded(QString, QString)));
-        connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(iconDownloadFailed(QString, QString)));
+        connect(handler, SIGNAL(downloadFinished(Net::DownloadHandler*)), this, SLOT(iconDownloadFinished(Net::DownloadHandler*)));
     }
     item->setText(PLUGIN_VERSION, QString::number(plugin->version, 'f', 2));
 }
@@ -360,14 +359,21 @@ void PluginSelectDlg::askForLocalPlugin()
     }
 }
 
-void PluginSelectDlg::iconDownloaded(const QString &url, QString filePath)
+void PluginSelectDlg::iconDownloadFinished(Net::DownloadHandler *downloadHandler)
 {
-    filePath = Utils::Fs::fromNativePath(filePath);
+    downloadHandler->deleteLater();
+
+    if (downloadHandler->error() != Net::DownloadHandler::NoError) {
+        qDebug("Could not download favicon: %s, reason: %s", qPrintable(downloadHandler->url()), qPrintable(downloadHandler->errorString()));
+        return;
+    }
+
+    QString filePath = Utils::Fs::fromNativePath(downloadHandler->filePath());
 
     // Icon downloaded
     QImage fileIcon;
     if (fileIcon.load(filePath)) {
-        foreach (QTreeWidgetItem *item, findItemsWithUrl(url)) {
+        foreach (QTreeWidgetItem *item, findItemsWithUrl(downloadHandler->url())) {
             QString id = item->text(PLUGIN_ID);
             PluginInfo *plugin = m_pluginManager->pluginInfo(id);
             if (!plugin) continue;
@@ -381,11 +387,6 @@ void PluginSelectDlg::iconDownloaded(const QString &url, QString filePath)
     }
     // Delete tmp file
     Utils::Fs::forceRemove(filePath);
-}
-
-void PluginSelectDlg::iconDownloadFailed(const QString &url, const QString &reason)
-{
-    qDebug("Could not download favicon: %s, reason: %s", qPrintable(url), qPrintable(reason));
 }
 
 void PluginSelectDlg::checkForUpdatesFinished(const QHash<QString, qreal> &updateInfo)

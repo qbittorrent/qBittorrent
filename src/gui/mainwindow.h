@@ -53,18 +53,21 @@ class LineEdit;
 class ExecutionLog;
 class PowerManagement;
 
-QT_BEGIN_NAMESPACE
 class QCloseEvent;
 class QFileSystemWatcher;
 class QShortcut;
 class QSplitter;
 class QTabWidget;
 class QTimer;
-QT_END_NAMESPACE
 
 namespace BitTorrent
 {
     class TorrentHandle;
+}
+
+namespace Net
+{
+    class DownloadHandler;
 }
 
 class MainWindow: public QMainWindow, private Ui::MainWindow
@@ -156,8 +159,7 @@ private:
     void installPython();
 
 private slots:
-    void pythonDownloadSuccess(const QString &url, const QString &filePath);
-    void pythonDownloadFailure(const QString &url, const QString &error);
+    void pythonDownloadFinished(Net::DownloadHandler *downloadHandler);
 #endif
     void addToolbarContextMenu();
 

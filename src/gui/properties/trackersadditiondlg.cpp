@@ -60,16 +60,26 @@ void TrackersAdditionDlg::on_uTorrentListButton_clicked()
 {
     uTorrentListButton->setEnabled(false);
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(QString("http://www.torrentz.com/announce_%1").arg(m_torrent->hash()), true);
-    connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(parseUTorrentList(QString, QString)));
-    connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(getTrackerError(QString, QString)));
+    connect(handler, SIGNAL(downloadFinished(Net::DownloadHandler*)), this, SLOT(downloadFinished(Net::DownloadHandler*)));
     //Just to show that it takes times
     setCursor(Qt::WaitCursor);
 }
 
-void TrackersAdditionDlg::parseUTorrentList(const QString &, const QString &path)
+void TrackersAdditionDlg::downloadFinished(Net::DownloadHandler *downloadHandler)
 {
-    QFile list_file(path);
-    if (!list_file.open(QFile::ReadOnly)) {
+    downloadHandler->deleteLater();
+
+    if (downloadHandler->error() != Net::DownloadHandler::NoError) {
+        //To restore the cursor ...
+        setCursor(Qt::ArrowCursor);
+        uTorrentListButton->setEnabled(true);
+        QMessageBox::warning(this, tr("Download error"), tr("The trackers list could not be downloaded, reason: %1").arg(downloadHandler->errorString()), QMessageBox::Ok);
+        return;
+    }
+
+    QString path = downloadHandler->filePath();
+    QFile listFile(path);
+    if (!listFile.open(QFile::ReadOnly)) {
         QMessageBox::warning(this, tr("I/O Error"), tr("Error while trying to open the downloaded file."), QMessageBox::Ok);
         setCursor(Qt::ArrowCursor);
         uTorrentListButton->setEnabled(true);
@@ -91,8 +101,8 @@ void TrackersAdditionDlg::parseUTorrentList(const QString &, const QString &path
     if (!trackers_list->toPlainText().isEmpty() && !trackers_list->toPlainText().endsWith("\n"))
         trackers_list->insertPlainText("\n");
     int nb = 0;
-    while (!list_file.atEnd()) {
-        const QByteArray line = list_file.readLine().trimmed();
+    while (!listFile.atEnd()) {
+        const QByteArray line = listFile.readLine().trimmed();
         if (line.isEmpty()) continue;
         BitTorrent::TrackerEntry newTracker(line);
         if (!existingTrackers.contains(newTracker)) {
@@ -101,7 +111,7 @@ void TrackersAdditionDlg::parseUTorrentList(const QString &, const QString &path
         }
     }
     // Clean up
-    list_file.close();
+    listFile.close();
     Utils::Fs::forceRemove(path);
     //To restore the cursor ...
     setCursor(Qt::ArrowCursor);
@@ -109,14 +119,6 @@ void TrackersAdditionDlg::parseUTorrentList(const QString &, const QString &path
     // Display information message if necessary
     if (nb == 0)
         QMessageBox::information(this, tr("No change"), tr("No additional trackers were found."), QMessageBox::Ok);
-}
-
-void TrackersAdditionDlg::getTrackerError(const QString &, const QString &error)
-{
-    //To restore the cursor ...
-    setCursor(Qt::ArrowCursor);
-    uTorrentListButton->setEnabled(true);
-    QMessageBox::warning(this, tr("Download error"), tr("The trackers list could not be downloaded, reason: %1").arg(error), QMessageBox::Ok);
 }
 
 QStringList TrackersAdditionDlg::askForTrackers(BitTorrent::TorrentHandle *const torrent)

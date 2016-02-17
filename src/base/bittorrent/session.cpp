@@ -706,27 +706,29 @@ void Session::processBigRatios()
     }
 }
 
-void Session::handleDownloadFailed(const QString &url, const QString &reason)
-{
-    emit downloadFromUrlFailed(url, reason);
-}
-
-void Session::handleRedirectedToMagnet(const QString &url, const QString &magnetUri)
-{
-    addTorrent_impl(m_downloadedTorrents.take(url), MagnetUri(magnetUri));
-}
-
 void Session::switchToAlternativeMode(bool alternative)
 {
     changeSpeedLimitMode_impl(alternative);
 }
 
 // Add to BitTorrent session the downloaded torrent file
-void Session::handleDownloadFinished(const QString &url, const QString &filePath)
+void Session::handleDownloadFinished(Net::DownloadHandler *downloadHandler)
 {
-    emit downloadFromUrlFinished(url);
-    addTorrent_impl(m_downloadedTorrents.take(url), MagnetUri(), TorrentInfo::loadFromFile(filePath));
-    Utils::Fs::forceRemove(filePath); // remove temporary file
+    downloadHandler->deleteLater();
+
+    if (downloadHandler->error() == Net::DownloadHandler::NoError) {
+        emit downloadFromUrlFinished(downloadHandler->url());
+        addTorrent_impl(m_downloadedTorrents.take(downloadHandler->url()),
+                        MagnetUri(), TorrentInfo::loadFromFile(downloadHandler->filePath()));
+        Utils::Fs::forceRemove(downloadHandler->filePath()); // remove temporary file
+    }
+    else {
+        if (downloadHandler->error() == Net::DownloadHandler::RedirectedToMagnet)
+            addTorrent_impl(m_downloadedTorrents.take(downloadHandler->url()),
+                            MagnetUri(QString::fromUtf8(downloadHandler->data())));
+        else
+            emit downloadFromUrlFailed(downloadHandler->url(), downloadHandler->errorString());
+    }
 }
 
 void Session::changeSpeedLimitMode(bool alternative)
@@ -949,10 +951,8 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
     else if (Utils::Misc::isUrl(source)) {
         Logger::instance()->addMessage(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));
         // Launch downloader
-        Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, true, 10485760 /* 10MB */, true);
-        connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleDownloadFinished(QString, QString)));
-        connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleDownloadFailed(QString, QString)));
-        connect(handler, SIGNAL(redirectedToMagnet(QString, QString)), this, SLOT(handleRedirectedToMagnet(QString, QString)));
+        Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, true, 10485760 /* 10MB */);
+        connect(handler, SIGNAL(downloadFinished(Net::DownloadHandler*)), this, SLOT(handleDownloadFinished(Net::DownloadHandler*)));
         m_downloadedTorrents[handler->url()] = params;
     }
     else {

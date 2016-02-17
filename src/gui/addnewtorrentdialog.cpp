@@ -137,10 +137,8 @@ void AddNewTorrentDialog::show(QString source, QWidget *parent)
 
     if (Utils::Misc::isUrl(source)) {
         // Launch downloader
-        Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, true, 10485760 /* 10MB */, true);
-        connect(handler, SIGNAL(downloadFinished(QString, QString)), dlg, SLOT(handleDownloadFinished(QString, QString)));
-        connect(handler, SIGNAL(downloadFailed(QString, QString)), dlg, SLOT(handleDownloadFailed(QString, QString)));
-        connect(handler, SIGNAL(redirectedToMagnet(QString, QString)), dlg, SLOT(handleRedirectedToMagnet(QString, QString)));
+        Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, true, 10485760 /* 10MB */);
+        connect(handler, SIGNAL(downloadFinished(Net::DownloadHandler*)), dlg, SLOT(handleDownloadFinished(Net::DownloadHandler*)));
     }
     else {
         bool ok = false;
@@ -714,25 +712,20 @@ void AddNewTorrentDialog::setupTreeview()
     setdialogPosition();
 }
 
-void AddNewTorrentDialog::handleDownloadFailed(const QString &url, const QString &reason)
+void AddNewTorrentDialog::handleDownloadFinished(Net::DownloadHandler *downloadHandler)
 {
-    MessageBoxRaised::critical(0, tr("Download Error"), QString("Cannot download '%1': %2").arg(url).arg(reason));
-    this->deleteLater();
-}
+    downloadHandler->deleteLater();
 
-void AddNewTorrentDialog::handleRedirectedToMagnet(const QString &url, const QString &magnetUri)
-{
-    Q_UNUSED(url)
-    if (loadMagnet(BitTorrent::MagnetUri(magnetUri)))
-        open();
+    bool ok = false;
+    if (downloadHandler->error() == Net::DownloadHandler::NoError)
+        ok = loadTorrent(downloadHandler->filePath());
+    else if (downloadHandler->error() == Net::DownloadHandler::RedirectedToMagnet)
+        ok = loadMagnet(BitTorrent::MagnetUri(QString::fromUtf8(downloadHandler->data())));
     else
-        this->deleteLater();
-}
+        MessageBoxRaised::critical(0, tr("Download Error"), QString("Cannot download '%1': %2")
+                                   .arg(downloadHandler->url()).arg(downloadHandler->errorString()));
 
-void AddNewTorrentDialog::handleDownloadFinished(const QString &url, const QString &filePath)
-{
-    Q_UNUSED(url)
-    if (loadTorrent(filePath))
+    if (ok)
         open();
     else
         this->deleteLater();

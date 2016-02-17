@@ -34,10 +34,8 @@
 #include <QListWidget>
 #include <QFrame>
 
-QT_BEGIN_NAMESPACE
 class QResizeEvent;
 class QCheckBox;
-QT_END_NAMESPACE
 
 class TransferListWidget;
 
@@ -45,6 +43,11 @@ namespace BitTorrent
 {
     class TorrentHandle;
     class TrackerEntry;
+}
+
+namespace Net
+{
+    class DownloadHandler;
 }
 
 class FiltersBase: public QListWidget
@@ -142,8 +145,7 @@ public slots:
     void trackerWarning(const QString &hash, const QString &tracker);
 
 private slots:
-    void handleFavicoDownload(const QString &url, const QString &filePath);
-    void handleFavicoFailure(const QString &url, const QString &reason);
+    void favicoDownloadFinished(Net::DownloadHandler *downloadHandler);
 
 private:
     // These 4 methods are virtual slots in the base class.

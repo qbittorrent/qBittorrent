@@ -41,6 +41,11 @@
 
 #include "rssfile.h"
 
+namespace Net
+{
+    class DownloadHandler;
+}
+
 namespace Rss
 {
     class Folder;
@@ -89,9 +94,8 @@ namespace Rss
         void recheckRssItemsForDownload();
 
     private slots:
-        void handleIconDownloadFinished(const QString &url, const QString &filePath);
-        void handleRssDownloadFinished(const QString &url, const QByteArray &data);
-        void handleRssDownloadFailed(const QString &url, const QString &error);
+        void handleIconDownloadFinished(Net::DownloadHandler *downloadHandler);
+        void handleRssDownloadFinished(Net::DownloadHandler *downloadHandler);
         void handleFeedTitle(const QString &title);
         void handleNewArticle(const QVariantHash &article);
         void handleParsingFinished(const QString &error);

@@ -79,17 +79,23 @@ void DNSUpdater::checkPublicIP()
     Q_ASSERT(m_state == OK);
 
     DownloadHandler *handler = DownloadManager::instance()->downloadUrl(
-                "http://checkip.dyndns.org", false, 0, false,
+                "http://checkip.dyndns.org", false, 0,
                 QString("qBittorrent/%1").arg(VERSION));
-    connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), SLOT(ipRequestFinished(QString, QByteArray)));
-    connect(handler, SIGNAL(downloadFailed(QString, QString)), SLOT(ipRequestFailed(QString, QString)));
+    connect(handler, SIGNAL(downloadFinished(Net::DownloadHandler*)), SLOT(ipRequestFinished(Net::DownloadHandler*)));
 
     m_lastIPCheckTime = QDateTime::currentDateTime();
 }
 
-void DNSUpdater::ipRequestFinished(const QString &url, const QByteArray &data)
+void DNSUpdater::ipRequestFinished(Net::DownloadHandler *downloadHandler)
 {
-    Q_UNUSED(url);
+    downloadHandler->deleteLater();
+
+    if (downloadHandler->error() != Net::DownloadHandler::NoError) {
+        qWarning() << "IP request failed:" << downloadHandler->errorString();
+        return;
+    }
+
+    QByteArray data = downloadHandler->data();
 
     // Parse response
     QRegExp ipregex("Current IP Address:\\s+([^<]+)</body>");
@@ -114,22 +120,15 @@ void DNSUpdater::ipRequestFinished(const QString &url, const QByteArray &data)
     }
 }
 
-void DNSUpdater::ipRequestFailed(const QString &url, const QString &error)
-{
-    Q_UNUSED(url);
-    qWarning() << "IP request failed:" << error;
-}
-
 void DNSUpdater::updateDNSService()
 {
     qDebug() << Q_FUNC_INFO;
 
     m_lastIPCheckTime = QDateTime::currentDateTime();
     DownloadHandler *handler = DownloadManager::instance()->downloadUrl(
-                getUpdateUrl(), false, 0, false,
+                getUpdateUrl(), false, 0,
                 QString("qBittorrent/%1").arg(VERSION));
-    connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), SLOT(ipUpdateFinished(QString, QByteArray)));
-    connect(handler, SIGNAL(downloadFailed(QString, QString)), SLOT(ipUpdateFailed(QString, QString)));
+    connect(handler, SIGNAL(downloadFinished(Net::DownloadHandler*)), SLOT(ipUpdateFinished(Net::DownloadHandler*)));
 }
 
 QString DNSUpdater::getUpdateUrl() const
@@ -173,17 +172,15 @@ QString DNSUpdater::getUpdateUrl() const
     return url.toString();
 }
 
-void DNSUpdater::ipUpdateFinished(const QString &url, const QByteArray &data)
+void DNSUpdater::ipUpdateFinished(Net::DownloadHandler *downloadHandler)
 {
-    Q_UNUSED(url);
-    // Parse reply
-    processIPUpdateReply(data);
-}
+    downloadHandler->deleteLater();
 
-void DNSUpdater::ipUpdateFailed(const QString &url, const QString &error)
-{
-    Q_UNUSED(url);
-    qWarning() << "IP update failed:" << error;
+    if (downloadHandler->error() == Net::DownloadHandler::NoError)
+        // Parse reply
+        processIPUpdateReply(downloadHandler->data());
+    else
+        qWarning() << "IP update failed:" << downloadHandler->errorString();
 }
 
 void DNSUpdater::processIPUpdateReply(const QString &reply)

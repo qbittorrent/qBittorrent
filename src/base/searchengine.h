@@ -38,6 +38,11 @@
 class QProcess;
 class QTimer;
 
+namespace Net
+{
+    class DownloadHandler;
+}
+
 struct PluginInfo
 {
     QString name;
@@ -106,10 +111,8 @@ private slots:
     void onTimeout();
     void readSearchOutput();
     void processFinished(int exitcode);
-    void versionInfoDownloaded(const QString &url, const QByteArray &data);
-    void versionInfoDownloadFailed(const QString &url, const QString &reason);
-    void pluginDownloaded(const QString &url, QString filePath);
-    void pluginDownloadFailed(const QString &url, const QString &reason);
+    void versionInfoDownloaded(Net::DownloadHandler *downloadHandler);
+    void pluginDownloaded(Net::DownloadHandler *downloadHandler);
 
 private:
     void update();
