@@ -53,7 +53,7 @@ CONFIG(debug, debug|release) {
 # Enable backtrace support
 CONFIG += strace_win
 
-win32-g++ {
+win32-g++* {
     include(winconf-mingw.pri)
 }
 else {
