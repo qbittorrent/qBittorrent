@@ -22,17 +22,17 @@ RC_FILE = qbittorrent_mingw.rc
 
 # Adapt the lib names/versions accordingly
 CONFIG(debug, debug|release) {
-  LIBS += libtorrent \
-          libboost_system-mgw45-mt-d-1_47 \
-          libboost_filesystem-mgw45-mt-d-1_47 \
-          libboost_thread-mgw45-mt-d-1_47
+  LIBS += libtorrent-rasterbar \
+          libboost_system-mt \
+          libboost_filesystem-mt \
+          libboost_thread_win32-mt
 } else {
-  LIBS += libtorrent \
-          libboost_system-mgw45-mt-1_47 \
-          libboost_filesystem-mgw45-mt-1_47 \
-          libboost_thread-mgw45-mt-1_47
+  LIBS += libtorrent-rasterbar \
+          libboost_system-mt \
+          libboost_filesystem-mt \
+          libboost_thread_win32-mt
 }
 
 LIBS += libadvapi32 libshell32 libuser32
-LIBS += libcrypto.dll libssl.dll libwsock32 libws2_32 libz libiconv.dll
+LIBS += libcrypto libssl libwsock32 libws2_32 libz libiconv
 LIBS += libpowrprof
