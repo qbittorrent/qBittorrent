@@ -124,7 +124,7 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
     const Preferences* const pref = Preferences::instance();
     QTextCodec* latin1 = QTextCodec::codecForName("latin1");
     m_message = "";
-    m_message += encodeMimeHeader("Date", QDateTime::currentDateTime().toUTC().toString("ddd, d MMM yyyy hh:mm:ss UT"), latin1);
+    m_message += "Date: " + getCurrentDateTime().toLatin1() + "\r\n";
     m_message += encodeMimeHeader("From", from, latin1);
     m_message += encodeMimeHeader("Subject", subject, latin1);
     m_message += encodeMimeHeader("To", to, latin1);
@@ -500,4 +500,30 @@ void Smtp::logError(const QString &msg)
 {
     qDebug() << "Email Notification Error:" << msg;
     Logger::instance()->addMessage(tr("Email Notification Error:") + " " + msg, Log::CRITICAL);
+}
+
+QString Smtp::getCurrentDateTime() const
+{
+    // return date & time in the format specified in RFC 2822, section 3.3
+    const QDateTime nowDateTime = QDateTime::currentDateTime();
+    const QDate nowDate = nowDateTime.date();
+    const QLocale eng(QLocale::English);
+
+    QString timeStr = nowDateTime.time().toString("HH:mm:ss");
+    QString weekDayStr = eng.dayName(nowDate.dayOfWeek(), QLocale::ShortFormat);
+    QString dayStr = QString::number(nowDate.day());
+    QString monthStr = eng.monthName(nowDate.month(), QLocale::ShortFormat);
+    QString yearStr = QString::number(nowDate.year());
+
+    QDateTime tmp = nowDateTime;
+    tmp.setTimeSpec(Qt::UTC);
+    int timeOffsetHour = nowDateTime.secsTo(tmp) / 3600;
+    int timeOffsetMin = nowDateTime.secsTo(tmp) / 60 - (60 * timeOffsetHour);
+    int timeOffset = timeOffsetHour * 100 + timeOffsetMin;
+    char buf[6] = {0};
+    std::snprintf(buf, sizeof(buf), "%+05d", timeOffset);
+    QString timeOffsetStr = buf;
+
+    QString ret = weekDayStr + ", " + dayStr + " " + monthStr + " " + yearStr + " " + timeStr + " " + timeOffsetStr;
+    return ret;
 }
