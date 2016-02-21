@@ -92,6 +92,8 @@ private:
     void saveState();
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = QString());
     void setupTreeview();
+    bool isFileInFolder(const QString &filePath);
+    bool hasSingleFileInFolder();
 
 private:
     Ui::AddNewTorrentDialog *ui;
