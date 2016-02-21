@@ -123,15 +123,14 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
 {
     const Preferences* const pref = Preferences::instance();
     QTextCodec* latin1 = QTextCodec::codecForName("latin1");
-    m_message = "";
-    m_message += "Date: " + getCurrentDateTime().toLatin1() + "\r\n";
-    m_message += encodeMimeHeader("From", from, latin1);
-    m_message += encodeMimeHeader("Subject", subject, latin1);
-    m_message += encodeMimeHeader("To", to, latin1);
-    m_message += "MIME-Version: 1.0\r\n";
-    m_message += "Content-Type: text/plain; charset=UTF-8\r\n";
-    m_message += "Content-Transfer-Encoding: base64\r\n";
-    m_message += "\r\n";
+    m_message = "Date: " + getCurrentDateTime().toLatin1() + "\r\n"
+                + encodeMimeHeader("From", from, latin1)
+                + encodeMimeHeader("Subject", subject, latin1)
+                + encodeMimeHeader("To", to, latin1)
+                + "MIME-Version: 1.0\r\n"
+                + "Content-Type: text/plain; charset=UTF-8\r\n"
+                + "Content-Transfer-Encoding: base64\r\n"
+                + "\r\n";
     // Encode the body in base64
     QString crlf_body = body;
     QByteArray b = crlf_body.replace("\n","\r\n").toUtf8().toBase64();
