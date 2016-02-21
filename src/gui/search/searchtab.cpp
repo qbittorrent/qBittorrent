@@ -30,25 +30,34 @@
 
 #include <QDir>
 #include <QTreeView>
-#include <QStandardItemModel>
 #include <QHeaderView>
+#include <QStandardItemModel>
 #include <QSortFilterProxyModel>
+#include <QClipboard>
 #include <QLabel>
 #include <QVBoxLayout>
+#include <QDesktopServices>
+#include <QUrl>
 #ifdef QBT_USES_QT5
 #include <QTableView>
 #endif
 
+#include "base/bittorrent/session.h"
 #include "base/utils/misc.h"
 #include "base/preferences.h"
+#include "base/searchengine.h"
+#include "addnewtorrentdialog.h"
 #include "searchsortmodel.h"
 #include "searchlistdelegate.h"
 #include "searchwidget.h"
 #include "searchtab.h"
 
-SearchTab::SearchTab(SearchWidget *parent)
+SearchTab::SearchTab(SearchEngine *searchEngine, SearchWidget *parent)
     : QWidget(parent)
+    , m_searchEngine(searchEngine)
     , m_parent(parent)
+    , m_isActive(true)
+    , m_nbSearchResults(0)
 {
     m_box = new QVBoxLayout(this);
     m_resultsLbl = new QLabel(this);
@@ -90,8 +99,8 @@ SearchTab::SearchTab(SearchWidget *parent)
     m_resultsBrowser->setAllColumnsShowFocus(true);
     m_resultsBrowser->setSortingEnabled(true);
 
-    // Connect signals to slots (search part)
-    connect(m_resultsBrowser, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(downloadSelectedItem(const QModelIndex&)));
+    connect(m_resultsBrowser, SIGNAL(doubleClicked(const QModelIndex&)), SLOT(downloadSelectedItem(const QModelIndex&)));
+    connect(m_resultsBrowser->header(), SIGNAL(sectionResized(int, int, int)), SLOT(saveResultsColumnsWidth()));
 
     // Load last columns width for search results list
     if (!loadColWidthResultsList())
@@ -99,18 +108,148 @@ SearchTab::SearchTab(SearchWidget *parent)
 
     // Sort by Seeds
     m_resultsBrowser->sortByColumn(SearchSortModel::SEEDS, Qt::DescendingOrder);
+
+    m_resultsLbl->setText(tr("Results <i>(%1)</i>:", "i.e: Search results").arg(0));
+
+    connect(m_searchEngine, SIGNAL(searchStarted()), SLOT(searchStarted()));
+    connect(m_searchEngine, SIGNAL(newSearchResults(QList<SearchResult>)), SLOT(appendSearchResults(QList<SearchResult>)));
+    connect(m_searchEngine, SIGNAL(searchFinished(bool)), SLOT(searchFinished(bool)));
+    connect(m_searchEngine, SIGNAL(searchFailed()), SLOT(searchFailed()));
 }
 
 void SearchTab::downloadSelectedItem(const QModelIndex &index)
 {
     QString torrentUrl = m_proxyModel->data(m_proxyModel->index(index.row(), SearchSortModel::DL_LINK)).toString();
     setRowColor(index.row(), "blue");
-    m_parent->downloadTorrent(torrentUrl);
+    downloadTorrent(torrentUrl);
 }
 
-QHeaderView* SearchTab::header() const
+void SearchTab::searchStarted()
 {
-    return m_resultsBrowser->header();
+    // Update SearchEngine widgets
+    m_status = tr("Searching...");
+    emit statusUpdated();
+}
+
+// Slot called when search is Finished
+// Search can be finished for 3 reasons :
+// Error | Stopped by user | Finished normally
+void SearchTab::searchFinished(bool cancelled)
+{
+    if (cancelled)
+        m_status = tr("Search aborted");
+    else if (m_nbSearchResults == 0)
+        m_status = tr("Search returned no results");
+    else
+        m_status = tr("Search has finished");
+
+    m_searchEngine->disconnect(this);
+    m_isActive = false;
+    emit statusUpdated();
+}
+
+void SearchTab::searchFailed()
+{
+#ifdef Q_OS_WIN
+    m_status = tr("Search aborted");
+#else
+    m_status = tr("An error occurred during search...");
+#endif
+
+    m_searchEngine->disconnect(this);
+    m_isActive = false;
+    emit statusUpdated();
+}
+
+void SearchTab::appendSearchResults(const QList<SearchResult> &results)
+{
+    foreach (const SearchResult &result, results) {
+        // Add item to search result list
+        int row = m_searchListModel->rowCount();
+        m_searchListModel->insertRow(row);
+
+        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::DL_LINK), result.fileUrl); // download URL
+        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::NAME), result.fileName); // Name
+        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::SIZE), result.fileSize); // Size
+        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::SEEDS), result.nbSeeders); // Seeders
+        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::LEECHS), result.nbLeechers); // Leechers
+        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::ENGINE_URL), result.siteUrl); // Search site URL
+        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::DESC_LINK), result.descrLink); // Description Link
+    }
+
+    m_nbSearchResults += results.size();
+    m_resultsLbl->setText(tr("Results <i>(%1)</i>:", "i.e: Search results").arg(m_nbSearchResults));
+
+    emit statusUpdated();
+}
+
+void SearchTab::saveResultsColumnsWidth()
+{
+    QStringList newWidthList;
+    short nbColumns = m_searchListModel->columnCount();
+    for (short i = 0; i < nbColumns; ++i)
+        if (m_resultsBrowser->columnWidth(i) > 0)
+            newWidthList << QString::number(m_resultsBrowser->columnWidth(i));
+    // Don't save the width of the last column (auto column width)
+    newWidthList.removeLast();
+    Preferences::instance()->setSearchColsWidth(newWidthList.join(" "));
+}
+
+// Download selected items in search results list
+void SearchTab::download()
+{
+    foreach (const QModelIndex &index, m_resultsBrowser->selectionModel()->selectedIndexes()) {
+        if (index.column() == SearchSortModel::NAME) {
+            downloadTorrent(m_proxyModel->data(m_proxyModel->index(index.row(), SearchSortModel::DL_LINK)).toString());
+            setRowColor(index.row(), "blue");
+        }
+    }
+}
+
+void SearchTab::goToDescriptionPage()
+{
+    foreach (const QModelIndex &index, m_resultsBrowser->selectionModel()->selectedIndexes()) {
+        if (index.column() == SearchSortModel::NAME) {
+            const QString descUrl = m_proxyModel->data(m_proxyModel->index(index.row(), SearchSortModel::DESC_LINK)).toString();
+            if (!descUrl.isEmpty())
+                QDesktopServices::openUrl(QUrl::fromEncoded(descUrl.toUtf8()));
+        }
+    }
+}
+
+void SearchTab::copyURLs()
+{
+    QStringList urls;
+    foreach (const QModelIndex &index, m_resultsBrowser->selectionModel()->selectedIndexes()) {
+        if (index.column() == SearchSortModel::NAME) {
+            const QString descUrl = m_proxyModel->data(m_proxyModel->index(index.row(), SearchSortModel::DESC_LINK)).toString();
+            if (!descUrl.isEmpty())
+                urls << descUrl.toUtf8();
+        }
+    }
+
+    if (!urls.empty()) {
+        QClipboard *clipboard = QApplication::clipboard();
+        clipboard->setText(urls.join("\n"));
+    }
+}
+
+void SearchTab::downloadTorrent(QString url)
+{
+    if (Preferences::instance()->useAdditionDialog())
+        AddNewTorrentDialog::show(url, this);
+    else
+        BitTorrent::Session::instance()->addTorrent(url);
+}
+
+ulong SearchTab::searchResultsCount() const
+{
+    return m_nbSearchResults;
+}
+
+bool SearchTab::isActive() const
+{
+    return m_isActive;
 }
 
 bool SearchTab::loadColWidthResultsList()
@@ -130,26 +269,6 @@ bool SearchTab::loadColWidthResultsList()
     return true;
 }
 
-QLabel* SearchTab::getCurrentLabel() const
-{
-    return m_resultsLbl;
-}
-
-QTreeView* SearchTab::getCurrentTreeView() const
-{
-    return m_resultsBrowser;
-}
-
-QSortFilterProxyModel* SearchTab::getCurrentSearchListProxy() const
-{
-    return m_proxyModel;
-}
-
-QStandardItemModel* SearchTab::getCurrentSearchListModel() const
-{
-    return m_searchListModel;
-}
-
 // Set the color of a row in data model
 void SearchTab::setRowColor(int row, QString color)
 {
@@ -164,9 +283,4 @@ void SearchTab::setRowColor(int row, QString color)
 QString SearchTab::status() const
 {
     return m_status;
-}
-
-void SearchTab::setStatus(const QString &value)
-{
-    m_status = value;
 }

@@ -31,6 +31,7 @@
 #ifndef SEARCHTAB_H
 #define SEARCHTAB_H
 
+#include <QList>
 #include <QWidget>
 
 class QLabel;
@@ -44,29 +45,39 @@ class QVBoxLayout;
 class SearchSortModel;
 class SearchListDelegate;
 class SearchWidget;
+class SearchEngine;
+struct SearchResult;
 
 class SearchTab: public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit SearchTab(SearchWidget *m_parent);
+    SearchTab(SearchEngine *searchEngine, SearchWidget *parent);
 
-    QLabel* getCurrentLabel() const;
-    QStandardItemModel* getCurrentSearchListModel() const;
-    QSortFilterProxyModel* getCurrentSearchListProxy() const;
-    QTreeView* getCurrentTreeView() const;
-    QHeaderView* header() const;
+    bool isActive() const;
     QString status() const;
+    ulong searchResultsCount() const;
 
-    bool loadColWidthResultsList();
-    void setRowColor(int row, QString color);
-    void setStatus(const QString &value);
+signals:
+    void statusUpdated();
 
 private slots:
     void downloadSelectedItem(const QModelIndex &index);
+    void searchStarted();
+    void searchFinished(bool cancelled);
+    void searchFailed();
+    void appendSearchResults(const QList<SearchResult> &results);
+    void saveResultsColumnsWidth();
+    void download();
+    void goToDescriptionPage();
+    void copyURLs();
 
 private:
+    bool loadColWidthResultsList();
+    void setRowColor(int row, QString color);
+    void downloadTorrent(QString url);
+
     QVBoxLayout *m_box;
     QLabel *m_resultsLbl;
     QTreeView *m_resultsBrowser;
@@ -75,6 +86,10 @@ private:
     SearchListDelegate *m_searchDelegate;
     SearchWidget *m_parent;
     QString m_status;
+    SearchEngine *m_searchEngine;
+    bool m_isActive;
+    ulong m_nbSearchResults;
+    QByteArray m_searchResultLineTruncated;
 };
 
 #endif // SEARCHTAB_H
