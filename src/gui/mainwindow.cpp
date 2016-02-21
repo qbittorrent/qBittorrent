@@ -1615,13 +1615,23 @@ void MainWindow::installPython()
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl("https://www.python.org/ftp/python/3.4.3/python-3.4.3.msi", true);
-    connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(pythonDownloadSuccess(QString, QString)));
-    connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(pythonDownloadFailure(QString, QString)));
+    connect(handler, SIGNAL(downloadFinished(Net::DownloadHandler*)), this, SLOT(pythonDownloadFinished(Net::DownloadHandler*)));
 }
 
-void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePath)
+void MainWindow::pythonDownloadFinished(Net::DownloadHandler *downloadHandler)
 {
-    Q_UNUSED(url)
+    downloadHandler->deleteLater();
+
+    if (downloadHandler->error() != Net::DownloadHandler::NoError) {
+        setCursor(QCursor(Qt::ArrowCursor));
+        QMessageBox::warning(this, tr("Download error"),
+                             tr("Python setup could not be downloaded, reason: %1.\nPlease install it manually.")
+                             .arg(downloadHandler->errorString()));
+        return;
+    }
+
+    QString filePath = downloadHandler->filePath();
+
     setCursor(QCursor(Qt::ArrowCursor));
     QFile::rename(filePath, filePath + ".msi");
     QProcess installer;
@@ -1644,12 +1654,5 @@ void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePa
         actionSearch_engine->setChecked(true);
         displaySearchTab(true);
     }
-}
-
-void MainWindow::pythonDownloadFailure(const QString &url, const QString &error)
-{
-    Q_UNUSED(url)
-    setCursor(QCursor(Qt::ArrowCursor));
-    QMessageBox::warning(this, tr("Download error"), tr("Python setup could not be downloaded, reason: %1.\nPlease install it manually.").arg(error));
 }
 #endif

@@ -37,6 +37,11 @@
 class QDropEvent;
 class SearchEngine;
 
+namespace Net
+{
+    class DownloadHandler;
+}
+
 class PluginSelectDlg: public QDialog, private Ui::PluginSelectDlg
 {
     Q_OBJECT
@@ -66,8 +71,7 @@ private slots:
     void enableSelection(bool enable);
     void askForLocalPlugin();
     void askForPluginUrl();
-    void iconDownloaded(const QString &url, QString filePath);
-    void iconDownloadFailed(const QString &url, const QString &reason);
+    void iconDownloadFinished(Net::DownloadHandler *downloadHandler);
 
     void checkForUpdatesFinished(const QHash<QString, qreal> &updateInfo);
     void checkForUpdatesFailed(const QString &reason);

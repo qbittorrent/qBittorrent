@@ -61,22 +61,27 @@ ProgramUpdater::ProgramUpdater(QObject *parent, bool invokedByUser)
 void ProgramUpdater::checkForUpdates()
 {
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(
-                RSS_URL, false, 0, false,
+                RSS_URL, false, 0,
                 // Don't change this User-Agent. In case our updater goes haywire,
                 // the filehost can identify it and contact us.
                 QString("qBittorrent/%1 ProgramUpdater (www.qbittorrent.org)").arg(VERSION));
-    connect(handler, SIGNAL(downloadFinished(QString,QByteArray)), SLOT(rssDownloadFinished(QString,QByteArray)));
-    connect(handler, SIGNAL(downloadFailed(QString,QString)), SLOT(rssDownloadFailed(QString,QString)));
+    connect(handler, SIGNAL(downloadFinished(Net::DownloadHandler*)), SLOT(rssDownloadFinished(Net::DownloadHandler*)));
 }
 
-void ProgramUpdater::rssDownloadFinished(const QString &url, const QByteArray &data)
+void ProgramUpdater::rssDownloadFinished(Net::DownloadHandler *downloadHandler)
 {
-    Q_UNUSED(url);
+    downloadHandler->deleteLater();
+
+    if (downloadHandler->error() != Net::DownloadHandler::NoError) {
+        qDebug() << "Downloading the new qBittorrent updates RSS failed:" << downloadHandler->errorString();
+        emit updateCheckFinished(false, QString(), m_invokedByUser);
+        return;
+    }
 
     qDebug("Finished downloading the new qBittorrent updates RSS");
     QString version;
 
-    QXmlStreamReader xml(data);
+    QXmlStreamReader xml(downloadHandler->data());
     bool inItem = false;
     QString updateLink;
     QString type;
@@ -115,14 +120,6 @@ void ProgramUpdater::rssDownloadFinished(const QString &url, const QByteArray &d
     }
 
     emit updateCheckFinished(!m_updateUrl.isEmpty(), version, m_invokedByUser);
-}
-
-void ProgramUpdater::rssDownloadFailed(const QString &url, const QString &error)
-{
-    Q_UNUSED(url);
-
-    qDebug() << "Downloading the new qBittorrent updates RSS failed:" << error;
-    emit updateCheckFinished(false, QString(), m_invokedByUser);
 }
 
 void ProgramUpdater::updateProgram()

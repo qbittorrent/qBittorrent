@@ -32,11 +32,9 @@
 
 #include <QObject>
 
-QT_BEGIN_NAMESPACE
 class QNetworkAccessManager;
 class QNetworkReply;
 class QUrl;
-QT_END_NAMESPACE
 
 namespace Net
 {
@@ -47,16 +45,28 @@ namespace Net
         Q_OBJECT
 
     public:
-        DownloadHandler(QNetworkReply *reply, DownloadManager *manager, bool saveToFile = false, qint64 limit = 0, bool handleRedirectToMagnet = false);
+        enum ErrorCode
+        {
+            NoError,
+            IOError,
+            SizeLimitError,
+            RedirectedToMagnet,
+
+            NetworkError
+        };
+
+        DownloadHandler(QNetworkReply *reply, DownloadManager *manager, bool saveToFile = false, qint64 limit = 0);
         ~DownloadHandler();
 
+        bool isFinished() const;
         QString url() const;
+        int error() const;
+        QString errorString() const;
+        QByteArray data() const;
+        QString filePath() const;
 
     signals:
-        void downloadFinished(const QString &url, const QByteArray &data);
-        void downloadFinished(const QString &url, const QString &filePath);
-        void downloadFailed(const QString &url, const QString &reason);
-        void redirectedToMagnet(const QString &url, const QString &magnetUri);
+        void downloadFinished(Net::DownloadHandler *downloadHandler);
 
     private slots:
         void processFinishedDownload();
@@ -71,8 +81,11 @@ namespace Net
         DownloadManager *m_manager;
         bool m_saveToFile;
         qint64 m_sizeLimit;
-        bool m_handleRedirectToMagnet;
         QString m_url;
+        QString m_filePath;
+        QByteArray m_data;
+        int m_error;
+        bool m_finished;
     };
 }
 

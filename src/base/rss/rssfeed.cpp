@@ -78,7 +78,7 @@ Feed::Feed(const QString &url, Manager *manager)
 
     // Download the RSS Feed icon
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(iconUrl(), true);
-    connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleIconDownloadFinished(QString, QString)));
+    connect(handler, SIGNAL(downloadFinished(Net::DownloadHandler*)), this, SLOT(handleIconDownloadFinished(Net::DownloadHandler*)));
 
     // Load old RSS articles
     loadItemsFromDisk();
@@ -182,8 +182,7 @@ bool Feed::refresh()
     m_loading = true;
     // Download the RSS again
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(m_url);
-    connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), this, SLOT(handleRssDownloadFinished(QString, QByteArray)));
-    connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleRssDownloadFailed(QString, QString)));
+    connect(handler, SIGNAL(downloadFinished(Net::DownloadHandler*)), this, SLOT(handleRssDownloadFinished(Net::DownloadHandler*)));
     return true;
 }
 
@@ -319,30 +318,34 @@ QString Feed::iconUrl() const
     return QString("http://%1/favicon.ico").arg(QUrl(m_url).host());
 }
 
-void Feed::handleIconDownloadFinished(const QString &url, const QString &filePath)
+void Feed::handleIconDownloadFinished(Net::DownloadHandler *downloadHandler)
 {
-    Q_UNUSED(url);
-    m_icon = filePath;
-    qDebug() << Q_FUNC_INFO << "icon path:" << m_icon;
-    m_manager->forwardFeedIconChanged(m_url, m_icon);
+    downloadHandler->deleteLater();
+
+    if (downloadHandler->error() == Net::DownloadHandler::NoError) {
+        m_icon = downloadHandler->filePath();
+        qDebug() << Q_FUNC_INFO << "icon path:" << m_icon;
+        m_manager->forwardFeedIconChanged(m_url, m_icon);
+    }
 }
 
-void Feed::handleRssDownloadFinished(const QString &url, const QByteArray &data)
+void Feed::handleRssDownloadFinished(Net::DownloadHandler *downloadHandler)
 {
-    Q_UNUSED(url);
-    qDebug() << Q_FUNC_INFO << "Successfully downloaded RSS feed at" << m_url;
-    // Parse the download RSS
-    QMetaObject::invokeMethod(m_parser, "parse", Qt::QueuedConnection, Q_ARG(QByteArray, data));
-}
+    downloadHandler->deleteLater();
 
-void Feed::handleRssDownloadFailed(const QString &url, const QString &error)
-{
-    Q_UNUSED(url);
-    m_inErrorState = true;
-    m_loading = false;
-    m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
-    qWarning() << "Failed to download RSS feed at" << m_url;
-    qWarning() << "Reason:" << error;
+    if (downloadHandler->error() == Net::DownloadHandler::NoError) {
+        qDebug() << Q_FUNC_INFO << "Successfully downloaded RSS feed at" << m_url;
+        // Parse the download RSS
+        QMetaObject::invokeMethod(m_parser, "parse", Qt::QueuedConnection,
+                                  Q_ARG(QByteArray, downloadHandler->data()));
+    }
+    else {
+        m_inErrorState = true;
+        m_loading = false;
+        m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
+        qWarning() << "Failed to download RSS feed at" << m_url;
+        qWarning() << "Reason:" << downloadHandler->errorString();
+    }
 }
 
 void Feed::handleFeedTitle(const QString &title)

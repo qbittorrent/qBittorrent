@@ -119,8 +119,7 @@ void GeoIPManager::manageDatabaseUpdate()
 void GeoIPManager::downloadDatabaseFile()
 {
     DownloadHandler *handler = DownloadManager::instance()->downloadUrl(DATABASE_URL);
-    connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), SLOT(downloadFinished(QString, QByteArray)));
-    connect(handler, SIGNAL(downloadFailed(QString, QString)), SLOT(downloadFailed(QString, QString)));
+    connect(handler, SIGNAL(downloadFinished(Net::DownloadHandler*)), SLOT(downloadFinished(Net::DownloadHandler*)));
 }
 
 QString GeoIPManager::lookup(const QHostAddress &hostAddr) const
@@ -412,9 +411,17 @@ void GeoIPManager::configure()
     }
 }
 
-void GeoIPManager::downloadFinished(const QString &url, QByteArray data)
+void GeoIPManager::downloadFinished(DownloadHandler *downloadHandler)
 {
-    Q_UNUSED(url);
+    downloadHandler->deleteLater();
+
+    if (downloadHandler->error() != Net::DownloadHandler::NoError) {
+        Logger::instance()->addMessage(tr("Couldn't download GeoIP database file. Reason: %1")
+                                       .arg(downloadHandler->errorString()), Log::WARNING);
+        return;
+    }
+
+    QByteArray data = downloadHandler->data();
 
     if (!Utils::Gzip::uncompress(data, data)) {
         Logger::instance()->addMessage(tr("Could not uncompress GeoIP database file."), Log::WARNING);
@@ -451,10 +458,4 @@ void GeoIPManager::downloadFinished(const QString &url, QByteArray data)
     else {
         Logger::instance()->addMessage(tr("Couldn't load GeoIP database. Reason: %1").arg(error), Log::WARNING);
     }
-}
-
-void GeoIPManager::downloadFailed(const QString &url, const QString &reason)
-{
-    Q_UNUSED(url);
-    Logger::instance()->addMessage(tr("Couldn't download GeoIP database file. Reason: %1").arg(reason), Log::WARNING);
 }

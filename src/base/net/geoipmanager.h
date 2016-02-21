@@ -40,6 +40,8 @@ class GeoIPDatabase;
 
 namespace Net
 {
+    class DownloadHandler;
+
     class GeoIPManager : public QObject
     {
         Q_OBJECT
@@ -55,8 +57,7 @@ namespace Net
 
     private slots:
         void configure();
-        void downloadFinished(const QString &url, QByteArray data);
-        void downloadFailed(const QString &url, const QString &reason);
+        void downloadFinished(Net::DownloadHandler *downloadHandler);
 
     private:
         GeoIPManager();

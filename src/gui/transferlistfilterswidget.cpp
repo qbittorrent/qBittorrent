@@ -613,12 +613,28 @@ void TrackerFiltersList::trackerWarning(const QString &hash, const QString &trac
 void TrackerFiltersList::downloadFavicon(const QString& url)
 {
     Net::DownloadHandler *h = Net::DownloadManager::instance()->downloadUrl(url, true);
-    connect(h, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleFavicoDownload(QString, QString)));
-    connect(h, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleFavicoFailure(QString, QString)));
+    connect(h, SIGNAL(downloadFinished(Net::DownloadHandler*)), this, SLOT(favicoDownloadFinished(Net::DownloadHandler*)));
 }
 
-void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString& filePath)
+void TrackerFiltersList::favicoDownloadFinished(Net::DownloadHandler *downloadHandler)
 {
+    downloadHandler->deleteLater();
+
+    QString url = downloadHandler->url();
+
+    if (downloadHandler->error() != Net::DownloadHandler::NoError) {
+        // Don't use getHost() on the url here. Print the full url. The error might relate to
+        // that.
+        Logger::instance()->addMessage(tr("Couldn't download favicon for URL '%1'. Reason: %2")
+                                       .arg(url).arg(downloadHandler->errorString()),
+                                       Log::WARNING);
+        if (url.endsWith(".ico", Qt::CaseInsensitive))
+            downloadFavicon(url.left(url.size() - 4) + ".png");
+        return;
+    }
+
+    QString filePath = downloadHandler->filePath();
+
     QString host = getHost(url);
     if (!m_trackers.contains(host)) {
         Utils::Fs::forceRemove(filePath);
@@ -647,16 +663,6 @@ void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString&
         trackerItem->setData(Qt::DecorationRole, QVariant(QIcon(filePath)));
         m_iconPaths.append(filePath);
     }
-}
-
-void TrackerFiltersList::handleFavicoFailure(const QString& url, const QString& error)
-{
-    // Don't use getHost() on the url here. Print the full url. The error might relate to
-    // that.
-    Logger::instance()->addMessage(tr("Couldn't download favicon for URL '%1'. Reason: %2").arg(url).arg(error),
-                                   Log::WARNING);
-    if (url.endsWith(".ico", Qt::CaseInsensitive))
-        downloadFavicon(url.left(url.size() - 4) + ".png");
 }
 
 void TrackerFiltersList::showMenu(QPoint)

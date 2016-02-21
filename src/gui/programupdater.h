@@ -34,6 +34,11 @@
 #include <QObject>
 #include <QUrl>
 
+namespace Net
+{
+    class DownloadHandler;
+}
+
 class ProgramUpdater: public QObject
 {
     Q_OBJECT
@@ -48,8 +53,7 @@ signals:
     void updateCheckFinished(bool updateAvailable, QString version, bool invokedByUser);
 
 private slots:
-    void rssDownloadFinished(const QString &url, const QByteArray &data);
-    void rssDownloadFailed(const QString &url, const QString &error);
+    void rssDownloadFinished(Net::DownloadHandler *downloadHandler);
 
 private:
     bool isVersionMoreRecent(const QString &remoteVersion) const;
