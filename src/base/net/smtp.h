@@ -102,6 +102,7 @@ namespace Net
         void authPlain();
         void authLogin();
         void logError(const QString &msg);
+        QString getCurrentDateTime() const;
 
         QByteArray m_message;
 #ifndef QT_NO_OPENSSL
