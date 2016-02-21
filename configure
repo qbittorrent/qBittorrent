@@ -8345,7 +8345,7 @@ fi
 $as_echo "$as_me: Running qmake to generate the makefile..." >&6;}
 CONFDIR="$( cd "$( dirname "$0" )" && pwd )"
 
-$QT_QMAKE -r $CONFDIR/qbittorrent.pro
+$QT_QMAKE -r $CONFDIR/qbittorrent.pro "QMAKE_LRELEASE=$QMAKE_LRELEASE"
 
 ret="$?"
 
