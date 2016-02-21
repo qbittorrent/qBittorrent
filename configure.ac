@@ -261,7 +261,7 @@ AS_IF([test "x$enable_systemd" = "xyes"],
 AC_MSG_NOTICE([Running qmake to generate the makefile...])
 CONFDIR="$( cd "$( dirname "$0" )" && pwd )"
 
-$QT_QMAKE -r [$CONFDIR]/qbittorrent.pro
+$QT_QMAKE -r [$CONFDIR]/qbittorrent.pro "QMAKE_LRELEASE=$QMAKE_LRELEASE"
 
 ret="$?"
 
