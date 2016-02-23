@@ -1330,12 +1330,12 @@ void Preferences::setAutoRunEnabled(bool enabled)
 
 QString Preferences::getAutoRunProgram() const
 {
-    return Utils::Fs::fromNativePath(value("AutoRun/program").toString());
+    return value("AutoRun/program").toString();
 }
 
 void Preferences::setAutoRunProgram(const QString &program)
 {
-    setValue("AutoRun/program", Utils::Fs::fromNativePath(program));
+    setValue("AutoRun/program", program);
 }
 
 bool Preferences::shutdownWhenDownloadsComplete() const
