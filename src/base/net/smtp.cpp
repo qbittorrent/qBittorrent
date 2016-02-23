@@ -519,9 +519,9 @@ QString Smtp::getCurrentDateTime() const
     int timeOffsetMin = nowDateTime.secsTo(tmp) / 60 - (60 * timeOffsetHour);
     int timeOffset = timeOffsetHour * 100 + timeOffsetMin;
     char buf[6] = {0};
-    std::snprintf(buf, sizeof(buf), "%+05d", timeOffset);
+    std::sprintf(buf, "%+05d", timeOffset);
     QString timeOffsetStr = buf;
 
-    QString ret = weekDayStr + ", " + dayStr + " " + monthStr + " " + yearStr + " " + timeStr + " " + timeOffsetStr;
+    QString ret = QString("%1, %2 %3 %4 %5 %6").arg(weekDayStr).arg(dayStr).arg(monthStr).arg(yearStr).arg(timeStr).arg(timeOffsetStr);
     return ret;
 }
