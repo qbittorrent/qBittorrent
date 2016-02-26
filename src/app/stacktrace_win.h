@@ -259,9 +259,9 @@ const QString straceWin::getBacktrace()
         }
     }
 
-    logStream << "\n\nList of linked Modules:\n";
-    EnumModulesContext modulesContext(hProcess, logStream);
-    SymEnumerateModules64(hProcess, EnumModulesCB, (PVOID)&modulesContext);
+    //logStream << "\n\nList of linked Modules:\n";
+    //EnumModulesContext modulesContext(hProcess, logStream);
+    //SymEnumerateModules64(hProcess, EnumModulesCB, (PVOID)&modulesContext);
     logStream << "```";
     return log;
 }
