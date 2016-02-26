@@ -34,6 +34,7 @@
 #include <QDialog>
 #include "boost/version.hpp"
 #include "libtorrent/version.hpp"
+#include "base/utils/misc.h"
 #include "ui_stacktrace_win_dlg.h"
 
 class StraceDlg : public QDialog, private Ui::errorDialog
@@ -67,13 +68,15 @@ public:
             "qBittorrent version: " VERSION "<br/>"
             "Libtorrent version: " LIBTORRENT_VERSION "<br/>"
             "Qt version: " QT_VERSION_STR "<br/>"
-            "Boost version: %1.%2.%3"
+            "Boost version: %1.%2.%3<br/>"
+            "OS version: %4"
             "</font></p><br/>"
-            "<pre><code>%4</code></pre>"
+            "<pre><code>%5</code></pre>"
             "<br/><hr><br/><br/>")
             .arg(boostVerMajor)
             .arg(boostVerMinor)
             .arg(boostVerSubMin)
+            .arg(Utils::Misc::osName())
             .arg(trace);
 
         errorText->setHtml(htmlStr);
