@@ -37,6 +37,7 @@
 #include <QProcess>
 #include <QSettings>
 #include <QThread>
+#include <QSysInfo>
 
 #ifdef DISABLE_GUI
 #include <QCoreApplication>
@@ -634,3 +635,18 @@ QSize Utils::Misc::smallIconSize()
     return QSize(s, s);
 }
 #endif
+
+QString Utils::Misc::osName()
+{
+    // static initialization for usage in signal handler
+    static const QString name =
+#ifdef QBT_USES_QT5
+    QString("%1 %2 %3")
+    .arg(QSysInfo::prettyProductName())
+    .arg(QSysInfo::kernelVersion())
+    .arg(QSysInfo::currentCpuArchitecture());
+#else
+    "<Input OS name here>";
+#endif
+    return name;
+}
