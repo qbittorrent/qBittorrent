@@ -194,17 +194,19 @@ options_imp::options_imp(QWidget *parent)
     connect(autoRunBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(autoRun_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
 
-    autoRun_param->setText(QString::fromUtf8("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10")
-                           .arg(tr("Supported parameters (case sensitive):"))
-                           .arg(tr("%N: Torrent name"))
-                           .arg(tr("%L: Label"))
-                           .arg(tr("%F: Content path (same as root path for multifile torrent)"))
-                           .arg(tr("%R: Root path (first torrent subdirectory path)"))
-                           .arg(tr("%D: Save path"))
-                           .arg(tr("%C: Number of files"))
-                           .arg(tr("%Z: Torrent size (bytes)"))
-                           .arg(tr("%T: Current tracker"))
-                           .arg(tr("%I: Info hash")));
+    const QString autoRunStr = QString::fromUtf8("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n%11")
+                               .arg(tr("Supported parameters (case sensitive):"))
+                               .arg(tr("%N: Torrent name"))
+                               .arg(tr("%L: Label"))
+                               .arg(tr("%F: Content path (same as root path for multifile torrent)"))
+                               .arg(tr("%R: Root path (first torrent subdirectory path)"))
+                               .arg(tr("%D: Save path"))
+                               .arg(tr("%C: Number of files"))
+                               .arg(tr("%Z: Torrent size (bytes)"))
+                               .arg(tr("%T: Current tracker"))
+                               .arg(tr("%I: Info hash"))
+                               .arg(tr("Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., \"%N\")"));
+    autoRun_param->setText(autoRunStr);
 
     // Connection tab
     connect(spinPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
