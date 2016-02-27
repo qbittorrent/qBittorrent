@@ -34,6 +34,9 @@
 
 SpeedPlotView::SpeedPlotView(QWidget *parent)
     : QGraphicsView(parent)
+    , m_data5Min(MIN5_BUF_SIZE)
+    , m_data30Min(MIN30_BUF_SIZE)
+    , m_data6Hour(HOUR6_BUF_SIZE)
     , m_viewablePointsCount(MIN5_SEC)
     , m_counter30Min(-1)
     , m_counter6Hour(-1)
@@ -67,26 +70,6 @@ SpeedPlotView::SpeedPlotView(QWidget *parent)
     greenPen.setStyle(Qt::DotLine);
     m_properties[TRACKER_UP] = GraphProperties(tr("Tracker Upload"), bluePen);
     m_properties[TRACKER_DOWN] = GraphProperties(tr("Tracker Download"), greenPen);
-
-    initBuffers(MIN5_BUF_SIZE, m_xData5Min, m_yData5Min);
-    initBuffers(MIN30_BUF_SIZE, m_xData30Min, m_yData30Min);
-    initBuffers(HOUR6_BUF_SIZE, m_xData6Hour, m_yData6Hour);
-}
-
-void SpeedPlotView::initBuffers(int capacity, boost::circular_buffer<uint> &xBuffer,
-                                QMap<SpeedPlotView::GraphID, boost::circular_buffer<int> > &yBuffers)
-{
-    xBuffer = boost::circular_buffer<uint>(capacity);
-    yBuffers[UP] = boost::circular_buffer<int>(capacity);
-    yBuffers[DOWN] = boost::circular_buffer<int>(capacity);
-    yBuffers[PAYLOAD_UP] = boost::circular_buffer<int>(capacity);
-    yBuffers[PAYLOAD_DOWN] = boost::circular_buffer<int>(capacity);
-    yBuffers[OVERHEAD_UP] = boost::circular_buffer<int>(capacity);
-    yBuffers[OVERHEAD_DOWN] = boost::circular_buffer<int>(capacity);
-    yBuffers[DHT_UP] = boost::circular_buffer<int>(capacity);
-    yBuffers[DHT_DOWN] = boost::circular_buffer<int>(capacity);
-    yBuffers[TRACKER_UP] = boost::circular_buffer<int>(capacity);
-    yBuffers[TRACKER_DOWN] = boost::circular_buffer<int>(capacity);
 }
 
 void SpeedPlotView::setGraphEnable(GraphID id, bool enable)
@@ -95,35 +78,32 @@ void SpeedPlotView::setGraphEnable(GraphID id, bool enable)
     this->viewport()->update();
 }
 
-void SpeedPlotView::pushXPoint(uint x)
+void SpeedPlotView::pushPoint(SpeedPlotView::PointData point)
 {
-    ++m_counter30Min;
-    m_counter30Min %= 3;
-    ++m_counter6Hour;
-    m_counter6Hour %= 6;
+    m_counter30Min = (m_counter30Min + 1) % 3;
+    m_counter6Hour = (m_counter6Hour + 1) % 6;
 
-    m_xData5Min.push_back(x);
+    m_data5Min.push_back(point);
 
-    if (m_counter30Min == 0)
-        m_xData30Min.push_back(x);
+    if (m_counter30Min == 0) {
+        m_data30Min.push_back(point);
+    }
+    else {
+        m_data30Min.back().x = (m_data30Min.back().x * m_counter30Min + point.x) / (m_counter30Min + 1);
+        for (int id = UP; id < NB_GRAPHS; ++id) {
+            m_data30Min.back().y[id] = (m_data30Min.back().y[id] * m_counter30Min + point.y[id]) / (m_counter30Min + 1);
+        }
+    }
 
-    if (m_counter6Hour == 0)
-        m_xData6Hour.push_back(x);
-}
-
-void SpeedPlotView::pushYPoint(GraphID id, int y)
-{
-    m_yData5Min[id].push_back(y);
-
-    if (m_counter30Min == 0)
-        m_yData30Min[id].push_back(y);
-    else
-        m_yData30Min[id].back() = (m_yData30Min[id].back() * m_counter30Min + y) / (m_counter30Min + 1);
-
-    if (m_counter6Hour == 0)
-        m_yData6Hour[id].push_back(y);
-    else
-        m_yData6Hour[id].back() = (m_yData6Hour[id].back() * m_counter6Hour + y) / (m_counter6Hour + 1);
+    if (m_counter6Hour == 0) {
+        m_data6Hour.push_back(point);
+    }
+    else {
+        m_data6Hour.back().x = (m_data6Hour.back().x * m_counter6Hour + point.x) / (m_counter6Hour + 1);
+        for (int id = UP; id < NB_GRAPHS; ++id) {
+            m_data6Hour.back().y[id] = (m_data6Hour.back().y[id] * m_counter6Hour + point.y[id]) / (m_counter6Hour + 1);
+        }
+    }
 }
 
 void SpeedPlotView::setViewableLastPoints(TimePeriod period)
@@ -156,49 +136,33 @@ void SpeedPlotView::replot()
         this->viewport()->update();
 }
 
-boost::circular_buffer<uint> &SpeedPlotView::getCurrentXData()
+boost::circular_buffer<SpeedPlotView::PointData> &SpeedPlotView::getCurrentData()
 {
     switch (m_period) {
     default:
     case SpeedPlotView::MIN1:
     case SpeedPlotView::MIN5:
-        return m_xData5Min;
+        return m_data5Min;
     case SpeedPlotView::MIN30:
-        return m_xData30Min;
+        return m_data30Min;
     case SpeedPlotView::HOUR6:
-        return m_xData6Hour;
-    }
-}
-
-QMap<SpeedPlotView::GraphID, boost::circular_buffer<int> > &SpeedPlotView::getCurrentYData()
-{
-    switch (m_period) {
-    default:
-    case SpeedPlotView::MIN1:
-    case SpeedPlotView::MIN5:
-        return m_yData5Min;
-    case SpeedPlotView::MIN30:
-        return m_yData30Min;
-    case SpeedPlotView::HOUR6:
-        return m_yData6Hour;
+        return m_data6Hour;
     }
 }
 
 int SpeedPlotView::maxYValue()
 {
-    QMap<GraphID, boost::circular_buffer<int> > &yData = getCurrentYData();
+    boost::circular_buffer<PointData> &queue = getCurrentData();
 
     int maxYValue = 0;
-    for (QMap<GraphID, boost::circular_buffer<int> >::const_iterator it = yData.begin(); it != yData.end(); ++it) {
+    for (int id = UP; id < NB_GRAPHS; ++id) {
 
-        if (!m_properties[it.key()].m_enable)
+        if (!m_properties[static_cast<GraphID>(id)].m_enable)
             continue;
 
-        const boost::circular_buffer<int> &queue = it.value();
-
         for (int i = queue.size() - 1, j = 0; i >= 0 && j <= m_viewablePointsCount; --i, ++j) {
-            if (queue[i] > maxYValue)
-                maxYValue = queue[i];
+            if (queue[i].y[id] > maxYValue)
+                maxYValue = queue[i].y[id];
         }
     }
 
@@ -269,25 +233,24 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     double yMultiplier = (maxY == 0) ? 0.0 : double(rect.height()) / maxY;
     double xTickSize = double(rect.width()) / m_viewablePointsCount;
 
-    QMap<GraphID, boost::circular_buffer<int> > &yData = getCurrentYData();
+    boost::circular_buffer<PointData> &queue = getCurrentData();
 
-    for (QMap<GraphID, boost::circular_buffer<int> >::const_iterator it = yData.begin(); it != yData.end(); ++it) {
+    for (int id = UP; id < NB_GRAPHS; ++id) {
 
-        if (!m_properties[it.key()].m_enable)
+        if (!m_properties[static_cast<GraphID>(id)].m_enable)
             continue;
 
-        const boost::circular_buffer<int> &queue = it.value();
         QVector<QPoint> points;
 
         for (int i = queue.size() - 1, j = 0; i >= 0 && j <= m_viewablePointsCount; --i, ++j) {
 
             int new_x = rect.right() - j * xTickSize;
-            int new_y = rect.bottom() - queue[i] * yMultiplier;
+            int new_y = rect.bottom() - queue[i].y[id] * yMultiplier;
 
             points.push_back(QPoint(new_x, new_y));
         }
 
-        painter.setPen(m_properties[it.key()].m_pen);
+        painter.setPen(m_properties[static_cast<GraphID>(id)].m_pen);
         painter.drawPolyline(points.data(), points.size());
     }
 
