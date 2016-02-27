@@ -217,7 +217,7 @@ QStringList TorrentInfo::filesForPiece(int pieceIndex) const
         return QStringList();
 
     std::vector<libtorrent::file_slice> files(
-        nativeInfo()->map_block(pieceIndex, 0, nativeInfo()->piece_length()));
+        nativeInfo()->map_block(pieceIndex, 0, nativeInfo()->piece_size(pieceIndex)));
     QStringList res;
     for (const libtorrent::file_slice& s: files) {
         res.append(filePath(s.file_index));
