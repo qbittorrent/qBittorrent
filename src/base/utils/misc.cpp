@@ -38,6 +38,7 @@
 #include <QSettings>
 #include <QThread>
 #include <QSysInfo>
+#include <boost/version.hpp>
 
 #ifdef DISABLE_GUI
 #include <QCoreApplication>
@@ -649,4 +650,14 @@ QString Utils::Misc::osName()
     "<Input OS name here>";
 #endif
     return name;
+}
+
+QString Utils::Misc::boostVersionString()
+{
+    // static initialization for usage in signal handler
+    static const QString ver = QString("%1.%2.%3")
+                 .arg(BOOST_VERSION / 100000)
+                 .arg((BOOST_VERSION / 100) % 1000)
+                 .arg(BOOST_VERSION % 100);
+    return ver;
 }
