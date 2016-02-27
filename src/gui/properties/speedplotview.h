@@ -64,12 +64,17 @@ public:
         HOUR6
     };
 
+    struct PointData
+    {
+        uint x;
+        int y[NB_GRAPHS];
+    };
+
     explicit SpeedPlotView(QWidget *parent = 0);
 
     void setGraphEnable(GraphID id, bool enable);
 
-    void pushXPoint(uint x);
-    void pushYPoint(GraphID id, int y);
+    void pushPoint(PointData point);
 
     void setViewableLastPoints(TimePeriod period);
 
@@ -104,12 +109,9 @@ private:
         bool m_enable;
     };
 
-    boost::circular_buffer<uint> m_xData5Min;
-    boost::circular_buffer<uint> m_xData30Min;
-    boost::circular_buffer<uint> m_xData6Hour;
-    QMap<GraphID, boost::circular_buffer<int> > m_yData5Min;
-    QMap<GraphID, boost::circular_buffer<int> > m_yData30Min;
-    QMap<GraphID, boost::circular_buffer<int> > m_yData6Hour;
+    boost::circular_buffer<PointData> m_data5Min;
+    boost::circular_buffer<PointData> m_data30Min;
+    boost::circular_buffer<PointData> m_data6Hour;
     QMap<GraphID, GraphProperties> m_properties;
 
     TimePeriod m_period;
@@ -120,11 +122,7 @@ private:
 
     int maxYValue();
 
-    void initBuffers(int capacity, boost::circular_buffer<uint> &xBuffer,
-                     QMap<SpeedPlotView::GraphID, boost::circular_buffer<int> > &yBuffers);
-
-    boost::circular_buffer<uint> &getCurrentXData();
-    QMap<SpeedPlotView::GraphID, boost::circular_buffer<int> > &getCurrentYData();
+    boost::circular_buffer<PointData> &getCurrentData();
 };
 
 #endif // SPEEDPLOTVIEW_H
