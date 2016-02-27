@@ -39,6 +39,7 @@
 #include <QThread>
 #include <QSysInfo>
 #include <boost/version.hpp>
+#include <libtorrent/version.hpp>
 
 #ifdef DISABLE_GUI
 #include <QCoreApplication>
@@ -659,5 +660,12 @@ QString Utils::Misc::boostVersionString()
                  .arg(BOOST_VERSION / 100000)
                  .arg((BOOST_VERSION / 100) % 1000)
                  .arg(BOOST_VERSION % 100);
+    return ver;
+}
+
+QString Utils::Misc::libtorrentVersionString()
+{
+    // static initialization for usage in signal handler
+    static const QString ver = LIBTORRENT_VERSION;
     return ver;
 }

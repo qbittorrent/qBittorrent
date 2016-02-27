@@ -58,6 +58,7 @@ namespace Utils
 #endif
         QString osName();
         QString boostVersionString();
+        QString libtorrentVersionString();
 
         int pythonVersion();
         QString pythonExecutable();

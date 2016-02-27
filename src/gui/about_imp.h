@@ -33,7 +33,6 @@
 
 #include "ui_about.h"
 #include <QFile>
-#include <libtorrent/version.hpp>
 #include "base/utils/misc.h"
 #include "base/unicodestrings.h"
 
@@ -91,7 +90,7 @@ public:
 
         // Libraries
         label_11->setText(QT_VERSION_STR);
-        label_12->setText(LIBTORRENT_VERSION);
+        label_12->setText(Utils::Misc::libtorrentVersionString());
         label_13->setText(Utils::Misc::boostVersionString());
 
         show();
