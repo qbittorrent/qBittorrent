@@ -32,7 +32,7 @@
 #define SEARCHTAB_H
 
 #include <QVariant> // I don't know why <QMetaType> is not enought for Qt's 4.8.7 moc
-#include "ui_searchtab.h"
+#include <QWidget>
 
 #define ENGINE_URL_COLUMN 4
 #define URL_COLUMN 5
@@ -48,7 +48,12 @@ class SearchSortModel;
 class SearchListDelegate;
 class SearchWidget;
 
-class SearchTab: public QWidget, private Ui::SearchTab
+namespace Ui
+{
+    class SearchTab;
+}
+
+class SearchTab: public QWidget
 {
     Q_OBJECT
 
@@ -63,6 +68,7 @@ public:
     Q_ENUMS(NameFilteringMode)
 
     explicit SearchTab(SearchWidget *parent);
+    ~SearchTab();
 
     QStandardItemModel* getCurrentSearchListModel() const;
     SearchSortModel* getCurrentSearchListProxy() const;
@@ -96,8 +102,7 @@ private:
     static QString statusText(Status st);
     static QString statusIconName(Status st);
 
-    QVBoxLayout *m_box;
-    QLabel *m_resultsLbl;
+    Ui::SearchTab *m_ui;
     QTreeView *m_resultsBrowser;
     QStandardItemModel *m_searchListModel;
     SearchSortModel *m_proxyModel;
