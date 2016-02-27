@@ -32,7 +32,6 @@
 
 #include <QString>
 #include <QDialog>
-#include "libtorrent/version.hpp"
 #include "base/utils/misc.h"
 #include "ui_stacktrace_win_dlg.h"
 
@@ -62,13 +61,14 @@ public:
             "<br/><hr><br/>"
             "<p align=center><font size=4>"
             "qBittorrent version: " VERSION "<br/>"
-            "Libtorrent version: " LIBTORRENT_VERSION "<br/>"
+            "Libtorrent version: %1<br/>"
             "Qt version: " QT_VERSION_STR "<br/>"
-            "Boost version: %1<br/>"
-            "OS version: %2"
+            "Boost version: %2<br/>"
+            "OS version: %3"
             "</font></p><br/>"
-            "<pre><code>%3</code></pre>"
+            "<pre><code>%4</code></pre>"
             "<br/><hr><br/><br/>")
+            .arg(Utils::Misc::libtorrentVersionString())
             .arg(Utils::Misc::boostVersionString())
             .arg(Utils::Misc::osName())
             .arg(trace);
