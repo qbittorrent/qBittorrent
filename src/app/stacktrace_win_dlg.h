@@ -32,7 +32,6 @@
 
 #include <QString>
 #include <QDialog>
-#include "boost/version.hpp"
 #include "libtorrent/version.hpp"
 #include "base/utils/misc.h"
 #include "ui_stacktrace_win_dlg.h"
@@ -51,9 +50,6 @@ public:
     void setStacktraceString(const QString& trace)
     {
         // try to call Qt function as less as possible
-        const int boostVerMajor = BOOST_VERSION / 100000;
-        const int boostVerMinor = ((BOOST_VERSION / 100) % 1000);
-        const int boostVerSubMin = BOOST_VERSION % 100;
         QString htmlStr = QString(
             "<p align=center><b><font size=7 color=red>"
             "qBittorrent has crashed"
@@ -68,14 +64,12 @@ public:
             "qBittorrent version: " VERSION "<br/>"
             "Libtorrent version: " LIBTORRENT_VERSION "<br/>"
             "Qt version: " QT_VERSION_STR "<br/>"
-            "Boost version: %1.%2.%3<br/>"
-            "OS version: %4"
+            "Boost version: %1<br/>"
+            "OS version: %2"
             "</font></p><br/>"
-            "<pre><code>%5</code></pre>"
+            "<pre><code>%3</code></pre>"
             "<br/><hr><br/><br/>")
-            .arg(boostVerMajor)
-            .arg(boostVerMinor)
-            .arg(boostVerSubMin)
+            .arg(Utils::Misc::boostVersionString())
             .arg(Utils::Misc::osName())
             .arg(trace);
 

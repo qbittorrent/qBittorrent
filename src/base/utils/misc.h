@@ -57,6 +57,7 @@ namespace Utils
         QSize smallIconSize();
 #endif
         QString osName();
+        QString boostVersionString();
 
         int pythonVersion();
         QString pythonExecutable();

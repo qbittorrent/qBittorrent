@@ -34,7 +34,7 @@
 #include "ui_about.h"
 #include <QFile>
 #include <libtorrent/version.hpp>
-#include <boost/version.hpp>
+#include "base/utils/misc.h"
 #include "base/unicodestrings.h"
 
 class about: public QDialog, private Ui::AboutDlg
@@ -92,7 +92,7 @@ public:
         // Libraries
         label_11->setText(QT_VERSION_STR);
         label_12->setText(LIBTORRENT_VERSION);
-        label_13->setText(QString::number(BOOST_VERSION / 100000) + "." + QString::number((BOOST_VERSION / 100) % 1000) + "." + QString::number(BOOST_VERSION % 100));
+        label_13->setText(Utils::Misc::boostVersionString());
 
         show();
     }
