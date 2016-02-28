@@ -298,6 +298,8 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent
 {
     clear();
     m_torrent = torrent;
+    downloaded_pieces->setTorrent(m_torrent);
+    pieces_availability->setTorrent(m_torrent);
     if (!m_torrent) return;
 
     // Save path

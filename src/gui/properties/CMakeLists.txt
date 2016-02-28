@@ -16,6 +16,7 @@ peerlistwidget.h
 proplistdelegate.h
 trackerlist.h
 downloadedpiecesbar.h
+piecesbar.h
 peerlistdelegate.h
 peerlistsortmodel.h
 peersadditiondlg.h
@@ -33,6 +34,7 @@ peerlistwidget.cpp
 trackerlist.cpp
 peersadditiondlg.cpp
 downloadedpiecesbar.cpp
+piecesbar.cpp
 trackersadditiondlg.cpp
 pieceavailabilitybar.cpp
 proptabbar.cpp

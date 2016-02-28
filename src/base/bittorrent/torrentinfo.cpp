@@ -26,6 +26,7 @@
  * exception statement from your version.
  */
 
+#include <QDebug>
 #include <QString>
 #include <QList>
 #include <QUrl>
@@ -138,6 +139,12 @@ int TorrentInfo::pieceLength() const
     return m_nativeInfo->piece_length();
 }
 
+int TorrentInfo::pieceLength(int index) const
+{
+    if (!isValid()) return -1;
+    return m_nativeInfo->piece_size(index);
+}
+
 int TorrentInfo::piecesCount() const
 {
     if (!isValid()) return -1;
@@ -178,7 +185,7 @@ qlonglong TorrentInfo::fileSize(int index) const
 
 qlonglong TorrentInfo::fileOffset(int index) const
 {
-    if (!isValid()) return  -1;
+    if (!isValid()) return -1;
     return m_nativeInfo->file_at(index).offset;
 }
 
@@ -213,22 +220,77 @@ QByteArray TorrentInfo::metadata() const
 
 QStringList TorrentInfo::filesForPiece(int pieceIndex) const
 {
-    if (pieceIndex < 0)
-        return QStringList();
+    // no checks here because fileIndicesForPiece() will return an empty list
+    QVector<int> fileIndices = fileIndicesForPiece(pieceIndex);
 
-    std::vector<libtorrent::file_slice> files(
-        nativeInfo()->map_block(pieceIndex, 0, nativeInfo()->piece_size(pieceIndex)));
     QStringList res;
-    for (const libtorrent::file_slice& s: files) {
-        res.append(filePath(s.file_index));
-    }
+    res.reserve(fileIndices.size());
+    std::transform(fileIndices.begin(), fileIndices.end(), std::back_inserter(res),
+        [this](int i) { return filePath(i); });
+
     return res;
+}
+
+QVector<int> TorrentInfo::fileIndicesForPiece(int pieceIndex) const
+{
+    if (!isValid() || (pieceIndex < 0) || (pieceIndex >= piecesCount()))
+        return QVector<int>();
+
+    std::vector<libt::file_slice> files(
+        nativeInfo()->map_block(pieceIndex, 0, nativeInfo()->piece_size(pieceIndex)));
+    QVector<int> res;
+    res.reserve(files.size());
+    std::transform(files.begin(), files.end(), std::back_inserter(res),
+        [](const libt::file_slice &s) { return s.file_index; });
+
+    return res;
+}
+
+TorrentInfo::PieceRange TorrentInfo::filePieces(const QString& file) const
+{
+    if (!isValid()) // if we do not check here the debug message will be printed, which would be not correct
+        return {};
+
+    int index = fileIndex(file);
+    if (index == -1) {
+        qDebug() << "Filename" << file << "was not found in torrent" << name();
+        return {};
+    }
+    return filePieces(index);
+}
+
+TorrentInfo::PieceRange TorrentInfo::filePieces(int fileIndex) const
+{
+    if (!isValid())
+        return {};
+
+    if ((fileIndex < 0) || (fileIndex >= filesCount())) {
+        qDebug() << "File index (" << fileIndex << ") is out of range for torrent" << name();
+        return {};
+    }
+
+    const libt::file_storage &files = nativeInfo()->files();
+    const auto fileSize = files.file_size(fileIndex);
+    const auto firstOffset = files.file_offset(fileIndex);
+    return makeInterval(static_cast<int>(firstOffset / pieceLength()),
+                        static_cast<int>((firstOffset + fileSize - 1) / pieceLength()));
 }
 
 void TorrentInfo::renameFile(uint index, const QString &newPath)
 {
     if (!isValid()) return;
     nativeInfo()->rename_file(index, Utils::String::toStdString(newPath));
+}
+
+int BitTorrent::TorrentInfo::fileIndex(const QString& fileName) const
+{
+    // the check whether the object valid is not needed here
+    // because filesCount() returns -1 in that case and the loop exits immediately
+    for (int i = 0; i < filesCount(); ++i)
+        if (fileName == filePath(i))
+            return i;
+
+    return -1;
 }
 
 TorrentInfo::NativePtr TorrentInfo::nativeInfo() const
