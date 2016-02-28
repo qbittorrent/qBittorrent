@@ -38,48 +38,48 @@
 #include <QVector>
 
 class DownloadedPiecesBar: public QWidget {
-  Q_OBJECT
-  Q_DISABLE_COPY(DownloadedPiecesBar)
+    Q_OBJECT
+    Q_DISABLE_COPY(DownloadedPiecesBar)
 
 private:
-  QImage m_image;
+    QImage m_image;
 
-  // I used values, because it should be possible to change colors in runtime
+    // I used values, because it should be possible to change colors in runtime
 
-  // background color
-  int m_bgColor;
-  // border color
-  int m_borderColor;
-  // complete piece color
-  int m_pieceColor;
-  // incomplete piece color
-  int m_dlPieceColor;
-  // buffered 256 levels gradient from bg_color to piece_color
-  QVector<int> m_pieceColors;
+    // background color
+    int m_bgColor;
+    // border color
+    int m_borderColor;
+    // complete piece color
+    int m_pieceColor;
+    // incomplete piece color
+    int m_dlPieceColor;
+    // buffered 256 levels gradient from bg_color to piece_color
+    QVector<int> m_pieceColors;
 
-  // last used bitfields, uses to better resize redraw
-  // TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
-  QBitArray m_pieces;
-  QBitArray m_downloadedPieces;
+    // last used bitfields, uses to better resize redraw
+    // TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
+    QBitArray m_pieces;
+    QBitArray m_downloadedPieces;
 
-  // scale bitfield vector to float vector
-  QVector<float> bitfieldToFloatVector(const QBitArray &vecin, int reqSize);
-  // mix two colors by light model, ratio <0, 1>
-  int mixTwoColors(int &rgb1, int &rgb2, float ratio);
-  // draw new image and replace actual image
-  void updateImage();
+    // scale bitfield vector to float vector
+    QVector<float> bitfieldToFloatVector(const QBitArray &vecin, int reqSize);
+    // mix two colors by light model, ratio <0, 1>
+    int mixTwoColors(int &rgb1, int &rgb2, float ratio);
+    // draw new image and replace actual image
+    void updateImage();
 
 public:
-  DownloadedPiecesBar(QWidget *parent);
+    DownloadedPiecesBar(QWidget *parent);
 
-  void setProgress(const QBitArray &m_pieces, const QBitArray &downloadedPieces);
-  void updatePieceColors();
-  void clear();
+    void setProgress(const QBitArray &m_pieces, const QBitArray &downloadedPieces);
+    void updatePieceColors();
+    void clear();
 
-  void setColors(int background, int border, int complete, int incomplete);
+    void setColors(int background, int border, int complete, int incomplete);
 
 protected:
-  void paintEvent(QPaintEvent *);
+    void paintEvent(QPaintEvent *);
 };
 
 #endif // DOWNLOADEDPIECESBAR_H

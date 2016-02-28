@@ -32,7 +32,6 @@
 #include <QDebug>
 #include "pieceavailabilitybar.h"
 
-
 PieceAvailabilityBar::PieceAvailabilityBar(QWidget *parent)
     : QWidget(parent)
 {
@@ -192,7 +191,7 @@ void PieceAvailabilityBar::clear()
     update();
 }
 
-void PieceAvailabilityBar::paintEvent(QPaintEvent *)
+void PieceAvailabilityBar::paintEvent(QPaintEvent*)
 {
     QPainter painter(this);
     QRect imageRect(1, 1, width() - 2, height() - 2);

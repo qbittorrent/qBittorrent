@@ -76,7 +76,7 @@ public:
     void setColors(int background, int border, int available);
 
 protected:
-    void paintEvent(QPaintEvent *);
+    void paintEvent(QPaintEvent*);
 };
 
 #endif // PIECEAVAILABILITYBAR_H
