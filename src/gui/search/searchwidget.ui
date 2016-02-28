@@ -17,10 +17,24 @@
    <item>
     <layout class="QHBoxLayout" name="searchBarLayout">
      <item>
-      <widget class="QComboBox" name="comboCategory"/>
+      <widget class="QComboBox" name="comboCategory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="selectPlugin"/>
+      <widget class="QComboBox" name="selectPlugin">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="searchButton">
