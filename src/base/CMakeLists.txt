@@ -46,6 +46,7 @@ utils/misc.h
 utils/string.h
 filesystemwatcher.h
 iconprovider.h
+indexrange.h
 logger.h
 preferences.h
 qinisettings.h

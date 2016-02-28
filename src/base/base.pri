@@ -6,6 +6,7 @@ HEADERS += \
     $$PWD/logger.h \
     $$PWD/settingsstorage.h \
     $$PWD/preferences.h \
+    $$PWD/indexrange.h \
     $$PWD/iconprovider.h \
     $$PWD/http/irequesthandler.h \
     $$PWD/http/connection.h \
