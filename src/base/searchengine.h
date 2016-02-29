@@ -86,6 +86,7 @@ public:
 
     static qreal getPluginVersion(QString filePath);
     static QString categoryFullName(const QString &categoryName);
+    QString pluginFullName(const QString &pluginName);
     static QString pluginsLocation();
 
 signals:

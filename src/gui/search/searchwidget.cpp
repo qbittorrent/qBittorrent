@@ -121,27 +121,43 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     fillPluginComboBox();
 
     connect(m_searchPattern, SIGNAL(textEdited(QString)), this, SLOT(searchTextEdited(QString)));
-    connect(selectPlugin, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(selectMultipleBox(const QString &)));
+    connect(selectPlugin, SIGNAL(currentIndexChanged(int)), this, SLOT(selectMultipleBox(int)));
 }
 
 void SearchWidget::fillCatCombobox()
 {
     comboCategory->clear();
     comboCategory->addItem(SearchEngine::categoryFullName("all"), QVariant("all"));
-    foreach (QString cat, m_searchEngine->supportedCategories()) {
-        qDebug("Supported category: %s", qPrintable(cat));
-        comboCategory->addItem(SearchEngine::categoryFullName(cat), QVariant(cat));
+    comboCategory->insertSeparator(1);
+
+    using QStrPair = QPair<QString, QString>;
+    QList<QStrPair> tmpList;
+    foreach (const QString &cat, m_searchEngine->supportedCategories())
+        tmpList << qMakePair(SearchEngine::categoryFullName(cat), cat);
+    std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
+
+    foreach (const QStrPair &p, tmpList) {
+        qDebug("Supported category: %s", qPrintable(p.second));
+        comboCategory->addItem(p.first, QVariant(p.second));
     }
 }
 
 void SearchWidget::fillPluginComboBox()
 {
     selectPlugin->clear();
-    selectPlugin->addItem(tr("All enabled"), QVariant("enabled"));
     selectPlugin->addItem(tr("All plugins"), QVariant("all"));
-    foreach (QString name, m_searchEngine->enabledPlugins())
-        selectPlugin->addItem(name, QVariant(name));
-    selectPlugin->addItem(tr("Multiple..."), QVariant("multi"));
+    selectPlugin->addItem(tr("Only enabled"), QVariant("enabled"));
+    selectPlugin->addItem(tr("Select..."), QVariant("multi"));
+    selectPlugin->insertSeparator(3);
+
+    using QStrPair = QPair<QString, QString>;
+    QList<QStrPair> tmpList;
+    foreach (const QString &name, m_searchEngine->enabledPlugins())
+        tmpList << qMakePair(m_searchEngine->pluginFullName(name), name);
+    std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
+
+    foreach (const QStrPair &p, tmpList)
+        selectPlugin->addItem(p.first, QVariant(p.second));
 }
 
 QString SearchWidget::selectedCategory() const
@@ -180,9 +196,10 @@ void SearchWidget::tab_changed(int t)
     }
 }
 
-void SearchWidget::selectMultipleBox(const QString &text)
+void SearchWidget::selectMultipleBox(int index)
 {
-    if (text == tr("Multiple..."))
+    Q_UNUSED(index);
+    if (selectedPlugin() == "multi")
         on_pluginsButton_clicked();
 }
 

@@ -295,6 +295,11 @@ QString SearchEngine::categoryFullName(const QString &categoryName)
     return tr(m_categoryNames.value(categoryName).toUtf8().constData());
 }
 
+QString SearchEngine::pluginFullName(const QString &pluginName)
+{
+    return pluginInfo(pluginName) ? pluginInfo(pluginName)->fullName : QString();
+}
+
 QString SearchEngine::pluginsLocation()
 {
     return QString("%1/engines").arg(engineLocation());
