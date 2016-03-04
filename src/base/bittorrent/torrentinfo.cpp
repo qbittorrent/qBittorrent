@@ -44,8 +44,8 @@ namespace libt = libtorrent;
 using namespace BitTorrent;
 
 TorrentInfo::TorrentInfo(NativeConstPtr nativeInfo)
-    : m_nativeInfo(nativeInfo)
 {
+    m_nativeInfo = boost::const_pointer_cast<libt::torrent_info>(nativeInfo);
 }
 
 TorrentInfo::TorrentInfo(const TorrentInfo &other)
@@ -219,5 +219,5 @@ void TorrentInfo::renameFile(uint index, const QString &newPath)
 
 TorrentInfo::NativePtr TorrentInfo::nativeInfo() const
 {
-    return *reinterpret_cast<const NativePtr *>(&m_nativeInfo);
+    return m_nativeInfo;
 }

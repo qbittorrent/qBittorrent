@@ -177,14 +177,14 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Assign Label:</string>
+               <string>Assign Category:</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="comboLabel">
+             <widget class="QComboBox" name="comboCategory">
               <property name="editable">
-               <bool>true</bool>
+               <bool>false</bool>
               </property>
              </widget>
             </item>

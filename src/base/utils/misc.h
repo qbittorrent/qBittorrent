@@ -39,6 +39,7 @@
 #include <QFile>
 #include <QDir>
 #include <QUrl>
+#include <QSize>
 #include "base/types.h"
 
 /*  Miscellaneous functions that can be useful */

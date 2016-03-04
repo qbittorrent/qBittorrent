@@ -178,7 +178,7 @@ DownloadRulePtr DownloadRule::fromVariantHash(const QVariantHash &ruleHash)
     rule->setRssFeeds(ruleHash.value("affected_feeds").toStringList());
     rule->setEnabled(ruleHash.value("enabled", false).toBool());
     rule->setSavePath(ruleHash.value("save_path").toString());
-    rule->setLabel(ruleHash.value("label_assigned").toString());
+    rule->setCategory(ruleHash.value("category_assigned").toString());
     rule->setAddPaused(AddPausedState(ruleHash.value("add_paused").toUInt()));
     rule->setLastMatch(ruleHash.value("last_match").toDateTime());
     rule->setIgnoreDays(ruleHash.value("ignore_days").toInt());
@@ -194,7 +194,7 @@ QVariantHash DownloadRule::toVariantHash() const
     hash["save_path"] = m_savePath;
     hash["affected_feeds"] = m_rssFeeds;
     hash["enabled"] = m_enabled;
-    hash["label_assigned"] = m_label;
+    hash["category_assigned"] = m_category;
     hash["use_regex"] = m_useRegex;
     hash["add_paused"] = m_apstate;
     hash["episode_filter"] = m_episodeFilter;
@@ -210,10 +210,7 @@ bool DownloadRule::operator==(const DownloadRule &other) const
 
 void DownloadRule::setSavePath(const QString &savePath)
 {
-    if (!savePath.isEmpty() && (QDir(savePath) != QDir(Preferences::instance()->getSavePath())))
-        m_savePath = Utils::Fs::fromNativePath(savePath);
-    else
-        m_savePath = QString();
+    m_savePath = Utils::Fs::fromNativePath(savePath);
 }
 
 DownloadRule::AddPausedState DownloadRule::addPaused() const
@@ -226,14 +223,14 @@ void DownloadRule::setAddPaused(const DownloadRule::AddPausedState &aps)
     m_apstate = aps;
 }
 
-QString DownloadRule::label() const
+QString DownloadRule::category() const
 {
-    return m_label;
+    return m_category;
 }
 
-void DownloadRule::setLabel(const QString &label)
+void DownloadRule::setCategory(const QString &category)
 {
-    m_label = label;
+    m_category = category;
 }
 
 bool DownloadRule::isEnabled() const

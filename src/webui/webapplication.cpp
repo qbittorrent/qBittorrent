@@ -49,8 +49,8 @@
 #include "websessiondata.h"
 #include "webapplication.h"
 
-static const int API_VERSION = 8;
-static const int API_VERSION_MIN = 8;
+static const int API_VERSION = 9;
+static const int API_VERSION_MIN = 9;
 
 const QString WWW_FOLDER = ":/www/public/";
 const QString PRIVATE_FOLDER = ":/www/private/";
@@ -114,7 +114,7 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(command, topPrio);
     ADD_ACTION(command, bottomPrio);
     ADD_ACTION(command, recheck);
-    ADD_ACTION(command, setLabel);
+    ADD_ACTION(command, setCategory);
     ADD_ACTION(command, getSavePath);
     ADD_ACTION(version, api);
     ADD_ACTION(version, api_min);
@@ -216,7 +216,7 @@ void WebApplication::action_public_images()
 
 // GET params:
 //   - filter (string): all, downloading, seeding, completed, paused, resumed, active, inactive
-//   - label (string): torrent label for filtering by it (empty string means "unlabeled"; no "label" param presented means "any label")
+//   - category (string): torrent category for filtering by it (empty string means "uncategorized"; no "category" param presented means "any category")
 //   - sort (string): name of column for sorting by its value
 //   - reverse (bool): enable reverse sorting
 //   - limit (int): set limit number of torrents returned (if greater than 0, otherwise - unlimited)
@@ -227,7 +227,7 @@ void WebApplication::action_query_torrents()
     const QStringMap& gets = request().gets;
 
     print(btjson::getTorrents(
-        gets["filter"], gets["label"], gets["sort"], gets["reverse"] == "true",
+        gets["filter"], gets["category"], gets["sort"], gets["reverse"] == "true",
         gets["limit"].toInt(), gets["offset"].toInt()
         ), Http::CONTENT_TYPE_JSON);
 }
@@ -326,7 +326,7 @@ void WebApplication::action_command_download()
     QString urls = request().posts["urls"];
     QStringList list = urls.split('\n');
     QString savepath = request().posts["savepath"];
-    QString label = request().posts["label"];
+    QString category = request().posts["category"];
     QString cookie = request().posts["cookie"];
     QList<QNetworkCookie> cookies;
     if (!cookie.isEmpty()) {
@@ -345,11 +345,11 @@ void WebApplication::action_command_download()
     }
 
     savepath = savepath.trimmed();
-    label = label.trimmed();
+    category = category.trimmed();
 
     BitTorrent::AddTorrentParams params;
     params.savePath = savepath;
-    params.label = label;
+    params.category = category;
 
     foreach (QString url, list) {
         url = url.trimmed();
@@ -365,10 +365,10 @@ void WebApplication::action_command_upload()
     qDebug() << Q_FUNC_INFO;
     CHECK_URI(0);
     QString savepath = request().posts["savepath"];
-    QString label = request().posts["label"];
+    QString category = request().posts["category"];
 
     savepath = savepath.trimmed();
-    label = label.trimmed();
+    category = category.trimmed();
 
     foreach(const Http::UploadedFile& torrent, request().files) {
         QString filePath = saveTmpFile(torrent.data);
@@ -382,7 +382,7 @@ void WebApplication::action_command_upload()
             else {
                 BitTorrent::AddTorrentParams params;
                 params.savePath = savepath;
-                params.label = label;
+                params.category = category;
                 if (!BitTorrent::Session::instance()->addTorrent(torrentInfo, params)) {
                     status(500, "Internal Server Error");
                     print(QObject::tr("Error: Could not add torrent to session."), Http::CONTENT_TYPE_TXT);
@@ -709,29 +709,29 @@ void WebApplication::action_command_recheck()
         torrent->forceRecheck();
 }
 
-void WebApplication::action_command_setLabel()
+void WebApplication::action_command_setCategory()
 {
     CHECK_URI(0);
-    CHECK_PARAMETERS("hashes" << "label");
+    CHECK_PARAMETERS("hashes" << "category");
 
     QStringList hashes = request().posts["hashes"].split("|");
-    QString label = request().posts["label"].trimmed();
-    if (!Utils::Fs::isValidFileSystemName(label) && !label.isEmpty()) {
-        status(400, "Labels must not contain special characters");
-        return;
-    }
+    QString category = request().posts["category"].trimmed();
 
     foreach (const QString &hash, hashes) {
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-        if (torrent)
-            torrent->setLabel(label);
+        if (torrent) {
+            if (!torrent->setCategory(category)) {
+                status(400, "Incorrect category name");
+                return;
+            }
+        }
     }
 }
 
 void WebApplication::action_command_getSavePath()
 {
     CHECK_URI(0);
-    print(Preferences::instance()->getSavePath());
+    print(BitTorrent::Session::instance()->defaultSavePath());
 }
 
 bool WebApplication::isPublicScope()

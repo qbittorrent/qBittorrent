@@ -1004,7 +1004,7 @@ void MainWindow::dropEvent(QDropEvent *event)
     }
 
     // Add file to download list
-    const bool useTorrentAdditionDialog = Preferences::instance()->useAdditionDialog();
+    const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     foreach (QString file, files) {
         qDebug("Dropped file %s on download list", qPrintable(file));
         if (useTorrentAdditionDialog)
@@ -1039,7 +1039,7 @@ void MainWindow::on_actionOpen_triggered()
     const QStringList pathsList =
             QFileDialog::getOpenFileNames(0, tr("Open Torrent Files"), pref->getMainLastDir(),
                                           tr("Torrent Files") + QString::fromUtf8(" (*.torrent)"));
-    const bool useTorrentAdditionDialog = Preferences::instance()->useAdditionDialog();
+    const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     if (!pathsList.isEmpty()) {
         foreach (QString file, pathsList) {
             qDebug("Dropped file %s on download list", qPrintable(file));
@@ -1249,7 +1249,7 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const
 
 void MainWindow::downloadFromURLList(const QStringList& url_list)
 {
-    const bool useTorrentAdditionDialog = Preferences::instance()->useAdditionDialog();
+    const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     foreach (QString url, url_list) {
         if ((url.size() == 40 && !url.contains(QRegExp("[^0-9A-Fa-f]")))
             || (url.size() == 32 && !url.contains(QRegExp("[^2-7A-Za-z]"))))

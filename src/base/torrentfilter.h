@@ -58,7 +58,7 @@ public:
         Errored
     };
 
-    static const QString AnyLabel;
+    static const QString AnyCategory;
     static const QStringSet AnyHash;
 
     static const TorrentFilter DownloadingTorrent;
@@ -71,24 +71,24 @@ public:
     static const TorrentFilter ErroredTorrent;
 
     TorrentFilter();
-    // label: pass empty string for "no label" or null string (QString()) for "any label"
-    TorrentFilter(Type type, QStringSet hashSet = AnyHash, QString label = AnyLabel);
-    TorrentFilter(QString filter, QStringSet hashSet = AnyHash, QString label = AnyLabel);
+    // category: pass empty string for "no category" or null string (QString()) for "any category"
+    TorrentFilter(Type type, QStringSet hashSet = AnyHash, QString category = AnyCategory);
+    TorrentFilter(QString filter, QStringSet hashSet = AnyHash, QString category = AnyCategory);
 
     bool setType(Type type);
     bool setTypeByName(const QString &filter);
     bool setHashSet(const QStringSet &hashSet);
-    bool setLabel(const QString &label);
+    bool setCategory(const QString &category);
 
     bool match(BitTorrent::TorrentHandle *const torrent) const;
 
 private:
     bool matchState(BitTorrent::TorrentHandle *const torrent) const;
     bool matchHash(BitTorrent::TorrentHandle *const torrent) const;
-    bool matchLabel(BitTorrent::TorrentHandle *const torrent) const;
+    bool matchCategory(BitTorrent::TorrentHandle *const torrent) const;
 
     Type m_type;
-    QString m_label;
+    QString m_category;
     QStringSet m_hashSet;
 };
 

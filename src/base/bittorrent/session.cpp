@@ -28,10 +28,6 @@
  * exception statement from your version.
  */
 
-#include "session.h"
-
-using namespace BitTorrent;
-
 #include <QDebug>
 #include <QDir>
 #include <QDateTime>
@@ -44,6 +40,7 @@ using namespace BitTorrent;
 #include <QProcess>
 #include <QCoreApplication>
 #include <QThread>
+#include <QRegExp>
 
 #include <queue>
 #include <vector>
@@ -70,6 +67,7 @@ using namespace BitTorrent;
 #include "base/utils/string.h"
 #include "base/unicodestrings.h"
 #include "base/logger.h"
+#include "base/settingsstorage.h"
 #include "base/preferences.h"
 #include "base/torrentfilter.h"
 #include "base/net/downloadmanager.h"
@@ -94,20 +92,73 @@ static const char RESUME_FOLDER[] = "BT_backup";
 namespace libt = libtorrent;
 using namespace BitTorrent;
 
-static bool readFile(const QString &path, QByteArray &buf);
-static bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out, int &prio, MagnetUri &magnetUri);
+#define SETTINGS_KEY(name) "BitTorrent/Session/" name
+const QString KEY_CATEGORIES = SETTINGS_KEY("Categories");
+const QString KEY_MAXRATIOACTION = SETTINGS_KEY("MaxRatioAction");
+const QString KEY_DEFAULTSAVEPATH = SETTINGS_KEY("DefaultSavePath");
+const QString KEY_TEMPPATH = SETTINGS_KEY("TempPath");
+const QString KEY_SUBCATEGORIESENABLED = SETTINGS_KEY("SubcategoriesEnabled");
+const QString KEY_TEMPPATHENABLED = SETTINGS_KEY("TempPathEnabled");
+const QString KEY_DISABLEASMBYDEFAULT = SETTINGS_KEY("DisableASMByDefault");
+const QString KEY_DISABLEASMONCATEGORYCHANGED = SETTINGS_KEY("DisableASMTriggers/CategoryChanged");
+const QString KEY_DISABLEASMONDEFAULTSAVEPATHCHANGED = SETTINGS_KEY("DisableASMTriggers/DefaultSavePathChanged");
+const QString KEY_DISABLEASMONCATEGORYSAVEPATHCHANGED = SETTINGS_KEY("DisableASMTriggers/CategorySavePathChanged");
+const QString KEY_ADDTORRENTPAUSED = SETTINGS_KEY("AddTorrentPaused");
 
-static void torrentQueuePositionUp(const libt::torrent_handle &handle);
-static void torrentQueuePositionDown(const libt::torrent_handle &handle);
-static void torrentQueuePositionTop(const libt::torrent_handle &handle);
-static void torrentQueuePositionBottom(const libt::torrent_handle &handle);
+namespace
+{
+    bool readFile(const QString &path, QByteArray &buf);
+    bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &torrentData, int &prio, MagnetUri &magnetUri);
+
+    void torrentQueuePositionUp(const libt::torrent_handle &handle);
+    void torrentQueuePositionDown(const libt::torrent_handle &handle);
+    void torrentQueuePositionTop(const libt::torrent_handle &handle);
+    void torrentQueuePositionBottom(const libt::torrent_handle &handle);
+
+    QStringMap map_cast(const QVariantMap &map)
+    {
+        QStringMap result;
+        foreach (const QString &key, map.keys())
+            result[key] = map.value(key).toString();
+        return result;
+    }
+
+    QVariantMap map_cast(const QStringMap &map)
+    {
+        QVariantMap result;
+        foreach (const QString &key, map.keys())
+            result[key] = map.value(key);
+        return result;
+    }
+
+    QString normalizePath(QString path, const QString &defaultPath = Utils::Fs::QDesktopServicesDownloadLocation())
+    {
+        path = Utils::Fs::fromNativePath(path.trimmed());
+        return !path.isEmpty() ? path : defaultPath;
+    }
+
+    QStringMap expandCategories(const QStringMap &categories)
+    {
+        QStringMap expanded = categories;
+
+        foreach (const QString &category, categories.keys()) {
+            foreach (const QString &subcat, Session::expandCategory(category)) {
+                if (!expanded.contains(subcat))
+                    expanded[subcat] = "";
+            }
+        }
+
+        return expanded;
+    }
+}
 
 // Session
 
-Session *Session::m_instance = 0;
+Session *Session::m_instance = nullptr;
 
 Session::Session(QObject *parent)
     : QObject(parent)
+    , m_settings(SettingsStorage::instance())
     , m_LSDEnabled(false)
     , m_DHTEnabled(false)
     , m_PeXEnabled(false)
@@ -118,10 +169,8 @@ Session::Session(QObject *parent)
     , m_globalMaxRatio(-1)
     , m_numResumeData(0)
     , m_extraLimit(0)
-    , m_appendLabelToSavePath(false)
     , m_appendExtension(false)
     , m_refreshInterval(0)
-    , m_highRatioAction(MaxRatioAction::Pause)
 {
     Preferences* const pref = Preferences::instance();
     Logger* const logger = Logger::instance();
@@ -174,6 +223,13 @@ Session::Session(QObject *parent)
         m_nativeSession->add_extension(&libt::create_ut_pex_plugin);
     m_nativeSession->add_extension(&libt::create_smart_ban_plugin);
 
+    m_categories = map_cast(m_settings->loadValue(KEY_CATEGORIES).toMap());
+    if (isSubcategoriesEnabled()) {
+        // if subcategories support changed manually
+        m_categories = expandCategories(m_categories);
+        m_settings->storeValue(KEY_CATEGORIES, map_cast(m_categories));
+    }
+
     m_refreshTimer = new QTimer(this);
     m_refreshTimer->setInterval(2000);
     connect(m_refreshTimer, SIGNAL(timeout()), SLOT(refresh()));
@@ -184,6 +240,10 @@ Session::Session(QObject *parent)
     connect(m_resumeDataTimer, SIGNAL(timeout()), SLOT(generateResumeData()));
 
     m_statistics = new Statistics(this);
+
+    m_maxRatioAction = static_cast<MaxRatioAction>(m_settings->loadValue(KEY_MAXRATIOACTION, Pause).toInt());
+    m_defaultSavePath = normalizePath(m_settings->loadValue(KEY_DEFAULTSAVEPATH).toString());
+    m_tempPath = normalizePath(m_settings->loadValue(KEY_TEMPPATH).toString(), m_defaultSavePath + "/temp");
 
     // Apply user settings to BitTorrent session
     configure();
@@ -231,17 +291,19 @@ bool Session::isQueueingEnabled() const
 
 bool Session::isTempPathEnabled() const
 {
-    return !m_tempPath.isEmpty();
+    return m_settings->loadValue(KEY_TEMPPATHENABLED, false).toBool();
+}
+
+void Session::setTempPathEnabled(bool enabled)
+{
+    m_settings->storeValue(KEY_TEMPPATHENABLED, enabled);
+    foreach (TorrentHandle *const torrent, m_torrents)
+        torrent->handleTempPathChanged();
 }
 
 bool Session::isAppendExtensionEnabled() const
 {
     return m_appendExtension;
-}
-
-bool Session::useAppendLabelToSavePath() const
-{
-    return m_appendLabelToSavePath;
 }
 
 QString Session::defaultSavePath() const
@@ -252,6 +314,200 @@ QString Session::defaultSavePath() const
 QString Session::tempPath() const
 {
     return m_tempPath;
+}
+
+bool Session::isValidCategoryName(const QString &name)
+{
+    QRegExp re(R"#(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)#");
+    if (!name.isEmpty() && (re.indexIn(name) != 0)) {
+        qDebug() << "Incorrect category name:" << name;
+        return false;
+    }
+
+    return true;
+}
+
+QStringList Session::expandCategory(const QString &category)
+{
+    QStringList result;
+    if (!isValidCategoryName(category))
+        return result;
+
+    int index = 0;
+    while ((index = category.indexOf('/', index)) >= 0) {
+        result << category.left(index);
+        ++index;
+    }
+    result << category;
+
+    return result;
+}
+
+QStringList Session::categories() const
+{
+    return m_categories.keys();
+}
+
+QString Session::categorySavePath(const QString &categoryName) const
+{
+    QString basePath = m_defaultSavePath;
+    QString path = m_categories.value(categoryName);
+    if (categoryName.isEmpty()) return basePath;
+
+    if (path.isEmpty()) // use implicit save path
+        path = Utils::Fs::toValidFileSystemName(categoryName, true);
+
+    if (!QDir::isAbsolutePath(path))
+        path = QString("%1/%2").arg(basePath).arg(path);
+
+    return path;
+}
+
+bool Session::addCategory(const QString &name, const QString &savePath)
+{
+    if (name.isEmpty()) return false;
+    if (!isValidCategoryName(name) || m_categories.contains(name))
+        return false;
+
+    if (isSubcategoriesEnabled()) {
+        foreach (const QString &parent, expandCategory(name)) {
+            if ((parent != name) && !m_categories.contains(parent)) {
+                m_categories[parent] = "";
+                emit categoryAdded(parent);
+            }
+        }
+    }
+
+    m_categories[name] = savePath;
+    m_settings->storeValue(KEY_CATEGORIES, map_cast(m_categories));
+    emit categoryAdded(name);
+
+    return true;
+}
+
+bool Session::editCategory(const QString &name, const QString &savePath)
+{
+    if (!m_categories.contains(name)) return false;
+    if (categorySavePath(name) == savePath) return false;
+
+    m_categories[name] = savePath;
+    if (isDisableASMWhenCategorySavePathChanged()) {
+        foreach (TorrentHandle *const torrent, torrents())
+            if (torrent->category() == name)
+                torrent->setASMEnabled(false);
+    }
+    else {
+        foreach (TorrentHandle *const torrent, torrents())
+            if (torrent->category() == name)
+                torrent->handleCategorySavePathChanged();
+    }
+
+    return true;
+}
+
+bool Session::removeCategory(const QString &name)
+{
+    foreach (TorrentHandle *const torrent, torrents())
+        if (torrent->belongsToCategory(name))
+            torrent->setCategory("");
+
+    // remove stored category and its subcategories if exist
+    bool result = false;
+    if (isSubcategoriesEnabled()) {
+        // remove subcategories
+        QString test = name + "/";
+        foreach (const QString &category, m_categories.keys()) {
+            if (category.startsWith(test)) {
+                m_categories.remove(category);
+                result = true;
+                emit categoryRemoved(category);
+            }
+        }
+    }
+
+    result = (m_categories.remove(name) > 0) || result;
+
+    if (result) {
+        // update stored categories
+        m_settings->storeValue(KEY_CATEGORIES, map_cast(m_categories));
+        emit categoryRemoved(name);
+    }
+
+    return result;
+}
+
+bool Session::isSubcategoriesEnabled() const
+{
+    return m_settings->loadValue(KEY_SUBCATEGORIESENABLED, false).toBool();
+}
+
+void Session::setSubcategoriesEnabled(bool value)
+{
+    if (isSubcategoriesEnabled() == value) return;
+
+    if (value) {
+        // expand categories to include all parent categories
+        m_categories = expandCategories(m_categories);
+        // update stored categories
+        m_settings->storeValue(KEY_CATEGORIES, map_cast(m_categories));
+    }
+    else {
+        // reload categories
+        m_categories = map_cast(m_settings->loadValue(KEY_CATEGORIES).toMap());
+    }
+
+    m_settings->storeValue(KEY_SUBCATEGORIESENABLED, value);
+    emit subcategoriesSupportChanged();
+}
+
+bool Session::isASMDisabledByDefault() const
+{
+    return m_settings->loadValue(KEY_DISABLEASMBYDEFAULT, true).toBool();
+}
+
+void Session::setASMDisabledByDefault(bool value)
+{
+    m_settings->storeValue(KEY_DISABLEASMBYDEFAULT, value);
+}
+
+bool Session::isDisableASMWhenCategoryChanged() const
+{
+    return m_settings->loadValue(KEY_DISABLEASMONCATEGORYCHANGED, false).toBool();
+}
+
+void Session::setDisableASMWhenCategoryChanged(bool value)
+{
+    m_settings->storeValue(KEY_DISABLEASMONCATEGORYCHANGED, value);
+}
+
+bool Session::isDisableASMWhenDefaultSavePathChanged() const
+{
+    return m_settings->loadValue(KEY_DISABLEASMONDEFAULTSAVEPATHCHANGED, true).toBool();
+}
+
+void Session::setDisableASMWhenDefaultSavePathChanged(bool value)
+{
+    m_settings->storeValue(KEY_DISABLEASMONDEFAULTSAVEPATHCHANGED, value);
+}
+
+bool Session::isDisableASMWhenCategorySavePathChanged() const
+{
+    return m_settings->loadValue(KEY_DISABLEASMONCATEGORYSAVEPATHCHANGED, true).toBool();
+}
+
+void Session::setDisableASMWhenCategorySavePathChanged(bool value)
+{
+    m_settings->storeValue(KEY_DISABLEASMONCATEGORYSAVEPATHCHANGED, value);
+}
+
+bool Session::isAddTorrentPaused() const
+{
+    return m_settings->loadValue(KEY_ADDTORRENTPAUSED, false).toBool();
+}
+
+void Session::setAddTorrentPaused(bool value)
+{
+    m_settings->storeValue(KEY_ADDTORRENTPAUSED, value);
 }
 
 qreal Session::globalMaxRatio() const
@@ -442,22 +698,12 @@ void Session::configure()
         setListeningPort();
     }
 
-    // * Save path
-    setDefaultSavePath(pref->getSavePath());
-
-    // * Temp path
-    if (pref->isTempPathEnabled())
-        setDefaultTempPath(pref->getTempPath());
-    else
-        setDefaultTempPath();
-
     uint newRefreshInterval = pref->getRefreshInterval();
     if (newRefreshInterval != m_refreshInterval) {
         m_refreshInterval = newRefreshInterval;
         m_refreshTimer->setInterval(m_refreshInterval);
     }
 
-    setAppendLabelToSavePath(pref->appendTorrentLabel());
     setAppendExtension(pref->useIncompleteFilesExtension());
     preAllocateAllFiles(pref->preAllocateAllFiles());
 
@@ -587,7 +833,6 @@ void Session::configure()
     }
 
     // * Maximum ratio
-    m_highRatioAction = pref->getMaxRatioAction();
     setGlobalMaxRatio(pref->getGlobalMaxRatio());
 
     // Ip Filter
@@ -690,7 +935,7 @@ void Session::processBigRatios()
 
             if ((ratio <= TorrentHandle::MAX_RATIO) && (ratio >= ratioLimit)) {
                 Logger* const logger = Logger::instance();
-                if (m_highRatioAction == MaxRatioAction::Remove) {
+                if (m_maxRatioAction == Remove) {
                     logger->addMessage(tr("'%1' reached the maximum ratio you set. Removing...").arg(torrent->name()));
                     deleteTorrent(torrent->hash());
                 }
@@ -974,17 +1219,18 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
                               const TorrentInfo &torrentInfo, const QByteArray &fastresumeData)
 {
     if (!addData.resumed) {
-        // manage save path
-        QString defaultSavePath = this->defaultSavePath();
-        if (addData.savePath.isEmpty())
-            addData.savePath = defaultSavePath;
-        if (!addData.savePath.endsWith("/"))
-            addData.savePath += "/";
-        if (useAppendLabelToSavePath()) {
-            if ((addData.savePath == defaultSavePath) && !addData.label.isEmpty())
-                addData.savePath += QString("%1/").arg(addData.label);
+        if (addData.savePath.isEmpty() && isASMDisabledByDefault())
+            addData.savePath = m_defaultSavePath;
+    }
+
+    if (!addData.category.isEmpty()) {
+        if (!m_categories.contains(addData.category) && !addCategory(addData.category)) {
+            qWarning() << "Couldn't create category" << addData.category;
+            addData.category = "";
         }
     }
+
+    addData.savePath = Utils::Fs::fromNativePath(addData.savePath);
 
     libt::add_torrent_params p;
     InfoHash hash;
@@ -1082,7 +1328,9 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
     // Set actual save path (e.g. temporary folder)
     if (isTempPathEnabled() && !addData.disableTempPath && !addData.hasSeedStatus)
         savePath = m_tempPath;
-    else
+    else if (addData.savePath.isEmpty()) // using Advanced mode
+        savePath = categorySavePath(addData.category);
+    else  // using Simple mode
         savePath = addData.savePath;
 
     p.save_path = Utils::String::toStdString(Utils::Fs::toNativePath(savePath));
@@ -1341,51 +1589,32 @@ void Session::saveResumeData()
     }
 }
 
-void Session::setDefaultSavePath(const QString &path)
+void Session::setDefaultSavePath(QString path)
 {
-    if (path.isEmpty()) return;
+    path = normalizePath(path);
+    if (m_defaultSavePath == path) return;
 
-    m_defaultSavePath = Utils::Fs::fromNativePath(path);
-    if (!m_defaultSavePath.endsWith("/"))
-        m_defaultSavePath += "/";
+    m_defaultSavePath = path;
+    m_settings->storeValue(KEY_DEFAULTSAVEPATH, m_defaultSavePath);
+
+    if (isDisableASMWhenDefaultSavePathChanged())
+        foreach (TorrentHandle *const torrent, torrents())
+            torrent->setASMEnabled(false);
+    else
+        foreach (TorrentHandle *const torrent, torrents())
+            torrent->handleCategorySavePathChanged();
 }
 
-void Session::setDefaultTempPath(const QString &path)
+void Session::setTempPath(QString path)
 {
-    QString tempPath;
+    path = normalizePath(path, m_defaultSavePath + "/temp");
+    if (m_tempPath == path) return;
 
-    if (!path.isEmpty()) {
-        tempPath = Utils::Fs::fromNativePath(path);
-        if (!tempPath.endsWith("/"))
-            tempPath += "/";
-    }
+    m_tempPath = path;
+    m_settings->storeValue(KEY_TEMPPATH, m_tempPath);
 
-    if (m_tempPath != tempPath) {
-        m_tempPath = tempPath;
-        foreach (TorrentHandle *const torrent, m_torrents)
-            torrent->handleTempPathChanged();
-    }
-}
-
-void Session::setAppendLabelToSavePath(bool append)
-{
-    if (m_appendLabelToSavePath != append) {
-        m_appendLabelToSavePath = append;
-        foreach (TorrentHandle *const torrent, m_torrents) {
-            QString label = torrent->label();
-            if (label.isEmpty()) continue;
-
-            QString testedOldSavePath = m_defaultSavePath;
-            QString newSavePath = m_defaultSavePath;
-            if (!m_appendLabelToSavePath)
-                testedOldSavePath += QString("%1/").arg(label);
-            else
-                newSavePath += QString("%1/").arg(label);
-
-            if (torrent->savePath() == testedOldSavePath)
-                torrent->move(newSavePath);
-        }
-    }
+    foreach (TorrentHandle *const torrent, m_torrents)
+        torrent->handleTempPathChanged();
 }
 
 void Session::setAppendExtension(bool append)
@@ -1536,6 +1765,19 @@ bool Session::isListening() const
     return m_nativeSession->is_listening();
 }
 
+MaxRatioAction Session::maxRatioAction() const
+{
+    return m_maxRatioAction;
+}
+
+void Session::setMaxRatioAction(MaxRatioAction act)
+{
+    if (m_maxRatioAction != act) {
+        m_maxRatioAction = act;
+        m_settings->storeValue(KEY_MAXRATIOACTION, act);
+    }
+}
+
 // Torrents will a ratio superior to the given value will
 // be automatically deleted
 void Session::setGlobalMaxRatio(qreal ratio)
@@ -1586,22 +1828,14 @@ void Session::handleTorrentSavePathChanged(TorrentHandle *const torrent)
     emit torrentSavePathChanged(torrent);
 }
 
-void Session::handleTorrentLabelChanged(TorrentHandle *const torrent, const QString &oldLabel)
+void Session::handleTorrentCategoryChanged(TorrentHandle *const torrent, const QString &oldCategory)
 {
-    if (m_appendLabelToSavePath) {
-        QString testedOldSavePath = m_defaultSavePath;
-        if (!oldLabel.isEmpty())
-            testedOldSavePath += QString("%1/").arg(oldLabel);
-        QString newLabel = torrent->label();
-        if (torrent->savePath() == testedOldSavePath) {
-            QString newSavePath = m_defaultSavePath;
-            if (!newLabel.isEmpty())
-                newSavePath += QString("%1/").arg(newLabel);
-            torrent->move(newSavePath);
-        }
-    }
+    emit torrentCategoryChanged(torrent, oldCategory);
+}
 
-    emit torrentLabelChanged(torrent, oldLabel);
+void Session::handleTorrentSavingModeChanged(TorrentHandle * const torrent)
+{
+    emit torrentSavingModeChanged(torrent);
 }
 
 void Session::handleTorrentTrackersAdded(TorrentHandle *const torrent, const QList<TrackerEntry> &newTrackers)
@@ -2138,7 +2372,7 @@ void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
 
         bool addPaused = data.addPaused;
         if (data.addPaused == TriStateBool::Undefined)
-            addPaused = pref->addTorrentsInPause();
+            addPaused = isAddTorrentPaused();
 
         // Start torrent because it was added in paused state
         if (!addPaused)
@@ -2351,86 +2585,90 @@ void Session::handleStateUpdateAlert(libt::state_update_alert *p)
     emit torrentsUpdated();
 }
 
-bool readFile(const QString &path, QByteArray &buf)
+namespace
 {
-    QFile file(path);
-    if (!file.open(QIODevice::ReadOnly)) {
-        qDebug("Cannot read file %s: %s", qPrintable(path), qPrintable(file.errorString()));
-        return false;
+    bool readFile(const QString &path, QByteArray &buf)
+    {
+        QFile file(path);
+        if (!file.open(QIODevice::ReadOnly)) {
+            qDebug("Cannot read file %s: %s", qPrintable(path), qPrintable(file.errorString()));
+            return false;
+        }
+
+        buf = file.readAll();
+        return true;
     }
 
-    buf = file.readAll();
-    return true;
-}
+    bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &torrentData, int &prio,  MagnetUri &magnetUri)
+    {
+        torrentData = AddTorrentData();
+        torrentData.resumed = true;
+        torrentData.skipChecking = false;
 
-bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &out, int &prio,  MagnetUri &magnetUri)
-{
-    out = AddTorrentData();
-    out.resumed = true;
-    out.skipChecking = false;
+        libt::lazy_entry fast;
+        libt::error_code ec;
+        libt::lazy_bdecode(data.constData(), data.constData() + data.size(), fast, ec);
+        if (ec || (fast.type() != libt::lazy_entry::dict_t)) return false;
 
-    libt::lazy_entry fast;
-    libt::error_code ec;
-    libt::lazy_bdecode(data.constData(), data.constData() + data.size(), fast, ec);
-    if (ec || (fast.type() != libt::lazy_entry::dict_t)) return false;
+        torrentData.savePath = Utils::Fs::fromNativePath(Utils::String::fromStdString(fast.dict_find_string_value("qBt-savePath")));
+        torrentData.ratioLimit = Utils::String::fromStdString(fast.dict_find_string_value("qBt-ratioLimit")).toDouble();
+        // **************************************************************************************
+        // Workaround to convert legacy label to category
+        // TODO: Should be removed in future
+        torrentData.category = Utils::String::fromStdString(fast.dict_find_string_value("qBt-label"));
+        if (torrentData.category.isEmpty())
+        // **************************************************************************************
+            torrentData.category = Utils::String::fromStdString(fast.dict_find_string_value("qBt-category"));
+        torrentData.name = Utils::String::fromStdString(fast.dict_find_string_value("qBt-name"));
+        torrentData.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
+        torrentData.disableTempPath = fast.dict_find_int_value("qBt-tempPathDisabled");
 
-    out.savePath = Utils::Fs::fromNativePath(Utils::String::fromStdString(fast.dict_find_string_value("qBt-savePath")));
-    if (out.savePath.isEmpty()) {
-        Logger::instance()->addMessage("Empty torrent save path was loaded from .fastresume file! Using default one...", Log::WARNING);
-        out.savePath = Preferences::instance()->getSavePath();
+        magnetUri = MagnetUri(Utils::String::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
+        torrentData.addPaused = fast.dict_find_int_value("qBt-paused");
+        torrentData.addForced = fast.dict_find_int_value("qBt-forced");
+
+        prio = fast.dict_find_int_value("qBt-queuePosition");
+
+        return true;
     }
 
-    out.ratioLimit = Utils::String::fromStdString(fast.dict_find_string_value("qBt-ratioLimit")).toDouble();
-    out.label = Utils::String::fromStdString(fast.dict_find_string_value("qBt-label"));
-    out.name = Utils::String::fromStdString(fast.dict_find_string_value("qBt-name"));
-    out.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
-    out.disableTempPath = fast.dict_find_int_value("qBt-tempPathDisabled");
-
-    magnetUri = MagnetUri(Utils::String::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
-    out.addPaused = fast.dict_find_int_value("qBt-paused");
-    out.addForced = fast.dict_find_int_value("qBt-forced");
-
-    prio = fast.dict_find_int_value("qBt-queuePosition");
-
-    return true;
-}
-
-void torrentQueuePositionUp(const libt::torrent_handle &handle)
-{
-    try {
-        handle.queue_position_up();
+    void torrentQueuePositionUp(const libt::torrent_handle &handle)
+    {
+        try {
+            handle.queue_position_up();
+        }
+        catch (std::exception &exc) {
+            qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
+        }
     }
-    catch (std::exception &exc) {
-        qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
-    }
-}
 
-void torrentQueuePositionDown(const libt::torrent_handle &handle)
-{
-    try {
-        handle.queue_position_down();
+    void torrentQueuePositionDown(const libt::torrent_handle &handle)
+    {
+        try {
+            handle.queue_position_down();
+        }
+        catch (std::exception &exc) {
+            qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
+        }
     }
-    catch (std::exception &exc) {
-        qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
-    }
-}
 
-void torrentQueuePositionTop(const libt::torrent_handle &handle)
-{
-    try {
-        handle.queue_position_top();
+    void torrentQueuePositionTop(const libt::torrent_handle &handle)
+    {
+        try {
+            handle.queue_position_top();
+        }
+        catch (std::exception &exc) {
+            qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
+        }
     }
-    catch (std::exception &exc) {
-        qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
-    }
-}
 
-void torrentQueuePositionBottom(const libt::torrent_handle &handle)
-{
-    try {
-        handle.queue_position_bottom();
-    }
-    catch (std::exception &exc) {
-        qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
+    void torrentQueuePositionBottom(const libt::torrent_handle &handle)
+    {
+        try {
+            handle.queue_position_bottom();
+        }
+        catch (std::exception &exc) {
+            qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
+        }
     }
 }

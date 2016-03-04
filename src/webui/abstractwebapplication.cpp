@@ -243,7 +243,7 @@ void AbstractWebApplication::translateDocument(QString& data)
         "options_imp", "Preferences", "TrackersAdditionDlg", "ScanFoldersModel",
         "PropTabBar", "TorrentModel", "downloadFromURL", "MainWindow", "misc",
         "StatusBar", "AboutDlg", "about", "PeerListWidget", "StatusFiltersWidget",
-        "LabelFiltersList"
+        "CategoryFiltersList"
     };
     const size_t context_count = sizeof(contexts) / sizeof(contexts[0]);
     int i = 0;

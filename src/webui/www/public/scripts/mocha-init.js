@@ -304,14 +304,14 @@ initializeWindows = function() {
         }
     };
 
-    newLabelFN = function () {
+    newCategoryFN = function () {
         var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new MochaUI.Window({
-                id: 'newLabelPage',
-                title: "QBT_TR(New Label)QBT_TR",
+                id: 'newCategoryPage',
+                title: "QBT_TR(New Category)QBT_TR",
                 loadMethod: 'iframe',
-                contentURL: 'newlabel.html?hashes=' + h.join('|'),
+                contentURL: 'newcategory.html?hashes=' + h.join('|'),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -323,18 +323,18 @@ initializeWindows = function() {
         }
     };
 
-    updateLabelFN = function (labelHash) {
-        var labelName = '';
-        if (labelHash != 0)
-            var labelName = label_list[labelHash].name;
+    updateCategoryFN = function (categoryHash) {
+        var categoryName = '';
+        if (categoryHash != 0)
+            var categoryName = category_list[categoryHash].name;
         var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new Request({
-                url: 'command/setLabel',
+                url: 'command/setCategory',
                 method: 'post',
                 data: {
                     hashes: h.join("|"),
-                    label: labelName
+                    category: categoryName
                 }
             }).send();
         }

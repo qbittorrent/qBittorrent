@@ -391,7 +391,7 @@ void Feed::downloadArticleTorrentIfMatching(const ArticlePtr &article)
 
     BitTorrent::AddTorrentParams params;
     params.savePath = matchingRule->savePath();
-    params.label = matchingRule->label();
+    params.category = matchingRule->category();
     if (matchingRule->addPaused() == DownloadRule::ALWAYS_PAUSED)
         params.addPaused = TriStateBool::True;
     else if (matchingRule->addPaused() == DownloadRule::NEVER_PAUSED)

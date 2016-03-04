@@ -58,10 +58,12 @@ class AddNewTorrentDialog: public QDialog
 public:
     ~AddNewTorrentDialog();
 
-    static void show(QString source, QWidget *parent = 0);
+    static bool isEnabled();
+    static void setEnabled(bool value);
+    static bool isTopLevel();
+    static void setTopLevel(bool value);
 
-protected:
-    void showEvent(QShowEvent *event);
+    static void show(QString source, QWidget *parent = 0);
 
 private slots:
     void showAdvancedSettings(bool show);
@@ -75,25 +77,27 @@ private slots:
     void handleDownloadFailed(const QString &url, const QString &reason);
     void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
     void handleDownloadFinished(const QString &url, const QString &filePath);
+    void savingModeChanged(bool enabled);
+    void categoryChanged(int index);
 
-protected slots:
-    virtual void accept();
-    virtual void reject();
+    void accept() override;
+    void reject() override;
 
 private:
     explicit AddNewTorrentDialog(QWidget *parent = 0);
     bool loadTorrent(const QString &torrentPath);
     bool loadMagnet(const BitTorrent::MagnetUri &magnetUri);
-    void loadSavePathHistory();
+    void populateSavePathComboBox();
     void saveSavePathHistory() const;
     int indexOfSavePath(const QString& save_path);
-    void updateFileNameInSavePaths(const QString& new_filename);
     void loadState();
     void saveState();
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = QString());
     void setupTreeview();
+    QString defaultSavePath() const;
 
-private:
+    void showEvent(QShowEvent *event) override;
+
     Ui::AddNewTorrentDialog *ui;
     TorrentContentFilterModel *m_contentModel;
     PropListDelegate *m_contentDelegate;

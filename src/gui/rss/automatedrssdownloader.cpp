@@ -34,17 +34,18 @@
 #include <QMenu>
 #include <QCursor>
 
-#include "automatedrssdownloader.h"
-#include "ui_automatedrssdownloader.h"
-#include "base/rss/rssdownloadrulelist.h"
 #include "base/preferences.h"
+#include "base/bittorrent/session.h"
+#include "base/rss/rssdownloadrulelist.h"
 #include "base/rss/rssmanager.h"
 #include "base/rss/rssfolder.h"
 #include "base/rss/rssfeed.h"
-#include "guiiconprovider.h"
-#include "autoexpandabledialog.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
+#include "guiiconprovider.h"
+#include "autoexpandabledialog.h"
+#include "ui_automatedrssdownloader.h"
+#include "automatedrssdownloader.h"
 
 AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager>& manager, QWidget *parent) :
   QDialog(parent),
@@ -85,7 +86,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager>&
          "<li>" + tr("Normal range: <b>1x25-40;</b> matches episodes 25 through 40 of season one") + "</li>" +
          "<li>" + tr("Infinite range: <b>1x25-;</b> matches episodes 25 and upward of season one") + "</li>" + "</ul></li></ul>";
   ui->lineEFilter->setToolTip(tip);
-  initLabelCombobox();
+  initCategoryCombobox();
   loadFeedList();
   loadSettings();
   ok = connect(ui->listRules, SIGNAL(itemSelectionChanged()), SLOT(updateRuleDefinitionBox()));
@@ -253,11 +254,11 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
       ui->checkRegex->blockSignals(true);
       ui->checkRegex->setChecked(rule->useRegex());
       ui->checkRegex->blockSignals(false);
-      if (rule->label().isEmpty()) {
-        ui->comboLabel->setCurrentIndex(-1);
-        ui->comboLabel->clearEditText();
+      if (rule->category().isEmpty()) {
+        ui->comboCategory->setCurrentIndex(-1);
+        ui->comboCategory->clearEditText();
       } else {
-        ui->comboLabel->setCurrentIndex(ui->comboLabel->findText(rule->label()));
+        ui->comboCategory->setCurrentIndex(ui->comboCategory->findText(rule->category()));
       }
       ui->comboAddPaused->setCurrentIndex(rule->addPaused());
       ui->spinIgnorePeriod->setValue(rule->ignoreDays());
@@ -293,7 +294,7 @@ void AutomatedRssDownloader::clearRuleDefinitionBox()
   ui->lineNotContains->clear();
   ui->saveDiffDir_check->setChecked(false);
   ui->lineSavePath->clear();
-  ui->comboLabel->clearEditText();
+  ui->comboCategory->clearEditText();
   ui->checkRegex->setChecked(false);
   ui->spinIgnorePeriod->setValue(0);
   updateFieldsToolTips(ui->checkRegex->isChecked());
@@ -309,13 +310,12 @@ Rss::DownloadRulePtr AutomatedRssDownloader::getCurrentRule() const
   return Rss::DownloadRulePtr();
 }
 
-void AutomatedRssDownloader::initLabelCombobox()
+void AutomatedRssDownloader::initCategoryCombobox()
 {
-  // Load custom labels
-  QStringList customLabels = Preferences::instance()->getTorrentLabels();
-  std::sort(customLabels.begin(), customLabels.end(), Utils::String::NaturalCompare());
-  foreach (const QString& l, customLabels)
-    ui->comboLabel->addItem(l);
+  // Load torrent categories
+  QStringList categories = BitTorrent::Session::instance()->categories();
+  std::sort(categories.begin(), categories.end(), Utils::String::NaturalCompare());
+  ui->comboCategory->addItems(categories);
 }
 
 void AutomatedRssDownloader::saveEditedRule()
@@ -344,11 +344,9 @@ void AutomatedRssDownloader::saveEditedRule()
     rule->setSavePath(ui->lineSavePath->text());
   else
     rule->setSavePath("");
-  rule->setLabel(ui->comboLabel->currentText());
+  rule->setCategory(ui->comboCategory->currentText());
+
   rule->setAddPaused(Rss::DownloadRule::AddPausedState(ui->comboAddPaused->currentIndex()));
-  // Save new label
-  if (!rule->label().isEmpty())
-    Preferences::instance()->addTorrentLabelExternal(rule->label());
   rule->setIgnoreDays(ui->spinIgnorePeriod->value());
   //rule->setRssFeeds(getSelectedFeeds());
   // Save it
