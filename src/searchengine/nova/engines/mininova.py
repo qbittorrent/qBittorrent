@@ -1,4 +1,4 @@
-#VERSION: 2.00
+#VERSION: 2.01
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 #CONTRIBUTORS: Diego de las Heras (ngosang@hotmail.es)
 
@@ -27,9 +27,8 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 from HTMLParser import HTMLParser
-from httplib import HTTPConnection as http
 from novaprinter import prettyPrinter
-from helpers import download_file
+from helpers import download_file, retrieve_url
 
 class mininova(object):
     """ Search engine class """
@@ -123,26 +122,19 @@ class mininova(object):
 
     def search(self, what, cat="all"):
         """ Performs search """
-        connection = http("www.mininova.org")
+        query = "/".join((self.url, "search", what, self.supported_categories[cat], "seeds"))
 
-        query = "/".join(("/search", what, self.supported_categories[cat], "seeds"))
-
-        connection.request("GET", query)
-        response = connection.getresponse()
-        if response.status != 200:
-            return
+        response = retrieve_url(query)
 
         list_searches = []
         parser = self.MyHtmlParseWithBlackJack(list_searches, self.url)
-        parser.feed(response.read().decode('utf-8'))
+        parser.feed(response)
         parser.close()
 
         parser.next_queries = False
         for search_query in list_searches:
-            connection.request("GET", search_query)
-            response = connection.getresponse()
-            parser.feed(response.read().decode('utf-8'))
+            response = retrieve_url(self.url + search_query)
+            parser.feed(response)
             parser.close()
 
-        connection.close()
         return
