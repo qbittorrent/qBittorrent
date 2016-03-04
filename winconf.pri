@@ -12,7 +12,7 @@ INCLUDEPATH += $$quote(C:/qBittorrent/openssl/include)
 # Point this to the boost lib folder
 LIBS += $$quote(-LC:/qBittorrent/boost_1_51_0/stage/lib)
 # Point this to the libtorrent lib folder
-LIBS += $$quote(-LC:/qBittorrent/RC_0_16/bin/<path-according-to-the-build-options-chosen>)
+LIBS += $$quote(-LC:/qBittorrent/RC_0_16/bin/path-according-to-the-build-options-chosen)
 # Point this to the zlib lib folder
 LIBS += $$quote(-LC:/qBittorrent/Zlib/lib)
 # Point this to the openssl lib folder
@@ -53,7 +53,7 @@ CONFIG(debug, debug|release) {
 # Enable backtrace support
 CONFIG += strace_win
 
-win32-g++ {
+win32-g++* {
     include(winconf-mingw.pri)
 }
 else {
