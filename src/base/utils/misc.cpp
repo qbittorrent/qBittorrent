@@ -37,6 +37,9 @@
 #include <QProcess>
 #include <QSettings>
 #include <QThread>
+#include <QSysInfo>
+#include <boost/version.hpp>
+#include <libtorrent/version.hpp>
 
 #ifdef DISABLE_GUI
 #include <QCoreApplication>
@@ -634,3 +637,35 @@ QSize Utils::Misc::smallIconSize()
     return QSize(s, s);
 }
 #endif
+
+QString Utils::Misc::osName()
+{
+    // static initialization for usage in signal handler
+    static const QString name =
+#ifdef QBT_USES_QT5
+    QString("%1 %2 %3")
+    .arg(QSysInfo::prettyProductName())
+    .arg(QSysInfo::kernelVersion())
+    .arg(QSysInfo::currentCpuArchitecture());
+#else
+    "<Input OS name here>";
+#endif
+    return name;
+}
+
+QString Utils::Misc::boostVersionString()
+{
+    // static initialization for usage in signal handler
+    static const QString ver = QString("%1.%2.%3")
+                 .arg(BOOST_VERSION / 100000)
+                 .arg((BOOST_VERSION / 100) % 1000)
+                 .arg(BOOST_VERSION % 100);
+    return ver;
+}
+
+QString Utils::Misc::libtorrentVersionString()
+{
+    // static initialization for usage in signal handler
+    static const QString ver = LIBTORRENT_VERSION;
+    return ver;
+}

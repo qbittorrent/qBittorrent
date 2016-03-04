@@ -57,6 +57,10 @@ namespace Utils
         QPoint screenCenter(QWidget *win);
         QSize smallIconSize();
 #endif
+        QString osName();
+        QString boostVersionString();
+        QString libtorrentVersionString();
+
         int pythonVersion();
         QString pythonExecutable();
         QString pythonVersionComplete();

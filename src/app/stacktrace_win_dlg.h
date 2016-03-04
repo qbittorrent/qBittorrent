@@ -32,8 +32,7 @@
 
 #include <QString>
 #include <QDialog>
-#include "boost/version.hpp"
-#include "libtorrent/version.hpp"
+#include "base/utils/misc.h"
 #include "ui_stacktrace_win_dlg.h"
 
 class StraceDlg : public QDialog, private Ui::errorDialog
@@ -50,9 +49,6 @@ public:
     void setStacktraceString(const QString& trace)
     {
         // try to call Qt function as less as possible
-        const int boostVerMajor = BOOST_VERSION / 100000;
-        const int boostVerMinor = ((BOOST_VERSION / 100) % 1000);
-        const int boostVerSubMin = BOOST_VERSION % 100;
         QString htmlStr = QString(
             "<p align=center><b><font size=7 color=red>"
             "qBittorrent has crashed"
@@ -65,15 +61,16 @@ public:
             "<br/><hr><br/>"
             "<p align=center><font size=4>"
             "qBittorrent version: " VERSION "<br/>"
-            "Libtorrent version: " LIBTORRENT_VERSION "<br/>"
+            "Libtorrent version: %1<br/>"
             "Qt version: " QT_VERSION_STR "<br/>"
-            "Boost version: %1.%2.%3"
+            "Boost version: %2<br/>"
+            "OS version: %3"
             "</font></p><br/>"
             "<pre><code>%4</code></pre>"
             "<br/><hr><br/><br/>")
-            .arg(boostVerMajor)
-            .arg(boostVerMinor)
-            .arg(boostVerSubMin)
+            .arg(Utils::Misc::libtorrentVersionString())
+            .arg(Utils::Misc::boostVersionString())
+            .arg(Utils::Misc::osName())
             .arg(trace);
 
         errorText->setHtml(htmlStr);
