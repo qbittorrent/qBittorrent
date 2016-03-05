@@ -67,6 +67,15 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
         QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
         break;
+    case REMAINING:
+        QItemDelegate::drawBackground(painter, opt, index);
+        if (index.sibling(index.row(), PRIORITY).data().toInt() == prio::IGNORED) {
+            QItemDelegate::drawDisplay(painter, opt, option.rect, tr("N/A"));
+        }
+        else {
+            QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
+        }
+        break;
     case PROGRESS:
         if (index.data().toDouble() >= 0) {
             QStyleOptionProgressBarV2 newopt;
