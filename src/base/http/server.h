@@ -54,7 +54,7 @@ namespace Http
         ~Server();
 
     #ifndef QT_NO_OPENSSL
-        void enableHttps(const QSslCertificate &certificate, const QSslKey &key);
+        void enableHttps(const QList<QSslCertificate> &certificates, const QSslKey &key);
         void disableHttps();
     #endif
 
@@ -69,7 +69,7 @@ namespace Http
         IRequestHandler *m_requestHandler;
     #ifndef QT_NO_OPENSSL
         bool m_https;
-        QSslCertificate m_certificate;
+        QList<QSslCertificate> m_certificates;
         QSslKey m_key;
     #endif
     };

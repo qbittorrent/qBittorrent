@@ -52,9 +52,9 @@ Server::~Server()
 }
 
 #ifndef QT_NO_OPENSSL
-void Server::enableHttps(const QSslCertificate &certificate, const QSslKey &key)
+void Server::enableHttps(const QList<QSslCertificate> &certificates, const QSslKey &key)
 {
-    m_certificate = certificate;
+    m_certificates = certificates;
     m_key = key;
     m_https = true;
 }
@@ -62,7 +62,7 @@ void Server::enableHttps(const QSslCertificate &certificate, const QSslKey &key)
 void Server::disableHttps()
 {
     m_https = false;
-    m_certificate.clear();
+    m_certificates.clear();
     m_key.clear();
 }
 #endif
@@ -84,9 +84,13 @@ void Server::incomingConnection(int socketDescriptor)
     if (serverSocket->setSocketDescriptor(socketDescriptor)) {
 #ifndef QT_NO_OPENSSL
         if (m_https) {
-            static_cast<QSslSocket*>(serverSocket)->setProtocol(QSsl::AnyProtocol);
+            static_cast<QSslSocket*>(serverSocket)->setProtocol(QSsl::SecureProtocols);
             static_cast<QSslSocket*>(serverSocket)->setPrivateKey(m_key);
-            static_cast<QSslSocket*>(serverSocket)->setLocalCertificate(m_certificate);
+#ifdef QBT_USES_QT5
+            static_cast<QSslSocket*>(serverSocket)->setLocalCertificateChain(m_certificates);
+#else
+            static_cast<QSslSocket*>(serverSocket)->setLocalCertificate(m_certificates.first());
+#endif
             static_cast<QSslSocket*>(serverSocket)->startServerEncryption();
         }
 #endif
