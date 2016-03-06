@@ -1172,6 +1172,12 @@ void TorrentHandle::move(QString path)
     m_useASM = false;
     m_session->handleTorrentSavingModeChanged(this);
 
+    path = Utils::Fs::fromNativePath(path.trimmed());
+    if (path.isEmpty())
+        path = m_session->defaultSavePath();
+    if (!path.endsWith('/'))
+        path += '/';
+
     move_impl(path);
 }
 
