@@ -131,10 +131,15 @@ namespace
         return result;
     }
 
-    QString normalizePath(QString path, const QString &defaultPath = Utils::Fs::QDesktopServicesDownloadLocation())
+    QString normalizeSavePath(QString path, const QString &defaultPath = Utils::Fs::QDesktopServicesDownloadLocation())
     {
         path = Utils::Fs::fromNativePath(path.trimmed());
-        return !path.isEmpty() ? path : defaultPath;
+        if (path.isEmpty())
+            path = Utils::Fs::fromNativePath(defaultPath.trimmed());
+        if (!path.isEmpty() && !path.endsWith('/'))
+            path += '/';
+
+        return path;
     }
 
     QStringMap expandCategories(const QStringMap &categories)
@@ -242,8 +247,8 @@ Session::Session(QObject *parent)
     m_statistics = new Statistics(this);
 
     m_maxRatioAction = static_cast<MaxRatioAction>(m_settings->loadValue(KEY_MAXRATIOACTION, Pause).toInt());
-    m_defaultSavePath = normalizePath(m_settings->loadValue(KEY_DEFAULTSAVEPATH).toString());
-    m_tempPath = normalizePath(m_settings->loadValue(KEY_TEMPPATH).toString(), m_defaultSavePath + "/temp");
+    m_defaultSavePath = normalizeSavePath(m_settings->loadValue(KEY_DEFAULTSAVEPATH).toString());
+    m_tempPath = normalizeSavePath(m_settings->loadValue(KEY_TEMPPATH).toString(), m_defaultSavePath + "temp");
 
     // Apply user settings to BitTorrent session
     configure();
@@ -318,7 +323,7 @@ QString Session::tempPath() const
 
 bool Session::isValidCategoryName(const QString &name)
 {
-    QRegExp re(R"#(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)#");
+    QRegExp re(R"(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)");
     if (!name.isEmpty() && (re.indexIn(name) != 0)) {
         qDebug() << "Incorrect category name:" << name;
         return false;
@@ -351,16 +356,16 @@ QStringList Session::categories() const
 QString Session::categorySavePath(const QString &categoryName) const
 {
     QString basePath = m_defaultSavePath;
-    QString path = m_categories.value(categoryName);
     if (categoryName.isEmpty()) return basePath;
 
+    QString path = m_categories.value(categoryName);
     if (path.isEmpty()) // use implicit save path
         path = Utils::Fs::toValidFileSystemName(categoryName, true);
 
     if (!QDir::isAbsolutePath(path))
-        path = QString("%1/%2").arg(basePath).arg(path);
+        path.prepend(basePath);
 
-    return path;
+    return normalizeSavePath(path);
 }
 
 bool Session::addCategory(const QString &name, const QString &savePath)
@@ -1218,10 +1223,9 @@ bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams 
 bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri,
                               const TorrentInfo &torrentInfo, const QByteArray &fastresumeData)
 {
-    if (!addData.resumed) {
-        if (addData.savePath.isEmpty() && isASMDisabledByDefault())
-            addData.savePath = m_defaultSavePath;
-    }
+    addData.savePath = normalizeSavePath(
+                addData.savePath,
+                ((!addData.resumed && isASMDisabledByDefault()) ? m_defaultSavePath : ""));
 
     if (!addData.category.isEmpty()) {
         if (!m_categories.contains(addData.category) && !addCategory(addData.category)) {
@@ -1229,8 +1233,6 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
             addData.category = "";
         }
     }
-
-    addData.savePath = Utils::Fs::fromNativePath(addData.savePath);
 
     libt::add_torrent_params p;
     InfoHash hash;
@@ -1591,7 +1593,7 @@ void Session::saveResumeData()
 
 void Session::setDefaultSavePath(QString path)
 {
-    path = normalizePath(path);
+    path = normalizeSavePath(path);
     if (m_defaultSavePath == path) return;
 
     m_defaultSavePath = path;
@@ -1607,7 +1609,7 @@ void Session::setDefaultSavePath(QString path)
 
 void Session::setTempPath(QString path)
 {
-    path = normalizePath(path, m_defaultSavePath + "/temp");
+    path = normalizeSavePath(path, m_defaultSavePath + "temp");
     if (m_tempPath == path) return;
 
     m_tempPath = path;
