@@ -59,7 +59,7 @@ QStringList TrackersAdditionDlg::newTrackers() const
 void TrackersAdditionDlg::on_uTorrentListButton_clicked()
 {
     uTorrentListButton->setEnabled(false);
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(QString("http://www.torrentz.com/announce_%1").arg(m_torrent->hash()), true);
+    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(QString("https://www.torrentz.com/announce_%1").arg(m_torrent->hash()), true);
     connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(parseUTorrentList(QString, QString)));
     connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(getTrackerError(QString, QString)));
     //Just to show that it takes times

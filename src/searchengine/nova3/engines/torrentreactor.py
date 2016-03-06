@@ -1,4 +1,4 @@
-#VERSION: 1.40
+#VERSION: 1.41
 #AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 #              Bruno Barbieri (brunorex@gmail.com)
@@ -34,7 +34,7 @@ from html.parser import HTMLParser
 from re import compile as re_compile
 
 class torrentreactor(object):
-    url = 'http://torrentreactor.com'
+    url = 'https://torrentreactor.com'
     name = 'TorrentReactor'
     supported_categories = {'all': '', 'movies': '5', 'tv': '8', 'music': '6', 'games': '3', 'anime': '1', 'software': '2'}
 

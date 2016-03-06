@@ -300,7 +300,7 @@ QUrl DNSUpdater::getRegistrationUrl(int service)
     case DNS::DYNDNS:
         return QUrl("https://www.dyndns.com/account/services/hosts/add.html");
     case DNS::NOIP:
-        return QUrl("http://www.no-ip.com/services/managed_dns/free_dynamic_dns.html");
+        return QUrl("https://www.noip.com/remote-access");
     default:
         Q_ASSERT(0);
     }

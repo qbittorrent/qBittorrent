@@ -13,7 +13,7 @@ out there. qBittorrent is fast, stable and provides unicode
 support as well as many features.
 
 This product includes GeoLite data created by MaxMind, available from
-http://maxmind.com/
+https://www.maxmind.com/
 
 ### Installation:
 For installation, follow the instructions from INSTALL file, but simple:
