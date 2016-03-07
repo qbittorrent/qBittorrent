@@ -9,12 +9,7 @@ if (SYSTEMD)
     endif(SYSTEMD_FOUND)
 endif(SYSTEMD)
 
-
-if (GUI)
-    list(APPEND MAN_FILES ${qBittorrent_SOURCE_DIR}/doc/qbittorrent.1)
-else (GUI)
-    list(APPEND MAN_FILES ${qBittorrent_SOURCE_DIR}/doc/qbittorrent.1)
-endif (GUI)
+list(APPEND MAN_FILES ${qBittorrent_SOURCE_DIR}/doc/qbittorrent.1)
 
 install(FILES ${MAN_FILES}
         DESTINATION ${CMAKE_INSTALL_MANDIR}/man1
