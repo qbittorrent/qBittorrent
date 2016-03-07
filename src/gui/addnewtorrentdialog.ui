@@ -287,7 +287,7 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="comment_lbl">
+             <widget class="QLabel" name="commentLabel">
               <property name="textFormat">
                <enum>Qt::RichText</enum>
               </property>

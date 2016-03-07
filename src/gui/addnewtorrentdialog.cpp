@@ -689,7 +689,7 @@ void AddNewTorrentDialog::setMetadataProgressIndicator(bool visibleIndicator, co
 void AddNewTorrentDialog::setupTreeview()
 {
     if (!m_hasMetadata) {
-        ui->comment_lbl->setText(tr("Not Available", "This comment is unavailable"));
+        setCommentText(tr("Not Available", "This comment is unavailable"));
         ui->date_lbl->setText(tr("Not Available", "This date is unavailable"));
     }
     else {
@@ -697,7 +697,7 @@ void AddNewTorrentDialog::setupTreeview()
         setWindowTitle(m_torrentInfo.name());
 
         // Set torrent information
-        ui->comment_lbl->setText(Utils::Misc::parseHtmlLinks(m_torrentInfo.comment()));
+        setCommentText(Utils::Misc::parseHtmlLinks(m_torrentInfo.comment()));
         ui->date_lbl->setText(!m_torrentInfo.creationDate().isNull() ? m_torrentInfo.creationDate().toString(Qt::DefaultLocaleShortDate) : tr("Not available"));
 
         // Prepare content tree
@@ -776,4 +776,15 @@ void AddNewTorrentDialog::savingModeChanged(bool enabled)
         ui->browseButton->setEnabled(false);
         ui->defaultSavePathCheckBox->setVisible(false);
     }
+}
+
+void AddNewTorrentDialog::setCommentText(const QString &str) const
+{
+    ui->commentLabel->setText(str);
+
+    // workaround for the additional space introduced by QScrollArea
+    int lineHeight = ui->commentLabel->fontMetrics().lineSpacing();
+    int lines = 1 + str.count("\n");
+    int height = lineHeight * lines;
+    ui->scrollArea->setMaximumHeight(height);
 }
