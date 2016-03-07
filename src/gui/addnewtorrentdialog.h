@@ -92,6 +92,7 @@ private:
     void saveState();
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = QString());
     void setupTreeview();
+    void setCommentText(const QString &str) const;
 
 private:
     Ui::AddNewTorrentDialog *ui;
