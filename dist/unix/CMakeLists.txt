@@ -13,7 +13,7 @@ endif(SYSTEMD)
 if (GUI)
     list(APPEND MAN_FILES ${qBittorrent_SOURCE_DIR}/doc/qbittorrent.1)
 else (GUI)
-    list(APPEND MAN_FILES ${qBittorrent_SOURCE_DIR}/doc/qbittorrent.1)
+    list(APPEND MAN_FILES ${qBittorrent_SOURCE_DIR}/doc/qbittorrent-nox.1)
 endif (GUI)
 
 install(FILES ${MAN_FILES}
