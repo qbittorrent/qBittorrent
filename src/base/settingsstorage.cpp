@@ -40,11 +40,11 @@ namespace
 {
     inline QSettings *createSettings(const QString &name)
     {
-    #ifdef Q_OS_WIN
-            return new QSettings(QSettings::IniFormat, QSettings::UserScope, "qBittorrent", name);
-    #else
-            return new QSettings("qBittorrent", name);
-    #endif
+#ifdef Q_OS_WIN
+        return new QSettings(QSettings::IniFormat, QSettings::UserScope, "qBittorrent", name);
+#else
+        return new QSettings("qBittorrent", name);
+#endif
     }
 
 #ifdef QBT_USES_QT5
@@ -56,8 +56,8 @@ namespace
         MappingTable(std::initializer_list<std::pair<QString, QString>> list)
         {
             reserve(static_cast<int>(list.size()));
-            for (std::initializer_list<std::pair<QString, QString>>::const_iterator it = list.begin(); it != list.end(); ++it)
-                insert(it->first, it->second);
+            for (const auto &i : list)
+                insert(i.first, i.second);
         }
     };
 #endif
@@ -96,8 +96,6 @@ SettingsStorage::SettingsStorage()
     , m_lock(QReadWriteLock::Recursive)
 {
     QSettings *settings;
-    QStringList keys;
-
 #ifdef Q_OS_MAC
     settings = createSettings("qBittorrent");
 #else
@@ -118,7 +116,7 @@ SettingsStorage::SettingsStorage()
     }
 #endif
 
-    keys = settings->allKeys();
+    QStringList keys = settings->allKeys();
 
     // Copy everything into memory. This means even keys inserted in the file manually
     // or that we don't touch directly in this code(eg disabled by ifdef). This ensures
@@ -188,8 +186,8 @@ bool SettingsStorage::save()
 
 #ifndef Q_OS_MAC
     settings->sync(); // Important to get error status
-    QString newPath = settings->fileName();
     QSettings::Status status = settings->status();
+    QString newPath = settings->fileName();
 
     if (status != QSettings::NoError) {
         if (status == QSettings::AccessError)
