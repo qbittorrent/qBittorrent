@@ -33,6 +33,7 @@
 #include <QLibraryInfo>
 #include <QSysInfo>
 #include <QProcess>
+#include <QAtomicInt>
 
 #ifndef DISABLE_GUI
 #include "gui/guiiconprovider.h"
@@ -548,11 +549,9 @@ void Application::cleanup()
 #ifndef DISABLE_GUI
 #ifdef Q_OS_WIN
     // cleanup() can be called multiple times during shutdown. We only need it once.
-    static bool alreadyDone = false;
-
-    if (alreadyDone)
+    static QAtomicInt alreadyDone;
+    if (!alreadyDone.testAndSetAcquire(0, 1))
         return;
-    alreadyDone = true;
 #endif // Q_OS_WIN
 
     // Hide the window and not leave it on screen as
@@ -595,6 +594,7 @@ void Application::cleanup()
     delete m_fileLogger;
     Logger::freeInstance();
     IconProvider::freeInstance();
+
 #ifndef DISABLE_GUI
 #ifdef Q_OS_WIN
     typedef BOOL (WINAPI *PSHUTDOWNBRDESTROY)(HWND);
