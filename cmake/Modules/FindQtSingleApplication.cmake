@@ -13,6 +13,7 @@
 SET(QTSINGLEAPPLICATION_FOUND FALSE)
 
 IF(QT4_FOUND)
+    message(STATUS "Looking for Qt4 single application library")
     FIND_PATH(QTSINGLEAPPLICATION_INCLUDE_DIR QtSingleApplication
                 # standard locations
                 /usr/include
@@ -23,12 +24,14 @@ IF(QT4_FOUND)
                 ${FRAMEWORK_INCLUDE_DIR}/QtSolutions
     )
 
-    SET(QTSINGLEAPPLICATION_NAMES ${QTSINGLEAPPLICATION_NAMES} QtSolutions_SingleApplication-2.6 libQtSolutions_SingleApplication-2.6)
+    SET(QTSINGLEAPPLICATION_NAMES ${QTSINGLEAPPLICATION_NAMES}
+        QtSolutions_SingleApplication-2.6 libQtSolutions_SingleApplication-2.6)
     FIND_LIBRARY(QTSINGLEAPPLICATION_LIBRARY
         NAMES ${QTSINGLEAPPLICATION_NAMES}
         PATHS ${QT_LIBRARY_DIR}
     )
 ELSEIF(Qt5Widgets_FOUND)
+    message(STATUS "Looking for Qt5 single application library")
     FOREACH(TOP_INCLUDE_PATH in ${Qt5Widgets_INCLUDE_DIRS} ${FRAMEWORK_INCLUDE_DIR})
         FIND_PATH(QTSINGLEAPPLICATION_INCLUDE_DIR QtSingleApplication ${TOP_INCLUDE_PATH}/QtSolutions)
 
@@ -37,7 +40,9 @@ ELSEIF(Qt5Widgets_FOUND)
         ENDIF()
     ENDFOREACH()
 
-    SET(QTSINGLEAPPLICATION_NAMES ${QTSINGLEAPPLICATION_NAMES} QtSolutions_SingleApplication-2.6 libQtSolutions_SingleApplication-2.6)
+    SET(QTSINGLEAPPLICATION_NAMES ${QTSINGLEAPPLICATION_NAMES}
+        Qt5Solutions_SingleApplication-2.6 libQt5Solutions_SingleApplication-2.6
+        QtSolutions_SingleApplication-2.6 libQtSolutions_SingleApplication-2.6)
     GET_TARGET_PROPERTY(QT5_WIDGETSLIBRARY Qt5::Widgets LOCATION)
     GET_FILENAME_COMPONENT(QT5_WIDGETSLIBRARYPATH ${QT5_WIDGETSLIBRARY} PATH)
 
