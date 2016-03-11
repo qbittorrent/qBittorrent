@@ -67,7 +67,7 @@ protected:
 
     // Session management
     bool sessionActive() const { return session_ != 0; }
-    bool sessionStart();
+    bool sessionStart(const QString& token = QString());
     bool sessionEnd();
 
     bool isAuthNeeded();

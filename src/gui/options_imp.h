@@ -96,6 +96,10 @@ private slots:
     void on_registerDNSBtn_clicked();
     void setLocale(const QString &locale);
 
+    void on_addAuthTokenButton_clicked();
+    void on_removeAuthTokenButton_clicked();
+    void handleAuthTokensCurrentItemChanged();
+
 private:
     // Methods
     void saveOptions();
@@ -155,6 +159,7 @@ private:
     int getMaxActiveTorrents() const;
     bool isWebUiEnabled() const;
     quint16 webUiPort() const;
+    QStringList webUiAuthenticationTokens() const;
     QString webUiUsername() const;
     QString webUiPassword() const;
     QSize sizeFittingScreen() const;

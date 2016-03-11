@@ -62,11 +62,12 @@ private:
 struct WebSession
 {
     const QString id;
+    const QString token;
     uint timestamp;
     WebSessionData data;
 
-    WebSession(const QString& id)
-        : id(id)
+    WebSession(const QString& id, const QString& token)
+        : id(id), token(token)
     {
         updateTimestamp();
     }
@@ -74,6 +75,11 @@ struct WebSession
     void updateTimestamp()
     {
         timestamp = QDateTime::currentDateTime().toTime_t();
+    }
+
+    bool hasAuthenticationToken()
+    {
+        return !token.isNull();
     }
 };
 
@@ -105,6 +111,14 @@ Http::Response AbstractWebApplication::processRequest(const Http::Request &reque
     sessionInitialize();
     if (!sessionActive() && !isAuthNeeded())
         sessionStart();
+
+    // if the session was authenticated using a token, then let's check if it's
+    // still a valid token
+    if (sessionActive() && session_->hasAuthenticationToken()) {
+        if (!Preferences::instance()->isAuthenticationTokenValid(session_->token)) {
+            sessionEnd();
+        }
+    }
 
     if (isBanned()) {
         status(403, "Forbidden");
@@ -346,10 +360,10 @@ void AbstractWebApplication::printFile(const QString& path)
     print(data, type);
 }
 
-bool AbstractWebApplication::sessionStart()
+bool AbstractWebApplication::sessionStart(const QString& token)
 {
     if (session_ == 0) {
-        session_ = new WebSession(generateSid());
+        session_ = new WebSession(generateSid(), token);
         sessions_[session_->id] = session_;
 
         QNetworkCookie cookie(C_SID, session_->id.toUtf8());

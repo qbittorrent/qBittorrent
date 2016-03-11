@@ -108,6 +108,8 @@ options_imp::options_imp(QWidget *parent)
     connect(ScanFoldersModel::instance(), SIGNAL(dataChanged(QModelIndex, QModelIndex)), this, SLOT(enableApplyButton()));
     connect(scanFoldersView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(handleScanFolderViewSelectionChanged()));
 
+    connect(authTokensView, SIGNAL(itemSelectionChanged()), this, SLOT(handleAuthTokensCurrentItemChanged()));
+
     connect(buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(applySettings(QAbstractButton*)));
     // Languages supported
     initializeLanguageCombo();
@@ -198,6 +200,9 @@ options_imp::options_imp(QWidget *parent)
     connect(mailNotifPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(autoRunBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(autoRun_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+
+    connect(addAuthTokenButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
+    connect(removeAuthTokenButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
 
     const QString autoRunStr = QString::fromUtf8("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n%11")
                                .arg(tr("Supported parameters (case sensitive):"))
@@ -300,6 +305,10 @@ options_imp::options_imp(QWidget *parent)
     // Adapt size
     show();
     loadWindowState();
+
+    // initialize rand for authentication tokens
+    srand(time(0));
+
 }
 
 void options_imp::initializeLanguageCombo()
@@ -540,6 +549,7 @@ void options_imp::saveOptions()
             pref->setWebUiHttpsCertificate(m_sslCert);
             pref->setWebUiHttpsKey(m_sslKey);
         }
+        pref->setWebUiAuthenticationTokens(webUiAuthenticationTokens());
         pref->setWebUiUsername(webUiUsername());
         pref->setWebUiPassword(webUiPassword());
         pref->setWebUiLocalAuthEnabled(!checkBypassLocalAuth->isChecked());
@@ -873,6 +883,12 @@ void options_imp::loadOptions()
     textWebUiUsername->setText(pref->getWebUiUsername());
     textWebUiPassword->setText(pref->getWebUiPassword());
     checkBypassLocalAuth->setChecked(!pref->isWebUiLocalAuthEnabled());
+
+    // initialize authentication tokens in ui
+    foreach (QString token, pref->getWebUiAuthenticationTokens()) {
+        new QListWidgetItem(token, authTokensView);
+    }
+    handleAuthTokensCurrentItemChanged();
 
     checkDynDNS->setChecked(pref->isDynDNSEnabled());
     comboDNSService->setCurrentIndex((int)pref->getDynDNSService());
@@ -1232,6 +1248,35 @@ int options_imp::getActionOnDblClOnTorrentFn() const
     return actionTorrentFnOnDblClBox->currentIndex();
 }
 
+void options_imp::on_addAuthTokenButton_clicked()
+{
+    QByteArray data = QByteArray();
+    for (int i = 0; i < 512; i++) {
+        data.append((char) rand());
+    }
+
+    QCryptographicHash md5(QCryptographicHash::Md5);
+    md5.addData(data);
+
+    new QListWidgetItem(md5.result().toHex(), authTokensView);
+}
+
+void options_imp::on_removeAuthTokenButton_clicked()
+{
+    QList<QListWidgetItem *> selectedItems = authTokensView->selectedItems();
+
+    foreach (QListWidgetItem *item, selectedItems) {
+        authTokensView->takeItem(authTokensView->row(item));
+    }
+
+    handleAuthTokensCurrentItemChanged();
+}
+
+void options_imp::handleAuthTokensCurrentItemChanged()
+{
+    removeAuthTokenButton->setEnabled(!authTokensView->selectedItems().isEmpty());
+}
+
 void options_imp::on_addScanFolderButton_clicked()
 {
     Preferences* const pref = Preferences::instance();
@@ -1363,6 +1408,17 @@ bool options_imp::isWebUiEnabled() const
 quint16 options_imp::webUiPort() const
 {
     return spinWebUiPort->value();
+}
+
+QStringList options_imp::webUiAuthenticationTokens() const
+{
+    QStringList tokens = QStringList();
+
+    for (int i = 0; i < authTokensView->count(); i++) {
+        tokens << authTokensView->item(i)->text();
+    }
+
+    return tokens;
 }
 
 QString options_imp::webUiUsername() const

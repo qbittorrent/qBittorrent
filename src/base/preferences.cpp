@@ -54,6 +54,7 @@
 
 #include "utils/fs.h"
 #include "utils/misc.h"
+#include "utils/string.h"
 #include "settingsstorage.h"
 #include "logger.h"
 #include "preferences.h"
@@ -970,6 +971,32 @@ bool Preferences::useUPnPForWebUIPort() const
 void Preferences::setUPnPForWebUIPort(bool enabled)
 {
     setValue("Preferences/WebUI/UseUPnP", enabled);
+}
+
+QStringList Preferences::getWebUiAuthenticationTokens() const
+{
+    return value("Preferences/WebUI/AuthenticationTokens").toStringList();
+}
+
+void Preferences::setWebUiAuthenticationTokens(const QStringList &tokens)
+{
+    setValue("Preferences/WebUI/AuthenticationTokens", tokens);
+}
+
+bool Preferences::isAuthenticationTokenValid(const QString& token) const
+{
+    bool tokenAuthenticated = false;
+
+    if (!token.isNull()) {
+        foreach (QString storedToken, getWebUiAuthenticationTokens()) {
+            if (Utils::String::slowEquals(token.toUtf8(), storedToken.toUtf8())) {
+                tokenAuthenticated = true;
+                break;
+            }
+        }
+    }
+
+    return tokenAuthenticated;
 }
 
 QString Preferences::getWebUiUsername() const
