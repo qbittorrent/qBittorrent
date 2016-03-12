@@ -40,6 +40,7 @@
 #include <QDesktopServices>
 #include <QDebug>
 #include <QClipboard>
+#include <QCryptographicHash>
 
 #include <cstdlib>
 
