@@ -201,10 +201,8 @@ options_imp::options_imp(QWidget *parent)
     connect(mailNotifPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(autoRunBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(autoRun_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-
     connect(addAuthTokenButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
     connect(removeAuthTokenButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
-    // connect(copyAuthTokenClipboardButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
 
     const QString autoRunStr = QString::fromUtf8("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n%11")
                                .arg(tr("Supported parameters (case sensitive):"))
@@ -310,7 +308,6 @@ options_imp::options_imp(QWidget *parent)
 
     // initialize rand for authentication tokens
     srand(time(0));
-
 }
 
 void options_imp::initializeLanguageCombo()
