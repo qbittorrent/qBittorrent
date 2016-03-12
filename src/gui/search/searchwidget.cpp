@@ -61,7 +61,6 @@
 #include "mainwindow.h"
 #include "addnewtorrentdialog.h"
 #include "guiiconprovider.h"
-#include "lineedit.h"
 #include "pluginselectdlg.h"
 #include "searchsortmodel.h"
 #include "searchtab.h"
@@ -78,13 +77,8 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
 {
     setupUi(this);
 
-    m_searchPattern = new LineEdit(this);
-    searchBarLayout->insertWidget(0, m_searchPattern);
-    connect(m_searchPattern, SIGNAL(returnPressed()), searchButton, SLOT(click()));
-
     QString searchPatternHint;
     QTextStream stream(&searchPatternHint, QIODevice::WriteOnly);
-
     stream << "<html><head/><body><p>"
            << tr("A phrase to search for.") << "<br>"
            << tr("Spaces in a search term may be protected by double quotes.")
@@ -99,7 +93,6 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
                  "Search phrase example, illustrates quotes usage, double quoted"
                  "pair of space delimited words, the whole pair is highlighted")
            << "</p></body></html>" << flush;
-
     m_searchPattern->setToolTip(searchPatternHint);
 
     // Icons
@@ -121,6 +114,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     fillCatCombobox();
     fillPluginComboBox();
 
+    connect(m_searchPattern, SIGNAL(returnPressed()), searchButton, SLOT(click()));
     connect(m_searchPattern, SIGNAL(textEdited(QString)), this, SLOT(searchTextEdited(QString)));
     connect(selectPlugin, SIGNAL(currentIndexChanged(int)), this, SLOT(selectMultipleBox(int)));
 }

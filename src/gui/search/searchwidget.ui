@@ -17,6 +17,9 @@
    <item>
     <layout class="QHBoxLayout" name="searchBarLayout">
      <item>
+      <widget class="LineEdit" name="m_searchPattern"/>
+     </item>
+     <item>
       <widget class="QComboBox" name="comboCategory">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -114,6 +117,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>LineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>lineedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
