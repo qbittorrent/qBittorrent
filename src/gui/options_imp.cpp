@@ -39,6 +39,7 @@
 #include <QTranslator>
 #include <QDesktopServices>
 #include <QDebug>
+#include <QClipboard>
 
 #include <cstdlib>
 
@@ -203,6 +204,7 @@ options_imp::options_imp(QWidget *parent)
 
     connect(addAuthTokenButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
     connect(removeAuthTokenButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
+    // connect(copyAuthTokenClipboardButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
 
     const QString autoRunStr = QString::fromUtf8("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n%11")
                                .arg(tr("Supported parameters (case sensitive):"))
@@ -1272,9 +1274,19 @@ void options_imp::on_removeAuthTokenButton_clicked()
     handleAuthTokensCurrentItemChanged();
 }
 
+void options_imp::on_copyAuthTokenClipboardButton_clicked()
+{
+    QString selectedAuthToken = authTokensView->selectedItems().first()->text();
+
+    QApplication::clipboard()->setText(selectedAuthToken);
+}
+
 void options_imp::handleAuthTokensCurrentItemChanged()
 {
-    removeAuthTokenButton->setEnabled(!authTokensView->selectedItems().isEmpty());
+    bool enabled = !authTokensView->selectedItems().isEmpty();
+
+    removeAuthTokenButton->setEnabled(enabled);
+    copyAuthTokenClipboardButton->setEnabled(enabled);
 }
 
 void options_imp::on_addScanFolderButton_clicked()

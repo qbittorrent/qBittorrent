@@ -2928,6 +2928,13 @@
                                            </property>
                                        </widget>
                                    </item>
+                                   <item>
+                                       <widget class="QPushButton" name="copyAuthTokenClipboardButton">
+                                           <property name="text">
+                                               <string>Copy to Clipboard</string>
+                                           </property>
+                                       </widget>
+                                   </item>
 
                                    <item>
                                        <spacer name="verticalSpacer_6">
