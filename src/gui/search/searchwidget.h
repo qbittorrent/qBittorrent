@@ -38,7 +38,6 @@
 #include "ui_searchwidget.h"
 
 class MainWindow;
-class LineEdit;
 class SearchEngine;
 struct SearchResult;
 class SearchTab;
@@ -82,7 +81,6 @@ private:
     QString selectedCategory() const;
     QString selectedPlugin() const;
 
-    LineEdit *m_searchPattern;
     SearchEngine *m_searchEngine;
     QPointer<SearchTab> m_currentSearchTab; // Selected tab
     QPointer<SearchTab> m_activeSearchTab; // Tab with running search
