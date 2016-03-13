@@ -57,7 +57,7 @@
 PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     : QTreeView(parent)
     , m_properties(parent)
-    , m_displayFlags(false)
+    , m_resolveCountries(false)
 {
     // Load settings
     loadSettings();
@@ -70,7 +70,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     header()->setStretchLastSection(false);
     // List Model
     m_listModel = new QStandardItemModel(0, PeerListDelegate::COL_COUNT);
-    m_listModel->setHeaderData(PeerListDelegate::COUNTRY, Qt::Horizontal, QVariant()); // Country flag column
+    m_listModel->setHeaderData(PeerListDelegate::COUNTRY, Qt::Horizontal, tr("Country")); // Country flag column
     m_listModel->setHeaderData(PeerListDelegate::IP, Qt::Horizontal, tr("IP"));
     m_listModel->setHeaderData(PeerListDelegate::PORT, Qt::Horizontal, tr("Port"));
     m_listModel->setHeaderData(PeerListDelegate::FLAGS, Qt::Horizontal, tr("Flags"));
@@ -92,6 +92,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     hideColumn(PeerListDelegate::COL_COUNT);
     if (!Preferences::instance()->resolvePeerCountries())
         hideColumn(PeerListDelegate::COUNTRY);
+    m_wasCountryColHidden = isColumnHidden(PeerListDelegate::COUNTRY);
     //Ensure that at least one column is visible at all times
     bool atLeastOne = false;
     for (unsigned int i = 0; i < PeerListDelegate::IP_HIDDEN; i++) {
@@ -152,6 +153,10 @@ void PeerListWidget::displayToggleColumnsMenu(const QPoint&)
     hideshowColumn.setTitle(tr("Column visibility"));
     QList<QAction*> actions;
     for (int i = 0; i < PeerListDelegate::IP_HIDDEN; ++i) {
+        if ((i == PeerListDelegate::COUNTRY) && !Preferences::instance()->resolvePeerCountries()) {
+            actions.append(nullptr); // keep the index in sync
+            continue;
+        }
         QAction *myAct = hideshowColumn.addAction(m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
         myAct->setCheckable(true);
         myAct->setChecked(!isColumnHidden(i));
@@ -198,15 +203,18 @@ void PeerListWidget::updatePeerHostNameResolutionState()
 
 void PeerListWidget::updatePeerCountryResolutionState()
 {
-    if (Preferences::instance()->resolvePeerCountries() != m_displayFlags) {
-        m_displayFlags = !m_displayFlags;
-        if (m_displayFlags) {
+    if (Preferences::instance()->resolvePeerCountries() != m_resolveCountries) {
+        m_resolveCountries = !m_resolveCountries;
+        if (m_resolveCountries) {
             loadPeers(m_properties->getCurrentTorrent());
-            showColumn(PeerListDelegate::COUNTRY);
-            resizeColumnToContents(PeerListDelegate::COUNTRY);
+            if (!m_wasCountryColHidden) {
+                showColumn(PeerListDelegate::COUNTRY);
+                resizeColumnToContents(PeerListDelegate::COUNTRY);
+            }
         }
         else {
             hideColumn(PeerListDelegate::COUNTRY);
+            m_wasCountryColHidden = false; // to forcefully enable that column if the user decides to resolve countries again
         }
     }
 }
@@ -372,7 +380,7 @@ QStandardItem* PeerListWidget::addPeer(const QString &ip, const BitTorrent::Peer
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP), ip, Qt::ToolTipRole);
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::PORT), peer.address().port);
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP_HIDDEN), ip);
-    if (m_displayFlags) {
+    if (m_resolveCountries) {
         const QIcon ico = GuiIconProvider::instance()->getFlagIcon(peer.country());
         if (!ico.isNull()) {
             m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), ico, Qt::DecorationRole);
@@ -400,7 +408,7 @@ void PeerListWidget::updatePeer(const QString &ip, const BitTorrent::PeerInfo &p
 {
     QStandardItem *item = m_peerItems.value(ip);
     int row = item->row();
-    if (m_displayFlags) {
+    if (m_resolveCountries) {
         const QIcon ico = GuiIconProvider::instance()->getFlagIcon(peer.country());
         if (!ico.isNull()) {
             m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), ico, Qt::DecorationRole);

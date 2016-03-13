@@ -93,7 +93,8 @@ private:
     QSet<QString> m_missingFlags;
     QPointer<Net::ReverseResolution> m_resolver;
     PropertiesWidget *m_properties;
-    bool m_displayFlags;
+    bool m_resolveCountries;
+    bool m_wasCountryColHidden;
     QShortcut *m_copyHotkey;
 };
 
