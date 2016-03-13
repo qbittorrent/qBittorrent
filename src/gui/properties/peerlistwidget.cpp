@@ -67,6 +67,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     setItemsExpandable(false);
     setAllColumnsShowFocus(true);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
+    header()->setStretchLastSection(false);
     // List Model
     m_listModel = new QStandardItemModel(0, PeerListDelegate::COL_COUNT);
     m_listModel->setHeaderData(PeerListDelegate::COUNTRY, Qt::Horizontal, QVariant()); // Country flag column
@@ -87,15 +88,20 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_proxyModel->setSourceModel(m_listModel);
     m_proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     setModel(m_proxyModel);
-    //Explicitly set the column visibility. When columns are added/removed
-    //between versions this prevents some of them being hidden due to
-    //incorrect restoreState() being used.
-    for (unsigned int i = 0; i < PeerListDelegate::IP_HIDDEN; i++)
-        showColumn(i);
     hideColumn(PeerListDelegate::IP_HIDDEN);
     hideColumn(PeerListDelegate::COL_COUNT);
     if (!Preferences::instance()->resolvePeerCountries())
         hideColumn(PeerListDelegate::COUNTRY);
+    //Ensure that at least one column is visible at all times
+    bool atLeastOne = false;
+    for (unsigned int i = 0; i < PeerListDelegate::IP_HIDDEN; i++) {
+        if (!isColumnHidden(i)) {
+            atLeastOne = true;
+            break;
+        }
+    }
+    if (!atLeastOne)
+        setColumnHidden(PeerListDelegate::IP, false);
     //To also mitigate the above issue, we have to resize each column when
     //its size is 0, because explicitly 'showing' the column isn't enough
     //in the above scenario.
@@ -113,6 +119,8 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     // IP to Hostname resolver
     updatePeerHostNameResolutionState();
     // SIGNAL/SLOT
+    header()->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(header(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayToggleColumnsMenu(const QPoint &)));
     connect(header(), SIGNAL(sectionClicked(int)), SLOT(handleSortColumnChanged(int)));
     handleSortColumnChanged(header()->sortIndicatorSection());
     m_copyHotkey = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::Key_C), this, SLOT(copySelectedPeers()), 0, Qt::WidgetShortcut);
@@ -136,6 +144,42 @@ PeerListWidget::~PeerListWidget()
     if (m_resolver)
         delete m_resolver;
     delete m_copyHotkey;
+}
+
+void PeerListWidget::displayToggleColumnsMenu(const QPoint&)
+{
+    QMenu hideshowColumn(this);
+    hideshowColumn.setTitle(tr("Column visibility"));
+    QList<QAction*> actions;
+    for (int i = 0; i < PeerListDelegate::IP_HIDDEN; ++i) {
+        QAction *myAct = hideshowColumn.addAction(m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
+        myAct->setCheckable(true);
+        myAct->setChecked(!isColumnHidden(i));
+        actions.append(myAct);
+    }
+    int visibleCols = 0;
+    for (unsigned int i = 0; i < PeerListDelegate::IP_HIDDEN; i++) {
+        if (!isColumnHidden(i))
+            visibleCols++;
+
+        if (visibleCols > 1)
+            break;
+    }
+
+    // Call menu
+    QAction *act = hideshowColumn.exec(QCursor::pos());
+    if (act) {
+        int col = actions.indexOf(act);
+        Q_ASSERT(col >= 0);
+        Q_ASSERT(visibleCols > 0);
+        if (!isColumnHidden(col) && (visibleCols == 1))
+            return;
+        qDebug("Toggling column %d visibility", col);
+        setColumnHidden(col, !isColumnHidden(col));
+        if (!isColumnHidden(col) && (columnWidth(col) <= 5))
+            setColumnWidth(col, 100);
+        saveSettings();
+    }
 }
 
 void PeerListWidget::updatePeerHostNameResolutionState()
