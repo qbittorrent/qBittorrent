@@ -654,12 +654,12 @@ void MainWindow::cleanup()
 #if (defined(Q_OS_WIN) || defined(Q_OS_MAC))
     m_programUpdateTimer->stop();
 #endif
-    delete m_searchFilter;
+
     delete m_searchFilterAction;
-    delete m_tabs; // this seems enough to also delete all contained widgets
-    delete m_statusBar;
-    delete m_pwr;
-    delete m_toolbarMenu;
+
+    // remove all child widgets
+    while (QWidget *w = findChild<QWidget *>())
+        delete w;
 }
 
 void MainWindow::readSettings()
