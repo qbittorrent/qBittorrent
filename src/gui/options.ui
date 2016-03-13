@@ -26,8 +26,17 @@
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
+      <property name="movement">
+       <enum>QListView::Static</enum>
+      </property>
       <property name="flow">
        <enum>QListView::TopToBottom</enum>
+      </property>
+      <property name="isWrapping" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="resizeMode">
+       <enum>QListView::Adjust</enum>
       </property>
       <property name="viewMode">
        <enum>QListView::IconMode</enum>
@@ -39,77 +48,35 @@
        <property name="text">
         <string>Behavior</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsEnabled</set>
-       </property>
       </item>
       <item>
        <property name="text">
         <string>Downloads</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsEnabled</set>
        </property>
       </item>
       <item>
        <property name="text">
         <string>Connection</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsEnabled</set>
-       </property>
       </item>
       <item>
        <property name="text">
         <string>Speed</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsEnabled</set>
        </property>
       </item>
       <item>
        <property name="text">
         <string>BitTorrent</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsEnabled</set>
-       </property>
       </item>
       <item>
        <property name="text">
         <string>Web UI</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsEnabled</set>
-       </property>
       </item>
       <item>
        <property name="text">
         <string>Advanced</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsEnabled</set>
        </property>
       </item>
      </widget>
@@ -546,8 +513,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>454</width>
-             <height>1212</height>
+             <width>487</width>
+             <height>1334</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1230,8 +1197,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>361</width>
-             <height>586</height>
+             <width>450</width>
+             <height>658</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1760,8 +1727,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>275</width>
-             <height>401</height>
+             <width>376</width>
+             <height>444</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2147,8 +2114,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>440</width>
-             <height>481</height>
+             <width>555</width>
+             <height>527</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2544,8 +2511,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>332</width>
-             <height>480</height>
+             <width>419</width>
+             <height>537</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
