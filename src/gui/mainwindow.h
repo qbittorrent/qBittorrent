@@ -81,6 +81,12 @@ public:
     QMenu* getTrayIconMenu();
     PropertiesWidget *getProperties() const { return properties; }
 
+    // ExecutionLog properties
+    bool isExecutionLogEnabled() const;
+    void setExecutionLogEnabled(bool value);
+    int getExecutionLogMsgTypes() const;
+    void setExecutionLogMsgTypes(const int value);
+
 public slots:
     void trackerAuthenticationRequired(BitTorrent::TorrentHandle *const torrent);
     void setTabText(int index, QString text) const;

@@ -60,8 +60,8 @@
 #include "application.h"
 #include "filelogger.h"
 #include "base/logger.h"
-#include "base/settingsstorage.h"
 #include "base/preferences.h"
+#include "base/settingsstorage.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/iconprovider.h"
@@ -72,7 +72,23 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 
-static const char PARAMS_SEPARATOR[] = "|";
+namespace
+{
+#define FILELOGGER_SETTINGS_KEY(name) "FileLogger/" name
+    const QString KEY_FILELOGGER_ENABLED = FILELOGGER_SETTINGS_KEY("Enabled");
+    const QString KEY_FILELOGGER_PATH = FILELOGGER_SETTINGS_KEY("Path");
+    const QString KEY_FILELOGGER_BACKUP = FILELOGGER_SETTINGS_KEY("Backup");
+    const QString KEY_FILELOGGER_DELETEOLD = FILELOGGER_SETTINGS_KEY("DeleteOld");
+    const QString KEY_FILELOGGER_MAXSIZE = FILELOGGER_SETTINGS_KEY("MaxSize");
+    const QString KEY_FILELOGGER_AGE = FILELOGGER_SETTINGS_KEY("Age");
+    const QString KEY_FILELOGGER_AGETYPE = FILELOGGER_SETTINGS_KEY("AgeType");
+
+    //just a shortcut
+    inline SettingsStorage *settings() { return  SettingsStorage::instance(); }
+
+    const QString LOG_FOLDER("logs");
+    const char PARAMS_SEPARATOR[] = "|";
+}
 
 Application::Application(const QString &id, int &argc, char **argv)
     : BaseApplication(id, argc, argv)
@@ -106,18 +122,104 @@ Application::Application(const QString &id, int &argc, char **argv)
 
     connect(this, SIGNAL(messageReceived(const QString &)), SLOT(processMessage(const QString &)));
     connect(this, SIGNAL(aboutToQuit()), SLOT(cleanup()));
-    connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
 
-    configure();
+    if (isFileLoggerEnabled())
+        m_fileLogger = new FileLogger(getFileLoggerPath(), isFileLoggerBackup(), getFileLoggerMaxSize(), isFileLoggerDeleteOld(), getFileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(getFileLoggerAgeType()));
+
     Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(VERSION));
 }
 
-void Application::configure()
+bool Application::isFileLoggerEnabled() const
 {
-    if (Preferences::instance()->fileLogEnabled() && !m_fileLogger)
-        m_fileLogger = new FileLogger;
+    return settings()->loadValue(KEY_FILELOGGER_ENABLED, true).toBool();
+}
+
+void Application::setFileLoggerEnabled(bool value)
+{
+    if (value && !m_fileLogger)
+        m_fileLogger = new FileLogger(getFileLoggerPath(), isFileLoggerBackup(), getFileLoggerMaxSize(), isFileLoggerDeleteOld(), getFileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(getFileLoggerAgeType()));
     else
         delete m_fileLogger;
+    settings()->storeValue(KEY_FILELOGGER_ENABLED, value);
+}
+
+QString Application::getFileLoggerPath() const
+{
+    return settings()->loadValue(KEY_FILELOGGER_PATH, QVariant(Utils::Fs::QDesktopServicesDataLocation() + LOG_FOLDER)).toString();
+}
+
+void Application::setFileLoggerPath(const QString &value)
+{
+    if (m_fileLogger)
+        m_fileLogger->changePath(value);
+    settings()->storeValue(KEY_FILELOGGER_PATH, value);
+}
+
+bool Application::isFileLoggerBackup() const
+{
+    return settings()->loadValue(KEY_FILELOGGER_BACKUP, true).toBool();
+}
+
+void Application::setFileLoggerBackup(bool value)
+{
+    if (m_fileLogger)
+        m_fileLogger->setBackup(value);
+    settings()->storeValue(KEY_FILELOGGER_BACKUP, value);
+}
+
+bool Application::isFileLoggerDeleteOld() const
+{
+    return settings()->loadValue(KEY_FILELOGGER_DELETEOLD, true).toBool();
+}
+
+void Application::setFileLoggerDeleteOld(bool value)
+{
+    if (value && m_fileLogger)
+        m_fileLogger->deleteOld(getFileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(getFileLoggerAgeType()));
+    settings()->storeValue(KEY_FILELOGGER_DELETEOLD, value);
+}
+
+int Application::getFileLoggerMaxSize() const
+{
+    int val = settings()->loadValue(KEY_FILELOGGER_MAXSIZE, 10).toInt();
+    if (val < 1)
+        return 1;
+    if (val > 1000)
+        return 1000;
+    return val;
+}
+
+void Application::setFileLoggerMaxSize(const int value)
+{
+    if (m_fileLogger)
+        m_fileLogger->setMaxSize(value);
+    settings()->storeValue(KEY_FILELOGGER_MAXSIZE, std::min(std::max(value, 1), 1000));
+}
+
+int Application::getFileLoggerAge() const
+{
+    int val = settings()->loadValue(KEY_FILELOGGER_AGE, 6).toInt();
+    if (val < 1)
+        return 1;
+    if (val > 365)
+        return 365;
+    return val;
+}
+
+void Application::setFileLoggerAge(const int value)
+{
+    settings()->storeValue(KEY_FILELOGGER_AGE, std::min(std::max(value, 1), 365));
+}
+
+int Application::getFileLoggerAgeType() const
+{
+    int val = settings()->loadValue(KEY_FILELOGGER_AGETYPE, 1).toInt();
+    return (val < 0 || val > 2) ? 1 : val;
+}
+
+void Application::setFileLoggerAgeType(const int value)
+{
+    settings()->storeValue(KEY_FILELOGGER_AGETYPE, (value < 0 || value > 2) ? 1 : value);
 }
 
 void Application::processMessage(const QString &message)

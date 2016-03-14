@@ -26,37 +26,31 @@
  * exception statement from your version.
  */
 
+#include <QDateTime>
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
 #include "filelogger.h"
-#include "base/preferences.h"
 #include "base/logger.h"
 #include "base/utils/fs.h"
 
-namespace
-{
-    enum FileLogAgeType
-    {
-        DAYS,
-        MONTHS,
-        YEARS
-    };
-}
-
-FileLogger::FileLogger()
-    : m_logFile(nullptr)
+FileLogger::FileLogger(const QString &path, const bool backup, const int maxSize, const bool deleteOld, const int age, const FileLogAgeType ageType)
+    : m_backup(backup)
+    , m_maxSize(maxSize)
+    , m_logFile(nullptr)
 {
     m_flusher.setInterval(0);
     m_flusher.setSingleShot(true);
     connect(&m_flusher, SIGNAL(timeout()), SLOT(flushLog()));
 
-    configure();
+    changePath(path);
+    if (deleteOld)
+        this->deleteOld(age, ageType);
+
     const Logger* const logger = Logger::instance();
     foreach (const Log::Msg& msg, logger->getMessages())
         addLogMessage(msg);
 
-    connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
     connect(logger, SIGNAL(newLogMessage(const Log::Msg &)), SLOT(addLogMessage(const Log::Msg &)));
 }
 
@@ -67,10 +61,9 @@ FileLogger::~FileLogger()
     delete m_logFile;
 }
 
-void FileLogger::configure()
+void FileLogger::changePath(const QString& newPath)
 {
-    const Preferences* const pref = Preferences::instance();
-    QString tmpPath = Utils::Fs::fromNativePath(pref->fileLogPath());
+    QString tmpPath = Utils::Fs::fromNativePath(newPath);
     if (!tmpPath.endsWith('/'))
         tmpPath += "/";
     QDir dir(tmpPath);
@@ -87,30 +80,39 @@ void FileLogger::configure()
         m_logFile = new QFile(m_path);
         openLogFile();
     }
+}
 
-    m_backup = pref->fileLogBackup();
-    m_size = pref->fileLogMaxSize();
+void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
+{
+    QDateTime date = QDateTime::currentDateTime();
+    QDir dir(m_path);
 
-    if (pref->fileLogDeleteOld()) {
-        QDateTime date = QDateTime::currentDateTime();
-
-        switch (static_cast<FileLogAgeType>(pref->fileLogAgeType())) {
-        case DAYS:
-            date = date.addDays(pref->fileLogAge());
-            break;
-        case MONTHS:
-            date = date.addMonths(pref->fileLogAge());
-            break;
-        default:
-            date = date.addYears(pref->fileLogAge());
-        }
-
-        foreach (const QFileInfo file, dir.entryInfoList(QStringList() << "qbittorrent.log.bak*", QDir::Files | QDir::Writable, QDir::Time | QDir::Reversed)) {
-            if (file.lastModified() < date)
-                break;
-            Utils::Fs::forceRemove(file.absoluteFilePath());
-        }
+    switch (ageType) {
+    case DAYS:
+        date = date.addDays(age);
+        break;
+    case MONTHS:
+        date = date.addMonths(age);
+        break;
+    default:
+        date = date.addYears(age);
     }
+
+    foreach (const QFileInfo file, dir.entryInfoList(QStringList() << "qbittorrent.log.bak*", QDir::Files | QDir::Writable, QDir::Time | QDir::Reversed)) {
+        if (file.lastModified() < date)
+            break;
+        Utils::Fs::forceRemove(file.absoluteFilePath());
+    }
+}
+
+void FileLogger::setBackup(bool value)
+{
+    m_backup = value;
+}
+
+void FileLogger::setMaxSize(int value)
+{
+    m_maxSize = value;
 }
 
 void FileLogger::addLogMessage(const Log::Msg &msg)
@@ -136,7 +138,7 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
 
     str << type << QDateTime::fromMSecsSinceEpoch(msg.timestamp).toString(Qt::ISODate) << " - " << msg.message << endl;
 
-    if (m_backup && (m_logFile->size() >= (m_size * 1024 * 1024))) {
+    if (m_backup && (m_logFile->size() >= (m_maxSize * 1024 * 1024))) {
         closeLogFile();
         int counter = 0;
         QString backupLogFilename = m_path + ".bak";

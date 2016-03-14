@@ -35,11 +35,10 @@
 #include <QPalette>
 #include "executionlog.h"
 #include "ui_executionlog.h"
-#include "base/preferences.h"
 #include "guiiconprovider.h"
 #include "loglistwidget.h"
 
-ExecutionLog::ExecutionLog(QWidget *parent)
+ExecutionLog::ExecutionLog(QWidget *parent, const Log::MsgTypes &types)
     : QWidget(parent)
     , ui(new Ui::ExecutionLog)
     , m_peerList(new LogListWidget(MAX_LOG_MESSAGES))
@@ -47,7 +46,7 @@ ExecutionLog::ExecutionLog(QWidget *parent)
     ui->setupUi(this);
 
     m_msgList = new LogListWidget(MAX_LOG_MESSAGES,
-                                  Log::MsgTypes(Preferences::instance()->executionLogMessageTypes()));
+                                  Log::MsgTypes(types));
 
     ui->tabConsole->setTabIcon(0, GuiIconProvider::instance()->getIcon("view-calendar-journal"));
     ui->tabConsole->setTabIcon(1, GuiIconProvider::instance()->getIcon("view-filter"));

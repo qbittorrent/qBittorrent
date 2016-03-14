@@ -46,7 +46,7 @@ class ExecutionLog: public QWidget
     Q_OBJECT
 
 public:
-    explicit ExecutionLog(QWidget *parent = 0);
+    explicit ExecutionLog(QWidget *parent, const Log::MsgTypes &types);
     void showMsgTypes(const Log::MsgTypes &types);
     ~ExecutionLog();
 

@@ -65,6 +65,7 @@
 #include "options_imp.h"
 #include "speedlimitdlg.h"
 #include "base/preferences.h"
+#include "base/settingsstorage.h"
 #include "trackerlist.h"
 #include "peerlistwidget.h"
 #include "transferlistfilterswidget.h"
@@ -93,6 +94,16 @@ void qt_mac_set_dock_menu(QMenu *menu);
 
 #define TIME_TRAY_BALLOON 5000
 #define PREVENT_SUSPEND_INTERVAL 60000
+
+namespace
+{
+#define EXECUTIONLOG_SETTINGS_KEY(name) "ExecutionLog/" name
+    const QString KEY_EXECUTIONLOG_ENABLED = EXECUTIONLOG_SETTINGS_KEY("Enabled");
+    const QString KEY_EXECUTIONLOG_TYPES = EXECUTIONLOG_SETTINGS_KEY("Types");
+
+    //just a shortcut
+    inline SettingsStorage *settings() { return  SettingsStorage::instance(); }
+}
 
 /*****************************************************
 *                                                   *
@@ -273,9 +284,9 @@ MainWindow::MainWindow(QWidget *parent)
     actionSpeed_in_title_bar->setChecked(pref->speedInTitleBar());
     actionRSS_Reader->setChecked(pref->isRSSEnabled());
     actionSearch_engine->setChecked(pref->isSearchEnabled());
-    actionExecutionLogs->setChecked(pref->isExecutionLogEnabled());
+    actionExecutionLogs->setChecked(isExecutionLogEnabled());
 
-    Log::MsgTypes flags(pref->executionLogMessageTypes());
+    Log::MsgTypes flags(getExecutionLogMsgTypes());
     actionNormalMessages->setChecked(flags & Log::NORMAL);
     actionInformationMessages->setChecked(flags & Log::INFO);
     actionWarningMessages->setChecked(flags & Log::WARNING);
@@ -380,6 +391,29 @@ MainWindow::~MainWindow()
     // Workaround to avoid bug http://bugreports.qt.nokia.com/browse/QTBUG-7305
     setUnifiedTitleAndToolBarOnMac(false);
 #endif
+}
+
+bool MainWindow::isExecutionLogEnabled() const
+{
+    return settings()->loadValue(KEY_EXECUTIONLOG_ENABLED, false).toBool();
+}
+
+void MainWindow::setExecutionLogEnabled(bool value)
+{
+    settings()->storeValue(KEY_EXECUTIONLOG_ENABLED, value);
+}
+
+int MainWindow::getExecutionLogMsgTypes() const
+{
+    // as default value we need all the bits set
+    // -1 is considered the portable way to achieve that
+    return settings()->loadValue(KEY_EXECUTIONLOG_TYPES, -1).toInt();
+}
+
+void MainWindow::setExecutionLogMsgTypes(const int value)
+{
+    m_executionLog->showMsgTypes(static_cast<Log::MsgTypes>(value));
+    settings()->storeValue(KEY_EXECUTIONLOG_TYPES, value);
 }
 
 void MainWindow::addToolbarContextMenu()
@@ -1522,7 +1556,7 @@ void MainWindow::on_actionExecutionLogs_triggered(bool checked)
 {
     if (checked) {
         Q_ASSERT(!m_executionLog);
-        m_executionLog = new ExecutionLog(tabs);
+        m_executionLog = new ExecutionLog(tabs, static_cast<Log::MsgType>(getExecutionLogMsgTypes()));
         int index_tab = tabs->addTab(m_executionLog, tr("Execution Log"));
         tabs->setTabIcon(index_tab, GuiIconProvider::instance()->getIcon("view-calendar-journal"));
     }
@@ -1534,7 +1568,7 @@ void MainWindow::on_actionExecutionLogs_triggered(bool checked)
     actionInformationMessages->setEnabled(checked);
     actionWarningMessages->setEnabled(checked);
     actionCriticalMessages->setEnabled(checked);
-    Preferences::instance()->setExecutionLogEnabled(checked);
+    setExecutionLogEnabled(checked);
 }
 
 void MainWindow::on_actionNormalMessages_triggered(bool checked)
@@ -1542,12 +1576,9 @@ void MainWindow::on_actionNormalMessages_triggered(bool checked)
     if (!m_executionLog)
         return;
 
-    Preferences* const pref = Preferences::instance();
-
-    Log::MsgTypes flags(pref->executionLogMessageTypes());
+    Log::MsgTypes flags(getExecutionLogMsgTypes());
     checked ? (flags |= Log::NORMAL) : (flags &= ~Log::NORMAL);
-    m_executionLog->showMsgTypes(flags);
-    pref->setExecutionLogMessageTypes(flags);
+    setExecutionLogMsgTypes(flags);
 }
 
 void MainWindow::on_actionInformationMessages_triggered(bool checked)
@@ -1555,12 +1586,9 @@ void MainWindow::on_actionInformationMessages_triggered(bool checked)
     if (!m_executionLog)
         return;
 
-    Preferences* const pref = Preferences::instance();
-
-    Log::MsgTypes flags(pref->executionLogMessageTypes());
+    Log::MsgTypes flags(getExecutionLogMsgTypes());
     checked ? (flags |= Log::INFO) : (flags &= ~Log::INFO);
-    m_executionLog->showMsgTypes(flags);
-    pref->setExecutionLogMessageTypes(flags);
+    setExecutionLogMsgTypes(flags);
 }
 
 void MainWindow::on_actionWarningMessages_triggered(bool checked)
@@ -1568,12 +1596,9 @@ void MainWindow::on_actionWarningMessages_triggered(bool checked)
     if (!m_executionLog)
         return;
 
-    Preferences* const pref = Preferences::instance();
-
-    Log::MsgTypes flags(pref->executionLogMessageTypes());
+    Log::MsgTypes flags(getExecutionLogMsgTypes());
     checked ? (flags |= Log::WARNING) : (flags &= ~Log::WARNING);
-    m_executionLog->showMsgTypes(flags);
-    pref->setExecutionLogMessageTypes(flags);
+    setExecutionLogMsgTypes(flags);
 }
 
 void MainWindow::on_actionCriticalMessages_triggered(bool checked)
@@ -1581,12 +1606,9 @@ void MainWindow::on_actionCriticalMessages_triggered(bool checked)
     if (!m_executionLog)
         return;
 
-    Preferences* const pref = Preferences::instance();
-
-    Log::MsgTypes flags(pref->executionLogMessageTypes());
+    Log::MsgTypes flags(getExecutionLogMsgTypes());
     checked ? (flags |= Log::CRITICAL) : (flags &= ~Log::CRITICAL);
-    m_executionLog->showMsgTypes(flags);
-    pref->setExecutionLogMessageTypes(flags);
+    setExecutionLogMsgTypes(flags);
 }
 
 void MainWindow::on_actionAutoExit_qBittorrent_toggled(bool enabled)
