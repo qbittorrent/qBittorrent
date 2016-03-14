@@ -1,4 +1,4 @@
-#VERSION: 2.03
+#VERSION: 2.04
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 #CONTRIBUTORS: Diego de las Heras (ngosang@hotmail.es)
 
@@ -33,7 +33,7 @@ from helpers import download_file, retrieve_url
 
 class extratorrent(object):
     """ Search engine class """
-    url = 'http://extratorrent.cc'
+    url = 'https://extratorrent.cc'
     name = 'ExtraTorrent'
     supported_categories = {'all'       : '0',
                             'movies'    : '4',
