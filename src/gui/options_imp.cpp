@@ -42,6 +42,7 @@
 
 #include <cstdlib>
 
+#include "app/application.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/scanfoldersmodel.h"
@@ -453,13 +454,14 @@ void options_imp::saveOptions()
         checkAssociateMagnetLinks->setEnabled(!checkAssociateMagnetLinks->isChecked());
     }
 #endif
-    pref->setFileLogEnabled(checkFileLog->isChecked());
-    pref->setFileLogPath(Utils::Fs::fromNativePath(textFileLogPath->text()));
-    pref->setFileLogBackup(checkFileLogBackup->isChecked());
-    pref->setFileLogMaxSize(spinFileLogSize->value());
-    pref->setFileLogDeleteOld(checkFileLogDelete->isChecked());
-    pref->setFileLogAge(spinFileLogAge->value());
-    pref->setFileLogAgeType(comboFileLogAgeType->currentIndex());
+    Application * const app = static_cast<Application*>(QCoreApplication::instance());
+    app->setFileLoggerPath(Utils::Fs::fromNativePath(textFileLogPath->text()));
+    app->setFileLoggerBackup(checkFileLogBackup->isChecked());
+    app->setFileLoggerMaxSize(spinFileLogSize->value());
+    app->setFileLoggerAge(spinFileLogAge->value());
+    app->setFileLoggerAgeType(comboFileLogAgeType->currentIndex());
+    app->setFileLoggerDeleteOld(checkFileLogDelete->isChecked());
+    app->setFileLoggerEnabled(checkFileLog->isChecked());
     // End General preferences
 
     auto session = BitTorrent::Session::instance();
@@ -651,18 +653,19 @@ void options_imp::loadOptions()
     checkAssociateMagnetLinks->setEnabled(!checkAssociateMagnetLinks->isChecked());
 #endif
 
-    checkFileLog->setChecked(pref->fileLogEnabled());
-    textFileLogPath->setText(Utils::Fs::toNativePath(pref->fileLogPath()));
-    fileLogBackup = pref->fileLogBackup();
+    const Application * const app = static_cast<Application*>(QCoreApplication::instance());
+    checkFileLog->setChecked(app->isFileLoggerEnabled());
+    textFileLogPath->setText(Utils::Fs::toNativePath(app->fileLoggerPath()));
+    fileLogBackup = app->isFileLoggerBackup();
     checkFileLogBackup->setChecked(fileLogBackup);
     spinFileLogSize->setEnabled(fileLogBackup);
-    fileLogDelete = pref->fileLogDeleteOld();
+    fileLogDelete = app->isFileLoggerDeleteOld();
     checkFileLogDelete->setChecked(fileLogDelete);
     spinFileLogAge->setEnabled(fileLogDelete);
     comboFileLogAgeType->setEnabled(fileLogDelete);
-    spinFileLogSize->setValue(pref->fileLogMaxSize());
-    spinFileLogAge->setValue(pref->fileLogAge());
-    comboFileLogAgeType->setCurrentIndex(pref->fileLogAgeType());
+    spinFileLogSize->setValue(app->fileLoggerMaxSize());
+    spinFileLogAge->setValue(app->fileLoggerAge());
+    comboFileLogAgeType->setCurrentIndex(app->fileLoggerAgeType());
     // End General preferences
 
     auto session = BitTorrent::Session::instance();

@@ -273,29 +273,6 @@ public:
     bool isSearchEnabled() const;
     void setSearchEnabled(bool enabled);
 
-    // Execution Log
-    bool isExecutionLogEnabled() const;
-    void setExecutionLogEnabled(bool b);
-    int executionLogMessageTypes() const;
-    void setExecutionLogMessageTypes(const int &value);
-
-    // File log
-    bool fileLogEnabled() const;
-    void setFileLogEnabled(bool enabled);
-    QString fileLogPath() const;
-    void setFileLogPath(const QString &path);
-    bool fileLogBackup() const;
-    void setFileLogBackup(bool backup);
-    bool fileLogDeleteOld() const;
-    void setFileLogDeleteOld(bool deleteOld);
-    int fileLogMaxSize() const;
-    void setFileLogMaxSize(const int &size);
-    int fileLogAge() const;
-    void setFileLogAge(const int &age);
-    int fileLogAgeType() const;
-    void setFileLogAgeType(const int &ageType);
-
-
     // Queueing system
     bool isQueueingSystemEnabled() const;
     void setQueueingSystemEnabled(bool enabled);
