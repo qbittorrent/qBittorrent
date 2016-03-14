@@ -1040,7 +1040,11 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
         QStringList unwantedFiles;
         if (torrent->hasMetadata())
             unwantedFiles = torrent->absoluteFilePathsUnwanted();
+#if LIBTORRENT_VERSION_NUM < 10100
         m_nativeSession->remove_torrent(torrent->nativeHandle());
+#else
+        m_nativeSession->remove_torrent(torrent->nativeHandle(), libt::session::delete_partfile);
+#endif
         // Remove unwanted and incomplete files
         foreach (const QString &unwantedFile, unwantedFiles) {
             qDebug("Removing unwanted file: %s", qPrintable(unwantedFile));
