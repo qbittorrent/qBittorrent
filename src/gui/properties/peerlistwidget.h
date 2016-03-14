@@ -68,8 +68,8 @@ public:
     ~PeerListWidget();
 
     void loadPeers(BitTorrent::TorrentHandle *const torrent, bool forceHostnameResolution = false);
-    QStandardItem *addPeer(const QString &ip, const BitTorrent::PeerInfo &peer);
-    void updatePeer(const QString &ip, const BitTorrent::PeerInfo &peer);
+    QStandardItem *addPeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer);
+    void updatePeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer);
     void updatePeerHostNameResolutionState();
     void updatePeerCountryResolutionState();
     void clear();
