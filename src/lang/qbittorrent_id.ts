@@ -4,343 +4,411 @@
 <context>
     <name>AboutDlg</name>
     <message>
-        <location filename="../gui/about.ui" line="21"/>
+        <location filename="../gui/about.ui" line="15"/>
         <source>About qBittorrent</source>
         <translation>Tentang qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="83"/>
+        <location filename="../gui/about.ui" line="56"/>
         <source>About</source>
         <translation>Tentang</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="128"/>
+        <location filename="../gui/about.ui" line="94"/>
         <source>Author</source>
         <translation>Pengembang</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="216"/>
-        <location filename="../gui/about.ui" line="293"/>
+        <location filename="../gui/about.ui" line="126"/>
+        <location filename="../gui/about.ui" line="217"/>
+        <source>Nationality:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/about.ui" line="140"/>
+        <location filename="../gui/about.ui" line="203"/>
         <source>Name:</source>
         <translation>Nama:</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="240"/>
-        <location filename="../gui/about.ui" line="281"/>
         <source>Country:</source>
-        <translation>Negara:</translation>
+        <translation type="obsolete">Negara:</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="228"/>
-        <location filename="../gui/about.ui" line="312"/>
+        <location filename="../gui/about.ui" line="133"/>
+        <location filename="../gui/about.ui" line="210"/>
         <source>E-mail:</source>
         <translation>Surel:</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="262"/>
+        <location filename="../gui/about.ui" line="106"/>
         <source>Greece</source>
         <translation>Yunani</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="341"/>
+        <location filename="../gui/about.ui" line="100"/>
         <source>Current maintainer</source>
         <translation>Pengelola saat ini</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="354"/>
+        <location filename="../gui/about.ui" line="170"/>
         <source>Original author</source>
         <translation>Pengembang asli</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="412"/>
+        <location filename="../gui/about.ui" line="254"/>
+        <source>Special Thanks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/about.ui" line="280"/>
+        <source>Translators</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/about.ui" line="328"/>
         <source>Libraries</source>
         <translation>Pustaka</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="424"/>
-        <source>This version of qBittorrent was built against the following libraries:</source>
-        <translation>Versi qBittorrent dibangun dengan menggunakan pustaka berikut:</translation>
+        <location filename="../gui/about.ui" line="334"/>
+        <source>qBittorrent was built with the following libraries:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="184"/>
+        <source>This version of qBittorrent was built against the following libraries:</source>
+        <translation type="obsolete">Versi qBittorrent dibangun dengan menggunakan pustaka berikut:</translation>
+    </message>
+    <message>
+        <location filename="../gui/about.ui" line="176"/>
         <source>France</source>
         <translation>Perancis</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="382"/>
         <source>Translation</source>
-        <translation>Terjemahan</translation>
+        <translation type="obsolete">Terjemahan</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="399"/>
+        <location filename="../gui/about.ui" line="306"/>
         <source>License</source>
         <translation>Lisensi</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="365"/>
         <source>Thanks to</source>
-        <translation>Terima Kasih</translation>
+        <translation type="obsolete">Terima Kasih</translation>
     </message>
 </context>
 <context>
     <name>AddNewTorrentDialog</name>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="29"/>
         <source>Save as</source>
-        <translation>Simpan sebagai</translation>
+        <translation type="obsolete">Simpan sebagai</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="53"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="17"/>
+        <source>Save at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="28"/>
+        <source>Saving Management:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="35"/>
+        <source>Simple</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="45"/>
+        <source>Advanced</source>
+        <translation type="unfinished">Tingkat Lanjut</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="82"/>
         <source>Browse...</source>
         <translation>Telusuri...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="62"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="91"/>
         <source>Set as default save path</source>
         <translation>Tetapkan sebagai jalur baku penyimpanan</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="72"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="101"/>
         <source>Never show again</source>
         <translation>Jangan pernah tampilkan lagi</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="89"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="118"/>
         <source>Torrent settings</source>
         <translation>Pengaturan torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="95"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="124"/>
+        <source>Set as default category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="139"/>
+        <source>Category:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="164"/>
         <source>Start torrent</source>
         <translation>Jalankan torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="107"/>
-        <source>Label:</source>
-        <translation>Label:</translation>
+        <location filename="../gui/addnewtorrentdialog.ui" line="210"/>
+        <source>Torrent information</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="126"/>
+        <source>Label:</source>
+        <translation type="obsolete">Label:</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="174"/>
         <source>Skip hash check</source>
         <translation>Lewati pengecekan hash</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="133"/>
         <source>Set as default label</source>
-        <translation>Tetapkan sebagai label baku</translation>
+        <translation type="obsolete">Tetapkan sebagai label baku</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="143"/>
         <source>Torrent Information</source>
-        <translation>Informasi Torrent</translation>
+        <translation type="obsolete">Informasi Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="151"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="218"/>
         <source>Size:</source>
         <translation>Ukuran:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="165"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="238"/>
+        <source>Hash:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="252"/>
         <source>Comment:</source>
         <translation>Komentar:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="191"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="228"/>
         <source>Date:</source>
         <translation>Tanggal:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="205"/>
         <source>Info Hash:</source>
-        <translation>Info Hash:</translation>
+        <translation type="obsolete">Info Hash:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="296"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="369"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="301"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="374"/>
         <source>High</source>
         <translation>Tinggi</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="306"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="379"/>
         <source>Maximum</source>
         <translation>Maksimum</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="311"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="384"/>
         <source>Do not download</source>
         <translation>Jangan unduh</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="176"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="650"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="206"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="212"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="666"/>
         <source>I/O Error</source>
         <translation>Galat I/O</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="176"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="206"/>
         <source>The torrent file does not exist.</source>
         <translation>Berkas torrent tidak ada.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="184"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="220"/>
         <source>Invalid torrent</source>
         <translation>Torrent tidak valid</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="184"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="220"/>
         <source>Failed to load the torrent: %1</source>
         <translation>Gagal memuat torrent: %1</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="196"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="224"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="231"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="236"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="263"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="268"/>
         <source>Already in download list</source>
         <translation>Telah ada di dalam daftar unduh</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="344"/>
         <source>Free disk space: %1</source>
-        <translation>Ruang bebas diska: 1%</translation>
+        <translation type="obsolete">Ruang bebas diska: 1%</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="676"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="692"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
         <translation>Tidak Tersedia</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="677"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="693"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
         <translation>Tidak Tersedia</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="685"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="701"/>
         <source>Not available</source>
         <translation>Tidak tersedia</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="213"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="253"/>
         <source>Invalid magnet link</source>
         <translation>Tautan magnet tidak valid</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="196"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="212"/>
+        <source>The torrent file cannot be read from the disk. Probably you don&apos;t have enough permissions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="231"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="263"/>
+        <source>Torrent is already in download list. Trackers weren&apos;t merged because it is a private torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="236"/>
         <source>Torrent is already in download list. Trackers were merged.</source>
         <translation>Torrent telah ada di dalam daftar unduh. Pelacak digabungkan.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="199"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="227"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="240"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="272"/>
         <source>Cannot add torrent</source>
         <translation>Tidak bisa menambahkan torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="199"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="240"/>
         <source>Cannot add this torrent. Perhaps it is already in adding state.</source>
         <translation>Tidak bisa menambahkan torrent ini. Sepertinya sudah ditambahkan.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="213"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="253"/>
         <source>This magnet link was not recognized</source>
         <translation>Tautan magnet ini tidak dikenali</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="224"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="268"/>
         <source>Magnet link is already in download list. Trackers were merged.</source>
         <translation>Tautan magnet telah ada di dalam daftar unduh. Pelacak digabungkan.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="227"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="272"/>
         <source>Cannot add this torrent. Perhaps it is already in adding.</source>
         <translation>Tidak bisa menambahkan torrent ini. Sepertinya sedang ditambahkan.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="236"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="281"/>
         <source>Magnet link</source>
         <translation>Tautan magnet</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="243"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="288"/>
         <source>Retrieving metadata...</source>
         <translation>Mengambil metadata...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="342"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="372"/>
         <source>Not Available</source>
         <comment>This size is unavailable.</comment>
         <translation>Tidak Tersedia</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="373"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="381"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="383"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="374"/>
+        <source>Free space on disk: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="415"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="417"/>
         <source>Choose save path</source>
         <translation>Pilih jalur penyimpanan</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="432"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="450"/>
         <source>Rename the file</source>
         <translation>Ubah nama berkas</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="433"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="451"/>
         <source>New name:</source>
         <translation>Nama baru:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="437"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="462"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="455"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="480"/>
         <source>The file could not be renamed</source>
         <translation>Berkas tidak bisa diubah namanya</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="438"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="456"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Nama berkas ini mengandung karakter yang dilarang, mohon pilih karakter yang berbeda.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="463"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="496"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="481"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="514"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Nama ini telah digunakan dalam folder ini. Mohon gunakan nama yang berbeda.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="495"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="513"/>
         <source>The folder could not be renamed</source>
         <translation>Folder tidak bisa diubah namanya</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="552"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="573"/>
         <source>Rename...</source>
         <translation>Ubah nama...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="556"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="577"/>
         <source>Priority</source>
         <translation>Prioritas</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="651"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="667"/>
         <source>Invalid metadata</source>
         <translation>Metadata tidak valid</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="658"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="674"/>
         <source>Parsing metadata...</source>
         <translation>Mengurai metadata...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="662"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="678"/>
         <source>Metadata retrieval complete</source>
         <translation>Pengambilan metadata komplet</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="722"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="737"/>
         <source>Download Error</source>
         <translation>Galat Unduh</translation>
     </message>
@@ -348,163 +416,179 @@
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../gui/advancedsettings.h" line="219"/>
+        <location filename="../gui/advancedsettings.cpp" line="205"/>
         <source>Disk write cache size</source>
         <translation>Ukuran tembolok penulisan diska</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="201"/>
+        <location filename="../gui/advancedsettings.cpp" line="175"/>
         <source> MiB</source>
         <translation> MiB</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="239"/>
+        <location filename="../gui/advancedsettings.cpp" line="225"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Port keluar (Min) [0: Nonaktif]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="244"/>
+        <location filename="../gui/advancedsettings.cpp" line="230"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>Port keluar (Max) [0: Nonaktif]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="247"/>
+        <location filename="../gui/advancedsettings.cpp" line="233"/>
         <source>Recheck torrents on completion</source>
         <translation>Periksa ulang torrent saat selesai</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="253"/>
+        <location filename="../gui/advancedsettings.cpp" line="239"/>
         <source>Transfer list refresh interval</source>
         <translation>Selang penyegaran daftar transfer</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="252"/>
+        <location filename="../gui/advancedsettings.cpp" line="238"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation> ms</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="80"/>
+        <location filename="../gui/advancedsettings.cpp" line="93"/>
         <source>Setting</source>
         <translation>Pengaturan</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="80"/>
+        <location filename="../gui/advancedsettings.cpp" line="93"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
         <translation>Nilai</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="199"/>
+        <location filename="../gui/advancedsettings.cpp" line="173"/>
         <source> (auto)</source>
         <translation> (otomatis)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="224"/>
+        <location filename="../gui/advancedsettings.cpp" line="184"/>
+        <source>qBittorrent Section</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="186"/>
+        <location filename="../gui/advancedsettings.cpp" line="191"/>
+        <source>Open documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="189"/>
+        <source>libtorrent Section</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="210"/>
         <source> s</source>
         <comment> seconds</comment>
         <translation> s</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="225"/>
+        <location filename="../gui/advancedsettings.cpp" line="211"/>
         <source>Disk cache expiry interval</source>
         <translation>Selang kedaluwarsa tembolok diska</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="228"/>
+        <location filename="../gui/advancedsettings.cpp" line="214"/>
         <source>Enable OS cache</source>
         <translation>Aktifkan tembolok OS</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="233"/>
+        <location filename="../gui/advancedsettings.cpp" line="219"/>
         <source> m</source>
         <comment> minutes</comment>
         <translation> m</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="256"/>
+        <location filename="../gui/advancedsettings.cpp" line="242"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>Singkap negara rekan (GeoIP)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="259"/>
+        <location filename="../gui/advancedsettings.cpp" line="245"/>
         <source>Resolve peer host names</source>
         <translation>Singkap nama host rekan</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="267"/>
+        <location filename="../gui/advancedsettings.cpp" line="253"/>
         <source>Strict super seeding</source>
         <translation>Pembibitan super ketat</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="287"/>
+        <location filename="../gui/advancedsettings.cpp" line="273"/>
         <source>Network Interface (requires restart)</source>
         <translation>Antarmuka Jaringan (wajib memulai ulang)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="290"/>
+        <location filename="../gui/advancedsettings.cpp" line="276"/>
         <source>Listen on IPv6 address (requires restart)</source>
         <translation>Mendengarkan alamat IPv6 (wajib memulai ulang)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="315"/>
+        <location filename="../gui/advancedsettings.cpp" line="301"/>
         <source>Confirm torrent recheck</source>
         <translation>Konfirmasi pemeriksaan ulang torrent</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="318"/>
+        <location filename="../gui/advancedsettings.cpp" line="304"/>
         <source>Exchange trackers with other peers</source>
         <translation>Bertukar pelacak dengan rekan lainnya</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="321"/>
+        <location filename="../gui/advancedsettings.cpp" line="307"/>
         <source>Always announce to all trackers</source>
         <translation>Selalu umumkan ke semua pelacak</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="269"/>
+        <location filename="../gui/advancedsettings.cpp" line="255"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Antarmuka apapun</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="234"/>
+        <location filename="../gui/advancedsettings.cpp" line="220"/>
         <source>Save resume data interval</source>
         <comment>How often the fastresume file is saved.</comment>
         <translation>Selang penyimpanan data perlanjutan</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="264"/>
+        <location filename="../gui/advancedsettings.cpp" line="250"/>
         <source>Maximum number of half-open connections [0: Unlimited]</source>
         <translation>Jumlah maksimum koneksi terbuka-setengah [0: Tidak terbatas]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="293"/>
+        <location filename="../gui/advancedsettings.cpp" line="279"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>Alamat IP untuk melapor ke pelacak (wajib memulai ulang)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="296"/>
+        <location filename="../gui/advancedsettings.cpp" line="282"/>
         <source>Display program on-screen notifications</source>
         <translation>Tampilkan notifikasi program pada layar</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="299"/>
+        <location filename="../gui/advancedsettings.cpp" line="285"/>
         <source>Enable embedded tracker</source>
         <translation>Aktifkan pelacak tertanam</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="304"/>
+        <location filename="../gui/advancedsettings.cpp" line="290"/>
         <source>Embedded tracker port</source>
         <translation>Port pelacak tertanam</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="307"/>
+        <location filename="../gui/advancedsettings.cpp" line="293"/>
         <source>Check for software updates</source>
         <translation>Periksa pemutakhiran program</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.h" line="311"/>
+        <location filename="../gui/advancedsettings.cpp" line="297"/>
         <source>Use system icon theme</source>
         <translation>Gunakan tema ikon sistem</translation>
     </message>
@@ -512,38 +596,38 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="105"/>
+        <location filename="../app/application.cpp" line="109"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>qBittorrent %1 dimulai</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="262"/>
+        <location filename="../app/application.cpp" line="266"/>
         <source>Information</source>
         <translation>Informasi</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="263"/>
+        <location filename="../app/application.cpp" line="267"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>Untuk mengendalikan qBittorent, akses Web UI di http://localhost:%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="264"/>
+        <location filename="../app/application.cpp" line="268"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Nama pengguna administrator Web UI adalah: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="267"/>
+        <location filename="../app/application.cpp" line="271"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Sandi administrator Web UI masih bawaan: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="268"/>
+        <location filename="../app/application.cpp" line="272"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>Ini adalah resiko keamanan, mohon pertimbangkan untuk mengubah sandi Anda dari preferensi program.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="442"/>
+        <location filename="../app/application.cpp" line="446"/>
         <source>Saving torrent progress...</source>
         <translation>Menyimpan kemajuan torrent...</translation>
     </message>
@@ -596,9 +680,13 @@
         <translation>Penyaring Episode:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="180"/>
         <source>Assign Label:</source>
-        <translation>Tetapkan Label:</translation>
+        <translation type="obsolete">Tetapkan Label:</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="180"/>
+        <source>Assign Category:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="196"/>
@@ -657,205 +745,205 @@
         <translation>&amp;Ekspor...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="78"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="79"/>
         <source>Matches articles based on episode filter.</source>
         <translation>Artikel yang cocok berdasarkan penyaring episode.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="78"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="79"/>
         <source>Example: </source>
         <translation>Contoh:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="79"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="80"/>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
         <comment>example X will match</comment>
         <translation>akan cocok 2, 5, 8 sampai 15, 30 dan episode seterusnya dari musim pertama</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="80"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="81"/>
         <source>Episode filter rules: </source>
         <translation>Aturan penyaring episode:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="80"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="81"/>
         <source>Season number is a mandatory non-zero value</source>
         <translation>Nomor musim wajib bernilai bukan nol</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="81"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="82"/>
         <source>Episode number is a mandatory non-zero value</source>
         <translation>Nomor episode wajib bernilai bukan nol</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="82"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="83"/>
         <source>Filter must end with semicolon</source>
         <translation>Penyaring harus diakhiri dengan titik koma</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="83"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="84"/>
         <source>Three range types for episodes are supported: </source>
         <translation>Tiga jenis rentang untuk episode yang didukung:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="84"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="85"/>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
         <translation>Nomor tunggal: &lt;b&gt;1x25;&lt;/ b&gt; cocok dengan episode 25 dari musim pertama</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="85"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="86"/>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
         <translation>Rentang normal: &lt;b&gt;1x25-40;&lt;/b&gt; cocok dengan episode 25 sampai 40 dari musim pertama</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="86"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="87"/>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one</source>
         <translation>Rentang tidak terbatas: &lt;b&gt;1x25-;&lt;/b&gt; cocok dengan episode 25 dan seterusnya dari musim pertama</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="267"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="268"/>
         <source>Last Match: %1 days ago</source>
         <translation>Cocok Terakhir: %1 hari yang lalu</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="269"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="270"/>
         <source>Last Match: Unknown</source>
         <translation>Cocok Terakhir: Tidak Diketahui</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="362"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="360"/>
         <source>New rule name</source>
         <translation>Nama aturan baru</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="362"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="360"/>
         <source>Please type the name of the new download rule.</source>
         <translation>Mohon ketik nama dari aturan unduh baru.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="366"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="484"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="364"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="482"/>
         <source>Rule name conflict</source>
         <translation>Nama aturan konflik</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="366"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="484"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="364"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="482"/>
         <source>A rule with this name already exists, please choose another name.</source>
         <translation>Aturan dengan nama ini telah ada, mohon pilih nama lain.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="384"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="382"/>
         <source>Are you sure you want to remove the download rule named &apos;%1&apos;?</source>
         <translation>Apakah Anda yakin ingin membuang aturan unduhan bernama &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="386"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="384"/>
         <source>Are you sure you want to remove the selected download rules?</source>
         <translation>Apakah Anda yakin ingin menghapus aturan unduh yang dipilih?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="387"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="385"/>
         <source>Rule deletion confirmation</source>
         <translation>Konfirmasi penghapusan aturan</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="403"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="401"/>
         <source>Destination directory</source>
         <translation>Direktori tujuan</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="411"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="409"/>
         <source>Invalid action</source>
         <translation>Tindakan tidak valid</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="411"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="409"/>
         <source>The list is empty, there is nothing to export.</source>
         <translation>Daftar ini kosong, tidak ada yang bisa diekspor.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="415"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="413"/>
         <source>Where would you like to save the list?</source>
         <translation>Di mana Anda ingin menyimpan daftar?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="415"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="413"/>
         <source>Rules list (*.rssrules)</source>
         <translation>Daftar aturan (*.rssrules)</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="420"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="418"/>
         <source>I/O Error</source>
         <translation>Galat I/O</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="420"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="418"/>
         <source>Failed to create the destination file</source>
         <translation>Gagal membuat berkas tujuan</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="428"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="426"/>
         <source>Please point to the RSS download rules file</source>
         <translation>Mohon arahkan ke berkas aturan unduh RSS</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="428"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="426"/>
         <source>Rules list</source>
         <translation>Daftar aturan</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="432"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="430"/>
         <source>Import Error</source>
         <translation>Galat Impor</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="432"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="430"/>
         <source>Failed to import the selected rules file</source>
         <translation>Gagal untuk mengimpor berkas aturan yang dipilih</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="443"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="441"/>
         <source>Add new rule...</source>
         <translation>Tambah aturan baru...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="449"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="447"/>
         <source>Delete rule</source>
         <translation>Hapus aturan</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="451"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="449"/>
         <source>Rename rule...</source>
         <translation>Ubah nama aturan...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="453"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="451"/>
         <source>Delete selected rules</source>
         <translation>Hapus aturan yang dipilih</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="480"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="478"/>
         <source>Rule renaming</source>
         <translation>Menamai ulang aturan</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="480"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="478"/>
         <source>Please type the new rule name</source>
         <translation>Mohon ketik nama aturan baru</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="582"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="580"/>
         <source>Regex mode: use Perl-like regular expressions</source>
         <translation>Mode regex: gunakan ekspresi reguler mirip Perl</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="586"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="584"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Mode wildcard: Anda dapat menggunakan&lt;ul&gt;&lt;li&gt;? untuk mencocokkan karakter tunggal apapun&lt;/li&gt;&lt;li&gt;* untuk mencocokkan nol atau lebih karakter apapun&lt;/li&gt;&lt;li&gt;Spasi dihitung sebagai operator AND&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="588"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="586"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Mode wildcard: Anda dapat menggunakan&lt;ul&gt;&lt;li&gt;? untuk mencocokkan karakter tunggal apapun&lt;/li&gt;&lt;li&gt;* untuk mencocokkan nol atau lebih karakter apapun&lt;/li&gt;&lt;li&gt;| digunakan sebagai operator OR&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
@@ -863,316 +951,321 @@
 <context>
     <name>BitTorrent::Session</name>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="169"/>
+        <location filename="../base/bittorrent/session.cpp" line="217"/>
         <source>Peer ID: </source>
         <translation>ID Rekan:</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="312"/>
+        <location filename="../base/bittorrent/session.cpp" line="575"/>
         <source>HTTP User-Agent is &apos;%1&apos;</source>
         <translation>User-Agent HTTP adalah &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="339"/>
+        <location filename="../base/bittorrent/session.cpp" line="602"/>
         <source>Anonymous mode [ON]</source>
         <translation>Mode anonim [NYALA]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="341"/>
+        <location filename="../base/bittorrent/session.cpp" line="604"/>
         <source>Anonymous mode [OFF]</source>
         <translation>Mode anonim [MATI]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="532"/>
+        <location filename="../base/bittorrent/session.cpp" line="788"/>
         <source>PeX support [ON]</source>
         <translation>Dukungan PeX [NYALA]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="534"/>
+        <location filename="../base/bittorrent/session.cpp" line="790"/>
         <source>PeX support [OFF]</source>
         <translation>Dukungan PeX [MATI]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="536"/>
+        <location filename="../base/bittorrent/session.cpp" line="792"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Wajib memulai ulang untuk menjungkit dukungan PeX</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="541"/>
+        <location filename="../base/bittorrent/session.cpp" line="797"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Dukungan Pencarian Rekan Lokal [NYALA]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="545"/>
+        <location filename="../base/bittorrent/session.cpp" line="801"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Dukungan Pencarian Rekan Lokal [MATI]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="558"/>
+        <location filename="../base/bittorrent/session.cpp" line="814"/>
         <source>Encryption support [ON]</source>
         <translation>Dukungan enkripsi [NYALA]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="563"/>
+        <location filename="../base/bittorrent/session.cpp" line="819"/>
         <source>Encryption support [FORCED]</source>
         <translation>Dukungan enkripsi [DIPAKSA]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="568"/>
+        <location filename="../base/bittorrent/session.cpp" line="824"/>
         <source>Encryption support [OFF]</source>
         <translation>Dukungan enkripsi [MATI]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="646"/>
+        <location filename="../base/bittorrent/session.cpp" line="901"/>
         <source>Embedded Tracker [ON]</source>
         <translation>Pelacak Tertanam [NYALA]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="648"/>
+        <location filename="../base/bittorrent/session.cpp" line="903"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>Gagal memulai pelacak tertanam!</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="651"/>
+        <location filename="../base/bittorrent/session.cpp" line="906"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>Pelacak Tertanam [MATI]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="689"/>
+        <location filename="../base/bittorrent/session.cpp" line="944"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removing...</source>
         <translation>&apos;%1&apos; telah mencapai rasio maksimum yang Anda tetapkan. Membuang...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="695"/>
+        <location filename="../base/bittorrent/session.cpp" line="950"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Pausing...</source>
         <translation>&apos;%1&apos; telah mencapai rasio maksimum yang Anda tetapkan. Menangguhkan...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1396"/>
+        <location filename="../base/bittorrent/session.cpp" line="1638"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>Status jaringan sistem berubah menjadi %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1396"/>
+        <location filename="../base/bittorrent/session.cpp" line="1638"/>
         <source>ONLINE</source>
         <translation>DARING</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1396"/>
+        <location filename="../base/bittorrent/session.cpp" line="1638"/>
         <source>OFFLINE</source>
         <translation>LURING</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1408"/>
+        <location filename="../base/bittorrent/session.cpp" line="1650"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>Konfigurasi jaringan dari %1 telah berubah, menyegarkan jalinan sesi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1692"/>
+        <location filename="../base/bittorrent/session.cpp" line="1939"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>Tidak bisa mengawakode &apos;%1&apos; berkas torrent.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1798"/>
+        <location filename="../base/bittorrent/session.cpp" line="2054"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>Mengunduh rekursif berkas &apos;%1&apos; yang tertanam di dalam torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2109"/>
+        <location filename="../base/bittorrent/session.cpp" line="2372"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>Tidak bisa menyimpan &apos;%1.torrent&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2214"/>
+        <location filename="../base/bittorrent/session.cpp" line="2490"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>karena %1 dinonaktifkan.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2217"/>
+        <location filename="../base/bittorrent/session.cpp" line="2493"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>karena %1 dinonaktifkan.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2235"/>
+        <location filename="../base/bittorrent/session.cpp" line="2511"/>
         <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
         <translation>Pencarian bibit URL gagal untuk URL: &apos;%1&apos;, pesan: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="808"/>
+        <location filename="../base/bittorrent/session.cpp" line="2551"/>
+        <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
+        <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.</comment>
+        <translation type="unfinished">qBittorrent gagal mendengarkan port antarmuka %1: %2/%3. Alasan: %4.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1067"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; telah dibuang dari daftar transfer dan diska.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="810"/>
+        <location filename="../base/bittorrent/session.cpp" line="1069"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; telah dibuang dari daftar transfer.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="973"/>
+        <location filename="../base/bittorrent/session.cpp" line="1204"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Mengunduh &apos;%1&apos;, mohon tunggu...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1242"/>
+        <location filename="../base/bittorrent/session.cpp" line="1503"/>
         <source>DHT support [ON]</source>
         <translation>Dukungan DHT [NYALA]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1247"/>
+        <location filename="../base/bittorrent/session.cpp" line="1508"/>
         <source>DHT support [OFF]. Reason: %1</source>
         <translation>Dukungan DHT [MATI]. Alasan: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1255"/>
+        <location filename="../base/bittorrent/session.cpp" line="1516"/>
         <source>DHT support [OFF]</source>
         <translation>Dukungan DHT [MATI]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="161"/>
-        <location filename="../base/bittorrent/session.cpp" line="1478"/>
+        <location filename="../base/bittorrent/session.cpp" line="209"/>
+        <location filename="../base/bittorrent/session.cpp" line="1720"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent sedang mencoba mendengarkan semua port antarmuka: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1431"/>
+        <location filename="../base/bittorrent/session.cpp" line="1673"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Antarmuka jaringan yang dijabarkan tidak valid: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="165"/>
-        <location filename="../base/bittorrent/session.cpp" line="1489"/>
+        <location filename="../base/bittorrent/session.cpp" line="213"/>
+        <location filename="../base/bittorrent/session.cpp" line="1731"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent sedang mencoba mendengarkan port antarmuka %1: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1455"/>
+        <location filename="../base/bittorrent/session.cpp" line="1697"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
         <translation>qBittorrent tidak menemukan alamat lokal %1 untuk didengarkan</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1482"/>
+        <location filename="../base/bittorrent/session.cpp" line="1724"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2.</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
         <translation>qBittorrent gagal mendengarkan semua port antarmuka: %1. Alasan: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1603"/>
+        <location filename="../base/bittorrent/session.cpp" line="1850"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Pelacak &apos;%1&apos; telah ditambahkan ke torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1613"/>
+        <location filename="../base/bittorrent/session.cpp" line="1860"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>Pelacak &apos;%1&apos; telah dihapus dari torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1628"/>
+        <location filename="../base/bittorrent/session.cpp" line="1875"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Bibit URL &apos;%1&apos; telah ditambahkan ke torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1634"/>
+        <location filename="../base/bittorrent/session.cpp" line="1881"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>Bibit URL &apos;%1&apos; telah dihapus dari torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1914"/>
+        <location filename="../base/bittorrent/session.cpp" line="2149"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>Tidak bisa melanjutkan torrent &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1937"/>
+        <location filename="../base/bittorrent/session.cpp" line="2208"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Berhasil mengurai penyaring IP yang diberikan: %1 aturan diterapkan.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1943"/>
+        <location filename="../base/bittorrent/session.cpp" line="2214"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Galat: Gagal mengurai penyaring IP yang diberikan.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2071"/>
+        <location filename="../base/bittorrent/session.cpp" line="2406"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>Tidak bisa menambahkan torrent. Alasan: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2092"/>
+        <location filename="../base/bittorrent/session.cpp" line="2355"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; dilanjutkan. (lanjut cepat)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2123"/>
+        <location filename="../base/bittorrent/session.cpp" line="2386"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; ditambahkan ke daftar unduh.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2178"/>
+        <location filename="../base/bittorrent/session.cpp" line="2454"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
         <translation>Sebuah galat I/O telah terjadi, &apos;%1&apos; ditangguhkan. %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2186"/>
+        <location filename="../base/bittorrent/session.cpp" line="2462"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Pemetaan port gagal, pesan: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2192"/>
+        <location filename="../base/bittorrent/session.cpp" line="2468"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Pemetaan port sukses, pesan: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2202"/>
+        <location filename="../base/bittorrent/session.cpp" line="2478"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>disebabkan oleh penyaring IP.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2205"/>
+        <location filename="../base/bittorrent/session.cpp" line="2481"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>disebabkan oleh penyaring port.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2208"/>
+        <location filename="../base/bittorrent/session.cpp" line="2484"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>disebabkan oleh pembatasan mode campuran i2p.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2211"/>
+        <location filename="../base/bittorrent/session.cpp" line="2487"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>karena memiliki port yang rendah.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2249"/>
+        <location filename="../base/bittorrent/session.cpp" line="2525"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent berhasil mendengarkan port antarmuka %1: %2/%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2275"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
-        <translation>qBittorrent gagal mendengarkan port antarmuka %1: %2/%3. Alasan: %4.</translation>
+        <translation type="obsolete">qBittorrent gagal mendengarkan port antarmuka %1: %2/%3. Alasan: %4.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2284"/>
+        <location filename="../base/bittorrent/session.cpp" line="2560"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>IP eksternal: %1</translation>
@@ -1181,19 +1274,106 @@
 <context>
     <name>BitTorrent::TorrentHandle</name>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1313"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1417"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation>Tidak bisa memindahkan torrent: &apos;%1&apos;. Alasan: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1457"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1562"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
         <translation>Ukuran berkas tidak sama untuk torrent &apos;%1&apos;, torrent ditangguhkan.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1463"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1568"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation>Data lanjut cepat ditolak untuk torrent &apos;%1&apos;. Alasan: %2. Memeriksa lagi...</translation>
+    </message>
+</context>
+<context>
+    <name>CategoryFiltersList</name>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="200"/>
+        <source>All (0)</source>
+        <comment>this is for the category filter</comment>
+        <translation type="unfinished">Semua (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="203"/>
+        <source>Uncategorized (0)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="236"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="263"/>
+        <source>%1 (%2)</source>
+        <comment>category_name (10)</comment>
+        <translation type="unfinished">%1 (%2)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="296"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="392"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="412"/>
+        <source>Uncategorized (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="324"/>
+        <source>Add category...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="328"/>
+        <source>Remove category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="329"/>
+        <source>Remove unused categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="331"/>
+        <source>Resume torrents</source>
+        <translation type="unfinished">Lanjutkan torrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="332"/>
+        <source>Pause torrents</source>
+        <translation type="unfinished">Tangguhkan torrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="333"/>
+        <source>Delete torrents</source>
+        <translation type="unfinished">Hapus torrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="360"/>
+        <source>New Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="360"/>
+        <source>Category:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="363"/>
+        <source>Invalid category name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="364"/>
+        <source>Category name must not contain &apos;\&apos;.
+Category name must not start/end with &apos;/&apos;.
+Category name must not contain &apos;//&apos; sequence.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="391"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="411"/>
+        <source>All (%1)</source>
+        <comment>this is for the category filter</comment>
+        <translation type="unfinished">Semua (%1)</translation>
     </message>
 </context>
 <context>
@@ -1379,337 +1559,341 @@ Anda seharusnya mendapatkan informasi ini dari preferensi peramban Web Anda.</tr
     <message>
         <location filename="../webui/extra_translations.h" line="40"/>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Keluar qBittorrent</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="41"/>
         <source>Download Torrents from their URL or Magnet link</source>
-        <translation>Unduh Torrent dari URL mereka atau tautan Magnet</translation>
+        <translation type="obsolete">Unduh Torrent dari URL mereka atau tautan Magnet</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="42"/>
+        <location filename="../webui/extra_translations.h" line="43"/>
         <source>Only one link per line</source>
         <translation>Hanya satu tautan per baris</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="44"/>
+        <location filename="../webui/extra_translations.h" line="45"/>
         <source>Download</source>
         <translation>Unduh</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="46"/>
+        <location filename="../webui/extra_translations.h" line="47"/>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
         <translation>Batas laju unggah global harus lebih besar dari 0 atau nonaktif.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="47"/>
+        <location filename="../webui/extra_translations.h" line="48"/>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
         <translation>Batas laju unduh global harus lebih besar dari 0 atau nonaktif.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="48"/>
+        <location filename="../webui/extra_translations.h" line="49"/>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
         <translation>Batas laju unggah alternatif harus lebih besar dari 0 atau nonaktif.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="49"/>
+        <location filename="../webui/extra_translations.h" line="50"/>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
         <translation>Batas laju unduh alternatif harus lebih besar dari 0 atau nonaktif.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="50"/>
+        <location filename="../webui/extra_translations.h" line="51"/>
         <source>Maximum active downloads must be greater than -1.</source>
         <translation>Unduhan aktif maksimum harus lebih besar dari -1.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="51"/>
+        <location filename="../webui/extra_translations.h" line="52"/>
         <source>Maximum active uploads must be greater than -1.</source>
         <translation>Unggahan aktif maksimum harus lebih besar dari -1.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="52"/>
+        <location filename="../webui/extra_translations.h" line="53"/>
         <source>Maximum active torrents must be greater than -1.</source>
         <translation>Torrent aktif maksimum harus lebih besar dari -1.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="53"/>
+        <location filename="../webui/extra_translations.h" line="54"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
         <translation>Jumlah maksimum batas koneksi harus lebih besar dari 0 atau nonaktif.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="54"/>
+        <location filename="../webui/extra_translations.h" line="55"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
         <translation>Jumlah maksimum batas koneksi per torrent harus lebih besar dari 0 atau nonaktif.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="55"/>
+        <location filename="../webui/extra_translations.h" line="56"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Jumlah maksimum batas slot unggah per torrent harus lebih besar dari 0 atau nonaktif.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="56"/>
+        <location filename="../webui/extra_translations.h" line="57"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>Tidak bisa menyimpan preferensi program, qBittorrent mungkin tidak terjangkau.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="57"/>
+        <location filename="../webui/extra_translations.h" line="58"/>
         <source>Language</source>
         <translation>Bahasa</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="58"/>
+        <location filename="../webui/extra_translations.h" line="59"/>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
         <translation>Port yang digunakan untuk koneksi masuk harus antara 1 dan 65535.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="59"/>
+        <location filename="../webui/extra_translations.h" line="60"/>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
         <translation>Port yang digunakan untuk Web UI harus antara 1 dan 65535.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="69"/>
+        <location filename="../webui/extra_translations.h" line="68"/>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
         <translation>Tidak bisa masuk, qBittorrent mungkin tidak terjangkau.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="70"/>
+        <location filename="../webui/extra_translations.h" line="69"/>
         <source>Invalid Username or Password.</source>
         <translation>Nama Pengguna atau Sandi tidak valid.</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="71"/>
+        <location filename="../webui/extra_translations.h" line="70"/>
         <source>Password</source>
         <translation>Sandi</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="72"/>
+        <location filename="../webui/extra_translations.h" line="71"/>
         <source>Login</source>
         <translation>Masuk</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="73"/>
+        <location filename="../webui/extra_translations.h" line="72"/>
         <source>Upload Failed!</source>
         <translation>Gagal Mengunggah!</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="74"/>
+        <location filename="../webui/extra_translations.h" line="73"/>
         <source>Original authors</source>
         <translation>Pengembang asli</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="75"/>
+        <location filename="../webui/extra_translations.h" line="74"/>
         <source>Upload limit:</source>
         <translation>Batas unggah:</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="76"/>
+        <location filename="../webui/extra_translations.h" line="75"/>
         <source>Download limit:</source>
         <translation>Batas unduh:</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="77"/>
+        <location filename="../webui/extra_translations.h" line="76"/>
         <source>Apply</source>
         <translation>Terapkan</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="78"/>
+        <location filename="../webui/extra_translations.h" line="77"/>
         <source>Add</source>
         <translation>Tambah</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="79"/>
-        <source>Upload Torrents</source>
-        <translation>Unggah Torrent</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="80"/>
-        <source>All</source>
-        <translation>Semua</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="81"/>
-        <source>Downloading</source>
-        <translation>Mengunduh</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="82"/>
-        <source>Seeding</source>
-        <translation>Membibit</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="83"/>
-        <source>Completed</source>
-        <translation>Komplet</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="84"/>
-        <source>Resumed</source>
-        <translation>Dilanjutkan</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="85"/>
-        <source>Paused</source>
-        <translation>Ditangguhkan</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="86"/>
-        <source>Active</source>
-        <translation>Aktif</translation>
-    </message>
-    <message>
         <location filename="../webui/extra_translations.h" line="87"/>
-        <source>Inactive</source>
-        <translation>Tidak aktif</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="88"/>
-        <source>Save files to location:</source>
-        <translation>Simpan berkas ke lokasi:</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="89"/>
-        <source>Label:</source>
-        <translation>Label:</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="90"/>
-        <source>Cookie:</source>
-        <translation>Kuki:</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="91"/>
-        <source>Type folder here</source>
-        <translation>Tulis folder di sini</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="92"/>
-        <source>Run an external program on torrent completion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="93"/>
-        <source>Enable bandwidth management (uTP)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="94"/>
-        <source>Apply rate limit to uTP connections</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="95"/>
-        <source>Alternative Global Rate Limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="96"/>
-        <source>More information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="97"/>
-        <source>Information about certificates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="98"/>
-        <source>Save Files to</source>
-        <translation type="unfinished">Simpan Berkas ke</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="99"/>
-        <source>Watch Folder</source>
-        <translation type="unfinished">Folder Dimonitor</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="100"/>
-        <source>Default Folder</source>
-        <translation type="unfinished">Folder Bawaan</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="105"/>
-        <source>from</source>
-        <comment>from time1 to time2</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="106"/>
-        <source>to</source>
-        <comment>from time1 to time2</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="107"/>
-        <source>Other...</source>
-        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation type="unfinished">Lainnya...</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="108"/>
-        <source>Every day</source>
-        <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished">Setiap hari</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="109"/>
-        <source>Week days</source>
-        <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="110"/>
-        <source>Week ends</source>
-        <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="111"/>
-        <source>Monday</source>
-        <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="112"/>
-        <source>Tuesday</source>
-        <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="113"/>
-        <source>Wednesday</source>
-        <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="114"/>
-        <source>Thursday</source>
-        <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="115"/>
-        <source>Friday</source>
-        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <source>Category:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="116"/>
-        <source>Saturday</source>
-        <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
+        <source>Upload Torrents</source>
+        <comment>Upload torrent files to qBittorent using WebUI</comment>
+        <translation type="unfinished">Unggah Torrent</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="117"/>
-        <source>Sunday</source>
-        <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
+        <source>Upload Torrents</source>
+        <translation type="obsolete">Unggah Torrent</translation>
     </message>
     <message>
-        <source>Other...</source>
-        <translation type="obsolete">Lainnya...</translation>
+        <location filename="../webui/extra_translations.h" line="78"/>
+        <source>All</source>
+        <translation>Semua</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="79"/>
+        <source>Downloading</source>
+        <translation>Mengunduh</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="80"/>
+        <source>Seeding</source>
+        <translation>Membibit</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="81"/>
+        <source>Completed</source>
+        <translation>Komplet</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="82"/>
+        <source>Resumed</source>
+        <translation>Dilanjutkan</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="83"/>
+        <source>Paused</source>
+        <translation>Ditangguhkan</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="84"/>
+        <source>Active</source>
+        <translation>Aktif</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="85"/>
+        <source>Inactive</source>
+        <translation>Tidak aktif</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="86"/>
+        <source>Save files to location:</source>
+        <translation>Simpan berkas ke lokasi:</translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="obsolete">Label:</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="88"/>
+        <source>Cookie:</source>
+        <translation>Kuki:</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="89"/>
+        <source>Type folder here</source>
+        <translation>Tulis folder di sini</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="90"/>
+        <source>Run an external program on torrent completion</source>
+        <translation>Jalankan program eksternal saat torrent selesai diunduh</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="91"/>
+        <source>Enable bandwidth management (uTP)</source>
+        <translation>Aktifkan pengelolaan bandwidth (uTP)</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="92"/>
+        <source>Apply rate limit to uTP connections</source>
+        <translation>Terapkan batas laju untuk koneksi uTP</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="93"/>
+        <source>Alternative Global Rate Limits</source>
+        <translation>Batas Laju Global Alternatif</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="94"/>
+        <source>More information</source>
+        <translation>Informasi lainnya</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="95"/>
+        <source>Information about certificates</source>
+        <translation>Informasi tentang sertifikat</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="96"/>
+        <source>Save Files to</source>
+        <translation>SImpan Berkas ke</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="97"/>
+        <source>Watch Folder</source>
+        <translation>Folder Dimonitor</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="98"/>
+        <source>Default Folder</source>
+        <translation>Folder Bawaan</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="103"/>
+        <source>from</source>
+        <comment>from time1 to time2</comment>
+        <translation>dari</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="104"/>
+        <source>to</source>
+        <comment>from time1 to time2</comment>
+        <translation>ke</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="105"/>
+        <source>Other...</source>
+        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
+        <translation>Lainnya...</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="106"/>
+        <source>Every day</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Setiap hari</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="107"/>
+        <source>Week days</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Hari libur</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="108"/>
+        <source>Week ends</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Akhir pekan</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="109"/>
+        <source>Monday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Senin</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="110"/>
+        <source>Tuesday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Selasa</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="111"/>
+        <source>Wednesday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Rabu</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="112"/>
+        <source>Thursday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Kamis</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="113"/>
+        <source>Friday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Jumat</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="114"/>
+        <source>Saturday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Sabtu</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="115"/>
+        <source>Sunday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Minggu</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="102"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Terunduh</translation>
@@ -1720,57 +1904,65 @@ Anda seharusnya mendapatkan informasi ini dari preferensi peramban Web Anda.</tr
         <translation>Keluar</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="43"/>
+        <location filename="../webui/extra_translations.h" line="41"/>
+        <source>Download from URLs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="42"/>
+        <source>Download Torrents from their URLs or Magnet links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="44"/>
         <source>Upload local torrent</source>
         <translation>Unggah torrent lokal</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="45"/>
+        <location filename="../webui/extra_translations.h" line="46"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
         <translation>Apakah Anda yakin ingin menghapus torrent yang dipilih dari daftar transfer?</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="60"/>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Panjang nama pengguna Web UI minimal harus 3 karakter.</translation>
+        <translation type="obsolete">Panjang nama pengguna Web UI minimal harus 3 karakter.</translation>
+    </message>
+    <message>
+        <source>The Web UI password must be at least 3 characters long.</source>
+        <translation type="obsolete">Panjang sandi Web UI minimal harus 3 karakter.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="61"/>
-        <source>The Web UI password must be at least 3 characters long.</source>
-        <translation>Panjang sandi Web UI minimal harus 3 karakter.</translation>
-    </message>
-    <message>
-        <location filename="../webui/extra_translations.h" line="62"/>
         <source>Save</source>
         <translation>Simpan</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="63"/>
+        <location filename="../webui/extra_translations.h" line="62"/>
         <source>qBittorrent client is not reachable</source>
         <translation>Klien qBittorrent tidak terjangkau</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="64"/>
+        <location filename="../webui/extra_translations.h" line="63"/>
         <source>HTTP Server</source>
         <translation>Server HTTP</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="65"/>
+        <location filename="../webui/extra_translations.h" line="64"/>
         <source>The following parameters are supported:</source>
         <translation>Parameter berikut didukung:</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="66"/>
+        <location filename="../webui/extra_translations.h" line="65"/>
         <source>Torrent path</source>
         <translation>Jalur torrent</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="67"/>
+        <location filename="../webui/extra_translations.h" line="66"/>
         <source>Torrent name</source>
         <translation>Nama torrent</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="68"/>
+        <location filename="../webui/extra_translations.h" line="67"/>
         <source>qBittorrent has been shutdown.</source>
         <translation>qBittorrent telah dimatikan.</translation>
     </message>
@@ -1778,87 +1970,67 @@ Anda seharusnya mendapatkan informasi ini dari preferensi peramban Web Anda.</tr
 <context>
     <name>LabelFiltersList</name>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="189"/>
         <source>All (0)</source>
         <comment>this is for the label filter</comment>
-        <translation>Semua (0)</translation>
+        <translation type="obsolete">Semua (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="192"/>
         <source>Unlabeled (0)</source>
-        <translation>Tidak berlabel (0)</translation>
+        <translation type="obsolete">Tidak berlabel (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="214"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="260"/>
         <source>All (%1)</source>
         <comment>this is for the label filter</comment>
-        <translation>Semua (%1)</translation>
+        <translation type="obsolete">Semua (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="217"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="235"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="263"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="268"/>
         <source>Unlabeled (%1)</source>
-        <translation>Tidak berlabel (%1)</translation>
+        <translation type="obsolete">Tidak berlabel (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="239"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="276"/>
         <source>%1 (%2)</source>
         <comment>label_name (10)</comment>
-        <translation>%1 (%2)</translation>
+        <translation type="obsolete">%1 (%2)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="330"/>
         <source>Add label...</source>
-        <translation>Tambah label...</translation>
+        <translation type="obsolete">Tambah label...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="334"/>
         <source>Remove label</source>
-        <translation>Buang label</translation>
+        <translation type="obsolete">Buang label</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="335"/>
         <source>Remove unused labels</source>
-        <translation>Buang label yang tidak digunakan</translation>
+        <translation type="obsolete">Buang label yang tidak digunakan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="337"/>
         <source>Resume torrents</source>
-        <translation>Lanjutkan torrent</translation>
+        <translation type="obsolete">Lanjutkan torrent</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="338"/>
         <source>Pause torrents</source>
-        <translation>Tangguhkan torrent</translation>
+        <translation type="obsolete">Tangguhkan torrent</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="339"/>
         <source>Delete torrents</source>
-        <translation>Hapus torrent</translation>
+        <translation type="obsolete">Hapus torrent</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="366"/>
         <source>New Label</source>
-        <translation>Label Baru</translation>
+        <translation type="obsolete">Label Baru</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="366"/>
         <source>Label:</source>
-        <translation>Label:</translation>
+        <translation type="obsolete">Label:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="372"/>
         <source>Invalid label name</source>
-        <translation>Nama label tidak valid</translation>
+        <translation type="obsolete">Nama label tidak valid</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="372"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Mohon tidak menggunakan karakter spesial apapun di nama label.</translation>
+        <translation type="obsolete">Mohon tidak menggunakan karakter spesial apapun di nama label.</translation>
     </message>
 </context>
 <context>
@@ -3896,7 +4068,7 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
 <context>
     <name>Net::Smtp</name>
     <message>
-        <location filename="../base/net/smtp.cpp" line="502"/>
+        <location filename="../base/net/smtp.cpp" line="500"/>
         <source>Email Notification Error:</source>
         <translation>Galat Notifikasi Surel:</translation>
     </message>
@@ -3977,132 +4149,142 @@ Apakah Anda yakin ingin qBittorrent keluar?</translation>
 <context>
     <name>PeerListWidget</name>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="70"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="74"/>
         <source>IP</source>
         <translation>IP</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="71"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="75"/>
         <source>Port</source>
         <translation>Port</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="72"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="76"/>
         <source>Flags</source>
         <translation>Bendera</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="73"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="77"/>
         <source>Connection</source>
         <translation>Koneksi</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="74"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="78"/>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
         <translation>Klien</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="75"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="79"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation>Kemajuan</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="76"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="80"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>Kecepatan Unduh</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="77"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="81"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Kecepatan Unggah</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="78"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="82"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
         <translation>Terunduh</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="79"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="83"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
         <translation>Terunggah</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="80"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="84"/>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don&apos;t.</comment>
         <translation>Relevansi</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="81"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="85"/>
         <source>Files</source>
         <comment>i.e. files that are being downloaded right now</comment>
         <translation>Berkas</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="169"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="154"/>
+        <source>Column visibility</source>
+        <translation type="unfinished">Keterlihatan kolom</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="233"/>
         <source>Add a new peer...</source>
         <translation>Tambah rekan baru...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="175"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="239"/>
         <source>Copy selected</source>
         <translation>Salin yang dipilih</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="177"/>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="215"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="241"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="279"/>
         <source>Ban peer permanently</source>
         <translation>Cekal rekan secara permanen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="189"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="253"/>
         <source>Manually adding peer &apos;%1&apos;...</source>
         <translation>Secara manual menambahkan rekan &apos;%1&apos;...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="193"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="257"/>
         <source>The peer &apos;%1&apos; could not be added to this torrent.</source>
         <translation>Rekan &apos;%1&apos; tidak bisa ditambahkan ke torrent ini.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="226"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="290"/>
         <source>Manually banning peer &apos;%1&apos;...</source>
         <translation>Secara manual mencekal rekan &apos;%1&apos;...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="197"/>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="199"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="261"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="263"/>
         <source>Peer addition</source>
         <translation>Tambahan rekan</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="197"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="73"/>
+        <source>Country</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="261"/>
         <source>Some peers could not be added. Check the Log for details.</source>
         <translation>Beberapa rekan tidak bisa ditambahkan. Periksa Log untuk detail lebih lanjut.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="199"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="263"/>
         <source>The peers were added to this torrent.</source>
         <translation>Rekan telah ditambahkan ke torrent ini.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="215"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="279"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
         <translation>Apakah Anda yakin ingin mencekal secara permanen rekan yang dipilih?</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="216"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="280"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ya</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="216"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="280"/>
         <source>&amp;No</source>
         <translation>&amp;Tidak</translation>
     </message>
@@ -4343,242 +4525,242 @@ Plugin tersebut telah dinonfungsikan.</translation>
 <context>
     <name>Preferences</name>
     <message>
-        <location filename="../gui/options.ui" line="69"/>
+        <location filename="../gui/options.ui" line="54"/>
         <source>Downloads</source>
         <translation>Unduhan</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="80"/>
+        <location filename="../gui/options.ui" line="59"/>
         <source>Connection</source>
         <translation>Koneksi</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="91"/>
+        <location filename="../gui/options.ui" line="64"/>
         <source>Speed</source>
         <translation>Kecepatan</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="113"/>
+        <location filename="../gui/options.ui" line="74"/>
         <source>Web UI</source>
         <translation>Web UI</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="124"/>
+        <location filename="../gui/options.ui" line="79"/>
+        <location filename="../gui/options.ui" line="605"/>
         <source>Advanced</source>
         <translation>Tingkat Lanjut</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="209"/>
+        <location filename="../gui/options.ui" line="161"/>
         <source>(Requires restart)</source>
         <translation>(Wajib memulai ulang)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="253"/>
+        <location filename="../gui/options.ui" line="205"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
         <translation>Gunakan warna baris belang</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="295"/>
-        <location filename="../gui/options.ui" line="321"/>
+        <location filename="../gui/options.ui" line="285"/>
+        <location filename="../gui/options.ui" line="311"/>
         <source>Start / Stop Torrent</source>
         <translation>Jalankan / Hentikan Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="305"/>
-        <location filename="../gui/options.ui" line="331"/>
+        <location filename="../gui/options.ui" line="295"/>
+        <location filename="../gui/options.ui" line="321"/>
         <source>No action</source>
         <translation>Tidak ada tindakan</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="701"/>
+        <location filename="../gui/options.ui" line="862"/>
         <source>Append .!qB extension to incomplete files</source>
         <translation>Imbuh ekstensi .!qb untuk berkas yang belum komplet</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="801"/>
+        <location filename="../gui/options.ui" line="875"/>
         <source>Copy .torrent files to:</source>
         <translation>Salin berkas .torrent ke:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1118"/>
+        <location filename="../gui/options.ui" line="1282"/>
         <source>Connections Limits</source>
         <translation>Batas Koneksi</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1271"/>
+        <location filename="../gui/options.ui" line="1435"/>
         <source>Proxy Server</source>
         <translation>Server Proksi</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1574"/>
+        <location filename="../gui/options.ui" line="1738"/>
         <source>Global Rate Limits</source>
         <translation>Batas Laju Global</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1876"/>
+        <location filename="../gui/options.ui" line="2040"/>
         <source>Apply rate limit to transport overhead</source>
         <translation>Terapkan batas laju untuk overhead transpor</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1669"/>
+        <location filename="../gui/options.ui" line="1833"/>
         <source>Schedule the use of alternative rate limits</source>
         <translation>Jadwalkan penggunaan batas laju alternatif</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1681"/>
+        <location filename="../gui/options.ui" line="1845"/>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>Dari:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1705"/>
+        <location filename="../gui/options.ui" line="1869"/>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
         <translation>Ke:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1990"/>
+        <location filename="../gui/options.ui" line="2157"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Aktifkan Pencarian Rekan Lokal untuk menemukan lebih banyak rekan</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2002"/>
+        <location filename="../gui/options.ui" line="2169"/>
         <source>Encryption mode:</source>
         <translation>Mode enkripsi:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2010"/>
+        <location filename="../gui/options.ui" line="2177"/>
         <source>Prefer encryption</source>
         <translation>Enkripsi Opsional</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2015"/>
+        <location filename="../gui/options.ui" line="2182"/>
         <source>Require encryption</source>
         <translation>Enkripsi Wajib</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2020"/>
+        <location filename="../gui/options.ui" line="2187"/>
         <source>Disable encryption</source>
         <translation>Enkripsi Nonaktif</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2055"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Informasi Lebih Banyak&lt;/a&gt;)</translation>
+        <translation type="obsolete"> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Informasi Lebih Banyak&lt;/a&gt;)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2098"/>
+        <location filename="../gui/options.ui" line="2265"/>
         <source>Maximum active downloads:</source>
         <translation>Unduhan aktif maksimum:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2118"/>
+        <location filename="../gui/options.ui" line="2285"/>
         <source>Maximum active uploads:</source>
         <translation>Unggahan aktif maksimum:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2138"/>
+        <location filename="../gui/options.ui" line="2305"/>
         <source>Maximum active torrents:</source>
         <translation>Torrent aktif maksimum:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="537"/>
+        <location filename="../gui/options.ui" line="530"/>
         <source>When adding a torrent</source>
         <translation>Ketika menambahkan torrent</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="58"/>
+        <location filename="../gui/options.ui" line="49"/>
         <source>Behavior</source>
         <translation>Perilaku</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="173"/>
+        <location filename="../gui/options.ui" line="125"/>
         <source>Language</source>
         <translation>Bahasa</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="553"/>
+        <location filename="../gui/options.ui" line="546"/>
         <source>Display torrent content and some options</source>
         <translation>Tampilkan isi torrent dan beberapa opsi</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="991"/>
+        <location filename="../gui/options.ui" line="1152"/>
         <source>Run external program on torrent completion</source>
         <translation>Jalankan program eksternal saat torrent selesai diunduh</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1054"/>
+        <location filename="../gui/options.ui" line="1218"/>
         <source>Port used for incoming connections:</source>
         <translation>Port yang digunakan untuk koneksi masuk:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1074"/>
+        <location filename="../gui/options.ui" line="1238"/>
         <source>Random</source>
         <translation>Acak</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1124"/>
+        <location filename="../gui/options.ui" line="1288"/>
         <source>Global maximum number of connections:</source>
         <translation>Jumlah maksimum koneksi global:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1150"/>
+        <location filename="../gui/options.ui" line="1314"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Jumlah maksimum koneksi per torrent:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1173"/>
+        <location filename="../gui/options.ui" line="1337"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Jumlah maksimum slot unggah per torrent:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1596"/>
-        <location filename="../gui/options.ui" line="1787"/>
+        <location filename="../gui/options.ui" line="1760"/>
+        <location filename="../gui/options.ui" line="1951"/>
         <source>Upload:</source>
         <translation>Unggah:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1640"/>
-        <location filename="../gui/options.ui" line="1794"/>
+        <location filename="../gui/options.ui" line="1804"/>
+        <location filename="../gui/options.ui" line="1958"/>
         <source>Download:</source>
         <translation>Unduh:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1603"/>
-        <location filename="../gui/options.ui" line="1626"/>
-        <location filename="../gui/options.ui" line="1833"/>
-        <location filename="../gui/options.ui" line="1840"/>
+        <location filename="../gui/options.ui" line="1767"/>
+        <location filename="../gui/options.ui" line="1790"/>
+        <location filename="../gui/options.ui" line="1997"/>
+        <location filename="../gui/options.ui" line="2004"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="768"/>
+        <location filename="../gui/options.ui" line="1040"/>
         <source>Remove folder</source>
         <translation>Buang folder</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1746"/>
+        <location filename="../gui/options.ui" line="1910"/>
         <source>Every day</source>
         <translation>Setiap hari</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/options.ui" line="1974"/>
+        <location filename="../gui/options.ui" line="2141"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Pertukaran rekan dengan aplikasi Bittorrent yang kompatibel (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1313"/>
+        <location filename="../gui/options.ui" line="1477"/>
         <source>Host:</source>
         <translation>Hos:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1292"/>
+        <location filename="../gui/options.ui" line="1456"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1279"/>
+        <location filename="../gui/options.ui" line="1443"/>
         <source>Type:</source>
         <translation>Jenis:</translation>
     </message>
@@ -4588,506 +4770,596 @@ Plugin tersebut telah dinonfungsikan.</translation>
         <translation>Opsi</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="269"/>
+        <location filename="../gui/options.ui" line="259"/>
         <source>Action on double-click</source>
         <translation>Tindakan klik ganda</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="278"/>
+        <location filename="../gui/options.ui" line="268"/>
         <source>Downloading torrents:</source>
         <translation>Mengunduh torrent:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="300"/>
-        <location filename="../gui/options.ui" line="326"/>
+        <location filename="../gui/options.ui" line="290"/>
+        <location filename="../gui/options.ui" line="316"/>
         <source>Open destination folder</source>
         <translation>Buka folder tujuan</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="313"/>
+        <location filename="../gui/options.ui" line="303"/>
         <source>Completed torrents:</source>
         <translation>Torrent komplet:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="345"/>
+        <location filename="../gui/options.ui" line="335"/>
         <source>Desktop</source>
         <translation>Destop</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="358"/>
+        <location filename="../gui/options.ui" line="348"/>
         <source>Show splash screen on start up</source>
         <translation>Tampilkan layar sambutan saat memulai</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="368"/>
+        <location filename="../gui/options.ui" line="358"/>
         <source>Start qBittorrent minimized</source>
         <translation>Mulai qBittorrent diminimalkan</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="394"/>
+        <location filename="../gui/options.ui" line="384"/>
         <source>Minimize qBittorrent to notification area</source>
         <translation>Minimalkan qBittorrent ke area notifikasi</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="404"/>
+        <location filename="../gui/options.ui" line="394"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation>Tutup qBittorrent ke area notifikasi</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="413"/>
+        <location filename="../gui/options.ui" line="403"/>
         <source>Tray icon style:</source>
         <translation>Gaya ikon baki:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="421"/>
+        <location filename="../gui/options.ui" line="411"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="426"/>
+        <location filename="../gui/options.ui" line="416"/>
         <source>Monochrome (Dark theme)</source>
         <translation>Monokrom (Tema gelap)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="431"/>
+        <location filename="../gui/options.ui" line="421"/>
         <source>Monochrome (Light theme)</source>
         <translation>Monokrom (Tema cerah)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="181"/>
+        <location filename="../gui/options.ui" line="133"/>
         <source>User Interface Language:</source>
         <translation>Bahasa Antarmuka Pengguna</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="237"/>
+        <location filename="../gui/options.ui" line="189"/>
         <source>Transfer List</source>
         <translation>Daftar Transfer</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="243"/>
+        <location filename="../gui/options.ui" line="195"/>
         <source>Confirm when deleting torrents</source>
         <translation>Konfirmasi ketika menghapus torrent</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="351"/>
+        <location filename="../gui/options.ui" line="341"/>
         <source>Start qBittorrent on Windows start up</source>
         <translation>Mulai qBittorrent saat memulai Windows</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="375"/>
+        <location filename="../gui/options.ui" line="365"/>
         <source>Confirmation on exit when torrents are active</source>
         <translation>Konfirmasi saat keluar ketika torrent sedang aktif</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="385"/>
+        <location filename="../gui/options.ui" line="375"/>
         <source>Show qBittorrent in notification area</source>
         <translation>Tampilkan qBittorrent di area notifikasi</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="444"/>
+        <location filename="../gui/options.ui" line="434"/>
         <source>File association</source>
         <translation>Asosiasi berkas</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="450"/>
+        <location filename="../gui/options.ui" line="440"/>
         <source>Use qBittorrent for .torrent files</source>
         <translation>Gunakan qBittorrent untuk berkas .torrent</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="457"/>
+        <location filename="../gui/options.ui" line="447"/>
         <source>Use qBittorrent for magnet links</source>
         <translation>Gunakan qBittorrent untuk tautan magnet</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="470"/>
+        <location filename="../gui/options.ui" line="460"/>
         <source>Power Management</source>
         <translation>Pengelolaan Daya</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="476"/>
+        <location filename="../gui/options.ui" line="466"/>
         <source>Inhibit system sleep when torrents are active</source>
         <translation>Cegah sistem tidur ketika torrent sedang aktif</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="546"/>
+        <location filename="../gui/options.ui" line="539"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>Jangan mulai mengunduh secara otomatis</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="562"/>
+        <location filename="../gui/options.ui" line="555"/>
         <source>Bring torrent dialog to the front</source>
         <translation>Tampilkan dialog torrent</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="584"/>
         <source>Hard Disk</source>
-        <translation>Diska</translation>
+        <translation type="obsolete">Diska</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="590"/>
         <source>Save files to location:</source>
-        <translation>Simpan berkas ke lokasi:</translation>
+        <translation type="obsolete">Simpan berkas ke lokasi:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="638"/>
         <source>Append the label of the torrent to the save path</source>
-        <translation>Tambahkan label torrent ke jalur penyimpanan</translation>
+        <translation type="obsolete">Tambahkan label torrent ke jalur penyimpanan</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="648"/>
+        <location filename="../gui/options.ui" line="809"/>
         <source>Pre-allocate disk space for all files</source>
         <translation>Pra-alokasi ruang diska untuk semua berkas</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="655"/>
+        <location filename="../gui/options.ui" line="816"/>
         <source>Keep incomplete torrents in:</source>
         <translation>Simpan torrent yang belum komplet di:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="708"/>
+        <location filename="../gui/options.ui" line="980"/>
         <source>Automatically add torrents from:</source>
         <translation>Secara otomatis menambahkan torrent dari:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="758"/>
+        <location filename="../gui/options.ui" line="1030"/>
         <source>Add folder...</source>
         <translation>Tambah folder...</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="850"/>
+        <location filename="../gui/options.ui" line="924"/>
         <source>Copy .torrent files for finished downloads to:</source>
         <translation>Salin berkas .torrent yang telah selesai diunduh ke:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="906"/>
+        <location filename="../gui/options.ui" line="1067"/>
         <source>Email notification upon download completion</source>
         <translation>Notifikasi surel saat selesai mengunduh</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="920"/>
+        <location filename="../gui/options.ui" line="1081"/>
         <source>Destination email:</source>
         <translation>Surel tujuan:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="930"/>
+        <location filename="../gui/options.ui" line="1091"/>
         <source>SMTP server:</source>
         <translation>Server SMTP:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="979"/>
+        <location filename="../gui/options.ui" line="1140"/>
         <source>This server requires a secure connection (SSL)</source>
         <translation>Server ini membutuhkan koneksi aman (SSL)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1046"/>
+        <location filename="../gui/options.ui" line="1210"/>
         <source>Listening Port</source>
         <translation>Port yang Didengar</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1096"/>
+        <location filename="../gui/options.ui" line="1260"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Gunakan penerusan port UPnP / NAT-PMP dari router saya</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1106"/>
+        <location filename="../gui/options.ui" line="1270"/>
         <source>Use different port on each startup</source>
         <translation>Gunakan port yang berbeda setiap kali memulai</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1232"/>
+        <location filename="../gui/options.ui" line="1396"/>
         <source>Global maximum number of upload slots:</source>
         <translation>Jumlah maksimum slot unggah global:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1367"/>
+        <location filename="../gui/options.ui" line="1531"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
         <translation>Jika tidak, server proksi hanya digunakan untuk koneksi pelacak</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1370"/>
+        <location filename="../gui/options.ui" line="1534"/>
         <source>Use proxy for peer connections</source>
         <translation>Gunakan proksi untuk koneksi rekan</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1377"/>
+        <location filename="../gui/options.ui" line="1541"/>
         <source>Disable connections not supported by proxies</source>
         <translation>Nonaktifkan koneksi yang tidak didukung oleh proksi</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1390"/>
+        <location filename="../gui/options.ui" line="1554"/>
         <source>Use proxy only for torrents</source>
         <translation>Gunakan proksi hanya untuk torrent saja</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1387"/>
+        <location filename="../gui/options.ui" line="1551"/>
         <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
         <translation>Umpan RSS, mesin pencari, pemutakhiran perangkat lunak atau hal yang lain selain pengunduhan torrent atau yang terkait (seperti pertukaran rekan) akan menggunakan sambungan langsung.</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1459"/>
+        <location filename="../gui/options.ui" line="1623"/>
         <source>Info: The password is saved unencrypted</source>
         <translation>Info: Sandi disimpan tanpa enkripsi</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1472"/>
+        <location filename="../gui/options.ui" line="1636"/>
         <source>IP Filtering</source>
         <translation>Penyaringan IP</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1513"/>
+        <location filename="../gui/options.ui" line="1677"/>
         <source>Reload the filter</source>
         <translation>Muat ulang penyaring</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1529"/>
+        <location filename="../gui/options.ui" line="1693"/>
         <source>Apply to trackers</source>
         <translation>Terapkan ke pelacak</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1869"/>
+        <location filename="../gui/options.ui" line="2033"/>
         <source>Apply rate limit to peers on LAN</source>
         <translation>Terapkan batas laju untuk rekan pada LAN</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1732"/>
+        <location filename="../gui/options.ui" line="1896"/>
         <source>When:</source>
         <translation>Kapan:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1751"/>
+        <location filename="../gui/options.ui" line="217"/>
+        <source>Hide zero and infinity values</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="225"/>
+        <source>Always</source>
+        <translation type="unfinished">Selalu</translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="230"/>
+        <source>Paused torrents only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="577"/>
+        <source>Saving Management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="588"/>
+        <source>Default Saving Mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="595"/>
+        <source>Simple</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="627"/>
+        <source>Default Save Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="683"/>
+        <source>Enable Subcategories:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="690"/>
+        <source>Yes</source>
+        <translation type="unfinished">Ya</translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="700"/>
+        <source>No</source>
+        <translation type="unfinished">Tidak</translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="728"/>
+        <source>When Torrent Category changed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="734"/>
+        <source>Relocate torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="744"/>
+        <source>Switch torrent to Simple Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="757"/>
+        <source>When Default Save Path changed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="763"/>
+        <location filename="../gui/options.ui" line="789"/>
+        <source>Relocate affected torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="770"/>
+        <location filename="../gui/options.ui" line="796"/>
+        <source>Switch affected torrents to Simple Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="783"/>
+        <source>When Category changed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="1915"/>
         <source>Weekdays</source>
         <translation>Hari kerja</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1756"/>
+        <location filename="../gui/options.ui" line="1920"/>
         <source>Weekends</source>
         <translation>Akhir pekan</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1863"/>
+        <location filename="../gui/options.ui" line="2027"/>
         <source>Rate Limits Settings</source>
         <translation>Pengaturan Batas Laju</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/options.ui" line="1883"/>
+        <location filename="../gui/options.ui" line="2047"/>
         <source>Enable µTP protocol</source>
         <translation>Aktifkan protokol µTP</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/options.ui" line="1890"/>
+        <location filename="../gui/options.ui" line="2054"/>
         <source>Apply rate limit to µTP protocol</source>
         <translation>Terapkan batas lagu protokol µTP</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1958"/>
+        <location filename="../gui/options.ui" line="2125"/>
         <source>Privacy</source>
         <translation>Privasi</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1964"/>
+        <location filename="../gui/options.ui" line="2131"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Aktifkan DHT (jaringan desentralisasi) untuk menemukan lebih banyak rekan</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1977"/>
+        <location filename="../gui/options.ui" line="2144"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Aktifkan Pertukaran Rekan (PeX) untuk menemukan lebih banyak rekan</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1987"/>
+        <location filename="../gui/options.ui" line="2154"/>
         <source>Look for peers on your local network</source>
         <translation>Temukan rekan di jaringan lokal Anda</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2045"/>
+        <location filename="../gui/options.ui" line="2212"/>
         <source>Enable when using a proxy or a VPN connection</source>
         <translation>Aktifkan ketika menggunakan proksi atau koneksi VPN</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2048"/>
+        <location filename="../gui/options.ui" line="2215"/>
         <source>Enable anonymous mode</source>
         <translation>Aktifkan mode anonim</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2197"/>
+        <location filename="../gui/options.ui" line="2222"/>
+        <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="2364"/>
         <source>Do not count slow torrents in these limits</source>
         <translation>Jangan hitung torrent lambat pada batas ini</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2218"/>
+        <location filename="../gui/options.ui" line="2385"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Bibit torrent sampai rasio mereka tercapai</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2247"/>
+        <location filename="../gui/options.ui" line="2414"/>
         <source>then</source>
         <translation>lalu</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2258"/>
+        <location filename="../gui/options.ui" line="2425"/>
         <source>Pause them</source>
         <translation>Tangguhkan torrent</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2263"/>
+        <location filename="../gui/options.ui" line="2430"/>
         <source>Remove them</source>
         <translation>Buang torrent</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2282"/>
+        <location filename="../gui/options.ui" line="2449"/>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>Secara otomatis menambahkan pelacak ini ke unduhan baru:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2401"/>
+        <location filename="../gui/options.ui" line="2571"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>Gunakan UPnP / NAT-PMP untuk meneruskan port dari router saya</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2411"/>
+        <location filename="../gui/options.ui" line="2581"/>
         <source>Use HTTPS instead of HTTP</source>
         <translation>Gunakan HTTPS daripada HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2454"/>
+        <location filename="../gui/options.ui" line="2624"/>
         <source>Import SSL Certificate</source>
         <translation>Impor sertifikat SSL</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2507"/>
+        <location filename="../gui/options.ui" line="2677"/>
         <source>Import SSL Key</source>
         <translation>Impor kunci SSL</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2442"/>
+        <location filename="../gui/options.ui" line="2699"/>
+        <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="2612"/>
         <source>Certificate:</source>
         <translation>Sertifikat:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1663"/>
+        <location filename="../gui/options.ui" line="1827"/>
         <source>Alternative Rate Limits</source>
         <translation>Batas Laju Alternatif</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2495"/>
+        <location filename="../gui/options.ui" line="2665"/>
         <source>Key:</source>
         <translation>Kunci:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2529"/>
         <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Informasi tentang sertifikat&lt;/a&gt;</translation>
+        <translation type="obsolete">&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Informasi tentang sertifikat&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2574"/>
+        <location filename="../gui/options.ui" line="2744"/>
         <source>Bypass authentication for localhost</source>
         <translation>Lewati otentikasi untuk localhost</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2598"/>
+        <location filename="../gui/options.ui" line="2768"/>
         <source>Update my dynamic domain name</source>
         <translation>Perbarui nama domain dinamis saya</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2610"/>
+        <location filename="../gui/options.ui" line="2780"/>
         <source>Service:</source>
         <translation>Layanan:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2633"/>
+        <location filename="../gui/options.ui" line="2803"/>
         <source>Register</source>
         <translation>Daftar</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2642"/>
+        <location filename="../gui/options.ui" line="2812"/>
         <source>Domain name:</source>
         <translation>Nama domain:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1287"/>
+        <location filename="../gui/options.ui" line="1451"/>
         <source>(None)</source>
         <translation>(Tak ada)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="102"/>
+        <location filename="../gui/options.ui" line="69"/>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1302"/>
+        <location filename="../gui/options.ui" line="1466"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1339"/>
-        <location filename="../gui/options.ui" line="2366"/>
+        <location filename="../gui/options.ui" line="1503"/>
+        <location filename="../gui/options.ui" line="2536"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="940"/>
-        <location filename="../gui/options.ui" line="1403"/>
-        <location filename="../gui/options.ui" line="2542"/>
+        <location filename="../gui/options.ui" line="1101"/>
+        <location filename="../gui/options.ui" line="1567"/>
+        <location filename="../gui/options.ui" line="2712"/>
         <source>Authentication</source>
         <translation>Otentikasi</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="952"/>
-        <location filename="../gui/options.ui" line="1417"/>
-        <location filename="../gui/options.ui" line="2581"/>
-        <location filename="../gui/options.ui" line="2656"/>
+        <location filename="../gui/options.ui" line="1113"/>
+        <location filename="../gui/options.ui" line="1581"/>
+        <location filename="../gui/options.ui" line="2751"/>
+        <location filename="../gui/options.ui" line="2826"/>
         <source>Username:</source>
         <translation>Nama pengguna:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="962"/>
-        <location filename="../gui/options.ui" line="1437"/>
-        <location filename="../gui/options.ui" line="2588"/>
-        <location filename="../gui/options.ui" line="2670"/>
+        <location filename="../gui/options.ui" line="1123"/>
+        <location filename="../gui/options.ui" line="1601"/>
+        <location filename="../gui/options.ui" line="2758"/>
+        <location filename="../gui/options.ui" line="2840"/>
         <source>Password:</source>
         <translation>Sandi:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2083"/>
+        <location filename="../gui/options.ui" line="2250"/>
         <source>Torrent Queueing</source>
         <translation>Pengantrean Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2207"/>
+        <location filename="../gui/options.ui" line="2374"/>
         <source>Share Ratio Limiting</source>
         <translation>Pembatasan Rasio Berbagi</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2352"/>
+        <location filename="../gui/options.ui" line="2522"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Aktifkan Antarmuka Pengguna Web (Pengendali rajuh)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1297"/>
+        <location filename="../gui/options.ui" line="1461"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1484"/>
+        <location filename="../gui/options.ui" line="1648"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Jalur penyaring (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <location filename="../base/preferences.cpp" line="83"/>
         <source>Detected unclean program exit. Using fallback file to restore settings.</source>
-        <translation>Mendeteksi kerusakan berkas ketika program keluar. Menggunakan berkas cadangan untuk kembali ke pengaturan sebelumnya.</translation>
+        <translation type="obsolete">Mendeteksi kerusakan berkas ketika program keluar. Menggunakan berkas cadangan untuk kembali ke pengaturan sebelumnya.</translation>
     </message>
     <message>
-        <location filename="../base/preferences.cpp" line="178"/>
         <source>An access error occurred while trying to write the configuration file.</source>
-        <translation>Sebuah galat akses terjadi ketika mencoba untuk menyimpan berkas konfigurasi.</translation>
+        <translation type="obsolete">Sebuah galat akses terjadi ketika mencoba untuk menyimpan berkas konfigurasi.</translation>
     </message>
     <message>
-        <location filename="../base/preferences.cpp" line="180"/>
         <source>A format error occurred while trying to write the configuration file.</source>
-        <translation>Sebuah galat format terjadi ketika mencoba untuk menyimpan berkas konfigurasi.</translation>
+        <translation type="obsolete">Sebuah galat format terjadi ketika mencoba untuk menyimpan berkas konfigurasi.</translation>
     </message>
 </context>
 <context>
@@ -5123,33 +5395,38 @@ Plugin tersebut telah dinonfungsikan.</translation>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="106"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="115"/>
         <source>Not downloaded</source>
         <translation>Tidak diunduh</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="115"/>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="162"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="124"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="171"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="109"/>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="163"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="118"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="172"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Tinggi</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="103"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="73"/>
+        <source>N/A</source>
+        <translation type="unfinished">T/A</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="112"/>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
         <translation>Campuran</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="112"/>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="164"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="121"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="173"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Maksimum</translation>
@@ -5523,112 +5800,112 @@ Plugin tersebut telah dinonfungsikan.</translation>
         <translation>Alamat IP Anda telah dicekal setelah terlalu banyak percobaan otentikasi yang gagal.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="388"/>
+        <location filename="../webui/webapplication.cpp" line="380"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.
 </source>
         <translation>Galat: &apos;%1&apos; bukan berkas torrent yang valid.
 </translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="396"/>
+        <location filename="../webui/webapplication.cpp" line="388"/>
         <source>Error: Could not add torrent to session.</source>
         <translation>Galat: Tidak bisa menambahkan torrent ke sesi.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="405"/>
+        <location filename="../webui/webapplication.cpp" line="397"/>
         <source>I/O Error: Could not create temporary file.</source>
         <translation>Galat I/O: Tidak bisa membuat berkas sementara.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="140"/>
+        <location filename="../app/main.cpp" line="145"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 adalah parameter baris perintah yang tidak dikenal.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="152"/>
-        <location filename="../app/main.cpp" line="165"/>
+        <location filename="../app/main.cpp" line="157"/>
+        <location filename="../app/main.cpp" line="170"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 harus sebagai parameter baris perintah tunggal.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="175"/>
+        <location filename="../app/main.cpp" line="180"/>
         <source>%1 must specify the correct port (1 to 65535).</source>
         <translation>%1 harus menetapkan port yang benar (1 to 65535).</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="199"/>
+        <location filename="../app/main.cpp" line="204"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Anda tidak bisa menggunakan %1: qBittorrent telah berjalan untuk pengguna ini.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="384"/>
+        <location filename="../app/main.cpp" line="372"/>
         <source>Usage:</source>
         <translation>Penggunaan:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="397"/>
+        <location filename="../app/main.cpp" line="385"/>
         <source>Options:</source>
         <translation>Opsi:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="399"/>
+        <location filename="../app/main.cpp" line="387"/>
         <source>Displays program version</source>
         <translation>Tampilkan versi program</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="401"/>
+        <location filename="../app/main.cpp" line="389"/>
         <source>Displays this help message</source>
         <translation>Tampilkan pesan bantuan ini</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="403"/>
+        <location filename="../app/main.cpp" line="391"/>
         <source>Changes the Web UI port (current: %1)</source>
         <translation>Ubah port Web UI (saat ini: %1)</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="406"/>
+        <location filename="../app/main.cpp" line="394"/>
         <source>Disable splash screen</source>
         <translation>Nonaktifkan layar sambutan</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="396"/>
         <source>Run in daemon-mode (background)</source>
         <translation>Jalankan dalam mode daemon (latar)</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="410"/>
+        <location filename="../app/main.cpp" line="398"/>
         <source>Downloads the torrents passed by the user</source>
         <translation>Unduh torrent yang diberikan oleh pengguna</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="420"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Help</source>
         <translation>Bantuan</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="429"/>
+        <location filename="../app/main.cpp" line="417"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Jalankan aplikasi dengan opsi -h untuk membaca tentang parameter baris perintah.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="431"/>
+        <location filename="../app/main.cpp" line="419"/>
         <source>Bad command line</source>
         <translation>Baris perintah buruk</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="425"/>
         <source>Bad command line: </source>
         <translation>Baris perintah buruk:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="450"/>
+        <location filename="../app/main.cpp" line="438"/>
         <source>Legal Notice</source>
         <translation>Catatan Hukum</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="451"/>
-        <location filename="../app/main.cpp" line="461"/>
+        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="449"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -5637,53 +5914,53 @@ No further notices will be issued.</source>
 Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="452"/>
+        <location filename="../app/main.cpp" line="440"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Tekan tombol %1 untuk menerima dan melanjutkan...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="462"/>
+        <location filename="../app/main.cpp" line="450"/>
         <source>Legal notice</source>
         <translation>Catatan hukum</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="463"/>
+        <location filename="../app/main.cpp" line="451"/>
         <source>Cancel</source>
         <translation>Batal</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="464"/>
+        <location filename="../app/main.cpp" line="452"/>
         <source>I Agree</source>
         <translation>Saya Setuju</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="122"/>
+        <location filename="../app/application.cpp" line="126"/>
         <source>Torrent name: %1</source>
         <translation>Nama torrent: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="123"/>
+        <location filename="../app/application.cpp" line="127"/>
         <source>Torrent size: %1</source>
         <translation>Ukuran torrent: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="124"/>
+        <location filename="../app/application.cpp" line="128"/>
         <source>Save path: %1</source>
         <translation>Jalur simpan: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="125"/>
+        <location filename="../app/application.cpp" line="129"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrent telah diunduh di %1.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="128"/>
+        <location filename="../app/application.cpp" line="132"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Terima kasih telah menggunakan qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="134"/>
+        <location filename="../app/application.cpp" line="138"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
         <translation>[qBittorrent] &apos;%1&apos; telah selesai mengunduh</translation>
     </message>
@@ -5798,28 +6075,28 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
         <translation>Galat tidak dikenal</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="53"/>
-        <location filename="../app/upgrade.h" line="66"/>
+        <location filename="../app/upgrade.h" line="54"/>
+        <location filename="../app/upgrade.h" line="67"/>
         <source>Upgrade</source>
         <translation>Tingkatkan</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="56"/>
+        <location filename="../app/upgrade.h" line="57"/>
         <source>You updated from an older version that saved things differently. You must migrate to the new saving system. You will not be able to use an older version than v3.3.0 again. Continue? [y/n]</source>
         <translation>Anda memutakhirkan dari versi lama yang memiliki proses penyimpanan yang berbeda. Anda harus meningkatkannya ke sistem penyimpanan baru. Anda tidak akan bisa menggunakan versi yang lebih lama dari v3.3.0 lagi. Lanjutkan? [y/t]</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="65"/>
+        <location filename="../app/upgrade.h" line="66"/>
         <source>You updated from an older version that saved things differently. You must migrate to the new saving system. If you continue, you will not be able to use an older version than v3.3.0 again.</source>
         <translation>Anda memutakhirkan dari versi lama yang memiliki proses penyimpanan yang berbeda. Anda harus meningkatkannya ke sistem penyimpanan baru. Jika Anda melanjutkan, Anda tidak akan bisa menggunakan versi yang lebih lama dari v3.3.0 lagi.</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="143"/>
+        <location filename="../app/upgrade.h" line="166"/>
         <source>Couldn&apos;t migrate torrent with hash: %1</source>
         <translation>Tidak bisa migrasi torrent dengan hash: %1</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="146"/>
+        <location filename="../app/upgrade.h" line="169"/>
         <source>Couldn&apos;t migrate torrent. Invalid fastresume file name: %1</source>
         <translation>Tidak bisa migrasi torrent. Nama berkas lanjutcepat tidak valid: %1</translation>
     </message>
@@ -6342,6 +6619,24 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     </message>
 </context>
 <context>
+    <name>SettingsStorage</name>
+    <message>
+        <location filename="../base/settingsstorage.cpp" line="110"/>
+        <source>Detected unclean program exit. Using fallback file to restore settings.</source>
+        <translation type="unfinished">Mendeteksi kerusakan berkas ketika program keluar. Menggunakan berkas cadangan untuk kembali ke pengaturan sebelumnya.</translation>
+    </message>
+    <message>
+        <location filename="../base/settingsstorage.cpp" line="194"/>
+        <source>An access error occurred while trying to write the configuration file.</source>
+        <translation type="unfinished">Sebuah galat akses terjadi ketika mencoba untuk menyimpan berkas konfigurasi.</translation>
+    </message>
+    <message>
+        <location filename="../base/settingsstorage.cpp" line="196"/>
+        <source>A format error occurred while trying to write the configuration file.</source>
+        <translation type="unfinished">Sebuah galat format terjadi ketika mencoba untuk menyimpan berkas konfigurasi.</translation>
+    </message>
+</context>
+<context>
     <name>ShutdownConfirmDlg</name>
     <message>
         <location filename="../gui/shutdownconfirm.cpp" line="45"/>
@@ -6619,71 +6914,71 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../gui/statusbar.cpp" line="59"/>
-        <location filename="../gui/statusbar.cpp" line="171"/>
+        <location filename="../gui/statusbar.cpp" line="67"/>
+        <location filename="../gui/statusbar.cpp" line="186"/>
         <source>Connection status:</source>
         <translation>Status koneksi:</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="59"/>
-        <location filename="../gui/statusbar.cpp" line="171"/>
+        <location filename="../gui/statusbar.cpp" line="67"/>
+        <location filename="../gui/statusbar.cpp" line="186"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Tidak ada koneksi langsung. Ini mungkin menunjukkan masalah konfigurasi jaringan.</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="73"/>
-        <location filename="../gui/statusbar.cpp" line="178"/>
+        <location filename="../gui/statusbar.cpp" line="81"/>
+        <location filename="../gui/statusbar.cpp" line="193"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 jalinan</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="141"/>
+        <location filename="../gui/statusbar.cpp" line="152"/>
         <source>qBittorrent needs to be restarted</source>
         <translation>qBittorrent perlu dimulai ulang</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="151"/>
+        <location filename="../gui/statusbar.cpp" line="162"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation>qBittorrent telah dimutakhirkan dan perlu dimulai ulang agar perubahan menjadi efektif.</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="163"/>
-        <location filename="../gui/statusbar.cpp" line="168"/>
+        <location filename="../gui/statusbar.cpp" line="176"/>
+        <location filename="../gui/statusbar.cpp" line="182"/>
         <source>Connection Status:</source>
         <translation>Status Koneksi:</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="163"/>
+        <location filename="../gui/statusbar.cpp" line="176"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation>Luring. Ini biasanya berarti bahwa qBittorent gagal mendengarkan port yang dipilih untuk koneksi masuk.</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="168"/>
+        <location filename="../gui/statusbar.cpp" line="182"/>
         <source>Online</source>
         <translation>Daring</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="203"/>
+        <location filename="../gui/statusbar.cpp" line="221"/>
         <source>Click to switch to alternative speed limits</source>
         <translation>Klik untuk beralih ke batas kecepatan alternatif</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="199"/>
+        <location filename="../gui/statusbar.cpp" line="216"/>
         <source>Click to switch to regular speed limits</source>
         <translation>Klik untuk beralih ke batas kecepatan reguler</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="212"/>
+        <location filename="../gui/statusbar.cpp" line="231"/>
         <source>Manual change of rate limits mode. The scheduler is disabled.</source>
         <translation>Ubah manual mode batas laju. Penjadwalan dinonaktifkan.</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="219"/>
+        <location filename="../gui/statusbar.cpp" line="239"/>
         <source>Global Download Speed Limit</source>
         <translation>Batas Kecepatan Unduh Global</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="245"/>
+        <location filename="../gui/statusbar.cpp" line="267"/>
         <source>Global Upload Speed Limit</source>
         <translation>Batas Kecepatan Unggah Global</translation>
     </message>
@@ -6803,6 +7098,11 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
         <location filename="../gui/torrentcontentmodel.cpp" line="59"/>
         <source>Download Priority</source>
         <translation>Prioritas Unduh</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcontentmodel.cpp" line="59"/>
+        <source>Remaining</source>
+        <translation type="unfinished">Sisa</translation>
     </message>
 </context>
 <context>
@@ -6999,9 +7299,13 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
         <translation>ETA</translation>
     </message>
     <message>
-        <location filename="../gui/torrentmodel.cpp" line="107"/>
         <source>Label</source>
-        <translation>Label</translation>
+        <translation type="obsolete">Label</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentmodel.cpp" line="107"/>
+        <source>Category</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="108"/>
@@ -7108,84 +7412,89 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="428"/>
         <source>All (0)</source>
         <comment>this is for the label filter</comment>
-        <translation>Semua (0)</translation>
+        <translation type="obsolete">Semua (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="431"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="448"/>
+        <source>All (0)</source>
+        <comment>this is for the tracker filter</comment>
+        <translation type="unfinished">Semua (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="451"/>
         <source>Trackerless (0)</source>
         <translation>Nirpelacak (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="434"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="454"/>
         <source>Error (0)</source>
         <translation>Galat (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="437"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="457"/>
         <source>Warning (0)</source>
         <translation>Peringatan (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="478"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="535"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="498"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="555"/>
         <source>Trackerless (%1)</source>
         <translation>Nirpelacak (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="484"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="530"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="504"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="550"/>
         <source>%1 (%2)</source>
         <comment>openbittorrent.com (10)</comment>
         <translation>%1 (%2)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="560"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="592"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="580"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="612"/>
         <source>Error (%1)</source>
         <translation>Galat (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="573"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="607"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="593"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="627"/>
         <source>Warning (%1)</source>
         <translation>Peringatan (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="637"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="657"/>
         <source>Couldn&apos;t decode favicon for URL &apos;%1&apos;. Trying to download favicon in PNG format.</source>
         <translation>Tidak bisa mengawakode favicon untuk URL &apos;%1&apos;. Mencoba mengunduh favicon dalam format PNG.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="642"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="662"/>
         <source>Couldn&apos;t decode favicon for URL &apos;%1&apos;.</source>
         <translation>Tidak bisa mengawakode favicon untuk URL &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="656"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="676"/>
         <source>Couldn&apos;t download favicon for URL &apos;%1&apos;. Reason: %2</source>
         <translation>Tidak bisa mengunduh favicon untuk URL &apos;%1&apos;. Alasan: %2</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="665"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="685"/>
         <source>Resume torrents</source>
         <translation>Lanjutkan torrent</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="666"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="686"/>
         <source>Pause torrents</source>
         <translation>Tangguhkan torrent</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="667"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="687"/>
         <source>Delete torrents</source>
         <translation>Hapus torrent</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="701"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="715"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="721"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="735"/>
         <source>All (%1)</source>
         <comment>this is for the tracker filter</comment>
         <translation>Semua (%1)</translation>
@@ -7352,99 +7661,99 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
 <context>
     <name>TransferListDelegate</name>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="97"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="238"/>
         <source>Downloading</source>
         <translation>Mengunduh</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="103"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="244"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
         <translation>Mengunduh metadata</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="109"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="250"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
         <translation>Mengalokasikan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="133"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="274"/>
         <source>Paused</source>
         <translation>Ditangguhkan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="120"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="261"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
         <translation>Diantrekan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="113"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="254"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
         <translation>Membibit</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="100"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="241"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
         <translation>Terhenti</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="106"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="247"/>
         <source>[F] Downloading</source>
         <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
         <translation>[F] Mengunduh</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="116"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="257"/>
         <source>[F] Seeding</source>
         <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
         <translation>[F] Membibit</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="124"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="265"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
         <translation>Memeriksa</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="127"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="268"/>
         <source>Queued for checking</source>
         <comment>i.e. torrent is queued for hash checking</comment>
         <translation>Diantrekan untuk diperiksa</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="130"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="271"/>
         <source>Checking resume data</source>
         <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
         <translation>Memeriksa data kelanjutan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="136"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="277"/>
         <source>Completed</source>
         <translation>Komplet</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="139"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="280"/>
         <source>Missing Files</source>
         <translation>Berkas Hilang</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="142"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="283"/>
         <source>Errored</source>
         <comment>torrent status, the torrent has an error</comment>
         <translation>Galat</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="172"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="133"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
         <translation>%1 (dibibit selama %2)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="237"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="199"/>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 yang lalu</translation>
@@ -7453,17 +7762,21 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="794"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="814"/>
         <source>Status</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="802"/>
-        <source>Labels</source>
-        <translation>Label</translation>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="822"/>
+        <source>Categories</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="810"/>
+        <source>Labels</source>
+        <translation type="obsolete">Label</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="830"/>
         <source>Trackers</source>
         <translation>Pelacak</translation>
     </message>
@@ -7471,199 +7784,240 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="511"/>
+        <location filename="../gui/transferlistwidget.cpp" line="512"/>
         <source>Column visibility</source>
         <translation>Keterlihatan kolom</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="763"/>
         <source>Label</source>
-        <translation>Label</translation>
+        <translation type="obsolete">Label</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="252"/>
+        <location filename="../gui/transferlistwidget.cpp" line="253"/>
         <source>Choose save path</source>
         <translation>Pilih jalur penyimpanan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="439"/>
+        <location filename="../gui/transferlistwidget.cpp" line="440"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Pembatasan Kecepatan Unduh Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="468"/>
+        <location filename="../gui/transferlistwidget.cpp" line="469"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Pembatasan Kecepatan Unggah Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="499"/>
+        <location filename="../gui/transferlistwidget.cpp" line="500"/>
         <source>Recheck confirmation</source>
         <translation>Komfirmasi pemeriksaan ulang</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="499"/>
+        <location filename="../gui/transferlistwidget.cpp" line="500"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
         <translation>Apakah Anda yakin ingin memeriksa ulang torrent yang dipilih?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="575"/>
         <source>New Label</source>
-        <translation>Label Baru</translation>
+        <translation type="obsolete">Label Baru</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="575"/>
         <source>Label:</source>
-        <translation>Label:</translation>
+        <translation type="obsolete">Label:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Invalid label name</source>
-        <translation>Nama label tidak valid</translation>
+        <translation type="obsolete">Nama label tidak valid</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Mohon tidak menggunakan karakter spesial apapun di nama label.</translation>
+        <translation type="obsolete">Mohon tidak menggunakan karakter spesial apapun di nama label.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="600"/>
+        <location filename="../gui/transferlistwidget.cpp" line="610"/>
         <source>Rename</source>
         <translation>Ubah nama</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="600"/>
+        <location filename="../gui/transferlistwidget.cpp" line="610"/>
         <source>New name:</source>
         <translation>Nama baru:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="629"/>
+        <location filename="../gui/transferlistwidget.cpp" line="630"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Lanjutkan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="633"/>
+        <location filename="../gui/transferlistwidget.cpp" line="634"/>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
         <translation>Paksa Lanjutkan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="631"/>
+        <location filename="../gui/transferlistwidget.cpp" line="632"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Tangguhkan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="635"/>
+        <location filename="../gui/transferlistwidget.cpp" line="582"/>
+        <source>New Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="582"/>
+        <source>Category:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="585"/>
+        <source>Invalid category name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="586"/>
+        <source>Category name must not contain &apos;\&apos;.
+Category name must not start/end with &apos;/&apos;.
+Category name must not contain &apos;//&apos; sequence.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="636"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Hapus</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="637"/>
+        <location filename="../gui/transferlistwidget.cpp" line="638"/>
         <source>Preview file...</source>
         <translation>Pratinjau berkas...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="639"/>
+        <location filename="../gui/transferlistwidget.cpp" line="640"/>
         <source>Limit share ratio...</source>
         <translation>Batasi rasio berbagi...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="641"/>
+        <location filename="../gui/transferlistwidget.cpp" line="642"/>
         <source>Limit upload rate...</source>
         <translation>Batasi rasio unggah...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="643"/>
+        <location filename="../gui/transferlistwidget.cpp" line="644"/>
         <source>Limit download rate...</source>
         <translation>Batasi laju unduh...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="645"/>
+        <location filename="../gui/transferlistwidget.cpp" line="646"/>
         <source>Open destination folder</source>
         <translation>Buka folder tujuan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="647"/>
+        <location filename="../gui/transferlistwidget.cpp" line="648"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Pindahkan ke atas</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="649"/>
+        <location filename="../gui/transferlistwidget.cpp" line="650"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Pindahkan ke bawah</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="651"/>
+        <location filename="../gui/transferlistwidget.cpp" line="652"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>Pindahkan ke puncak</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="653"/>
+        <location filename="../gui/transferlistwidget.cpp" line="654"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>Pindahkan ke dasar</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="655"/>
+        <location filename="../gui/transferlistwidget.cpp" line="656"/>
         <source>Set location...</source>
         <translation>Tetapkan lokasi...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="661"/>
+        <location filename="../gui/transferlistwidget.cpp" line="662"/>
         <source>Copy name</source>
         <translation>Salin nama</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="813"/>
+        <location filename="../gui/transferlistwidget.cpp" line="672"/>
+        <source>Download first and last pieces first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="675"/>
+        <source>Enable Advanced Saving Management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="774"/>
+        <source>Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="775"/>
+        <source>New...</source>
+        <comment>New category...</comment>
+        <translation type="unfinished">Baru...</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="776"/>
+        <source>Reset</source>
+        <comment>Reset category</comment>
+        <translation type="unfinished">Setel ulang</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="831"/>
         <source>Priority</source>
         <translation>Prioritas</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="657"/>
+        <location filename="../gui/transferlistwidget.cpp" line="658"/>
         <source>Force recheck</source>
         <translation>Paksa periksa ulang</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="659"/>
+        <location filename="../gui/transferlistwidget.cpp" line="660"/>
         <source>Copy magnet link</source>
         <translation>Salin tautan magnet</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="663"/>
+        <location filename="../gui/transferlistwidget.cpp" line="664"/>
         <source>Super seeding mode</source>
         <translation>Mode membibit super</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="666"/>
+        <location filename="../gui/transferlistwidget.cpp" line="667"/>
         <source>Rename...</source>
         <translation>Ubah nama...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="668"/>
+        <location filename="../gui/transferlistwidget.cpp" line="669"/>
         <source>Download in sequential order</source>
         <translation>Unduh berurutan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="671"/>
         <source>Download first and last piece first</source>
-        <translation>Unduh bagian pertama dan akhir terlebih dahulu</translation>
+        <translation type="obsolete">Unduh bagian pertama dan akhir terlebih dahulu</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="764"/>
         <source>New...</source>
         <comment>New label...</comment>
-        <translation>Baru...</translation>
+        <translation type="obsolete">Baru...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="765"/>
         <source>Reset</source>
         <comment>Reset label</comment>
-        <translation>Setel ulang</translation>
+        <translation type="obsolete">Setel ulang</translation>
     </message>
 </context>
 <context>
@@ -7699,12 +8053,12 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
 <context>
     <name>WebUI</name>
     <message>
-        <location filename="../webui/webui.cpp" line="84"/>
+        <location filename="../webui/webui.cpp" line="85"/>
         <source>The Web UI is listening on port %1</source>
         <translation>Web UI sedang mendengarkan port %1</translation>
     </message>
     <message>
-        <location filename="../webui/webui.cpp" line="86"/>
+        <location filename="../webui/webui.cpp" line="87"/>
         <source>Web UI Error - Unable to bind Web UI to port %1</source>
         <translation>Galat Web UI - Tidak bisa mengaitkan Web UI ke port %1</translation>
     </message>
@@ -7712,34 +8066,53 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
 <context>
     <name>about</name>
     <message>
-        <location filename="../gui/about_imp.h" line="55"/>
         <source>An advanced BitTorrent client programmed in &lt;nobr&gt;C++&lt;/nobr&gt;, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Klien BitTorrent tingkat lanjut yang diprogram menggunakan &lt;nobr&gt;C++&lt;/nobr&gt;, berbasis toolkit Qt dan libtorrent-rasterbar.</translation>
+        <translation type="obsolete">Klien BitTorrent tingkat lanjut yang diprogram menggunakan &lt;nobr&gt;C++&lt;/nobr&gt;, berbasis toolkit Qt dan libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <location filename="../gui/about_imp.h" line="57"/>
         <source>Copyright %1 2006-2015 The qBittorrent project</source>
-        <translation>Hak Cipta %1 2006-2015 Proyek qBittorrent</translation>
+        <translation type="obsolete">Hak Cipta %1 2006-2015 Proyek qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/about_imp.h" line="59"/>
         <source>Home Page: </source>
-        <translation>Halaman Beranda:</translation>
+        <translation type="obsolete">Halaman Beranda:</translation>
     </message>
     <message>
-        <location filename="../gui/about_imp.h" line="61"/>
         <source>Bug Tracker: </source>
-        <translation>Pelacak Kutu:</translation>
+        <translation type="obsolete">Pelacak Kutu:</translation>
+    </message>
+    <message>
+        <source>Forum: </source>
+        <translation type="obsolete">Forum: </translation>
+    </message>
+    <message>
+        <source>IRC: #qbittorrent on Freenode</source>
+        <translation type="obsolete">IRC: #qbittorrent di Freenode</translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="63"/>
-        <source>Forum: </source>
-        <translation>Forum: </translation>
+        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/about_imp.h" line="64"/>
+        <source>Copyright %1 2006-2016 The qBittorrent project</source>
+        <translation type="unfinished">Hak Cipta %1 2006-2015 Proyek qBittorrent {1 2006-2016 ?}</translation>
+    </message>
+    <message>
+        <location filename="../gui/about_imp.h" line="65"/>
+        <source>Home Page:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="66"/>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent di Freenode</translation>
+        <source>Forum:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/about_imp.h" line="67"/>
+        <source>Bug Tracker:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8010,11 +8383,11 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
 <context>
     <name>fsutils</name>
     <message>
-        <location filename="../base/utils/fs.cpp" line="446"/>
-        <location filename="../base/utils/fs.cpp" line="453"/>
-        <location filename="../base/utils/fs.cpp" line="463"/>
-        <location filename="../base/utils/fs.cpp" line="496"/>
-        <location filename="../base/utils/fs.cpp" line="508"/>
+        <location filename="../base/utils/fs.cpp" line="447"/>
+        <location filename="../base/utils/fs.cpp" line="454"/>
+        <location filename="../base/utils/fs.cpp" line="464"/>
+        <location filename="../base/utils/fs.cpp" line="497"/>
+        <location filename="../base/utils/fs.cpp" line="509"/>
         <source>Downloads</source>
         <translation>Unduhan</translation>
     </message>
@@ -8022,103 +8395,103 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../base/utils/misc.cpp" line="82"/>
+        <location filename="../base/utils/misc.cpp" line="85"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="83"/>
+        <location filename="../base/utils/misc.cpp" line="86"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="84"/>
+        <location filename="../base/utils/misc.cpp" line="87"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="85"/>
+        <location filename="../base/utils/misc.cpp" line="88"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="86"/>
+        <location filename="../base/utils/misc.cpp" line="89"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="283"/>
+        <location filename="../base/utils/misc.cpp" line="286"/>
         <source>Python not detected</source>
         <translation>Python tidak terdeteksi</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="311"/>
+        <location filename="../base/utils/misc.cpp" line="314"/>
         <source>Python version: %1</source>
         <translation>Versi Python: %1</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="338"/>
+        <location filename="../base/utils/misc.cpp" line="341"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="426"/>
+        <location filename="../base/utils/misc.cpp" line="414"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1j %2m</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="430"/>
+        <location filename="../base/utils/misc.cpp" line="418"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1h %2j</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="326"/>
+        <location filename="../base/utils/misc.cpp" line="329"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Tidak diketahui</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="206"/>
+        <location filename="../base/utils/misc.cpp" line="209"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>qBittorrent akan mematikan komputer sekarang karena semua unduhan telah komplet.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="419"/>
+        <location filename="../base/utils/misc.cpp" line="407"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="422"/>
+        <location filename="../base/utils/misc.cpp" line="410"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="457"/>
+        <location filename="../webui/btjson.cpp" line="459"/>
         <source>Working</source>
         <translation>Bekerja</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="455"/>
+        <location filename="../webui/btjson.cpp" line="457"/>
         <source>Updating...</source>
         <translation>Memperbarui...</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="459"/>
+        <location filename="../webui/btjson.cpp" line="461"/>
         <source>Not working</source>
         <translation>Tidak bekerja</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="453"/>
+        <location filename="../webui/btjson.cpp" line="455"/>
         <source>Not contacted yet</source>
         <translation>Belum dihubungi</translation>
     </message>
@@ -8126,171 +8499,196 @@ Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1280"/>
-        <location filename="../gui/options_imp.cpp" line="1282"/>
+        <location filename="../gui/options_imp.cpp" line="1290"/>
+        <location filename="../gui/options_imp.cpp" line="1292"/>
         <source>Choose export directory</source>
         <translation>Pilih direktori ekspor</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1320"/>
-        <location filename="../gui/options_imp.cpp" line="1322"/>
-        <location filename="../gui/options_imp.cpp" line="1333"/>
-        <location filename="../gui/options_imp.cpp" line="1335"/>
+        <location filename="../gui/options_imp.cpp" line="1330"/>
+        <location filename="../gui/options_imp.cpp" line="1332"/>
+        <location filename="../gui/options_imp.cpp" line="1343"/>
+        <location filename="../gui/options_imp.cpp" line="1345"/>
         <source>Choose a save directory</source>
         <translation>Pilih direktori simpan</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1228"/>
+        <location filename="../gui/options_imp.cpp" line="1238"/>
         <source>Add directory to scan</source>
         <translation>Tambah direktori untuk dipindai</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="191"/>
+        <location filename="../gui/options_imp.cpp" line="203"/>
         <source>Supported parameters (case sensitive):</source>
         <translation>Parameter yang didukung (sensitif besar kecil huruf):</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="192"/>
+        <location filename="../gui/options_imp.cpp" line="204"/>
         <source>%N: Torrent name</source>
         <translation>%N: Nama torrent</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="193"/>
         <source>%L: Label</source>
-        <translation>%L: Label</translation>
+        <translation type="obsolete">%L: Label</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="194"/>
+        <location filename="../gui/options_imp.cpp" line="205"/>
+        <source>%L: Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options_imp.cpp" line="206"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: Jalur konten (sama dengan jalur root untuk torrent multi-berkas)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="195"/>
+        <location filename="../gui/options_imp.cpp" line="207"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
         <translation>%R: Jalur root (jalur subdirektori torrent pertama)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="196"/>
+        <location filename="../gui/options_imp.cpp" line="208"/>
         <source>%D: Save path</source>
         <translation>%D: Jalur simpan</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="197"/>
+        <location filename="../gui/options_imp.cpp" line="209"/>
         <source>%C: Number of files</source>
         <translation>%C: Jumlah berkas</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="198"/>
+        <location filename="../gui/options_imp.cpp" line="210"/>
         <source>%Z: Torrent size (bytes)</source>
         <translation>%Z: Ukuran torrent (bita)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="199"/>
+        <location filename="../gui/options_imp.cpp" line="211"/>
         <source>%T: Current tracker</source>
         <translation>%T: Tracker saat ini</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="200"/>
+        <location filename="../gui/options_imp.cpp" line="212"/>
         <source>%I: Info hash</source>
         <translation>%I: Info hash</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1235"/>
+        <location filename="../gui/options_imp.cpp" line="213"/>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options_imp.cpp" line="1245"/>
         <source>Folder is already being watched.</source>
         <translation>Folder telah dimonitor.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1238"/>
+        <location filename="../gui/options_imp.cpp" line="1248"/>
         <source>Folder does not exist.</source>
         <translation>Folder tidak ada.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1241"/>
+        <location filename="../gui/options_imp.cpp" line="1251"/>
         <source>Folder is not readable.</source>
         <translation>Folder tidak bisa dibaca.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1252"/>
+        <location filename="../gui/options_imp.cpp" line="1262"/>
         <source>Failure</source>
         <translation>Kegagalan</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1252"/>
+        <location filename="../gui/options_imp.cpp" line="1262"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Gagal untuk menambah Folder Pindaian  &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1306"/>
-        <location filename="../gui/options_imp.cpp" line="1308"/>
+        <location filename="../gui/options_imp.cpp" line="1316"/>
+        <location filename="../gui/options_imp.cpp" line="1318"/>
         <source>Filters</source>
         <translation>Penyaring</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1306"/>
-        <location filename="../gui/options_imp.cpp" line="1308"/>
+        <location filename="../gui/options_imp.cpp" line="1316"/>
+        <location filename="../gui/options_imp.cpp" line="1318"/>
         <source>Choose an IP filter file</source>
         <translation>Pilih berkas penyaring IP</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1375"/>
+        <location filename="../gui/options_imp.cpp" line="1385"/>
         <source>SSL Certificate</source>
         <translation>Sertifikat SSL</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1387"/>
+        <location filename="../gui/options_imp.cpp" line="1397"/>
         <source>SSL Key</source>
         <translation>Kunci SSL</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1420"/>
+        <location filename="../gui/options_imp.cpp" line="1430"/>
         <source>Parsing error</source>
         <translation>Galat penguraian</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1420"/>
+        <location filename="../gui/options_imp.cpp" line="1430"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Gagal mengurai penyaring IP yang diberikan</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1422"/>
+        <location filename="../gui/options_imp.cpp" line="1432"/>
         <source>Successfully refreshed</source>
         <translation>Berhasil disegarkan</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1422"/>
+        <location filename="../gui/options_imp.cpp" line="1432"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Berhasil mengurai penyaring IP yang diberikan: %1 aturan diterapkan.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1510"/>
+        <location filename="../gui/options_imp.cpp" line="1520"/>
         <source>Invalid key</source>
         <translation>Kunci tidak valid</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1510"/>
+        <location filename="../gui/options_imp.cpp" line="1520"/>
         <source>This is not a valid SSL key.</source>
         <translation>Ini bukan kunci SSL yang valid.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1526"/>
+        <location filename="../gui/options_imp.cpp" line="1536"/>
         <source>Invalid certificate</source>
         <translation>Sertifikat tidak valid</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1526"/>
+        <location filename="../gui/options_imp.cpp" line="1536"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Ini bukan Sertifikat SSL yang valid.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1536"/>
+        <location filename="../gui/options_imp.cpp" line="1544"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Waktu mulai dan berakhir tidak boleh sama.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1539"/>
+        <location filename="../gui/options_imp.cpp" line="1544"/>
         <source>Time Error</source>
         <translation>Galat Waktu</translation>
+    </message>
+    <message>
+        <location filename="../gui/options_imp.cpp" line="1553"/>
+        <location filename="../gui/options_imp.cpp" line="1557"/>
+        <source>Length Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options_imp.cpp" line="1553"/>
+        <source>The Web UI username must be at least 3 characters long.</source>
+        <translation type="unfinished">Panjang nama pengguna Web UI minimal harus 3 karakter.</translation>
+    </message>
+    <message>
+        <location filename="../gui/options_imp.cpp" line="1557"/>
+        <source>The Web UI password must be at least 6 characters long.</source>
+        <translation type="unfinished">Panjang sandi Web UI minimal harus 3 karakter. {6 ?}</translation>
     </message>
 </context>
 <context>
