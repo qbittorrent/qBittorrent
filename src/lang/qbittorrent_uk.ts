@@ -7317,7 +7317,7 @@ No further notices will be issued.</source>
         <location filename="../gui/torrentmodel.cpp" line="109"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Завершено</translation>
+        <translation>Завершено о</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="110"/>
