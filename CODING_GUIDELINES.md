@@ -211,6 +211,67 @@ a += "b"
   + "d";
 ```
 
+* Initializers
+
+We allow brace enclosed initializers only for aggregates and arrays/containers.<br />
+Brace enclosed initializer MUST be used with equality sign if it follows the variable declaration.<br />
+Brace enclosed initializer MUST be additionally enclosed in parentheses if it is used in constructor initialization list.<br />
+Some valid use cases:
+```c++
+// aggregate
+Person john = { "John", "Smith", 21 };
+Person *john = new Person { "John", "Smith", 21 };
+
+// array
+int array[] = { 1, 2, 3, 4 };
+
+// container
+QHash<QString, QString> map = {
+    { "key1", "value1" },
+    { "key2", "value2" }
+);
+
+// member array
+SomeClass::SomeClass(BaseClass *parent)
+    : BaseClass(parent)
+    , m_someArrayMember({ 1, 2, 3, 4 })
+{
+}
+
+// return from function
+Person getPersonByName(const QString &name)
+{
+    // do something
+    return { name, surname, age };
+}
+
+// function argument
+doSomething({ name, surname, age }, someOtherArg);
+```
+
+* **auto** keyword
+
+We allow the use of the **auto** keyword only where it doesn't break the readability of the code (i.e. either we can gather enough information about the type from the right part of the expression, or we do not need to know the exact type), or where it is strictly necessary (for example, to compute the type of a lambda, etc.).<br />
+Some valid use cases:
+```c++
+template <typename List>
+void doSomethingWithList(const List &list)
+{
+    foreach (const auto &item, list) {
+        // we don't know item type here so we use 'auto' keyword
+        // do something with item
+    }
+}
+
+for (auto it = container.begin(), end = container.end(); it != end; ++it) {
+    // we don't need to know the exact iterator type,
+    // because all iterators have the same interface
+}
+
+auto spinBox = static_cast<QSpinBox*>(sender());
+// we know the variable type based on the right-hand expression
+```
+
 * Space around operations eg `a = b + c` or `a=b+c`:
 
 Before and after the assignment there should be a space. One exception could be: for loops.
@@ -225,5 +286,5 @@ for (int a=0; a<b; ++b) {
 
 * Method definitions aren't allowed in header files
 
-###8. Not covered above###
+### 9. Not covered above###
 If something isn't covered above, just follow the same style the file you are editing has. If that particular detail isn't present in the file you are editing, then use whatever the rest of the project uses.
