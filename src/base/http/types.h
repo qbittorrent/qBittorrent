@@ -69,7 +69,7 @@ namespace Http
         QString method;
         QString path;
         QStringMap headers;
-        QStringMap gets;
+        QByteArrayMap gets;
         QStringMap posts;
         QVector<UploadedFile> files;
     };

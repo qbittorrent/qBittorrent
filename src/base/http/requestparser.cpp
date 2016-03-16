@@ -123,14 +123,22 @@ bool RequestParser::parseStartingLine(const QString &line)
 
         // Parse GET parameters
 #ifndef QBT_USES_QT5
-        QListIterator<QPair<QString, QString> > i(url.queryItems());
-#else
-        QListIterator<QPair<QString, QString> > i(QUrlQuery(url).queryItems());
-#endif
+        QListIterator<QPair<QByteArray, QByteArray> > i(url.encodedQueryItems());
         while (i.hasNext()) {
-            QPair<QString, QString> pair = i.next();
+            QPair<QByteArray, QByteArray> pair = i.next();
             m_request.gets[pair.first] = pair.second;
         }
+#else
+        QListIterator<QPair<QString, QString> > i(QUrlQuery(url)
+            .queryItems(QUrl::EncodeDelimiters | QUrl::EncodeReserved | QUrl::EncodeSpaces | QUrl::EncodeUnicode));
+
+        while (i.hasNext()) {
+            QPair<QString, QString> pair = i.next();
+            QByteArray key = QByteArray::fromPercentEncoding(pair.first.toUtf8());
+            QByteArray value = QByteArray::fromPercentEncoding(pair.second.toUtf8());
+            m_request.gets[key] = value;
+        }
+#endif
 
         return true;
     }

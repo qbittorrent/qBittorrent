@@ -42,5 +42,6 @@ enum class ShutdownAction
 };
 
 typedef QMap<QString, QString> QStringMap;
+using QByteArrayMap = QMap<QByteArray, QByteArray>;
 
 #endif // TYPES_H

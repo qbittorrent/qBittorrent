@@ -32,11 +32,16 @@
 #include <vector>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
+#include <limits>
 
 #include "base/preferences.h"
 #include "base/http/server.h"
 #include "base/utils/string.h"
 #include "tracker.h"
+#include <boost/asio/ip/address.hpp>
+#if defined(BOOST_ASIO_DYN_LINK) || !defined(BOOST_ASIO_SEPARATE_COMPILATION)
+#include <boost/asio/impl/src.hpp>
+#endif
 
 // static limits
 static const int MAX_TORRENTS = 100;
@@ -56,20 +61,158 @@ bool Peer::operator==(const Peer &other) const
     return uid() == other.uid();
 }
 
-QString Peer::uid() const
+const QByteArray& Peer::uid() const
 {
-    return ip + ":" + QString::number(port);
+    return m_uid;
 }
 
-libtorrent::entry Peer::toEntry(bool noPeerId) const
+Peer::Peer(QString&& ip, QString&& announce_ip, std::string&& peer_id, int port, QByteArray&& uid)
+    : m_ip(std::move(ip))
+    , m_announce_ip(std::move(announce_ip))
+    , m_peer_id(std::move(peer_id))
+    , m_port(port)
+    , m_uid(std::move(uid))
+{}
+
+Peer PeerBuilder::build()
+{
+    QByteArray m_uid = m_peer_id.length() == PEER_ID_EXPECTED_LENGTH ? m_peer_id
+                            : QString("%1:%2").arg(m_ip).arg(m_port).toUtf8();
+
+    using std::move;
+    return Peer(move(m_ip), move(m_announce_ip), std::string(m_peer_id.data(), m_peer_id.length()), m_port, move(m_uid));
+}
+
+void PeerBuilder::setIp(const QString& ip)
+{ 
+    m_ip = ip; 
+}
+
+void PeerBuilder::setAnnounceIp(const QByteArray& ip)
+{ 
+    m_announce_ip = ip;
+}
+
+void PeerBuilder::setPeerId(const QByteArray& id)
+{ 
+    m_peer_id = id;
+}
+
+void PeerBuilder::setPort(int port)
+{ 
+    m_port = port; 
+}
+
+libtorrent::entry Peer::toEntryForClient(bool noPeerId, const QString& clientIp) const
 {
     libtorrent::entry::dictionary_type peerMap;
     if (!noPeerId)
-        peerMap["id"] = libtorrent::entry(Utils::String::toStdString(peerId));
-    peerMap["ip"] = libtorrent::entry(Utils::String::toStdString(ip));
-    peerMap["port"] = libtorrent::entry(port);
+        peerMap["id"] = libtorrent::entry(escape(m_peer_id));
+
+    peerMap["ip"] = libtorrent::entry(Utils::String::toStdString(getIpForClient(clientIp)));
+    peerMap["port"] = libtorrent::entry(m_port);
 
     return libtorrent::entry(peerMap);
+}
+
+bool IpUtil::isNonRoutable(const boost::asio::ip::address_v4& ip)
+{
+    if (ip.is_loopback() || ip.is_unspecified() || ip.is_multicast())
+        return true;
+
+    unsigned long long addr = ip.to_ulong();
+
+    return (addr >> 24 == 0x0A)    // 10.0.0.0/8      Private 
+        || (addr >> 20 == 0xAC1)   // 172.16.0.0/12   Private 
+        || (addr >> 16 == 0xC0A8)  // 192.168.0.0/16  Private 
+        || (addr >> 16 == 0xA9FE); // 169.254.0.0/16  Link-local
+}
+
+
+boost::asio::ip::address_v4 IpUtil::toAddress(unsigned char a, unsigned char b, unsigned char c, unsigned char d)
+{ 
+    return boost::asio::ip::address_v4((a << 24) + (b << 16) + (c << 8) + d); 
+}
+
+bool IpUtil::isNonRoutable(const boost::asio::ip::address& ip)
+{
+    using namespace boost::asio::ip;
+
+    if (ip.is_loopback() || ip.is_unspecified() || ip.is_multicast())
+        return true;
+
+    if (ip.is_v4())
+        return isNonRoutable(ip.to_v4());
+
+    if (ip.is_v6()) {
+        address_v6 ipv6 = ip.to_v6();
+        auto addr = ipv6.to_bytes();
+        return (addr[0] >> 1 == 0xFC >> 1)  // FC00::/7   Unique local
+            || ipv6.is_link_local()     // FE80::/10  Link-local
+            // ::ffff:0:0/96 ipv4-mapped of non-routable address
+            || ipv6.is_v4_mapped() && isNonRoutable(ipv6.to_v4())
+            // 2002::/16 6to4 ipv6 address
+            || (addr[0] == 0x20 && addr[1] == 0x02
+                && isNonRoutable(toAddress(addr[2], addr[3], addr[4], addr[5])))
+            // 64:ff9b::/96
+            || (addr[0] == 0 && addr[1] == 0x64 && addr[2] == 0xFF && addr[3] == 0x9B
+                && std::all_of(&addr[4], &addr[12], [](char a) {return a == 0;})
+                && isNonRoutable(toAddress(addr[12], addr[13], addr[14], addr[15])));
+    }
+
+    return true;
+}
+
+bool IpUtil::tryGetFromString(const QString& ipStr, boost::asio::ip::address& ip)
+{
+    using namespace boost::asio::ip;
+
+    boost::system::error_code ec;
+    boost::asio::ip::address tmp = address::from_string(Utils::String::toStdString(ipStr), ec);
+    if (!ec)
+        std::swap(ip, tmp);
+
+    return !ec;
+}
+
+const QString& Peer::getIp() const
+{
+    return m_ip;
+}
+
+const QString& Peer::getIpForClient(const QString& clientIp) const
+{
+    using namespace boost::asio::ip;
+
+    address client_ip, ip, announce_ip;
+
+    // in case of conversion error return m_ip
+    if (!IpUtil::tryGetFromString(clientIp, client_ip)
+        || !IpUtil::tryGetFromString(m_ip, ip)
+        || !IpUtil::tryGetFromString(m_announce_ip, announce_ip))
+        return m_ip;
+
+    // if client has public ip, return public ip
+    if(!IpUtil::isNonRoutable(client_ip)) {
+        if(!IpUtil::isNonRoutable(ip))
+            return m_ip;
+
+        if(!IpUtil::isNonRoutable(announce_ip))
+            return m_announce_ip;
+    }
+
+
+    return m_ip;
+}
+
+std::string Peer::escape(const std::string& str)
+{ 
+    // get rid of compiler size_t to int conversion warning 
+    int length = static_cast<int>(std::min<size_t>(str.length(), std::numeric_limits<int>::max()));
+    QByteArray ba(str.c_str(), length);
+    // like libtorrent percent-encoding
+    QByteArray encoded = ba.toPercentEncoding("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~!()*");
+    return std::string(encoded.data(), encoded.length());
 }
 
 // Tracker
@@ -131,12 +274,16 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
 
 void Tracker::respondToAnnounceRequest()
 {
-    const QStringMap &gets = m_request.gets;
+    const QByteArrayMap &gets = m_request.gets;
     TrackerAnnounceRequest annonceReq;
 
+    PeerBuilder peerBuilder;
+    
     // IP
-    annonceReq.peer.ip = m_env.clientAddress.toString();
-
+    peerBuilder.setIp(m_env.clientAddress.toString());
+    if (gets.contains("ip"))
+        peerBuilder.setAnnounceIp(gets.value("ip"));
+    
     // 1. Get info_hash
     if (!gets.contains("info_hash")) {
         qDebug("Tracker: Missing info_hash");
@@ -144,6 +291,7 @@ void Tracker::respondToAnnounceRequest()
         return;
     }
     annonceReq.infoHash = gets.value("info_hash");
+
     // info_hash cannot be longer than 20 bytes
     /*if (annonce_req.info_hash.toLatin1().length() > 20) {
         qDebug("Tracker: Info_hash is not 20 byte long: %s (%d)", qPrintable(annonce_req.info_hash), annonce_req.info_hash.toLatin1().length());
@@ -157,7 +305,8 @@ void Tracker::respondToAnnounceRequest()
         status(102, "Missing peer_id");
         return;
     }
-    annonceReq.peer.peerId = gets.value("peer_id");
+    peerBuilder.setPeerId( gets.value("peer_id"));
+
     // peer_id cannot be longer than 20 bytes
     /*if (annonce_req.peer.peer_id.length() > 20) {
         qDebug("Tracker: peer_id is not 20 byte long: %s", qPrintable(annonce_req.peer.peer_id));
@@ -172,12 +321,15 @@ void Tracker::respondToAnnounceRequest()
         return;
     }
     bool ok = false;
-    annonceReq.peer.port = gets.value("port").toInt(&ok);
-    if (!ok || annonceReq.peer.port < 1 || annonceReq.peer.port > 65535) {
-        qDebug("Tracker: Invalid port number (%d)", annonceReq.peer.port);
+    int port = gets.value("port").toInt(&ok);
+    if (!ok || port < 1 || port > 65535) {
+        qDebug("Tracker: Invalid port number (%d)", port);
         status(103, "Missing port");
         return;
     }
+    peerBuilder.setPort(port);
+
+    annonceReq.peer = peerBuilder.build();
 
     // 4.  Get event
     annonceReq.event = "";
@@ -240,7 +392,7 @@ void Tracker::replyWithPeerList(const TrackerAnnounceRequest &annonceReq)
     libtorrent::entry::list_type peerList;
     foreach (const Peer &p, peers) {
         //if (p != annonce_req.peer)
-        peerList.push_back(p.toEntry(annonceReq.noPeerId));
+        peerList.push_back(p.toEntryForClient(annonceReq.noPeerId, annonceReq.peer.getIp()));
     }
     replyDict["peers"] = libtorrent::entry(peerList);
     libtorrent::entry replyEntry(replyDict);

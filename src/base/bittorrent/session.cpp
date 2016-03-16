@@ -2557,7 +2557,15 @@ void Session::handleListenFailedAlert(libt::listen_failed_alert *p)
 void Session::handleExternalIPAlert(libt::external_ip_alert *p)
 {
     boost::system::error_code ec;
-    Logger::instance()->addMessage(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(p->external_address.to_string(ec).c_str()), Log::INFO);
+    std::string newIp = p->external_address.to_string(ec);
+    Logger::instance()->addMessage(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(newIp.c_str()), Log::INFO);
+
+    // user-specified ip address has a higher priority
+    if (Preferences::instance()->getNetworkAddress().isEmpty()) {
+        libt::session_settings sessionSettings = m_nativeSession->settings();
+        sessionSettings.announce_ip = newIp;
+        m_nativeSession->set_settings(sessionSettings);
+    }
 }
 
 void Session::handleStateUpdateAlert(libt::state_update_alert *p)
