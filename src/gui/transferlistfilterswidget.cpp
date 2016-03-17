@@ -460,10 +460,13 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         if (tmp.contains(hash))
             return;
 
-        if (host != "")
+        if (host != "") {
             trackerItem = item(rowFromTracker(host));
-        else
+            if (!trackerItem) return;
+        }
+        else {
             trackerItem = item(1);
+        }
     }
     else {
         trackerItem = new QListWidgetItem();
