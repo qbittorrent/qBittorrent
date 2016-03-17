@@ -501,6 +501,10 @@ void AddNewTorrentDialog::renameSelectedFile()
             path_items.removeLast();
             path_items << new_name_last;
             QString new_path = path_items.join("/");
+            if (Utils::Fs::sameFileNames(old_path, new_path)) {
+                qDebug("Name did not change");
+                return;
+            }
             if (!new_path.endsWith("/")) new_path += "/";
             // Check for overwriting
             for (int i = 0; i < m_torrentInfo.filesCount(); ++i) {

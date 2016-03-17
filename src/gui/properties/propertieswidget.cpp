@@ -36,7 +36,6 @@
 #include <QSplitter>
 #include <QHeaderView>
 #include <QAction>
-#include <QMessageBox>
 #include <QMenu>
 #include <QFileDialog>
 #include <QBitArray>
@@ -54,6 +53,7 @@
 #include "speedwidget.h"
 #include "trackerlist.h"
 #include "mainwindow.h"
+#include "messageboxraised.h"
 #include "downloadedpiecesbar.h"
 #include "pieceavailabilitybar.h"
 #include "proptabbar.h"
@@ -657,7 +657,7 @@ void PropertiesWidget::renameSelectedFile() {
                                                 index.data().toString(), &ok).trimmed();
   if (ok && !new_name_last.isEmpty()) {
     if (!Utils::Fs::isValidFileSystemName(new_name_last)) {
-      QMessageBox::warning(this, tr("The file could not be renamed"),
+      MessageBoxRaised::warning(this, tr("The file could not be renamed"),
                            tr("This file name contains forbidden characters, please choose a different one."),
                            QMessageBox::Ok);
       return;
@@ -674,25 +674,22 @@ void PropertiesWidget::renameSelectedFile() {
       path_items.removeLast();
       path_items << new_name_last;
       QString new_name = path_items.join("/");
-      if (old_name == new_name) {
-        qDebug("Name did not change");
-        return;
+      if (Utils::Fs::sameFileNames(old_name, new_name)) {
+          qDebug("Name did not change");
+          return;
       }
       new_name = Utils::Fs::expandPath(new_name);
+      qDebug("New name: %s", qPrintable(new_name));
       // Check if that name is already used
       for (int i = 0; i < m_torrent->filesCount(); ++i) {
-        if (i == file_index) continue;
-#if defined(Q_OS_UNIX) || defined(Q_WS_QWS)
-        if (m_torrent->filePath(i).compare(new_name, Qt::CaseSensitive) == 0) {
-#else
-        if (m_torrent->filePath(i).compare(new_name, Qt::CaseInsensitive) == 0) {
-#endif
-          // Display error message
-          QMessageBox::warning(this, tr("The file could not be renamed"),
-                               tr("This name is already in use in this folder. Please use a different name."),
-                               QMessageBox::Ok);
-          return;
-        }
+          if (i == file_index) continue;
+          if (Utils::Fs::sameFileNames(m_torrent->filePath(i), new_name)) {
+              // Display error message
+              MessageBoxRaised::warning(this, tr("The file could not be renamed"),
+                                        tr("This name is already in use in this folder. Please use a different name."),
+                                        QMessageBox::Ok);
+              return;
+          }
       }
       const bool force_recheck = QFile::exists(m_torrent->savePath(true) + "/" + new_name);
       qDebug("Renaming %s to %s", qPrintable(old_name), qPrintable(new_name));
@@ -703,7 +700,8 @@ void PropertiesWidget::renameSelectedFile() {
       if (new_name_last.endsWith(".!qB"))
         new_name_last.chop(4);
       PropListModel->setData(index, new_name_last);
-    } else {
+    }
+    else {
       // Folder renaming
       QStringList path_items;
       path_items << index.data().toString();
@@ -716,11 +714,14 @@ void PropertiesWidget::renameSelectedFile() {
       path_items.removeLast();
       path_items << new_name_last;
       QString new_path = path_items.join("/");
+      if (Utils::Fs::sameFileNames(old_path, new_path)) {
+          qDebug("Name did not change");
+          return;
+      }
       if (!new_path.endsWith("/")) new_path += "/";
       // Check for overwriting
-      const int num_files = m_torrent->filesCount();
-      for (int i=0; i<num_files; ++i) {
-        const QString current_name = m_torrent->filePath(i);
+      for (int i = 0; i < m_torrent->filesCount(); ++i) {
+        const QString &current_name = m_torrent->filePath(i);
 #if defined(Q_OS_UNIX) || defined(Q_WS_QWS)
         if (current_name.startsWith(new_path, Qt::CaseSensitive)) {
 #else
@@ -734,7 +735,7 @@ void PropertiesWidget::renameSelectedFile() {
       }
       bool force_recheck = false;
       // Replace path in all files
-      for (int i=0; i<num_files; ++i) {
+      for (int i = 0; i < m_torrent->filesCount(); ++i) {
         const QString current_name = m_torrent->filePath(i);
         if (current_name.startsWith(old_path)) {
           QString new_name = current_name;
