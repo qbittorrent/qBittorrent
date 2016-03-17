@@ -704,7 +704,6 @@ void AddNewTorrentDialog::setupTreeview()
         m_contentModel = new TorrentContentFilterModel(this);
         connect(m_contentModel->model(), SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabel()));
         ui->contentTreeView->setModel(m_contentModel);
-        ui->contentTreeView->hideColumn(PROGRESS);
         m_contentDelegate = new PropListDelegate();
         ui->contentTreeView->setItemDelegate(m_contentDelegate);
         connect(ui->contentTreeView, SIGNAL(clicked(const QModelIndex &)), ui->contentTreeView, SLOT(edit(const QModelIndex &)));
@@ -714,6 +713,10 @@ void AddNewTorrentDialog::setupTreeview()
         m_contentModel->model()->setupModelData(m_torrentInfo);
         if (!m_headerState.isEmpty())
             ui->contentTreeView->header()->restoreState(m_headerState);
+
+        // Hide useless columns after loading the header state
+        ui->contentTreeView->hideColumn(PROGRESS);
+        ui->contentTreeView->hideColumn(REMAINING);
 
         // Expand root folder
         ui->contentTreeView->setExpanded(m_contentModel->index(0, 0), true);
