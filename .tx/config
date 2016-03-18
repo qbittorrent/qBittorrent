@@ -3,6 +3,7 @@ host = https://www.transifex.com
 
 [qbittorrent.qbittorrent_v3_3_x]
 file_filter = src/lang/qbittorrent_<lang>.ts
+lang_map = pt: pt_PT
 source_file = src/lang/qbittorrent_en.ts
 source_lang = en
 type = QT
