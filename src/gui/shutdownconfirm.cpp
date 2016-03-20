@@ -30,9 +30,6 @@
  * Contact : hammered999@gmail.com
  */
 
-#include "base/types.h"
-#include "shutdownconfirm.h"
-
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QStyle>
@@ -42,43 +39,35 @@
 #include <QCheckBox>
 #include <QPushButton>
 
+#include "base/preferences.h"
+#include "base/types.h"
+
+#include "shutdownconfirm.h"
+#include "ui_confirmshutdowndlg.h"
+
 ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
-    : m_neverShowAgain(false)
+    : ui(new Ui::confirmShutdownDlg)
     , m_timeout(15)
     , m_action(action)
 {
-    QVBoxLayout *myLayout = new QVBoxLayout();
-    //Warning Icon and Text
-    QHBoxLayout *messageRow = new QHBoxLayout();
-    QLabel *warningLabel = new QLabel();
+    ui->setupUi(this);
+
     QIcon warningIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning, 0, this));
-    warningLabel->setPixmap(warningIcon.pixmap(warningIcon.actualSize(QSize(32, 32))));
-    messageRow->addWidget(warningLabel);
-    m_text = new QLabel();
-    messageRow->addWidget(m_text);
-    myLayout->addLayout(messageRow);
+    ui->warningLabel->setPixmap(warningIcon.pixmap(warningIcon.actualSize(QSize(32, 32))));
     updateText();
-    QDialogButtonBox *buttons = new QDialogButtonBox(Qt::Horizontal);
     // Never show again checkbox, Title, and button
     if (m_action == ShutdownAction::None) {
-        //Never show again checkbox (shown only when exitting without shutdown)
-        QCheckBox *neverShowAgainCheckbox = new QCheckBox(tr("Never show again"));
-        myLayout->addWidget(neverShowAgainCheckbox, 0, Qt::AlignHCenter);
-        //Title and button
-        connect(neverShowAgainCheckbox, SIGNAL(clicked(bool)), this, SLOT(handleNeverShowAgainCheckboxToggled(bool)));
         setWindowTitle(tr("Exit confirmation"));
-        buttons->addButton(new QPushButton(tr("Exit Now")), QDialogButtonBox::AcceptRole);
+        ui->buttonBox->addButton(new QPushButton(tr("Exit Now"), this), QDialogButtonBox::AcceptRole);
     }
     else {
         setWindowTitle(tr("Shutdown confirmation"));
-        buttons->addButton(new QPushButton(tr("Shutdown Now")), QDialogButtonBox::AcceptRole);
+        ui->buttonBox->addButton(new QPushButton(tr("Shutdown Now"), this), QDialogButtonBox::AcceptRole);
+        ui->neverShowAgainCheckbox->setVisible(false);
     }
     // Cancel Button
-    QPushButton *cancelButton = buttons->addButton(QDialogButtonBox::Cancel);
+    QPushButton *cancelButton = ui->buttonBox->addButton(QDialogButtonBox::Cancel);
     cancelButton->setDefault(true);
-    myLayout->addWidget(buttons, 0, Qt::AlignHCenter);
-    connect(buttons, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(buttons, SIGNAL(rejected()), this, SLOT(reject()));
     // Always on top
     setWindowFlags(windowFlags()|Qt::WindowStaysOnTopHint);
     // Set 'Cancel' as default button.
@@ -86,13 +75,7 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(updateSeconds()));
     // Move to center
     move(Utils::Misc::screenCenter(this));
-    setLayout(myLayout);
     cancelButton->setFocus();
-}
-
-bool ShutdownConfirmDlg::neverShowAgain() const
-{
-    return m_neverShowAgain;
 }
 
 void ShutdownConfirmDlg::showEvent(QShowEvent *event)
@@ -101,13 +84,11 @@ void ShutdownConfirmDlg::showEvent(QShowEvent *event)
     m_timer.start();
 }
 
-void ShutdownConfirmDlg::askForConfirmation(const ShutdownAction &action, bool *shutdownConfirmed, bool *neverShowAgain)
+bool ShutdownConfirmDlg::askForConfirmation(const ShutdownAction &action)
 {
     ShutdownConfirmDlg dlg(action);
     dlg.exec();
-    *shutdownConfirmed = dlg.shutdown();
-    if (neverShowAgain)
-        *neverShowAgain = dlg.neverShowAgain();
+    return dlg.shutdown();
 }
 
 void ShutdownConfirmDlg::updateSeconds()
@@ -120,9 +101,10 @@ void ShutdownConfirmDlg::updateSeconds()
     }
 }
 
-void ShutdownConfirmDlg::handleNeverShowAgainCheckboxToggled(bool checked)
+void ShutdownConfirmDlg::accept()
 {
-    m_neverShowAgain = checked;
+    Preferences::instance()->setDontConfirmAutoExit(ui->neverShowAgainCheckbox->isChecked());
+    QDialog::accept();
 }
 
 bool ShutdownConfirmDlg::shutdown() const
@@ -149,5 +131,5 @@ void ShutdownConfirmDlg::updateText()
         break;
     }
 
-    m_text->setText(text);
+    ui->shutdownText->setText(text);
 }

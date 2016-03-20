@@ -36,6 +36,12 @@
 #include "base/utils/misc.h"
 
 class QLabel;
+class QCheckBox;
+
+namespace Ui
+{
+    class confirmShutdownDlg;
+}
 
 class ShutdownConfirmDlg : public QDialog
 {
@@ -43,25 +49,23 @@ class ShutdownConfirmDlg : public QDialog
 
 public:
     ShutdownConfirmDlg(const ShutdownAction &action);
-    bool neverShowAgain() const;
     bool shutdown() const;
 
-    static void askForConfirmation(const ShutdownAction &action, bool *shutdownConfirmed, bool *neverShowAgain = 0);
+    static bool askForConfirmation(const ShutdownAction &action);
 
 protected:
     void showEvent(QShowEvent *event);
 
 private slots:
     void updateSeconds();
-    void handleNeverShowAgainCheckboxToggled(bool checked);
+    void accept() override;
 
 private:
     // Methods
     void updateText();
 
     // Vars
-    QLabel *m_text;
-    bool m_neverShowAgain;
+    Ui::confirmShutdownDlg *ui;
     QTimer m_timer;
     int m_timeout;
     ShutdownAction m_action;

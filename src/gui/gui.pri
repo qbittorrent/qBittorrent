@@ -103,6 +103,7 @@ FORMS += \
     $$PWD/bandwidth_limit.ui \
     $$PWD/updownratiodlg.ui \
     $$PWD/confirmdeletiondlg.ui \
+    $$PWD/confirmshutdowndlg.ui \
     $$PWD/torrentimportdlg.ui \
     $$PWD/executionlog.ui \
     $$PWD/addnewtorrentdialog.ui \
