@@ -158,6 +158,7 @@ options_imp::options_imp(QWidget *parent)
 #endif
     connect(checkShowSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkProgramExitConfirm, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(checkProgramAutoExitConfirm, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkPreventFromSuspend, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(comboTrayIcon, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && !defined(QT_DBUS_LIB)
@@ -415,6 +416,7 @@ void options_imp::saveOptions()
     pref->setStartMinimized(startMinimized());
     pref->setSplashScreenDisabled(isSlashScreenDisabled());
     pref->setConfirmOnExit(checkProgramExitConfirm->isChecked());
+    pref->setDontConfirmAutoExit(!checkProgramAutoExitConfirm->isChecked());
     pref->setPreventFromSuspend(preventFromSuspend());
 #ifdef Q_OS_WIN
     pref->setWinStartup(WinStartup());
@@ -600,6 +602,7 @@ void options_imp::loadOptions()
     checkShowSplash->setChecked(!pref->isSplashScreenDisabled());
     checkStartMinimized->setChecked(pref->startMinimized());
     checkProgramExitConfirm->setChecked(pref->confirmOnExit());
+    checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
 
     checkShowSystray->setChecked(pref->systrayIntegration());
     if (checkShowSystray->isChecked()) {

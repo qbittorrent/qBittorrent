@@ -370,6 +370,16 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkProgramAutoExitConfirm">
+                 <property name="text">
+                  <string>Confirmation on auto-exit when downloads finish</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="checkShowSystray">
                  <property name="title">
                   <string>Show qBittorrent in notification area</string>
