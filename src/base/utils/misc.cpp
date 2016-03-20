@@ -642,7 +642,7 @@ QString Utils::Misc::osName()
 {
     // static initialization for usage in signal handler
     static const QString name =
-#ifdef QBT_USES_QT5
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
     QString("%1 %2 %3")
     .arg(QSysInfo::prettyProductName())
     .arg(QSysInfo::kernelVersion())
