@@ -74,8 +74,8 @@ SpeedPlotView::SpeedPlotView(QWidget *parent)
 
 void SpeedPlotView::setGraphEnable(GraphID id, bool enable)
 {
-    m_properties[id].m_enable = enable;
-    this->viewport()->update();
+    m_properties[id].enable = enable;
+    viewport()->update();
 }
 
 void SpeedPlotView::pushPoint(SpeedPlotView::PointData point)
@@ -85,24 +85,20 @@ void SpeedPlotView::pushPoint(SpeedPlotView::PointData point)
 
     m_data5Min.push_back(point);
 
-    if (m_counter30Min == 0) {
+    if (m_counter30Min == 0)
         m_data30Min.push_back(point);
-    }
     else {
         m_data30Min.back().x = (m_data30Min.back().x * m_counter30Min + point.x) / (m_counter30Min + 1);
-        for (int id = UP; id < NB_GRAPHS; ++id) {
+        for (int id = UP; id < NB_GRAPHS; ++id)
             m_data30Min.back().y[id] = (m_data30Min.back().y[id] * m_counter30Min + point.y[id]) / (m_counter30Min + 1);
-        }
     }
 
-    if (m_counter6Hour == 0) {
+    if (m_counter6Hour == 0)
         m_data6Hour.push_back(point);
-    }
     else {
         m_data6Hour.back().x = (m_data6Hour.back().x * m_counter6Hour + point.x) / (m_counter6Hour + 1);
-        for (int id = UP; id < NB_GRAPHS; ++id) {
+        for (int id = UP; id < NB_GRAPHS; ++id)
             m_data6Hour.back().y[id] = (m_data6Hour.back().y[id] * m_counter6Hour + point.y[id]) / (m_counter6Hour + 1);
-        }
     }
 }
 
@@ -125,23 +121,24 @@ void SpeedPlotView::setViewableLastPoints(TimePeriod period)
         break;
     }
 
-    this->viewport()->update();
+    viewport()->update();
 }
 
 void SpeedPlotView::replot()
 {
-    if (m_period == MIN1 || m_period == MIN5 ||
-            (m_period == MIN30 && m_counter30Min == 2) ||
-            (m_period == HOUR6 && m_counter6Hour == 5))
-        this->viewport()->update();
+    if (m_period == MIN1
+        || m_period == MIN5
+        || (m_period == MIN30 && m_counter30Min == 2)
+        || (m_period == HOUR6 && m_counter6Hour == 5))
+        viewport()->update();
 }
 
 boost::circular_buffer<SpeedPlotView::PointData> &SpeedPlotView::getCurrentData()
 {
     switch (m_period) {
-    default:
     case SpeedPlotView::MIN1:
     case SpeedPlotView::MIN5:
+    default:
         return m_data5Min;
     case SpeedPlotView::MIN30:
         return m_data30Min;
@@ -157,7 +154,7 @@ int SpeedPlotView::maxYValue()
     int maxYValue = 0;
     for (int id = UP; id < NB_GRAPHS; ++id) {
 
-        if (!m_properties[static_cast<GraphID>(id)].m_enable)
+        if (!m_properties[static_cast<GraphID>(id)].enable)
             continue;
 
         for (int i = queue.size() - 1, j = 0; i >= 0 && j <= m_viewablePointsCount; --i, ++j) {
@@ -171,10 +168,10 @@ int SpeedPlotView::maxYValue()
 
 void SpeedPlotView::paintEvent(QPaintEvent *)
 {
-    QPainter painter(this->viewport());
+    QPainter painter(viewport());
 
-    QRect fullRect = this->viewport()->rect();
-    QRect rect = this->viewport()->rect();
+    QRect fullRect = viewport()->rect();
+    QRect rect = viewport()->rect();
     QFontMetrics fontMetrics = painter.fontMetrics();
 
     rect.adjust(4, 4, 0, -4); // Add padding
@@ -184,23 +181,25 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     rect.adjust(0, fontMetrics.height(), 0, 0); // Add top padding for top speed text
 
     // draw Y axis speed labels
-    QVector<QString> speedLabels(QVector<QString>() <<
-                                 Utils::Misc::friendlyUnit(maxY, true) <<
-                                 Utils::Misc::friendlyUnit(0.75 * maxY, true) <<
-                                 Utils::Misc::friendlyUnit(0.5 * maxY, true) <<
-                                 Utils::Misc::friendlyUnit(0.25 * maxY, true) <<
-                                 Utils::Misc::friendlyUnit(0, true));
+    QVector<QString> speedLabels = {
+        Utils::Misc::friendlyUnit(maxY, true),
+        Utils::Misc::friendlyUnit(0.75 * maxY, true),
+        Utils::Misc::friendlyUnit(0.5 * maxY, true),
+        Utils::Misc::friendlyUnit(0.25 * maxY, true),
+        Utils::Misc::friendlyUnit(0, true)
+    };
 
     int yAxeWidth = 0;
-    for (int i = 0; i < speedLabels.size(); ++i) {
-        if (fontMetrics.width(speedLabels[i]) > yAxeWidth)
-            yAxeWidth = fontMetrics.width(speedLabels[i]);
+    for (const QString &label : speedLabels) {
+        if (fontMetrics.width(label) > yAxeWidth)
+            yAxeWidth = fontMetrics.width(label);
     }
 
-    for (int i = 0; i < speedLabels.size(); ++i) {
-        QRectF label_rect(rect.topLeft() + QPointF(-yAxeWidth, i * 0.25 * rect.height() - fontMetrics.height()),
-                          QSizeF(2 * yAxeWidth, fontMetrics.height()));
-        painter.drawText(label_rect, speedLabels[i], QTextOption((Qt::AlignRight) | (Qt::AlignTop)));
+    int i = 0;
+    for (const QString &label : speedLabels) {
+        QRectF labelRect(rect.topLeft() + QPointF(-yAxeWidth, (i++) * 0.25 * rect.height() - fontMetrics.height()),
+                         QSizeF(2 * yAxeWidth, fontMetrics.height()));
+        painter.drawText(labelRect, label, Qt::AlignRight | Qt::AlignTop);
     }
 
     // draw grid lines
@@ -230,14 +229,14 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     // draw graphs
     rect.adjust(3, 0, 0, 0); // Need, else graphs cross left gridline
 
-    double yMultiplier = (maxY == 0) ? 0.0 : double(rect.height()) / maxY;
-    double xTickSize = double(rect.width()) / m_viewablePointsCount;
+    double yMultiplier = (maxY == 0) ? 0.0 : static_cast<double>(rect.height()) / maxY;
+    double xTickSize = static_cast<double>(rect.width()) / m_viewablePointsCount;
 
     boost::circular_buffer<PointData> &queue = getCurrentData();
 
     for (int id = UP; id < NB_GRAPHS; ++id) {
 
-        if (!m_properties[static_cast<GraphID>(id)].m_enable)
+        if (!m_properties[static_cast<GraphID>(id)].enable)
             continue;
 
         QVector<QPoint> points;
@@ -250,7 +249,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
             points.push_back(QPoint(new_x, new_y));
         }
 
-        painter.setPen(m_properties[static_cast<GraphID>(id)].m_pen);
+        painter.setPen(m_properties[static_cast<GraphID>(id)].pen);
         painter.drawPolyline(points.data(), points.size());
     }
 
@@ -259,13 +258,13 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
 
     double legendHeight = 0;
     int legendWidth = 0;
-    for (QMap<GraphID, GraphProperties>::const_iterator it = m_properties.begin(); it != m_properties.end(); ++it) {
+    for (const auto &property : m_properties) {
 
-        if (!it.value().m_enable)
+        if (!property.enable)
             continue;
 
-        if (fontMetrics.width(it.value().m_name) > legendWidth)
-            legendWidth =  fontMetrics.width(it.value().m_name);
+        if (fontMetrics.width(property.name) > legendWidth)
+            legendWidth =  fontMetrics.width(property.name);
         legendHeight += 1.5 * fontMetrics.height();
     }
 
@@ -274,33 +273,32 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     legendBackgroundColor.setAlpha(128);  // 50% transparent
     painter.fillRect(legendBackgroundRect, legendBackgroundColor);
 
-    int i = 0;
-    for (QMap<GraphID, GraphProperties>::const_iterator it = m_properties.begin(); it != m_properties.end(); ++it) {
+    i = 0;
+    for (const auto &property : m_properties) {
 
-        if (!it.value().m_enable)
+        if (!property.enable)
             continue;
 
-        int nameSize = fontMetrics.width(it.value().m_name);
-        double indent = 1.5 * i * fontMetrics.height();
+        int nameSize = fontMetrics.width(property.name);
+        double indent = 1.5 * (i++) * fontMetrics.height();
 
-        painter.setPen(it.value().m_pen);
+        painter.setPen(property.pen);
         painter.drawLine(legendTopLeft + QPointF(0, indent + fontMetrics.height()),
                          legendTopLeft + QPointF(nameSize, indent + fontMetrics.height()));
         painter.drawText(QRectF(legendTopLeft + QPointF(0, indent), QSizeF(2 * nameSize, fontMetrics.height())),
-                         it.value().m_name, QTextOption(Qt::AlignVCenter));
-        ++i;
+                         property.name, QTextOption(Qt::AlignVCenter));
     }
 }
 
 SpeedPlotView::GraphProperties::GraphProperties()
-    : m_enable(false)
+    : enable(false)
 {
 }
 
 SpeedPlotView::GraphProperties::GraphProperties(const QString &name, const QPen &pen, bool enable)
-    : m_name(name)
-    , m_pen(pen)
-    , m_enable(enable)
+    : name(name)
+    , pen(pen)
+    , enable(enable)
 {
 }
 

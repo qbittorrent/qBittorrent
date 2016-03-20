@@ -73,10 +73,9 @@ public:
     explicit SpeedPlotView(QWidget *parent = 0);
 
     void setGraphEnable(GraphID id, bool enable);
+    void setViewableLastPoints(TimePeriod period);
 
     void pushPoint(PointData point);
-
-    void setViewableLastPoints(TimePeriod period);
 
     void replot();
 
@@ -104,9 +103,9 @@ private:
         GraphProperties();
         GraphProperties(const QString &name, const QPen &pen, bool enable = false);
 
-        QString m_name;
-        QPen m_pen;
-        bool m_enable;
+        QString name;
+        QPen pen;
+        bool enable;
     };
 
     boost::circular_buffer<PointData> m_data5Min;
