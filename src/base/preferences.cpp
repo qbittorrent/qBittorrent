@@ -1166,12 +1166,12 @@ void Preferences::setShutdownqBTWhenDownloadsComplete(bool shutdown)
 
 bool Preferences::dontConfirmAutoExit() const
 {
-    return value("Preferences/Downloads/DontConfirmAutoExit", false).toBool();
+    return value("ShutdownConfirmDlg/DontConfirmAutoExit", false).toBool();
 }
 
 void Preferences::setDontConfirmAutoExit(bool dontConfirmAutoExit)
 {
-    setValue("Preferences/Downloads/DontConfirmAutoExit", dontConfirmAutoExit);
+    setValue("ShutdownConfirmDlg/DontConfirmAutoExit", dontConfirmAutoExit);
 }
 
 uint Preferences::diskCacheSize() const
