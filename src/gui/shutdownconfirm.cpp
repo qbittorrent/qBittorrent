@@ -54,18 +54,14 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
 
     QIcon warningIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning));
     ui->warningLabel->setPixmap(warningIcon.pixmap(32));
+
     updateText();
-    // Never show again checkbox, Title, and button
-    QPushButton *okButton = ui->buttonBox->button(QDialogButtonBox::Ok);
-    if (m_action == ShutdownAction::None) {
-        setWindowTitle(tr("Exit confirmation"));
-        okButton->setText(tr("E&xit Now"));
-    }
-    else {
-        setWindowTitle(tr("Shutdown confirmation"));
-        okButton->setText(tr("&Shutdown Now"));
+
+    if (m_action == ShutdownAction::None)
+        ui->neverShowAgainCheckbox->setVisible(true);
+    else
         ui->neverShowAgainCheckbox->setVisible(false);
-    }
+
     // Cancel Button
     QPushButton *cancelButton = ui->buttonBox->button(QDialogButtonBox::Cancel);
     cancelButton->setFocus();
@@ -115,21 +111,35 @@ bool ShutdownConfirmDlg::shutdown() const
 void ShutdownConfirmDlg::updateText()
 {
     QString text;
+    QPushButton *okButton = ui->buttonBox->button(QDialogButtonBox::Ok);
 
     switch (m_action) {
     case ShutdownAction::None:
-        text = tr("qBittorrent will now exit unless you cancel within the next %1 seconds.").arg(QString::number(m_timeout));
+        text = tr("qBittorrent will now exit.");
+
+        okButton->setText(tr("E&xit Now"));
+        setWindowTitle(tr("Exit confirmation"));
         break;
     case ShutdownAction::Shutdown:
-        text = tr("The computer will now be switched off unless you cancel within the next %1 seconds.").arg(QString::number(m_timeout));
+        text = tr("The computer is going to shutdown.");
+
+        okButton->setText(tr("&Shutdown Now"));
+        setWindowTitle(tr("Shutdown confirmation"));
         break;
     case ShutdownAction::Suspend:
-        text = tr("The computer will now go to sleep mode unless you cancel within the next %1 seconds.").arg(QString::number(m_timeout));
+        text = tr("The computer is going to enter suspend mode.");
+
+        okButton->setText(tr("&Suspend Now"));
+        setWindowTitle(tr("Suspend confirmation"));
         break;
     case ShutdownAction::Hibernate:
-        text = tr("The computer will now go to hibernation mode unless you cancel within the next %1 seconds.").arg(QString::number(m_timeout));
+        text = tr("The computer is going to enter hibernation mode.");
+
+        okButton->setText(tr("&Hibernate Now"));
+        setWindowTitle(tr("Hibernate confirmation"));
         break;
     }
 
+    text += "\n" + tr("You can cancel the action within %1 seconds.").arg(QString::number(m_timeout)) + "\n";
     ui->shutdownText->setText(text);
 }
