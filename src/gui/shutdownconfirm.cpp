@@ -52,30 +52,30 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
 {
     ui->setupUi(this);
 
-    QIcon warningIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning, 0, this));
-    ui->warningLabel->setPixmap(warningIcon.pixmap(warningIcon.actualSize(QSize(32, 32))));
+    QIcon warningIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning));
+    ui->warningLabel->setPixmap(warningIcon.pixmap(32));
     updateText();
     // Never show again checkbox, Title, and button
+    QPushButton *okButton = ui->buttonBox->button(QDialogButtonBox::Ok);
     if (m_action == ShutdownAction::None) {
         setWindowTitle(tr("Exit confirmation"));
-        ui->buttonBox->addButton(new QPushButton(tr("Exit Now"), this), QDialogButtonBox::AcceptRole);
+        okButton->setText(tr("E&xit Now"));
     }
     else {
         setWindowTitle(tr("Shutdown confirmation"));
-        ui->buttonBox->addButton(new QPushButton(tr("Shutdown Now"), this), QDialogButtonBox::AcceptRole);
+        okButton->setText(tr("&Shutdown Now"));
         ui->neverShowAgainCheckbox->setVisible(false);
     }
     // Cancel Button
-    QPushButton *cancelButton = ui->buttonBox->addButton(QDialogButtonBox::Cancel);
+    QPushButton *cancelButton = ui->buttonBox->button(QDialogButtonBox::Cancel);
+    cancelButton->setFocus();
     cancelButton->setDefault(true);
     // Always on top
     setWindowFlags(windowFlags()|Qt::WindowStaysOnTopHint);
-    // Set 'Cancel' as default button.
     m_timer.setInterval(1000); // 1sec
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(updateSeconds()));
     // Move to center
     move(Utils::Misc::screenCenter(this));
-    cancelButton->setFocus();
 }
 
 void ShutdownConfirmDlg::showEvent(QShowEvent *event)
