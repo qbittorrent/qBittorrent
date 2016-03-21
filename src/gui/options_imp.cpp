@@ -42,6 +42,7 @@
 
 #include <cstdlib>
 
+#include "app/application.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/scanfoldersmodel.h"
@@ -167,6 +168,16 @@ options_imp::options_imp(QWidget *parent)
     connect(checkAssociateTorrents, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkAssociateMagnetLinks, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #endif
+    connect(checkFileLog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(textFileLogPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(checkFileLogBackup, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(checkFileLogBackup, SIGNAL(toggled(bool)), spinFileLogSize, SLOT(setEnabled(bool)));
+    connect(checkFileLogDelete, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(checkFileLogDelete, SIGNAL(toggled(bool)), spinFileLogAge, SLOT(setEnabled(bool)));
+    connect(checkFileLogDelete, SIGNAL(toggled(bool)), comboFileLogAgeType, SLOT(setEnabled(bool)));
+    connect(spinFileLogSize, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
+    connect(spinFileLogAge, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
+    connect(comboFileLogAgeType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     // Downloads tab
     connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(radioBtnEnableSubcategories, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -434,6 +445,14 @@ void options_imp::saveOptions()
         checkAssociateMagnetLinks->setEnabled(!checkAssociateMagnetLinks->isChecked());
     }
 #endif
+    Application * const app = static_cast<Application*>(QCoreApplication::instance());
+    app->setFileLoggerPath(Utils::Fs::fromNativePath(textFileLogPath->text()));
+    app->setFileLoggerBackup(checkFileLogBackup->isChecked());
+    app->setFileLoggerMaxSize(spinFileLogSize->value());
+    app->setFileLoggerAge(spinFileLogAge->value());
+    app->setFileLoggerAgeType(comboFileLogAgeType->currentIndex());
+    app->setFileLoggerDeleteOld(checkFileLogDelete->isChecked());
+    app->setFileLoggerEnabled(checkFileLog->isChecked());
     // End General preferences
 
     auto session = BitTorrent::Session::instance();
@@ -588,6 +607,8 @@ void options_imp::loadOptions()
     int intValue;
     qreal floatValue;
     QString strValue;
+    bool fileLogBackup = true;
+    bool fileLogDelete = true;
     const Preferences* const pref = Preferences::instance();
 
     // General preferences
@@ -621,6 +642,20 @@ void options_imp::loadOptions()
     checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
     checkAssociateMagnetLinks->setEnabled(!checkAssociateMagnetLinks->isChecked());
 #endif
+
+    const Application * const app = static_cast<Application*>(QCoreApplication::instance());
+    checkFileLog->setChecked(app->isFileLoggerEnabled());
+    textFileLogPath->setText(Utils::Fs::toNativePath(app->getFileLoggerPath()));
+    fileLogBackup = app->isFileLoggerBackup();
+    checkFileLogBackup->setChecked(fileLogBackup);
+    spinFileLogSize->setEnabled(fileLogBackup);
+    fileLogDelete = app->isFileLoggerDeleteOld();
+    checkFileLogDelete->setChecked(fileLogDelete);
+    spinFileLogAge->setEnabled(fileLogDelete);
+    comboFileLogAgeType->setEnabled(fileLogDelete);
+    spinFileLogSize->setValue(app->getFileLoggerMaxSize());
+    spinFileLogAge->setValue(app->getFileLoggerAge());
+    comboFileLogAgeType->setCurrentIndex(app->getFileLoggerAgeType());
     // End General preferences
 
     auto session = BitTorrent::Session::instance();
@@ -1291,6 +1326,19 @@ QString options_imp::askForExportDir(const QString& currentExportPath)
     else
         dir = QFileDialog::getExistingDirectory(this, tr("Choose export directory"), QDir::homePath());
     return dir;
+}
+
+void options_imp::on_browseFileLogDir_clicked()
+{
+    const QString path = Utils::Fs::expandPathAbs(Utils::Fs::fromNativePath(textFileLogPath->text()));
+    QDir pathDir(path);
+    QString dir;
+    if (!path.isEmpty() && pathDir.exists())
+        dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), pathDir.absolutePath());
+    else
+        dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
+    if (!dir.isNull())
+        textFileLogPath->setText(Utils::Fs::toNativePath(dir));
 }
 
 void options_imp::on_browseExportDirButton_clicked()

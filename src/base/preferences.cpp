@@ -860,17 +860,6 @@ void Preferences::setSearchEnabled(bool enabled)
     setValue("Preferences/Search/SearchEnabled", enabled);
 }
 
-// Execution Log
-bool Preferences::isExecutionLogEnabled() const
-{
-    return value("Preferences/ExecutionLog/enabled", false).toBool();
-}
-
-void Preferences::setExecutionLogEnabled(bool b)
-{
-    setValue("Preferences/ExecutionLog/enabled", b);
-}
-
 // Queueing system
 bool Preferences::isQueueingSystemEnabled() const
 {

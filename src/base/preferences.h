@@ -273,10 +273,6 @@ public:
     bool isSearchEnabled() const;
     void setSearchEnabled(bool enabled);
 
-    // Execution Log
-    bool isExecutionLogEnabled() const;
-    void setExecutionLogEnabled(bool b);
-
     // Queueing system
     bool isQueueingSystemEnabled() const;
     void setQueueingSystemEnabled(bool enabled);

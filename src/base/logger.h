@@ -6,17 +6,19 @@
 #include <QReadWriteLock>
 #include <QObject>
 
-const int MAX_LOG_MESSAGES = 1000;
+const int MAX_LOG_MESSAGES = 20000;
 
 namespace Log
 {
     enum MsgType
     {
-        NORMAL,
-        INFO,
-        WARNING,
-        CRITICAL //ERROR is defined by libtorrent and results in compiler error
+        ALL = -1,
+        NORMAL = 0x1,
+        INFO = 0x2,
+        WARNING = 0x4,
+        CRITICAL = 0x8 //ERROR is defined by libtorrent and results in compiler error
     };
+    Q_DECLARE_FLAGS(MsgTypes, MsgType)
 
     struct Msg
     {
@@ -35,6 +37,8 @@ namespace Log
         QString reason;
     };
 }
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(Log::MsgTypes)
 
 class Logger : public QObject
 {

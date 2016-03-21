@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2016  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,40 +24,56 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
-#ifndef LOGLISTWIDGET_H
-#define LOGLISTWIDGET_H
 
-#include <QListWidget>
-#include "base/logger.h"
+#ifndef FILELOGGER_H
+#define FILELOGGER_H
 
-QT_BEGIN_NAMESPACE
-class QKeyEvent;
-QT_END_NAMESPACE
+#include <QObject>
+#include <QTimer>
 
-class LogListWidget: public QListWidget
+class QFile;
+
+namespace Log
+{
+    struct Msg;
+}
+
+class FileLogger : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(FileLogger)
 
 public:
-    // -1 is the portable way to have all the bits set
-    explicit LogListWidget(int maxLines, const Log::MsgTypes &types = Log::MsgTypes(-1), QWidget *parent = 0);
-    void showMsgTypes(const Log::MsgTypes &types);
+    enum FileLogAgeType
+    {
+        DAYS,
+        MONTHS,
+        YEARS
+    };
 
-public slots:
-    void appendLine(const QString &line, const Log::MsgType &type);
+    FileLogger(const QString &path, const bool backup, const int maxSize, const bool deleteOld, const int age, const FileLogAgeType ageType);
+    ~FileLogger();
 
-protected slots:
-    void copySelection();
+    void changePath(const QString &newPath);
+    void deleteOld(const int age, const FileLogAgeType ageType);
+    void setBackup(bool value);
+    void setMaxSize(int value);
 
-protected:
-    void keyPressEvent(QKeyEvent *event);
+private slots:
+    void addLogMessage(const Log::Msg &msg);
+    void flushLog();
 
 private:
-    int m_maxLines;
-    Log::MsgTypes m_types;
+    void openLogFile();
+    void closeLogFile();
+
+    QString m_path;
+    bool m_backup;
+    int m_maxSize;
+    QFile *m_logFile;
+    QTimer m_flusher;
 };
 
-#endif // LOGLISTWIDGET_H
+#endif // FILELOGGER_H
+
