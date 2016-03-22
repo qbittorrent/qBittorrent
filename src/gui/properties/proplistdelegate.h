@@ -46,7 +46,8 @@ enum PropColumn
     PCSIZE,
     PROGRESS,
     PRIORITY,
-    REMAINING
+    REMAINING,
+    AVAILABILITY
 };
 
 class PropListDelegate: public QItemDelegate
@@ -72,3 +73,4 @@ private:
 };
 
 #endif
+

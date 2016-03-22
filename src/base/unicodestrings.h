@@ -39,6 +39,7 @@ const char C_NON_BREAKING_SPACE[] = " ";
 const char C_UP[] = "▲";
 const char C_DOWN[] = "▼";
 const char C_COPYRIGHT[] = "©";
+const char C_THIN_SPACE[] = " ";
 const char C_UTP[] = "μTP";
 const char C_LOCALE_ENGLISH[] = "English";
 const char C_LOCALE_ENGLISH_AUSTRALIA[] = "English(Australia)";
