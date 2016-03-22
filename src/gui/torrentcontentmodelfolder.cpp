@@ -159,6 +159,34 @@ void TorrentContentModelFolder::recalculateProgress()
     }
 }
 
+void TorrentContentModelFolder::recalculateAvailability()
+{
+    qreal tAvailability = 0;
+    qulonglong tSize = 0;
+    bool foundAnyData = false;
+    foreach (TorrentContentModelItem* child, m_childItems) {
+        if (child->priority() == prio::IGNORED)
+            continue;
+
+        if (child->itemType() == FolderType)
+            static_cast<TorrentContentModelFolder*>(child)->recalculateAvailability();
+        const qreal childAvailability = child->availability();
+        if (childAvailability >= 0) { // -1 means "no data"
+            tAvailability += childAvailability * child->size();
+            foundAnyData = true;
+        }
+        tSize += child->size();
+    }
+
+    if (!isRootItem() && (tSize > 0) && foundAnyData) {
+        m_availability = tAvailability / tSize;
+        Q_ASSERT(m_availability <= 1.);
+    }
+    else {
+        m_availability = -1.;
+    }
+}
+
 void TorrentContentModelFolder::increaseSize(qulonglong delta)
 {
     if (isRootItem())

@@ -51,6 +51,7 @@ public:
 
     void updateFilesProgress(const QVector<qreal> &fp);
     void updateFilesPriorities(const QVector<int> &fprio);
+    void updateFilesAvailability(const QVector<qreal> &fa);
     QVector<int> getFilePriorities() const;
     bool allFiltered() const;
     virtual int columnCount(const QModelIndex &parent = QModelIndex()) const;

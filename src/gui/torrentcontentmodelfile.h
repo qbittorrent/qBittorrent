@@ -42,6 +42,7 @@ public:
     int fileIndex() const;
     void setPriority(int newPriority, bool updateParent = true) override;
     void setProgress(qreal progress);
+    void setAvailability(qreal availability);
     ItemType itemType() const override;
 
 private:

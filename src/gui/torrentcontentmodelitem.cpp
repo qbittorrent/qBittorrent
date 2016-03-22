@@ -40,6 +40,7 @@ TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder *pare
     , m_remaining(0)
     , m_priority(prio::NORMAL)
     , m_progress(0)
+    , m_availability(-1.)
 {
 }
 
@@ -84,6 +85,13 @@ qulonglong TorrentContentModelItem::remaining() const
     return m_remaining;
 }
 
+qreal TorrentContentModelItem::availability() const
+{
+    Q_ASSERT(!isRootItem());
+
+    return m_size > 0 ? m_availability : 0.;
+}
+
 int TorrentContentModelItem::priority() const
 {
     Q_ASSERT(!isRootItem());
@@ -111,6 +119,8 @@ QVariant TorrentContentModelItem::data(int column) const
         return m_size;
     case COL_REMAINING:
         return remaining();
+    case COL_AVAILABILITY:
+        return availability();
     default:
         Q_ASSERT(false);
         return QVariant();
@@ -128,3 +138,4 @@ TorrentContentModelFolder *TorrentContentModelItem::parent() const
 {
     return m_parentItem;
 }
+

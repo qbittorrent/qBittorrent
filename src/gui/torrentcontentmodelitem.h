@@ -58,6 +58,7 @@ public:
         COL_PROGRESS,
         COL_PRIO,
         COL_REMAINING,
+        COL_AVAILABILITY,
         NB_COL
     };
 
@@ -81,6 +82,8 @@ public:
     qreal progress() const;
     qulonglong remaining() const;
 
+    qreal availability() const;
+
     int priority() const;
     virtual void setPriority(int newPriority, bool updateParent = true) = 0;
 
@@ -98,6 +101,7 @@ protected:
     qulonglong m_remaining;
     int m_priority;
     qreal m_progress;
+    qreal m_availability;
 };
 
 #endif // TORRENTCONTENTMODELITEM_H
