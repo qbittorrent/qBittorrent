@@ -361,6 +361,14 @@ namespace BitTorrent
         void handleAppendExtensionToggled();
         void saveResumeData(bool updateStatus = false);
 
+        /**
+         * @brief fraction of file pieces that are available at least from one peer
+         *
+         * This is not the same as torrrent availability, it is just a fraction of pieces
+         * that can be downloaded right now. It varies between 0 to 1.
+         */
+        QVector<qreal> availableFileFractions() const;
+
     private:
         typedef boost::function<void ()> EventTrigger;
 

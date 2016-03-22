@@ -1953,3 +1953,24 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
 
     updateStatus();
 }
+
+QVector<qreal> TorrentHandle::availableFileFractions() const
+{
+    QVector<int> piecesAvailability = pieceAvailability();
+    const auto filesCount = this->filesCount();
+    // libtorrent returns empty array for seeding only torrents
+    if (piecesAvailability.empty()) return QVector<qreal>(filesCount, -1.);
+
+    QVector<qreal> res;
+    res.reserve(filesCount);
+    TorrentInfo info = this->info();
+    for (int file = 0; file < filesCount; ++file) {
+        TorrentInfo::PieceRange filePieces = info.filePieces(file);
+        int availablePieces = 0;
+        for (int piece = filePieces.first(); piece <= filePieces.last(); ++piece) {
+            availablePieces += piecesAvailability[piece] > 0 ? 1 : 0;
+        }
+        res.push_back(static_cast<qreal>(availablePieces) / filePieces.size());
+    }
+    return res;
+}
