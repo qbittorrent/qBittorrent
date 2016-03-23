@@ -14,6 +14,18 @@
    <string notr="true">Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QTabWidget" name="tabConsole">
      <property name="tabPosition">
@@ -26,13 +38,13 @@
       <attribute name="title">
        <string>General</string>
       </attribute>
-      <layout class="QVBoxLayout"/>
+      <layout class="QVBoxLayout" name="tabGeneralLayout"/>
      </widget>
      <widget class="QWidget" name="tabBan">
       <attribute name="title">
        <string>Blocked IPs</string>
       </attribute>
-      <layout class="QVBoxLayout" name="_2"/>
+      <layout class="QVBoxLayout" name="tabBanLayout"/>
      </widget>
     </widget>
    </item>
