@@ -1,7 +1,9 @@
-#VERSION: 1.40
+#VERSION: 1.41
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
+# Contributors:
+#  Diego de las Heras (ngosang@hotmail.es)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -86,7 +88,7 @@ def retrieve_url(url):
         pass
     dat = dat.decode(charset, 'replace')
     dat = htmlentitydecode(dat)
-    return dat.encode('utf-8', 'replace')
+    return dat
 
 def download_file(url, referer=None):
     """ Download file at url and write it to a file, return the path to the file and the url """

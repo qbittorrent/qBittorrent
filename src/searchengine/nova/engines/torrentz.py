@@ -1,4 +1,4 @@
-#VERSION: 2.17
+#VERSION: 2.18
 #AUTHORS: Diego de las Heras (ngosang@hotmail.es)
 
 # Redistribution and use in source and binary forms, with or without
@@ -92,8 +92,8 @@ class torrentz(object):
                 # display item
                 self.td_counter = None
                 self.current_item['engine_url'] = self.url
-                if self.current_item['name'].find(' \xc2'):
-                    self.current_item['name'] = self.current_item['name'].split(' \xc2')[0]
+                if self.current_item['name'].find(u' \xc2'):
+                    self.current_item['name'] = self.current_item['name'].split(u' \xc2')[0]
                 self.current_item['link'] += '&' + urlencode({'dn' : self.current_item['name']})
                 self.current_item['name'] = self.current_item['name'].decode('utf8')
 
