@@ -49,25 +49,27 @@ namespace Rss
         Q_OBJECT
 
     public:
-        Article(Feed *parent, const QString &guid);
+        Article(Feed *parent);
 
         // Accessors
         bool hasAttachment() const;
-        const QString &guid() const;
+        const QString guid();
         Feed *parent() const;
-        const QString &title() const;
-        const QString &author() const;
-        const QString &torrentUrl() const;
-        const QString &link() const;
+        const QString title();
+        const QString author();
+        const QString torrentUrl();
+        const QString link();
         QString description() const;
-        const QDateTime &date() const;
+        const QDateTime date();
         bool isRead() const;
         // Setters
         void markAsRead();
 
         // Serialization
-        QVariantHash toHash() const;
+        QVariantHash toHash();
         static ArticlePtr fromHash(Feed *parent, const QVariantHash &hash);
+
+        const QString getValue(const QString &name) const;
 
     signals:
         void articleWasRead();
@@ -77,14 +79,7 @@ namespace Rss
 
     private:
         Feed *m_parent;
-        QString m_guid;
-        QString m_title;
-        QString m_torrentUrl;
-        QString m_link;
-        QString m_description;
-        QDateTime m_date;
-        QString m_author;
-        bool m_read;
+        QVariantHash m_hash;
     };
 }
 
