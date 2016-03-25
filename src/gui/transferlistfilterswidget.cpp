@@ -482,7 +482,6 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
 
         if (host != "") {
             trackerItem = item(rowFromTracker(host));
-            if (!trackerItem) return;
         }
         else {
             trackerItem = item(1);
@@ -494,6 +493,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
 
         downloadFavicon(QString("http://%1/favicon.ico").arg(host));
     }
+    if (!trackerItem) return;
 
     tmp.append(hash);
     m_trackers.insert(host, tmp);
