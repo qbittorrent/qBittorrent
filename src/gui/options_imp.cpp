@@ -310,14 +310,21 @@ options_imp::options_imp(QWidget *parent)
 void options_imp::initializeLanguageCombo()
 {
     // List language files
-    const QDir lang_dir(":/lang");
-    const QStringList lang_files = lang_dir.entryList(QStringList() << "qbittorrent_*.qm", QDir::Files);
-    foreach (QString lang_file, lang_files) {
-        QString localeStr = lang_file.mid(12); // remove "qbittorrent_"
+    const QDir langDir(":/lang");
+    const QStringList langFiles = langDir.entryList(QStringList("qbittorrent_*.qm"), QDir::Files);
+    foreach (const QString langFile, langFiles) {
+        QString localeStr = langFile.mid(12); // remove "qbittorrent_"
         localeStr.chop(3); // Remove ".qm"
-        QLocale locale(localeStr);
-        QString language_name = languageToLocalizedString(locale);
-        comboI18n->addItem(/*QIcon(":/icons/flags/"+country+".png"), */ language_name, localeStr);
+        QString languageName;
+        if (localeStr == "eo") {
+            // QLocale doesn't work with that locale. Esperanto isn't a "real" language.
+            languageName = QString::fromUtf8(C_LOCALE_ESPERANTO);
+        }
+        else {
+            QLocale locale(localeStr);
+            languageName = languageToLocalizedString(locale);
+        }
+        comboI18n->addItem(/*QIcon(":/icons/flags/"+country+".png"), */ languageName, localeStr);
         qDebug() << "Supported locale:" << localeStr;
     }
 }
@@ -1220,8 +1227,14 @@ QString options_imp::getLocale() const
 
 void options_imp::setLocale(const QString &localeStr)
 {
-    QLocale locale(localeStr);
-    QString name = locale.name();
+    QString name;
+    if (localeStr == "eo") {
+        name = "eo";
+    }
+    else {
+        QLocale locale(localeStr);
+        name = locale.name();
+    }
     // Attempt to find exact match
     int index = comboI18n->findData(name, Qt::UserRole);
     if (index < 0) {
@@ -1495,7 +1508,6 @@ QString options_imp::languageToLocalizedString(const QLocale &locale)
             return QString::fromUtf8(C_LOCALE_ENGLISH_UNITEDKINGDOM);
         return QString::fromUtf8(C_LOCALE_ENGLISH);
     }
-    case QLocale::Esperanto: return QString::fromUtf8(C_LOCALE_ESPERANTO);
     case QLocale::French: return QString::fromUtf8(C_LOCALE_FRENCH);
     case QLocale::German: return QString::fromUtf8(C_LOCALE_GERMAN);
     case QLocale::Hungarian: return QString::fromUtf8(C_LOCALE_HUNGARIAN);
