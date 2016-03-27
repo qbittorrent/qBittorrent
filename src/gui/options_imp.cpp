@@ -316,7 +316,7 @@ void options_imp::initializeLanguageCombo()
         QString localeStr = langFile.mid(12); // remove "qbittorrent_"
         localeStr.chop(3); // Remove ".qm"
         QString languageName;
-        if (localeStr == "eo") {
+        if (localeStr.startsWith("eo", Qt::CaseInsensitive)) {
             // QLocale doesn't work with that locale. Esperanto isn't a "real" language.
             languageName = QString::fromUtf8(C_LOCALE_ESPERANTO);
         }
@@ -1228,7 +1228,7 @@ QString options_imp::getLocale() const
 void options_imp::setLocale(const QString &localeStr)
 {
     QString name;
-    if (localeStr == "eo") {
+    if (localeStr.startsWith("eo", Qt::CaseInsensitive)) {
         name = "eo";
     }
     else {
