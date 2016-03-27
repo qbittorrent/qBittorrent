@@ -306,7 +306,14 @@ void Application::allTorrentsFinished()
         else if (shutdown)
             action = ShutdownAction::Shutdown;
 
-        if (!ShutdownConfirmDlg::askForConfirmation(action)) return;
+        if ((action == ShutdownAction::None) && (!pref->dontConfirmAutoExit())) {
+            if (!ShutdownConfirmDlg::askForConfirmation(action))
+                return;
+        }
+        else { //exit and shutdown
+            if (!ShutdownConfirmDlg::askForConfirmation(action))
+                return;
+        }
 
         // Actually shut down
         if (suspend || hibernate || shutdown) {

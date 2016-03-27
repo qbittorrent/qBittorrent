@@ -31,11 +31,19 @@
 #ifndef SHUTDOWNCONFIRM_H
 #define SHUTDOWNCONFIRM_H
 
-#include <QMessageBox>
+#include <QDialog>
 #include <QTimer>
 #include "base/utils/misc.h"
 
-class ShutdownConfirmDlg : public QMessageBox
+class QLabel;
+class QCheckBox;
+
+namespace Ui
+{
+    class confirmShutdownDlg;
+}
+
+class ShutdownConfirmDlg : public QDialog
 {
     Q_OBJECT
 
@@ -45,21 +53,19 @@ public:
 
     static bool askForConfirmation(const ShutdownAction &action);
 
-    QAbstractButton *getExit_now() const;
-    void setExit_now(QAbstractButton *value);
-
 protected:
     void showEvent(QShowEvent *event);
 
 private slots:
     void updateSeconds();
+    void accept() override;
 
 private:
     // Methods
     void updateText();
 
     // Vars
-    QAbstractButton *m_exitNow;
+    Ui::confirmShutdownDlg *ui;
     QTimer m_timer;
     int m_timeout;
     ShutdownAction m_action;

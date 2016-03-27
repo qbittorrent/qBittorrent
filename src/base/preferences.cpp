@@ -1164,6 +1164,16 @@ void Preferences::setShutdownqBTWhenDownloadsComplete(bool shutdown)
     setValue("Preferences/Downloads/AutoShutDownqBTOnCompletion", shutdown);
 }
 
+bool Preferences::dontConfirmAutoExit() const
+{
+    return value("ShutdownConfirmDlg/DontConfirmAutoExit", false).toBool();
+}
+
+void Preferences::setDontConfirmAutoExit(bool dontConfirmAutoExit)
+{
+    setValue("ShutdownConfirmDlg/DontConfirmAutoExit", dontConfirmAutoExit);
+}
+
 uint Preferences::diskCacheSize() const
 {
     uint size = value("Preferences/Downloads/DiskWriteCacheSize", 0).toUInt();

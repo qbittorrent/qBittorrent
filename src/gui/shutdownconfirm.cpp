@@ -30,45 +30,57 @@
  * Contact : hammered999@gmail.com
  */
 
-#include "base/types.h"
-#include "shutdownconfirm.h"
-
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QStyle>
+#include <QIcon>
+#include <QLabel>
+#include <QDialogButtonBox>
+#include <QCheckBox>
 #include <QPushButton>
 
+#include "base/preferences.h"
+#include "base/types.h"
+
+#include "shutdownconfirm.h"
+#include "ui_confirmshutdowndlg.h"
+
 ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
-    : m_exitNow(0)
+    : ui(new Ui::confirmShutdownDlg)
     , m_timeout(15)
     , m_action(action)
 {
-    // Title and button
+    ui->setupUi(this);
+
+    QIcon warningIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning, 0, this));
+    ui->warningLabel->setPixmap(warningIcon.pixmap(warningIcon.actualSize(QSize(32, 32))));
+    updateText();
+    // Never show again checkbox, Title, and button
     if (m_action == ShutdownAction::None) {
         setWindowTitle(tr("Exit confirmation"));
-        m_exitNow = addButton(tr("Exit now"), QMessageBox::AcceptRole);
+        ui->buttonBox->addButton(new QPushButton(tr("Exit Now"), this), QDialogButtonBox::AcceptRole);
     }
     else {
         setWindowTitle(tr("Shutdown confirmation"));
-        m_exitNow = addButton(tr("Shutdown now"), QMessageBox::AcceptRole);
+        ui->buttonBox->addButton(new QPushButton(tr("Shutdown Now"), this), QDialogButtonBox::AcceptRole);
+        ui->neverShowAgainCheckbox->setVisible(false);
     }
     // Cancel Button
-    addButton(QMessageBox::Cancel);
-    // Text
-    updateText();
-    // Icon
-    setIcon(QMessageBox::Warning);
+    QPushButton *cancelButton = ui->buttonBox->addButton(QDialogButtonBox::Cancel);
+    cancelButton->setDefault(true);
     // Always on top
     setWindowFlags(windowFlags()|Qt::WindowStaysOnTopHint);
     // Set 'Cancel' as default button.
-    setDefaultButton(QMessageBox::Cancel);
     m_timer.setInterval(1000); // 1sec
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(updateSeconds()));
-    show();
     // Move to center
     move(Utils::Misc::screenCenter(this));
+    cancelButton->setFocus();
 }
 
 void ShutdownConfirmDlg::showEvent(QShowEvent *event)
 {
-    QMessageBox::showEvent(event);
+    QDialog::showEvent(event);
     m_timer.start();
 }
 
@@ -89,15 +101,15 @@ void ShutdownConfirmDlg::updateSeconds()
     }
 }
 
+void ShutdownConfirmDlg::accept()
+{
+    Preferences::instance()->setDontConfirmAutoExit(ui->neverShowAgainCheckbox->isChecked());
+    QDialog::accept();
+}
+
 bool ShutdownConfirmDlg::shutdown() const
 {
-    // This is necessary because result() in the case of QMessageBox
-    // returns a type of StandardButton, but since we use a custom button
-    // it will return 0 instead, even though we set the 'accept' role on it.
-    if (result() != QDialog::Accepted)
-        return (clickedButton() == m_exitNow);
-    else
-        return true;
+    return (result() == QDialog::Accepted);
 }
 
 void ShutdownConfirmDlg::updateText()
@@ -119,15 +131,5 @@ void ShutdownConfirmDlg::updateText()
         break;
     }
 
-    setText(text);
-}
-
-QAbstractButton *ShutdownConfirmDlg::getExit_now() const
-{
-    return m_exitNow;
-}
-
-void ShutdownConfirmDlg::setExit_now(QAbstractButton *value)
-{
-    m_exitNow = value;
+    ui->shutdownText->setText(text);
 }
