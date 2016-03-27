@@ -31,35 +31,37 @@
 #ifndef SHUTDOWNCONFIRM_H
 #define SHUTDOWNCONFIRM_H
 
-#include <QMessageBox>
+#include <QDialog>
 #include <QTimer>
 #include "base/utils/misc.h"
 
-class ShutdownConfirmDlg : public QMessageBox
+class QLabel;
+
+class ShutdownConfirmDlg : public QDialog
 {
     Q_OBJECT
 
 public:
     ShutdownConfirmDlg(const ShutdownAction &action);
+    bool neverShowAgain() const;
     bool shutdown() const;
 
-    static bool askForConfirmation(const ShutdownAction &action);
-
-    QAbstractButton *getExit_now() const;
-    void setExit_now(QAbstractButton *value);
+    static void askForConfirmation(const ShutdownAction &action, bool *shutdownConfirmed, bool *neverShowAgain = 0);
 
 protected:
     void showEvent(QShowEvent *event);
 
 private slots:
     void updateSeconds();
+    void handleNeverShowAgainCheckboxToggled(bool checked);
 
 private:
     // Methods
     void updateText();
 
     // Vars
-    QAbstractButton *m_exitNow;
+    QLabel *m_text;
+    bool m_neverShowAgain;
     QTimer m_timer;
     int m_timeout;
     ShutdownAction m_action;
