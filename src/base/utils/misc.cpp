@@ -583,23 +583,22 @@ void Utils::Misc::openFolderSelect(const QString& absolutePath)
 #elif defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
     if (QFileInfo(path).exists()) {
         QProcess proc;
-        QString output;
         proc.start("xdg-mime", QStringList() << "query" << "default" << "inode/directory");
         proc.waitForFinished();
-        output = proc.readLine().simplified();
+        QString output = proc.readLine().simplified();
         if (output == "dolphin.desktop" || output == "org.kde.dolphin.desktop")
             proc.startDetached("dolphin", QStringList() << "--select" << Utils::Fs::toNativePath(path));
         else if (output == "nautilus.desktop" || output == "org.gnome.Nautilus.desktop"
                  || output == "nautilus-folder-handler.desktop")
             proc.startDetached("nautilus", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(path));
-        else if (output == "caja-folder-handler.desktop")
-            proc.startDetached("caja", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(path));
         else if (output == "nemo.desktop")
             proc.startDetached("nemo", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(path));
         else if (output == "konqueror.desktop" || output == "kfmclient_dir.desktop")
             proc.startDetached("konqueror", QStringList() << "--select" << Utils::Fs::toNativePath(path));
-        else
+        else {
+            // "caja" manager can't pinpoint the file, see: https://github.com/qbittorrent/qBittorrent/issues/5003
             openPath(path.left(path.lastIndexOf("/")));
+        }
     }
     else {
         // If the item to select doesn't exist, try to open its parent
