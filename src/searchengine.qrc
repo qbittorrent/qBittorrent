@@ -19,6 +19,8 @@
   <file>searchengine/nova/engines/mininova.py</file>
   <file>searchengine/nova/engines/piratebay.png</file>
   <file>searchengine/nova/engines/piratebay.py</file>
+  <file>searchengine/nova/engines/torlock.png</file>
+  <file>searchengine/nova/engines/torlock.py</file>
   <file>searchengine/nova/engines/torrentreactor.png</file>
   <file>searchengine/nova/engines/torrentreactor.py</file>
   <file>searchengine/nova/engines/torrentz.png</file>
@@ -42,6 +44,8 @@
   <file>searchengine/nova3/engines/mininova.py</file>
   <file>searchengine/nova3/engines/piratebay.png</file>
   <file>searchengine/nova3/engines/piratebay.py</file>
+  <file>searchengine/nova3/engines/torlock.png</file>
+  <file>searchengine/nova3/engines/torlock.py</file>
   <file>searchengine/nova3/engines/torrentreactor.png</file>
   <file>searchengine/nova3/engines/torrentreactor.py</file>
   <file>searchengine/nova3/engines/torrentz.png</file>
