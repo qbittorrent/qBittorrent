@@ -2,10 +2,12 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 set(QBT_APP_HEADERS
 application.h
+filelogger.h
 )
 
 set(QBT_APP_SOURCES
 application.cpp
+filelogger.cpp
 main.cpp
 )
 
