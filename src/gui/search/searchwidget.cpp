@@ -108,7 +108,6 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     goToDescBtn->setIcon(GuiIconProvider::instance()->getIcon("application-x-mswinurl"));
     pluginsButton->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
     copyURLBtn->setIcon(GuiIconProvider::instance()->getIcon("edit-copy"));
-    tabWidget->setTabsClosable(true);
     connect(tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
 
     m_searchEngine = new SearchEngine;
