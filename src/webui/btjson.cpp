@@ -29,19 +29,21 @@
  */
 
 #include "btjson.h"
-#include "core/utils/misc.h"
-#include "core/utils/fs.h"
-#include "core/preferences.h"
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/sessionstatus.h"
-#include "core/bittorrent/torrenthandle.h"
-#include "core/bittorrent/trackerentry.h"
-#include "core/torrentfilter.h"
+#include "base/utils/misc.h"
+#include "base/utils/fs.h"
+#include "base/preferences.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/sessionstatus.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/trackerentry.h"
+#include "base/bittorrent/peerinfo.h"
+#include "base/torrentfilter.h"
+#include "base/net/geoipmanager.h"
 #include "jsonutils.h"
 
 #include <QDebug>
 #include <QVariant>
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+#ifndef QBT_USES_QT5
 #include <QMetaType>
 #endif
 #if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
@@ -100,10 +102,28 @@ static const char KEY_TORRENT_ETA[] = "eta";
 static const char KEY_TORRENT_STATE[] = "state";
 static const char KEY_TORRENT_SEQUENTIAL_DOWNLOAD[] = "seq_dl";
 static const char KEY_TORRENT_FIRST_LAST_PIECE_PRIO[] = "f_l_piece_prio";
-static const char KEY_TORRENT_LABEL[] = "label";
+static const char KEY_TORRENT_CATEGORY[] = "category";
 static const char KEY_TORRENT_SUPER_SEEDING[] = "super_seeding";
 static const char KEY_TORRENT_FORCE_START[] = "force_start";
 static const char KEY_TORRENT_SAVE_PATH[] = "save_path";
+static const char KEY_TORRENT_ADDED_ON[] = "added_on";
+static const char KEY_TORRENT_COMPLETION_ON[] = "completion_on";
+
+// Peer keys
+static const char KEY_PEER_IP[] = "ip";
+static const char KEY_PEER_PORT[] = "port";
+static const char KEY_PEER_COUNTRY_CODE[] = "country_code";
+static const char KEY_PEER_COUNTRY[] = "country";
+static const char KEY_PEER_CLIENT[] = "client";
+static const char KEY_PEER_PROGRESS[] = "progress";
+static const char KEY_PEER_DOWN_SPEED[] = "dl_speed";
+static const char KEY_PEER_UP_SPEED[] = "up_speed";
+static const char KEY_PEER_TOT_DOWN[] = "downloaded";
+static const char KEY_PEER_TOT_UP[] = "uploaded";
+static const char KEY_PEER_CONNECTION_TYPE[] = "connection";
+static const char KEY_PEER_FLAGS[] = "flags";
+static const char KEY_PEER_FLAGS_DESCRIPTION[] = "flags_desc";
+static const char KEY_PEER_RELEVANCE[] = "relevance";
 
 // Tracker keys
 static const char KEY_TRACKER_URL[] = "url";
@@ -171,6 +191,9 @@ static const char KEY_SYNC_MAINDATA_QUEUEING[] = "queueing";
 static const char KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS[] = "use_alt_speed_limits";
 static const char KEY_SYNC_MAINDATA_REFRESH_INTERVAL[] = "refresh_interval";
 
+// Sync torrent peers keys
+static const char KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS[] = "show_flags";
+
 static const char KEY_FULL_UPDATE[] = "full_update";
 static const char KEY_RESPONSE_ID[] = "rid";
 static const char KEY_SUFFIX_REMOVED[] = "_removed";
@@ -188,7 +211,7 @@ public:
     QTorrentCompare(QString key, bool greaterThan = false)
         : key_(key)
         , greaterThan_(greaterThan)
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+#ifndef QBT_USES_QT5
         , type_(QVariant::Invalid)
 #endif
     {
@@ -196,7 +219,7 @@ public:
 
     bool operator()(QVariant torrent1, QVariant torrent2)
     {
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+#ifndef QBT_USES_QT5
         if (type_ == QVariant::Invalid)
             type_ = torrent1.toMap().value(key_).type();
 
@@ -229,7 +252,7 @@ public:
 private:
     QString key_;
     bool greaterThan_;
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+#ifndef QBT_USES_QT5
     QVariant::Type type_;
 #endif
 };
@@ -256,13 +279,13 @@ private:
  *   - "seq_dl": Torrent sequential download state
  *   - "f_l_piece_prio": Torrent first last piece priority state
  *   - "force_start": Torrent force start state
- *   - "label": Torrent label
+ *   - "category": Torrent category
  */
-QByteArray btjson::getTorrents(QString filter, QString label,
+QByteArray btjson::getTorrents(QString filter, QString category,
                                QString sortedColumn, bool reverse, int limit, int offset)
 {
     QVariantList torrentList;
-    TorrentFilter torrentFilter(filter, TorrentFilter::AnyHash, label);
+    TorrentFilter torrentFilter(filter, TorrentFilter::AnyHash, category);
     foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents()) {
         if (torrentFilter.match(torrent))
             torrentList.append(toMap(torrent));
@@ -294,8 +317,8 @@ QByteArray btjson::getTorrents(QString filter, QString label,
  *  - "full_update": full data update flag
  *  - "torrents": dictionary contains information about torrents.
  *  - "torrents_removed": a list of hashes of removed torrents
- *  - "labels": list of labels
- *  - "labels_removed": list of removed labels
+ *  - "categories": list of categories
+ *  - "categories_removed": list of removed categories
  *  - "server_state": map contains information about the state of the server
  * The keys of the 'torrents' dictionary are hashes of torrents.
  * Each value of the 'torrents' dictionary contains map. The map can contain following keys:
@@ -339,17 +362,65 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
 
     data["torrents"] = torrents;
 
-    QVariantList labels;
-    foreach (QString s, Preferences::instance()->getTorrentLabels())
-        labels << s;
+    QVariantList categories;
+    foreach (const QString &category, BitTorrent::Session::instance()->categories())
+        categories << category;
 
-    data["labels"] = labels;
+    data["categories"] = categories;
 
     QVariantMap serverState = getTranserInfoMap();
     serverState[KEY_SYNC_MAINDATA_QUEUEING] = BitTorrent::Session::instance()->isQueueingEnabled();
     serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = Preferences::instance()->isAltBandwidthEnabled();
     serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = Preferences::instance()->getRefreshInterval();
     data["server_state"] = serverState;
+
+    return json::toJson(generateSyncData(acceptedResponseId, data, lastAcceptedData, lastData));
+}
+
+QByteArray btjson::getSyncTorrentPeersData(int acceptedResponseId, QString hash, QVariantMap &lastData, QVariantMap &lastAcceptedData)
+{
+    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    if (!torrent) {
+        qWarning() << Q_FUNC_INFO << "Invalid torrent " << qPrintable(hash);
+        return QByteArray();
+    }
+
+    QVariantMap data;
+    QVariantHash peers;
+    QList<BitTorrent::PeerInfo> peersList = torrent->peers();
+#ifndef DISABLE_COUNTRIES_RESOLUTION
+    bool resolvePeerCountries = Preferences::instance()->resolvePeerCountries();
+#else
+    bool resolvePeerCountries = false;
+#endif
+
+    data[KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS] = resolvePeerCountries;
+
+    foreach (const BitTorrent::PeerInfo &pi, peersList) {
+        if (pi.address().ip.isNull()) continue;
+        QVariantMap peer;
+#ifndef DISABLE_COUNTRIES_RESOLUTION
+        if (resolvePeerCountries) {
+            peer[KEY_PEER_COUNTRY_CODE] = pi.country().toLower();
+            peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
+        }
+#endif
+        peer[KEY_PEER_IP] = pi.address().ip.toString();
+        peer[KEY_PEER_PORT] = pi.address().port;
+        peer[KEY_PEER_CLIENT] = pi.client();
+        peer[KEY_PEER_PROGRESS] = pi.progress();
+        peer[KEY_PEER_DOWN_SPEED] = pi.payloadDownSpeed();
+        peer[KEY_PEER_UP_SPEED] = pi.payloadUpSpeed();
+        peer[KEY_PEER_TOT_DOWN] = pi.totalDownload();
+        peer[KEY_PEER_TOT_UP] = pi.totalUpload();
+        peer[KEY_PEER_CONNECTION_TYPE] = pi.connectionType();
+        peer[KEY_PEER_FLAGS] = pi.flags();
+        peer[KEY_PEER_FLAGS_DESCRIPTION] = pi.flagsDescription();
+        peer[KEY_PEER_RELEVANCE] = pi.relevance();
+        peers[pi.address().ip.toString() + ":" + QString::number(pi.address().port)] = peer;
+    }
+
+    data["peers"] = peers;
 
     return json::toJson(generateSyncData(acceptedResponseId, data, lastAcceptedData, lastData));
 }
@@ -610,7 +681,7 @@ QByteArray btjson::getTorrentsRatesLimits(QStringList &hashes, bool downloadLimi
         map[hash] = limit;
     }
 
-   return json::toJson(map);
+    return json::toJson(map);
 }
 
 QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
@@ -634,10 +705,12 @@ QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
     ret[KEY_TORRENT_SEQUENTIAL_DOWNLOAD] = torrent->isSequentialDownload();
     if (torrent->hasMetadata())
         ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = torrent->hasFirstLastPiecePriority();
-    ret[KEY_TORRENT_LABEL] = torrent->label();
+    ret[KEY_TORRENT_CATEGORY] = torrent->category();
     ret[KEY_TORRENT_SUPER_SEEDING] = torrent->superSeeding();
     ret[KEY_TORRENT_FORCE_START] = torrent->isForced();
     ret[KEY_TORRENT_SAVE_PATH] = Utils::Fs::toNativePath(torrent->savePath());
+    ret[KEY_TORRENT_ADDED_ON] = torrent->addedTime();
+    ret[KEY_TORRENT_COMPLETION_ON] = torrent->completedTime();
 
     return ret;
 }
@@ -687,6 +760,7 @@ void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
         case QMetaType::Double:
         case QMetaType::ULongLong:
         case QMetaType::UInt:
+        case QMetaType::QDateTime:
             if (prevData[key] != data[key])
                 syncData[key] = data[key];
             break;
@@ -793,7 +867,7 @@ QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantM
         lastAcceptedData.clear();
         syncData = data;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0) && QT_VERSION < QT_VERSION_CHECK(5, 5, 0))
+#if (QBT_USES_QT5 && QT_VERSION < QT_VERSION_CHECK(5, 5, 0))
         // QJsonDocument::fromVariant() supports QVariantHash only
         // since Qt5.5, so manually convert data["torrents"]
         QVariantMap torrentsMap;

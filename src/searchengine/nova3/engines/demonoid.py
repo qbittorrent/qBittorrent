@@ -1,4 +1,4 @@
-#VERSION: 1.1
+#VERSION: 1.2
 #AUTHORS: Douman (custparasite@gmx.se)
 #CONTRIBUTORS: Diego de las Heras (ngosang@hotmail.es)
 
@@ -27,13 +27,12 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 from html.parser import HTMLParser
-from http.client import HTTPSConnection as https
 from re import compile as re_compile
 from re import DOTALL
 from itertools import islice
 #qBt
 from novaprinter import prettyPrinter
-from helpers import download_file
+from helpers import download_file, retrieve_url
 
 class demonoid(object):
     """ Search engine class """
@@ -120,18 +119,12 @@ class demonoid(object):
 
     def search(self, what, cat='all'):
         """ Performs search """
-        connection = https("www.demonoid.pw")
-
         #prepare query
         cat = self.supported_categories[cat.lower()]
-        query = "".join(("/files/?category=", cat, "&subcategory=All&quality=All&seeded=2&external=2&query=", what, "&to=1&uid=0&sort=S"))
+        query = "".join((self.url, "/files/?category=", cat, "&subcategory=All&quality=All&seeded=2&external=2&query=", what, "&to=1&uid=0&sort=S"))
 
-        connection.request("GET", query)
-        response = connection.getresponse()
-        if response.status != 200:
-            return
+        data = retrieve_url(query)
 
-        data = response.read().decode("utf-8")
         add_res_list = re_compile("/files.*page=[0-9]+")
         torrent_list = re_compile("start torrent list -->(.*)<!-- end torrent", DOTALL)
         data = torrent_list.search(data).group(0)
@@ -144,10 +137,8 @@ class demonoid(object):
 
         if list_results:
             for search_query in islice((add_res_list.search(result).group(0) for result in list_results[1].split(" | ")), 0, 5):
-                connection.request("GET", search_query)
-                response = connection.getresponse()
-                parser.feed(torrent_list.search(response.read().decode('utf-8')).group(0))
+                response = retrieve_url(self.url + search_query)
+                parser.feed(torrent_list.search(response).group(0))
                 parser.close()
 
-        connection.close()
         return

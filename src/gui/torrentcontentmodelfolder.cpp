@@ -138,17 +138,20 @@ void TorrentContentModelFolder::recalculateProgress()
 {
   qreal tProgress = 0;
   qulonglong tSize = 0;
+  qulonglong tRemaining = 0;
   foreach (TorrentContentModelItem* child, m_childItems) {
     if (child->priority() != prio::IGNORED) {
       if (child->itemType() == FolderType)
         static_cast<TorrentContentModelFolder*>(child)->recalculateProgress();
       tProgress += child->progress() * child->size();
       tSize += child->size();
+      tRemaining += child->remaining();
     }
   }
 
   if (!isRootItem() && tSize > 0) {
     m_progress = tProgress / tSize;
+    m_remaining = tRemaining;
     Q_ASSERT(m_progress <= 1.);
   }
 }

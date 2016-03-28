@@ -28,7 +28,7 @@
  */
 
 #include "guiiconprovider.h"
-#include "core/preferences.h"
+#include "base/preferences.h"
 
 #include <QIcon>
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))

@@ -31,47 +31,57 @@
 #ifndef STATUSBAR_H
 #define STATUSBAR_H
 
-#include <QStatusBar>
-#include <QFrame>
-#include <QLabel>
-#include <QTimer>
-#include <QGridLayout>
-#include <QPushButton>
-#include <QHBoxLayout>
+#include <QObject>
 
-class StatusBar: public QObject {
-  Q_OBJECT
+class QStatusBar;
+class QFrame;
+class QLabel;
+class QTimer;
+class QPushButton;
+class QHBoxLayout;
+
+namespace BitTorrent
+{
+    class SessionStatus;
+}
+
+class StatusBar: public QObject
+{
+    Q_OBJECT
 
 public:
-  StatusBar(QStatusBar *bar);
-  ~StatusBar();
+    StatusBar(QStatusBar *bar);
+    ~StatusBar();
 
-  QPushButton* connectionStatusButton() const;
+    QPushButton* connectionStatusButton() const;
 
 public slots:
-  void showRestartRequired();
-  void stopTimer();
-  void refreshStatusBar();
-  void updateAltSpeedsBtn(bool alternative);
-  void toggleAlternativeSpeeds();
-  void capDownloadSpeed();
-  void capUploadSpeed();
+    void showRestartRequired();
+    void stopTimer();
+    void refreshStatusBar();
+    void updateAltSpeedsBtn(bool alternative);
+    void toggleAlternativeSpeeds();
+    void capDownloadSpeed();
+    void capUploadSpeed();
 
 private:
-  QStatusBar *m_bar;
-  QPushButton *dlSpeedLbl;
-  QPushButton *upSpeedLbl;
-  QLabel *DHTLbl;
-  QFrame *statusSep1;
-  QFrame *statusSep2;
-  QFrame *statusSep3;
-  QFrame *statusSep4;
-  QPushButton *connecStatusLblIcon;
-  QPushButton *altSpeedsBtn;
-  QTimer *refreshTimer;
-  QWidget *container;
-  QHBoxLayout *layout;
+    QStatusBar *m_bar;
+    QPushButton *m_dlSpeedLbl;
+    QPushButton *m_upSpeedLbl;
+    QLabel *m_DHTLbl;
+    QFrame *m_statusSep1;
+    QFrame *m_statusSep2;
+    QFrame *m_statusSep3;
+    QFrame *m_statusSep4;
+    QPushButton *m_connecStatusLblIcon;
+    QPushButton *m_altSpeedsBtn;
+    QTimer *m_refreshTimer;
+    QWidget *m_container;
+    QHBoxLayout *m_layout;
 
+    void updateConnectionStatus(const BitTorrent::SessionStatus &sessionStatus);
+    void updateDHTNodesNumber(const BitTorrent::SessionStatus &sessionStatus);
+    void updateSpeedLabels(const BitTorrent::SessionStatus &sessionStatus);
 };
 
 #endif // STATUSBAR_H

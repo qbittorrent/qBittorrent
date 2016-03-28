@@ -34,7 +34,7 @@
 #include <QDialog>
 #include <QStringList>
 
-#include "core/bittorrent/torrentinfo.h"
+#include "base/bittorrent/torrentinfo.h"
 
 namespace Ui
 {

@@ -15,6 +15,7 @@
                 window.parent.closeWindows();
             });
             $('confirmBtn').addEvent('click', function(e){
+                parent.torrentsTable.deselectAll();
                 new Event(e).stop();
                 var cmd = 'command/delete';
                 if($('deleteFromDiskCB').get('checked'))

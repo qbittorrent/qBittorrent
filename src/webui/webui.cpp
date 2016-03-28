@@ -26,11 +26,11 @@
  * exception statement from your version.
  */
 
-#include "core/preferences.h"
-#include "core/logger.h"
-#include "core/http/server.h"
-#include "core/net/dnsupdater.h"
-#include "core/net/portforwarder.h"
+#include "base/preferences.h"
+#include "base/logger.h"
+#include "base/http/server.h"
+#include "base/net/dnsupdater.h"
+#include "base/net/portforwarder.h"
 #include "webapplication.h"
 #include "webui.h"
 
@@ -65,11 +65,12 @@ void WebUI::init()
 
 #ifndef QT_NO_OPENSSL
         if (pref->isWebUiHttpsEnabled()) {
-            QSslCertificate cert(pref->getWebUiHttpsCertificate());
+            QList<QSslCertificate> certs = QSslCertificate::fromData(pref->getWebUiHttpsCertificate());
             QSslKey key;
             key = QSslKey(pref->getWebUiHttpsKey(), QSsl::Rsa);
-            if (!cert.isNull() && !key.isNull())
-                httpServer_->enableHttps(cert, key);
+            bool certsIsNull = std::any_of(certs.begin(), certs.end(), [](QSslCertificate c) { return c.isNull(); });
+            if (!certsIsNull && !certs.empty() && !key.isNull())
+                httpServer_->enableHttps(certs, key);
             else
                 httpServer_->disableHttps();
         }

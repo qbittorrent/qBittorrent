@@ -31,31 +31,33 @@
 #define LOGLISTWIDGET_H
 
 #include <QListWidget>
+#include "base/logger.h"
 
 QT_BEGIN_NAMESPACE
 class QKeyEvent;
 QT_END_NAMESPACE
 
-class LogListWidget : public QListWidget
+class LogListWidget: public QListWidget
 {
     Q_OBJECT
 
 public:
-  explicit LogListWidget(int max_lines = 100, QWidget *parent = 0);
+    // -1 is the portable way to have all the bits set
+    explicit LogListWidget(int maxLines, const Log::MsgTypes &types = Log::ALL, QWidget *parent = 0);
+    void showMsgTypes(const Log::MsgTypes &types);
 
 public slots:
-  void appendLine(const QString &line);
+    void appendLine(const QString &line, const Log::MsgType &type);
 
 protected slots:
-  void copySelection();
-  void clearLog();
+    void copySelection();
 
 protected:
-  void keyPressEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event);
 
 private:
-  int m_maxLines;
-
+    int m_maxLines;
+    Log::MsgTypes m_types;
 };
 
 #endif // LOGLISTWIDGET_H

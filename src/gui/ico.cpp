@@ -424,7 +424,7 @@ bool ICOHandler::canRead(QIODevice *device)
 
 class ICOPlugin : public QImageIOPlugin
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     Q_PLUGIN_METADATA(IID "org.qbittorrent.ICOPlugin")
 #endif
 public:
@@ -461,7 +461,7 @@ QImageIOHandler *ICOPlugin::create(QIODevice *device, const QByteArray &format) 
     return handler;
 }
 
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#ifndef QBT_USES_QT5
 Q_EXPORT_STATIC_PLUGIN(ICOPlugin)
 Q_EXPORT_PLUGIN2(ico, ICOPlugin)
 #endif

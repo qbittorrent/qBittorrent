@@ -23,29 +23,20 @@
       <bool>false</bool>
      </property>
      <widget class="QListWidget" name="tabSelection">
-      <property name="autoScroll">
-       <bool>false</bool>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
-      <property name="iconSize">
-       <size>
-        <width>32</width>
-        <height>32</height>
-       </size>
+      <property name="movement">
+       <enum>QListView::Static</enum>
+      </property>
+      <property name="flow">
+       <enum>QListView::TopToBottom</enum>
       </property>
       <property name="isWrapping" stdset="0">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="resizeMode">
        <enum>QListView::Adjust</enum>
-      </property>
-      <property name="spacing">
-       <number>4</number>
-      </property>
-      <property name="gridSize">
-       <size>
-        <width>110</width>
-        <height>60</height>
-       </size>
       </property>
       <property name="viewMode">
        <enum>QListView::IconMode</enum>
@@ -57,77 +48,35 @@
        <property name="text">
         <string>Behavior</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsEnabled</set>
-       </property>
       </item>
       <item>
        <property name="text">
         <string>Downloads</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsEnabled</set>
        </property>
       </item>
       <item>
        <property name="text">
         <string>Connection</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsEnabled</set>
-       </property>
       </item>
       <item>
        <property name="text">
         <string>Speed</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsEnabled</set>
        </property>
       </item>
       <item>
        <property name="text">
         <string>BitTorrent</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsEnabled</set>
-       </property>
       </item>
       <item>
        <property name="text">
         <string>Web UI</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsEnabled</set>
-       </property>
       </item>
       <item>
        <property name="text">
         <string>Advanced</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsEnabled</set>
        </property>
       </item>
      </widget>
@@ -141,6 +90,9 @@
          <number>0</number>
         </property>
         <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
          <number>0</number>
         </property>
         <property name="bottomMargin">
@@ -161,9 +113,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>454</width>
-             <height>610</height>
+             <y>-190</y>
+             <width>486</width>
+             <height>732</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -256,6 +208,44 @@
                   <bool>true</bool>
                  </property>
                 </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                 <item>
+                  <widget class="QCheckBox" name="checkHideZero">
+                   <property name="text">
+                    <string>Hide zero and infinity values</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="comboHideZero">
+                   <item>
+                    <property name="text">
+                     <string>Always</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Paused torrents only</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_10">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
                </item>
                <item>
                 <widget class="QGroupBox" name="groupBox_7">
@@ -380,6 +370,16 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkProgramAutoExitConfirm">
+                 <property name="text">
+                  <string>Confirmation on auto-exit when downloads finish</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="checkShowSystray">
                  <property name="title">
                   <string>Show qBittorrent in notification area</string>
@@ -481,6 +481,153 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="checkFileLog">
+              <property name="title">
+               <string>Log file</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_11">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_7">
+                 <item>
+                  <widget class="QLabel" name="label_4">
+                   <property name="text">
+                    <string>Save path:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="textFileLogPath"/>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="browseFileLogDir">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string notr="true">...</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_8">
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QCheckBox" name="checkFileLogBackup">
+                   <property name="text">
+                    <string>Backup the log file after:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSpinBox" name="spinFileLogSize">
+                   <property name="suffix">
+                    <string> MB</string>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>1000</number>
+                   </property>
+                   <property name="value">
+                    <number>10</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_10">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_9">
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QCheckBox" name="checkFileLogDelete">
+                   <property name="text">
+                    <string>Delete backup logs older than:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSpinBox" name="spinFileLogAge">
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>365</number>
+                   </property>
+                   <property name="value">
+                    <number>6</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="comboFileLogAgeType">
+                   <property name="currentIndex">
+                    <number>1</number>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string comment="Delete backup logs older than 10 months">days</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string comment="Delete backup logs older than 10 months">months</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string comment="Delete backup logs older than 10 years">years</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_16">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <spacer name="verticalSpacer_4">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
@@ -507,6 +654,9 @@
         <property name="topMargin">
          <number>0</number>
         </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
         <property name="bottomMargin">
          <number>0</number>
         </property>
@@ -520,8 +670,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>454</width>
-             <height>942</height>
+             <width>487</width>
+             <height>1334</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -573,7 +723,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="fileSystemBox">
+             <widget class="QGroupBox" name="groupSavingManagement">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -581,13 +731,57 @@
                </sizepolicy>
               </property>
               <property name="title">
-               <string>Hard Disk</string>
+               <string>Saving Management</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_25">
                <item>
-                <widget class="QGroupBox" name="groupBox_3">
+                <layout class="QHBoxLayout" name="horizontalLayout_7">
+                 <property name="spacing">
+                  <number>10</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="label_4">
+                   <property name="text">
+                    <string>Default Saving Mode:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radioBtnSimpleMode">
+                   <property name="text">
+                    <string>Simple</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radioBtnAdvancedMode">
+                   <property name="text">
+                    <string>Advanced</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_16">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupDefaultSavePath">
                  <property name="title">
-                  <string>Save files to location:</string>
+                  <string>Default Save Path</string>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_26">
                   <property name="bottomMargin">
@@ -632,10 +826,134 @@
                     </item>
                    </layout>
                   </item>
-                  <item>
-                   <widget class="QCheckBox" name="checkAppendLabel">
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_8">
+                 <property name="spacing">
+                  <number>10</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="labelEnableSubcategories">
+                   <property name="text">
+                    <string>Enable Subcategories:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radioBtnEnableSubcategories">
+                   <property name="text">
+                    <string>Yes</string>
+                   </property>
+                   <attribute name="buttonGroup">
+                    <string notr="true">buttonGroup</string>
+                   </attribute>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radioBtnDisableSubcategories">
+                   <property name="text">
+                    <string>No</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                   <attribute name="buttonGroup">
+                    <string notr="true">buttonGroup</string>
+                   </attribute>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_17">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupCategoryChanged">
+                 <property name="title">
+                  <string>When Torrent Category changed</string>
+                 </property>
+                 <layout class="QFormLayout" name="formLayout_6">
+                  <item row="0" column="0">
+                   <widget class="QRadioButton" name="radioBtnRelocateOnCategoryChanged">
                     <property name="text">
-                     <string>Append the label of the torrent to the save path</string>
+                     <string>Relocate torrent</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QRadioButton" name="radioBtnDisableASMOnCategoryChanged">
+                    <property name="text">
+                     <string>Switch torrent to Simple Mode</string>
+                    </property>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupDefaultSavePathChanged">
+                 <property name="title">
+                  <string>When Default Save Path changed</string>
+                 </property>
+                 <layout class="QFormLayout" name="formLayout_7">
+                  <item row="0" column="0">
+                   <widget class="QRadioButton" name="radioBtnRelocateOnDefaultSavePathChanged">
+                    <property name="text">
+                     <string>Relocate affected torrents</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QRadioButton" name="radioBtnDisableASMOnDefaultSavePathChanged">
+                    <property name="text">
+                     <string>Switch affected torrents to Simple Mode</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupCategorySavePathChanged">
+                 <property name="title">
+                  <string>When Category changed</string>
+                 </property>
+                 <layout class="QFormLayout" name="formLayout_8">
+                  <item row="0" column="0">
+                   <widget class="QRadioButton" name="radioBtnRelocateOnCategorySavePathChanged">
+                    <property name="text">
+                     <string>Relocate affected torrents</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QRadioButton" name="radioBtnDisableASMOnCategorySavePathChanged">
+                    <property name="text">
+                     <string>Switch affected torrents to Simple Mode</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -700,96 +1018,6 @@
                  <property name="text">
                   <string>Append .!qB extension to incomplete files</string>
                  </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QGroupBox" name="groupBox_2">
-                 <property name="title">
-                  <string>Automatically add torrents from:</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_38">
-                  <property name="bottomMargin">
-                   <number>9</number>
-                  </property>
-                  <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_16">
-                    <item>
-                     <widget class="QTableView" name="scanFoldersView">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                        <horstretch>0</horstretch>
-                        <verstretch>1</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="minimumSize">
-                       <size>
-                        <width>250</width>
-                        <height>150</height>
-                       </size>
-                      </property>
-                      <property name="selectionMode">
-                       <enum>QAbstractItemView::SingleSelection</enum>
-                      </property>
-                      <property name="selectionBehavior">
-                       <enum>QAbstractItemView::SelectRows</enum>
-                      </property>
-                      <property name="showGrid">
-                       <bool>false</bool>
-                      </property>
-                      <property name="sortingEnabled">
-                       <bool>true</bool>
-                      </property>
-                      <attribute name="horizontalHeaderDefaultSectionSize">
-                       <number>80</number>
-                      </attribute>
-                      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-                       <bool>false</bool>
-                      </attribute>
-                      <attribute name="horizontalHeaderStretchLastSection">
-                       <bool>true</bool>
-                      </attribute>
-                      <attribute name="verticalHeaderVisible">
-                       <bool>false</bool>
-                      </attribute>
-                     </widget>
-                    </item>
-                    <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_37">
-                      <item>
-                       <widget class="QPushButton" name="addScanFolderButton">
-                        <property name="text">
-                         <string>Add folder...</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="removeScanFolderButton">
-                        <property name="enabled">
-                         <bool>false</bool>
-                        </property>
-                        <property name="text">
-                         <string>Remove folder</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <spacer name="verticalSpacer_6">
-                        <property name="orientation">
-                         <enum>Qt::Vertical</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>20</width>
-                          <height>40</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                     </layout>
-                    </item>
-                   </layout>
-                  </item>
-                 </layout>
                 </widget>
                </item>
                <item>
@@ -902,6 +1130,93 @@
                </size>
               </property>
              </spacer>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_2">
+              <property name="title">
+               <string>Automatically add torrents from:</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_38">
+               <property name="bottomMargin">
+                <number>9</number>
+               </property>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_16">
+                 <item>
+                  <widget class="QTreeView" name="scanFoldersView">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>1</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>250</width>
+                     <height>150</height>
+                    </size>
+                   </property>
+                   <property name="editTriggers">
+                    <set>QAbstractItemView::AllEditTriggers</set>
+                   </property>
+                   <property name="selectionMode">
+                    <enum>QAbstractItemView::SingleSelection</enum>
+                   </property>
+                   <property name="selectionBehavior">
+                    <enum>QAbstractItemView::SelectRows</enum>
+                   </property>
+                   <property name="textElideMode">
+                    <enum>Qt::ElideNone</enum>
+                   </property>
+                   <property name="rootIsDecorated">
+                    <bool>false</bool>
+                   </property>
+                   <attribute name="headerDefaultSectionSize">
+                    <number>80</number>
+                   </attribute>
+                   <attribute name="headerStretchLastSection">
+                    <bool>false</bool>
+                   </attribute>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_37">
+                   <item>
+                    <widget class="QPushButton" name="addScanFolderButton">
+                     <property name="text">
+                      <string>Add folder...</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="removeScanFolderButton">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="text">
+                      <string>Remove folder</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_6">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
             </item>
             <item>
              <widget class="QGroupBox" name="groupMailNotification">
@@ -1023,6 +1338,9 @@
         <property name="topMargin">
          <number>0</number>
         </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
         <property name="bottomMargin">
          <number>0</number>
         </property>
@@ -1036,8 +1354,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>361</width>
-             <height>586</height>
+             <width>450</width>
+             <height>658</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1566,8 +1884,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>275</width>
-             <height>401</height>
+             <width>376</width>
+             <height>444</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1937,6 +2255,9 @@
         <property name="topMargin">
          <number>0</number>
         </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
         <property name="bottomMargin">
          <number>0</number>
         </property>
@@ -1950,8 +2271,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>440</width>
-             <height>481</height>
+             <width>555</width>
+             <height>527</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2055,7 +2376,7 @@
                  <item>
                   <widget class="QLabel" name="label_anonymous">
                    <property name="text">
-                    <string> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</string>
+                    <string> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</string>
                    </property>
                    <property name="openExternalLinks">
                     <bool>true</bool>
@@ -2323,12 +2644,15 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabOptionPage7">
-       <layout class="QVBoxLayout">
+      <widget class="QWidget" name="tabWebuiPage">
+       <layout class="QVBoxLayout" name="tabWebuiPageLayout">
         <property name="leftMargin">
          <number>0</number>
         </property>
         <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
          <number>0</number>
         </property>
         <property name="bottomMargin">
@@ -2344,8 +2668,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>332</width>
-             <height>480</height>
+             <width>419</width>
+             <height>537</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2529,7 +2853,7 @@
                   <item row="2" column="0" colspan="3">
                    <widget class="QLabel" name="lblWebUIInfo">
                     <property name="text">
-                     <string>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</string>
+                     <string>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</string>
                     </property>
                     <property name="openExternalLinks">
                      <bool>true</bool>
@@ -2710,47 +3034,19 @@
        </layout>
       </widget>
       <widget class="QWidget" name="tabAdvancedPage">
-       <layout class="QVBoxLayout" name="verticalLayout_35">
+       <layout class="QVBoxLayout" name="advPageLayout">
         <property name="leftMargin">
          <number>0</number>
         </property>
         <property name="topMargin">
          <number>0</number>
         </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
         <property name="bottomMargin">
          <number>0</number>
         </property>
-        <item>
-         <widget class="QScrollArea" name="scrollArea_advanced">
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents_10">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>89</width>
-             <height>28</height>
-            </rect>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_36">
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-           </layout>
-          </widget>
-         </widget>
-        </item>
        </layout>
       </widget>
      </widget>
@@ -2946,4 +3242,7 @@
    </hints>
   </connection>
  </connections>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+ </buttongroups>
 </ui>

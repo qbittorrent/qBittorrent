@@ -37,7 +37,7 @@
 #ifndef DISABLE_GUI
 #include "gui/guiiconprovider.h"
 #ifdef Q_OS_WIN
-#include <Windows.h>
+#include <windows.h>
 #include <QSharedMemory>
 #include <QSessionManager>
 #endif // Q_OS_WIN
@@ -58,19 +58,40 @@
 #endif
 
 #include "application.h"
-#include "core/logger.h"
-#include "core/preferences.h"
-#include "core/utils/fs.h"
-#include "core/utils/misc.h"
-#include "core/iconprovider.h"
-#include "core/scanfoldersmodel.h"
-#include "core/net/smtp.h"
-#include "core/net/downloadmanager.h"
-#include "core/net/geoipmanager.h"
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/torrenthandle.h"
+#include "filelogger.h"
+#include "base/logger.h"
+#include "base/preferences.h"
+#include "base/settingsstorage.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/iconprovider.h"
+#include "base/scanfoldersmodel.h"
+#include "base/net/smtp.h"
+#include "base/net/downloadmanager.h"
+#include "base/net/geoipmanager.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/torrenthandle.h"
 
-static const char PARAMS_SEPARATOR[] = "|";
+namespace
+{
+#define SETTINGS_KEY(name) "Application/" name
+
+    // FileLogger properties keys
+#define FILELOGGER_SETTINGS_KEY(name) SETTINGS_KEY("FileLogger/") name
+    const QString KEY_FILELOGGER_ENABLED = FILELOGGER_SETTINGS_KEY("Enabled");
+    const QString KEY_FILELOGGER_PATH = FILELOGGER_SETTINGS_KEY("Path");
+    const QString KEY_FILELOGGER_BACKUP = FILELOGGER_SETTINGS_KEY("Backup");
+    const QString KEY_FILELOGGER_DELETEOLD = FILELOGGER_SETTINGS_KEY("DeleteOld");
+    const QString KEY_FILELOGGER_MAXSIZE = FILELOGGER_SETTINGS_KEY("MaxSize");
+    const QString KEY_FILELOGGER_AGE = FILELOGGER_SETTINGS_KEY("Age");
+    const QString KEY_FILELOGGER_AGETYPE = FILELOGGER_SETTINGS_KEY("AgeType");
+
+    //just a shortcut
+    inline SettingsStorage *settings() { return  SettingsStorage::instance(); }
+
+    const QString LOG_FOLDER("logs");
+    const char PARAMS_SEPARATOR[] = "|";
+}
 
 Application::Application(const QString &id, int &argc, char **argv)
     : BaseApplication(id, argc, argv)
@@ -80,6 +101,7 @@ Application::Application(const QString &id, int &argc, char **argv)
 #endif
 {
     Logger::initInstance();
+    SettingsStorage::initInstance();
     Preferences::initInstance();
 
 #if defined(Q_OS_MACX) && !defined(DISABLE_GUI)
@@ -92,7 +114,9 @@ Application::Application(const QString &id, int &argc, char **argv)
     setApplicationName("qBittorrent");
     initializeTranslation();
 #ifndef DISABLE_GUI
-    setStyleSheet("QStatusBar::item { border-width: 0; }");
+#ifdef QBT_USES_QT5
+    setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
+#endif // QBT_USES_QT5
     setQuitOnLastWindowClosed(false);
 #ifdef Q_OS_WIN
     connect(this, SIGNAL(commitDataRequest(QSessionManager &)), this, SLOT(shutdownCleanup(QSessionManager &)), Qt::DirectConnection);
@@ -102,7 +126,103 @@ Application::Application(const QString &id, int &argc, char **argv)
     connect(this, SIGNAL(messageReceived(const QString &)), SLOT(processMessage(const QString &)));
     connect(this, SIGNAL(aboutToQuit()), SLOT(cleanup()));
 
+    if (isFileLoggerEnabled())
+        m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
+
     Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(VERSION));
+}
+
+bool Application::isFileLoggerEnabled() const
+{
+    return settings()->loadValue(KEY_FILELOGGER_ENABLED, true).toBool();
+}
+
+void Application::setFileLoggerEnabled(bool value)
+{
+    if (value && !m_fileLogger)
+        m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
+    else if (!value)
+        delete m_fileLogger;
+    settings()->storeValue(KEY_FILELOGGER_ENABLED, value);
+}
+
+QString Application::fileLoggerPath() const
+{
+    return settings()->loadValue(KEY_FILELOGGER_PATH, QVariant(Utils::Fs::QDesktopServicesDataLocation() + LOG_FOLDER)).toString();
+}
+
+void Application::setFileLoggerPath(const QString &value)
+{
+    if (m_fileLogger)
+        m_fileLogger->changePath(value);
+    settings()->storeValue(KEY_FILELOGGER_PATH, value);
+}
+
+bool Application::isFileLoggerBackup() const
+{
+    return settings()->loadValue(KEY_FILELOGGER_BACKUP, true).toBool();
+}
+
+void Application::setFileLoggerBackup(bool value)
+{
+    if (m_fileLogger)
+        m_fileLogger->setBackup(value);
+    settings()->storeValue(KEY_FILELOGGER_BACKUP, value);
+}
+
+bool Application::isFileLoggerDeleteOld() const
+{
+    return settings()->loadValue(KEY_FILELOGGER_DELETEOLD, true).toBool();
+}
+
+void Application::setFileLoggerDeleteOld(bool value)
+{
+    if (value && m_fileLogger)
+        m_fileLogger->deleteOld(fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
+    settings()->storeValue(KEY_FILELOGGER_DELETEOLD, value);
+}
+
+int Application::fileLoggerMaxSize() const
+{
+    int val = settings()->loadValue(KEY_FILELOGGER_MAXSIZE, 10).toInt();
+    if (val < 1)
+        return 1;
+    if (val > 1000)
+        return 1000;
+    return val;
+}
+
+void Application::setFileLoggerMaxSize(const int value)
+{
+    if (m_fileLogger)
+        m_fileLogger->setMaxSize(value);
+    settings()->storeValue(KEY_FILELOGGER_MAXSIZE, std::min(std::max(value, 1), 1000));
+}
+
+int Application::fileLoggerAge() const
+{
+    int val = settings()->loadValue(KEY_FILELOGGER_AGE, 6).toInt();
+    if (val < 1)
+        return 1;
+    if (val > 365)
+        return 365;
+    return val;
+}
+
+void Application::setFileLoggerAge(const int value)
+{
+    settings()->storeValue(KEY_FILELOGGER_AGE, std::min(std::max(value, 1), 365));
+}
+
+int Application::fileLoggerAgeType() const
+{
+    int val = settings()->loadValue(KEY_FILELOGGER_AGETYPE, 1).toInt();
+    return (val < 0 || val > 2) ? 1 : val;
+}
+
+void Application::setFileLoggerAgeType(const int value)
+{
+    settings()->storeValue(KEY_FILELOGGER_AGETYPE, (value < 0 || value > 2) ? 1 : value);
 }
 
 void Application::processMessage(const QString &message)
@@ -144,7 +264,7 @@ void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
         QString program = pref->getAutoRunProgram();
 
         program.replace("%N", torrent->name());
-        program.replace("%L", torrent->label());
+        program.replace("%L", torrent->category());
         program.replace("%F", Utils::Fs::toNativePath(torrent->contentPath()));
         program.replace("%R", Utils::Fs::toNativePath(torrent->rootPath()));
         program.replace("%D", Utils::Fs::toNativePath(torrent->savePath()));
@@ -186,7 +306,14 @@ void Application::allTorrentsFinished()
         else if (shutdown)
             action = ShutdownAction::Shutdown;
 
-        if (!ShutdownConfirmDlg::askForConfirmation(action)) return;
+        if ((action == ShutdownAction::None) && (!pref->dontConfirmAutoExit())) {
+            if (!ShutdownConfirmDlg::askForConfirmation(action))
+                return;
+        }
+        else { //exit and shutdown
+            if (!ShutdownConfirmDlg::askForConfirmation(action))
+                return;
+        }
 
         // Actually shut down
         if (suspend || hibernate || shutdown) {
@@ -225,7 +352,7 @@ void Application::processParams(const QStringList &params)
     foreach (QString param, params) {
         param = param.trimmed();
 #ifndef DISABLE_GUI
-        if (Preferences::instance()->useAdditionDialog())
+        if (AddNewTorrentDialog::isEnabled())
             AddNewTorrentDialog::show(param, m_window);
         else
 #endif
@@ -357,7 +484,7 @@ void Application::initializeTranslation()
     }
 
     if (m_qtTranslator.load(
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
             QString::fromUtf8("qtbase_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
         m_qtTranslator.load(
 #endif
@@ -462,10 +589,12 @@ void Application::cleanup()
 #ifndef DISABLE_COUNTRIES_RESOLUTION
     Net::GeoIPManager::freeInstance();
 #endif
+    Net::DownloadManager::freeInstance();
     Preferences::freeInstance();
+    SettingsStorage::freeInstance();
+    delete m_fileLogger;
     Logger::freeInstance();
     IconProvider::freeInstance();
-    Net::DownloadManager::freeInstance();
 #ifndef DISABLE_GUI
 #ifdef Q_OS_WIN
     typedef BOOL (WINAPI *PSHUTDOWNBRDESTROY)(HWND);

@@ -34,32 +34,27 @@
 #include <QObject>
 #include <QUrl>
 
-class QNetworkReply;
-class QNetworkAccessManager;
-
-class ProgramUpdater : public QObject
+class ProgramUpdater: public QObject
 {
     Q_OBJECT
+
 public:
     explicit ProgramUpdater(QObject *parent = 0, bool invokedByUser = false);
-    ~ProgramUpdater();
+
     void checkForUpdates();
     void updateProgram();
 
-protected:
-    QString extractVersionNumber(const QString& title) const;
-    bool isVersionMoreRecent(const QString& new_version) const;
-
-protected slots:
-    void rssDownloadFinished(QNetworkReply* reply);
-    void setUpdateUrl(QString title);
-
 signals:
-    void updateCheckFinished(bool update_available, QString version, bool invokedByUser);
+    void updateCheckFinished(bool updateAvailable, QString version, bool invokedByUser);
+
+private slots:
+    void rssDownloadFinished(const QString &url, const QByteArray &data);
+    void rssDownloadFailed(const QString &url, const QString &error);
 
 private:
+    bool isVersionMoreRecent(const QString &remoteVersion) const;
+
     QString m_updateUrl;
-    QNetworkAccessManager *mp_manager;
     bool m_invokedByUser;
 };
 

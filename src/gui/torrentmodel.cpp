@@ -34,10 +34,10 @@
 #include <QPalette>
 #include <QIcon>
 
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/torrenthandle.h"
-#include "core/torrentfilter.h"
-#include "core/utils/fs.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/torrentfilter.h"
+#include "base/utils/fs.h"
 #include "torrentmodel.h"
 
 static QIcon getIconByState(BitTorrent::TorrentState state);
@@ -104,7 +104,7 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation, int 
             case TR_UPSPEED: return tr("Up Speed", "i.e: Upload speed");
             case TR_RATIO: return tr("Ratio", "Share ratio");
             case TR_ETA: return tr("ETA", "i.e: Estimated Time of Arrival / Time left");
-            case TR_LABEL: return tr("Label");
+            case TR_CATEGORY: return tr("Category");
             case TR_ADD_DATE: return tr("Added On", "Torrent was added to transfer list on 01/01/2010 08:00");
             case TR_SEED_DATE: return tr("Completed On", "Torrent was completed on 01/01/2010 08:00");
             case TR_TRACKER: return tr("Tracker");
@@ -185,9 +185,9 @@ QVariant TorrentModel::data(const QModelIndex &index, int role) const
     case TR_STATUS:
         return static_cast<int>(torrent->state());
     case TR_SEEDS:
-        return (role == Qt::DisplayRole) ? torrent->seedsCount() : torrent->completeCount();
+        return (role == Qt::DisplayRole) ? torrent->seedsCount() : torrent->totalSeedsCount();
     case TR_PEERS:
-        return (role == Qt::DisplayRole) ? (torrent->peersCount() - torrent->seedsCount()) : torrent->incompleteCount();
+        return (role == Qt::DisplayRole) ? torrent->leechsCount() : torrent->totalLeechersCount();
     case TR_DLSPEED:
         return torrent->downloadPayloadRate();
     case TR_UPSPEED:
@@ -196,8 +196,8 @@ QVariant TorrentModel::data(const QModelIndex &index, int role) const
         return torrent->eta();
     case TR_RATIO:
         return torrent->realRatio();
-    case TR_LABEL:
-        return torrent->label();
+    case TR_CATEGORY:
+        return torrent->category();
     case TR_ADD_DATE:
         return torrent->addedTime();
     case TR_SEED_DATE:
@@ -250,13 +250,13 @@ bool TorrentModel::setData(const QModelIndex &index, const QVariant &value, int 
     BitTorrent::TorrentHandle *const torrent = m_torrents.value(index.row());
     if (!torrent) return false;
 
-    // Label, seed date and Name columns can be edited
+    // Category, seed date and Name columns can be edited
     switch(index.column()) {
     case TR_NAME:
         torrent->setName(value.toString());
         break;
-    case TR_LABEL:
-        torrent->setLabel(value.toString());
+    case TR_CATEGORY:
+        torrent->setCategory(value.toString());
         break;
     default:
         return false;

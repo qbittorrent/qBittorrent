@@ -37,12 +37,12 @@
 #include <QModelIndex>
 #include <QPainter>
 #include <QApplication>
-#include "core/utils/misc.h"
-#include "core/utils/string.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
 #include "previewselect.h"
 
 #ifdef Q_OS_WIN
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#ifndef QBT_USES_QT5
 #include <QPlastiqueStyle>
 #else
 #include <QProxyStyle>
@@ -80,7 +80,7 @@ class PreviewListDelegate: public QItemDelegate {
           QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
           // XXX: To avoid having the progress text on the right of the bar
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#ifndef QBT_USES_QT5
           QPlastiqueStyle st;
 #else
           QProxyStyle st("fusion");

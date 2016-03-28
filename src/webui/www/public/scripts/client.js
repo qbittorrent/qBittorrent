@@ -22,29 +22,37 @@
  * THE SOFTWARE.
  */
 
-myTable = new dynamicTable();
+torrentsTable = new TorrentsTable();
+torrentPeersTable = new TorrentPeersTable();
 
-var updatePropertiesPanel = function(){};
-var updateMainData = function(){};
+var updatePropertiesPanel = function () {};
+
+var updateTorrentData = function () {};
+var updateTrackersData = function () {};
+var updateTorrentPeersData = function () {};
+var updateWebSeedsData = function () {};
+var updateTorrentFilesData = function () {};
+
+var updateMainData = function () {};
 var alternativeSpeedLimits = false;
 var queueing_enabled = true;
 var syncMainDataTimerPeriod = 1500;
 
-var LABELS_ALL = 1;
-var LABELS_UNLABELLED = 2;
+var CATEGORIES_ALL = 1;
+var CATEGORIES_UNCATEGORIZED = 2;
 
-var label_list = {};
+var category_list = {};
 
-var selected_label = LABELS_ALL;
-var setLabelFilter = function(){};
+var selected_category = CATEGORIES_ALL;
+var setCategoryFilter = function(){};
 
 var selected_filter = getLocalStorageItem('selected_filter', 'all');
 var setFilter = function(){};
 
-var loadSelectedLabel = function () {
-    selected_label = getLocalStorageItem('selected_label', LABELS_ALL);
+var loadSelectedCategory = function () {
+    selected_category = getLocalStorageItem('selected_category', CATEGORIES_ALL);
 };
-loadSelectedLabel();
+loadSelectedCategory();
 
 function genHash(string) {
     var hash = 0;
@@ -95,11 +103,11 @@ window.addEvent('load', function () {
         resizeLimit : [100, 300]
     });
 
-    setLabelFilter = function(hash) {
-        selected_label = hash;
-        localStorage.setItem('selected_label', selected_label);
-        highlightSelectedLabel();
-        if (typeof myTable.table != 'undefined')
+    setCategoryFilter = function(hash) {
+        selected_category = hash;
+        localStorage.setItem('selected_category', selected_category);
+        highlightSelectedCategory();
+        if (typeof torrentsTable.table != 'undefined')
             updateMainData();
     };
 
@@ -113,11 +121,12 @@ window.addEvent('load', function () {
         $("resumed_filter").removeClass("selectedFilter");
         $("active_filter").removeClass("selectedFilter");
         $("inactive_filter").removeClass("selectedFilter");
+        $("errored_filter").removeClass("selectedFilter");
         $(f + "_filter").addClass("selectedFilter");
         selected_filter = f;
         localStorage.setItem('selected_filter', f);
         // Reload torrents
-        if (typeof myTable.table != 'undefined')
+        if (typeof torrentsTable.table != 'undefined')
             updateMainData();
     }
 
@@ -161,106 +170,122 @@ window.addEvent('load', function () {
     var syncMainDataLastResponseId = 0;
     var serverState = {};
 
-    var removeTorrentFromLabelList = function(hash) {
+    var removeTorrentFromCategoryList = function(hash) {
         if (hash == null || hash == "")
             return false;
         var removed = false;
-        Object.each(label_list, function(label) {
-            if (Object.contains(label.torrents, hash)) {
+        Object.each(category_list, function(category) {
+            if (Object.contains(category.torrents, hash)) {
                 removed = true;
-                label.torrents.splice(label.torrents.indexOf(hash), 1);
+                category.torrents.splice(category.torrents.indexOf(hash), 1);
             }
         });
         return removed;
     };
 
-    var addTorrentToLabelList = function(torrent) {
-        var label = torrent['label'];
-        if (label == null)
+    var addTorrentToCategoryList = function(torrent) {
+        var category = torrent['category'];
+        if (category == null)
             return false;
-        if (label.length === 0) { // Empty label
-            removeTorrentFromLabelList(torrent['hash']);
+        if (category.length === 0) { // Empty category
+            removeTorrentFromCategoryList(torrent['hash']);
             return true;
         }
-        var labelHash = genHash(label);
-        if (label_list[labelHash] == null) // This should not happen
-            label_list[labelHash] = {name: label, torrents: []};
-        if (!Object.contains(label_list[labelHash].torrents, torrent['hash'])) {
-            removeTorrentFromLabelList(torrent['hash']);
-            label_list[labelHash].torrents = label_list[labelHash].torrents.combine([torrent['hash']]);
+        var categoryHash = genHash(category);
+        if (category_list[categoryHash] == null) // This should not happen
+            category_list[categoryHash] = {name: category, torrents: []};
+        if (!Object.contains(category_list[categoryHash].torrents, torrent['hash'])) {
+            removeTorrentFromCategoryList(torrent['hash']);
+            category_list[categoryHash].torrents = category_list[categoryHash].torrents.combine([torrent['hash']]);
             return true;
         }
         return false;
     };
 
     var updateContextMenu = function () {
-        var labelList = $('contextLabelList');
-        labelList.empty();
-        labelList.appendChild(new Element('li', {html: '<a href="javascript:newLabelFN();"><img src="theme/list-add" alt="QBT_TR(New...)QBT_TR"/> QBT_TR(New...)QBT_TR</a>'}));
-        labelList.appendChild(new Element('li', {html: '<a href="javascript:updateLabelFN(0);"><img src="theme/edit-clear" alt="QBT_TR(Reset)QBT_TR"/> QBT_TR(Reset)QBT_TR</a>'}));
+        var categoryList = $('contextCategoryList');
+        categoryList.empty();
+        categoryList.appendChild(new Element('li', {html: '<a href="javascript:newCategoryFN();"><img src="theme/list-add" alt="QBT_TR(New...)QBT_TR"/> QBT_TR(New...)QBT_TR</a>'}));
+        categoryList.appendChild(new Element('li', {html: '<a href="javascript:updateCategoryFN(0);"><img src="theme/edit-clear" alt="QBT_TR(Reset)QBT_TR"/> QBT_TR(Reset)QBT_TR</a>'}));
 
-        var sortedLabels = []
-        Object.each(label_list, function(label) {
-            sortedLabels.push(label.name);
+        var sortedCategories = []
+        Object.each(category_list, function(category) {
+            sortedCategories.push(category.name);
         });
-        sortedLabels.sort();
+        sortedCategories.sort();
 
         var first = true;
-        Object.each(sortedLabels, function(labelName) {
-            var labelHash = genHash(labelName);
-            var el = new Element('li', {html: '<a href="javascript:updateLabelFN(\'' + labelHash + '\');"><img src="theme/inode-directory"/> ' + labelName + '</a>'});
+        Object.each(sortedCategories, function(categoryName) {
+            var categoryHash = genHash(categoryName);
+            var el = new Element('li', {html: '<a href="javascript:updateCategoryFN(\'' + categoryHash + '\');"><img src="theme/inode-directory"/> ' + categoryName + '</a>'});
             if (first) {
                 el.addClass('separator');
                 first = false;
             }
-            labelList.appendChild(el);
+            categoryList.appendChild(el);
         });
     };
 
-    var updateLabelList = function() {
-        var labelList = $('filterLabelList');
-        if (!labelList)
+    var updateFilter = function(filter, filterTitle) {
+        $(filter + '_filter').firstChild.childNodes[1].nodeValue = filterTitle.replace('%1', torrentsTable.getFilteredTorrentsNumber(filter));
+    };
+
+    var updateFiltersList = function() {
+        updateFilter('all', 'QBT_TR(All (%1))QBT_TR');
+        updateFilter('downloading', 'QBT_TR(Downloading (%1))QBT_TR');
+        updateFilter('seeding', 'QBT_TR(Seeding (%1))QBT_TR');
+        updateFilter('completed', 'QBT_TR(Completed (%1))QBT_TR');
+        updateFilter('resumed', 'QBT_TR(Resumed (%1))QBT_TR');
+        updateFilter('paused', 'QBT_TR(Paused (%1))QBT_TR');
+        updateFilter('active', 'QBT_TR(Active (%1))QBT_TR');
+        updateFilter('inactive', 'QBT_TR(Inactive (%1))QBT_TR');
+        updateFilter('errored', 'QBT_TR(Errored (%1))QBT_TR');
+    };
+
+    var updateCategoryList = function() {
+        var categoryList = $('filterCategoryList');
+        if (!categoryList)
             return;
-        labelList.empty();
+        categoryList.empty();
 
         var create_link = function(hash, text, count) {
-            var html = '<a href="#" onclick="setLabelFilter(' + hash + ');return false;">' +
+            var html = '<a href="#" onclick="setCategoryFilter(' + hash + ');return false;">' +
                 '<img src="theme/inode-directory"/>' +
                 text + ' (' + count + ')' + '</a>';
             return new Element('li', {id: hash, html: html});
         };
 
-        var all = myTable.getRowIds().length;
-        var unlabelled = 0;
-        Object.each(myTable.rows, function(row) {
-            if (row['full_data'].label.length === 0)
-            unlabelled += 1;
+        var all = torrentsTable.getRowIds().length;
+        var uncategorized = 0;
+        Object.each(torrentsTable.rows, function(row) {
+            if (row['full_data'].category.length === 0)
+                uncategorized += 1;
         });
-        labelList.appendChild(create_link(LABELS_ALL, 'QBT_TR(All)QBT_TR', all));
-        labelList.appendChild(create_link(LABELS_UNLABELLED, 'QBT_TR(Unlabeled)QBT_TR', unlabelled));
+        categoryList.appendChild(create_link(CATEGORIES_ALL, 'QBT_TR(All (0))QBT_TR'.replace(' (0)', ''), all));
+        categoryList.appendChild(create_link(CATEGORIES_UNCATEGORIZED, 'QBT_TR(Uncategorized (0))QBT_TR'.replace(' (0)', ''), uncategorized));
 
-        var sortedLabels = []
-        Object.each(label_list, function(label) {
-            sortedLabels.push(label.name);
+        var sortedCategories = []
+        Object.each(category_list, function(category) {
+            sortedCategories.push(category.name);
         });
-        sortedLabels.sort();
+        sortedCategories.sort();
 
-        Object.each(sortedLabels, function(labelName) {
-            var labelHash = genHash(labelName);
-            var labelCount = label_list[labelHash].torrents.length;
-            labelList.appendChild(create_link(labelHash, labelName, labelCount));
+        Object.each(sortedCategories, function(categoryName) {
+            var categoryHash = genHash(categoryName);
+            var categoryCount = category_list[categoryHash].torrents.length;
+            categoryList.appendChild(create_link(categoryHash, categoryName, categoryCount));
         });
 
-        highlightSelectedLabel();
+        highlightSelectedCategory();
     };
 
-    var highlightSelectedLabel = function() {
-        var labelList = $('filterLabelList');
-        if (!labelList)
+    var highlightSelectedCategory = function() {
+        var categoryList = $('filterCategoryList');
+        if (!categoryList)
             return;
-        var childrens = labelList.childNodes;
+        var childrens = categoryList.childNodes;
         for (var i in childrens) {
-            if (childrens[i].id == selected_label)
+            if (childrens[i].id == selected_category)
                 childrens[i].className = "selectedFilter";
             else
                 childrens[i].className = "";
@@ -283,53 +308,55 @@ window.addEvent('load', function () {
             onSuccess : function (response) {
                 $('error_div').set('html', '');
                 if (response) {
-                    var update_labels = false;
+                    var update_categories = false;
                     var full_update = (response['full_update'] == true);
                     if (full_update) {
-                        myTable.rows.erase();
-                        label_list = {};
+                        torrentsTable.clear();
+                        category_list = {};
                     }
                     if (response['rid']) {
                         syncMainDataLastResponseId = response['rid'];
                     }
-                    if (response['labels']) {
-                        response['labels'].each(function(label) {
-                            var labelHash = genHash(label);
-                            label_list[labelHash] = {name: label, torrents: []};
+                    if (response['categories']) {
+                        response['categories'].each(function(category) {
+                            var categoryHash = genHash(category);
+                            category_list[categoryHash] = {name: category, torrents: []};
                         });
-                        update_labels = true;
+                        update_categories = true;
                     }
-                    if (response['labels_removed']) {
-                        response['labels_removed'].each(function(label) {
-                            var labelHash = genHash(label);
-                            delete label_list[labelHash];
+                    if (response['categories_removed']) {
+                        response['categories_removed'].each(function(category) {
+                            var categoryHash = genHash(category);
+                            delete category_list[categoryHash];
                         });
-                        update_labels = true;
+                        update_categories = true;
                     }
                     if (response['torrents']) {
                         for (var key in response['torrents']) {
                             response['torrents'][key]['hash'] = key;
-                            myTable.updateRowData(response['torrents'][key]);
-                            if (addTorrentToLabelList(response['torrents'][key]))
-                                update_labels = true;
+                            response['torrents'][key]['rowId'] = key;
+                            torrentsTable.updateRowData(response['torrents'][key]);
+                            if (addTorrentToCategoryList(response['torrents'][key]))
+                                update_categories = true;
                         }
                     }
                     if (response['torrents_removed'])
                         response['torrents_removed'].each(function (hash) {
-                            myTable.removeRow(hash);
-                            removeTorrentFromLabelList(hash);
-                            update_labels = true; // Allways to update All label
+                            torrentsTable.removeRow(hash);
+                            removeTorrentFromCategoryList(hash);
+                            update_categories = true; // Allways to update All category
                         });
-                    myTable.updateTable(full_update);
-                    myTable.altRow();
+                    torrentsTable.updateTable(full_update);
+                    torrentsTable.altRow();
                     if (response['server_state']) {
                         var tmp = response['server_state'];
                         for(var key in tmp)
                             serverState[key] = tmp[key];
                         processServerState();
                     }
-                    if (update_labels) {
-                        updateLabelList();
+                    updateFiltersList();
+                    if (update_categories) {
+                        updateCategoryList();
                         updateContextMenu();
                     }
                 }
@@ -340,23 +367,21 @@ window.addEvent('load', function () {
     };
 
     updateMainData = function() {
-        myTable.updateTable();
+        torrentsTable.updateTable();
         clearTimeout(syncMainDataTimer);
         syncMainDataTimer = syncMainData.delay(100);
     }
 
     var processServerState = function () {
-        var transfer_info = "";
+        var transfer_info = friendlyUnit(serverState.dl_info_speed, true);
         if (serverState.dl_rate_limit > 0)
-            transfer_info += "[" + friendlyUnit(serverState.dl_rate_limit, true) + "] ";
-        transfer_info += friendlyUnit(serverState.dl_info_speed, true);
-        transfer_info += " (" + friendlyUnit(serverState.dl_info_data, false) + ")"
+            transfer_info += " [" + friendlyUnit(serverState.dl_rate_limit, true) + "]";
+        transfer_info += " (" + friendlyUnit(serverState.dl_info_data, false) + ")";
         $("DlInfos").set('html', transfer_info);
-        transfer_info = "";
+        transfer_info = friendlyUnit(serverState.up_info_speed, true);
         if (serverState.up_rate_limit > 0)
-            transfer_info += "[" + friendlyUnit(serverState.up_rate_limit, true) + "] ";
-        transfer_info += friendlyUnit(serverState.up_info_speed, true)
-        transfer_info += " (" + friendlyUnit(serverState.up_info_data, false) + ")"
+            transfer_info += " [" + friendlyUnit(serverState.up_rate_limit, true) + "]";
+        transfer_info += " (" + friendlyUnit(serverState.up_info_data, false) + ")";
         $("UpInfos").set('html', transfer_info);
         if (speedInTitle) {
             document.title = "QBT_TR([D:%1 U:%2])QBT_TR".replace("%1", friendlyUnit(serverState.dl_info_speed, true)).replace("%2", friendlyUnit(serverState.up_info_speed, true));
@@ -373,8 +398,8 @@ window.addEvent('load', function () {
 
         if (queueing_enabled != serverState.queueing) {
             queueing_enabled = serverState.queueing;
-            myTable.columns['priority'].force_hide = !queueing_enabled;
-            myTable.updateColumn('priority');
+            torrentsTable.columns['priority'].force_hide = !queueing_enabled;
+            torrentsTable.updateColumn('priority');
             if (queueing_enabled) {
                 $('queueingLinks').removeClass('invisible');
                 $('queueingButtons').removeClass('invisible');
@@ -423,11 +448,6 @@ window.addEvent('load', function () {
 
     $('DlInfos').addEvent('click', globalDownloadLimitFN);
     $('UpInfos').addEvent('click', globalUploadLimitFN);
-
-    setSortedColumn = function (column) {
-        myTable.setSortedColumn(column);
-        updateMainData();
-    };
 
     $('showTopToolbarLink').addEvent('click', function(e) {
         showTopToolbar = !showTopToolbar;
@@ -489,7 +509,7 @@ window.addEvent('load', function () {
         },
         contentURL : 'properties_content.html',
         require : {
-            css : ['css/Tabs.css'],
+            css : ['css/Tabs.css', 'css/dynamicTable.css'],
             js : ['scripts/prop-general.js', 'scripts/prop-trackers.js', 'scripts/prop-webseeds.js', 'scripts/prop-files.js'],
         },
         tabsURL : 'properties.html',
@@ -501,6 +521,8 @@ window.addEvent('load', function () {
                     updateTorrentData();
                 else if (!$('prop_trackers').hasClass('invisible'))
                     updateTrackersData();
+                else if (!$('prop_peers').hasClass('invisible'))
+                    updateTorrentPeersData();
                 else if (!$('prop_webseeds').hasClass('invisible'))
                     updateWebSeedsData();
                 else if (!$('prop_files').hasClass('invisible'))
@@ -512,7 +534,9 @@ window.addEvent('load', function () {
                 $('prop_trackers').addClass("invisible");
                 $('prop_webseeds').addClass("invisible");
                 $('prop_files').addClass("invisible");
+                $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
+                localStorage.setItem('selected_tab', this.id);
             });
 
             $('PropTrackersLink').addEvent('click', function(e){
@@ -520,7 +544,19 @@ window.addEvent('load', function () {
                 $('prop_general').addClass("invisible");
                 $('prop_webseeds').addClass("invisible");
                 $('prop_files').addClass("invisible");
+                $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
+                localStorage.setItem('selected_tab', this.id);
+            });
+
+            $('PropPeersLink').addEvent('click', function(e){
+                $('prop_peers').removeClass("invisible");
+                $('prop_trackers').addClass("invisible");
+                $('prop_general').addClass("invisible");
+                $('prop_webseeds').addClass("invisible");
+                $('prop_files').addClass("invisible");
+                updatePropertiesPanel();
+                localStorage.setItem('selected_tab', this.id);
             });
 
             $('PropWebSeedsLink').addEvent('click', function(e){
@@ -528,7 +564,9 @@ window.addEvent('load', function () {
                 $('prop_general').addClass("invisible");
                 $('prop_trackers').addClass("invisible");
                 $('prop_files').addClass("invisible");
+                $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
+                localStorage.setItem('selected_tab', this.id);
             });
 
             $('PropFilesLink').addEvent('click', function(e){
@@ -536,7 +574,9 @@ window.addEvent('load', function () {
                 $('prop_general').addClass("invisible");
                 $('prop_trackers').addClass("invisible");
                 $('prop_webseeds').addClass("invisible");
+                $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
+                localStorage.setItem('selected_tab', this.id);
             });
 
             $('propertiesPanel_collapseToggle').addEvent('click', function(e){
@@ -556,7 +596,7 @@ var keyboardEvents = new Keyboard({
     defaultEventType: 'keydown',
     events: {
         'ctrl+a': function(event) {
-            myTable.selectAll();
+            torrentsTable.selectAll();
             event.preventDefault();
         },
         'delete': function(event) {
@@ -567,3 +607,78 @@ var keyboardEvents = new Keyboard({
 });
 
 keyboardEvents.activate();
+
+var loadTorrentPeersTimer;
+var syncTorrentPeersLastResponseId = 0;
+var show_flags = true;
+var loadTorrentPeersData = function(){
+    if ($('prop_peers').hasClass('invisible') ||
+        $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
+        syncTorrentPeersLastResponseId = 0;
+        torrentPeersTable.clear();
+        return;
+    }
+    var current_hash = torrentsTable.getCurrentTorrentHash();
+    if (current_hash == "") {
+        syncTorrentPeersLastResponseId = 0;
+        torrentPeersTable.clear();
+        clearTimeout(loadTorrentPeersTimer);
+        loadTorrentPeersTimer = loadTorrentPeersData.delay(syncMainDataTimerPeriod);
+        return;
+    }
+    var url = new URI('sync/torrent_peers');
+    url.setData('rid', syncTorrentPeersLastResponseId);
+    url.setData('hash', current_hash);
+    var request = new Request.JSON({
+        url: url,
+        noCache: true,
+        method: 'get',
+        onFailure: function() {
+            $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
+            clearTimeout(loadTorrentPeersTimer);
+            loadTorrentPeersTimer = loadTorrentPeersData.delay(5000);
+        },
+        onSuccess: function(response) {
+            $('error_div').set('html', '');
+            if (response) {
+                var full_update = (response['full_update'] == true);
+                if (full_update) {
+                    torrentPeersTable.clear();
+                }
+                if (response['rid']) {
+                    syncTorrentPeersLastResponseId = response['rid'];
+                }
+                if (response['peers']) {
+                    for (var key in response['peers']) {
+                        response['peers'][key]['rowId'] = key;
+                        torrentPeersTable.updateRowData(response['peers'][key]);
+                    }
+                }
+                if (response['peers_removed'])
+                    response['peers_removed'].each(function (hash) {
+                        torrentPeersTable.removeRow(hash);
+                    });
+                torrentPeersTable.updateTable(full_update);
+                torrentPeersTable.altRow();
+
+                if (response['show_flags']) {
+                    if (show_flags != response['show_flags']) {
+                        show_flags = response['show_flags'];
+                        torrentPeersTable.columns['country'].force_hide = !show_flags;
+                        torrentPeersTable.updateColumn('country');
+                    }
+                }
+            }
+            else {
+                torrentPeersTable.clear();
+            }
+            clearTimeout(loadTorrentPeersTimer);
+            loadTorrentPeersTimer = loadTorrentPeersData.delay(syncMainDataTimerPeriod);
+        }
+    }).send();
+};
+
+updateTorrentPeersData = function(){
+    clearTimeout(loadTorrentPeersTimer);
+    loadTorrentPeersData();
+};

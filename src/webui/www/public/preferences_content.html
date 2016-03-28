@@ -18,9 +18,22 @@
   </span><br/><br/>
   QBT_TR(Automatically add torrents from:)QBT_TR<br/>
     <table border="1" id="watched_folders_tab">
-    <thead><tr><th>QBT_TR(Watched Folder)QBT_TR</th><th>QBT_TR(Download here)QBT_TR</th></tr></thead>
+    <thead><tr><th>QBT_TR(Watched Folder)QBT_TR</th><th>QBT_TR(Save Files to)QBT_TR</th></tr></thead>
     <tbody></tbody>
-    <tfoot><tr><td style="padding-top:4px;"><input type="text" id="new_watch_folder_txt"/></td><td style="padding-top:4px;"><input type="checkbox" id="new_watch_folder_dl" style="padding-left:18px;"/><img src="theme/list-add" alt="Add" style="padding-left:2px;width:16px;cursor:pointer;margin-right:-18px;" onclick="addWatchFolder();"/></td></tr></tfoot>
+    <tfoot><tr>
+    <td style="padding-top:4px;"><input type="text" id="new_watch_folder_txt"/></td>
+    <td style="padding-top:4px;">
+    <div class="select-watched-folder-editable">
+      <select id="new_watch_folder_select" onchange="changeWatchFolderSelect(this)">
+        <option selected value="watch_folder">QBT_TR(Watch Folder)QBT_TR</option>
+        <option value="default_folder">QBT_TR(Default Folder)QBT_TR</option>
+        <option value="other">QBT_TR(Other...)QBT_TR</option>
+      </select>
+      <input id="new_watch_folder_other_txt" type="text" value="QBT_TR(Watch Folder)QBT_TR" onchange="changeWatchFolderText(this)" />
+      <img src="theme/list-add" alt="Add" style="padding-left:170px;width:16px;cursor:pointer;" onclick="addWatchFolder();"/>
+    </div>
+    </td>
+    </tr></tfoot>
     </table><br/>
   <input type="checkbox" id="exportdir_checkbox" onclick="updateExportDirEnabled();"/>
   <label for="exportdir_checkbox">QBT_TR(Copy .torrent files to:)QBT_TR</label>&nbsp;&nbsp;
@@ -55,13 +68,22 @@
 
 <fieldset class="settings">
     <legend><input type="checkbox" id="autorun_checkbox" onclick="updateAutoRun();"/>
-    <label for="autorun_checkbox">QBT_TR(Run an external program on torrent completion)QBT_TR</label></legend>
+    <label for="autorun_checkbox">QBT_TR(Run external program on torrent completion)QBT_TR</label></legend>
     <input type="text" id="autorunProg_txt" style="width: 400px;"/><br/>
-    <i>QBT_TR(The following parameters are supported:)QBT_TR
+    <i>QBT_TR(Supported parameters (case sensitive):)QBT_TR
     <ul>
-    <li>%f: QBT_TR(Torrent path)QBT_TR</li>
-    <li>%n: QBT_TR(Torrent name)QBT_TR</li>
-    </ul></i>
+    <li>QBT_TR(%N: Torrent name)QBT_TR</li>
+    <li>QBT_TR(%L: Category)QBT_TR</li>
+    <li>QBT_TR(%F: Content path (same as root path for multifile torrent))QBT_TR</li>
+    <li>QBT_TR(%R: Root path (first torrent subdirectory path))QBT_TR</li>
+    <li>QBT_TR(%D: Save path)QBT_TR</li>
+    <li>QBT_TR(%C: Number of files)QBT_TR</li>
+    <li>QBT_TR(%Z: Torrent size (bytes))QBT_TR</li>
+    <li>QBT_TR(%T: Current tracker)QBT_TR</li>
+    <li>QBT_TR(%I: Info hash)QBT_TR</li>
+    </ul>
+    QBT_TR(Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N"))QBT_TR
+    </i>
 </fieldset>
 </div>
 
@@ -252,7 +274,7 @@
     <option value="2">QBT_TR(Disable encryption)QBT_TR</option>
   </select><br/>
   <input type="checkbox" id="anonymous_mode_checkbox"/>
-  <label for="anonymous_mode_checkbox">QBT_TR(Enable anonymous mode)QBT_TR (<a target="_blank" href="https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode">More information</a>)</label><br/>
+  <label for="anonymous_mode_checkbox">QBT_TR(Enable anonymous mode)QBT_TR (<a target="_blank" href="https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode">QBT_TR(More information)QBT_TR</a>)</label><br/>
 </fieldset>
 
 <fieldset class="settings">
@@ -336,8 +358,8 @@
       <option value="eu_ES">Euskara</option>
       <option value="vi_VN">tiếng Việt</option>
       <option value="zh">简体中文</option>
-      <option value="zh_TW">正體中文 (臺灣)</option>
-      <option value="zh_HK">繁體中文 (香港)</option>
+      <option value="zh_TW">正體中文</option>
+      <option value="zh_HK">香港正體字</option>
       <option value="ko_KR">한글</option>
     </select>
 </fieldset>
@@ -358,7 +380,7 @@
     <label for="ssl_cert_textarea" style="margin-left: 20px;">QBT_TR(Certificate:)QBT_TR</label>
     <textarea id="ssl_cert_textarea" rows="5" cols="70"></textarea>
     </div>
-    <div style="padding-left: 10px;"><a target="_blank" href="http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts">Information about certificates</a></div>
+    <div style="padding-left: 10px;"><a target="_blank" href="https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts">QBT_TR(Information about certificates)QBT_TR</a></div>
   </fieldset>
 </fieldset>
 
@@ -412,38 +434,75 @@ updateTempDirEnabled = function() {
 
 addWatchFolder = function() {
   var new_folder = $('new_watch_folder_txt').getProperty('value').trim();
-  if(new_folder.length <= 0) return;
+  if (new_folder.length <= 0) return;
 
-  var checked = "";
-  if ($('new_watch_folder_dl').getProperty('checked') == true)
-      checked = "checked";
+  var new_other = $('new_watch_folder_other_txt').getProperty('value').trim();
+  if (new_other.length <= 0) return;
+
+  var new_select = $('new_watch_folder_select').getProperty('value').trim();
+
   var i = $('watched_folders_tab').getChildren('tbody')[0].getChildren('tr').length;
-
-  var myinput = "<input id='text_watch_"+ i +"' type='text' value='" + new_folder + "'>";
-  var mycb = "<input id='cb_watch_"+ i +"' type='checkbox' " + checked + ">";
-  WatchedFoldersTable.push([myinput, mycb]);
+  pushWatchFolder(i, new_folder, new_select, new_other);
 
   // Clear fields
   $('new_watch_folder_txt').setProperty('value', '');
-  $('new_watch_folder_dl').setProperty('checked', false);
+  var elt = $('new_watch_folder_select');
+  elt.setProperty('value', 'watch_folder');
+  var text = elt.options[elt.selectedIndex].innerHTML;
+  $('new_watch_folder_other_txt').setProperty('value', text);
+}
+
+changeWatchFolderSelect = function(item) {
+  if (item.value == "other") {
+    item.nextElementSibling.value = 'QBT_TR(Type folder here)QBT_TR';
+    item.nextElementSibling.select();
+  } else {
+    var text = item.options[item.selectedIndex].innerHTML;
+    item.nextElementSibling.value = text;
+  }
+}
+
+changeWatchFolderText = function(item) {
+  item.previousElementSibling.value = 'other';
+}
+
+pushWatchFolder = function(pos, folder, sel, other) {
+  var myinput = "<input id='text_watch_"+ pos +"' type='text' value='" + folder + "'>";
+  var mycb = "<div class='select-watched-folder-editable'>" +
+             "<select id ='cb_watch_" + pos + "' onchange='changeWatchFolderSelect(this)'>" +
+             "<option value='watch_folder'>QBT_TR(Watch Folder)QBT_TR</option>" +
+             "<option value='default_folder'>QBT_TR(Default Folder)QBT_TR</option>" +
+             "<option value='other'>QBT_TR(Other...)QBT_TR</option>" +
+             "</select>" +
+             "<input id='cb_watch_txt_" + pos + "' type='text' " +
+             "onchange='changeWatchFolderText(this)' /></div>";
+
+  WatchedFoldersTable.push([myinput, mycb]);
+  $('cb_watch_' + pos).setProperty('value', sel);
+  if (sel != "other") {
+    var elt = $('cb_watch_' + pos);
+    other = elt.options[elt.selectedIndex].innerHTML;
+  }
+  $('cb_watch_txt_'+ pos).setProperty('value', other);
 }
 
 getWatchedFolders = function() {
   var nb_folders = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
-  var folders = Array();
-  var download_in_place = Array();
-  for(var i=0; i<nb_folders; i+=1) {
-    var folder_path = $('text_watch_'+i).getProperty('value').trim();
-    if(folder_path.length > 0) {
-      folders[folders.length] = folder_path;
-      if($("cb_watch_"+i).getProperty('checked')) {
-        download_in_place[download_in_place.length] = 1;
+  var folders = new Hash();
+  for(var i = 0; i < nb_folders; i++) {
+    var fpath = $('text_watch_' + i).getProperty('value').trim();
+    if (fpath.length > 0) {
+      var other;
+      var sel = $('cb_watch_' + i).getProperty('value').trim();
+      if (sel == "other") {
+        other = $('cb_watch_txt_' + i).getProperty('value').trim();
       } else {
-        download_in_place[download_in_place.length] = 0;
+        other = (sel == "watch_folder") ? 0 : 1;
       }
+      folders.set(fpath, other);
     }
   }
-  return [folders, download_in_place];
+  return folders;
 }
 
 updateExportDirEnabled = function() {
@@ -714,14 +773,17 @@ loadPreferences = function() {
                     updateTempDirEnabled();
                     $('preallocateall_checkbox').setProperty('checked', pref.preallocate_all);
                     $('appendext_checkbox').setProperty('checked', pref.incomplete_files_ext);
-                    var i;
-                    for(i=0; i<pref.scan_dirs.length; i+=1) {
-                      var myinput = "<input id='text_watch_"+ i +"' type='text' value='" + pref.scan_dirs[i] + "'>";
-                      var checked = "";
-                      if (pref.download_in_scan_dirs[i])
-                          checked = "checked";
-                      var mycb = "<input id='cb_watch_"+ i +"' type='checkbox' " + checked + ">";
-                      WatchedFoldersTable.push([myinput, mycb]);
+                    var i = 0;
+                    for (var folder in pref.scan_dirs) {
+                      var sel;
+                      var other = "";
+                      if (typeof pref.scan_dirs[folder] == "string") {
+                         other = pref.scan_dirs[folder];
+                         sel = "other";
+                      } else {
+                         sel = (pref.scan_dirs[folder] == 0) ? "watch_folder" : "default_folder";
+                      }
+                      pushWatchFolder(i++, folder, sel, other);
                     }
                     if(pref.export_dir != '') {
                       $('exportdir_checkbox').setProperty('checked', true);
@@ -904,7 +966,7 @@ loadPreferences = function() {
                     // Share Ratio Limiting
                     $('max_ratio_checkbox').setProperty('checked', pref.max_ratio_enabled);
                     if (pref.max_ratio_enabled)
-                        $('max_ratio_value').setProperty('value', pref.max_ratio.toInt());
+                        $('max_ratio_value').setProperty('value', pref.max_ratio);
                     else
                         $('max_ratio_value').setProperty('value', 1);
                     var max_ratio_act = pref.max_ratio_act.toInt();
@@ -950,9 +1012,7 @@ applyPreferences = function() {
   settings.set('temp_path', $('temppath_text').getProperty('value'));
   settings.set('preallocate_all', $('preallocateall_checkbox').getProperty('checked'));
   settings.set('incomplete_files_ext', $('appendext_checkbox').getProperty('checked'));
-  var watched_folders = getWatchedFolders();
-  settings.set('scan_dirs', watched_folders[0]);
-  settings.set('download_in_scan_dirs', watched_folders[1]);
+  settings.set('scan_dirs', getWatchedFolders());
   if($('exportdir_checkbox').getProperty('checked'))
     settings.set('export_dir', $('exportdir_text').getProperty('value'));
   else
@@ -1153,7 +1213,7 @@ applyPreferences = function() {
   // Share Ratio Limiting
   var max_ratio = -1;
   if($('max_ratio_checkbox').getProperty('checked')) {
-    max_ratio = $('max_ratio_value').getProperty('value').toInt();
+    max_ratio = $('max_ratio_value').getProperty('value');
     if(isNaN(max_ratio) || max_ratio < 0 || max_ratio > 9998) {
       alert("QBT_TR(Share ratio limit must be between 0 and 9998.)QBT_TR");
       return;
@@ -1181,14 +1241,13 @@ applyPreferences = function() {
 
   // Authentication
   var web_ui_username = $('webui_username_text').getProperty('value');
-  var web_ui_password = $('webui_password_text').getProperty('value');
-    // Add some username/password length checking
   if(web_ui_username.length < 3) {
     alert("QBT_TR(The Web UI username must be at least 3 characters long.)QBT_TR");
     return;
   }
-  if(web_ui_password.length < 3) {
-    alert("QBT_TR(The Web UI password must be at least 3 characters long.)QBT_TR");
+  var web_ui_password = $('webui_password_text').getProperty('value');
+  if(web_ui_password.length < 6) {
+    alert("QBT_TR(The Web UI password must be at least 6 characters long.)QBT_TR");
     return;
   }
   settings.set('web_ui_username', web_ui_username);
@@ -1206,19 +1265,19 @@ applyPreferences = function() {
   var json_str = JSON.encode(settings);
 
   new Request({url: 'command/setPreferences',
-			    method: 'post',
-			    data: {'json': json_str,
+                method: 'post',
+                data: {'json': json_str,
                                    },
                             onFailure: function() {
                               alert("QBT_TR(Unable to save program preferences, qBittorrent is probably unreachable.)QBT_TR");
                               window.parent.closeWindows();
                             },
-			    onSuccess: function() {
+                onSuccess: function() {
                                 // Close window
                                 window.parent.location.reload();
-				window.parent.closeWindows();
-			    }
-		}).send();
+                window.parent.closeWindows();
+                }
+        }).send();
 };
 
 loadPreferences();

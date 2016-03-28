@@ -18,6 +18,9 @@
 *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
 ***************************************************************************/
 
+#ifndef STACKTRACE_WIN_H
+#define STACKTRACE_WIN_H
+
 #include <windows.h>
 #include <dbghelp.h>
 #include <stdio.h>
@@ -256,9 +259,9 @@ const QString straceWin::getBacktrace()
         }
     }
 
-    logStream << "\n\nList of linked Modules:\n";
-    EnumModulesContext modulesContext(hProcess, logStream);
-    SymEnumerateModules64(hProcess, EnumModulesCB, (PVOID)&modulesContext);
+    //logStream << "\n\nList of linked Modules:\n";
+    //EnumModulesContext modulesContext(hProcess, logStream);
+    //SymEnumerateModules64(hProcess, EnumModulesCB, (PVOID)&modulesContext);
     logStream << "```";
     return log;
 }
@@ -266,3 +269,5 @@ const QString straceWin::getBacktrace()
 #pragma warning(pop)
 #pragma optimize("g", on)
 #endif
+
+#endif // STACKTRACE_WIN_H

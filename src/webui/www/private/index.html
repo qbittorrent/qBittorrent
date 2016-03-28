@@ -55,7 +55,7 @@
                                 <li><a id="decreasePrioLink"><img class="MyMenuIcon" src="theme/go-down" alt="QBT_TR(Decrease Priority)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Decrease Priority)QBT_TR</a></li>
                                 <li><a id="bottomPrioLink"><img class="MyMenuIcon" src="theme/go-bottom" alt="QBT_TR(Minimum Priority)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Minimum Priority)QBT_TR</a></li>
                             </span>
-                            <li class="divider"><a id="recheckLink"><img class="MyMenuIcon" src="theme/document-edit-verify" alt="QBT_TR(Force Recheck)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Force Recheck)QBT_TR</a></li>
+                            <li class="divider"><a id="recheckLink"><img class="MyMenuIcon" src="theme/document-edit-verify" alt="QBT_TR(Force Recheck)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Force recheck)QBT_TR</a></li>
                         </ul>
                     </li>
                     <li>
@@ -106,8 +106,8 @@
         <li><a href="#ForceStart"><img src="theme/media-seek-forward" alt="QBT_TR(Force Resume)QBT_TR"/> QBT_TR(Force Resume)QBT_TR</a></li>
         <li class="separator"><a href="#Delete"><img src="theme/list-remove" alt="QBT_TR(Delete)QBT_TR"/> QBT_TR(Delete)QBT_TR</a></li>
         <li class="separator">
-            <a href="#Label" class="arrow-right"><img src="theme/view-categories" alt="QBT_TR(Label)QBT_TR"/> QBT_TR(Label)QBT_TR</a>
-            <ul id="contextLabelList"></ul>
+            <a href="#Category" class="arrow-right"><img src="theme/view-categories" alt="QBT_TR(Category)QBT_TR"/> QBT_TR(Category)QBT_TR</a>
+            <ul id="contextCategoryList"></ul>
         </li>
         <li id="queueingMenuItems" class="separator">
             <a href="#priority" class="arrow-right"><span style="display: inline-block; width:16px"></span> QBT_TR(Priority)QBT_TR</a>
@@ -118,11 +118,11 @@
                 <li><a href="#prioBottom"><img src="theme/go-bottom" alt="QBT_TR(Move to bottom)QBT_TR"/> QBT_TR(Move to bottom)QBT_TR</a></li>
             </ul>
         </li>
-        <li class="separator"><a href="#DownloadLimit"><img src="images/skin/download.png" alt="QBT_TR(Limit download rate...)QBT_TR"/> QBT_TR(Limit download rate...)QBT_TR</a></li>
-        <li><a href="#UploadLimit"><img src="images/skin/seeding.png" alt="QBT_TR(Limit upload rate...)QBT_TR"/> QBT_TR(Limit upload rate...)QBT_TR</a></li>
+        <li class="separator"><a href="#DownloadLimit"><img src="images/skin/downloadLimit.png" alt="QBT_TR(Limit download rate...)QBT_TR"/> QBT_TR(Limit download rate...)QBT_TR</a></li>
+        <li><a href="#UploadLimit"><img src="images/skin/uploadLimit.png" alt="QBT_TR(Limit upload rate...)QBT_TR"/> QBT_TR(Limit upload rate...)QBT_TR</a></li>
         <li><a href="#SuperSeeding"><img src="theme/checked" alt="QBT_TR(Super seeding mode)QBT_TR"/> QBT_TR(Super seeding mode)QBT_TR</a></li>
         <li class="separator"><a href="#SequentialDownload"><img src="theme/checked" alt="QBT_TR(Download in sequential order)QBT_TR"/> QBT_TR(Download in sequential order)QBT_TR</a></li>
-        <li><a href="#FirstLastPiecePrio"><img src="theme/checked" alt="QBT_TR(Download first and last piece first)QBT_TR"/> QBT_TR(Download first and last piece first)QBT_TR</a></li>
+        <li><a href="#FirstLastPiecePrio"><img src="theme/checked" alt="QBT_TR(Download first and last pieces first)QBT_TR"/> QBT_TR(Download first and last pieces first)QBT_TR</a></li>
         <li class="separator"><a href="#ForceRecheck"><img src="theme/document-edit-verify" alt="QBT_TR(Force recheck)QBT_TR"/>  QBT_TR(Force recheck)QBT_TR</a></li>
     </ul>
     <div id="desktopFooterWrapper">
@@ -131,14 +131,15 @@
             <table style="position: absolute; right: 5px;">
                 <tr>
                     <td id="DHTNodes"></td>
-                    <td style="width: 2px;margin:0;"><img src="images/skin/toolbox-divider.gif" alt="" style="height: 18px; padding-left: 10px; padding-right: 10px; margin-bottom: -2px;"/></td>
+                    <td class="statusBarSeparator"></td>
                     <td><img id="connectionStatus" alt="Connection Status" src="images/skin/firewalled.png" /></td>
-                    <td style="width: 2px;margin:0;"><img src="images/skin/toolbox-divider.gif" alt="" style="height: 18px; padding-left: 10px; padding-right: 10px; margin-bottom: -2px;"/></td>
+                    <td class="statusBarSeparator"></td>
                     <td style="cursor:pointer;"><img id="alternativeSpeedLimits" alt="QBT_TR(Alternative speed limits)QBT_TR" src="images/slow_off.png" /></td>
-                    <td style="width: 2px;margin:0;"><img src="images/skin/toolbox-divider.gif" alt="" style="height: 18px; padding-left: 10px; padding-right: 10px; margin-bottom: -2px;"/></td>
-                    <td style="cursor:pointer; min-width: 200px"><img src="images/skin/download.png" alt="" style="padding-right: 5px; margin-bottom: -4px;"><span id="DlInfos"></span></td>
-                    <td style="width: 2px;margin:0;"><img src="images/skin/toolbox-divider.gif" alt="" style="height: 18px; padding-left: 10px; padding-right: 10px; margin-bottom: -2px;"/></td>
-                    <td style="cursor:pointer; min-width: 200px"><img src="images/skin/seeding.png" alt="" style="padding-right: 5px; margin-bottom: -3px;"><span id="UpInfos"></span></td></tr>
+                    <td class="statusBarSeparator"></td>
+                    <td class="speedLabel"><img src="images/skin/download.png" alt="" style="padding-right: 5px; margin-bottom: -4px;"><span id="DlInfos"></span></td>
+                    <td class="statusBarSeparator"></td>
+                    <td class="speedLabel"><img src="images/skin/seeding.png" alt="" style="padding-right: 5px; margin-bottom: -3px;"><span id="UpInfos"></span></td>
+                </tr>
             </table>
         </div>
     </div>

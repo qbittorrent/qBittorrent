@@ -119,7 +119,7 @@ initializeWindows = function() {
     }
 
     uploadLimitFN = function() {
-        var h = myTable.selectedIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             var hash = h[0];
             new MochaUI.Window({
@@ -139,7 +139,7 @@ initializeWindows = function() {
     };
 
     toggleSequentialDownloadFN = function() {
-        var h = myTable.selectedIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new Request({
                 url: 'command/toggleSequentialDownload',
@@ -153,7 +153,7 @@ initializeWindows = function() {
     };
 
     toggleFirstLastPiecePrioFN = function() {
-        var h = myTable.selectedIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new Request({
                 url: 'command/toggleFirstLastPiecePrio',
@@ -167,7 +167,7 @@ initializeWindows = function() {
     };
 
     setSuperSeedingFN = function(val) {
-        var h = myTable.selectedIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new Request({
                 url: 'command/setSuperSeeding',
@@ -182,7 +182,7 @@ initializeWindows = function() {
     };
 
     setForceStartFN = function() {
-        var h = myTable.selectedIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new Request({
                 url: 'command/setForceStart',
@@ -213,7 +213,7 @@ initializeWindows = function() {
     }
 
     downloadLimitFN = function() {
-        var h = myTable.selectedIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             var hash = h[0];
             new MochaUI.Window({
@@ -233,7 +233,7 @@ initializeWindows = function() {
     };
 
     deleteFN = function() {
-        var h = myTable.selectedIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
@@ -257,7 +257,7 @@ initializeWindows = function() {
     });
 
     pauseFN = function() {
-        var h = myTable.selectedIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             h.each(function(hash, index) {
                 new Request({
@@ -273,7 +273,7 @@ initializeWindows = function() {
     };
 
     startFN = function() {
-        var h = myTable.selectedIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             h.each(function(hash, index) {
                 new Request({
@@ -289,7 +289,7 @@ initializeWindows = function() {
     };
 
     recheckFN = function() {
-        var h = myTable.selectedIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             h.each(function(hash, index) {
                 new Request({
@@ -304,14 +304,14 @@ initializeWindows = function() {
         }
     };
 
-    newLabelFN = function () {
-        var h = myTable.selectedIds();
+    newCategoryFN = function () {
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new MochaUI.Window({
-                id: 'newLabelPage',
-                title: "QBT_TR(New Label)QBT_TR",
+                id: 'newCategoryPage',
+                title: "QBT_TR(New Category)QBT_TR",
                 loadMethod: 'iframe',
-                contentURL: 'newlabel.html?hashes=' + h.join('|'),
+                contentURL: 'newcategory.html?hashes=' + h.join('|'),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -323,18 +323,18 @@ initializeWindows = function() {
         }
     };
 
-    updateLabelFN = function (labelHash) {
-        var labelName = '';
-        if (labelHash != 0)
-            var labelName = label_list[labelHash].name;
-        var h = myTable.selectedIds();
+    updateCategoryFN = function (categoryHash) {
+        var categoryName = '';
+        if (categoryHash != 0)
+            var categoryName = category_list[categoryHash].name;
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new Request({
-                url: 'command/setLabel',
+                url: 'command/setCategory',
                 method: 'post',
                 data: {
                     hashes: h.join("|"),
-                    label: labelName
+                    category: categoryName
                 }
             }).send();
         }
@@ -353,7 +353,7 @@ initializeWindows = function() {
     ['pause', 'resume', 'recheck'].each(function(item) {
         addClickEvent(item, function(e) {
             new Event(e).stop();
-            var h = myTable.selectedIds();
+            var h = torrentsTable.selectedRowsIds();
             if (h.length) {
                 h.each(function(hash, index) {
                     new Request({
@@ -377,7 +377,7 @@ initializeWindows = function() {
     });
 
     setPriorityFN = function(cmd) {
-        var h = myTable.selectedIds();
+        var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new Request({
                 url: 'command/' + cmd,

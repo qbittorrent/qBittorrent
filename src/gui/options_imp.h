@@ -70,10 +70,6 @@ public:
 public slots:
     void showConnectionTab();
 
-signals:
-    void status_changed() const;
-    void exitWithCancel();
-
 private slots:
     void enableProxy(int comboIndex);
     void on_buttonBox_accepted();
@@ -87,6 +83,7 @@ private slots:
     void handleScanFolderViewSelectionChanged();
     void on_IpFilterRefreshBtn_clicked();
     void handleIPFilterParsed(bool error, int ruleCount);
+    void on_browseFileLogDir_clicked();
     void on_browseExportDirButton_clicked();
     void on_browseExportDirFinButton_clicked();
     void on_browseFilterButton_clicked();
@@ -118,9 +115,6 @@ private:
     bool WinStartup() const;
 #endif
     // Downloads
-    QString getSavePath() const;
-    bool isTempPathEnabled() const;
-    QString getTempPath() const;
     bool preAllocateAllFiles() const;
     bool useAdditionDialog() const;
     bool addTorrentsInPause() const;
@@ -170,12 +164,14 @@ private:
     void setSslKey(const QByteArray &key, bool interactive = true);
     void setSslCertificate(const QByteArray &cert, bool interactive = true);
     bool schedTimesOk();
+    bool webUIAuthenticationOk();
 
 private:
     QButtonGroup choiceLanguage;
     QAbstractButton *applyButton;
     AdvancedSettings *advancedSettings;
     QList<QString> addedScanDirs;
+    QList<QString> removedScanDirs;
     // SSL Cert / key
     QByteArray m_sslCert, m_sslKey;
 };

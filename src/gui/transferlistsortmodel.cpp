@@ -30,9 +30,9 @@
 
 #include <QStringList>
 
-#include "core/types.h"
-#include "core/utils/string.h"
-#include "core/bittorrent/torrenthandle.h"
+#include "base/types.h"
+#include "base/utils/string.h"
+#include "base/bittorrent/torrenthandle.h"
 #include "torrentmodel.h"
 #include "transferlistsortmodel.h"
 
@@ -47,15 +47,15 @@ void TransferListSortModel::setStatusFilter(TorrentFilter::Type filter)
         invalidateFilter();
 }
 
-void TransferListSortModel::setLabelFilter(const QString &label)
+void TransferListSortModel::setCategoryFilter(const QString &category)
 {
-    if (m_filter.setLabel(label))
+    if (m_filter.setCategory(category))
         invalidateFilter();
 }
 
-void TransferListSortModel::disableLabelFilter()
+void TransferListSortModel::disableCategoryFilter()
 {
-    if (m_filter.setLabel(TorrentFilter::AnyLabel))
+    if (m_filter.setCategory(TorrentFilter::AnyCategory))
         invalidateFilter();
 }
 
@@ -191,7 +191,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
 
 bool TransferListSortModel::lowerPositionThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    const TorrentModel *model = dynamic_cast<TorrentModel*>(sourceModel());
+    const TorrentModel *model = static_cast<TorrentModel*>(sourceModel());
 
     // Sort according to TR_PRIORITY
     const int queueL = model->data(model->index(left.row(), TorrentModel::TR_PRIORITY)).toInt();

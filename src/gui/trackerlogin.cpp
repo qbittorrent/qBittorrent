@@ -28,7 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "core/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrenthandle.h"
 #include "trackerlogin.h"
 
 trackerLogin::trackerLogin(QWidget *parent, BitTorrent::TorrentHandle *const torrent)

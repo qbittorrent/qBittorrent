@@ -34,7 +34,7 @@
 #include <QDialog>
 #include <QList>
 #include "ui_preview.h"
-#include "core/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrenthandle.h"
 
 class PreviewListDelegate;
 

@@ -33,13 +33,13 @@
 #include <QMessageBox>
 
 #include "torrentcreatordlg.h"
-#include "core/utils/fs.h"
-#include "core/utils/misc.h"
-#include "core/preferences.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/preferences.h"
 #include "guiiconprovider.h"
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/torrentinfo.h"
-#include "core/bittorrent/torrentcreatorthread.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/torrentinfo.h"
+#include "base/bittorrent/torrentcreatorthread.h"
 
 const uint NB_PIECES_MIN = 1200;
 const uint NB_PIECES_MAX = 2200;

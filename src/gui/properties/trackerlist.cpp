@@ -37,17 +37,17 @@
 #include <QDebug>
 #include <QUrl>
 #include <QMessageBox>
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
 #include <QTableView>
 #include <QHeaderView>
 #endif
 
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/torrenthandle.h"
-#include "core/bittorrent/peerinfo.h"
-#include "core/bittorrent/trackerentry.h"
-#include "core/preferences.h"
-#include "core/utils/misc.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/peerinfo.h"
+#include "base/bittorrent/trackerentry.h"
+#include "base/preferences.h"
+#include "base/utils/misc.h"
 #include "propertieswidget.h"
 #include "trackersadditiondlg.h"
 #include "guiiconprovider.h"
@@ -85,7 +85,7 @@ TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), propertie
   deleteHotkey = new QShortcut(QKeySequence(QKeySequence::Delete), this, SLOT(deleteSelectedTrackers()), 0, Qt::WidgetShortcut);
   copyHotkey = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::Key_C), this, SLOT(copyTrackerUrl()), 0, Qt::WidgetShortcut);
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;

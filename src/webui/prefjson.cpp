@@ -28,11 +28,6 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "prefjson.h"
-#include "core/preferences.h"
-#include "core/scanfoldersmodel.h"
-#include "core/utils/fs.h"
-
 #ifndef QT_NO_OPENSSL
 #include <QSslCertificate>
 #include <QSslKey>
@@ -40,7 +35,13 @@
 #include <QStringList>
 #include <QTranslator>
 #include <QCoreApplication>
+
+#include "base/preferences.h"
+#include "base/scanfoldersmodel.h"
+#include "base/utils/fs.h"
+#include "base/bittorrent/session.h"
 #include "jsonutils.h"
+#include "prefjson.h"
 
 prefjson::prefjson()
 {
@@ -49,30 +50,25 @@ prefjson::prefjson()
 QByteArray prefjson::getPreferences()
 {
     const Preferences* const pref = Preferences::instance();
+    auto session = BitTorrent::Session::instance();
     QVariantMap data;
 
     // Downloads
     // Hard Disk
-    data["save_path"] = Utils::Fs::toNativePath(pref->getSavePath());
-    data["temp_path_enabled"] = pref->isTempPathEnabled();
-    data["temp_path"] = Utils::Fs::toNativePath(pref->getTempPath());
+    data["save_path"] = Utils::Fs::toNativePath(session->defaultSavePath());
+    data["temp_path_enabled"] = session->isTempPathEnabled();
+    data["temp_path"] = Utils::Fs::toNativePath(session->tempPath());
     data["preallocate_all"] = pref->preAllocateAllFiles();
     data["incomplete_files_ext"] = pref->useIncompleteFilesExtension();
-    QVariantList scanDirs;
-    foreach (const QString& s, pref->getScanDirs()) {
-        scanDirs << Utils::Fs::toNativePath(s);
+    QVariantHash dirs = pref->getScanDirs();
+    QVariantMap nativeDirs;
+    for (QVariantHash::const_iterator i = dirs.begin(), e = dirs.end(); i != e; ++i) {
+        if (i.value().type() == QVariant::Int)
+            nativeDirs.insert(Utils::Fs::toNativePath(i.key()), i.value().toInt());
+        else
+            nativeDirs.insert(Utils::Fs::toNativePath(i.key()), Utils::Fs::toNativePath(i.value().toString()));
     }
-    data["scan_dirs"] = scanDirs;
-    QVariantList ScanDirsDownloadPaths;
-    foreach (const QString& s, pref->getScanDirsDownloadPaths()) {
-        ScanDirsDownloadPaths << Utils::Fs::toNativePath(s);
-    }
-    data["scan_dirs_download_paths"] = ScanDirsDownloadPaths;
-    QVariantList var_list;
-    foreach (bool b, pref->getDownloadInScanDirs()) {
-        var_list << b;
-    }
-    data["download_in_scan_dirs"] = var_list;
+    data["scan_dirs"] = nativeDirs;
     data["export_dir"] = Utils::Fs::toNativePath(pref->getTorrentExportDir());
     data["export_dir_fin"] = Utils::Fs::toNativePath(pref->getFinishedTorrentExportDir());
     // Email notification upon download completion
@@ -146,7 +142,7 @@ QByteArray prefjson::getPreferences()
     // Share Ratio Limiting
     data["max_ratio_enabled"] = (pref->getGlobalMaxRatio() >= 0.);
     data["max_ratio"] = pref->getGlobalMaxRatio();
-    data["max_ratio_act"] = static_cast<int>(pref->getMaxRatioAction());
+    data["max_ratio_act"] = BitTorrent::Session::instance()->maxRatioAction();
 
     // Web UI
     // Language
@@ -174,49 +170,63 @@ QByteArray prefjson::getPreferences()
 void prefjson::setPreferences(const QString& json)
 {
     Preferences* const pref = Preferences::instance();
+    auto session = BitTorrent::Session::instance();
     const QVariantMap m = json::fromJson(json).toMap();
 
     // Downloads
     // Hard Disk
     if (m.contains("save_path"))
-        pref->setSavePath(m["save_path"].toString());
+        session->setDefaultSavePath(m["save_path"].toString());
     if (m.contains("temp_path_enabled"))
-        pref->setTempPathEnabled(m["temp_path_enabled"].toBool());
+        session->setTempPathEnabled(m["temp_path_enabled"].toBool());
     if (m.contains("temp_path"))
-        pref->setTempPath(m["temp_path"].toString());
+        session->setTempPath(m["temp_path"].toString());
     if (m.contains("preallocate_all"))
         pref->preAllocateAllFiles(m["preallocate_all"].toBool());
     if (m.contains("incomplete_files_ext"))
         pref->useIncompleteFilesExtension(m["incomplete_files_ext"].toBool());
-    if (m.contains("scan_dirs") && m.contains("download_in_scan_dirs") && m.contains("scan_dirs_download_paths")) {
-        QVariantList download_at_path_tmp = m["download_in_scan_dirs"].toList();
-        QList<bool> download_at_path;
-        foreach (QVariant var, download_at_path_tmp) {
-            download_at_path << var.toBool();
-        }
-        QStringList old_folders = pref->getScanDirs();
-        QStringList new_folders = m["scan_dirs"].toStringList();
-        QStringList download_paths = m["scan_dirs_download_paths"].toStringList();
-        if (download_at_path.size() == new_folders.size()) {
-            pref->setScanDirs(new_folders);
-            pref->setDownloadInScanDirs(download_at_path);
-            pref->setScanDirsDownloadPaths(download_paths);
-            foreach (const QString &old_folder, old_folders) {
-                // Update deleted folders
-                if (!new_folders.contains(old_folder)) {
-                    ScanFoldersModel::instance()->removePath(old_folder);
-                }
+    if (m.contains("scan_dirs")) {
+        QVariantMap nativeDirs = m["scan_dirs"].toMap();
+        QVariantHash oldScanDirs = pref->getScanDirs();
+        QVariantHash scanDirs;
+        ScanFoldersModel *model = ScanFoldersModel::instance();
+        for (QVariantMap::const_iterator i = nativeDirs.begin(), e = nativeDirs.end(); i != e; ++i) {
+            QString folder = Utils::Fs::fromNativePath(i.key());
+            int downloadType;
+            QString downloadPath;
+            ScanFoldersModel::PathStatus ec;
+            if (i.value().type() == QVariant::String) {
+                downloadType = ScanFoldersModel::CUSTOM_LOCATION;
+                downloadPath = Utils::Fs::fromNativePath(i.value().toString());
             }
-            int i = 0;
-            foreach (const QString &new_folder, new_folders) {
-                qDebug("New watched folder: %s", qPrintable(new_folder));
-                // Update new folders
-                if (!old_folders.contains(Utils::Fs::fromNativePath(new_folder))) {
-                    ScanFoldersModel::instance()->addPath(new_folder, download_at_path.at(i), download_paths.at(i));
-                }
-                ++i;
+            else {
+                downloadType = i.value().toInt();
+                downloadPath = (downloadType == ScanFoldersModel::DEFAULT_LOCATION) ? "Default folder" : "Watch folder";
+            }
+
+            if (!oldScanDirs.contains(folder))
+                ec = model->addPath(folder, static_cast<ScanFoldersModel::PathType>(downloadType), downloadPath);
+            else
+                ec = model->updatePath(folder, static_cast<ScanFoldersModel::PathType>(downloadType), downloadPath);
+
+            if (ec == ScanFoldersModel::Ok) {
+                scanDirs.insert(folder, (downloadType == ScanFoldersModel::CUSTOM_LOCATION) ? QVariant(downloadPath) : QVariant(downloadType));
+                qDebug("New watched folder: %s to %s", qPrintable(folder), qPrintable(downloadPath));
+            }
+            else {
+                qDebug("Watched folder %s failed with error %d", qPrintable(folder), ec);
             }
         }
+
+        // Update deleted folders
+        foreach (QVariant folderVariant, oldScanDirs.keys()) {
+            QString folder = folderVariant.toString();
+            if (!scanDirs.contains(folder)) {
+                model->removePath(folder);
+                qDebug("Removed watched folder %s", qPrintable(folder));
+            }
+        }
+        pref->setScanDirs(scanDirs);
     }
     if (m.contains("export_dir"))
         pref->setTorrentExportDir(m["export_dir"].toString());
@@ -340,11 +350,12 @@ void prefjson::setPreferences(const QString& json)
         pref->setIgnoreSlowTorrentsForQueueing(m["dont_count_slow_torrents"].toBool());
     // Share Ratio Limiting
     if (m.contains("max_ratio_enabled"))
-        pref->setGlobalMaxRatio(m["max_ratio"].toInt());
+        pref->setGlobalMaxRatio(m["max_ratio"].toReal());
     else
         pref->setGlobalMaxRatio(-1);
     if (m.contains("max_ratio_act"))
-        pref->setMaxRatioAction(static_cast<MaxRatioAction>(m["max_ratio_act"].toInt()));
+        BitTorrent::Session::instance()->setMaxRatioAction(
+                    static_cast<MaxRatioAction>(m["max_ratio_act"].toInt()));
 
     // Web UI
     // Language

@@ -36,7 +36,7 @@
 #include <QVector>
 #include <QVariant>
 
-#include "core/bittorrent/torrentinfo.h"
+#include "base/bittorrent/torrentinfo.h"
 #include "torrentcontentmodelitem.h"
 
 class TorrentContentModelFile;

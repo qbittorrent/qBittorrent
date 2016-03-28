@@ -34,9 +34,9 @@
 #include <QDialog>
 #include <QPushButton>
 #include "ui_confirmdeletiondlg.h"
-#include "core/preferences.h"
+#include "base/preferences.h"
 #include "guiiconprovider.h"
-#include "core/utils/misc.h"
+#include "base/utils/misc.h"
 
 class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
   Q_OBJECT

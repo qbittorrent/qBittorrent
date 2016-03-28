@@ -35,9 +35,9 @@
 #include <QPointer>
 #include <QShortcut>
 
+#include "base/rss/rssfolder.h"
+#include "base/rss/rssmanager.h"
 #include "ui_rss.h"
-#include "rssfolder.h"
-#include "rssmanager.h"
 
 class FeedListWidget;
 
@@ -78,7 +78,7 @@ private slots:
     void updateItemInfos(QTreeWidgetItem *item);
     void openSelectedArticlesUrls();
     void downloadSelectedTorrents();
-    void fillFeedsList(QTreeWidgetItem *parent = 0, const RssFolderPtr& rss_parent = RssFolderPtr());
+    void fillFeedsList(QTreeWidgetItem *parent = 0, const Rss::FolderPtr& rss_parent = Rss::FolderPtr());
     void saveSlidersPosition();
     void restoreSlidersPosition();
     void askNewFolder();
@@ -89,11 +89,11 @@ private slots:
     void on_rssDownloaderBtn_clicked();
 
 private:
-    static QListWidgetItem* createArticleListItem(const RssArticlePtr& article);
-    static QTreeWidgetItem* createFolderListItem(const RssFilePtr& rssFile);
+    static QListWidgetItem* createArticleListItem(const Rss::ArticlePtr& article);
+    static QTreeWidgetItem* createFolderListItem(const Rss::FilePtr& rssFile);
 
 private:
-    RssManagerPtr m_rssManager;
+    Rss::ManagerPtr m_rssManager;
     FeedListWidget *m_feedList;
     QListWidgetItem* m_currentArticle;
     QShortcut *editHotkey;

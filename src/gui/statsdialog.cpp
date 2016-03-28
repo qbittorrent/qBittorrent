@@ -31,12 +31,12 @@
 #include "statsdialog.h"
 #include "ui_statsdialog.h"
 
-#include "core/utils/misc.h"
-#include "core/utils/string.h"
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/sessionstatus.h"
-#include "core/bittorrent/cachestatus.h"
-#include "core/bittorrent/torrenthandle.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/sessionstatus.h"
+#include "base/bittorrent/cachestatus.h"
+#include "base/bittorrent/torrenthandle.h"
 
 StatsDialog::StatsDialog(QWidget *parent)
     : QDialog(parent)

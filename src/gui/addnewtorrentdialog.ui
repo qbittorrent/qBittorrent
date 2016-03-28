@@ -10,45 +10,74 @@
     <height>590</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>400</width>
-    <height>0</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>800</width>
-    <height>16777215</height>
-   </size>
-  </property>
-  <layout class="QVBoxLayout" name="verticalLayout_3">
+  <layout class="QVBoxLayout" name="AddNewTorrentDialogLayout">
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Save as</string>
+      <string>Save at</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="spacing">
+         <number>20</number>
+        </property>
         <item>
-         <widget class="QComboBox" name="save_path_combo">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+         <widget class="QLabel" name="savingModeLabel">
+          <property name="text">
+           <string>Saving Management:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="browse_button">
+         <widget class="QRadioButton" name="simpleModeRadioButton">
+          <property name="text">
+           <string>Simple</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="advancedModeRadioButton">
+          <property name="text">
+           <string>Advanced</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QComboBox" name="savePathComboBox">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="browseButton">
           <property name="text">
            <string>Browse...</string>
           </property>
@@ -57,7 +86,7 @@
        </layout>
       </item>
       <item>
-       <widget class="QCheckBox" name="default_save_path_cb">
+       <widget class="QCheckBox" name="defaultSavePathCheckBox">
         <property name="text">
          <string>Set as default save path</string>
         </property>
@@ -88,28 +117,37 @@
      <property name="title">
       <string>Torrent settings</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,1">
-      <item row="0" column="0">
-       <widget class="QCheckBox" name="start_torrent_cb">
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="1" column="2">
+       <widget class="QCheckBox" name="defaultCategoryCheckbox">
         <property name="text">
-         <string>Start torrent</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
+         <string>Set as default category</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,1">
-        <item row="0" column="0">
+      <item row="0" column="2">
+       <layout class="QHBoxLayout" name="horizontalLayout_1">
+        <item>
          <widget class="QLabel" name="label_5">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
-           <string>Label:</string>
+           <string>Category:</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="label_combo">
+        <item>
+         <widget class="QComboBox" name="categoryComboBox">
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="editable">
            <bool>true</bool>
           </property>
@@ -120,6 +158,16 @@
         </item>
        </layout>
       </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="startTorrentCheckBox">
+        <property name="text">
+         <string>Start torrent</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
       <item row="1" column="0">
        <widget class="QCheckBox" name="skip_check_cb">
         <property name="text">
@@ -127,24 +175,43 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QCheckBox" name="defaultLabel">
-        <property name="text">
-         <string>Set as default label</string>
+      <item row="0" column="3">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
-       </widget>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="1">
+       <spacer name="horizontalSpacer2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="info_group">
+    <widget class="QGroupBox" name="infoGroup">
      <property name="title">
-      <string>Torrent Information</string>
+      <string>Torrent information</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <layout class="QVBoxLayout" name="infoGroupLayout">
       <item>
-       <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0" columnstretch="0,1">
+       <layout class="QGridLayout" name="gridLayout">
         <item row="0" column="0">
          <widget class="QLabel" name="label">
           <property name="text">
@@ -153,70 +220,99 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLabel" name="size_lbl">
-          <property name="text">
-           <string notr="true">xx GB (xx GB available)</string>
-          </property>
-         </widget>
+         <widget class="QLabel" name="size_lbl"/>
         </item>
         <item row="1" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>Comment:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLabel" name="comment_lbl">
-          <property name="textFormat">
-           <enum>Qt::RichText</enum>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-          </property>
-          <property name="wordWrap">
-           <bool>true</bool>
-          </property>
-          <property name="openExternalLinks">
-           <bool>true</bool>
-          </property>
-          <property name="textInteractionFlags">
-           <set>Qt::TextBrowserInteraction</set>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
          <widget class="QLabel" name="label_3">
           <property name="text">
            <string>Date:</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QLabel" name="date_lbl">
-          <property name="text">
-           <string notr="true">02/03/2012 20:30</string>
-          </property>
-         </widget>
+        <item row="1" column="1">
+         <widget class="QLabel" name="date_lbl"/>
         </item>
-        <item row="3" column="0">
+        <item row="2" column="0">
          <widget class="QLabel" name="label_4">
           <property name="text">
-           <string>Info Hash:</string>
+           <string>Hash:</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
+        <item row="2" column="1">
          <widget class="QLabel" name="lblhash">
           <property name="textInteractionFlags">
            <set>Qt::TextSelectableByMouse</set>
           </property>
          </widget>
         </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Comment:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QScrollArea" name="scrollArea">
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_2">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>299</width>
+             <height>73</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="commentLabel">
+              <property name="textFormat">
+               <enum>Qt::RichText</enum>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="openExternalLinks">
+               <bool>true</bool>
+              </property>
+              <property name="textInteractionFlags">
+               <set>Qt::TextBrowserInteraction</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
        </layout>
       </item>
       <item>
-       <widget class="TorrentContentTreeView" name="content_tree">
+       <widget class="TorrentContentTreeView" name="contentTreeView">
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -236,7 +332,7 @@
      <item>
       <widget class="QProgressBar" name="progMetaLoading">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -256,33 +352,10 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="lblMetaLoading">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="text">
-        <string notr="true"/>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
+      <widget class="QLabel" name="lblMetaLoading"/>
      </item>
      <item>
       <widget class="QDialogButtonBox" name="buttonBox">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
        <property name="standardButtons">
         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
        </property>
@@ -319,6 +392,20 @@
    <header>torrentcontenttreeview.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>savePathComboBox</tabstop>
+  <tabstop>browseButton</tabstop>
+  <tabstop>simpleModeRadioButton</tabstop>
+  <tabstop>advancedModeRadioButton</tabstop>
+  <tabstop>defaultSavePathCheckBox</tabstop>
+  <tabstop>never_show_cb</tabstop>
+  <tabstop>adv_button</tabstop>
+  <tabstop>startTorrentCheckBox</tabstop>
+  <tabstop>categoryComboBox</tabstop>
+  <tabstop>defaultCategoryCheckbox</tabstop>
+  <tabstop>skip_check_cb</tabstop>
+  <tabstop>contentTreeView</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -328,8 +415,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
+     <x>403</x>
+     <y>579</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -344,8 +431,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
+     <x>403</x>
+     <y>579</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
@@ -353,5 +440,57 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>simpleModeRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>AddNewTorrentDialog</receiver>
+   <slot>savingModeChanged(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>154</x>
+     <y>39</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>122</x>
+     <y>6</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>advancedModeRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>AddNewTorrentDialog</receiver>
+   <slot>savingModeChanged(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>218</x>
+     <y>44</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>209</x>
+     <y>7</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>categoryComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>AddNewTorrentDialog</receiver>
+   <slot>categoryChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>337</x>
+     <y>205</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>403</x>
+     <y>160</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>savingModeChanged(bool)</slot>
+  <slot>categoryChanged(int)</slot>
+ </slots>
 </ui>

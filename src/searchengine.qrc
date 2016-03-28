@@ -1,0 +1,50 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+  <file>searchengine/nova/fix_encoding.py</file>
+  <file>searchengine/nova/helpers.py</file>
+  <file>searchengine/nova/nova2.py</file>
+  <file>searchengine/nova/novaprinter.py</file>
+  <file>searchengine/nova/socks.py</file>
+  <file>searchengine/nova/engines/btdigg.png</file>
+  <file>searchengine/nova/engines/btdigg.py</file>
+  <file>searchengine/nova/engines/demonoid.png</file>
+  <file>searchengine/nova/engines/demonoid.py</file>
+  <file>searchengine/nova/engines/extratorrent.png</file>
+  <file>searchengine/nova/engines/extratorrent.py</file>
+  <file>searchengine/nova/engines/kickasstorrents.png</file>
+  <file>searchengine/nova/engines/kickasstorrents.py</file>
+  <file>searchengine/nova/engines/legittorrents.png</file>
+  <file>searchengine/nova/engines/legittorrents.py</file>
+  <file>searchengine/nova/engines/mininova.png</file>
+  <file>searchengine/nova/engines/mininova.py</file>
+  <file>searchengine/nova/engines/piratebay.png</file>
+  <file>searchengine/nova/engines/piratebay.py</file>
+  <file>searchengine/nova/engines/torrentreactor.png</file>
+  <file>searchengine/nova/engines/torrentreactor.py</file>
+  <file>searchengine/nova/engines/torrentz.png</file>
+  <file>searchengine/nova/engines/torrentz.py</file>
+  <file>searchengine/nova3/helpers.py</file>
+  <file>searchengine/nova3/nova2.py</file>
+  <file>searchengine/nova3/novaprinter.py</file>
+  <file>searchengine/nova3/sgmllib3.py</file>
+  <file>searchengine/nova3/socks.py</file>
+  <file>searchengine/nova3/engines/btdigg.png</file>
+  <file>searchengine/nova3/engines/btdigg.py</file>
+  <file>searchengine/nova3/engines/demonoid.png</file>
+  <file>searchengine/nova3/engines/demonoid.py</file>
+  <file>searchengine/nova3/engines/extratorrent.png</file>
+  <file>searchengine/nova3/engines/extratorrent.py</file>
+  <file>searchengine/nova3/engines/kickasstorrents.png</file>
+  <file>searchengine/nova3/engines/kickasstorrents.py</file>
+  <file>searchengine/nova3/engines/legittorrents.png</file>
+  <file>searchengine/nova3/engines/legittorrents.py</file>
+  <file>searchengine/nova3/engines/mininova.png</file>
+  <file>searchengine/nova3/engines/mininova.py</file>
+  <file>searchengine/nova3/engines/piratebay.png</file>
+  <file>searchengine/nova3/engines/piratebay.py</file>
+  <file>searchengine/nova3/engines/torrentreactor.png</file>
+  <file>searchengine/nova3/engines/torrentreactor.py</file>
+  <file>searchengine/nova3/engines/torrentz.png</file>
+  <file>searchengine/nova3/engines/torrentz.py</file>
+</qresource>
+</RCC>

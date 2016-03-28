@@ -55,6 +55,7 @@ private:
     void action_query_propertiesWebSeeds();
     void action_query_propertiesFiles();
     void action_sync_maindata();
+    void action_sync_torrent_peers();
     void action_command_shutdown();
     void action_command_download();
     void action_command_upload();
@@ -86,7 +87,7 @@ private:
     void action_command_topPrio();
     void action_command_bottomPrio();
     void action_command_recheck();
-    void action_command_setLabel();
+    void action_command_setCategory();
     void action_command_getSavePath();
     void action_version_api();
     void action_version_api_min();

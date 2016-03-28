@@ -34,11 +34,11 @@
 
 #include "torrentimportdlg.h"
 #include "ui_torrentimportdlg.h"
-#include "core/preferences.h"
-#include "core/bittorrent/infohash.h"
-#include "core/bittorrent/session.h"
+#include "base/preferences.h"
+#include "base/bittorrent/infohash.h"
+#include "base/bittorrent/session.h"
 #include "guiiconprovider.h"
-#include "core/utils/fs.h"
+#include "base/utils/fs.h"
 
 TorrentImportDlg::TorrentImportDlg(QWidget *parent):
     QDialog(parent),

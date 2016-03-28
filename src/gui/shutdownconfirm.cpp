@@ -30,45 +30,53 @@
  * Contact : hammered999@gmail.com
  */
 
-#include "core/types.h"
-#include "shutdownconfirm.h"
-
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QStyle>
+#include <QIcon>
+#include <QLabel>
+#include <QDialogButtonBox>
+#include <QCheckBox>
 #include <QPushButton>
 
+#include "base/preferences.h"
+#include "base/types.h"
+
+#include "shutdownconfirm.h"
+#include "ui_confirmshutdowndlg.h"
+
 ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
-    : m_exitNow(0)
+    : ui(new Ui::confirmShutdownDlg)
     , m_timeout(15)
     , m_action(action)
 {
-    // Title and button
-    if (m_action == ShutdownAction::None) {
-        setWindowTitle(tr("Exit confirmation"));
-        m_exitNow = addButton(tr("Exit now"), QMessageBox::AcceptRole);
-    }
-    else {
-        setWindowTitle(tr("Shutdown confirmation"));
-        m_exitNow = addButton(tr("Shutdown now"), QMessageBox::AcceptRole);
-    }
-    // Cancel Button
-    addButton(QMessageBox::Cancel);
-    // Text
+    ui->setupUi(this);
+
+    QIcon warningIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning));
+    ui->warningLabel->setPixmap(warningIcon.pixmap(32));
+
     updateText();
-    // Icon
-    setIcon(QMessageBox::Warning);
+
+    if (m_action == ShutdownAction::None)
+        ui->neverShowAgainCheckbox->setVisible(true);
+    else
+        ui->neverShowAgainCheckbox->setVisible(false);
+
+    // Cancel Button
+    QPushButton *cancelButton = ui->buttonBox->button(QDialogButtonBox::Cancel);
+    cancelButton->setFocus();
+    cancelButton->setDefault(true);
     // Always on top
     setWindowFlags(windowFlags()|Qt::WindowStaysOnTopHint);
-    // Set 'Cancel' as default button.
-    setDefaultButton(QMessageBox::Cancel);
     m_timer.setInterval(1000); // 1sec
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(updateSeconds()));
-    show();
     // Move to center
     move(Utils::Misc::screenCenter(this));
 }
 
 void ShutdownConfirmDlg::showEvent(QShowEvent *event)
 {
-    QMessageBox::showEvent(event);
+    QDialog::showEvent(event);
     m_timer.start();
 }
 
@@ -89,45 +97,49 @@ void ShutdownConfirmDlg::updateSeconds()
     }
 }
 
+void ShutdownConfirmDlg::accept()
+{
+    Preferences::instance()->setDontConfirmAutoExit(ui->neverShowAgainCheckbox->isChecked());
+    QDialog::accept();
+}
+
 bool ShutdownConfirmDlg::shutdown() const
 {
-    // This is necessary because result() in the case of QMessageBox
-    // returns a type of StandardButton, but since we use a custom button
-    // it will return 0 instead, even though we set the 'accept' role on it.
-    if (result() != QDialog::Accepted)
-        return (clickedButton() == m_exitNow);
-    else
-        return true;
+    return (result() == QDialog::Accepted);
 }
 
 void ShutdownConfirmDlg::updateText()
 {
     QString text;
+    QPushButton *okButton = ui->buttonBox->button(QDialogButtonBox::Ok);
 
     switch (m_action) {
     case ShutdownAction::None:
-        text = tr("qBittorrent will now exit unless you cancel within the next %1 seconds.").arg(QString::number(m_timeout));
+        text = tr("qBittorrent will now exit.");
+
+        okButton->setText(tr("E&xit Now"));
+        setWindowTitle(tr("Exit confirmation"));
         break;
     case ShutdownAction::Shutdown:
-        text = tr("The computer will now be switched off unless you cancel within the next %1 seconds.").arg(QString::number(m_timeout));
+        text = tr("The computer is going to shutdown.");
+
+        okButton->setText(tr("&Shutdown Now"));
+        setWindowTitle(tr("Shutdown confirmation"));
         break;
     case ShutdownAction::Suspend:
-        text = tr("The computer will now go to sleep mode unless you cancel within the next %1 seconds.").arg(QString::number(m_timeout));
+        text = tr("The computer is going to enter suspend mode.");
+
+        okButton->setText(tr("&Suspend Now"));
+        setWindowTitle(tr("Suspend confirmation"));
         break;
     case ShutdownAction::Hibernate:
-        text = tr("The computer will now go to hibernation mode unless you cancel within the next %1 seconds.").arg(QString::number(m_timeout));
+        text = tr("The computer is going to enter hibernation mode.");
+
+        okButton->setText(tr("&Hibernate Now"));
+        setWindowTitle(tr("Hibernate confirmation"));
         break;
     }
 
-    setText(text);
-}
-
-QAbstractButton *ShutdownConfirmDlg::getExit_now() const
-{
-    return m_exitNow;
-}
-
-void ShutdownConfirmDlg::setExit_now(QAbstractButton *value)
-{
-    m_exitNow = value;
+    text += "\n" + tr("You can cancel the action within %1 seconds.").arg(QString::number(m_timeout)) + "\n";
+    ui->shutdownText->setText(text);
 }

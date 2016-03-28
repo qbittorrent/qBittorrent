@@ -16,6 +16,8 @@ LangString inst_firewall ${LANG_GALICIAN} "Engadir unha regra á devasa (firewal
 LangString inst_firewallinfo ${LANG_GALICIAN} "Engadindo unha regra á devasa de Windows"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_GALICIAN} "qBittorrent está en execución. Peche o aplicativo antes da instalación."
+;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+LangString inst_uninstall_question ${LANG_GALICIAN} "A previous installation was detected. It will be uninstalled without deleting user settings."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_GALICIAN} "Desinstalando a versión anterior."
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."

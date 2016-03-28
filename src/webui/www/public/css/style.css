@@ -345,6 +345,12 @@ div.formRow {
     display: block;
 }
 
+.filterTitle {
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-left: 5px;
+}
+
 ul.filterList {
     margin: 0 0 0 16px;
     padding-left: 0;
@@ -383,12 +389,23 @@ td.generalLabel {
     margin-bottom: -3px;
 }
 
+.torrentTable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .torrentTable th {
     padding: 5px 10px;
+    white-space: nowrap;
 }
 
 .torrentTable td {
     padding: 0px 3px;
+    white-space: nowrap;
 }
 
 .torrentTable thead tr {
@@ -408,6 +425,37 @@ td.generalLabel {
     border: 1px solid black;
 }
 
+.select-watched-folder-editable {
+    position:relative;
+    background-color: white;
+    border: solid grey 1px;
+    width: 160px;
+    height: 20px;
+}
+
+.select-watched-folder-editable select {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    border: none;
+    width: 160px;
+    margin: 0;
+}
+
+.select-watched-folder-editable input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 140px;
+    padding: 1px;
+    border: none;
+}
+
+.select-watched-folder-editable select:focus, .select-editable input:focus {
+    outline: none;
+}
+
 /*
  * Workaround to prevent the transfer list from
  * disappearing when zooming in the browser.
@@ -423,4 +471,12 @@ td.generalLabel {
 
 .combo_priority {
     font-size: 1em;
+}
+
+td.statusBarSeparator {
+    width: 22px;
+    background-image: url('../images/skin/toolbox-divider.gif');
+    background-repeat: no-repeat;
+    background-position: center 1px;
+    background-size: 2px 18px;
 }

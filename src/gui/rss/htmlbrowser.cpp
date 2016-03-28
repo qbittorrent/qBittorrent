@@ -10,7 +10,7 @@
 #include <QDateTime>
 #include <QScrollBar>
 
-#include "core/utils/fs.h"
+#include "base/utils/fs.h"
 
 HtmlBrowser::HtmlBrowser(QWidget* parent)
     : QTextBrowser(parent)

@@ -32,7 +32,7 @@
 
 #include <QKeyEvent>
 #include <QModelIndexList>
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
 #include <QTableView>
 #include <QHeaderView>
 #endif
@@ -42,7 +42,7 @@
 TorrentContentTreeView::TorrentContentTreeView(QWidget* parent)
   : QTreeView(parent)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;

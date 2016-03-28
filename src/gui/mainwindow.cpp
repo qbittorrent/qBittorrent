@@ -34,6 +34,7 @@
 #include "notifications.h"
 #endif
 
+#include <QDebug>
 #include <QFileDialog>
 #include <QFileSystemWatcher>
 #include <QMessageBox>
@@ -49,20 +50,22 @@
 
 #include "mainwindow.h"
 #include "transferlistwidget.h"
-#include "core/utils/misc.h"
+#include "base/utils/misc.h"
+#include "base/utils/fs.h"
 #include "torrentcreatordlg.h"
 #include "downloadfromurldlg.h"
 #include "addnewtorrentdialog.h"
-#include "searchengine.h"
+#include "search/searchwidget.h"
 #include "rss_imp.h"
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/sessionstatus.h"
-#include "core/bittorrent/torrenthandle.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/sessionstatus.h"
+#include "base/bittorrent/torrenthandle.h"
 #include "about_imp.h"
 #include "trackerlogin.h"
 #include "options_imp.h"
 #include "speedlimitdlg.h"
-#include "core/preferences.h"
+#include "base/preferences.h"
+#include "base/settingsstorage.h"
 #include "trackerlist.h"
 #include "peerlistwidget.h"
 #include "transferlistfilterswidget.h"
@@ -73,7 +76,7 @@
 #include "torrentmodel.h"
 #include "executionlog.h"
 #include "guiiconprovider.h"
-#include "core/logger.h"
+#include "base/logger.h"
 #include "autoexpandabledialog.h"
 #ifdef Q_OS_MAC
 void qt_mac_set_dock_menu(QMenu *menu);
@@ -85,12 +88,25 @@ void qt_mac_set_dock_menu(QMenu *menu);
 #endif
 #include "powermanagement.h"
 #ifdef Q_OS_WIN
-#include "core/net/downloadmanager.h"
-#include "core/net/downloadhandler.h"
+#include "base/net/downloadmanager.h"
+#include "base/net/downloadhandler.h"
 #endif
 
 #define TIME_TRAY_BALLOON 5000
 #define PREVENT_SUSPEND_INTERVAL 60000
+
+namespace
+{
+#define SETTINGS_KEY(name) "MainWindow/" name
+
+    // ExecutionLog properties keys
+#define EXECUTIONLOG_SETTINGS_KEY(name) SETTINGS_KEY("ExecutionLog/") name
+    const QString KEY_EXECUTIONLOG_ENABLED = EXECUTIONLOG_SETTINGS_KEY("Enabled");
+    const QString KEY_EXECUTIONLOG_TYPES = EXECUTIONLOG_SETTINGS_KEY("Types");
+
+    //just a shortcut
+    inline SettingsStorage *settings() { return  SettingsStorage::instance(); }
+}
 
 /*****************************************************
 *                                                   *
@@ -104,6 +120,9 @@ MainWindow::MainWindow(QWidget *parent)
     , m_posInitialized(false)
     , force_exit(false)
     , unlockDlgShowing(false)
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+    , m_wasUpdateCheckEnabled(false)
+#endif
     , has_python(false)
 {
     setupUi(this);
@@ -124,10 +143,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     actionOpen->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
     actionDownload_from_URL->setIcon(GuiIconProvider::instance()->getIcon("insert-link"));
-    actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/seeding.png")));
-    actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/download.png")));
-    actionSet_global_upload_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/seeding.png")));
-    actionSet_global_download_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/download.png")));
+    actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/uploadLimit.png")));
+    actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/downloadLimit.png")));
+    actionSet_global_upload_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/uploadLimit.png")));
+    actionSet_global_download_limit->setIcon(QIcon(QString::fromUtf8(":/icons/skin/downloadLimit.png")));
     actionCreate_torrent->setIcon(GuiIconProvider::instance()->getIcon("document-edit"));
     actionAbout->setIcon(GuiIconProvider::instance()->getIcon("help-about"));
     actionStatistics->setIcon(GuiIconProvider::instance()->getIcon("view-statistics"));
@@ -268,9 +287,20 @@ MainWindow::MainWindow(QWidget *parent)
     actionSpeed_in_title_bar->setChecked(pref->speedInTitleBar());
     actionRSS_Reader->setChecked(pref->isRSSEnabled());
     actionSearch_engine->setChecked(pref->isSearchEnabled());
-    actionExecution_Logs->setChecked(pref->isExecutionLogEnabled());
+    actionExecutionLogs->setChecked(isExecutionLogEnabled());
+
+    Log::MsgTypes flags(executionLogMsgTypes());
+    actionNormalMessages->setChecked(flags & Log::NORMAL);
+    actionInformationMessages->setChecked(flags & Log::INFO);
+    actionWarningMessages->setChecked(flags & Log::WARNING);
+    actionCriticalMessages->setChecked(flags & Log::CRITICAL);
+
     displayRSSTab(actionRSS_Reader->isChecked());
-    on_actionExecution_Logs_triggered(actionExecution_Logs->isChecked());
+    on_actionExecutionLogs_triggered(actionExecutionLogs->isChecked());
+    on_actionNormalMessages_triggered(actionNormalMessages->isChecked());
+    on_actionInformationMessages_triggered(actionInformationMessages->isChecked());
+    on_actionWarningMessages_triggered(actionWarningMessages->isChecked());
+    on_actionCriticalMessages_triggered(actionCriticalMessages->isChecked());
     if (actionSearch_engine->isChecked())
         QTimer::singleShot(0, this, SLOT(on_actionSearch_engine_triggered()));
 
@@ -337,6 +367,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(transferList->getSourceModel(), SIGNAL(rowsInserted(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
     connect(transferList->getSourceModel(), SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
 
+    connect(pref, SIGNAL(changed()), this, SLOT(optionsSaved()));
+
     qDebug("GUI Built");
 #ifdef Q_OS_WIN
     if (!pref->neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet())) {
@@ -362,6 +394,29 @@ MainWindow::~MainWindow()
     // Workaround to avoid bug http://bugreports.qt.nokia.com/browse/QTBUG-7305
     setUnifiedTitleAndToolBarOnMac(false);
 #endif
+}
+
+bool MainWindow::isExecutionLogEnabled() const
+{
+    return settings()->loadValue(KEY_EXECUTIONLOG_ENABLED, false).toBool();
+}
+
+void MainWindow::setExecutionLogEnabled(bool value)
+{
+    settings()->storeValue(KEY_EXECUTIONLOG_ENABLED, value);
+}
+
+int MainWindow::executionLogMsgTypes() const
+{
+    // as default value we need all the bits set
+    // -1 is considered the portable way to achieve that
+    return settings()->loadValue(KEY_EXECUTIONLOG_TYPES, -1).toInt();
+}
+
+void MainWindow::setExecutionLogMsgTypes(const int value)
+{
+    m_executionLog->showMsgTypes(static_cast<Log::MsgTypes>(value));
+    settings()->storeValue(KEY_EXECUTIONLOG_TYPES, value);
 }
 
 void MainWindow::addToolbarContextMenu()
@@ -526,7 +581,7 @@ void MainWindow::displaySearchTab(bool enable)
     if (enable) {
         // RSS tab
         if (!searchEngine) {
-            searchEngine = new SearchEngine(this);
+            searchEngine = new SearchWidget(this);
             tabs->insertTab(1, searchEngine, GuiIconProvider::instance()->getIcon("edit-find"), tr("Search"));
         }
     }
@@ -997,7 +1052,7 @@ void MainWindow::dropEvent(QDropEvent *event)
     }
 
     // Add file to download list
-    const bool useTorrentAdditionDialog = Preferences::instance()->useAdditionDialog();
+    const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     foreach (QString file, files) {
         qDebug("Dropped file %s on download list", qPrintable(file));
         if (useTorrentAdditionDialog)
@@ -1032,7 +1087,7 @@ void MainWindow::on_actionOpen_triggered()
     const QStringList pathsList =
             QFileDialog::getOpenFileNames(0, tr("Open Torrent Files"), pref->getMainLastDir(),
                                           tr("Torrent Files") + QString::fromUtf8(" (*.torrent)"));
-    const bool useTorrentAdditionDialog = Preferences::instance()->useAdditionDialog();
+    const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     if (!pathsList.isEmpty()) {
         foreach (QString file, pathsList) {
             qDebug("Dropped file %s on download list", qPrintable(file));
@@ -1108,7 +1163,7 @@ void MainWindow::loadPreferences(bool configure_session)
         toolBar->setVisible(false);
     }
 
-    if (pref->preventFromSuspend()) {
+    if (pref->preventFromSuspend() && !preventTimer->isActive()) {
         preventTimer->start(PREVENT_SUSPEND_INTERVAL);
     }
     else {
@@ -1149,10 +1204,14 @@ void MainWindow::loadPreferences(bool configure_session)
     properties->reloadPreferences();
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    if (pref->isUpdateCheckEnabled())
+    if (pref->isUpdateCheckEnabled() && !m_wasUpdateCheckEnabled) {
+        m_wasUpdateCheckEnabled = true;
         checkProgramUpdate();
-    else
+    }
+    else if (!pref->isUpdateCheckEnabled() && m_wasUpdateCheckEnabled) {
+        m_wasUpdateCheckEnabled = false;
         programUpdateTimer.stop();
+    }
 #endif
 
     qDebug("GUI settings loaded");
@@ -1238,7 +1297,7 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const
 
 void MainWindow::downloadFromURLList(const QStringList& url_list)
 {
-    const bool useTorrentAdditionDialog = Preferences::instance()->useAdditionDialog();
+    const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     foreach (QString url, url_list) {
         if ((url.size() == 40 && !url.contains(QRegExp("[^0-9A-Fa-f]")))
             || (url.size() == 32 && !url.contains(QRegExp("[^2-7A-Za-z]"))))
@@ -1336,14 +1395,10 @@ void MainWindow::createTrayIcon()
 // Display Program Options
 void MainWindow::on_actionOptions_triggered()
 {
-    if (options) {
-        // Get focus
+    if (options)
         options->setFocus();
-    }
-    else {
+    else
         options = new options_imp(this);
-        connect(options, SIGNAL(status_changed()), this, SLOT(optionsSaved()));
-    }
 }
 
 void MainWindow::on_actionTop_tool_bar_triggered()
@@ -1462,7 +1517,7 @@ void MainWindow::handleUpdateCheckFinished(bool update_available, QString new_ve
     QMessageBox::StandardButton answer = QMessageBox::Yes;
     if (update_available) {
         answer = QMessageBox::question(this, tr("qBittorrent Update Available"),
-                                       tr("A new version is available.\nUpdate to version %1?").arg(new_version),
+                                       tr("A new version is available.\nDo you want to download %1?").arg(new_version),
                                        QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
         if (answer == QMessageBox::Yes) {
             // The user want to update, let's download the update
@@ -1500,18 +1555,63 @@ void MainWindow::minimizeWindow()
     setWindowState(windowState() ^ Qt::WindowMinimized);
 }
 
-void MainWindow::on_actionExecution_Logs_triggered(bool checked)
+void MainWindow::on_actionExecutionLogs_triggered(bool checked)
 {
     if (checked) {
         Q_ASSERT(!m_executionLog);
-        m_executionLog = new ExecutionLog(tabs);
+        m_executionLog = new ExecutionLog(tabs, static_cast<Log::MsgType>(executionLogMsgTypes()));
         int index_tab = tabs->addTab(m_executionLog, tr("Execution Log"));
         tabs->setTabIcon(index_tab, GuiIconProvider::instance()->getIcon("view-calendar-journal"));
     }
     else if (m_executionLog) {
         delete m_executionLog;
     }
-    Preferences::instance()->setExecutionLogEnabled(checked);
+
+    actionNormalMessages->setEnabled(checked);
+    actionInformationMessages->setEnabled(checked);
+    actionWarningMessages->setEnabled(checked);
+    actionCriticalMessages->setEnabled(checked);
+    setExecutionLogEnabled(checked);
+}
+
+void MainWindow::on_actionNormalMessages_triggered(bool checked)
+{
+    if (!m_executionLog)
+        return;
+
+    Log::MsgTypes flags(executionLogMsgTypes());
+    checked ? (flags |= Log::NORMAL) : (flags &= ~Log::NORMAL);
+    setExecutionLogMsgTypes(flags);
+}
+
+void MainWindow::on_actionInformationMessages_triggered(bool checked)
+{
+    if (!m_executionLog)
+        return;
+
+    Log::MsgTypes flags(executionLogMsgTypes());
+    checked ? (flags |= Log::INFO) : (flags &= ~Log::INFO);
+    setExecutionLogMsgTypes(flags);
+}
+
+void MainWindow::on_actionWarningMessages_triggered(bool checked)
+{
+    if (!m_executionLog)
+        return;
+
+    Log::MsgTypes flags(executionLogMsgTypes());
+    checked ? (flags |= Log::WARNING) : (flags &= ~Log::WARNING);
+    setExecutionLogMsgTypes(flags);
+}
+
+void MainWindow::on_actionCriticalMessages_triggered(bool checked)
+{
+    if (!m_executionLog)
+        return;
+
+    Log::MsgTypes flags(executionLogMsgTypes());
+    checked ? (flags |= Log::CRITICAL) : (flags &= ~Log::CRITICAL);
+    setExecutionLogMsgTypes(flags);
 }
 
 void MainWindow::on_actionAutoExit_qBittorrent_toggled(bool enabled)

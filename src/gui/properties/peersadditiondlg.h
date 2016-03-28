@@ -33,7 +33,7 @@
 
 #include <QDialog>
 
-#include "core/bittorrent/peerinfo.h"
+#include "base/bittorrent/peerinfo.h"
 #include "ui_peersadditiondlg.h"
 
 class PeersAdditionDlg: public QDialog, private Ui::addPeersDialog

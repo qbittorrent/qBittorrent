@@ -34,7 +34,7 @@
 #include <QShortcut>
 #include <QWidget>
 #include "ui_propertieswidget.h"
-#include "core/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrenthandle.h"
 
 
 class TransferListWidget;

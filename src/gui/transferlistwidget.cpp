@@ -40,26 +40,27 @@
 #include <QRegExp>
 #include <QFileDialog>
 #include <QMessageBox>
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
 #include <QTableView>
 #endif
 
 #include "transferlistwidget.h"
-#include "core/bittorrent/session.h"
-#include "core/bittorrent/torrenthandle.h"
-#include "core/torrentfilter.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/torrentfilter.h"
 #include "transferlistdelegate.h"
 #include "previewselect.h"
 #include "speedlimitdlg.h"
 #include "updownratiodlg.h"
 #include "options_imp.h"
 #include "mainwindow.h"
-#include "core/preferences.h"
+#include "base/preferences.h"
 #include "torrentmodel.h"
 #include "deletionconfirmationdlg.h"
 #include "propertieswidget.h"
 #include "guiiconprovider.h"
-#include "core/utils/fs.h"
+#include "base/utils/fs.h"
+#include "base/utils/string.h"
 #include "autoexpandabledialog.h"
 #include "transferlistsortmodel.h"
 
@@ -156,7 +157,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
     editHotkey = new QShortcut(QKeySequence("F2"), this, SLOT(renameSelectedTorrent()), 0, Qt::WidgetShortcut);
     deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedTorrents()), 0, Qt::WidgetShortcut);
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;
@@ -565,21 +566,30 @@ void TransferListWidget::toggleSelectedFirstLastPiecePrio() const
         torrent->toggleFirstLastPiecePriority();
 }
 
-void TransferListWidget::askNewLabelForSelection()
+void TransferListWidget::setSelectedASMEnabled(bool enabled) const
 {
-    // Ask for label
+    foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents())
+        torrent->setASMEnabled(enabled);
+}
+
+void TransferListWidget::askNewCategoryForSelection()
+{
+    // Ask for category
     bool ok;
     bool invalid;
     do {
         invalid = false;
-        const QString label = AutoExpandableDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, "", &ok).trimmed();
-        if (ok && !label.isEmpty()) {
-            if (Utils::Fs::isValidFileSystemName(label)) {
-                setSelectionLabel(label);
+        const QString category = AutoExpandableDialog::getText(this, tr("New Category"), tr("Category:"), QLineEdit::Normal, "", &ok).trimmed();
+        if (ok && !category.isEmpty()) {
+            if (!BitTorrent::Session::isValidCategoryName(category)) {
+                QMessageBox::warning(this, tr("Invalid category name"),
+                                     tr("Category name must not contain '\\'.\n"
+                                        "Category name must not start/end with '/'.\n"
+                                        "Category name must not contain '//' sequence."));
+                invalid = true;
             }
             else {
-                QMessageBox::warning(this, tr("Invalid label name"), tr("Please don't use any special characters in the label name."));
-                invalid = true;
+                setSelectionCategory(category);
             }
         }
     } while(invalid);
@@ -605,19 +615,10 @@ void TransferListWidget::renameSelectedTorrent()
     }
 }
 
-void TransferListWidget::setSelectionLabel(QString label)
+void TransferListWidget::setSelectionCategory(QString category)
 {
     foreach (const QModelIndex &index, selectionModel()->selectedRows())
-        listModel->setData(listModel->index(mapToSource(index).row(), TorrentModel::TR_LABEL), label, Qt::DisplayRole);
-}
-
-void TransferListWidget::removeLabelFromRows(QString label)
-{
-    for (int i = 0; i < listModel->rowCount(); ++i) {
-        if (listModel->data(listModel->index(i, TorrentModel::TR_LABEL)) == label) {
-            listModel->setData(listModel->index(i, TorrentModel::TR_LABEL), "", Qt::DisplayRole);
-        }
-    }
+        listModel->setData(listModel->index(mapToSource(index).row(), TorrentModel::TR_CATEGORY), category, Qt::DisplayRole);
 }
 
 void TransferListWidget::displayListMenu(const QPoint&)
@@ -638,9 +639,9 @@ void TransferListWidget::displayListMenu(const QPoint&)
     connect(&actionPreview_file, SIGNAL(triggered()), this, SLOT(previewSelectedTorrents()));
     QAction actionSet_max_ratio(QIcon(QString::fromUtf8(":/icons/skin/ratio.png")), tr("Limit share ratio..."), 0);
     connect(&actionSet_max_ratio, SIGNAL(triggered()), this, SLOT(setMaxRatioSelectedTorrents()));
-    QAction actionSet_upload_limit(QIcon(QString::fromUtf8(":/icons/skin/seeding.png")), tr("Limit upload rate..."), 0);
+    QAction actionSet_upload_limit(QIcon(QString::fromUtf8(":/icons/skin/uploadLimit.png")), tr("Limit upload rate..."), 0);
     connect(&actionSet_upload_limit, SIGNAL(triggered()), this, SLOT(setUpLimitSelectedTorrents()));
-    QAction actionSet_download_limit(QIcon(QString::fromUtf8(":/icons/skin/download.png")), tr("Limit download rate..."), 0);
+    QAction actionSet_download_limit(QIcon(QString::fromUtf8(":/icons/skin/downloadLimit.png")), tr("Limit download rate..."), 0);
     connect(&actionSet_download_limit, SIGNAL(triggered()), this, SLOT(setDlLimitSelectedTorrents()));
     QAction actionOpen_destination_folder(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open destination folder"), 0);
     connect(&actionOpen_destination_folder, SIGNAL(triggered()), this, SLOT(openSelectedTorrentsFolder()));
@@ -668,9 +669,12 @@ void TransferListWidget::displayListMenu(const QPoint&)
     QAction actionSequential_download(tr("Download in sequential order"), 0);
     actionSequential_download.setCheckable(true);
     connect(&actionSequential_download, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSequentialDownload()));
-    QAction actionFirstLastPiece_prio(tr("Download first and last piece first"), 0);
+    QAction actionFirstLastPiece_prio(tr("Download first and last pieces first"), 0);
     actionFirstLastPiece_prio.setCheckable(true);
     connect(&actionFirstLastPiece_prio, SIGNAL(triggered()), this, SLOT(toggleSelectedFirstLastPiecePrio()));
+    QAction actionEnableASM(tr("Enable Advanced Saving Management"), 0);
+    actionEnableASM.setCheckable(true);
+    connect(&actionEnableASM, SIGNAL(triggered(bool)), this, SLOT(setSelectedASMEnabled(bool)));
     // End of actions
 
     // Enable/disable pause/start action given the DL state
@@ -680,8 +684,10 @@ void TransferListWidget::displayListMenu(const QPoint&)
     bool all_same_sequential_download_mode = true, all_same_prio_firstlast = true;
     bool sequential_download_mode = false, prioritize_first_last = false;
     bool one_has_metadata = false, one_not_seed = false;
-    bool all_same_label = true;
-    QString first_label;
+    bool allSameCategory = true;
+    bool allSameASM = true;
+    bool firstASM = false;
+    QString firstCategory;
     bool first = true;
 
     BitTorrent::TorrentHandle *torrent;
@@ -692,10 +698,15 @@ void TransferListWidget::displayListMenu(const QPoint&)
         torrent = listModel->torrentHandle(mapToSource(index));
         if (!torrent) continue;
 
-        if (first_label.isEmpty() && first)
-            first_label = torrent->label();
+        if (firstCategory.isEmpty() && first)
+            firstCategory = torrent->category();
+        if (firstCategory != torrent->category())
+            allSameCategory = false;
 
-        all_same_label = (first_label == torrent->label());
+        if (first)
+            firstASM = torrent->isASMEnabled();
+        if (firstASM != torrent->isASMEnabled())
+            allSameASM = false;
 
         if (torrent->hasMetadata())
             one_has_metadata = true;
@@ -738,8 +749,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
         first = false;
 
         if (one_has_metadata && one_not_seed && !all_same_sequential_download_mode
-            && !all_same_prio_firstlast && !all_same_super_seeding && !all_same_label
-            && needs_start && needs_force && needs_pause && needs_preview) {
+            && !all_same_prio_firstlast && !all_same_super_seeding && !allSameCategory
+            && needs_start && needs_force && needs_pause && needs_preview && !allSameASM) {
             break;
         }
     }
@@ -756,29 +767,35 @@ void TransferListWidget::displayListMenu(const QPoint&)
     listMenu.addAction(&actionSetTorrentPath);
     if (selectedIndexes.size() == 1)
         listMenu.addAction(&actionRename);
-    // Label Menu
-    QStringList customLabels = Preferences::instance()->getTorrentLabels();
-    customLabels.sort();
-    QList<QAction*> labelActions;
-    QMenu *labelMenu = listMenu.addMenu(GuiIconProvider::instance()->getIcon("view-categories"), tr("Label"));
-    labelActions << labelMenu->addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("New...", "New label..."));
-    labelActions << labelMenu->addAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Reset", "Reset label"));
-    labelMenu->addSeparator();
-    foreach (QString label, customLabels) {
-        label.replace('&', "&&");  // avoid '&' becomes accelerator key
-        QAction *lb = new QAction(GuiIconProvider::instance()->getIcon("inode-directory"), label, labelMenu);
-        if (all_same_label && (label == first_label)) {
-            lb->setCheckable(true);
-            lb->setChecked(true);
+    // Category Menu
+    QStringList categories = BitTorrent::Session::instance()->categories();
+    std::sort(categories.begin(), categories.end(), Utils::String::NaturalCompare());
+    QList<QAction*> categoryActions;
+    QMenu *categoryMenu = listMenu.addMenu(GuiIconProvider::instance()->getIcon("view-categories"), tr("Category"));
+    categoryActions << categoryMenu->addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("New...", "New category..."));
+    categoryActions << categoryMenu->addAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Reset", "Reset category"));
+    categoryMenu->addSeparator();
+    foreach (QString category, categories) {
+        category.replace('&', "&&");  // avoid '&' becomes accelerator key
+        QAction *cat = new QAction(GuiIconProvider::instance()->getIcon("inode-directory"), category, categoryMenu);
+        if (allSameCategory && (category == firstCategory)) {
+            cat->setCheckable(true);
+            cat->setChecked(true);
         }
-        labelMenu->addAction(lb);
-        labelActions << lb;
+        categoryMenu->addAction(cat);
+        categoryActions << cat;
     }
+
+    if (allSameASM) {
+        actionEnableASM.setChecked(firstASM);
+        listMenu.addAction(&actionEnableASM);
+    }
+
     listMenu.addSeparator();
     if (one_not_seed)
         listMenu.addAction(&actionSet_download_limit);
-    listMenu.addAction(&actionSet_max_ratio);
     listMenu.addAction(&actionSet_upload_limit);
+    listMenu.addAction(&actionSet_max_ratio);
     if (!one_not_seed && all_same_super_seeding && one_has_metadata) {
         actionSuper_seeding_mode.setChecked(super_seeding_mode);
         listMenu.addAction(&actionSuper_seeding_mode);
@@ -801,6 +818,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
             added_preview_action = true;
         }
     }
+
     if (added_preview_action)
         listMenu.addSeparator();
     if (one_has_metadata) {
@@ -823,20 +841,20 @@ void TransferListWidget::displayListMenu(const QPoint&)
     QAction *act = 0;
     act = listMenu.exec(QCursor::pos());
     if (act) {
-        // Parse label actions only (others have slots assigned)
-        int i = labelActions.indexOf(act);
+        // Parse category actions only (others have slots assigned)
+        int i = categoryActions.indexOf(act);
         if (i >= 0) {
-            // Label action
+            // Category action
             if (i == 0) {
-                // New Label
-                askNewLabelForSelection();
+                // New Category
+                askNewCategoryForSelection();
             }
             else {
-                QString label = "";
+                QString category = "";
                 if (i > 1)
-                    label = customLabels.at(i - 2);
-                // Update Label
-                setSelectionLabel(label);
+                    category = categories.at(i - 2);
+                // Update Category
+                setSelectionCategory(category);
             }
         }
     }
@@ -854,12 +872,12 @@ void TransferListWidget::currentChanged(const QModelIndex& current, const QModel
     emit currentTorrentChanged(torrent);
 }
 
-void TransferListWidget::applyLabelFilter(QString label)
+void TransferListWidget::applyCategoryFilter(QString category)
 {
-    if (label.isNull())
-        nameFilterModel->disableLabelFilter();
+    if (category.isNull())
+        nameFilterModel->disableCategoryFilter();
     else
-        nameFilterModel->setLabelFilter(label);
+        nameFilterModel->setCategoryFilter(category);
 }
 
 void TransferListWidget::applyTrackerFilterAll()

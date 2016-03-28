@@ -32,15 +32,15 @@
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QFile>
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
 #include <QTableView>
 #endif
 
-#include "core/utils/misc.h"
+#include "base/utils/misc.h"
 #include "previewlistdelegate.h"
 #include "previewselect.h"
-#include "core/utils/fs.h"
-#include "core/preferences.h"
+#include "base/utils/fs.h"
+#include "base/preferences.h"
 
 PreviewSelect::PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const torrent)
     : QDialog(parent)
@@ -54,7 +54,7 @@ PreviewSelect::PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const t
   previewListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name"));
   previewListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
   previewListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;
