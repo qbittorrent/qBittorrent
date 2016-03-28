@@ -30,7 +30,7 @@ will install and execute qBittorrent hopefully without any problem.
 ### Public key:
 Starting from v3.3.4 all source tarballs and binaries are signed.<br />
 The key currently used is 4096R/[520EC6F6](https://pgp.mit.edu/pks/lookup?op=get&search=0xA1ACCAE4520EC6F6) with fingerprint `F4A5FD201B117B1C2AB590E2A1ACCAE4520EC6F6`.<br />
-You can also download it from [here](https://github.com/qbittorrent/qBittorrent/raw/master/520EC6F6F.asc).<br />
+You can also download it from [here](https://github.com/qbittorrent/qBittorrent/raw/master/520EC6F6.asc).<br />
 
 ### Misc:
 For more information please visit:
