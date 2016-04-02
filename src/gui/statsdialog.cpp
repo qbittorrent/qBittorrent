@@ -98,7 +98,7 @@ void StatsDialog::updateUI() {
                                                   : "0"));
   // Disk queues
   ui->labelQueuedJobs->setText(QString::number(cs.jobQueueLength()));
-  ui->labelJobsTime->setText(QString::number(cs.averageJobTime()));
+  ui->labelJobsTime->setText(tr("%1 ms", "18 milliseconds").arg(cs.averageJobTime()));
   ui->labelQueuedBytes->setText(Utils::Misc::friendlyUnit(cs.queuedBytes()));
 
   // Total connected peers

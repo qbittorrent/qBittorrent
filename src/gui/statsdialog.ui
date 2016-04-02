@@ -102,7 +102,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="labelCacheHitsText">
         <property name="text">
-         <string>Read cache Hits:</string>
+         <string>Read cache hits:</string>
         </property>
        </widget>
       </item>
@@ -181,7 +181,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="labelJobsTimeText">
         <property name="text">
-         <string>Average time in queue (ms):</string>
+         <string>Average time in queue:</string>
         </property>
        </widget>
       </item>
