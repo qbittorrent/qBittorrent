@@ -1,4 +1,4 @@
-#VERSION: 1.41
+#VERSION: 1.42
 #AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 #              Bruno Barbieri (brunorex@gmail.com)
@@ -42,14 +42,13 @@ class torrentreactor(object):
         print(download_file(info))
 
     class SimpleHTMLParser(HTMLParser):
-        def __init__(self, results, url, what):
+        def __init__(self, results, url):
             HTMLParser.__init__(self)
             self.td_counter = None
             self.current_item = None
             self.results = results
             self.id = None
             self.url = url
-            self.what_list = parse.unquote(what).split()
             self.torrents_matcher = re_compile("/torrents/\d+.*")
             self.dispatcher = { 'a' : self.start_a, 'td' : self.start_td }
 
@@ -88,9 +87,6 @@ class torrentreactor(object):
                     self.td_counter = None
                     # add item to results
                     if self.current_item:
-                        # TorrentReactor returns unrelated results, we need to filter
-                        if not all(word in self.current_item['name'].lower() for word in self.what_list):
-                            return
                         self.current_item['engine_url'] = self.url
                         if not self.current_item['seeds'].isdigit():
                             self.current_item['seeds'] = 0
@@ -104,7 +100,7 @@ class torrentreactor(object):
         i = 0
         dat = ''
         results = []
-        parser = self.SimpleHTMLParser(results, self.url, what)
+        parser = self.SimpleHTMLParser(results, self.url)
         while i < 9:
             dat = retrieve_url('%s/torrents-search/%s/%s?sort=seeders.desc&type=all&period=none&categories=%s'%(self.url, what, (i*35), self.supported_categories[cat]))
             parser.feed(dat)
