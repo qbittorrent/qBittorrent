@@ -1,4 +1,4 @@
-#VERSION: 1.2
+#VERSION: 1.21
 #AUTHORS: Douman (custparasite@gmx.se)
 #CONTRIBUTORS: Diego de las Heras (ngosang@hotmail.es)
 
@@ -121,7 +121,7 @@ class demonoid(object):
         """ Performs search """
         #prepare query
         cat = self.supported_categories[cat.lower()]
-        query = "".join((self.url, "/files/?category=", cat, "&subcategory=All&quality=All&seeded=2&external=2&query=", what, "&to=1&uid=0&sort=S"))
+        query = "".join((self.url, "/files/?category=", cat, "&subcategory=All&quality=All&seeded=2&external=2&query=", what, "&uid=0&sort=S"))
 
         data = retrieve_url(query)
 
