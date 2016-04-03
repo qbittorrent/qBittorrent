@@ -74,6 +74,11 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
     move(Utils::Misc::screenCenter(this));
 }
 
+ShutdownConfirmDlg::~ShutdownConfirmDlg()
+{
+  delete ui;
+}
+
 void ShutdownConfirmDlg::showEvent(QShowEvent *event)
 {
     QDialog::showEvent(event);
