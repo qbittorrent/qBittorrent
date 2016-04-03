@@ -49,6 +49,7 @@ class ShutdownConfirmDlg : public QDialog
 
 public:
     ShutdownConfirmDlg(const ShutdownAction &action);
+    ~ShutdownConfirmDlg();
     bool shutdown() const;
 
     static bool askForConfirmation(const ShutdownAction &action);
