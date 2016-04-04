@@ -275,6 +275,8 @@ MainWindow::MainWindow(QWidget *parent)
     createKeyboardShortcuts();
     // Create status bar
     status_bar = new StatusBar(QMainWindow::statusBar());
+    this->setStyleSheet("QStatusBar::item { border-width: 0; }");
+
     connect(status_bar->connectionStatusButton(), SIGNAL(clicked()), SLOT(showConnectionSettings()));
     connect(actionUse_alternative_speed_limits, SIGNAL(triggered()), status_bar, SLOT(toggleAlternativeSpeeds()));
 

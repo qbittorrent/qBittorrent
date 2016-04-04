@@ -98,6 +98,7 @@ struct QBtCommandLineParameters
 #endif
 #ifndef DISABLE_GUI
     bool noSplash;
+    bool darkTheme;
 #else
     bool shouldDaemonize;
 #endif
@@ -112,6 +113,7 @@ struct QBtCommandLineParameters
 #endif
 #ifndef DISABLE_GUI
         , noSplash(Preferences::instance()->isSplashScreenDisabled())
+        , darkTheme(false)
 #else
         , shouldDaemonize(false)
 #endif
@@ -187,6 +189,19 @@ int main(int argc, char *argv[])
         std::cerr << "Couldn't set environment variable...\n";
 
 #ifndef DISABLE_GUI
+
+    // Set dark theme
+    if (params.darkTheme) {
+        QFile file(":/qdarkstylesheet.qss");
+        if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            app->setStyleSheet(file.readAll());
+            file.close();
+        }
+        QPalette palette = app->palette();
+        palette.setColor(QPalette::Active, QPalette::Base, QColor(100,100,100));
+        app->setPalette(palette);
+    }
+
     if (!userAgreesWithLegalNotice())
         return EXIT_SUCCESS;
 #else
@@ -296,6 +311,9 @@ QBtCommandLineParameters parseCommandLine()
 #ifndef DISABLE_GUI
             else if (arg == QLatin1String("--no-splash")) {
                 result.noSplash = true;
+            }
+            else if (arg == QLatin1String("--dark-theme")) {
+                result.darkTheme = true;
             }
 #else
             else if ((arg == QLatin1String("-d")) || (arg == QLatin1String("--daemon"))) {

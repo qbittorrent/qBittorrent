@@ -69,7 +69,8 @@ QMAKE_RESOURCE_FLAGS += -compress 9 -threshold 5
 RESOURCES += \
     icons.qrc \
     lang.qrc \
-    searchengine.qrc
+    searchengine.qrc \
+    style.qrc
 
 # Translations
 TRANSLATIONS = \
