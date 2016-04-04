@@ -76,7 +76,7 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
 
 ShutdownConfirmDlg::~ShutdownConfirmDlg()
 {
-  delete ui;
+    delete ui;
 }
 
 void ShutdownConfirmDlg::showEvent(QShowEvent *event)
