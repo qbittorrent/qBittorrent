@@ -548,7 +548,7 @@
                   </widget>
                  </item>
                  <item>
-                  <spacer name="horizontalSpacer_10">
+                  <spacer name="horizontalSpacer_100">
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
                    </property>
@@ -735,12 +735,12 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_25">
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_7">
+                <layout class="QHBoxLayout" name="horizontalLayout_70">
                  <property name="spacing">
                   <number>10</number>
                  </property>
                  <item>
-                  <widget class="QLabel" name="label_4">
+                  <widget class="QLabel" name="label_40">
                    <property name="text">
                     <string>Default Saving Mode:</string>
                    </property>
@@ -764,7 +764,7 @@
                   </widget>
                  </item>
                  <item>
-                  <spacer name="horizontalSpacer_16">
+                  <spacer name="horizontalSpacer_160">
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
                    </property>
@@ -830,7 +830,7 @@
                 </widget>
                </item>
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_8">
+                <layout class="QHBoxLayout" name="horizontalLayout_80">
                  <property name="spacing">
                   <number>10</number>
                  </property>
