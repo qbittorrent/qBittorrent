@@ -113,6 +113,7 @@ FORMS += \
     $$PWD/torrentcreatordlg.ui \
     $$PWD/search/searchwidget.ui \
     $$PWD/search/pluginselectdlg.ui \
-    $$PWD/search/pluginsourcedlg.ui
+    $$PWD/search/pluginsourcedlg.ui \
+    $$PWD/search/searchtab.ui
 
 RESOURCES += $$PWD/about.qrc

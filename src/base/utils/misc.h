@@ -48,6 +48,22 @@ namespace Utils
 {
     namespace Misc
     {
+        // use binary prefix standards from IEC 60027-2
+        // see http://en.wikipedia.org/wiki/Kilobyte
+        enum class SizeUnit
+        {
+            Byte,       // 1024^0,
+            KibiByte,   // 1024^1,
+            MebiByte,   // 1024^2,
+            GibiByte,   // 1024^3,
+            TebiByte,   // 1024^4,
+            PebiByte,   // 1024^5,
+            ExbiByte    // 1024^6,
+            // int64 is used for sizes and thus the next units can not be handled
+            // ZebiByte,   // 1024^7,
+            // YobiByte,   // 1024^8
+        };
+
         QString parseHtmlLinks(const QString &raw_text);
         bool isUrl(const QString &s);
 
@@ -64,11 +80,15 @@ namespace Utils
         int pythonVersion();
         QString pythonExecutable();
         QString pythonVersionComplete();
-        // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
-        // use Binary prefix standards from IEC 60027-2
-        // see http://en.wikipedia.org/wiki/Kilobyte
+
+        QString unitString(SizeUnit unit);
+
+        // return best user friendly storage unit (B, KiB, MiB, GiB, TiB)
         // value must be given in bytes
-        QString friendlyUnit(qreal val, bool is_speed = false);
+        bool friendlyUnit(qint64 sizeInBytes, qreal& val, SizeUnit& unit);
+        QString friendlyUnit(qint64 bytesValue, bool isSpeed = false);
+        qint64 sizeInBytes(qreal size, SizeUnit unit);
+
         bool isPreviewable(const QString& extension);
 
         // Take a number of seconds and return an user-friendly

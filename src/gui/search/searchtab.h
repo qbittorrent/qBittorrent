@@ -31,51 +31,86 @@
 #ifndef SEARCHTAB_H
 #define SEARCHTAB_H
 
+#include <QVariant> // I don't know why <QMetaType> is not enought for Qt's 4.8.7 moc
 #include <QWidget>
 
+#define ENGINE_URL_COLUMN 4
+#define URL_COLUMN 5
+
 class QLabel;
+class QModelIndex;
 class QTreeView;
 class QHeaderView;
 class QStandardItemModel;
-class QSortFilterProxyModel;
-class QModelIndex;
 class QVBoxLayout;
 
 class SearchSortModel;
 class SearchListDelegate;
 class SearchWidget;
 
+namespace Ui
+{
+    class SearchTab;
+}
+
 class SearchTab: public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit SearchTab(SearchWidget *m_parent);
 
-    QLabel* getCurrentLabel() const;
+    enum NameFilteringMode
+    {
+        Everywhere,
+        OnlyNames
+    };
+
+    Q_ENUMS(NameFilteringMode)
+
+    explicit SearchTab(SearchWidget *parent);
+    ~SearchTab();
+
     QStandardItemModel* getCurrentSearchListModel() const;
-    QSortFilterProxyModel* getCurrentSearchListProxy() const;
+    SearchSortModel* getCurrentSearchListProxy() const;
     QTreeView* getCurrentTreeView() const;
     QHeaderView* header() const;
-    QString status() const;
 
     bool loadColWidthResultsList();
     void setRowColor(int row, QString color);
-    void setStatus(const QString &value);
+
+    enum class Status
+    {
+        Ongoing,
+        Finished,
+        Error,
+        Aborted,
+        NoResults
+    };
+
+    void setStatus(Status value);
+    Status status() const;
+
+    void updateResultsCount();
 
 private slots:
     void downloadSelectedItem(const QModelIndex &index);
+    void updateFilter();
 
 private:
-    QVBoxLayout *m_box;
-    QLabel *m_resultsLbl;
+    void fillFilterComboBoxes();
+    NameFilteringMode filteringMode() const;
+    static QString statusText(Status st);
+    static QString statusIconName(Status st);
+
+    Ui::SearchTab *m_ui;
     QTreeView *m_resultsBrowser;
     QStandardItemModel *m_searchListModel;
     SearchSortModel *m_proxyModel;
     SearchListDelegate *m_searchDelegate;
     SearchWidget *m_parent;
-    QString m_status;
+    Status m_status;
 };
 
-#endif // SEARCHTAB_H
+Q_DECLARE_METATYPE(SearchTab::NameFilteringMode)
 
+#endif // SEARCHTAB_H

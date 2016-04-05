@@ -56,7 +56,7 @@ void SearchListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
         QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, option.rect, (index.data().toLongLong() >= 0) ? index.data().toString() : tr("Unknown"));
         break;
-    case SearchSortModel::LEECHS:
+    case SearchSortModel::LEECHES:
         QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, option.rect, (index.data().toLongLong() >= 0) ? index.data().toString() : tr("Unknown"));
         break;
