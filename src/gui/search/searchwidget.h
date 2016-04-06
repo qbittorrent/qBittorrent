@@ -52,7 +52,7 @@ public:
     explicit SearchWidget(MainWindow *mainWindow);
     ~SearchWidget();
 
-    void downloadTorrent(QString url);
+    void downloadTorrent(const QString &siteUrl, const QString &url);
     void giveFocusToSearchInput();
 
     QTabWidget* searchTabs() const;
@@ -73,6 +73,8 @@ private slots:
     void searchFailed();
     void selectMultipleBox(const QString &text);
 
+    void addTorrentToSession(const QString &source);
+
     void saveResultsColumnsWidth();
     void fillCatCombobox();
     void fillPluginComboBox();
@@ -86,7 +88,7 @@ private:
     SearchEngine *m_searchEngine;
     QPointer<SearchTab> m_currentSearchTab; // Selected tab
     QPointer<SearchTab> m_activeSearchTab; // Tab with running search
-    QList<QPointer<SearchTab> > m_allTabs; // To store all tabs
+    QList<QPointer<SearchTab>> m_allTabs; // To store all tabs
     MainWindow *m_mainWindow;
     bool m_isNewQueryString;
     bool m_noSearchResults;

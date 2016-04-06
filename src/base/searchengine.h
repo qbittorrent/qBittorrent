@@ -84,6 +84,8 @@ public:
     void startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins);
     void cancelSearch();
 
+    void downloadTorrent(const QString &siteUrl, const QString &url);
+
     static qreal getPluginVersion(QString filePath);
     static QString categoryFullName(const QString &categoryName);
     static QString pluginsLocation();
@@ -102,6 +104,8 @@ signals:
     void checkForUpdatesFinished(const QHash<QString, qreal> &updateInfo);
     void checkForUpdatesFailed(const QString &reason);
 
+    void torrentFileDownloaded(const QString &path);
+
 private slots:
     void onTimeout();
     void readSearchOutput();
@@ -110,6 +114,7 @@ private slots:
     void versionInfoDownloadFailed(const QString &url, const QString &reason);
     void pluginDownloaded(const QString &url, QString filePath);
     void pluginDownloadFailed(const QString &url, const QString &reason);
+    void torrentFileDownloadFinished(int exitcode);
 
 private:
     void update();
@@ -132,6 +137,7 @@ private:
     bool m_searchStopped;
     QTimer *m_searchTimeout;
     QByteArray m_searchResultLineTruncated;
+    QList<QProcess*> m_downloaders;
 };
 
 #endif // SEARCHENGINE_H
