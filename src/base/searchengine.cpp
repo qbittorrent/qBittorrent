@@ -266,6 +266,21 @@ void SearchEngine::cancelSearch()
     }
 }
 
+void SearchEngine::downloadTorrent(const QString &siteUrl, const QString &url)
+{
+    QProcess *downloadProcess = new QProcess(this);
+    downloadProcess->setEnvironment(QProcess::systemEnvironment());
+    connect(downloadProcess, SIGNAL(finished(int)), this, SLOT(torrentFileDownloadFinished(int)));
+    m_downloaders << downloadProcess;
+    QStringList params {
+        Utils::Fs::toNativePath(engineLocation() + "/nova2dl.py"),
+        siteUrl,
+        url
+    };
+    // Launch search
+    downloadProcess->start(Utils::Misc::pythonExecutable(), params, QIODevice::ReadOnly);
+}
+
 void SearchEngine::startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins)
 {
     // Search process already running or
@@ -357,6 +372,21 @@ void SearchEngine::pluginDownloadFailed(const QString &url, const QString &reaso
         emit pluginInstallationFailed(pluginName, tr("Failed to download the plugin file. %1").arg(reason));
 }
 
+void SearchEngine::torrentFileDownloadFinished(int exitcode)
+{
+    QProcess *downloadProcess = static_cast<QProcess*>(sender());
+    if (exitcode == 0) {
+        QString line = QString::fromUtf8(downloadProcess->readAllStandardOutput()).trimmed();
+        QStringList parts = line.split(' ');
+        if (parts.size() == 2)
+            emit torrentFileDownloaded(parts[0]);
+    }
+
+    qDebug() << "Deleting downloadProcess";
+    m_downloaders.removeOne(downloadProcess);
+    downloadProcess->deleteLater();
+}
+
 // Update nova.py search plugin if necessary
 void SearchEngine::updateNova()
 {
@@ -381,6 +411,12 @@ void SearchEngine::updateNova()
     if (getPluginVersion(":/" + novaFolder + "/nova2.py") > getPluginVersion(filePath)) {
         removePythonScriptIfExists(filePath);
         QFile::copy(":/" + novaFolder + "/nova2.py", filePath);
+    }
+
+    filePath = searchDir.absoluteFilePath("nova2dl.py");
+    if (getPluginVersion(":/" + novaFolder + "/nova2dl.py") > getPluginVersion(filePath)) {
+        removePythonScriptIfExists(filePath);
+        QFile::copy(":/" + novaFolder + "/nova2dl.py", filePath);
     }
 
     filePath = searchDir.absoluteFilePath("fix_encoding.py");

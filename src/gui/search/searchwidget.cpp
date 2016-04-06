@@ -116,6 +116,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     connect(m_searchEngine, SIGNAL(newSearchResults(QList<SearchResult>)), SLOT(appendSearchResults(QList<SearchResult>)));
     connect(m_searchEngine, SIGNAL(searchFinished(bool)), SLOT(searchFinished(bool)));
     connect(m_searchEngine, SIGNAL(searchFailed()), SLOT(searchFailed()));
+    connect(m_searchEngine, SIGNAL(torrentFileDownloaded(QString)), SLOT(addTorrentToSession(QString)));
 
     // Fill in category combobox
     fillCatCombobox();
@@ -161,6 +162,14 @@ SearchWidget::~SearchWidget()
     delete m_searchEngine;
 }
 
+void SearchWidget::downloadTorrent(const QString &siteUrl, const QString &url)
+{
+    if (url.startsWith("bc://bt/", Qt::CaseInsensitive) || url.startsWith("magnet:", Qt::CaseInsensitive))
+        addTorrentToSession(url);
+    else
+        m_searchEngine->downloadTorrent(siteUrl, url);
+}
+
 void SearchWidget::tab_changed(int t)
 {
     //when we switch from a tab that is not empty to another that is empty the download button
@@ -185,6 +194,14 @@ void SearchWidget::selectMultipleBox(const QString &text)
 {
     if (text == tr("Multiple..."))
         on_pluginsButton_clicked();
+}
+
+void SearchWidget::addTorrentToSession(const QString &source)
+{
+    if (AddNewTorrentDialog::isEnabled())
+        AddNewTorrentDialog::show(source, this);
+    else
+        BitTorrent::Session::instance()->addTorrent(source);
 }
 
 void SearchWidget::on_pluginsButton_clicked()
@@ -279,14 +296,6 @@ void SearchWidget::saveResultsColumnsWidth()
     // Don't save the width of the last column (auto column width)
     newWidthList.removeLast();
     Preferences::instance()->setSearchColsWidth(newWidthList.join(" "));
-}
-
-void SearchWidget::downloadTorrent(QString url)
-{
-    if (AddNewTorrentDialog::isEnabled())
-        AddNewTorrentDialog::show(url, this);
-    else
-        BitTorrent::Session::instance()->addTorrent(url);
 }
 
 void SearchWidget::searchStarted()
@@ -391,9 +400,8 @@ void SearchWidget::on_downloadButton_clicked()
     //QModelIndexList selectedIndexes = currentSearchTab->getCurrentTreeView()->selectionModel()->selectedIndexes();
     QModelIndexList selectedIndexes = m_allTabs.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
     foreach (const QModelIndex &index, selectedIndexes) {
-        if (index.column() == SearchSortModel::NAME) {
+        if (index.column() == SearchSortModel::NAME)
             m_allTabs.at(tabWidget->currentIndex())->downloadItem(index);
-        }
     }
 }
 
