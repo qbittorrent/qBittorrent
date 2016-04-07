@@ -52,6 +52,7 @@ qinisettings.h
 scanfoldersmodel.h
 searchengine.h
 settingsstorage.h
+torrentfileguard.h
 torrentfilter.h
 tristatebool.h
 types.h
@@ -107,6 +108,7 @@ preferences.cpp
 scanfoldersmodel.cpp
 searchengine.cpp
 settingsstorage.cpp
+torrentfileguard.cpp
 torrentfilter.cpp
 tristatebool.cpp
 )

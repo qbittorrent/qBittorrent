@@ -31,8 +31,9 @@
 #ifndef ADDNEWTORRENTDIALOG_H
 #define ADDNEWTORRENTDIALOG_H
 
-#include <QShortcut>
 #include <QDialog>
+#include <QScopedPointer>
+#include <QShortcut>
 #include <QUrl>
 
 #include "base/bittorrent/infohash.h"
@@ -49,6 +50,7 @@ namespace Ui
 }
 
 class TorrentContentFilterModel;
+class TorrentFileGuard;
 class PropListDelegate;
 
 class AddNewTorrentDialog: public QDialog
@@ -79,6 +81,7 @@ private slots:
     void handleDownloadFinished(const QString &url, const QString &filePath);
     void savingModeChanged(bool enabled);
     void categoryChanged(int index);
+    void doNotDeleteTorrentClicked(bool checked);
 
     void accept() override;
     void reject() override;
@@ -109,6 +112,7 @@ private:
     QShortcut *editHotkey;
     QByteArray m_headerState;
     int m_oldIndex;
+    QScopedPointer<TorrentFileGuard> m_torrentGuard;
 };
 
 #endif // ADDNEWTORRENTDIALOG_H

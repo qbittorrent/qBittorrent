@@ -49,6 +49,7 @@
 #include "base/bittorrent/session.h"
 #include "base/net/dnsupdater.h"
 #include "base/unicodestrings.h"
+#include "base/torrentfileguard.h"
 #include "advancedsettings.h"
 #include "guiiconprovider.h"
 #include "scanfoldersdelegate.h"
@@ -87,6 +88,22 @@ options_imp::options_imp(QWidget *parent)
     }
 
     IpFilterRefreshBtn->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
+
+    deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
+    deleteTorrentWarningIcon->hide();
+    deleteTorrentWarningLabel->hide();
+    deleteTorrentWarningLabel->setToolTip(QLatin1String("<html><body><p>") +
+        tr("By enabling these options, you can <strong>irrevocably lose</strong> your .torrent files!") +
+        QLatin1String("</p><p>") +
+        tr("When these options are enabled, qBittorent will <strong>delete</strong> .torrent files "
+        "after they were successfully (the first option) or not (the second option) added to its "
+        "download queue. This will be applied <strong>not only</strong> to the files opened via "
+        "&ldquo;Add torrent&rdquo; menu action but to those opened via <strong>file type association</strong> as well") +
+        QLatin1String("</p><p>") +
+        tr("If you enable the second option (&ldquo;Also when addition is cancelled&rdquo;) the "
+        ".torrent file <strong>will be deleted</strong> even if you press &ldquo;<strong>Cancel</strong>&rdquo; in "
+        "the &ldquo;Add torrent&rdquo; dialog") +
+        QLatin1String("</p></body></html>"));
 
     hsplitter->setCollapsible(0, false);
     hsplitter->setCollapsible(1, false);
@@ -193,6 +210,8 @@ options_imp::options_imp(QWidget *parent)
     connect(checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkAdditionDialogFront, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(deleteTorrentBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(deleteCancelledTorrentBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkExportDirFin, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(textExportDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -500,6 +519,9 @@ void options_imp::saveOptions()
     pref->setAutoRunProgram(autoRun_txt->text().trimmed());
     pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
     pref->setActionOnDblClOnTorrentFn(getActionOnDblClOnTorrentFn());
+    TorrentFileGuard::setautoDeleteMode(!deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
+                             : !deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
+                             : TorrentFileGuard::Always);
     // End Downloads preferences
 
     // Connection preferences
@@ -676,6 +698,9 @@ void options_imp::loadOptions()
     checkAdditionDialog->setChecked(AddNewTorrentDialog::isEnabled());
     checkAdditionDialogFront->setChecked(AddNewTorrentDialog::isTopLevel());
     checkStartPaused->setChecked(session->isAddTorrentPaused());
+    const TorrentFileGuard::AutoDeleteMode autoDeleteMode = TorrentFileGuard::autoDeleteMode();
+    deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
+    deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);
 
     textSavePath->setText(Utils::Fs::toNativePath(session->defaultSavePath()));
     (session->isSubcategoriesEnabled() ? radioBtnEnableSubcategories : radioBtnDisableSubcategories)->setChecked(true);

@@ -45,6 +45,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "base/torrentfileguard.h"
 #include "base/unicodestrings.h"
 #include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
@@ -94,6 +95,8 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
     connect(ui->browseButton, SIGNAL(clicked()), SLOT(browseButton_clicked()));
     ui->defaultSavePathCheckBox->setVisible(false); // Default path is selected by default
 
+    ui->doNotDeleteTorrentCheckBox->setVisible(TorrentFileGuard::autoDeleteMode() != TorrentFileGuard::Never);
+
     // Load categories
     QStringList categories = session->categories();
     std::sort(categories.begin(), categories.end(), Utils::String::naturalCompareCaseInsensitive);
@@ -112,6 +115,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
     loadState();
     // Signal / slots
     connect(ui->adv_button, SIGNAL(clicked(bool)), SLOT(showAdvancedSettings(bool)));
+    connect(ui->doNotDeleteTorrentCheckBox, SIGNAL(clicked(bool)), SLOT(doNotDeleteTorrentClicked(bool)));
     editHotkey = new QShortcut(QKeySequence("F2"), ui->contentTreeView, 0, 0, Qt::WidgetShortcut);
     connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedFile()));
     connect(ui->contentTreeView, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedFile()));
@@ -221,6 +225,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
         return false;
     }
 
+    m_torrentGuard.reset(new TorrentFileGuard(m_filePath));
     m_hash = m_torrentInfo.hash();
 
     // Prevent showing the dialog if download is already present
@@ -647,6 +652,7 @@ void AddNewTorrentDialog::accept()
     else
         BitTorrent::Session::instance()->addTorrent(m_torrentInfo, params);
 
+    m_torrentGuard->markAsAddedToSession();
     QDialog::accept();
 }
 
@@ -794,4 +800,9 @@ void AddNewTorrentDialog::setCommentText(const QString &str) const
     int lines = 1 + str.count("\n");
     int height = lineHeight * lines;
     ui->scrollArea->setMaximumHeight(height);
+}
+
+void AddNewTorrentDialog::doNotDeleteTorrentClicked(bool checked)
+{
+    m_torrentGuard->setAutoRemove(!checked);
 }

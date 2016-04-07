@@ -70,6 +70,7 @@
 #include "base/net/portforwarder.h"
 #include "base/preferences.h"
 #include "base/settingsstorage.h"
+#include "base/torrentfileguard.h"
 #include "base/torrentfilter.h"
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
@@ -1229,6 +1230,8 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
         m_downloadedTorrents[handler->url()] = params;
     }
     else {
+        TorrentFileGuard guard(source);
+        guard.markAsAddedToSession();
         return addTorrent_impl(params, MagnetUri(), TorrentInfo::loadFromFile(source));
     }
 
