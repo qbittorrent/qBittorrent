@@ -113,9 +113,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-190</y>
-             <width>486</width>
-             <height>732</height>
+             <y>0</y>
+             <width>514</width>
+             <height>968</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -670,8 +670,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>487</width>
-             <height>1334</height>
+             <width>514</width>
+             <height>1537</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -715,6 +715,64 @@
                      <bool>true</bool>
                     </property>
                    </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QGroupBox" name="deleteTorrentBox">
+                 <property name="toolTip">
+                  <string>Should the .torrent file be deleted after adding it</string>
+                 </property>
+                 <property name="title">
+                  <string>Delete .torrent files afterwards </string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_17">
+                  <item>
+                   <widget class="QCheckBox" name="deleteCancelledTorrentBox">
+                    <property name="toolTip">
+                     <string>Also delete .torrent files whose addition was cancelled</string>
+                    </property>
+                    <property name="text">
+                     <string>Also when addition is cancelled</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_11">
+                    <item>
+                     <widget class="QLabel" name="deleteTorrentWarningIcon">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="text">
+                       <string notr="true">&lt;&gt;</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="deleteTorrentWarningLabel">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="text">
+                       <string>Warning! Data loss possible!</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
                   </item>
                  </layout>
                 </widget>
@@ -1364,8 +1422,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>450</width>
-             <height>658</height>
+             <width>457</width>
+             <height>713</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1894,8 +1952,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>376</width>
-             <height>444</height>
+             <width>362</width>
+             <height>484</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2281,8 +2339,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>555</width>
-             <height>527</height>
+             <width>587</width>
+             <height>578</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2678,8 +2736,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>419</width>
-             <height>537</height>
+             <width>460</width>
+             <height>562</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -3130,12 +3188,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>544</x>
-     <y>172</y>
+     <x>604</x>
+     <y>205</y>
     </hint>
     <hint type="destinationlabel">
-     <x>603</x>
-     <y>171</y>
+     <x>677</x>
+     <y>206</y>
     </hint>
    </hints>
   </connection>
@@ -3146,12 +3204,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>544</x>
-     <y>198</y>
+     <x>604</x>
+     <y>238</y>
     </hint>
     <hint type="destinationlabel">
-     <x>603</x>
-     <y>197</y>
+     <x>677</x>
+     <y>239</y>
     </hint>
    </hints>
   </connection>
@@ -3162,12 +3220,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>544</x>
-     <y>250</y>
+     <x>604</x>
+     <y>304</y>
     </hint>
     <hint type="destinationlabel">
-     <x>603</x>
-     <y>249</y>
+     <x>677</x>
+     <y>305</y>
     </hint>
    </hints>
   </connection>
@@ -3178,12 +3236,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>509</x>
-     <y>372</y>
+     <x>547</x>
+     <y>415</y>
     </hint>
     <hint type="destinationlabel">
-     <x>584</x>
-     <y>373</y>
+     <x>642</x>
+     <y>414</y>
     </hint>
    </hints>
   </connection>
@@ -3194,12 +3252,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>509</x>
-     <y>372</y>
+     <x>547</x>
+     <y>415</y>
     </hint>
     <hint type="destinationlabel">
-     <x>721</x>
-     <y>373</y>
+     <x>815</x>
+     <y>413</y>
     </hint>
    </hints>
   </connection>
@@ -3210,12 +3268,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>423</x>
-     <y>224</y>
+     <x>604</x>
+     <y>271</y>
     </hint>
     <hint type="destinationlabel">
-     <x>571</x>
-     <y>224</y>
+     <x>677</x>
+     <y>272</y>
     </hint>
    </hints>
   </connection>
@@ -3226,12 +3284,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>398</x>
-     <y>292</y>
+     <x>395</x>
+     <y>203</y>
     </hint>
     <hint type="destinationlabel">
-     <x>477</x>
-     <y>292</y>
+     <x>496</x>
+     <y>204</y>
     </hint>
    </hints>
   </connection>
@@ -3242,12 +3300,44 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>398</x>
-     <y>263</y>
+     <x>395</x>
+     <y>170</y>
     </hint>
     <hint type="destinationlabel">
-     <x>477</x>
-     <y>263</y>
+     <x>496</x>
+     <y>171</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteTorrentBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>deleteTorrentWarningIcon</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>554</x>
+     <y>153</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>214</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteTorrentBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>deleteTorrentWarningLabel</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>646</x>
+     <y>158</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>629</x>
+     <y>207</y>
     </hint>
    </hints>
   </connection>
