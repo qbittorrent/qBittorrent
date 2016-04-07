@@ -224,7 +224,7 @@ void WebApplication::action_public_images()
 void WebApplication::action_query_torrents()
 {
     CHECK_URI(0);
-    const QByteArrayMap& gets = request().gets;
+    const auto& gets = request().gets;
 
     print(btjson::getTorrents(
         gets["filter"], gets["category"], gets["sort"], gets["reverse"] == "true",

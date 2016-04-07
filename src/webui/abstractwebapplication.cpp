@@ -97,7 +97,23 @@ AbstractWebApplication::~AbstractWebApplication()
 Http::Response AbstractWebApplication::processRequest(const Http::Request &request, const Http::Environment &env)
 {
     session_ = 0;
+
+#ifdef QBT_USES_QT5
     request_ = request;
+#else
+    request_.method = request.method;
+    request_.path = request.path;
+    request_.headers = request.headers;
+    request_.posts = request.posts;
+    request_.files = request.files;
+
+    //convert from to QStringMap
+    for (auto i = request.gets.constBegin(); i != request.gets.constEnd(); i++) {
+        QString key = QString::fromUtf8(i.key().constData(), i.key().length());
+        request_.gets[key] = QString::fromUtf8(i.value().constData(), i.value().length());
+    }
+#endif
+
     env_ = env;
 
     clear(); // clear response

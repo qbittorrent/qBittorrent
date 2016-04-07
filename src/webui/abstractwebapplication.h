@@ -78,7 +78,12 @@ protected:
     static QString saveTmpFile(const QByteArray &data);
 
     WebSessionData *session();
-    Http::Request request() const { return request_; }
+#ifdef QBT_USES_QT5
+        Http::Request
+#else
+        Http::TypedRequest<QStringMap> 
+#endif
+    request() const { return request_; }
     Http::Environment env() const { return env_; }
 
 private slots:
@@ -93,7 +98,11 @@ private:
 
     // Current data
     WebSession *session_;
+#ifdef QBT_USES_QT5
     Http::Request request_;
+#else
+    Http::TypedRequest<QStringMap> request_;
+#endif
     Http::Environment env_;
 
     QString generateSid();

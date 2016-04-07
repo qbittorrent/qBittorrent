@@ -64,15 +64,18 @@ namespace Http
         QByteArray data; // File data
     };
 
-    struct Request
+    template< typename T, typename = std::enable_if<std::is_same<T, QStringMap>::value || std::is_same<T, RawStringMap>::value>>
+    struct TypedRequest
     {
         QString method;
         QString path;
         QStringMap headers;
-        QByteArrayMap gets;
+        T gets;
         QStringMap posts;
         QVector<UploadedFile> files;
     };
+
+    using Request = TypedRequest<RawStringMap>;
 
     struct ResponseStatus
     {
