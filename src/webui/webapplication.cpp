@@ -227,7 +227,7 @@ void WebApplication::action_query_torrents()
     const RawStringMap& gets = request().gets;
 
     print(btjson::getTorrents(gets["filter"],
-                              QString::fromUtf8(gets["category"].constData(), gets["category"].length()),
+                              QString::fromUtf8(gets["category"]),
                               gets["sort"],
                               gets["reverse"] == "true",
                               gets["limit"].toInt(),
