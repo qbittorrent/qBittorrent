@@ -3,6 +3,9 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		svg2png: {
 			all: {
+				options:{
+					size: 32
+				},
 				files: [
 					{ 
 						src: ['icons/*.svg']
