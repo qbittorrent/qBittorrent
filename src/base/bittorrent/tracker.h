@@ -49,32 +49,8 @@ namespace Http
 
 namespace BitTorrent
 {
-    struct Peer
-    {
-        bool operator!=(const Peer &other) const;
-        bool operator==(const Peer &other) const;
-
-        // ip retrieved from connection
-        QString m_ip;
-        // ip obtained from announce query
-        QString m_announceIp;
-        std::string m_peerId;
-        int m_port;
-        QByteArray m_uid;
-
-        // if 'clientIP' belongs to a public network, returns public address found among connection and announce ip adrresses
-        QString getIpForClient(const QString& clientIp) const;
-    };
-
-    struct TrackerAnnounceRequest
-    {
-        QByteArray infoHash;
-        QString event;
-        int numwant;
-        Peer peer;
-        // Extensions
-        bool noPeerId;
-    };
+    struct Peer;
+    struct TrackerAnnounceRequest;
 
     typedef QHash<QByteArray, Peer> PeerList;
     typedef QHash<QByteArray, PeerList> TorrentList;
