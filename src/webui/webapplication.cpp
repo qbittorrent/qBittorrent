@@ -214,14 +214,6 @@ void WebApplication::action_public_images()
     header(Http::HEADER_CACHE_CONTROL, MAX_AGE_MONTH);
 }
 
-namespace
-{
-    inline QString toUtf8(const QByteArray& a)
-    {
-        return QString::fromUtf8(a.constData(), a.length());
-    }
-}
-
 // GET params:
 //   - filter (string): all, downloading, seeding, completed, paused, resumed, active, inactive
 //   - category (string): torrent category for filtering by it (empty string means "uncategorized"; no "category" param presented means "any category")
@@ -234,13 +226,13 @@ void WebApplication::action_query_torrents()
     CHECK_URI(0);
     const RawStringMap& gets = request().gets;
 
-    print(btjson::getTorrents( toUtf8(gets["filter"]),
-                               toUtf8(gets["category"]),
-                               toUtf8(gets["sort"]),
-                               toUtf8(gets["reverse"]) == "true",
-                               toUtf8(gets["limit"]).toInt(),
-                               toUtf8(gets["offset"]).toInt()),
-           Http::CONTENT_TYPE_JSON);
+    print(btjson::getTorrents(gets["filter"],
+                              QString::fromUtf8(gets["category"].constData(), gets["category"].length()),
+                              gets["sort"],
+                              gets["reverse"] == "true",
+                              gets["limit"].toInt(),
+                              gets["offset"].toInt()),
+          Http::CONTENT_TYPE_JSON);
 }
 
 void WebApplication::action_query_preferences()
@@ -284,7 +276,7 @@ void WebApplication::action_query_propertiesFiles()
 void WebApplication::action_sync_maindata()
 {
     CHECK_URI(0);
-    print(btjson::getSyncMainData(toUtf8(request().gets["rid"]).toInt(),
+    print(btjson::getSyncMainData(request().gets["rid"].toInt(),
         session()->syncMainDataLastResponse,
         session()->syncMainDataLastAcceptedResponse), Http::CONTENT_TYPE_JSON);
 }
@@ -295,8 +287,8 @@ void WebApplication::action_sync_maindata()
 void WebApplication::action_sync_torrent_peers()
 {
     CHECK_URI(0);
-    print(btjson::getSyncTorrentPeersData(toUtf8(request().gets["rid"]).toInt(),
-        toUtf8(request().gets["hash"]),
+    print(btjson::getSyncTorrentPeersData(request().gets["rid"].toInt(),
+        request().gets["hash"],
         session()->syncTorrentPeersLastResponse,
         session()->syncTorrentPeersLastAcceptedResponse), Http::CONTENT_TYPE_JSON);
 }

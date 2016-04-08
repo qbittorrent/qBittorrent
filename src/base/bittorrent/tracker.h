@@ -47,14 +47,14 @@ namespace Http
     class Server;
 }
 
+struct Peer;
+struct TrackerAnnounceRequest;
+
+typedef QHash<QByteArray, Peer> PeerList;
+typedef QHash<QByteArray, PeerList> TorrentList;
+
 namespace BitTorrent
 {
-    struct Peer;
-    struct TrackerAnnounceRequest;
-
-    typedef QHash<QByteArray, Peer> PeerList;
-    typedef QHash<QByteArray, PeerList> TorrentList;
-
     /* Basic Bittorrent tracker implementation in Qt */
     /* Following http://wiki.theory.org/BitTorrent_Tracker_Protocol */
     class Tracker : public Http::ResponseBuilder, public Http::IRequestHandler
