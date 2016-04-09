@@ -659,7 +659,7 @@ void Session::setSessionSettings()
     // Include overhead in transfer limits
     sessionSettings.rate_limit_ip_overhead = pref->includeOverheadInLimits();
     // IP address to announce to trackers
-    sessionSettings.announce_ip = Utils::String::toStdString(pref->getNetworkAddress());
+    sessionSettings.announce_ip = Utils::String::toStdString(pref->getAnnounceAddress());
     // Super seeding
     sessionSettings.strict_super_seeding = pref->isSuperSeedingEnabled();
     // * Max Half-open connections
@@ -1733,6 +1733,13 @@ const QStringList Session::getListeningIPs()
     Preferences* const pref = Preferences::instance();
     Logger* const logger = Logger::instance();
     QStringList IPs;
+
+    //Take the override addresss
+    const QString networkAddr = pref->getNetworkAddress();
+    if ( !networkAddr.isEmpty()) {
+        IPs.append( networkAddr);
+        return IPs;
+    }
 
     const QString ifaceName = pref->getNetworkInterface();
     const bool listenIPv6 = pref->getListenIPv6();

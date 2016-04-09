@@ -1339,6 +1339,16 @@ QString Preferences::getNetworkInterfaceName() const
     return value("Preferences/Connection/InterfaceName").toString();
 }
 
+void Preferences::setNetworkAddress(const QString& iface)
+{
+    setValue("Preferences/Connection/InterfaceAddress", iface);
+}
+
+QString Preferences::getNetworkAddress() const
+{
+    return value("Preferences/Connection/InterfaceAddress").toString();
+}
+
 void Preferences::setNetworkInterfaceName(const QString& iface)
 {
     setValue("Preferences/Connection/InterfaceName", iface);
@@ -1354,14 +1364,14 @@ void Preferences::setListenIPv6(bool enable)
     setValue("Preferences/Connection/InterfaceListenIPv6", enable);
 }
 
-QString Preferences::getNetworkAddress() const
+QString Preferences::getAnnounceAddress() const
 {
-    return value("Preferences/Connection/InetAddress").toString();
+    return value("Preferences/Connection/AnnounceAddress").toString();
 }
 
-void Preferences::setNetworkAddress(const QString& addr)
+void Preferences::setAnnounceAddress(const QString& addr)
 {
-    setValue("Preferences/Connection/InetAddress", addr);
+    setValue("Preferences/Connection/AnnounceAddress", addr);
 }
 
 bool Preferences::isAnonymousModeEnabled() const
