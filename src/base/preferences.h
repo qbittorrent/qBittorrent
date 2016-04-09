@@ -363,12 +363,14 @@ public:
     void setMaxHalfOpenConnections(int value);
     QString getNetworkInterface() const;
     void setNetworkInterface(const QString& iface);
+    QString getNetworkAddress() const;
+    void setNetworkAddress(const QString& iface);
     QString getNetworkInterfaceName() const;
     void setNetworkInterfaceName(const QString& iface);
     bool getListenIPv6() const;
     void setListenIPv6(bool enable);
-    QString getNetworkAddress() const;
-    void setNetworkAddress(const QString& addr);
+    QString getAnnounceAddress() const;
+    void setAnnounceAddress(const QString& addr);
     bool isAnonymousModeEnabled() const;
     void enableAnonymousMode(bool enabled);
     bool isSuperSeedingEnabled() const;

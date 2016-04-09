@@ -45,6 +45,8 @@ enum AdvSettingsRows
     QBITTORRENT_HEADER,
     // network interface
     NETWORK_IFACE,
+    //Optional bind address
+    NETWORK_ADDRESS,
     NETWORK_LISTEN_IPV6,
     // behavior
     SAVE_RESUME_DATA_INTERVAL,
@@ -80,7 +82,7 @@ enum AdvSettingsRows
     // tracker
     TRACKER_EXCHANGE,
     ANNOUNCE_ALL_TRACKERS,
-    NETWORK_ADDRESS,
+    ANNOUNCE_ADDRESS,
 
     ROW_COUNT
 };
@@ -144,11 +146,18 @@ void AdvancedSettings::saveAdvancedSettings()
     // Listen on IPv6 address
     pref->setListenIPv6(cb_listen_ipv6.isChecked());
     // Network address
-    QHostAddress addr(txt_network_address.text().trimmed());
-    if (addr.isNull())
+    QHostAddress networkAddr(txt_network_address.text().trimmed());
+    if (networkAddr.isNull())
         pref->setNetworkAddress("");
     else
-        pref->setNetworkAddress(addr.toString());
+        pref->setNetworkAddress(networkAddr.toString());
+    // Announce address
+    QHostAddress announceAddr(txt_announce_address.text().trimmed());
+    if (announceAddr.isNull())
+        pref->setAnnounceAddress("");
+    else
+        pref->setAnnounceAddress(announceAddr.toString());
+
     // Program notification
     pref->useProgramNotification(cb_program_notifications.isChecked());
     // Tracker
@@ -276,7 +285,11 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(NETWORK_LISTEN_IPV6, tr("Listen on IPv6 address (requires restart)"), &cb_listen_ipv6);
     // Network address
     txt_network_address.setText(pref->getNetworkAddress());
-    addRow(NETWORK_ADDRESS, tr("IP Address to report to trackers (requires restart)"), &txt_network_address);
+    addRow(NETWORK_ADDRESS, tr("IP Address to bind to( requires restart))"), &txt_network_address);
+    // Network address
+    txt_announce_address.setText(pref->getAnnounceAddress());
+    addRow(ANNOUNCE_ADDRESS, tr("IP Address to report to trackers (requires restart)"), &txt_announce_address);
+
     // Program notifications
     cb_program_notifications.setChecked(pref->useProgramNotification());
     addRow(PROGRAM_NOTIFICATIONS, tr("Display program on-screen notifications"), &cb_program_notifications);
