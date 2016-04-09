@@ -47,6 +47,9 @@ static const int ANNOUNCE_INTERVAL = 1800; // 30min
 
 using namespace BitTorrent;
 
+using std::string;
+using boost::asio::ip::address;
+
 namespace
 {
     bool isNonRoutable(const boost::asio::ip::address_v4& ip)
@@ -69,8 +72,6 @@ namespace
 
     bool isNonRoutable(const boost::asio::ip::address& ip)
     {
-        using namespace boost::asio::ip;
-
         if (ip.is_loopback() || ip.is_unspecified() || ip.is_multicast())
             return true;
 
@@ -78,7 +79,7 @@ namespace
             return isNonRoutable(ip.to_v4());
 
         if (ip.is_v6()) {
-            address_v6 ipv6 = ip.to_v6();
+            boost::asio::ip::address_v6 ipv6 = ip.to_v6();
             auto addr = ipv6.to_bytes();
             return ((addr[0] >> 1) == (0xFC >> 1))  // FC00::/7   Unique local
                 || ipv6.is_link_local()     // FE80::/10  Link-local
@@ -96,31 +97,11 @@ namespace
         return true;
     }
 
-    bool tryGetFromString(const QString& ipStr, boost::asio::ip::address& ip)
-    {
-        using namespace boost::asio::ip;
-
-        boost::system::error_code ec;
-        boost::asio::ip::address tmp = address::from_string(Utils::String::toStdString(ipStr), ec);
-        if (!ec)
-            ip = tmp;
-
-        return !ec;
-    }
-
-    // get rid of compiler size_t to int conversion warning
-    int toInt(size_t size)
-    {
-        return static_cast<int>(std::min<size_t>(size, std::numeric_limits<int>::max()));
-    }
-
     // percent-escapes given string
-    std::string escape(const std::string& str)
+    std::string escape(const QByteArray& str)
     {
-
-        QByteArray ba(str.c_str(), toInt(str.length()));
         // like libtorrent percent-encoding
-        QByteArray encoded = ba.toPercentEncoding("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~!()*");
+        QByteArray encoded = str.toPercentEncoding("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~!()*");
         return std::string(encoded.data(), encoded.length());
     }
 }
@@ -129,12 +110,33 @@ namespace
 struct Peer
 {
     // ip retrieved from connection
-    QString ip;
+    address ip;
     // ip obtained from announce query
-    QString announceIp;
-    std::string peerId;
+    address announceIp;
+    QByteArray peerId;
     int port;
     QByteArray uid;
+
+    Peer(const Peer&) = default;
+    Peer& operator=(const Peer&) = default;
+
+    // prevent move, as some boost libraries are compiled without move support 
+    Peer(Peer&&) = delete;
+    Peer& operator=(Peer&&) = delete;
+
+    // required by QMap
+    Peer() = default;
+    Peer(QString ipStr, QByteArray announceIpStr, int port, QByteArray peerId)
+        : port(port)
+        , peerId(peerId)
+    {
+        boost::system::error_code ec;
+        // prevent move, as some boost libraries are compiled without move support 
+        ip = static_cast<const address>(address::from_string(Utils::String::toStdString(ipStr), ec));
+        announceIp = static_cast<const address>(address::from_string(string(announceIpStr), ec));
+
+        uid = peerId.length() == 20 ? peerId : QString("%1:%2").arg(ipStr).arg(port).toUtf8();
+    }
 
     bool operator!=(const Peer &other) const
     {
@@ -147,24 +149,18 @@ struct Peer
     }
 
     // if 'clientIP' belongs to a public network, returns public address found among connection and announce ip adrresses
-    QString getIpForClient(const QString& clientIp) const
+    const address& getIpForClient(const address& clientIp) const
     {
-        using namespace boost::asio::ip;
-
-        address clientAddr, ipAddr, announceAddr;
-
-        // in case of conversion error return m_ip
-        if (!tryGetFromString(clientIp, clientAddr)
-            || !tryGetFromString(ip, ipAddr)
-            || !tryGetFromString(announceIp, announceAddr))
+        // if any address is unspecified, return ip
+        if (clientIp.is_unspecified() || ip.is_unspecified() || announceIp.is_unspecified())
             return ip;
 
         // if client has public ip, return public ip
-        if (!isNonRoutable(clientAddr)) {
-            if (!isNonRoutable(ipAddr))
+        if (!isNonRoutable(clientIp)) {
+            if (!isNonRoutable(ip))
                 return ip;
 
-            if (!isNonRoutable(announceAddr))
+            if (!isNonRoutable(announceIp))
                 return announceIp;
         }
 
@@ -176,13 +172,13 @@ namespace
 {
     // converts to appropriate entry taking into account whether 'clientIp' is a public ip address,  i.e. provides
     // public ip if 'clientIP' belongs to a public network, otherwise gives connection ip
-    libtorrent::entry peerToEntry(const Peer& peer, bool noPeerId, const QString& clientIp)
+    libtorrent::entry peerToEntry(const Peer& peer, bool noPeerId, const address& clientIp)
     {
         libtorrent::entry::dictionary_type peerMap;
         if (!noPeerId)
             peerMap["id"] = libtorrent::entry(escape(peer.peerId));
 
-        peerMap["ip"] = libtorrent::entry(Utils::String::toStdString(peer.getIpForClient(clientIp)));
+        peerMap["ip"] = libtorrent::entry(peer.getIpForClient(clientIp).to_string());
         peerMap["port"] = libtorrent::entry(peer.port);
 
         return libtorrent::entry(peerMap);
@@ -262,9 +258,10 @@ void Tracker::respondToAnnounceRequest()
     TrackerAnnounceRequest annonceReq;
 
     // IP
-    annonceReq.peer.ip = m_env.clientAddress.toString();
+    QString ip = m_env.clientAddress.toString();
+    QByteArray announceIp;
     if (gets.contains("ip"))
-        annonceReq.peer.announceIp = gets.value("ip");
+        announceIp = gets.value("ip");
     
     // 1. Get info_hash
     if (!gets.contains("info_hash")) {
@@ -287,13 +284,7 @@ void Tracker::respondToAnnounceRequest()
         status(102, "Missing peer_id");
         return;
     }
-    const QByteArray peerId = gets.value("peer_id");
-    annonceReq.peer.peerId = std::string(peerId.constData(), peerId.length());
-
-    if (annonceReq.peer.peerId.length() == 20)
-        annonceReq.peer.uid = QByteArray(annonceReq.peer.peerId.c_str(), toInt(annonceReq.peer.peerId.length()));
-    else
-        annonceReq.peer.uid = QString("%1:%2").arg(annonceReq.peer.ip).arg(annonceReq.peer.port).toUtf8();
+    QByteArray peerId = gets.value("peer_id");
 
     // peer_id cannot be longer than 20 bytes
     /*if (annonce_req.peer.peer_id.length() > 20) {
@@ -315,7 +306,8 @@ void Tracker::respondToAnnounceRequest()
         status(103, "Missing port");
         return;
     }
-    annonceReq.peer.port = port;
+    const Peer peer(ip, announceIp, port, peerId);
+    annonceReq.peer = peer;
 
     // 4.  Get event
     annonceReq.event = "";
