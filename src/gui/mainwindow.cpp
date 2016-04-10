@@ -249,7 +249,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(actionIncreasePriority, SIGNAL(triggered()), transferList, SLOT(increasePrioSelectedTorrents()));
     connect(actionDecreasePriority, SIGNAL(triggered()), transferList, SLOT(decreasePrioSelectedTorrents()));
     connect(actionBottomPriority, SIGNAL(triggered()), transferList, SLOT(bottomPrioSelectedTorrents()));
+#ifndef Q_OS_MAC
     connect(actionToggleVisibility, SIGNAL(triggered()), this, SLOT(toggleVisibility()));
+#endif
     connect(actionMinimize, SIGNAL(triggered()), SLOT(minimizeWindow()));
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
@@ -329,6 +331,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Load Window state and sizes
     readSettings();
 
+#ifndef Q_OS_MAC
     if (systrayIcon) {
         if (!(pref->startMinimized() || ui_locked)) {
             show();
@@ -342,6 +345,7 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
     else {
+#endif
         // Make sure the Window is visible if we don't have a tray icon
         if (pref->startMinimized()) {
             showMinimized();
@@ -351,7 +355,9 @@ MainWindow::MainWindow(QWidget *parent)
             activateWindow();
             raise();
         }
+#ifndef Q_OS_MAC
     }
+#endif
 
     properties->readSettings();
 
@@ -635,8 +641,10 @@ void MainWindow::cleanup()
     writeSettings();
 
     delete executable_watcher;
+#ifndef Q_OS_MAC
     if (systrayCreator)
         systrayCreator->stop();
+#endif
     if (preventTimer)
         preventTimer->stop();
 #if (defined(Q_OS_WIN) || defined(Q_OS_MAC))
@@ -871,29 +879,6 @@ void MainWindow::notifyOfUpdate(QString)
     executable_watcher = 0;
 }
 
-// Toggle Main window visibility
-void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e)
-{
-    if (e == QSystemTrayIcon::Trigger || e == QSystemTrayIcon::DoubleClick) {
-        if (isHidden()) {
-            if (ui_locked) {
-                // Ask for UI lock password
-                if (!unlockUI())
-                    return;
-            }
-            // Make sure the window is not minimized
-            setWindowState(windowState() & (~Qt::WindowMinimized | Qt::WindowActive));
-            // Then show it
-            show();
-            raise();
-            activateWindow();
-        }
-        else {
-            hide();
-        }
-    }
-}
-
 // Display About Dialog
 void MainWindow::on_actionAbout_triggered()
 {
@@ -932,12 +917,15 @@ void MainWindow::showEvent(QShowEvent *e)
 void MainWindow::closeEvent(QCloseEvent *e)
 {
     Preferences* const pref = Preferences::instance();
+
+#ifndef Q_OS_MAC
     const bool goToSystrayOnExit = pref->closeToTray();
     if (!force_exit && systrayIcon && goToSystrayOnExit && !this->isHidden()) {
         hide();
         e->accept();
         return;
     }
+#endif
 
     if (pref->confirmOnExit() && BitTorrent::Session::instance()->hasActiveTorrents()) {
         if (e->spontaneous() || force_exit) {
@@ -964,16 +952,32 @@ void MainWindow::closeEvent(QCloseEvent *e)
         }
     }
 
-    //abort search if any
-    if (searchEngine) delete searchEngine;
+#ifdef Q_OS_MAC
+    // This is for on_actionExit_triggered() to work
+    if (force_exit) {
+#endif
+        //abort search if any
+        if (searchEngine) delete searchEngine;
+#ifdef Q_OS_MAC
+    }
+#endif
 
+#ifndef Q_OS_MAC
     hide();
+
+
     // Hide tray icon
     if (systrayIcon)
         systrayIcon->hide();
+#endif
+
     // Accept exit
     e->accept();
-    qApp->exit();
+#ifdef Q_OS_MAC
+    // This is for on_actionExit_triggered() to work
+    if (force_exit)
+#endif
+        qApp->exit();
 }
 
 // Display window to create a torrent
@@ -988,6 +992,7 @@ void MainWindow::on_actionCreate_torrent_triggered()
 bool MainWindow::event(QEvent * e)
 {
     switch(e->type()) {
+#ifndef Q_OS_MAC
     case QEvent::WindowStateChange: {
         qDebug("Window change event");
         //Now check to see if the window is minimised
@@ -1014,7 +1019,7 @@ bool MainWindow::event(QEvent * e)
         }
         break;
     }
-#ifdef Q_OS_MAC
+#else
     case QEvent::ToolBarChange: {
         qDebug("MAC: Received a toolbar change event!");
         bool ret = QMainWindow::event(e);
@@ -1123,6 +1128,8 @@ void MainWindow::loadPreferences(bool configure_session)
 {
     Logger::instance()->addMessage(tr("Options were saved successfully."));
     const Preferences* const pref = Preferences::instance();
+
+#ifndef Q_OS_MAC
     const bool newSystrayIntegration = pref->systrayIntegration();
     actionLock_qBittorrent->setVisible(newSystrayIntegration);
     if (newSystrayIntegration != (systrayIcon != 0)) {
@@ -1153,6 +1160,8 @@ void MainWindow::loadPreferences(bool configure_session)
     // Reload systray icon
     if (newSystrayIntegration && systrayIcon)
         systrayIcon->setIcon(getSystrayIcon());
+#endif
+
     // General
     if (pref->isToolbarDisplayed()) {
         toolBar->setVisible(true);
@@ -1238,8 +1247,9 @@ void MainWindow::updateGUI()
     BitTorrent::SessionStatus status = BitTorrent::Session::instance()->status();
 
     // update global informations
+#ifndef Q_OS_MAC
     if (systrayIcon) {
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#ifdef Q_OS_UNIX
         QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";
         html += "qBittorrent";
         html += "</div>";
@@ -1254,9 +1264,11 @@ void MainWindow::updateGUI()
         QString html = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true));
         html += "\n";
         html += tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true));
-#endif
+#endif // Q_OS_UNIX
         systrayIcon->setToolTip(html); // tray icon
     }
+#endif // Q_OS_MAC
+
     if (displaySpeedInTitle)
         setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true)).arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true)).arg(QString::fromUtf8(VERSION)));
 }
@@ -1284,9 +1296,10 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const
     reply.waitForFinished();
     if (!reply.isError())
         return;
-#endif
+#elif (!defined(Q_OS_MAC))
     if (systrayIcon && QSystemTrayIcon::supportsMessages())
         systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
+#endif
 }
 
 /*****************************************************
@@ -1316,6 +1329,19 @@ void MainWindow::downloadFromURLList(const QStringList& url_list)
 *                                                   *
 *****************************************************/
 
+#ifndef Q_OS_MAC
+void MainWindow::createTrayIcon()
+{
+    // Tray icon
+    systrayIcon = new QSystemTrayIcon(getSystrayIcon(), this);
+
+    systrayIcon->setContextMenu(getTrayIconMenu());
+    connect(systrayIcon, SIGNAL(messageClicked()), this, SLOT(balloonClicked()));
+    // End of Icon Menu
+    connect(systrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(toggleVisibility(QSystemTrayIcon::ActivationReason)));
+    systrayIcon->show();
+}
+
 void MainWindow::createSystrayDelayed()
 {
     static int timeout = 20;
@@ -1342,14 +1368,64 @@ void MainWindow::createSystrayDelayed()
     }
 }
 
-void MainWindow::updateAltSpeedsBtn(bool alternative)
+QIcon MainWindow::getSystrayIcon() const
 {
-    actionUse_alternative_speed_limits->setChecked(alternative);
+    TrayIcon::Style style = Preferences::instance()->trayIconStyle();
+    switch(style) {
+    case TrayIcon::MONO_DARK:
+        return QIcon(":/icons/skin/qbittorrent_mono_dark.png");
+    case TrayIcon::MONO_LIGHT:
+        return QIcon(":/icons/skin/qbittorrent_mono_light.png");
+    default:
+        break;
+    }
+
+    QIcon icon;
+#ifdef Q_OS_UNIX
+    if (Preferences::instance()->useSystemIconTheme())
+        icon = QIcon::fromTheme("qbittorrent");
+
+#endif
+    if (icon.isNull()) {
+        icon.addFile(":/icons/skin/qbittorrent22.png", QSize(22, 22));
+        icon.addFile(":/icons/skin/qbittorrent16.png", QSize(16, 16));
+        icon.addFile(":/icons/skin/qbittorrent32.png", QSize(32, 32));
+    }
+    return icon;
+}
+
+// Toggle Main window visibility
+void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e)
+{
+    if (e == QSystemTrayIcon::Trigger || e == QSystemTrayIcon::DoubleClick) {
+        if (isHidden()) {
+            if (ui_locked) {
+                // Ask for UI lock password
+                if (!unlockUI())
+                    return;
+            }
+            // Make sure the window is not minimized
+            setWindowState(windowState() & (~Qt::WindowMinimized | Qt::WindowActive));
+            // Then show it
+            show();
+            raise();
+            activateWindow();
+        }
+        else {
+            hide();
+        }
+    }
 }
 
 void MainWindow::updateTrayIconMenu()
 {
     actionToggleVisibility->setText(isVisible() ? tr("Hide") : tr("Show"));
+}
+#endif // Q_OS_MAC
+
+void MainWindow::updateAltSpeedsBtn(bool alternative)
+{
+    actionUse_alternative_speed_limits->setChecked(alternative);
 }
 
 QMenu* MainWindow::getTrayIconMenu()
@@ -1358,9 +1434,11 @@ QMenu* MainWindow::getTrayIconMenu()
         return myTrayIconMenu;
     // Tray icon Menu
     myTrayIconMenu = new QMenu(this);
+#ifndef Q_OS_MAC
     connect(myTrayIconMenu, SIGNAL(aboutToShow()), SLOT(updateTrayIconMenu()));
     myTrayIconMenu->addAction(actionToggleVisibility);
     myTrayIconMenu->addSeparator();
+#endif
     myTrayIconMenu->addAction(actionOpen);
     myTrayIconMenu->addAction(actionDownload_from_URL);
     myTrayIconMenu->addSeparator();
@@ -1373,23 +1451,13 @@ QMenu* MainWindow::getTrayIconMenu()
     myTrayIconMenu->addSeparator();
     myTrayIconMenu->addAction(actionStart_All);
     myTrayIconMenu->addAction(actionPause_All);
+#ifndef Q_OS_MAC
     myTrayIconMenu->addSeparator();
     myTrayIconMenu->addAction(actionExit);
+#endif
     if (ui_locked)
         myTrayIconMenu->setEnabled(false);
     return myTrayIconMenu;
-}
-
-void MainWindow::createTrayIcon()
-{
-    // Tray icon
-    systrayIcon = new QSystemTrayIcon(getSystrayIcon(), this);
-
-    systrayIcon->setContextMenu(getTrayIconMenu());
-    connect(systrayIcon, SIGNAL(messageClicked()), this, SLOT(balloonClicked()));
-    // End of Icon Menu
-    connect(systrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(toggleVisibility(QSystemTrayIcon::ActivationReason)));
-    systrayIcon->show();
 }
 
 // Display Program Options
@@ -1641,32 +1709,6 @@ void MainWindow::on_actionAutoShutdown_system_toggled(bool enabled)
 void MainWindow::checkForActiveTorrents()
 {
     m_pwr->setActivityState(BitTorrent::Session::instance()->hasActiveTorrents());
-}
-
-QIcon MainWindow::getSystrayIcon() const
-{
-    TrayIcon::Style style = Preferences::instance()->trayIconStyle();
-    switch(style) {
-    case TrayIcon::MONO_DARK:
-        return QIcon(":/icons/skin/qbittorrent_mono_dark.png");
-    case TrayIcon::MONO_LIGHT:
-        return QIcon(":/icons/skin/qbittorrent_mono_light.png");
-    default:
-        break;
-    }
-
-    QIcon icon;
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    if (Preferences::instance()->useSystemIconTheme())
-        icon = QIcon::fromTheme("qbittorrent");
-
-#endif
-    if (icon.isNull()) {
-        icon.addFile(":/icons/skin/qbittorrent22.png", QSize(22, 22));
-        icon.addFile(":/icons/skin/qbittorrent16.png", QSize(16, 16));
-        icon.addFile(":/icons/skin/qbittorrent32.png", QSize(32, 32));
-    }
-    return icon;
 }
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)

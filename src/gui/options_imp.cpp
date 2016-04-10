@@ -31,7 +31,6 @@
 #include <QTextStream>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QSystemTrayIcon>
 #include <QApplication>
 #include <QDialogButtonBox>
 #include <QCloseEvent>
@@ -39,6 +38,10 @@
 #include <QTranslator>
 #include <QDesktopServices>
 #include <QDebug>
+
+#ifndef Q_OS_MAC
+#include <QSystemTrayIcon>
+#endif
 
 #include <cstdlib>
 
@@ -120,12 +123,18 @@ options_imp::options_imp(QWidget *parent)
     // Load options
     loadOptions();
     // Disable systray integration if it is not supported by the system
+    // or if we run on Mac OS X. In Mac OS X the dock is sufficient for our
+    // needs. See extensive discussion in https://github.com/qbittorrent/qBittorrent/pull/3018
+#ifndef Q_OS_MAC
     if (!QSystemTrayIcon::isSystemTrayAvailable()) {
         checkShowSystray->setChecked(false);
         checkShowSystray->setEnabled(false);
         label_trayIconStyle->setVisible(false);
         comboTrayIcon->setVisible(false);
     }
+#else
+    checkShowSystray->setVisible(false);
+#endif
 
 #if defined(QT_NO_OPENSSL)
     checkWebUiHttps->setVisible(false);
@@ -427,10 +436,12 @@ void options_imp::saveOptions()
     pref->setAlternatingRowColors(checkAltRowColors->isChecked());
     pref->setHideZeroValues(checkHideZero->isChecked());
     pref->setHideZeroComboValues(comboHideZero->currentIndex());
+#ifndef Q_OS_MAC
     pref->setSystrayIntegration(systrayIntegration());
     pref->setTrayIconStyle(TrayIcon::Style(comboTrayIcon->currentIndex()));
     pref->setCloseToTray(closeToTray());
     pref->setMinimizeToTray(minimizeToTray());
+#endif
     pref->setStartMinimized(startMinimized());
     pref->setSplashScreenDisabled(isSlashScreenDisabled());
     pref->setConfirmOnExit(checkProgramExitConfirm->isChecked());
@@ -632,12 +643,14 @@ void options_imp::loadOptions()
     checkProgramExitConfirm->setChecked(pref->confirmOnExit());
     checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
 
+#ifndef Q_OS_MAC
     checkShowSystray->setChecked(pref->systrayIntegration());
     if (checkShowSystray->isChecked()) {
         checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
         checkCloseToSystray->setChecked(pref->closeToTray());
         comboTrayIcon->setCurrentIndex(pref->trayIconStyle());
     }
+#endif
 
     checkPreventFromSuspend->setChecked(pref->preventFromSuspend());
 
@@ -960,18 +973,6 @@ int options_imp::getMaxActiveTorrents() const
     return spinMaxActiveTorrents->value();
 }
 
-bool options_imp::minimizeToTray() const
-{
-    if (!checkShowSystray->isChecked()) return false;
-    return checkMinimizeToSysTray->isChecked();
-}
-
-bool options_imp::closeToTray() const
-{
-    if (!checkShowSystray->isChecked()) return false;
-    return checkCloseToSystray->isChecked();
-}
-
 bool options_imp::isQueueingSystemEnabled() const
 {
     return checkEnableQueueing->isChecked();
@@ -1021,11 +1022,25 @@ bool options_imp::startMinimized() const
     return checkStartMinimized->isChecked();
 }
 
+#ifndef Q_OS_MAC
 bool options_imp::systrayIntegration() const
 {
     if (!QSystemTrayIcon::isSystemTrayAvailable()) return false;
     return checkShowSystray->isChecked();
 }
+
+bool options_imp::minimizeToTray() const
+{
+    if (!checkShowSystray->isChecked()) return false;
+    return checkMinimizeToSysTray->isChecked();
+}
+
+bool options_imp::closeToTray() const
+{
+    if (!checkShowSystray->isChecked()) return false;
+    return checkCloseToSystray->isChecked();
+}
+#endif
 
 // Return Share ratio
 qreal options_imp::getMaxRatio() const
