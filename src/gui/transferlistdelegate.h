@@ -49,11 +49,6 @@ public:
     TransferListDelegate(QObject *parent);
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const;
     QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const;
-
-    // Reimplementing sizeHint() because the 'name' column contains text+icon.
-    // When that WHOLE column goes out of view(eg user scrolls horizontally)
-    // the rows shrink if the text's height is smaller than the icon's height.
-    // This happens because icon from the 'name' column is no longer drawn.
     QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
 
 private:
