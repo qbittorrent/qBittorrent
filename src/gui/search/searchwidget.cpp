@@ -392,11 +392,7 @@ void SearchWidget::on_downloadButton_clicked()
     QModelIndexList selectedIndexes = m_allTabs.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
     foreach (const QModelIndex &index, selectedIndexes) {
         if (index.column() == SearchSortModel::NAME) {
-            // Get Item url
-            QSortFilterProxyModel *model = m_allTabs.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
-            QString torrentUrl = model->data(model->index(index.row(), URL_COLUMN)).toString();
-            downloadTorrent(torrentUrl);
-            m_allTabs.at(tabWidget->currentIndex())->setRowColor(index.row(), "blue");
+            m_allTabs.at(tabWidget->currentIndex())->downloadItem(index);
         }
     }
 }

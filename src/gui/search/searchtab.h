@@ -92,8 +92,10 @@ public:
 
     void updateResultsCount();
 
+public slots:
+    void downloadItem(const QModelIndex &index);
+
 private slots:
-    void downloadSelectedItem(const QModelIndex &index);
     void updateFilter();
 
 private:
