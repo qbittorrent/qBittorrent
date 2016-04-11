@@ -75,6 +75,9 @@ namespace
             Preferences::instance()->setNetworkCookies(cookies);
         }
 
+        using QNetworkCookieJar::allCookies;
+        using QNetworkCookieJar::setAllCookies;
+
 #ifndef QBT_USES_QT5
         virtual bool deleteCookie(const QNetworkCookie &cookie)
         {
@@ -186,6 +189,16 @@ QList<QNetworkCookie> DownloadManager::cookiesForUrl(const QUrl &url) const
 bool DownloadManager::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url)
 {
     return m_networkManager.cookieJar()->setCookiesFromUrl(cookieList, url);
+}
+
+QList<QNetworkCookie> DownloadManager::allCookies() const
+{
+    return static_cast<NetworkCookieJar *>(m_networkManager.cookieJar())->allCookies();
+}
+
+void DownloadManager::setAllCookies(const QList<QNetworkCookie> &cookieList)
+{
+    static_cast<NetworkCookieJar *>(m_networkManager.cookieJar())->setAllCookies(cookieList);
 }
 
 bool DownloadManager::deleteCookie(const QNetworkCookie &cookie)

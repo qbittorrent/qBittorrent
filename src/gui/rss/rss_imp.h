@@ -84,7 +84,6 @@ private slots:
     void askNewFolder();
     void saveFoldersOpenState();
     void loadFoldersOpenState();
-    void on_actionManage_cookies_triggered();
     void on_settingsButton_clicked();
     void on_rssDownloaderBtn_clicked();
 

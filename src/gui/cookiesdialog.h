@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,39 +24,38 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org arnaud@qbittorrent.org
  */
 
-#ifndef COOKIESDLG_H
-#define COOKIESDLG_H
+#ifndef COOKIESDIALOG_H
+#define COOKIESDIALOG_H
 
 #include <QDialog>
-#include <QList>
 
-class QNetworkCookie;
-class QUrl;
-
-namespace Ui {
-    class CookiesDlg;
+namespace Ui
+{
+    class CookiesDialog;
 }
 
-class CookiesDlg : public QDialog
+class CookiesModel;
+
+class CookiesDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit CookiesDlg(const QUrl &url, QWidget *parent = 0);
-    ~CookiesDlg();
-    QList<QNetworkCookie> getCookies() const;
-    static bool askForCookies(QWidget *parent, const QUrl &url, QList<QNetworkCookie> &out);
+    explicit CookiesDialog(QWidget *parent = 0);
+    ~CookiesDialog();
 
-  protected slots:
-    void on_add_btn_clicked();
-    void on_del_btn_clicked();
+public slots:
+    void accept() override;
+
+private slots:
+    void onButtonAddClicked();
+    void onButtonDeleteClicked();
 
 private:
-    Ui::CookiesDlg *ui;
+    Ui::CookiesDialog *m_ui;
+    CookiesModel *m_cookiesModel;
 };
 
-#endif // COOKIESDLG_H
+#endif // COOKIESDIALOG_H
