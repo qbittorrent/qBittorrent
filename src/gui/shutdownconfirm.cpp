@@ -30,20 +30,17 @@
  * Contact : hammered999@gmail.com
  */
 
-#include <QVBoxLayout>
-#include <QHBoxLayout>
+#include "shutdownconfirm.h"
+#include "ui_confirmshutdowndlg.h"
+
 #include <QStyle>
 #include <QIcon>
-#include <QLabel>
 #include <QDialogButtonBox>
-#include <QCheckBox>
 #include <QPushButton>
 
 #include "base/preferences.h"
-#include "base/types.h"
+#include "base/utils/misc.h"
 
-#include "shutdownconfirm.h"
-#include "ui_confirmshutdowndlg.h"
 
 ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
     : ui(new Ui::confirmShutdownDlg)
@@ -67,7 +64,7 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
     cancelButton->setFocus();
     cancelButton->setDefault(true);
     // Always on top
-    setWindowFlags(windowFlags()|Qt::WindowStaysOnTopHint);
+    setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
     m_timer.setInterval(1000); // 1sec
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(updateSeconds()));
     // Move to center
