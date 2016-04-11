@@ -83,7 +83,7 @@ options_imp::options_imp(QWidget *parent)
 #endif
     tabSelection->item(TAB_ADVANCED)->setIcon(GuiIconProvider::instance()->getIcon("preferences-other"));
     for (int i = 0; i < tabSelection->count(); ++i) {
-        tabSelection->item(i)->setSizeHint(QSize(96, 64));  // uniform size for all icons
+        tabSelection->item(i)->setSizeHint(QSize(std::numeric_limits<int>::max(), 64));  // uniform size for all icons
     }
 
     IpFilterRefreshBtn->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
