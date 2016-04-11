@@ -33,17 +33,14 @@
 
 #include <QDialog>
 #include <QTimer>
-#include "base/utils/misc.h"
-
-class QLabel;
-class QCheckBox;
+#include "base/types.h"
 
 namespace Ui
 {
     class confirmShutdownDlg;
 }
 
-class ShutdownConfirmDlg : public QDialog
+class ShutdownConfirmDlg: public QDialog
 {
     Q_OBJECT
 
