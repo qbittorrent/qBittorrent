@@ -97,7 +97,7 @@ Application::Application(const QString &id, int &argc, char **argv)
     : BaseApplication(id, argc, argv)
     , m_running(false)
 #ifndef DISABLE_GUI
-    , m_shutdownAct(ShutdownAction::None)
+    , m_shutdownAct(ShutdownDialogAction::Exit)
 #endif
 {
     Logger::initInstance();
@@ -298,15 +298,15 @@ void Application::allTorrentsFinished()
         bool shutdown = pref->shutdownWhenDownloadsComplete();
 
         // Confirm shutdown
-        ShutdownAction action = ShutdownAction::None;
+        ShutdownDialogAction action = ShutdownDialogAction::Exit;
         if (suspend)
-            action = ShutdownAction::Suspend;
+            action = ShutdownDialogAction::Suspend;
         else if (hibernate)
-            action = ShutdownAction::Hibernate;
+            action = ShutdownDialogAction::Hibernate;
         else if (shutdown)
-            action = ShutdownAction::Shutdown;
+            action = ShutdownDialogAction::Shutdown;
 
-        if ((action == ShutdownAction::None) && (!pref->dontConfirmAutoExit())) {
+        if ((action == ShutdownDialogAction::Exit) && (!pref->dontConfirmAutoExit())) {
             if (!ShutdownConfirmDlg::askForConfirmation(action))
                 return;
         }
@@ -604,7 +604,7 @@ void Application::cleanup()
         shutdownBRDestroy((HWND)m_window->effectiveWinId());
 #endif // Q_OS_WIN
     delete m_window;
-    if (m_shutdownAct != ShutdownAction::None) {
+    if (m_shutdownAct != ShutdownDialogAction::Exit) {
         qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
         Utils::Misc::shutdownComputer(m_shutdownAct);
     }

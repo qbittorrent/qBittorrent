@@ -42,7 +42,7 @@
 #include "base/utils/misc.h"
 
 
-ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
+ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownDialogAction &action)
     : ui(new Ui::confirmShutdownDlg)
     , m_timeout(15)
     , m_action(action)
@@ -53,7 +53,7 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
     QIcon warningIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning));
     ui->warningLabel->setPixmap(warningIcon.pixmap(32));
 
-    if (m_action == ShutdownAction::None)
+    if (m_action == ShutdownDialogAction::Exit)
         ui->neverShowAgainCheckbox->setVisible(true);
     else
         ui->neverShowAgainCheckbox->setVisible(false);
@@ -82,7 +82,7 @@ void ShutdownConfirmDlg::showEvent(QShowEvent *event)
     m_timer.start();
 }
 
-bool ShutdownConfirmDlg::askForConfirmation(const ShutdownAction &action)
+bool ShutdownConfirmDlg::askForConfirmation(const ShutdownDialogAction &action)
 {
     ShutdownConfirmDlg dlg(action);
     return (dlg.exec() == QDialog::Accepted);
@@ -109,25 +109,25 @@ void ShutdownConfirmDlg::initText()
     QPushButton *okButton = ui->buttonBox->button(QDialogButtonBox::Ok);
 
     switch (m_action) {
-    case ShutdownAction::None:
+    case ShutdownDialogAction::Exit:
         m_msg = tr("qBittorrent will now exit.");
 
         okButton->setText(tr("E&xit Now"));
         setWindowTitle(tr("Exit confirmation"));
         break;
-    case ShutdownAction::Shutdown:
+    case ShutdownDialogAction::Shutdown:
         m_msg = tr("The computer is going to shutdown.");
 
         okButton->setText(tr("&Shutdown Now"));
         setWindowTitle(tr("Shutdown confirmation"));
         break;
-    case ShutdownAction::Suspend:
+    case ShutdownDialogAction::Suspend:
         m_msg = tr("The computer is going to enter suspend mode.");
 
         okButton->setText(tr("&Suspend Now"));
         setWindowTitle(tr("Suspend confirmation"));
         break;
-    case ShutdownAction::Hibernate:
+    case ShutdownDialogAction::Hibernate:
         m_msg = tr("The computer is going to enter hibernation mode.");
 
         okButton->setText(tr("&Hibernate Now"));

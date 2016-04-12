@@ -45,10 +45,10 @@ class ShutdownConfirmDlg: public QDialog
     Q_OBJECT
 
 public:
-    ShutdownConfirmDlg(const ShutdownAction &action);
+    ShutdownConfirmDlg(const ShutdownDialogAction &action);
     ~ShutdownConfirmDlg();
 
-    static bool askForConfirmation(const ShutdownAction &action);
+    static bool askForConfirmation(const ShutdownDialogAction &action);
 
 protected:
     void showEvent(QShowEvent *event) override;
@@ -66,7 +66,7 @@ private:
     Ui::confirmShutdownDlg *ui;
     QTimer m_timer;
     int m_timeout;
-    ShutdownAction m_action;
+    ShutdownDialogAction m_action;
     QString m_msg;
 };
 

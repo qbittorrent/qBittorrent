@@ -33,9 +33,9 @@
 
 const qlonglong MAX_ETA = 8640000;
 
-enum class ShutdownAction
+enum class ShutdownDialogAction
 {
-    None,
+    Exit,
     Shutdown,
     Suspend,
     Hibernate
