@@ -101,7 +101,7 @@ namespace
     std::string escape(const QByteArray& str)
     {
         // like libtorrent percent-encoding
-        QByteArray encoded = str.toPercentEncoding("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~!()*");
+        QByteArray encoded = str.toPercentEncoding("!()*");
         return std::string(encoded.data(), encoded.length());
     }
 }
@@ -135,7 +135,7 @@ struct Peer
         ip = static_cast<const address>(address::from_string(Utils::String::toStdString(ipStr), ec));
         announceIp = static_cast<const address>(address::from_string(string(announceIpStr), ec));
 
-        uid = peerId.length() == 20 ? peerId : QString("%1:%2").arg(ipStr).arg(port).toUtf8();
+        uid = peerId.length() == 20 ? peerId : QString("%1:%2").arg(ipStr).arg(port).toLatin1();
     }
 
     bool operator!=(const Peer &other) const
