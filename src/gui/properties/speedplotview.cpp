@@ -85,16 +85,18 @@ void SpeedPlotView::pushPoint(SpeedPlotView::PointData point)
 
     m_data5Min.push_back(point);
 
-    if (m_counter30Min == 0)
+    if (m_counter30Min == 0) {
         m_data30Min.push_back(point);
+    }
     else {
         m_data30Min.back().x = (m_data30Min.back().x * m_counter30Min + point.x) / (m_counter30Min + 1);
         for (int id = UP; id < NB_GRAPHS; ++id)
             m_data30Min.back().y[id] = (m_data30Min.back().y[id] * m_counter30Min + point.y[id]) / (m_counter30Min + 1);
     }
 
-    if (m_counter6Hour == 0)
+    if (m_counter6Hour == 0) {
         m_data6Hour.push_back(point);
+    }
     else {
         m_data6Hour.back().x = (m_data6Hour.back().x * m_counter6Hour + point.x) / (m_counter6Hour + 1);
         for (int id = UP; id < NB_GRAPHS; ++id)
@@ -126,10 +128,10 @@ void SpeedPlotView::setViewableLastPoints(TimePeriod period)
 
 void SpeedPlotView::replot()
 {
-    if (m_period == MIN1
-        || m_period == MIN5
-        || (m_period == MIN30 && m_counter30Min == 2)
-        || (m_period == HOUR6 && m_counter6Hour == 5))
+    if ((m_period == MIN1)
+        || (m_period == MIN5)
+        || ((m_period == MIN30) && (m_counter30Min == 2))
+        || ((m_period == HOUR6) && (m_counter6Hour == 5)))
         viewport()->update();
 }
 
@@ -157,10 +159,9 @@ int SpeedPlotView::maxYValue()
         if (!m_properties[static_cast<GraphID>(id)].enable)
             continue;
 
-        for (int i = queue.size() - 1, j = 0; i >= 0 && j <= m_viewablePointsCount; --i, ++j) {
+        for (int i = queue.size() - 1, j = 0; i >= 0 && j <= m_viewablePointsCount; --i, ++j)
             if (queue[i].y[id] > maxYValue)
                 maxYValue = queue[i].y[id];
-        }
     }
 
     return maxYValue;
@@ -190,10 +191,9 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     };
 
     int yAxeWidth = 0;
-    for (const QString &label : speedLabels) {
+    for (const QString &label : speedLabels)
         if (fontMetrics.width(label) > yAxeWidth)
             yAxeWidth = fontMetrics.width(label);
-    }
 
     int i = 0;
     for (const QString &label : speedLabels) {
@@ -292,13 +292,10 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
 
 SpeedPlotView::GraphProperties::GraphProperties()
     : enable(false)
-{
-}
+{}
 
 SpeedPlotView::GraphProperties::GraphProperties(const QString &name, const QPen &pen, bool enable)
     : name(name)
     , pen(pen)
     , enable(enable)
-{
-}
-
+{}
