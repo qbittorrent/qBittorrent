@@ -34,8 +34,12 @@
 
 SpeedPlotView::SpeedPlotView(QWidget *parent)
     : QGraphicsView(parent)
+    , m_data5Min(MIN5_BUF_SIZE)
+    , m_data30Min(MIN30_BUF_SIZE)
+    , m_data6Hour(HOUR6_BUF_SIZE)
     , m_viewablePointsCount(MIN5_SEC)
-    , m_maxCapacity(HOUR6_SEC)
+    , m_counter30Min(-1)
+    , m_counter6Hour(-1)
 {
     QPen greenPen;
     greenPen.setWidthF(1.5);
@@ -70,63 +74,92 @@ SpeedPlotView::SpeedPlotView(QWidget *parent)
 
 void SpeedPlotView::setGraphEnable(GraphID id, bool enable)
 {
-    m_properties[id].m_enable = enable;
+    m_properties[id].enable = enable;
+    viewport()->update();
 }
 
-void SpeedPlotView::pushXPoint(double x)
+void SpeedPlotView::pushPoint(SpeedPlotView::PointData point)
 {
-    while (m_xData.size() >= m_maxCapacity)
-        m_xData.pop_front();
+    m_counter30Min = (m_counter30Min + 1) % 3;
+    m_counter6Hour = (m_counter6Hour + 1) % 6;
 
-    m_xData.append(x);
-}
+    m_data5Min.push_back(point);
 
-void SpeedPlotView::pushYPoint(GraphID id, double y)
-{
-    while (m_yData[id].size() >= m_maxCapacity)
-        m_yData[id].pop_front();
+    if (m_counter30Min == 0)
+        m_data30Min.push_back(point);
+    else {
+        m_data30Min.back().x = (m_data30Min.back().x * m_counter30Min + point.x) / (m_counter30Min + 1);
+        for (int id = UP; id < NB_GRAPHS; ++id)
+            m_data30Min.back().y[id] = (m_data30Min.back().y[id] * m_counter30Min + point.y[id]) / (m_counter30Min + 1);
+    }
 
-    m_yData[id].append(y);
+    if (m_counter6Hour == 0)
+        m_data6Hour.push_back(point);
+    else {
+        m_data6Hour.back().x = (m_data6Hour.back().x * m_counter6Hour + point.x) / (m_counter6Hour + 1);
+        for (int id = UP; id < NB_GRAPHS; ++id)
+            m_data6Hour.back().y[id] = (m_data6Hour.back().y[id] * m_counter6Hour + point.y[id]) / (m_counter6Hour + 1);
+    }
 }
 
 void SpeedPlotView::setViewableLastPoints(TimePeriod period)
 {
+    m_period = period;
+
     switch (period) {
     case SpeedPlotView::MIN1:
-        m_viewablePointsCount = SpeedPlotView::MIN1_SEC;
+        m_viewablePointsCount = MIN1_SEC;
         break;
     case SpeedPlotView::MIN5:
-        m_viewablePointsCount = SpeedPlotView::MIN5_SEC;
+        m_viewablePointsCount = MIN5_SEC;
         break;
     case SpeedPlotView::MIN30:
-        m_viewablePointsCount = SpeedPlotView::MIN30_SEC;
+        m_viewablePointsCount = MIN30_BUF_SIZE;
         break;
     case SpeedPlotView::HOUR6:
-        m_viewablePointsCount = SpeedPlotView::HOUR6_SEC;
-        break;
-    default:
+        m_viewablePointsCount = HOUR6_BUF_SIZE;
         break;
     }
+
+    viewport()->update();
 }
 
 void SpeedPlotView::replot()
 {
-    this->viewport()->update();
+    if (m_period == MIN1
+        || m_period == MIN5
+        || (m_period == MIN30 && m_counter30Min == 2)
+        || (m_period == HOUR6 && m_counter6Hour == 5))
+        viewport()->update();
 }
 
-double SpeedPlotView::maxYValue()
+boost::circular_buffer<SpeedPlotView::PointData> &SpeedPlotView::getCurrentData()
 {
-    double maxYValue = 0;
-    for (QMap<GraphID, QQueue<double> >::const_iterator it = m_yData.begin(); it != m_yData.end(); ++it) {
+    switch (m_period) {
+    case SpeedPlotView::MIN1:
+    case SpeedPlotView::MIN5:
+    default:
+        return m_data5Min;
+    case SpeedPlotView::MIN30:
+        return m_data30Min;
+    case SpeedPlotView::HOUR6:
+        return m_data6Hour;
+    }
+}
 
-        if (!m_properties[it.key()].m_enable)
+int SpeedPlotView::maxYValue()
+{
+    boost::circular_buffer<PointData> &queue = getCurrentData();
+
+    int maxYValue = 0;
+    for (int id = UP; id < NB_GRAPHS; ++id) {
+
+        if (!m_properties[static_cast<GraphID>(id)].enable)
             continue;
 
-        QQueue<double> &queue = m_yData[it.key()];
-
         for (int i = queue.size() - 1, j = 0; i >= 0 && j <= m_viewablePointsCount; --i, ++j) {
-            if (queue.at(i) > maxYValue)
-                maxYValue = queue.at(i);
+            if (queue[i].y[id] > maxYValue)
+                maxYValue = queue[i].y[id];
         }
     }
 
@@ -135,58 +168,60 @@ double SpeedPlotView::maxYValue()
 
 void SpeedPlotView::paintEvent(QPaintEvent *)
 {
-    QPainter painter(this->viewport());
+    QPainter painter(viewport());
 
-    QRect full_rect = this->viewport()->rect();
-    QRect rect = this->viewport()->rect();
-    QFontMetrics font_metrics = painter.fontMetrics();
+    QRect fullRect = viewport()->rect();
+    QRect rect = viewport()->rect();
+    QFontMetrics fontMetrics = painter.fontMetrics();
 
     rect.adjust(4, 4, 0, -4); // Add padding
 
-    double max_y = maxYValue();
+    int maxY = maxYValue();
 
-    rect.adjust(0, font_metrics.height(), 0, 0); // Add top padding for top speed text
+    rect.adjust(0, fontMetrics.height(), 0, 0); // Add top padding for top speed text
 
     // draw Y axis speed labels
-    QVector<QString> speed_labels(QVector<QString>() <<
-                                  Utils::Misc::friendlyUnit(max_y, true) <<
-                                  Utils::Misc::friendlyUnit(0.75 * max_y, true) <<
-                                  Utils::Misc::friendlyUnit(0.5 * max_y, true) <<
-                                  Utils::Misc::friendlyUnit(0.25 * max_y, true) <<
-                                  Utils::Misc::friendlyUnit(0, true));
+    QVector<QString> speedLabels = {
+        Utils::Misc::friendlyUnit(maxY, true),
+        Utils::Misc::friendlyUnit(0.75 * maxY, true),
+        Utils::Misc::friendlyUnit(0.5 * maxY, true),
+        Utils::Misc::friendlyUnit(0.25 * maxY, true),
+        Utils::Misc::friendlyUnit(0, true)
+    };
 
-    int y_axe_width = 0;
-    for (int i = 0; i < speed_labels.size(); ++i) {
-        if (font_metrics.width(speed_labels[i]) > y_axe_width)
-            y_axe_width = font_metrics.width(speed_labels[i]);
+    int yAxeWidth = 0;
+    for (const QString &label : speedLabels) {
+        if (fontMetrics.width(label) > yAxeWidth)
+            yAxeWidth = fontMetrics.width(label);
     }
 
-    for (int i = 0; i < speed_labels.size(); ++i) {
-        QRectF label_rect(rect.topLeft() + QPointF(-y_axe_width, i * 0.25 * rect.height() - font_metrics.height()),
-                          QSizeF(2 * y_axe_width, font_metrics.height()));
-        painter.drawText(label_rect, speed_labels[i], QTextOption((Qt::AlignRight) | (Qt::AlignTop)));
+    int i = 0;
+    for (const QString &label : speedLabels) {
+        QRectF labelRect(rect.topLeft() + QPointF(-yAxeWidth, (i++) * 0.25 * rect.height() - fontMetrics.height()),
+                         QSizeF(2 * yAxeWidth, fontMetrics.height()));
+        painter.drawText(labelRect, label, Qt::AlignRight | Qt::AlignTop);
     }
 
     // draw grid lines
-    rect.adjust(y_axe_width + 4, 0, 0, 0);
+    rect.adjust(yAxeWidth + 4, 0, 0, 0);
 
-    QPen grid_pen;
-    grid_pen.setStyle(Qt::DashLine);
-    grid_pen.setWidthF(1);
-    grid_pen.setColor(QColor(128, 128, 128, 128));
-    painter.setPen(grid_pen);
+    QPen gridPen;
+    gridPen.setStyle(Qt::DashLine);
+    gridPen.setWidthF(1);
+    gridPen.setColor(QColor(128, 128, 128, 128));
+    painter.setPen(gridPen);
 
-    painter.drawLine(full_rect.left(), rect.top(), rect.right(), rect.top());
-    painter.drawLine(full_rect.left(), rect.top() + 0.25 * rect.height(), rect.right(), rect.top() + 0.25 * rect.height());
-    painter.drawLine(full_rect.left(), rect.top() + 0.50 * rect.height(), rect.right(), rect.top() + 0.50 * rect.height());
-    painter.drawLine(full_rect.left(), rect.top() + 0.75 * rect.height(), rect.right(), rect.top() + 0.75 * rect.height());
-    painter.drawLine(full_rect.left(), rect.bottom(), rect.right(), rect.bottom());
+    painter.drawLine(fullRect.left(), rect.top(), rect.right(), rect.top());
+    painter.drawLine(fullRect.left(), rect.top() + 0.25 * rect.height(), rect.right(), rect.top() + 0.25 * rect.height());
+    painter.drawLine(fullRect.left(), rect.top() + 0.50 * rect.height(), rect.right(), rect.top() + 0.50 * rect.height());
+    painter.drawLine(fullRect.left(), rect.top() + 0.75 * rect.height(), rect.right(), rect.top() + 0.75 * rect.height());
+    painter.drawLine(fullRect.left(), rect.bottom(), rect.right(), rect.bottom());
 
-    painter.drawLine(rect.left(), full_rect.top(), rect.left(), full_rect.bottom());
-    painter.drawLine(rect.left() + 0.2 * rect.width(), full_rect.top(), rect.left() + 0.2 * rect.width(), full_rect.bottom());
-    painter.drawLine(rect.left() + 0.4 * rect.width(), full_rect.top(), rect.left() + 0.4 * rect.width(), full_rect.bottom());
-    painter.drawLine(rect.left() + 0.6 * rect.width(), full_rect.top(), rect.left() + 0.6 * rect.width(), full_rect.bottom());
-    painter.drawLine(rect.left() + 0.8 * rect.width(), full_rect.top(), rect.left() + 0.8 * rect.width(), full_rect.bottom());
+    painter.drawLine(rect.left(), fullRect.top(), rect.left(), fullRect.bottom());
+    painter.drawLine(rect.left() + 0.2 * rect.width(), fullRect.top(), rect.left() + 0.2 * rect.width(), fullRect.bottom());
+    painter.drawLine(rect.left() + 0.4 * rect.width(), fullRect.top(), rect.left() + 0.4 * rect.width(), fullRect.bottom());
+    painter.drawLine(rect.left() + 0.6 * rect.width(), fullRect.top(), rect.left() + 0.6 * rect.width(), fullRect.bottom());
+    painter.drawLine(rect.left() + 0.8 * rect.width(), fullRect.top(), rect.left() + 0.8 * rect.width(), fullRect.bottom());
 
     // Set antialiasing for graphs
     painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
@@ -194,73 +229,76 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     // draw graphs
     rect.adjust(3, 0, 0, 0); // Need, else graphs cross left gridline
 
-    double y_multiplier = (max_y == 0.0) ? 0.0 : rect.height() / max_y;
-    double x_tick_size = double(rect.width()) / m_viewablePointsCount;
+    double yMultiplier = (maxY == 0) ? 0.0 : static_cast<double>(rect.height()) / maxY;
+    double xTickSize = static_cast<double>(rect.width()) / m_viewablePointsCount;
 
-    for (QMap<GraphID, QQueue<double> >::const_iterator it = m_yData.begin(); it != m_yData.end(); ++it) {
+    boost::circular_buffer<PointData> &queue = getCurrentData();
 
-        if (!m_properties[it.key()].m_enable)
+    for (int id = UP; id < NB_GRAPHS; ++id) {
+
+        if (!m_properties[static_cast<GraphID>(id)].enable)
             continue;
 
-        QQueue<double> &queue = m_yData[it.key()];
-        QVector<QPointF> points;
+        QVector<QPoint> points;
 
         for (int i = queue.size() - 1, j = 0; i >= 0 && j <= m_viewablePointsCount; --i, ++j) {
-            points.push_back(QPointF(rect.right() - j * x_tick_size,
-                                    rect.bottom() - queue.at(i) * y_multiplier));
+
+            int new_x = rect.right() - j * xTickSize;
+            int new_y = rect.bottom() - queue[i].y[id] * yMultiplier;
+
+            points.push_back(QPoint(new_x, new_y));
         }
 
-        painter.setPen(m_properties[it.key()].m_pen);
+        painter.setPen(m_properties[static_cast<GraphID>(id)].pen);
         painter.drawPolyline(points.data(), points.size());
     }
 
     // draw legend
-    QPoint legend_top_left(rect.left() + 4, full_rect.top() + 4);
+    QPoint legendTopLeft(rect.left() + 4, fullRect.top() + 4);
 
-    double legend_height = 0;
-    int legend_width = 0;
-    for (QMap<GraphID, GraphProperties>::const_iterator it = m_properties.begin(); it != m_properties.end(); ++it) {
+    double legendHeight = 0;
+    int legendWidth = 0;
+    for (const auto &property : m_properties) {
 
-        if (!it.value().m_enable)
+        if (!property.enable)
             continue;
 
-        if (font_metrics.width(it.value().m_name) > legend_width)
-            legend_width =  font_metrics.width(it.value().m_name);
-        legend_height += 1.5 * font_metrics.height();
+        if (fontMetrics.width(property.name) > legendWidth)
+            legendWidth =  fontMetrics.width(property.name);
+        legendHeight += 1.5 * fontMetrics.height();
     }
 
-    QRectF legend_background_rect(legend_top_left, QSizeF(legend_width, legend_height));
+    QRectF legendBackgroundRect(QPoint(legendTopLeft.x() - 4, legendTopLeft.y() - 4), QSizeF(legendWidth + 8, legendHeight + 8));
     QColor legendBackgroundColor = QWidget::palette().color(QWidget::backgroundRole());
     legendBackgroundColor.setAlpha(128);  // 50% transparent
-    painter.fillRect(legend_background_rect, legendBackgroundColor);
+    painter.fillRect(legendBackgroundRect, legendBackgroundColor);
 
-    int i = 0;
-    for (QMap<GraphID, GraphProperties>::const_iterator it = m_properties.begin(); it != m_properties.end(); ++it) {
+    i = 0;
+    for (const auto &property : m_properties) {
 
-        if (!it.value().m_enable)
+        if (!property.enable)
             continue;
 
-        int name_size = font_metrics.width(it.value().m_name);
-        double indent = 1.5 * i * font_metrics.height();
+        int nameSize = fontMetrics.width(property.name);
+        double indent = 1.5 * (i++) * fontMetrics.height();
 
-        painter.setPen(it.value().m_pen);
-        painter.drawLine(legend_top_left + QPointF(0, indent + font_metrics.height()),
-                         legend_top_left + QPointF(name_size, indent + font_metrics.height()));
-        painter.drawText(QRectF(legend_top_left + QPointF(0, indent), QSizeF(2 * name_size, font_metrics.height())),
-                         it.value().m_name, QTextOption(Qt::AlignVCenter));
-        ++i;
+        painter.setPen(property.pen);
+        painter.drawLine(legendTopLeft + QPointF(0, indent + fontMetrics.height()),
+                         legendTopLeft + QPointF(nameSize, indent + fontMetrics.height()));
+        painter.drawText(QRectF(legendTopLeft + QPointF(0, indent), QSizeF(2 * nameSize, fontMetrics.height())),
+                         property.name, QTextOption(Qt::AlignVCenter));
     }
 }
 
 SpeedPlotView::GraphProperties::GraphProperties()
-    : m_enable(false)
+    : enable(false)
 {
 }
 
 SpeedPlotView::GraphProperties::GraphProperties(const QString &name, const QPen &pen, bool enable)
-    : m_name(name)
-    , m_pen(pen)
-    , m_enable(enable)
+    : name(name)
+    , pen(pen)
+    , enable(enable)
 {
 }
 
