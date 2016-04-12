@@ -49,12 +49,12 @@
     <message>
         <location filename="../gui/about.ui" line="170"/>
         <source>Original author</source>
-        <translation>Первоначальный автор</translation>
+        <translation>Оригинальный автор</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="254"/>
         <source>Special Thanks</source>
-        <translation>Отдельная благодарность</translation>
+        <translation>Благодарности</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="280"/>
@@ -130,62 +130,62 @@
         <translation>Установить в качестве категории по умолчанию</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="139"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="133"/>
         <source>Category:</source>
         <translation>Категория:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="164"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="158"/>
         <source>Start torrent</source>
         <translation>Запустить торрент</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="210"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="194"/>
         <source>Torrent information</source>
         <translation>Сведения о торренте</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="174"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="168"/>
         <source>Skip hash check</source>
         <translation>Не проверять контрольную сумму</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="218"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="247"/>
         <source>Size:</source>
         <translation>Размер:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="238"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="213"/>
         <source>Hash:</source>
         <translation>Хеш:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="252"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="261"/>
         <source>Comment:</source>
         <translation>Комментарий:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="228"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="240"/>
         <source>Date:</source>
         <translation>Дата:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="369"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="366"/>
         <source>Normal</source>
         <translation>Обычный</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="374"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="371"/>
         <source>High</source>
         <translation>Высокий</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="379"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="376"/>
         <source>Maximum</source>
         <translation>Максимальный</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="384"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="381"/>
         <source>Do not download</source>
         <translation>Не загружать</translation>
     </message>
@@ -579,7 +579,7 @@
     <message>
         <location filename="../app/application.cpp" line="394"/>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation>Пароль администратора веб-интерфейса все еще стандартный: %1</translation>
+        <translation>Пароль администратора веб-интерфейса всё ещё стандартный: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="395"/>
@@ -693,12 +693,12 @@
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="362"/>
         <source>&amp;Import...</source>
-        <translation>&amp;Импорт...</translation>
+        <translation>&amp;Импорт…</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="369"/>
         <source>&amp;Export...</source>
-        <translation>&amp;Экспорт...</translation>
+        <translation>&amp;Экспорт…</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="79"/>
@@ -1033,13 +1033,13 @@
         <location filename="../base/bittorrent/session.cpp" line="2490"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
-        <translation>потому что %1 отключен.</translation>
+        <translation>потому что %1 отключён.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2493"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
-        <translation>потому что %1 отключен.</translation>
+        <translation>потому что %1 отключён.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2511"/>
@@ -1056,13 +1056,13 @@
         <location filename="../base/bittorrent/session.cpp" line="1067"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; был удален из списка торрентов и с жёсткого диска.</translation>
+        <translation>&apos;%1&apos; был удалён из списка торрентов и с диска.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1069"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; был удален из списка торрентов.</translation>
+        <translation>&apos;%1&apos; был удалён из списка торрентов.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1204"/>
@@ -1162,7 +1162,7 @@
         <location filename="../base/bittorrent/session.cpp" line="2355"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
-        <translation>%1 возобновлен (быстрое возобновление)</translation>
+        <translation>%1 возобновлён (быстрое возобновление)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2386"/>
@@ -1270,7 +1270,7 @@
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="324"/>
         <source>Add category...</source>
-        <translation>Добавить категорию...</translation>
+        <translation>Добавить категорию…</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="328"/>
@@ -1330,30 +1330,62 @@ Category name must not contain &apos;//&apos; sequence.</source>
     </message>
 </context>
 <context>
+    <name>CookiesDialog</name>
+    <message>
+        <location filename="../gui/cookiesdialog.ui" line="14"/>
+        <source>Manage Cookies</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CookiesDlg</name>
     <message>
-        <location filename="../gui/rss/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
-        <translation>Управление cookies</translation>
+        <translation type="obsolete">Управление cookies</translation>
     </message>
     <message>
-        <location filename="../gui/rss/cookiesdlg.ui" line="36"/>
         <source>Key</source>
         <extracomment>As in Key/Value pair</extracomment>
-        <translation>Ключ</translation>
+        <translation type="obsolete">Ключ</translation>
     </message>
     <message>
-        <location filename="../gui/rss/cookiesdlg.ui" line="41"/>
         <source>Value</source>
         <extracomment>As in Key/Value pair</extracomment>
-        <translation>Значение</translation>
+        <translation type="obsolete">Значение</translation>
     </message>
     <message>
-        <location filename="../gui/rss/cookiesdlg.cpp" line="50"/>
         <source>Common keys for cookies are: &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation>Частые ключи для cookies — это &apos;%1&apos; и &apos;%2&apos;.
+        <translation type="obsolete">Частые ключи для cookies — это &apos;%1&apos; и &apos;%2&apos;.
 Вам следует получить эту информацию в настройках браузера.</translation>
+    </message>
+</context>
+<context>
+    <name>CookiesModel</name>
+    <message>
+        <location filename="../gui/cookiesmodel.cpp" line="49"/>
+        <source>Domain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/cookiesmodel.cpp" line="51"/>
+        <source>Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/cookiesmodel.cpp" line="53"/>
+        <source>Name</source>
+        <translation type="unfinished">Имя</translation>
+    </message>
+    <message>
+        <location filename="../gui/cookiesmodel.cpp" line="55"/>
+        <source>Value</source>
+        <translation type="unfinished">Значение</translation>
+    </message>
+    <message>
+        <location filename="../gui/cookiesmodel.cpp" line="57"/>
+        <source>Expiration Date</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1381,12 +1413,12 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../gui/properties/downloadedpiecesbar.cpp" line="37"/>
         <source>Green: Partial pieces</source>
-        <translation>Зеленый: Отдельные части</translation>
+        <translation>Зелёный: Отдельные части</translation>
     </message>
     <message>
         <location filename="../gui/properties/downloadedpiecesbar.cpp" line="37"/>
         <source>Blue: Completed pieces</source>
-        <translation>Синий: Все части</translation>
+        <translation>Синий: Завершённые части</translation>
     </message>
 </context>
 <context>
@@ -1432,7 +1464,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../app/filelogger.cpp" line="168"/>
         <source>An error occured while trying to open the log file. Logging to file is disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка при открытии файла журнала. Журналирование в файл отключено.</translation>
     </message>
 </context>
 <context>
@@ -1942,7 +1974,7 @@ You should get this information from your Web browser preferences.</source>
         <translation>Инс&amp;трументы</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="86"/>
+        <location filename="../gui/mainwindow.ui" line="87"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
@@ -1957,270 +1989,282 @@ You should get this information from your Web browser preferences.</source>
         <translation>По &amp;окончании загрузок</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="96"/>
+        <location filename="../gui/mainwindow.ui" line="97"/>
         <source>&amp;View</source>
         <translation>&amp;Вид</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="175"/>
+        <location filename="../gui/mainwindow.ui" line="179"/>
         <source>&amp;Options...</source>
         <translation>&amp;Настройки…</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="185"/>
+        <location filename="../gui/mainwindow.ui" line="189"/>
         <source>&amp;Resume</source>
         <translation>&amp;Возобновить</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="208"/>
+        <location filename="../gui/mainwindow.ui" line="212"/>
         <source>Torrent &amp;Creator</source>
         <translation>&amp;Создать торрент</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="213"/>
+        <location filename="../gui/mainwindow.ui" line="217"/>
         <source>Set Upload Limit...</source>
         <translation>Установить ограничение отдачи…</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="218"/>
+        <location filename="../gui/mainwindow.ui" line="222"/>
         <source>Set Download Limit...</source>
         <translation>Установить ограничение загрузки…</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="228"/>
+        <location filename="../gui/mainwindow.ui" line="232"/>
         <source>Set Global Download Limit...</source>
         <translation>Ограничение загрузки…</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="233"/>
+        <location filename="../gui/mainwindow.ui" line="237"/>
         <source>Set Global Upload Limit...</source>
         <translation>Ограничение отдачи…</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="238"/>
+        <location filename="../gui/mainwindow.ui" line="242"/>
         <source>Minimum Priority</source>
         <translation>Низший приоритет</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="246"/>
+        <location filename="../gui/mainwindow.ui" line="250"/>
         <source>Top Priority</source>
         <translation>Высший приоритет</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="254"/>
+        <location filename="../gui/mainwindow.ui" line="258"/>
         <source>Decrease Priority</source>
         <translation>Понизить приоритет</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="262"/>
+        <location filename="../gui/mainwindow.ui" line="266"/>
         <source>Increase Priority</source>
         <translation>Повысить приоритет</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="273"/>
-        <location filename="../gui/mainwindow.ui" line="276"/>
+        <location filename="../gui/mainwindow.ui" line="277"/>
+        <location filename="../gui/mainwindow.ui" line="280"/>
         <source>Alternative Speed Limits</source>
         <translation>Другие ограничения скорости</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="284"/>
+        <location filename="../gui/mainwindow.ui" line="288"/>
         <source>&amp;Top Toolbar</source>
         <translation>Панель &amp;инструментов</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="287"/>
+        <location filename="../gui/mainwindow.ui" line="291"/>
         <source>Display Top Toolbar</source>
         <translation>Показывать панель инструментов</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="295"/>
+        <location filename="../gui/mainwindow.ui" line="299"/>
         <source>S&amp;peed in Title Bar</source>
         <translation>&amp;Скорость в заголовке</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="298"/>
+        <location filename="../gui/mainwindow.ui" line="302"/>
         <source>Show Transfer Speed in Title Bar</source>
         <translation>Отображать текущую скорость в заголовке окна</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="306"/>
+        <location filename="../gui/mainwindow.ui" line="310"/>
         <source>&amp;RSS Reader</source>
         <translation>&amp;RSS-менеджер</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="314"/>
+        <location filename="../gui/mainwindow.ui" line="318"/>
         <source>Search &amp;Engine</source>
         <translation>&amp;Поисковик</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="319"/>
+        <location filename="../gui/mainwindow.ui" line="323"/>
         <source>L&amp;ock qBittorrent</source>
         <translation>&amp;Заблокировать qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="330"/>
+        <location filename="../gui/mainwindow.ui" line="334"/>
         <source>&amp;Import Existing Torrent...</source>
         <translation>&amp;Импортировать торрент…</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="333"/>
+        <location filename="../gui/mainwindow.ui" line="337"/>
         <source>Import Torrent...</source>
         <translation>Импортировать торрент…</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="338"/>
+        <location filename="../gui/mainwindow.ui" line="342"/>
         <source>Do&amp;nate!</source>
         <translation>&amp;Пожертвовать!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="346"/>
+        <location filename="../gui/mainwindow.ui" line="350"/>
         <source>R&amp;esume All</source>
         <translation>Воз&amp;обновить все</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="430"/>
+        <location filename="../gui/mainwindow.ui" line="434"/>
+        <source>Manage Cookies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="437"/>
+        <source>Manage stored network cookies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="453"/>
         <source>Normal Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Обычные сообщения</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="438"/>
+        <location filename="../gui/mainwindow.ui" line="461"/>
         <source>Information Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Информационные сообщения</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="446"/>
+        <location filename="../gui/mainwindow.ui" line="469"/>
         <source>Warning Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Предупреждающие сообщения</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="454"/>
+        <location filename="../gui/mainwindow.ui" line="477"/>
         <source>Critical Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Критичные сообщения</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="100"/>
+        <location filename="../gui/mainwindow.ui" line="101"/>
+        <location filename="../gui/mainwindow.ui" line="363"/>
         <source>&amp;Log</source>
         <translation>&amp;Журнал</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="359"/>
+        <location filename="../gui/mainwindow.ui" line="374"/>
         <source>&amp;Exit qBittorrent</source>
         <translation>&amp;Выйти из qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="367"/>
+        <location filename="../gui/mainwindow.ui" line="382"/>
         <source>&amp;Suspend System</source>
         <translation>&amp;Перейти в ждущий режим</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="375"/>
+        <location filename="../gui/mainwindow.ui" line="390"/>
         <source>&amp;Hibernate System</source>
         <translation>&amp;Перейти в спящий режим</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="383"/>
+        <location filename="../gui/mainwindow.ui" line="398"/>
         <source>S&amp;hutdown System</source>
         <translation>&amp;Выключить компьютер</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="391"/>
+        <location filename="../gui/mainwindow.ui" line="406"/>
         <source>&amp;Disabled</source>
         <translation>&amp;Ничего не делать</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="406"/>
+        <location filename="../gui/mainwindow.ui" line="421"/>
         <source>&amp;Statistics</source>
         <translation>&amp;Статистика</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="411"/>
+        <location filename="../gui/mainwindow.ui" line="426"/>
         <source>Check for Updates</source>
         <translation>Проверить обновления</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="414"/>
+        <location filename="../gui/mainwindow.ui" line="429"/>
         <source>Check for Program Updates</source>
         <translation>Проверить наличие обновлений</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="180"/>
+        <location filename="../gui/mainwindow.ui" line="184"/>
         <source>&amp;About</source>
         <translation>&amp;О qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="190"/>
+        <location filename="../gui/mainwindow.ui" line="194"/>
         <source>&amp;Pause</source>
         <translation>&amp;Приостановить</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="195"/>
+        <location filename="../gui/mainwindow.ui" line="199"/>
         <source>&amp;Delete</source>
         <translation>&amp;Удалить</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="351"/>
+        <location filename="../gui/mainwindow.ui" line="355"/>
         <source>P&amp;ause All</source>
         <translation>П&amp;риостановить все</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="162"/>
+        <location filename="../gui/mainwindow.ui" line="166"/>
         <source>&amp;Add Torrent File...</source>
         <translation>&amp;Добавить торрент-файл…</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="165"/>
+        <location filename="../gui/mainwindow.ui" line="169"/>
         <source>Open</source>
         <translation>Открыть</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="170"/>
+        <location filename="../gui/mainwindow.ui" line="174"/>
         <source>E&amp;xit</source>
         <translation>&amp;Выход</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="203"/>
+        <location filename="../gui/mainwindow.ui" line="207"/>
         <source>Open URL</source>
         <translation>Открыть ссылку</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="223"/>
+        <location filename="../gui/mainwindow.ui" line="227"/>
         <source>&amp;Documentation</source>
         <translation>&amp;Документация</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="322"/>
+        <location filename="../gui/mainwindow.ui" line="326"/>
         <source>Lock</source>
         <translation>Заблокировать</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="396"/>
-        <location filename="../gui/mainwindow.ui" line="422"/>
-        <location filename="../gui/mainwindow.cpp" line="1352"/>
+        <location filename="../gui/mainwindow.ui" line="411"/>
+        <location filename="../gui/mainwindow.ui" line="445"/>
+        <location filename="../gui/mainwindow.cpp" line="1370"/>
         <source>Show</source>
         <translation>Показать</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1535"/>
+        <location filename="../gui/mainwindow.cpp" line="1558"/>
         <source>Check for program updates</source>
         <translation>Проверить наличие обновлений</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="200"/>
+        <location filename="../gui/mainwindow.ui" line="204"/>
         <source>Add Torrent &amp;Link...</source>
         <translation>Добавить &amp;ссылку на торрент…</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="341"/>
+        <location filename="../gui/mainwindow.ui" line="345"/>
         <source>If you like qBittorrent, please donate!</source>
-        <translation>Если Вам нравится qBittorrent, пожалуйста, пожертвуйте!</translation>
+        <translation>Если Вам нравится qBittorrent, пожалуйста, поддержите!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1563"/>
+        <location filename="../gui/mainwindow.ui" line="366"/>
+        <location filename="../gui/mainwindow.cpp" line="1586"/>
         <source>Execution Log</source>
         <translation>Журнал выполнения</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="533"/>
+        <location filename="../gui/mainwindow.cpp" line="545"/>
         <source>Clear the password</source>
         <translation>Удалить пароль</translation>
     </message>
@@ -2245,192 +2289,192 @@ You should get this information from your Web browser preferences.</source>
         <translation>Передачи</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="375"/>
+        <location filename="../gui/mainwindow.cpp" line="378"/>
         <source>Torrent file association</source>
         <translation>Ассоциации торрент-файлов</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="376"/>
+        <location filename="../gui/mainwindow.cpp" line="379"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>qBittorrent сейчас не является приложением по умолчанию для открытия торрент-файлов или magnet-ссылок.
 Хотите ли Вы открывать торрент-файлы и magnet-ссылки с помощью qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="430"/>
+        <location filename="../gui/mainwindow.cpp" line="434"/>
         <source>Icons Only</source>
         <translation>Только значки</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="432"/>
+        <location filename="../gui/mainwindow.cpp" line="436"/>
         <source>Text Only</source>
         <translation>Только текст</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="434"/>
+        <location filename="../gui/mainwindow.cpp" line="438"/>
         <source>Text Alongside Icons</source>
         <translation>Текст рядом со значками</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="436"/>
+        <location filename="../gui/mainwindow.cpp" line="440"/>
         <source>Text Under Icons</source>
         <translation>Текст под значками</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="438"/>
+        <location filename="../gui/mainwindow.cpp" line="442"/>
         <source>Follow System Style</source>
         <translation>Использовать стиль ОС</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="518"/>
-        <location filename="../gui/mainwindow.cpp" line="545"/>
-        <location filename="../gui/mainwindow.cpp" line="847"/>
+        <location filename="../gui/mainwindow.cpp" line="529"/>
+        <location filename="../gui/mainwindow.cpp" line="557"/>
+        <location filename="../gui/mainwindow.cpp" line="857"/>
         <source>UI lock password</source>
         <translation>Пароль блокировки интерфейса</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="518"/>
-        <location filename="../gui/mainwindow.cpp" line="545"/>
-        <location filename="../gui/mainwindow.cpp" line="847"/>
+        <location filename="../gui/mainwindow.cpp" line="529"/>
+        <location filename="../gui/mainwindow.cpp" line="557"/>
+        <location filename="../gui/mainwindow.cpp" line="857"/>
         <source>Please type the UI lock password:</source>
         <translation>Пожалуйста, введите пароль блокировки интерфейса:</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="522"/>
+        <location filename="../gui/mainwindow.cpp" line="533"/>
         <source>The password should contain at least 3 characters</source>
         <translation>Пароль должен содержать минимум 3 символа</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="527"/>
+        <location filename="../gui/mainwindow.cpp" line="538"/>
         <source>Password update</source>
         <translation>Обновить пароль</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="527"/>
+        <location filename="../gui/mainwindow.cpp" line="538"/>
         <source>The UI lock password has been successfully updated</source>
         <translation>Пароль блокировки интерфейса был успешно обновлен</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="533"/>
+        <location filename="../gui/mainwindow.cpp" line="545"/>
         <source>Are you sure you want to clear the password?</source>
         <translation>Вы уверены, что хотите удалить пароль?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="585"/>
+        <location filename="../gui/mainwindow.cpp" line="597"/>
         <source>Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="596"/>
+        <location filename="../gui/mainwindow.cpp" line="608"/>
         <source>Transfers (%1)</source>
         <translation>Передачи (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="687"/>
+        <location filename="../gui/mainwindow.cpp" line="698"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="687"/>
+        <location filename="../gui/mainwindow.cpp" line="698"/>
         <source>Failed to add torrent: %1</source>
         <translation>Не удалось добавить торрент: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="693"/>
+        <location filename="../gui/mainwindow.cpp" line="704"/>
         <source>Download completion</source>
         <translation>Завершение загрузок</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="699"/>
+        <location filename="../gui/mainwindow.cpp" line="710"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Ошибка ввода/вывода</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="760"/>
+        <location filename="../gui/mainwindow.cpp" line="771"/>
         <source>Recursive download confirmation</source>
         <translation>Подтверждение рекурсивной загрузки</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="761"/>
+        <location filename="../gui/mainwindow.cpp" line="772"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="762"/>
+        <location filename="../gui/mainwindow.cpp" line="773"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="763"/>
+        <location filename="../gui/mainwindow.cpp" line="774"/>
         <source>Never</source>
         <translation>Никогда</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="783"/>
+        <location filename="../gui/mainwindow.cpp" line="794"/>
         <source>Global Upload Speed Limit</source>
         <translation>Общее ограничение скорости отдачи</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="799"/>
+        <location filename="../gui/mainwindow.cpp" line="810"/>
         <source>Global Download Speed Limit</source>
         <translation>Общее ограничение скорости загрузки</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="949"/>
+        <location filename="../gui/mainwindow.cpp" line="960"/>
         <source>&amp;No</source>
         <translation>&amp;Нет</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="950"/>
+        <location filename="../gui/mainwindow.cpp" line="961"/>
         <source>&amp;Yes</source>
         <translation>&amp;Да</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="951"/>
+        <location filename="../gui/mainwindow.cpp" line="962"/>
         <source>&amp;Always Yes</source>
         <translation>&amp;Всегда да</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1434"/>
+        <location filename="../gui/mainwindow.cpp" line="1457"/>
         <source>Python found in %1</source>
         <translation>Python найден в %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1449"/>
+        <location filename="../gui/mainwindow.cpp" line="1472"/>
         <source>Old Python Interpreter</source>
         <translation>Старый интерпретатор Python</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1519"/>
+        <location filename="../gui/mainwindow.cpp" line="1542"/>
         <source>qBittorrent Update Available</source>
         <translation>Обновление qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1520"/>
+        <location filename="../gui/mainwindow.cpp" line="1543"/>
         <source>A new version is available.
 Do you want to download %1?</source>
         <translation>Доступна новая версия.
 Хотите скачать %1?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1529"/>
+        <location filename="../gui/mainwindow.cpp" line="1552"/>
         <source>Already Using the Latest qBittorrent Version</source>
         <translation>Используется последняя версия qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1459"/>
+        <location filename="../gui/mainwindow.cpp" line="1482"/>
         <source>Undetermined Python version</source>
         <translation>Версия Python не определена</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="693"/>
+        <location filename="../gui/mainwindow.cpp" line="704"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Загрузка &apos;%1&apos; завершена.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="699"/>
+        <location filename="../gui/mainwindow.cpp" line="710"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -2439,153 +2483,153 @@ Do you want to download %1?</source>
 Причина: %2</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="760"/>
+        <location filename="../gui/mainwindow.cpp" line="771"/>
         <source>The torrent &apos;%1&apos; contains torrent files, do you want to proceed with their download?</source>
         <translation>Торрент &apos;%1&apos; содержит торрент-файлы, хотите ли Вы приступить к их загрузке?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="775"/>
+        <location filename="../gui/mainwindow.cpp" line="786"/>
         <source>Couldn&apos;t download file at URL &apos;%1&apos;, reason: %2.</source>
         <translation>Не удалось загрузить файл по ссылке: &apos;%1&apos;, причина: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1449"/>
+        <location filename="../gui/mainwindow.cpp" line="1472"/>
         <source>Your Python version %1 is outdated. Please upgrade to latest version for search engines to work. Minimum requirement: 2.7.0/3.3.0.</source>
         <translation>Ваша версия Python %1 устарела. Пожалуйста, обновитесь до последней версии для использования поисковиков. Требуется как минимум версия 2.7.0 или 3.3.0.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1459"/>
+        <location filename="../gui/mainwindow.cpp" line="1482"/>
         <source>Couldn&apos;t determine your Python version (%1). Search engine disabled.</source>
         <translation>Не удалось определить Вашу версию Python (%1). Поисковик выключен.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1470"/>
-        <location filename="../gui/mainwindow.cpp" line="1482"/>
+        <location filename="../gui/mainwindow.cpp" line="1493"/>
+        <location filename="../gui/mainwindow.cpp" line="1505"/>
         <source>Missing Python Interpreter</source>
         <translation>Отсутствует интерпретатор Python</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1471"/>
+        <location filename="../gui/mainwindow.cpp" line="1494"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>Для использования поисковика требуется Python, но, видимо, он не установлен.
 Хотите установить его сейчас?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1482"/>
+        <location filename="../gui/mainwindow.cpp" line="1505"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation>Для использования поисковика требуется Python, но он, видимо, не установлен.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1530"/>
+        <location filename="../gui/mainwindow.cpp" line="1553"/>
         <source>No updates available.
 You are already using the latest version.</source>
         <translation>Обновлений нет.
 У Вас уже установлена последняя версия.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1534"/>
+        <location filename="../gui/mainwindow.cpp" line="1557"/>
         <source>&amp;Check for Updates</source>
         <translation>&amp;Проверить обновления</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1677"/>
+        <location filename="../gui/mainwindow.cpp" line="1700"/>
         <source>Checking for Updates...</source>
         <translation>Проверка обновлений…</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1678"/>
+        <location filename="../gui/mainwindow.cpp" line="1701"/>
         <source>Already checking for program updates in the background</source>
         <translation>Проверка обновлений уже выполняется</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1693"/>
+        <location filename="../gui/mainwindow.cpp" line="1716"/>
         <source>Python found in &apos;%1&apos;</source>
         <translation>Python найден в &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1746"/>
+        <location filename="../gui/mainwindow.cpp" line="1769"/>
         <source>Download error</source>
         <translation>Ошибка при загрузке</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1746"/>
+        <location filename="../gui/mainwindow.cpp" line="1769"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>Установщик Python не может быть загружен по причине: %1.
 Пожалуйста, установите его вручную.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="522"/>
-        <location filename="../gui/mainwindow.cpp" line="861"/>
+        <location filename="../gui/mainwindow.cpp" line="533"/>
+        <location filename="../gui/mainwindow.cpp" line="872"/>
         <source>Invalid password</source>
         <translation>Неверный пароль</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="563"/>
         <location filename="../gui/mainwindow.cpp" line="575"/>
+        <location filename="../gui/mainwindow.cpp" line="587"/>
         <source>RSS (%1)</source>
         <translation>RSS (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="775"/>
+        <location filename="../gui/mainwindow.cpp" line="786"/>
         <source>URL download error</source>
         <translation>Ошибка при загрузке ссылки</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="861"/>
+        <location filename="../gui/mainwindow.cpp" line="872"/>
         <source>The password is invalid</source>
         <translation>Неверный пароль</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1247"/>
-        <location filename="../gui/mainwindow.cpp" line="1254"/>
+        <location filename="../gui/mainwindow.cpp" line="1260"/>
+        <location filename="../gui/mainwindow.cpp" line="1267"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Загрузка: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1250"/>
-        <location filename="../gui/mainwindow.cpp" line="1256"/>
+        <location filename="../gui/mainwindow.cpp" line="1263"/>
+        <location filename="../gui/mainwindow.cpp" line="1269"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Отдача: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1261"/>
+        <location filename="../gui/mainwindow.cpp" line="1275"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[З: %1, О: %2] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1352"/>
+        <location filename="../gui/mainwindow.cpp" line="1370"/>
         <source>Hide</source>
         <translation>Скрыть</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="946"/>
+        <location filename="../gui/mainwindow.cpp" line="957"/>
         <source>Exiting qBittorrent</source>
         <translation>Завершение работы qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="947"/>
+        <location filename="../gui/mainwindow.cpp" line="958"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Некоторые передачи сейчас активны.
 Вы уверены, что хотите выйти из qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1088"/>
+        <location filename="../gui/mainwindow.cpp" line="1101"/>
         <source>Open Torrent Files</source>
         <translation>Открыть торрент-файлы</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1089"/>
+        <location filename="../gui/mainwindow.cpp" line="1102"/>
         <source>Torrent Files</source>
         <translation>Торрент-файлы</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1124"/>
+        <location filename="../gui/mainwindow.cpp" line="1137"/>
         <source>Options were saved successfully.</source>
         <translation>Настройки были успешно сохранены.</translation>
     </message>
@@ -2595,7 +2639,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="197"/>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation>Ваш динамический DNS был успешно обновлен.</translation>
+        <translation>Ваш динамический DNS был успешно обновлён.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="202"/>
@@ -2615,7 +2659,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="224"/>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation>Ошибка динамического DNS: qBittorrent внесен службой в черный список. Пожалуйста, сообщите об ошибке на  http://bugs.qbittorrent.org.</translation>
+        <translation>Ошибка Dynamic DNS: qBittorrent внесён службой в чёрный список. Пожалуйста, сообщите об ошибке на  http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="231"/>
@@ -2630,7 +2674,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="259"/>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
-        <translation>Ошибка динамического DNS: предоставленное доменное имя неверное.</translation>
+        <translation>Ошибка динамического DNS: предоставленное доменное имя неверно.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="270"/>
@@ -2699,7 +2743,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="144"/>
         <source>United Arab Emirates</source>
-        <translation>Объединенные Арабские Эмираты</translation>
+        <translation>Объединённые Арабские Эмираты</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="145"/>
@@ -3819,7 +3863,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="375"/>
         <source>United States</source>
-        <translation>Соединенные Штаты Америки</translation>
+        <translation>Соединённые Штаты Америки</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="376"/>
@@ -4145,7 +4189,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="290"/>
         <source>Manually banning peer &apos;%1&apos;...</source>
-        <translation>Ручкая блокировка пира &apos;%1&apos;...</translation>
+        <translation>Ручная блокировка пира &apos;%1&apos;…</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="261"/>
@@ -4189,7 +4233,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/properties/peersadditiondlg.cpp" line="58"/>
         <source>No peer entered</source>
-        <translation>Пир не введен</translation>
+        <translation>Пир не введён</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondlg.cpp" line="59"/>
@@ -4472,7 +4516,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="1019"/>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>Добавить расширение .!qB к незавершенным файлам</translation>
+        <translation>Добавить расширение .!qB к незавершённым файлам</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1032"/>
@@ -4508,13 +4552,13 @@ Those plugins were disabled.</source>
         <location filename="../gui/options.ui" line="2002"/>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation>Из:</translation>
+        <translation>С:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2026"/>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
-        <translation>В:</translation>
+        <translation>До:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2314"/>
@@ -4695,7 +4739,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="358"/>
         <source>Start qBittorrent minimized</source>
-        <translation>Запускать qBittorrent свернутым</translation>
+        <translation>Запускать qBittorrent свёрнутым</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="394"/>
@@ -4721,7 +4765,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="426"/>
         <source>Monochrome (Dark theme)</source>
-        <translation>Монохромный (темная тема)</translation>
+        <translation>Монохромный (тёмная тема)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="431"/>
@@ -4802,7 +4846,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="973"/>
         <source>Keep incomplete torrents in:</source>
-        <translation>Хранить незавершенные торренты в:</translation>
+        <translation>Хранить незавершённые торренты в:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1137"/>
@@ -4817,7 +4861,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="1081"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>Копировать торрент-файлы завершенных загрузок в:</translation>
+        <translation>Копировать торрент-файлы завершённых загрузок в:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1224"/>
@@ -4837,7 +4881,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="1297"/>
         <source>This server requires a secure connection (SSL)</source>
-        <translation>Этот сервер требует защищенного соединения (SSL)</translation>
+        <translation>Этот сервер требует защищённого соединения (SSL)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1367"/>
@@ -4917,7 +4961,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="217"/>
         <source>Hide zero and infinity values</source>
-        <translation>Скрыть нулевые и бесконечные значения</translation>
+        <translation>Скрывать нулевые и бесконечные значения</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="225"/>
@@ -4927,55 +4971,55 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="230"/>
         <source>Paused torrents only</source>
-        <translation>Только приостановленные торренты</translation>
+        <translation>Только для приостановленных торрентов</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="375"/>
         <source>Confirmation on auto-exit when downloads finish</source>
-        <translation type="unfinished"></translation>
+        <translation>Подтверждать автовыход по окончанию загрузок</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="486"/>
         <source>Log file</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл журнала</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="500"/>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь сохранения:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="530"/>
         <source>Backup the log file after:</source>
-        <translation type="unfinished"></translation>
+        <translation>Создавать резервную копию после:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="537"/>
         <source> MB</source>
-        <translation type="unfinished"></translation>
+        <translation>МБ</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="573"/>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалять резервные копии старше:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="597"/>
         <source>days</source>
         <comment>Delete backup logs older than 10 months</comment>
-        <translation type="unfinished"></translation>
+        <translation>дней</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="602"/>
         <source>months</source>
         <comment>Delete backup logs older than 10 months</comment>
-        <translation type="unfinished"></translation>
+        <translation>месяцев</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="607"/>
         <source>years</source>
         <comment>Delete backup logs older than 10 years</comment>
-        <translation type="unfinished"></translation>
+        <translation>года/лет</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="734"/>
@@ -5261,7 +5305,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="2679"/>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation>Включить веб-интерфейс (удаленное управление)</translation>
+        <translation>Включить веб-интерфейс (удалённое управление)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1618"/>
@@ -5879,7 +5923,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="204"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation>Удаленный хост не был найден (неверное имя хоста)</translation>
+        <translation>Удалённый хост не был найден (неверное имя хоста)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="206"/>
@@ -5889,12 +5933,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="208"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation>Сервер закрыл соединение, прежде чем весь ответ был принят и обработан</translation>
+        <translation>Удалённый сервер закрыл соединение, прежде чем весь ответ был принят и обработан</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="210"/>
         <source>The connection to the remote server timed out</source>
-        <translation>Время соединения с сервером вышло</translation>
+        <translation>Время соединения с удалённым сервером вышло</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="212"/>
@@ -5904,7 +5948,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="214"/>
         <source>The remote server refused the connection</source>
-        <translation>Удаленный сервер отклонил соединение</translation>
+        <translation>Удалённый сервер отклонил соединение</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="216"/>
@@ -5949,7 +5993,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="232"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>Удаленный сервер требует аутентификации для отдачи данных, но указанные учетные данные не были приняты</translation>
+        <translation>Удалённый сервер требует аутентификации для отдачи данных, но указанные учётные данные не были приняты</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="234"/>
@@ -6106,9 +6150,8 @@ No further notices will be issued.</source>
         <translation>Новая папка…</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="202"/>
         <source>Manage cookies...</source>
-        <translation>Управление cookies…</translation>
+        <translation type="obsolete">Управление cookies…</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="45"/>
@@ -6119,77 +6162,77 @@ No further notices will be issued.</source>
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="219"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="197"/>
         <source>Stream URL:</source>
         <translation>Адрес потока:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="219"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="197"/>
         <source>Please type a RSS stream URL</source>
         <translation>Введите адрес RSS-потока</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="229"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="207"/>
         <source>This RSS feed is already in the list.</source>
         <translation>Этот RSS-канал уже в списке.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="173"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="151"/>
         <source>Please choose a folder name</source>
         <translation>Выберите имя папки</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="173"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="151"/>
         <source>Folder name:</source>
         <translation>Имя папки:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="173"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="151"/>
         <source>New folder</source>
         <translation>Новая папка</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="257"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="235"/>
         <source>Deletion confirmation</source>
         <translation>Подтверждение удаления</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="258"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="236"/>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
         <translation>Вы уверены, что хотите удалить выбранный RSS-канал?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="405"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="383"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Укажите новое имя для этого RSS-канала</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="405"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="383"/>
         <source>New feed name:</source>
         <translation>Новое имя канала:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="409"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="387"/>
         <source>Name already in use</source>
         <translation>Имя уже используется</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="409"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="387"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Это имя уже используется. Пожалуйста, выберите другое.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="579"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="557"/>
         <source>Date: </source>
         <translation>Дата: </translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="581"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="559"/>
         <source>Author: </source>
         <translation>Автор: </translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="658"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="636"/>
         <source>Unread</source>
         <translation>Непрочитанные</translation>
     </message>
@@ -6199,12 +6242,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/rss/rssfeed.cpp" line="381"/>
         <source>Automatic download of &apos;%1&apos; from &apos;%2&apos; RSS feed failed because it doesn&apos;t contain a torrent or a magnet link...</source>
-        <translation>Автоматическая загрузка &apos;%1&apos; из RSS-канала &apos;%2&apos; не удалась, потому что он не содержит торрента или magnet-ссылки...</translation>
+        <translation>Автоматическая загрузка &apos;%1&apos; из RSS-канала &apos;%2&apos; не удалась, потому что он не содержит торрента или magnet-ссылки…</translation>
     </message>
     <message>
         <location filename="../base/rss/rssfeed.cpp" line="386"/>
         <source>Automatically downloading &apos;%1&apos; torrent from &apos;%2&apos; RSS feed...</source>
-        <translation>Автоматическая загрузка торрента &apos;%1&apos; с RSS-канала &apos;%2&apos;...</translation>
+        <translation>Автоматическая загрузка торрента &apos;%1&apos; с RSS-канала &apos;%2&apos;…</translation>
     </message>
 </context>
 <context>
@@ -6230,11 +6273,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/rss/rsssettingsdlg.ui" line="39"/>
         <source> min</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">минут</translation>
+        <translation>мин.</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsssettingsdlg.ui" line="55"/>
@@ -6380,33 +6419,146 @@ No further notices will be issued.</source>
 <context>
     <name>SearchTab</name>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="72"/>
+        <location filename="../gui/search/searchtab.cpp" line="79"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="73"/>
+        <location filename="../gui/search/searchtab.cpp" line="80"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>Размер</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="74"/>
+        <location filename="../gui/search/searchtab.cpp" line="81"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
         <translation>Сиды</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="75"/>
+        <location filename="../gui/search/searchtab.cpp" line="82"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
         <translation>Пиры</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="76"/>
+        <location filename="../gui/search/searchtab.cpp" line="83"/>
         <source>Search engine</source>
         <translation>Поисковик</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="202"/>
+        <source>Results (showing &lt;i&gt;%1&lt;/i&gt; out of &lt;i&gt;%2&lt;/i&gt;):</source>
+        <comment>i.e: Search results</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="252"/>
+        <source>Torrent names only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="253"/>
+        <source>Everywhere</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="265"/>
+        <source>Searching...</source>
+        <translation type="unfinished">Поиск…</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="267"/>
+        <source>Search has finished</source>
+        <translation type="unfinished">Поиск завершён</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="269"/>
+        <source>Search aborted</source>
+        <translation type="unfinished">Поиск прерван</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="271"/>
+        <source>An error occurred during search...</source>
+        <translation type="unfinished">Во время поиска произошла ошибка…</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="273"/>
+        <source>Search returned no results</source>
+        <translation type="unfinished">Поиск не дал результатов</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="22"/>
+        <source>Results(xxx)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="45"/>
+        <source>Search in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="55"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everyhing returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="84"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed number of seeders&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="87"/>
+        <source>Seeds:</source>
+        <translation type="unfinished">Сиды:</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="94"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="116"/>
+        <location filename="../gui/search/searchtab.ui" line="204"/>
+        <source>to</source>
+        <translation type="unfinished">до</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="123"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <location filename="../gui/search/searchtab.ui" line="126"/>
+        <location filename="../gui/search/searchtab.ui" line="216"/>
+        <source>∞</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="167"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed size of a torrent&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="170"/>
+        <source>Size:</source>
+        <translation type="unfinished">Размер:</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="179"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimal torrent size&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="213"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal torrent size&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6414,124 +6566,141 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="14"/>
         <location filename="../gui/search/searchwidget.ui" line="28"/>
-        <location filename="../gui/search/searchwidget.cpp" line="181"/>
-        <location filename="../gui/search/searchwidget.cpp" line="202"/>
-        <location filename="../gui/search/searchwidget.cpp" line="296"/>
+        <location filename="../gui/search/searchwidget.cpp" line="200"/>
+        <location filename="../gui/search/searchwidget.cpp" line="226"/>
+        <location filename="../gui/search/searchwidget.cpp" line="317"/>
         <source>Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="51"/>
         <source>Status:</source>
-        <translation>Состояние:</translation>
+        <translation type="obsolete">Состояние:</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="75"/>
-        <location filename="../gui/search/searchwidget.cpp" line="364"/>
         <source>Stopped</source>
-        <translation>Остановлено</translation>
+        <translation type="obsolete">Остановлено</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="107"/>
+        <location filename="../gui/search/searchwidget.ui" line="54"/>
         <source>Download</source>
         <translation>Скачать</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="117"/>
+        <location filename="../gui/search/searchwidget.ui" line="64"/>
         <source>Go to description page</source>
         <translation>Перейти на страницу описания</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="127"/>
+        <location filename="../gui/search/searchwidget.ui" line="74"/>
         <source>Copy description page URL</source>
         <translation>Скопировать адрес страницы описания</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="147"/>
+        <location filename="../gui/search/searchwidget.ui" line="94"/>
         <source>Search plugins...</source>
         <translation>Поисковые плагины…</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="121"/>
+        <location filename="../gui/search/searchwidget.cpp" line="89"/>
+        <source>A phrase to search for.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="90"/>
+        <source>Spaces in a search term may be protected by double quotes.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="92"/>
+        <source>Example:</source>
+        <comment>Search phrase example</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="94"/>
+        <source>&lt;b&gt;foo bar&lt;/b&gt;: search for &lt;b&gt;foo&lt;/b&gt; and &lt;b&gt;bar&lt;/b&gt;</source>
+        <comment>Search phrase example, illustrates quotes usage, a pair of space delimited words, individal words are highlighted</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="98"/>
+        <source>&lt;b&gt;&amp;quot;foo bar&amp;quot;&lt;/b&gt;: search for &lt;b&gt;foo bar&lt;/b&gt;</source>
+        <comment>Search phrase example, illustrates quotes usage, double quotedpair of space delimited words, the whole pair is highlighted</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="141"/>
         <source>All enabled</source>
         <translation>Все работающие</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="122"/>
+        <location filename="../gui/search/searchwidget.cpp" line="142"/>
         <source>All plugins</source>
         <translation>Все плагины</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="125"/>
-        <location filename="../gui/search/searchwidget.cpp" line="167"/>
+        <location filename="../gui/search/searchwidget.cpp" line="145"/>
+        <location filename="../gui/search/searchwidget.cpp" line="186"/>
         <source>Multiple...</source>
         <translation>Множественный…</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="194"/>
-        <location filename="../gui/search/searchwidget.cpp" line="283"/>
-        <location filename="../gui/search/searchwidget.cpp" line="302"/>
+        <location filename="../gui/search/searchwidget.cpp" line="218"/>
+        <location filename="../gui/search/searchwidget.cpp" line="305"/>
+        <location filename="../gui/search/searchwidget.cpp" line="323"/>
         <source>Search Engine</source>
         <translation>Поисковик</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="194"/>
+        <location filename="../gui/search/searchwidget.cpp" line="218"/>
         <source>Please install Python to use the Search Engine.</source>
         <translation>Пожалуйста, установите Python для использования поисковика.</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="212"/>
+        <location filename="../gui/search/searchwidget.cpp" line="236"/>
         <source>Empty search pattern</source>
         <translation>Очистить шаблон поиска</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="212"/>
+        <location filename="../gui/search/searchwidget.cpp" line="236"/>
         <source>Please type a search pattern first</source>
         <translation>Пожалуйста, задайте сначала шаблон поиска</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="239"/>
-        <location filename="../gui/search/searchwidget.cpp" line="341"/>
         <source>Results &lt;i&gt;(%1)&lt;/i&gt;:</source>
         <comment>i.e: Search results</comment>
-        <translation>Результаты &lt;i&gt;(%1)&lt;/i&gt;:</translation>
+        <translation type="obsolete">Результаты &lt;i&gt;(%1)&lt;/i&gt;:</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="271"/>
         <source>Searching...</source>
-        <translation>Поиск…</translation>
+        <translation type="obsolete">Поиск…</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="274"/>
+        <location filename="../gui/search/searchwidget.cpp" line="296"/>
         <source>Stop</source>
         <translation>Стоп</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="283"/>
-        <location filename="../gui/search/searchwidget.cpp" line="292"/>
+        <location filename="../gui/search/searchwidget.cpp" line="305"/>
         <source>Search has finished</source>
-        <translation>Поиск завершен</translation>
+        <translation>Поиск завершён</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="288"/>
-        <location filename="../gui/search/searchwidget.cpp" line="307"/>
         <source>Search aborted</source>
-        <translation>Поиск прерван</translation>
+        <translation type="obsolete">Поиск прерван</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="290"/>
         <source>Search returned no results</source>
-        <translation>Поиск не дал результатов</translation>
+        <translation type="obsolete">Поиск не дал результатов</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="302"/>
+        <location filename="../gui/search/searchwidget.cpp" line="323"/>
         <source>Search has failed</source>
         <translation>Поиск не удался</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="309"/>
         <source>An error occurred during search...</source>
-        <translation>Во время поиска произошла ошибка…</translation>
+        <translation type="obsolete">Во время поиска произошла ошибка…</translation>
     </message>
 </context>
 <context>
@@ -6555,93 +6724,69 @@ No further notices will be issued.</source>
 <context>
     <name>ShutdownConfirmDlg</name>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="118"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="123"/>
         <source>qBittorrent will now exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent будет закрыт.</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="120"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="125"/>
         <source>E&amp;xit Now</source>
-        <translation type="unfinished"></translation>
+        <translation>В&amp;ыйти сейчас</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="121"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="126"/>
         <source>Exit confirmation</source>
         <translation>Подтверждение завершения программы</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="124"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="129"/>
         <source>The computer is going to shutdown.</source>
-        <translation type="unfinished"></translation>
+        <translation>Компьютер будет выключен.</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="126"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="131"/>
         <source>&amp;Shutdown Now</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Выключить сейчас</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="130"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="135"/>
         <source>The computer is going to enter suspend mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Компьютер перейдёт в режим ожидания.</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="132"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="137"/>
         <source>&amp;Suspend Now</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="133"/>
-        <source>Suspend confirmation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="136"/>
-        <source>The computer is going to enter hibernation mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Перейти в режим ожидания</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirm.cpp" line="138"/>
-        <source>&amp;Hibernate Now</source>
-        <translation type="unfinished"></translation>
+        <source>Suspend confirmation</source>
+        <translation>Подтверждение перехода в режим ожидания</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="139"/>
-        <source>Hibernate confirmation</source>
-        <translation type="unfinished"></translation>
+        <location filename="../gui/shutdownconfirm.cpp" line="141"/>
+        <source>The computer is going to enter hibernation mode.</source>
+        <translation>Компьютер перейдёт в спящий режим.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirm.cpp" line="143"/>
+        <source>&amp;Hibernate Now</source>
+        <translation>П&amp;ерейти в спящий режим</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirm.cpp" line="144"/>
+        <source>Hibernate confirmation</source>
+        <translation>Подтверждение перехода в спящий режим</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirm.cpp" line="148"/>
         <source>You can cancel the action within %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы можете отменить действие в течение %1 секунд.</translation>
     </message>
     <message>
-        <source>Exit now</source>
-        <translation type="obsolete">Выйти сейчас</translation>
-    </message>
-    <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="127"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="132"/>
         <source>Shutdown confirmation</source>
         <translation>Подтверждение выключения</translation>
-    </message>
-    <message>
-        <source>Shutdown now</source>
-        <translation type="obsolete">Выключить сейчас</translation>
-    </message>
-    <message>
-        <source>qBittorrent will now exit unless you cancel within the next %1 seconds.</source>
-        <translation type="obsolete">qBittorrent закроется, если Вы не отмените это в течение следующих %1 секунд.</translation>
-    </message>
-    <message>
-        <source>The computer will now be switched off unless you cancel within the next %1 seconds.</source>
-        <translation type="obsolete">Сейчас компьютер будет отключен, если Вы не отмените это в течение следующих %1 секунд.</translation>
-    </message>
-    <message>
-        <source>The computer will now go to sleep mode unless you cancel within the next %1 seconds.</source>
-        <translation type="obsolete">Сейчас компьютер перейдет в ждущий режим, если Вы не отмените это в течение следующих %1 секунд.</translation>
-    </message>
-    <message>
-        <source>The computer will now go to hibernation mode unless you cancel within the next %1 seconds.</source>
-        <translation type="obsolete">Сейчас компьютер перейдет в спящий режим, если Вы не отмените это в течение следующих %1 секунд.</translation>
     </message>
 </context>
 <context>
@@ -6655,52 +6800,52 @@ No further notices will be issued.</source>
 <context>
     <name>SpeedPlotView</name>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="47"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="51"/>
         <source>Total Upload</source>
         <translation>Всего отдано</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="48"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="52"/>
         <source>Total Download</source>
         <translation>Всего загружено</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="52"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="56"/>
         <source>Payload Upload</source>
         <translation>Отдано полезного</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="53"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="57"/>
         <source>Payload Download</source>
         <translation>Загружено полезного</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="57"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="61"/>
         <source>Overhead Upload</source>
         <translation>Отдано служебного трафика</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="58"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="62"/>
         <source>Overhead Download</source>
         <translation>Загружено служебного трафика</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="62"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="66"/>
         <source>DHT Upload</source>
         <translation>Отдано DHT</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="63"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="67"/>
         <source>DHT Download</source>
         <translation>Загружено DHT</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="67"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="71"/>
         <source>Tracker Upload</source>
         <translation>Отдано трекером</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="68"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="72"/>
         <source>Tracker Download</source>
         <translation>Загружено трекером</translation>
     </message>
@@ -6708,82 +6853,82 @@ No further notices will be issued.</source>
 <context>
     <name>SpeedWidget</name>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="68"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="66"/>
         <source>Period:</source>
         <translation>Период:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="71"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="69"/>
         <source>1 Minute</source>
         <translation>1 минута</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="72"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="70"/>
         <source>5 Minutes</source>
         <translation>5 минут</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="73"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="71"/>
         <source>30 Minutes</source>
         <translation>30 минут</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="74"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="72"/>
         <source>6 Hours</source>
         <translation>6 часов</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="103"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="101"/>
         <source>Select Graphs</source>
         <translation>Выбрать графики</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="79"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="77"/>
         <source>Total Upload</source>
         <translation>Всего отдано</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="80"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="78"/>
         <source>Total Download</source>
         <translation>Всего загружено</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="81"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="79"/>
         <source>Payload Upload</source>
         <translation>Отдано полезного</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="82"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="80"/>
         <source>Payload Download</source>
         <translation>Загружено полезного</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="83"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="81"/>
         <source>Overhead Upload</source>
         <translation>Отдано служебного трафика</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="84"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="82"/>
         <source>Overhead Download</source>
         <translation>Загружено служебного трафика</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="85"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="83"/>
         <source>DHT Upload</source>
         <translation>Отдано DHT</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="86"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="84"/>
         <source>DHT Download</source>
         <translation>Загружено DHT</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="87"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="85"/>
         <source>Tracker Upload</source>
         <translation>Отдано трекером</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="88"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="86"/>
         <source>Tracker Download</source>
         <translation>Загружено трекером</translation>
     </message>
@@ -7617,87 +7762,87 @@ No further notices will be issued.</source>
 <context>
     <name>TransferListDelegate</name>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="238"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="240"/>
         <source>Downloading</source>
         <translation>Загружается</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="244"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="246"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
         <translation>Загрузка метаданных</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="250"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="252"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
         <translation>Резервирование места</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="274"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="276"/>
         <source>Paused</source>
         <translation>Приостановлен</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="261"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="263"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
         <translation>В очереди</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="254"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="256"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
         <translation>Раздаётся</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="241"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="243"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
         <translation>Простаивает</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="247"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="249"/>
         <source>[F] Downloading</source>
         <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
         <translation>[F] Загружается</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="257"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="259"/>
         <source>[F] Seeding</source>
         <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
         <translation>[F] Раздаётся</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="265"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="267"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
         <translation>Проверяется</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="268"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="270"/>
         <source>Queued for checking</source>
         <comment>i.e. torrent is queued for hash checking</comment>
         <translation>В очереди на проверку</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="271"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="273"/>
         <source>Checking resume data</source>
         <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
         <translation>Проверка данных возобновления</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="277"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="279"/>
         <source>Completed</source>
         <translation>Завершён</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="280"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="282"/>
         <source>Missing Files</source>
         <translation>Отсутствуют файлы</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="283"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="285"/>
         <source>Errored</source>
         <comment>torrent status, the torrent has an error</comment>
         <translation>С ошибкой</translation>
@@ -7706,7 +7851,7 @@ No further notices will be issued.</source>
         <location filename="../gui/transferlistdelegate.cpp" line="133"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
-        <translation>%1 (раздается %2)</translation>
+        <translation>%1 (раздаётся %2)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="199"/>
@@ -7901,7 +8046,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
         <location filename="../gui/transferlistwidget.cpp" line="775"/>
         <source>New...</source>
         <comment>New category...</comment>
-        <translation>Новая...</translation>
+        <translation>Новая…</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="776"/>
@@ -8091,7 +8236,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/confirmshutdowndlg.ui" line="64"/>
         <source>Don&apos;t show again</source>
-        <translation type="unfinished"></translation>
+        <translation>Больше не показывать</translation>
     </message>
 </context>
 <context>
@@ -8329,52 +8474,64 @@ Category name must not contain &apos;//&apos; sequence.</source>
         <translation>ТБ</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="286"/>
+        <location filename="../base/utils/misc.cpp" line="90"/>
+        <source>PiB</source>
+        <comment>pebibytes (1024 tebibytes)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/utils/misc.cpp" line="91"/>
+        <source>EiB</source>
+        <comment>exbibytes (1024 pebibytes)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/utils/misc.cpp" line="288"/>
         <source>Python not detected</source>
         <translation>Python не найден</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="314"/>
+        <location filename="../base/utils/misc.cpp" line="316"/>
         <source>Python version: %1</source>
         <translation>Версия Python: %1</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="341"/>
+        <location filename="../base/utils/misc.cpp" line="363"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/с</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="414"/>
+        <location filename="../base/utils/misc.cpp" line="444"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1 ч %2 мин</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="418"/>
+        <location filename="../base/utils/misc.cpp" line="448"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1 д %2 ч</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="329"/>
+        <location filename="../base/utils/misc.cpp" line="355"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Неизвестно</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="209"/>
+        <location filename="../base/utils/misc.cpp" line="211"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>qBittorent сейчас выключит компьютер, так как все загрузки завершены.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="407"/>
+        <location filename="../base/utils/misc.cpp" line="437"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 мин</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="410"/>
+        <location filename="../base/utils/misc.cpp" line="440"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 мин</translation>
@@ -8538,7 +8695,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/options_imp.cpp" line="1496"/>
         <source>Successfully refreshed</source>
-        <translation>Успешно обновлен</translation>
+        <translation>Успешно обновлён</translation>
     </message>
     <message>
         <location filename="../gui/options_imp.cpp" line="1496"/>

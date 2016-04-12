@@ -22,7 +22,7 @@
         <location filename="../gui/about.ui" line="126"/>
         <location filename="../gui/about.ui" line="217"/>
         <source>Nationality:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kansallisuus</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="140"/>
@@ -54,12 +54,12 @@
     <message>
         <location filename="../gui/about.ui" line="254"/>
         <source>Special Thanks</source>
-        <translation type="unfinished"></translation>
+        <translation>Erityiskiitokset</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="280"/>
         <source>Translators</source>
-        <translation type="unfinished"></translation>
+        <translation>Suomentajat</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="328"/>
@@ -87,7 +87,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="17"/>
         <source>Save at</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallennuskohde</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="28"/>
@@ -112,7 +112,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="91"/>
         <source>Set as default save path</source>
-        <translation>Aseta tallennuksen oletuspoluksi</translation>
+        <translation>Aseta tallennuksen oletussijainniksi</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="101"/>
@@ -127,65 +127,65 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="124"/>
         <source>Set as default category</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta oletuskategoriaksi</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="139"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="133"/>
         <source>Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategoria:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="164"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="158"/>
         <source>Start torrent</source>
         <translation>Aloita torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="210"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="194"/>
         <source>Torrent information</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentin tiedot</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="174"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="168"/>
         <source>Skip hash check</source>
-        <translation>Ohita tarkistus</translation>
+        <translation>Ohita tarkistussumman laskeminen</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="218"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="247"/>
         <source>Size:</source>
         <translation>Koko:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="238"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="213"/>
         <source>Hash:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarkistussumma:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="252"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="261"/>
         <source>Comment:</source>
         <translation>Kommentti:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="228"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="240"/>
         <source>Date:</source>
         <translation>Päiväys:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="369"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="366"/>
         <source>Normal</source>
         <translation>Normaali</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="374"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="371"/>
         <source>High</source>
         <translation>Korkea</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="379"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="376"/>
         <source>Maximum</source>
         <translation>Suurin</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="384"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="381"/>
         <source>Do not download</source>
         <translation>Älä lataa</translation>
     </message>
@@ -244,29 +244,29 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="212"/>
         <source>The torrent file cannot be read from the disk. Probably you don&apos;t have enough permissions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent-tiedostoa ei voida lukea levyltä. Sinulta voi puuttua käyttöoikeuksia.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="231"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="263"/>
         <source>Torrent is already in download list. Trackers weren&apos;t merged because it is a private torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent on jo latauslistalla. Seurantapalvelimia ei yhdistetty, koska kyseessä on yksityinen torrent.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="236"/>
         <source>Torrent is already in download list. Trackers were merged.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent on jo latauslistalla. Seurantapalvelimet yhdistettiin.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="240"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="272"/>
         <source>Cannot add torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenttia ei voida lisätä</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="240"/>
         <source>Cannot add this torrent. Perhaps it is already in adding state.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenttia ei voida lisätä. Tämä voi johtua siitä että sitä ollaan jo lisäämässä.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="253"/>
@@ -276,12 +276,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="268"/>
         <source>Magnet link is already in download list. Trackers were merged.</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet-linkki on jo latauslistalla. Seurantapalvelimet yhdistettiin.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="272"/>
         <source>Cannot add this torrent. Perhaps it is already in adding.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenttia ei voida lisätä. Tämä voi johtua siitä että sitä ollaan jo lisäämässä.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="281"/>
@@ -302,7 +302,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="374"/>
         <source>Free space on disk: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vapaata tilaa levyllä: %1</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="415"/>
@@ -350,7 +350,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="581"/>
         <source>Priority</source>
-        <translation>Prioriteetti</translation>
+        <translation>Tärkeysaste</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="671"/>
@@ -365,12 +365,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="682"/>
         <source>Metadata retrieval complete</source>
-        <translation>Metatietojen noutaminen valmistui</translation>
+        <translation>Metatietojen noutaminen valmis</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="744"/>
         <source>Download Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Latausvirhe</translation>
     </message>
 </context>
 <context>
@@ -430,18 +430,18 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="184"/>
         <source>qBittorrent Section</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrentin asetukset</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="186"/>
         <location filename="../gui/advancedsettings.cpp" line="191"/>
         <source>Open documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Avaa dokumentaatio</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="189"/>
         <source>libtorrent Section</source>
-        <translation type="unfinished"></translation>
+        <translation>libtorrentin asetukset</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="210"/>
@@ -463,17 +463,17 @@
         <location filename="../gui/advancedsettings.cpp" line="219"/>
         <source> m</source>
         <comment> minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>min</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="242"/>
         <source>Resolve peer countries (GeoIP)</source>
-        <translation>Selvitä asiakkaiden kotimaat (GeoIP)</translation>
+        <translation>Selvitä käyttäjien kotimaat (GeoIP)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="245"/>
         <source>Resolve peer host names</source>
-        <translation>Selvitä asiakkaiden isäntänimet</translation>
+        <translation>Selvitä käyttäjien isäntänimet</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="253"/>
@@ -493,12 +493,12 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="301"/>
         <source>Confirm torrent recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Vahvista torrentin uudelleentarkistus</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="304"/>
         <source>Exchange trackers with other peers</source>
-        <translation>Vaihda seurantapalvelimia muiden vertaisten kanssa</translation>
+        <translation>Vaihda seurantapalvelimia muiden käyttäjien kanssa</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="307"/>
@@ -584,7 +584,7 @@
     <message>
         <location filename="../app/application.cpp" line="395"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation>Tämä on turvallisuusriski. Vaihda salasana ohjelman asetuksista.</translation>
+        <translation>Tämä on turvallisuusriski. Kannattaa harkita salasanan vaihtamista ohjelman asetuksista.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="569"/>
@@ -602,17 +602,17 @@
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="14"/>
         <source>RSS Downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS-lataaja</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="26"/>
         <source>Enable Automated RSS Downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä automaattista RSS-lataajaa</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="48"/>
         <source>Download Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Lataussäännöt</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="88"/>
@@ -627,12 +627,12 @@
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="103"/>
         <source>Must Contain:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sisältää:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="110"/>
         <source>Must Not Contain:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei saa sisältää:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="117"/>
@@ -668,12 +668,12 @@
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="284"/>
         <source>Use global settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä yleisiä asetuksia</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="289"/>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Aina</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="294"/>
@@ -919,12 +919,12 @@
     <message>
         <location filename="../base/bittorrent/session.cpp" line="602"/>
         <source>Anonymous mode [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Anonyymitila [PÄÄLLÄ]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="604"/>
         <source>Anonymous mode [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Anonyymitila [EI KÄYTÖSSÄ]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="788"/>
@@ -954,17 +954,17 @@
     <message>
         <location filename="../base/bittorrent/session.cpp" line="814"/>
         <source>Encryption support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Salaustuki [PÄÄLLÄ]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="819"/>
         <source>Encryption support [FORCED]</source>
-        <translation type="unfinished"></translation>
+        <translation>Salaustuki [PAKOTETTU]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="824"/>
         <source>Encryption support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Salaustuki [POIS PÄÄLTÄ]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="901"/>
@@ -1027,19 +1027,19 @@
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2372"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenttia &apos;%1.torrent&apos; ei voitu tallentaa</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2490"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
-        <translation type="unfinished"></translation>
+        <translation>koska %1 ei ole käytössä.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2493"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
-        <translation type="unfinished"></translation>
+        <translation>koska %1 ei ole käytössä.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2511"/>
@@ -1056,7 +1056,7 @@
         <location filename="../base/bittorrent/session.cpp" line="1067"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; poistettiin listalta ja kiintolevyltä.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1069"/>
@@ -1246,110 +1246,139 @@
         <location filename="../gui/transferlistfilterswidget.cpp" line="200"/>
         <source>All (0)</source>
         <comment>this is for the category filter</comment>
-        <translation type="unfinished">Kaikki (0)</translation>
+        <translation>Kaikki (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="203"/>
         <source>Uncategorized (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Luokittelematon (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="236"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="263"/>
         <source>%1 (%2)</source>
         <comment>category_name (10)</comment>
-        <translation type="unfinished">%1 (%2)</translation>
+        <translation>%1 (%2)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="296"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="392"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="412"/>
         <source>Uncategorized (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Luokittelematon (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="324"/>
         <source>Add category...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää kategoria...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="328"/>
         <source>Remove category</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista kategoria</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="329"/>
         <source>Remove unused categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista käyttämättömät kategoriat</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="331"/>
         <source>Resume torrents</source>
-        <translation type="unfinished">Palauta torrentit</translation>
+        <translation>Jatka torrentteja</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="332"/>
         <source>Pause torrents</source>
-        <translation type="unfinished">Keskeytä torrentit</translation>
+        <translation>Pysäytä torrentit</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="333"/>
         <source>Delete torrents</source>
-        <translation type="unfinished">Poista torrentit</translation>
+        <translation>Poista torrentit</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="360"/>
         <source>New Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi kategoria</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="360"/>
         <source>Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategoria:</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="363"/>
         <source>Invalid category name</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen kategorianimi</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="364"/>
         <source>Category name must not contain &apos;\&apos;.
 Category name must not start/end with &apos;/&apos;.
 Category name must not contain &apos;//&apos; sequence.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorian nimessä ei saa olla merkkiä &apos;\&apos;.
+Kategorian nimi ei saa alkaa/päättyä merkillä &apos;/&apos;.
+Kategorian nimessä ei saa olla merkkijonoa &apos;//&apos;.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="391"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="411"/>
         <source>All (%1)</source>
         <comment>this is for the category filter</comment>
-        <translation type="unfinished">Kaikki (%1)</translation>
+        <translation>Kaikki (%1)</translation>
+    </message>
+</context>
+<context>
+    <name>CookiesDialog</name>
+    <message>
+        <location filename="../gui/cookiesdialog.ui" line="14"/>
+        <source>Manage Cookies</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CookiesDlg</name>
     <message>
-        <location filename="../gui/rss/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
-        <translation>Evästeiden hallinta</translation>
+        <translation type="obsolete">Evästeiden hallinta</translation>
     </message>
     <message>
-        <location filename="../gui/rss/cookiesdlg.ui" line="36"/>
         <source>Key</source>
         <extracomment>As in Key/Value pair</extracomment>
-        <translation>Avain</translation>
+        <translation type="obsolete">Avain</translation>
     </message>
     <message>
-        <location filename="../gui/rss/cookiesdlg.ui" line="41"/>
         <source>Value</source>
         <extracomment>As in Key/Value pair</extracomment>
-        <translation>Arvo</translation>
+        <translation type="obsolete">Arvo</translation>
+    </message>
+</context>
+<context>
+    <name>CookiesModel</name>
+    <message>
+        <location filename="../gui/cookiesmodel.cpp" line="49"/>
+        <source>Domain</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/cookiesdlg.cpp" line="50"/>
-        <source>Common keys for cookies are: &apos;%1&apos;, &apos;%2&apos;.
-You should get this information from your Web browser preferences.</source>
+        <location filename="../gui/cookiesmodel.cpp" line="51"/>
+        <source>Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/cookiesmodel.cpp" line="53"/>
+        <source>Name</source>
+        <translation type="unfinished">Nimi</translation>
+    </message>
+    <message>
+        <location filename="../gui/cookiesmodel.cpp" line="55"/>
+        <source>Value</source>
+        <translation type="unfinished">Arvo</translation>
+    </message>
+    <message>
+        <location filename="../gui/cookiesmodel.cpp" line="57"/>
+        <source>Expiration Date</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1359,13 +1388,13 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../gui/deletionconfirmationdlg.h" line="48"/>
         <source>Are you sure you want to delete &apos;%1&apos; from the transfer list?</source>
         <comment>Are you sure you want to delete &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
-        <translation type="unfinished"></translation>
+        <translation>Haluatko varmasti poistaa torrentin &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdlg.h" line="50"/>
         <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
-        <translation>Haluatko varmasti poistaa nämä %1 torrentia siirtolistalta?</translation>
+        <translation>Haluatko varmasti poistaa nämä %1 torrentit?</translation>
     </message>
 </context>
 <context>
@@ -1429,7 +1458,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../app/filelogger.cpp" line="168"/>
         <source>An error occured while trying to open the log file. Logging to file is disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokitiedostoa avatessa tapahtui virhe. Lokitiedostoon kirjaaminen on poissa käytöstä.</translation>
     </message>
 </context>
 <context>
@@ -1517,12 +1546,12 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="40"/>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Sulje qBittorrent</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="43"/>
         <source>Only one link per line</source>
-        <translation>Yksi linkki riville</translation>
+        <translation>Vain yksi linkki riville</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="45"/>
@@ -1532,12 +1561,12 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="47"/>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Yleisen lähetysnopeusrajoituksen täytyy olla suurempi kuin 0, tai poissa käytöstä.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="48"/>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Yleisen latausnopeusrajoituksen täytyy olla suurempi kuin 0, tai poissa käytöstä.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="49"/>
@@ -1652,7 +1681,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="87"/>
         <source>Category:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kategoria:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="116"/>
@@ -1683,12 +1712,12 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="82"/>
         <source>Resumed</source>
-        <translation>Palautettu</translation>
+        <translation>Jatkettu</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="83"/>
         <source>Paused</source>
-        <translation>Keskeytetty</translation>
+        <translation>Pysäytetty</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="84"/>
@@ -1703,7 +1732,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="86"/>
         <source>Save files to location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Latauskansio:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="88"/>
@@ -1733,7 +1762,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="93"/>
         <source>Alternative Global Rate Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihtoehtoiset yleiset nopeusrajoitukset</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="94"/>
@@ -1743,12 +1772,12 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="95"/>
         <source>Information about certificates</source>
-        <translation type="unfinished"></translation>
+        <translation>Tietoa varmenteista</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="96"/>
         <source>Save Files to</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tallenna tiedostot kohteeseen:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="97"/>
@@ -1758,7 +1787,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="98"/>
         <source>Default Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Oletuskansio</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="103"/>
@@ -1782,31 +1811,31 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../webui/extra_translations.h" line="106"/>
         <source>Every day</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished">joka päivä</translation>
+        <translation type="unfinished">Joka päivä</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="107"/>
         <source>Week days</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Arkisin</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="108"/>
         <source>Week ends</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Viikonloppuisin</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="109"/>
         <source>Monday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Maanantai</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="110"/>
         <source>Tuesday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tiistai</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="111"/>
@@ -1818,25 +1847,25 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../webui/extra_translations.h" line="112"/>
         <source>Thursday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Torstai</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="113"/>
         <source>Friday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Perjantai</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="114"/>
         <source>Saturday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Lauantai</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="115"/>
         <source>Sunday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sunnuntai</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="102"/>
@@ -1867,7 +1896,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="46"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Haluatko varmasti poistaa valitut torrentit siirtolistalta?</translation>
+        <translation>Haluatko varmasti poistaa valitut torrentit?</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="61"/>
@@ -1877,7 +1906,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="62"/>
         <source>qBittorrent client is not reachable</source>
-        <translation>qBittorrent ei ole tavoitettavissa</translation>
+        <translation>qBittorrent ei vastaa</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="63"/>
@@ -1936,10 +1965,10 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="66"/>
         <source>&amp;Tools</source>
-        <translation>T&amp;yökalut</translation>
+        <translation>&amp;Työkalut</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="86"/>
+        <location filename="../gui/mainwindow.ui" line="87"/>
         <source>&amp;File</source>
         <translation>&amp;Tiedosto</translation>
     </message>
@@ -1951,275 +1980,287 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="70"/>
         <source>On Downloads &amp;Done</source>
-        <translation type="unfinished"></translation>
+        <translation>Latausten &amp;valmistuttua...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="96"/>
+        <location filename="../gui/mainwindow.ui" line="97"/>
         <source>&amp;View</source>
         <translation>&amp;Näytä</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="175"/>
+        <location filename="../gui/mainwindow.ui" line="179"/>
         <source>&amp;Options...</source>
         <translation>&amp;Asetukset...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="185"/>
+        <location filename="../gui/mainwindow.ui" line="189"/>
         <source>&amp;Resume</source>
         <translation>&amp;Jatka</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="208"/>
+        <location filename="../gui/mainwindow.ui" line="212"/>
         <source>Torrent &amp;Creator</source>
-        <translation type="unfinished"></translation>
+        <translation>Luo uusi &amp;torrent...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="213"/>
+        <location filename="../gui/mainwindow.ui" line="217"/>
         <source>Set Upload Limit...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="218"/>
+        <location filename="../gui/mainwindow.ui" line="222"/>
         <source>Set Download Limit...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="228"/>
+        <location filename="../gui/mainwindow.ui" line="232"/>
         <source>Set Global Download Limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta yleinen latausrajoitus...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="233"/>
+        <location filename="../gui/mainwindow.ui" line="237"/>
         <source>Set Global Upload Limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta yleinen lähetysrajoitus...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="238"/>
+        <location filename="../gui/mainwindow.ui" line="242"/>
         <source>Minimum Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Matalin tärkeysaste</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="246"/>
+        <location filename="../gui/mainwindow.ui" line="250"/>
         <source>Top Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Korkein tärkeysaste</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="254"/>
+        <location filename="../gui/mainwindow.ui" line="258"/>
         <source>Decrease Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Laske tärkeysastetta</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="262"/>
+        <location filename="../gui/mainwindow.ui" line="266"/>
         <source>Increase Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Nosta tärkeysastetta</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="273"/>
-        <location filename="../gui/mainwindow.ui" line="276"/>
+        <location filename="../gui/mainwindow.ui" line="277"/>
+        <location filename="../gui/mainwindow.ui" line="280"/>
         <source>Alternative Speed Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihtoehtoiset nopeusrajoitukset</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="284"/>
+        <location filename="../gui/mainwindow.ui" line="288"/>
         <source>&amp;Top Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Työkalupalkki</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="287"/>
+        <location filename="../gui/mainwindow.ui" line="291"/>
         <source>Display Top Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä työkalupalkki</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="295"/>
+        <location filename="../gui/mainwindow.ui" line="299"/>
         <source>S&amp;peed in Title Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>No&amp;peudet otsikkorivillä</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="298"/>
+        <location filename="../gui/mainwindow.ui" line="302"/>
         <source>Show Transfer Speed in Title Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä siirtonopeudet otsikkorivillä</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="306"/>
+        <location filename="../gui/mainwindow.ui" line="310"/>
         <source>&amp;RSS Reader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="314"/>
+        <location filename="../gui/mainwindow.ui" line="318"/>
         <source>Search &amp;Engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Haku&amp;kone</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="319"/>
+        <location filename="../gui/mainwindow.ui" line="323"/>
         <source>L&amp;ock qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>L&amp;ukitse qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="330"/>
+        <location filename="../gui/mainwindow.ui" line="334"/>
         <source>&amp;Import Existing Torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Avaa torrent...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="333"/>
+        <location filename="../gui/mainwindow.ui" line="337"/>
         <source>Import Torrent...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="338"/>
+        <location filename="../gui/mainwindow.ui" line="342"/>
         <source>Do&amp;nate!</source>
-        <translation type="unfinished"></translation>
+        <translation>La&amp;hjoita!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="346"/>
+        <location filename="../gui/mainwindow.ui" line="350"/>
         <source>R&amp;esume All</source>
         <translation>J&amp;atka kaikkia</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="430"/>
+        <location filename="../gui/mainwindow.ui" line="434"/>
+        <source>Manage Cookies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="437"/>
+        <source>Manage stored network cookies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="453"/>
         <source>Normal Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Normaalit viestit</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="438"/>
+        <location filename="../gui/mainwindow.ui" line="461"/>
         <source>Information Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedotusviestit</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="446"/>
+        <location filename="../gui/mainwindow.ui" line="469"/>
         <source>Warning Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Varoitusviestit</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="454"/>
+        <location filename="../gui/mainwindow.ui" line="477"/>
         <source>Critical Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Kriittiset viestit</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="100"/>
+        <location filename="../gui/mainwindow.ui" line="101"/>
+        <location filename="../gui/mainwindow.ui" line="363"/>
         <source>&amp;Log</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Loki</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="359"/>
+        <location filename="../gui/mainwindow.ui" line="374"/>
         <source>&amp;Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sulje qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="367"/>
+        <location filename="../gui/mainwindow.ui" line="382"/>
         <source>&amp;Suspend System</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aseta tietokone lepotilaan</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="375"/>
+        <location filename="../gui/mainwindow.ui" line="390"/>
         <source>&amp;Hibernate System</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aseta tietokone horrostilaan</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="383"/>
+        <location filename="../gui/mainwindow.ui" line="398"/>
         <source>S&amp;hutdown System</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.ui" line="391"/>
-        <source>&amp;Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;ammuta tietokone</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="406"/>
+        <source>&amp;Disabled</source>
+        <translation>&amp;Älä tee mitään</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="421"/>
         <source>&amp;Statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tilastot</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="411"/>
+        <location filename="../gui/mainwindow.ui" line="426"/>
         <source>Check for Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarkista päivitykset</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="414"/>
+        <location filename="../gui/mainwindow.ui" line="429"/>
         <source>Check for Program Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarkista ohjelmapäivitykset</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="180"/>
+        <location filename="../gui/mainwindow.ui" line="184"/>
         <source>&amp;About</source>
         <translation>&amp;Tietoja</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="190"/>
+        <location filename="../gui/mainwindow.ui" line="194"/>
         <source>&amp;Pause</source>
-        <translation>P&amp;ysäytä</translation>
+        <translation>&amp;Pysäytä</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="195"/>
+        <location filename="../gui/mainwindow.ui" line="199"/>
         <source>&amp;Delete</source>
         <translation>&amp;Poista</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="351"/>
+        <location filename="../gui/mainwindow.ui" line="355"/>
         <source>P&amp;ause All</source>
         <translation>Py&amp;säytä kaikki</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="162"/>
+        <location filename="../gui/mainwindow.ui" line="166"/>
         <source>&amp;Add Torrent File...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lisää torrent...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="165"/>
+        <location filename="../gui/mainwindow.ui" line="169"/>
         <source>Open</source>
         <translation>Avaa</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="170"/>
+        <location filename="../gui/mainwindow.ui" line="174"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>Lo&amp;peta</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="203"/>
+        <location filename="../gui/mainwindow.ui" line="207"/>
         <source>Open URL</source>
         <translation>Avaa osoite</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="223"/>
+        <location filename="../gui/mainwindow.ui" line="227"/>
         <source>&amp;Documentation</source>
         <translation>&amp;Dokumentaatio</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="322"/>
+        <location filename="../gui/mainwindow.ui" line="326"/>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>Lukitse</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="396"/>
-        <location filename="../gui/mainwindow.ui" line="422"/>
-        <location filename="../gui/mainwindow.cpp" line="1352"/>
+        <location filename="../gui/mainwindow.ui" line="411"/>
+        <location filename="../gui/mainwindow.ui" line="445"/>
+        <location filename="../gui/mainwindow.cpp" line="1370"/>
         <source>Show</source>
         <translation>Näytä</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1535"/>
+        <location filename="../gui/mainwindow.cpp" line="1558"/>
         <source>Check for program updates</source>
         <translation>Tarkista ohjelmapäivitykset</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="200"/>
+        <location filename="../gui/mainwindow.ui" line="204"/>
         <source>Add Torrent &amp;Link...</source>
-        <translation type="unfinished"></translation>
+        <translation>Avaa torrent &amp;osoitteesta...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="341"/>
+        <location filename="../gui/mainwindow.ui" line="345"/>
         <source>If you like qBittorrent, please donate!</source>
         <translation>Jos pidät qBittorrentista, lahjoita!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1563"/>
+        <location filename="../gui/mainwindow.ui" line="366"/>
+        <location filename="../gui/mainwindow.cpp" line="1586"/>
         <source>Execution Log</source>
         <translation>Suoritusloki</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="533"/>
+        <location filename="../gui/mainwindow.cpp" line="545"/>
         <source>Clear the password</source>
-        <translation>Tyhjennä salasana</translation>
+        <translation>Poista salasana</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="206"/>
@@ -2229,12 +2270,12 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../gui/mainwindow.cpp" line="177"/>
         <source>&amp;Set Password</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aseta salasana</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="179"/>
         <source>&amp;Clear Password</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Poista salasana</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="224"/>
@@ -2242,191 +2283,192 @@ You should get this information from your Web browser preferences.</source>
         <translation>Siirrot</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="375"/>
+        <location filename="../gui/mainwindow.cpp" line="378"/>
         <source>Torrent file association</source>
         <translation>Torrent-tiedostojen liittäminen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="376"/>
+        <location filename="../gui/mainwindow.cpp" line="379"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation>qBittorrent ei ole torrent-tiedostojen ja Magnet-linkkien oletussovellus.
-Haluatko määrittää torrent-tiedostot ja Magnet-linkit qBittorrentille?</translation>
+        <translation>qBittorrent ei ole torrent-tiedostojen ja magnet-linkkien oletussovellus.
+Haluatko asettaa qBittorrentin torrent-tiedostojen ja magnet-linkkien oletussovellukseksi? </translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="430"/>
+        <location filename="../gui/mainwindow.cpp" line="434"/>
         <source>Icons Only</source>
         <translation>Vain kuvakkeet</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="432"/>
+        <location filename="../gui/mainwindow.cpp" line="436"/>
         <source>Text Only</source>
         <translation>Vain teksti</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="434"/>
+        <location filename="../gui/mainwindow.cpp" line="438"/>
         <source>Text Alongside Icons</source>
         <translation>Teksti kuvakkeiden vieressä</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="436"/>
+        <location filename="../gui/mainwindow.cpp" line="440"/>
         <source>Text Under Icons</source>
         <translation>Teksti kuvakkeiden alla</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="438"/>
+        <location filename="../gui/mainwindow.cpp" line="442"/>
         <source>Follow System Style</source>
         <translation>Seuraa järjestelmän tyyliä</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="518"/>
-        <location filename="../gui/mainwindow.cpp" line="545"/>
-        <location filename="../gui/mainwindow.cpp" line="847"/>
+        <location filename="../gui/mainwindow.cpp" line="529"/>
+        <location filename="../gui/mainwindow.cpp" line="557"/>
+        <location filename="../gui/mainwindow.cpp" line="857"/>
         <source>UI lock password</source>
         <translation>Käyttöliittymän lukitussalasana</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="518"/>
-        <location filename="../gui/mainwindow.cpp" line="545"/>
-        <location filename="../gui/mainwindow.cpp" line="847"/>
+        <location filename="../gui/mainwindow.cpp" line="529"/>
+        <location filename="../gui/mainwindow.cpp" line="557"/>
+        <location filename="../gui/mainwindow.cpp" line="857"/>
         <source>Please type the UI lock password:</source>
         <translation>Anna käyttöliittymän lukitussalasana:</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="522"/>
+        <location filename="../gui/mainwindow.cpp" line="533"/>
         <source>The password should contain at least 3 characters</source>
         <translation>Salasanassa pitää olla vähintään kolme merkkiä</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="527"/>
+        <location filename="../gui/mainwindow.cpp" line="538"/>
         <source>Password update</source>
         <translation>Salasanan päivitys</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="527"/>
+        <location filename="../gui/mainwindow.cpp" line="538"/>
         <source>The UI lock password has been successfully updated</source>
         <translation>Käyttöliittymän lukitussalasana päivitettiin onnistuneesti</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="533"/>
+        <location filename="../gui/mainwindow.cpp" line="545"/>
         <source>Are you sure you want to clear the password?</source>
-        <translation>Haluatko varmasti tyhjentää salasanan?</translation>
+        <translation>Haluatko varmasti poistaa salasanan?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="585"/>
+        <location filename="../gui/mainwindow.cpp" line="597"/>
         <source>Search</source>
         <translation>Etsi</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="596"/>
+        <location filename="../gui/mainwindow.cpp" line="608"/>
         <source>Transfers (%1)</source>
         <translation>Siirrot (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="687"/>
+        <location filename="../gui/mainwindow.cpp" line="698"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="687"/>
+        <location filename="../gui/mainwindow.cpp" line="698"/>
         <source>Failed to add torrent: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="693"/>
+        <location filename="../gui/mainwindow.cpp" line="704"/>
         <source>Download completion</source>
         <translation>Latauksen valmistuminen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="699"/>
+        <location filename="../gui/mainwindow.cpp" line="710"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O-virhe</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="760"/>
+        <location filename="../gui/mainwindow.cpp" line="771"/>
         <source>Recursive download confirmation</source>
         <translation>Rekursiivinen latausvahvistus</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="761"/>
+        <location filename="../gui/mainwindow.cpp" line="772"/>
         <source>Yes</source>
         <translation>Kyllä</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="762"/>
+        <location filename="../gui/mainwindow.cpp" line="773"/>
         <source>No</source>
         <translation>Ei</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="763"/>
+        <location filename="../gui/mainwindow.cpp" line="774"/>
         <source>Never</source>
         <translation>Ei koskaan</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="783"/>
+        <location filename="../gui/mainwindow.cpp" line="794"/>
         <source>Global Upload Speed Limit</source>
         <translation>Yleinen lähetysnopeusrajoitus</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="799"/>
+        <location filename="../gui/mainwindow.cpp" line="810"/>
         <source>Global Download Speed Limit</source>
         <translation>Yleinen latausnopeusrajoitus</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="949"/>
+        <location filename="../gui/mainwindow.cpp" line="960"/>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;Ei</translation>
+        <translation>&amp;Ei</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="950"/>
+        <location filename="../gui/mainwindow.cpp" line="961"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;Kyllä</translation>
+        <translation>&amp;Kyllä</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="951"/>
+        <location filename="../gui/mainwindow.cpp" line="962"/>
         <source>&amp;Always Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Automaattisesti kyllä</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1434"/>
+        <location filename="../gui/mainwindow.cpp" line="1457"/>
         <source>Python found in %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1449"/>
+        <location filename="../gui/mainwindow.cpp" line="1472"/>
         <source>Old Python Interpreter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1519"/>
+        <location filename="../gui/mainwindow.cpp" line="1542"/>
         <source>qBittorrent Update Available</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrentin päivitys saatavilla</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1520"/>
+        <location filename="../gui/mainwindow.cpp" line="1543"/>
         <source>A new version is available.
 Do you want to download %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi versio saatavilla.
+Haluatko ladata %1?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1529"/>
+        <location filename="../gui/mainwindow.cpp" line="1552"/>
         <source>Already Using the Latest qBittorrent Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytät jo uusinta qBittorentin versiota</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1459"/>
+        <location filename="../gui/mainwindow.cpp" line="1482"/>
         <source>Undetermined Python version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="693"/>
+        <location filename="../gui/mainwindow.cpp" line="704"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="699"/>
+        <location filename="../gui/mainwindow.cpp" line="710"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -2434,151 +2476,152 @@ Do you want to download %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="760"/>
+        <location filename="../gui/mainwindow.cpp" line="771"/>
         <source>The torrent &apos;%1&apos; contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="775"/>
+        <location filename="../gui/mainwindow.cpp" line="786"/>
         <source>Couldn&apos;t download file at URL &apos;%1&apos;, reason: %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1449"/>
+        <location filename="../gui/mainwindow.cpp" line="1472"/>
         <source>Your Python version %1 is outdated. Please upgrade to latest version for search engines to work. Minimum requirement: 2.7.0/3.3.0.</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytät vanhentunutta Python-versiota %1. Päivitä Python uusimpaan versioon, saadaksesi hakukoneet toimimaan. Vähimmäisvaatimus: 2.7.0/3.3.0.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1459"/>
-        <source>Couldn&apos;t determine your Python version (%1). Search engine disabled.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.cpp" line="1470"/>
         <location filename="../gui/mainwindow.cpp" line="1482"/>
+        <source>Couldn&apos;t determine your Python version (%1). Search engine disabled.</source>
+        <translation>Käyttämääsi Pythonin versiota (%1) ei voitu määrittää. Hakukone on poissa käytöstä.</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1493"/>
+        <location filename="../gui/mainwindow.cpp" line="1505"/>
         <source>Missing Python Interpreter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1471"/>
+        <location filename="../gui/mainwindow.cpp" line="1494"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Käyttääksesi hakukonetta, sinun täytyy asentaa Python. Haluatko asentaa sen nyt?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1482"/>
+        <location filename="../gui/mainwindow.cpp" line="1505"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Käyttääksesi hakukonetta, sinun täytyy asentaa Python.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1530"/>
+        <location filename="../gui/mainwindow.cpp" line="1553"/>
         <source>No updates available.
 You are already using the latest version.</source>
-        <translation type="unfinished"></translation>
+        <translation>Päivityksiä ei ole saatavilla.
+Käytät jo uusinta versiota.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1534"/>
+        <location filename="../gui/mainwindow.cpp" line="1557"/>
         <source>&amp;Check for Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tarkista päivitykset</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1677"/>
+        <location filename="../gui/mainwindow.cpp" line="1700"/>
         <source>Checking for Updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarkistetaan päivityksiä...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1678"/>
+        <location filename="../gui/mainwindow.cpp" line="1701"/>
         <source>Already checking for program updates in the background</source>
         <translation>Ohjelmapäivityksiä tarkistetaan jo taustalla</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1693"/>
+        <location filename="../gui/mainwindow.cpp" line="1716"/>
         <source>Python found in &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1746"/>
+        <location filename="../gui/mainwindow.cpp" line="1769"/>
         <source>Download error</source>
         <translation>Lataamisvirhe</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1746"/>
+        <location filename="../gui/mainwindow.cpp" line="1769"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>Python-asennuksen lataaminen epäonnistui, syy: %1.
-Asenna se käsin.</translation>
+Python täytyy asentaa manuaalisesti.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="522"/>
-        <location filename="../gui/mainwindow.cpp" line="861"/>
+        <location filename="../gui/mainwindow.cpp" line="533"/>
+        <location filename="../gui/mainwindow.cpp" line="872"/>
         <source>Invalid password</source>
         <translation>Virheellinen salasana</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="563"/>
         <location filename="../gui/mainwindow.cpp" line="575"/>
+        <location filename="../gui/mainwindow.cpp" line="587"/>
         <source>RSS (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="775"/>
+        <location filename="../gui/mainwindow.cpp" line="786"/>
         <source>URL download error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="861"/>
+        <location filename="../gui/mainwindow.cpp" line="872"/>
         <source>The password is invalid</source>
         <translation>Salasana on virheellinen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1247"/>
-        <location filename="../gui/mainwindow.cpp" line="1254"/>
+        <location filename="../gui/mainwindow.cpp" line="1260"/>
+        <location filename="../gui/mainwindow.cpp" line="1267"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Latausnopeus: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1250"/>
-        <location filename="../gui/mainwindow.cpp" line="1256"/>
+        <location filename="../gui/mainwindow.cpp" line="1263"/>
+        <location filename="../gui/mainwindow.cpp" line="1269"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Lähetysnopeus: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1261"/>
+        <location filename="../gui/mainwindow.cpp" line="1275"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation type="unfinished"></translation>
+        <translation>[Lataus: %1, Lähetys: %2] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1352"/>
+        <location filename="../gui/mainwindow.cpp" line="1370"/>
         <source>Hide</source>
         <translation>Piilota</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="946"/>
+        <location filename="../gui/mainwindow.cpp" line="957"/>
         <source>Exiting qBittorrent</source>
         <translation>Suljetaan qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="947"/>
+        <location filename="../gui/mainwindow.cpp" line="958"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Joitain tiedostosiirtoja on vielä meneillään.
-Haluatko varmasti lopettaa qBittorrentin?</translation>
+Haluatko varmasti sulkea qBittorrentin?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1088"/>
+        <location filename="../gui/mainwindow.cpp" line="1101"/>
         <source>Open Torrent Files</source>
         <translation>Avaa torrent-tiedostot</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1089"/>
+        <location filename="../gui/mainwindow.cpp" line="1102"/>
         <source>Torrent Files</source>
         <translation>Torrent-tiedostot</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1124"/>
+        <location filename="../gui/mainwindow.cpp" line="1137"/>
         <source>Options were saved successfully.</source>
         <translation>Asetukset tallennettiin onnistuneesti.</translation>
     </message>
@@ -2641,7 +2684,7 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="104"/>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O-virhe</translation>
+        <translation>I/O-virhe</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="117"/>
@@ -2666,1278 +2709,1278 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <location filename="../base/net/geoipmanager.cpp" line="108"/>
         <location filename="../base/net/geoipmanager.cpp" line="452"/>
         <source>Couldn&apos;t load GeoIP database. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>GeoIP-tietokantaa ei voitu ladata. Syy: %1</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="380"/>
         <source>Venezuela, Bolivarian Republic of</source>
-        <translation type="unfinished"></translation>
+        <translation>Venezuelan bolivariaaninen tasavalta</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="383"/>
         <source>Viet Nam</source>
-        <translation type="unfinished"></translation>
+        <translation>Vietnam</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="393"/>
         <location filename="../base/net/geoipmanager.cpp" line="397"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei saatavilla</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="143"/>
         <source>Andorra</source>
-        <translation type="unfinished"></translation>
+        <translation>Andorra</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="144"/>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"></translation>
+        <translation>Yhdistyneet arabiemiirikunnat</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="145"/>
         <source>Afghanistan</source>
-        <translation type="unfinished"></translation>
+        <translation>Afganistan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="146"/>
         <source>Antigua and Barbuda</source>
-        <translation type="unfinished"></translation>
+        <translation>Antigua ja Barbuda</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="147"/>
         <source>Anguilla</source>
-        <translation type="unfinished"></translation>
+        <translation>Anguilla</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="148"/>
         <source>Albania</source>
-        <translation type="unfinished"></translation>
+        <translation>Albania</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="149"/>
         <source>Armenia</source>
-        <translation type="unfinished"></translation>
+        <translation>Armenia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="150"/>
         <source>Angola</source>
-        <translation type="unfinished"></translation>
+        <translation>Angola</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="151"/>
         <source>Antarctica</source>
-        <translation type="unfinished"></translation>
+        <translation>Etelämanner</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="152"/>
         <source>Argentina</source>
-        <translation type="unfinished"></translation>
+        <translation>Argentiina</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="153"/>
         <source>American Samoa</source>
-        <translation type="unfinished"></translation>
+        <translation>Amerikan Samoa</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="154"/>
         <source>Austria</source>
-        <translation type="unfinished"></translation>
+        <translation>Itävalta</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="155"/>
         <source>Australia</source>
-        <translation type="unfinished"></translation>
+        <translation>Australia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="156"/>
         <source>Aruba</source>
-        <translation type="unfinished"></translation>
+        <translation>Aruba</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="158"/>
         <source>Azerbaijan</source>
-        <translation type="unfinished"></translation>
+        <translation>Azerbaidžan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="159"/>
         <source>Bosnia and Herzegovina</source>
-        <translation type="unfinished"></translation>
+        <translation>Bosnia ja Hertsegovina</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="160"/>
         <source>Barbados</source>
-        <translation type="unfinished"></translation>
+        <translation>Barbados</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="161"/>
         <source>Bangladesh</source>
-        <translation type="unfinished"></translation>
+        <translation>Bangladesh</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="162"/>
         <source>Belgium</source>
-        <translation type="unfinished"></translation>
+        <translation>Belgia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="163"/>
         <source>Burkina Faso</source>
-        <translation type="unfinished"></translation>
+        <translation>Burkina Faso</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="164"/>
         <source>Bulgaria</source>
-        <translation type="unfinished"></translation>
+        <translation>Bulgaria</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="165"/>
         <source>Bahrain</source>
-        <translation type="unfinished"></translation>
+        <translation>Bahrain</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="166"/>
         <source>Burundi</source>
-        <translation type="unfinished"></translation>
+        <translation>Burundi</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="167"/>
         <source>Benin</source>
-        <translation type="unfinished"></translation>
+        <translation>Benin</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="169"/>
         <source>Bermuda</source>
-        <translation type="unfinished"></translation>
+        <translation>Bermuda</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="170"/>
         <source>Brunei Darussalam</source>
-        <translation type="unfinished"></translation>
+        <translation>Brunei Darussalam</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="173"/>
         <source>Brazil</source>
-        <translation type="unfinished"></translation>
+        <translation>Brasilia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="174"/>
         <source>Bahamas</source>
-        <translation type="unfinished"></translation>
+        <translation>Bahama</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="175"/>
         <source>Bhutan</source>
-        <translation type="unfinished"></translation>
+        <translation>Bhutan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="176"/>
         <source>Bouvet Island</source>
-        <translation type="unfinished"></translation>
+        <translation>Bouvet&apos;nsaari</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="177"/>
         <source>Botswana</source>
-        <translation type="unfinished"></translation>
+        <translation>Botswana</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="178"/>
         <source>Belarus</source>
-        <translation type="unfinished"></translation>
+        <translation>Valko-Venäjä</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="179"/>
         <source>Belize</source>
-        <translation type="unfinished"></translation>
+        <translation>Belize</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="180"/>
         <source>Canada</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanada</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="181"/>
         <source>Cocos (Keeling) Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Kookossaaret (Keelingsaaret)</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="182"/>
         <source>Congo, The Democratic Republic of the</source>
-        <translation type="unfinished"></translation>
+        <translation>Kongon demokraattinen tasavalta</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="183"/>
         <source>Central African Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>Keski-Afrikan tasavalta</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="184"/>
         <source>Congo</source>
-        <translation type="unfinished"></translation>
+        <translation>Kongon tasavalta</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="185"/>
         <source>Switzerland</source>
-        <translation type="unfinished"></translation>
+        <translation>Sveitsi</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="187"/>
         <source>Cook Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Cookinsaaret</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="188"/>
         <source>Chile</source>
-        <translation type="unfinished"></translation>
+        <translation>Chile</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="189"/>
         <source>Cameroon</source>
-        <translation type="unfinished"></translation>
+        <translation>Kamerun</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="190"/>
         <source>China</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiina</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="191"/>
         <source>Colombia</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumbia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="192"/>
         <source>Costa Rica</source>
-        <translation type="unfinished"></translation>
+        <translation>Costa Rica</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="193"/>
         <source>Cuba</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuuba</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="194"/>
         <source>Cape Verde</source>
-        <translation type="unfinished"></translation>
+        <translation>Kap Verde</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="195"/>
         <source>Curacao</source>
-        <translation type="unfinished"></translation>
+        <translation>Curaçao</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="196"/>
         <source>Christmas Island</source>
-        <translation type="unfinished"></translation>
+        <translation>Joulusaari</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="197"/>
         <source>Cyprus</source>
-        <translation type="unfinished"></translation>
+        <translation>Kypros</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="198"/>
         <source>Czech Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>Tšekin tasavalta</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="199"/>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Saksa</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="200"/>
         <source>Djibouti</source>
-        <translation type="unfinished"></translation>
+        <translation>Djibouti</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="201"/>
         <source>Denmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Tanska</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="202"/>
         <source>Dominica</source>
-        <translation type="unfinished"></translation>
+        <translation>Dominica</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="203"/>
         <source>Dominican Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>Dominikaaninen tasavalta</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="204"/>
         <source>Algeria</source>
-        <translation type="unfinished"></translation>
+        <translation>Algeria</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="205"/>
         <source>Ecuador</source>
-        <translation type="unfinished"></translation>
+        <translation>Ecuador</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="206"/>
         <source>Estonia</source>
-        <translation type="unfinished"></translation>
+        <translation>Viro</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="207"/>
         <source>Egypt</source>
-        <translation type="unfinished"></translation>
+        <translation>Egypti</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="208"/>
         <source>Western Sahara</source>
-        <translation type="unfinished"></translation>
+        <translation>Länsi-Sahara</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="209"/>
         <source>Eritrea</source>
-        <translation type="unfinished"></translation>
+        <translation>Eritrea</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="210"/>
         <source>Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="211"/>
         <source>Ethiopia</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiopia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="212"/>
         <source>Finland</source>
-        <translation type="unfinished"></translation>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="213"/>
         <source>Fiji</source>
-        <translation type="unfinished"></translation>
+        <translation>Fidži</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="214"/>
         <source>Falkland Islands (Malvinas)</source>
-        <translation type="unfinished"></translation>
+        <translation>Falklandinsaaret</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="215"/>
         <source>Micronesia, Federated States of</source>
-        <translation type="unfinished"></translation>
+        <translation>Mikronesian liittovaltio</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="216"/>
         <source>Faroe Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Färsaaret</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="217"/>
         <source>France</source>
-        <translation type="unfinished">Ranska</translation>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="218"/>
         <source>Gabon</source>
-        <translation type="unfinished"></translation>
+        <translation>Gabon</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="219"/>
         <source>United Kingdom</source>
-        <translation type="unfinished"></translation>
+        <translation>Iso-Britannia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="220"/>
         <source>Grenada</source>
-        <translation type="unfinished"></translation>
+        <translation>Grenada</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="221"/>
         <source>Georgia</source>
-        <translation type="unfinished"></translation>
+        <translation>Georgia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="222"/>
         <source>French Guiana</source>
-        <translation type="unfinished"></translation>
+        <translation>Ranskan Guayana</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="224"/>
         <source>Ghana</source>
-        <translation type="unfinished"></translation>
+        <translation>Ghana</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="225"/>
         <source>Gibraltar</source>
-        <translation type="unfinished"></translation>
+        <translation>Gibraltar</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="226"/>
         <source>Greenland</source>
-        <translation type="unfinished"></translation>
+        <translation>Grönlanti</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="227"/>
         <source>Gambia</source>
-        <translation type="unfinished"></translation>
+        <translation>Gambia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="228"/>
         <source>Guinea</source>
-        <translation type="unfinished"></translation>
+        <translation>Guinea</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="229"/>
         <source>Guadeloupe</source>
-        <translation type="unfinished"></translation>
+        <translation>Guadeloupe</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="230"/>
         <source>Equatorial Guinea</source>
-        <translation type="unfinished"></translation>
+        <translation>Päiväntasaajan Guinea</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="231"/>
         <source>Greece</source>
-        <translation type="unfinished">Kreikka</translation>
+        <translation>Kreikka</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="232"/>
         <source>South Georgia and the South Sandwich Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Etelä-Georgia ja Eteläiset Sandwichsaaret</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="233"/>
         <source>Guatemala</source>
-        <translation type="unfinished"></translation>
+        <translation>Guatemala</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="234"/>
         <source>Guam</source>
-        <translation type="unfinished"></translation>
+        <translation>Guam</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="235"/>
         <source>Guinea-Bissau</source>
-        <translation type="unfinished"></translation>
+        <translation>Guinea-Bissau</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="236"/>
         <source>Guyana</source>
-        <translation type="unfinished"></translation>
+        <translation>Guyana</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="237"/>
         <source>Hong Kong</source>
-        <translation type="unfinished"></translation>
+        <translation>Hongkong</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="238"/>
         <source>Heard Island and McDonald Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Heard ja McDonaldinsaaret</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="239"/>
         <source>Honduras</source>
-        <translation type="unfinished"></translation>
+        <translation>Honduras</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="240"/>
         <source>Croatia</source>
-        <translation type="unfinished"></translation>
+        <translation>Kroatia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="241"/>
         <source>Haiti</source>
-        <translation type="unfinished"></translation>
+        <translation>Haiti</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="242"/>
         <source>Hungary</source>
-        <translation type="unfinished"></translation>
+        <translation>Unkari</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="243"/>
         <source>Indonesia</source>
-        <translation type="unfinished"></translation>
+        <translation>Indonesia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="244"/>
         <source>Ireland</source>
-        <translation type="unfinished"></translation>
+        <translation>Irlanti</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="245"/>
         <source>Israel</source>
-        <translation type="unfinished"></translation>
+        <translation>Israel</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="247"/>
         <source>India</source>
-        <translation type="unfinished"></translation>
+        <translation>Intia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="248"/>
         <source>British Indian Ocean Territory</source>
-        <translation type="unfinished"></translation>
+        <translation>Brittiläinen Intian valtameren alue</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="249"/>
         <source>Iraq</source>
-        <translation type="unfinished"></translation>
+        <translation>Irak</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="250"/>
         <source>Iran, Islamic Republic of</source>
-        <translation type="unfinished"></translation>
+        <translation>Iran</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="251"/>
         <source>Iceland</source>
-        <translation type="unfinished"></translation>
+        <translation>Islanti</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="252"/>
         <source>Italy</source>
-        <translation type="unfinished"></translation>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="254"/>
         <source>Jamaica</source>
-        <translation type="unfinished"></translation>
+        <translation>Jamaika</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="255"/>
         <source>Jordan</source>
-        <translation type="unfinished"></translation>
+        <translation>Jordania</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="256"/>
         <source>Japan</source>
-        <translation type="unfinished"></translation>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="257"/>
         <source>Kenya</source>
-        <translation type="unfinished"></translation>
+        <translation>Kenia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="258"/>
         <source>Kyrgyzstan</source>
-        <translation type="unfinished"></translation>
+        <translation>Kirgisia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="259"/>
         <source>Cambodia</source>
-        <translation type="unfinished"></translation>
+        <translation>Kambodža</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="260"/>
         <source>Kiribati</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiribati</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="261"/>
         <source>Comoros</source>
-        <translation type="unfinished"></translation>
+        <translation>Komorit</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="262"/>
         <source>Saint Kitts and Nevis</source>
-        <translation type="unfinished"></translation>
+        <translation>Saint Kitts ja Nevis</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="263"/>
         <source>Korea, Democratic People&apos;s Republic of</source>
-        <translation type="unfinished"></translation>
+        <translation>Pohjois-Korea</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="264"/>
         <source>Korea, Republic of</source>
-        <translation type="unfinished"></translation>
+        <translation>Etelä-Korea</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="265"/>
         <source>Kuwait</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuwait</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="266"/>
         <source>Cayman Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Caymansaaret</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="267"/>
         <source>Kazakhstan</source>
-        <translation type="unfinished"></translation>
+        <translation>Kazakstan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="268"/>
         <source>Lao People&apos;s Democratic Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>Laos</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="269"/>
         <source>Lebanon</source>
-        <translation type="unfinished"></translation>
+        <translation>Libanon</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="270"/>
         <source>Saint Lucia</source>
-        <translation type="unfinished"></translation>
+        <translation>Saint Lucia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="271"/>
         <source>Liechtenstein</source>
-        <translation type="unfinished"></translation>
+        <translation>Liechtenstein</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="272"/>
         <source>Sri Lanka</source>
-        <translation type="unfinished"></translation>
+        <translation>Sri Lanka</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="273"/>
         <source>Liberia</source>
-        <translation type="unfinished"></translation>
+        <translation>Liberia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="274"/>
         <source>Lesotho</source>
-        <translation type="unfinished"></translation>
+        <translation>Lesotho</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="275"/>
         <source>Lithuania</source>
-        <translation type="unfinished"></translation>
+        <translation>Liettua</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="276"/>
         <source>Luxembourg</source>
-        <translation type="unfinished"></translation>
+        <translation>Luxemburg</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="277"/>
         <source>Latvia</source>
-        <translation type="unfinished"></translation>
+        <translation>Latvia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="279"/>
         <source>Morocco</source>
-        <translation type="unfinished"></translation>
+        <translation>Marokko</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="280"/>
         <source>Monaco</source>
-        <translation type="unfinished"></translation>
+        <translation>Monaco</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="281"/>
         <source>Moldova, Republic of</source>
-        <translation type="unfinished"></translation>
+        <translation>Moldova</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="284"/>
         <source>Madagascar</source>
-        <translation type="unfinished"></translation>
+        <translation>Madagaskar</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="285"/>
         <source>Marshall Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Marshallinsaaret</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="287"/>
         <source>Mali</source>
-        <translation type="unfinished"></translation>
+        <translation>Mali</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="288"/>
         <source>Myanmar</source>
-        <translation type="unfinished"></translation>
+        <translation>Myanmar</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="289"/>
         <source>Mongolia</source>
-        <translation type="unfinished"></translation>
+        <translation>Mongolia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="291"/>
         <source>Northern Mariana Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Pohjois-Mariaanit</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="292"/>
         <source>Martinique</source>
-        <translation type="unfinished"></translation>
+        <translation>Martinique</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="293"/>
         <source>Mauritania</source>
-        <translation type="unfinished"></translation>
+        <translation>Mauritania</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="294"/>
         <source>Montserrat</source>
-        <translation type="unfinished"></translation>
+        <translation>Montserrat</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="295"/>
         <source>Malta</source>
-        <translation type="unfinished"></translation>
+        <translation>Malta</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="296"/>
         <source>Mauritius</source>
-        <translation type="unfinished"></translation>
+        <translation>Mauritius</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="297"/>
         <source>Maldives</source>
-        <translation type="unfinished"></translation>
+        <translation>Malediivit</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="298"/>
         <source>Malawi</source>
-        <translation type="unfinished"></translation>
+        <translation>Malawi</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="299"/>
         <source>Mexico</source>
-        <translation type="unfinished"></translation>
+        <translation>Meksiko</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="300"/>
         <source>Malaysia</source>
-        <translation type="unfinished"></translation>
+        <translation>Malesia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="301"/>
         <source>Mozambique</source>
-        <translation type="unfinished"></translation>
+        <translation>Mosambik</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="302"/>
         <source>Namibia</source>
-        <translation type="unfinished"></translation>
+        <translation>Namibia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="303"/>
         <source>New Caledonia</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi-Kaledonia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="304"/>
         <source>Niger</source>
-        <translation type="unfinished"></translation>
+        <translation>Niger</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="305"/>
         <source>Norfolk Island</source>
-        <translation type="unfinished"></translation>
+        <translation>Norfolkinsaari</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="306"/>
         <source>Nigeria</source>
-        <translation type="unfinished"></translation>
+        <translation>Nigeria</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="307"/>
         <source>Nicaragua</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicaragua</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="308"/>
         <source>Netherlands</source>
-        <translation type="unfinished"></translation>
+        <translation>Alankomaat (Hollanti)</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="309"/>
         <source>Norway</source>
-        <translation type="unfinished"></translation>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="310"/>
         <source>Nepal</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepal</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="311"/>
         <source>Nauru</source>
-        <translation type="unfinished"></translation>
+        <translation>Nauru</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="312"/>
         <source>Niue</source>
-        <translation type="unfinished"></translation>
+        <translation>Niue</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="313"/>
         <source>New Zealand</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi-Seelanti</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="314"/>
         <source>Oman</source>
-        <translation type="unfinished"></translation>
+        <translation>Oman</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="315"/>
         <source>Panama</source>
-        <translation type="unfinished"></translation>
+        <translation>Panama</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="316"/>
         <source>Peru</source>
-        <translation type="unfinished"></translation>
+        <translation>Peru</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="317"/>
         <source>French Polynesia</source>
-        <translation type="unfinished"></translation>
+        <translation>Ranskan Polynesia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="318"/>
         <source>Papua New Guinea</source>
-        <translation type="unfinished"></translation>
+        <translation>Papua-Uusi-Guinea</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="319"/>
         <source>Philippines</source>
-        <translation type="unfinished"></translation>
+        <translation>Filippiinit</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="320"/>
         <source>Pakistan</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakistan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="321"/>
         <source>Poland</source>
-        <translation type="unfinished"></translation>
+        <translation>Puola</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="322"/>
         <source>Saint Pierre and Miquelon</source>
-        <translation type="unfinished"></translation>
+        <translation>Saint-Pierre ja Miquelon</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="324"/>
         <source>Puerto Rico</source>
-        <translation type="unfinished"></translation>
+        <translation>Puerto Rico</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="326"/>
         <source>Portugal</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="327"/>
         <source>Palau</source>
-        <translation type="unfinished"></translation>
+        <translation>Palau</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="328"/>
         <source>Paraguay</source>
-        <translation type="unfinished"></translation>
+        <translation>Paraguay</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="329"/>
         <source>Qatar</source>
-        <translation type="unfinished"></translation>
+        <translation>Qatar</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="330"/>
         <source>Reunion</source>
-        <translation type="unfinished"></translation>
+        <translation>Réunion</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="331"/>
         <source>Romania</source>
-        <translation type="unfinished"></translation>
+        <translation>Romania</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="333"/>
         <source>Russian Federation</source>
-        <translation type="unfinished"></translation>
+        <translation>Venäjä</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="334"/>
         <source>Rwanda</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruanda</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="335"/>
         <source>Saudi Arabia</source>
-        <translation type="unfinished"></translation>
+        <translation>Saudi-Arabia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="336"/>
         <source>Solomon Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Salomonsaaret</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="337"/>
         <source>Seychelles</source>
-        <translation type="unfinished"></translation>
+        <translation>Seychellit</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="338"/>
         <source>Sudan</source>
-        <translation type="unfinished"></translation>
+        <translation>Sudan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="339"/>
         <source>Sweden</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="340"/>
         <source>Singapore</source>
-        <translation type="unfinished"></translation>
+        <translation>Singapore</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="342"/>
         <source>Slovenia</source>
-        <translation type="unfinished"></translation>
+        <translation>Slovenia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="343"/>
         <source>Svalbard and Jan Mayen</source>
-        <translation type="unfinished"></translation>
+        <translation>Huippuvuoret ja Jan Mayen</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="344"/>
         <source>Slovakia</source>
-        <translation type="unfinished"></translation>
+        <translation>Slovakia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="345"/>
         <source>Sierra Leone</source>
-        <translation type="unfinished"></translation>
+        <translation>Sierra Leone</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="346"/>
         <source>San Marino</source>
-        <translation type="unfinished"></translation>
+        <translation>San Marino</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="347"/>
         <source>Senegal</source>
-        <translation type="unfinished"></translation>
+        <translation>Senegal</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="348"/>
         <source>Somalia</source>
-        <translation type="unfinished"></translation>
+        <translation>Somalia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="349"/>
         <source>Suriname</source>
-        <translation type="unfinished"></translation>
+        <translation>Suriname</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="351"/>
         <source>Sao Tome and Principe</source>
-        <translation type="unfinished"></translation>
+        <translation>São Tomé ja Príncipe</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="352"/>
         <source>El Salvador</source>
-        <translation type="unfinished"></translation>
+        <translation>El Salvador</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="354"/>
         <source>Syrian Arab Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>Syyria</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="355"/>
         <source>Swaziland</source>
-        <translation type="unfinished"></translation>
+        <translation>Swazimaa</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="356"/>
         <source>Turks and Caicos Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Turks- ja Caicossaaret</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="357"/>
         <source>Chad</source>
-        <translation type="unfinished"></translation>
+        <translation>Tšad</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="358"/>
         <source>French Southern Territories</source>
-        <translation type="unfinished"></translation>
+        <translation>Ranskan eteläiset ja antarktiset alueet</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="359"/>
         <source>Togo</source>
-        <translation type="unfinished"></translation>
+        <translation>Togo</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="360"/>
         <source>Thailand</source>
-        <translation type="unfinished"></translation>
+        <translation>Thaimaa</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="361"/>
         <source>Tajikistan</source>
-        <translation type="unfinished"></translation>
+        <translation>Tadžikistan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="362"/>
         <source>Tokelau</source>
-        <translation type="unfinished"></translation>
+        <translation>Tokelau</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="364"/>
         <source>Turkmenistan</source>
-        <translation type="unfinished"></translation>
+        <translation>Turkmenistan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="365"/>
         <source>Tunisia</source>
-        <translation type="unfinished"></translation>
+        <translation>Tunisia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="366"/>
         <source>Tonga</source>
-        <translation type="unfinished"></translation>
+        <translation>Tonga</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="363"/>
         <source>Timor-Leste</source>
-        <translation type="unfinished"></translation>
+        <translation>Itä-Timor</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="171"/>
         <source>Bolivia, Plurinational State of</source>
-        <translation type="unfinished"></translation>
+        <translation>Bolivia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="172"/>
         <source>Bonaire, Sint Eustatius and Saba</source>
-        <translation type="unfinished"></translation>
+        <translation>Bonaire, Sint Eustatius ja Saba</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="186"/>
         <source>Cote d&apos;Ivoire</source>
-        <translation type="unfinished"></translation>
+        <translation>Norsunluurannikko</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="278"/>
         <source>Libya</source>
-        <translation type="unfinished"></translation>
+        <translation>Libya</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="283"/>
         <source>Saint Martin (French part)</source>
-        <translation type="unfinished"></translation>
+        <translation>Saint-Martin (Ranska)</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="286"/>
         <source>Macedonia, The Former Yugoslav Republic of</source>
-        <translation type="unfinished"></translation>
+        <translation>Makedonia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="290"/>
         <source>Macao</source>
-        <translation type="unfinished"></translation>
+        <translation>Macao</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="323"/>
         <source>Pitcairn</source>
-        <translation type="unfinished"></translation>
+        <translation>Pitcairn</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="325"/>
         <source>Palestine, State of</source>
-        <translation type="unfinished"></translation>
+        <translation> Palestiinalaisalue</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="341"/>
         <source>Saint Helena, Ascension and Tristan da Cunha</source>
-        <translation type="unfinished"></translation>
+        <translation>Saint Helena, Ascension ja Tristan da Cunha</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="350"/>
         <source>South Sudan</source>
-        <translation type="unfinished"></translation>
+        <translation>Etelä-Sudan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="353"/>
         <source>Sint Maarten (Dutch part)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sint Maarten (Alankomaat)</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="367"/>
         <source>Turkey</source>
-        <translation type="unfinished"></translation>
+        <translation>Turkki</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="368"/>
         <source>Trinidad and Tobago</source>
-        <translation type="unfinished"></translation>
+        <translation>Trinidad ja Tobago</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="369"/>
         <source>Tuvalu</source>
-        <translation type="unfinished"></translation>
+        <translation>Tuvalu</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="370"/>
         <source>Taiwan</source>
-        <translation type="unfinished"></translation>
+        <translation>Taiwan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="371"/>
         <source>Tanzania, United Republic of</source>
-        <translation type="unfinished"></translation>
+        <translation>Tansanian yhdistynyt tasavalta</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="372"/>
         <source>Ukraine</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukraina</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="373"/>
         <source>Uganda</source>
-        <translation type="unfinished"></translation>
+        <translation>Uganda</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="374"/>
         <source>United States Minor Outlying Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Yhdysvaltain pienet erillissaaret</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="375"/>
         <source>United States</source>
-        <translation type="unfinished"></translation>
+        <translation>Yhdysvallat</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="376"/>
         <source>Uruguay</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruguay</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="377"/>
         <source>Uzbekistan</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzbekistan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="378"/>
         <source>Holy See (Vatican City State)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pyhä istuin (Vatikaanivaltio)</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="379"/>
         <source>Saint Vincent and the Grenadines</source>
-        <translation type="unfinished"></translation>
+        <translation>Saint Vincent ja Grenadiinit</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="381"/>
         <source>Virgin Islands, British</source>
-        <translation type="unfinished"></translation>
+        <translation>Brittiläiset Neitsytsaaret</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="382"/>
         <source>Virgin Islands, U.S.</source>
-        <translation type="unfinished"></translation>
+        <translation>Yhdysvaltain Neitsytsaaret</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="384"/>
         <source>Vanuatu</source>
-        <translation type="unfinished"></translation>
+        <translation>Vanuatu</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="385"/>
         <source>Wallis and Futuna</source>
-        <translation type="unfinished"></translation>
+        <translation>Wallis ja Futuna</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="386"/>
         <source>Samoa</source>
-        <translation type="unfinished"></translation>
+        <translation>Samoa</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="387"/>
         <source>Yemen</source>
-        <translation type="unfinished"></translation>
+        <translation>Yemen</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="388"/>
         <source>Mayotte</source>
-        <translation type="unfinished"></translation>
+        <translation>Mayotte</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="332"/>
         <source>Serbia</source>
-        <translation type="unfinished"></translation>
+        <translation>Serbia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="389"/>
         <source>South Africa</source>
-        <translation type="unfinished"></translation>
+        <translation>Etelä-Afrikka</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="390"/>
         <source>Zambia</source>
-        <translation type="unfinished"></translation>
+        <translation>Sambia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="282"/>
         <source>Montenegro</source>
-        <translation type="unfinished"></translation>
+        <translation>Montenegro</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="391"/>
         <source>Zimbabwe</source>
-        <translation type="unfinished"></translation>
+        <translation>Zimbabwe</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="157"/>
         <source>Aland Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Ahvenanmaa</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="223"/>
         <source>Guernsey</source>
-        <translation type="unfinished"></translation>
+        <translation>Guernsey</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="246"/>
         <source>Isle of Man</source>
-        <translation type="unfinished"></translation>
+        <translation>Mansaari</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="253"/>
         <source>Jersey</source>
-        <translation type="unfinished"></translation>
+        <translation>Jersey</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="168"/>
         <source>Saint Barthelemy</source>
-        <translation type="unfinished"></translation>
+        <translation>Saint-Barthélemy</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="420"/>
         <source>Could not uncompress GeoIP database file.</source>
-        <translation type="unfinished"></translation>
+        <translation>GeoIP-tietokantatiedoston purku epäonnistui.</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="441"/>
         <source>Couldn&apos;t save downloaded GeoIP database file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladattua GeoIP-tietokantatiedostoa ei voitu tallentaa.</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="444"/>
         <source>Successfully updated GeoIP database.</source>
-        <translation type="unfinished"></translation>
+        <translation>GeoIP-tietokanta päivitetty onnistuneesti.</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="459"/>
         <source>Couldn&apos;t download GeoIP database file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>GeoIP-tietokantatiedostoa ei voitu ladata. Syy: %1</translation>
     </message>
 </context>
 <context>
@@ -3945,12 +3988,12 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     <message>
         <location filename="../base/net/portforwarder.cpp" line="110"/>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP-/ NAT-PMP-tuki [PÄÄLLÄ]</translation>
     </message>
     <message>
         <location filename="../base/net/portforwarder.cpp" line="119"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP-/ NAT-PMP-tuki [POIS PÄÄLTÄ]</translation>
     </message>
 </context>
 <context>
@@ -4123,7 +4166,7 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <location filename="../gui/properties/peerlistwidget.cpp" line="241"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="279"/>
         <source>Ban peer permanently</source>
-        <translation>Poista asiakas pysyvästi</translation>
+        <translation>Estä käyttäjä pysyvästi</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="253"/>
@@ -4144,17 +4187,17 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <location filename="../gui/properties/peerlistwidget.cpp" line="261"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="263"/>
         <source>Peer addition</source>
-        <translation>Asiakkaan lisäys</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="73"/>
         <source>Country</source>
-        <translation type="unfinished"></translation>
+        <translation>Maa</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="261"/>
         <source>Some peers could not be added. Check the Log for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>Joitakin käyttäjiä ei voitu lisätä. Katso lokista lisätietoja.</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="263"/>
@@ -4164,7 +4207,7 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="279"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation>Haluatko varmasti poistaa valitut asiakkaat pysyvästi?</translation>
+        <translation>Haluatko varmasti estää valitut käyttäjät pysyvästi?</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="280"/>
@@ -4182,7 +4225,7 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     <message>
         <location filename="../gui/properties/peersadditiondlg.cpp" line="58"/>
         <source>No peer entered</source>
-        <translation type="unfinished"></translation>
+        <translation>Yhtään käyttäjää ei ole lisätty</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondlg.cpp" line="59"/>
@@ -4192,12 +4235,12 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     <message>
         <location filename="../gui/properties/peersadditiondlg.cpp" line="69"/>
         <source>Invalid peer</source>
-        <translation type="unfinished"></translation>
+        <translation>Epäkelpo käyttäjä</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondlg.cpp" line="70"/>
         <source>The peer &apos;%1&apos; is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Käyttäjä &apos;%1&apos; on epäkelpo.</translation>
     </message>
 </context>
 <context>
@@ -4223,7 +4266,7 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="30"/>
         <source>Installed search plugins:</source>
-        <translation type="unfinished"></translation>
+        <translation>Asennetut hakuliitännäiset:</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="50"/>
@@ -4249,7 +4292,7 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="83"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Voit ladata uusia hakukoneliitännäisiä täältä: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="98"/>
@@ -4259,7 +4302,7 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="105"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarkista päivitykset</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="112"/>
@@ -4295,7 +4338,8 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <location filename="../gui/search/pluginselectdlg.cpp" line="211"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Joitain liitännäisiä ei voitu poistaa, koska ne kuuluvat qBittorrentiin. Ainoastaan itse asennetut liitännäiset voidaan poistaa.
+Valitut alkuperäisliitännäiset ovat poistettu käytöstä.</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="213"/>
@@ -4305,7 +4349,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="213"/>
         <source>All selected plugins were uninstalled successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikki valitut liitännäiset poistettiin onnistuneesti</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="333"/>
@@ -4367,7 +4411,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/pluginselectdlg.cpp" line="415"/>
         <source>&quot;%1&quot; search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>&quot;%1&quot; hakukoneliitännäinen asennettiin onnistuneesti.</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.cpp" line="421"/>
@@ -4468,7 +4512,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="1032"/>
         <source>Copy .torrent files to:</source>
-        <translation>Kopioi .torrent-tiedostot kohteeseen:</translation>
+        <translation>Kopioi .torrent-tiedostot sijaintiin:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1439"/>
@@ -4510,7 +4554,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="2314"/>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä paikallista hakua löytääksesi enemmän käyttäjiä (LPD)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2326"/>
@@ -4540,7 +4584,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="2442"/>
         <source>Maximum active uploads:</source>
-        <translation>Aktiivisia lähetettäviä torrentteja enintään:</translation>
+        <translation>Aktiivisia jaettavia torrentteja enintään:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2462"/>
@@ -4565,7 +4609,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="703"/>
         <source>Display torrent content and some options</source>
-        <translation>Näytä torrentin sisältö ja joitakin valintoja</translation>
+        <translation>Näytä torrentin sisältö ja valinnat</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1309"/>
@@ -4585,7 +4629,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="1445"/>
         <source>Global maximum number of connections:</source>
-        <translation>Kaikkien yhteyksien enimmäismäärä:</translation>
+        <translation>Yleinen yhteyksien enimmäismäärä:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1471"/>
@@ -4595,7 +4639,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="1494"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Lähetyspaikkoja torrentia kohden:</translation>
+        <translation>Lähetyspaikkojen enimmäismäärä torrentia kohden:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1917"/>
@@ -4625,12 +4669,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="2067"/>
         <source>Every day</source>
-        <translation>joka päivä</translation>
+        <translation>Joka päivä</translation>
     </message>
     <message utf8="true">
         <location filename="../gui/options.ui" line="2298"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation>Vaihta asiakastietoja yhteensopivien Bittorrent-asiakkaiden (µTorrent, Vuze, ...) kanssa</translation>
+        <translation>Vaihta käyttäjätietoja yhteensopivien Bittorrent-asiakkaiden (µTorrent, Vuze, ...) kanssa</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1634"/>
@@ -4655,7 +4699,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="259"/>
         <source>Action on double-click</source>
-        <translation>Toiminta tuplanapsautuksella</translation>
+        <translation>Tuplaklikkauksen toiminnot</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="268"/>
@@ -4732,7 +4776,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="195"/>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Vahvista torrenttien poisto</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="341"/>
@@ -4742,7 +4786,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="365"/>
         <source>Confirmation on exit when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Vahvista lopetus torrenttien ollessa aktiivisena</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="385"/>
@@ -4848,7 +4892,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="1553"/>
         <source>Global maximum number of upload slots:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yleinen lähetyspaikkojen enimmäismäärä:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="1688"/>
@@ -4908,37 +4952,37 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="217"/>
         <source>Hide zero and infinity values</source>
-        <translation type="unfinished"></translation>
+        <translation>Piilota nolla- ja äärettömyysarvot</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="225"/>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Aina</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="230"/>
         <source>Paused torrents only</source>
-        <translation type="unfinished"></translation>
+        <translation>Vain keskeytetyissä torrenteissa</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="375"/>
         <source>Confirmation on auto-exit when downloads finish</source>
-        <translation type="unfinished"></translation>
+        <translation>Vahvista automaattinen lopetus kun lataukset ovat valmiita</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="486"/>
         <source>Log file</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokitiedosto</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="500"/>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallennuskohde:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="530"/>
         <source>Backup the log file after:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ota lokista varmuuskopio, kun sen koko ylittää:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="537"/>
@@ -4948,19 +4992,19 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="573"/>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista varmuuskopiot, jotka ovat vanhempia kuin:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="597"/>
         <source>days</source>
         <comment>Delete backup logs older than 10 months</comment>
-        <translation type="unfinished"></translation>
+        <translation>päivää</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="602"/>
         <source>months</source>
         <comment>Delete backup logs older than 10 months</comment>
-        <translation type="unfinished"></translation>
+        <translation>kuukautta</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="607"/>
@@ -4986,7 +5030,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="784"/>
         <source>Default Save Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Oletustallennuskohde:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="840"/>
@@ -5043,7 +5087,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="2072"/>
         <source>Weekdays</source>
-        <translation type="unfinished"></translation>
+        <translation>Arkisin</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2077"/>
@@ -5053,17 +5097,17 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="2184"/>
         <source>Rate Limits Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nopeusrajoitusasetukset</translation>
     </message>
     <message utf8="true">
         <location filename="../gui/options.ui" line="2204"/>
         <source>Enable µTP protocol</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä µTP-protokollaa</translation>
     </message>
     <message utf8="true">
         <location filename="../gui/options.ui" line="2211"/>
         <source>Apply rate limit to µTP protocol</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä nopeusrajoitusta µTP-protokollaan</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2282"/>
@@ -5073,17 +5117,17 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="2288"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Käytä DHT:tä (hajautettua verkkoa) useampien vertaisten löytämiseen</translation>
+        <translation>Käytä DHT:tä (hajautettua verkkoa) useampien käyttäjien löytämiseen</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2301"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Käytä PeX:tä useampien vertaisten löytämiseen</translation>
+        <translation>Käytä PeX:tä löytääksesi enemmän käyttäjiä</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2311"/>
         <source>Look for peers on your local network</source>
-        <translation>Etsi asiakkaita paikallisverkostasi</translation>
+        <translation>Etsi käyttäjiä paikallisverkosta</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2369"/>
@@ -5098,7 +5142,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="2379"/>
         <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Lisätietoja&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2521"/>
@@ -5128,12 +5172,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="2606"/>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää nämä seurantapalvelimet automaattisesti uusiin latauksiin:</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2728"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä UPnP-/NAT-PMP:tä portinohjaukseen reitittimeltä</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2738"/>
@@ -5153,7 +5197,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/options.ui" line="2856"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Tietoa varmenteista&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="2769"/>
@@ -5319,7 +5363,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/proplistdelegate.cpp" line="73"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ei saatavilla</translation>
     </message>
     <message>
         <location filename="../gui/properties/proplistdelegate.cpp" line="112"/>
@@ -5365,7 +5409,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="69"/>
         <source>Speed</source>
-        <translation type="unfinished">Nopeus</translation>
+        <translation>Nopeus</translation>
     </message>
 </context>
 <context>
@@ -5399,7 +5443,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="575"/>
         <source>ETA:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aika:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="504"/>
@@ -5414,12 +5458,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="449"/>
         <source>Download Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Latausnopeus:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="185"/>
         <source>Upload Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähetysnopeus:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="214"/>
@@ -5524,12 +5568,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="796"/>
         <source>Torrent Hash:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentin tarkistussumma:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="828"/>
         <source>Save Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallennuskohde:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1093"/>
@@ -5603,7 +5647,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="575"/>
         <source>Priority</source>
-        <translation>Prioriteetti</translation>
+        <translation>Tärkeysaste</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="621"/>
@@ -5827,7 +5871,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../app/main.cpp" line="466"/>
         <source>Cancel</source>
-        <translation>Peru</translation>
+        <translation>Peruuta</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="467"/>
@@ -5837,28 +5881,28 @@ No further notices will be issued.</source>
     <message>
         <location filename="../app/application.cpp" line="242"/>
         <source>Torrent name: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentin nimi: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="243"/>
         <source>Torrent size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentin koko: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="244"/>
         <source>Save path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallennuskohde: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="245"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished"></translation>
+        <translation>Torrent ladattiin ajassa %1.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="248"/>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiitos kun käytät qBittorrentia.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="254"/>
@@ -5973,7 +6017,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="246"/>
         <source>Unknown error</source>
-        <translation type="unfinished"></translation>
+        <translation>Tuntematon virhe</translation>
     </message>
     <message>
         <location filename="../app/upgrade.h" line="54"/>
@@ -6039,7 +6083,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/rss/rss.ui" line="106"/>
         <source>Torrents: (double-click to download)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentit: (tuplaklikkaa ladataksesi)</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="137"/>
@@ -6095,9 +6139,8 @@ No further notices will be issued.</source>
         <translation>Uusi kansio...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="202"/>
         <source>Manage cookies...</source>
-        <translation>Evästeiden hallinta...</translation>
+        <translation type="obsolete">Evästeiden hallinta...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rss.ui" line="45"/>
@@ -6108,77 +6151,77 @@ No further notices will be issued.</source>
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="219"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="197"/>
         <source>Stream URL:</source>
         <translation>Syötteen osoite:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="219"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="197"/>
         <source>Please type a RSS stream URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="229"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="207"/>
         <source>This RSS feed is already in the list.</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS-syöte on jo listalla.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="173"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="151"/>
         <source>Please choose a folder name</source>
         <translation>Valitse kansion nimi</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="173"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="151"/>
         <source>Folder name:</source>
         <translation>Kansion nimi:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="173"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="151"/>
         <source>New folder</source>
         <translation>Uusi kansio</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="257"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="235"/>
         <source>Deletion confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Poistovahvistus</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="258"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="236"/>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation type="unfinished"></translation>
+        <translation>Haluatko varmasti poistaa valitut RSS-syötteet?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="405"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="383"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Valitse uusi nimi tälle RSS-syötteelle</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="405"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="383"/>
         <source>New feed name:</source>
         <translation>Uusi syötteen nimi:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="409"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="387"/>
         <source>Name already in use</source>
         <translation>Nimi on jo käytössä</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="409"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="387"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Tämä nimi on jo käytössä, valitse toinen.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="579"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="557"/>
         <source>Date: </source>
         <translation>Päivä: </translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="581"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="559"/>
         <source>Author: </source>
         <translation>Tekijä: </translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss_imp.cpp" line="658"/>
+        <location filename="../gui/rss/rss_imp.cpp" line="636"/>
         <source>Unread</source>
         <translation>Lukematon</translation>
     </message>
@@ -6201,7 +6244,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/rss/private/rssparser.cpp" line="248"/>
         <source>Invalid RSS feed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen RSS-syöte.</translation>
     </message>
 </context>
 <context>
@@ -6222,10 +6265,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="obsolete">minuuttia</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsssettingsdlg.ui" line="55"/>
         <source>Maximum number of articles per feed:</source>
         <translation>Artikkeleiden enimmäismäärä syötettä kohden:</translation>
@@ -6241,17 +6280,17 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/scanfoldersdelegate.cpp" line="67"/>
         <source>Default Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Oletuskansio</translation>
     </message>
     <message>
         <location filename="../gui/scanfoldersdelegate.cpp" line="68"/>
         <source>Browse...</source>
-        <translation type="unfinished">Selaa...</translation>
+        <translation>Selaa...</translation>
     </message>
     <message>
         <location filename="../gui/scanfoldersdelegate.cpp" line="102"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Valitse tallennuskansio</translation>
+        <translation>Valitse tallennuskohde</translation>
     </message>
 </context>
 <context>
@@ -6264,7 +6303,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="134"/>
         <source>Default Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Oletuskansio</translation>
     </message>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="156"/>
@@ -6274,7 +6313,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="159"/>
         <source>Save Files to</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallenna tiedostot kohteeseen:</translation>
     </message>
 </context>
 <context>
@@ -6287,24 +6326,24 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/searchengine.cpp" line="185"/>
         <source>A more recent version of this plugin is already installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Liitännäisestä on jo asennettu uudempi versio.</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="213"/>
         <location filename="../base/searchengine.cpp" line="216"/>
         <source>Plugin is not supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Liitännäinen ei ole tuettu.</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="337"/>
         <source>Update server is temporarily unavailable. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Päivityspalvelimeen ei saada juuri nyt yhteyttä. %1</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="355"/>
         <location filename="../base/searchengine.cpp" line="357"/>
         <source>Failed to download the plugin file. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Liitännäistiedoston lataus epäonnistui. %1</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="597"/>
@@ -6314,47 +6353,47 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/searchengine.cpp" line="621"/>
         <source>All categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikki kategoriat</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="622"/>
         <source>Movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Elokuvat</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="623"/>
         <source>TV shows</source>
-        <translation type="unfinished"></translation>
+        <translation>TV-ohjelmat</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="624"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Musiikki</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="625"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Pelit</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="626"/>
         <source>Anime</source>
-        <translation type="unfinished"></translation>
+        <translation>Anime</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="627"/>
         <source>Software</source>
-        <translation type="unfinished"></translation>
+        <translation>Ohjelmat</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="628"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuvat</translation>
     </message>
     <message>
         <location filename="../base/searchengine.cpp" line="629"/>
         <source>Books</source>
-        <translation type="unfinished"></translation>
+        <translation>Kirjat</translation>
     </message>
 </context>
 <context>
@@ -6363,39 +6402,152 @@ No further notices will be issued.</source>
         <location filename="../gui/search/searchlistdelegate.cpp" line="57"/>
         <location filename="../gui/search/searchlistdelegate.cpp" line="61"/>
         <source>Unknown</source>
-        <translation type="unfinished">Tuntematon</translation>
+        <translation>Tuntematon</translation>
     </message>
 </context>
 <context>
     <name>SearchTab</name>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="72"/>
+        <location filename="../gui/search/searchtab.cpp" line="79"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="73"/>
+        <location filename="../gui/search/searchtab.cpp" line="80"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>Koko</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="74"/>
+        <location filename="../gui/search/searchtab.cpp" line="81"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
         <translation>Jakajia</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="75"/>
+        <location filename="../gui/search/searchtab.cpp" line="82"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
         <translation>Lataajia</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="76"/>
+        <location filename="../gui/search/searchtab.cpp" line="83"/>
         <source>Search engine</source>
-        <translation>Hakupalvelu</translation>
+        <translation>Hakukone</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="202"/>
+        <source>Results (showing &lt;i&gt;%1&lt;/i&gt; out of &lt;i&gt;%2&lt;/i&gt;):</source>
+        <comment>i.e: Search results</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="252"/>
+        <source>Torrent names only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="253"/>
+        <source>Everywhere</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="265"/>
+        <source>Searching...</source>
+        <translation type="unfinished">Etsitään...</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="267"/>
+        <source>Search has finished</source>
+        <translation type="unfinished">Haku valmis</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="269"/>
+        <source>Search aborted</source>
+        <translation type="unfinished">Haku keskeytetty</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="271"/>
+        <source>An error occurred during search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="273"/>
+        <source>Search returned no results</source>
+        <translation type="unfinished">Ei hakutuloksia</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="22"/>
+        <source>Results(xxx)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="45"/>
+        <source>Search in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="55"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everyhing returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="84"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed number of seeders&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="87"/>
+        <source>Seeds:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="94"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="116"/>
+        <location filename="../gui/search/searchtab.ui" line="204"/>
+        <source>to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="123"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <location filename="../gui/search/searchtab.ui" line="126"/>
+        <location filename="../gui/search/searchtab.ui" line="216"/>
+        <source>∞</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="167"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed size of a torrent&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="170"/>
+        <source>Size:</source>
+        <translation type="unfinished">Koko:</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="179"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimal torrent size&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="213"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal torrent size&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6403,124 +6555,137 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="14"/>
         <location filename="../gui/search/searchwidget.ui" line="28"/>
-        <location filename="../gui/search/searchwidget.cpp" line="181"/>
-        <location filename="../gui/search/searchwidget.cpp" line="202"/>
-        <location filename="../gui/search/searchwidget.cpp" line="296"/>
+        <location filename="../gui/search/searchwidget.cpp" line="200"/>
+        <location filename="../gui/search/searchwidget.cpp" line="226"/>
+        <location filename="../gui/search/searchwidget.cpp" line="317"/>
         <source>Search</source>
-        <translation type="unfinished">Etsi</translation>
+        <translation>Etsi</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="51"/>
         <source>Status:</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Tila:</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="75"/>
-        <location filename="../gui/search/searchwidget.cpp" line="364"/>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Pysäytetty</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="107"/>
+        <location filename="../gui/search/searchwidget.ui" line="54"/>
         <source>Download</source>
-        <translation type="unfinished">Lataa</translation>
+        <translation>Lataa</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="117"/>
+        <location filename="../gui/search/searchwidget.ui" line="64"/>
         <source>Go to description page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="127"/>
+        <location filename="../gui/search/searchwidget.ui" line="74"/>
         <source>Copy description page URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="147"/>
+        <location filename="../gui/search/searchwidget.ui" line="94"/>
         <source>Search plugins...</source>
+        <translation>Hakuliitännäiset</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="89"/>
+        <source>A phrase to search for.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="121"/>
+        <location filename="../gui/search/searchwidget.cpp" line="90"/>
+        <source>Spaces in a search term may be protected by double quotes.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="92"/>
+        <source>Example:</source>
+        <comment>Search phrase example</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="94"/>
+        <source>&lt;b&gt;foo bar&lt;/b&gt;: search for &lt;b&gt;foo&lt;/b&gt; and &lt;b&gt;bar&lt;/b&gt;</source>
+        <comment>Search phrase example, illustrates quotes usage, a pair of space delimited words, individal words are highlighted</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="98"/>
+        <source>&lt;b&gt;&amp;quot;foo bar&amp;quot;&lt;/b&gt;: search for &lt;b&gt;foo bar&lt;/b&gt;</source>
+        <comment>Search phrase example, illustrates quotes usage, double quotedpair of space delimited words, the whole pair is highlighted</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="141"/>
         <source>All enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikki käytössä</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="122"/>
+        <location filename="../gui/search/searchwidget.cpp" line="142"/>
         <source>All plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikki liitännäiset</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="125"/>
-        <location filename="../gui/search/searchwidget.cpp" line="167"/>
+        <location filename="../gui/search/searchwidget.cpp" line="145"/>
+        <location filename="../gui/search/searchwidget.cpp" line="186"/>
         <source>Multiple...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="194"/>
-        <location filename="../gui/search/searchwidget.cpp" line="283"/>
-        <location filename="../gui/search/searchwidget.cpp" line="302"/>
+        <location filename="../gui/search/searchwidget.cpp" line="218"/>
+        <location filename="../gui/search/searchwidget.cpp" line="305"/>
+        <location filename="../gui/search/searchwidget.cpp" line="323"/>
         <source>Search Engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Hakukone</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="194"/>
+        <location filename="../gui/search/searchwidget.cpp" line="218"/>
         <source>Please install Python to use the Search Engine.</source>
-        <translation type="unfinished"></translation>
+        <translation>Asenna Python käyttääksesi hakukonetta.</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="212"/>
+        <location filename="../gui/search/searchwidget.cpp" line="236"/>
         <source>Empty search pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="212"/>
+        <location filename="../gui/search/searchwidget.cpp" line="236"/>
         <source>Please type a search pattern first</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="239"/>
-        <location filename="../gui/search/searchwidget.cpp" line="341"/>
         <source>Results &lt;i&gt;(%1)&lt;/i&gt;:</source>
         <comment>i.e: Search results</comment>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Hakutulokset &lt;i&gt;(%1)&lt;/i&gt;:</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="271"/>
         <source>Searching...</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Etsitään...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="274"/>
+        <location filename="../gui/search/searchwidget.cpp" line="296"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Pysäytä</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="283"/>
-        <location filename="../gui/search/searchwidget.cpp" line="292"/>
+        <location filename="../gui/search/searchwidget.cpp" line="305"/>
         <source>Search has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Haku valmis</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="288"/>
-        <location filename="../gui/search/searchwidget.cpp" line="307"/>
         <source>Search aborted</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Haku keskeytetty</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="290"/>
         <source>Search returned no results</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Ei hakutuloksia</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="302"/>
+        <location filename="../gui/search/searchwidget.cpp" line="323"/>
         <source>Search has failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchwidget.cpp" line="309"/>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished"></translation>
+        <translation>Haku epäonnistui</translation>
     </message>
 </context>
 <context>
@@ -6528,7 +6693,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/settingsstorage.cpp" line="111"/>
         <source>Detected unclean program exit. Using fallback file to restore settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ohjelma ei sulkeutunut oikein. Asetukset palautetaan varmuuskopiosta.</translation>
     </message>
     <message>
         <location filename="../base/settingsstorage.cpp" line="195"/>
@@ -6544,77 +6709,69 @@ No further notices will be issued.</source>
 <context>
     <name>ShutdownConfirmDlg</name>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="118"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="123"/>
         <source>qBittorrent will now exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent sulkeutuu</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="120"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="125"/>
         <source>E&amp;xit Now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="121"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="126"/>
         <source>Exit confirmation</source>
         <translation>Lopetusvahvistus</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="124"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="129"/>
         <source>The computer is going to shutdown.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tietokone sammutetaan.</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="126"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="131"/>
         <source>&amp;Shutdown Now</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sammuta nyt</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="130"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="135"/>
         <source>The computer is going to enter suspend mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tietokone siirtyy lepotilaan.</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="132"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="137"/>
         <source>&amp;Suspend Now</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="133"/>
-        <source>Suspend confirmation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="136"/>
-        <source>The computer is going to enter hibernation mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aseta lepotilaan nyt</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirm.cpp" line="138"/>
-        <source>&amp;Hibernate Now</source>
-        <translation type="unfinished"></translation>
+        <source>Suspend confirmation</source>
+        <translation>Lepotilaan siirtymisen vahvistus</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="139"/>
-        <source>Hibernate confirmation</source>
-        <translation type="unfinished"></translation>
+        <location filename="../gui/shutdownconfirm.cpp" line="141"/>
+        <source>The computer is going to enter hibernation mode.</source>
+        <translation>Tietokone siirtyy horrostilaan.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirm.cpp" line="143"/>
+        <source>&amp;Hibernate Now</source>
+        <translation>&amp;Aseta horrostilaan nyt</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirm.cpp" line="144"/>
+        <source>Hibernate confirmation</source>
+        <translation>Horrostilaan siirtymisen vahvistus</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirm.cpp" line="148"/>
         <source>You can cancel the action within %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Voit perua toiminnon %1 sekunnin sisällä.</translation>
     </message>
     <message>
-        <source>Exit now</source>
-        <translation type="obsolete">Lopeta nyt</translation>
-    </message>
-    <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="127"/>
+        <location filename="../gui/shutdownconfirm.cpp" line="132"/>
         <source>Shutdown confirmation</source>
-        <translation>Sammutusvahvitus</translation>
-    </message>
-    <message>
-        <source>Shutdown now</source>
-        <translation type="obsolete">Sammuta nyt</translation>
+        <translation>Sammutuksen vahvistus</translation>
     </message>
 </context>
 <context>
@@ -6628,52 +6785,52 @@ No further notices will be issued.</source>
 <context>
     <name>SpeedPlotView</name>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="47"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="51"/>
         <source>Total Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="48"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="52"/>
         <source>Total Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="52"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="56"/>
         <source>Payload Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="53"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="57"/>
         <source>Payload Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="57"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="61"/>
         <source>Overhead Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="58"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="62"/>
         <source>Overhead Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="62"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="66"/>
         <source>DHT Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="63"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="67"/>
         <source>DHT Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="67"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="71"/>
         <source>Tracker Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="68"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="72"/>
         <source>Tracker Download</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6681,82 +6838,82 @@ No further notices will be issued.</source>
 <context>
     <name>SpeedWidget</name>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="68"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="66"/>
         <source>Period:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="71"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="69"/>
         <source>1 Minute</source>
-        <translation type="unfinished"></translation>
+        <translation>1 minuutti</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="70"/>
+        <source>5 Minutes</source>
+        <translation>5 minuuttia</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="71"/>
+        <source>30 Minutes</source>
+        <translation>30 minuuttia</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="72"/>
-        <source>5 Minutes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="73"/>
-        <source>30 Minutes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="74"/>
         <source>6 Hours</source>
-        <translation type="unfinished"></translation>
+        <translation>6 tuntia</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="103"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="101"/>
         <source>Select Graphs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="79"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="77"/>
         <source>Total Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="80"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="78"/>
         <source>Total Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="81"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="79"/>
         <source>Payload Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="82"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="80"/>
         <source>Payload Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="83"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="81"/>
         <source>Overhead Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="84"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="82"/>
         <source>Overhead Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="85"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="83"/>
         <source>DHT Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="86"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="84"/>
         <source>DHT Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="87"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="85"/>
         <source>Tracker Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="88"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="86"/>
         <source>Tracker Download</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6781,17 +6938,17 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/statsdialog.ui" line="33"/>
         <source>Global ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yleinen jakosuhde:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="47"/>
         <source>Alltime download:</source>
-        <translation>Ladattu kaikkiaan:</translation>
+        <translation>Yhteensä ladattu:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="68"/>
         <source>Alltime upload:</source>
-        <translation>Lähetetty kaikkiaan:</translation>
+        <translation>Yhteensä lähetetty:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="82"/>
@@ -6877,7 +7034,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/statusbar.cpp" line="167"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation>qBittorrent päivitettiin juuri. Muutosten vuoksi qBittorrent on käynnistettävä uudelleen.</translation>
+        <translation>qBittorrent päivitettiin juuri, ja on käynnistettävä uudelleen jotta muutokset tulisivat voimaan.</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="179"/>
@@ -6947,12 +7104,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="129"/>
         <source>Resumed (0)</source>
-        <translation>Palautettu (0)</translation>
+        <translation>Jatkettu (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="132"/>
         <source>Paused (0)</source>
-        <translation>Keskeytetty (0)</translation>
+        <translation>Pysäytetty (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="135"/>
@@ -6992,12 +7149,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="162"/>
         <source>Paused (%1)</source>
-        <translation>Keskeytetty (%1)</translation>
+        <translation>Pysäytetty (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="163"/>
         <source>Resumed (%1)</source>
-        <translation>Palautettu (%1)</translation>
+        <translation>Jatkettu (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="164"/>
@@ -7035,12 +7192,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="59"/>
         <source>Download Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Latauksen tärkeysaste</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="59"/>
         <source>Remaining</source>
-        <translation type="unfinished">Jäljellä</translation>
+        <translation>Jäljellä</translation>
     </message>
 </context>
 <context>
@@ -7109,7 +7266,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="53"/>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translation>Tämä avustaja auttaa jakamaan qBittorrentilla jo entuudestaan jakamasi torrentin.</translation>
+        <translation>Tämä avustaja auttaa jakamaan qBittorrentilla jo entuudestaan ladatun torrentin.</translation>
     </message>
     <message>
         <location filename="../gui/torrentimportdlg.ui" line="65"/>
@@ -7234,12 +7391,12 @@ No further notices will be issued.</source>
         <location filename="../gui/torrentmodel.cpp" line="106"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished"></translation>
+        <translation>Aika</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="107"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategoria</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="108"/>
@@ -7310,7 +7467,7 @@ No further notices will be issued.</source>
         <location filename="../gui/torrentmodel.cpp" line="119"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation>Tallennuspolku</translation>
+        <translation>Tallennussijainti</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="120"/>
@@ -7409,12 +7566,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="688"/>
         <source>Resume torrents</source>
-        <translation>Palauta torrentit</translation>
+        <translation>Jatka torrentteja</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="689"/>
         <source>Pause torrents</source>
-        <translation>Keskeytä torrentit</translation>
+        <translation>Pysäytä torrentit</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="690"/>
@@ -7444,7 +7601,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="71"/>
         <source>Peers</source>
-        <translation>Asiakkaat</translation>
+        <translation>Käyttäjät</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="72"/>
@@ -7501,7 +7658,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="386"/>
         <source>The tracker URL entered is invalid.</source>
-        <translation>Kirjoitettu seurantapalvelimen osoite on virheellinen.</translation>
+        <translation>Annettu seurantapalvelimen osoite on virheellinen.</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="397"/>
@@ -7549,7 +7706,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.ui" line="20"/>
         <source>List of trackers to add (one per line):</source>
-        <translation>Seurantapalvelimet jokainen omalla rivillään:</translation>
+        <translation>Lisättävien seurantapalvelimien lista (yksi per rivi):</translation>
     </message>
     <message utf8="true">
         <location filename="../gui/properties/trackersadditiondlg.ui" line="44"/>
@@ -7590,87 +7747,87 @@ No further notices will be issued.</source>
 <context>
     <name>TransferListDelegate</name>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="238"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="240"/>
         <source>Downloading</source>
         <translation>Ladataan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="244"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="246"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
         <translation>Ladataan metadataa</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="250"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="252"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="274"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="276"/>
         <source>Paused</source>
         <translation>Pysäytetty</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="261"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="263"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
         <translation>Jonossa</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="254"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="256"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
         <translation>Jaetaan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="241"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="243"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
-        <translation>Seisahtunut</translation>
+        <translation>Pysähtynyt</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="247"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="249"/>
         <source>[F] Downloading</source>
         <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation type="unfinished"></translation>
+        <translation>[P] Lataa</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="257"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="259"/>
         <source>[F] Seeding</source>
         <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation type="unfinished"></translation>
+        <translation>[P] Jakaa</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="265"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="267"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
         <translation>Tarkastetaan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="268"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="270"/>
         <source>Queued for checking</source>
         <comment>i.e. torrent is queued for hash checking</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="271"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="273"/>
         <source>Checking resume data</source>
         <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="277"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="279"/>
         <source>Completed</source>
         <translation type="unfinished">Valmistunut</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="280"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="282"/>
         <source>Missing Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="283"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="285"/>
         <source>Errored</source>
         <comment>torrent status, the torrent has an error</comment>
         <translation type="unfinished"></translation>
@@ -7698,7 +7855,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="825"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategoriat</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="833"/>
@@ -7731,7 +7888,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="500"/>
         <source>Recheck confirmation</source>
-        <translation>Tarkista uudelleen vahvistus</translation>
+        <translation>Uudelleentarkistuksen vahvistus</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="500"/>
@@ -7758,7 +7915,7 @@ No further notices will be issued.</source>
         <location filename="../gui/transferlistwidget.cpp" line="634"/>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pakota jatkaminen</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="632"/>
@@ -7769,24 +7926,26 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="582"/>
         <source>New Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi kategoria</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="582"/>
         <source>Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategoria:</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="585"/>
         <source>Invalid category name</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen kategorian nimi</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="586"/>
         <source>Category name must not contain &apos;\&apos;.
 Category name must not start/end with &apos;/&apos;.
 Category name must not contain &apos;//&apos; sequence.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kategorian nimessä ei saa olla merkkiä &apos;\&apos;.
+Kategorian nimi ei saa alkaa/päättyä merkillä &apos;/&apos;.
+Kategorian nimessä ei saa olla merkkijonoa &apos;//&apos;.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="636"/>
@@ -7846,7 +8005,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="656"/>
         <source>Set location...</source>
-        <translation>Aseta kohde...</translation>
+        <translation>Aseta kohdekansio...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="662"/>
@@ -7866,13 +8025,13 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="774"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategoria</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="775"/>
         <source>New...</source>
         <comment>New category...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Uusi...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="776"/>
@@ -7883,7 +8042,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="831"/>
         <source>Priority</source>
-        <translation>Prioriteetti</translation>
+        <translation>Tärkeysaste</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="658"/>
@@ -7921,7 +8080,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä yleistä jakosuhteen rajoitusta</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="23"/>
@@ -7964,17 +8123,17 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/about_imp.h" line="64"/>
         <source>Copyright %1 2006-2016 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright %1 2006-2016 The qBittorrent project</translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="65"/>
         <source>Home Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kotisivu:</translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="66"/>
         <source>Forum:</source>
-        <translation type="unfinished"></translation>
+        <translation>Foorumi:</translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="67"/>
@@ -7987,7 +8146,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/properties/peersadditiondlg.ui" line="14"/>
         <source>Add Peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää käyttäjiä</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondlg.ui" line="20"/>
@@ -8036,7 +8195,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/login.ui" line="161"/>
         <source>Cancel</source>
-        <translation>Peru</translation>
+        <translation>Peruuta</translation>
     </message>
 </context>
 <context>
@@ -8044,7 +8203,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/confirmdeletiondlg.ui" line="20"/>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>Poistamisvahvistus - qBittorrent</translation>
+        <translation>Poistovahvistus - qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/confirmdeletiondlg.ui" line="67"/>
@@ -8062,7 +8221,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/confirmshutdowndlg.ui" line="64"/>
         <source>Don&apos;t show again</source>
-        <translation type="unfinished"></translation>
+        <translation>Älä näytä uudelleen</translation>
     </message>
 </context>
 <context>
@@ -8070,12 +8229,12 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="308"/>
         <source>Cancel</source>
-        <translation>Peru</translation>
+        <translation>Peruuta</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="14"/>
         <source>Torrent Creation Tool</source>
-        <translation>Torrentinluontityökalu</translation>
+        <translation>Luo uusi torrent</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="38"/>
@@ -8171,12 +8330,12 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="210"/>
         <source>8 MiB</source>
-        <translation type="unfinished">4 MiB {8 ?}</translation>
+        <translation>8 MiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="215"/>
         <source>16 MiB</source>
-        <translation type="unfinished">4 MiB {16 ?}</translation>
+        <translation>16 MiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="223"/>
@@ -8191,7 +8350,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="255"/>
         <source>Start seeding after creation</source>
-        <translation>Aloita jakaminen luomisen jälkeen</translation>
+        <translation>Aloita torrentin jakaminen luomisen jälkeen</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="265"/>
@@ -8229,7 +8388,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/downloadfromurldlg.ui" line="87"/>
         <source>Cancel</source>
-        <translation>Peru</translation>
+        <translation>Peruuta</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.ui" line="14"/>
@@ -8300,52 +8459,64 @@ Category name must not contain &apos;//&apos; sequence.</source>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="286"/>
+        <location filename="../base/utils/misc.cpp" line="90"/>
+        <source>PiB</source>
+        <comment>pebibytes (1024 tebibytes)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/utils/misc.cpp" line="91"/>
+        <source>EiB</source>
+        <comment>exbibytes (1024 pebibytes)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/utils/misc.cpp" line="288"/>
         <source>Python not detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Pythonia ei havaittu</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="314"/>
+        <location filename="../base/utils/misc.cpp" line="316"/>
         <source>Python version: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Pythonin versio: %1</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="341"/>
+        <location filename="../base/utils/misc.cpp" line="363"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="414"/>
+        <location filename="../base/utils/misc.cpp" line="444"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1 h %2 min</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="418"/>
+        <location filename="../base/utils/misc.cpp" line="448"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1 d %2 h</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="329"/>
+        <location filename="../base/utils/misc.cpp" line="355"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Tuntematon</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="209"/>
+        <location filename="../base/utils/misc.cpp" line="211"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>qBittorrent sammuttaa tietokoneen nyt, koska kaikki lataukset ovat valmistuneet.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="407"/>
+        <location filename="../base/utils/misc.cpp" line="437"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>alle minuutti</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="410"/>
+        <location filename="../base/utils/misc.cpp" line="440"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 min</translation>
@@ -8584,7 +8755,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/preview.ui" line="68"/>
         <source>Cancel</source>
-        <translation>Peru</translation>
+        <translation>Peruuta</translation>
     </message>
 </context>
 </TS>
