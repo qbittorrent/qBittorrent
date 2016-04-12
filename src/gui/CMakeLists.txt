@@ -31,6 +31,8 @@ addnewtorrentdialog.h
 advancedsettings.h
 advancedsettings.h
 autoexpandabledialog.h
+cookiesdialog.h
+cookiesmodel.h
 deletionconfirmationdlg.h
 downloadfromurldlg.h
 executionlog.h
@@ -69,6 +71,8 @@ set(QBT_GUI_SOURCES
 addnewtorrentdialog.cpp
 advancedsettings.cpp
 autoexpandabledialog.cpp
+cookiesdialog.cpp
+cookiesmodel.cpp
 executionlog.cpp
 guiiconprovider.cpp
 ico.cpp
@@ -107,6 +111,7 @@ endif (WIN32 OR APPLE)
 set(QBT_GUI_FORMS
 mainwindow.ui
 about.ui
+cookiesdialog.ui
 preview.ui
 login.ui
 downloadfromurldlg.ui
