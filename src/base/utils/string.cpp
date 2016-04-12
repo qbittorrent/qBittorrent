@@ -49,7 +49,7 @@ Utils::String::NaturalCompare::NaturalCompare()
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 #if defined(Q_OS_WIN)
     // Without ICU library, QCollator doesn't support `setNumericMode(true)` on OS older than Win7
-    if(QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
+    if (QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
         return;
 #endif
     m_collator.setNumericMode(true);
@@ -63,7 +63,7 @@ bool Utils::String::NaturalCompare::operator()(const QString &left, const QStrin
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 #if defined(Q_OS_WIN)
     // Without ICU library, QCollator doesn't support `setNumericMode(true)` on OS older than Win7
-    if(QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
+    if (QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
         return lessThan(left, right);
 #endif
     return (m_collator.compare(left, right) < 0);
@@ -80,7 +80,7 @@ bool Utils::String::NaturalCompare::lessThan(const QString &left, const QString 
     int posR = 0;
     while (true) {
         while (true) {
-            if (posL == left.size() || posR == right.size())
+            if ((posL == left.size()) || (posR == right.size()))
                 return (left.size() < right.size());  // when a shorter string is another string's prefix, shorter string place before longer string
 
             QChar leftChar = left[posL].toLower();
