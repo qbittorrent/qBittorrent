@@ -92,16 +92,16 @@ static struct { const char *source; const char *comment; } units[] = {
 };
 
 #ifndef DISABLE_GUI
-void Utils::Misc::shutdownComputer(ShutdownAction action)
+void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
     // Use dbus to power off / suspend the system
-    if (action != ShutdownAction::Shutdown) {
+    if (action != ShutdownDialogAction::Shutdown) {
         // Some recent systems use systemd's logind
         QDBusInterface login1Iface("org.freedesktop.login1", "/org/freedesktop/login1",
                                    "org.freedesktop.login1.Manager", QDBusConnection::systemBus());
         if (login1Iface.isValid()) {
-            if (action == ShutdownAction::Suspend)
+            if (action == ShutdownDialogAction::Suspend)
                 login1Iface.call("Suspend", false);
             else
                 login1Iface.call("Hibernate", false);
@@ -111,7 +111,7 @@ void Utils::Misc::shutdownComputer(ShutdownAction action)
         QDBusInterface upowerIface("org.freedesktop.UPower", "/org/freedesktop/UPower",
                                    "org.freedesktop.UPower", QDBusConnection::systemBus());
         if (upowerIface.isValid()) {
-            if (action == ShutdownAction::Suspend)
+            if (action == ShutdownDialogAction::Suspend)
                 upowerIface.call("Suspend");
             else
                 upowerIface.call("Hibernate");
@@ -121,7 +121,7 @@ void Utils::Misc::shutdownComputer(ShutdownAction action)
         QDBusInterface halIface("org.freedesktop.Hal", "/org/freedesktop/Hal/devices/computer",
                                 "org.freedesktop.Hal.Device.SystemPowerManagement",
                                 QDBusConnection::systemBus());
-        if (action == ShutdownAction::Suspend)
+        if (action == ShutdownDialogAction::Suspend)
             halIface.call("Suspend", 5);
         else
             halIface.call("Hibernate");
@@ -150,7 +150,7 @@ void Utils::Misc::shutdownComputer(ShutdownAction action)
 #endif
 #ifdef Q_OS_MAC
     AEEventID EventToSend;
-    if (action != ShutdownAction::Shutdown)
+    if (action != ShutdownDialogAction::Shutdown)
         EventToSend = kAESleep;
     else
         EventToSend = kAEShutDown;
@@ -203,9 +203,9 @@ void Utils::Misc::shutdownComputer(ShutdownAction action)
     if (GetLastError() != ERROR_SUCCESS)
         return;
 
-    if (action == ShutdownAction::Suspend)
+    if (action == ShutdownDialogAction::Suspend)
         SetSuspendState(false, false, false);
-    else if (action == ShutdownAction::Hibernate)
+    else if (action == ShutdownDialogAction::Hibernate)
         SetSuspendState(true, false, false);
     else
         InitiateSystemShutdownA(0, QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
