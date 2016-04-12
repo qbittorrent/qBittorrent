@@ -49,10 +49,9 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
 {
     ui->setupUi(this);
 
+    initText();
     QIcon warningIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning));
     ui->warningLabel->setPixmap(warningIcon.pixmap(32));
-
-    updateText();
 
     if (m_action == ShutdownAction::None)
         ui->neverShowAgainCheckbox->setVisible(true);
@@ -63,12 +62,13 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownAction &action)
     QPushButton *cancelButton = ui->buttonBox->button(QDialogButtonBox::Cancel);
     cancelButton->setFocus();
     cancelButton->setDefault(true);
+
     // Always on top
     setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
+    move(Utils::Misc::screenCenter(this));
+
     m_timer.setInterval(1000); // 1sec
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(updateSeconds()));
-    // Move to center
-    move(Utils::Misc::screenCenter(this));
 }
 
 ShutdownConfirmDlg::~ShutdownConfirmDlg()
@@ -85,8 +85,7 @@ void ShutdownConfirmDlg::showEvent(QShowEvent *event)
 bool ShutdownConfirmDlg::askForConfirmation(const ShutdownAction &action)
 {
     ShutdownConfirmDlg dlg(action);
-    dlg.exec();
-    return dlg.shutdown();
+    return (dlg.exec() == QDialog::Accepted);
 }
 
 void ShutdownConfirmDlg::updateSeconds()
@@ -105,43 +104,43 @@ void ShutdownConfirmDlg::accept()
     QDialog::accept();
 }
 
-bool ShutdownConfirmDlg::shutdown() const
+void ShutdownConfirmDlg::initText()
 {
-    return (result() == QDialog::Accepted);
-}
-
-void ShutdownConfirmDlg::updateText()
-{
-    QString text;
     QPushButton *okButton = ui->buttonBox->button(QDialogButtonBox::Ok);
 
     switch (m_action) {
     case ShutdownAction::None:
-        text = tr("qBittorrent will now exit.");
+        m_msg = tr("qBittorrent will now exit.");
 
         okButton->setText(tr("E&xit Now"));
         setWindowTitle(tr("Exit confirmation"));
         break;
     case ShutdownAction::Shutdown:
-        text = tr("The computer is going to shutdown.");
+        m_msg = tr("The computer is going to shutdown.");
 
         okButton->setText(tr("&Shutdown Now"));
         setWindowTitle(tr("Shutdown confirmation"));
         break;
     case ShutdownAction::Suspend:
-        text = tr("The computer is going to enter suspend mode.");
+        m_msg = tr("The computer is going to enter suspend mode.");
 
         okButton->setText(tr("&Suspend Now"));
         setWindowTitle(tr("Suspend confirmation"));
         break;
     case ShutdownAction::Hibernate:
-        text = tr("The computer is going to enter hibernation mode.");
+        m_msg = tr("The computer is going to enter hibernation mode.");
 
         okButton->setText(tr("&Hibernate Now"));
         setWindowTitle(tr("Hibernate confirmation"));
         break;
     }
 
-    text += "\n" + tr("You can cancel the action within %1 seconds.").arg(QString::number(m_timeout)) + "\n";
-    ui->shutdownText->setText(text);
+    m_msg += "\n";
+    updateText();
+}
+
+void ShutdownConfirmDlg::updateText()
+{
+    QString t = tr("You can cancel the action within %1 seconds.").arg(QString::number(m_timeout)) + "\n";
+    ui->shutdownText->setText(m_msg + t);
 }
