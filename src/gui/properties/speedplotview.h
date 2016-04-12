@@ -37,9 +37,10 @@
 #include <QMap>
 class QPen;
 
-class SpeedPlotView : public QGraphicsView
+class SpeedPlotView: public QGraphicsView
 {
     Q_OBJECT
+
 public:
     enum GraphID
     {

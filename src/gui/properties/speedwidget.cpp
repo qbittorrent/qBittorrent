@@ -45,8 +45,7 @@
 ComboBoxMenuButton::ComboBoxMenuButton(QWidget *parent, QMenu *menu)
     : QComboBox(parent)
     , m_menu(menu)
-{
-}
+{}
 
 void ComboBoxMenuButton::showPopup()
 {
@@ -54,7 +53,6 @@ void ComboBoxMenuButton::showPopup()
     m_menu->exec(p);
     QComboBox::hidePopup();
 }
-
 
 SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     : QWidget(parent)
@@ -202,4 +200,3 @@ void SpeedWidget::saveSettings() const
         preferences->setSpeedWidgetGraphEnable(id, action->isChecked());
     }
 }
-
