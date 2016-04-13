@@ -132,8 +132,9 @@ SearchTab::~SearchTab()
 void SearchTab::downloadItem(const QModelIndex &index)
 {
     QString torrentUrl = m_proxyModel->data(m_proxyModel->index(index.row(), SearchSortModel::DL_LINK)).toString();
+    QString siteUrl = m_proxyModel->data(m_proxyModel->index(index.row(), SearchSortModel::ENGINE_URL)).toString();
     setRowColor(index.row(), "blue");
-    m_parent->downloadTorrent(torrentUrl);
+    m_parent->downloadTorrent(siteUrl, torrentUrl);
 }
 
 QHeaderView* SearchTab::header() const
