@@ -63,7 +63,7 @@ private:
               cb_super_seeding, cb_program_notifications, cb_torrent_added_notifications, cb_tracker_status,
               cb_confirm_torrent_recheck, cb_enable_tracker_ext, cb_listen_ipv6, cb_announce_all_trackers;
     QComboBox combo_iface;
-    QLineEdit txt_iface_address, network_address;
+    QLineEdit txt_iface_address, txt_network_address;
 
     // OS dependent settings
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
