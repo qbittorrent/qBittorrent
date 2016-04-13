@@ -47,7 +47,7 @@ options_imp.h
 previewlistdelegate.h
 previewselect.h
 scanfoldersdelegate.h
-shutdownconfirm.h
+shutdownconfirmdlg.h
 speedlimitdlg.h
 statsdialog.h
 statusbar.h
@@ -83,7 +83,7 @@ messageboxraised.cpp
 options_imp.cpp
 previewselect.cpp
 scanfoldersdelegate.cpp
-shutdownconfirm.cpp
+shutdownconfirmdlg.cpp
 speedlimitdlg.cpp
 statsdialog.cpp
 statusbar.cpp
@@ -126,6 +126,7 @@ autoexpandabledialog.ui
 statsdialog.ui
 options.ui
 torrentcreatordlg.ui
+shutdownconfirmdlg.ui
 )
 
 qbt_target_sources(about.qrc)

@@ -48,7 +48,7 @@
 #endif // Q_OS_MAC
 #include "mainwindow.h"
 #include "addnewtorrentdialog.h"
-#include "shutdownconfirm.h"
+#include "shutdownconfirmdlg.h"
 #else // DISABLE_GUI
 #include <iostream>
 #endif // DISABLE_GUI
