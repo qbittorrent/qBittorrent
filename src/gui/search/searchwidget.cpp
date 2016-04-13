@@ -61,7 +61,6 @@
 #include "mainwindow.h"
 #include "addnewtorrentdialog.h"
 #include "guiiconprovider.h"
-#include "lineedit.h"
 #include "pluginselectdlg.h"
 #include "searchsortmodel.h"
 #include "searchtab.h"
@@ -78,13 +77,8 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
 {
     setupUi(this);
 
-    m_searchPattern = new LineEdit(this);
-    searchBarLayout->insertWidget(0, m_searchPattern);
-    connect(m_searchPattern, SIGNAL(returnPressed()), searchButton, SLOT(click()));
-
     QString searchPatternHint;
     QTextStream stream(&searchPatternHint, QIODevice::WriteOnly);
-
     stream << "<html><head/><body><p>"
            << tr("A phrase to search for.") << "<br>"
            << tr("Spaces in a search term may be protected by double quotes.")
@@ -99,7 +93,6 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
                  "Search phrase example, illustrates quotes usage, double quoted"
                  "pair of space delimited words, the whole pair is highlighted")
            << "</p></body></html>" << flush;
-
     m_searchPattern->setToolTip(searchPatternHint);
 
     // Icons
@@ -108,7 +101,6 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     goToDescBtn->setIcon(GuiIconProvider::instance()->getIcon("application-x-mswinurl"));
     pluginsButton->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
     copyURLBtn->setIcon(GuiIconProvider::instance()->getIcon("edit-copy"));
-    tabWidget->setTabsClosable(true);
     connect(tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
 
     m_searchEngine = new SearchEngine;
@@ -122,28 +114,45 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     fillCatCombobox();
     fillPluginComboBox();
 
+    connect(m_searchPattern, SIGNAL(returnPressed()), searchButton, SLOT(click()));
     connect(m_searchPattern, SIGNAL(textEdited(QString)), this, SLOT(searchTextEdited(QString)));
-    connect(selectPlugin, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(selectMultipleBox(const QString &)));
+    connect(selectPlugin, SIGNAL(currentIndexChanged(int)), this, SLOT(selectMultipleBox(int)));
 }
 
 void SearchWidget::fillCatCombobox()
 {
     comboCategory->clear();
     comboCategory->addItem(SearchEngine::categoryFullName("all"), QVariant("all"));
-    foreach (QString cat, m_searchEngine->supportedCategories()) {
-        qDebug("Supported category: %s", qPrintable(cat));
-        comboCategory->addItem(SearchEngine::categoryFullName(cat), QVariant(cat));
+    comboCategory->insertSeparator(1);
+
+    using QStrPair = QPair<QString, QString>;
+    QList<QStrPair> tmpList;
+    foreach (const QString &cat, m_searchEngine->supportedCategories())
+        tmpList << qMakePair(SearchEngine::categoryFullName(cat), cat);
+    std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
+
+    foreach (const QStrPair &p, tmpList) {
+        qDebug("Supported category: %s", qPrintable(p.second));
+        comboCategory->addItem(p.first, QVariant(p.second));
     }
 }
 
 void SearchWidget::fillPluginComboBox()
 {
     selectPlugin->clear();
-    selectPlugin->addItem(tr("All enabled"), QVariant("enabled"));
     selectPlugin->addItem(tr("All plugins"), QVariant("all"));
-    foreach (QString name, m_searchEngine->enabledPlugins())
-        selectPlugin->addItem(name, QVariant(name));
-    selectPlugin->addItem(tr("Multiple..."), QVariant("multi"));
+    selectPlugin->addItem(tr("Only enabled"), QVariant("enabled"));
+    selectPlugin->addItem(tr("Select..."), QVariant("multi"));
+    selectPlugin->insertSeparator(3);
+
+    using QStrPair = QPair<QString, QString>;
+    QList<QStrPair> tmpList;
+    foreach (const QString &name, m_searchEngine->enabledPlugins())
+        tmpList << qMakePair(m_searchEngine->pluginFullName(name), name);
+    std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
+
+    foreach (const QStrPair &p, tmpList)
+        selectPlugin->addItem(p.first, QVariant(p.second));
 }
 
 QString SearchWidget::selectedCategory() const
@@ -190,9 +199,10 @@ void SearchWidget::tab_changed(int t)
     }
 }
 
-void SearchWidget::selectMultipleBox(const QString &text)
+void SearchWidget::selectMultipleBox(int index)
 {
-    if (text == tr("Multiple..."))
+    Q_UNUSED(index);
+    if (selectedPlugin() == "multi")
         on_pluginsButton_clicked();
 }
 

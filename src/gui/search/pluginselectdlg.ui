@@ -16,7 +16,7 @@
   <property name="windowTitle">
    <string>Search plugins</string>
   </property>
-  <layout class="QVBoxLayout">
+  <layout class="QVBoxLayout" name="pluginSelectLayout">
    <item>
     <widget class="QLabel" name="lbl_plugins">
      <property name="font">
@@ -82,16 +82,13 @@
      <property name="text">
       <string>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</string>
      </property>
-     <property name="textFormat">
-      <enum>Qt::AutoText</enum>
-     </property>
      <property name="openExternalLinks">
       <bool>true</bool>
      </property>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout">
+    <layout class="QHBoxLayout" name="layout1">
      <item>
       <widget class="QPushButton" name="installButton">
        <property name="text">
