@@ -30,8 +30,8 @@
  * Contact : hammered999@gmail.com
  */
 
-#include "shutdownconfirm.h"
-#include "ui_confirmshutdowndlg.h"
+#include "shutdownconfirmdlg.h"
+#include "ui_shutdownconfirmdlg.h"
 
 #include <QStyle>
 #include <QIcon>

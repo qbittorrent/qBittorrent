@@ -28,8 +28,8 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef SHUTDOWNCONFIRM_H
-#define SHUTDOWNCONFIRM_H
+#ifndef SHUTDOWNCONFIRMDLG_H
+#define SHUTDOWNCONFIRMDLG_H
 
 #include <QDialog>
 #include <QTimer>

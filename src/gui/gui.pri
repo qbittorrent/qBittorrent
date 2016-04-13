@@ -39,7 +39,7 @@ HEADERS += \
     $$PWD/messageboxraised.h \
     $$PWD/options_imp.h \
     $$PWD/advancedsettings.h \
-    $$PWD/shutdownconfirm.h \
+    $$PWD/shutdownconfirmdlg.h \
     $$PWD/torrentmodel.h \
     $$PWD/torrentcreatordlg.h \
     $$PWD/scanfoldersdelegate.h \
@@ -78,7 +78,7 @@ SOURCES += \
     $$PWD/advancedsettings.cpp \
     $$PWD/trackerlogin.cpp \
     $$PWD/options_imp.cpp \
-    $$PWD/shutdownconfirm.cpp \
+    $$PWD/shutdownconfirmdlg.cpp \
     $$PWD/torrentmodel.cpp \
     $$PWD/torrentcreatordlg.cpp \
     $$PWD/scanfoldersdelegate.cpp \
@@ -103,7 +103,7 @@ FORMS += \
     $$PWD/bandwidth_limit.ui \
     $$PWD/updownratiodlg.ui \
     $$PWD/confirmdeletiondlg.ui \
-    $$PWD/confirmshutdowndlg.ui \
+    $$PWD/shutdownconfirmdlg.ui \
     $$PWD/torrentimportdlg.ui \
     $$PWD/executionlog.ui \
     $$PWD/addnewtorrentdialog.ui \
