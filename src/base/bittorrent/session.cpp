@@ -659,7 +659,7 @@ void Session::setSessionSettings()
     // Include overhead in transfer limits
     sessionSettings.rate_limit_ip_overhead = pref->includeOverheadInLimits();
     // IP address to announce to trackers
-    sessionSettings.announce_ip = Utils::String::toStdString(pref->getAnnounceAddress());
+    sessionSettings.announce_ip = Utils::String::toStdString(pref->getNetworkAddress());
     // Super seeding
     sessionSettings.strict_super_seeding = pref->isSuperSeedingEnabled();
     // * Max Half-open connections
@@ -1734,17 +1734,12 @@ const QStringList Session::getListeningIPs()
     Logger* const logger = Logger::instance();
     QStringList IPs;
 
-    //Take the override addresss
-    const QString networkAddr = pref->getNetworkAddress();
-    if ( !networkAddr.isEmpty()) {
-        IPs.append( networkAddr);
-        return IPs;
-    }
-
     const QString ifaceName = pref->getNetworkInterface();
+    const QString ifaceAddr = pref->getNetworkInterfaceAddress();
     const bool listenIPv6 = pref->getListenIPv6();
 
-    if (ifaceName.isEmpty()) {
+    //No interface name or address defined just use an empty list
+    if (ifaceName.isEmpty() && ifaceAddr.isEmpty()) {
         IPs.append(QString());
         return IPs;
     }
@@ -1771,6 +1766,13 @@ const QStringList Session::getListeningIPs()
         if ((!listenIPv6 && (protocol == QAbstractSocket::IPv6Protocol))
             || (listenIPv6 && (protocol == QAbstractSocket::IPv4Protocol)))
             continue;
+
+        //If an iface address has been defined only allow ip's that match it to go through
+        if (!ifaceAddr.isEmpty()) {
+            if (ipString != ifaceAddr) {
+                continue;
+            }
+        }
         IPs.append(ipString);
     }
 
