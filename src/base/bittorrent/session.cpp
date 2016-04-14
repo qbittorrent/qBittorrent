@@ -1331,10 +1331,7 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
     p.max_uploads = pref->getMaxUploadsPerTorrent();
 
     QString savePath;
-    // Set actual save path (e.g. temporary folder)
-    if (isTempPathEnabled() && !addData.disableTempPath && !addData.hasSeedStatus)
-        savePath = m_tempPath;
-    else if (addData.savePath.isEmpty()) // using Advanced mode
+    if (addData.savePath.isEmpty()) // using Advanced mode
         savePath = categorySavePath(addData.category);
     else  // using Simple mode
         savePath = addData.savePath;
