@@ -215,15 +215,9 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
 
     updateStatus();
     m_hash = InfoHash(m_nativeStatus.info_hash);
-    adjustActualSavePath();
 
-    if (!data.resumed) {
+    if (!data.resumed)
         setSequentialDownload(data.sequential);
-        if (hasMetadata()) {
-            if (m_session->isAppendExtensionEnabled())
-                appendExtensionsToIncompleteFiles();
-        }
-    }
 }
 
 TorrentHandle::~TorrentHandle() {}
@@ -1475,6 +1469,7 @@ void TorrentHandle::handleTorrentCheckedAlert(libtorrent::torrent_checked_alert 
         m_hasSeedStatus = true;
 
     adjustActualSavePath();
+    appendExtensionsToIncompleteFiles();
 
     if (m_pauseAfterRecheck) {
         m_pauseAfterRecheck = false;
@@ -1727,12 +1722,20 @@ void TorrentHandle::appendExtensionsToIncompleteFiles()
 {
     QVector<qreal> fp = filesProgress();
     for (int i = 0; i < filesCount(); ++i) {
+        QString name = filePath(i);
         if ((fileSize(i) > 0) && (fp[i] < 1)) {
-            const QString name = filePath(i);
             if (!name.endsWith(QB_EXT)) {
                 const QString newName = name + QB_EXT;
-                qDebug("Renaming %s to %s", qPrintable(name), qPrintable(newName));
+                qDebug() << "Renaming" << name << "to" << newName;
                 renameFile(i, newName);
+            }
+        }
+        else {
+            if (name.endsWith(QB_EXT)) {
+                const QString oldName = name;
+                name.chop(QString(QB_EXT).size());
+                qDebug() << "Renaming" << oldName << "to" << name;
+                renameFile(i, name);
             }
         }
     }
@@ -1770,7 +1773,7 @@ void TorrentHandle::adjustActualSavePath_impl()
     else {
         // Moving all downloading torrents to temporary save path
         path = m_session->tempPath();
-        qDebug("Moving torrent to its temp save path: %s", qPrintable(path));
+        qDebug() << "Moving torrent to its temp save path:" << path;
     }
 
     moveStorage(Utils::Fs::toNativePath(path));
