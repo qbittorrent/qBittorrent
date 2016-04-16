@@ -285,49 +285,43 @@ void Application::allTorrentsFinished()
 {
 #ifndef DISABLE_GUI
     Preferences *const pref = Preferences::instance();
+    bool isExit = pref->shutdownqBTWhenDownloadsComplete();
+    bool isShutdown = pref->shutdownWhenDownloadsComplete();
+    bool isSuspend = pref->suspendWhenDownloadsComplete();
+    bool isHibernate = pref->hibernateWhenDownloadsComplete();
 
-    bool will_shutdown = (pref->shutdownWhenDownloadsComplete()
-                          || pref->shutdownqBTWhenDownloadsComplete()
-                          || pref->suspendWhenDownloadsComplete()
-                          || pref->hibernateWhenDownloadsComplete());
+    bool haveAction = isExit || isShutdown || isSuspend || isHibernate;
+    if (!haveAction) return;
 
-    // Auto-Shutdown
-    if (will_shutdown) {
-        bool suspend = pref->suspendWhenDownloadsComplete();
-        bool hibernate = pref->hibernateWhenDownloadsComplete();
-        bool shutdown = pref->shutdownWhenDownloadsComplete();
+    ShutdownDialogAction action = ShutdownDialogAction::Exit;
+    if (isSuspend)
+        action = ShutdownDialogAction::Suspend;
+    else if (isHibernate)
+        action = ShutdownDialogAction::Hibernate;
+    else if (isShutdown)
+        action = ShutdownDialogAction::Shutdown;
 
-        // Confirm shutdown
-        ShutdownDialogAction action = ShutdownDialogAction::Exit;
-        if (suspend)
-            action = ShutdownDialogAction::Suspend;
-        else if (hibernate)
-            action = ShutdownDialogAction::Hibernate;
-        else if (shutdown)
-            action = ShutdownDialogAction::Shutdown;
-
-        if ((action == ShutdownDialogAction::Exit) && (!pref->dontConfirmAutoExit())) {
-            if (!ShutdownConfirmDlg::askForConfirmation(action))
-                return;
-        }
-        else { //exit and shutdown
-            if (!ShutdownConfirmDlg::askForConfirmation(action))
-                return;
-        }
-
-        // Actually shut down
-        if (suspend || hibernate || shutdown) {
-            qDebug("Preparing for auto-shutdown because all downloads are complete!");
-            // Disabling it for next time
-            pref->setShutdownWhenDownloadsComplete(false);
-            pref->setSuspendWhenDownloadsComplete(false);
-            pref->setHibernateWhenDownloadsComplete(false);
-            // Make sure preferences are synced before exiting
-            m_shutdownAct = action;
-        }
-        qDebug("Exiting the application");
-        exit();
+    // ask confirm
+    if ((action == ShutdownDialogAction::Exit) && (pref->dontConfirmAutoExit())) {
+        // do nothing & skip confirm
     }
+    else {
+        if (!ShutdownConfirmDlg::askForConfirmation(action)) return;
+    }
+
+    // Actually shut down
+    if (action != ShutdownDialogAction::Exit) {
+        qDebug("Preparing for auto-shutdown because all downloads are complete!");
+        // Disabling it for next time
+        pref->setShutdownWhenDownloadsComplete(false);
+        pref->setSuspendWhenDownloadsComplete(false);
+        pref->setHibernateWhenDownloadsComplete(false);
+        // Make sure preferences are synced before exiting
+        m_shutdownAct = action;
+    }
+
+    qDebug("Exiting the application");
+    exit();
 #endif // DISABLE_GUI
 }
 
