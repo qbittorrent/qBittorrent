@@ -1,3 +1,4 @@
+project(qbt_executable)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 set(QBT_APP_HEADERS
@@ -86,13 +87,10 @@ list(APPEND QBT_APP_HEADERS upgrade.h)
 list(APPEND QBT_TARGET_LIBRARIES qbt_base)
 
 if (GUI)
-    set(QBT_TARGET_NAME qbittorrent)
     list(APPEND QBT_TARGET_LIBRARIES qbt_searchengine qbt_gui)
     include_directories(../gui
         ${CMAKE_CURRENT_BINARY_DIR}/../gui
     )
-else (GUI)
-    set(QBT_TARGET_NAME qbittorrent-nox)
 endif (GUI)
 
 if (WEBUI)
@@ -152,6 +150,7 @@ add_executable(${QBT_TARGET_NAME} ${QBT_APP_HEADERS} ${QBT_APP_SOURCES} ${QBT_QM
 set_target_properties(${QBT_TARGET_NAME}
     PROPERTIES
         AUTOUIC True
+        AUTORCC True
         MACOSX_BUNDLE True
 )
 
