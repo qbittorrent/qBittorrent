@@ -98,9 +98,8 @@ endif (GUI)
 
 if (SYSTEM_QTSINGLEAPPLICATION)
     find_package(QtSingleApplication REQUIRED)
-    include_directories(${QTSINGLEAPPLICATION_INCLUDE_DIR})
 else (SYSTEM_QTSINGLEAPPLICATION)
-    include_directories(app/qtsingleapplication)
+    add_subdirectory(app/qtsingleapplication)
 endif (SYSTEM_QTSINGLEAPPLICATION)
 
 add_subdirectory(app)
