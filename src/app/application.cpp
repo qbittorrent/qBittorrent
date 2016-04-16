@@ -96,9 +96,7 @@ namespace
 Application::Application(const QString &id, int &argc, char **argv)
     : BaseApplication(id, argc, argv)
     , m_running(false)
-#ifndef DISABLE_GUI
     , m_shutdownAct(ShutdownDialogAction::Exit)
-#endif
 {
     Logger::initInstance();
     SettingsStorage::initInstance();
@@ -283,7 +281,6 @@ void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
 
 void Application::allTorrentsFinished()
 {
-#ifndef DISABLE_GUI
     Preferences *const pref = Preferences::instance();
     bool isExit = pref->shutdownqBTWhenDownloadsComplete();
     bool isShutdown = pref->shutdownWhenDownloadsComplete();
@@ -301,6 +298,7 @@ void Application::allTorrentsFinished()
     else if (isShutdown)
         action = ShutdownDialogAction::Shutdown;
 
+#ifndef DISABLE_GUI
     // ask confirm
     if ((action == ShutdownDialogAction::Exit) && (pref->dontConfirmAutoExit())) {
         // do nothing & skip confirm
@@ -308,6 +306,7 @@ void Application::allTorrentsFinished()
     else {
         if (!ShutdownConfirmDlg::askForConfirmation(action)) return;
     }
+#endif // DISABLE_GUI
 
     // Actually shut down
     if (action != ShutdownDialogAction::Exit) {
@@ -322,7 +321,6 @@ void Application::allTorrentsFinished()
 
     qDebug("Exiting the application");
     exit();
-#endif // DISABLE_GUI
 }
 
 bool Application::sendParams(const QStringList &params)
@@ -589,6 +587,7 @@ void Application::cleanup()
     delete m_fileLogger;
     Logger::freeInstance();
     IconProvider::freeInstance();
+
 #ifndef DISABLE_GUI
 #ifdef Q_OS_WIN
     typedef BOOL (WINAPI *PSHUTDOWNBRDESTROY)(HWND);
@@ -598,9 +597,10 @@ void Application::cleanup()
         shutdownBRDestroy((HWND)m_window->effectiveWinId());
 #endif // Q_OS_WIN
     delete m_window;
+#endif // DISABLE_GUI
+
     if (m_shutdownAct != ShutdownDialogAction::Exit) {
         qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
         Utils::Misc::shutdownComputer(m_shutdownAct);
     }
-#endif
 }
