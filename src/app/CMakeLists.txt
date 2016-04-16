@@ -158,14 +158,7 @@ if (GUI AND WIN32)
     set_target_properties(${QBT_TARGET_NAME} PROPERTIES WIN32_EXECUTABLE True)
 endif (GUI AND WIN32)
 
-target_link_libraries(${QBT_TARGET_NAME} ${QBT_TARGET_LIBRARIES})
-
-if (SYSTEM_QTSINGLEAPPLICATION)
-    target_link_libraries(${QBT_TARGET_NAME} ${QTSINGLEAPPLICATION_LIBRARIES})
-else (SYSTEM_QTSINGLEAPPLICATION)
-    add_subdirectory(qtsingleapplication)
-    target_link_libraries(${QBT_TARGET_NAME} qtsingleapplication)
-endif (SYSTEM_QTSINGLEAPPLICATION)
+target_link_libraries(${QBT_TARGET_NAME} ${QBT_TARGET_LIBRARIES} QtSingleApplication::QtSingleApplication)
 
 if (APPLE)
     set(qbt_BUNDLE_NAME "${CMAKE_PROJECT_NAME}")

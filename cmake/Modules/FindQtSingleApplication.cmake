@@ -79,3 +79,15 @@ ELSE (QTSINGLEAPPLICATION_FOUND)
 ENDIF (QTSINGLEAPPLICATION_FOUND)
 
 MARK_AS_ADVANCED(QTSINGLEAPPLICATION_INCLUDE_DIR QTSINGLEAPPLICATION_LIBRARY)
+
+if(NOT TARGET QtSingleApplication::QtSingleApplication)
+    add_library(QtSingleApplication::QtSingleApplication UNKNOWN IMPORTED)
+    set_target_properties(QtSingleApplication::QtSingleApplication PROPERTIES
+        INTERFACE_INCLUDE_DIRECTORIES "${QTSINGLEAPPLICATION_INCLUDE_DIR}"
+    )
+    if(EXISTS "${QTSINGLEAPPLICATION_LIBRARY}")
+    set_target_properties(QtSingleApplication::QtSingleApplication PROPERTIES
+        IMPORTED_LINK_INTERFACE_LANGUAGES "CXX"
+        IMPORTED_LOCATION "${QTSINGLEAPPLICATION_LIBRARY}")
+    endif()
+endif(NOT TARGET QtSingleApplication::QtSingleApplication)

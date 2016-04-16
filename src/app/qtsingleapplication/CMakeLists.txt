@@ -1,3 +1,5 @@
+project(qtsingleapplication)
+
 set(QBT_QTSINGLEAPPLICATION_HEADERS
 qtlocalpeer.h
 )
@@ -15,6 +17,7 @@ else (GUI)
 endif (GUI)
 
 add_library(qtsingleapplication ${QBT_QTSINGLEAPPLICATION_HEADERS} ${QBT_QTSINGLEAPPLICATION_SOURCES})
+target_include_directories(qtsingleapplication INTERFACE "${qtsingleapplication_SOURCE_DIR}")
 
 if (QT4_FOUND)
     target_link_libraries(qtsingleapplication Qt4::QtNetwork)
@@ -30,3 +33,4 @@ if (GUI)
     endif(QT4_FOUND)
 endif (GUI)
 
+add_library(QtSingleApplication::QtSingleApplication ALIAS qtsingleapplication)
