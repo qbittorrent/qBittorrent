@@ -91,7 +91,6 @@ static struct { const char *source; const char *comment; } units[] = {
     QT_TRANSLATE_NOOP3("misc", "EiB", "exbibytes (1024 pebibytes)")
 };
 
-#ifndef DISABLE_GUI
 void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
@@ -216,7 +215,6 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
                           (PTOKEN_PRIVILEGES) NULL, 0);
 #endif
 }
-#endif // DISABLE_GUI
 
 #ifndef DISABLE_GUI
 // Get screen center

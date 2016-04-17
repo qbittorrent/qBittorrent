@@ -111,10 +111,10 @@ private slots:
 
 private:
     bool m_running;
+    ShutdownDialogAction m_shutdownAct;
 
 #ifndef DISABLE_GUI
     QPointer<MainWindow> m_window;
-    ShutdownDialogAction m_shutdownAct;
 #endif
 
 #ifndef DISABLE_WEBUI

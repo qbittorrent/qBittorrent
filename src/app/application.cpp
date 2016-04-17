@@ -96,9 +96,7 @@ namespace
 Application::Application(const QString &id, int &argc, char **argv)
     : BaseApplication(id, argc, argv)
     , m_running(false)
-#ifndef DISABLE_GUI
     , m_shutdownAct(ShutdownDialogAction::Exit)
-#endif
 {
     Logger::initInstance();
     SettingsStorage::initInstance();
@@ -283,52 +281,46 @@ void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
 
 void Application::allTorrentsFinished()
 {
-#ifndef DISABLE_GUI
     Preferences *const pref = Preferences::instance();
+    bool isExit = pref->shutdownqBTWhenDownloadsComplete();
+    bool isShutdown = pref->shutdownWhenDownloadsComplete();
+    bool isSuspend = pref->suspendWhenDownloadsComplete();
+    bool isHibernate = pref->hibernateWhenDownloadsComplete();
 
-    bool will_shutdown = (pref->shutdownWhenDownloadsComplete()
-                          || pref->shutdownqBTWhenDownloadsComplete()
-                          || pref->suspendWhenDownloadsComplete()
-                          || pref->hibernateWhenDownloadsComplete());
+    bool haveAction = isExit || isShutdown || isSuspend || isHibernate;
+    if (!haveAction) return;
 
-    // Auto-Shutdown
-    if (will_shutdown) {
-        bool suspend = pref->suspendWhenDownloadsComplete();
-        bool hibernate = pref->hibernateWhenDownloadsComplete();
-        bool shutdown = pref->shutdownWhenDownloadsComplete();
+    ShutdownDialogAction action = ShutdownDialogAction::Exit;
+    if (isSuspend)
+        action = ShutdownDialogAction::Suspend;
+    else if (isHibernate)
+        action = ShutdownDialogAction::Hibernate;
+    else if (isShutdown)
+        action = ShutdownDialogAction::Shutdown;
 
-        // Confirm shutdown
-        ShutdownDialogAction action = ShutdownDialogAction::Exit;
-        if (suspend)
-            action = ShutdownDialogAction::Suspend;
-        else if (hibernate)
-            action = ShutdownDialogAction::Hibernate;
-        else if (shutdown)
-            action = ShutdownDialogAction::Shutdown;
-
-        if ((action == ShutdownDialogAction::Exit) && (!pref->dontConfirmAutoExit())) {
-            if (!ShutdownConfirmDlg::askForConfirmation(action))
-                return;
-        }
-        else { //exit and shutdown
-            if (!ShutdownConfirmDlg::askForConfirmation(action))
-                return;
-        }
-
-        // Actually shut down
-        if (suspend || hibernate || shutdown) {
-            qDebug("Preparing for auto-shutdown because all downloads are complete!");
-            // Disabling it for next time
-            pref->setShutdownWhenDownloadsComplete(false);
-            pref->setSuspendWhenDownloadsComplete(false);
-            pref->setHibernateWhenDownloadsComplete(false);
-            // Make sure preferences are synced before exiting
-            m_shutdownAct = action;
-        }
-        qDebug("Exiting the application");
-        exit();
+#ifndef DISABLE_GUI
+    // ask confirm
+    if ((action == ShutdownDialogAction::Exit) && (pref->dontConfirmAutoExit())) {
+        // do nothing & skip confirm
+    }
+    else {
+        if (!ShutdownConfirmDlg::askForConfirmation(action)) return;
     }
 #endif // DISABLE_GUI
+
+    // Actually shut down
+    if (action != ShutdownDialogAction::Exit) {
+        qDebug("Preparing for auto-shutdown because all downloads are complete!");
+        // Disabling it for next time
+        pref->setShutdownWhenDownloadsComplete(false);
+        pref->setSuspendWhenDownloadsComplete(false);
+        pref->setHibernateWhenDownloadsComplete(false);
+        // Make sure preferences are synced before exiting
+        m_shutdownAct = action;
+    }
+
+    qDebug("Exiting the application");
+    exit();
 }
 
 bool Application::sendParams(const QStringList &params)
@@ -371,7 +363,7 @@ int Application::exec(const QStringList &params)
 
     BitTorrent::Session::initInstance();
     connect(BitTorrent::Session::instance(), SIGNAL(torrentFinished(BitTorrent::TorrentHandle *const)), SLOT(torrentFinished(BitTorrent::TorrentHandle *const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(allTorrentsFinished()), SLOT(allTorrentsFinished()));
+    connect(BitTorrent::Session::instance(), SIGNAL(allTorrentsFinished()), SLOT(allTorrentsFinished()), Qt::QueuedConnection);
 
 #ifndef DISABLE_COUNTRIES_RESOLUTION
     Net::GeoIPManager::initInstance();
@@ -595,6 +587,7 @@ void Application::cleanup()
     delete m_fileLogger;
     Logger::freeInstance();
     IconProvider::freeInstance();
+
 #ifndef DISABLE_GUI
 #ifdef Q_OS_WIN
     typedef BOOL (WINAPI *PSHUTDOWNBRDESTROY)(HWND);
@@ -604,9 +597,10 @@ void Application::cleanup()
         shutdownBRDestroy((HWND)m_window->effectiveWinId());
 #endif // Q_OS_WIN
     delete m_window;
+#endif // DISABLE_GUI
+
     if (m_shutdownAct != ShutdownDialogAction::Exit) {
         qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
         Utils::Misc::shutdownComputer(m_shutdownAct);
     }
-#endif
 }
