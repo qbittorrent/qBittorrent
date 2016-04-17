@@ -60,7 +60,7 @@ private:
     QLabel labelQbtLink, labelLibtorrentLink;
     QSpinBox spin_cache, spin_save_resume_data_interval, outgoing_ports_min, outgoing_ports_max, spin_list_refresh, spin_maxhalfopen, spin_tracker_port, spin_cache_ttl;
     QCheckBox cb_os_cache, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
-              cb_super_seeding, cb_program_notifications, cb_tracker_status,
+              cb_super_seeding, cb_program_notifications, cb_torrent_added_notifications, cb_tracker_status,
               cb_confirm_torrent_recheck, cb_enable_tracker_ext, cb_listen_ipv6, cb_announce_all_trackers;
     QComboBox combo_iface;
     QLineEdit txt_network_address;
