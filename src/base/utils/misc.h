@@ -68,7 +68,7 @@ namespace Utils
         bool isUrl(const QString &s);
 
 #ifndef DISABLE_GUI
-        void shutdownComputer(ShutdownAction action);
+        void shutdownComputer(const ShutdownDialogAction &action);
         // Get screen center
         QPoint screenCenter(QWidget *win);
         QSize smallIconSize();

@@ -28,34 +28,30 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef SHUTDOWNCONFIRM_H
-#define SHUTDOWNCONFIRM_H
+#ifndef SHUTDOWNCONFIRMDLG_H
+#define SHUTDOWNCONFIRMDLG_H
 
 #include <QDialog>
 #include <QTimer>
-#include "base/utils/misc.h"
-
-class QLabel;
-class QCheckBox;
+#include "base/types.h"
 
 namespace Ui
 {
     class confirmShutdownDlg;
 }
 
-class ShutdownConfirmDlg : public QDialog
+class ShutdownConfirmDlg: public QDialog
 {
     Q_OBJECT
 
 public:
-    ShutdownConfirmDlg(const ShutdownAction &action);
+    ShutdownConfirmDlg(const ShutdownDialogAction &action);
     ~ShutdownConfirmDlg();
-    bool shutdown() const;
 
-    static bool askForConfirmation(const ShutdownAction &action);
+    static bool askForConfirmation(const ShutdownDialogAction &action);
 
 protected:
-    void showEvent(QShowEvent *event);
+    void showEvent(QShowEvent *event) override;
 
 private slots:
     void updateSeconds();
@@ -63,13 +59,15 @@ private slots:
 
 private:
     // Methods
+    void initText();
     void updateText();
 
     // Vars
     Ui::confirmShutdownDlg *ui;
     QTimer m_timer;
     int m_timeout;
-    ShutdownAction m_action;
+    ShutdownDialogAction m_action;
+    QString m_msg;
 };
 
 #endif // SHUTDOWNCONFIRM_H

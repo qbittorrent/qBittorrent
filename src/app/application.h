@@ -114,7 +114,7 @@ private:
 
 #ifndef DISABLE_GUI
     QPointer<MainWindow> m_window;
-    ShutdownAction m_shutdownAct;
+    ShutdownDialogAction m_shutdownAct;
 #endif
 
 #ifndef DISABLE_WEBUI
