@@ -88,6 +88,12 @@ public:
     int executionLogMsgTypes() const;
     void setExecutionLogMsgTypes(const int value);
 
+    // Notifications properties
+    bool isNotificationsEnabled() const;
+    void setNotificationsEnabled(bool value);
+    bool isAddedTorrentNotificationsEnabled() const;
+    void setAddedTorrentNotificationsEnabled(bool value);
+
     void activate();
     void cleanup();
 
@@ -120,6 +126,7 @@ private slots:
     void loadPreferences(bool configureSession = true);
     void addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle*, QString> &tracker);
     void addTorrentFailed(const QString &error) const;
+    void addedTorrent(BitTorrent::TorrentHandle *const torrent) const;
     void finishedTorrent(BitTorrent::TorrentHandle *const torrent) const;
     void askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHandle *const torrent);
     void optionsSaved();

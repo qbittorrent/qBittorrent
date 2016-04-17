@@ -105,16 +105,6 @@ void Preferences::setLocale(const QString &locale)
     setValue("Preferences/General/Locale", locale);
 }
 
-bool Preferences::useProgramNotification() const
-{
-    return value("Preferences/General/ProgramNotification", true).toBool();
-}
-
-void Preferences::useProgramNotification(bool use)
-{
-    setValue("Preferences/General/ProgramNotification", use);
-}
-
 bool Preferences::deleteTorrentFilesAsDefault() const
 {
     return value("Preferences/General/DeleteTorrentsFilesAsDefault", false).toBool();

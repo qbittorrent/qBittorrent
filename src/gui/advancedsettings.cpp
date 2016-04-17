@@ -31,7 +31,9 @@
 #include <QHeaderView>
 #include <QHostAddress>
 #include <QNetworkInterface>
+#include "app/application.h"
 #include "base/preferences.h"
+#include "gui/mainwindow.h"
 
 enum AdvSettingsCols
 {
@@ -58,6 +60,7 @@ enum AdvSettingsRows
     RESOLVE_HOSTS,
     RESOLVE_COUNTRIES,
     PROGRAM_NOTIFICATIONS,
+    TORRENT_ADDED_NOTIFICATIONS,
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     USE_ICON_THEME,
 #endif
@@ -150,7 +153,9 @@ void AdvancedSettings::saveAdvancedSettings()
     else
         pref->setNetworkAddress(addr.toString());
     // Program notification
-    pref->useProgramNotification(cb_program_notifications.isChecked());
+    MainWindow * const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
+    mainWindow->setNotificationsEnabled(cb_program_notifications.isChecked());
+    mainWindow->setAddedTorrentNotificationsEnabled(cb_added_torrent_notifications.isChecked());
     // Tracker
     pref->setTrackerEnabled(cb_tracker_status.isChecked());
     pref->setTrackerPort(spin_tracker_port.value());
@@ -278,8 +283,12 @@ void AdvancedSettings::loadAdvancedSettings()
     txt_network_address.setText(pref->getNetworkAddress());
     addRow(NETWORK_ADDRESS, tr("IP Address to report to trackers (requires restart)"), &txt_network_address);
     // Program notifications
-    cb_program_notifications.setChecked(pref->useProgramNotification());
-    addRow(PROGRAM_NOTIFICATIONS, tr("Display program on-screen notifications"), &cb_program_notifications);
+    const MainWindow * const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
+    cb_program_notifications.setChecked(mainWindow->isNotificationsEnabled());
+    addRow(PROGRAM_NOTIFICATIONS, tr("Display notifications"), &cb_program_notifications);
+    // Torrent added notifications
+    cb_added_torrent_notifications.setChecked(mainWindow->isAddedTorrentNotificationsEnabled());
+    addRow(TORRENT_ADDED_NOTIFICATIONS, tr("Display notifications for added torrents"), &cb_added_torrent_notifications);
     // Tracker State
     cb_tracker_status.setChecked(pref->isTrackerEnabled());
     addRow(TRACKER_STATUS, tr("Enable embedded tracker"), &cb_tracker_status);

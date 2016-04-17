@@ -130,6 +130,13 @@ Application::Application(const QString &id, int &argc, char **argv)
     Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(VERSION));
 }
 
+#ifndef DISABLE_GUI
+QPointer<MainWindow> Application::mainWindow()
+{
+    return m_window;
+}
+#endif
+
 bool Application::isFileLoggerEnabled() const
 {
     return settings()->loadValue(KEY_FILELOGGER_ENABLED, true).toBool();

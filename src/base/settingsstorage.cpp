@@ -81,8 +81,7 @@ namespace
             { "AddNewTorrentDialog/Expanded", "AddNewTorrentDialog/expanded" },
             { "AddNewTorrentDialog/SavePathHistory", "TorrentAdditionDlg/save_path_history" },
             { "AddNewTorrentDialog/Enabled", "Preferences/Downloads/NewAdditionDialog" },
-            { "AddNewTorrentDialog/TopLevel", "Preferences/Downloads/NewAdditionDialogFront" },
-            { "ExecutionLog/Enabled", "Preferences/ExecutionLog/enabled" }
+            { "AddNewTorrentDialog/TopLevel", "Preferences/Downloads/NewAdditionDialogFront" }
 
         };
 
