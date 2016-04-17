@@ -3,6 +3,7 @@ set(CMAKE_CXX_STANDARD "11")
 add_definitions(-DBOOST_NO_CXX11_RVALUE_REFERENCES)
 
 include(MacroLinkQtComponents)
+include(QbtTargetSources)
 
 find_package(LibtorrentRasterbar REQUIRED)
 include_directories(SYSTEM ${LibtorrentRasterbar_INCLUDE_DIRS})
@@ -88,15 +89,21 @@ set(QBT_USES_QT5 ${QT5})
 
 configure_file(config.h.cmakein ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
+if (GUI)
+    set(QBT_TARGET_NAME qbittorrent)
+else (GUI)
+    set(QBT_TARGET_NAME qbittorrent-nox)
+endif (GUI)
 
-add_subdirectory(base)
 
 if (SYSTEM_QTSINGLEAPPLICATION)
     find_package(QtSingleApplication REQUIRED)
-    include_directories(${QTSINGLEAPPLICATION_INCLUDE_DIR})
 else (SYSTEM_QTSINGLEAPPLICATION)
-    include_directories(app/qtsingleapplication)
+    add_subdirectory(app/qtsingleapplication)
 endif (SYSTEM_QTSINGLEAPPLICATION)
+
+add_subdirectory(app)
+add_subdirectory(base)
 
 if (GUI)
     add_subdirectory(gui)
@@ -106,4 +113,3 @@ if (WEBUI)
     add_subdirectory(webui)
 endif (WEBUI)
 
-add_subdirectory(app)

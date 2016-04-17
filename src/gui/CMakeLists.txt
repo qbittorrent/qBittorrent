@@ -8,6 +8,7 @@ add_subdirectory(properties)
 add_subdirectory(powermanagement)
 add_subdirectory(rss)
 add_subdirectory(search)
+
 if (UNIX AND NOT APPLE AND DBUS)
    add_subdirectory(qtnotify)
    include_directories(qtnotify)
@@ -127,7 +128,10 @@ options.ui
 torrentcreatordlg.ui
 )
 
-set(QBT_GUI_RESOURCES about.qrc)
+qbt_target_sources(about.qrc)
 
-add_library(qbt_gui STATIC ${QBT_GUI_HEADERS} ${QBT_GUI_SOURCES} ${QBT_GUI_RESOURCES})
-target_link_libraries(qbt_gui qbt_lineedit qbt_powermanagement qbt_rss qbt_properties qbt_searchengine ${QBT_GUI_OPTIONAL_LINK_LIBRARIES} qbt_base)
+add_library(qbt_gui STATIC ${QBT_GUI_HEADERS} ${QBT_GUI_SOURCES})
+target_link_libraries(qbt_gui qbt_lineedit qbt_powermanagement qbt_rss qbt_properties qbt_searchengine
+    ${QBT_GUI_OPTIONAL_LINK_LIBRARIES} qbt_base
+    QtSingleApplication::QtSingleApplication
+)
