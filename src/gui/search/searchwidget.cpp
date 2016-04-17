@@ -320,7 +320,7 @@ void SearchWidget::searchStarted()
 // Error | Stopped by user | Finished normally
 void SearchWidget::searchFinished(bool cancelled)
 {
-    if (Preferences::instance()->useProgramNotification() && (m_mainWindow->currentTabWidget() != this))
+    if (m_mainWindow->isNotificationsEnabled() && (m_mainWindow->currentTabWidget() != this))
         m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
 
     if (m_activeSearchTab.isNull()) return; // The active tab was closed
@@ -338,7 +338,7 @@ void SearchWidget::searchFinished(bool cancelled)
 
 void SearchWidget::searchFailed()
 {
-    if (Preferences::instance()->useProgramNotification() && (m_mainWindow->currentTabWidget() != this))
+    if (m_mainWindow->isNotificationsEnabled() && (m_mainWindow->currentTabWidget() != this))
         m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has failed"));
 
     if (m_activeSearchTab.isNull()) return; // The active tab was closed
