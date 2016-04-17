@@ -363,7 +363,7 @@ int Application::exec(const QStringList &params)
 
     BitTorrent::Session::initInstance();
     connect(BitTorrent::Session::instance(), SIGNAL(torrentFinished(BitTorrent::TorrentHandle *const)), SLOT(torrentFinished(BitTorrent::TorrentHandle *const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(allTorrentsFinished()), SLOT(allTorrentsFinished()));
+    connect(BitTorrent::Session::instance(), SIGNAL(allTorrentsFinished()), SLOT(allTorrentsFinished()), Qt::QueuedConnection);
 
 #ifndef DISABLE_COUNTRIES_RESOLUTION
     Net::GeoIPManager::initInstance();
