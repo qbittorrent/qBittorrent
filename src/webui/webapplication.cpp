@@ -115,6 +115,8 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(command, bottomPrio);
     ADD_ACTION(command, recheck);
     ADD_ACTION(command, setCategory);
+    ADD_ACTION(command, addCategory);
+    ADD_ACTION(command, removeCategories);
     ADD_ACTION(command, getSavePath);
     ADD_ACTION(version, api);
     ADD_ACTION(version, api_min);
@@ -726,6 +728,31 @@ void WebApplication::action_command_setCategory()
             }
         }
     }
+}
+
+void WebApplication::action_command_addCategory()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("category");
+
+    QString category = request().posts["category"].trimmed();
+
+    if (!BitTorrent::Session::isValidCategoryName(category) && !category.isEmpty()) {
+        status(400, tr("Incorrect category name"));
+        return;
+    }
+
+    BitTorrent::Session::instance()->addCategory(category);
+}
+
+void WebApplication::action_command_removeCategories()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("categories");
+
+    QStringList categories = request().posts["categories"].split('\n');
+    foreach (const QString &category, categories)
+        BitTorrent::Session::instance()->removeCategory(category);
 }
 
 void WebApplication::action_command_getSavePath()

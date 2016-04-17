@@ -31,17 +31,32 @@
                     return false;
                 }
                 var hashesList = new URI().getData('hashes');
-                new Request({
-                    url: 'command/setCategory',
-                    method: 'post',
-                    data: {
-                        hashes: hashesList,
-                        category: categoryName
-                    },
-                    onComplete: function() {
-                        window.parent.closeWindows();
-                    }
-                }).send();
+                if (!hashesList) {
+                    new Request({
+                        url: 'command/addCategory',
+                        method: 'post',
+                        data: {
+                            category: categoryName
+                        },
+                        onComplete: function () {
+                            window.parent.closeWindows();
+                        }
+                    }).send();
+                }
+                else
+                {
+                    new Request({
+                        url: 'command/setCategory',
+                        method: 'post',
+                        data: {
+                            hashes: hashesList,
+                            category: categoryName
+                        },
+                        onComplete: function () {
+                            window.parent.closeWindows();
+                        }
+                    }).send();
+                }
             });
         });
     </script>

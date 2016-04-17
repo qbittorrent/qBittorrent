@@ -304,7 +304,7 @@ initializeWindows = function() {
         }
     };
 
-    newCategoryFN = function () {
+    torrentNewCategoryFN = function () {
         var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new MochaUI.Window({
@@ -323,7 +323,7 @@ initializeWindows = function() {
         }
     };
 
-    updateCategoryFN = function (categoryHash) {
+    torrentSetCategoryFN = function (categoryHash) {
         var categoryName = '';
         if (categoryHash != 0)
             var categoryName = category_list[categoryHash].name;
@@ -337,6 +337,102 @@ initializeWindows = function() {
                     category: categoryName
                 }
             }).send();
+        }
+    };
+
+    createCategoryFN = function () {
+        new MochaUI.Window({
+            id: 'newCategoryPage',
+            title: "QBT_TR(New Category)QBT_TR",
+            loadMethod: 'iframe',
+            contentURL: 'newcategory.html',
+            scrollbars: false,
+            resizable: false,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 250,
+            height: 100
+        });
+        updateMainData();
+    };
+
+    removeCategoryFN = function (categoryHash) {
+        var categoryName = category_list[categoryHash].name;
+        new Request({
+            url: 'command/removeCategories',
+            method: 'post',
+            data: {
+                categories: categoryName
+            }
+        }).send();
+        setCategoryFilter(CATEGORIES_ALL);
+    };
+
+    deleteUnusedCategoriesFN = function () {
+        var categories = [];
+        for (var hash in category_list) {
+            if (torrentsTable.getFilteredTorrentsNumber('all', hash) == 0)
+                categories.push(category_list[hash].name);
+        }
+        new Request({
+            url: 'command/removeCategories',
+            method: 'post',
+            data: {
+                categories: categories.join('\n')
+            }
+        }).send();
+        setCategoryFilter(CATEGORIES_ALL);
+    };
+
+    startTorrentsByCategoryFN = function (categoryHash) {
+        var h = torrentsTable.getFilteredTorrentsHashes('all', categoryHash);
+        if (h.length) {
+            h.each(function (hash, index) {
+                new Request({
+                    url: 'command/resume',
+                    method: 'post',
+                    data: {
+                        hash: hash
+                    }
+                }).send();
+            });
+            updateMainData();
+        }
+    };
+
+    pauseTorrentsByCategoryFN = function (categoryHash) {
+        var h = torrentsTable.getFilteredTorrentsHashes('all', categoryHash);
+        if (h.length) {
+            h.each(function (hash, index) {
+                new Request({
+                    url: 'command/pause',
+                    method: 'post',
+                    data: {
+                        hash: hash
+                    }
+                }).send();
+            });
+            updateMainData();
+        }
+    };
+
+    deleteTorrentsByCategoryFN = function (categoryHash) {
+        var h = torrentsTable.getFilteredTorrentsHashes('all', categoryHash);
+        if (h.length) {
+            new MochaUI.Window({
+                id: 'confirmDeletionPage',
+                title: "QBT_TR(Deletion confirmation)QBT_TR",
+                loadMethod: 'iframe',
+                contentURL: 'confirmdeletion.html?hashes=' + h.join("|"),
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                padding: 10,
+                width: 424,
+                height: 140
+            });
+            updateMainData();
         }
     };
 
