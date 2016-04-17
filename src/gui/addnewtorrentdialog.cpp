@@ -203,13 +203,13 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
         m_filePath = torrentPath;
 
     if (!QFile::exists(m_filePath)) {
-        MessageBoxRaised::critical(0, tr("I/O Error"), tr("The torrent file does not exist."));
+        MessageBoxRaised::critical(0, tr("I/O Error"), tr("The torrent file '%1' does not exist.").arg(Utils::Fs::toNativePath(m_filePath)));
         return false;
     }
 
     QFileInfo fileinfo(m_filePath);
     if (!fileinfo.isReadable()) {
-        MessageBoxRaised::critical(0, tr("I/O Error"), tr("The torrent file cannot be read from the disk. Probably you don't have enough permissions."));
+        MessageBoxRaised::critical(0, tr("I/O Error"), tr("The torrent file '%1' cannot be read from the disk. Probably you don't have enough permissions.").arg(Utils::Fs::toNativePath(m_filePath)));
         return false;
     }
 
@@ -217,7 +217,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
     QString error;
     m_torrentInfo = BitTorrent::TorrentInfo::loadFromFile(m_filePath, error);
     if (!m_torrentInfo.isValid()) {
-        MessageBoxRaised::critical(0, tr("Invalid torrent"), tr("Failed to load the torrent: %1").arg(error));
+        MessageBoxRaised::critical(0, tr("Invalid torrent"), tr("Failed to load the torrent: %1.\nError: %2", "Don't remove the '\n' characters. They insert a newline.").arg(Utils::Fs::toNativePath(m_filePath)).arg(error));
         return false;
     }
 
