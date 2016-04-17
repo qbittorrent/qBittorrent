@@ -108,12 +108,12 @@
      <addaction name="actionCriticalMessages"/>
     </widget>
     <addaction name="separator"/>
-    <addaction name="menuLog"/>
     <addaction name="actionTopToolBar"/>
     <addaction name="actionSpeedInTitleBar"/>
     <addaction name="separator"/>
     <addaction name="actionSearchWidget"/>
     <addaction name="actionRSSReader"/>
+    <addaction name="menuLog"/>
     <addaction name="separator"/>
     <addaction name="actionStatistics"/>
     <addaction name="separator"/>
