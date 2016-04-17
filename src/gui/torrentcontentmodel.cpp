@@ -285,7 +285,7 @@ void TorrentContentModel::clear()
 void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
 {
     qDebug("setup model data called");
-    if (info.filesCount() == 0)
+    if (info.filesCount() <= 0)
         return;
 
     emit layoutAboutToBeChanged();

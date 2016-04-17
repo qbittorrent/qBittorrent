@@ -35,7 +35,7 @@
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuEdit">
@@ -108,8 +108,6 @@
      <addaction name="actionCriticalMessages"/>
     </widget>
     <addaction name="separator"/>
-    <addaction name="actionSearch_engine"/>
-    <addaction name="actionRSS_Reader"/>
     <addaction name="menuLog"/>
     <addaction name="actionTopToolBar"/>
     <addaction name="actionSpeedInTitleBar"/>
@@ -353,17 +351,6 @@
   <action name="actionPauseAll">
    <property name="text">
     <string>P&amp;ause All</string>
-   </property>
-  </action>
-  <action name="actionExecutionLogs">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Log</string>
-   </property>
-   <property name="toolTip">
-    <string>Execution Log</string>
    </property>
   </action>
   <action name="actionAutoExit">
