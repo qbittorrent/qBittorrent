@@ -7,11 +7,6 @@ include(QbtTargetSources)
 
 find_package(LibtorrentRasterbar REQUIRED)
 
-# Boost
-set(Boost_USE_MULTITHREADED ON)
-find_package(Boost 1.35 REQUIRED COMPONENTS system)
-include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
-
 # Qt
 if (QT5)
     add_definitions(-DQBT_USES_QT5)
