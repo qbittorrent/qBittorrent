@@ -22,7 +22,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../icons.qrc">:/icons/oxygen/application-rss+xml.png</pixmap>
+        <pixmap resource="../../icons.qrc">:/icons/oxygen/application-rss+xml.png</pixmap>
        </property>
       </widget>
      </item>
@@ -94,7 +94,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../icons.qrc"/>
+  <include location="../../icons.qrc"/>
  </resources>
  <connections>
   <connection>
