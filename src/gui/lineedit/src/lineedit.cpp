@@ -16,17 +16,15 @@
 LineEdit::LineEdit(QWidget *parent)
     : QLineEdit(parent)
 {
-    int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
-
     QPixmap pixmap1(":/lineeditimages/search.png");
     searchButton = new QToolButton(this);
     searchButton->setIcon(QIcon(pixmap1));
     searchButton->setIconSize(pixmap1.size());
     searchButton->setCursor(Qt::ArrowCursor);
     searchButton->setStyleSheet("QToolButton { border: none; padding: 2px; }");
+    QSize searchButtonHint = searchButton->sizeHint();
 
-    int clearButtonSizeHintWidth = 0;
-    int clearButtonSizeHintHeight = 0;
+    QSize clearButtonHint(0, 0);
 #ifndef QBT_USES_QT5
     QPixmap pixmap2(":/lineeditimages/clear_left.png");
     clearButton = new QToolButton(this);
@@ -39,17 +37,17 @@ LineEdit::LineEdit(QWidget *parent)
     connect(clearButton, SIGNAL(clicked()), this, SLOT(clear()));
     connect(this, SIGNAL(textChanged(const QString &)), this, SLOT(updateCloseButton(const QString &)));
 
-    clearButtonSizeHintWidth = clearButton->sizeHint().width();
-    clearButtonSizeHintHeight = clearButton->sizeHint().height();
-    setStyleSheet(QString("QLineEdit { padding-left: %1px; padding-right: %2px; }").arg(searchButton->sizeHint().width()).arg(clearButtonSizeHintWidth));
+    clearButtonHint = clearButton->sizeHint();
+    setStyleSheet(QString("QLineEdit { padding-left: %1px; padding-right: %2px; }").arg(searchButtonHint.width()).arg(clearButtonHint.width()));
 #else
     setClearButtonEnabled(true);
-    setStyleSheet(QString("QLineEdit { padding-left: %1px; }").arg(searchButton->sizeHint().width()));  // padding between text and widget borders
+    setStyleSheet(QString("QLineEdit { padding-left: %1px; }").arg(searchButtonHint.width()));  // padding between text and widget borders
 #endif
 
-    QSize msz = sizeHint();
-    setMinimumSize(qMax(msz.width(), searchButton->sizeHint().width() + clearButtonSizeHintWidth),
-                   std::max({ msz.height(), searchButton->sizeHint().height(), clearButtonSizeHintHeight }) + frameWidth * 2);
+    QSize widgetHint = sizeHint();
+    int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
+    setMaximumHeight(std::max({ widgetHint.height(), searchButtonHint.height(), clearButtonHint.height() }) + frameWidth * 2);
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 }
 
 void LineEdit::resizeEvent(QResizeEvent *e)
