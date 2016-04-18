@@ -31,13 +31,9 @@
 #define UTILS_STRING_H
 
 #include <string>
-#include <QtGlobal>
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
-#include <QCollator>
-#endif
 
-class QString;
 class QByteArray;
+class QString;
 
 namespace Utils
 {
@@ -50,18 +46,6 @@ namespace Utils
         // Implements constant-time comparison to protect against timing attacks
         // Taken from https://crackstation.net/hashing-security.htm
         bool slowEquals(const QByteArray &a, const QByteArray &b);
-
-        class NaturalCompare
-        {
-        public:
-            NaturalCompare();
-            bool operator()(const QString &left, const QString &right);
-            bool lessThan(const QString &left, const QString &right);
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
-        private:
-            QCollator m_collator;
-#endif
-        };
 
         bool naturalCompare(const QString &left, const QString &right);
     }

@@ -27,24 +27,31 @@
  * exception statement from your version.
  */
 
-#include <QByteArray>
-#include <QString>
-#include <QLocale>
-#include <cmath>
 #include "string.h"
 
-QString Utils::String::fromStdString(const std::string &str)
-{
-    return QString::fromUtf8(str.c_str());
-}
+#include <cmath>
 
-std::string Utils::String::toStdString(const QString &str)
-{
-    QByteArray utf8 = str.toUtf8();
-    return std::string(utf8.constData(), utf8.length());
-}
+#include <QByteArray>
+#include <QtGlobal>
+#include <QLocale>
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
+#include <QCollator>
+#endif
 
-Utils::String::NaturalCompare::NaturalCompare()
+class NaturalCompare
+{
+public:
+    NaturalCompare();
+    bool operator()(const QString &left, const QString &right);
+    bool lessThan(const QString &left, const QString &right);
+
+private:
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
+    QCollator m_collator;
+#endif
+};
+
+NaturalCompare::NaturalCompare()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 #if defined(Q_OS_WIN)
@@ -57,7 +64,7 @@ Utils::String::NaturalCompare::NaturalCompare()
 #endif
 }
 
-bool Utils::String::NaturalCompare::operator()(const QString &left, const QString &right)
+bool NaturalCompare::operator()(const QString &left, const QString &right)
 {
     // case-insensitive comparison
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
@@ -72,7 +79,7 @@ bool Utils::String::NaturalCompare::operator()(const QString &left, const QStrin
 #endif
 }
 
-bool Utils::String::NaturalCompare::lessThan(const QString &left, const QString &right)
+bool NaturalCompare::lessThan(const QString &left, const QString &right)
 {
     // Return value `false` indicates `right` should go before `left`, otherwise, after
     // case-insensitive comparison
@@ -121,6 +128,17 @@ bool Utils::String::NaturalCompare::lessThan(const QString &left, const QString 
         // Do another round
     }
     return false;
+}
+
+QString Utils::String::fromStdString(const std::string &str)
+{
+    return QString::fromUtf8(str.c_str());
+}
+
+std::string Utils::String::toStdString(const QString &str)
+{
+    QByteArray utf8 = str.toUtf8();
+    return std::string(utf8.constData(), utf8.length());
 }
 
 bool Utils::String::naturalCompare(const QString &left, const QString &right)
