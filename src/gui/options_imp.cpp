@@ -62,8 +62,8 @@
 
 // Constructor
 options_imp::options_imp(QWidget *parent)
-    : QDialog(parent),
-    m_refreshingIpFilter(false)
+    : QDialog(parent)
+    , m_refreshingIpFilter(false)
 {
     qDebug("-> Constructing Options");
     setupUi(this);
@@ -149,6 +149,7 @@ options_imp::options_imp(QWidget *parent)
     connect(confirmDeletion, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkAltRowColors, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkHideZero, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(checkHideZero, SIGNAL(toggled(bool)), comboHideZero, SLOT(setEnabled(bool)));
     connect(comboHideZero, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(checkShowSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkCloseToSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -242,6 +243,7 @@ options_imp::options_imp(QWidget *parent)
     connect(schedule_to, SIGNAL(timeChanged(QTime)), this, SLOT(enableApplyButton()));
     connect(schedule_days, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(checkuTP, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+    connect(checkuTP, SIGNAL(toggled(bool)), checkLimituTPConnections, SLOT(setEnabled(bool)));
     connect(checkLimituTPConnections, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
     connect(checkLimitTransportOverhead, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
     connect(checkLimitLocalPeerRate, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
@@ -625,6 +627,7 @@ void options_imp::loadOptions()
     confirmDeletion->setChecked(pref->confirmTorrentDeletion());
     checkAltRowColors->setChecked(pref->useAlternatingRowColors());
     checkHideZero->setChecked(pref->getHideZeroValues());
+    comboHideZero->setEnabled(checkHideZero->isChecked());
     comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
 
     checkShowSplash->setChecked(!pref->isSplashScreenDisabled());
@@ -866,6 +869,7 @@ void options_imp::loadOptions()
     }
 
     checkuTP->setChecked(pref->isuTPEnabled());
+    checkLimituTPConnections->setEnabled(checkuTP->isChecked());
     checkLimituTPConnections->setChecked(pref->isuTPRateLimited());
     checkLimitTransportOverhead->setChecked(pref->includeOverheadInLimits());
     checkLimitLocalPeerRate->setChecked(!pref->getIgnoreLimitsOnLAN());
