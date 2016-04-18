@@ -20,35 +20,26 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QToolButton" name="newFeedButton">
+      <widget class="QPushButton" name="newFeedButton">
        <property name="text">
         <string>New subscription</string>
        </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonTextBesideIcon</enum>
-       </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="markReadButton">
+      <widget class="QPushButton" name="markReadButton">
        <property name="text">
         <string>Mark items read</string>
        </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonTextBesideIcon</enum>
-       </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="updateAllButton">
+      <widget class="QPushButton" name="updateAllButton">
        <property name="toolTip">
         <string>Refresh RSS streams</string>
        </property>
        <property name="text">
         <string>Update all</string>
-       </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonTextBesideIcon</enum>
        </property>
       </widget>
      </item>
