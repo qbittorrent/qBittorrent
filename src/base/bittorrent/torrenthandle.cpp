@@ -60,7 +60,7 @@
 #include "trackerentry.h"
 #include "torrenthandle.h"
 
-static const char QB_EXT[] = ".!qB";
+const QString QB_EXT {".!qB"};
 
 namespace libt = libtorrent;
 using namespace BitTorrent;
@@ -1611,7 +1611,7 @@ void TorrentHandle::handleFileCompletedAlert(libtorrent::file_completed_alert *p
         QString name = filePath(p->index);
         if (name.endsWith(QB_EXT)) {
             const QString oldName = name;
-            name.chop(QString(QB_EXT).size());
+            name.chop(QB_EXT.size());
             qDebug("Renaming %s to %s", qPrintable(oldName), qPrintable(name));
             renameFile(p->index, name);
         }
@@ -1733,7 +1733,7 @@ void TorrentHandle::appendExtensionsToIncompleteFiles()
         else {
             if (name.endsWith(QB_EXT)) {
                 const QString oldName = name;
-                name.chop(QString(QB_EXT).size());
+                name.chop(QB_EXT.size());
                 qDebug() << "Renaming" << oldName << "to" << name;
                 renameFile(i, name);
             }
@@ -1747,7 +1747,7 @@ void TorrentHandle::removeExtensionsFromIncompleteFiles()
         QString name = filePath(i);
         if (name.endsWith(QB_EXT)) {
             const QString oldName = name;
-            name.chop(QString(QB_EXT).size());
+            name.chop(QB_EXT.size());
             qDebug("Renaming %s to %s", qPrintable(oldName), qPrintable(name));
             renameFile(i, name);
         }

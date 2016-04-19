@@ -54,6 +54,8 @@ class QBitArray;
 class QStringList;
 template<typename T, typename U> struct QPair;
 
+extern const QString QB_EXT;
+
 namespace libtorrent
 {
     class alert;

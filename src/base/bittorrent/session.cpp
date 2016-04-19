@@ -28,63 +28,63 @@
  * exception statement from your version.
  */
 
+#include "session.h"
+
+#include <QCoreApplication>
+#include <QDateTime>
 #include <QDebug>
 #include <QDir>
-#include <QDateTime>
-#include <QString>
-#include <QStringList>
-#include <QNetworkInterface>
+#include <QDirIterator>
 #include <QHostAddress>
 #include <QNetworkAddressEntry>
-#include <QTimer>
+#include <QNetworkInterface>
 #include <QProcess>
-#include <QCoreApplication>
-#include <QThread>
 #include <QRegExp>
+#include <QString>
+#include <QStringList>
+#include <QThread>
+#include <QTimer>
 
 #include <queue>
 #include <vector>
 
 #include <boost/bind.hpp>
 
-#include <libtorrent/session.hpp>
-#include <libtorrent/lazy_entry.hpp>
+#include <libtorrent/alert_types.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/error_code.hpp>
-#include <libtorrent/identify_client.hpp>
-#include <libtorrent/alert_types.hpp>
-#include <libtorrent/torrent_info.hpp>
-#include <libtorrent/ip_filter.hpp>
-#include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/extensions/ut_metadata.hpp>
 #include <libtorrent/extensions/lt_trackers.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
 #include <libtorrent/extensions/smart_ban.hpp>
-//#include <libtorrent/extensions/metadata_transfer.hpp>
+#include <libtorrent/identify_client.hpp>
+#include <libtorrent/ip_filter.hpp>
+#include <libtorrent/lazy_entry.hpp>
+#include <libtorrent/magnet_uri.hpp>
+#include <libtorrent/session.hpp>
+#include <libtorrent/torrent_info.hpp>
 
+#include "base/logger.h"
+#include "base/net/downloadhandler.h"
+#include "base/net/downloadmanager.h"
+#include "base/net/portforwarder.h"
+#include "base/preferences.h"
+#include "base/settingsstorage.h"
+#include "base/torrentfilter.h"
+#include "base/unicodestrings.h"
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
-#include "base/unicodestrings.h"
-#include "base/logger.h"
-#include "base/settingsstorage.h"
-#include "base/preferences.h"
-#include "base/torrentfilter.h"
-#include "base/net/downloadmanager.h"
-#include "base/net/downloadhandler.h"
-#include "base/net/portforwarder.h"
-#include "base/utils/string.h"
+#include "cachestatus.h"
+#include "magneturi.h"
 #include "private/filterparserthread.h"
 #include "private/statistics.h"
 #include "private/bandwidthscheduler.h"
 #include "private/resumedatasavingmanager.h"
-#include "trackerentry.h"
-#include "tracker.h"
-#include "magneturi.h"
-#include "cachestatus.h"
 #include "sessionstatus.h"
 #include "torrenthandle.h"
-#include "session.h"
+#include "tracker.h"
+#include "trackerentry.h"
 
 static const char PEER_ID[] = "qB";
 static const char RESUME_FOLDER[] = "BT_backup";
@@ -154,6 +154,16 @@ namespace
         }
 
         return expanded;
+    }
+
+    QStringList findAllFiles(const QString &dirPath)
+    {
+        QStringList files;
+        QDirIterator it(dirPath, QDir::Files, QDirIterator::Subdirectories);
+        while (it.hasNext())
+            files << it.next();
+
+        return files;
     }
 }
 
@@ -1225,7 +1235,7 @@ bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams 
 
 // Add a torrent to the BitTorrent session
 bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri,
-                              const TorrentInfo &torrentInfo, const QByteArray &fastresumeData)
+                              TorrentInfo torrentInfo, const QByteArray &fastresumeData)
 {
     addData.savePath = normalizeSavePath(
                 addData.savePath,
@@ -1242,6 +1252,12 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
     InfoHash hash;
     std::vector<char> buf(fastresumeData.constData(), fastresumeData.constData() + fastresumeData.size());
     std::vector<boost::uint8_t> filePriorities;
+
+    QString savePath;
+    if (addData.savePath.isEmpty()) // using Advanced mode
+        savePath = categorySavePath(addData.category);
+    else  // using Simple mode
+        savePath = addData.savePath;
 
     bool fromMagnetUri = magnetUri.isValid();
     if (fromMagnetUri) {
@@ -1271,6 +1287,8 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
     }
     else if (torrentInfo.isValid()) {
         // Metadata
+        if (!addData.resumed && !addData.hasSeedStatus)
+            findIncompleteFiles(torrentInfo, savePath);
         p.ti = torrentInfo.nativeInfo();
         hash = torrentInfo.hash();
     }
@@ -1329,13 +1347,6 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
     Preferences *const pref = Preferences::instance();
     p.max_connections = pref->getMaxConnecsPerTorrent();
     p.max_uploads = pref->getMaxUploadsPerTorrent();
-
-    QString savePath;
-    if (addData.savePath.isEmpty()) // using Advanced mode
-        savePath = categorySavePath(addData.category);
-    else  // using Simple mode
-        savePath = addData.savePath;
-
     p.save_path = Utils::String::toStdString(Utils::Fs::toNativePath(savePath));
     // Check if save path exists, creating it otherwise
     if (!QDir(savePath).exists())
@@ -1345,6 +1356,53 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
     // Adding torrent to BitTorrent session
     m_nativeSession->async_add_torrent(p);
     return true;
+}
+
+bool Session::findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) const
+{
+    auto findInDir = [](const QString &dirPath, TorrentInfo &torrentInfo) -> bool
+    {
+        bool found = false;
+        if (torrentInfo.filesCount() == 1) {
+            const QString filePath = dirPath + torrentInfo.filePath(0);
+            if (QFile(filePath).exists()) {
+                found = true;
+            }
+            else if (QFile(filePath + QB_EXT).exists()) {
+                found = true;
+                torrentInfo.renameFile(0, torrentInfo.filePath(0) + QB_EXT);
+            }
+        }
+        else {
+            QSet<QString> allFiles;
+            int dirPathSize = dirPath.size();
+            foreach (const QString &file, findAllFiles(dirPath + torrentInfo.name()))
+                allFiles << file.mid(dirPathSize);
+            for (int i = 0; i < torrentInfo.filesCount(); ++i) {
+                QString filePath = torrentInfo.filePath(i);
+                if (allFiles.contains(filePath)) {
+                    found = true;
+                }
+                else {
+                    filePath += QB_EXT;
+                    if (allFiles.contains(filePath)) {
+                        found = true;
+                        torrentInfo.renameFile(i, filePath);
+                    }
+                }
+            }
+        }
+
+        return found;
+    };
+
+    bool found = findInDir(savePath, torrentInfo);
+    if (!found && isTempPathEnabled()) {
+        savePath = m_tempPath;
+        found = findInDir(savePath, torrentInfo);
+    }
+
+    return found;
 }
 
 // Add a torrent to the BitTorrent session in hidden mode

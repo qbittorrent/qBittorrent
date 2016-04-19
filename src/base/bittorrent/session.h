@@ -356,8 +356,9 @@ namespace BitTorrent
 
         void startUpTorrents();
         bool addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri,
-                             const TorrentInfo &torrentInfo = TorrentInfo(),
+                             TorrentInfo torrentInfo = TorrentInfo(),
                              const QByteArray &fastresumeData = QByteArray());
+        bool findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) const;
 
         void updateRatioTimer();
         void exportTorrentFile(TorrentHandle *const torrent, TorrentExportFolder folder = TorrentExportFolder::Regular);
