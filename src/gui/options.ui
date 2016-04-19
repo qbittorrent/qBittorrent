@@ -1319,7 +1319,11 @@
                 <widget class="QLineEdit" name="autoRun_txt"/>
                </item>
                <item>
-                <widget class="QLabel" name="autoRun_param"/>
+                <widget class="QLabel" name="autoRun_param">
+                 <property name="wordWrap">
+                  <bool>true</bool>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
