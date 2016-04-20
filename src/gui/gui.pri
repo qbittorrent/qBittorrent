@@ -56,7 +56,9 @@ HEADERS += \
     $$PWD/rss/articlelistwidget.h \
     $$PWD/rss/feedlistwidget.h \
     $$PWD/rss/automatedrssdownloader.h \
-    $$PWD/rss/htmlbrowser.h
+    $$PWD/rss/htmlbrowser.h \
+    $$PWD/fspathedit.h \
+    $$PWD/fspathedit_p.h \
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -104,7 +106,9 @@ SOURCES += \
     $$PWD/rss/articlelistwidget.cpp \
     $$PWD/rss/feedlistwidget.cpp \
     $$PWD/rss/automatedrssdownloader.cpp \
-    $$PWD/rss/htmlbrowser.cpp
+    $$PWD/rss/htmlbrowser.cpp \
+    $$PWD/fspathedit.cpp \
+    $$PWD/fspathedit_p.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
