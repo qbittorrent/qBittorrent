@@ -1491,13 +1491,19 @@ void TorrentHandle::handleTorrentFinishedAlert(libtorrent::torrent_finished_aler
     m_hasSeedStatus = true;
 
     adjustActualSavePath();
-    if (Preferences::instance()->recheckTorrentsOnCompletion())
-        forceRecheck();
+    appendExtensionsToIncompleteFiles();
 
-    if (isMoveInProgress() || m_renameCount > 0)
+    const bool recheckTorrentsOnCompletion = Preferences::instance()->recheckTorrentsOnCompletion();
+    if (isMoveInProgress() || m_renameCount > 0) {
+        if (recheckTorrentsOnCompletion)
+            m_moveFinishedTriggers.append(boost::bind(&TorrentHandle::forceRecheck, this));
         m_moveFinishedTriggers.append(boost::bind(&Session::handleTorrentFinished, m_session, this));
-    else
+    }
+    else {
+        if (recheckTorrentsOnCompletion)
+            forceRecheck();
         m_session->handleTorrentFinished(this);
+    }
 }
 
 void TorrentHandle::handleTorrentPausedAlert(libtorrent::torrent_paused_alert *p)
