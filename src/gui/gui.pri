@@ -28,7 +28,6 @@ HEADERS += \
     $$PWD/downloadfromurldlg.h \
     $$PWD/trackerlogin.h \
     $$PWD/hidabletabwidget.h \
-    $$PWD/torrentimportdlg.h \
     $$PWD/executionlog.h \
     $$PWD/guiiconprovider.h \
     $$PWD/updownratiodlg.h \
@@ -65,7 +64,6 @@ SOURCES += \
     $$PWD/torrentcontentmodelfile.cpp \
     $$PWD/torrentcontentfiltermodel.cpp \
     $$PWD/torrentcontenttreeview.cpp \
-    $$PWD/torrentimportdlg.cpp \
     $$PWD/executionlog.cpp \
     $$PWD/speedlimitdlg.cpp \
     $$PWD/previewselect.cpp \
@@ -108,7 +106,6 @@ FORMS += \
     $$PWD/updownratiodlg.ui \
     $$PWD/confirmdeletiondlg.ui \
     $$PWD/shutdownconfirmdlg.ui \
-    $$PWD/torrentimportdlg.ui \
     $$PWD/executionlog.ui \
     $$PWD/addnewtorrentdialog.ui \
     $$PWD/autoexpandabledialog.ui \

@@ -144,7 +144,6 @@ private slots:
     void on_actionRSSReader_triggered();
     void on_actionSpeedInTitleBar_triggered();
     void on_actionTopToolBar_triggered();
-    void on_actionImportTorrent_triggered();
     void on_actionDonateMoney_triggered();
     void on_actionExecutionLogs_triggered(bool checked);
     void on_actionNormalMessages_triggered(bool checked);

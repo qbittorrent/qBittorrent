@@ -35,7 +35,7 @@
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuEdit">
@@ -88,7 +88,6 @@
     </property>
     <addaction name="actionOpen"/>
     <addaction name="actionDownloadFromURL"/>
-    <addaction name="actionImportTorrent"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -325,14 +324,6 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+L</string>
-   </property>
-  </action>
-  <action name="actionImportTorrent">
-   <property name="text">
-    <string>&amp;Import Existing Torrent...</string>
-   </property>
-   <property name="toolTip">
-    <string>Import Torrent...</string>
    </property>
   </action>
   <action name="actionDonateMoney">
