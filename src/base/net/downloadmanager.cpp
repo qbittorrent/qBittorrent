@@ -98,7 +98,7 @@ namespace
         }
 #endif
 
-        QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const override
+        QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const
         {
             QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = QNetworkCookieJar::cookiesForUrl(url);
@@ -110,7 +110,7 @@ namespace
             return cookies;
         }
 
-        bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url) override
+        bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url)
         {
             QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = cookieList;

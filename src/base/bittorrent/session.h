@@ -141,25 +141,43 @@ namespace BitTorrent
         QString name;
         QString category;
         QString savePath;
-        bool disableTempPath = false; // e.g. for imported torrents
-        bool sequential = false;
+        bool disableTempPath;
+        bool sequential;
         TriStateBool addForced;
         TriStateBool addPaused;
         QVector<int> filePriorities; // used if TorrentInfo is set
-        bool ignoreShareRatio = false;
-        bool skipChecking = false;
+        bool ignoreShareRatio;
+        bool skipChecking;
+        AddTorrentParams()
+        {
+            disableTempPath = false; // e.g. for imported torrents
+            sequential = false;
+            ignoreShareRatio = false;
+            skipChecking = false;
+        }
     };
 
     struct TorrentStatusReport
     {
-        uint nbDownloading = 0;
-        uint nbSeeding = 0;
-        uint nbCompleted = 0;
-        uint nbActive = 0;
-        uint nbInactive = 0;
-        uint nbPaused = 0;
-        uint nbResumed = 0;
-        uint nbErrored = 0;
+        uint nbDownloading;
+        uint nbSeeding;
+        uint nbCompleted;
+        uint nbActive;
+        uint nbInactive;
+        uint nbPaused;
+        uint nbResumed;
+        uint nbErrored;
+        TorrentStatusReport()
+        {
+            nbDownloading = 0;
+            nbSeeding = 0;
+            nbCompleted = 0;
+            nbActive = 0;
+            nbInactive = 0;
+            nbPaused = 0;
+            nbResumed = 0;
+            nbErrored = 0;
+        }
     };
 
     class Session : public QObject
