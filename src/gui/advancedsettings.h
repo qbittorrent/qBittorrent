@@ -52,7 +52,7 @@ signals:
 
 private slots:
     void updateCacheSpinSuffix(int value);
-
+    void updateInterfaceAddressCombo(int index);
 private:
     void loadAdvancedSettings();
     template <typename T> void addRow(int row, const QString &rowText, T* widget);
@@ -62,8 +62,8 @@ private:
     QCheckBox cb_os_cache, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
               cb_super_seeding, cb_program_notifications, cb_torrent_added_notifications, cb_tracker_status,
               cb_confirm_torrent_recheck, cb_enable_tracker_ext, cb_listen_ipv6, cb_announce_all_trackers;
-    QComboBox combo_iface;
-    QLineEdit txt_iface_address, txt_network_address;
+    QComboBox combo_iface, combo_iface_address;
+    QLineEdit txt_network_address;
 
     // OS dependent settings
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)

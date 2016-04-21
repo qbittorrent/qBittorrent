@@ -106,6 +106,7 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     // Signals
     connect(&spin_cache, SIGNAL(valueChanged(int)), SLOT(updateCacheSpinSuffix(int)));
+    connect(&combo_iface, SIGNAL(currentIndexChanged(int)), SLOT(updateInterfaceAddressCombo(int)));
     // Load settings
     loadAdvancedSettings();
     resizeColumnToContents(0);
@@ -149,11 +150,18 @@ void AdvancedSettings::saveAdvancedSettings()
     // Listen on IPv6 address
     pref->setListenIPv6(cb_listen_ipv6.isChecked());
     // Interface address
-    QHostAddress ifaceAddr(txt_iface_address.text().trimmed());
-    if (ifaceAddr.isNull())
-        pref->setNetworkInterfaceAddress("");
-    else
-        pref->setNetworkInterfaceAddress(ifaceAddr.toString());
+    if (combo_iface_address.currentIndex() == 0) {
+        // All addresses (default)
+        pref->setNetworkInterfaceAddress(QString::null);
+    }
+    else {
+        QHostAddress ifaceAddr(combo_iface_address.currentText().trimmed());
+        if (ifaceAddr.isNull()) {
+            pref->setNetworkInterfaceAddress(QString::null);
+        } else {
+            pref->setNetworkInterfaceAddress(ifaceAddr.toString());
+        }
+    }
     // Network Announce address
     QHostAddress networkAddr(txt_network_address.text().trimmed());
     if (networkAddr.isNull())
@@ -187,6 +195,45 @@ void AdvancedSettings::updateCacheSpinSuffix(int value)
         spin_cache.setSuffix(tr(" (auto)"));
     else
         spin_cache.setSuffix(tr(" MiB"));
+}
+
+void AdvancedSettings::updateInterfaceAddressCombo(int) {
+    //Try to get the currently selected interface name
+    QString ifaceName;
+    if (combo_iface.currentIndex() == 0) {
+        ifaceName = QString();
+    }
+    else {
+        ifaceName = combo_iface.itemData(combo_iface.currentIndex()).toString();
+    }
+    const QNetworkInterface iface = QNetworkInterface::interfaceFromName(ifaceName);
+
+    //Clear all items and reinsert them, default to all
+    combo_iface_address.clear();
+    combo_iface_address.addItem(tr("All Addresses"));
+    combo_iface_address.setCurrentIndex(0);
+    if (!iface.isValid()) {
+        return;
+    }
+    //Found a valid interface, try to get the addresses
+    const QList<QNetworkAddressEntry> addresses = iface.addressEntries();
+    const Preferences* const pref = Preferences::instance();
+    const QString currentAddress = pref->getNetworkInterfaceAddress();
+
+    foreach (const QNetworkAddressEntry &entry, addresses) {
+        QHostAddress ip = entry.ip();
+        QString ipString = ip.toString();
+        QAbstractSocket::NetworkLayerProtocol protocol = ip.protocol();
+        Q_ASSERT(protocol == QAbstractSocket::IPv4Protocol || protocol == QAbstractSocket::IPv6Protocol);
+        //Only take ipv4 for now?
+        if (protocol != QAbstractSocket::IPv4Protocol)
+            continue;
+        combo_iface_address.addItem( ipString );
+        //Try to select the last added one
+        if (ipString == currentAddress) {
+            combo_iface_address.setCurrentIndex(combo_iface_address.count() - 1);
+        }
+    }
 }
 
 void AdvancedSettings::loadAdvancedSettings()
@@ -291,12 +338,12 @@ void AdvancedSettings::loadAdvancedSettings()
         combo_iface.setCurrentIndex(i);
     }
     addRow(NETWORK_IFACE, tr("Network Interface (requires restart)"), &combo_iface);
+    // Network interface address
+    updateInterfaceAddressCombo(combo_iface.currentIndex());
+    addRow(NETWORK_IFACE_ADDRESS, tr("Optional IP Address to bind to (requires restart)"), &combo_iface_address);
     // Listen on IPv6 address
     cb_listen_ipv6.setChecked(pref->getListenIPv6());
     addRow(NETWORK_LISTEN_IPV6, tr("Listen on IPv6 address (requires restart)"), &cb_listen_ipv6);
-    // Network interface address
-    txt_iface_address.setText(pref->getNetworkInterfaceAddress());
-    addRow(NETWORK_IFACE_ADDRESS, tr("Optional IP Address to bind to (requires restart)"), &txt_iface_address);
     // Announce address
     txt_network_address.setText(pref->getNetworkAddress());
     addRow(NETWORK_ADDRESS, tr("IP Address to report to trackers (requires restart)"), &txt_network_address);
