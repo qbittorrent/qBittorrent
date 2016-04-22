@@ -95,12 +95,6 @@ private slots:
     void on_IpFilterRefreshBtn_clicked();
     void handleIPFilterParsed(bool error, int ruleCount);
     void on_banListButton_clicked();
-    void on_browseFileLogDir_clicked();
-    void on_browseExportDirButton_clicked();
-    void on_browseExportDirFinButton_clicked();
-    void on_browseFilterButton_clicked();
-    void on_browseSaveDirButton_clicked();
-    void on_browseTempDirButton_clicked();
     void on_randomButton_clicked();
     void on_addScanFolderButton_clicked();
     void on_removeScanFolderButton_clicked();

@@ -73,10 +73,9 @@ private slots:
     void showAdvancedSettings(bool show);
     void displayContentTreeMenu(const QPoint&);
     void updateDiskSpaceLabel();
-    void onSavePathChanged(int);
+    void onSavePathChanged(const QString &newPath);
     void renameSelectedFile();
     void updateMetadata(const BitTorrent::TorrentInfo &info);
-    void browseButton_clicked();
     void handleDownloadFailed(const QString &url, const QString &reason);
     void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
     void handleDownloadFinished(const QString &url, const QString &filePath);

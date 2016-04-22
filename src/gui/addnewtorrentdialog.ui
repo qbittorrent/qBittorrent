@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>414</width>
-    <height>661</height>
+    <height>630</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="AddNewTorrentDialogLayout">
@@ -59,28 +59,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QComboBox" name="savePathComboBox">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="browseButton">
-          <property name="text">
-           <string>Browse...</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+         <widget class="FileSystemPathComboEdit" name="savePath" native="true"/>
       </item>
       <item>
        <widget class="QCheckBox" name="defaultSavePathCheckBox">
@@ -405,10 +384,15 @@
    <extends>QTreeView</extends>
    <header>torrentcontenttreeview.h</header>
   </customwidget>
+  <customwidget>
+   <class>FileSystemPathComboEdit</class>
+   <extends>QWidget</extends>
+   <header>fspathedit.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>savePathComboBox</tabstop>
-  <tabstop>browseButton</tabstop>
+  <tabstop>savePath</tabstop>
   <tabstop>defaultSavePathCheckBox</tabstop>
   <tabstop>never_show_cb</tabstop>
   <tabstop>adv_button</tabstop>
