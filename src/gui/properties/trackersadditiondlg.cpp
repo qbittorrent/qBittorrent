@@ -53,7 +53,13 @@ TrackersAdditionDlg::TrackersAdditionDlg(BitTorrent::TorrentHandle *const torren
 
 QStringList TrackersAdditionDlg::newTrackers() const
 {
-    return trackers_list->toPlainText().trimmed().split("\n");
+    QStringList cleanTrackers;
+    foreach (QString url, trackers_list->toPlainText().split("\n")) {
+        url = url.trimmed();
+        if (!url.isEmpty())
+            cleanTrackers << url;
+    }
+    return cleanTrackers;
 }
 
 void TrackersAdditionDlg::on_uTorrentListButton_clicked()
