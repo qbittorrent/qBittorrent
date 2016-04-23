@@ -333,7 +333,9 @@ QString Session::tempPath() const
 
 QString Session::torrentTempPath(const InfoHash &hash) const
 {
-    return m_tempPath + QString(hash) + "/";
+    return m_tempPath
+            + static_cast<QString>(hash).left(7)
+            + "/";
 }
 
 bool Session::isValidCategoryName(const QString &name)
