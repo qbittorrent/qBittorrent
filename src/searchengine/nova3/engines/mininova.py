@@ -1,4 +1,4 @@
-#VERSION: 2.01
+#VERSION: 2.02
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 #CONTRIBUTORS: Diego de las Heras (ngosang@hotmail.es)
 
@@ -88,6 +88,9 @@ class mininova(object):
         def handle_starttag_span(self, attrs):
             """ Handler of span start tag """
             if ("class", "g") in attrs:
+                self.cur_item_name = "seeds"
+                self.current_item["seeds"] = ""
+            elif ("class", "r") in attrs:
                 self.cur_item_name = "seeds"
                 self.current_item["seeds"] = ""
             elif ("class", "b") in attrs:
