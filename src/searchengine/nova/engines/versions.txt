@@ -7,4 +7,4 @@ mininova: 2.01
 piratebay: 2.14
 torlock: 2.0
 torrentreactor: 1.41
-torrentz: 2.18
+torrentz: 2.19
