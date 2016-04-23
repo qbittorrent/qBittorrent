@@ -68,7 +68,6 @@ bool InfoHash::isValid() const
     return m_valid;
 }
 
-
 InfoHash::operator libtorrent::sha1_hash() const
 {
     return m_nativeHash;
