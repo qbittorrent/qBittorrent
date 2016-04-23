@@ -3,7 +3,7 @@ demonoid: 1.2
 extratorrent: 2.04
 kickasstorrents: 1.28
 legittorrents: 2.00
-mininova: 2.01
+mininova: 2.02
 piratebay: 2.14
 torlock: 2.0
 torrentreactor: 1.41
