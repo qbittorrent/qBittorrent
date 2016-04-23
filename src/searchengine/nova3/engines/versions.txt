@@ -2,7 +2,7 @@ btdigg: 1.31
 demonoid: 1.2
 extratorrent: 2.04
 kickasstorrents: 1.28
-legittorrents: 2.00
+legittorrents: 2.01
 mininova: 2.02
 piratebay: 2.14
 torlock: 2.0
