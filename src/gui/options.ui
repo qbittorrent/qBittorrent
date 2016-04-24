@@ -754,6 +754,9 @@
                    <property name="checked">
                     <bool>true</bool>
                    </property>
+                   <attribute name="buttonGroup">
+                    <string notr="true">buttonGroup_2</string>
+                   </attribute>
                   </widget>
                  </item>
                  <item>
@@ -761,6 +764,9 @@
                    <property name="text">
                     <string>Advanced</string>
                    </property>
+                   <attribute name="buttonGroup">
+                    <string notr="true">buttonGroup_2</string>
+                   </attribute>
                   </widget>
                  </item>
                  <item>
@@ -1319,7 +1325,11 @@
                 <widget class="QLineEdit" name="autoRun_txt"/>
                </item>
                <item>
-                <widget class="QLabel" name="autoRun_param"/>
+                <widget class="QLabel" name="autoRun_param">
+                 <property name="wordWrap">
+                  <bool>true</bool>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -3244,5 +3254,6 @@
  </connections>
  <buttongroups>
   <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
  </buttongroups>
 </ui>
