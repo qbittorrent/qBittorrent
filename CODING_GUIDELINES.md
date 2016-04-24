@@ -207,7 +207,40 @@ class MyClass
 }
 ```
 
-### 8. Misc.###
+### 8. Header inclusion order.###
+The headers should be placed in the following order:
+ 1. Module header (in .cpp)
+ 2. System/Qt/Boost etc. headers (splitted in subcategories if you have many).
+ 3. Application headers, starting from *Base* headers.
+
+The headers should be ordered alphabetically within each group (subgroup).<br/>
+<br/>
+Example:
+```c++
+// examplewidget.cpp
+
+#include "examplewidget.h"
+
+#include <cmath>
+#include <cstdio>
+
+#include <QDateTime>
+#include <QList>
+#include <QString>
+#include <QUrl>
+
+#include <libtorrent/version.hpp>
+
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/infohash.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
+#include "ui_examplewidget.h"
+
+```
+
+### 9. Misc.###
 
 * Line breaks for long lines with operation:
 
@@ -271,5 +304,5 @@ for (int a = 0; a < b; ++b) {
 
 * Method definitions aren't allowed in header files
 
-### 9. Not covered above###
+###10. Not covered above###
 If something isn't covered above, just follow the same style the file you are editing has. If that particular detail isn't present in the file you are editing, then use whatever the rest of the project uses.
