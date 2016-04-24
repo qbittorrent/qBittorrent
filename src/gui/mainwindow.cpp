@@ -72,7 +72,6 @@
 #include "torrentcreatordlg.h"
 #include "downloadfromurldlg.h"
 #include "addnewtorrentdialog.h"
-#include "torrentimportdlg.h"
 #include "statsdialog.h"
 #include "cookiesdialog.h"
 #include "speedlimitdlg.h"
@@ -163,7 +162,6 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionPauseAll->setIcon(GuiIconProvider::instance()->getIcon("media-playback-pause"));
     m_ui->actionStart->setIcon(GuiIconProvider::instance()->getIcon("media-playback-start"));
     m_ui->actionStartAll->setIcon(GuiIconProvider::instance()->getIcon("media-playback-start"));
-    m_ui->actionImportTorrent->setIcon(GuiIconProvider::instance()->getIcon("document-import"));
     m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
     m_ui->actionManageCookies->setIcon(GuiIconProvider::instance()->getIcon("preferences-web-browser-cookies"));
 
@@ -1510,11 +1508,6 @@ void MainWindow::on_actionSearchWidget_triggered()
         }
     }
     displaySearchTab(m_ui->actionSearchWidget->isChecked());
-}
-
-void MainWindow::on_actionImportTorrent_triggered()
-{
-    TorrentImportDlg::importTorrent();
 }
 
 /*****************************************************
