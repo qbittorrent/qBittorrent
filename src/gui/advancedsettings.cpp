@@ -257,6 +257,12 @@ void AdvancedSettings::loadAdvancedSettings()
     bool interface_exists = current_iface.isEmpty();
     int i = 1;
     foreach (const QNetworkInterface& iface, QNetworkInterface::allInterfaces()) {
+        // This line fixes a Qt bug => https://bugreports.qt.io/browse/QTBUG-52633
+        // Tested in Qt 5.6.0. For more info see:
+        // https://github.com/qbittorrent/qBittorrent/issues/5131
+        // https://github.com/qbittorrent/qBittorrent/pull/5135
+        if (iface.addressEntries().isEmpty()) continue;
+
         if (iface.flags() & QNetworkInterface::IsLoopBack) continue;
         combo_iface.addItem(iface.humanReadableName(), iface.name());
         if (!current_iface.isEmpty() && (iface.name() == current_iface)) {
