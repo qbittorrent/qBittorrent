@@ -6,13 +6,6 @@ include(MacroLinkQtComponents)
 include(QbtTargetSources)
 
 find_package(LibtorrentRasterbar REQUIRED)
-include_directories(SYSTEM ${LibtorrentRasterbar_INCLUDE_DIRS})
-add_compile_options(${LibtorrentRasterbar_DEFINITIONS})
-
-# Boost
-set(Boost_USE_MULTITHREADED ON)
-find_package(Boost 1.35 REQUIRED COMPONENTS system)
-include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 
 # Qt
 if (QT5)
