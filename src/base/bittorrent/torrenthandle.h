@@ -388,8 +388,7 @@ namespace BitTorrent
         void adjustActualSavePath_impl();
         void move_impl(QString path);
         void moveStorage(const QString &newPath);
-        void appendExtensionsToIncompleteFiles();
-        void removeExtensionsFromIncompleteFiles();
+        void manageIncompleteFiles();
         bool addTracker(const TrackerEntry &tracker);
         bool addUrlSeed(const QUrl &urlSeed);
         bool removeUrlSeed(const QUrl &urlSeed);
