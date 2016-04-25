@@ -28,7 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "options_imp.h"
+#include "optionsdlg.h"
 
 #include <cstdlib>
 
@@ -61,10 +61,10 @@
 #include "guiiconprovider.h"
 #include "scanfoldersdelegate.h"
 
-#include "ui_options.h"
+#include "ui_optionsdlg.h"
 
 // Constructor
-options_imp::options_imp(QWidget *parent)
+OptionsDialog::OptionsDialog(QWidget *parent)
     : QDialog(parent)
     , m_refreshingIpFilter(false)
     , m_ui(new Ui::OptionsDialog)
@@ -344,7 +344,7 @@ options_imp::options_imp(QWidget *parent)
     loadWindowState();
 }
 
-void options_imp::initializeLanguageCombo()
+void OptionsDialog::initializeLanguageCombo()
 {
     // List language files
     const QDir langDir(":/lang");
@@ -367,7 +367,7 @@ void options_imp::initializeLanguageCombo()
 }
 
 // Main destructor
-options_imp::~options_imp()
+OptionsDialog::~OptionsDialog()
 {
     qDebug("-> destructing Options");
     foreach (const QString &path, addedScanDirs)
@@ -376,14 +376,14 @@ options_imp::~options_imp()
     delete m_ui;
 }
 
-void options_imp::changePage(QListWidgetItem *current, QListWidgetItem *previous)
+void OptionsDialog::changePage(QListWidgetItem *current, QListWidgetItem *previous)
 {
     if (!current)
         current = previous;
     m_ui->tabOption->setCurrentIndex(m_ui->tabSelection->row(current));
 }
 
-void options_imp::loadWindowState()
+void OptionsDialog::loadWindowState()
 {
     const Preferences* const pref = Preferences::instance();
     resize(pref->getPrefSize(sizeFittingScreen()));
@@ -406,7 +406,7 @@ void options_imp::loadWindowState()
     m_ui->hsplitter->setSizes(sizes);
 }
 
-void options_imp::saveWindowState() const
+void OptionsDialog::saveWindowState() const
 {
     Preferences* const pref = Preferences::instance();
     pref->setPrefSize(size());
@@ -418,7 +418,7 @@ void options_imp::saveWindowState() const
     pref->setPrefHSplitterSizes(sizes_str);
 }
 
-QSize options_imp::sizeFittingScreen() const
+QSize OptionsDialog::sizeFittingScreen() const
 {
     int scrn = 0;
     QWidget *w = this->topLevelWidget();
@@ -437,7 +437,7 @@ QSize options_imp::sizeFittingScreen() const
     return size();
 }
 
-void options_imp::saveOptions()
+void OptionsDialog::saveOptions()
 {
     applyButton->setEnabled(false);
     Preferences* const pref = Preferences::instance();
@@ -620,12 +620,12 @@ void options_imp::saveOptions()
     pref->apply();
 }
 
-bool options_imp::isFilteringEnabled() const
+bool OptionsDialog::isFilteringEnabled() const
 {
     return m_ui->checkIPFilter->isChecked();
 }
 
-int options_imp::getProxyType() const
+int OptionsDialog::getProxyType() const
 {
     switch (m_ui->comboProxyType->currentIndex()) {
     case 1:
@@ -644,7 +644,7 @@ int options_imp::getProxyType() const
     }
 }
 
-void options_imp::loadOptions()
+void OptionsDialog::loadOptions()
 {
     int intValue;
     qreal floatValue;
@@ -977,72 +977,72 @@ void options_imp::loadOptions()
 
 // return min & max ports
 // [min, max]
-int options_imp::getPort() const
+int OptionsDialog::getPort() const
 {
     return m_ui->spinPort->value();
 }
 
-void options_imp::on_randomButton_clicked()
+void OptionsDialog::on_randomButton_clicked()
 {
     // Range [1024: 65535]
     m_ui->spinPort->setValue(rand() % 64512 + 1024);
 }
 
-int options_imp::getEncryptionSetting() const
+int OptionsDialog::getEncryptionSetting() const
 {
     return m_ui->comboEncryption->currentIndex();
 }
 
-int options_imp::getMaxActiveDownloads() const
+int OptionsDialog::getMaxActiveDownloads() const
 {
     return m_ui->spinMaxActiveDownloads->value();
 }
 
-int options_imp::getMaxActiveUploads() const
+int OptionsDialog::getMaxActiveUploads() const
 {
     return m_ui->spinMaxActiveUploads->value();
 }
 
-int options_imp::getMaxActiveTorrents() const
+int OptionsDialog::getMaxActiveTorrents() const
 {
     return m_ui->spinMaxActiveTorrents->value();
 }
 
-bool options_imp::minimizeToTray() const
+bool OptionsDialog::minimizeToTray() const
 {
     if (!m_ui->checkShowSystray->isChecked()) return false;
     return m_ui->checkMinimizeToSysTray->isChecked();
 }
 
-bool options_imp::closeToTray() const
+bool OptionsDialog::closeToTray() const
 {
     if (!m_ui->checkShowSystray->isChecked()) return false;
     return m_ui->checkCloseToSystray->isChecked();
 }
 
-bool options_imp::isQueueingSystemEnabled() const
+bool OptionsDialog::isQueueingSystemEnabled() const
 {
     return m_ui->checkEnableQueueing->isChecked();
 }
 
-bool options_imp::isDHTEnabled() const
+bool OptionsDialog::isDHTEnabled() const
 {
     return m_ui->checkDHT->isChecked();
 }
 
-bool options_imp::isLSDEnabled() const
+bool OptionsDialog::isLSDEnabled() const
 {
     return m_ui->checkLSD->isChecked();
 }
 
-bool options_imp::isUPnPEnabled() const
+bool OptionsDialog::isUPnPEnabled() const
 {
     return m_ui->checkUPnP->isChecked();
 }
 
 // Return Download & Upload limits in kbps
 // [download,upload]
-QPair<int, int> options_imp::getGlobalBandwidthLimits() const
+QPair<int, int> OptionsDialog::getGlobalBandwidthLimits() const
 {
     int DL = -1, UP = -1;
     if (m_ui->checkDownloadLimit->isChecked())
@@ -1054,7 +1054,7 @@ QPair<int, int> options_imp::getGlobalBandwidthLimits() const
 
 // Return alternate Download & Upload limits in kbps
 // [download,upload]
-QPair<int, int> options_imp::getAltGlobalBandwidthLimits() const
+QPair<int, int> OptionsDialog::getAltGlobalBandwidthLimits() const
 {
     int DL = -1, UP = -1;
     if (m_ui->checkDownloadLimitAlt->isChecked())
@@ -1064,19 +1064,19 @@ QPair<int, int> options_imp::getAltGlobalBandwidthLimits() const
     return qMakePair(DL, UP);
 }
 
-bool options_imp::startMinimized() const
+bool OptionsDialog::startMinimized() const
 {
     return m_ui->checkStartMinimized->isChecked();
 }
 
-bool options_imp::systrayIntegration() const
+bool OptionsDialog::systrayIntegration() const
 {
     if (!QSystemTrayIcon::isSystemTrayAvailable()) return false;
     return m_ui->checkShowSystray->isChecked();
 }
 
 // Return Share ratio
-qreal options_imp::getMaxRatio() const
+qreal OptionsDialog::getMaxRatio() const
 {
     if (m_ui->checkMaxRatio->isChecked())
         return m_ui->spinMaxRatio->value();
@@ -1084,7 +1084,7 @@ qreal options_imp::getMaxRatio() const
 }
 
 // Return max connections number
-int options_imp::getMaxConnecs() const
+int OptionsDialog::getMaxConnecs() const
 {
     if (!m_ui->checkMaxConnecs->isChecked())
         return -1;
@@ -1092,7 +1092,7 @@ int options_imp::getMaxConnecs() const
         return m_ui->spinMaxConnec->value();
 }
 
-int options_imp::getMaxConnecsPerTorrent() const
+int OptionsDialog::getMaxConnecsPerTorrent() const
 {
     if (!m_ui->checkMaxConnecsPerTorrent->isChecked())
         return -1;
@@ -1100,7 +1100,7 @@ int options_imp::getMaxConnecsPerTorrent() const
         return m_ui->spinMaxConnecPerTorrent->value();
 }
 
-int options_imp::getMaxUploads() const
+int OptionsDialog::getMaxUploads() const
 {
     if (!m_ui->checkMaxUploads->isChecked())
         return -1;
@@ -1108,7 +1108,7 @@ int options_imp::getMaxUploads() const
         return m_ui->spinMaxUploads->value();
 }
 
-int options_imp::getMaxUploadsPerTorrent() const
+int OptionsDialog::getMaxUploadsPerTorrent() const
 {
     if (!m_ui->checkMaxUploadsPerTorrent->isChecked())
         return -1;
@@ -1116,7 +1116,7 @@ int options_imp::getMaxUploadsPerTorrent() const
         return m_ui->spinMaxUploadsPerTorrent->value();
 }
 
-void options_imp::on_buttonBox_accepted()
+void OptionsDialog::on_buttonBox_accepted()
 {
     if (applyButton->isEnabled()) {
         if (!schedTimesOk()) {
@@ -1135,7 +1135,7 @@ void options_imp::on_buttonBox_accepted()
     accept();
 }
 
-void options_imp::applySettings(QAbstractButton* button)
+void OptionsDialog::applySettings(QAbstractButton* button)
 {
     if (button == applyButton) {
         if (!schedTimesOk()) {
@@ -1150,29 +1150,29 @@ void options_imp::applySettings(QAbstractButton* button)
     }
 }
 
-void options_imp::closeEvent(QCloseEvent *e)
+void OptionsDialog::closeEvent(QCloseEvent *e)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     e->accept();
 }
 
-void options_imp::on_buttonBox_rejected()
+void OptionsDialog::on_buttonBox_rejected()
 {
     setAttribute(Qt::WA_DeleteOnClose);
     reject();
 }
 
-bool options_imp::useAdditionDialog() const
+bool OptionsDialog::useAdditionDialog() const
 {
     return m_ui->checkAdditionDialog->isChecked();
 }
 
-void options_imp::enableApplyButton()
+void OptionsDialog::enableApplyButton()
 {
     applyButton->setEnabled(true);
 }
 
-void options_imp::enableProxy(int index)
+void OptionsDialog::enableProxy(int index)
 {
     if (index) {
         //enable
@@ -1205,61 +1205,61 @@ void options_imp::enableProxy(int index)
     }
 }
 
-bool options_imp::isSlashScreenDisabled() const
+bool OptionsDialog::isSlashScreenDisabled() const
 {
     return !m_ui->checkShowSplash->isChecked();
 }
 
 #ifdef Q_OS_WIN
-bool options_imp::WinStartup() const
+bool OptionsDialog::WinStartup() const
 {
     return m_ui->checkStartup->isChecked();
 }
 #endif
 
-bool options_imp::preventFromSuspend() const
+bool OptionsDialog::preventFromSuspend() const
 {
     return m_ui->checkPreventFromSuspend->isChecked();
 }
 
-bool options_imp::preAllocateAllFiles() const
+bool OptionsDialog::preAllocateAllFiles() const
 {
     return m_ui->checkPreallocateAll->isChecked();
 }
 
-bool options_imp::addTorrentsInPause() const
+bool OptionsDialog::addTorrentsInPause() const
 {
     return m_ui->checkStartPaused->isChecked();
 }
 
 // Proxy settings
-bool options_imp::isProxyEnabled() const
+bool OptionsDialog::isProxyEnabled() const
 {
     return m_ui->comboProxyType->currentIndex();
 }
 
-bool options_imp::isProxyAuthEnabled() const
+bool OptionsDialog::isProxyAuthEnabled() const
 {
     return m_ui->checkProxyAuth->isChecked();
 }
 
-QString options_imp::getProxyIp() const
+QString OptionsDialog::getProxyIp() const
 {
     return m_ui->textProxyIP->text().trimmed();
 }
 
-unsigned short options_imp::getProxyPort() const
+unsigned short OptionsDialog::getProxyPort() const
 {
     return m_ui->spinProxyPort->value();
 }
 
-QString options_imp::getProxyUsername() const
+QString OptionsDialog::getProxyUsername() const
 {
     QString username = m_ui->textProxyUsername->text().trimmed();
     return username;
 }
 
-QString options_imp::getProxyPassword() const
+QString OptionsDialog::getProxyPassword() const
 {
     QString password = m_ui->textProxyPassword->text();
     password = password.trimmed();
@@ -1267,12 +1267,12 @@ QString options_imp::getProxyPassword() const
 }
 
 // Locale Settings
-QString options_imp::getLocale() const
+QString OptionsDialog::getLocale() const
 {
     return m_ui->comboI18n->itemData(m_ui->comboI18n->currentIndex(), Qt::UserRole).toString();
 }
 
-void options_imp::setLocale(const QString &localeStr)
+void OptionsDialog::setLocale(const QString &localeStr)
 {
     QString name;
     if (localeStr.startsWith("eo", Qt::CaseInsensitive)) {
@@ -1300,14 +1300,14 @@ void options_imp::setLocale(const QString &localeStr)
     m_ui->comboI18n->setCurrentIndex(index);
 }
 
-QString options_imp::getTorrentExportDir() const
+QString OptionsDialog::getTorrentExportDir() const
 {
     if (m_ui->checkExportDir->isChecked())
         return Utils::Fs::expandPathAbs(m_ui->textExportDir->text());
     return QString();
 }
 
-QString options_imp::getFinishedTorrentExportDir() const
+QString OptionsDialog::getFinishedTorrentExportDir() const
 {
     if (m_ui->checkExportDirFin->isChecked())
         return Utils::Fs::expandPathAbs(m_ui->textExportDirFin->text());
@@ -1315,7 +1315,7 @@ QString options_imp::getFinishedTorrentExportDir() const
 }
 
 // Return action on double-click on a downloading torrent set in options
-int options_imp::getActionOnDblClOnTorrentDl() const
+int OptionsDialog::getActionOnDblClOnTorrentDl() const
 {
     if (m_ui->actionTorrentDlOnDblClBox->currentIndex() < 1)
         return 0;
@@ -1323,14 +1323,14 @@ int options_imp::getActionOnDblClOnTorrentDl() const
 }
 
 // Return action on double-click on a finished torrent set in options
-int options_imp::getActionOnDblClOnTorrentFn() const
+int OptionsDialog::getActionOnDblClOnTorrentFn() const
 {
     if (m_ui->actionTorrentFnOnDblClBox->currentIndex() < 1)
         return 0;
     return m_ui->actionTorrentFnOnDblClBox->currentIndex();
 }
 
-void options_imp::on_addScanFolderButton_clicked()
+void OptionsDialog::on_addScanFolderButton_clicked()
 {
     Preferences* const pref = Preferences::instance();
     const QString dir = QFileDialog::getExistingDirectory(this, tr("Select folder to monitor"),
@@ -1361,7 +1361,7 @@ void options_imp::on_addScanFolderButton_clicked()
     }
 }
 
-void options_imp::on_removeScanFolderButton_clicked()
+void OptionsDialog::on_removeScanFolderButton_clicked()
 {
     const QModelIndexList selected
         = m_ui->scanFoldersView->selectionModel()->selectedIndexes();
@@ -1375,12 +1375,12 @@ void options_imp::on_removeScanFolderButton_clicked()
     ScanFoldersModel::instance()->removePath(selected.first().row(), false);
 }
 
-void options_imp::handleScanFolderViewSelectionChanged()
+void OptionsDialog::handleScanFolderViewSelectionChanged()
 {
     m_ui->removeScanFolderButton->setEnabled(!m_ui->scanFoldersView->selectionModel()->selectedIndexes().isEmpty());
 }
 
-QString options_imp::askForExportDir(const QString& currentExportPath)
+QString OptionsDialog::askForExportDir(const QString& currentExportPath)
 {
     QDir currentExportDir(Utils::Fs::expandPathAbs(currentExportPath));
     QString dir;
@@ -1391,7 +1391,7 @@ QString options_imp::askForExportDir(const QString& currentExportPath)
     return dir;
 }
 
-void options_imp::on_browseFileLogDir_clicked()
+void OptionsDialog::on_browseFileLogDir_clicked()
 {
     const QString path = Utils::Fs::expandPathAbs(Utils::Fs::fromNativePath(m_ui->textFileLogPath->text()));
     QDir pathDir(path);
@@ -1404,21 +1404,21 @@ void options_imp::on_browseFileLogDir_clicked()
         m_ui->textFileLogPath->setText(Utils::Fs::toNativePath(dir));
 }
 
-void options_imp::on_browseExportDirButton_clicked()
+void OptionsDialog::on_browseExportDirButton_clicked()
 {
     const QString newExportDir = askForExportDir(m_ui->textExportDir->text());
     if (!newExportDir.isNull())
         m_ui->textExportDir->setText(Utils::Fs::toNativePath(newExportDir));
 }
 
-void options_imp::on_browseExportDirFinButton_clicked()
+void OptionsDialog::on_browseExportDirFinButton_clicked()
 {
     const QString newExportDir = askForExportDir(m_ui->textExportDirFin->text());
     if (!newExportDir.isNull())
         m_ui->textExportDirFin->setText(Utils::Fs::toNativePath(newExportDir));
 }
 
-void options_imp::on_browseFilterButton_clicked()
+void OptionsDialog::on_browseFilterButton_clicked()
 {
     const QString filter_path = Utils::Fs::expandPathAbs(m_ui->textFilterPath->text());
     QDir filterDir(filter_path);
@@ -1432,7 +1432,7 @@ void options_imp::on_browseFilterButton_clicked()
 }
 
 // Display dialog to choose save dir
-void options_imp::on_browseSaveDirButton_clicked()
+void OptionsDialog::on_browseSaveDirButton_clicked()
 {
     const QString save_path = Utils::Fs::expandPathAbs(m_ui->textSavePath->text());
     QDir saveDir(save_path);
@@ -1445,7 +1445,7 @@ void options_imp::on_browseSaveDirButton_clicked()
         m_ui->textSavePath->setText(Utils::Fs::toNativePath(dir));
 }
 
-void options_imp::on_browseTempDirButton_clicked()
+void OptionsDialog::on_browseTempDirButton_clicked()
 {
     const QString temp_path = Utils::Fs::expandPathAbs(m_ui->textTempPath->text());
     QDir tempDir(temp_path);
@@ -1459,39 +1459,39 @@ void options_imp::on_browseTempDirButton_clicked()
 }
 
 // Return Filter object to apply to BT session
-QString options_imp::getFilter() const
+QString OptionsDialog::getFilter() const
 {
     return Utils::Fs::fromNativePath(m_ui->textFilterPath->text());
 }
 
 // Web UI
 
-bool options_imp::isWebUiEnabled() const
+bool OptionsDialog::isWebUiEnabled() const
 {
     return m_ui->checkWebUi->isChecked();
 }
 
-quint16 options_imp::webUiPort() const
+quint16 OptionsDialog::webUiPort() const
 {
     return m_ui->spinWebUiPort->value();
 }
 
-QString options_imp::webUiUsername() const
+QString OptionsDialog::webUiUsername() const
 {
     return m_ui->textWebUiUsername->text();
 }
 
-QString options_imp::webUiPassword() const
+QString OptionsDialog::webUiPassword() const
 {
     return m_ui->textWebUiPassword->text();
 }
 
-void options_imp::showConnectionTab()
+void OptionsDialog::showConnectionTab()
 {
     m_ui->tabSelection->setCurrentRow(TAB_CONNECTION);
 }
 
-void options_imp::on_btnWebUiCrt_clicked()
+void OptionsDialog::on_btnWebUiCrt_clicked()
 {
     QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), tr("SSL Certificate") + QString(" (*.crt *.pem)"));
     if (filename.isNull())
@@ -1503,7 +1503,7 @@ void options_imp::on_btnWebUiCrt_clicked()
     }
 }
 
-void options_imp::on_btnWebUiKey_clicked()
+void OptionsDialog::on_btnWebUiKey_clicked()
 {
     QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), tr("SSL Key") + QString(" (*.key *.pem)"));
     if (filename.isNull())
@@ -1515,12 +1515,12 @@ void options_imp::on_btnWebUiKey_clicked()
     }
 }
 
-void options_imp::on_registerDNSBtn_clicked()
+void OptionsDialog::on_registerDNSBtn_clicked()
 {
     QDesktopServices::openUrl(Net::DNSUpdater::getRegistrationUrl(m_ui->comboDNSService->currentIndex()));
 }
 
-void options_imp::on_IpFilterRefreshBtn_clicked()
+void OptionsDialog::on_IpFilterRefreshBtn_clicked()
 {
     if (m_refreshingIpFilter) return;
     m_refreshingIpFilter = true;
@@ -1534,7 +1534,7 @@ void options_imp::on_IpFilterRefreshBtn_clicked()
     BitTorrent::Session::instance()->enableIPFilter(getFilter(), true);
 }
 
-void options_imp::handleIPFilterParsed(bool error, int ruleCount)
+void OptionsDialog::handleIPFilterParsed(bool error, int ruleCount)
 {
     setCursor(QCursor(Qt::ArrowCursor));
     if (error)
@@ -1545,7 +1545,7 @@ void options_imp::handleIPFilterParsed(bool error, int ruleCount)
     disconnect(BitTorrent::Session::instance(), SIGNAL(ipFilterParsed(bool, int)), this, SLOT(handleIPFilterParsed(bool, int)));
 }
 
-QString options_imp::languageToLocalizedString(const QLocale &locale)
+QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
 {
     switch (locale.language()) {
     case QLocale::English: {
@@ -1616,7 +1616,7 @@ QString options_imp::languageToLocalizedString(const QLocale &locale)
     }
 }
 
-void options_imp::setSslKey(const QByteArray &key, bool interactive)
+void OptionsDialog::setSslKey(const QByteArray &key, bool interactive)
 {
 #ifndef QT_NO_OPENSSL
     if (!key.isEmpty() && !QSslKey(key, QSsl::Rsa).isNull()) {
@@ -1632,7 +1632,7 @@ void options_imp::setSslKey(const QByteArray &key, bool interactive)
 #endif
 }
 
-void options_imp::setSslCertificate(const QByteArray &cert, bool interactive)
+void OptionsDialog::setSslCertificate(const QByteArray &cert, bool interactive)
 {
 #ifndef QT_NO_OPENSSL
     if (!cert.isEmpty() && !QSslCertificate(cert).isNull()) {
@@ -1648,7 +1648,7 @@ void options_imp::setSslCertificate(const QByteArray &cert, bool interactive)
 #endif
 }
 
-bool options_imp::schedTimesOk()
+bool OptionsDialog::schedTimesOk()
 {
     if (m_ui->schedule_from->time() == m_ui->schedule_to->time()) {
         QMessageBox::warning(this, tr("Time Error"), tr("The start time and the end time can't be the same."));
@@ -1657,7 +1657,7 @@ bool options_imp::schedTimesOk()
     return true;
 }
 
-bool options_imp::webUIAuthenticationOk()
+bool OptionsDialog::webUIAuthenticationOk()
 {
     if (webUiUsername().length() < 3) {
         QMessageBox::warning(this, tr("Length Error"), tr("The Web UI username must be at least 3 characters long."));

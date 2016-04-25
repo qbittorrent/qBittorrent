@@ -52,7 +52,7 @@
 #include "previewselect.h"
 #include "speedlimitdlg.h"
 #include "updownratiodlg.h"
-#include "options_imp.h"
+#include "optionsdlg.h"
 #include "mainwindow.h"
 #include "base/preferences.h"
 #include "torrentmodel.h"
