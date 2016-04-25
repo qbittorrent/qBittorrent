@@ -28,8 +28,8 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef OPTIONS_IMP_H
-#define OPTIONS_IMP_H
+#ifndef OPTIONSDLG_H
+#define OPTIONSDLG_H
 
 #include <QButtonGroup>
 #include <QDialog>
@@ -52,7 +52,7 @@ namespace Ui
     class OptionsDialog;
 }
 
-class options_imp: public QDialog
+class OptionsDialog: public QDialog
 {
     Q_OBJECT
 private:
@@ -69,8 +69,8 @@ private:
 
 public:
     // Constructor / Destructor
-    options_imp(QWidget *parent = 0);
-    ~options_imp();
+    OptionsDialog(QWidget *parent = 0);
+    ~OptionsDialog();
 
 public slots:
     void showConnectionTab();

@@ -36,7 +36,7 @@ HEADERS += \
     $$PWD/autoexpandabledialog.h \
     $$PWD/statsdialog.h \
     $$PWD/messageboxraised.h \
-    $$PWD/options_imp.h \
+    $$PWD/optionsdlg.h \
     $$PWD/advancedsettings.h \
     $$PWD/shutdownconfirmdlg.h \
     $$PWD/torrentmodel.h \
@@ -77,7 +77,7 @@ SOURCES += \
     $$PWD/statusbar.cpp \
     $$PWD/advancedsettings.cpp \
     $$PWD/trackerlogin.cpp \
-    $$PWD/options_imp.cpp \
+    $$PWD/optionsdlg.cpp \
     $$PWD/shutdownconfirmdlg.cpp \
     $$PWD/torrentmodel.cpp \
     $$PWD/torrentcreatordlg.cpp \
@@ -110,7 +110,7 @@ FORMS += \
     $$PWD/addnewtorrentdialog.ui \
     $$PWD/autoexpandabledialog.ui \
     $$PWD/statsdialog.ui \
-    $$PWD/options.ui \
+    $$PWD/optionsdlg.ui \
     $$PWD/torrentcreatordlg.ui \
     $$PWD/search/searchwidget.ui \
     $$PWD/search/pluginselectdlg.ui \
