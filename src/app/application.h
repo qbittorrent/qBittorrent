@@ -76,6 +76,10 @@ public:
     int exec(const QStringList &params);
     bool sendParams(const QStringList &params);
 
+#ifndef DISABLE_GUI
+    QPointer<MainWindow> mainWindow();
+#endif
+
     // FileLogger properties
     bool isFileLoggerEnabled() const;
     void setFileLoggerEnabled(bool value);
