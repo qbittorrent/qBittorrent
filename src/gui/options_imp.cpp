@@ -28,38 +28,38 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QTextStream>
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QSystemTrayIcon>
-#include <QApplication>
-#include <QDialogButtonBox>
-#include <QCloseEvent>
-#include <QDesktopWidget>
-#include <QTranslator>
-#include <QDesktopServices>
-#include <QDebug>
+#include "options_imp.h"
 
 #include <cstdlib>
 
+#include <QApplication>
+#include <QCloseEvent>
+#include <QDebug>
+#include <QDesktopServices>
+#include <QDesktopWidget>
+#include <QDialogButtonBox>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QSystemTrayIcon>
+#include <QTranslator>
+
+#ifndef QT_NO_OPENSSL
+#include <QSslCertificate>
+#include <QSslKey>
+#endif
+
 #include "app/application.h"
-#include "base/preferences.h"
-#include "base/utils/fs.h"
-#include "base/scanfoldersmodel.h"
 #include "base/bittorrent/session.h"
 #include "base/net/dnsupdater.h"
-#include "base/unicodestrings.h"
+#include "base/preferences.h"
+#include "base/scanfoldersmodel.h"
 #include "base/torrentfileguard.h"
+#include "base/unicodestrings.h"
+#include "base/utils/fs.h"
+#include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
 #include "guiiconprovider.h"
 #include "scanfoldersdelegate.h"
-#include "addnewtorrentdialog.h"
-#include "options_imp.h"
-
-#ifndef QT_NO_OPENSSL
-#include <QSslKey>
-#include <QSslCertificate>
-#endif
 
 // Constructor
 options_imp::options_imp(QWidget *parent)
