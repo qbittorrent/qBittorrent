@@ -1469,7 +1469,7 @@ void TorrentHandle::handleTorrentCheckedAlert(libtorrent::torrent_checked_alert 
         m_hasSeedStatus = true;
 
     adjustActualSavePath();
-    appendExtensionsToIncompleteFiles();
+    manageIncompleteFiles();
 
     if (m_pauseAfterRecheck) {
         m_pauseAfterRecheck = false;
@@ -1491,7 +1491,7 @@ void TorrentHandle::handleTorrentFinishedAlert(libtorrent::torrent_finished_aler
     m_hasSeedStatus = true;
 
     adjustActualSavePath();
-    appendExtensionsToIncompleteFiles();
+    manageIncompleteFiles();
 
     const bool recheckTorrentsOnCompletion = Preferences::instance()->recheckTorrentsOnCompletion();
     if (isMoveInProgress() || m_renameCount > 0) {
@@ -1638,7 +1638,7 @@ void TorrentHandle::handleMetadataReceivedAlert(libt::metadata_received_alert *p
     qDebug("Metadata received for torrent %s.", qPrintable(name()));
     updateStatus();
     if (m_session->isAppendExtensionEnabled())
-        appendExtensionsToIncompleteFiles();
+        manageIncompleteFiles();
     m_session->handleTorrentMetadataReceived(this);
 
     if (isPaused()) {
@@ -1664,10 +1664,7 @@ void TorrentHandle::handleAppendExtensionToggled()
 {
     if (!hasMetadata()) return;
 
-    if (m_session->isAppendExtensionEnabled())
-        appendExtensionsToIncompleteFiles();
-    else
-        removeExtensionsFromIncompleteFiles();
+    manageIncompleteFiles();
 }
 
 void TorrentHandle::handleAlert(libtorrent::alert *a)
@@ -1724,12 +1721,13 @@ void TorrentHandle::handleAlert(libtorrent::alert *a)
     }
 }
 
-void TorrentHandle::appendExtensionsToIncompleteFiles()
+void TorrentHandle::manageIncompleteFiles()
 {
+    const bool isAppendExtensionEnabled = m_session->isAppendExtensionEnabled();
     QVector<qreal> fp = filesProgress();
     for (int i = 0; i < filesCount(); ++i) {
         QString name = filePath(i);
-        if ((fileSize(i) > 0) && (fp[i] < 1)) {
+        if (isAppendExtensionEnabled && (fileSize(i) > 0) && (fp[i] < 1)) {
             if (!name.endsWith(QB_EXT)) {
                 const QString newName = name + QB_EXT;
                 qDebug() << "Renaming" << name << "to" << newName;
@@ -1743,19 +1741,6 @@ void TorrentHandle::appendExtensionsToIncompleteFiles()
                 qDebug() << "Renaming" << oldName << "to" << name;
                 renameFile(i, name);
             }
-        }
-    }
-}
-
-void TorrentHandle::removeExtensionsFromIncompleteFiles()
-{
-    for (int i = 0; i < filesCount(); ++i) {
-        QString name = filePath(i);
-        if (name.endsWith(QB_EXT)) {
-            const QString oldName = name;
-            name.chop(QB_EXT.size());
-            qDebug("Renaming %s to %s", qPrintable(oldName), qPrintable(name));
-            renameFile(i, name);
         }
     }
 }
