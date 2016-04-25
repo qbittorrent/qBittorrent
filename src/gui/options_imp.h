@@ -31,9 +31,12 @@
 #ifndef OPTIONS_IMP_H
 #define OPTIONS_IMP_H
 
-#include "ui_options.h"
+#include <QButtonGroup>
+#include <QDialog>
 
+class QAbstractButton;
 class QCloseEvent;
+class QListWidgetItem;
 class AdvancedSettings;
 
 // actions on double-click on torrents
@@ -44,7 +47,12 @@ enum DoubleClickAction
     NO_ACTION
 };
 
-class options_imp: public QDialog, private Ui_Preferences
+namespace Ui
+{
+    class OptionsDialog;
+}
+
+class options_imp: public QDialog
 {
     Q_OBJECT
 private:
@@ -164,6 +172,7 @@ private:
     bool webUIAuthenticationOk();
 
 private:
+    Ui::OptionsDialog *m_ui;
     QButtonGroup choiceLanguage;
     QAbstractButton *applyButton;
     AdvancedSettings *advancedSettings;

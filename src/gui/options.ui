@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Preferences</class>
- <widget class="QDialog" name="Preferences">
+ <class>OptionsDialog</class>
+ <widget class="QDialog" name="OptionsDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -1363,7 +1363,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>497</width>
+             <width>457</width>
              <height>672</height>
             </rect>
            </property>
@@ -1836,8 +1836,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>510</width>
-             <height>538</height>
+             <width>388</width>
+             <height>452</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
