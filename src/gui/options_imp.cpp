@@ -61,38 +61,41 @@
 #include "guiiconprovider.h"
 #include "scanfoldersdelegate.h"
 
+#include "ui_options.h"
+
 // Constructor
 options_imp::options_imp(QWidget *parent)
     : QDialog(parent)
     , m_refreshingIpFilter(false)
+    , m_ui(new Ui::OptionsDialog)
 {
     qDebug("-> Constructing Options");
-    setupUi(this);
+    m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
     setModal(true);
 
     // Icons
-    tabSelection->item(TAB_UI)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop"));
-    tabSelection->item(TAB_BITTORRENT)->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
-    tabSelection->item(TAB_CONNECTION)->setIcon(GuiIconProvider::instance()->getIcon("network-wired"));
-    tabSelection->item(TAB_DOWNLOADS)->setIcon(GuiIconProvider::instance()->getIcon("download"));
-    tabSelection->item(TAB_SPEED)->setIcon(GuiIconProvider::instance()->getIcon("chronometer"));
+    m_ui->tabSelection->item(TAB_UI)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop"));
+    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
+    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(GuiIconProvider::instance()->getIcon("network-wired"));
+    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(GuiIconProvider::instance()->getIcon("download"));
+    m_ui->tabSelection->item(TAB_SPEED)->setIcon(GuiIconProvider::instance()->getIcon("chronometer"));
 #ifndef DISABLE_WEBUI
-    tabSelection->item(TAB_WEBUI)->setIcon(GuiIconProvider::instance()->getIcon("network-server"));
+    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(GuiIconProvider::instance()->getIcon("network-server"));
 #else
-    tabSelection->item(TAB_WEBUI)->setHidden(true);
+    m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #endif
-    tabSelection->item(TAB_ADVANCED)->setIcon(GuiIconProvider::instance()->getIcon("preferences-other"));
-    for (int i = 0; i < tabSelection->count(); ++i) {
-        tabSelection->item(i)->setSizeHint(QSize(std::numeric_limits<int>::max(), 64));  // uniform size for all icons
+    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(GuiIconProvider::instance()->getIcon("preferences-other"));
+    for (int i = 0; i < m_ui->tabSelection->count(); ++i) {
+        m_ui->tabSelection->item(i)->setSizeHint(QSize(std::numeric_limits<int>::max(), 64));  // uniform size for all icons
     }
 
-    IpFilterRefreshBtn->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
+    m_ui->IpFilterRefreshBtn->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
 
-    deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
-    deleteTorrentWarningIcon->hide();
-    deleteTorrentWarningLabel->hide();
-    deleteTorrentWarningLabel->setToolTip(QLatin1String("<html><body><p>") +
+    m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
+    m_ui->deleteTorrentWarningIcon->hide();
+    m_ui->deleteTorrentWarningLabel->hide();
+    m_ui->deleteTorrentWarningLabel->setToolTip(QLatin1String("<html><body><p>") +
         tr("By enabling these options, you can <strong>irrevocably lose</strong> your .torrent files!") +
         QLatin1String("</p><p>") +
         tr("When these options are enabled, qBittorent will <strong>delete</strong> .torrent files "
@@ -105,137 +108,137 @@ options_imp::options_imp(QWidget *parent)
         "the &ldquo;Add torrent&rdquo; dialog") +
         QLatin1String("</p></body></html>"));
 
-    hsplitter->setCollapsible(0, false);
-    hsplitter->setCollapsible(1, false);
+    m_ui->hsplitter->setCollapsible(0, false);
+    m_ui->hsplitter->setCollapsible(1, false);
     // Get apply button in button box
-    QList<QAbstractButton *> buttons = buttonBox->buttons();
+    QList<QAbstractButton *> buttons = m_ui->buttonBox->buttons();
     foreach (QAbstractButton *button, buttons) {
-        if (buttonBox->buttonRole(button) == QDialogButtonBox::ApplyRole) {
+        if (m_ui->buttonBox->buttonRole(button) == QDialogButtonBox::ApplyRole) {
             applyButton = button;
             break;
         }
     }
 
 #ifndef QBT_USES_QT5
-    scanFoldersView->header()->setResizeMode(QHeaderView::ResizeToContents);
+    m_ui->scanFoldersView->header()->setResizeMode(QHeaderView::ResizeToContents);
 #else
-    scanFoldersView->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    m_ui->scanFoldersView->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 #endif
-    scanFoldersView->setModel(ScanFoldersModel::instance());
-    scanFoldersView->setItemDelegate(new ScanFoldersDelegate(this, scanFoldersView));
+    m_ui->scanFoldersView->setModel(ScanFoldersModel::instance());
+    m_ui->scanFoldersView->setItemDelegate(new ScanFoldersDelegate(this, m_ui->scanFoldersView));
     connect(ScanFoldersModel::instance(), SIGNAL(dataChanged(QModelIndex, QModelIndex)), this, SLOT(enableApplyButton()));
-    connect(scanFoldersView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(handleScanFolderViewSelectionChanged()));
+    connect(m_ui->scanFoldersView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(handleScanFolderViewSelectionChanged()));
 
-    connect(buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(applySettings(QAbstractButton*)));
+    connect(m_ui->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(applySettings(QAbstractButton*)));
     // Languages supported
     initializeLanguageCombo();
 
     // Load week days (scheduler)
     for (uint i = 1; i <= 7; ++i)
-        schedule_days->addItem(QDate::longDayName(i, QDate::StandaloneFormat));
+        m_ui->schedule_days->addItem(QDate::longDayName(i, QDate::StandaloneFormat));
 
     // Load options
     loadOptions();
     // Disable systray integration if it is not supported by the system
     if (!QSystemTrayIcon::isSystemTrayAvailable()) {
-        checkShowSystray->setChecked(false);
-        checkShowSystray->setEnabled(false);
-        label_trayIconStyle->setVisible(false);
-        comboTrayIcon->setVisible(false);
+        m_ui->checkShowSystray->setChecked(false);
+        m_ui->checkShowSystray->setEnabled(false);
+        m_ui->label_trayIconStyle->setVisible(false);
+        m_ui->comboTrayIcon->setVisible(false);
     }
 
 #if defined(QT_NO_OPENSSL)
-    checkWebUiHttps->setVisible(false);
+    m_ui->checkWebUiHttps->setVisible(false);
 #endif
 
 #ifndef Q_OS_WIN
-    checkStartup->setVisible(false);
+    m_ui->checkStartup->setVisible(false);
 #endif
 
 #if !(defined(Q_OS_WIN) || defined(Q_OS_MAC))
-    groupFileAssociation->setVisible(false);
+    m_ui->groupFileAssociation->setVisible(false);
 #endif
 
     // Connect signals / slots
-    connect(comboProxyType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableProxy(int)));
-    connect(checkRandomPort, SIGNAL(toggled(bool)), spinPort, SLOT(setDisabled(bool)));
+    connect(m_ui->comboProxyType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableProxy(int)));
+    connect(m_ui->checkRandomPort, SIGNAL(toggled(bool)), m_ui->spinPort, SLOT(setDisabled(bool)));
 
     // Apply button is activated when a value is changed
     // General tab
-    connect(comboI18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-    connect(confirmDeletion, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkAltRowColors, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkHideZero, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkHideZero, SIGNAL(toggled(bool)), comboHideZero, SLOT(setEnabled(bool)));
-    connect(comboHideZero, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-    connect(checkShowSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkCloseToSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkMinimizeToSysTray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkStartMinimized, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->comboI18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->confirmDeletion, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkAltRowColors, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkHideZero, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkHideZero, SIGNAL(toggled(bool)), m_ui->comboHideZero, SLOT(setEnabled(bool)));
+    connect(m_ui->comboHideZero, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkShowSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkCloseToSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkMinimizeToSysTray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkStartMinimized, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #ifdef Q_OS_WIN
-    connect(checkStartup, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkStartup, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #endif
-    connect(checkShowSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkProgramExitConfirm, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkProgramAutoExitConfirm, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkPreventFromSuspend, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(comboTrayIcon, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkShowSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkProgramExitConfirm, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkProgramAutoExitConfirm, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkPreventFromSuspend, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->comboTrayIcon, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && !defined(QT_DBUS_LIB)
-    checkPreventFromSuspend->setDisabled(true);
+    m_ui->checkPreventFromSuspend->setDisabled(true);
 #endif
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    connect(checkAssociateTorrents, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkAssociateMagnetLinks, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkAssociateTorrents, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkAssociateMagnetLinks, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #endif
-    connect(checkFileLog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(textFileLogPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(checkFileLogBackup, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkFileLogBackup, SIGNAL(toggled(bool)), spinFileLogSize, SLOT(setEnabled(bool)));
-    connect(checkFileLogDelete, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkFileLogDelete, SIGNAL(toggled(bool)), spinFileLogAge, SLOT(setEnabled(bool)));
-    connect(checkFileLogDelete, SIGNAL(toggled(bool)), comboFileLogAgeType, SLOT(setEnabled(bool)));
-    connect(spinFileLogSize, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
-    connect(spinFileLogAge, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
-    connect(comboFileLogAgeType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkFileLog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->textFileLogPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkFileLogBackup, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkFileLogBackup, SIGNAL(toggled(bool)), m_ui->spinFileLogSize, SLOT(setEnabled(bool)));
+    connect(m_ui->checkFileLogDelete, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkFileLogDelete, SIGNAL(toggled(bool)), m_ui->spinFileLogAge, SLOT(setEnabled(bool)));
+    connect(m_ui->checkFileLogDelete, SIGNAL(toggled(bool)), m_ui->comboFileLogAgeType, SLOT(setEnabled(bool)));
+    connect(m_ui->spinFileLogSize, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinFileLogAge, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->comboFileLogAgeType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     // Downloads tab
-    connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(checkUseSubcategories, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(comboSavingMode, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-    connect(comboTorrentCategoryChanged, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-    connect(comboCategoryDefaultPathChanged, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-    connect(comboCategoryChanged, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-    connect(textTempPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(checkAppendqB, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkPreallocateAll, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkAdditionDialogFront, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(deleteTorrentBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(deleteCancelledTorrentBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkExportDir, SIGNAL(toggled(bool)), textExportDir, SLOT(setEnabled(bool)));
-    connect(checkExportDir, SIGNAL(toggled(bool)), browseExportDirButton, SLOT(setEnabled(bool)));
-    connect(checkExportDirFin, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkExportDirFin, SIGNAL(toggled(bool)), textExportDirFin, SLOT(setEnabled(bool)));
-    connect(checkExportDirFin, SIGNAL(toggled(bool)), browseExportDirFinButton, SLOT(setEnabled(bool)));
-    connect(textExportDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(textExportDirFin, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(actionTorrentDlOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-    connect(actionTorrentFnOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-    connect(checkTempFolder, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkTempFolder, SIGNAL(toggled(bool)), textTempPath, SLOT(setEnabled(bool)));
-    connect(checkTempFolder, SIGNAL(toggled(bool)), browseTempDirButton, SLOT(setEnabled(bool)));
-    connect(addScanFolderButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
-    connect(removeScanFolderButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
-    connect(groupMailNotification, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(dest_email_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(smtp_server_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(checkSmtpSSL, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(groupMailNotifAuth, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(mailNotifUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(mailNotifPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(autoRunBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(autoRun_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkUseSubcategories, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->comboSavingMode, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->comboTorrentCategoryChanged, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->comboCategoryDefaultPathChanged, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->comboCategoryChanged, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->textTempPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkAppendqB, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkPreallocateAll, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkAdditionDialogFront, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->deleteTorrentBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->deleteCancelledTorrentBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkExportDir, SIGNAL(toggled(bool)), m_ui->textExportDir, SLOT(setEnabled(bool)));
+    connect(m_ui->checkExportDir, SIGNAL(toggled(bool)), m_ui->browseExportDirButton, SLOT(setEnabled(bool)));
+    connect(m_ui->checkExportDirFin, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkExportDirFin, SIGNAL(toggled(bool)), m_ui->textExportDirFin, SLOT(setEnabled(bool)));
+    connect(m_ui->checkExportDirFin, SIGNAL(toggled(bool)), m_ui->browseExportDirFinButton, SLOT(setEnabled(bool)));
+    connect(m_ui->textExportDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->textExportDirFin, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->actionTorrentDlOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->actionTorrentFnOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkTempFolder, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkTempFolder, SIGNAL(toggled(bool)), m_ui->textTempPath, SLOT(setEnabled(bool)));
+    connect(m_ui->checkTempFolder, SIGNAL(toggled(bool)), m_ui->browseTempDirButton, SLOT(setEnabled(bool)));
+    connect(m_ui->addScanFolderButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
+    connect(m_ui->removeScanFolderButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
+    connect(m_ui->groupMailNotification, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->dest_email_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->smtp_server_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkSmtpSSL, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->groupMailNotifAuth, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->mailNotifUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->mailNotifPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->autoRunBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->autoRun_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
 
     const QString autoRunStr = QString::fromUtf8("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n%11")
                                .arg(tr("Supported parameters (case sensitive):"))
@@ -249,91 +252,91 @@ options_imp::options_imp(QWidget *parent)
                                .arg(tr("%T: Current tracker"))
                                .arg(tr("%I: Info hash"))
                                .arg(tr("Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., \"%N\")"));
-    autoRun_param->setText(autoRunStr);
+    m_ui->autoRun_param->setText(autoRunStr);
 
     // Connection tab
-    connect(spinPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(checkRandomPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkUPnP, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkUploadLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkDownloadLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkUploadLimitAlt, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkDownloadLimitAlt, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(spinUploadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(spinDownloadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(spinUploadLimitAlt, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(spinDownloadLimitAlt, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(check_schedule, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(schedule_from, SIGNAL(timeChanged(QTime)), this, SLOT(enableApplyButton()));
-    connect(schedule_to, SIGNAL(timeChanged(QTime)), this, SLOT(enableApplyButton()));
-    connect(schedule_days, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-    connect(checkuTP, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
-    connect(checkuTP, SIGNAL(toggled(bool)), checkLimituTPConnections, SLOT(setEnabled(bool)));
-    connect(checkLimituTPConnections, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
-    connect(checkLimitTransportOverhead, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
-    connect(checkLimitLocalPeerRate, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+    connect(m_ui->spinPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkRandomPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkUPnP, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkUploadLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkDownloadLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkUploadLimitAlt, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkDownloadLimitAlt, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinUploadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinDownloadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinUploadLimitAlt, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinDownloadLimitAlt, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->check_schedule, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->schedule_from, SIGNAL(timeChanged(QTime)), this, SLOT(enableApplyButton()));
+    connect(m_ui->schedule_to, SIGNAL(timeChanged(QTime)), this, SLOT(enableApplyButton()));
+    connect(m_ui->schedule_days, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkuTP, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+    connect(m_ui->checkuTP, SIGNAL(toggled(bool)), m_ui->checkLimituTPConnections, SLOT(setEnabled(bool)));
+    connect(m_ui->checkLimituTPConnections, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+    connect(m_ui->checkLimitTransportOverhead, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+    connect(m_ui->checkLimitLocalPeerRate, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
     // Bittorrent tab
-    connect(checkMaxConnecs, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkMaxConnecsPerTorrent, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkMaxUploads, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkMaxUploadsPerTorrent, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(spinMaxConnec, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(spinMaxConnecPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(spinMaxUploads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(spinMaxUploadsPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(checkDHT, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkAnonymousMode, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkPeX, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkLSD, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(comboEncryption, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-    connect(checkMaxRatio, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(spinMaxRatio, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(comboRatioLimitAct, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkMaxConnecs, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkMaxConnecsPerTorrent, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkMaxUploads, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkMaxUploadsPerTorrent, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinMaxConnec, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinMaxConnecPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinMaxUploads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinMaxUploadsPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkDHT, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkAnonymousMode, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkPeX, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkLSD, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->comboEncryption, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkMaxRatio, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinMaxRatio, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->comboRatioLimitAct, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     // Proxy tab
-    connect(comboProxyType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-    connect(textProxyIP, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(spinProxyPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(checkProxyPeerConnecs, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
-    connect(checkForceProxy, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
-    connect(isProxyOnlyForTorrents, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
-    connect(checkProxyAuth, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(textProxyUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(textProxyPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->comboProxyType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->textProxyIP, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinProxyPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkProxyPeerConnecs, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+    connect(m_ui->checkForceProxy, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+    connect(m_ui->isProxyOnlyForTorrents, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+    connect(m_ui->checkProxyAuth, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->textProxyUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->textProxyPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     // Misc tab
-    connect(checkIPFilter, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkIpFilterTrackers, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
-    connect(textFilterPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(checkEnableQueueing, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(spinMaxActiveDownloads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(spinMaxActiveUploads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(spinMaxActiveTorrents, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(checkIgnoreSlowTorrentsForQueueing, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkEnableAddTrackers, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(textTrackers, SIGNAL(textChanged()), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkIPFilter, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkIpFilterTrackers, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+    connect(m_ui->textFilterPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkEnableQueueing, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinMaxActiveDownloads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinMaxActiveUploads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinMaxActiveTorrents, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkIgnoreSlowTorrentsForQueueing, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkEnableAddTrackers, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->textTrackers, SIGNAL(textChanged()), this, SLOT(enableApplyButton()));
 #ifndef DISABLE_WEBUI
     // Web UI tab
-    connect(checkWebUi, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(spinWebUiPort, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
-    connect(checkWebUIUPnP, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
-    connect(checkWebUiHttps, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
-    connect(btnWebUiKey, SIGNAL(clicked()), SLOT(enableApplyButton()));
-    connect(btnWebUiCrt, SIGNAL(clicked()), SLOT(enableApplyButton()));
-    connect(textWebUiUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(textWebUiPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(checkBypassLocalAuth, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(checkDynDNS, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
-    connect(comboDNSService, SIGNAL(currentIndexChanged(int)), SLOT(enableApplyButton()));
-    connect(domainNameTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
-    connect(DNSUsernameTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
-    connect(DNSPasswordTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
+    connect(m_ui->checkWebUi, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinWebUiPort, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkWebUIUPnP, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+    connect(m_ui->checkWebUiHttps, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+    connect(m_ui->btnWebUiKey, SIGNAL(clicked()), SLOT(enableApplyButton()));
+    connect(m_ui->btnWebUiCrt, SIGNAL(clicked()), SLOT(enableApplyButton()));
+    connect(m_ui->textWebUiUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->textWebUiPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkBypassLocalAuth, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkDynDNS, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+    connect(m_ui->comboDNSService, SIGNAL(currentIndexChanged(int)), SLOT(enableApplyButton()));
+    connect(m_ui->domainNameTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
+    connect(m_ui->DNSUsernameTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
+    connect(m_ui->DNSPasswordTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
 #endif
     // Disable apply Button
     applyButton->setEnabled(false);
     // Tab selection mechanism
-    connect(tabSelection, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
+    connect(m_ui->tabSelection, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
     // Load Advanced settings
-    advancedSettings = new AdvancedSettings(tabAdvancedPage);
-    advPageLayout->addWidget(advancedSettings);
+    advancedSettings = new AdvancedSettings(m_ui->tabAdvancedPage);
+    m_ui->advPageLayout->addWidget(advancedSettings);
     connect(advancedSettings, SIGNAL(settingsChanged()), this, SLOT(enableApplyButton()));
 
     // Adapt size
@@ -358,7 +361,7 @@ void options_imp::initializeLanguageCombo()
             QLocale locale(localeStr);
             languageName = languageToLocalizedString(locale);
         }
-        comboI18n->addItem(/*QIcon(":/icons/flags/"+country+".png"), */ languageName, localeStr);
+        m_ui->comboI18n->addItem(/*QIcon(":/icons/flags/"+country+".png"), */ languageName, localeStr);
         qDebug() << "Supported locale:" << localeStr;
     }
 }
@@ -370,13 +373,14 @@ options_imp::~options_imp()
     foreach (const QString &path, addedScanDirs)
         ScanFoldersModel::instance()->removePath(path);
     ScanFoldersModel::instance()->configure(); // reloads "removed" paths
+    delete m_ui;
 }
 
 void options_imp::changePage(QListWidgetItem *current, QListWidgetItem *previous)
 {
     if (!current)
         current = previous;
-    tabOption->setCurrentIndex(tabSelection->row(current));
+    m_ui->tabOption->setCurrentIndex(m_ui->tabSelection->row(current));
 }
 
 void options_imp::loadWindowState()
@@ -397,9 +401,9 @@ void options_imp::loadWindowState()
     }
     else {
         sizes << 116;
-        sizes << hsplitter->width() - 116;
+        sizes << m_ui->hsplitter->width() - 116;
     }
-    hsplitter->setSizes(sizes);
+    m_ui->hsplitter->setSizes(sizes);
 }
 
 void options_imp::saveWindowState() const
@@ -409,8 +413,8 @@ void options_imp::saveWindowState() const
     pref->setPrefPos(pos());
     // Splitter size
     QStringList sizes_str;
-    sizes_str << QString::number(hsplitter->sizes().first());
-    sizes_str << QString::number(hsplitter->sizes().last());
+    sizes_str << QString::number(m_ui->hsplitter->sizes().first());
+    sizes_str << QString::number(m_ui->hsplitter->sizes().last());
     pref->setPrefHSplitterSizes(sizes_str);
 }
 
@@ -450,62 +454,62 @@ void options_imp::saveOptions()
 
     // General preferences
     pref->setLocale(locale);
-    pref->setConfirmTorrentDeletion(confirmDeletion->isChecked());
-    pref->setAlternatingRowColors(checkAltRowColors->isChecked());
-    pref->setHideZeroValues(checkHideZero->isChecked());
-    pref->setHideZeroComboValues(comboHideZero->currentIndex());
+    pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
+    pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
+    pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
+    pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
     pref->setSystrayIntegration(systrayIntegration());
-    pref->setTrayIconStyle(TrayIcon::Style(comboTrayIcon->currentIndex()));
+    pref->setTrayIconStyle(TrayIcon::Style(m_ui->comboTrayIcon->currentIndex()));
     pref->setCloseToTray(closeToTray());
     pref->setMinimizeToTray(minimizeToTray());
     pref->setStartMinimized(startMinimized());
     pref->setSplashScreenDisabled(isSlashScreenDisabled());
-    pref->setConfirmOnExit(checkProgramExitConfirm->isChecked());
-    pref->setDontConfirmAutoExit(!checkProgramAutoExitConfirm->isChecked());
+    pref->setConfirmOnExit(m_ui->checkProgramExitConfirm->isChecked());
+    pref->setDontConfirmAutoExit(!m_ui->checkProgramAutoExitConfirm->isChecked());
     pref->setPreventFromSuspend(preventFromSuspend());
 #ifdef Q_OS_WIN
     pref->setWinStartup(WinStartup());
     // Windows: file association settings
-    Preferences::setTorrentFileAssoc(checkAssociateTorrents->isChecked());
-    Preferences::setMagnetLinkAssoc(checkAssociateMagnetLinks->isChecked());
+    Preferences::setTorrentFileAssoc(m_ui->checkAssociateTorrents->isChecked());
+    Preferences::setMagnetLinkAssoc(m_ui->checkAssociateMagnetLinks->isChecked());
 #endif
 #ifdef Q_OS_MAC
-    if (checkAssociateTorrents->isChecked()) {
+    if (m_ui->checkAssociateTorrents->isChecked()) {
         Preferences::setTorrentFileAssoc();
-        checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
-        checkAssociateTorrents->setEnabled(!checkAssociateTorrents->isChecked());
+        m_ui->checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
+        m_ui->checkAssociateTorrents->setEnabled(!m_ui->checkAssociateTorrents->isChecked());
     }
-    if (checkAssociateMagnetLinks->isChecked()) {
+    if (m_ui->checkAssociateMagnetLinks->isChecked()) {
         Preferences::setMagnetLinkAssoc();
-        checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
-        checkAssociateMagnetLinks->setEnabled(!checkAssociateMagnetLinks->isChecked());
+        m_ui->checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
+        m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
     }
 #endif
     Application * const app = static_cast<Application*>(QCoreApplication::instance());
-    app->setFileLoggerPath(Utils::Fs::fromNativePath(textFileLogPath->text()));
-    app->setFileLoggerBackup(checkFileLogBackup->isChecked());
-    app->setFileLoggerMaxSize(spinFileLogSize->value());
-    app->setFileLoggerAge(spinFileLogAge->value());
-    app->setFileLoggerAgeType(comboFileLogAgeType->currentIndex());
-    app->setFileLoggerDeleteOld(checkFileLogDelete->isChecked());
-    app->setFileLoggerEnabled(checkFileLog->isChecked());
+    app->setFileLoggerPath(Utils::Fs::fromNativePath(m_ui->textFileLogPath->text()));
+    app->setFileLoggerBackup(m_ui->checkFileLogBackup->isChecked());
+    app->setFileLoggerMaxSize(m_ui->spinFileLogSize->value());
+    app->setFileLoggerAge(m_ui->spinFileLogAge->value());
+    app->setFileLoggerAgeType(m_ui->comboFileLogAgeType->currentIndex());
+    app->setFileLoggerDeleteOld(m_ui->checkFileLogDelete->isChecked());
+    app->setFileLoggerEnabled(m_ui->checkFileLog->isChecked());
     // End General preferences
 
     auto session = BitTorrent::Session::instance();
 
     // Downloads preferences
-    session->setDefaultSavePath(Utils::Fs::expandPathAbs(textSavePath->text()));
-    session->setSubcategoriesEnabled(checkUseSubcategories->isChecked());
-    session->setAutoTMMDisabledByDefault(comboSavingMode->currentIndex() == 0);
-    session->setDisableAutoTMMWhenCategoryChanged(comboTorrentCategoryChanged->currentIndex() == 1);
-    session->setDisableAutoTMMWhenCategorySavePathChanged(comboCategoryChanged->currentIndex() == 1);
-    session->setDisableAutoTMMWhenDefaultSavePathChanged(comboCategoryDefaultPathChanged->currentIndex() == 1);
-    session->setTempPathEnabled(checkTempFolder->isChecked());
-    session->setTempPath(Utils::Fs::expandPathAbs(textTempPath->text()));
-    pref->useIncompleteFilesExtension(checkAppendqB->isChecked());
+    session->setDefaultSavePath(Utils::Fs::expandPathAbs(m_ui->textSavePath->text()));
+    session->setSubcategoriesEnabled(m_ui->checkUseSubcategories->isChecked());
+    session->setAutoTMMDisabledByDefault(m_ui->comboSavingMode->currentIndex() == 0);
+    session->setDisableAutoTMMWhenCategoryChanged(m_ui->comboTorrentCategoryChanged->currentIndex() == 1);
+    session->setDisableAutoTMMWhenCategorySavePathChanged(m_ui->comboCategoryChanged->currentIndex() == 1);
+    session->setDisableAutoTMMWhenDefaultSavePathChanged(m_ui->comboCategoryDefaultPathChanged->currentIndex() == 1);
+    session->setTempPathEnabled(m_ui->checkTempFolder->isChecked());
+    session->setTempPath(Utils::Fs::expandPathAbs(m_ui->textTempPath->text()));
+    pref->useIncompleteFilesExtension(m_ui->checkAppendqB->isChecked());
     pref->preAllocateAllFiles(preAllocateAllFiles());
     AddNewTorrentDialog::setEnabled(useAdditionDialog());
-    AddNewTorrentDialog::setTopLevel(checkAdditionDialogFront->isChecked());
+    AddNewTorrentDialog::setTopLevel(m_ui->checkAdditionDialogFront->isChecked());
     session->setAddTorrentPaused(addTorrentsInPause());
     ScanFoldersModel::instance()->removeFromFSWatcher(removedScanDirs);
     ScanFoldersModel::instance()->addToFSWatcher(addedScanDirs);
@@ -514,46 +518,46 @@ void options_imp::saveOptions()
     addedScanDirs.clear();
     pref->setTorrentExportDir(getTorrentExportDir());
     pref->setFinishedTorrentExportDir(getFinishedTorrentExportDir());
-    pref->setMailNotificationEnabled(groupMailNotification->isChecked());
-    pref->setMailNotificationEmail(dest_email_txt->text());
-    pref->setMailNotificationSMTP(smtp_server_txt->text());
-    pref->setMailNotificationSMTPSSL(checkSmtpSSL->isChecked());
-    pref->setMailNotificationSMTPAuth(groupMailNotifAuth->isChecked());
-    pref->setMailNotificationSMTPUsername(mailNotifUsername->text());
-    pref->setMailNotificationSMTPPassword(mailNotifPassword->text());
-    pref->setAutoRunEnabled(autoRunBox->isChecked());
-    pref->setAutoRunProgram(autoRun_txt->text().trimmed());
+    pref->setMailNotificationEnabled(m_ui->groupMailNotification->isChecked());
+    pref->setMailNotificationEmail(m_ui->dest_email_txt->text());
+    pref->setMailNotificationSMTP(m_ui->smtp_server_txt->text());
+    pref->setMailNotificationSMTPSSL(m_ui->checkSmtpSSL->isChecked());
+    pref->setMailNotificationSMTPAuth(m_ui->groupMailNotifAuth->isChecked());
+    pref->setMailNotificationSMTPUsername(m_ui->mailNotifUsername->text());
+    pref->setMailNotificationSMTPPassword(m_ui->mailNotifPassword->text());
+    pref->setAutoRunEnabled(m_ui->autoRunBox->isChecked());
+    pref->setAutoRunProgram(m_ui->autoRun_txt->text().trimmed());
     pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
     pref->setActionOnDblClOnTorrentFn(getActionOnDblClOnTorrentFn());
-    TorrentFileGuard::setAutoDeleteMode(!deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
-                             : !deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
+    TorrentFileGuard::setAutoDeleteMode(!m_ui->deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
+                             : !m_ui->deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
                              : TorrentFileGuard::Always);
     // End Downloads preferences
 
     // Connection preferences
     pref->setSessionPort(getPort());
-    pref->setRandomPort(checkRandomPort->isChecked());
+    pref->setRandomPort(m_ui->checkRandomPort->isChecked());
     pref->setUPnPEnabled(isUPnPEnabled());
     const QPair<int, int> down_up_limit = getGlobalBandwidthLimits();
     pref->setGlobalDownloadLimit(down_up_limit.first);
     pref->setGlobalUploadLimit(down_up_limit.second);
-    pref->setuTPEnabled(checkuTP->isChecked());
-    pref->setuTPRateLimited(checkLimituTPConnections->isChecked());
-    pref->includeOverheadInLimits(checkLimitTransportOverhead->isChecked());
-    pref->setIgnoreLimitsOnLAN(!checkLimitLocalPeerRate->isChecked());
+    pref->setuTPEnabled(m_ui->checkuTP->isChecked());
+    pref->setuTPRateLimited(m_ui->checkLimituTPConnections->isChecked());
+    pref->includeOverheadInLimits(m_ui->checkLimitTransportOverhead->isChecked());
+    pref->setIgnoreLimitsOnLAN(!m_ui->checkLimitLocalPeerRate->isChecked());
     const QPair<int, int> alt_down_up_limit = getAltGlobalBandwidthLimits();
     pref->setAltGlobalDownloadLimit(alt_down_up_limit.first);
     pref->setAltGlobalUploadLimit(alt_down_up_limit.second);
-    pref->setSchedulerEnabled(check_schedule->isChecked());
-    pref->setSchedulerStartTime(schedule_from->time());
-    pref->setSchedulerEndTime(schedule_to->time());
-    pref->setSchedulerDays((scheduler_days)schedule_days->currentIndex());
+    pref->setSchedulerEnabled(m_ui->check_schedule->isChecked());
+    pref->setSchedulerStartTime(m_ui->schedule_from->time());
+    pref->setSchedulerEndTime(m_ui->schedule_to->time());
+    pref->setSchedulerDays((scheduler_days)m_ui->schedule_days->currentIndex());
     pref->setProxyType(getProxyType());
     pref->setProxyIp(getProxyIp());
     pref->setProxyPort(getProxyPort());
-    pref->setProxyPeerConnections(checkProxyPeerConnecs->isChecked());
-    pref->setForceProxy(checkForceProxy->isChecked());
-    pref->setProxyOnlyForTorrents(isProxyOnlyForTorrents->isChecked());
+    pref->setProxyPeerConnections(m_ui->checkProxyPeerConnecs->isChecked());
+    pref->setForceProxy(m_ui->checkForceProxy->isChecked());
+    pref->setProxyOnlyForTorrents(m_ui->isProxyOnlyForTorrents->isChecked());
     pref->setProxyAuthEnabled(isProxyAuthEnabled());
     pref->setProxyUsername(getProxyUsername());
     pref->setProxyPassword(getProxyPassword());
@@ -564,48 +568,48 @@ void options_imp::saveOptions()
     pref->setMaxUploads(getMaxUploads());
     pref->setMaxUploadsPerTorrent(getMaxUploadsPerTorrent());
     pref->setDHTEnabled(isDHTEnabled());
-    pref->setPeXEnabled(checkPeX->isChecked());
+    pref->setPeXEnabled(m_ui->checkPeX->isChecked());
     pref->setLSDEnabled(isLSDEnabled());
     pref->setEncryptionSetting(getEncryptionSetting());
-    pref->enableAnonymousMode(checkAnonymousMode->isChecked());
-    pref->setAddTrackersEnabled(checkEnableAddTrackers->isChecked());
-    pref->setTrackersList(textTrackers->toPlainText());
+    pref->enableAnonymousMode(m_ui->checkAnonymousMode->isChecked());
+    pref->setAddTrackersEnabled(m_ui->checkEnableAddTrackers->isChecked());
+    pref->setTrackersList(m_ui->textTrackers->toPlainText());
     pref->setGlobalMaxRatio(getMaxRatio());
-    session->setMaxRatioAction(static_cast<MaxRatioAction>(comboRatioLimitAct->currentIndex()));
+    session->setMaxRatioAction(static_cast<MaxRatioAction>(m_ui->comboRatioLimitAct->currentIndex()));
     // End Bittorrent preferences
 
     // Misc preferences
     // * IPFilter
     pref->setFilteringEnabled(isFilteringEnabled());
-    pref->setFilteringTrackerEnabled(checkIpFilterTrackers->isChecked());
-    pref->setFilter(textFilterPath->text());
+    pref->setFilteringTrackerEnabled(m_ui->checkIpFilterTrackers->isChecked());
+    pref->setFilter(m_ui->textFilterPath->text());
     // End IPFilter preferences
     // Queueing system
     pref->setQueueingSystemEnabled(isQueueingSystemEnabled());
-    pref->setMaxActiveDownloads(spinMaxActiveDownloads->value());
-    pref->setMaxActiveUploads(spinMaxActiveUploads->value());
-    pref->setMaxActiveTorrents(spinMaxActiveTorrents->value());
-    pref->setIgnoreSlowTorrentsForQueueing(checkIgnoreSlowTorrentsForQueueing->isChecked());
+    pref->setMaxActiveDownloads(m_ui->spinMaxActiveDownloads->value());
+    pref->setMaxActiveUploads(m_ui->spinMaxActiveUploads->value());
+    pref->setMaxActiveTorrents(m_ui->spinMaxActiveTorrents->value());
+    pref->setIgnoreSlowTorrentsForQueueing(m_ui->checkIgnoreSlowTorrentsForQueueing->isChecked());
     // End Queueing system preferences
     // Web UI
     pref->setWebUiEnabled(isWebUiEnabled());
     if (isWebUiEnabled()) {
         pref->setWebUiPort(webUiPort());
-        pref->setUPnPForWebUIPort(checkWebUIUPnP->isChecked());
-        pref->setWebUiHttpsEnabled(checkWebUiHttps->isChecked());
-        if (checkWebUiHttps->isChecked()) {
+        pref->setUPnPForWebUIPort(m_ui->checkWebUIUPnP->isChecked());
+        pref->setWebUiHttpsEnabled(m_ui->checkWebUiHttps->isChecked());
+        if (m_ui->checkWebUiHttps->isChecked()) {
             pref->setWebUiHttpsCertificate(m_sslCert);
             pref->setWebUiHttpsKey(m_sslKey);
         }
         pref->setWebUiUsername(webUiUsername());
         pref->setWebUiPassword(webUiPassword());
-        pref->setWebUiLocalAuthEnabled(!checkBypassLocalAuth->isChecked());
+        pref->setWebUiLocalAuthEnabled(!m_ui->checkBypassLocalAuth->isChecked());
         // DynDNS
-        pref->setDynDNSEnabled(checkDynDNS->isChecked());
-        pref->setDynDNSService(comboDNSService->currentIndex());
-        pref->setDynDomainName(domainNameTxt->text());
-        pref->setDynDNSUsername(DNSUsernameTxt->text());
-        pref->setDynDNSPassword(DNSPasswordTxt->text());
+        pref->setDynDNSEnabled(m_ui->checkDynDNS->isChecked());
+        pref->setDynDNSService(m_ui->comboDNSService->currentIndex());
+        pref->setDynDomainName(m_ui->domainNameTxt->text());
+        pref->setDynDNSUsername(m_ui->DNSUsernameTxt->text());
+        pref->setDynDNSPassword(m_ui->DNSPasswordTxt->text());
     }
     // End Web UI
     // End preferences
@@ -618,12 +622,12 @@ void options_imp::saveOptions()
 
 bool options_imp::isFilteringEnabled() const
 {
-    return checkIPFilter->isChecked();
+    return m_ui->checkIPFilter->isChecked();
 }
 
 int options_imp::getProxyType() const
 {
-    switch (comboProxyType->currentIndex()) {
+    switch (m_ui->comboProxyType->currentIndex()) {
     case 1:
         return Proxy::SOCKS4;
         break;
@@ -651,323 +655,323 @@ void options_imp::loadOptions()
 
     // General preferences
     setLocale(pref->getLocale());
-    confirmDeletion->setChecked(pref->confirmTorrentDeletion());
-    checkAltRowColors->setChecked(pref->useAlternatingRowColors());
-    checkHideZero->setChecked(pref->getHideZeroValues());
-    comboHideZero->setEnabled(checkHideZero->isChecked());
-    comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
+    m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
+    m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
+    m_ui->checkHideZero->setChecked(pref->getHideZeroValues());
+    m_ui->comboHideZero->setEnabled(m_ui->checkHideZero->isChecked());
+    m_ui->comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
 
-    checkShowSplash->setChecked(!pref->isSplashScreenDisabled());
-    checkStartMinimized->setChecked(pref->startMinimized());
-    checkProgramExitConfirm->setChecked(pref->confirmOnExit());
-    checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
+    m_ui->checkShowSplash->setChecked(!pref->isSplashScreenDisabled());
+    m_ui->checkStartMinimized->setChecked(pref->startMinimized());
+    m_ui->checkProgramExitConfirm->setChecked(pref->confirmOnExit());
+    m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
 
-    checkShowSystray->setChecked(pref->systrayIntegration());
-    if (checkShowSystray->isChecked()) {
-        checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
-        checkCloseToSystray->setChecked(pref->closeToTray());
-        comboTrayIcon->setCurrentIndex(pref->trayIconStyle());
+    m_ui->checkShowSystray->setChecked(pref->systrayIntegration());
+    if (m_ui->checkShowSystray->isChecked()) {
+        m_ui->checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
+        m_ui->checkCloseToSystray->setChecked(pref->closeToTray());
+        m_ui->comboTrayIcon->setCurrentIndex(pref->trayIconStyle());
     }
 
-    checkPreventFromSuspend->setChecked(pref->preventFromSuspend());
+    m_ui->checkPreventFromSuspend->setChecked(pref->preventFromSuspend());
 
 #ifdef Q_OS_WIN
-    checkStartup->setChecked(pref->WinStartup());
-    checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
-    checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
+    m_ui->checkStartup->setChecked(pref->WinStartup());
+    m_ui->checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
+    m_ui->checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
 #endif
 #ifdef Q_OS_MAC
-    checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
-    checkAssociateTorrents->setEnabled(!checkAssociateTorrents->isChecked());
-    checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
-    checkAssociateMagnetLinks->setEnabled(!checkAssociateMagnetLinks->isChecked());
+    m_ui->checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
+    m_ui->checkAssociateTorrents->setEnabled(!m_ui->checkAssociateTorrents->isChecked());
+    m_ui->checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
+    m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
 #endif
 
     const Application * const app = static_cast<Application*>(QCoreApplication::instance());
-    checkFileLog->setChecked(app->isFileLoggerEnabled());
-    textFileLogPath->setText(Utils::Fs::toNativePath(app->fileLoggerPath()));
+    m_ui->checkFileLog->setChecked(app->isFileLoggerEnabled());
+    m_ui->textFileLogPath->setText(Utils::Fs::toNativePath(app->fileLoggerPath()));
     fileLogBackup = app->isFileLoggerBackup();
-    checkFileLogBackup->setChecked(fileLogBackup);
-    spinFileLogSize->setEnabled(fileLogBackup);
+    m_ui->checkFileLogBackup->setChecked(fileLogBackup);
+    m_ui->spinFileLogSize->setEnabled(fileLogBackup);
     fileLogDelete = app->isFileLoggerDeleteOld();
-    checkFileLogDelete->setChecked(fileLogDelete);
-    spinFileLogAge->setEnabled(fileLogDelete);
-    comboFileLogAgeType->setEnabled(fileLogDelete);
-    spinFileLogSize->setValue(app->fileLoggerMaxSize());
-    spinFileLogAge->setValue(app->fileLoggerAge());
-    comboFileLogAgeType->setCurrentIndex(app->fileLoggerAgeType());
+    m_ui->checkFileLogDelete->setChecked(fileLogDelete);
+    m_ui->spinFileLogAge->setEnabled(fileLogDelete);
+    m_ui->comboFileLogAgeType->setEnabled(fileLogDelete);
+    m_ui->spinFileLogSize->setValue(app->fileLoggerMaxSize());
+    m_ui->spinFileLogAge->setValue(app->fileLoggerAge());
+    m_ui->comboFileLogAgeType->setCurrentIndex(app->fileLoggerAgeType());
     // End General preferences
 
     auto session = BitTorrent::Session::instance();
 
     // Downloads preferences
-    checkAdditionDialog->setChecked(AddNewTorrentDialog::isEnabled());
-    checkAdditionDialogFront->setChecked(AddNewTorrentDialog::isTopLevel());
-    checkStartPaused->setChecked(session->isAddTorrentPaused());
+    m_ui->checkAdditionDialog->setChecked(AddNewTorrentDialog::isEnabled());
+    m_ui->checkAdditionDialogFront->setChecked(AddNewTorrentDialog::isTopLevel());
+    m_ui->checkStartPaused->setChecked(session->isAddTorrentPaused());
     const TorrentFileGuard::AutoDeleteMode autoDeleteMode = TorrentFileGuard::autoDeleteMode();
-    deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
-    deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);
+    m_ui->deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
+    m_ui->deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);
 
-    textSavePath->setText(Utils::Fs::toNativePath(session->defaultSavePath()));
-    checkUseSubcategories->setChecked(session->isSubcategoriesEnabled());
-    comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
-    comboTorrentCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategoryChanged());
-    comboCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategorySavePathChanged());
-    comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableAutoTMMWhenDefaultSavePathChanged());
-    checkTempFolder->setChecked(session->isTempPathEnabled());
-    textTempPath->setEnabled(checkTempFolder->isChecked());
-    browseTempDirButton->setEnabled(checkTempFolder->isChecked());
-    textTempPath->setText(Utils::Fs::toNativePath(session->tempPath()));
-    checkAppendqB->setChecked(pref->useIncompleteFilesExtension());
-    checkPreallocateAll->setChecked(pref->preAllocateAllFiles());
+    m_ui->textSavePath->setText(Utils::Fs::toNativePath(session->defaultSavePath()));
+    m_ui->checkUseSubcategories->setChecked(session->isSubcategoriesEnabled());
+    m_ui->comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
+    m_ui->comboTorrentCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategoryChanged());
+    m_ui->comboCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategorySavePathChanged());
+    m_ui->comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableAutoTMMWhenDefaultSavePathChanged());
+    m_ui->checkTempFolder->setChecked(session->isTempPathEnabled());
+    m_ui->textTempPath->setEnabled(m_ui->checkTempFolder->isChecked());
+    m_ui->browseTempDirButton->setEnabled(m_ui->checkTempFolder->isChecked());
+    m_ui->textTempPath->setText(Utils::Fs::toNativePath(session->tempPath()));
+    m_ui->checkAppendqB->setChecked(pref->useIncompleteFilesExtension());
+    m_ui->checkPreallocateAll->setChecked(pref->preAllocateAllFiles());
 
     strValue = Utils::Fs::toNativePath(pref->getTorrentExportDir());
     if (strValue.isEmpty()) {
         // Disable
-        checkExportDir->setChecked(false);
-        textExportDir->setEnabled(false);
-        browseExportDirButton->setEnabled(false);
+        m_ui->checkExportDir->setChecked(false);
+        m_ui->textExportDir->setEnabled(false);
+        m_ui->browseExportDirButton->setEnabled(false);
     }
     else {
         // Enable
-        checkExportDir->setChecked(true);
-        textExportDir->setEnabled(true);
-        browseExportDirButton->setEnabled(true);
-        textExportDir->setText(strValue);
+        m_ui->checkExportDir->setChecked(true);
+        m_ui->textExportDir->setEnabled(true);
+        m_ui->browseExportDirButton->setEnabled(true);
+        m_ui->textExportDir->setText(strValue);
     }
 
     strValue = Utils::Fs::toNativePath(pref->getFinishedTorrentExportDir());
     if (strValue.isEmpty()) {
         // Disable
-        checkExportDirFin->setChecked(false);
-        textExportDirFin->setEnabled(false);
-        browseExportDirFinButton->setEnabled(false);
+        m_ui->checkExportDirFin->setChecked(false);
+        m_ui->textExportDirFin->setEnabled(false);
+        m_ui->browseExportDirFinButton->setEnabled(false);
     }
     else {
         // Enable
-        checkExportDirFin->setChecked(true);
-        textExportDirFin->setEnabled(true);
-        browseExportDirFinButton->setEnabled(true);
-        textExportDirFin->setText(strValue);
+        m_ui->checkExportDirFin->setChecked(true);
+        m_ui->textExportDirFin->setEnabled(true);
+        m_ui->browseExportDirFinButton->setEnabled(true);
+        m_ui->textExportDirFin->setText(strValue);
     }
 
-    groupMailNotification->setChecked(pref->isMailNotificationEnabled());
-    dest_email_txt->setText(pref->getMailNotificationEmail());
-    smtp_server_txt->setText(pref->getMailNotificationSMTP());
-    checkSmtpSSL->setChecked(pref->getMailNotificationSMTPSSL());
-    groupMailNotifAuth->setChecked(pref->getMailNotificationSMTPAuth());
-    mailNotifUsername->setText(pref->getMailNotificationSMTPUsername());
-    mailNotifPassword->setText(pref->getMailNotificationSMTPPassword());
+    m_ui->groupMailNotification->setChecked(pref->isMailNotificationEnabled());
+    m_ui->dest_email_txt->setText(pref->getMailNotificationEmail());
+    m_ui->smtp_server_txt->setText(pref->getMailNotificationSMTP());
+    m_ui->checkSmtpSSL->setChecked(pref->getMailNotificationSMTPSSL());
+    m_ui->groupMailNotifAuth->setChecked(pref->getMailNotificationSMTPAuth());
+    m_ui->mailNotifUsername->setText(pref->getMailNotificationSMTPUsername());
+    m_ui->mailNotifPassword->setText(pref->getMailNotificationSMTPPassword());
 
-    autoRunBox->setChecked(pref->isAutoRunEnabled());
-    autoRun_txt->setText(pref->getAutoRunProgram());
+    m_ui->autoRunBox->setChecked(pref->isAutoRunEnabled());
+    m_ui->autoRun_txt->setText(pref->getAutoRunProgram());
     intValue = pref->getActionOnDblClOnTorrentDl();
-    if (intValue >= actionTorrentDlOnDblClBox->count())
+    if (intValue >= m_ui->actionTorrentDlOnDblClBox->count())
         intValue = 0;
-    actionTorrentDlOnDblClBox->setCurrentIndex(intValue);
+    m_ui->actionTorrentDlOnDblClBox->setCurrentIndex(intValue);
     intValue = pref->getActionOnDblClOnTorrentFn();
-    if (intValue >= actionTorrentFnOnDblClBox->count())
+    if (intValue >= m_ui->actionTorrentFnOnDblClBox->count())
         intValue = 1;
-    actionTorrentFnOnDblClBox->setCurrentIndex(intValue);
+    m_ui->actionTorrentFnOnDblClBox->setCurrentIndex(intValue);
     // End Downloads preferences
 
     // Connection preferences
-    checkUPnP->setChecked(pref->isUPnPEnabled());
-    checkRandomPort->setChecked(pref->useRandomPort());
-    spinPort->setValue(pref->getSessionPort());
-    spinPort->setDisabled(checkRandomPort->isChecked());
+    m_ui->checkUPnP->setChecked(pref->isUPnPEnabled());
+    m_ui->checkRandomPort->setChecked(pref->useRandomPort());
+    m_ui->spinPort->setValue(pref->getSessionPort());
+    m_ui->spinPort->setDisabled(m_ui->checkRandomPort->isChecked());
 
     intValue = pref->getMaxConnecs();
     if (intValue > 0) {
         // enable
-        checkMaxConnecs->setChecked(true);
-        spinMaxConnec->setEnabled(true);
-        spinMaxConnec->setValue(intValue);
+        m_ui->checkMaxConnecs->setChecked(true);
+        m_ui->spinMaxConnec->setEnabled(true);
+        m_ui->spinMaxConnec->setValue(intValue);
     }
     else {
         // disable
-        checkMaxConnecs->setChecked(false);
-        spinMaxConnec->setEnabled(false);
+        m_ui->checkMaxConnecs->setChecked(false);
+        m_ui->spinMaxConnec->setEnabled(false);
     }
     intValue = pref->getMaxConnecsPerTorrent();
     if (intValue > 0) {
         // enable
-        checkMaxConnecsPerTorrent->setChecked(true);
-        spinMaxConnecPerTorrent->setEnabled(true);
-        spinMaxConnecPerTorrent->setValue(intValue);
+        m_ui->checkMaxConnecsPerTorrent->setChecked(true);
+        m_ui->spinMaxConnecPerTorrent->setEnabled(true);
+        m_ui->spinMaxConnecPerTorrent->setValue(intValue);
     }
     else {
         // disable
-        checkMaxConnecsPerTorrent->setChecked(false);
-        spinMaxConnecPerTorrent->setEnabled(false);
+        m_ui->checkMaxConnecsPerTorrent->setChecked(false);
+        m_ui->spinMaxConnecPerTorrent->setEnabled(false);
     }
     intValue = pref->getMaxUploads();
     if (intValue > 0) {
         // enable
-        checkMaxUploads->setChecked(true);
-        spinMaxUploads->setEnabled(true);
-        spinMaxUploads->setValue(intValue);
+        m_ui->checkMaxUploads->setChecked(true);
+        m_ui->spinMaxUploads->setEnabled(true);
+        m_ui->spinMaxUploads->setValue(intValue);
     }
     else {
         // disable
-        checkMaxUploads->setChecked(false);
-        spinMaxUploads->setEnabled(false);
+        m_ui->checkMaxUploads->setChecked(false);
+        m_ui->spinMaxUploads->setEnabled(false);
     }
     intValue = pref->getMaxUploadsPerTorrent();
     if (intValue > 0) {
         // enable
-        checkMaxUploadsPerTorrent->setChecked(true);
-        spinMaxUploadsPerTorrent->setEnabled(true);
-        spinMaxUploadsPerTorrent->setValue(intValue);
+        m_ui->checkMaxUploadsPerTorrent->setChecked(true);
+        m_ui->spinMaxUploadsPerTorrent->setEnabled(true);
+        m_ui->spinMaxUploadsPerTorrent->setValue(intValue);
     }
     else {
         // disable
-        checkMaxUploadsPerTorrent->setChecked(false);
-        spinMaxUploadsPerTorrent->setEnabled(false);
+        m_ui->checkMaxUploadsPerTorrent->setChecked(false);
+        m_ui->spinMaxUploadsPerTorrent->setEnabled(false);
     }
 
     intValue = pref->getProxyType();
     switch (intValue) {
     case Proxy::SOCKS4:
-        comboProxyType->setCurrentIndex(1);
+        m_ui->comboProxyType->setCurrentIndex(1);
         break;
     case Proxy::SOCKS5:
     case Proxy::SOCKS5_PW:
-        comboProxyType->setCurrentIndex(2);
+        m_ui->comboProxyType->setCurrentIndex(2);
         break;
     case Proxy::HTTP:
     case Proxy::HTTP_PW:
-        comboProxyType->setCurrentIndex(3);
+        m_ui->comboProxyType->setCurrentIndex(3);
         break;
     default:
-        comboProxyType->setCurrentIndex(0);
+        m_ui->comboProxyType->setCurrentIndex(0);
     }
-    enableProxy(comboProxyType->currentIndex());
-    textProxyIP->setText(pref->getProxyIp());
-    spinProxyPort->setValue(pref->getProxyPort());
-    checkProxyPeerConnecs->setChecked(pref->proxyPeerConnections());
-    checkForceProxy->setChecked(pref->getForceProxy());
-    isProxyOnlyForTorrents->setChecked(pref->isProxyOnlyForTorrents());
-    checkProxyAuth->setChecked(pref->isProxyAuthEnabled());
-    textProxyUsername->setText(pref->getProxyUsername());
-    textProxyPassword->setText(pref->getProxyPassword());
+    enableProxy(m_ui->comboProxyType->currentIndex());
+    m_ui->textProxyIP->setText(pref->getProxyIp());
+    m_ui->spinProxyPort->setValue(pref->getProxyPort());
+    m_ui->checkProxyPeerConnecs->setChecked(pref->proxyPeerConnections());
+    m_ui->checkForceProxy->setChecked(pref->getForceProxy());
+    m_ui->isProxyOnlyForTorrents->setChecked(pref->isProxyOnlyForTorrents());
+    m_ui->checkProxyAuth->setChecked(pref->isProxyAuthEnabled());
+    m_ui->textProxyUsername->setText(pref->getProxyUsername());
+    m_ui->textProxyPassword->setText(pref->getProxyPassword());
 
-    checkIPFilter->setChecked(pref->isFilteringEnabled());
-    checkIpFilterTrackers->setChecked(pref->isFilteringTrackerEnabled());
-    textFilterPath->setText(Utils::Fs::toNativePath(pref->getFilter()));
+    m_ui->checkIPFilter->setChecked(pref->isFilteringEnabled());
+    m_ui->checkIpFilterTrackers->setChecked(pref->isFilteringTrackerEnabled());
+    m_ui->textFilterPath->setText(Utils::Fs::toNativePath(pref->getFilter()));
     // End Connection preferences
 
     // Speed preferences
     intValue = pref->getGlobalDownloadLimit();
     if (intValue > 0) {
         // Enabled
-        checkDownloadLimit->setChecked(true);
-        spinDownloadLimit->setEnabled(true);
-        spinDownloadLimit->setValue(intValue);
+        m_ui->checkDownloadLimit->setChecked(true);
+        m_ui->spinDownloadLimit->setEnabled(true);
+        m_ui->spinDownloadLimit->setValue(intValue);
     }
     else {
         // Disabled
-        checkDownloadLimit->setChecked(false);
-        spinDownloadLimit->setEnabled(false);
+        m_ui->checkDownloadLimit->setChecked(false);
+        m_ui->spinDownloadLimit->setEnabled(false);
     }
     intValue = pref->getGlobalUploadLimit();
     if (intValue != -1) {
         // Enabled
-        checkUploadLimit->setChecked(true);
-        spinUploadLimit->setEnabled(true);
-        spinUploadLimit->setValue(intValue);
+        m_ui->checkUploadLimit->setChecked(true);
+        m_ui->spinUploadLimit->setEnabled(true);
+        m_ui->spinUploadLimit->setValue(intValue);
     }
     else {
         // Disabled
-        checkUploadLimit->setChecked(false);
-        spinUploadLimit->setEnabled(false);
+        m_ui->checkUploadLimit->setChecked(false);
+        m_ui->spinUploadLimit->setEnabled(false);
     }
 
     intValue = pref->getAltGlobalDownloadLimit();
     if (intValue > 0) {
         // Enabled
-        checkDownloadLimitAlt->setChecked(true);
-        spinDownloadLimitAlt->setEnabled(true);
-        spinDownloadLimitAlt->setValue(intValue);
+        m_ui->checkDownloadLimitAlt->setChecked(true);
+        m_ui->spinDownloadLimitAlt->setEnabled(true);
+        m_ui->spinDownloadLimitAlt->setValue(intValue);
     }
     else {
         // Disabled
-        checkDownloadLimitAlt->setChecked(false);
-        spinDownloadLimitAlt->setEnabled(false);
+        m_ui->checkDownloadLimitAlt->setChecked(false);
+        m_ui->spinDownloadLimitAlt->setEnabled(false);
     }
     intValue = pref->getAltGlobalUploadLimit();
     if (intValue != -1) {
         // Enabled
-        checkUploadLimitAlt->setChecked(true);
-        spinUploadLimitAlt->setEnabled(true);
-        spinUploadLimitAlt->setValue(intValue);
+        m_ui->checkUploadLimitAlt->setChecked(true);
+        m_ui->spinUploadLimitAlt->setEnabled(true);
+        m_ui->spinUploadLimitAlt->setValue(intValue);
     }
     else {
         // Disabled
-        checkUploadLimitAlt->setChecked(false);
-        spinUploadLimitAlt->setEnabled(false);
+        m_ui->checkUploadLimitAlt->setChecked(false);
+        m_ui->spinUploadLimitAlt->setEnabled(false);
     }
 
-    checkuTP->setChecked(pref->isuTPEnabled());
-    checkLimituTPConnections->setEnabled(checkuTP->isChecked());
-    checkLimituTPConnections->setChecked(pref->isuTPRateLimited());
-    checkLimitTransportOverhead->setChecked(pref->includeOverheadInLimits());
-    checkLimitLocalPeerRate->setChecked(!pref->getIgnoreLimitsOnLAN());
+    m_ui->checkuTP->setChecked(pref->isuTPEnabled());
+    m_ui->checkLimituTPConnections->setEnabled(m_ui->checkuTP->isChecked());
+    m_ui->checkLimituTPConnections->setChecked(pref->isuTPRateLimited());
+    m_ui->checkLimitTransportOverhead->setChecked(pref->includeOverheadInLimits());
+    m_ui->checkLimitLocalPeerRate->setChecked(!pref->getIgnoreLimitsOnLAN());
 
-    check_schedule->setChecked(pref->isSchedulerEnabled());
-    schedule_from->setTime(pref->getSchedulerStartTime());
-    schedule_to->setTime(pref->getSchedulerEndTime());
-    schedule_days->setCurrentIndex((int)pref->getSchedulerDays());
+    m_ui->check_schedule->setChecked(pref->isSchedulerEnabled());
+    m_ui->schedule_from->setTime(pref->getSchedulerStartTime());
+    m_ui->schedule_to->setTime(pref->getSchedulerEndTime());
+    m_ui->schedule_days->setCurrentIndex((int)pref->getSchedulerDays());
     // End Speed preferences
 
     // Bittorrent preferences
-    checkDHT->setChecked(pref->isDHTEnabled());
-    checkPeX->setChecked(pref->isPeXEnabled());
-    checkLSD->setChecked(pref->isLSDEnabled());
-    comboEncryption->setCurrentIndex(pref->getEncryptionSetting());
-    checkAnonymousMode->setChecked(pref->isAnonymousModeEnabled());
-    checkEnableAddTrackers->setChecked(pref->isAddTrackersEnabled());
-    textTrackers->setPlainText(pref->getTrackersList());
+    m_ui->checkDHT->setChecked(pref->isDHTEnabled());
+    m_ui->checkPeX->setChecked(pref->isPeXEnabled());
+    m_ui->checkLSD->setChecked(pref->isLSDEnabled());
+    m_ui->comboEncryption->setCurrentIndex(pref->getEncryptionSetting());
+    m_ui->checkAnonymousMode->setChecked(pref->isAnonymousModeEnabled());
+    m_ui->checkEnableAddTrackers->setChecked(pref->isAddTrackersEnabled());
+    m_ui->textTrackers->setPlainText(pref->getTrackersList());
 
-    checkEnableQueueing->setChecked(pref->isQueueingSystemEnabled());
-    spinMaxActiveDownloads->setValue(pref->getMaxActiveDownloads());
-    spinMaxActiveUploads->setValue(pref->getMaxActiveUploads());
-    spinMaxActiveTorrents->setValue(pref->getMaxActiveTorrents());
-    checkIgnoreSlowTorrentsForQueueing->setChecked(pref->ignoreSlowTorrentsForQueueing());
+    m_ui->checkEnableQueueing->setChecked(pref->isQueueingSystemEnabled());
+    m_ui->spinMaxActiveDownloads->setValue(pref->getMaxActiveDownloads());
+    m_ui->spinMaxActiveUploads->setValue(pref->getMaxActiveUploads());
+    m_ui->spinMaxActiveTorrents->setValue(pref->getMaxActiveTorrents());
+    m_ui->checkIgnoreSlowTorrentsForQueueing->setChecked(pref->ignoreSlowTorrentsForQueueing());
 
     floatValue = pref->getGlobalMaxRatio();
     if (floatValue >= 0.) {
         // Enable
-        checkMaxRatio->setChecked(true);
-        spinMaxRatio->setEnabled(true);
-        comboRatioLimitAct->setEnabled(true);
-        spinMaxRatio->setValue(floatValue);
+        m_ui->checkMaxRatio->setChecked(true);
+        m_ui->spinMaxRatio->setEnabled(true);
+        m_ui->comboRatioLimitAct->setEnabled(true);
+        m_ui->spinMaxRatio->setValue(floatValue);
     }
     else {
         // Disable
-        checkMaxRatio->setChecked(false);
-        spinMaxRatio->setEnabled(false);
-        comboRatioLimitAct->setEnabled(false);
+        m_ui->checkMaxRatio->setChecked(false);
+        m_ui->spinMaxRatio->setEnabled(false);
+        m_ui->comboRatioLimitAct->setEnabled(false);
     }
-    comboRatioLimitAct->setCurrentIndex(session->maxRatioAction());
+    m_ui->comboRatioLimitAct->setCurrentIndex(session->maxRatioAction());
     // End Bittorrent preferences
 
     // Web UI preferences
-    checkWebUi->setChecked(pref->isWebUiEnabled());
-    spinWebUiPort->setValue(pref->getWebUiPort());
-    checkWebUIUPnP->setChecked(pref->useUPnPForWebUIPort());
-    checkWebUiHttps->setChecked(pref->isWebUiHttpsEnabled());
+    m_ui->checkWebUi->setChecked(pref->isWebUiEnabled());
+    m_ui->spinWebUiPort->setValue(pref->getWebUiPort());
+    m_ui->checkWebUIUPnP->setChecked(pref->useUPnPForWebUIPort());
+    m_ui->checkWebUiHttps->setChecked(pref->isWebUiHttpsEnabled());
     setSslCertificate(pref->getWebUiHttpsCertificate(), false);
     setSslKey(pref->getWebUiHttpsKey(), false);
-    textWebUiUsername->setText(pref->getWebUiUsername());
-    textWebUiPassword->setText(pref->getWebUiPassword());
-    checkBypassLocalAuth->setChecked(!pref->isWebUiLocalAuthEnabled());
+    m_ui->textWebUiUsername->setText(pref->getWebUiUsername());
+    m_ui->textWebUiPassword->setText(pref->getWebUiPassword());
+    m_ui->checkBypassLocalAuth->setChecked(!pref->isWebUiLocalAuthEnabled());
 
-    checkDynDNS->setChecked(pref->isDynDNSEnabled());
-    comboDNSService->setCurrentIndex((int)pref->getDynDNSService());
-    domainNameTxt->setText(pref->getDynDomainName());
-    DNSUsernameTxt->setText(pref->getDynDNSUsername());
-    DNSPasswordTxt->setText(pref->getDynDNSPassword());
+    m_ui->checkDynDNS->setChecked(pref->isDynDNSEnabled());
+    m_ui->comboDNSService->setCurrentIndex((int)pref->getDynDNSService());
+    m_ui->domainNameTxt->setText(pref->getDynDomainName());
+    m_ui->DNSUsernameTxt->setText(pref->getDynDNSUsername());
+    m_ui->DNSPasswordTxt->setText(pref->getDynDNSPassword());
     // End Web UI preferences
 }
 
@@ -975,65 +979,65 @@ void options_imp::loadOptions()
 // [min, max]
 int options_imp::getPort() const
 {
-    return spinPort->value();
+    return m_ui->spinPort->value();
 }
 
 void options_imp::on_randomButton_clicked()
 {
     // Range [1024: 65535]
-    spinPort->setValue(rand() % 64512 + 1024);
+    m_ui->spinPort->setValue(rand() % 64512 + 1024);
 }
 
 int options_imp::getEncryptionSetting() const
 {
-    return comboEncryption->currentIndex();
+    return m_ui->comboEncryption->currentIndex();
 }
 
 int options_imp::getMaxActiveDownloads() const
 {
-    return spinMaxActiveDownloads->value();
+    return m_ui->spinMaxActiveDownloads->value();
 }
 
 int options_imp::getMaxActiveUploads() const
 {
-    return spinMaxActiveUploads->value();
+    return m_ui->spinMaxActiveUploads->value();
 }
 
 int options_imp::getMaxActiveTorrents() const
 {
-    return spinMaxActiveTorrents->value();
+    return m_ui->spinMaxActiveTorrents->value();
 }
 
 bool options_imp::minimizeToTray() const
 {
-    if (!checkShowSystray->isChecked()) return false;
-    return checkMinimizeToSysTray->isChecked();
+    if (!m_ui->checkShowSystray->isChecked()) return false;
+    return m_ui->checkMinimizeToSysTray->isChecked();
 }
 
 bool options_imp::closeToTray() const
 {
-    if (!checkShowSystray->isChecked()) return false;
-    return checkCloseToSystray->isChecked();
+    if (!m_ui->checkShowSystray->isChecked()) return false;
+    return m_ui->checkCloseToSystray->isChecked();
 }
 
 bool options_imp::isQueueingSystemEnabled() const
 {
-    return checkEnableQueueing->isChecked();
+    return m_ui->checkEnableQueueing->isChecked();
 }
 
 bool options_imp::isDHTEnabled() const
 {
-    return checkDHT->isChecked();
+    return m_ui->checkDHT->isChecked();
 }
 
 bool options_imp::isLSDEnabled() const
 {
-    return checkLSD->isChecked();
+    return m_ui->checkLSD->isChecked();
 }
 
 bool options_imp::isUPnPEnabled() const
 {
-    return checkUPnP->isChecked();
+    return m_ui->checkUPnP->isChecked();
 }
 
 // Return Download & Upload limits in kbps
@@ -1041,10 +1045,10 @@ bool options_imp::isUPnPEnabled() const
 QPair<int, int> options_imp::getGlobalBandwidthLimits() const
 {
     int DL = -1, UP = -1;
-    if (checkDownloadLimit->isChecked())
-        DL = spinDownloadLimit->value();
-    if (checkUploadLimit->isChecked())
-        UP = spinUploadLimit->value();
+    if (m_ui->checkDownloadLimit->isChecked())
+        DL = m_ui->spinDownloadLimit->value();
+    if (m_ui->checkUploadLimit->isChecked())
+        UP = m_ui->spinUploadLimit->value();
     return qMakePair(DL, UP);
 }
 
@@ -1053,74 +1057,74 @@ QPair<int, int> options_imp::getGlobalBandwidthLimits() const
 QPair<int, int> options_imp::getAltGlobalBandwidthLimits() const
 {
     int DL = -1, UP = -1;
-    if (checkDownloadLimitAlt->isChecked())
-        DL = spinDownloadLimitAlt->value();
-    if (checkUploadLimitAlt->isChecked())
-        UP = spinUploadLimitAlt->value();
+    if (m_ui->checkDownloadLimitAlt->isChecked())
+        DL = m_ui->spinDownloadLimitAlt->value();
+    if (m_ui->checkUploadLimitAlt->isChecked())
+        UP = m_ui->spinUploadLimitAlt->value();
     return qMakePair(DL, UP);
 }
 
 bool options_imp::startMinimized() const
 {
-    return checkStartMinimized->isChecked();
+    return m_ui->checkStartMinimized->isChecked();
 }
 
 bool options_imp::systrayIntegration() const
 {
     if (!QSystemTrayIcon::isSystemTrayAvailable()) return false;
-    return checkShowSystray->isChecked();
+    return m_ui->checkShowSystray->isChecked();
 }
 
 // Return Share ratio
 qreal options_imp::getMaxRatio() const
 {
-    if (checkMaxRatio->isChecked())
-        return spinMaxRatio->value();
+    if (m_ui->checkMaxRatio->isChecked())
+        return m_ui->spinMaxRatio->value();
     return -1;
 }
 
 // Return max connections number
 int options_imp::getMaxConnecs() const
 {
-    if (!checkMaxConnecs->isChecked())
+    if (!m_ui->checkMaxConnecs->isChecked())
         return -1;
     else
-        return spinMaxConnec->value();
+        return m_ui->spinMaxConnec->value();
 }
 
 int options_imp::getMaxConnecsPerTorrent() const
 {
-    if (!checkMaxConnecsPerTorrent->isChecked())
+    if (!m_ui->checkMaxConnecsPerTorrent->isChecked())
         return -1;
     else
-        return spinMaxConnecPerTorrent->value();
+        return m_ui->spinMaxConnecPerTorrent->value();
 }
 
 int options_imp::getMaxUploads() const
 {
-    if (!checkMaxUploads->isChecked())
+    if (!m_ui->checkMaxUploads->isChecked())
         return -1;
     else
-        return spinMaxUploads->value();
+        return m_ui->spinMaxUploads->value();
 }
 
 int options_imp::getMaxUploadsPerTorrent() const
 {
-    if (!checkMaxUploadsPerTorrent->isChecked())
+    if (!m_ui->checkMaxUploadsPerTorrent->isChecked())
         return -1;
     else
-        return spinMaxUploadsPerTorrent->value();
+        return m_ui->spinMaxUploadsPerTorrent->value();
 }
 
 void options_imp::on_buttonBox_accepted()
 {
     if (applyButton->isEnabled()) {
         if (!schedTimesOk()) {
-            tabSelection->setCurrentRow(TAB_SPEED);
+            m_ui->tabSelection->setCurrentRow(TAB_SPEED);
             return;
         }
         if (!webUIAuthenticationOk()) {
-            tabSelection->setCurrentRow(TAB_WEBUI);
+            m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
             return;
         }
         applyButton->setEnabled(false);
@@ -1135,11 +1139,11 @@ void options_imp::applySettings(QAbstractButton* button)
 {
     if (button == applyButton) {
         if (!schedTimesOk()) {
-            tabSelection->setCurrentRow(TAB_SPEED);
+            m_ui->tabSelection->setCurrentRow(TAB_SPEED);
             return;
         }
         if (!webUIAuthenticationOk()) {
-            tabSelection->setCurrentRow(TAB_WEBUI);
+            m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
             return;
         }
         saveOptions();
@@ -1160,7 +1164,7 @@ void options_imp::on_buttonBox_rejected()
 
 bool options_imp::useAdditionDialog() const
 {
-    return checkAdditionDialog->isChecked();
+    return m_ui->checkAdditionDialog->isChecked();
 }
 
 void options_imp::enableApplyButton()
@@ -1172,93 +1176,92 @@ void options_imp::enableProxy(int index)
 {
     if (index) {
         //enable
-        lblProxyIP->setEnabled(true);
-        textProxyIP->setEnabled(true);
-        lblProxyPort->setEnabled(true);
-        spinProxyPort->setEnabled(true);
-        checkProxyPeerConnecs->setEnabled(true);
-        checkForceProxy->setEnabled(true);
-        isProxyOnlyForTorrents->setEnabled(true);
+        m_ui->lblProxyIP->setEnabled(true);
+        m_ui->textProxyIP->setEnabled(true);
+        m_ui->lblProxyPort->setEnabled(true);
+        m_ui->spinProxyPort->setEnabled(true);
+        m_ui->checkProxyPeerConnecs->setEnabled(true);
+        m_ui->checkForceProxy->setEnabled(true);
+        m_ui->isProxyOnlyForTorrents->setEnabled(true);
         if (index > 1) {
-            checkProxyAuth->setEnabled(true);
+            m_ui->checkProxyAuth->setEnabled(true);
         }
         else {
-            checkProxyAuth->setEnabled(false);
-            checkProxyAuth->setChecked(false);
+            m_ui->checkProxyAuth->setEnabled(false);
+            m_ui->checkProxyAuth->setChecked(false);
         }
     }
     else {
         //disable
-        lblProxyIP->setEnabled(false);
-        textProxyIP->setEnabled(false);
-        lblProxyPort->setEnabled(false);
-        spinProxyPort->setEnabled(false);
-        checkProxyPeerConnecs->setEnabled(false);
-        checkForceProxy->setEnabled(false);
-        isProxyOnlyForTorrents->setEnabled(false);
-        checkProxyAuth->setEnabled(false);
-        checkProxyAuth->setChecked(false);
+        m_ui->lblProxyIP->setEnabled(false);
+        m_ui->textProxyIP->setEnabled(false);
+        m_ui->lblProxyPort->setEnabled(false);
+        m_ui->spinProxyPort->setEnabled(false);
+        m_ui->checkProxyPeerConnecs->setEnabled(false);
+        m_ui->checkForceProxy->setEnabled(false);
+        m_ui->isProxyOnlyForTorrents->setEnabled(false);
+        m_ui->checkProxyAuth->setEnabled(false);
+        m_ui->checkProxyAuth->setChecked(false);
     }
 }
 
 bool options_imp::isSlashScreenDisabled() const
 {
-    return !checkShowSplash->isChecked();
+    return !m_ui->checkShowSplash->isChecked();
 }
 
 #ifdef Q_OS_WIN
 bool options_imp::WinStartup() const
 {
-    return checkStartup->isChecked();
+    return m_ui->checkStartup->isChecked();
 }
 #endif
 
 bool options_imp::preventFromSuspend() const
 {
-    return checkPreventFromSuspend->isChecked();
+    return m_ui->checkPreventFromSuspend->isChecked();
 }
 
 bool options_imp::preAllocateAllFiles() const
 {
-    return checkPreallocateAll->isChecked();
+    return m_ui->checkPreallocateAll->isChecked();
 }
 
 bool options_imp::addTorrentsInPause() const
 {
-    return checkStartPaused->isChecked();
+    return m_ui->checkStartPaused->isChecked();
 }
 
 // Proxy settings
 bool options_imp::isProxyEnabled() const
 {
-    return comboProxyType->currentIndex();
+    return m_ui->comboProxyType->currentIndex();
 }
 
 bool options_imp::isProxyAuthEnabled() const
 {
-    return checkProxyAuth->isChecked();
+    return m_ui->checkProxyAuth->isChecked();
 }
 
 QString options_imp::getProxyIp() const
 {
-    return textProxyIP->text().trimmed();
+    return m_ui->textProxyIP->text().trimmed();
 }
 
 unsigned short options_imp::getProxyPort() const
 {
-    return spinProxyPort->value();
+    return m_ui->spinProxyPort->value();
 }
 
 QString options_imp::getProxyUsername() const
 {
-    QString username = textProxyUsername->text();
-    username = username.trimmed();
+    QString username = m_ui->textProxyUsername->text().trimmed();
     return username;
 }
 
 QString options_imp::getProxyPassword() const
 {
-    QString password = textProxyPassword->text();
+    QString password = m_ui->textProxyPassword->text();
     password = password.trimmed();
     return password;
 }
@@ -1266,7 +1269,7 @@ QString options_imp::getProxyPassword() const
 // Locale Settings
 QString options_imp::getLocale() const
 {
-    return comboI18n->itemData(comboI18n->currentIndex(), Qt::UserRole).toString();
+    return m_ui->comboI18n->itemData(m_ui->comboI18n->currentIndex(), Qt::UserRole).toString();
 }
 
 void options_imp::setLocale(const QString &localeStr)
@@ -1280,51 +1283,51 @@ void options_imp::setLocale(const QString &localeStr)
         name = locale.name();
     }
     // Attempt to find exact match
-    int index = comboI18n->findData(name, Qt::UserRole);
+    int index = m_ui->comboI18n->findData(name, Qt::UserRole);
     if (index < 0) {
         //Attempt to find a language match without a country
         int pos = name.indexOf('_');
         if (pos > -1) {
             QString lang = name.left(pos);
-            index = comboI18n->findData(lang, Qt::UserRole);
+            index = m_ui->comboI18n->findData(lang, Qt::UserRole);
         }
     }
     if (index < 0) {
         // Unrecognized, use US English
-        index = comboI18n->findData(QLocale("en").name(), Qt::UserRole);
+        index = m_ui->comboI18n->findData(QLocale("en").name(), Qt::UserRole);
         Q_ASSERT(index >= 0);
     }
-    comboI18n->setCurrentIndex(index);
+    m_ui->comboI18n->setCurrentIndex(index);
 }
 
 QString options_imp::getTorrentExportDir() const
 {
-    if (checkExportDir->isChecked())
-        return Utils::Fs::expandPathAbs(textExportDir->text());
+    if (m_ui->checkExportDir->isChecked())
+        return Utils::Fs::expandPathAbs(m_ui->textExportDir->text());
     return QString();
 }
 
 QString options_imp::getFinishedTorrentExportDir() const
 {
-    if (checkExportDirFin->isChecked())
-        return Utils::Fs::expandPathAbs(textExportDirFin->text());
+    if (m_ui->checkExportDirFin->isChecked())
+        return Utils::Fs::expandPathAbs(m_ui->textExportDirFin->text());
     return QString();
 }
 
 // Return action on double-click on a downloading torrent set in options
 int options_imp::getActionOnDblClOnTorrentDl() const
 {
-    if (actionTorrentDlOnDblClBox->currentIndex() < 1)
+    if (m_ui->actionTorrentDlOnDblClBox->currentIndex() < 1)
         return 0;
-    return actionTorrentDlOnDblClBox->currentIndex();
+    return m_ui->actionTorrentDlOnDblClBox->currentIndex();
 }
 
 // Return action on double-click on a finished torrent set in options
 int options_imp::getActionOnDblClOnTorrentFn() const
 {
-    if (actionTorrentFnOnDblClBox->currentIndex() < 1)
+    if (m_ui->actionTorrentFnOnDblClBox->currentIndex() < 1)
         return 0;
-    return actionTorrentFnOnDblClBox->currentIndex();
+    return m_ui->actionTorrentFnOnDblClBox->currentIndex();
 }
 
 void options_imp::on_addScanFolderButton_clicked()
@@ -1349,7 +1352,7 @@ void options_imp::on_addScanFolderButton_clicked()
             pref->setScanDirsLastPath(dir);
             addedScanDirs << dir;
             for (int i = 0; i < ScanFoldersModel::instance()->columnCount(); ++i)
-                scanFoldersView->resizeColumnToContents(i);
+                m_ui->scanFoldersView->resizeColumnToContents(i);
             enableApplyButton();
         }
 
@@ -1361,7 +1364,7 @@ void options_imp::on_addScanFolderButton_clicked()
 void options_imp::on_removeScanFolderButton_clicked()
 {
     const QModelIndexList selected
-        = scanFoldersView->selectionModel()->selectedIndexes();
+        = m_ui->scanFoldersView->selectionModel()->selectedIndexes();
     if (selected.isEmpty())
         return;
     Q_ASSERT(selected.count() == ScanFoldersModel::instance()->columnCount());
@@ -1374,7 +1377,7 @@ void options_imp::on_removeScanFolderButton_clicked()
 
 void options_imp::handleScanFolderViewSelectionChanged()
 {
-    removeScanFolderButton->setEnabled(!scanFoldersView->selectionModel()->selectedIndexes().isEmpty());
+    m_ui->removeScanFolderButton->setEnabled(!m_ui->scanFoldersView->selectionModel()->selectedIndexes().isEmpty());
 }
 
 QString options_imp::askForExportDir(const QString& currentExportPath)
@@ -1390,7 +1393,7 @@ QString options_imp::askForExportDir(const QString& currentExportPath)
 
 void options_imp::on_browseFileLogDir_clicked()
 {
-    const QString path = Utils::Fs::expandPathAbs(Utils::Fs::fromNativePath(textFileLogPath->text()));
+    const QString path = Utils::Fs::expandPathAbs(Utils::Fs::fromNativePath(m_ui->textFileLogPath->text()));
     QDir pathDir(path);
     QString dir;
     if (!path.isEmpty() && pathDir.exists())
@@ -1398,26 +1401,26 @@ void options_imp::on_browseFileLogDir_clicked()
     else
         dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
     if (!dir.isNull())
-        textFileLogPath->setText(Utils::Fs::toNativePath(dir));
+        m_ui->textFileLogPath->setText(Utils::Fs::toNativePath(dir));
 }
 
 void options_imp::on_browseExportDirButton_clicked()
 {
-    const QString newExportDir = askForExportDir(textExportDir->text());
+    const QString newExportDir = askForExportDir(m_ui->textExportDir->text());
     if (!newExportDir.isNull())
-        textExportDir->setText(Utils::Fs::toNativePath(newExportDir));
+        m_ui->textExportDir->setText(Utils::Fs::toNativePath(newExportDir));
 }
 
 void options_imp::on_browseExportDirFinButton_clicked()
 {
-    const QString newExportDir = askForExportDir(textExportDirFin->text());
+    const QString newExportDir = askForExportDir(m_ui->textExportDirFin->text());
     if (!newExportDir.isNull())
-        textExportDirFin->setText(Utils::Fs::toNativePath(newExportDir));
+        m_ui->textExportDirFin->setText(Utils::Fs::toNativePath(newExportDir));
 }
 
 void options_imp::on_browseFilterButton_clicked()
 {
-    const QString filter_path = Utils::Fs::expandPathAbs(textFilterPath->text());
+    const QString filter_path = Utils::Fs::expandPathAbs(m_ui->textFilterPath->text());
     QDir filterDir(filter_path);
     QString ipfilter;
     if (!filter_path.isEmpty() && filterDir.exists())
@@ -1425,13 +1428,13 @@ void options_imp::on_browseFilterButton_clicked()
     else
         ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an IP filter file"), QDir::homePath(), tr("Filters") + QString(" (*.dat *.p2p *.p2b)"));
     if (!ipfilter.isNull())
-        textFilterPath->setText(Utils::Fs::toNativePath(ipfilter));
+        m_ui->textFilterPath->setText(Utils::Fs::toNativePath(ipfilter));
 }
 
 // Display dialog to choose save dir
 void options_imp::on_browseSaveDirButton_clicked()
 {
-    const QString save_path = Utils::Fs::expandPathAbs(textSavePath->text());
+    const QString save_path = Utils::Fs::expandPathAbs(m_ui->textSavePath->text());
     QDir saveDir(save_path);
     QString dir;
     if (!save_path.isEmpty() && saveDir.exists())
@@ -1439,12 +1442,12 @@ void options_imp::on_browseSaveDirButton_clicked()
     else
         dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
     if (!dir.isNull())
-        textSavePath->setText(Utils::Fs::toNativePath(dir));
+        m_ui->textSavePath->setText(Utils::Fs::toNativePath(dir));
 }
 
 void options_imp::on_browseTempDirButton_clicked()
 {
-    const QString temp_path = Utils::Fs::expandPathAbs(textTempPath->text());
+    const QString temp_path = Utils::Fs::expandPathAbs(m_ui->textTempPath->text());
     QDir tempDir(temp_path);
     QString dir;
     if (!temp_path.isEmpty() && tempDir.exists())
@@ -1452,40 +1455,40 @@ void options_imp::on_browseTempDirButton_clicked()
     else
         dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
     if (!dir.isNull())
-        textTempPath->setText(Utils::Fs::toNativePath(dir));
+        m_ui->textTempPath->setText(Utils::Fs::toNativePath(dir));
 }
 
 // Return Filter object to apply to BT session
 QString options_imp::getFilter() const
 {
-    return Utils::Fs::fromNativePath(textFilterPath->text());
+    return Utils::Fs::fromNativePath(m_ui->textFilterPath->text());
 }
 
 // Web UI
 
 bool options_imp::isWebUiEnabled() const
 {
-    return checkWebUi->isChecked();
+    return m_ui->checkWebUi->isChecked();
 }
 
 quint16 options_imp::webUiPort() const
 {
-    return spinWebUiPort->value();
+    return m_ui->spinWebUiPort->value();
 }
 
 QString options_imp::webUiUsername() const
 {
-    return textWebUiUsername->text();
+    return m_ui->textWebUiUsername->text();
 }
 
 QString options_imp::webUiPassword() const
 {
-    return textWebUiPassword->text();
+    return m_ui->textWebUiPassword->text();
 }
 
 void options_imp::showConnectionTab()
 {
-    tabSelection->setCurrentRow(TAB_CONNECTION);
+    m_ui->tabSelection->setCurrentRow(TAB_CONNECTION);
 }
 
 void options_imp::on_btnWebUiCrt_clicked()
@@ -1514,7 +1517,7 @@ void options_imp::on_btnWebUiKey_clicked()
 
 void options_imp::on_registerDNSBtn_clicked()
 {
-    QDesktopServices::openUrl(Net::DNSUpdater::getRegistrationUrl(comboDNSService->currentIndex()));
+    QDesktopServices::openUrl(Net::DNSUpdater::getRegistrationUrl(m_ui->comboDNSService->currentIndex()));
 }
 
 void options_imp::on_IpFilterRefreshBtn_clicked()
@@ -1617,11 +1620,11 @@ void options_imp::setSslKey(const QByteArray &key, bool interactive)
 {
 #ifndef QT_NO_OPENSSL
     if (!key.isEmpty() && !QSslKey(key, QSsl::Rsa).isNull()) {
-        lblSslKeyStatus->setPixmap(QPixmap(":/icons/oxygen/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/oxygen/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
         m_sslKey = key;
     }
     else {
-        lblSslKeyStatus->setPixmap(QPixmap(":/icons/oxygen/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/oxygen/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
         m_sslKey.clear();
         if (interactive)
             QMessageBox::warning(this, tr("Invalid key"), tr("This is not a valid SSL key."));
@@ -1633,11 +1636,11 @@ void options_imp::setSslCertificate(const QByteArray &cert, bool interactive)
 {
 #ifndef QT_NO_OPENSSL
     if (!cert.isEmpty() && !QSslCertificate(cert).isNull()) {
-        lblSslCertStatus->setPixmap(QPixmap(":/icons/oxygen/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/oxygen/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
         m_sslCert = cert;
     }
     else {
-        lblSslCertStatus->setPixmap(QPixmap(":/icons/oxygen/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/oxygen/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
         m_sslCert.clear();
         if (interactive)
             QMessageBox::warning(this, tr("Invalid certificate"), tr("This is not a valid SSL certificate."));
@@ -1647,7 +1650,7 @@ void options_imp::setSslCertificate(const QByteArray &cert, bool interactive)
 
 bool options_imp::schedTimesOk()
 {
-    if (schedule_from->time() == schedule_to->time()) {
+    if (m_ui->schedule_from->time() == m_ui->schedule_to->time()) {
         QMessageBox::warning(this, tr("Time Error"), tr("The start time and the end time can't be the same."));
         return false;
     }
