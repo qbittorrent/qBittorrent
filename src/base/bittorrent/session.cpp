@@ -331,6 +331,13 @@ QString Session::tempPath() const
     return m_tempPath;
 }
 
+QString Session::torrentTempPath(const InfoHash &hash) const
+{
+    return m_tempPath
+            + static_cast<QString>(hash).left(7)
+            + "/";
+}
+
 bool Session::isValidCategoryName(const QString &name)
 {
     QRegExp re(R"(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)");
@@ -1398,7 +1405,7 @@ bool Session::findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) c
 
     bool found = findInDir(savePath, torrentInfo);
     if (!found && isTempPathEnabled()) {
-        savePath = m_tempPath;
+        savePath = torrentTempPath(torrentInfo.hash());
         found = findInDir(savePath, torrentInfo);
     }
 

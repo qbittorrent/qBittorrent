@@ -1392,7 +1392,7 @@ void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
 
     // Attempt to remove old folder if empty
     QDir oldSaveDir(Utils::Fs::fromNativePath(m_oldPath));
-    if ((oldSaveDir != QDir(m_session->defaultSavePath())) && (oldSaveDir != QDir(m_session->tempPath()))) {
+    if (oldSaveDir != QDir(m_session->defaultSavePath())) {
         qDebug("Attempting to remove %s", qPrintable(m_oldPath));
         QDir().rmpath(m_oldPath);
     }
@@ -1778,7 +1778,7 @@ void TorrentHandle::adjustActualSavePath_impl()
     }
     else {
         // Moving all downloading torrents to temporary save path
-        path = m_session->tempPath();
+        path = m_session->torrentTempPath(hash());
         qDebug() << "Moving torrent to its temp save path:" << path;
     }
 
