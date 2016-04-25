@@ -58,7 +58,6 @@ torrentcontentmodelfolder.h
 torrentcontentmodelitem.h
 torrentcontenttreeview.h
 torrentcreatordlg.h
-torrentimportdlg.h
 torrentmodel.h
 trackerlogin.h
 transferlistdelegate.h
@@ -94,7 +93,6 @@ torrentcontentmodelfolder.cpp
 torrentcontentmodelitem.cpp
 torrentcontenttreeview.cpp
 torrentcreatordlg.cpp
-torrentimportdlg.cpp
 torrentmodel.cpp
 trackerlogin.cpp
 transferlistdelegate.cpp
@@ -119,7 +117,6 @@ downloadfromurldlg.ui
 bandwidth_limit.ui
 updownratiodlg.ui
 confirmdeletiondlg.ui
-torrentimportdlg.ui
 executionlog.ui
 addnewtorrentdialog.ui
 autoexpandabledialog.ui
