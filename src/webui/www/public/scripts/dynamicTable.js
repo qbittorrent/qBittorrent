@@ -452,6 +452,7 @@ var TorrentsTable = new Class({
             this.newColumn('eta', 'width: 100px', 'QBT_TR(ETA)QBT_TR');
             this.newColumn('ratio', 'width: 100px', 'QBT_TR(Ratio)QBT_TR');
             this.newColumn('category', 'width: 100px', 'QBT_TR(Category)QBT_TR');
+            this.newColumn('added_on', 'width: 100px', 'QBT_TR(Added on)QBT_TR');
 
             this.columns['state_icon'].onclick = '';
             this.columns['state_icon'].dataProperties[0] = 'state';
@@ -617,6 +618,13 @@ var TorrentsTable = new Class({
                 else
                     html = (Math.floor(100 * ratio) / 100).toFixed(2); //Don't round up
                 td.set('html', html);
+            };
+
+            // added on
+
+            this.columns['added_on'].updateTd = function (td, row) {
+                var date = new Date(this.getRowValue(row) * 1000).toLocaleString();
+                td.set('html', date);
             };
         },
 
