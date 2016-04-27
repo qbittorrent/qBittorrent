@@ -709,8 +709,8 @@ QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
     ret[KEY_TORRENT_SUPER_SEEDING] = torrent->superSeeding();
     ret[KEY_TORRENT_FORCE_START] = torrent->isForced();
     ret[KEY_TORRENT_SAVE_PATH] = Utils::Fs::toNativePath(torrent->savePath());
-    ret[KEY_TORRENT_ADDED_ON] = torrent->addedTime();
-    ret[KEY_TORRENT_COMPLETION_ON] = torrent->completedTime();
+    ret[KEY_TORRENT_ADDED_ON] = torrent->addedTime().toTime_t();
+    ret[KEY_TORRENT_COMPLETION_ON] = torrent->completedTime().toTime_t();
 
     return ret;
 }
