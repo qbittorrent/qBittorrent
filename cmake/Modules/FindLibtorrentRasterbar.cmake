@@ -99,6 +99,7 @@ if (LibtorrentRasterbar_FOUND AND NOT TARGET LibtorrentRasterbar::LibTorrent)
         IMPORTED_LINK_INTERFACE_LANGUAGES "CXX"
         IMPORTED_LOCATION "${LibtorrentRasterbar_LIBRARY}"
         INTERFACE_INCLUDE_DIRECTORIES "${LibtorrentRasterbar_INCLUDE_DIRS}"
+        INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${LibtorrentRasterbar_INCLUDE_DIRS}"
         INTERFACE_LINK_LIBRARIES "${LibtorrentRasterbar_LIBRARIES}"
         INTERFACE_COMPILE_OPTIONS "${LibtorrentRasterbar_DEFINITIONS}"
     )
