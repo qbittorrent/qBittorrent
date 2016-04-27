@@ -84,6 +84,7 @@ if(NOT TARGET QtSingleApplication::QtSingleApplication)
     add_library(QtSingleApplication::QtSingleApplication UNKNOWN IMPORTED)
     set_target_properties(QtSingleApplication::QtSingleApplication PROPERTIES
         INTERFACE_INCLUDE_DIRECTORIES "${QTSINGLEAPPLICATION_INCLUDE_DIR}"
+        INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${QTSINGLEAPPLICATION_INCLUDE_DIR}"
     )
     if(EXISTS "${QTSINGLEAPPLICATION_LIBRARY}")
     set_target_properties(QtSingleApplication::QtSingleApplication PROPERTIES
