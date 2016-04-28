@@ -180,14 +180,13 @@ qint64 Utils::Fs::computePathSize(const QString& path)
     QFileInfo fi(path);
     if (!fi.exists()) return -1;
     if (fi.isFile()) return fi.size();
+
     // Compute folder size based on its content
     qint64 size = 0;
-    foreach (const QFileInfo &subfi, QDir(path).entryInfoList(QDir::Dirs|QDir::Files)) {
-        if (subfi.fileName().startsWith(".")) continue;
-        if (subfi.isDir())
-            size += computePathSize(subfi.absoluteFilePath());
-        else
-            size += subfi.size();
+    QDirIterator iter(path, QDir::Files | QDir::Hidden | QDir::NoSymLinks, QDirIterator::Subdirectories);
+    while (iter.hasNext()) {
+        iter.next();
+        size += iter.fileInfo().size();
     }
     return size;
 }
@@ -201,19 +200,14 @@ bool Utils::Fs::sameFiles(const QString& path1, const QString& path2)
     if (!f1.exists() || !f2.exists()) return false;
     if (f1.size() != f2.size()) return false;
     if (!f1.open(QIODevice::ReadOnly)) return false;
-    if (!f2.open(QIODevice::ReadOnly)) {
-        f1.close();
-        return false;
-    }
-    bool same = true;
+    if (!f2.open(QIODevice::ReadOnly)) return false;
+
+    const int readSize = 1024 * 1024;  // 1 MiB
     while(!f1.atEnd() && !f2.atEnd()) {
-        if (f1.read(1024) != f2.read(1024)) {
-            same = false;
-            break;
-        }
+        if (f1.read(readSize) != f2.read(readSize))
+            return false;
     }
-    f1.close(); f2.close();
-    return same;
+    return true;
 }
 
 QString Utils::Fs::toValidFileSystemName(const QString &name, bool allowSeparators, const QString &pad)
