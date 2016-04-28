@@ -388,8 +388,10 @@ namespace BitTorrent
 
         void saveResumeData();
 
+#if LIBTORRENT_VERSION_NUM < 10100
         void dispatchAlerts(std::auto_ptr<libtorrent::alert> alertPtr);
-        void getPendingAlerts(QVector<libtorrent::alert *> &out, ulong time = 0);
+#endif
+        void getPendingAlerts(std::vector<libtorrent::alert *> &out, ulong time = 0);
 
         SettingsStorage *m_settings;
 
@@ -437,9 +439,11 @@ namespace BitTorrent
         TorrentStatusReport m_torrentStatusReport;
         QStringMap m_categories;
 
+#if LIBTORRENT_VERSION_NUM < 10100
         QMutex m_alertsMutex;
         QWaitCondition m_alertsWaitCondition;
-        QVector<libtorrent::alert *> m_alerts;
+        std::vector<libtorrent::alert *> m_alerts;
+#endif
 
         QNetworkConfigurationManager m_networkManager;
 
