@@ -48,8 +48,6 @@
 #include <queue>
 #include <vector>
 
-#include <boost/bind.hpp>
-
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/error_code.hpp>
@@ -227,7 +225,17 @@ Session::Session(QObject *parent)
 
     logger->addMessage(tr("Peer ID: ") + Utils::String::fromStdString(fingerprint.to_string()));
 
-    m_nativeSession->set_alert_dispatch(boost::bind(&Session::dispatchAlerts, this, _1));
+#if LIBTORRENT_VERSION_NUM < 10100
+    m_nativeSession->set_alert_dispatch([this](std::auto_ptr<libt::alert> alertPtr)
+    {
+        dispatchAlerts(alertPtr);
+    });
+#else
+    m_nativeSession->set_alert_notify([this]()
+    {
+        QMetaObject::invokeMethod(this, "readAlerts", Qt::QueuedConnection);
+    });
+#endif
 
     // Enabling plugins
     //m_nativeSession->add_extension(&libt::create_metadata_plugin);
@@ -1638,7 +1646,7 @@ void Session::saveResumeData()
     generateResumeData(true);
 
     while (m_numResumeData > 0) {
-        QVector<libt::alert *> alerts;
+        std::vector<libt::alert *> alerts;
         getPendingAlerts(alerts, 30 * 1000);
         if (alerts.empty()) {
             std::cerr << " aborting with " << m_numResumeData
@@ -1647,7 +1655,7 @@ void Session::saveResumeData()
             break;
         }
 
-        foreach (libt::alert *const a, alerts) {
+        for (const auto a: alerts) {
             switch (a->type()) {
             case libt::save_resume_data_failed_alert::alert_type:
             case libt::save_resume_data_alert::alert_type:
@@ -1656,8 +1664,9 @@ void Session::saveResumeData()
                     torrent->handleAlert(a);
                 break;
             }
-
+#if LIBTORRENT_VERSION_NUM < 10100
             delete a;
+#endif
         }
     }
 }
@@ -2282,41 +2291,51 @@ void Session::handleIPFilterError()
     emit ipFilterParsed(true, 0);
 }
 
+#if LIBTORRENT_VERSION_NUM < 10100
 void Session::dispatchAlerts(std::auto_ptr<libt::alert> alertPtr)
 {
     QMutexLocker lock(&m_alertsMutex);
 
-    bool wasEmpty = m_alerts.isEmpty();
+    bool wasEmpty = m_alerts.empty();
 
-    m_alerts.append(alertPtr.release());
+    m_alerts.push_back(alertPtr.release());
 
     if (wasEmpty) {
         m_alertsWaitCondition.wakeAll();
         QMetaObject::invokeMethod(this, "readAlerts", Qt::QueuedConnection);
     }
 }
+#endif
 
-void Session::getPendingAlerts(QVector<libt::alert *> &out, ulong time)
+void Session::getPendingAlerts(std::vector<libt::alert *> &out, ulong time)
 {
     Q_ASSERT(out.empty());
 
+#if LIBTORRENT_VERSION_NUM < 10100
     QMutexLocker lock(&m_alertsMutex);
 
     if (m_alerts.empty())
         m_alertsWaitCondition.wait(&m_alertsMutex, time);
 
     m_alerts.swap(out);
+#else
+    if (time > 0)
+        m_nativeSession->wait_for_alert(libt::milliseconds(time));
+    m_nativeSession->pop_alerts(&out);
+#endif
 }
 
 // Read alerts sent by the BitTorrent session
 void Session::readAlerts()
 {
-    QVector<libt::alert *> alerts;
+    std::vector<libt::alert *> alerts;
     getPendingAlerts(alerts);
 
-    foreach (libt::alert *const a, alerts) {
+    for (const auto a: alerts) {
         handleAlert(a);
+#if LIBTORRENT_VERSION_NUM < 10100
         delete a;
+#endif
     }
 }
 
