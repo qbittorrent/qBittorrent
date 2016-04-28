@@ -28,52 +28,72 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef CREATE_TORRENT_IMP_H
-#define CREATE_TORRENT_IMP_H
+#ifndef TORRENTCREATORDLG_H
+#define TORRENTCREATORDLG_H
 
-#include "ui_torrentcreatordlg.h"
+#include <QDialog>
+
+namespace Ui
+{
+    class TorrentCreatorDlg;
+}
 
 namespace BitTorrent
 {
     class TorrentCreatorThread;
 }
 
-class TorrentCreatorDlg : public QDialog, private Ui::createTorrentDialog
+class TorrentCreatorDlg: public QDialog
 {
     Q_OBJECT
 
 public:
-    TorrentCreatorDlg(QWidget *parent = 0);
+    TorrentCreatorDlg(QWidget *parent = 0, const QString &defaultPath = QString());
     ~TorrentCreatorDlg();
-    int getPieceSize() const;
 
-public slots:
+private slots:
     void updateProgressBar(int progress);
-    void on_cancelButton_clicked();
-
-protected slots:
-    void on_createButton_clicked();
-    void on_addFile_button_clicked();
-    void on_addFolder_button_clicked();
-    void handleCreationFailure(QString msg);
-    void handleCreationSuccess(QString path, QString branch_path);
-    void setInteractionEnabled(bool enabled);
-    void showProgressBar(bool show);
-    void on_checkAutoPieceSize_clicked(bool checked);
-    void updateOptimalPieceSize();
-    void saveTrackerList();
-    void loadTrackerList();
-
-protected:
-    void closeEvent(QCloseEvent *event);
+    void onCreateButtonClicked();
+    void onAddFileButtonClicked();
+    void onAddFolderButtonClicked();
+    void handleCreationFailure(const QString &msg);
+    void handleCreationSuccess(const QString &path, const QString &branchPath);
 
 private:
+    void dropEvent(QDropEvent *event) override;
+    void dragEnterEvent(QDragEnterEvent *event) override;
+
     void saveSettings();
     void loadSettings();
+    int getPieceSize() const;
+    void showProgressBar(bool show);
+    void setInteractionEnabled(bool enabled);
 
-private:
+    // settings storage
+    QSize getDialogSize() const;
+    void setDialogSize(const QSize &size);
+    int getSettingPieceSize() const;
+    void setSettingPieceSize(const int size);
+    bool getSettingPrivateTorrent() const;
+    void setSettingPrivateTorrent(const bool b);
+    bool getSettingStartSeeding() const;
+    void setSettingStartSeeding(const bool b);
+    bool getSettingIgnoreRatio() const;
+    void setSettingIgnoreRatio(const bool ignore);
+    QString getLastAddPath() const;
+    void setLastAddPath(const QString &path);
+    QString getTrackerList() const;
+    void setTrackerList(const QString &list);
+    QString getWebSeedList() const;
+    void setWebSeedList(const QString &list);
+    QString getComments() const;
+    void setComments(const QString &str);
+    QString getLastSavePath() const;
+    void setLastSavePath(const QString &path);
+
+    Ui::TorrentCreatorDlg *m_ui;
     BitTorrent::TorrentCreatorThread *m_creatorThread;
-    QList<int> m_pieceSizes;
+    QString m_defaultPath;
 };
 
 #endif
