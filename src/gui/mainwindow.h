@@ -202,6 +202,7 @@ private:
     bool event(QEvent *e) override;
     void displayRSSTab(bool enable);
     void displaySearchTab(bool enable);
+    void createTorrentTriggered(const QString &path = QString());
 
     Ui::MainWindow *m_ui;
 
