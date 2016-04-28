@@ -49,20 +49,18 @@
 namespace
 {
 #define SETTINGS_KEY(name) "TorrentCreator/" name
-    const QString KEY_DIALOG_SIZE = SETTINGS_KEY("Dimension");
+    CachedSettingValue<QSize> storeDialogSize(SETTINGS_KEY("Dimension"));
 
-    const QString KEY_PIECE_SIZE = SETTINGS_KEY("PieceSize");
-    const QString KEY_PRIVATE_TORRENT = SETTINGS_KEY("PrivateTorrent");
-    const QString KEY_START_SEEDING = SETTINGS_KEY("StartSeeding");
-    const QString KEY_SETTING_IGNORE_RATIO = SETTINGS_KEY("IgnoreRatio");
+    CachedSettingValue<int> storePieceSize(SETTINGS_KEY("PieceSize"));
+    CachedSettingValue<bool> storePrivateTorrent(SETTINGS_KEY("PrivateTorrent"));
+    CachedSettingValue<bool> storeStartSeeding(SETTINGS_KEY("StartSeeding"));
+    CachedSettingValue<bool> storeIgnoreRatio(SETTINGS_KEY("IgnoreRatio"));
 
-    const QString KEY_LAST_ADD_PATH = SETTINGS_KEY("LastAddPath");
-    const QString KEY_TRACKER_LIST = SETTINGS_KEY("TrackerList");
-    const QString KEY_WEB_SEED_LIST = SETTINGS_KEY("WebSeedList");
-    const QString KEY_COMMENTS = SETTINGS_KEY("Comments");
-    const QString KEY_LAST_SAVE_PATH = SETTINGS_KEY("LastSavePath");
-
-    SettingsStorage *settings() { return  SettingsStorage::instance(); }
+    CachedSettingValue<QString> storeLastAddPath(SETTINGS_KEY("LastAddPath"), QDir::homePath());
+    CachedSettingValue<QString> storeTrackerList(SETTINGS_KEY("TrackerList"));
+    CachedSettingValue<QString> storeWebSeedList(SETTINGS_KEY("WebSeedList"));
+    CachedSettingValue<QString> storeComments(SETTINGS_KEY("Comments"));
+    CachedSettingValue<QString> storeLastSavePath(SETTINGS_KEY("LastSavePath"), QDir::homePath());
 }
 
 TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent, const QString &defaultPath)
@@ -159,13 +157,13 @@ void TorrentCreatorDlg::onCreateButtonClicked()
     input = fi.canonicalFilePath();
 
     // get save path
-    QString lastPath = getLastSavePath();
+    QString lastPath = storeLastSavePath;
     QString destination = QFileDialog::getSaveFileName(this, tr("Select where to save the new torrent"), lastPath, tr("Torrent Files (*.torrent)"));
     if (destination.isEmpty())
         return;
     if (!destination.endsWith(".torrent", Qt::CaseInsensitive))
         destination += ".torrent";
-    setLastSavePath(Utils::Fs::branchPath(destination));
+    storeLastSavePath = Utils::Fs::branchPath(destination);
 
     // Disable dialog & set busy cursor
     setInteractionEnabled(false);
@@ -245,133 +243,34 @@ void TorrentCreatorDlg::showProgressBar(bool show)
 
 void TorrentCreatorDlg::saveSettings()
 {
-    setLastAddPath(m_ui->textInputPath->text().trimmed());
+    storeLastAddPath = m_ui->textInputPath->text().trimmed();
 
-    setSettingPieceSize(m_ui->comboPieceSize->currentIndex());
-    setSettingPrivateTorrent(m_ui->check_private->isChecked());
-    setSettingStartSeeding(m_ui->checkStartSeeding->isChecked());
-    setSettingIgnoreRatio(m_ui->checkIgnoreShareLimits->isChecked());
+    storePieceSize = m_ui->comboPieceSize->currentIndex();
+    storePrivateTorrent = m_ui->check_private->isChecked();
+    storeStartSeeding = m_ui->checkStartSeeding->isChecked();
+    storeIgnoreRatio = m_ui->checkIgnoreShareLimits->isChecked();
 
-    setTrackerList(m_ui->trackers_list->toPlainText());
-    setWebSeedList(m_ui->URLSeeds_list->toPlainText());
-    setComments(m_ui->txt_comment->toPlainText());
+    storeTrackerList = m_ui->trackers_list->toPlainText();
+    storeWebSeedList = m_ui->URLSeeds_list->toPlainText();
+    storeComments = m_ui->txt_comment->toPlainText();
 
-    setDialogSize(size());
+    storeDialogSize = size();
 }
 
 void TorrentCreatorDlg::loadSettings()
 {
-    m_ui->textInputPath->setText(!m_defaultPath.isEmpty() ? m_defaultPath : getLastAddPath());
+    m_ui->textInputPath->setText(!m_defaultPath.isEmpty() ? m_defaultPath : storeLastAddPath);
 
-    m_ui->comboPieceSize->setCurrentIndex(getSettingPieceSize());
-    m_ui->check_private->setChecked(getSettingPrivateTorrent());
-    m_ui->checkStartSeeding->setChecked(getSettingStartSeeding());
-    m_ui->checkIgnoreShareLimits->setChecked(getSettingIgnoreRatio());
+    m_ui->comboPieceSize->setCurrentIndex(storePieceSize);
+    m_ui->check_private->setChecked(storePrivateTorrent);
+    m_ui->checkStartSeeding->setChecked(storeStartSeeding);
+    m_ui->checkIgnoreShareLimits->setChecked(storeIgnoreRatio);
     m_ui->checkIgnoreShareLimits->setEnabled(m_ui->checkStartSeeding->isChecked());
 
-    m_ui->trackers_list->setPlainText(getTrackerList());
-    m_ui->URLSeeds_list->setPlainText(getWebSeedList());
-    m_ui->txt_comment->setPlainText(getComments());
+    m_ui->trackers_list->setPlainText(storeTrackerList);
+    m_ui->URLSeeds_list->setPlainText(storeWebSeedList);
+    m_ui->txt_comment->setPlainText(storeComments);
 
-    resize(getDialogSize());
-}
-
-QSize TorrentCreatorDlg::getDialogSize() const
-{
-    return settings()->loadValue(KEY_DIALOG_SIZE, size()).toSize();
-}
-
-void TorrentCreatorDlg::setDialogSize(const QSize &size)
-{
-    settings()->storeValue(KEY_DIALOG_SIZE, size);
-}
-
-int TorrentCreatorDlg::getSettingPieceSize() const
-{
-    return settings()->loadValue(KEY_PIECE_SIZE).toInt();
-}
-
-void TorrentCreatorDlg::setSettingPieceSize(const int size)
-{
-    settings()->storeValue(KEY_PIECE_SIZE, size);
-}
-
-bool TorrentCreatorDlg::getSettingPrivateTorrent() const
-{
-    return settings()->loadValue(KEY_PRIVATE_TORRENT).toBool();
-}
-
-void TorrentCreatorDlg::setSettingPrivateTorrent(const bool b)
-{
-    settings()->storeValue(KEY_PRIVATE_TORRENT, b);
-}
-
-bool TorrentCreatorDlg::getSettingStartSeeding() const
-{
-    return settings()->loadValue(KEY_START_SEEDING).toBool();
-}
-
-void TorrentCreatorDlg::setSettingStartSeeding(const bool b)
-{
-    settings()->storeValue(KEY_START_SEEDING, b);
-}
-
-bool TorrentCreatorDlg::getSettingIgnoreRatio() const
-{
-    return settings()->loadValue(KEY_SETTING_IGNORE_RATIO).toBool();
-}
-
-void TorrentCreatorDlg::setSettingIgnoreRatio(const bool ignore)
-{
-    settings()->storeValue(KEY_SETTING_IGNORE_RATIO, ignore);
-}
-
-QString TorrentCreatorDlg::getLastAddPath() const
-{
-    return settings()->loadValue(KEY_LAST_ADD_PATH, QDir::homePath()).toString();
-}
-
-void TorrentCreatorDlg::setLastAddPath(const QString &path)
-{
-    settings()->storeValue(KEY_LAST_ADD_PATH, path);
-}
-
-QString TorrentCreatorDlg::getTrackerList() const
-{
-    return settings()->loadValue(KEY_TRACKER_LIST).toString();
-}
-
-void TorrentCreatorDlg::setTrackerList(const QString &list)
-{
-    settings()->storeValue(KEY_TRACKER_LIST, list);
-}
-
-QString TorrentCreatorDlg::getWebSeedList() const
-{
-    return settings()->loadValue(KEY_WEB_SEED_LIST).toString();
-}
-
-void TorrentCreatorDlg::setWebSeedList(const QString &list)
-{
-    settings()->storeValue(KEY_WEB_SEED_LIST, list);
-}
-
-QString TorrentCreatorDlg::getComments() const
-{
-    return settings()->loadValue(KEY_COMMENTS).toString();
-}
-
-void TorrentCreatorDlg::setComments(const QString &str)
-{
-    settings()->storeValue(KEY_COMMENTS, str);
-}
-
-QString TorrentCreatorDlg::getLastSavePath() const
-{
-    return settings()->loadValue(KEY_LAST_SAVE_PATH, QDir::homePath()).toString();
-}
-
-void TorrentCreatorDlg::setLastSavePath(const QString &path)
-{
-    settings()->storeValue(KEY_LAST_SAVE_PATH, path);
+    if (storeDialogSize.value().isValid())
+        resize(storeDialogSize);
 }

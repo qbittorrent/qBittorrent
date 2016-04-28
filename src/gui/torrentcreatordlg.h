@@ -69,28 +69,6 @@ private:
     void showProgressBar(bool show);
     void setInteractionEnabled(bool enabled);
 
-    // settings storage
-    QSize getDialogSize() const;
-    void setDialogSize(const QSize &size);
-    int getSettingPieceSize() const;
-    void setSettingPieceSize(const int size);
-    bool getSettingPrivateTorrent() const;
-    void setSettingPrivateTorrent(const bool b);
-    bool getSettingStartSeeding() const;
-    void setSettingStartSeeding(const bool b);
-    bool getSettingIgnoreRatio() const;
-    void setSettingIgnoreRatio(const bool ignore);
-    QString getLastAddPath() const;
-    void setLastAddPath(const QString &path);
-    QString getTrackerList() const;
-    void setTrackerList(const QString &list);
-    QString getWebSeedList() const;
-    void setWebSeedList(const QString &list);
-    QString getComments() const;
-    void setComments(const QString &str);
-    QString getLastSavePath() const;
-    void setLastSavePath(const QString &path);
-
     Ui::TorrentCreatorDlg *m_ui;
     BitTorrent::TorrentCreatorThread *m_creatorThread;
     QString m_defaultPath;
