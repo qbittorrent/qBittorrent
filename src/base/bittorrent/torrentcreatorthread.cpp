@@ -28,25 +28,21 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <libtorrent/entry.hpp>
-#include <libtorrent/bencode.hpp>
-#include <libtorrent/torrent_info.hpp>
-#include <libtorrent/file.hpp>
-#include <libtorrent/storage.hpp>
-#include <libtorrent/hasher.hpp>
-#include <libtorrent/file_pool.hpp>
-#include <libtorrent/create_torrent.hpp>
-#include <QFile>
-#include <QDir>
+#include "torrentcreatorthread.h"
+
+#include <fstream>
 
 #include <boost/bind.hpp>
-#include <iostream>
-#include <fstream>
+#include <libtorrent/bencode.hpp>
+#include <libtorrent/create_torrent.hpp>
+#include <libtorrent/torrent_info.hpp>
+#include <libtorrent/storage.hpp>
+
+#include <QFile>
 
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
-#include "torrentcreatorthread.h"
 
 namespace libt = libtorrent;
 using namespace BitTorrent;

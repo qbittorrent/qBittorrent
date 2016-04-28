@@ -31,8 +31,8 @@
 #ifndef BITTORRENT_TORRENTCREATORTHREAD_H
 #define BITTORRENT_TORRENTCREATORTHREAD_H
 
-#include <QThread>
 #include <QStringList>
+#include <QThread>
 
 namespace BitTorrent
 {
