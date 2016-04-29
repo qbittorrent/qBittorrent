@@ -285,6 +285,7 @@ namespace BitTorrent
         void torrentsUpdated();
         void addTorrentFailed(const QString &error);
         void torrentAdded(BitTorrent::TorrentHandle *const torrent);
+        void torrentNew(BitTorrent::TorrentHandle *const torrent);
         void torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent);
         void torrentPaused(BitTorrent::TorrentHandle *const torrent);
         void torrentResumed(BitTorrent::TorrentHandle *const torrent);

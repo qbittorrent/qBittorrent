@@ -2458,6 +2458,9 @@ void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
 
     // Send torrent addition signal
     emit torrentAdded(torrent);
+    // Send new torrent signal
+    if (!data.resumed)
+        emit torrentNew(torrent);
 }
 
 void Session::handleAddTorrentAlert(libt::add_torrent_alert *p)

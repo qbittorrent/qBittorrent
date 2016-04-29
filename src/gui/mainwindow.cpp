@@ -186,7 +186,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Creating Bittorrent session
     connect(BitTorrent::Session::instance(), SIGNAL(fullDiskError(BitTorrent::TorrentHandle *const, QString)), this, SLOT(fullDiskError(BitTorrent::TorrentHandle *const, QString)));
     connect(BitTorrent::Session::instance(), SIGNAL(addTorrentFailed(const QString &)), this, SLOT(addTorrentFailed(const QString &)));
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentAdded(BitTorrent::TorrentHandle *const)), this, SLOT(torrentAdded(BitTorrent::TorrentHandle *const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentNew(BitTorrent::TorrentHandle *const)), this, SLOT(torrentNew(BitTorrent::TorrentHandle *const)));
     connect(BitTorrent::Session::instance(), SIGNAL(torrentFinished(BitTorrent::TorrentHandle *const)), this, SLOT(finishedTorrent(BitTorrent::TorrentHandle *const)));
     connect(BitTorrent::Session::instance(), SIGNAL(trackerAuthenticationRequired(BitTorrent::TorrentHandle *const)), this, SLOT(trackerAuthenticationRequired(BitTorrent::TorrentHandle *const)));
     connect(BitTorrent::Session::instance(), SIGNAL(downloadFromUrlFailed(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
@@ -723,7 +723,7 @@ void MainWindow::addTorrentFailed(const QString &error) const
 }
 
 // called when a torrent was added
-void MainWindow::torrentAdded(BitTorrent::TorrentHandle *const torrent) const
+void MainWindow::torrentNew(BitTorrent::TorrentHandle *const torrent) const
 {
     if (isTorrentAddedNotificationsEnabled())
         showNotificationBaloon(tr("Torrent added"), tr("'%1' was added.", "e.g: xxx.avi was added.").arg(torrent->name()));
