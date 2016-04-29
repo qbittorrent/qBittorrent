@@ -38,11 +38,11 @@
 #include <QUrl>
 
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrentinfo.h"
 #include "base/bittorrent/torrentcreatorthread.h"
+#include "base/bittorrent/torrentinfo.h"
+#include "base/global.h"
 #include "base/settingsstorage.h"
 #include "base/utils/fs.h"
-#include "guiiconprovider.h"
 
 #include "ui_torrentcreatordlg.h"
 
@@ -161,8 +161,8 @@ void TorrentCreatorDlg::onCreateButtonClicked()
     QString destination = QFileDialog::getSaveFileName(this, tr("Select where to save the new torrent"), lastPath, tr("Torrent Files (*.torrent)"));
     if (destination.isEmpty())
         return;
-    if (!destination.endsWith(".torrent", Qt::CaseInsensitive))
-        destination += ".torrent";
+    if (!destination.endsWith(C_TORRENT_FILE_EXTENSION, Qt::CaseInsensitive))
+        destination += C_TORRENT_FILE_EXTENSION;
     storeLastSavePath = Utils::Fs::branchPath(destination);
 
     // Disable dialog & set busy cursor

@@ -64,6 +64,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/global.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
 
@@ -1152,7 +1153,7 @@ void MainWindow::dropEvent(QDropEvent *event)
     // differentiate ".torrent" files and others
     QStringList torrentFiles, otherFiles;
     foreach (const QString &file, files) {
-        if (file.endsWith(".torrent", Qt::CaseInsensitive))
+        if (file.endsWith(C_TORRENT_FILE_EXTENSION, Qt::CaseInsensitive))
             torrentFiles << file;
         else
             otherFiles << file;
@@ -1203,7 +1204,7 @@ void MainWindow::on_actionOpen_triggered()
     // Note: it is possible to select more than one file
     const QStringList pathsList =
         QFileDialog::getOpenFileNames(this, tr("Open Torrent Files"), pref->getMainLastDir(),
-                                      tr("Torrent Files") + " (*.torrent)");
+                                      tr("Torrent Files") + " (*" + C_TORRENT_FILE_EXTENSION + ')');
 
     const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     if (!pathsList.isEmpty()) {
