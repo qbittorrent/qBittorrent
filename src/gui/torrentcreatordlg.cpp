@@ -66,7 +66,7 @@ namespace
 TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent, const QString &defaultPath)
     : QDialog(parent)
     , m_ui(new Ui::TorrentCreatorDlg)
-    , m_creatorThread(nullptr)
+    , m_creatorThread(new BitTorrent::TorrentCreatorThread(this))
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -77,6 +77,10 @@ TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent, const QString &defaultPath
     connect(m_ui->addFile_button, SIGNAL(clicked(bool)), SLOT(onAddFileButtonClicked()));
     connect(m_ui->addFolder_button, SIGNAL(clicked(bool)), SLOT(onAddFolderButtonClicked()));
     connect(m_ui->buttonBox, SIGNAL(accepted()), SLOT(onCreateButtonClicked()));
+
+    connect(m_creatorThread, SIGNAL(creationSuccess(QString, QString)), this, SLOT(handleCreationSuccess(QString, QString)));
+    connect(m_creatorThread, SIGNAL(creationFailure(QString)), this, SLOT(handleCreationFailure(QString)));
+    connect(m_creatorThread, SIGNAL(updateProgress(int)), this, SLOT(updateProgressBar(int)));
 
     loadSettings();
     updateInputPath(defaultPath);
@@ -178,13 +182,7 @@ void TorrentCreatorDlg::onCreateButtonClicked()
     QStringList urlSeeds = m_ui->URLSeeds_list->toPlainText().split("\n");
     QString comment = m_ui->txt_comment->toPlainText();
 
-    // Create the creator thread
-    if (!m_creatorThread) {
-        m_creatorThread = new BitTorrent::TorrentCreatorThread(this);
-        connect(m_creatorThread, SIGNAL(creationSuccess(QString, QString)), this, SLOT(handleCreationSuccess(QString, QString)));
-        connect(m_creatorThread, SIGNAL(creationFailure(QString)), this, SLOT(handleCreationFailure(QString)));
-        connect(m_creatorThread, SIGNAL(updateProgress(int)), this, SLOT(updateProgressBar(int)));
-    }
+    // run the creator thread
     m_creatorThread->create(input, destination, trackers, urlSeeds, comment, m_ui->check_private->isChecked(), getPieceSize());
 }
 
