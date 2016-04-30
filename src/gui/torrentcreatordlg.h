@@ -50,6 +50,7 @@ class TorrentCreatorDlg: public QDialog
 public:
     TorrentCreatorDlg(QWidget *parent = 0, const QString &defaultPath = QString());
     ~TorrentCreatorDlg();
+    void updateInputPath(const QString &path);
 
 private slots:
     void updateProgressBar(int progress);
@@ -66,12 +67,10 @@ private:
     void saveSettings();
     void loadSettings();
     int getPieceSize() const;
-    void showProgressBar(bool show);
     void setInteractionEnabled(bool enabled);
 
     Ui::TorrentCreatorDlg *m_ui;
     BitTorrent::TorrentCreatorThread *m_creatorThread;
-    QString m_defaultPath;
 };
 
 #endif

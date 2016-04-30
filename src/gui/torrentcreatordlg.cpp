@@ -67,13 +67,11 @@ TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent, const QString &defaultPath
     : QDialog(parent)
     , m_ui(new Ui::TorrentCreatorDlg)
     , m_creatorThread(nullptr)
-    , m_defaultPath(Utils::Fs::toNativePath(defaultPath))
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
-    setModal(true);
+    setModal(false);
 
-    showProgressBar(false);
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Create Torrent"));
 
     connect(m_ui->addFile_button, SIGNAL(clicked(bool)), SLOT(onAddFileButtonClicked()));
@@ -81,6 +79,8 @@ TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent, const QString &defaultPath
     connect(m_ui->buttonBox, SIGNAL(accepted()), SLOT(onCreateButtonClicked()));
 
     loadSettings();
+    updateInputPath(defaultPath);
+
     show();
 }
 
@@ -102,20 +102,25 @@ TorrentCreatorDlg::~TorrentCreatorDlg()
     delete m_ui;
 }
 
+void TorrentCreatorDlg::updateInputPath(const QString &path)
+{
+    if (path.isEmpty()) return;
+    m_ui->textInputPath->setText(Utils::Fs::toNativePath(path));
+    updateProgressBar(0);
+}
+
 void TorrentCreatorDlg::onAddFolderButtonClicked()
 {
     QString oldPath = m_ui->textInputPath->text();
     QString path = QFileDialog::getExistingDirectory(this, tr("Select folder"), oldPath);
-    if (!path.isEmpty())
-        m_ui->textInputPath->setText(Utils::Fs::toNativePath(path));
+    updateInputPath(path);
 }
 
 void TorrentCreatorDlg::onAddFileButtonClicked()
 {
     QString oldPath = m_ui->textInputPath->text();
     QString path = QFileDialog::getOpenFileName(this, tr("Select file"), oldPath);
-    if (!path.isEmpty())
-        m_ui->textInputPath->setText(Utils::Fs::toNativePath(path));
+    updateInputPath(path);
 }
 
 int TorrentCreatorDlg::getPieceSize() const
@@ -133,7 +138,7 @@ void TorrentCreatorDlg::dropEvent(QDropEvent *event)
         QUrl firstItem = event->mimeData()->urls().first();
         QString path = (firstItem.scheme().compare("file", Qt::CaseInsensitive) == 0)
                        ? firstItem.toLocalFile() : firstItem.toString();
-        m_ui->textInputPath->setText(Utils::Fs::toNativePath(path));
+        updateInputPath(path);
     }
 }
 
@@ -167,7 +172,6 @@ void TorrentCreatorDlg::onCreateButtonClicked()
 
     // Disable dialog & set busy cursor
     setInteractionEnabled(false);
-    showProgressBar(true);
     setCursor(QCursor(Qt::WaitCursor));
 
     QStringList trackers = m_ui->trackers_list->toPlainText().split("\n");
@@ -175,10 +179,12 @@ void TorrentCreatorDlg::onCreateButtonClicked()
     QString comment = m_ui->txt_comment->toPlainText();
 
     // Create the creator thread
-    m_creatorThread = new BitTorrent::TorrentCreatorThread(this);
-    connect(m_creatorThread, SIGNAL(creationSuccess(QString, QString)), this, SLOT(handleCreationSuccess(QString, QString)));
-    connect(m_creatorThread, SIGNAL(creationFailure(QString)), this, SLOT(handleCreationFailure(QString)));
-    connect(m_creatorThread, SIGNAL(updateProgress(int)), this, SLOT(updateProgressBar(int)));
+    if (!m_creatorThread) {
+        m_creatorThread = new BitTorrent::TorrentCreatorThread(this);
+        connect(m_creatorThread, SIGNAL(creationSuccess(QString, QString)), this, SLOT(handleCreationSuccess(QString, QString)));
+        connect(m_creatorThread, SIGNAL(creationFailure(QString)), this, SLOT(handleCreationFailure(QString)));
+        connect(m_creatorThread, SIGNAL(updateProgress(int)), this, SLOT(updateProgressBar(int)));
+    }
     m_creatorThread->create(input, destination, trackers, urlSeeds, comment, m_ui->check_private->isChecked(), getPieceSize());
 }
 
@@ -188,7 +194,6 @@ void TorrentCreatorDlg::handleCreationFailure(const QString &msg)
     setCursor(QCursor(Qt::ArrowCursor));
     QMessageBox::information(this, tr("Torrent creator failed"), tr("Reason: %1").arg(msg));
     setInteractionEnabled(true);
-    showProgressBar(false);
 }
 
 void TorrentCreatorDlg::handleCreationSuccess(const QString &path, const QString &branchPath)
@@ -211,8 +216,7 @@ void TorrentCreatorDlg::handleCreationSuccess(const QString &path, const QString
         BitTorrent::Session::instance()->addTorrent(t, params);
     }
     QMessageBox::information(this, tr("Torrent creator"), QString("%1\n%2").arg(tr("Create torrent success:")).arg(Utils::Fs::toNativePath(path)));
-
-    close();
+    setInteractionEnabled(true);
 }
 
 void TorrentCreatorDlg::updateProgressBar(int progress)
@@ -235,12 +239,6 @@ void TorrentCreatorDlg::setInteractionEnabled(bool enabled)
     m_ui->checkIgnoreShareLimits->setEnabled(enabled && m_ui->checkStartSeeding->isChecked());
 }
 
-void TorrentCreatorDlg::showProgressBar(bool show)
-{
-    m_ui->progressLbl->setVisible(show);
-    m_ui->progressBar->setVisible(show);
-}
-
 void TorrentCreatorDlg::saveSettings()
 {
     storeLastAddPath = m_ui->textInputPath->text().trimmed();
@@ -259,7 +257,7 @@ void TorrentCreatorDlg::saveSettings()
 
 void TorrentCreatorDlg::loadSettings()
 {
-    m_ui->textInputPath->setText(!m_defaultPath.isEmpty() ? m_defaultPath : storeLastAddPath);
+    m_ui->textInputPath->setText(storeLastAddPath);
 
     m_ui->comboPieceSize->setCurrentIndex(storePieceSize);
     m_ui->check_private->setChecked(storePrivateTorrent);

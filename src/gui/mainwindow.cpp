@@ -1075,8 +1075,10 @@ void MainWindow::on_actionCreateTorrent_triggered()
 
 void MainWindow::createTorrentTriggered(const QString &path)
 {
-    if (m_createTorrentDlg)
+    if (m_createTorrentDlg) {
+        m_createTorrentDlg->updateInputPath(path);
         m_createTorrentDlg->setFocus();
+    }
     else
         m_createTorrentDlg = new TorrentCreatorDlg(this, path);
 }
