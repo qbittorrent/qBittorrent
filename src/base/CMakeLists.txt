@@ -123,6 +123,11 @@ else (QT4_FOUND)
         target_link_libraries(qbt_base Qt5::Gui Qt5::Widgets)
     endif (GUI)
 endif (QT4_FOUND)
+
+if (DBUS)
+    target_link_qt_components(qbt_base DBus)
+endif ()
+
 if (APPLE)
     find_library(IOKit_LIBRARY IOKit)
     find_library(Carbon_LIBRARY Carbon)
