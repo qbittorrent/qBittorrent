@@ -28,20 +28,22 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "prefjson.h"
+
+#include <QCoreApplication>
 #ifndef QT_NO_OPENSSL
 #include <QSslCertificate>
 #include <QSslKey>
 #endif
 #include <QStringList>
 #include <QTranslator>
-#include <QCoreApplication>
 
+#include "base/bittorrent/session.h"
+#include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
 #include "base/scanfoldersmodel.h"
 #include "base/utils/fs.h"
-#include "base/bittorrent/session.h"
 #include "jsonutils.h"
-#include "prefjson.h"
 
 prefjson::prefjson()
 {
@@ -58,8 +60,8 @@ QByteArray prefjson::getPreferences()
     data["save_path"] = Utils::Fs::toNativePath(session->defaultSavePath());
     data["temp_path_enabled"] = session->isTempPathEnabled();
     data["temp_path"] = Utils::Fs::toNativePath(session->tempPath());
-    data["preallocate_all"] = pref->preAllocateAllFiles();
-    data["incomplete_files_ext"] = pref->useIncompleteFilesExtension();
+    data["preallocate_all"] = session->isPreallocationEnabled();
+    data["incomplete_files_ext"] = session->isAppendExtensionEnabled();
     QVariantHash dirs = pref->getScanDirs();
     QVariantMap nativeDirs;
     for (QVariantHash::const_iterator i = dirs.begin(), e = dirs.end(); i != e; ++i) {
@@ -69,8 +71,8 @@ QByteArray prefjson::getPreferences()
             nativeDirs.insert(Utils::Fs::toNativePath(i.key()), Utils::Fs::toNativePath(i.value().toString()));
     }
     data["scan_dirs"] = nativeDirs;
-    data["export_dir"] = Utils::Fs::toNativePath(pref->getTorrentExportDir());
-    data["export_dir_fin"] = Utils::Fs::toNativePath(pref->getFinishedTorrentExportDir());
+    data["export_dir"] = Utils::Fs::toNativePath(session->torrentExportDirectory());
+    data["export_dir_fin"] = Utils::Fs::toNativePath(session->finishedTorrentExportDirectory());
     // Email notification upon download completion
     data["mail_notification_enabled"] = pref->isMailNotificationEnabled();
     data["mail_notification_email"] = pref->getMailNotificationEmail();
@@ -85,39 +87,44 @@ QByteArray prefjson::getPreferences()
 
     // Connection
     // Listening Port
-    data["listen_port"] = pref->getSessionPort();
+    data["listen_port"] = session->port();
     data["upnp"] = pref->isUPnPEnabled();
-    data["random_port"] = pref->useRandomPort();
+    data["random_port"] = session->useRandomPort();
     // Connections Limits
-    data["max_connec"] = pref->getMaxConnecs();
-    data["max_connec_per_torrent"] = pref->getMaxConnecsPerTorrent();
-    data["max_uploads"] = pref->getMaxUploads();
-    data["max_uploads_per_torrent"] = pref->getMaxUploadsPerTorrent();
+    data["max_connec"] = session->maxConnections();
+    data["max_connec_per_torrent"] = session->maxConnectionsPerTorrent();
+    data["max_uploads"] = session->maxUploads();
+    data["max_uploads_per_torrent"] = session->maxUploadsPerTorrent();
+
     // Proxy Server
-    data["proxy_type"] = pref->getProxyType();
-    data["proxy_ip"] = pref->getProxyIp();
-    data["proxy_port"] = pref->getProxyPort();
-    data["proxy_peer_connections"] = pref->proxyPeerConnections();
-    data["force_proxy"] = pref->getForceProxy();
-    data["proxy_auth_enabled"] = pref->isProxyAuthEnabled();
-    data["proxy_username"] = pref->getProxyUsername();
-    data["proxy_password"] = pref->getProxyPassword();
+    auto proxyManager = Net::ProxyConfigurationManager::instance();
+    Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
+    data["proxy_type"] = static_cast<int>(proxyConf.type);
+    data["proxy_ip"] = proxyConf.ip;
+    data["proxy_port"] = proxyConf.port;
+    data["proxy_auth_enabled"] = proxyManager->isAuthenticationRequired(); // deprecated
+    data["proxy_username"] = proxyConf.username;
+    data["proxy_password"] = proxyConf.password;
+
+    data["proxy_peer_connections"] = session->isProxyPeerConnectionsEnabled();
+    data["force_proxy"] = session->isForceProxyEnabled();
+
     // IP Filtering
-    data["ip_filter_enabled"] = pref->isFilteringEnabled();
-    data["ip_filter_path"] = Utils::Fs::toNativePath(pref->getFilter());
-    data["ip_filter_trackers"] = pref->isFilteringTrackerEnabled();
+    data["ip_filter_enabled"] = session->isFilteringEnabled();
+    data["ip_filter_path"] = Utils::Fs::toNativePath(session->IPFilterFile());
+    data["ip_filter_trackers"] = session->isTrackerFilteringEnabled();
 
     // Speed
     // Global Rate Limits
-    data["dl_limit"] = pref->getGlobalDownloadLimit();
-    data["up_limit"] = pref->getGlobalUploadLimit();
-    data["enable_utp"] = pref->isuTPEnabled();
-    data["limit_utp_rate"] = pref->isuTPRateLimited();
-    data["limit_tcp_overhead"] = pref->includeOverheadInLimits();
-    data["alt_dl_limit"] = pref->getAltGlobalDownloadLimit();
-    data["alt_up_limit"] = pref->getAltGlobalUploadLimit();
+    data["dl_limit"] = session->globalDownloadSpeedLimit();
+    data["up_limit"] = session->globalUploadSpeedLimit();
+    data["enable_utp"] = session->isUTPEnabled();
+    data["limit_utp_rate"] = session->isUTPRateLimited();
+    data["limit_tcp_overhead"] = session->includeOverheadInLimits();
+    data["alt_dl_limit"] = session->altGlobalDownloadSpeedLimit();
+    data["alt_up_limit"] = session->altGlobalUploadSpeedLimit();
     // Scheduling
-    data["scheduler_enabled"] = pref->isSchedulerEnabled();
+    data["scheduler_enabled"] = session->isBandwidthSchedulerEnabled();
     const QTime start_time = pref->getSchedulerStartTime();
     data["schedule_from_hour"] = start_time.hour();
     data["schedule_from_min"] = start_time.minute();
@@ -128,24 +135,24 @@ QByteArray prefjson::getPreferences()
 
     // Bittorrent
     // Privacy
-    data["dht"] = pref->isDHTEnabled();
-    data["pex"] = pref->isPeXEnabled();
-    data["lsd"] = pref->isLSDEnabled();
-    data["encryption"] = pref->getEncryptionSetting();
-    data["anonymous_mode"] = pref->isAnonymousModeEnabled();
+    data["dht"] = session->isDHTEnabled();
+    data["pex"] = session->isPeXEnabled();
+    data["lsd"] = session->isLSDEnabled();
+    data["encryption"] = session->encryption();
+    data["anonymous_mode"] = session->isAnonymousModeEnabled();
     // Torrent Queueing
-    data["queueing_enabled"] = pref->isQueueingSystemEnabled();
-    data["max_active_downloads"] = pref->getMaxActiveDownloads();
-    data["max_active_torrents"] = pref->getMaxActiveTorrents();
-    data["max_active_uploads"] = pref->getMaxActiveUploads();
-    data["dont_count_slow_torrents"] = pref->ignoreSlowTorrentsForQueueing();
+    data["queueing_enabled"] = session->isQueueingSystemEnabled();
+    data["max_active_downloads"] = session->maxActiveDownloads();
+    data["max_active_torrents"] = session->maxActiveTorrents();
+    data["max_active_uploads"] = session->maxActiveUploads();
+    data["dont_count_slow_torrents"] = session->ignoreSlowTorrentsForQueueing();
     // Share Ratio Limiting
-    data["max_ratio_enabled"] = (pref->getGlobalMaxRatio() >= 0.);
-    data["max_ratio"] = pref->getGlobalMaxRatio();
-    data["max_ratio_act"] = BitTorrent::Session::instance()->maxRatioAction();
+    data["max_ratio_enabled"] = (session->globalMaxRatio() >= 0.);
+    data["max_ratio"] = session->globalMaxRatio();
+    data["max_ratio_act"] = session->maxRatioAction();
     // Add trackers
-    data["add_trackers_enabled"] = pref->isAddTrackersEnabled();
-    data["add_trackers"] = pref->getTrackersList();
+    data["add_trackers_enabled"] = session->isAddTrackersEnabled();
+    data["add_trackers"] = session->additionalTrackers();
 
     // Web UI
     // Language
@@ -185,9 +192,9 @@ void prefjson::setPreferences(const QString& json)
     if (m.contains("temp_path"))
         session->setTempPath(m["temp_path"].toString());
     if (m.contains("preallocate_all"))
-        pref->preAllocateAllFiles(m["preallocate_all"].toBool());
+        session->setPreallocationEnabled(m["preallocate_all"].toBool());
     if (m.contains("incomplete_files_ext"))
-        pref->useIncompleteFilesExtension(m["incomplete_files_ext"].toBool());
+        session->setAppendExtensionEnabled(m["incomplete_files_ext"].toBool());
     if (m.contains("scan_dirs")) {
         QVariantMap nativeDirs = m["scan_dirs"].toMap();
         QVariantHash oldScanDirs = pref->getScanDirs();
@@ -232,9 +239,9 @@ void prefjson::setPreferences(const QString& json)
         pref->setScanDirs(scanDirs);
     }
     if (m.contains("export_dir"))
-        pref->setTorrentExportDir(m["export_dir"].toString());
+        session->setTorrentExportDirectory(m["export_dir"].toString());
     if (m.contains("export_dir_fin"))
-        pref->setFinishedTorrentExportDir(m["export_dir_fin"].toString());
+        session->setFinishedTorrentExportDirectory(m["export_dir_fin"].toString());
     // Email notification upon download completion
     if (m.contains("mail_notification_enabled"))
         pref->setMailNotificationEnabled(m["mail_notification_enabled"].toBool());
@@ -259,109 +266,108 @@ void prefjson::setPreferences(const QString& json)
     // Connection
     // Listening Port
     if (m.contains("listen_port"))
-        pref->setSessionPort(m["listen_port"].toInt());
+        session->setPort(m["listen_port"].toInt());
     if (m.contains("upnp"))
         pref->setUPnPEnabled(m["upnp"].toBool());
     if (m.contains("random_port"))
-        pref->setRandomPort(m["random_port"].toBool());
+        session->setUseRandomPort(m["random_port"].toBool());
     // Connections Limits
     if (m.contains("max_connec"))
-        pref->setMaxConnecs(m["max_connec"].toInt());
+        session->setMaxConnections(m["max_connec"].toInt());
     if (m.contains("max_connec_per_torrent"))
-        pref->setMaxConnecsPerTorrent(m["max_connec_per_torrent"].toInt());
+        session->setMaxConnectionsPerTorrent(m["max_connec_per_torrent"].toInt());
     if (m.contains("max_uploads"))
-        pref->setMaxUploads(m["max_uploads"].toInt());
+        session->setMaxUploads(m["max_uploads"].toInt());
     if (m.contains("max_uploads_per_torrent"))
-        pref->setMaxUploadsPerTorrent(m["max_uploads_per_torrent"].toInt());
+        session->setMaxUploadsPerTorrent(m["max_uploads_per_torrent"].toInt());
+
     // Proxy Server
+    auto proxyManager = Net::ProxyConfigurationManager::instance();
+    Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
     if (m.contains("proxy_type"))
-        pref->setProxyType(m["proxy_type"].toInt());
+        proxyConf.type = static_cast<Net::ProxyType>(m["proxy_type"].toInt());
     if (m.contains("proxy_ip"))
-        pref->setProxyIp(m["proxy_ip"].toString());
+        proxyConf.ip = m["proxy_ip"].toString();
     if (m.contains("proxy_port"))
-        pref->setProxyPort(m["proxy_port"].toUInt());
-    if (m.contains("proxy_peer_connections"))
-        pref->setProxyPeerConnections(m["proxy_peer_connections"].toBool());
-    if (m.contains("force_proxy"))
-        pref->setForceProxy(m["force_proxy"].toBool());
-    if (m.contains("proxy_auth_enabled"))
-        pref->setProxyAuthEnabled(m["proxy_auth_enabled"].toBool());
+        proxyConf.port = m["proxy_port"].toUInt();
     if (m.contains("proxy_username"))
-        pref->setProxyUsername(m["proxy_username"].toString());
+        proxyConf.username = m["proxy_username"].toString();
     if (m.contains("proxy_password"))
-        pref->setProxyPassword(m["proxy_password"].toString());
+        proxyConf.password = m["proxy_password"].toString();
+    proxyManager->setProxyConfiguration(proxyConf);
+
+    if (m.contains("proxy_peer_connections"))
+        session->setProxyPeerConnectionsEnabled(m["proxy_peer_connections"].toBool());
+    if (m.contains("force_proxy"))
+        session->setForceProxyEnabled(m["force_proxy"].toBool());
+
     // IP Filtering
     if (m.contains("ip_filter_enabled"))
-        pref->setFilteringEnabled(m["ip_filter_enabled"].toBool());
+        session->setFilteringEnabled(m["ip_filter_enabled"].toBool());
     if (m.contains("ip_filter_path"))
-        pref->setFilter(m["ip_filter_path"].toString());
+        session->setIPFilterFile(m["ip_filter_path"].toString());
     if (m.contains("ip_filter_trackers"))
-        pref->setFilteringTrackerEnabled(m["ip_filter_trackers"].toBool());
+        session->setTrackerFilteringEnabled(m["ip_filter_trackers"].toBool());
 
     // Speed
     // Global Rate Limits
     if (m.contains("dl_limit"))
-        pref->setGlobalDownloadLimit(m["dl_limit"].toInt());
+        session->setGlobalDownloadSpeedLimit(m["dl_limit"].toInt());
     if (m.contains("up_limit"))
-        pref->setGlobalUploadLimit(m["up_limit"].toInt());
+        session->setGlobalUploadSpeedLimit(m["up_limit"].toInt());
     if (m.contains("enable_utp"))
-        pref->setuTPEnabled(m["enable_utp"].toBool());
+        session->setUTPEnabled(m["enable_utp"].toBool());
     if (m.contains("limit_utp_rate"))
-        pref->setuTPRateLimited(m["limit_utp_rate"].toBool());
+        session->setUTPRateLimited(m["limit_utp_rate"].toBool());
     if (m.contains("limit_tcp_overhead"))
-        pref->includeOverheadInLimits(m["limit_tcp_overhead"].toBool());
+        session->setIncludeOverheadInLimits(m["limit_tcp_overhead"].toBool());
     if (m.contains("alt_dl_limit"))
-        pref->setAltGlobalDownloadLimit(m["alt_dl_limit"].toInt());
+        session->setAltGlobalDownloadSpeedLimit(m["alt_dl_limit"].toInt());
     if (m.contains("alt_up_limit"))
-        pref->setAltGlobalUploadLimit(m["alt_up_limit"].toInt());
+       session->setAltGlobalUploadSpeedLimit(m["alt_up_limit"].toInt());
     // Scheduling
     if (m.contains("scheduler_enabled"))
-        pref->setSchedulerEnabled(m["scheduler_enabled"].toBool());
-    if (m.contains("schedule_from_hour") && m.contains("schedule_from_min")) {
-        pref->setSchedulerStartTime(QTime(m["schedule_from_hour"].toInt(),
-                                                                         m["schedule_from_min"].toInt()));
-    }
-    if (m.contains("schedule_to_hour") && m.contains("schedule_to_min")) {
-        pref->setSchedulerEndTime(QTime(m["schedule_to_hour"].toInt(),
-                                                                     m["schedule_to_min"].toInt()));
-    }
+        session->setBandwidthSchedulerEnabled(m["scheduler_enabled"].toBool());
+    if (m.contains("schedule_from_hour") && m.contains("schedule_from_min"))
+        pref->setSchedulerStartTime(QTime(m["schedule_from_hour"].toInt(), m["schedule_from_min"].toInt()));
+    if (m.contains("schedule_to_hour") && m.contains("schedule_to_min"))
+        pref->setSchedulerEndTime(QTime(m["schedule_to_hour"].toInt(), m["schedule_to_min"].toInt()));
     if (m.contains("scheduler_days"))
         pref->setSchedulerDays(scheduler_days(m["scheduler_days"].toInt()));
 
     // Bittorrent
     // Privacy
     if (m.contains("dht"))
-        pref->setDHTEnabled(m["dht"].toBool());
+        session->setDHTEnabled(m["dht"].toBool());
     if (m.contains("pex"))
-        pref->setPeXEnabled(m["pex"].toBool());
+        session->setPeXEnabled(m["pex"].toBool());
     if (m.contains("lsd"))
-        pref->setLSDEnabled(m["lsd"].toBool());
+        session->setLSDEnabled(m["lsd"].toBool());
     if (m.contains("encryption"))
-        pref->setEncryptionSetting(m["encryption"].toInt());
+        session->setEncryption(m["encryption"].toInt());
     if (m.contains("anonymous_mode"))
-        pref->enableAnonymousMode(m["anonymous_mode"].toBool());
+        session->setAnonymousModeEnabled(m["anonymous_mode"].toBool());
     // Torrent Queueing
     if (m.contains("queueing_enabled"))
-        pref->setQueueingSystemEnabled(m["queueing_enabled"].toBool());
+        session->setQueueingSystemEnabled(m["queueing_enabled"].toBool());
     if (m.contains("max_active_downloads"))
-        pref->setMaxActiveDownloads(m["max_active_downloads"].toInt());
+        session->setMaxActiveDownloads(m["max_active_downloads"].toInt());
     if (m.contains("max_active_torrents"))
-        pref->setMaxActiveTorrents(m["max_active_torrents"].toInt());
+        session->setMaxActiveTorrents(m["max_active_torrents"].toInt());
     if (m.contains("max_active_uploads"))
-        pref->setMaxActiveUploads(m["max_active_uploads"].toInt());
+        session->setMaxActiveUploads(m["max_active_uploads"].toInt());
     if (m.contains("dont_count_slow_torrents"))
-        pref->setIgnoreSlowTorrentsForQueueing(m["dont_count_slow_torrents"].toBool());
+        session->setIgnoreSlowTorrentsForQueueing(m["dont_count_slow_torrents"].toBool());
     // Share Ratio Limiting
     if (m.contains("max_ratio_enabled"))
-        pref->setGlobalMaxRatio(m["max_ratio"].toReal());
+        session->setGlobalMaxRatio(m["max_ratio"].toReal());
     else
-        pref->setGlobalMaxRatio(-1);
+        session->setGlobalMaxRatio(-1);
     if (m.contains("max_ratio_act"))
-        BitTorrent::Session::instance()->setMaxRatioAction(
-                    static_cast<MaxRatioAction>(m["max_ratio_act"].toInt()));
+        session->setMaxRatioAction(static_cast<MaxRatioAction>(m["max_ratio_act"].toInt()));
     // Add trackers
-    pref->setAddTrackersEnabled(m["add_trackers_enabled"].toBool());
-    pref->setTrackersList(m["add_trackers"].toString());
+    session->setAddTrackersEnabled(m["add_trackers_enabled"].toBool());
+    session->setAdditionalTrackers(m["add_trackers"].toString());
 
     // Web UI
     // Language
