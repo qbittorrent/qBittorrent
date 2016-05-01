@@ -47,6 +47,11 @@ enum DoubleClickAction
     NO_ACTION
 };
 
+namespace Net
+{
+    enum class ProxyType;
+}
+
 namespace Ui
 {
     class OptionsDialog;
@@ -149,7 +154,7 @@ private:
     unsigned short getProxyPort() const;
     QString getProxyUsername() const;
     QString getProxyPassword() const;
-    int getProxyType() const;
+    Net::ProxyType getProxyType() const;
     // IP Filter
     bool isFilteringEnabled() const;
     QString getFilter() const;

@@ -518,13 +518,13 @@ void WebApplication::action_command_setFilePrio()
 void WebApplication::action_command_getGlobalUpLimit()
 {
     CHECK_URI(0);
-    print(QByteArray::number(BitTorrent::Session::instance()->uploadRateLimit()), Http::CONTENT_TYPE_TXT);
+    print(QByteArray::number(BitTorrent::Session::instance()->uploadSpeedLimit()), Http::CONTENT_TYPE_TXT);
 }
 
 void WebApplication::action_command_getGlobalDlLimit()
 {
     CHECK_URI(0);
-    print(QByteArray::number(BitTorrent::Session::instance()->downloadRateLimit()), Http::CONTENT_TYPE_TXT);
+    print(QByteArray::number(BitTorrent::Session::instance()->downloadSpeedLimit()), Http::CONTENT_TYPE_TXT);
 }
 
 void WebApplication::action_command_setGlobalUpLimit()
@@ -534,11 +534,7 @@ void WebApplication::action_command_setGlobalUpLimit()
     qlonglong limit = request().posts["limit"].toLongLong();
     if (limit == 0) limit = -1;
 
-    BitTorrent::Session::instance()->setUploadRateLimit(limit);
-    if (Preferences::instance()->isAltBandwidthEnabled())
-        Preferences::instance()->setAltGlobalUploadLimit(limit / 1024.);
-    else
-        Preferences::instance()->setGlobalUploadLimit(limit / 1024.);
+    BitTorrent::Session::instance()->setUploadSpeedLimit(limit);
 }
 
 void WebApplication::action_command_setGlobalDlLimit()
@@ -548,11 +544,7 @@ void WebApplication::action_command_setGlobalDlLimit()
     qlonglong limit = request().posts["limit"].toLongLong();
     if (limit == 0) limit = -1;
 
-    BitTorrent::Session::instance()->setDownloadRateLimit(limit);
-    if (Preferences::instance()->isAltBandwidthEnabled())
-        Preferences::instance()->setAltGlobalDownloadLimit(limit / 1024.);
-    else
-        Preferences::instance()->setGlobalDownloadLimit(limit / 1024.);
+    BitTorrent::Session::instance()->setDownloadSpeedLimit(limit);
 }
 
 void WebApplication::action_command_getTorrentsUpLimit()
@@ -608,13 +600,15 @@ void WebApplication::action_command_setTorrentsDlLimit()
 void WebApplication::action_command_toggleAlternativeSpeedLimits()
 {
     CHECK_URI(0);
-    BitTorrent::Session::instance()->changeSpeedLimitMode(!Preferences::instance()->isAltBandwidthEnabled());
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    session->setAltGlobalSpeedLimitEnabled(!session->isAltGlobalSpeedLimitEnabled());
 }
 
 void WebApplication::action_command_alternativeSpeedLimitsEnabled()
 {
     CHECK_URI(0);
-    print(QByteArray::number(Preferences::instance()->isAltBandwidthEnabled()), Http::CONTENT_TYPE_TXT);
+    print(QByteArray::number(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled())
+          , Http::CONTENT_TYPE_TXT);
 }
 
 void WebApplication::action_command_toggleSequentialDownload()
@@ -690,7 +684,7 @@ void WebApplication::action_command_increasePrio()
     CHECK_URI(0);
     CHECK_PARAMETERS("hashes");
 
-    if (!Preferences::instance()->isQueueingSystemEnabled()) {
+    if (!BitTorrent::Session::instance()->isQueueingSystemEnabled()) {
         status(403, "Torrent queueing must be enabled");
         return;
     }
@@ -704,7 +698,7 @@ void WebApplication::action_command_decreasePrio()
     CHECK_URI(0);
     CHECK_PARAMETERS("hashes");
 
-    if (!Preferences::instance()->isQueueingSystemEnabled()) {
+    if (!BitTorrent::Session::instance()->isQueueingSystemEnabled()) {
         status(403, "Torrent queueing must be enabled");
         return;
     }
@@ -718,7 +712,7 @@ void WebApplication::action_command_topPrio()
     CHECK_URI(0);
     CHECK_PARAMETERS("hashes");
 
-    if (!Preferences::instance()->isQueueingSystemEnabled()) {
+    if (!BitTorrent::Session::instance()->isQueueingSystemEnabled()) {
         status(403, "Torrent queueing must be enabled");
         return;
     }
@@ -732,7 +726,7 @@ void WebApplication::action_command_bottomPrio()
     CHECK_URI(0);
     CHECK_PARAMETERS("hashes");
 
-    if (!Preferences::instance()->isQueueingSystemEnabled()) {
+    if (!BitTorrent::Session::instance()->isQueueingSystemEnabled()) {
         status(403, "Torrent queueing must be enabled");
         return;
     }

@@ -5,6 +5,7 @@ HEADERS += \
     $$PWD/qinisettings.h \
     $$PWD/logger.h \
     $$PWD/settingsstorage.h \
+    $$PWD/settingvalue.h \
     $$PWD/preferences.h \
     $$PWD/indexrange.h \
     $$PWD/iconprovider.h \
@@ -20,6 +21,7 @@ HEADERS += \
     $$PWD/net/downloadhandler.h \
     $$PWD/net/geoipmanager.h \
     $$PWD/net/portforwarder.h \
+    $$PWD/net/proxyconfigurationmanager.h \
     $$PWD/net/reverseresolution.h \
     $$PWD/net/smtp.h \
     $$PWD/net/private/geoipdatabase.h \
@@ -74,6 +76,7 @@ SOURCES += \
     $$PWD/net/downloadhandler.cpp \
     $$PWD/net/geoipmanager.cpp \
     $$PWD/net/portforwarder.cpp \
+    $$PWD/net/proxyconfigurationmanager.cpp \
     $$PWD/net/reverseresolution.cpp \
     $$PWD/net/smtp.cpp \
     $$PWD/net/private/geoipdatabase.cpp \

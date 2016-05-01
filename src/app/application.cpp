@@ -70,6 +70,7 @@
 #include "base/net/smtp.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/geoipmanager.h"
+#include "base/net/proxyconfigurationmanager.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 
@@ -393,6 +394,7 @@ void Application::processParams(const QStringList &params)
 
 int Application::exec(const QStringList &params)
 {
+    Net::ProxyConfigurationManager::initInstance();
     Net::DownloadManager::initInstance();
 #ifdef DISABLE_GUI
     IconProvider::initInstance();
@@ -619,6 +621,7 @@ void Application::cleanup()
     Net::GeoIPManager::freeInstance();
 #endif
     Net::DownloadManager::freeInstance();
+    Net::ProxyConfigurationManager::freeInstance();
     Preferences::freeInstance();
     SettingsStorage::freeInstance();
     delete m_fileLogger;
