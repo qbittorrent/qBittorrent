@@ -162,7 +162,7 @@ namespace BitTorrent
         uint nbErrored = 0;
     };
 
-    class Session : public QObject
+    class Session: public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY(Session)
@@ -190,11 +190,12 @@ namespace BitTorrent
         static bool isValidCategoryName(const QString &name);
         // returns category itself and all top level categories
         static QStringList expandCategory(const QString &category);
+        static QString getParentCategory(const QString &category);
 
         QStringList categories() const;
-        QString categorySavePath(const QString &categoryName) const;
-        bool addCategory(const QString &name, const QString &savePath = "");
-        bool editCategory(const QString &name, const QString &savePath);
+        QString getCategorySavePath(const QString &categoryName) const;
+        bool addCategory(const QString &name);
+        void saveCategory(const QString &name);
         bool removeCategory(const QString &name);
         bool isSubcategoriesEnabled() const;
         void setSubcategoriesEnabled(bool value);
@@ -219,6 +220,25 @@ namespace BitTorrent
         bool isDisableASMWhenCategorySavePathChanged() const;
         void setDisableASMWhenCategorySavePathChanged(bool value);
 
+        void setCategorySavePath(const QString &categoryName, const QString &value);
+        bool isCategoryDownloadsSettingsEnabled(const QString &categoryName) const;
+        void setCategoryDownloadsSettingsEnabled(const QString &categoryName, bool value);
+        bool hasCategoryDownloadFirstLastPiecePriority(const QString &categoryName) const;
+        void setCategoryDownloadFirstAndLastPieceFirstEnabled(const QString &categoryName, bool value);
+        bool isCategoryDownloadSequential(const QString &categoryName) const;
+        void setCategoryDownloadSequential(const QString &categoryName, bool value);
+        bool isCategoryBandwidthSettingsEnabled(const QString &categoryName) const;
+        void setCategoryBandwidthSettingsEnabled(const QString &categoryName, bool value);
+        int getCategoryDownloadLimit(const QString &categoryName) const;
+        void setCategoryDownloadLimit(const QString &categoryName, int value);
+        int getCategoryUploadLimit(const QString &categoryName) const;
+        void setCategoryUploadLimit(const QString &categoryName, int value);
+        bool isCategoryRatioSettingsEnabled(const QString &categoryName) const;
+        void setCategoryRatioSettingsEnabled(const QString &categoryName, bool value);
+        int getCategoryRatioLimitType(const QString &categoryName) const;
+        void setCategoryRatioLimitType(const QString &categoryName, int value);
+        qreal getCategoryRatioLimit(const QString &categoryName) const;
+        void setCategoryRatioLimit(const QString &categoryName, qreal value);
         bool isAddTorrentPaused() const;
         void setAddTorrentPaused(bool value);
 
@@ -391,6 +411,9 @@ namespace BitTorrent
         void dispatchAlerts(std::auto_ptr<libtorrent::alert> alertPtr);
         void getPendingAlerts(QVector<libtorrent::alert *> &out, ulong time = 0);
 
+        QVariant getCategoryProperty(const QString &categoryName, const QString &propertyName) const;
+        void setCategoryProperty(const QString &categoryName, const QString &propertyName, const QVariant &value);
+
         SettingsStorage *m_settings;
 
         // BitTorrent
@@ -435,7 +458,7 @@ namespace BitTorrent
         QHash<InfoHash, AddTorrentData> m_addingTorrents;
         QHash<QString, AddTorrentParams> m_downloadedTorrents;
         TorrentStatusReport m_torrentStatusReport;
-        QStringMap m_categories;
+        QVariantMap m_categories;
 
         QMutex m_alertsMutex;
         QWaitCondition m_alertsWaitCondition;

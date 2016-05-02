@@ -65,6 +65,7 @@ transferlistfilterswidget.h
 transferlistsortmodel.h
 transferlistwidget.h
 updownratiodlg.h
+categoryoptionsdialog.h
 )
 
 set(QBT_GUI_SOURCES
@@ -100,6 +101,7 @@ transferlistfilterswidget.cpp
 transferlistsortmodel.cpp
 transferlistwidget.cpp
 updownratiodlg.cpp
+categoryoptionsdialog.cpp
 )
 
 if (WIN32 OR APPLE)
@@ -124,6 +126,7 @@ statsdialog.ui
 options.ui
 torrentcreatordlg.ui
 shutdownconfirmdlg.ui
+categoryoptionsdialog.ui
 )
 
 qbt_target_sources(about.qrc)

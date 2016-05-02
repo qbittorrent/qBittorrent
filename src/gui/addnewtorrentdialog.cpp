@@ -397,7 +397,7 @@ void AddNewTorrentDialog::categoryChanged(int index)
     Q_UNUSED(index);
 
     if (ui->advancedModeRadioButton->isChecked()) {
-        QString savePath = BitTorrent::Session::instance()->categorySavePath(ui->categoryComboBox->currentText());
+        QString savePath = BitTorrent::Session::instance()->getCategorySavePath(ui->categoryComboBox->currentText());
         ui->savePathComboBox->setItemText(0, Utils::Fs::toNativePath(savePath));
         ui->savePathComboBox->setItemData(0, savePath);
     }
@@ -777,7 +777,7 @@ void AddNewTorrentDialog::savingModeChanged(bool enabled)
     else {
         ui->savePathComboBox->blockSignals(true);
         ui->savePathComboBox->clear();
-        QString savePath = BitTorrent::Session::instance()->categorySavePath(ui->categoryComboBox->currentText());
+        QString savePath = BitTorrent::Session::instance()->getCategorySavePath(ui->categoryComboBox->currentText());
         ui->savePathComboBox->addItem(Utils::Fs::toNativePath(savePath), savePath);
         ui->savePathComboBox->setEnabled(false);
         ui->browseButton->setEnabled(false);

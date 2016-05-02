@@ -55,6 +55,7 @@
 #include "base/net/downloadhandler.h"
 #include "base/utils/misc.h"
 #include "base/logger.h"
+#include "categoryoptionsdialog.h"
 
 FiltersBase::FiltersBase(QWidget *parent, TransferListWidget *transferList)
     : QListWidget(parent)
@@ -77,8 +78,8 @@ FiltersBase::FiltersBase(QWidget *parent, TransferListWidget *transferList)
     connect(this, SIGNAL(customContextMenuRequested(QPoint)), SLOT(showMenu(QPoint)));
     connect(this, SIGNAL(currentRowChanged(int)), SLOT(applyFilter(int)));
 
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentAdded(BitTorrent::TorrentHandle *const)), SLOT(handleNewTorrent(BitTorrent::TorrentHandle *const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const)), SLOT(torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentAdded(BitTorrent::TorrentHandle * const)), SLOT(handleNewTorrent(BitTorrent::TorrentHandle * const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentAboutToBeRemoved(BitTorrent::TorrentHandle * const)), SLOT(torrentAboutToBeDeleted(BitTorrent::TorrentHandle * const)));
 }
 
 QSize FiltersBase::sizeHint() const
@@ -180,7 +181,7 @@ void StatusFiltersWidget::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *con
 CategoryFiltersList::CategoryFiltersList(QWidget *parent, TransferListWidget *transferList)
     : FiltersBase(parent, transferList)
 {
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentCategoryChanged(BitTorrent::TorrentHandle *const, QString)), SLOT(torrentCategoryChanged(BitTorrent::TorrentHandle *const, QString)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentCategoryChanged(BitTorrent::TorrentHandle * const, QString)), SLOT(torrentCategoryChanged(BitTorrent::TorrentHandle * const, QString)));
     connect(BitTorrent::Session::instance(), SIGNAL(categoryAdded(QString)), SLOT(addItem(QString)));
     connect(BitTorrent::Session::instance(), SIGNAL(categoryRemoved(QString)), SLOT(categoryRemoved(QString)));
     connect(BitTorrent::Session::instance(), SIGNAL(subcategoriesSupportChanged()), SLOT(subcategoriesSupportChanged()));
@@ -276,6 +277,18 @@ void CategoryFiltersList::removeSelectedCategory()
     updateGeometry();
 }
 
+void CategoryFiltersList::editSelectedCategoryOptions()
+{
+    QList<QListWidgetItem*> items = selectedItems();
+    if (items.size() == 0) return;
+
+    const int categoryRow = row(items.first());
+    if (categoryRow < 2) return;
+
+    CategoryOptionsDialog dlg(categoryFromRow(categoryRow), this);
+    if (dlg.exec() != QDialog::Accepted) return;
+}
+
 void CategoryFiltersList::removeUnusedCategories()
 {
     foreach (const QString &category, m_categories.keys())
@@ -324,8 +337,11 @@ void CategoryFiltersList::showMenu(QPoint)
     QAction *addAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("Add category..."));
     QAction *removeAct = 0;
     QAction *removeUnusedAct = 0;
-    if (!selectedItems().empty() && row(selectedItems().first()) > 1)
+    QAction *editCategoryOptionsAct = 0;
+    if (!selectedItems().empty() && (row(selectedItems().first()) > 1)) {
+        editCategoryOptionsAct = menu.addAction(GuiIconProvider::instance()->getIcon("gear"), tr("Edit category options..."));
         removeAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove category"));
+    }
     removeUnusedAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove unused categories"));
     menu.addSeparator();
     QAction *startAct = menu.addAction(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume torrents"));
@@ -372,6 +388,9 @@ void CategoryFiltersList::showMenu(QPoint)
             }
         } while (invalid);
     }
+    else if (act == editCategoryOptionsAct) {
+        editSelectedCategoryOptions();
+    }
 }
 
 void CategoryFiltersList::applyFilter(int row)
@@ -385,19 +404,22 @@ void CategoryFiltersList::handleNewTorrent(BitTorrent::TorrentHandle *const torr
     Q_ASSERT(torrent);
 
     ++m_totalTorrents;
-    if (!torrent->category().isEmpty())
+    if (!torrent->category().isEmpty()) {
         ++m_totalCategorized;
+        torrent->setFirstLastPiecePriority(BitTorrent::Session::instance()->hasCategoryDownloadFirstLastPiecePriority(torrent->category()));
+        torrent->setDownloadLimit(BitTorrent::Session::instance()->getCategoryDownloadLimit(torrent->category()));
+        torrent->setUploadLimit(BitTorrent::Session::instance()->getCategoryUploadLimit(torrent->category()));
+        torrent->setRatioLimit(BitTorrent::Session::instance()->getCategoryRatioLimit(torrent->category()));
+    }
 
     item(0)->setText(tr("All (%1)", "this is for the category filter").arg(m_totalTorrents));
     item(1)->setText(tr("Uncategorized (%1)").arg(m_totalTorrents - m_totalCategorized));
 
-    if (BitTorrent::Session::instance()->isSubcategoriesEnabled()) {
+    if (BitTorrent::Session::instance()->isSubcategoriesEnabled())
         foreach (const QString &subcategory, BitTorrent::Session::expandCategory(torrent->category()))
             addItem(subcategory, true);
-    }
-    else {
+    else
         addItem(torrent->category(), true);
-    }
 }
 
 void CategoryFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const torrent)
@@ -411,13 +433,11 @@ void CategoryFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *con
     item(0)->setText(tr("All (%1)", "this is for the category filter").arg(m_totalTorrents));
     item(1)->setText(tr("Uncategorized (%1)").arg(m_totalTorrents - m_totalCategorized));
 
-    if (BitTorrent::Session::instance()->isSubcategoriesEnabled()) {
+    if (BitTorrent::Session::instance()->isSubcategoriesEnabled())
         foreach (const QString &subcategory, BitTorrent::Session::expandCategory(torrent->category()))
             removeItem(subcategory);
-    }
-    else {
+    else
         removeItem(torrent->category());
-    }
 }
 
 QString CategoryFiltersList::categoryFromRow(int row) const
@@ -480,12 +500,10 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         if (tmp.contains(hash))
             return;
 
-        if (host != "") {
+        if (host != "")
             trackerItem = item(rowFromTracker(host));
-        }
-        else {
+        else
             trackerItem = item(1);
-        }
     }
     else {
         trackerItem = new QListWidgetItem();
@@ -652,7 +670,7 @@ void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString&
     if (!trackerItem) return;
 
     QIcon icon(filePath);
-    //Detect a non-decodable icon
+    // Detect a non-decodable icon
     QList<QSize> sizes = icon.availableSizes();
     bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
     if (invalid) {
@@ -717,7 +735,7 @@ void TrackerFiltersList::handleNewTorrent(BitTorrent::TorrentHandle *const torre
     foreach (const BitTorrent::TrackerEntry &tracker, trackers)
         addItem(tracker.url(), hash);
 
-    //Check for trackerless torrent
+    // Check for trackerless torrent
     if (trackers.size() == 0)
         addItem("", hash);
 
@@ -731,7 +749,7 @@ void TrackerFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *cons
     foreach (const BitTorrent::TrackerEntry &tracker, trackers)
         removeItem(tracker.url(), hash);
 
-    //Check for trackerless torrent
+    // Check for trackerless torrent
     if (trackers.size() == 0)
         removeItem("", hash);
 

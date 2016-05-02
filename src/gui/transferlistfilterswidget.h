@@ -102,6 +102,7 @@ private slots:
     void addItem(const QString &category, bool hasTorrent = false);
     void removeItem(const QString &category);
     void removeSelectedCategory();
+    void editSelectedCategoryOptions();
     void removeUnusedCategories();
     void torrentCategoryChanged(BitTorrent::TorrentHandle *const torrent, const QString &oldCategory);
     void categoryRemoved(const QString &category);

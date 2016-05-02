@@ -115,22 +115,6 @@ namespace
     void torrentQueuePositionTop(const libt::torrent_handle &handle);
     void torrentQueuePositionBottom(const libt::torrent_handle &handle);
 
-    QStringMap map_cast(const QVariantMap &map)
-    {
-        QStringMap result;
-        foreach (const QString &key, map.keys())
-            result[key] = map.value(key).toString();
-        return result;
-    }
-
-    QVariantMap map_cast(const QStringMap &map)
-    {
-        QVariantMap result;
-        foreach (const QString &key, map.keys())
-            result[key] = map.value(key);
-        return result;
-    }
-
     QString normalizeSavePath(QString path, const QString &defaultPath = Utils::Fs::QDesktopServicesDownloadLocation())
     {
         path = Utils::Fs::fromNativePath(path.trimmed());
@@ -142,15 +126,14 @@ namespace
         return path;
     }
 
-    QStringMap expandCategories(const QStringMap &categories)
+    QVariantMap expandCategories(const QVariantMap &categories)
     {
-        QStringMap expanded = categories;
+        QVariantMap expanded = categories;
 
         foreach (const QString &category, categories.keys()) {
-            foreach (const QString &subcat, Session::expandCategory(category)) {
+            foreach (const QString &subcat, Session::expandCategory(category))
                 if (!expanded.contains(subcat))
-                    expanded[subcat] = "";
-            }
+                    expanded[subcat] = categories.value(subcat).toMap();
         }
 
         return expanded;
@@ -165,6 +148,7 @@ namespace
 
         return files;
     }
+
 }
 
 // Session
@@ -213,7 +197,7 @@ Session::Session(QObject *parent)
                     | libt::alert::ip_block_notification
                     | libt::alert::progress_notification
                     | libt::alert::stats_notification
-                    ;
+    ;
 
     if (ip.isEmpty()) {
         logger->addMessage(tr("qBittorrent is trying to listen on any interface port: %1", "e.g: qBittorrent is trying to listen on any interface port: TCP/6881").arg(QString::number(port)), Log::INFO);
@@ -229,7 +213,7 @@ Session::Session(QObject *parent)
     m_nativeSession->set_alert_dispatch(boost::bind(&Session::dispatchAlerts, this, _1));
 
     // Enabling plugins
-    //m_nativeSession->add_extension(&libt::create_metadata_plugin);
+    // m_nativeSession->add_extension(&libt::create_metadata_plugin);
     m_nativeSession->add_extension(&libt::create_ut_metadata_plugin);
     if (pref->trackerExchangeEnabled())
         m_nativeSession->add_extension(&libt::create_lt_trackers_plugin);
@@ -238,11 +222,11 @@ Session::Session(QObject *parent)
         m_nativeSession->add_extension(&libt::create_ut_pex_plugin);
     m_nativeSession->add_extension(&libt::create_smart_ban_plugin);
 
-    m_categories = map_cast(m_settings->loadValue(KEY_CATEGORIES).toMap());
+    m_categories = m_settings->loadValue(KEY_CATEGORIES).toMap();
     if (isSubcategoriesEnabled()) {
         // if subcategories support changed manually
         m_categories = expandCategories(m_categories);
-        m_settings->storeValue(KEY_CATEGORIES, map_cast(m_categories));
+        m_settings->storeValue(KEY_CATEGORIES, m_categories);
     }
 
     m_refreshTimer = new QTimer(this);
@@ -266,9 +250,9 @@ Session::Session(QObject *parent)
 
     // Network configuration monitor
     connect(&m_networkManager, SIGNAL(onlineStateChanged(bool)), SLOT(networkOnlineStateChanged(bool)));
-    connect(&m_networkManager, SIGNAL(configurationAdded(const QNetworkConfiguration&)), SLOT(networkConfigurationChange(const QNetworkConfiguration&)));
-    connect(&m_networkManager, SIGNAL(configurationRemoved(const QNetworkConfiguration&)), SLOT(networkConfigurationChange(const QNetworkConfiguration&)));
-    connect(&m_networkManager, SIGNAL(configurationChanged(const QNetworkConfiguration&)), SLOT(networkConfigurationChange(const QNetworkConfiguration&)));
+    connect(&m_networkManager, SIGNAL(configurationAdded(const QNetworkConfiguration &)), SLOT(networkConfigurationChange(const QNetworkConfiguration &)));
+    connect(&m_networkManager, SIGNAL(configurationRemoved(const QNetworkConfiguration &)), SLOT(networkConfigurationChange(const QNetworkConfiguration &)));
+    connect(&m_networkManager, SIGNAL(configurationChanged(const QNetworkConfiguration &)), SLOT(networkConfigurationChange(const QNetworkConfiguration &)));
 
     m_ioThread = new QThread(this);
     m_resumeDataSavingManager = new ResumeDataSavingManager(m_resumeFolderPath);
@@ -334,8 +318,8 @@ QString Session::tempPath() const
 QString Session::torrentTempPath(const InfoHash &hash) const
 {
     return m_tempPath
-            + static_cast<QString>(hash).left(7)
-            + "/";
+           + static_cast<QString>(hash).left(7)
+           + "/";
 }
 
 bool Session::isValidCategoryName(const QString &name)
@@ -365,17 +349,138 @@ QStringList Session::expandCategory(const QString &category)
     return result;
 }
 
+QString Session::getParentCategory(const QString &category)
+{
+    QString result;
+    if (!isValidCategoryName(category))
+        return result;
+
+    result = category.left(category.lastIndexOf('/'));
+
+    return result;
+}
+
 QStringList Session::categories() const
 {
     return m_categories.keys();
 }
 
-QString Session::categorySavePath(const QString &categoryName) const
+QVariant Session::getCategoryProperty(const QString &categoryName, const QString &propertyName) const
+{
+    return m_categories.value(categoryName).toMap().value(propertyName);
+}
+
+void Session::setCategoryProperty(const QString &categoryName, const QString &propertyName, const QVariant &value)
+{
+    if (Session::getCategoryProperty(categoryName, propertyName) == value) return;
+    QVariantMap category = m_categories.value(categoryName).toMap();
+    category.insert(propertyName, value);
+    m_categories.insert(categoryName, QVariant(category));
+}
+
+void Session::setCategorySavePath(const QString &categoryName, const QString &value)
+{
+    Session::setCategoryProperty(categoryName, "savePath", value);
+}
+
+bool Session::isCategoryDownloadsSettingsEnabled(const QString &categoryName) const
+{
+    return Session::getCategoryProperty(categoryName, "downloadsSettingsEnabled").toBool();
+}
+
+void Session::setCategoryDownloadsSettingsEnabled(const QString &categoryName, bool value)
+{
+    Session::setCategoryProperty(categoryName, "downloadsSettingsEnabled", value);
+}
+
+bool Session::isCategoryBandwidthSettingsEnabled(const QString &categoryName) const
+{
+    return Session::getCategoryProperty(categoryName, "bandwidthSettingsEnabled").toBool();
+}
+
+void Session::setCategoryBandwidthSettingsEnabled(const QString &categoryName, bool value)
+{
+    Session::setCategoryProperty(categoryName, "bandwidthSettingsEnabled", value);
+}
+
+void Session::setCategoryDownloadFirstAndLastPieceFirstEnabled(const QString &categoryName, bool value)
+{
+    Session::setCategoryProperty(categoryName, "firstAndLastPieceFirst", value);
+}
+
+bool Session::hasCategoryDownloadFirstLastPiecePriority(const QString &categoryName) const
+{
+    return Session::getCategoryProperty(categoryName, "firstAndLastPieceFirst").toBool();
+}
+
+void Session::setCategoryDownloadSequential(const QString &categoryName, bool value)
+{
+    Session::setCategoryProperty(categoryName, "sequentialDownload", value);
+}
+
+bool Session::isCategoryDownloadSequential(const QString &categoryName) const
+{
+    return Session::getCategoryProperty(categoryName, "sequentialDownload").toBool();
+}
+
+int Session::getCategoryDownloadLimit(const QString &categoryName) const
+{
+    // QVariant doesn't have .toLong() so forced to use ints or alternatively long longs but ints should suffice
+    return Session::getCategoryProperty(categoryName, "downloadLimit").toInt();
+}
+
+void Session::setCategoryDownloadLimit(const QString &categoryName, int value)
+{
+    Session::setCategoryProperty(categoryName, "downloadLimit", value);
+}
+
+int Session::getCategoryUploadLimit(const QString &categoryName) const
+{
+    // QVariant doesn't have .toLong() so forced to use ints or alternatively long longs but ints should suffice
+    return Session::getCategoryProperty(categoryName, "uploadLimit").toInt();
+}
+
+void Session::setCategoryUploadLimit(const QString &categoryName, int value)
+{
+    Session::setCategoryProperty(categoryName, "uploadLimit", value);
+}
+
+bool Session::isCategoryRatioSettingsEnabled(const QString &categoryName) const
+{
+    return Session::getCategoryProperty(categoryName, "ratioSettingsEnabled").toBool();
+}
+
+void Session::setCategoryRatioSettingsEnabled(const QString &categoryName, bool value)
+{
+    Session::setCategoryProperty(categoryName, "ratioSettingsEnabled", value);
+}
+
+int Session::getCategoryRatioLimitType(const QString &categoryName) const
+{
+    return Session::getCategoryProperty(categoryName, "ratioLimitType").toInt();
+}
+
+void Session::setCategoryRatioLimitType(const QString &categoryName, int value)
+{
+    Session::setCategoryProperty(categoryName, "ratioLimitType", value);
+}
+
+qreal Session::getCategoryRatioLimit(const QString &categoryName) const
+{
+    return Session::getCategoryProperty(categoryName, "ratioLimit").toReal();
+}
+
+void Session::setCategoryRatioLimit(const QString &categoryName, qreal value)
+{
+    Session::setCategoryProperty(categoryName, "ratioLimit", value);
+}
+
+QString Session::getCategorySavePath(const QString &categoryName) const
 {
     QString basePath = m_defaultSavePath;
     if (categoryName.isEmpty()) return basePath;
 
-    QString path = m_categories.value(categoryName);
+    QString path = Session::getCategoryProperty(categoryName, "savePath").toString();
     if (path.isEmpty()) // use implicit save path
         path = Utils::Fs::toValidFileSystemName(categoryName, true);
 
@@ -385,7 +490,7 @@ QString Session::categorySavePath(const QString &categoryName) const
     return normalizeSavePath(path);
 }
 
-bool Session::addCategory(const QString &name, const QString &savePath)
+bool Session::addCategory(const QString &name)
 {
     if (name.isEmpty()) return false;
     if (!isValidCategoryName(name) || m_categories.contains(name))
@@ -400,31 +505,52 @@ bool Session::addCategory(const QString &name, const QString &savePath)
         }
     }
 
-    m_categories[name] = savePath;
-    m_settings->storeValue(KEY_CATEGORIES, map_cast(m_categories));
+    m_categories[name] = QVariantMap();
+    m_settings->storeValue(KEY_CATEGORIES, m_categories);
     emit categoryAdded(name);
 
     return true;
 }
 
-bool Session::editCategory(const QString &name, const QString &savePath)
+void Session::saveCategory(const QString &name)
 {
-    if (!m_categories.contains(name)) return false;
-    if (categorySavePath(name) == savePath) return false;
-
-    m_categories[name] = savePath;
-    if (isDisableASMWhenCategorySavePathChanged()) {
-        foreach (TorrentHandle *const torrent, torrents())
-            if (torrent->category() == name)
-                torrent->setASMEnabled(false);
-    }
-    else {
-        foreach (TorrentHandle *const torrent, torrents())
-            if (torrent->category() == name)
+    foreach (TorrentHandle *const torrent, torrents()) {
+        if ((torrent->category() != name) || !torrent->isASMEnabled()) continue;
+        if (Session::isDisableASMWhenCategorySavePathChanged()) { // TODO: Rename
+            torrent->setASMEnabled(false);
+            continue;
+        }
+        if (Session::isCategoryDownloadsSettingsEnabled(name)) {
+            if (torrent->savePath(true) != Session::getCategorySavePath(name))
                 torrent->handleCategorySavePathChanged();
+            if (Session::hasCategoryDownloadFirstLastPiecePriority(name) != torrent->hasFirstLastPiecePriority())
+                torrent->setFirstLastPiecePriority(Session::hasCategoryDownloadFirstLastPiecePriority(name));
+            if (Session::isCategoryDownloadSequential(name) != torrent->isSequentialDownload())
+                torrent->setSequentialDownload(Session::isCategoryDownloadSequential(name));
+        }
+        if (Session::isCategoryBandwidthSettingsEnabled(name)) {
+            if (Session::getCategoryDownloadLimit(name) != torrent->downloadLimit()) // maybe use delta instead of !=
+                torrent->setDownloadLimit(Session::getCategoryDownloadLimit(name));
+            if (Session::getCategoryUploadLimit(name) != torrent->uploadLimit()) // maybe use delta instead of !=
+                torrent->setUploadLimit(Session::getCategoryUploadLimit(name));
+        }
+        if (Session::isCategoryRatioSettingsEnabled(name)) {
+            qreal limit;
+            switch (Session::getCategoryRatioLimitType(name)) {
+            case 2:
+                limit = Session::getCategoryRatioLimit(name);
+                break;
+            case 1:
+                limit = -1;
+                break;
+            default:
+                limit = BitTorrent::TorrentHandle::USE_GLOBAL_RATIO;
+            }
+            torrent->setRatioLimit(limit);
+        }
     }
 
-    return true;
+    m_settings->storeValue(KEY_CATEGORIES, m_categories);
 }
 
 bool Session::removeCategory(const QString &name)
@@ -451,7 +577,7 @@ bool Session::removeCategory(const QString &name)
 
     if (result) {
         // update stored categories
-        m_settings->storeValue(KEY_CATEGORIES, map_cast(m_categories));
+        m_settings->storeValue(KEY_CATEGORIES, m_categories);
         emit categoryRemoved(name);
     }
 
@@ -471,11 +597,11 @@ void Session::setSubcategoriesEnabled(bool value)
         // expand categories to include all parent categories
         m_categories = expandCategories(m_categories);
         // update stored categories
-        m_settings->storeValue(KEY_CATEGORIES, map_cast(m_categories));
+        m_settings->storeValue(KEY_CATEGORIES, m_categories);
     }
     else {
         // reload categories
-        m_categories = map_cast(m_settings->loadValue(KEY_CATEGORIES).toMap());
+        m_categories = m_settings->loadValue(KEY_CATEGORIES).toMap();
     }
 
     m_settings->storeValue(KEY_SUBCATEGORIESENABLED, value);
@@ -588,7 +714,7 @@ void Session::setSessionSettings()
 
     libt::session_settings sessionSettings = m_nativeSession->settings();
     sessionSettings.user_agent = "qBittorrent " VERSION;
-    //std::cout << "HTTP User-Agent is " << sessionSettings.user_agent << std::endl;
+    // std::cout << "HTTP User-Agent is " << sessionSettings.user_agent << std::endl;
     logger->addMessage(tr("HTTP User-Agent is '%1'").arg(Utils::String::fromStdString(sessionSettings.user_agent)));
 
     sessionSettings.upnp_ignore_nonrouters = true;
@@ -668,7 +794,7 @@ void Session::setSessionSettings()
         sessionSettings.mixed_mode_algorithm = libt::session_settings::prefer_tcp;
     else
         sessionSettings.mixed_mode_algorithm = libt::session_settings::peer_proportional;
-    sessionSettings.connection_speed = 20; //default is 10
+    sessionSettings.connection_speed = 20; // default is 10
     if (pref->isProxyEnabled())
         sessionSettings.force_proxy = pref->getForceProxy();
     else
@@ -692,7 +818,7 @@ void Session::adjustLimits(libt::session_settings &sessionSettings)
 {
     Preferences *const pref = Preferences::instance();
 
-    //Internally increase the queue limits to ensure that the magnet is started
+    // Internally increase the queue limits to ensure that the magnet is started
     int max_downloading = pref->getMaxActiveDownloads();
     int max_active = pref->getMaxActiveTorrents();
 
@@ -753,28 +879,24 @@ void Session::configure()
         down_limit = pref->getAltGlobalDownloadLimit();
     else
         down_limit = pref->getGlobalDownloadLimit();
-    if (down_limit <= 0) {
+    if (down_limit <= 0)
         // Download limit disabled
         setDownloadRateLimit(-1);
-    }
-    else {
+    else
         // Enabled
-        setDownloadRateLimit(down_limit*1024);
-    }
+        setDownloadRateLimit(down_limit * 1024);
     int up_limit;
     if (alternative_speeds)
         up_limit = pref->getAltGlobalUploadLimit();
     else
         up_limit = pref->getGlobalUploadLimit();
     // * Global Upload limit
-    if (up_limit <= 0) {
+    if (up_limit <= 0)
         // Upload limit disabled
         setUploadRateLimit(-1);
-    }
-    else {
+    else
         // Enabled
-        setUploadRateLimit(up_limit*1024);
-    }
+        setUploadRateLimit(up_limit * 1024);
 
     if (pref->isSchedulerEnabled()) {
         if (!m_bwScheduler) {
@@ -825,7 +947,7 @@ void Session::configure()
     encryptionSettings.allowed_enc_level = libt::pe_settings::rc4;
     encryptionSettings.prefer_rc4 = true;
     switch(encryptionState) {
-    case 0: //Enabled
+    case 0: // Enabled
         encryptionSettings.out_enc_policy = libt::pe_settings::enabled;
         encryptionSettings.in_enc_policy = libt::pe_settings::enabled;
         logger->addMessage(tr("Encryption support [ON]"), Log::INFO);
@@ -1113,8 +1235,8 @@ bool Session::cancelLoadMetadata(const InfoHash &hash)
 void Session::increaseTorrentsPriority(const QStringList &hashes)
 {
     std::priority_queue<QPair<int, TorrentHandle *>,
-            std::vector<QPair<int, TorrentHandle *> >,
-            std::greater<QPair<int, TorrentHandle *> > > torrentQueue;
+                        std::vector<QPair<int, TorrentHandle *>>,
+                        std::greater<QPair<int, TorrentHandle *>>> torrentQueue;
 
     // Sort torrents by priority
     foreach (const InfoHash &hash, hashes) {
@@ -1134,8 +1256,8 @@ void Session::increaseTorrentsPriority(const QStringList &hashes)
 void Session::decreaseTorrentsPriority(const QStringList &hashes)
 {
     std::priority_queue<QPair<int, TorrentHandle *>,
-            std::vector<QPair<int, TorrentHandle *> >,
-            std::less<QPair<int, TorrentHandle *> > > torrentQueue;
+                        std::vector<QPair<int, TorrentHandle *>>,
+                        std::less<QPair<int, TorrentHandle *>>> torrentQueue;
 
     // Sort torrents by priority
     foreach (const InfoHash &hash, hashes) {
@@ -1158,8 +1280,8 @@ void Session::decreaseTorrentsPriority(const QStringList &hashes)
 void Session::topTorrentsPriority(const QStringList &hashes)
 {
     std::priority_queue<QPair<int, TorrentHandle *>,
-            std::vector<QPair<int, TorrentHandle *> >,
-            std::greater<QPair<int, TorrentHandle *> > > torrentQueue;
+                        std::vector<QPair<int, TorrentHandle *>>,
+                        std::greater<QPair<int, TorrentHandle *>>> torrentQueue;
 
     // Sort torrents by priority
     foreach (const InfoHash &hash, hashes) {
@@ -1179,8 +1301,8 @@ void Session::topTorrentsPriority(const QStringList &hashes)
 void Session::bottomTorrentsPriority(const QStringList &hashes)
 {
     std::priority_queue<QPair<int, TorrentHandle *>,
-            std::vector<QPair<int, TorrentHandle *> >,
-            std::less<QPair<int, TorrentHandle *> > > torrentQueue;
+                        std::vector<QPair<int, TorrentHandle *>>,
+                        std::less<QPair<int, TorrentHandle *>>> torrentQueue;
 
     // Sort torrents by priority
     foreach (const InfoHash &hash, hashes) {
@@ -1245,11 +1367,14 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
                               TorrentInfo torrentInfo, const QByteArray &fastresumeData)
 {
     addData.savePath = normalizeSavePath(
-                addData.savePath,
-                ((!addData.resumed && isASMDisabledByDefault()) ? m_defaultSavePath : ""));
+        addData.savePath,
+        ((!addData.resumed && isASMDisabledByDefault()) ? m_defaultSavePath : ""));
 
     if (!addData.category.isEmpty()) {
-        if (!m_categories.contains(addData.category) && !addCategory(addData.category)) {
+        if (m_categories.contains(addData.category)) {
+            addData.sequential = Session::isCategoryDownloadSequential(addData.category);
+        }
+        else if (!addCategory(addData.category)) {
             qWarning() << "Couldn't create category" << addData.category;
             addData.category = "";
         }
@@ -1262,7 +1387,7 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
 
     QString savePath;
     if (addData.savePath.isEmpty()) // using Advanced mode
-        savePath = categorySavePath(addData.category);
+        savePath = getCategorySavePath(addData.category);
     else  // using Simple mode
         savePath = addData.savePath;
 
@@ -1368,40 +1493,40 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
 bool Session::findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) const
 {
     auto findInDir = [](const QString &dirPath, TorrentInfo &torrentInfo) -> bool
-    {
-        bool found = false;
-        if (torrentInfo.filesCount() == 1) {
-            const QString filePath = dirPath + torrentInfo.filePath(0);
-            if (QFile(filePath).exists()) {
-                found = true;
-            }
-            else if (QFile(filePath + QB_EXT).exists()) {
-                found = true;
-                torrentInfo.renameFile(0, torrentInfo.filePath(0) + QB_EXT);
-            }
-        }
-        else {
-            QSet<QString> allFiles;
-            int dirPathSize = dirPath.size();
-            foreach (const QString &file, findAllFiles(dirPath + torrentInfo.name()))
-                allFiles << file.mid(dirPathSize);
-            for (int i = 0; i < torrentInfo.filesCount(); ++i) {
-                QString filePath = torrentInfo.filePath(i);
-                if (allFiles.contains(filePath)) {
-                    found = true;
-                }
-                else {
-                    filePath += QB_EXT;
-                    if (allFiles.contains(filePath)) {
-                        found = true;
-                        torrentInfo.renameFile(i, filePath);
-                    }
-                }
-            }
-        }
+                     {
+                         bool found = false;
+                         if (torrentInfo.filesCount() == 1) {
+                             const QString filePath = dirPath + torrentInfo.filePath(0);
+                             if (QFile(filePath).exists()) {
+                                 found = true;
+                             }
+                             else if (QFile(filePath + QB_EXT).exists()) {
+                                 found = true;
+                                 torrentInfo.renameFile(0, torrentInfo.filePath(0) + QB_EXT);
+                             }
+                         }
+                         else {
+                             QSet<QString> allFiles;
+                             int dirPathSize = dirPath.size();
+                             foreach (const QString &file, findAllFiles(dirPath + torrentInfo.name()))
+                                 allFiles << file.mid(dirPathSize);
+                             for (int i = 0; i < torrentInfo.filesCount(); ++i) {
+                                 QString filePath = torrentInfo.filePath(i);
+                                 if (allFiles.contains(filePath)) {
+                                     found = true;
+                                 }
+                                 else {
+                                     filePath += QB_EXT;
+                                     if (allFiles.contains(filePath)) {
+                                         found = true;
+                                         torrentInfo.renameFile(i, filePath);
+                                     }
+                                 }
+                             }
+                         }
 
-        return found;
-    };
+                         return found;
+                     };
 
     bool found = findInDir(savePath, torrentInfo);
     if (!found && isTempPathEnabled()) {
@@ -1502,7 +1627,7 @@ void Session::setMaxConnectionsPerTorrent(int max)
     std::vector<libt::torrent_handle> handles = m_nativeSession->get_torrents();
     std::vector<libt::torrent_handle>::const_iterator it = handles.begin();
     std::vector<libt::torrent_handle>::const_iterator itend = handles.end();
-    for ( ; it != itend; ++it) {
+    for (; it != itend; ++it) {
         if (!it->is_valid()) continue;
         try {
             it->set_max_connections(max);
@@ -1519,7 +1644,7 @@ void Session::setMaxUploadsPerTorrent(int max)
     std::vector<libt::torrent_handle> handles = m_nativeSession->get_torrents();
     std::vector<libt::torrent_handle>::const_iterator it = handles.begin();
     std::vector<libt::torrent_handle>::const_iterator itend = handles.end();
-    for ( ; it != itend; ++it) {
+    for (; it != itend; ++it) {
         if (!it->is_valid()) continue;
         try {
             it->set_max_uploads(max);
@@ -2030,7 +2155,7 @@ void Session::handleTorrentResumeDataReady(TorrentHandle *const torrent, const l
 void Session::handleTorrentResumeDataFailed(TorrentHandle *const torrent)
 {
     Q_UNUSED(torrent)
-    --m_numResumeData;
+    -- m_numResumeData;
 }
 
 void Session::handleTorrentTrackerReply(TorrentHandle *const torrent, const QString &trackerUrl)
@@ -2068,9 +2193,8 @@ void Session::initResumeFolder()
     QDir resumeFolderDir(m_resumeFolderPath);
     if (resumeFolderDir.exists() || resumeFolderDir.mkpath(resumeFolderDir.absolutePath())) {
         m_resumeFolderLock.setFileName(resumeFolderDir.absoluteFilePath("session.lock"));
-        if (!m_resumeFolderLock.open(QFile::WriteOnly)) {
+        if (!m_resumeFolderLock.open(QFile::WriteOnly))
             throw std::runtime_error("Cannot write to torrent resume folder.");
-        }
     }
     else {
         throw std::runtime_error("Cannot create torrent resume folder.");
@@ -2086,7 +2210,7 @@ void Session::enableIPFilter(const QString &filterPath, bool force)
         connect(m_filterParser.data(), SIGNAL(IPFilterParsed(int)), SLOT(handleIPFilterParsed(int)));
         connect(m_filterParser.data(), SIGNAL(IPFilterError()), SLOT(handleIPFilterError()));
     }
-    if (m_filterPath.isEmpty() || m_filterPath != Utils::Fs::fromNativePath(filterPath) || force) {
+    if (m_filterPath.isEmpty() || (m_filterPath != Utils::Fs::fromNativePath(filterPath)) || force) {
         m_filterPath = Utils::Fs::fromNativePath(filterPath);
         m_filterParser->processFilterFile(Utils::Fs::fromNativePath(filterPath));
     }
@@ -2113,9 +2237,9 @@ void Session::recursiveTorrentDownload(const InfoHash &hash)
         const QString torrentRelpath = torrent->filePath(i);
         if (torrentRelpath.endsWith(".torrent")) {
             Logger::instance()->addMessage(
-                        tr("Recursive download of file '%1' embedded in torrent '%2'"
-                           , "Recursive download of 'test.torrent' embedded in torrent 'test2'")
-                        .arg(Utils::Fs::toNativePath(torrentRelpath)).arg(torrent->name()));
+                tr("Recursive download of file '%1' embedded in torrent '%2'"
+                   , "Recursive download of 'test.torrent' embedded in torrent 'test2'")
+                .arg(Utils::Fs::toNativePath(torrentRelpath)).arg(torrent->name()));
             const QString torrentFullpath = torrent->savePath() + "/" + torrentRelpath;
 
             AddTorrentParams params;
@@ -2155,7 +2279,7 @@ void Session::setProxySettings(libt::proxy_settings proxySettings)
         switch(proxySettings.type) {
         case libt::proxy_settings::http_pw:
             proxy_str = QString("http://%1:%2@%3:%4").arg(Utils::String::fromStdString(proxySettings.username)).arg(Utils::String::fromStdString(proxySettings.password))
-                    .arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
+                        .arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
             break;
         case libt::proxy_settings::http:
             proxy_str = QString("http://%1:%2").arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
@@ -2165,7 +2289,7 @@ void Session::setProxySettings(libt::proxy_settings proxySettings)
             break;
         case libt::proxy_settings::socks5_pw:
             proxy_str = QString("%1:%2@%3:%4").arg(Utils::String::fromStdString(proxySettings.username)).arg(Utils::String::fromStdString(proxySettings.password))
-                    .arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
+                        .arg(Utils::String::fromStdString(proxySettings.hostname)).arg(proxySettings.port);
             break;
         default:
             qDebug("Disabling HTTP communications proxy");
@@ -2175,8 +2299,9 @@ void Session::setProxySettings(libt::proxy_settings proxySettings)
             return;
         }
         qDebug("HTTP communications proxy string: %s", qPrintable(proxy_str));
-        if ((proxySettings.type == libt::proxy_settings::socks5) || (proxySettings.type == libt::proxy_settings::socks5_pw))
+        if ((proxySettings.type == libt::proxy_settings::socks5) || (proxySettings.type == libt::proxy_settings::socks5_pw)) {
             qputenv("sock_proxy", proxy_str.toLocal8Bit());
+        }
         else {
             qputenv("http_proxy", proxy_str.toLocal8Bit());
             qputenv("https_proxy", proxy_str.toLocal8Bit());
@@ -2191,7 +2316,7 @@ void Session::startUpTorrents()
 
     const QDir resumeDataDir(m_resumeFolderPath);
     QStringList fastresumes = resumeDataDir.entryList(
-                QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
+        QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
 
     Logger *const logger = Logger::instance();
 
@@ -2204,13 +2329,13 @@ void Session::startUpTorrents()
     } TorrentResumeData;
 
     auto startupTorrent = [this, logger, resumeDataDir](const TorrentResumeData &params)
-    {
-        QString filePath = resumeDataDir.filePath(QString("%1.torrent").arg(params.hash));
-        qDebug() << "Starting up torrent" << params.hash << "...";
-        if (!addTorrent_impl(params.addTorrentData, params.magnetUri, TorrentInfo::loadFromFile(filePath), params.data))
-            logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
-                               .arg(params.hash), Log::CRITICAL);
-    };
+                          {
+                              QString filePath = resumeDataDir.filePath(QString("%1.torrent").arg(params.hash));
+                              qDebug() << "Starting up torrent" << params.hash << "...";
+                              if (!addTorrent_impl(params.addTorrentData, params.magnetUri, TorrentInfo::loadFromFile(filePath), params.data))
+                                  logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
+                                                     .arg(params.hash), Log::CRITICAL);
+                          };
 
     qDebug("Starting up torrents");
     qDebug("Queue size: %d", fastresumes.size());
@@ -2517,7 +2642,7 @@ void Session::handleFileErrorAlert(libt::file_error_alert *p)
     if (torrent) {
         QString msg = Utils::String::fromStdString(p->message());
         Logger::instance()->addMessage(tr("An I/O error occurred, '%1' paused. %2")
-                           .arg(torrent->name()).arg(msg));
+                                       .arg(torrent->name()).arg(msg));
         emit fullDiskError(torrent, msg);
     }
 }
@@ -2593,7 +2718,7 @@ void Session::handleListenSucceededAlert(libt::listen_succeeded_alert *p)
     std::vector<libt::torrent_handle> torrents = m_nativeSession->get_torrents();
     std::vector<libt::torrent_handle>::iterator it = torrents.begin();
     std::vector<libt::torrent_handle>::iterator itend = torrents.end();
-    for ( ; it != itend; ++it)
+    for (; it != itend; ++it)
         it->force_reannounce();
 }
 
@@ -2613,10 +2738,10 @@ void Session::handleListenFailedAlert(libt::listen_failed_alert *p)
         proto = "SOCKS5";
     qDebug() << "Failed listening on " << proto << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
     Logger::instance()->addMessage(
-                tr("qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.",
-                   "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.")
-                .arg(p->endpoint.address().to_string(ec).c_str()).arg(proto).arg(QString::number(p->endpoint.port()))
-                .arg(QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
+        tr("qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.",
+           "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.")
+        .arg(p->endpoint.address().to_string(ec).c_str()).arg(proto).arg(QString::number(p->endpoint.port()))
+        .arg(QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
 }
 
 void Session::handleExternalIPAlert(libt::external_ip_alert *p)
@@ -2688,7 +2813,7 @@ namespace
         // TODO: Should be removed in future
         torrentData.category = Utils::String::fromStdString(fast.dict_find_string_value("qBt-label"));
         if (torrentData.category.isEmpty())
-        // **************************************************************************************
+            // **************************************************************************************
             torrentData.category = Utils::String::fromStdString(fast.dict_find_string_value("qBt-category"));
         torrentData.name = Utils::String::fromStdString(fast.dict_find_string_value("qBt-name"));
         torrentData.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
@@ -2742,4 +2867,5 @@ namespace
             qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
         }
     }
+
 }
