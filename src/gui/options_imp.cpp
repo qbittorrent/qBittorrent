@@ -199,11 +199,11 @@ options_imp::options_imp(QWidget *parent)
     connect(comboFileLogAgeType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     // Downloads tab
     connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(radioBtnEnableSubcategories, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(radioBtnAdvancedMode, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(radioBtnRelocateOnCategoryChanged, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(radioBtnRelocateOnCategorySavePathChanged, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(radioBtnRelocateOnDefaultSavePathChanged, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(checkUseSubcategories, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(comboSavingMode, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(comboTorrentCategoryChanged, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(comboCategoryDefaultPathChanged, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(comboCategoryChanged, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(textTempPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(checkAppendqB, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkPreallocateAll, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -213,12 +213,18 @@ options_imp::options_imp(QWidget *parent)
     connect(deleteTorrentBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(deleteCancelledTorrentBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(checkExportDir, SIGNAL(toggled(bool)), textExportDir, SLOT(setEnabled(bool)));
+    connect(checkExportDir, SIGNAL(toggled(bool)), browseExportDirButton, SLOT(setEnabled(bool)));
     connect(checkExportDirFin, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(checkExportDirFin, SIGNAL(toggled(bool)), textExportDirFin, SLOT(setEnabled(bool)));
+    connect(checkExportDirFin, SIGNAL(toggled(bool)), browseExportDirFinButton, SLOT(setEnabled(bool)));
     connect(textExportDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(textExportDirFin, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(actionTorrentDlOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(actionTorrentFnOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(checkTempFolder, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(checkTempFolder, SIGNAL(toggled(bool)), textTempPath, SLOT(setEnabled(bool)));
+    connect(checkTempFolder, SIGNAL(toggled(bool)), browseTempDirButton, SLOT(setEnabled(bool)));
     connect(addScanFolderButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
     connect(removeScanFolderButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
     connect(groupMailNotification, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -489,11 +495,11 @@ void options_imp::saveOptions()
 
     // Downloads preferences
     session->setDefaultSavePath(Utils::Fs::expandPathAbs(textSavePath->text()));
-    session->setSubcategoriesEnabled(radioBtnEnableSubcategories->isChecked());
-    session->setASMDisabledByDefault(radioBtnSimpleMode->isChecked());
-    session->setDisableASMWhenCategoryChanged(radioBtnDisableASMOnCategoryChanged->isChecked());
-    session->setDisableASMWhenCategorySavePathChanged(radioBtnDisableASMOnCategorySavePathChanged->isChecked());
-    session->setDisableASMWhenDefaultSavePathChanged(radioBtnDisableASMOnDefaultSavePathChanged->isChecked());
+    session->setSubcategoriesEnabled(checkUseSubcategories->isChecked());
+    session->setASMDisabledByDefault(comboSavingMode->currentIndex() == 0);
+    session->setDisableASMWhenCategoryChanged(comboTorrentCategoryChanged->currentIndex() == 1);
+    session->setDisableASMWhenCategorySavePathChanged(comboCategoryChanged->currentIndex() == 1);
+    session->setDisableASMWhenDefaultSavePathChanged(comboCategoryDefaultPathChanged->currentIndex() == 1);
     session->setTempPathEnabled(checkTempFolder->isChecked());
     session->setTempPath(Utils::Fs::expandPathAbs(textTempPath->text()));
     pref->useIncompleteFilesExtension(checkAppendqB->isChecked());
@@ -703,12 +709,14 @@ void options_imp::loadOptions()
     deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);
 
     textSavePath->setText(Utils::Fs::toNativePath(session->defaultSavePath()));
-    (session->isSubcategoriesEnabled() ? radioBtnEnableSubcategories : radioBtnDisableSubcategories)->setChecked(true);
-    (session->isASMDisabledByDefault() ? radioBtnSimpleMode : radioBtnAdvancedMode)->setChecked(true);
-    (session->isDisableASMWhenCategoryChanged() ? radioBtnDisableASMOnCategoryChanged : radioBtnRelocateOnCategoryChanged)->setChecked(true);
-    (session->isDisableASMWhenCategorySavePathChanged() ? radioBtnDisableASMOnCategorySavePathChanged : radioBtnRelocateOnCategorySavePathChanged)->setChecked(true);
-    (session->isDisableASMWhenDefaultSavePathChanged() ? radioBtnDisableASMOnDefaultSavePathChanged : radioBtnRelocateOnDefaultSavePathChanged)->setChecked(true);
+    checkUseSubcategories->setChecked(session->isSubcategoriesEnabled());
+    comboSavingMode->setCurrentIndex(!session->isASMDisabledByDefault());
+    comboTorrentCategoryChanged->setCurrentIndex(session->isDisableASMWhenCategoryChanged());
+    comboCategoryChanged->setCurrentIndex(session->isDisableASMWhenCategorySavePathChanged());
+    comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableASMWhenDefaultSavePathChanged());
     checkTempFolder->setChecked(session->isTempPathEnabled());
+    textTempPath->setEnabled(checkTempFolder->isChecked());
+    browseTempDirButton->setEnabled(checkTempFolder->isChecked());
     textTempPath->setText(Utils::Fs::toNativePath(session->tempPath()));
     checkAppendqB->setChecked(pref->useIncompleteFilesExtension());
     checkPreallocateAll->setChecked(pref->preAllocateAllFiles());
@@ -717,10 +725,14 @@ void options_imp::loadOptions()
     if (strValue.isEmpty()) {
         // Disable
         checkExportDir->setChecked(false);
+        textExportDir->setEnabled(false);
+        browseExportDirButton->setEnabled(false);
     }
     else {
         // Enable
         checkExportDir->setChecked(true);
+        textExportDir->setEnabled(true);
+        browseExportDirButton->setEnabled(true);
         textExportDir->setText(strValue);
     }
 
@@ -728,10 +740,14 @@ void options_imp::loadOptions()
     if (strValue.isEmpty()) {
         // Disable
         checkExportDirFin->setChecked(false);
+        textExportDirFin->setEnabled(false);
+        browseExportDirFinButton->setEnabled(false);
     }
     else {
         // Enable
         checkExportDirFin->setChecked(true);
+        textExportDirFin->setEnabled(true);
+        browseExportDirFinButton->setEnabled(true);
         textExportDirFin->setText(strValue);
     }
 
