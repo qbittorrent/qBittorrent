@@ -63,6 +63,7 @@
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/settingsstorage.h"
+#include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/iconprovider.h"
@@ -93,16 +94,32 @@ namespace
 
     const QString LOG_FOLDER("logs");
     const char PARAMS_SEPARATOR[] = "|";
+
+    const QString DEFAULT_PORTABLE_MODE_PROFILE_DIR = QLatin1String("profile");
 }
 
 Application::Application(const QString &id, int &argc, char **argv)
     : BaseApplication(id, argc, argv)
     , m_running(false)
     , m_shutdownAct(ShutdownDialogAction::Exit)
+    , m_commandLineArgs(parseCommandLine(this->arguments()))
 {
+    setApplicationName("qBittorrent");
+    validateCommandLineParameters();
+
+    QString profileDir = m_commandLineArgs.portableMode
+        ? QDir(QCoreApplication::applicationDirPath()).absoluteFilePath(DEFAULT_PORTABLE_MODE_PROFILE_DIR)
+        : m_commandLineArgs.profileDir;
+
+    Profile::initialize(profileDir, m_commandLineArgs.configurationName);
+
     Logger::initInstance();
     SettingsStorage::initInstance();
     Preferences::initInstance();
+
+    if (m_commandLineArgs.webUiPort > 0) { // it will be -1 when user did not set any value
+        Preferences::instance()->setWebUiPort(m_commandLineArgs.webUiPort);
+    }
 
 #if defined(Q_OS_MACX) && !defined(DISABLE_GUI)
     if (QSysInfo::MacintoshVersion > QSysInfo::MV_10_8) {
@@ -111,7 +128,6 @@ Application::Application(const QString &id, int &argc, char **argv)
         QFont::insertSubstitution(".Lucida Grande UI", "Lucida Grande");
     }
 #endif
-    setApplicationName("qBittorrent");
     initializeTranslation();
 #ifndef DISABLE_GUI
     setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
@@ -136,6 +152,11 @@ QPointer<MainWindow> Application::mainWindow()
     return m_window;
 }
 #endif
+
+const QBtCommandLineParameters &Application::commandLineArgs() const
+{
+    return m_commandLineArgs;
+}
 
 bool Application::isFileLoggerEnabled() const
 {
@@ -632,4 +653,10 @@ void Application::cleanup()
         qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
         Utils::Misc::shutdownComputer(m_shutdownAct);
     }
+}
+
+void Application::validateCommandLineParameters()
+{
+    if (m_commandLineArgs.portableMode && !m_commandLineArgs.profileDir.isEmpty())
+        throw CommandLineParameterError(tr("Portable mode and explicit profile directory options are mutually exclusive"));
 }

@@ -1,11 +1,12 @@
+#include "statistics.h"
+
 #include <QDateTime>
 
 #include <libtorrent/session.hpp>
 
-#include "base/qinisettings.h"
 #include "base/bittorrent/sessionstatus.h"
+#include "base/profile.h"
 #include "base/bittorrent/session.h"
-#include "statistics.h"
 
 static const qint64 SAVE_INTERVAL = 15 * 60 * 1000;
 
@@ -64,19 +65,19 @@ void Statistics::save() const
     if (!m_dirty || ((now - m_lastWrite) < SAVE_INTERVAL))
         return;
 
-    QIniSettings s("qBittorrent", "qBittorrent-data");
+    SettingsPtr s = Profile::instance().applicationSettings(QLatin1String("qBittorrent-data"));
     QVariantHash v;
     v.insert("AlltimeDL", m_alltimeDL + m_sessionDL);
     v.insert("AlltimeUL", m_alltimeUL + m_sessionUL);
-    s.setValue("Stats/AllStats", v);
+    s->setValue("Stats/AllStats", v);
     m_dirty = false;
     m_lastWrite = now;
 }
 
 void Statistics::load()
 {
-    QIniSettings s("qBittorrent", "qBittorrent-data");
-    QVariantHash v = s.value("Stats/AllStats").toHash();
+    SettingsPtr s = Profile::instance().applicationSettings(QLatin1String("qBittorrent-data"));
+    QVariantHash v = s->value("Stats/AllStats").toHash();
 
     m_alltimeDL = v["AlltimeDL"].toULongLong();
     m_alltimeUL = v["AlltimeUL"].toULongLong();

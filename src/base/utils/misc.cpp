@@ -35,7 +35,6 @@
 #include <QByteArray>
 #include <QDebug>
 #include <QProcess>
-#include <QSettings>
 #include <QThread>
 #include <QSysInfo>
 #include <boost/version.hpp>

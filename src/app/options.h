@@ -1,5 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2016  Eugene Shalygin <eugene.shalygin@gmail.com>
+ * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -28,46 +30,46 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef QINISETTINGS_H
-#define QINISETTINGS_H
+#ifndef APP_OPTIONS_H
+#define APP_OPTIONS_H
 
-#include <QSettings>
+#include <stdexcept>
 
-class QIniSettings : public QSettings {
-  Q_OBJECT
-  Q_DISABLE_COPY (QIniSettings)
+#include <QString>
+#include <QStringList>
 
-public:
-  QIniSettings(const QString &organization = "qBittorrent", const QString &application = "qBittorrent", QObject *parent = 0 ):
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-      QSettings(QSettings::IniFormat, QSettings::UserScope, organization, application, parent)
+struct QBtCommandLineParameters
+{
+    bool showHelp;
+#ifndef Q_OS_WIN
+    bool showVersion;
+#endif
+#ifndef DISABLE_GUI
+    bool noSplash;
 #else
-      QSettings(organization, application, parent)
+    bool shouldDaemonize;
 #endif
-  {
+    int webUiPort;
+    QString profileDir;
+    bool portableMode;
+    QString configurationName;
+    QStringList torrents;
+    QString unknownParameter;
 
-  }
-
-  QIniSettings(const QString &fileName, Format format, QObject *parent = 0 ) : QSettings(fileName, format, parent) {
-
-  }
-
-#ifdef Q_OS_WIN
-  QVariant value(const QString & key, const QVariant &defaultValue = QVariant()) const {
-    QString key_tmp(key);
-    QVariant ret = QSettings::value(key_tmp);
-    if (ret.isNull())
-      return defaultValue;
-    return ret;
-  }
-
-  void setValue(const QString &key, const QVariant &val) {
-    QString key_tmp(key);
-    if (format() == QSettings::NativeFormat) // Using registry, don't touch replace here
-      key_tmp.replace("\\", "/");
-    QSettings::setValue(key_tmp, val);
-  }
-#endif
+    QBtCommandLineParameters();
 };
 
-#endif // QINISETTINGS_H
+class CommandLineParameterError: public std::runtime_error
+{
+public:
+    CommandLineParameterError(const QString &messageForUser);
+    const QString& messageForUser() const;
+
+private:
+    const QString m_messageForUser;
+};
+
+QBtCommandLineParameters parseCommandLine(const QStringList &args);
+void displayUsage(const QString &prgName);
+
+#endif // APP_OPTIONS_H

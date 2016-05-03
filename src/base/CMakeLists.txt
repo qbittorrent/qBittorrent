@@ -33,6 +33,7 @@ net/private/geoipdatabase.h
 net/proxyconfigurationmanager.h
 net/reverseresolution.h
 net/smtp.h
+private/profile_p.h
 rss/private/rssparser.h
 rss/rssarticle.h
 rss/rssdownloadrule.h
@@ -52,7 +53,7 @@ iconprovider.h
 indexrange.h
 logger.h
 preferences.h
-qinisettings.h
+profile.h
 scanfoldersmodel.h
 searchengine.h
 settingsstorage.h
@@ -94,6 +95,7 @@ net/private/geoipdatabase.cpp
 net/proxyconfigurationmanager.cpp
 net/reverseresolution.cpp
 net/smtp.cpp
+private/profile_p.cpp
 rss/private/rssparser.cpp
 rss/rssarticle.cpp
 rss/rssdownloadrule.cpp
@@ -112,6 +114,7 @@ filesystemwatcher.cpp
 iconprovider.cpp
 logger.cpp
 preferences.cpp
+profile.cpp
 scanfoldersmodel.cpp
 searchengine.cpp
 settingsstorage.cpp

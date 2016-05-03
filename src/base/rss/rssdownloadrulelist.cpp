@@ -28,13 +28,14 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "rssdownloadrulelist.h"
+
 #include <QFile>
 #include <QDataStream>
 #include <QDebug>
 
 #include "base/preferences.h"
-#include "base/qinisettings.h"
-#include "rssdownloadrulelist.h"
+#include "base/profile.h"
 
 using namespace Rss;
 
@@ -66,14 +67,14 @@ void DownloadRuleList::replace(DownloadRuleList *other)
 
 void DownloadRuleList::saveRulesToStorage()
 {
-    QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-    qBTRSS.setValue("download_rules", toVariantHash());
+    SettingsPtr qBTRSS = Profile::instance().applicationSettings(QLatin1String("qBittorrent-rss"));
+    qBTRSS->setValue("download_rules", toVariantHash());
 }
 
 void DownloadRuleList::loadRulesFromStorage()
 {
-    QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-    loadRulesFromVariantHash(qBTRSS.value("download_rules").toHash());
+    SettingsPtr qBTRSS = Profile::instance().applicationSettings(QLatin1String("qBittorrent-rss"));
+    loadRulesFromVariantHash(qBTRSS->value("download_rules").toHash());
 }
 
 QVariantHash DownloadRuleList::toVariantHash() const
