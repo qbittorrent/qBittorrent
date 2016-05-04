@@ -33,6 +33,8 @@
 
 #include <QDialog>
 
+#include "base/settingvalue.h"
+
 namespace Ui
 {
     class TorrentCreatorDlg;
@@ -71,6 +73,18 @@ private:
 
     Ui::TorrentCreatorDlg *m_ui;
     BitTorrent::TorrentCreatorThread *m_creatorThread;
+
+    // settings
+    CachedSettingValue<QSize> m_storeDialogSize;
+    CachedSettingValue<int> m_storePieceSize;
+    CachedSettingValue<bool> m_storePrivateTorrent;
+    CachedSettingValue<bool> m_storeStartSeeding;
+    CachedSettingValue<bool> m_storeIgnoreRatio;
+    CachedSettingValue<QString> m_storeLastAddPath;
+    CachedSettingValue<QString> m_storeTrackerList;
+    CachedSettingValue<QString> m_storeWebSeedList;
+    CachedSettingValue<QString> m_storeComments;
+    CachedSettingValue<QString> m_storeLastSavePath;
 };
 
 #endif
