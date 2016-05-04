@@ -131,7 +131,7 @@ install:
 script:
   - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ]; then exit ; fi # skip usual build when running coverity scan
   - cd "$TRAVIS_BUILD_DIR" && ./bootstrap.sh && ./configure $qbtconf
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then sed -i "" -e 's/^\(CXXFLAGS.*\)$/\1 -Wno-unused-local-typedefs/' src/Makefile ; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then sed -i "" -e 's/^\(CXXFLAGS.*\)$/\1 -Wno-unused-local-typedefs -Wno-inconsistent-missing-override/' src/Makefile ; fi
   - make && make install
 
 after_success:
