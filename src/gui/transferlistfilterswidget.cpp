@@ -239,7 +239,7 @@ void CategoryFiltersList::addItem(const QString &category, bool hasTorrent)
     Q_ASSERT(count() >= 2);
     int insPos = count();
     for (int i = 2; i < count(); ++i) {
-        if (Utils::String::naturalCompare(category, item(i)->text())) {
+        if (Utils::String::naturalCompareCaseSensitive(category, item(i)->text())) {
             insPos = i;
             break;
         }
@@ -511,7 +511,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
     Q_ASSERT(count() >= 4);
     int insPos = count();
     for (int i = 4; i < count(); ++i) {
-        if (Utils::String::naturalCompare(host, item(i)->text())) {
+        if (Utils::String::naturalCompareCaseSensitive(host, item(i)->text())) {
             insPos = i;
             break;
         }
