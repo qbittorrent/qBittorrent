@@ -48,7 +48,7 @@ protected:
   case PeerListDelegate::CLIENT: {
     QString vL = left.data().toString();
     QString vR = right.data().toString();
-    return Utils::String::naturalCompare(vL, vR);
+    return Utils::String::naturalCompareCaseSensitive(vL, vR);
   }
   };
 
