@@ -114,7 +114,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>464</width>
+             <width>470</width>
              <height>783</height>
             </rect>
            </property>
@@ -670,8 +670,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>464</width>
-             <height>920</height>
+             <width>470</width>
+             <height>926</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -735,125 +735,167 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_25">
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_70">
-                 <property name="spacing">
-                  <number>10</number>
-                 </property>
-                 <item>
-                  <widget class="QLabel" name="label_40">
-                   <property name="text">
-                    <string>Default Saving Mode:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QRadioButton" name="radioBtnSimpleMode">
-                   <property name="text">
-                    <string>Simple</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                   <attribute name="buttonGroup">
-                    <string notr="true">buttonGroup_2</string>
-                   </attribute>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QRadioButton" name="radioBtnAdvancedMode">
-                   <property name="text">
-                    <string>Advanced</string>
-                   </property>
-                   <attribute name="buttonGroup">
-                    <string notr="true">buttonGroup_2</string>
-                   </attribute>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_160">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </item>
-               <item>
                 <layout class="QFormLayout" name="formLayout_6">
-                 <item row="0" column="0">
+                 <item row="1" column="0">
                   <widget class="QLabel" name="labelTorrentCategoryChanged">
                    <property name="text">
                     <string>When Torrent Category changed:</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="1">
-                  <widget class="QComboBox" name="comboTorrentCategoryChanged">
-                   <item>
-                    <property name="text">
-                     <string>Relocate torrent</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Switch torrent to Simple Mode</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
+                 <item row="2" column="0">
                   <widget class="QLabel" name="labelCategoryDefaultPathChanged">
                    <property name="text">
                     <string>When Default Save Path changed:</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="1">
-                  <widget class="QComboBox" name="comboCategoryDefaultPathChanged">
-                   <property name="currentIndex">
-                    <number>1</number>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>Relocate affected torrents</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Switch affected torrents to Simple Mode</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
+                 <item row="3" column="0">
                   <widget class="QLabel" name="labelCategoryChanged">
                    <property name="text">
                     <string>When Category changed:</string>
                    </property>
                   </widget>
                  </item>
+                 <item row="1" column="1">
+                  <layout class="QHBoxLayout" name="horizontalLayout_14">
+                   <item>
+                    <widget class="QComboBox" name="comboTorrentCategoryChanged">
+                     <item>
+                      <property name="text">
+                       <string>Relocate torrent</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Switch torrent to Simple Mode</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_17">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
                  <item row="2" column="1">
-                  <widget class="QComboBox" name="comboCategoryChanged">
-                   <property name="currentIndex">
-                    <number>1</number>
+                  <layout class="QHBoxLayout" name="horizontalLayout_15">
+                   <item>
+                    <widget class="QComboBox" name="comboCategoryDefaultPathChanged">
+                     <property name="currentIndex">
+                      <number>1</number>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>Relocate affected torrents</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Switch affected torrents to Simple Mode</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_18">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="3" column="1">
+                  <layout class="QHBoxLayout" name="horizontalLayout_17">
+                   <item>
+                    <widget class="QComboBox" name="comboCategoryChanged">
+                     <property name="currentIndex">
+                      <number>1</number>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>Relocate affected torrents</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Switch affected torrents to Simple Mode</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_19">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_40">
+                   <property name="text">
+                    <string>Default Saving Mode:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <layout class="QHBoxLayout" name="horizontalLayout_70">
+                   <property name="spacing">
+                    <number>10</number>
                    </property>
                    <item>
-                    <property name="text">
-                     <string>Relocate affected torrents</string>
-                    </property>
+                    <widget class="QComboBox" name="comboSavingMode">
+                     <item>
+                      <property name="text">
+                       <string>Manual</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Automatic (based on category)</string>
+                      </property>
+                     </item>
+                    </widget>
                    </item>
                    <item>
-                    <property name="text">
-                     <string>Switch affected torrents to Simple Mode</string>
-                    </property>
+                    <spacer name="horizontalSpacer_160">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
                    </item>
-                  </widget>
+                  </layout>
                  </item>
                 </layout>
                </item>
@@ -3148,7 +3190,4 @@
    </hints>
   </connection>
  </connections>
- <buttongroups>
-  <buttongroup name="buttonGroup_2"/>
- </buttongroups>
 </ui>

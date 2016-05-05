@@ -183,7 +183,7 @@ options_imp::options_imp(QWidget *parent)
     // Downloads tab
     connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(checkUseSubcategories, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(radioBtnAdvancedMode, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(comboSavingMode, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(comboTorrentCategoryChanged, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(comboCategoryDefaultPathChanged, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(comboCategoryChanged, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
@@ -477,7 +477,7 @@ void options_imp::saveOptions()
     // Downloads preferences
     session->setDefaultSavePath(Utils::Fs::expandPathAbs(textSavePath->text()));
     session->setSubcategoriesEnabled(checkUseSubcategories->isChecked());
-    session->setASMDisabledByDefault(radioBtnSimpleMode->isChecked());
+    session->setASMDisabledByDefault(comboSavingMode->currentIndex() == 0);
     session->setDisableASMWhenCategoryChanged(comboTorrentCategoryChanged->currentIndex() == 1);
     session->setDisableASMWhenCategorySavePathChanged(comboCategoryChanged->currentIndex() == 1);
     session->setDisableASMWhenDefaultSavePathChanged(comboCategoryDefaultPathChanged->currentIndex() == 1);
@@ -686,7 +686,7 @@ void options_imp::loadOptions()
 
     textSavePath->setText(Utils::Fs::toNativePath(session->defaultSavePath()));
     checkUseSubcategories->setChecked(session->isSubcategoriesEnabled());
-    (session->isASMDisabledByDefault() ? radioBtnSimpleMode : radioBtnAdvancedMode)->setChecked(true);
+    comboSavingMode->setCurrentIndex(!session->isASMDisabledByDefault());
     comboTorrentCategoryChanged->setCurrentIndex(session->isDisableASMWhenCategoryChanged());
     comboCategoryChanged->setCurrentIndex(session->isDisableASMWhenCategorySavePathChanged());
     comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableASMWhenDefaultSavePathChanged());
