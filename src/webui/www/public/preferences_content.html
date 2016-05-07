@@ -309,6 +309,12 @@
     <option value="1">QBT_TR(Remove them)QBT_TR</option>
   </select>
 </fieldset>
+
+<fieldset class="settings">
+  <legend><input type="checkbox" id="add_trackers_checkbox" onclick="updateAddTrackersEnabled();"/>
+  <label for="add_trackers_checkbox">QBT_TR(Automatically add these trackers to new downloads:)QBT_TR</label></legend>
+  <textarea id="add_trackers_textarea" rows="5" cols="70"></textarea>
+</fieldset>
 </div>
 
 <div id="WebUITab" class="PrefTab invisible">
@@ -714,6 +720,14 @@ updateMaxRatioEnabled = function() {
   }
 }
 
+updateAddTrackersEnabled = function() {
+  if($('add_trackers_checkbox').getProperty('checked')) {
+    $('add_trackers_textarea').setProperty('disabled', false);
+  } else {
+    $('add_trackers_textarea').setProperty('disabled', true);
+  }
+}
+
 // Web UI tab
 updateHttpsSettings = function() {
   if($('use_https_checkbox').getProperty('checked')) {
@@ -973,6 +987,11 @@ loadPreferences = function() {
                     $('max_ratio_act').getChildren('option')[max_ratio_act].setAttribute('selected', '');
                     updateMaxRatioEnabled();
 
+                    // Add trackers
+                    $('add_trackers_checkbox').setProperty('checked', pref.add_trackers_enabled);
+                    $('add_trackers_textarea').setProperty('value', pref.add_trackers);
+                    updateAddTrackersEnabled();
+
                     // Web UI tab
                     // Language
                     $('locale_select').setProperty('value', pref.locale);
@@ -1222,6 +1241,10 @@ applyPreferences = function() {
   settings.set('max_ratio_enabled', $('max_ratio_checkbox').getProperty('checked'));
   settings.set('max_ratio', max_ratio);
   settings.set('max_ratio_act', $('max_ratio_act').getProperty('value').toInt());
+
+  // Add trackers
+  settings.set('add_trackers_enabled', $('add_trackers_checkbox').getProperty('checked'));
+  settings.set('add_trackers', $('add_trackers_textarea').getProperty('value'));
 
   // Web UI tab
   // Language
