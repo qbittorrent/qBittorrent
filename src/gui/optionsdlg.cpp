@@ -1420,15 +1420,11 @@ void OptionsDialog::on_browseExportDirFinButton_clicked()
 
 void OptionsDialog::on_browseFilterButton_clicked()
 {
-    const QString filter_path = Utils::Fs::expandPathAbs(m_ui->textFilterPath->text());
-    QDir filterDir(filter_path);
-    QString ipfilter;
-    if (!filter_path.isEmpty() && filterDir.exists())
-        ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an IP filter file"), filterDir.absolutePath(), tr("Filters") + QString(" (*.dat *.p2p *.p2b)"));
-    else
-        ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an IP filter file"), QDir::homePath(), tr("Filters") + QString(" (*.dat *.p2p *.p2b)"));
-    if (!ipfilter.isNull())
-        m_ui->textFilterPath->setText(Utils::Fs::toNativePath(ipfilter));
+    QDir lastDir(Utils::Fs::fromNativePath(m_ui->textFilterPath->text()));
+    QString lastPath = lastDir.exists() ? lastDir.absolutePath() : QDir::homePath();
+    QString newPath = QFileDialog::getOpenFileName(this, tr("Choose an IP filter file"), lastPath, tr("All supported filters") + QString(" (*.dat *.p2p *.p2b);;.dat (*.dat);;.p2p (*.p2p);;.p2b (*.p2b)"));
+    if (!newPath.isEmpty())
+        m_ui->textFilterPath->setText(Utils::Fs::toNativePath(newPath));
 }
 
 // Display dialog to choose save dir
