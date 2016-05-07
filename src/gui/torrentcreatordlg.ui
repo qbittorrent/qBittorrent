@@ -101,6 +101,9 @@
           <property name="currentIndex">
            <number>0</number>
           </property>
+          <property name="minimumContentsLength">
+           <number>7</number>
+          </property>
           <item>
            <property name="text">
             <string>Auto</string>
