@@ -797,7 +797,7 @@
                  <item row="0" column="0">
                   <widget class="QLabel" name="label_40">
                    <property name="text">
-                    <string>Default Saving Mode:</string>
+                    <string>Default Torrent Management Mode:</string>
                    </property>
                   </widget>
                  </item>
@@ -856,7 +856,7 @@
                      </item>
                      <item>
                       <property name="text">
-                       <string>Switch torrent to Simple Mode</string>
+                       <string>Switch torrent to Manual Mode</string>
                       </property>
                      </item>
                     </widget>
@@ -897,7 +897,7 @@
                      </item>
                      <item>
                       <property name="text">
-                       <string>Switch affected torrents to Simple Mode</string>
+                       <string>Switch affected torrents to Manual Mode</string>
                       </property>
                      </item>
                     </widget>
@@ -938,7 +938,7 @@
                      </item>
                      <item>
                       <property name="text">
-                       <string>Switch affected torrents to Simple Mode</string>
+                       <string>Switch affected torrents to Manual Mode</string>
                       </property>
                      </item>
                     </widget>
@@ -1306,10 +1306,6 @@
                 </widget>
                </item>
               </layout>
-              <zorder>gridLayoutWidget</zorder>
-              <zorder>label_2</zorder>
-              <zorder>checkSmtpSSL</zorder>
-              <zorder>groupMailNotifAuth</zorder>
              </widget>
             </item>
             <item>

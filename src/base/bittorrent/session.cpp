@@ -98,10 +98,10 @@ const QString KEY_DEFAULTSAVEPATH = SETTINGS_KEY("DefaultSavePath");
 const QString KEY_TEMPPATH = SETTINGS_KEY("TempPath");
 const QString KEY_SUBCATEGORIESENABLED = SETTINGS_KEY("SubcategoriesEnabled");
 const QString KEY_TEMPPATHENABLED = SETTINGS_KEY("TempPathEnabled");
-const QString KEY_DISABLEASMBYDEFAULT = SETTINGS_KEY("DisableASMByDefault");
-const QString KEY_DISABLEASMONCATEGORYCHANGED = SETTINGS_KEY("DisableASMTriggers/CategoryChanged");
-const QString KEY_DISABLEASMONDEFAULTSAVEPATHCHANGED = SETTINGS_KEY("DisableASMTriggers/DefaultSavePathChanged");
-const QString KEY_DISABLEASMONCATEGORYSAVEPATHCHANGED = SETTINGS_KEY("DisableASMTriggers/CategorySavePathChanged");
+const QString KEY_DISABLE_AUTOTMM_BYDEFAULT = SETTINGS_KEY("DisableAutoTMMByDefault");
+const QString KEY_DISABLE_AUTOTMM_ONCATEGORYCHANGED = SETTINGS_KEY("DisableAutoTMMTriggers/CategoryChanged");
+const QString KEY_DISABLE_AUTOTMM_ONDEFAULTSAVEPATHCHANGED = SETTINGS_KEY("DisableAutoTMMTriggers/DefaultSavePathChanged");
+const QString KEY_DISABLE_AUTOTMM_ONCATEGORYSAVEPATHCHANGED = SETTINGS_KEY("DisableAutoTMMTriggers/CategorySavePathChanged");
 const QString KEY_ADDTORRENTPAUSED = SETTINGS_KEY("AddTorrentPaused");
 
 namespace
@@ -422,10 +422,10 @@ bool Session::editCategory(const QString &name, const QString &savePath)
     if (categorySavePath(name) == savePath) return false;
 
     m_categories[name] = savePath;
-    if (isDisableASMWhenCategorySavePathChanged()) {
+    if (isDisableAutoTMMWhenCategorySavePathChanged()) {
         foreach (TorrentHandle *const torrent, torrents())
             if (torrent->category() == name)
-                torrent->setASMEnabled(false);
+                torrent->setAutoTMMEnabled(false);
     }
     else {
         foreach (TorrentHandle *const torrent, torrents())
@@ -491,44 +491,44 @@ void Session::setSubcategoriesEnabled(bool value)
     emit subcategoriesSupportChanged();
 }
 
-bool Session::isASMDisabledByDefault() const
+bool Session::isAutoTMMDisabledByDefault() const
 {
-    return m_settings->loadValue(KEY_DISABLEASMBYDEFAULT, true).toBool();
+    return m_settings->loadValue(KEY_DISABLE_AUTOTMM_BYDEFAULT, true).toBool();
 }
 
-void Session::setASMDisabledByDefault(bool value)
+void Session::setAutoTMMDisabledByDefault(bool value)
 {
-    m_settings->storeValue(KEY_DISABLEASMBYDEFAULT, value);
+    m_settings->storeValue(KEY_DISABLE_AUTOTMM_BYDEFAULT, value);
 }
 
-bool Session::isDisableASMWhenCategoryChanged() const
+bool Session::isDisableAutoTMMWhenCategoryChanged() const
 {
-    return m_settings->loadValue(KEY_DISABLEASMONCATEGORYCHANGED, false).toBool();
+    return m_settings->loadValue(KEY_DISABLE_AUTOTMM_ONCATEGORYCHANGED, false).toBool();
 }
 
-void Session::setDisableASMWhenCategoryChanged(bool value)
+void Session::setDisableAutoTMMWhenCategoryChanged(bool value)
 {
-    m_settings->storeValue(KEY_DISABLEASMONCATEGORYCHANGED, value);
+    m_settings->storeValue(KEY_DISABLE_AUTOTMM_ONCATEGORYCHANGED, value);
 }
 
-bool Session::isDisableASMWhenDefaultSavePathChanged() const
+bool Session::isDisableAutoTMMWhenDefaultSavePathChanged() const
 {
-    return m_settings->loadValue(KEY_DISABLEASMONDEFAULTSAVEPATHCHANGED, true).toBool();
+    return m_settings->loadValue(KEY_DISABLE_AUTOTMM_ONDEFAULTSAVEPATHCHANGED, true).toBool();
 }
 
-void Session::setDisableASMWhenDefaultSavePathChanged(bool value)
+void Session::setDisableAutoTMMWhenDefaultSavePathChanged(bool value)
 {
-    m_settings->storeValue(KEY_DISABLEASMONDEFAULTSAVEPATHCHANGED, value);
+    m_settings->storeValue(KEY_DISABLE_AUTOTMM_ONDEFAULTSAVEPATHCHANGED, value);
 }
 
-bool Session::isDisableASMWhenCategorySavePathChanged() const
+bool Session::isDisableAutoTMMWhenCategorySavePathChanged() const
 {
-    return m_settings->loadValue(KEY_DISABLEASMONCATEGORYSAVEPATHCHANGED, true).toBool();
+    return m_settings->loadValue(KEY_DISABLE_AUTOTMM_ONCATEGORYSAVEPATHCHANGED, true).toBool();
 }
 
-void Session::setDisableASMWhenCategorySavePathChanged(bool value)
+void Session::setDisableAutoTMMWhenCategorySavePathChanged(bool value)
 {
-    m_settings->storeValue(KEY_DISABLEASMONCATEGORYSAVEPATHCHANGED, value);
+    m_settings->storeValue(KEY_DISABLE_AUTOTMM_ONCATEGORYSAVEPATHCHANGED, value);
 }
 
 bool Session::isAddTorrentPaused() const
@@ -1259,7 +1259,7 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
 {
     addData.savePath = normalizeSavePath(
                 addData.savePath,
-                ((!addData.resumed && isASMDisabledByDefault()) ? m_defaultSavePath : ""));
+                ((!addData.resumed && isAutoTMMDisabledByDefault()) ? m_defaultSavePath : ""));
 
     if (!addData.category.isEmpty()) {
         if (!m_categories.contains(addData.category) && !addCategory(addData.category)) {
@@ -1274,9 +1274,9 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
     std::vector<boost::uint8_t> filePriorities;
 
     QString savePath;
-    if (addData.savePath.isEmpty()) // using Advanced mode
+    if (addData.savePath.isEmpty()) // using Automatic mode
         savePath = categorySavePath(addData.category);
-    else  // using Simple mode
+    else  // using Manual mode
         savePath = addData.savePath;
 
     bool fromMagnetUri = magnetUri.isValid();
@@ -1679,9 +1679,9 @@ void Session::setDefaultSavePath(QString path)
     m_defaultSavePath = path;
     m_settings->storeValue(KEY_DEFAULTSAVEPATH, m_defaultSavePath);
 
-    if (isDisableASMWhenDefaultSavePathChanged())
+    if (isDisableAutoTMMWhenDefaultSavePathChanged())
         foreach (TorrentHandle *const torrent, torrents())
-            torrent->setASMEnabled(false);
+            torrent->setAutoTMMEnabled(false);
     else
         foreach (TorrentHandle *const torrent, torrents())
             torrent->handleCategorySavePathChanged();
