@@ -30,10 +30,7 @@ notifications:
 
 # container-based builds
 #sudo: false
-# TODO: osx builder does not enable cache yet, see: https://github.com/travis-ci/travis-ci/issues/4011
-#cache:
-  #directories:
-    #- $HOME/.ccache
+cache: ccache
 
 # opt-in Ubuntu Trusty
 sudo: required
@@ -80,12 +77,6 @@ before_install:
   - if [ "$gui" = false ]; then qbtconf="$qbtconf --disable-gui" ; fi
   - |
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      # ccache
-      #if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then
-        #dpkg-query -L ccache && export PATH="/usr/lib/ccache/:$PATH" && export use_ccache=true ;
-        #ccache -V && ccache --show-stats && ccache --zero-stats ;
-      #fi ;
-
       # setup virtual display for after_success target
       if [ "$gui" = true ]; then export "DISPLAY=:99.0" && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ; fi ;
     fi
@@ -117,21 +108,38 @@ install:
       # Qt
       if [ "$qt" = 4 ]; then sudo apt-get -qq install qt4-default libqt4-dev ; fi ;
       if [ "$qt" = 5 ]; then sudo apt-get -qq install qt5-default qtbase5-dev qttools5-dev-tools ; fi ;
+
+      # ccache
+      if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then
+        dpkg-query -L ccache && export use_ccache=true ;
+        ccache -V && ccache --show-stats && ccache --zero-stats ;
+      fi ;
     fi
   - |
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
       # dependencies
-      brew update > /dev/null && brew install colormake libtorrent-rasterbar ;
+      brew update > /dev/null && brew install colormake ccache libtorrent-rasterbar ;
 
       # Qt
       if [ "$qt" = 4 ]; then brew install qt && ln -s /usr/local/Cellar/qt/4.8.7_2/plugins /usr/local ; fi ;
       if [ "$qt" = 5 ]; then brew install qt5 && brew link --force qt5 && ln -s /usr/local/Cellar/qt5/5.6.0/plugins /usr/local ; fi ;
+
+      # ccache
+      if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then
+        export PATH="/usr/local/opt/ccache/libexec:$PATH" && export use_ccache=true ;
+        ccache -V && ccache --show-stats && ccache --zero-stats ;
+      fi ;
     fi
 
 script:
   - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ]; then exit ; fi # skip usual build when running coverity scan
   - cd "$TRAVIS_BUILD_DIR" && ./bootstrap.sh && ./configure $qbtconf
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then sed -i "" -e 's/^\(CXXFLAGS.*\)$/\1 -Wno-unused-local-typedefs/' src/Makefile ; fi
+  - |
+    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+      sed -i "" -e "s/^\(CC.*&&\).*$/\1 $CC/" src/Makefile ;  # workaround for Qt & ccache: https://bugreports.qt.io/browse/QTBUG-31034
+      sed -i "" -e "s/^\(CXX.*&&\).*$/\1 $CXX/" src/Makefile ;
+      sed -i "" -e 's/^\(CXXFLAGS.*\)$/\1 -Wno-unused-local-typedefs -Wno-inconsistent-missing-override/' src/Makefile ;
+    fi
   - make && make install
 
 after_success:
