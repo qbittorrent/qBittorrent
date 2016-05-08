@@ -675,6 +675,8 @@ void Session::setSessionSettings()
         sessionSettings.force_proxy = false;
     sessionSettings.no_connect_privileged_ports = false;
     sessionSettings.seed_choking_algorithm = libt::session_settings::fastest_upload;
+
+    sessionSettings.apply_ip_filter_to_trackers = pref->isFilteringTrackerEnabled();
     qDebug() << "Set session settings";
     m_nativeSession->set_settings(sessionSettings);
 }
