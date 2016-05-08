@@ -82,28 +82,22 @@ bool TorrentContentFilterModel::filterAcceptsRow(int source_row, const QModelInd
 }
 
 bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIndex &right) const {
-  if (sortColumn() == NAME) {
-    QVariant vL = sourceModel()->data(left);
-    QVariant vR = sourceModel()->data(right);
-    if (!(vL.isValid() && vR.isValid()))
-      return QSortFilterProxyModel::lessThan(left, right);
-    Q_ASSERT(vL.isValid());
-    Q_ASSERT(vR.isValid());
+  switch (sortColumn()) {
+  case NAME: {  // PropColumn::NAME
+    QString vL = left.data().toString();
+    QString vR = right.data().toString();
+    TorrentContentModelItem::ItemType leftType = m_model->itemType(m_model->index(left.row(), 0, left.parent()));
+    TorrentContentModelItem::ItemType rightType = m_model->itemType(m_model->index(right.row(), 0, right.parent()));
 
-    TorrentContentModelItem::ItemType leftType, rightType;
-    leftType = m_model->itemType(m_model->index(left.row(), 0, left.parent()));
-    rightType = m_model->itemType(m_model->index(right.row(), 0, right.parent()));
-    if (leftType == rightType) {
-      bool res = false;
-      if (Utils::String::naturalSort(vL.toString(), vR.toString(), res))
-        return res;
-      return QSortFilterProxyModel::lessThan(left, right);
-    }
+    if (leftType == rightType)
+      return Utils::String::naturalCompareCaseSensitive(vL, vR);
     else if (leftType == TorrentContentModelItem::FolderType && sortOrder() == Qt::AscendingOrder)
       return true;
     else
-       return false;
+      return false;
   }
+  };
+
   return QSortFilterProxyModel::lessThan(left, right);
 }
 

@@ -27,11 +27,138 @@
  * exception statement from your version.
  */
 
-#include <QByteArray>
-#include <QString>
-#include <QLocale>
-#include <cmath>
 #include "string.h"
+
+#include <cmath>
+
+#include <QByteArray>
+#include <QtGlobal>
+#include <QLocale>
+#ifdef QBT_USES_QT5
+#include <QCollator>
+#endif
+#ifdef Q_OS_MAC
+#include <QThreadStorage>
+#endif
+
+namespace
+{
+    class NaturalCompare
+    {
+    public:
+        explicit NaturalCompare(const bool caseSensitive = true)
+            : m_caseSensitive(caseSensitive)
+        {
+#ifdef QBT_USES_QT5
+#if defined(Q_OS_WIN)
+            // Without ICU library, QCollator doesn't support `setNumericMode(true)` on OS older than Win7
+            if (QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
+                return;
+#endif
+            m_collator.setNumericMode(true);
+            m_collator.setCaseSensitivity(caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive);
+#endif
+        }
+
+        bool operator()(const QString &left, const QString &right) const
+        {
+#ifdef QBT_USES_QT5
+#if defined(Q_OS_WIN)
+            // Without ICU library, QCollator doesn't support `setNumericMode(true)` on OS older than Win7
+            if (QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
+                return lessThan(left, right);
+#endif
+            return (m_collator.compare(left, right) < 0);
+#else
+            return lessThan(left, right);
+#endif
+        }
+
+        bool lessThan(const QString &left, const QString &right) const
+        {
+            // Return value `false` indicates `right` should go before `left`, otherwise, after
+            int posL = 0;
+            int posR = 0;
+            while (true) {
+                while (true) {
+                    if ((posL == left.size()) || (posR == right.size()))
+                        return (left.size() < right.size());  // when a shorter string is another string's prefix, shorter string place before longer string
+
+                    QChar leftChar = m_caseSensitive ? left[posL] : left[posL].toLower();
+                    QChar rightChar = m_caseSensitive ? right[posR] : right[posR].toLower();
+                    if (leftChar == rightChar)
+                        ;  // compare next character
+                    else if (leftChar.isDigit() && rightChar.isDigit())
+                        break; // Both are digits, break this loop and compare numbers
+                    else
+                        return leftChar < rightChar;
+
+                    ++posL;
+                    ++posR;
+                }
+
+                int startL = posL;
+                while ((posL < left.size()) && left[posL].isDigit())
+                    ++posL;
+#ifdef QBT_USES_QT5
+                int numL = left.midRef(startL, posL - startL).toInt();
+#else
+                int numL = left.mid(startL, posL - startL).toInt();
+#endif
+
+                int startR = posR;
+                while ((posR < right.size()) && right[posR].isDigit())
+                    ++posR;
+#ifdef QBT_USES_QT5
+                int numR = right.midRef(startR, posR - startR).toInt();
+#else
+                int numR = right.mid(startR, posR - startR).toInt();
+#endif
+
+                if (numL != numR)
+                    return (numL < numR);
+
+                // Strings + digits do match and we haven't hit string end
+                // Do another round
+            }
+            return false;
+        }
+
+    private:
+#ifdef QBT_USES_QT5
+        QCollator m_collator;
+#endif
+        const bool m_caseSensitive;
+    };
+}
+
+bool Utils::String::naturalCompareCaseSensitive(const QString &left, const QString &right)
+{
+    // provide a single `NaturalCompare` instance for easy use
+    // https://doc.qt.io/qt-5/threads-reentrancy.html
+#ifdef Q_OS_MAC  // workaround for Apple xcode: https://stackoverflow.com/a/29929949
+    static QThreadStorage<NaturalCompare> nCmp;
+    if (!nCmp.hasLocalData()) nCmp.setLocalData(NaturalCompare(true));
+    return (nCmp.localData())(left, right);
+#else
+    thread_local NaturalCompare nCmp(true);
+    return nCmp(left, right);
+#endif
+}
+
+bool Utils::String::naturalCompareCaseInsensitive(const QString &left, const QString &right)
+{
+    // provide a single `NaturalCompare` instance for easy use
+    // https://doc.qt.io/qt-5/threads-reentrancy.html
+#ifdef Q_OS_MAC  // workaround for Apple xcode: https://stackoverflow.com/a/29929949
+    static QThreadStorage<NaturalCompare> nCmp;
+    if (!nCmp.hasLocalData()) nCmp.setLocalData(NaturalCompare(false));
+    return (nCmp.localData())(left, right);
+#else
+    thread_local NaturalCompare nCmp(false);
+    return nCmp(left, right);
+#endif
+}
 
 QString Utils::String::fromStdString(const std::string &str)
 {
@@ -42,145 +169,6 @@ std::string Utils::String::toStdString(const QString &str)
 {
     QByteArray utf8 = str.toUtf8();
     return std::string(utf8.constData(), utf8.length());
-}
-
-// uses lessThan comparison
-bool Utils::String::naturalSort(const QString &left, const QString &right, bool &result)
-{
-    // Return value indicates if functions was successful
-    // result argument will contain actual comparison result if function was successful
-    int posL = 0;
-    int posR = 0;
-    do {
-        forever {
-            if (posL == left.size() || posR == right.size())
-                return false; // No data
-
-            QChar leftChar = left.at(posL);
-            QChar rightChar = right.at(posR);
-            bool leftCharIsDigit = leftChar.isDigit();
-            bool rightCharIsDigit = rightChar.isDigit();
-            if (leftCharIsDigit != rightCharIsDigit)
-                return false; // Digit positions mismatch
-
-            if (leftCharIsDigit)
-                break; // Both are digit, break this loop and compare numbers
-
-            if (leftChar != rightChar)
-                return false; // Strings' subsets before digit do not match
-
-            ++posL;
-            ++posR;
-        }
-
-        QString temp;
-        while (posL < left.size()) {
-            if (left.at(posL).isDigit())
-                temp += left.at(posL);
-            else
-                break;
-            posL++;
-        }
-        int numL = temp.toInt();
-        temp.clear();
-
-        while (posR < right.size()) {
-            if (right.at(posR).isDigit())
-                temp += right.at(posR);
-            else
-                break;
-            posR++;
-        }
-        int numR = temp.toInt();
-
-        if (numL != numR) {
-            result = (numL < numR);
-            return true;
-        }
-
-        // Strings + digits do match and we haven't hit string end
-        // Do another round
-
-    } while (true);
-
-    return false;
-}
-
-Utils::String::NaturalCompare::NaturalCompare()
-{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
-#if defined(Q_OS_WIN)
-    // Without ICU library, QCollator doesn't support `setNumericMode(true)` on OS older than Win7
-    if(QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
-        return;
-#endif
-    m_collator.setNumericMode(true);
-    m_collator.setCaseSensitivity(Qt::CaseInsensitive);
-#endif
-}
-
-bool Utils::String::NaturalCompare::operator()(const QString &l, const QString &r)
-{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
-#if defined(Q_OS_WIN)
-    // Without ICU library, QCollator doesn't support `setNumericMode(true)` on OS older than Win7
-    if(QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
-        return lessThan(l, r);
-#endif
-    return (m_collator.compare(l, r) < 0);
-#else
-    return lessThan(l, r);
-#endif
-}
-
-bool Utils::String::NaturalCompare::lessThan(const QString &left, const QString &right)
-{
-    // Return value `false` indicates `right` should go before `left`, otherwise, after
-    int posL = 0;
-    int posR = 0;
-    while (true) {
-        while (true) {
-            if (posL == left.size() || posR == right.size())
-                return (left.size() < right.size());  // when a shorter string is another string's prefix, shorter string place before longer string
-
-            QChar leftChar = left[posL].toLower();
-            QChar rightChar = right[posR].toLower();
-            if (leftChar == rightChar)
-                ;  // compare next character
-            else if (leftChar.isDigit() && rightChar.isDigit())
-                break; // Both are digits, break this loop and compare numbers
-            else
-                return leftChar < rightChar;
-
-            ++posL;
-            ++posR;
-        }
-
-        int startL = posL;
-        while ((posL < left.size()) && left[posL].isDigit())
-            ++posL;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
-        int numL = left.midRef(startL, posL - startL).toInt();
-#else
-        int numL = left.mid(startL, posL - startL).toInt();
-#endif
-
-        int startR = posR;
-        while ((posR < right.size()) && right[posR].isDigit())
-            ++posR;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
-        int numR = right.midRef(startR, posR - startR).toInt();
-#else
-        int numR = right.mid(startR, posR - startR).toInt();
-#endif
-
-        if (numL != numR)
-            return (numL < numR);
-
-        // Strings + digits do match and we haven't hit string end
-        // Do another round
-    }
-    return false;
 }
 
 // to send numbers instead of strings with suffixes

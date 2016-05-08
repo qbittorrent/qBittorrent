@@ -237,17 +237,14 @@ void CategoryFiltersList::addItem(const QString &category, bool hasTorrent)
     if (exists) return;
 
     Q_ASSERT(count() >= 2);
+    int insPos = count();
     for (int i = 2; i < count(); ++i) {
-        bool less = false;
-        if (!(Utils::String::naturalSort(category, item(i)->text(), less)))
-            less = (category.localeAwareCompare(item(i)->text()) < 0);
-        if (less) {
-            insertItem(i, categoryItem);
-            updateGeometry();
-            return;
+        if (Utils::String::naturalCompareCaseSensitive(category, item(i)->text())) {
+            insPos = i;
+            break;
         }
     }
-    QListWidget::addItem(categoryItem);
+    QListWidget::insertItem(insPos, categoryItem);
     updateGeometry();
 }
 
@@ -512,17 +509,14 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
     }
 
     Q_ASSERT(count() >= 4);
-    for (int i = 4; i<count(); ++i) {
-        bool less = false;
-        if (!(Utils::String::naturalSort(host, item(i)->text(), less)))
-            less = (host.localeAwareCompare(item(i)->text()) < 0);
-        if (less) {
-            insertItem(i, trackerItem);
-            updateGeometry();
-            return;
+    int insPos = count();
+    for (int i = 4; i < count(); ++i) {
+        if (Utils::String::naturalCompareCaseSensitive(host, item(i)->text())) {
+            insPos = i;
+            break;
         }
     }
-    QListWidget::addItem(trackerItem);
+    QListWidget::insertItem(insPos, trackerItem);
     updateGeometry();
 }
 

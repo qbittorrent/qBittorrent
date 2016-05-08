@@ -107,20 +107,17 @@ qint64 SearchSortModel::maxSize() const
 
 bool SearchSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    if ((sortColumn() == NAME) || (sortColumn() == ENGINE_URL)) {
-        QVariant vL = sourceModel()->data(left);
-        QVariant vR = sourceModel()->data(right);
-        if (!(vL.isValid() && vR.isValid()))
-            return base::lessThan(left, right);
-        Q_ASSERT(vL.isValid());
-        Q_ASSERT(vR.isValid());
-
-        bool res = false;
-        if (Utils::String::naturalSort(vL.toString(), vR.toString(), res))
-            return res;
+    switch (sortColumn()) {
+    case NAME:
+    case ENGINE_URL: {
+        QString vL = left.data().toString();
+        QString vR = right.data().toString();
+        return Utils::String::naturalCompareCaseSensitive(vL, vR);
     }
 
-    return base::lessThan(left, right);
+    default:
+        return base::lessThan(left, right);
+    };
 }
 
 bool SearchSortModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const

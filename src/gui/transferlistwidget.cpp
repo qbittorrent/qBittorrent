@@ -769,7 +769,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
         listMenu.addAction(&actionRename);
     // Category Menu
     QStringList categories = BitTorrent::Session::instance()->categories();
-    std::sort(categories.begin(), categories.end(), Utils::String::NaturalCompare());
+    std::sort(categories.begin(), categories.end(), Utils::String::naturalCompareCaseInsensitive);
     QList<QAction*> categoryActions;
     QMenu *categoryMenu = listMenu.addMenu(GuiIconProvider::instance()->getIcon("view-categories"), tr("Category"));
     categoryActions << categoryMenu->addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("New...", "New category..."));
