@@ -71,11 +71,6 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="font">
-          <font>
-           <pointsize>11</pointsize>
-          </font>
-         </property>
          <property name="textFormat">
           <enum>Qt::RichText</enum>
          </property>
