@@ -105,7 +105,7 @@ protected slots:
     void toggleSelectedTorrentsSuperSeeding() const;
     void toggleSelectedTorrentsSequentialDownload() const;
     void toggleSelectedFirstLastPiecePrio() const;
-    void setSelectedASMEnabled(bool enabled) const;
+    void setSelectedAutoTMMEnabled(bool enabled) const;
     void askNewCategoryForSelection();
     void saveSettings();
 

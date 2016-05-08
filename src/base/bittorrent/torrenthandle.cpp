@@ -199,7 +199,7 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_nativeHandle(nativeHandle)
     , m_state(TorrentState::Unknown)
     , m_renameCount(0)
-    , m_useASM(data.savePath.isEmpty())
+    , m_useAutoTMM(data.savePath.isEmpty())
     , m_name(data.name)
     , m_savePath(Utils::Fs::toNativePath(data.savePath))
     , m_category(data.category)
@@ -210,7 +210,7 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_pauseAfterRecheck(false)
     , m_needSaveResumeData(false)
 {
-    if (m_useASM)
+    if (m_useAutoTMM)
         m_savePath = Utils::Fs::toNativePath(m_session->categorySavePath(m_category));
 
     updateStatus();
@@ -326,19 +326,19 @@ QString TorrentHandle::contentPath(bool actual) const
         return rootPath(actual);
 }
 
-bool TorrentHandle::isASMEnabled() const
+bool TorrentHandle::isAutoTMMEnabled() const
 {
-    return m_useASM;
+    return m_useAutoTMM;
 }
 
-void TorrentHandle::setASMEnabled(bool enabled)
+void TorrentHandle::setAutoTMMEnabled(bool enabled)
 {
-    if (m_useASM == enabled) return;
+    if (m_useAutoTMM == enabled) return;
 
-    m_useASM = enabled;
+    m_useAutoTMM = enabled;
     m_session->handleTorrentSavingModeChanged(this);
 
-    if (m_useASM)
+    if (m_useAutoTMM)
         move_impl(m_session->categorySavePath(m_category));
 }
 
@@ -1150,11 +1150,11 @@ bool TorrentHandle::setCategory(const QString &category)
         m_needSaveResumeData = true;
         m_session->handleTorrentCategoryChanged(this, oldCategory);
 
-        if (m_useASM) {
-            if (!m_session->isDisableASMWhenCategoryChanged())
+        if (m_useAutoTMM) {
+            if (!m_session->isDisableAutoTMMWhenCategoryChanged())
                 move_impl(m_session->categorySavePath(m_category));
             else
-                setASMEnabled(false);
+                setAutoTMMEnabled(false);
         }
     }
 
@@ -1163,7 +1163,7 @@ bool TorrentHandle::setCategory(const QString &category)
 
 void TorrentHandle::move(QString path)
 {
-    m_useASM = false;
+    m_useAutoTMM = false;
     m_session->handleTorrentSavingModeChanged(this);
 
     path = Utils::Fs::fromNativePath(path.trimmed());
@@ -1531,7 +1531,7 @@ void TorrentHandle::handleSaveResumeDataAlert(libtorrent::save_resume_data_alert
         resumeData["qBt-paused"] = isPaused();
         resumeData["qBt-forced"] = isForced();
     }
-    resumeData["qBt-savePath"] = m_useASM ? "" : Utils::String::toStdString(m_savePath);
+    resumeData["qBt-savePath"] = m_useAutoTMM ? "" : Utils::String::toStdString(m_savePath);
     resumeData["qBt-ratioLimit"] = Utils::String::toStdString(QString::number(m_ratioLimit));
     resumeData["qBt-category"] = Utils::String::toStdString(m_category);
     resumeData["qBt-name"] = Utils::String::toStdString(m_name);
@@ -1656,7 +1656,7 @@ void TorrentHandle::handleTempPathChanged()
 
 void TorrentHandle::handleCategorySavePathChanged()
 {
-    if (m_useASM)
+    if (m_useAutoTMM)
         move_impl(m_session->categorySavePath(m_category));
 }
 

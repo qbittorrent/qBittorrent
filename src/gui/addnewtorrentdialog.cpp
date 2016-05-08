@@ -88,7 +88,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
     auto session = BitTorrent::Session::instance();
 
     ui->startTorrentCheckBox->setChecked(!session->isAddTorrentPaused());
-    (session->isASMDisabledByDefault() ? ui->simpleModeRadioButton : ui->advancedModeRadioButton)->setChecked(true);
+    ui->comboTTM->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     populateSavePathComboBox();
     connect(ui->savePathComboBox, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
     connect(ui->browseButton, SIGNAL(clicked()), SLOT(browseButton_clicked()));
@@ -396,7 +396,7 @@ void AddNewTorrentDialog::categoryChanged(int index)
 {
     Q_UNUSED(index);
 
-    if (ui->advancedModeRadioButton->isChecked()) {
+    if (ui->comboTTM->currentIndex() == 1) {
         QString savePath = BitTorrent::Session::instance()->categorySavePath(ui->categoryComboBox->currentText());
         ui->savePathComboBox->setItemText(0, Utils::Fs::toNativePath(savePath));
         ui->savePathComboBox->setItemData(0, savePath);
@@ -632,7 +632,7 @@ void AddNewTorrentDialog::accept()
     params.addPaused = !ui->startTorrentCheckBox->isChecked();
 
     QString savePath = ui->savePathComboBox->itemData(ui->savePathComboBox->currentIndex()).toString();
-    if (ui->simpleModeRadioButton->isChecked()) {
+    if (ui->comboTTM->currentIndex() != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
         params.savePath = savePath;
         saveSavePathHistory();
         if (ui->defaultSavePathCheckBox->isChecked())
@@ -763,24 +763,20 @@ void AddNewTorrentDialog::handleDownloadFinished(const QString &url, const QStri
         this->deleteLater();
 }
 
-void AddNewTorrentDialog::savingModeChanged(bool enabled)
+void AddNewTorrentDialog::TMMChanged(int index)
 {
-    if (!enabled) return;
-
-    if (ui->simpleModeRadioButton->isChecked()) {
+    if (index != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
         populateSavePathComboBox();
-        ui->savePathComboBox->setEnabled(true);
-        ui->browseButton->setEnabled(true);
+        ui->groupBoxSavePath->setEnabled(true);
         ui->savePathComboBox->blockSignals(false);
         ui->savePathComboBox->setCurrentIndex(m_oldIndex < ui->savePathComboBox->count() ? m_oldIndex : ui->savePathComboBox->count() - 1);
     }
     else {
+        ui->groupBoxSavePath->setEnabled(false);
         ui->savePathComboBox->blockSignals(true);
         ui->savePathComboBox->clear();
         QString savePath = BitTorrent::Session::instance()->categorySavePath(ui->categoryComboBox->currentText());
         ui->savePathComboBox->addItem(Utils::Fs::toNativePath(savePath), savePath);
-        ui->savePathComboBox->setEnabled(false);
-        ui->browseButton->setEnabled(false);
         ui->defaultSavePathCheckBox->setVisible(false);
     }
 }

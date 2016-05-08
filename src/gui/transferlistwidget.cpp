@@ -566,10 +566,10 @@ void TransferListWidget::toggleSelectedFirstLastPiecePrio() const
         torrent->toggleFirstLastPiecePriority();
 }
 
-void TransferListWidget::setSelectedASMEnabled(bool enabled) const
+void TransferListWidget::setSelectedAutoTMMEnabled(bool enabled) const
 {
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents())
-        torrent->setASMEnabled(enabled);
+        torrent->setAutoTMMEnabled(enabled);
 }
 
 void TransferListWidget::askNewCategoryForSelection()
@@ -672,9 +672,10 @@ void TransferListWidget::displayListMenu(const QPoint&)
     QAction actionFirstLastPiece_prio(tr("Download first and last pieces first"), 0);
     actionFirstLastPiece_prio.setCheckable(true);
     connect(&actionFirstLastPiece_prio, SIGNAL(triggered()), this, SLOT(toggleSelectedFirstLastPiecePrio()));
-    QAction actionEnableASM(tr("Enable Advanced Saving Management"), 0);
-    actionEnableASM.setCheckable(true);
-    connect(&actionEnableASM, SIGNAL(triggered(bool)), this, SLOT(setSelectedASMEnabled(bool)));
+    QAction actionAutoTMM(tr("Automatic Torrent Management"), 0);
+    actionAutoTMM.setCheckable(true);
+    actionAutoTMM.setToolTip(tr("Automatic mode means that various torrent properties(eg save path) will be decided by the associated category"));
+    connect(&actionAutoTMM, SIGNAL(triggered(bool)), this, SLOT(setSelectedAutoTMMEnabled(bool)));
     // End of actions
 
     // Enable/disable pause/start action given the DL state
@@ -685,8 +686,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
     bool sequential_download_mode = false, prioritize_first_last = false;
     bool one_has_metadata = false, one_not_seed = false;
     bool allSameCategory = true;
-    bool allSameASM = true;
-    bool firstASM = false;
+    bool allSameAutoTMM = true;
+    bool firstAutoTMM = false;
     QString firstCategory;
     bool first = true;
 
@@ -704,9 +705,9 @@ void TransferListWidget::displayListMenu(const QPoint&)
             allSameCategory = false;
 
         if (first)
-            firstASM = torrent->isASMEnabled();
-        if (firstASM != torrent->isASMEnabled())
-            allSameASM = false;
+            firstAutoTMM = torrent->isAutoTMMEnabled();
+        if (firstAutoTMM != torrent->isAutoTMMEnabled())
+            allSameAutoTMM = false;
 
         if (torrent->hasMetadata())
             one_has_metadata = true;
@@ -750,7 +751,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
 
         if (one_has_metadata && one_not_seed && !all_same_sequential_download_mode
             && !all_same_prio_firstlast && !all_same_super_seeding && !allSameCategory
-            && needs_start && needs_force && needs_pause && needs_preview && !allSameASM) {
+            && needs_start && needs_force && needs_pause && needs_preview && !allSameAutoTMM) {
             break;
         }
     }
@@ -786,9 +787,9 @@ void TransferListWidget::displayListMenu(const QPoint&)
         categoryActions << cat;
     }
 
-    if (allSameASM) {
-        actionEnableASM.setChecked(firstASM);
-        listMenu.addAction(&actionEnableASM);
+    if (allSameAutoTMM) {
+        actionAutoTMM.setChecked(firstAutoTMM);
+        listMenu.addAction(&actionAutoTMM);
     }
 
     listMenu.addSeparator();

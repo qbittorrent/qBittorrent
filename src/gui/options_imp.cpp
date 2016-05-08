@@ -477,10 +477,10 @@ void options_imp::saveOptions()
     // Downloads preferences
     session->setDefaultSavePath(Utils::Fs::expandPathAbs(textSavePath->text()));
     session->setSubcategoriesEnabled(checkUseSubcategories->isChecked());
-    session->setASMDisabledByDefault(comboSavingMode->currentIndex() == 0);
-    session->setDisableASMWhenCategoryChanged(comboTorrentCategoryChanged->currentIndex() == 1);
-    session->setDisableASMWhenCategorySavePathChanged(comboCategoryChanged->currentIndex() == 1);
-    session->setDisableASMWhenDefaultSavePathChanged(comboCategoryDefaultPathChanged->currentIndex() == 1);
+    session->setAutoTMMDisabledByDefault(comboSavingMode->currentIndex() == 0);
+    session->setDisableAutoTMMWhenCategoryChanged(comboTorrentCategoryChanged->currentIndex() == 1);
+    session->setDisableAutoTMMWhenCategorySavePathChanged(comboCategoryChanged->currentIndex() == 1);
+    session->setDisableAutoTMMWhenDefaultSavePathChanged(comboCategoryDefaultPathChanged->currentIndex() == 1);
     session->setTempPathEnabled(checkTempFolder->isChecked());
     session->setTempPath(Utils::Fs::expandPathAbs(textTempPath->text()));
     pref->useIncompleteFilesExtension(checkAppendqB->isChecked());
@@ -686,10 +686,10 @@ void options_imp::loadOptions()
 
     textSavePath->setText(Utils::Fs::toNativePath(session->defaultSavePath()));
     checkUseSubcategories->setChecked(session->isSubcategoriesEnabled());
-    comboSavingMode->setCurrentIndex(!session->isASMDisabledByDefault());
-    comboTorrentCategoryChanged->setCurrentIndex(session->isDisableASMWhenCategoryChanged());
-    comboCategoryChanged->setCurrentIndex(session->isDisableASMWhenCategorySavePathChanged());
-    comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableASMWhenDefaultSavePathChanged());
+    comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
+    comboTorrentCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategoryChanged());
+    comboCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategorySavePathChanged());
+    comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableAutoTMMWhenDefaultSavePathChanged());
     checkTempFolder->setChecked(session->isTempPathEnabled());
     textTempPath->setEnabled(checkTempFolder->isChecked());
     browseTempDirButton->setEnabled(checkTempFolder->isChecked());

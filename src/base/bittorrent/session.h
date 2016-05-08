@@ -199,25 +199,25 @@ namespace BitTorrent
         bool isSubcategoriesEnabled() const;
         void setSubcategoriesEnabled(bool value);
 
-        // Advanced Saving Management subsystem (ASM)
+        // Torrent Management Mode subsystem (TMM)
         //
-        // Each torrent can be either in Simple mode or in Advanced mode
-        // In Simple mode torrent has explicit save path
-        // In Advanced Mode torrent has implicit save path (based on Default
-        //     save path and Category save path)
-        // In Advanced Mode torrent save path can be changed in following cases:
+        // Each torrent can be either in Manual mode or in Automatic mode
+        // In Manual Mode various torrent properties are set explicitly(eg save path)
+        // In Automatic Mode various torrent properties are set implicitly(eg save path)
+        //     based on the associated category.
+        // In Automatic Mode torrent save path can be changed in following cases:
         //     1. Default save path changed
         //     2. Torrent category save path changed
         //     3. Torrent category changed
         //     (unless otherwise is specified)
-        bool isASMDisabledByDefault() const;
-        void setASMDisabledByDefault(bool value);
-        bool isDisableASMWhenCategoryChanged() const;
-        void setDisableASMWhenCategoryChanged(bool value);
-        bool isDisableASMWhenDefaultSavePathChanged() const;
-        void setDisableASMWhenDefaultSavePathChanged(bool value);
-        bool isDisableASMWhenCategorySavePathChanged() const;
-        void setDisableASMWhenCategorySavePathChanged(bool value);
+        bool isAutoTMMDisabledByDefault() const;
+        void setAutoTMMDisabledByDefault(bool value);
+        bool isDisableAutoTMMWhenCategoryChanged() const;
+        void setDisableAutoTMMWhenCategoryChanged(bool value);
+        bool isDisableAutoTMMWhenDefaultSavePathChanged() const;
+        void setDisableAutoTMMWhenDefaultSavePathChanged(bool value);
+        bool isDisableAutoTMMWhenCategorySavePathChanged() const;
+        void setDisableAutoTMMWhenCategorySavePathChanged(bool value);
 
         bool isAddTorrentPaused() const;
         void setAddTorrentPaused(bool value);
