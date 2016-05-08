@@ -669,7 +669,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-349</y>
+             <y>0</y>
              <width>470</width>
              <height>926</height>
             </rect>
@@ -750,6 +750,9 @@
                    </property>
                    <item>
                     <widget class="QComboBox" name="comboSavingMode">
+                     <property name="toolTip">
+                      <string>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</string>
+                     </property>
                      <item>
                       <property name="text">
                        <string>Manual</string>
@@ -757,7 +760,7 @@
                      </item>
                      <item>
                       <property name="text">
-                       <string>Automatic (based on category)</string>
+                       <string>Automatic</string>
                       </property>
                      </item>
                     </widget>
@@ -1302,7 +1305,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>361</width>
+             <width>470</width>
              <height>586</height>
             </rect>
            </property>
