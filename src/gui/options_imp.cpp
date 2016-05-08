@@ -545,13 +545,12 @@ void options_imp::saveOptions()
     pref->setGlobalMaxRatio(getMaxRatio());
     session->setMaxRatioAction(static_cast<MaxRatioAction>(comboRatioLimitAct->currentIndex()));
     // End Bittorrent preferences
+
     // Misc preferences
     // * IPFilter
     pref->setFilteringEnabled(isFilteringEnabled());
-    if (isFilteringEnabled()) {
-        pref->setFilteringTrackerEnabled(checkIpFilterTrackers->isChecked());
-        pref->setFilter(textFilterPath->text());
-    }
+    pref->setFilteringTrackerEnabled(checkIpFilterTrackers->isChecked());
+    pref->setFilter(textFilterPath->text());
     // End IPFilter preferences
     // Queueing system
     pref->setQueueingSystemEnabled(isQueueingSystemEnabled());
