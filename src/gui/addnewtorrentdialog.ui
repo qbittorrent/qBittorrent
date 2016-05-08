@@ -12,55 +12,52 @@
   </property>
   <layout class="QVBoxLayout" name="AddNewTorrentDialogLayout">
    <item>
-    <widget class="QGroupBox" name="groupBox">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="labelTorrentManagementMode">
+       <property name="text">
+        <string>Torrent Management Mode:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboTTM">
+       <property name="toolTip">
+        <string>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>Manual</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Automatic</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBoxSavePath">
      <property name="title">
       <string>Save at</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <property name="spacing">
-         <number>20</number>
-        </property>
-        <item>
-         <widget class="QLabel" name="savingModeLabel">
-          <property name="text">
-           <string>Saving Management:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="simpleModeRadioButton">
-          <property name="text">
-           <string>Simple</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="advancedModeRadioButton">
-          <property name="text">
-           <string>Advanced</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
@@ -400,8 +397,6 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>simpleModeRadioButton</tabstop>
-  <tabstop>advancedModeRadioButton</tabstop>
   <tabstop>savePathComboBox</tabstop>
   <tabstop>browseButton</tabstop>
   <tabstop>defaultSavePathCheckBox</tabstop>
@@ -449,38 +444,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>simpleModeRadioButton</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>AddNewTorrentDialog</receiver>
-   <slot>savingModeChanged(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>154</x>
-     <y>39</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>122</x>
-     <y>6</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>advancedModeRadioButton</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>AddNewTorrentDialog</receiver>
-   <slot>savingModeChanged(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>218</x>
-     <y>44</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>209</x>
-     <y>7</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>categoryComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>AddNewTorrentDialog</receiver>
@@ -496,9 +459,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>comboTTM</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>AddNewTorrentDialog</receiver>
+   <slot>TMMChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>200</x>
+     <y>19</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>206</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>savingModeChanged(bool)</slot>
   <slot>categoryChanged(int)</slot>
+  <slot>TMMChanged(int)</slot>
  </slots>
 </ui>

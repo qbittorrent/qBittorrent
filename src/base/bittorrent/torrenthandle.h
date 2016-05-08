@@ -229,8 +229,8 @@ namespace BitTorrent
         QString rootPath(bool actual = false) const;
         QString contentPath(bool actual = false) const;
 
-        bool isASMEnabled() const;
-        void setASMEnabled(bool enabled);
+        bool isAutoTMMEnabled() const;
+        void setAutoTMMEnabled(bool enabled);
         QString category() const;
         bool belongsToCategory(const QString &category) const;
         bool setCategory(const QString &category);
@@ -412,7 +412,7 @@ namespace BitTorrent
         QQueue<EventTrigger> m_moveFinishedTriggers;
         int m_renameCount;
 
-        bool m_useASM;
+        bool m_useAutoTMM;
 
         // Persistent data
         QString m_name;
