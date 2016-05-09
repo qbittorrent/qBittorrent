@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>414</width>
-    <height>590</height>
+    <height>661</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="AddNewTorrentDialogLayout">
@@ -93,6 +93,16 @@
        </widget>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="doNotDeleteTorrentCheckBox">
+     <property name="toolTip">
+      <string>When checked, the .torrent file will not be deleted despite the settings at the &quot;Download&quot; page of the options dialog</string>
+     </property>
+     <property name="text">
+      <string>Do not delete .torrent file</string>
+     </property>
     </widget>
    </item>
    <item>
@@ -278,8 +288,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>301</width>
-           <height>73</height>
+           <width>308</width>
+           <height>74</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
