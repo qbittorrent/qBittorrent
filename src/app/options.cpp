@@ -33,7 +33,10 @@
 #include "options.h"
 
 #include <iostream>
+
+#include <QDebug>
 #include <QFileInfo>
+#include <QProcessEnvironment>
 
 #ifdef Q_OS_WIN
 #include <QMessageBox>
@@ -41,26 +44,56 @@
 
 #include "base/utils/misc.h"
 
-QBtCommandLineParameters::QBtCommandLineParameters()
+namespace
+{
+    bool isBoolEnvVarSetToTrue(const QProcessEnvironment &env, const QString &var)
+    {
+        QString val = env.value(var);
+        // we accept "1" and "true" (upper or lower cased) as boolean 'true' values
+        return (val == QLatin1String("1") || val.toUpper() == QLatin1String("TRUE"));
+    }
+
+    int readIntlEnvVar(const QProcessEnvironment &env, const QString &var, int defaultValue)
+    {
+        QString val = env.value(var);
+        if (val.isEmpty()) return defaultValue;
+        bool ok;
+        int res = val.toInt(&ok);
+        if (!ok) {
+            qDebug() << QObject::tr("Expected integer number in environment variable '%1', but got '%2'")
+                .arg(var).arg(val);
+            return defaultValue;
+        }
+        return res;
+    }
+
+    QString envVarNameForParameter(const char *parameterName)
+    {
+        return QLatin1String("QBT_") +
+               QString(QLatin1String(parameterName)).toUpper().replace(QLatin1Char('-'), QLatin1Char('_'));
+    }
+}
+
+QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &env)
     : showHelp(false)
 #ifndef Q_OS_WIN
     , showVersion(false)
 #endif
 #ifndef DISABLE_GUI
-    , noSplash(false)
+    , noSplash(isBoolEnvVarSetToTrue(env, envVarNameForParameter("no-splash")))
 #else
-    , shouldDaemonize(false)
+    , shouldDaemonize(isBoolEnvVarSetToTrue(env, envVarNameForParameter("daemon")))
 #endif
-    , webUiPort(-1)
-    , profileDir()
-    , portableMode(false)
-    , configurationName()
+    , webUiPort(readIntlEnvVar(env, envVarNameForParameter("webui-port"), -1))
+    , profileDir(env.value(envVarNameForParameter("profile")))
+    , portableMode(isBoolEnvVarSetToTrue(env, envVarNameForParameter("portable")))
+    , configurationName(env.value(envVarNameForParameter("configuration")))
 {
 }
 
 QBtCommandLineParameters parseCommandLine(const QStringList &args)
 {
-    QBtCommandLineParameters result;
+    QBtCommandLineParameters result {QProcessEnvironment::systemEnvironment()};
 
     for (int i = 1; i < args.count(); ++i) {
         const QString &arg = args[i];
@@ -178,7 +211,7 @@ QString makeUsage(const QString &prgName)
     return text;
 }
 
-void displayUsage(const QString& prgName)
+void displayUsage(const QString &prgName)
 {
 #ifndef Q_OS_WIN
     std::cout << qPrintable(makeUsage(prgName)) << std::endl;
@@ -189,4 +222,3 @@ void displayUsage(const QString& prgName)
     msgBox.exec();
 #endif
 }
-

@@ -38,6 +38,8 @@
 #include <QString>
 #include <QStringList>
 
+class QProcessEnvironment;
+
 struct QBtCommandLineParameters
 {
     bool showHelp;
@@ -56,7 +58,7 @@ struct QBtCommandLineParameters
     QStringList torrents;
     QString unknownParameter;
 
-    QBtCommandLineParameters();
+    QBtCommandLineParameters(const QProcessEnvironment&);
 };
 
 class CommandLineParameterError: public std::runtime_error
