@@ -31,29 +31,61 @@
 #ifndef PEERLISTSORTMODEL_H
 #define PEERLISTSORTMODEL_H
 
-#include <QStringList>
 #include <QSortFilterProxyModel>
+
 #include "peerlistdelegate.h"
 
-class PeerListSortModel : public QSortFilterProxyModel {
-  Q_OBJECT
+class PeerListSortModel: public QSortFilterProxyModel
+{
+    Q_OBJECT
 
 public:
-  PeerListSortModel(QObject *parent = 0) : QSortFilterProxyModel(parent) {}
+    PeerListSortModel(QObject *parent = 0)
+        : QSortFilterProxyModel(parent)
+    {
+    }
 
 protected:
-  bool lessThan(const QModelIndex &left, const QModelIndex &right) const {
-  switch (sortColumn()) {
-  case PeerListDelegate::IP:
-  case PeerListDelegate::CLIENT: {
-    QString vL = left.data().toString();
-    QString vR = right.data().toString();
-    return Utils::String::naturalCompareCaseSensitive(vL, vR);
-  }
-  };
+    bool lessThan(const QModelIndex &left, const QModelIndex &right) const override
+    {
+        const bool isAscendingOrder = sortOrder() == Qt::AscendingOrder;
 
-  return QSortFilterProxyModel::lessThan(left, right);
-  }
+        switch (sortColumn()) {
+        case PeerListDelegate::IP:
+        case PeerListDelegate::FLAGS: {
+            // put empty ones at the bottom of list
+            QString strL = left.data().toString();
+            QString strR = right.data().toString();
+            if (strL.isEmpty()) return !isAscendingOrder;
+            if (strR.isEmpty()) return isAscendingOrder;
+            return Utils::String::naturalCompareCaseSensitive(strL, strR);
+        }
+
+        case PeerListDelegate::CLIENT: {
+            // put empty ones at the bottom of list
+            QString strL = left.data().toString();
+            QString strR = right.data().toString();
+            if (strL.isEmpty()) return !isAscendingOrder;
+            if (strR.isEmpty()) return isAscendingOrder;
+            return (QString::compare(strL, strR, Qt::CaseInsensitive) < 0);
+        }
+
+        case PeerListDelegate::TOT_DOWN:
+        case PeerListDelegate::TOT_UP:
+        case PeerListDelegate::DOWN_SPEED:
+        case PeerListDelegate::UP_SPEED: {
+            // put empty ones at the bottom of list
+            qlonglong longlongL = left.data().toLongLong();
+            qlonglong longlongR = right.data().toLongLong();
+            if (longlongL <= 0) return !isAscendingOrder;
+            if (longlongR <= 0) return isAscendingOrder;
+            return QSortFilterProxyModel::lessThan(left, right);
+        }
+
+        default:
+            return QSortFilterProxyModel::lessThan(left, right);
+        };
+    }
 };
 
 #endif // PEERLISTSORTMODEL_H
