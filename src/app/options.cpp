@@ -37,6 +37,7 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <QProcessEnvironment>
+#include <QTextStream>
 
 #ifdef Q_OS_WIN
 #include <QMessageBox>
@@ -175,39 +176,42 @@ const QString& CommandLineParameterError::messageForUser() const
 QString makeUsage(const QString &prgName)
 {
     QString text;
+    QTextStream stream(&text, QIODevice::WriteOnly);
 
-    text += QObject::tr("Usage:") + QLatin1Char('\n');
+    stream << QObject::tr("Usage:") << '\n';
 #ifndef Q_OS_WIN
-    text += QLatin1Char('\t') + prgName + QLatin1String(" (-v | --version)") + QLatin1Char('\n');
+    stream << '\t' << prgName << " [options] [(<filename> | <url>)...]" << '\n';
 #endif
-    text += QLatin1Char('\t') + prgName + QLatin1String(" (-h | --help)") + QLatin1Char('\n');
-    text += QLatin1Char('\t') + prgName
-            + QLatin1String(" [--webui-port=<port>]")
-#ifndef DISABLE_GUI
-            + QLatin1String(" [--no-splash]")
-#else
-            + QLatin1String(" [-d | --daemon]")
-#endif
-            + QLatin1String("[(<filename> | <url>)...]") + QLatin1Char('\n');
-    text += QObject::tr("Options:") + QLatin1Char('\n');
-#ifndef Q_OS_WIN
-    text += QLatin1String("\t-v | --version\t\t") + QObject::tr("Displays program version") + QLatin1Char('\n');
-#endif
-    text += QLatin1String("\t-h | --help\t\t") + QObject::tr("Displays this help message") + QLatin1Char('\n');
-    text += QLatin1String("\t--webui-port=<port>\t")
-            + QObject::tr("Changes the Web UI port")
-            + QLatin1Char('\n');
-#ifndef DISABLE_GUI
-    text += QLatin1String("\t--no-splash\t\t") + QObject::tr("Disable splash screen") + QLatin1Char('\n');
-#else
-    text += QLatin1String("\t-d | --daemon\t\t") + QObject::tr("Run in daemon-mode (background)") + QLatin1Char('\n');
-#endif
-    text += QLatin1String("\t--profile=<dir>\t\t") + QObject::tr("Store configuration files in <dir>") + QLatin1Char('\n');
-    text += QLatin1String("\t--portable\t\t") + QObject::tr("Shortcut for --profile=<exe dir>/profile") + QLatin1Char('\n');
-    text += QLatin1String("\t--configuration=<name>\t\t") + QObject::tr("Store configuration files in directories qBittorrent_<name>")
-            + QLatin1Char('\n');
-    text += QLatin1String("\tfiles or urls\t\t") + QObject::tr("Downloads the torrents passed by the user");
 
+    stream << QObject::tr("Options:") << '\n';
+#ifndef Q_OS_WIN
+    stream << "\t-v | --version\t\t" << QObject::tr("Displays program version and exit") << '\n';
+#endif
+    stream << "\t-h | --help\t\t" << QObject::tr("Displays this help message and exit") << '\n';
+    stream << "\t--webui-port=<port>\t"
+           << QObject::tr("Changes the Web UI port")
+           << '\n';
+#ifndef DISABLE_GUI
+    stream << "\t--no-splash\t\t" << QObject::tr("Disable splash screen") << '\n';
+#else
+    stream << "\t-d | --daemon\t\t" << QObject::tr("Run in daemon-mode (background)") << '\n';
+#endif
+    stream << "\t--profile=<dir>\t\t" << QObject::tr("Store configuration files in <dir>") << '\n';
+    stream << "\t--portable\t\t" << QObject::tr("Shortcut for --profile=<exe dir>/profile") << '\n';
+    stream << "\t--configuration=<name>\t" << QObject::tr("Store configuration files in directories qBittorrent_<name>")
+           << '\n';
+    stream << "\tfiles or urls\t\t" << QObject::tr("Downloads the torrents passed by the user") << '\n'
+           << '\n';
+
+    stream << QObject::tr("Option values may be supplied via environment variables.") << '\n'
+           << QObject::tr("For option named 'parameter-name', environment variable name is 'QBT_PARAMETER_NAME' (in upper case, '-' replaced with '_')") << '\n'
+           << QObject::tr("To pass flag values, set the variable to '1' or 'TRUE'.") << '\n'
+           << QObject::tr("For example, to disable the splash screen: ")
+           << "QBT_NO_SPLASH=1 " << prgName << '\n'
+           << '\n'
+           << QObject::tr("Command line parameters take precedence over environment variables") << '\n';
+
+    stream << flush;
     return text;
 }
 
