@@ -50,8 +50,6 @@
 #include <Windows.h>
 #endif
 
-#include "base/profile.h"
-
 /**
  * Converts a path to a string suitable for display.
  * This function makes sure the directory separator used is consistent
@@ -315,30 +313,6 @@ QString Utils::Fs::expandPathAbs(const QString& path)
         ret = QDir(ret).absolutePath();
 
     return ret;
-}
-
-QString Utils::Fs::QDesktopServicesDataLocation()
-{
-    return Profile::instance().location(SpecialFolder::Data);
-}
-
-QString Utils::Fs::QDesktopServicesCacheLocation()
-{
-    return Profile::instance().location(SpecialFolder::Cache);
-}
-
-QString Utils::Fs::QDesktopServicesDownloadLocation()
-{
-    return Profile::instance().location(SpecialFolder::Downloads);
-}
-
-QString Utils::Fs::cacheLocation()
-{
-    QString location = expandPathAbs(QDesktopServicesCacheLocation());
-    QDir locationDir(location);
-    if (!locationDir.exists())
-        locationDir.mkpath(locationDir.absolutePath());
-    return location;
 }
 
 QString Utils::Fs::tempPath()

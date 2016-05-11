@@ -148,7 +148,7 @@ bool upgrade(bool ask = true)
     // Upgrade preferences
     Preferences::instance()->upgrade();
 
-    QString backupFolderPath = Utils::Fs::expandPathAbs(Utils::Fs::QDesktopServicesDataLocation() + "BT_backup");
+    QString backupFolderPath = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + "BT_backup");
     QDir backupFolderDir(backupFolderPath);
 
     // ****************************************************************************************

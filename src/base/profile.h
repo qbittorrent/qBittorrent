@@ -77,4 +77,10 @@ private:
     QScopedPointer<Private::Profile> m_impl;
     static Profile *m_instance;
 };
+
+inline QString specialFolderLocation(SpecialFolder folder)
+{
+    return Profile::instance().location(folder);
+}
+
 #endif // QBT_PROFILE_H

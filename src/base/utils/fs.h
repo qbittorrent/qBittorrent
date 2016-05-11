@@ -60,13 +60,6 @@ namespace Utils
         bool forceRemove(const QString& file_path);
         void removeDirRecursive(const QString& dirName);
 
-        /* Ported from Qt4 to drop dependency on QtGui */
-        QString QDesktopServicesDataLocation();
-        QString QDesktopServicesCacheLocation();
-        QString QDesktopServicesDownloadLocation();
-        /* End of Qt4 code */
-
-        QString cacheLocation();
         QString tempPath();
     }
 }
