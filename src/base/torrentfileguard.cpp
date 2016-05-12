@@ -84,7 +84,7 @@ TorrentFileGuard::AutoDeleteMode TorrentFileGuard::autoDeleteMode()
                                                            KEY_AUTO_DELETE_ENABLED, meta.valueToKey(Never)).toByteArray()));
 }
 
-void TorrentFileGuard::setautoDeleteMode(TorrentFileGuard::AutoDeleteMode mode)
+void TorrentFileGuard::setAutoDeleteMode(TorrentFileGuard::AutoDeleteMode mode)
 {
     QMetaEnum meta {modeMetaEnum()};
     SettingsStorage::instance()->storeValue(KEY_AUTO_DELETE_ENABLED, meta.valueToKey(mode));

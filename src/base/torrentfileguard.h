@@ -68,7 +68,7 @@ public:
 
     // static interface to get/set preferences
     static AutoDeleteMode autoDeleteMode();
-    static void setautoDeleteMode(AutoDeleteMode mode);
+    static void setAutoDeleteMode(AutoDeleteMode mode);
 
 private:
     static QMetaEnum modeMetaEnum();
