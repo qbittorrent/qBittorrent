@@ -42,6 +42,7 @@ class Application;
 namespace Private
 {
     class Profile;
+    class PathConverter;
 }
 
 using SettingsPtr = std::unique_ptr<QSettings>;
@@ -64,17 +65,22 @@ public:
     /// or the value, supplied via parameters
     QString configurationName() const;
 
+    QString toPortablePath(const QString &absolutePath) const;
+    QString fromPortablePath(const QString &portablePath) const;
+
     static const Profile &instance();
 
 private:
-    Profile(Private::Profile *impl);
+    Profile(Private::Profile *impl, Private::PathConverter *pathConverter);
     ~Profile();
 
     friend class ::Application;
-    static void initialize(const QString &rootProfilePath, const QString &configurationName);
+    static void initialize(const QString &rootProfilePath, const QString &configurationName,
+                                             bool convertPathsToProfileRelative);
     void ensureDirectoryExists(SpecialFolder folder);
 
-    QScopedPointer<Private::Profile> m_impl;
+    QScopedPointer<Private::Profile> m_profileImpl;
+    QScopedPointer<Private::PathConverter> m_pathConverterImpl;
     static Profile *m_instance;
 };
 

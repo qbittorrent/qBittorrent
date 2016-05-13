@@ -246,6 +246,7 @@ namespace
     constexpr const StringOption PROFILE_OPTION = {"profile"};
     constexpr const StringOption CONFIGURATION_OPTION = {"configuration"};
     constexpr const BoolOption PORTABLE_OPTION = {"portable"};
+    constexpr const BoolOption RELATIVE_FASTRESUME = {"relative-fastresume"};
 }
 
 QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &env)
@@ -260,6 +261,7 @@ QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &en
 #endif
     , webUiPort(WEBUI_PORT_OPTION.value(env, -1))
     , profileDir(PROFILE_OPTION.value(env))
+    , relativeFastresumePaths(RELATIVE_FASTRESUME.value(env))
     , portableMode(PORTABLE_OPTION.value(env))
     , configurationName(CONFIGURATION_OPTION.value(env))
 {
@@ -300,6 +302,9 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
 #endif
             else if (arg == PROFILE_OPTION) {
                 result.profileDir = PROFILE_OPTION.value(arg);
+            }
+            else if (arg == RELATIVE_FASTRESUME) {
+                result.relativeFastresumePaths = true;
             }
             else if (arg == PORTABLE_OPTION) {
                 result.portableMode = true;
@@ -362,9 +367,9 @@ QString makeUsage(const QString &prgName)
     stream << DAEMON_OPTION.usage() << QObject::tr("Run in daemon-mode (background)") << '\n';
 #endif
     stream << PROFILE_OPTION.usage(QLatin1String("dir")) << QObject::tr("Store configuration files in <dir>") << '\n';
-    stream << PORTABLE_OPTION.usage() << QObject::tr("Shortcut for --profile=<exe dir>/profile") << '\n';
-    stream << CONFIGURATION_OPTION.usage(QLatin1String("name")) << QObject::tr("Store configuration files in directories qBittorrent_<name>")
-           << '\n';
+    stream << CONFIGURATION_OPTION.usage(QLatin1String("name")) << QObject::tr("Store configuration files in directories qBittorrent_<name>") << '\n';
+    stream << RELATIVE_FASTRESUME.usage() << QObject::tr("Hack into libtorrent fastresume files and make file paths relative to the profile directory") << '\n';
+    stream << PORTABLE_OPTION.usage() << QObject::tr("Shortcut for --profile=<exe dir>/profile --relative-fastresume") << '\n';
     stream << "\tfiles or urls\t\t" << QObject::tr("Downloads the torrents passed by the user") << '\n'
            << '\n';
 

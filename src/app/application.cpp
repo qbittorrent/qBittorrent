@@ -111,7 +111,8 @@ Application::Application(const QString &id, int &argc, char **argv)
         ? QDir(QCoreApplication::applicationDirPath()).absoluteFilePath(DEFAULT_PORTABLE_MODE_PROFILE_DIR)
         : m_commandLineArgs.profileDir;
 
-    Profile::initialize(profileDir, m_commandLineArgs.configurationName);
+    Profile::initialize(profileDir, m_commandLineArgs.configurationName,
+                        m_commandLineArgs.relativeFastresumePaths || m_commandLineArgs.portableMode);
 
     Logger::initInstance();
     SettingsStorage::initInstance();
@@ -660,4 +661,7 @@ void Application::validateCommandLineParameters()
 {
     if (m_commandLineArgs.portableMode && !m_commandLineArgs.profileDir.isEmpty())
         throw CommandLineParameterError(tr("Portable mode and explicit profile directory options are mutually exclusive"));
+
+    if (m_commandLineArgs.portableMode && m_commandLineArgs.relativeFastresumePaths)
+        Logger::instance()->addMessage(tr("Portable mode implies relative fastresume"), Log::WARNING);
 }

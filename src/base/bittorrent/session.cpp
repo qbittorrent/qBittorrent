@@ -3633,7 +3633,8 @@ namespace
         if (ec || (fast.type() != libt::bdecode_node::dict_t)) return false;
 #endif
 
-        torrentData.savePath = Utils::Fs::fromNativePath(QString::fromStdString(fast.dict_find_string_value("qBt-savePath")));
+        torrentData.savePath = Profile::instance().fromPortablePath(
+            Utils::Fs::fromNativePath(QString::fromStdString(fast.dict_find_string_value("qBt-savePath"))));
         torrentData.ratioLimit = QString::fromStdString(fast.dict_find_string_value("qBt-ratioLimit")).toDouble();
         // **************************************************************************************
         // Workaround to convert legacy label to category

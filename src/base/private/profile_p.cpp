@@ -207,3 +207,44 @@ SettingsPtr Private::CustomProfile::applicationSettings(const QString &name) con
     const QString settingsFileName {QDir(configLocation()).absoluteFilePath(name + QLatin1String(CONF_FILE_EXTENSION))};
     return SettingsPtr(new QSettings(settingsFileName, QSettings::IniFormat));
 }
+
+QString Private::NoConvertConverter::fromPortablePath(const QString &portablePath) const
+{
+    return portablePath;
+}
+
+QString Private::NoConvertConverter::toPortablePath(const QString &path) const
+{
+    return path;
+}
+
+Private::Converter::Converter(const QString &basePath)
+    : m_baseDir {basePath}
+{
+    m_baseDir.makeAbsolute();
+}
+
+QString Private::Converter::toPortablePath(const QString &path) const
+{
+    if (path.isEmpty() || m_baseDir.path().isEmpty())
+        return path;
+
+#ifdef Q_OS_WIN
+    if (QDir::isAbsolutePath(path)) {
+        QChar driveLeter = path[0].toUpper();
+        QChar baseDriveLetter = m_baseDir.path()[0].toUpper();
+        bool onSameDrive = (driveLeter.category() == QChar::Letter_Uppercase) && (driveLeter == baseDriveLetter);
+        if (!onSameDrive)
+            return path;
+    }
+#endif
+    return m_baseDir.relativeFilePath(path);
+}
+
+QString Private::Converter::fromPortablePath(const QString &portablePath) const
+{
+    if (QDir::isAbsolutePath(portablePath))
+        return portablePath;
+
+    return QDir::cleanPath(m_baseDir.absoluteFilePath(portablePath));
+}

@@ -54,6 +54,7 @@
 
 #include "base/logger.h"
 #include "base/preferences.h"
+#include "base/profile.h"
 #include "base/utils/string.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -1477,7 +1478,11 @@ void TorrentHandle::handleSaveResumeDataAlert(libtorrent::save_resume_data_alert
         resumeData["qBt-paused"] = isPaused();
         resumeData["qBt-forced"] = isForced();
     }
-    resumeData["qBt-savePath"] = m_useAutoTMM ? "" : m_savePath.toStdString();
+    else {
+        auto savePath = resumeData.find_key("save_path")->string();
+        resumeData["save_path"] = Profile::instance().toPortablePath(QString::fromStdString(savePath)).toStdString();
+    }
+    resumeData["qBt-savePath"] = m_useAutoTMM ? "" : Profile::instance().toPortablePath(m_savePath).toStdString();
     resumeData["qBt-ratioLimit"] = QString::number(m_ratioLimit).toStdString();
     resumeData["qBt-category"] = m_category.toStdString();
     resumeData["qBt-name"] = m_name.toStdString();

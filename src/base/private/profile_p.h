@@ -91,5 +91,31 @@ namespace Private
         static constexpr const char *dataDirName = "data";
         static constexpr const char *downloadsDirName = "downloads";
     };
+
+    class PathConverter
+    {
+    public:
+        virtual QString toPortablePath(const QString &path) const = 0;
+        virtual QString fromPortablePath(const QString &portablePath) const = 0;
+        virtual ~PathConverter() = default;
+    };
+
+    class NoConvertConverter: public PathConverter
+    {
+    public:
+        QString toPortablePath(const QString &path) const override;
+        QString fromPortablePath(const QString &portablePath) const override;
+    };
+
+    class Converter: public PathConverter
+    {
+    public:
+        Converter(const QString &basePath);
+        QString toPortablePath(const QString &path) const override;
+        QString fromPortablePath(const QString &portablePath) const override;
+
+    private:
+        QDir m_baseDir;
+    };
 }
 #endif // QBT_PROFILE_P_H

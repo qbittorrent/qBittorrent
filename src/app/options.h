@@ -53,6 +53,7 @@ struct QBtCommandLineParameters
 #endif
     int webUiPort;
     QString profileDir;
+    bool relativeFastresumePaths;
     bool portableMode;
     QString configurationName;
     QStringList torrents;
