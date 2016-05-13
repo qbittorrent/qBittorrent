@@ -259,6 +259,7 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
         return false;
     }
 
+    m_torrentGuard.reset(new TorrentFileGuard(QString()));
     m_hash = magnetUri.hash();
     // Prevent showing the dialog if download is already present
     if (BitTorrent::Session::instance()->isKnownTorrent(m_hash)) {
