@@ -54,6 +54,7 @@ HEADERS += \
     $$PWD/utils/net.h \
     $$PWD/utils/random.h \
     $$PWD/utils/string.h \
+    $$PWD/utils/version.h \
     $$PWD/profile.h \
     $$PWD/private/profile_p.h \
     $$PWD/unicodestrings.h \

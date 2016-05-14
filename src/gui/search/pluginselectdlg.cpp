@@ -298,7 +298,7 @@ void PluginSelectDlg::addNewPlugin(QString pluginName)
         connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(iconDownloaded(QString, QString)));
         connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(iconDownloadFailed(QString, QString)));
     }
-    item->setText(PLUGIN_VERSION, QString::number(plugin->version, 'f', 2));
+    item->setText(PLUGIN_VERSION, plugin->version);
 }
 
 void PluginSelectDlg::startAsyncOp()
@@ -424,9 +424,9 @@ void PluginSelectDlg::pluginInstallationFailed(const QString &name, const QStrin
 void PluginSelectDlg::pluginUpdated(const QString &name)
 {
     finishAsyncOp();
-    qreal version = m_pluginManager->pluginInfo(name)->version;
+    PluginVersion version = m_pluginManager->pluginInfo(name)->version;
     QTreeWidgetItem *item = findItemWithID(name);
-    item->setText(PLUGIN_VERSION, QString::number(version, 'f', 2));
+    item->setText(PLUGIN_VERSION, version);
     QMessageBox::information(this, tr("Search plugin install"), tr("\"%1\" search engine plugin was successfully updated.", "%1 is the name of the search engine").arg(name));
 
 }

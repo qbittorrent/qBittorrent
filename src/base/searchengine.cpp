@@ -177,11 +177,11 @@ void SearchEngine::installPlugin(const QString &source)
 
 void SearchEngine::installPlugin_impl(const QString &name, const QString &path)
 {
-    qreal newVersion = getPluginVersion(path);
-    qDebug("Version to be installed: %.2f", newVersion);
+    PluginVersion newVersion = getPluginVersion(path);
+    qDebug() << "Version to be installed:" << newVersion;
 
     PluginInfo *plugin = pluginInfo(name);
-    if (plugin && (plugin->version >= newVersion)) {
+    if (plugin && !(plugin->version < newVersion)) {
         qDebug("Apparently update is not needed, we have a more recent version");
         emit pluginUpdateFailed(name, tr("A more recent version of this plugin is already installed."));
         return;
@@ -608,7 +608,7 @@ void SearchEngine::parseVersionInfo(const QByteArray &info)
 {
     qDebug("Checking if update is needed");
 
-    QHash<QString, qreal> updateInfo;
+    QHash<QString, PluginVersion> updateInfo;
     bool dataCorrect = false;
     QList<QByteArray> lines = info.split('\n');
     foreach (QByteArray line, lines) {
@@ -624,14 +624,17 @@ void SearchEngine::parseVersionInfo(const QByteArray &info)
 
         pluginName.chop(1); // remove trailing ':'
         bool ok;
-        qreal version = list.last().toFloat(&ok);
-        qDebug("read line %s: %.2f", qPrintable(pluginName), version);
+        qreal versionParseTest = list.last().toFloat(&ok);
+        qDebug("read line %s: %.2f", qPrintable(pluginName), versionParseTest);
         if (!ok) continue;
 
-        dataCorrect = true;
-        if (isUpdateNeeded(pluginName, version)) {
-            qDebug("Plugin: %s is outdated", qPrintable(pluginName));
-            updateInfo[pluginName] = version;
+        PluginVersion version = PluginVersion::tryParse(list.last(), {});
+        if (version != PluginVersion()) {
+            dataCorrect = true;
+            if (isUpdateNeeded(pluginName, version)) {
+                qDebug("Plugin: %s is outdated", qPrintable(pluginName));
+                updateInfo[pluginName] = version;
+            }
         }
     }
 
@@ -641,13 +644,13 @@ void SearchEngine::parseVersionInfo(const QByteArray &info)
         emit checkForUpdatesFinished(updateInfo);
 }
 
-bool SearchEngine::isUpdateNeeded(QString pluginName, qreal newVersion) const
+bool SearchEngine::isUpdateNeeded(QString pluginName, PluginVersion newVersion) const
 {
     PluginInfo *plugin = pluginInfo(pluginName);
     if (!plugin) return true;
 
-    qreal oldVersion = plugin->version;
-    qDebug("IsUpdate needed? to be installed: %.2f, already installed: %.2f", newVersion, oldVersion);
+    PluginVersion oldVersion = plugin->version;
+    qDebug() << "IsUpdate needed? to be installed:" << newVersion << ", already installed:" << oldVersion;
     return (newVersion > oldVersion);
 }
 
@@ -673,27 +676,26 @@ QHash<QString, QString> SearchEngine::initializeCategoryNames()
     return result;
 }
 
-qreal SearchEngine::getPluginVersion(QString filePath)
+PluginVersion SearchEngine::getPluginVersion(QString filePath)
 {
     QFile plugin(filePath);
     if (!plugin.exists()) {
         qDebug("%s plugin does not exist, returning 0.0", qPrintable(filePath));
-        return 0.0;
+        return {};
     }
 
     if (!plugin.open(QIODevice::ReadOnly | QIODevice::Text))
-        return 0.0;
+        return {};
 
-    qreal version = 0.0;
+    PluginVersion version;
     while (!plugin.atEnd()) {
         QByteArray line = plugin.readLine();
         if (line.startsWith("#VERSION: ")) {
             line = line.split(' ').last().trimmed();
-            version = line.toFloat();
-            qDebug("plugin %s version: %.2f", qPrintable(filePath), version);
+            version = PluginVersion::tryParse(line, {});
+            qDebug() << "plugin" << filePath << "version: " << version;
             break;
         }
     }
-
     return version;
 }
