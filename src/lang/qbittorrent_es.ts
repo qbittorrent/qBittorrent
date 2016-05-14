@@ -436,7 +436,7 @@
         <location filename="../gui/advancedsettings.cpp" line="186"/>
         <location filename="../gui/advancedsettings.cpp" line="191"/>
         <source>Open documentation</source>
-        <translation>Documentación abierta</translation>
+        <translation>Abrir documentación</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="189"/>
@@ -520,7 +520,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="250"/>
         <source>Maximum number of half-open connections [0: Unlimited]</source>
-        <translation>Número máximo de conexiones semi-abiertas [0: Desactivado]</translation>
+        <translation>Número máximo de conexiones semi-abiertas [0: Sin límite]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="279"/>
