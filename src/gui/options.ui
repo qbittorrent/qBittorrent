@@ -1248,7 +1248,7 @@
                    <item>
                     <widget class="QPushButton" name="addScanFolderButton">
                      <property name="text">
-                      <string>Add folder...</string>
+                      <string>Add entry</string>
                      </property>
                     </widget>
                    </item>
@@ -1258,7 +1258,7 @@
                       <bool>false</bool>
                      </property>
                      <property name="text">
-                      <string>Remove folder</string>
+                      <string>Remove entry</string>
                      </property>
                     </widget>
                    </item>
