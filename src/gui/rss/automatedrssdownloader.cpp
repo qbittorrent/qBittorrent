@@ -70,7 +70,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager>&
   ok = connect(ui->listRules, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRulesListMenu(const QPoint&)));
   Q_ASSERT(ok);
   m_ruleList = manager.toStrongRef()->downloadRules();
-  m_editableRuleList = new Rss::DownloadRuleList; // Read rule list from disk
+  m_editableRuleList = new Rss::DownloadRuleList(*m_ruleList);
   m_episodeValidator = new QRegExpValidator(
                          QRegExp("^(^[1-9]{1,1}\\d{0,3}x([1-9]{1,1}\\d{0,3}(-([1-9]{1,1}\\d{0,3})?)?;){1,}){1,1}",
                                  Qt::CaseInsensitive),
@@ -177,20 +177,13 @@ void AutomatedRssDownloader::loadRulesList()
 
 void AutomatedRssDownloader::loadFeedList()
 {
-  const Preferences* const pref = Preferences::instance();
-  const QStringList feed_aliases = pref->getRssFeedsAliases();
-  const QStringList feed_urls = pref->getRssFeedsUrls();
-  QStringList existing_urls;
-  for (int i=0; i<feed_aliases.size(); ++i) {
-    QString feed_url = feed_urls.at(i);
-    feed_url = feed_url.split("\\").last();
-    qDebug() << Q_FUNC_INFO << feed_url;
-    if (existing_urls.contains(feed_url)) continue;
-    QListWidgetItem *item = new QListWidgetItem(feed_aliases.at(i), ui->listFeeds);
-    item->setData(Qt::UserRole, feed_url);
-    item->setFlags(item->flags()|Qt::ItemIsUserCheckable);
-    existing_urls << feed_url;
-  }
+    if (Rss::ManagerPtr manager = m_manager.toStrongRef()) {
+        for (const Rss::FeedPtr &feed : manager->rootFolder()->getAllFeeds()) {
+            QListWidgetItem *item = new QListWidgetItem(feed->displayName(), ui->listFeeds);
+            item->setData(Qt::UserRole, feed->url());
+            item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+        }
+    }
 }
 
 void AutomatedRssDownloader::updateFeedList()
@@ -410,11 +403,11 @@ void AutomatedRssDownloader::on_exportBtn_clicked()
     return;
   }
   // Ask for a save path
-  QString save_path = QFileDialog::getSaveFileName(this, tr("Where would you like to save the list?"), QDir::homePath(), tr("Rules list (*.rssrules)"));
-  if (save_path.isEmpty()) return;
-  if (!save_path.endsWith(".rssrules", Qt::CaseInsensitive))
-    save_path += ".rssrules";
-  if (!m_editableRuleList->serialize(save_path)) {
+  QString savePath = QFileDialog::getSaveFileName(this, tr("Export RSS rules to file"), QDir::homePath(), tr("Rules list (*.rssrules)"));
+  if (savePath.isEmpty()) return;
+  if (!savePath.endsWith(".rssrules", Qt::CaseInsensitive))
+    savePath += ".rssrules";
+  if (!m_editableRuleList->serialize(savePath)) {
     QMessageBox::warning(this, tr("I/O Error"), tr("Failed to create the destination file"));
     return;
   }
@@ -423,10 +416,10 @@ void AutomatedRssDownloader::on_exportBtn_clicked()
 void AutomatedRssDownloader::on_importBtn_clicked()
 {
   // Ask for filter path
-  QString load_path = QFileDialog::getOpenFileName(this, tr("Please point to the RSS download rules file"), QDir::homePath(), tr("Rules list")+QString(" (*.rssrules *.filters)"));
-  if (load_path.isEmpty() || !QFile::exists(load_path)) return;
+  QString loadPath = QFileDialog::getOpenFileName(this, tr("Select RSS rules file"), QDir::homePath(), tr("Rules list") + QString(" (*.rssrules *.filters)"));
+  if (loadPath.isEmpty() || !QFile::exists(loadPath)) return;
   // Load it
-  if (!m_editableRuleList->unserialize(load_path)) {
+  if (!m_editableRuleList->unserialize(loadPath)) {
     QMessageBox::warning(this, tr("Import Error"), tr("Failed to import the selected rules file"));
     return;
   }
@@ -642,7 +635,7 @@ void AutomatedRssDownloader::onFinished(int result) {
   Q_UNUSED(result);
   // Save current item on exit
   saveEditedRule();
-  m_ruleList->replace(m_editableRuleList);
+  m_ruleList->replace(*m_editableRuleList);
   m_ruleList->saveRulesToStorage();
   saveSettings();
 }

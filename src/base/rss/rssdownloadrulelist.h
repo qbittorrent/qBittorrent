@@ -41,12 +41,10 @@ namespace Rss
 {
     class DownloadRuleList
     {
-        Q_DISABLE_COPY(DownloadRuleList)
-
     public:
-        DownloadRuleList();
-
         DownloadRulePtr findMatchingRule(const QString &feedUrl, const QString &articleTitle) const;
+        void loadRulesFromStorage();
+
         // Operators
         void saveRule(const DownloadRulePtr &rule);
         void removeRule(const QString &name);
@@ -57,10 +55,10 @@ namespace Rss
         void saveRulesToStorage();
         bool serialize(const QString &path);
         bool unserialize(const QString &path);
-        void replace(DownloadRuleList *other);
+        void replace(const DownloadRuleList& other);
+        void merge(const DownloadRuleList& other);
 
     private:
-        void loadRulesFromStorage();
         void loadRulesFromVariantHash(const QVariantHash &l);
         QVariantHash toVariantHash() const;
 

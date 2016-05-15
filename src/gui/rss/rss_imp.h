@@ -53,9 +53,13 @@ public:
     RSSImp(QWidget *parent);
     ~RSSImp();
 
+    void addFeeds(const QList<Rss::FeedPtr> &feeds);
+    void addRules(const Rss::DownloadRuleList &newRules);
+
 public slots:
     void deleteSelectedItems();
     void updateRefreshInterval(uint val);
+    void showDownloadRulesDialog();
 
 signals:
     void updateRSSCount(int);
@@ -85,11 +89,11 @@ private slots:
     void saveFoldersOpenState();
     void loadFoldersOpenState();
     void on_settingsButton_clicked();
-    void on_rssDownloaderBtn_clicked();
 
 private:
     static QListWidgetItem* createArticleListItem(const Rss::ArticlePtr& article);
     static QTreeWidgetItem* createFolderListItem(const Rss::FilePtr& rssFile);
+    QTreeWidgetItem* addItem(const Rss::FilePtr& file, QTreeWidgetItem *parent = nullptr);
 
 private:
     Rss::ManagerPtr m_rssManager;

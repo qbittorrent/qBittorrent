@@ -38,11 +38,6 @@
 
 using namespace Rss;
 
-DownloadRuleList::DownloadRuleList()
-{
-    loadRulesFromStorage();
-}
-
 DownloadRulePtr DownloadRuleList::findMatchingRule(const QString &feedUrl, const QString &articleTitle) const
 {
     Q_ASSERT(Preferences::instance()->isRssDownloadingEnabled());
@@ -54,13 +49,17 @@ DownloadRulePtr DownloadRuleList::findMatchingRule(const QString &feedUrl, const
     return DownloadRulePtr();
 }
 
-void DownloadRuleList::replace(DownloadRuleList *other)
+void DownloadRuleList::replace(const DownloadRuleList &other)
 {
     m_rules.clear();
     m_feedRules.clear();
-    foreach (const QString &name, other->ruleNames()) {
-        saveRule(other->getRule(name));
-    }
+    merge(other);
+}
+
+void DownloadRuleList::merge(const DownloadRuleList &other)
+{
+    foreach (const QString &name, other.ruleNames())
+        saveRule(other.getRule(name));
 }
 
 void DownloadRuleList::saveRulesToStorage()

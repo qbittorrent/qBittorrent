@@ -61,6 +61,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/rss/utorrentrssdata.h"
 
 #include "application.h"
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
@@ -173,6 +174,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionStartAll->setIcon(GuiIconProvider::instance()->getIcon("media-playback-start"));
     m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
     m_ui->actionManageCookies->setIcon(GuiIconProvider::instance()->getIcon("preferences-web-browser-cookies"));
+    m_ui->actionImportUTorrentRss->setIcon(GuiIconProvider::instance()->getIcon("application-rss+xml"));
 
     QMenu *startAllMenu = new QMenu(this);
     startAllMenu->addAction(m_ui->actionStartAll);
@@ -298,6 +300,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionTopToolBar->setChecked(pref->isToolbarDisplayed());
     m_ui->actionSpeedInTitleBar->setChecked(pref->speedInTitleBar());
     m_ui->actionRSSReader->setChecked(pref->isRSSEnabled());
+    m_ui->actionImportUTorrentRss->setVisible(pref->isRSSEnabled());
     m_ui->actionSearchWidget->setChecked(pref->isSearchEnabled());
     m_ui->actionExecutionLogs->setChecked(isExecutionLogEnabled());
 
@@ -1567,6 +1570,30 @@ void MainWindow::on_actionDownloadFromURL_triggered()
         m_downloadFromURLDialog = new downloadFromURL(this);
         connect(m_downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(QStringList)), this, SLOT(downloadFromURLList(QStringList)));
     }
+}
+
+void MainWindow::on_actionImportUTorrentRss_triggered()
+{
+    Q_ASSERT(m_rssWidget);
+    const QString DEFAULT_FILE = Utils::Fs::toNativePath(QDir::home().filePath("AppData/Roaming/uTorrent/rss.dat"));
+
+    QString loadPath = QFileDialog::getOpenFileName(this, tr("Select uTorrent RSS data file"), DEFAULT_FILE, "uTorrent RSS File (rss.dat)");
+    if (loadPath.isEmpty()) return;
+
+    Rss::UTorrentRssData utorrentData;
+    if (utorrentData.load(loadPath)) {
+        // Disable auto-downloading to give user a chance to change imported rules
+        Preferences::instance()->setRssDownloadingEnabled(false);
+
+        m_rssWidget->addFeeds(utorrentData.getFeeds());
+        m_rssWidget->addRules(utorrentData.getRules());
+
+        m_rssWidget->showDownloadRulesDialog();
+    }
+    else {
+        QMessageBox::warning(this, tr("Import Error"), tr("Failed to import uTorrent RSS data"));
+    }
+
 }
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)

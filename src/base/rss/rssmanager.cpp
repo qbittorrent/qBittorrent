@@ -50,6 +50,7 @@ Manager::Manager(QObject *parent)
     , m_rootFolder(new Folder)
     , m_workingThread(new QThread(this))
 {
+    m_downloadRules->loadRulesFromStorage();
     m_workingThread->start();
     connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(refresh()));
     m_refreshInterval = Preferences::instance()->getRSSRefreshInterval();

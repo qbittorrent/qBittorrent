@@ -64,7 +64,7 @@ namespace Rss
         Q_OBJECT
 
     public:
-        Feed(const QString &url, Manager *manager);
+        explicit Feed(const QString &url, Manager *manager = nullptr);
         ~Feed();
 
         bool refresh();
@@ -87,6 +87,7 @@ namespace Rss
         const ArticleHash &articleHash() const;
         ArticleList unreadArticleListByDateDesc() const;
         void recheckRssItemsForDownload();
+        void setManager(Manager *manager);
 
     private slots:
         void handleIconDownloadFinished(const QString &url, const QString &filePath);

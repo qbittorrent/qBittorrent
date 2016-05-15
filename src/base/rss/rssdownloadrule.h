@@ -33,7 +33,7 @@
 
 #include <QStringList>
 #include <QVariantHash>
-#include <QSharedPointer>
+#include <QSharedDataPointer>
 #include <QDateTime>
 
 namespace Rss
@@ -42,9 +42,9 @@ namespace Rss
     typedef QSharedPointer<Feed> FeedPtr;
 
     class DownloadRule;
-    typedef QSharedPointer<DownloadRule> DownloadRulePtr;
+    typedef QSharedDataPointer<DownloadRule> DownloadRulePtr;
 
-    class DownloadRule
+    class DownloadRule : public QSharedData
     {
     public:
         enum AddPausedState

@@ -176,6 +176,7 @@ private slots:
     void on_actionDownloadFromURL_triggered();
     void on_actionExit_triggered();
     void on_actionLock_triggered();
+    void on_actionImportUTorrentRss_triggered();
     // Check for active torrents and set preventing from suspend state
     void checkForActiveTorrents();
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)

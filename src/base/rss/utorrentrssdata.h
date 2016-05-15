@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2016  Michael Ziminsky <mgziminsky@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,48 +24,45 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#ifndef RSSPARSER_H
-#define RSSPARSER_H
+#ifndef UTORRENTRSSDATA_H
+#define UTORRENTRSSDATA_H
 
-#include <QObject>
-#include <QString>
-#include <QVariantHash>
+#include <QHash>
+#include <QList>
+#include <QSharedPointer>
 
-class QXmlStreamReader;
+namespace libtorrent
+{
+    class lazy_entry;
+}
 
 namespace Rss
 {
-    namespace Private
+    class Feed;
+    class DownloadRuleList;
+    class Manager;
+
+    typedef QSharedPointer<Feed> FeedPtr;
+    typedef QList<FeedPtr> FeedList;
+
+    class UTorrentRssData
     {
-        class Parser: public QObject
-        {
-            Q_OBJECT
+    public:
+        UTorrentRssData();
+        ~UTorrentRssData();
 
-        public slots:
-            void parse(const QByteArray &feedData);
+        const QList<FeedPtr>& getFeeds() const;
+        const DownloadRuleList& getRules() const;
+        bool load(const QString &path);
 
-            // Redefine as a slot so it can be invoked on the owning thread
-            void moveToThread(QThread *thread);
+    private:
+        QHash<int, QString> loadFeeds(const libtorrent::lazy_entry &feeds);
+        void loadRules(const libtorrent::lazy_entry &filters, const QHash<int, QString> &feedUrls);
 
-        signals:
-            void newArticle(const QVariantHash &rssArticle);
-            void feedTitle(const QString &title);
-            void finished(const QString &error);
-
-        private:
-            void parseRssArticle(QXmlStreamReader &xml);
-            void parseRSSChannel(QXmlStreamReader &xml);
-            void parseAtomArticle(QXmlStreamReader &xml);
-            void parseAtomChannel(QXmlStreamReader &xml);
-
-            QString m_lastBuildDate; // Optimization
-            QString m_baseUrl;
-        };
-    }
+        QList<FeedPtr> m_feeds;
+        DownloadRuleList *m_rules;
+    };
 }
-
-#endif // RSSPARSER_H
+#endif // UTORRENTRSSDATA_H

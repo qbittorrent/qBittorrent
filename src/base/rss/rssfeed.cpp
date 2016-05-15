@@ -59,8 +59,7 @@ namespace Rss
 using namespace Rss;
 
 Feed::Feed(const QString &url, Manager *manager)
-    : m_manager(manager)
-    , m_url (QUrl::fromEncoded(url.toUtf8()).toString())
+    : m_url(QUrl::fromEncoded(url.toUtf8()).toString())
     , m_icon(":/icons/oxygen/application-rss+xml.png")
     , m_unreadCount(0)
     , m_dirty(false)
@@ -69,8 +68,9 @@ Feed::Feed(const QString &url, Manager *manager)
 {
     qDebug() << Q_FUNC_INFO << m_url;
     m_parser = new Private::Parser;
-    m_parser->moveToThread(m_manager->workingThread());
     connect(this, SIGNAL(destroyed()), m_parser, SLOT(deleteLater()));
+    setManager(manager);
+
     // Listen for new RSS downloads
     connect(m_parser, SIGNAL(feedTitle(QString)), SLOT(handleFeedTitle(QString)));
     connect(m_parser, SIGNAL(newArticle(QVariantHash)), SLOT(handleNewArticle(QVariantHash)));
@@ -176,7 +176,11 @@ void Feed::addArticle(const ArticlePtr &article)
 bool Feed::refresh()
 {
     if (m_loading) {
-        qWarning() << Q_FUNC_INFO << "Feed" << displayName() << "is already being refreshed, ignoring request";
+        qDebug() << Q_FUNC_INFO << "Feed" << displayName() << "is already being refreshed, ignoring request";
+        return false;
+    }
+    if (!m_manager) {
+        qDebug() << Q_FUNC_INFO << "Feed" << displayName() << "has no manager, not refreshing";
         return false;
     }
     m_loading = true;
@@ -324,43 +328,6 @@ QString Feed::iconUrl() const
     return QString("http://%1/favicon.ico").arg(QUrl(m_url).host());
 }
 
-void Feed::handleIconDownloadFinished(const QString &url, const QString &filePath)
-{
-    Q_UNUSED(url);
-    setIconPath(filePath);
-    qDebug() << Q_FUNC_INFO << "icon path:" << m_icon;
-    m_manager->forwardFeedIconChanged(m_url, m_icon);
-}
-
-void Feed::handleRssDownloadFinished(const QString &url, const QByteArray &data)
-{
-    Q_UNUSED(url);
-    qDebug() << Q_FUNC_INFO << "Successfully downloaded RSS feed at" << m_url;
-    // Parse the download RSS
-    QMetaObject::invokeMethod(m_parser, "parse", Qt::QueuedConnection, Q_ARG(QByteArray, data));
-}
-
-void Feed::handleRssDownloadFailed(const QString &url, const QString &error)
-{
-    Q_UNUSED(url);
-    m_inErrorState = true;
-    m_loading = false;
-    m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
-    qWarning() << "Failed to download RSS feed at" << m_url;
-    qWarning() << "Reason:" << error;
-}
-
-void Feed::handleFeedTitle(const QString &title)
-{
-    if (m_title == title) return;
-
-    m_title = title;
-
-    // Notify that we now have something better than a URL to display
-    if (m_alias.isEmpty())
-        m_manager->forwardFeedInfosChanged(m_url, title, m_unreadCount);
-}
-
 void Feed::downloadArticleTorrentIfMatching(const ArticlePtr &article)
 {
     Q_ASSERT(Preferences::instance()->isRssDownloadingEnabled());
@@ -404,6 +371,17 @@ void Feed::downloadArticleTorrentIfMatching(const ArticlePtr &article)
     BitTorrent::Session::instance()->addTorrent(torrentUrl, params);
 }
 
+void Feed::setManager(Manager* manager)
+{
+    qDebug() << Q_FUNC_INFO << "Setting manager on feed" << displayName() << "[" << manager << "]";
+
+    m_manager = manager;
+    // Move parser to correct thread
+    QMetaObject::invokeMethod(m_parser, "moveToThread", Q_ARG(QThread*, m_manager ? m_manager->workingThread() : this->thread()));
+
+    refresh();
+}
+
 void Feed::recheckRssItemsForDownload()
 {
     Q_ASSERT(Preferences::instance()->isRssDownloadingEnabled());
@@ -411,6 +389,63 @@ void Feed::recheckRssItemsForDownload()
         if (!article->isRead())
             downloadArticleTorrentIfMatching(article);
     }
+}
+
+void Feed::handleArticleRead()
+{
+    --m_unreadCount;
+    m_dirty = true;
+    m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
+}
+
+/*********************************************************
+ *                   DOWNLOADER SLOTS                    *
+ *********************************************************/
+
+void Feed::handleIconDownloadFinished(const QString &url, const QString &filePath)
+{
+    Q_UNUSED(url);
+    setIconPath(filePath);
+    qDebug() << Q_FUNC_INFO << "icon path:" << m_icon;
+    if (m_manager)
+        m_manager->forwardFeedIconChanged(m_url, m_icon);
+}
+
+void Feed::handleRssDownloadFinished(const QString &url, const QByteArray &data)
+{
+    Q_ASSERT(m_manager);
+
+    Q_UNUSED(url);
+    qDebug() << Q_FUNC_INFO << "Successfully downloaded RSS feed at" << m_url;
+    // Parse the download RSS
+    QMetaObject::invokeMethod(m_parser, "parse", Qt::QueuedConnection, Q_ARG(QByteArray, data));
+}
+
+void Feed::handleRssDownloadFailed(const QString &url, const QString &error)
+{
+    Q_UNUSED(url);
+    m_inErrorState = true;
+    m_loading = false;
+    m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
+    qWarning() << "Failed to download RSS feed at" << m_url;
+    qWarning() << "Reason:" << error;
+}
+
+/*********************************************************
+ *                   PARSER SLOTS                        *
+ *********************************************************/
+
+void Feed::handleFeedTitle(const QString &title)
+{
+    Q_ASSERT(m_manager);
+
+    if (m_title == title) return;
+
+    m_title = title;
+
+    // Notify that we now have something better than a URL to display
+    if (m_alias.isEmpty())
+        m_manager->forwardFeedInfosChanged(m_url, title, m_unreadCount);
 }
 
 void Feed::handleNewArticle(const QVariantHash &articleData)
@@ -444,11 +479,4 @@ void Feed::handleParsingFinished(const QString &error)
     m_manager->forwardFeedContentChanged(m_url);
 
     saveItemsToDisk();
-}
-
-void Feed::handleArticleRead()
-{
-    --m_unreadCount;
-    m_dirty = true;
-    m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
 }

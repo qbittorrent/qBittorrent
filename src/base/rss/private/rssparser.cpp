@@ -465,3 +465,9 @@ void Parser::parseAtomChannel(QXmlStreamReader &xml)
         }
     }
 }
+
+// Just delegate to parent.
+void Parser::moveToThread(QThread *thread)
+{
+    QObject::moveToThread(thread);
+}
