@@ -387,9 +387,13 @@ namespace BitTorrent
         void createTorrentHandle(const libtorrent::torrent_handle &nativeHandle);
 
         void saveResumeData();
-
+#if LIBTORRENT_VERSION_NUM >= 10100
+        void handleAlerts();
+        void waitForAlerts(ulong time = 0);
+#else
         void dispatchAlerts(std::auto_ptr<libtorrent::alert> alertPtr);
         void getPendingAlerts(QVector<libtorrent::alert *> &out, ulong time = 0);
+#endif
 
         SettingsStorage *m_settings;
 
