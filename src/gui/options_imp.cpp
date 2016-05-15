@@ -519,7 +519,7 @@ void options_imp::saveOptions()
     pref->setAutoRunProgram(autoRun_txt->text().trimmed());
     pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
     pref->setActionOnDblClOnTorrentFn(getActionOnDblClOnTorrentFn());
-    TorrentFileGuard::setautoDeleteMode(!deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
+    TorrentFileGuard::setAutoDeleteMode(!deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
                              : !deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
                              : TorrentFileGuard::Always);
     // End Downloads preferences
