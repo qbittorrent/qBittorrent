@@ -153,10 +153,10 @@ QVariant ScanFoldersModel::headerData(int section, Qt::Orientation orientation, 
 
     switch (section) {
     case WATCH:
-        title = tr("Watched Folder");
+        title = tr("Monitored Folder");
         break;
     case DOWNLOAD:
-        title = tr("Save Files to");
+        title = tr("Override Save Location");
         break;
     }
 

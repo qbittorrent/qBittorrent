@@ -126,7 +126,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     connect(header(), SIGNAL(sectionClicked(int)), SLOT(handleSortColumnChanged(int)));
     handleSortColumnChanged(header()->sortIndicatorSection());
     m_copyHotkey = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::Key_C), this, SLOT(copySelectedPeers()), 0, Qt::WidgetShortcut);
-	
+
 #ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
@@ -236,7 +236,7 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
     QAction *banAct = 0;
     QAction *copyPeerAct = 0;
     if (!selectionModel()->selectedRows().isEmpty()) {
-        copyPeerAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy selected"));
+        copyPeerAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy IP:port"));
         menu.addSeparator();
         banAct = menu.addAction(GuiIconProvider::instance()->getIcon("user-group-delete"), tr("Ban peer permanently"));
         emptyMenu = false;
