@@ -128,10 +128,8 @@ QVariant ScanFoldersModel::data(const QModelIndex &index, int role) const
         else if (role == Qt::DisplayRole) {
             switch (pathData->downloadType) {
             case DOWNLOAD_IN_WATCH_FOLDER:
-                value = tr("Watch Folder");
-                break;
             case DEFAULT_LOCATION:
-                value = tr("Default Folder");
+                value = pathTypeDisplayName(pathData->downloadType);
                 break;
             case CUSTOM_LOCATION:
                 value = pathData->downloadPath;
@@ -391,4 +389,19 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
             }
         }
     }
+}
+
+QString ScanFoldersModel::pathTypeDisplayName(const PathType type)
+{
+    switch(type) {
+    case DOWNLOAD_IN_WATCH_FOLDER:
+        return tr("Monitored folder");
+    case DEFAULT_LOCATION:
+        return tr("Default save location");
+    case CUSTOM_LOCATION:
+        return tr("Browse...");
+    default:
+        qDebug("Invalid PathType: %d", type);
+    };
+    return QString();
 }

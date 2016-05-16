@@ -63,9 +63,9 @@ QWidget *ScanFoldersDelegate::createEditor(QWidget *parent, const QStyleOptionVi
     QComboBox* editor = new QComboBox(parent);
 
     editor->setFocusPolicy(Qt::StrongFocus);
-    editor->addItem(tr("Same as monitored folder"));
-    editor->addItem(tr("Default save location"));
-    editor->addItem(tr("Browse..."));
+    editor->addItem(ScanFoldersModel::pathTypeDisplayName(ScanFoldersModel::DOWNLOAD_IN_WATCH_FOLDER));
+    editor->addItem(ScanFoldersModel::pathTypeDisplayName(ScanFoldersModel::DEFAULT_LOCATION));
+    editor->addItem(ScanFoldersModel::pathTypeDisplayName(ScanFoldersModel::CUSTOM_LOCATION));
     if (index.data(Qt::UserRole).toInt() == ScanFoldersModel::CUSTOM_LOCATION) {
         editor->insertSeparator(3);
         editor->addItem(index.data().toString());
