@@ -1314,20 +1314,20 @@ int options_imp::getActionOnDblClOnTorrentFn() const
 void options_imp::on_addScanFolderButton_clicked()
 {
     Preferences* const pref = Preferences::instance();
-    const QString dir = QFileDialog::getExistingDirectory(this, tr("Add directory to scan"),
+    const QString dir = QFileDialog::getExistingDirectory(this, tr("Select folder to monitor"),
                                                           Utils::Fs::toNativePath(Utils::Fs::folderName(pref->getScanDirsLastPath())));
     if (!dir.isEmpty()) {
         const ScanFoldersModel::PathStatus status = ScanFoldersModel::instance()->addPath(dir, ScanFoldersModel::DEFAULT_LOCATION, QString(), false);
         QString error;
         switch (status) {
         case ScanFoldersModel::AlreadyInList:
-            error = tr("Folder is already being watched.");
+            error = tr("Folder is already being monitored:");
             break;
         case ScanFoldersModel::DoesNotExist:
-            error = tr("Folder does not exist.");
+            error = tr("Folder does not exist:");
             break;
         case ScanFoldersModel::CannotRead:
-            error = tr("Folder is not readable.");
+            error = tr("Folder is not readable:");
             break;
         default:
             pref->setScanDirsLastPath(dir);
@@ -1338,7 +1338,7 @@ void options_imp::on_addScanFolderButton_clicked()
         }
 
         if (!error.isEmpty())
-            QMessageBox::warning(this, tr("Failure"), tr("Failed to add Scan Folder '%1': %2").arg(dir).arg(error));
+            QMessageBox::critical(this, tr("Adding entry failed"), QString("%1\n%2").arg(error).arg(dir));
     }
 }
 
