@@ -94,7 +94,6 @@ private:
     QPointer<Net::ReverseResolution> m_resolver;
     PropertiesWidget *m_properties;
     bool m_resolveCountries;
-    bool m_wasCountryColHidden;
     QShortcut *m_copyHotkey;
 };
 
