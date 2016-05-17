@@ -34,13 +34,10 @@
 #include <QAbstractListModel>
 #include <QList>
 
-QT_BEGIN_NAMESPACE
 class QStringList;
-QT_END_NAMESPACE
-
 class FileSystemWatcher;
 
-class ScanFoldersModel : public QAbstractListModel
+class ScanFoldersModel: public QAbstractListModel
 {
     Q_OBJECT
     Q_DISABLE_COPY(ScanFoldersModel)
@@ -71,7 +68,9 @@ public:
 
     static bool initInstance(QObject *parent = 0);
     static void freeInstance();
-    static ScanFoldersModel *instance();
+    static ScanFoldersModel* instance();
+
+    static QString pathTypeDisplayName(const PathType type);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
@@ -81,8 +80,8 @@ public:
 
     // TODO: removePaths(); singular version becomes private helper functions;
     // also: remove functions should take modelindexes
-    PathStatus addPath(const QString &watchPath, const PathType& downloadType, const QString &downloadPath, bool addToFSWatcher = true);
-    PathStatus updatePath(const QString &watchPath, const PathType& downloadType, const QString &downloadPath);
+    PathStatus addPath(const QString &watchPath, const PathType &downloadType, const QString &downloadPath, bool addToFSWatcher = true);
+    PathStatus updatePath(const QString &watchPath, const PathType &downloadType, const QString &downloadPath);
     // PRECONDITION: The paths must have been added with addPath() first.
     void addToFSWatcher(const QStringList &watchPaths);
     void removePath(int row, bool removeFromFSWatcher = true);
