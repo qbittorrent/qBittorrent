@@ -28,20 +28,17 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "scanfoldersmodel.h"
+
 #include <QDir>
 #include <QFileInfo>
-#include <QString>
 #include <QStringList>
-#include <QTemporaryFile>
 #include <QTextStream>
 
-#include "utils/misc.h"
-#include "utils/fs.h"
-#include "preferences.h"
-#include "logger.h"
-#include "filesystemwatcher.h"
 #include "bittorrent/session.h"
-#include "scanfoldersmodel.h"
+#include "filesystemwatcher.h"
+#include "preferences.h"
+#include "utils/fs.h"
 
 struct ScanFoldersModel::PathData
 {
