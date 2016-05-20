@@ -230,6 +230,7 @@ extract() {
   SAVEIFS=$IFS
   IFS=$(printf "\n\b")
   for i in $string; do
+    test "$i" = I/usr/include && continue
     case "$(echo "$i" | cut -c1)" in
       '') ;;
       D) QBT_CONF_DEFINES="$(echo $i | cut -c2-) $QBT_CONF_DEFINES";;
