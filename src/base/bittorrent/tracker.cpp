@@ -148,21 +148,11 @@ struct Peer
         return uid == other.uid;
     }
 
-    // if 'clientIP' belongs to a public network, returns public address found among connection and announce ip adrresses
+    // if 'clientIP' and announceIp are public(external) addresses, return announceIp, otherwise return ip
     const address& getIpForClient(const address& clientIp) const
     {
-        // if any address is unspecified, return ip
-        if (clientIp.is_unspecified() || ip.is_unspecified() || announceIp.is_unspecified())
-            return ip;
-
-        // if client has public ip, return public ip
-        if (!isNonRoutable(clientIp)) {
-            if (!isNonRoutable(ip))
-                return ip;
-
-            if (!isNonRoutable(announceIp))
+        if (!isNonRoutable(clientIp) && !isNonRoutable(announceIp))
                 return announceIp;
-        }
 
         return ip;
     }

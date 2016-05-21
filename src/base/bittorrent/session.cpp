@@ -633,7 +633,8 @@ void Session::setSessionSettings()
     // Include overhead in transfer limits
     sessionSettings.rate_limit_ip_overhead = pref->includeOverheadInLimits();
     // IP address to announce to trackers
-    sessionSettings.announce_ip = Utils::String::toStdString(pref->getNetworkAddress());
+    QString networkAddress = pref->getNetworkAddress();
+    sessionSettings.announce_ip = networkAddress.isEmpty() ? m_externalIp : Utils::String::toStdString(networkAddress);
     // Super seeding
     sessionSettings.strict_super_seeding = pref->isSuperSeedingEnabled();
     // * Max Half-open connections
@@ -2557,13 +2558,13 @@ void Session::handleListenFailedAlert(libt::listen_failed_alert *p)
 void Session::handleExternalIPAlert(libt::external_ip_alert *p)
 {
     boost::system::error_code ec;
-    std::string newIp = p->external_address.to_string(ec);
-    Logger::instance()->addMessage(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(newIp.c_str()), Log::INFO);
+    m_externalIp = p->external_address.to_string(ec);
+    Logger::instance()->addMessage(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(m_externalIp.c_str()), Log::INFO);
 
     // user-specified ip address has a higher priority
     if (Preferences::instance()->getNetworkAddress().isEmpty()) {
         libt::session_settings sessionSettings = m_nativeSession->settings();
-        sessionSettings.announce_ip = newIp;
+        sessionSettings.announce_ip = m_externalIp;
         m_nativeSession->set_settings(sessionSettings);
     }
 }

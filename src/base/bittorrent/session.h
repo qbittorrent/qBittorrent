@@ -440,6 +440,8 @@ namespace BitTorrent
 
         QNetworkConfigurationManager m_networkManager;
 
+        std::string m_externalIp;
+
         static Session *m_instance;
     };
 }
