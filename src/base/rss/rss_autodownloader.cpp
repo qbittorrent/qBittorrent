@@ -333,6 +333,8 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
         }
 
         rule.setLastMatch(articleDate);
+        rule.appendLastComputedEpisode();
+
         m_dirty = true;
         storeDeferred();
 

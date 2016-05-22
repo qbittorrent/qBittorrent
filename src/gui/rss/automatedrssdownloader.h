@@ -71,6 +71,7 @@ private slots:
     void displayRulesListMenu();
     void renameSelectedRule();
     void updateRuleDefinitionBox();
+    void clearSelectedRuleDownloadedEpisodeList();
     void updateFieldsToolTips(bool regex);
     void updateMustLineValidity();
     void updateMustNotLineValidity();

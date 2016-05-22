@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>816</width>
-    <height>523</height>
+    <width>818</width>
+    <height>571</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -103,6 +103,17 @@
            <widget class="QCheckBox" name="checkRegex">
             <property name="text">
              <string>Use Regular Expressions</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkSmart">
+            <property name="toolTip">
+		    <string>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</string>
+            </property>
+            <property name="text">
+             <string>Use Smart Episode Filter</string>
             </property>
            </widget>
           </item>
@@ -405,6 +416,9 @@
      </item>
      <item>
       <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
        <property name="standardButtons">
         <set>QDialogButtonBox::Close</set>
        </property>
@@ -414,6 +428,26 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>removeRuleBtn</tabstop>
+  <tabstop>addRuleBtn</tabstop>
+  <tabstop>listRules</tabstop>
+  <tabstop>checkRegex</tabstop>
+  <tabstop>checkSmart</tabstop>
+  <tabstop>lineContains</tabstop>
+  <tabstop>lineNotContains</tabstop>
+  <tabstop>lineEFilter</tabstop>
+  <tabstop>comboCategory</tabstop>
+  <tabstop>saveDiffDir_check</tabstop>
+  <tabstop>lineSavePath</tabstop>
+  <tabstop>browseSP</tabstop>
+  <tabstop>spinIgnorePeriod</tabstop>
+  <tabstop>comboAddPaused</tabstop>
+  <tabstop>listFeeds</tabstop>
+  <tabstop>treeMatchingArticles</tabstop>
+  <tabstop>importBtn</tabstop>
+  <tabstop>exportBtn</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

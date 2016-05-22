@@ -66,8 +66,14 @@ namespace RSS
         void setLastMatch(const QDateTime &lastMatch);
         bool useRegex() const;
         void setUseRegex(bool enabled);
+        bool useSmartFilter() const;
+        void setUseSmartFilter(bool enabled);
         QString episodeFilter() const;
         void setEpisodeFilter(const QString &e);
+
+        void appendLastComputedEpisode();
+        QStringList previouslyMatchedEpisodes() const;
+        void setPreviouslyMatchedEpisodes(const QStringList &previouslyMatchedEpisodes);
 
         QString savePath() const;
         void setSavePath(const QString &savePath);
