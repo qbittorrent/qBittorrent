@@ -1914,3 +1914,61 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
 
     updateStatus();
 }
+
+// ---------------- scheduled downloading via piece deadlines ---------------------------
+
+void TorrentHandle::scheduleDownloading(std::chrono::milliseconds completionTime, std::chrono::milliseconds delay, bool onlyUncompletedPieces)
+{
+    if (!hasMetadata()) return;
+
+    setSequentialDownload(false);
+
+    setSequentialUniformDeadlines({0, info().piecesCount()}, completionTime, delay, onlyUncompletedPieces);
+}
+
+void TorrentHandle::scheduleFileDonwloading(int fileIndex, std::chrono::milliseconds totalDeadline,
+                                            std::chrono::milliseconds delay, bool onlyUncompletedPieces)
+{
+    if (!hasMetadata()) return;
+
+    setSequentialDownload(false);
+
+    const auto filePieces = info().filePieces(fileIndex);
+    if (filePieces.isEmpty()) return; // filePieces() printed debug message already
+
+    setSequentialUniformDeadlines(filePieces, totalDeadline, delay, onlyUncompletedPieces);
+}
+
+void TorrentHandle::setSequentialUniformDeadlines(TorrentInfo::PieceRange range, std::chrono::milliseconds totalDeadline,
+                                                  std::chrono::milliseconds delay, bool onlyUncompletedPieces)
+{
+    if (!hasMetadata()) return; // not needed in private function?
+
+    if (totalDeadline.count() < 0) {
+         for (int piece = range.first(); piece <= range.last(); ++piece)
+            SAFE_CALL(reset_piece_deadline, piece);
+    }
+    else {
+        if (!onlyUncompletedPieces) {
+            const std::chrono::milliseconds perPieceDeadline = totalDeadline / range.size();
+            for (int i = 0; i < range.size(); ++i)
+                SAFE_CALL(set_piece_deadline, range[i], (delay + (i + 1) * perPieceDeadline).count());
+        }
+        else {
+            // count uncompleted pieces because we split completionTimeMs between those only
+            int uncompletedPieces = 0;
+            // unfortunately, libtorrent::bitfield does not provide random access iterators
+            for (int i = 0; i < range.size(); ++i)
+                if (!m_nativeStatus.pieces.get_bit(range[i]))
+                    ++uncompletedPieces;
+
+            const std::chrono::milliseconds perPieceDeadline = totalDeadline / uncompletedPieces;
+            int processedUncompletedPieces = 0;
+            for (int i = 0; i < range.size(); ++i)
+                if (!m_nativeStatus.pieces.get_bit(range[i])) {
+                    SAFE_CALL(set_piece_deadline, range[i], (delay + (i + 1) * perPieceDeadline).count());
+                    ++processedUncompletedPieces;
+                }
+        }
+    }
+}

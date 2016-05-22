@@ -43,6 +43,7 @@
 #include <libtorrent/torrent_status.hpp>
 #endif
 
+#include <chrono>
 #include <boost/function.hpp>
 
 #include "base/tristatebool.h"
@@ -315,6 +316,14 @@ namespace BitTorrent
         void setName(const QString &name);
         void setSequentialDownload(bool b);
         void toggleSequentialDownload();
+        // disables deadlines if completionTime < 0
+        void scheduleDownloading(std::chrono::milliseconds totalDeadline,
+                                 std::chrono::milliseconds delay = std::chrono::milliseconds(0),
+                                 bool onlyUncompletedPieces = false);
+        void scheduleFileDonwloading(int fileIndex,
+                                     std::chrono::milliseconds totalDeadline,
+                                     std::chrono::milliseconds delay = std::chrono::milliseconds(0),
+                                     bool onlyUncompletedPieces = false);
         void setFirstLastPiecePriority(bool b);
         void toggleFirstLastPiecePriority();
         void pause();
@@ -391,6 +400,12 @@ namespace BitTorrent
         bool addTracker(const TrackerEntry &tracker);
         bool addUrlSeed(const QUrl &urlSeed);
         bool removeUrlSeed(const QUrl &urlSeed);
+
+        // disables deadlines if totalDeadline < 0
+        void setSequentialUniformDeadlines(TorrentInfo::PieceRange range,
+                                           std::chrono::milliseconds totalDeadline,
+                                           std::chrono::milliseconds delay,
+                                           bool onlyUncompletedPieces = false);
 
         Session *const m_session;
         libtorrent::torrent_handle m_nativeHandle;

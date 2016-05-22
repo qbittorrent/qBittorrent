@@ -122,6 +122,11 @@ public:
         return m_size == 0;
     }
 
+    constexpr IndexType operator[](IndexDiffType index) const
+    {
+        return m_first + index;
+    }
+
 private:
     IndexType m_first;
     IndexDiffType m_size;
