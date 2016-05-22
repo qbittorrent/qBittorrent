@@ -63,6 +63,7 @@
 #include "lineedit.h"
 #include "transferlistwidget.h"
 #include "autoexpandabledialog.h"
+#include "downloadingdeadlinedialog.h"
 
 PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *main_window, TransferListWidget *transferList)
     : QWidget(parent), transferList(transferList), main_window(main_window), m_torrent(0)
@@ -578,11 +579,13 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
     QAction *actOpen = 0;
     QAction *actOpenContainingFolder = 0;
     QAction *actRename = 0;
+    QAction *actScheduleDownloading;
     if (selectedRows.size() == 1) {
         actOpen = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("folder-documents"), tr("Open"));
         actOpenContainingFolder = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
         actRename = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
         myFilesLlistMenu.addSeparator();
+        actScheduleDownloading = myFilesLlistMenu.addAction(tr("Schedule sequential downloading..."));
     }
     QMenu subMenu;
     if (!m_torrent->isSeed()) {
@@ -609,6 +612,9 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
         }
         else if (act == actRename) {
             renameSelectedFile();
+        }
+        else if (act == actScheduleDownloading) {
+            scheduleFilesDownloading();
         }
         else {
             int prio = prio::NORMAL;
@@ -787,6 +793,27 @@ void PropertiesWidget::openSelectedFile()
     if (selectedIndexes.size() != 1)
         return;
     openDoubleClickedFile(selectedIndexes.first());
+}
+
+void PropertiesWidget::scheduleFilesDownloading()
+{
+    if (!m_torrent || !m_torrent->hasMetadata()) return;
+
+    const QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(0);
+    if (selectedIndexes.size() != 1) // do not support multiple selections yet
+        return;
+
+    QVector<qreal> filesProgress = m_torrent->filesProgress();
+    for (const QModelIndex &index: selectedIndexes) {
+        const int fileIndex = PropListModel->getFileIndex(index);
+        const qlonglong fileSize = m_torrent->info().fileSize(fileIndex);
+        DownloadingDeadlineDialog dialog {m_torrent->info().filePath(fileIndex),
+                                          fileSize, static_cast<qlonglong>(fileSize * (1. - filesProgress[fileIndex])), this};
+        if (dialog.exec() == QDialog::Accepted)
+            m_torrent->scheduleFileDonwloading(fileIndex,
+                                               dialog.downloadingDeadline(), dialog.downloadingDelay(),
+                                               dialog.onlyUncompletedPieces());
+    }
 }
 
 void PropertiesWidget::askWebSeed()

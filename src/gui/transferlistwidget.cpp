@@ -63,6 +63,7 @@
 #include "base/utils/string.h"
 #include "autoexpandabledialog.h"
 #include "transferlistsortmodel.h"
+#include "downloadingdeadlinedialog.h"
 
 static QStringList extractHashes(const QList<BitTorrent::TorrentHandle *> &torrents);
 
@@ -557,6 +558,17 @@ void TransferListWidget::toggleSelectedTorrentsSequentialDownload() const
         torrent->toggleSequentialDownload();
 }
 
+void TransferListWidget::scheduleSequentialDownload()
+{
+    foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents()) {
+        const qlonglong torrentSize = torrent->info().totalSize();
+        DownloadingDeadlineDialog dialog {torrent->name(),
+                                  torrentSize, static_cast<qlonglong>(torrentSize * (1. - torrent->progress())), this};
+        if (dialog.exec() == QDialog::Accepted)
+            torrent->scheduleDownloading(dialog.downloadingDeadline(), dialog.downloadingDelay(), dialog.onlyUncompletedPieces());
+    }
+}
+
 void TransferListWidget::toggleSelectedFirstLastPiecePrio() const
 {
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents())
@@ -666,6 +678,8 @@ void TransferListWidget::displayListMenu(const QPoint &)
     QAction actionSequential_download(tr("Download in sequential order"), 0);
     actionSequential_download.setCheckable(true);
     connect(&actionSequential_download, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSequentialDownload()));
+    QAction actionScheduledSequential_download(tr("Schedule sequential downloading..."), 0);
+    connect(&actionScheduledSequential_download, SIGNAL(triggered()), this, SLOT(scheduleSequentialDownload()));
     QAction actionFirstLastPiece_prio(tr("Download first and last pieces first"), 0);
     actionFirstLastPiece_prio.setCheckable(true);
     connect(&actionFirstLastPiece_prio, SIGNAL(triggered()), this, SLOT(toggleSelectedFirstLastPiecePrio()));
@@ -805,6 +819,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
         if (all_same_sequential_download_mode) {
             actionSequential_download.setChecked(sequential_download_mode);
             listMenu.addAction(&actionSequential_download);
+            listMenu.addAction(&actionScheduledSequential_download);
             added_preview_action = true;
         }
         if (all_same_prio_firstlast) {

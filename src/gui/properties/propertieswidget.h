@@ -91,6 +91,7 @@ protected slots:
     void showPiecesAvailability(bool show);
     void renameSelectedFile();
     void openSelectedFile();
+    void scheduleFilesDownloading();
 
 public slots:
     void setVisibility(bool visible);

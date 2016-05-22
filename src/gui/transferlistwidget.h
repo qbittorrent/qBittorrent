@@ -104,6 +104,7 @@ protected slots:
     void currentChanged(const QModelIndex& current, const QModelIndex&);
     void toggleSelectedTorrentsSuperSeeding() const;
     void toggleSelectedTorrentsSequentialDownload() const;
+    void scheduleSequentialDownload();
     void toggleSelectedFirstLastPiecePrio() const;
     void setSelectedAutoTMMEnabled(bool enabled) const;
     void askNewCategoryForSelection();
