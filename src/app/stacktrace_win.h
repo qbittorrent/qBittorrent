@@ -25,6 +25,7 @@
 #include <dbghelp.h>
 #include <stdio.h>
 
+#include <QDir>
 #include <QTextStream>
 #ifdef __MINGW32__
 #include <cxxabi.h>
@@ -41,6 +42,9 @@ namespace straceWin
 #ifdef __MINGW32__
     void demangle(QString& str);
 #endif
+
+    QString getSourcePathAndLineNumber(HANDLE hProcess, DWORD64 addr);
+    bool makeRelativePath(const QString& dir, QString& file);
 }
 
 #ifdef __MINGW32__
@@ -107,6 +111,65 @@ BOOL CALLBACK straceWin::EnumModulesCB(LPCSTR ModuleName, DWORD64 BaseOfDll, PVO
     return TRUE;
 }
 
+
+/**
+* Cuts off leading 'dir' path from 'file' path, otherwise leaves it unchanged
+* returns true if 'dir' is an ancestor of 'file', otherwise - false
+*/
+bool straceWin::makeRelativePath(const QString& dir, QString& file)
+{
+    QString d = QDir::toNativeSeparators(QDir(dir).absolutePath());
+    QString f = QDir::toNativeSeparators(QFileInfo(file).absoluteFilePath());
+
+    // append separator at the end of dir
+    QChar separator = QDir::separator();
+    if (!d.isEmpty() && (d[d.length() - 1] != separator))
+        d += separator;
+
+    if (f.startsWith(d, Qt::CaseInsensitive)) {
+        f.remove(0, d.length());
+        file.swap(f);
+
+        return true;
+    }
+
+    return false;
+}
+
+QString straceWin::getSourcePathAndLineNumber(HANDLE hProcess, DWORD64 addr)
+{
+    IMAGEHLP_LINE64 line = {0};
+    line.SizeOfStruct = sizeof(IMAGEHLP_LINE64);
+    DWORD dwDisplacement = 0;
+
+    if (SymGetLineFromAddr64(hProcess, addr, &dwDisplacement, &line)) {
+        QString path(line.FileName);
+
+#if defined STACKTRACE_WIN_PROJECT_PATH || defined STACKTRACE_WIN_MAKEFILE_PATH
+
+#define STACKTRACE_WIN_QUOTE(x)  #x
+#define STACKTRACE_WIN_STRING(x)  STACKTRACE_WIN_QUOTE(x)
+
+        //prune leading project directory path or build target directory path
+
+        bool success = false;
+#ifdef STACKTRACE_WIN_PROJECT_PATH
+        QString projectPath(STACKTRACE_WIN_STRING(STACKTRACE_WIN_PROJECT_PATH));
+        success = makeRelativePath(projectPath, path);
+#endif
+
+#ifdef STACKTRACE_WIN_MAKEFILE_PATH
+        if (!success) {
+            QString targetPath(STACKTRACE_WIN_STRING(STACKTRACE_WIN_MAKEFILE_PATH));
+            makeRelativePath(targetPath, path);
+        }
+#endif
+#endif
+        return QString("%1 : %2").arg(path).arg(line.LineNumber);
+    }
+
+    return QString();
+}
 
 
 #if defined( _M_IX86 ) && defined(Q_CC_MSVC)
@@ -221,11 +284,16 @@ const QString straceWin::getBacktrace()
                     fileName = fileName.mid(slashPos + 1);
             }
             QString funcName;
+            QString sourceFile;
             if(SymFromAddr(hProcess, ihsf.InstructionOffset, &dwDisplacement, pSymbol)) {
                 funcName = QString(pSymbol->Name);
 #ifdef __MINGW32__
                 demangle(funcName);
 #endif
+
+                // now ihsf.InstructionOffset points to the instruction that follows CALL instuction
+                // decrease the query address by one byte to point somewhere in the CALL instruction byte sequence
+                sourceFile = getSourcePathAndLineNumber(hProcess, ihsf.InstructionOffset - 1);
             }
             else {
                 funcName = QString("0x%1").arg(ihsf.InstructionOffset, 8, 16, QLatin1Char('0'));
@@ -248,6 +316,9 @@ const QString straceWin::getBacktrace()
                                 .arg(funcName)
 #ifndef __MINGW32__
                                 .arg(params.join(", "));
+
+            if (!sourceFile.isEmpty())
+                debugLine += QString("[ %1 ]").arg(sourceFile);
 #else
                                 ;
 #endif
@@ -262,6 +333,8 @@ const QString straceWin::getBacktrace()
     //logStream << "\n\nList of linked Modules:\n";
     //EnumModulesContext modulesContext(hProcess, logStream);
     //SymEnumerateModules64(hProcess, EnumModulesCB, (PVOID)&modulesContext);
+    SymCleanup(hProcess);
+
     logStream << "```";
     return log;
 }

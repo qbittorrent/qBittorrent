@@ -33,7 +33,11 @@ nogui {
     TARGET = qbittorrent
 }
 nowebui: DEFINES += DISABLE_WEBUI
-strace_win: DEFINES += STACKTRACE_WIN
+strace_win {
+    DEFINES += STACKTRACE_WIN
+    DEFINES += STACKTRACE_WIN_PROJECT_PATH=$$PWD
+    DEFINES += STACKTRACE_WIN_MAKEFILE_PATH=$$OUT_PWD
+}
 QT += network xml
 
 
