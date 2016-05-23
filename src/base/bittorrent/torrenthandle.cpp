@@ -597,25 +597,6 @@ QStringList TorrentHandle::absoluteFilePathsUnwanted() const
     return res;
 }
 
-QPair<int, int> TorrentHandle::fileExtremityPieces(int index) const
-{
-    if (!hasMetadata()) return qMakePair(-1, -1);
-
-    const int numPieces = piecesCount();
-    const qlonglong pieceSize = pieceLength();
-
-    // Determine the first and last piece of the file
-    int firstPiece = floor((m_torrentInfo.fileOffset(index) + 1) / (float) pieceSize);
-    Q_ASSERT((firstPiece >= 0) && (firstPiece < numPieces));
-
-    int numPiecesInFile = ceil(fileSize(index) / (float) pieceSize);
-    int lastPiece = firstPiece + numPiecesInFile - 1;
-    Q_ASSERT((lastPiece >= 0) && (lastPiece < numPieces));
-
-    Q_UNUSED(numPieces)
-    return qMakePair(firstPiece, lastPiece);
-}
-
 QVector<int> TorrentHandle::filePriorities() const
 {
     std::vector<int> fp;
@@ -733,13 +714,13 @@ bool TorrentHandle::hasFirstLastPiecePriority() const
     std::vector<int> fp;
     SAFE_GET(fp, file_priorities);
 
-    QPair<int, int> extremities;
+    TorrentInfo::PieceRange extremities;
     bool found = false;
     int count = static_cast<int>(fp.size());
     for (int i = 0; i < count; ++i) {
         const QString ext = Utils::Fs::fileExtension(filePath(i));
         if (Utils::Misc::isPreviewable(ext) && (fp[i] > 0)) {
-            extremities = fileExtremityPieces(i);
+            extremities = info().filePieces(i);
             found = true;
             break;
         }
@@ -749,8 +730,8 @@ bool TorrentHandle::hasFirstLastPiecePriority() const
 
     int first = 0;
     int last = 0;
-    SAFE_GET(first, piece_priority, extremities.first);
-    SAFE_GET(last, piece_priority, extremities.second);
+    SAFE_GET(first, piece_priority, extremities.first());
+    SAFE_GET(last, piece_priority, extremities.last());
 
     return ((first == 7) && (last == 7));
 }
@@ -1245,13 +1226,13 @@ void TorrentHandle::setFirstLastPiecePriority(bool b)
             // Determine the priority to set
             int prio = b ? 7 : fp[index];
 
-            QPair<int, int> extremities = fileExtremityPieces(index);
+            TorrentInfo::PieceRange extremities = info().filePieces(index);
 
             // worst case: AVI index = 1% of total file size (at the end of the file)
             int nNumPieces = ceil(fileSize(index) * 0.01 / pieceLength());
             for (int i = 0; i < nNumPieces; ++i) {
-                pp[extremities.first + i] = prio;
-                pp[extremities.second - i] = prio;
+                pp[extremities.first() + i] = prio;
+                pp[extremities.last() - i] = prio;
             }
         }
     }

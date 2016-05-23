@@ -247,7 +247,6 @@ namespace BitTorrent
         qlonglong fileSize(int index) const;
         QStringList absoluteFilePaths() const;
         QStringList absoluteFilePathsUnwanted() const;
-        QPair<int, int> fileExtremityPieces(int index) const;
         QVector<int> filePriorities() const;
 
         TorrentInfo info() const;
