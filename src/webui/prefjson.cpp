@@ -143,6 +143,9 @@ QByteArray prefjson::getPreferences()
     data["max_ratio_enabled"] = (pref->getGlobalMaxRatio() >= 0.);
     data["max_ratio"] = pref->getGlobalMaxRatio();
     data["max_ratio_act"] = BitTorrent::Session::instance()->maxRatioAction();
+    // Add trackers
+    data["add_trackers_enabled"] = pref->isAddTrackersEnabled();
+    data["add_trackers"] = pref->getTrackersList();
 
     // Web UI
     // Language
@@ -356,6 +359,9 @@ void prefjson::setPreferences(const QString& json)
     if (m.contains("max_ratio_act"))
         BitTorrent::Session::instance()->setMaxRatioAction(
                     static_cast<MaxRatioAction>(m["max_ratio_act"].toInt()));
+    // Add trackers
+    pref->setAddTrackersEnabled(m["add_trackers_enabled"].toBool());
+    pref->setTrackersList(m["add_trackers"].toString());
 
     // Web UI
     // Language
