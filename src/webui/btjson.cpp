@@ -29,6 +29,7 @@
  */
 
 #include "btjson.h"
+#include "base/logger.h"
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
 #include "base/preferences.h"
@@ -197,6 +198,15 @@ static const char KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS[] = "show_flags";
 static const char KEY_FULL_UPDATE[] = "full_update";
 static const char KEY_RESPONSE_ID[] = "rid";
 static const char KEY_SUFFIX_REMOVED[] = "_removed";
+
+// Log keys
+static const char KEY_LOG_ID[] = "id";
+static const char KEY_LOG_TIMESTAMP[] = "timestamp";
+static const char KEY_LOG_MSG_TYPE[] = "type";
+static const char KEY_LOG_MSG_MESSAGE[] = "message";
+static const char KEY_LOG_PEER_IP[] = "ip";
+static const char KEY_LOG_PEER_BLOCKED[] = "blocked";
+static const char KEY_LOG_PEER_REASON[] = "reason";
 
 QVariantMap getTranserInfoMap();
 QVariantMap toMap(BitTorrent::TorrentHandle *const torrent);
@@ -886,4 +896,65 @@ QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantM
     syncData[KEY_RESPONSE_ID] = lastResponseId;
 
     return syncData;
+}
+
+/**
+ * Returns the log in JSON format.
+ *
+ * The return value is an array of dictionaries.
+ * The dictionary keys are:
+ *   - "id": id of the message
+ *   - "timestamp": milliseconds since epoch
+ *   - "type": type of the message (int, see MsgType)
+ *   - "message": text of the message
+ */
+QByteArray btjson::getLog(bool normal, bool info, bool warning, bool critical, int lastKnownId)
+{
+    Logger* const logger = Logger::instance();
+    QVariantList msgList;
+
+    foreach (const Log::Msg& msg, logger->getMessages(lastKnownId)) {
+        if (!((msg.type == Log::NORMAL && normal)
+              || (msg.type == Log::INFO && info)
+              || (msg.type == Log::WARNING && warning)
+              || (msg.type == Log::CRITICAL && critical)))
+            continue;
+        QVariantMap map;
+        map[KEY_LOG_ID] = msg.id;
+        map[KEY_LOG_TIMESTAMP] = msg.timestamp;
+        map[KEY_LOG_MSG_TYPE] = msg.type;
+        map[KEY_LOG_MSG_MESSAGE] = msg.message;
+        msgList.append(map);
+    }
+
+    return json::toJson(msgList);
+}
+
+/**
+ * Returns the peer log in JSON format.
+ *
+ * The return value is an array of dictionaries.
+ * The dictionary keys are:
+ *   - "id": id of the message
+ *   - "timestamp": milliseconds since epoch
+ *   - "ip": IP of the peer
+ *   - "blocked": whether or not the peer was blocked
+ *   - "reason": reason of the block
+ */
+QByteArray btjson::getPeerLog(int lastKnownId)
+{
+    Logger* const logger = Logger::instance();
+    QVariantList peerList;
+
+    foreach (const Log::Peer& peer, logger->getPeers(lastKnownId)) {
+        QVariantMap map;
+        map[KEY_LOG_ID] = peer.id;
+        map[KEY_LOG_TIMESTAMP] = peer.timestamp;
+        map[KEY_LOG_PEER_IP] = peer.ip;
+        map[KEY_LOG_PEER_BLOCKED] = peer.blocked;
+        map[KEY_LOG_PEER_REASON] = peer.reason;
+        peerList.append(map);
+    }
+
+    return json::toJson(peerList);
 }

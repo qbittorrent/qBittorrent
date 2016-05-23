@@ -53,6 +53,8 @@ public:
     static QByteArray getFilesForTorrent(const QString& hash);
     static QByteArray getTransferInfo();
     static QByteArray getTorrentsRatesLimits(QStringList& hashes, bool downloadLimits);
+    static QByteArray getLog(bool normal, bool info, bool warning, bool critical, int lastKnownId);
+    static QByteArray getPeerLog(int lastKnownId);
 }; // class btjson
 
 #endif // BTJSON_H
