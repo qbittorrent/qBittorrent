@@ -2184,7 +2184,7 @@ void Preferences::setRSSEnabled(const bool enabled)
 
 uint Preferences::getRSSRefreshInterval() const
 {
-    return value("Preferences/RSS/RSSRefresh", 5).toUInt();
+    return value("Preferences/RSS/RSSRefresh", 30).toUInt();
 }
 
 void Preferences::setRSSRefreshInterval(const uint &interval)
