@@ -30,7 +30,11 @@
 #ifndef SPEEDMONITOR_H
 #define SPEEDMONITOR_H
 
-template<typename T> class QList;
+#ifndef Q_MOC_RUN
+#include <boost/circular_buffer.hpp>
+#endif
+
+#include <QtGlobal>
 
 template<typename T>
 struct Sample
@@ -71,13 +75,15 @@ typedef Sample<qreal> SpeedSampleAvg;
 class SpeedMonitor
 {
 public:
+    SpeedMonitor();
+
     void addSample(const SpeedSample &sample);
     SpeedSampleAvg average() const;
     void reset();
 
 private:
     static const int MAX_SAMPLES = 30;
-    QList<SpeedSample> m_speedSamples;
+    boost::circular_buffer<SpeedSample> m_speedSamples;
     SpeedSample m_sum;
 };
 

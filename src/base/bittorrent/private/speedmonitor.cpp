@@ -27,17 +27,21 @@
  * exception statement from your version.
  */
 
-#include <QList>
 #include "speedmonitor.h"
+
+SpeedMonitor::SpeedMonitor()
+    : m_speedSamples(MAX_SAMPLES)
+{
+}
 
 void SpeedMonitor::addSample(const SpeedSample &sample)
 {
+    if (m_speedSamples.size() >= MAX_SAMPLES) {
+        m_sum -= m_speedSamples.front();
+    }
+
     m_speedSamples.push_back(sample);
     m_sum += sample;
-    if (m_speedSamples.size() > MAX_SAMPLES) {
-        m_sum -= m_speedSamples.front();
-        m_speedSamples.pop_front();
-    }
 }
 
 SpeedSampleAvg SpeedMonitor::average() const
