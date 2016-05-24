@@ -69,6 +69,8 @@
 #include "guiiconprovider.h"
 #include "scanfoldersdelegate.h"
 #include "utils.h"
+#include "notifications/guinotificationsmanager.h"
+#include "notifications/notificationslistmodel.h"
 
 #include "ui_optionsdlg.h"
 
@@ -99,6 +101,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 #else
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #endif
+    m_ui->tabSelection->item(TAB_NOTIFICATIONS)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop-notification"));
     m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(GuiIconProvider::instance()->getIcon("preferences-other"));
 
     // set uniform size for all icons
@@ -118,18 +121,18 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
     m_ui->deleteTorrentWarningIcon->hide();
     m_ui->deleteTorrentWarningLabel->hide();
-    m_ui->deleteTorrentWarningLabel->setToolTip(QLatin1String("<html><body><p>") +
-        tr("By enabling these options, you can <strong>irrevocably lose</strong> your .torrent files!") +
-        QLatin1String("</p><p>") +
-        tr("When these options are enabled, qBittorent will <strong>delete</strong> .torrent files "
-        "after they were successfully (the first option) or not (the second option) added to its "
-        "download queue. This will be applied <strong>not only</strong> to the files opened via "
-        "&ldquo;Add torrent&rdquo; menu action but to those opened via <strong>file type association</strong> as well") +
-        QLatin1String("</p><p>") +
-        tr("If you enable the second option (&ldquo;Also when addition is cancelled&rdquo;) the "
-        ".torrent file <strong>will be deleted</strong> even if you press &ldquo;<strong>Cancel</strong>&rdquo; in "
-        "the &ldquo;Add torrent&rdquo; dialog") +
-        QLatin1String("</p></body></html>"));
+    m_ui->deleteTorrentWarningLabel->setToolTip(QLatin1String("<html><body><p>")
+                                                + tr("By enabling these options, you can <strong>irrevocably lose</strong> your .torrent files!")
+                                                + QLatin1String("</p><p>")
+                                                + tr("When these options are enabled, qBittorent will <strong>delete</strong> .torrent files "
+                                                     "after they were successfully (the first option) or not (the second option) added to its "
+                                                     "download queue. This will be applied <strong>not only</strong> to the files opened via "
+                                                     "&ldquo;Add torrent&rdquo; menu action but to those opened via <strong>file type association</strong> as well")
+                                                + QLatin1String("</p><p>")
+                                                + tr("If you enable the second option (&ldquo;Also when addition is cancelled&rdquo;) the "
+                                                     ".torrent file <strong>will be deleted</strong> even if you press &ldquo;<strong>Cancel</strong>&rdquo; in "
+                                                     "the &ldquo;Add torrent&rdquo; dialog")
+                                                + QLatin1String("</p></body></html>"));
 
     m_ui->hsplitter->setCollapsible(0, false);
     m_ui->hsplitter->setCollapsible(1, false);
@@ -468,7 +471,10 @@ void OptionsDialog::changePage(QListWidgetItem *current, QListWidgetItem *previo
 {
     if (!current)
         current = previous;
-    m_ui->tabOption->setCurrentIndex(m_ui->tabSelection->row(current));
+    const int currentTabIndex = m_ui->tabSelection->row(current);
+    if (currentTabIndex == TAB_NOTIFICATIONS)
+        setupNotificationsPage();
+    m_ui->tabOption->setCurrentIndex(currentTabIndex);
 }
 
 void OptionsDialog::loadWindowState()
@@ -506,7 +512,7 @@ void OptionsDialog::saveWindowState() const
 void OptionsDialog::saveOptions()
 {
     applyButton->setEnabled(false);
-    Preferences* const pref = Preferences::instance();
+    Preferences *const pref = Preferences::instance();
     // Load the translation
     QString locale = getLocale();
     if (pref->getLocale() != locale) {
@@ -606,8 +612,8 @@ void OptionsDialog::saveOptions()
     pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
     pref->setActionOnDblClOnTorrentFn(getActionOnDblClOnTorrentFn());
     TorrentFileGuard::setAutoDeleteMode(!m_ui->deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
-                             : !m_ui->deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
-                             : TorrentFileGuard::Always);
+                                        : !m_ui->deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
+                                        : TorrentFileGuard::Always);
     // End Downloads preferences
 
     // Connection preferences
@@ -743,7 +749,7 @@ void OptionsDialog::loadOptions()
     QString strValue;
     bool fileLogBackup = true;
     bool fileLogDelete = true;
-    const Preferences* const pref = Preferences::instance();
+    const Preferences *const pref = Preferences::instance();
 
     // General preferences
     setLocale(pref->getLocale());
@@ -781,7 +787,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
 #endif
 
-    const Application * const app = static_cast<Application*>(QCoreApplication::instance());
+    const Application *const app = static_cast<Application *>(QCoreApplication::instance());
     m_ui->checkFileLog->setChecked(app->isFileLoggerEnabled());
     m_ui->textFileLogPath->setSelectedPath(app->fileLoggerPath());
     fileLogBackup = app->isFileLoggerBackup();
@@ -1277,7 +1283,7 @@ void OptionsDialog::on_buttonBox_accepted()
     accept();
 }
 
-void OptionsDialog::applySettings(QAbstractButton* button)
+void OptionsDialog::applySettings(QAbstractButton *button)
 {
     if (button == applyButton) {
         if (!schedTimesOk()) {
@@ -1330,7 +1336,7 @@ void OptionsDialog::enableForceProxy(bool enable)
 void OptionsDialog::enableProxy(int index)
 {
     if (index) {
-        //enable
+        // enable
         m_ui->lblProxyIP->setEnabled(true);
         m_ui->textProxyIP->setEnabled(true);
         m_ui->lblProxyPort->setEnabled(true);
@@ -1350,7 +1356,7 @@ void OptionsDialog::enableProxy(int index)
         enableForceProxy(m_ui->checkForceProxy->isChecked());
     }
     else {
-        //disable
+        // disable
         m_ui->lblProxyIP->setEnabled(false);
         m_ui->textProxyIP->setEnabled(false);
         m_ui->lblProxyPort->setEnabled(false);
@@ -1374,6 +1380,7 @@ bool OptionsDialog::WinStartup() const
 {
     return m_ui->checkStartup->isChecked();
 }
+
 #endif
 
 bool OptionsDialog::preventFromSuspend() const
@@ -1447,7 +1454,7 @@ void OptionsDialog::setLocale(const QString &localeStr)
     // Attempt to find exact match
     int index = m_ui->comboI18n->findData(name, Qt::UserRole);
     if (index < 0) {
-        //Attempt to find a language match without a country
+        // Attempt to find a language match without a country
         int pos = name.indexOf('_');
         if (pos > -1) {
             QString lang = name.left(pos);
@@ -1494,7 +1501,7 @@ int OptionsDialog::getActionOnDblClOnTorrentFn() const
 
 void OptionsDialog::on_addScanFolderButton_clicked()
 {
-    Preferences* const pref = Preferences::instance();
+    Preferences *const pref = Preferences::instance();
     const QString dir = QFileDialog::getExistingDirectory(this, tr("Select folder to monitor"),
                                                           Utils::Fs::toNativePath(Utils::Fs::folderName(pref->getScanDirsLastPath())));
     if (!dir.isEmpty()) {
@@ -1530,10 +1537,9 @@ void OptionsDialog::on_removeScanFolderButton_clicked()
     if (selected.isEmpty())
         return;
     Q_ASSERT(selected.count() == ScanFoldersModel::instance()->columnCount());
-    foreach (const QModelIndex &index, selected) {
+    foreach (const QModelIndex &index, selected)
         if (index.column() == ScanFoldersModel::WATCH)
             removedScanDirs << index.data().toString();
-    }
     ScanFoldersModel::instance()->removePath(selected.first().row(), false);
 }
 
@@ -1542,7 +1548,7 @@ void OptionsDialog::handleScanFolderViewSelectionChanged()
     m_ui->removeScanFolderButton->setEnabled(!m_ui->scanFoldersView->selectionModel()->selectedIndexes().isEmpty());
 }
 
-QString OptionsDialog::askForExportDir(const QString& currentExportPath)
+QString OptionsDialog::askForExportDir(const QString &currentExportPath)
 {
     QDir currentExportDir(Utils::Fs::expandPathAbs(currentExportPath));
     QString dir;
@@ -1703,7 +1709,6 @@ QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
             return QString::fromUtf8(C_LOCALE_CHINESE_TRADITIONAL_HK);
         default:
             return QString::fromUtf8(C_LOCALE_CHINESE_TRADITIONAL_TW);
-
         }
     }
     case QLocale::Korean: return QString::fromUtf8(C_LOCALE_KOREAN);
@@ -1789,4 +1794,63 @@ void OptionsDialog::on_IPSubnetWhitelistButton_clicked()
     // call dialog window
     if (IPSubnetWhitelistOptionsDialog(this).exec() == QDialog::Accepted)
         enableApplyButton();
+}
+
+void OptionsDialog::setupNotificationsPage()
+{
+    using namespace Notifications;
+
+    StatesList eventStates = Notifications::Manager::instance().notificationStates();
+    EventsMap events = Notifications::Manager::instance().supportedNotifications();
+    QList<EventDescription> enabledLists, disabledLists;
+    for (const std::pair<EventDescription::IdType, bool> &es: eventStates) {
+        if (es.second)
+            enabledLists.push_back(events[es.first]);
+        else
+            disabledLists.push_back(events[es.first]);
+    }
+
+    m_enabledNotifications.reset(new NotificationListModel(std::move(enabledLists), nullptr));
+    m_disabledNotifications.reset(new NotificationListModel(std::move(disabledLists), nullptr));
+
+    m_ui->listEnabledNotifications->setModel(m_enabledNotifications.data());
+    m_ui->listDisabledNotifications->setModel(m_disabledNotifications.data());
+}
+
+namespace
+{
+    void moveSelectedItems(QListView *view,
+                           Notifications::NotificationListModel *srcModel,
+                           Notifications::NotificationListModel *dstModel)
+    {
+        QModelIndexList selection = view->selectionModel()->selectedIndexes();
+        for (const auto &index: selection)
+            dstModel->addItem(srcModel->takeAt(index.row()));
+    }
+}
+
+void OptionsDialog::on_btnEnableNotification_clicked()
+{
+    moveSelectedItems(m_ui->listDisabledNotifications, m_disabledNotifications.data(), m_enabledNotifications.data());
+    enableApplyButton();
+}
+
+void OptionsDialog::on_btnDisableNotification_clicked()
+{
+    moveSelectedItems(m_ui->listEnabledNotifications, m_enabledNotifications.data(), m_disabledNotifications.data());
+    enableApplyButton();
+}
+
+void OptionsDialog::on_btnEnableAllNotifications_clicked()
+{
+    m_enabledNotifications->addItems(m_disabledNotifications->items());
+    m_disabledNotifications->clear();
+    enableApplyButton();
+}
+
+void OptionsDialog::on_btnDisableAllNotifications_clicked()
+{
+    m_disabledNotifications->addItems(m_enabledNotifications->items());
+    m_enabledNotifications->clear();
+    enableApplyButton();
 }

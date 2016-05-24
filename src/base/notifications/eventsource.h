@@ -30,7 +30,6 @@
 #define QBT_EVENTSOURCE_H
 
 #include <initializer_list>
-#include <vector>
 #include <unordered_map>
 
 #include <QObject>
@@ -44,21 +43,18 @@ namespace Notifications
     class EventsSource
     {
     public:
-        using EventsArray = std::vector<EventDescription>;
-        using StatesList = std::vector<std::pair<EventDescription::IdType, bool>>;
-
         virtual ~EventsSource();
-        virtual EventsArray supportedEvents() const; // virtual for the composite pattern
+        virtual EventsMap supportedEvents() const; // virtual for the composite pattern
         virtual StatesList eventsState() const;
         virtual bool isEventEnabled(const EventDescription::IdType &eventId) const = 0;
         virtual void enableEvent(const EventDescription::IdType &eventId, bool enabled) = 0;
 
     protected:
-        explicit EventsSource(EventsArray &&events);
+        explicit EventsSource(EventsMap &&events);
         explicit EventsSource(std::initializer_list<EventDescription> events);
 
     private:
-        EventsArray m_supportedEvents;
+        EventsMap m_supportedEvents;
     };
 
     class CompoundEventsSource: public EventsSource
@@ -66,7 +62,7 @@ namespace Notifications
     public:
         CompoundEventsSource();
 
-        EventsArray supportedEvents() const override;
+        EventsMap supportedEvents() const override;
         StatesList eventsState() const override;
         bool isEventEnabled(const EventDescription::IdType &eventId) const override;
         void enableEvent(const EventDescription::IdType &eventId, bool enabled) override;
@@ -112,7 +108,7 @@ namespace Notifications
             bool isConnected;
         };
 
-        static EventsArray extractEventsArray(std::initializer_list<std::pair<EventDescription,Connection>> events);
+        static EventsMap extractEventsMap(std::initializer_list<std::pair<EventDescription,Connection>> events);
         void setConnectionState(ConnectionWithState &connection, bool isConnected);
 
         QPointer<const QObject> m_subject;

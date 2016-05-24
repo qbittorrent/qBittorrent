@@ -33,6 +33,7 @@
 
 #include <QButtonGroup>
 #include <QDialog>
+#include <QScopedPointer>
 
 class QAbstractButton;
 class QCloseEvent;
@@ -50,6 +51,11 @@ enum DoubleClickAction
 namespace Net
 {
     enum class ProxyType;
+}
+
+namespace Notifications
+{
+    class NotificationListModel;
 }
 
 namespace Ui
@@ -72,6 +78,7 @@ private:
         TAB_BITTORRENT,
         TAB_RSS,
         TAB_WEBUI,
+        TAB_NOTIFICATIONS,
         TAB_ADVANCED
     };
 
@@ -108,6 +115,12 @@ private slots:
     void on_btnWebUiKey_clicked();
     void on_registerDNSBtn_clicked();
     void setLocale(const QString &localeStr);
+
+    // notifications page
+    void on_btnEnableNotification_clicked();
+    void on_btnDisableNotification_clicked();
+    void on_btnEnableAllNotifications_clicked();
+    void on_btnDisableAllNotifications_clicked();
 
 private:
     // Methods
@@ -178,6 +191,7 @@ private:
     bool setSslCertificate(const QByteArray &cert);
     bool schedTimesOk();
     bool webUIAuthenticationOk();
+    void setupNotificationsPage();
 
 private:
     Ui::OptionsDialog *m_ui;
@@ -188,6 +202,9 @@ private:
     QList<QString> removedScanDirs;
     // SSL Cert / key
     QByteArray m_sslCert, m_sslKey;
+
+    QScopedPointer<Notifications::NotificationListModel> m_disabledNotifications;
+    QScopedPointer<Notifications::NotificationListModel> m_enabledNotifications;
 };
 
 #endif

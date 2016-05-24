@@ -122,15 +122,15 @@ namespace
 
 void Notifications::Manager::saveNotificationsState()
 {
-    const EventsSource::StatesList events = m_eventSource->eventsState();
-    for (const auto & eventState: events)
+    const StatesList events = m_eventSource->eventsState();
+    for (const auto &eventState: events)
         SettingsStorage::instance()->storeValue(notificationKey(eventState.first), eventState.second);
 }
 
 void Notifications::Manager::reloadNotificationsState()
 {
-    const EventsSource::StatesList events = m_eventSource->eventsState();
-    for (const auto & eventState: events) {
+    const StatesList events = m_eventSource->eventsState();
+    for (const auto &eventState: events) {
         m_eventSource->enableEvent(
             eventState.first,
             SettingsStorage::instance()->loadValue(notificationKey(eventState.first),
@@ -143,7 +143,7 @@ void Notifications::Manager::setNotificationActive(const std::string &id, bool a
     m_eventSource->enableEvent(id, active);
 }
 
-std::vector<Notifications::EventDescription> Notifications::Manager::supportedNotifications()
+Notifications::EventsMap Notifications::Manager::supportedNotifications()
 {
     return m_eventSource->supportedEvents();
 }
@@ -151,8 +151,8 @@ std::vector<Notifications::EventDescription> Notifications::Manager::supportedNo
 void Notifications::Manager::addEventSource(Notifications::EventsSource *source)
 {
     m_eventSource->addSource(source);
-    const EventsSource::StatesList events = source->eventsState();
-    for (const auto & eventState: events) {
+    const StatesList events = source->eventsState();
+    for (const auto &eventState: events) {
         source->enableEvent(
             eventState.first,
             SettingsStorage::instance()->loadValue(notificationKey(eventState.first),
@@ -163,4 +163,9 @@ void Notifications::Manager::addEventSource(Notifications::EventsSource *source)
 void Notifications::Manager::removeEventSource(Notifications::EventsSource *source)
 {
     m_eventSource->removeSource(source);
+}
+
+Notifications::StatesList Notifications::Manager::notificationStates() const
+{
+    return m_eventSource->eventsState();
 }

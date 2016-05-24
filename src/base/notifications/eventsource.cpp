@@ -35,14 +35,15 @@
 #include "notificationsmanager.h"
 
 // --------------------- EventsSource --------------------------------------------------------------
-Notifications::EventsSource::EventsSource(EventsArray &&events)
+Notifications::EventsSource::EventsSource(EventsMap &&events)
     : m_supportedEvents {events}
 {
 }
 
 Notifications::EventsSource::EventsSource(std::initializer_list<EventDescription> events)
-    : m_supportedEvents {events}
 {
+    for (const EventDescription &ed: events)
+        m_supportedEvents.insert(std::make_pair(ed.id(), ed));
 }
 
 Notifications::EventsSource::~EventsSource()
@@ -50,17 +51,17 @@ Notifications::EventsSource::~EventsSource()
     Manager::instance().removeEventSource(this);
 }
 
-Notifications::EventsSource::EventsArray Notifications::EventsSource::supportedEvents() const
+Notifications::EventsMap Notifications::EventsSource::supportedEvents() const
 {
     return m_supportedEvents;
 }
 
-Notifications::EventsSource::StatesList Notifications::EventsSource::eventsState() const
+Notifications::StatesList Notifications::EventsSource::eventsState() const
 {
     std::vector<std::pair<Notifications::EventDescription::IdType, bool>> res;
     res.reserve(m_supportedEvents.size());
-    for (const auto & ev: m_supportedEvents)
-        res.emplace_back(ev.id(), isEventEnabled(ev.id()));
+    for (const auto &evPair: m_supportedEvents)
+        res.emplace_back(evPair.first, isEventEnabled(evPair.first));
     return res;
 }
 
@@ -83,17 +84,17 @@ void Notifications::CompoundEventsSource::removeSource(Notifications::EventsSour
     m_sources.erase(it);
 }
 
-Notifications::EventsSource::EventsArray Notifications::CompoundEventsSource::supportedEvents() const
+Notifications::EventsMap Notifications::CompoundEventsSource::supportedEvents() const
 {
-    EventsArray res;
+    EventsMap res;
     for (const EventsSource *s: m_sources) {
-        EventsArray tmp = s->supportedEvents();
-        std::move(tmp.begin(), tmp.end(), std::back_inserter(res));
+        EventsMap tmp = s->supportedEvents();
+        std::move(tmp.begin(), tmp.end(), std::inserter(res, res.begin()));
     }
     return res;
 }
 
-Notifications::EventsSource::StatesList Notifications::CompoundEventsSource::eventsState() const
+Notifications::StatesList Notifications::CompoundEventsSource::eventsState() const
 {
     StatesList res;
     for (const EventsSource *s: m_sources) {
@@ -107,8 +108,8 @@ Notifications::EventsSource::StatesList Notifications::CompoundEventsSource::eve
 void Notifications::CompoundEventsSource::enableEvent(const EventDescription::IdType &eventId, bool enabled)
 {
     for (EventsSource *s: m_sources) {
-        EventsArray tmp = s->supportedEvents();
-        auto it = std::find(tmp.begin(), tmp.end(), EventDescription(eventId));
+        EventsMap tmp = s->supportedEvents();
+        auto it = tmp.find(eventId);
         if (it != tmp.end()) {
             s->enableEvent(eventId, enabled);
             return;
@@ -120,8 +121,8 @@ void Notifications::CompoundEventsSource::enableEvent(const EventDescription::Id
 bool Notifications::CompoundEventsSource::isEventEnabled(const EventDescription::IdType &eventId) const
 {
     for (EventsSource *s: m_sources) {
-        EventsArray tmp = s->supportedEvents();
-        auto it = std::find(tmp.begin(), tmp.end(), EventDescription(eventId));
+        EventsMap tmp = s->supportedEvents();
+        auto it = tmp.find(eventId);
         if (it != tmp.end())
             return s->isEventEnabled(eventId);
     }
@@ -131,7 +132,7 @@ bool Notifications::CompoundEventsSource::isEventEnabled(const EventDescription:
 // -------------------------------- QObjectObserver ------------------------------------------------
 Notifications::QObjectObserver::QObjectObserver(std::initializer_list<std::pair<EventDescription, Connection>> events, QObject *parent)
     : QObject {parent}
-    , EventsSource {extractEventsArray(events)}
+    , EventsSource {extractEventsMap(events)}
 {
     std::transform(events.begin(), events.end(), std::inserter(m_connections, m_connections.end()),
                    [](const std::pair<EventDescription, Connection> &p)
@@ -140,15 +141,14 @@ Notifications::QObjectObserver::QObjectObserver(std::initializer_list<std::pair<
     });
 }
 
-Notifications::EventsSource::EventsArray
-Notifications::QObjectObserver::extractEventsArray(std::initializer_list<std::pair<EventDescription, Connection>> events)
+Notifications::EventsMap
+Notifications::QObjectObserver::extractEventsMap(std::initializer_list<std::pair<EventDescription, Connection>> events)
 {
-    EventsSource::EventsArray res;
-    res.reserve(events.size());
-    std::transform(events.begin(), events.end(), std::back_inserter(res),
+    EventsMap res;
+    std::transform(events.begin(), events.end(), std::inserter(res, res.begin()),
                    [](const std::pair<EventDescription, Connection> &p)
     {
-        return p.first;
+        return std::make_pair(p.first.id(), p.first);
     });
     return res;
 }
@@ -159,7 +159,7 @@ void Notifications::QObjectObserver::setSubject(const QObject *subject)
     disableEventsAndDisconnectSubject();
     m_subject = subject;
     if (subject) {
-        for (auto & connection: m_connections)
+        for (auto &connection: m_connections)
             setConnectionState(connection.second, connection.second.isEnabled);
         connect(subject, SIGNAL(destroyed(QObject * obj)), this, SLOT(disableEventsAndDisconnectSubject()));
     }
@@ -168,7 +168,7 @@ void Notifications::QObjectObserver::setSubject(const QObject *subject)
 void Notifications::QObjectObserver::disableEventsAndDisconnectSubject()
 {
     if (m_subject)
-        for (auto & connection: m_connections)
+        for (auto &connection: m_connections)
             setConnectionState(connection.second, false);
 }
 

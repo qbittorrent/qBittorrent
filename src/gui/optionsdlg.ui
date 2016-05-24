@@ -84,6 +84,11 @@
       </item>
       <item>
        <property name="text">
+        <string>Notifications</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>Advanced</string>
        </property>
       </item>
@@ -3281,6 +3286,148 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
          </widget>
         </item>
        </layout>
+      </widget>
+      <widget class="QWidget" name="tabNotificationsPage">
+       <layout class="QHBoxLayout" name="horizontalLayout_12">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_18">
+          <item>
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Avaliable notifications</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QListView" name="listDisabledNotifications"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_30">
+          <item>
+           <spacer name="verticalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnEnableNotification">
+            <property name="toolTip">
+             <string>Enable selected notification</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="arrow-right"/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnDisableNotification">
+            <property name="toolTip">
+             <string>Disable selected notification</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="arrow-left"/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_9">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Preferred</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnEnableAllNotifications">
+            <property name="toolTip">
+             <string>Enable all notifications</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="arrow-right-double"/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnDisableAllNotifications">
+            <property name="toolTip">
+             <string>Disable all notifications</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="arrow-left-double"/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_27">
+          <item>
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>Enabled notifications</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QListView" name="listEnabledNotifications"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+       <zorder>listDisabledNotifications</zorder>
+       <zorder>listEnabledNotifications</zorder>
+       <zorder>btnDisableNotification</zorder>
+       <zorder>btnEnableNotification</zorder>
+       <zorder>btnEnableAllNotifications</zorder>
+       <zorder>btnDisableAllNotifications</zorder>
+       <zorder>verticalSpacer_3</zorder>
+       <zorder>verticalSpacer_7</zorder>
+       <zorder>verticalSpacer_9</zorder>
+       <zorder>label_11</zorder>
+       <zorder>label_12</zorder>
+       <zorder>listDisabledNotifications</zorder>
       </widget>
       <widget class="QWidget" name="tabAdvancedPage">
        <layout class="QVBoxLayout" name="advPageLayout">

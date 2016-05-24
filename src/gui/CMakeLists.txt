@@ -71,6 +71,7 @@ updownratiodlg.h
 utils.h
 notifications/guinotificationsmanager.h
 notifications/searchengineevents.h
+notifications/notificationslistmodel.h
 )
 
 set(QBT_GUI_SOURCES
@@ -119,6 +120,7 @@ updownratiodlg.cpp
 utils.cpp
 notifications/guinotificationsmanager.cpp
 notifications/searchengineevents.cpp
+notifications/notificationslistmodel.cpp
 )
 
 if (APPLE)

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015 Eugene Shalygin
+ * Copyright (C) 2016 Eugene Shalygin
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,57 +24,38 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
+ *
  */
 
-#ifndef QBT_NOTIFICATIONS_EVENTOPTION_H
-#define QBT_NOTIFICATIONS_EVENTOPTION_H
+#ifndef QBT_NOTIFICATIONSLISTMODEL_H
+#define QBT_NOTIFICATIONSLISTMODEL_H
 
-#include <map>
-#include <string>
-#include <vector>
-#include <utility>
-#include <QString>
-
-class QObject;
+#include <QAbstractListModel>
+#include "base/notifications/eventoption.h"
+#include <QList>
 
 namespace Notifications
 {
-    class EventDescription
+    class NotificationListModel: public QAbstractListModel
     {
     public:
-        using ThisType = EventDescription;
-        using IdType = std::string;
-        /// For the sake of code readability this constructor creates *invalid* object
-        /// All the setters have to be invoked with valid parameters prior to any manipulations with
-        /// this object.
-        explicit EventDescription(const IdType &id = IdType());
+        NotificationListModel(QList<EventDescription> &&items, QObject *parent = nullptr);
+        int rowCount(const QModelIndex &parent) const override;
+        QVariant data(const QModelIndex &index, int role) const override;
 
+        // adds an item to list and re-sorts the list
+        void addItem(const EventDescription &item);
+        // adds items to list and re-sorts the list
+        void addItems(const QList<EventDescription> &items);
 
-        ThisType &name(const QString &v);
-        ThisType &description(const QString &v);
-        ThisType &enabledByDefault(bool v);
+        EventDescription takeAt(int index);
+        void clear();
 
-        const IdType &id() const;
-        const QString &name() const;
-        const QString &description() const;
-        bool isEnabledByDefault() const;
-
-    protected:
-        void assertValidity() const;
+        const QList<EventDescription> &items() const;
 
     private:
-        IdType m_id;
-        QString m_name;
-        QString m_description;
-        bool m_enabledByDefault;
+        QList<EventDescription> m_items;
     };
-
-    // compares by id
-    bool operator==(const EventDescription &left, const EventDescription &right);
-
-    using EventsArray = std::vector<EventDescription>;
-    using EventsMap = std::map<EventDescription::IdType, EventDescription>;
-    using StatesList = std::vector<std::pair<EventDescription::IdType, bool>>;
 }
 
-#endif // QBT_NOTIFICATIONS_EVENTOPTION_H
+#endif // QBT_NOTIFICATIONSLISTMODEL_H

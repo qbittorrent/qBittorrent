@@ -65,12 +65,14 @@ namespace Notifications
         void reloadNotificationsState();
 
         void setNotificationActive(const std::string &id, bool active);
-        std::vector<EventDescription> supportedNotifications();
+        EventsMap supportedNotifications();
 
         void addEventSource(EventsSource *source);
         void removeEventSource(EventsSource *source);
 
         virtual void openPath(const QString &path) const;
+
+        StatesList notificationStates() const;
 
     protected:
         explicit Manager(Notifier *notifier = nullptr, QObject *parent = nullptr);
