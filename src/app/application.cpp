@@ -242,6 +242,48 @@ void Application::processMessage(const QString &message)
         m_paramsQueue.append(params);
 }
 
+void Application::runExternalProgram(BitTorrent::TorrentHandle *const torrent) const
+{
+    QString program = Preferences::instance()->getAutoRunProgram();
+    program.replace("%N", torrent->name());
+    program.replace("%L", torrent->category());
+    program.replace("%F", Utils::Fs::toNativePath(torrent->contentPath()));
+    program.replace("%R", Utils::Fs::toNativePath(torrent->rootPath()));
+    program.replace("%D", Utils::Fs::toNativePath(torrent->savePath()));
+    program.replace("%C", QString::number(torrent->filesCount()));
+    program.replace("%Z", QString::number(torrent->totalSize()));
+    program.replace("%T", torrent->currentTracker());
+    program.replace("%I", torrent->hash());
+
+    Logger *logger = Logger::instance();
+    logger->addMessage(tr("Torrent: %1, running external program, command: %2").arg(torrent->name()).arg(program));
+
+#if defined(Q_OS_UNIX)
+    QProcess::startDetached(QLatin1String("/bin/sh"), {QLatin1String("-c"), program});
+#elif defined(Q_OS_WIN)  // test cmd: `echo "%F" > "c:\ab ba.txt"`
+    program.prepend(QLatin1String("cmd.exe /C "));
+    if (program.size() >= MAX_PATH) {
+        logger->addMessage(tr("Torrent: %1, run external program command too long (length > %2), execution failed.").arg(torrent->name()).arg(MAX_PATH), Log::CRITICAL);
+        return;
+    }
+
+    STARTUPINFOW si = {0};
+    si.cb = sizeof(si);
+    PROCESS_INFORMATION pi = {0};
+
+    WCHAR *arg = new WCHAR[program.size() + 1];
+    program.toWCharArray(arg);
+    arg[program.size()] = L'\0';
+    if (CreateProcessW(NULL, arg, NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, NULL, &si, &pi)) {
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+    }
+    delete[] arg;
+#else
+    QProcess::startDetached(program);
+#endif
+}
+
 void Application::sendNotificationEmail(BitTorrent::TorrentHandle *const torrent)
 {
     // Prepare mail content
@@ -264,29 +306,14 @@ void Application::sendNotificationEmail(BitTorrent::TorrentHandle *const torrent
 void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
 {
     Preferences *const pref = Preferences::instance();
-    Logger *logger = Logger::instance();
 
     // AutoRun program
-    if (pref->isAutoRunEnabled()) {
-        QString program = pref->getAutoRunProgram();
-
-        program.replace("%N", torrent->name());
-        program.replace("%L", torrent->category());
-        program.replace("%F", Utils::Fs::toNativePath(torrent->contentPath()));
-        program.replace("%R", Utils::Fs::toNativePath(torrent->rootPath()));
-        program.replace("%D", Utils::Fs::toNativePath(torrent->savePath()));
-        program.replace("%C", QString::number(torrent->filesCount()));
-        program.replace("%Z", QString::number(torrent->totalSize()));
-        program.replace("%T", torrent->currentTracker());
-        program.replace("%I", torrent->hash());
-
-        logger->addMessage(tr("Torrent: %1, running external program: %2").arg(torrent->name()).arg(program));
-        QProcess::startDetached(program);
-    }
+    if (pref->isAutoRunEnabled())
+        runExternalProgram(torrent);
 
     // Mail notification
     if (pref->isMailNotificationEnabled()) {
-        logger->addMessage(tr("Torrent: %1, sending mail notification").arg(torrent->name()));
+        Logger::instance()->addMessage(tr("Torrent: %1, sending mail notification").arg(torrent->name()));
         sendNotificationEmail(torrent);
     }
 }
