@@ -910,31 +910,33 @@ int TorrentHandle::peersCount() const
 
 int TorrentHandle::leechsCount() const
 {
-    return (m_nativeStatus.num_peers - m_nativeStatus.num_seeds);
+    return (peersCount() - seedsCount());
 }
 
 int TorrentHandle::totalSeedsCount() const
 {
-    return m_nativeStatus.list_seeds;
+    return m_nativeStatus.list_seeds + std::max(m_nativeStatus.num_complete, 0);
 }
 
 int TorrentHandle::totalPeersCount() const
 {
-    return m_nativeStatus.list_peers;
+    return m_nativeStatus.list_peers + std::max(m_nativeStatus.num_complete, 0) + std::max(m_nativeStatus.num_incomplete, 0);
 }
 
 int TorrentHandle::totalLeechersCount() const
 {
-    return (m_nativeStatus.list_peers - m_nativeStatus.list_seeds);
+    return (totalPeersCount() - totalSeedsCount());
 }
 
 int TorrentHandle::completeCount() const
 {
+    // additional info: https://github.com/qbittorrent/qBittorrent/pull/5300#issuecomment-267783646
     return m_nativeStatus.num_complete;
 }
 
 int TorrentHandle::incompleteCount() const
 {
+    // additional info: https://github.com/qbittorrent/qBittorrent/pull/5300#issuecomment-267783646
     return m_nativeStatus.num_incomplete;
 }
 
