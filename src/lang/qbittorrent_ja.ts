@@ -14,70 +14,70 @@
         <translation>情報</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="94"/>
+        <location filename="../gui/about.ui" line="89"/>
         <source>Author</source>
         <translation>作者</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="126"/>
-        <location filename="../gui/about.ui" line="217"/>
+        <location filename="../gui/about.ui" line="121"/>
+        <location filename="../gui/about.ui" line="212"/>
         <source>Nationality:</source>
         <translation>国籍:</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="140"/>
-        <location filename="../gui/about.ui" line="203"/>
+        <location filename="../gui/about.ui" line="135"/>
+        <location filename="../gui/about.ui" line="198"/>
         <source>Name:</source>
         <translation>名前:</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="133"/>
-        <location filename="../gui/about.ui" line="210"/>
+        <location filename="../gui/about.ui" line="128"/>
+        <location filename="../gui/about.ui" line="205"/>
         <source>E-mail:</source>
         <translation>電子メール:</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="106"/>
+        <location filename="../gui/about.ui" line="101"/>
         <source>Greece</source>
         <translation>ギリシャ</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="100"/>
+        <location filename="../gui/about.ui" line="95"/>
         <source>Current maintainer</source>
         <translation>現在のメンテナー</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="170"/>
+        <location filename="../gui/about.ui" line="165"/>
         <source>Original author</source>
         <translation>オリジナルのメンテナー</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="254"/>
+        <location filename="../gui/about.ui" line="249"/>
         <source>Special Thanks</source>
         <translation>謝辞</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="280"/>
+        <location filename="../gui/about.ui" line="275"/>
         <source>Translators</source>
         <translation>翻訳者</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="328"/>
+        <location filename="../gui/about.ui" line="323"/>
         <source>Libraries</source>
         <translation>ライブラリ</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="334"/>
+        <location filename="../gui/about.ui" line="329"/>
         <source>qBittorrent was built with the following libraries:</source>
         <translation>qBittorrent は以下のライブラリを使用してビルドされています:</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="176"/>
+        <location filename="../gui/about.ui" line="171"/>
         <source>France</source>
         <translation>フランス</translation>
     </message>
     <message>
-        <location filename="../gui/about.ui" line="306"/>
+        <location filename="../gui/about.ui" line="301"/>
         <source>License</source>
         <translation>ライセンス</translation>
     </message>
@@ -85,290 +85,332 @@
 <context>
     <name>AddNewTorrentDialog</name>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="17"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="58"/>
         <source>Save at</source>
         <translation>保存先</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="28"/>
         <source>Saving Management:</source>
-        <translation>保存設定:</translation>
+        <translation type="obsolete">保存設定:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="35"/>
         <source>Simple</source>
-        <translation>シンプル</translation>
+        <translation type="obsolete">シンプル</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="45"/>
         <source>Advanced</source>
-        <translation>詳細</translation>
+        <translation type="obsolete">詳細</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="82"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="79"/>
         <source>Browse...</source>
         <translation>参照...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="91"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="88"/>
         <source>Set as default save path</source>
         <translation>デフォルトの保存先に設定する</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="101"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="108"/>
         <source>Never show again</source>
         <translation>次回から表示しない</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="118"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="125"/>
         <source>Torrent settings</source>
         <translation>Torrent 設定</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="124"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="131"/>
         <source>Set as default category</source>
         <translation>デフォルトのカテゴリにする</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="133"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="140"/>
         <source>Category:</source>
         <translation>カテゴリ:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="158"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="165"/>
         <source>Start torrent</source>
         <translation>Torrent を開始する</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="194"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="201"/>
         <source>Torrent information</source>
         <translation>Torrent 情報</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="168"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="175"/>
         <source>Skip hash check</source>
         <translation>ハッシュチェックを省略する</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="247"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="254"/>
         <source>Size:</source>
         <translation>サイズ:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="213"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="220"/>
         <source>Hash:</source>
         <translation>ハッシュ:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="261"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="268"/>
         <source>Comment:</source>
         <translation>コメント:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="240"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="247"/>
         <source>Date:</source>
         <translation>作成日時:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="366"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="19"/>
+        <source>Torrent Management Mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="26"/>
+        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="30"/>
+        <source>Manual</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="35"/>
+        <source>Automatic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="98"/>
+        <source>When checked, the .torrent file will not be deleted despite the settings at the &quot;Download&quot; page of the options dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="101"/>
+        <source>Do not delete .torrent file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="373"/>
         <source>Normal</source>
         <translation>通常</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="371"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="378"/>
         <source>High</source>
         <translation>高い</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="376"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="383"/>
         <source>Maximum</source>
         <translation>最高</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="381"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="388"/>
         <source>Do not download</source>
         <translation>ダウンロードしない</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="206"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="212"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="670"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="218"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="681"/>
         <source>I/O Error</source>
         <translation>I/O エラー</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="206"/>
         <source>The torrent file does not exist.</source>
-        <translation>Torrent ファイルが存在しません。</translation>
+        <translation type="obsolete">Torrent ファイルが存在しません。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="220"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="226"/>
         <source>Invalid torrent</source>
         <translation>無効な Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="220"/>
         <source>Failed to load the torrent: %1</source>
-        <translation>Torrent: %1 の読み込みに失敗しました</translation>
+        <translation type="obsolete">Torrent: %1 の読み込みに失敗しました</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="231"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="236"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="263"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="268"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="238"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="243"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="272"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="277"/>
         <source>Already in download list</source>
         <translation>既存の Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="696"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="708"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
         <translation>利用できません</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="697"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="709"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
         <translation>利用できません</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="705"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="717"/>
         <source>Not available</source>
         <translation>不明</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="253"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="261"/>
         <source>Invalid magnet link</source>
         <translation>無効なマグネットリンク</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="212"/>
         <source>The torrent file cannot be read from the disk. Probably you don&apos;t have enough permissions.</source>
-        <translation>Torrent ファイルをディスクから読み込めません。おそらくあなたには十分なアクセス権がありません。</translation>
+        <translation type="obsolete">Torrent ファイルをディスクから読み込めません。おそらくあなたには十分なアクセス権がありません。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="231"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="263"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="212"/>
+        <source>The torrent file &apos;%1&apos; does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="218"/>
+        <source>The torrent file &apos;%1&apos; cannot be read from the disk. Probably you don&apos;t have enough permissions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="226"/>
+        <source>Failed to load the torrent: %1.
+Error: %2</source>
+        <comment>Don&apos;t remove the &apos;
+&apos; characters. They insert a newline.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="238"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="272"/>
         <source>Torrent is already in download list. Trackers weren&apos;t merged because it is a private torrent.</source>
         <translation>Torrent はすでにダウンロードリストにあります。プライベート Torrent のためトラッカーはマージされません。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="236"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="243"/>
         <source>Torrent is already in download list. Trackers were merged.</source>
         <translation>Torrent はすでにダウンロードリストにあります。トラッカーをマージします。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="240"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="272"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="247"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="281"/>
         <source>Cannot add torrent</source>
         <translation>Torrent を追加できません</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="240"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="247"/>
         <source>Cannot add this torrent. Perhaps it is already in adding state.</source>
         <translation>Torrent を追加できません。おそらくこれは現在追加中のものです。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="253"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="261"/>
         <source>This magnet link was not recognized</source>
         <translation>このマグネットリンクは認識されませんでした</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="268"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="277"/>
         <source>Magnet link is already in download list. Trackers were merged.</source>
         <translation>マグネットリストはすでにダウンロードリストにあります。トラッカーをマージします。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="272"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="281"/>
         <source>Cannot add this torrent. Perhaps it is already in adding.</source>
         <translation>この Torrent は追加できません。おそらくこれはすでに追加中です。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="281"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="290"/>
         <source>Magnet link</source>
         <translation>マグネットリンク</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="288"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="298"/>
         <source>Retrieving metadata...</source>
         <translation>メタデータを回収しています...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="372"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="382"/>
         <source>Not Available</source>
         <comment>This size is unavailable.</comment>
         <translation>利用できません</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="374"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="384"/>
         <source>Free space on disk: %1</source>
         <translation>ディスクの空き容量: %1</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="415"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="417"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="425"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="427"/>
         <source>Choose save path</source>
         <translation>保存先の選択</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="450"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="460"/>
         <source>Rename the file</source>
         <translation>ファイル名の変更</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="451"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="461"/>
         <source>New name:</source>
         <translation>新しい名前:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="455"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="480"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="465"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="490"/>
         <source>The file could not be renamed</source>
         <translation>ファイル名を変更できませんでした</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="456"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="466"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>ファイル名に使用できない文字が含まれています。別の文字を選択してください。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="481"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="518"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="491"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="528"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>同じ名前のファイルがこのフォルダー内に存在します。別の名前を指定してください。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="517"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="527"/>
         <source>The folder could not be renamed</source>
         <translation>フォルダー名を変更できませんでした</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="577"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="587"/>
         <source>Rename...</source>
         <translation>名前の変更...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="581"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="591"/>
         <source>Priority</source>
         <translation>優先度</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="671"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="682"/>
         <source>Invalid metadata</source>
         <translation>不正なメタデータ</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="678"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="689"/>
         <source>Parsing metadata...</source>
         <translation>メタデータを解析しています...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="682"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="694"/>
         <source>Metadata retrieval complete</source>
         <translation>メタデータの回収が完了しました</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="744"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="756"/>
         <source>Download Error</source>
         <translation>ダウンロードエラー</translation>
     </message>
@@ -376,179 +418,188 @@
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="205"/>
+        <location filename="../gui/advancedsettings.cpp" line="210"/>
         <source>Disk write cache size</source>
         <translation>ディスク書き込みキャッシュサイズ</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="175"/>
+        <location filename="../gui/advancedsettings.cpp" line="180"/>
         <source> MiB</source>
         <translation> MiB</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="225"/>
+        <location filename="../gui/advancedsettings.cpp" line="230"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>送出側ポート (最小) [0: 無効]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="230"/>
+        <location filename="../gui/advancedsettings.cpp" line="235"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>送出側ポート (最大) [0: 無効]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="233"/>
+        <location filename="../gui/advancedsettings.cpp" line="238"/>
         <source>Recheck torrents on completion</source>
         <translation>Torrent 完了時に再チェックする</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="239"/>
+        <location filename="../gui/advancedsettings.cpp" line="244"/>
         <source>Transfer list refresh interval</source>
         <translation>転送リストのリフレッシュ間隔</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="238"/>
+        <location filename="../gui/advancedsettings.cpp" line="243"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation> ms</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="93"/>
+        <location filename="../gui/advancedsettings.cpp" line="96"/>
         <source>Setting</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="93"/>
+        <location filename="../gui/advancedsettings.cpp" line="96"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
         <translation>値</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="173"/>
+        <location filename="../gui/advancedsettings.cpp" line="178"/>
         <source> (auto)</source>
         <translation> (自動)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="184"/>
+        <location filename="../gui/advancedsettings.cpp" line="189"/>
         <source>qBittorrent Section</source>
         <translation>qBittorrent セクション</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="186"/>
         <location filename="../gui/advancedsettings.cpp" line="191"/>
+        <location filename="../gui/advancedsettings.cpp" line="196"/>
         <source>Open documentation</source>
         <translation>ドキュメントを開く</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="189"/>
+        <location filename="../gui/advancedsettings.cpp" line="194"/>
         <source>libtorrent Section</source>
         <translation>libtorrent セクション</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="210"/>
+        <location filename="../gui/advancedsettings.cpp" line="215"/>
         <source> s</source>
         <comment> seconds</comment>
         <translation> s</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="211"/>
+        <location filename="../gui/advancedsettings.cpp" line="216"/>
         <source>Disk cache expiry interval</source>
         <translation>ディスクキャッシュ有効期限</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="214"/>
+        <location filename="../gui/advancedsettings.cpp" line="219"/>
         <source>Enable OS cache</source>
         <translation>OS のキャッシュを有効にする</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="219"/>
+        <location filename="../gui/advancedsettings.cpp" line="224"/>
         <source> m</source>
         <comment> minutes</comment>
         <translation> 分</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="242"/>
+        <location filename="../gui/advancedsettings.cpp" line="247"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>ピアの国籍を解決する (GeoIP)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="245"/>
+        <location filename="../gui/advancedsettings.cpp" line="250"/>
         <source>Resolve peer host names</source>
         <translation>ピアのホスト名を解決する</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="253"/>
+        <location filename="../gui/advancedsettings.cpp" line="258"/>
         <source>Strict super seeding</source>
         <translation>厳密なスーパーシード</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="273"/>
+        <location filename="../gui/advancedsettings.cpp" line="284"/>
         <source>Network Interface (requires restart)</source>
         <translation>ネットワークインターフェース (再起動が必要)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="276"/>
+        <location filename="../gui/advancedsettings.cpp" line="287"/>
         <source>Listen on IPv6 address (requires restart)</source>
         <translation>IPV6 アドレスを待ち受ける (再起動が必要)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="301"/>
+        <location filename="../gui/advancedsettings.cpp" line="294"/>
+        <source>Display notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="297"/>
+        <source>Display notifications for added torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="316"/>
         <source>Confirm torrent recheck</source>
         <translation>Torrent の再チェック時に確認する</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="304"/>
+        <location filename="../gui/advancedsettings.cpp" line="319"/>
         <source>Exchange trackers with other peers</source>
         <translation>他のピアとトラッカー情報を交換する</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="307"/>
+        <location filename="../gui/advancedsettings.cpp" line="322"/>
         <source>Always announce to all trackers</source>
         <translation>常にすべてのトラッカーにアナウンスする</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="255"/>
+        <location filename="../gui/advancedsettings.cpp" line="260"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>どれか</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="220"/>
+        <location filename="../gui/advancedsettings.cpp" line="225"/>
         <source>Save resume data interval</source>
         <comment>How often the fastresume file is saved.</comment>
         <translation>再開データ保存間隔</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="250"/>
+        <location filename="../gui/advancedsettings.cpp" line="255"/>
         <source>Maximum number of half-open connections [0: Unlimited]</source>
         <translation>最大半開接続数 [0 無制限]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="279"/>
+        <location filename="../gui/advancedsettings.cpp" line="290"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>トラッカーに報告する IP アドレス (再起動が必要)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="282"/>
         <source>Display program on-screen notifications</source>
-        <translation>オンスクリーン通知を表示する</translation>
+        <translation type="obsolete">オンスクリーン通知を表示する</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="285"/>
+        <location filename="../gui/advancedsettings.cpp" line="300"/>
         <source>Enable embedded tracker</source>
         <translation>埋め込みトラッカーを有効にする</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="290"/>
+        <location filename="../gui/advancedsettings.cpp" line="305"/>
         <source>Embedded tracker port</source>
         <translation>埋め込みトラッカーポート</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="293"/>
+        <location filename="../gui/advancedsettings.cpp" line="308"/>
         <source>Check for software updates</source>
         <translation>ソフトウェアアップデートをチェックする</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="297"/>
+        <location filename="../gui/advancedsettings.cpp" line="312"/>
         <source>Use system icon theme</source>
         <translation>システムのアイコンテーマを使用する</translation>
     </message>
@@ -556,38 +607,38 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="132"/>
+        <location filename="../app/application.cpp" line="130"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>qBittorrent %1 を起動しました</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="389"/>
+        <location filename="../app/application.cpp" line="388"/>
         <source>Information</source>
         <translation>情報</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="390"/>
+        <location filename="../app/application.cpp" line="389"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>qBittorrent を操作するには Web UI http://localhost:%1 にアクセスしてください</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="391"/>
+        <location filename="../app/application.cpp" line="390"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Web UI 管理者ユーザー名: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="394"/>
+        <location filename="../app/application.cpp" line="393"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Web UI 管理者パスワードはまだデフォルトのままです: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="395"/>
+        <location filename="../app/application.cpp" line="394"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>これはセキュリティリスクになります。プログラム設定からパスワードを変更してください。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="569"/>
+        <location filename="../app/application.cpp" line="568"/>
         <source>Saving torrent progress...</source>
         <translation>Torrent の進行状況を保存しています...</translation>
     </message>
@@ -907,316 +958,316 @@
 <context>
     <name>BitTorrent::Session</name>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="217"/>
+        <location filename="../base/bittorrent/session.cpp" line="226"/>
         <source>Peer ID: </source>
         <translation>ピア ID:</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="575"/>
+        <location filename="../base/bittorrent/session.cpp" line="601"/>
         <source>HTTP User-Agent is &apos;%1&apos;</source>
         <translation>HTTP User-Agent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="602"/>
+        <location filename="../base/bittorrent/session.cpp" line="628"/>
         <source>Anonymous mode [ON]</source>
         <translation>匿名モード [ON]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="604"/>
+        <location filename="../base/bittorrent/session.cpp" line="630"/>
         <source>Anonymous mode [OFF]</source>
         <translation>匿名モード [OFF]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="788"/>
+        <location filename="../base/bittorrent/session.cpp" line="816"/>
         <source>PeX support [ON]</source>
         <translation>PeX サポート [ON]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="790"/>
+        <location filename="../base/bittorrent/session.cpp" line="818"/>
         <source>PeX support [OFF]</source>
         <translation>PeX サポート [OFF]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="792"/>
+        <location filename="../base/bittorrent/session.cpp" line="820"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>PeX サポートを切り替えるには再起動が必要です</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="797"/>
+        <location filename="../base/bittorrent/session.cpp" line="825"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>ローカルピア交換 [ON]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="801"/>
+        <location filename="../base/bittorrent/session.cpp" line="829"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>ローカルピア交換 [OFF]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="814"/>
+        <location filename="../base/bittorrent/session.cpp" line="842"/>
         <source>Encryption support [ON]</source>
         <translation>暗号化サポート [ON]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="819"/>
+        <location filename="../base/bittorrent/session.cpp" line="847"/>
         <source>Encryption support [FORCED]</source>
         <translation>暗号化サポート [強制]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="824"/>
+        <location filename="../base/bittorrent/session.cpp" line="852"/>
         <source>Encryption support [OFF]</source>
         <translation>暗号化サポート [OFF]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="901"/>
+        <location filename="../base/bittorrent/session.cpp" line="929"/>
         <source>Embedded Tracker [ON]</source>
         <translation>埋め込みトラッカー [ON]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="903"/>
+        <location filename="../base/bittorrent/session.cpp" line="931"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>埋め込みトラッカーの起動に失敗しました!</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="906"/>
+        <location filename="../base/bittorrent/session.cpp" line="934"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>埋め込みトラッカー [OFF]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="944"/>
+        <location filename="../base/bittorrent/session.cpp" line="972"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removing...</source>
         <translation>&apos;%1&apos; は共有比の上限に達しました。削除します...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="950"/>
+        <location filename="../base/bittorrent/session.cpp" line="978"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Pausing...</source>
         <translation>&apos;%1&apos; は共有比の上限に達しました。停止します...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1638"/>
+        <location filename="../base/bittorrent/session.cpp" line="1714"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>システムのネットワーク状態を %1 に変更しました</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1638"/>
+        <location filename="../base/bittorrent/session.cpp" line="1714"/>
         <source>ONLINE</source>
         <translation>オンライン</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1638"/>
+        <location filename="../base/bittorrent/session.cpp" line="1714"/>
         <source>OFFLINE</source>
         <translation>オフライン</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1650"/>
+        <location filename="../base/bittorrent/session.cpp" line="1726"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>%1 のネットワーク構成が変更されました。セッションバインディングをリフレッシュします</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1939"/>
+        <location filename="../base/bittorrent/session.cpp" line="2015"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>Torrent ファイル &apos;%1&apos; をデコードできません。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2054"/>
+        <location filename="../base/bittorrent/session.cpp" line="2130"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>Torrent &apos;%2&apos; に埋め込まれたファイル &apos;%1&apos; の再帰ダウンロード</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2372"/>
+        <location filename="../base/bittorrent/session.cpp" line="2458"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>&apos;%1.torrent&apos; を保存できませんでした</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2490"/>
+        <location filename="../base/bittorrent/session.cpp" line="2579"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>%1 が無効になっています。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2493"/>
+        <location filename="../base/bittorrent/session.cpp" line="2582"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>%1 が無効になっています。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2511"/>
+        <location filename="../base/bittorrent/session.cpp" line="2600"/>
         <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
         <translation>URL シードのルックアップに失敗しました ― URL: &apos;%1&apos;, メッセージ: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2551"/>
+        <location filename="../base/bittorrent/session.cpp" line="2640"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.</comment>
         <translation>qBittorrent はインターフェース %1 ポート %2/%3 での待ち受けに失敗しました。 理由: %4.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1067"/>
+        <location filename="../base/bittorrent/session.cpp" line="1095"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; を転送リストおよびストレージから削除しました。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1069"/>
+        <location filename="../base/bittorrent/session.cpp" line="1097"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; を転送リストから削除しました。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1204"/>
+        <location filename="../base/bittorrent/session.cpp" line="1232"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos; をダウンロードしています。お待ちください...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1503"/>
+        <location filename="../base/bittorrent/session.cpp" line="1578"/>
         <source>DHT support [ON]</source>
         <translation>DHT サポート [ON]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1508"/>
+        <location filename="../base/bittorrent/session.cpp" line="1583"/>
         <source>DHT support [OFF]. Reason: %1</source>
         <translation>DHT サポート [OFF]. 理由: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1516"/>
+        <location filename="../base/bittorrent/session.cpp" line="1591"/>
         <source>DHT support [OFF]</source>
         <translation>DHT サポート [OFF]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="209"/>
-        <location filename="../base/bittorrent/session.cpp" line="1720"/>
+        <location filename="../base/bittorrent/session.cpp" line="218"/>
+        <location filename="../base/bittorrent/session.cpp" line="1796"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent はいずれかのインターフェースでの待ち受けを試みています。ポート: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1673"/>
+        <location filename="../base/bittorrent/session.cpp" line="1749"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>定義されたネットワークインターフェースは無効です: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="213"/>
-        <location filename="../base/bittorrent/session.cpp" line="1731"/>
+        <location filename="../base/bittorrent/session.cpp" line="222"/>
+        <location filename="../base/bittorrent/session.cpp" line="1807"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent はインターフェース %1 ポート %2 での待ち受けを試みています</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1697"/>
+        <location filename="../base/bittorrent/session.cpp" line="1773"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
         <translation>qBittorrent は待ち受ける %1 ローカルアドレスを検出できませんでした</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1724"/>
+        <location filename="../base/bittorrent/session.cpp" line="1800"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2.</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
         <translation>qBittorrent はすべてのインターフェースでの待ち受けに失敗しました。ポート: %1. 理由: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1850"/>
+        <location filename="../base/bittorrent/session.cpp" line="1926"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Torrent &apos;%2&apos; にトラッカー &apos;%1&apos; が追加されました</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1860"/>
+        <location filename="../base/bittorrent/session.cpp" line="1936"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>Torrent &apos;%2&apos; からトラッカー &apos;%1&apos; が削除されました</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1875"/>
+        <location filename="../base/bittorrent/session.cpp" line="1951"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Torrent &apos;%2&apos; に URL シード &apos;%1&apos; が追加されました</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1881"/>
+        <location filename="../base/bittorrent/session.cpp" line="1957"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>Torrent &apos;%2&apos; から URL シード &apos;%1&apos; が削除されました</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2149"/>
+        <location filename="../base/bittorrent/session.cpp" line="2225"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>Torrent &apos;%1&apos; の再開に失敗しました。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2208"/>
+        <location filename="../base/bittorrent/session.cpp" line="2284"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>IP フィルターは正常に解析されました: %1 個のルールが適用されました。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2214"/>
+        <location filename="../base/bittorrent/session.cpp" line="2290"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>エラー: IP フィルターの解析に失敗しました。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2406"/>
+        <location filename="../base/bittorrent/session.cpp" line="2495"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>Torrent を追加できませんでした: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2355"/>
+        <location filename="../base/bittorrent/session.cpp" line="2441"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; を再開しました. (高速再開)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2386"/>
+        <location filename="../base/bittorrent/session.cpp" line="2472"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; をダウンロードリストに追加しました。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2454"/>
+        <location filename="../base/bittorrent/session.cpp" line="2543"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
         <translation>I/O エラーが発生しました。&apos;%1&apos; を停止しました。 %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2462"/>
+        <location filename="../base/bittorrent/session.cpp" line="2551"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: ポートマッピングに失敗しました。メッセージ: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2468"/>
+        <location filename="../base/bittorrent/session.cpp" line="2557"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: ポートマッピングに成功しました。メッセージ: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2478"/>
+        <location filename="../base/bittorrent/session.cpp" line="2567"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>IP フィルターによる。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2481"/>
+        <location filename="../base/bittorrent/session.cpp" line="2570"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>ポートフィルターによる。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2484"/>
+        <location filename="../base/bittorrent/session.cpp" line="2573"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>i2p 混在モード制限による。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2487"/>
+        <location filename="../base/bittorrent/session.cpp" line="2576"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>低いポート番号による。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2525"/>
+        <location filename="../base/bittorrent/session.cpp" line="2614"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent はインターフェース %1, ポート: %2/%3 での待ち受けを正常に開始しました </translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2560"/>
+        <location filename="../base/bittorrent/session.cpp" line="2649"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>外部 IP: %1</translation>
@@ -1225,17 +1276,17 @@
 <context>
     <name>BitTorrent::TorrentHandle</name>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1417"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1411"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation>Torrent &apos;%1&apos; を移動できませんでした。理由: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1562"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1563"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
         <translation>Torrent &apos;%1&apos; のファイルサイズにミスマッチがあります。停止します。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1568"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1569"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation>Torrent &apos;%1&apos; 高速再開データはリジェクトされました (理由: %2)。再チェックしています...</translation>
     </message>
@@ -1255,65 +1306,65 @@
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="236"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="263"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="260"/>
         <source>%1 (%2)</source>
         <comment>category_name (10)</comment>
         <translation>%1 (%2)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="296"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="392"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="412"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="293"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="389"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="409"/>
         <source>Uncategorized (%1)</source>
         <translation>カテゴリなし (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="324"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="321"/>
         <source>Add category...</source>
         <translation>カテゴリの追加...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="328"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="325"/>
         <source>Remove category</source>
         <translation>カテゴリの削除</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="329"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="326"/>
         <source>Remove unused categories</source>
         <translation>未使用のカテゴリを削除</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="331"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="328"/>
         <source>Resume torrents</source>
         <translation>Torrent の再開</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="332"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="329"/>
         <source>Pause torrents</source>
         <translation>Torrent の停止</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="333"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="330"/>
         <source>Delete torrents</source>
         <translation>Torrent の削除</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="360"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="357"/>
         <source>New Category</source>
         <translation>新規カテゴリ</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="360"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="357"/>
         <source>Category:</source>
         <translation>カテゴリ:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="363"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="360"/>
         <source>Invalid category name</source>
         <translation>不正なカテゴリ名</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="364"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="361"/>
         <source>Category name must not contain &apos;\&apos;.
 Category name must not start/end with &apos;/&apos;.
 Category name must not contain &apos;//&apos; sequence.</source>
@@ -1322,8 +1373,8 @@ Category name must not contain &apos;//&apos; sequence.</source>
 カテゴリ名に連続する &apos;//&apos; は使用できません。</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="391"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="411"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="388"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="408"/>
         <source>All (%1)</source>
         <comment>this is for the category filter</comment>
         <translation>すべて (%1)</translation>
@@ -1334,30 +1385,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/cookiesdialog.ui" line="14"/>
         <source>Manage Cookies</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CookiesDlg</name>
-    <message>
-        <source>Cookies management</source>
-        <translation type="obsolete">Cookie 管理</translation>
-    </message>
-    <message>
-        <source>Key</source>
-        <extracomment>As in Key/Value pair</extracomment>
-        <translation type="obsolete">キー</translation>
-    </message>
-    <message>
-        <source>Value</source>
-        <extracomment>As in Key/Value pair</extracomment>
-        <translation type="obsolete">値</translation>
-    </message>
-    <message>
-        <source>Common keys for cookies are: &apos;%1&apos;, &apos;%2&apos;.
-You should get this information from your Web browser preferences.</source>
-        <translation type="obsolete">Cookie の共通キーは次のとおりです: &apos;%1&apos;, &apos;%2&apos;.
-この情報をウェブブラウザーの設定から確認してください。</translation>
+        <translation>Cookie の管理</translation>
     </message>
 </context>
 <context>
@@ -1365,27 +1393,27 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../gui/cookiesmodel.cpp" line="49"/>
         <source>Domain</source>
-        <translation type="unfinished"></translation>
+        <translation>ドメイン</translation>
     </message>
     <message>
         <location filename="../gui/cookiesmodel.cpp" line="51"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>パス</translation>
     </message>
     <message>
         <location filename="../gui/cookiesmodel.cpp" line="53"/>
         <source>Name</source>
-        <translation type="unfinished">名前</translation>
+        <translation>名前</translation>
     </message>
     <message>
         <location filename="../gui/cookiesmodel.cpp" line="55"/>
         <source>Value</source>
-        <translation type="unfinished">値</translation>
+        <translation>値</translation>
     </message>
     <message>
         <location filename="../gui/cookiesmodel.cpp" line="57"/>
         <source>Expiration Date</source>
-        <translation type="unfinished"></translation>
+        <translation>有効期限</translation>
     </message>
 </context>
 <context>
@@ -1943,7 +1971,7 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>LineEdit</name>
     <message>
-        <location filename="../gui/lineedit/src/lineedit.cpp" line="37"/>
+        <location filename="../gui/lineedit/src/lineedit.cpp" line="35"/>
         <source>Clear the text</source>
         <translation>テキストをクリア</translation>
     </message>
@@ -1989,492 +2017,499 @@ You should get this information from your Web browser preferences.</source>
         <translation>ダウンロード完了時(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="97"/>
+        <location filename="../gui/mainwindow.ui" line="96"/>
         <source>&amp;View</source>
         <translation>表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="179"/>
+        <location filename="../gui/mainwindow.ui" line="176"/>
         <source>&amp;Options...</source>
         <translation>オプション(&amp;O)...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="189"/>
+        <location filename="../gui/mainwindow.ui" line="186"/>
         <source>&amp;Resume</source>
         <translation>再開(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="212"/>
+        <location filename="../gui/mainwindow.ui" line="209"/>
         <source>Torrent &amp;Creator</source>
         <translation>Torrent クリエーター(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="217"/>
+        <location filename="../gui/mainwindow.ui" line="214"/>
         <source>Set Upload Limit...</source>
         <translation>アップロード速度制限の設定...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="222"/>
+        <location filename="../gui/mainwindow.ui" line="219"/>
         <source>Set Download Limit...</source>
         <translation>ダウンロード速度制限の設定...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="232"/>
+        <location filename="../gui/mainwindow.ui" line="229"/>
         <source>Set Global Download Limit...</source>
         <translation>全体のダウンロード速度制限の設定...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="237"/>
+        <location filename="../gui/mainwindow.ui" line="234"/>
         <source>Set Global Upload Limit...</source>
         <translation>全体のアップロード速度制限の設定...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="242"/>
+        <location filename="../gui/mainwindow.ui" line="239"/>
         <source>Minimum Priority</source>
         <translation>最低優先度</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="250"/>
+        <location filename="../gui/mainwindow.ui" line="247"/>
         <source>Top Priority</source>
         <translation>最高優先度</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="258"/>
+        <location filename="../gui/mainwindow.ui" line="255"/>
         <source>Decrease Priority</source>
         <translation>優先度を下げる</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="266"/>
+        <location filename="../gui/mainwindow.ui" line="263"/>
         <source>Increase Priority</source>
         <translation>優先度を上げる</translation>
     </message>
     <message>
+        <location filename="../gui/mainwindow.ui" line="274"/>
         <location filename="../gui/mainwindow.ui" line="277"/>
-        <location filename="../gui/mainwindow.ui" line="280"/>
         <source>Alternative Speed Limits</source>
         <translation>代替速度制限</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="288"/>
+        <location filename="../gui/mainwindow.ui" line="285"/>
         <source>&amp;Top Toolbar</source>
         <translation>トップツールバー(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="291"/>
+        <location filename="../gui/mainwindow.ui" line="288"/>
         <source>Display Top Toolbar</source>
         <translation>トップツールバーを表示します</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="299"/>
+        <location filename="../gui/mainwindow.ui" line="296"/>
         <source>S&amp;peed in Title Bar</source>
         <translation>タイトルバーに速度を表示(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="302"/>
+        <location filename="../gui/mainwindow.ui" line="299"/>
         <source>Show Transfer Speed in Title Bar</source>
         <translation>タイトルバーに転送速度を表示します</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="310"/>
+        <location filename="../gui/mainwindow.ui" line="307"/>
         <source>&amp;RSS Reader</source>
         <translation>RSS リーダー(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="318"/>
+        <location filename="../gui/mainwindow.ui" line="315"/>
         <source>Search &amp;Engine</source>
         <translation>検索エンジン(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="323"/>
+        <location filename="../gui/mainwindow.ui" line="320"/>
         <source>L&amp;ock qBittorrent</source>
         <translation>qBittorrent をロック(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="334"/>
         <source>&amp;Import Existing Torrent...</source>
-        <translation>既存の Torrent のインポート(&amp;I)...</translation>
+        <translation type="obsolete">既存の Torrent のインポート(&amp;I)...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="337"/>
         <source>Import Torrent...</source>
-        <translation>Torrent のインポート...</translation>
+        <translation type="obsolete">Torrent のインポート...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="342"/>
+        <location filename="../gui/mainwindow.ui" line="331"/>
         <source>Do&amp;nate!</source>
         <translation>寄付(&amp;N)!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="350"/>
+        <location filename="../gui/mainwindow.ui" line="339"/>
         <source>R&amp;esume All</source>
         <translation>すべて再開(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="434"/>
+        <location filename="../gui/mainwindow.ui" line="412"/>
         <source>Manage Cookies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Cookie の管理...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="437"/>
+        <location filename="../gui/mainwindow.ui" line="415"/>
         <source>Manage stored network cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>保存されている Cookie を管理します </translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="453"/>
+        <location filename="../gui/mainwindow.ui" line="431"/>
         <source>Normal Messages</source>
         <translation>一般メッセージ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="461"/>
+        <location filename="../gui/mainwindow.ui" line="439"/>
         <source>Information Messages</source>
         <translation>情報メッセージ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="469"/>
+        <location filename="../gui/mainwindow.ui" line="447"/>
         <source>Warning Messages</source>
         <translation>警告メッセージ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="477"/>
+        <location filename="../gui/mainwindow.ui" line="455"/>
         <source>Critical Messages</source>
         <translation>危機的メッセージ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="101"/>
-        <location filename="../gui/mainwindow.ui" line="363"/>
+        <location filename="../gui/mainwindow.ui" line="100"/>
         <source>&amp;Log</source>
         <translation>ログ(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="374"/>
+        <location filename="../gui/mainwindow.ui" line="352"/>
         <source>&amp;Exit qBittorrent</source>
         <translation>qBittorrent を終了(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="382"/>
+        <location filename="../gui/mainwindow.ui" line="360"/>
         <source>&amp;Suspend System</source>
         <translation>システムをサスペンド(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="390"/>
+        <location filename="../gui/mainwindow.ui" line="368"/>
         <source>&amp;Hibernate System</source>
         <translation>システムをハイバーネート(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="398"/>
+        <location filename="../gui/mainwindow.ui" line="376"/>
         <source>S&amp;hutdown System</source>
         <translation>システムをシャットダウン(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="406"/>
+        <location filename="../gui/mainwindow.ui" line="384"/>
         <source>&amp;Disabled</source>
         <translation>なにもしない(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="421"/>
+        <location filename="../gui/mainwindow.ui" line="399"/>
         <source>&amp;Statistics</source>
         <translation>統計情報(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="426"/>
+        <location filename="../gui/mainwindow.ui" line="404"/>
         <source>Check for Updates</source>
         <translation>更新をチェック</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="429"/>
+        <location filename="../gui/mainwindow.ui" line="407"/>
         <source>Check for Program Updates</source>
         <translation>プログラムの更新情報をチェックします</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="184"/>
+        <location filename="../gui/mainwindow.ui" line="181"/>
         <source>&amp;About</source>
         <translation>qBittorrent について(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="194"/>
+        <location filename="../gui/mainwindow.ui" line="191"/>
         <source>&amp;Pause</source>
         <translation>停止(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="199"/>
+        <location filename="../gui/mainwindow.ui" line="196"/>
         <source>&amp;Delete</source>
         <translation>削除(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="355"/>
+        <location filename="../gui/mainwindow.ui" line="344"/>
         <source>P&amp;ause All</source>
         <translation>すべて停止(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="166"/>
+        <location filename="../gui/mainwindow.ui" line="163"/>
         <source>&amp;Add Torrent File...</source>
         <translation>Torrent ファイルの追加(&amp;A)...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="169"/>
+        <location filename="../gui/mainwindow.ui" line="166"/>
         <source>Open</source>
         <translation>開く</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="174"/>
+        <location filename="../gui/mainwindow.ui" line="171"/>
         <source>E&amp;xit</source>
         <translation>終了(&amp;X)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="207"/>
+        <location filename="../gui/mainwindow.ui" line="204"/>
         <source>Open URL</source>
         <translation>URL を開く</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="227"/>
+        <location filename="../gui/mainwindow.ui" line="224"/>
         <source>&amp;Documentation</source>
         <translation>ドキュメント(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="326"/>
+        <location filename="../gui/mainwindow.ui" line="323"/>
         <source>Lock</source>
         <translation>ロック</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="411"/>
-        <location filename="../gui/mainwindow.ui" line="445"/>
-        <location filename="../gui/mainwindow.cpp" line="1370"/>
+        <location filename="../gui/mainwindow.ui" line="389"/>
+        <location filename="../gui/mainwindow.ui" line="423"/>
+        <location filename="../gui/mainwindow.cpp" line="1401"/>
         <source>Show</source>
         <translation>表示</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1558"/>
+        <location filename="../gui/mainwindow.cpp" line="1584"/>
         <source>Check for program updates</source>
         <translation>プログラムの更新情報をチェックします</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="204"/>
+        <location filename="../gui/mainwindow.ui" line="201"/>
         <source>Add Torrent &amp;Link...</source>
         <translation>Torrent リンクの追加(&amp;L)...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="345"/>
+        <location filename="../gui/mainwindow.ui" line="334"/>
         <source>If you like qBittorrent, please donate!</source>
         <translation>qBittorrent を気に入っていただけましたか? でしたら寄付をお願いします!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="366"/>
-        <location filename="../gui/mainwindow.cpp" line="1586"/>
+        <location filename="../gui/mainwindow.cpp" line="1612"/>
         <source>Execution Log</source>
         <translation>実行ログ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="545"/>
+        <location filename="../gui/mainwindow.cpp" line="569"/>
         <source>Clear the password</source>
         <translation>パスワードのクリア</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="206"/>
+        <location filename="../gui/mainwindow.cpp" line="210"/>
         <source>Filter torrent list...</source>
         <translation>Torrent リストをフィルター...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="177"/>
+        <location filename="../gui/mainwindow.cpp" line="180"/>
         <source>&amp;Set Password</source>
         <translation>パスワードの設定(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="179"/>
+        <location filename="../gui/mainwindow.cpp" line="182"/>
         <source>&amp;Clear Password</source>
         <translation>パスワードのクリア(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="224"/>
+        <location filename="../gui/mainwindow.cpp" line="228"/>
         <source>Transfers</source>
         <translation>転送</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="378"/>
+        <location filename="../gui/mainwindow.cpp" line="382"/>
         <source>Torrent file association</source>
         <translation>Torrent ファイルの関連付け</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="379"/>
+        <location filename="../gui/mainwindow.cpp" line="383"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>qBittorrent は Torrent ファイルやマグネットリンクを開くデフォルトアプリケーションではありません。 
 qBittorrent を Torrent ファイルおよびマグネットリンクに関連付けますか?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="434"/>
+        <location filename="../gui/mainwindow.cpp" line="458"/>
         <source>Icons Only</source>
         <translation>アイコンのみ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="436"/>
+        <location filename="../gui/mainwindow.cpp" line="460"/>
         <source>Text Only</source>
         <translation>文字のみ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="438"/>
+        <location filename="../gui/mainwindow.cpp" line="462"/>
         <source>Text Alongside Icons</source>
         <translation>アイコンの横に文字</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="440"/>
+        <location filename="../gui/mainwindow.cpp" line="464"/>
         <source>Text Under Icons</source>
         <translation>アイコンの下に文字</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="442"/>
+        <location filename="../gui/mainwindow.cpp" line="466"/>
         <source>Follow System Style</source>
         <translation>システムの設定に従う</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="529"/>
-        <location filename="../gui/mainwindow.cpp" line="557"/>
-        <location filename="../gui/mainwindow.cpp" line="857"/>
+        <location filename="../gui/mainwindow.cpp" line="553"/>
+        <location filename="../gui/mainwindow.cpp" line="581"/>
+        <location filename="../gui/mainwindow.cpp" line="888"/>
         <source>UI lock password</source>
         <translation>UI ロックパスワード</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="529"/>
-        <location filename="../gui/mainwindow.cpp" line="557"/>
-        <location filename="../gui/mainwindow.cpp" line="857"/>
+        <location filename="../gui/mainwindow.cpp" line="553"/>
+        <location filename="../gui/mainwindow.cpp" line="581"/>
+        <location filename="../gui/mainwindow.cpp" line="888"/>
         <source>Please type the UI lock password:</source>
         <translation>UI ロックパスワードを入力してください:</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="533"/>
+        <location filename="../gui/mainwindow.cpp" line="557"/>
         <source>The password should contain at least 3 characters</source>
         <translation>パスワードは 3 文字以上でなくてはなりません</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="538"/>
+        <location filename="../gui/mainwindow.cpp" line="562"/>
         <source>Password update</source>
         <translation>パスワードの更新</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="538"/>
+        <location filename="../gui/mainwindow.cpp" line="562"/>
         <source>The UI lock password has been successfully updated</source>
         <translation>UI ロックパスワードは正常に更新されました</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="545"/>
+        <location filename="../gui/mainwindow.cpp" line="569"/>
         <source>Are you sure you want to clear the password?</source>
         <translation>パスワードをクリアしてよろしいですか?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="597"/>
+        <location filename="../gui/mainwindow.cpp" line="621"/>
         <source>Search</source>
         <translation>検索</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="608"/>
+        <location filename="../gui/mainwindow.cpp" line="632"/>
         <source>Transfers (%1)</source>
         <translation>転送 (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="698"/>
+        <location filename="../gui/mainwindow.cpp" line="722"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="698"/>
+        <location filename="../gui/mainwindow.cpp" line="722"/>
         <source>Failed to add torrent: %1</source>
         <translation>Torrent の追加に失敗しました: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="704"/>
+        <location filename="../gui/mainwindow.cpp" line="729"/>
+        <source>Torrent added</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="729"/>
+        <source>&apos;%1&apos; was added.</source>
+        <comment>e.g: xxx.avi was added.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="735"/>
         <source>Download completion</source>
         <translation>ダウンロード完了</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="710"/>
+        <location filename="../gui/mainwindow.cpp" line="741"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O エラー</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="771"/>
+        <location filename="../gui/mainwindow.cpp" line="802"/>
         <source>Recursive download confirmation</source>
         <translation>再帰的ダウンロードの確認</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="772"/>
+        <location filename="../gui/mainwindow.cpp" line="803"/>
         <source>Yes</source>
         <translation>はい</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="773"/>
+        <location filename="../gui/mainwindow.cpp" line="804"/>
         <source>No</source>
         <translation>いいえ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="774"/>
+        <location filename="../gui/mainwindow.cpp" line="805"/>
         <source>Never</source>
         <translation>すべてしない</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="794"/>
+        <location filename="../gui/mainwindow.cpp" line="825"/>
         <source>Global Upload Speed Limit</source>
         <translation>全体のアップロード速度上限</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="810"/>
+        <location filename="../gui/mainwindow.cpp" line="841"/>
         <source>Global Download Speed Limit</source>
         <translation>全体のダウンロード速度上限</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="960"/>
+        <location filename="../gui/mainwindow.cpp" line="991"/>
         <source>&amp;No</source>
         <translation>いいえ(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="961"/>
+        <location filename="../gui/mainwindow.cpp" line="992"/>
         <source>&amp;Yes</source>
         <translation>はい(&amp;Y)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="962"/>
+        <location filename="../gui/mainwindow.cpp" line="993"/>
         <source>&amp;Always Yes</source>
         <translation>常にはい(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1457"/>
+        <location filename="../gui/mainwindow.cpp" line="1488"/>
         <source>Python found in %1</source>
         <translation>Python を %1 内に見つけました</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1472"/>
+        <location filename="../gui/mainwindow.cpp" line="1503"/>
         <source>Old Python Interpreter</source>
         <translation>Python インタープリターが古すぎます</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1542"/>
+        <location filename="../gui/mainwindow.cpp" line="1568"/>
         <source>qBittorrent Update Available</source>
         <translation>新しいバージョンの qBittorrent が利用できます</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1543"/>
+        <location filename="../gui/mainwindow.cpp" line="1569"/>
         <source>A new version is available.
 Do you want to download %1?</source>
         <translation>新しいバージョンが利用可能です。.
 %1 をダウンロードしますか?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1552"/>
+        <location filename="../gui/mainwindow.cpp" line="1578"/>
         <source>Already Using the Latest qBittorrent Version</source>
         <translation>すでに最新の qBittorrent を使用しています</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1482"/>
+        <location filename="../gui/mainwindow.cpp" line="1513"/>
         <source>Undetermined Python version</source>
         <translation>Python バージョンを解決できません</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="704"/>
+        <location filename="../gui/mainwindow.cpp" line="735"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>&apos;%1&apos; のダウンロードが完了しました。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="710"/>
+        <location filename="../gui/mainwindow.cpp" line="741"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -2483,153 +2518,153 @@ Do you want to download %1?</source>
  理由: %2</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="771"/>
+        <location filename="../gui/mainwindow.cpp" line="802"/>
         <source>The torrent &apos;%1&apos; contains torrent files, do you want to proceed with their download?</source>
         <translation>Torrent &apos;%1&apos; は Torrent ファイルを含んでいます。これらのダウンロードを行いますか?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="786"/>
+        <location filename="../gui/mainwindow.cpp" line="817"/>
         <source>Couldn&apos;t download file at URL &apos;%1&apos;, reason: %2.</source>
         <translation>URL &apos;%1&apos; のファイルをダウンロードできませんでした (理由: %2)。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1472"/>
+        <location filename="../gui/mainwindow.cpp" line="1503"/>
         <source>Your Python version %1 is outdated. Please upgrade to latest version for search engines to work. Minimum requirement: 2.7.0/3.3.0.</source>
         <translation>Python バージョン %1 は古いためサポートされていません。検索エンジンを使用するには少なくとも パージョン 2.7.0/3.3.0 が必要です。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1482"/>
+        <location filename="../gui/mainwindow.cpp" line="1513"/>
         <source>Couldn&apos;t determine your Python version (%1). Search engine disabled.</source>
         <translation>Python のバージョンを解決できませんでした (%1)。検索エンジンを無効にしました。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1493"/>
-        <location filename="../gui/mainwindow.cpp" line="1505"/>
+        <location filename="../gui/mainwindow.cpp" line="1524"/>
+        <location filename="../gui/mainwindow.cpp" line="1536"/>
         <source>Missing Python Interpreter</source>
         <translation>Python インタープリターが見つかりません</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1494"/>
+        <location filename="../gui/mainwindow.cpp" line="1525"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>検索エンジンを使用するには Python が必要ですがインストールされていないようです。
 いますぐインストールしますか?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1505"/>
+        <location filename="../gui/mainwindow.cpp" line="1536"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation>検索エンジンを使用するには Python が必要ですがインストールされていないようです。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1553"/>
+        <location filename="../gui/mainwindow.cpp" line="1579"/>
         <source>No updates available.
 You are already using the latest version.</source>
         <translation>更新情報がありません。
 すでに最新のバージョンを使用しています。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1557"/>
+        <location filename="../gui/mainwindow.cpp" line="1583"/>
         <source>&amp;Check for Updates</source>
         <translation>更新情報のチェック(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1700"/>
+        <location filename="../gui/mainwindow.cpp" line="1726"/>
         <source>Checking for Updates...</source>
         <translation>更新情報をチェックしています...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1701"/>
+        <location filename="../gui/mainwindow.cpp" line="1727"/>
         <source>Already checking for program updates in the background</source>
         <translation>プログラムの更新情報をバックグラウンドでチェックしています</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1716"/>
+        <location filename="../gui/mainwindow.cpp" line="1742"/>
         <source>Python found in &apos;%1&apos;</source>
         <translation>Python が &apos;%1&apos; に見つかりました</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1769"/>
+        <location filename="../gui/mainwindow.cpp" line="1795"/>
         <source>Download error</source>
         <translation>ダウンロードエラー</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1769"/>
+        <location filename="../gui/mainwindow.cpp" line="1795"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>Python セットアップをダウンロードできませんでした。理由: %1。
 手動でインストールしてください。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="533"/>
-        <location filename="../gui/mainwindow.cpp" line="872"/>
+        <location filename="../gui/mainwindow.cpp" line="557"/>
+        <location filename="../gui/mainwindow.cpp" line="903"/>
         <source>Invalid password</source>
         <translation>不正なパスワード</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="575"/>
-        <location filename="../gui/mainwindow.cpp" line="587"/>
+        <location filename="../gui/mainwindow.cpp" line="599"/>
+        <location filename="../gui/mainwindow.cpp" line="611"/>
         <source>RSS (%1)</source>
         <translation>RSS (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="786"/>
+        <location filename="../gui/mainwindow.cpp" line="817"/>
         <source>URL download error</source>
         <translation>URL ダウンロードエラー</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="872"/>
+        <location filename="../gui/mainwindow.cpp" line="903"/>
         <source>The password is invalid</source>
         <translation>パスワードが正しくありません</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1260"/>
-        <location filename="../gui/mainwindow.cpp" line="1267"/>
+        <location filename="../gui/mainwindow.cpp" line="1291"/>
+        <location filename="../gui/mainwindow.cpp" line="1298"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL 速度: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1263"/>
-        <location filename="../gui/mainwindow.cpp" line="1269"/>
+        <location filename="../gui/mainwindow.cpp" line="1294"/>
+        <location filename="../gui/mainwindow.cpp" line="1300"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP 速度: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1275"/>
+        <location filename="../gui/mainwindow.cpp" line="1306"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[D: %1, U: %2] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1370"/>
+        <location filename="../gui/mainwindow.cpp" line="1401"/>
         <source>Hide</source>
         <translation>隠す</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="957"/>
+        <location filename="../gui/mainwindow.cpp" line="988"/>
         <source>Exiting qBittorrent</source>
         <translation>qBittorrent の終了</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="958"/>
+        <location filename="../gui/mainwindow.cpp" line="989"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>現在転送中のファイルがあります。
 qBittorrent を終了しますか?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1101"/>
+        <location filename="../gui/mainwindow.cpp" line="1132"/>
         <source>Open Torrent Files</source>
         <translation>Torrent ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1102"/>
+        <location filename="../gui/mainwindow.cpp" line="1133"/>
         <source>Torrent Files</source>
         <translation>Torrent ファイル</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1137"/>
+        <location filename="../gui/mainwindow.cpp" line="1168"/>
         <source>Options were saved successfully.</source>
         <translation>オプションは正常に保存されました。</translation>
     </message>
@@ -4089,142 +4124,146 @@ qBittorrent を終了しますか?</translation>
 <context>
     <name>PeerListWidget</name>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="74"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="73"/>
         <source>IP</source>
         <translation>IP</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="75"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="74"/>
         <source>Port</source>
         <translation>ポート</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="76"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="75"/>
         <source>Flags</source>
         <translation>フラグ</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="77"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="76"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="78"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="77"/>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
         <translation>クライアント</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="79"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="78"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation>進行状況</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="80"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="79"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>DL 速度</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="81"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="80"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>UP 速度</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="82"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="81"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
         <translation>DL 量</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="83"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="82"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
         <translation>UP 量</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="84"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="83"/>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don&apos;t.</comment>
         <translation>関連性</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="85"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="84"/>
         <source>Files</source>
         <comment>i.e. files that are being downloaded right now</comment>
         <translation>ファイル</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="154"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="153"/>
         <source>Column visibility</source>
         <translation>表示するカラム</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="233"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="230"/>
         <source>Add a new peer...</source>
         <translation>新しいピアの追加...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="239"/>
         <source>Copy selected</source>
-        <translation>選択したものをコピー</translation>
+        <translation type="obsolete">選択したものをコピー</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="241"/>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="279"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="238"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="276"/>
         <source>Ban peer permanently</source>
         <translation>ピアを永久にアクセス禁止にする</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="253"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="250"/>
         <source>Manually adding peer &apos;%1&apos;...</source>
         <translation>ピア &apos;%1&apos; を手動で追加しています...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="257"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="254"/>
         <source>The peer &apos;%1&apos; could not be added to this torrent.</source>
         <translation>ピア &apos;%1&apos;をこの Torrent に追加できませんでした。 </translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="290"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="287"/>
         <source>Manually banning peer &apos;%1&apos;...</source>
         <translation>ピア &apos;%1&apos; をアクセス禁止にしています...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="261"/>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="263"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="258"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="260"/>
         <source>Peer addition</source>
         <translation>ピアの追加</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="73"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="72"/>
         <source>Country</source>
         <translation>国</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="261"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="236"/>
+        <source>Copy IP:port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="258"/>
         <source>Some peers could not be added. Check the Log for details.</source>
         <translation>一部のピアは追加できませんでした。詳細はログを参照してください。</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="263"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="260"/>
         <source>The peers were added to this torrent.</source>
         <translation>ピアをこの Torrent に追加しました。</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="279"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="276"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
         <translation>選択したピアを永久にアク禁にしてよろしいですか?</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="280"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="277"/>
         <source>&amp;Yes</source>
         <translation>はい(&amp;Y)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="280"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="277"/>
         <source>&amp;No</source>
         <translation>いいえ(&amp;N)</translation>
     </message>
@@ -4294,7 +4333,7 @@ qBittorrent を終了しますか?</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdlg.ui" line="65"/>
-        <location filename="../gui/search/pluginselectdlg.ui" line="124"/>
+        <location filename="../gui/search/pluginselectdlg.ui" line="121"/>
         <source>Enabled</source>
         <translation>有効</translation>
     </message>
@@ -4304,22 +4343,22 @@ qBittorrent を終了しますか?</translation>
         <translation>新しい検索エンジンはこちらから入手できます: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdlg.ui" line="98"/>
+        <location filename="../gui/search/pluginselectdlg.ui" line="95"/>
         <source>Install a new one</source>
         <translation>新しいプラグインをインストール</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdlg.ui" line="105"/>
+        <location filename="../gui/search/pluginselectdlg.ui" line="102"/>
         <source>Check for updates</source>
         <translation>更新のチェック</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdlg.ui" line="112"/>
+        <location filename="../gui/search/pluginselectdlg.ui" line="109"/>
         <source>Close</source>
         <translation>閉じる</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdlg.ui" line="129"/>
+        <location filename="../gui/search/pluginselectdlg.ui" line="126"/>
         <source>Uninstall</source>
         <translation>アンインストール</translation>
     </message>
@@ -4441,22 +4480,22 @@ Those plugins were disabled.</source>
 <context>
     <name>PluginSourceDlg</name>
     <message>
-        <location filename="../gui/search/pluginsourcedlg.ui" line="13"/>
+        <location filename="../gui/search/pluginsourcedlg.ui" line="14"/>
         <source>Plugin source</source>
         <translation>プラグインのソース</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginsourcedlg.ui" line="26"/>
+        <location filename="../gui/search/pluginsourcedlg.ui" line="27"/>
         <source>Search plugin source:</source>
         <translation>検索プラグインのソース:</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginsourcedlg.ui" line="35"/>
+        <location filename="../gui/search/pluginsourcedlg.ui" line="36"/>
         <source>Local file</source>
         <translation>ローカルファイル</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginsourcedlg.ui" line="42"/>
+        <location filename="../gui/search/pluginsourcedlg.ui" line="43"/>
         <source>Web link</source>
         <translation>ウェブリンク</translation>
     </message>
@@ -4485,7 +4524,6 @@ Those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../gui/options.ui" line="79"/>
-        <location filename="../gui/options.ui" line="762"/>
         <source>Advanced</source>
         <translation>詳細</translation>
     </message>
@@ -4513,89 +4551,89 @@ Those plugins were disabled.</source>
         <translation>なにもしない</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1019"/>
+        <location filename="../gui/options.ui" line="1135"/>
         <source>Append .!qB extension to incomplete files</source>
         <translation>未完了のファイル名に拡張子 .!qB を付加する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1032"/>
+        <location filename="../gui/options.ui" line="1060"/>
         <source>Copy .torrent files to:</source>
         <translation>.torrent ファイルの保存先:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1439"/>
+        <location filename="../gui/options.ui" line="1448"/>
         <source>Connections Limits</source>
         <translation>接続制限</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1592"/>
+        <location filename="../gui/options.ui" line="1601"/>
         <source>Proxy Server</source>
         <translation>プロキシサーバー</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1895"/>
+        <location filename="../gui/options.ui" line="1904"/>
         <source>Global Rate Limits</source>
         <translation>全体の速度制限</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2197"/>
+        <location filename="../gui/options.ui" line="2206"/>
         <source>Apply rate limit to transport overhead</source>
         <translation>トランスポートオーバーヘッドにも制限を適用する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1990"/>
+        <location filename="../gui/options.ui" line="1999"/>
         <source>Schedule the use of alternative rate limits</source>
         <translation>代替速度制限の使用スケジュール</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2002"/>
+        <location filename="../gui/options.ui" line="2011"/>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>開始:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2026"/>
+        <location filename="../gui/options.ui" line="2035"/>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
         <translation>終了:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2314"/>
+        <location filename="../gui/options.ui" line="2323"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>より多くのピアを見つけるためにローカルピア検出 (LSD) を有効にする</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2326"/>
+        <location filename="../gui/options.ui" line="2335"/>
         <source>Encryption mode:</source>
         <translation>暗号化モード:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2334"/>
+        <location filename="../gui/options.ui" line="2343"/>
         <source>Prefer encryption</source>
         <translation>暗号化を許可</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2339"/>
+        <location filename="../gui/options.ui" line="2348"/>
         <source>Require encryption</source>
         <translation>暗号化を強制</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2344"/>
+        <location filename="../gui/options.ui" line="2353"/>
         <source>Disable encryption</source>
         <translation>暗号化しない</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2422"/>
+        <location filename="../gui/options.ui" line="2431"/>
         <source>Maximum active downloads:</source>
         <translation>最大アクティブダウンロード数:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2442"/>
+        <location filename="../gui/options.ui" line="2451"/>
         <source>Maximum active uploads:</source>
         <translation>最大アクティブアップロード数:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2462"/>
+        <location filename="../gui/options.ui" line="2471"/>
         <source>Maximum active torrents:</source>
         <translation>最大アクティブ Torrent 数:</translation>
     </message>
@@ -4620,82 +4658,81 @@ Those plugins were disabled.</source>
         <translation>Torrent の内容とオプションの一部を表示する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1309"/>
+        <location filename="../gui/options.ui" line="1314"/>
         <source>Run external program on torrent completion</source>
         <translation>Torrent の完了時に外部プログラムを実行する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1375"/>
+        <location filename="../gui/options.ui" line="1384"/>
         <source>Port used for incoming connections:</source>
         <translation>着信接続で使用するポート:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1395"/>
+        <location filename="../gui/options.ui" line="1404"/>
         <source>Random</source>
         <translation>ランダム</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1445"/>
+        <location filename="../gui/options.ui" line="1454"/>
         <source>Global maximum number of connections:</source>
         <translation>全体の最大接続数:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1471"/>
+        <location filename="../gui/options.ui" line="1480"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Torrent あたりの最大接続数:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1494"/>
+        <location filename="../gui/options.ui" line="1503"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Torrent あたりの最大アップロードスロット数:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1917"/>
-        <location filename="../gui/options.ui" line="2108"/>
+        <location filename="../gui/options.ui" line="1926"/>
+        <location filename="../gui/options.ui" line="2117"/>
         <source>Upload:</source>
         <translation>アップロード:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1961"/>
-        <location filename="../gui/options.ui" line="2115"/>
+        <location filename="../gui/options.ui" line="1970"/>
+        <location filename="../gui/options.ui" line="2124"/>
         <source>Download:</source>
         <translation>ダウンロード:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1924"/>
-        <location filename="../gui/options.ui" line="1947"/>
-        <location filename="../gui/options.ui" line="2154"/>
-        <location filename="../gui/options.ui" line="2161"/>
+        <location filename="../gui/options.ui" line="1933"/>
+        <location filename="../gui/options.ui" line="1956"/>
+        <location filename="../gui/options.ui" line="2163"/>
+        <location filename="../gui/options.ui" line="2170"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1197"/>
         <source>Remove folder</source>
-        <translation>フォルダーを除去</translation>
+        <translation type="obsolete">フォルダーを除去</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2067"/>
+        <location filename="../gui/options.ui" line="2076"/>
         <source>Every day</source>
         <translation>毎日</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/options.ui" line="2298"/>
+        <location filename="../gui/options.ui" line="2307"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Bittorrent 互換クライアント (µTorrent, Vuze など) とピア情報を交換します</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1634"/>
+        <location filename="../gui/options.ui" line="1643"/>
         <source>Host:</source>
         <translation>ホスト:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1613"/>
+        <location filename="../gui/options.ui" line="1622"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1600"/>
+        <location filename="../gui/options.ui" line="1609"/>
         <source>Type:</source>
         <translation>種類:</translation>
     </message>
@@ -4838,122 +4875,212 @@ Those plugins were disabled.</source>
         <translation>Torrent ダイアログを最前面に表示する</translation>
     </message>
     <message>
+        <location filename="../gui/options.ui" line="725"/>
+        <source>Should the .torrent file be deleted after adding it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="728"/>
+        <source>Delete .torrent files afterwards </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="740"/>
+        <source>Also delete .torrent files whose addition was cancelled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="743"/>
+        <source>Also when addition is cancelled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="771"/>
+        <source>Warning! Data loss possible!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="800"/>
+        <source>Default Torrent Management Mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="812"/>
+        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="816"/>
+        <source>Manual</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="821"/>
+        <source>Automatic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="844"/>
+        <source>When Torrent Category changed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="859"/>
+        <source>Switch torrent to Manual Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="882"/>
+        <source>When Default Save Path changed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="900"/>
+        <location filename="../gui/options.ui" line="941"/>
+        <source>Switch affected torrents to Manual Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="923"/>
+        <source>When Category changed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../gui/options.ui" line="966"/>
+        <source>Use Subcategories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="975"/>
+        <source>Default Save Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="1128"/>
         <source>Pre-allocate disk space for all files</source>
         <translation>すべてのファイルに対して事前にディスクスペースを割り当てる</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="973"/>
+        <location filename="../gui/options.ui" line="1021"/>
         <source>Keep incomplete torrents in:</source>
         <translation>未完了の Torrent の格納先:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1137"/>
+        <location filename="../gui/options.ui" line="1145"/>
         <source>Automatically add torrents from:</source>
         <translation>自動的に Torrent を追加するフォルダー:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1187"/>
         <source>Add folder...</source>
-        <translation>フォルダーを追加...</translation>
+        <translation type="obsolete">フォルダーを追加...</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1081"/>
+        <location filename="../gui/options.ui" line="1093"/>
         <source>Copy .torrent files for finished downloads to:</source>
         <translation>ダウンロードが完了した .torrent ファイルのコピー先:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1224"/>
+        <location filename="../gui/options.ui" line="1192"/>
+        <source>Add entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="1202"/>
+        <source>Remove entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="1229"/>
         <source>Email notification upon download completion</source>
         <translation>ダウンロード完了時にEメールで通知する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1238"/>
+        <location filename="../gui/options.ui" line="1246"/>
         <source>Destination email:</source>
         <translation>送信先Eメール:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1248"/>
+        <location filename="../gui/options.ui" line="1253"/>
         <source>SMTP server:</source>
         <translation>SMTP サーバー:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1297"/>
+        <location filename="../gui/options.ui" line="1265"/>
         <source>This server requires a secure connection (SSL)</source>
         <translation>このサーバーではセキュアな接続 (SSL) が必要</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1367"/>
+        <location filename="../gui/options.ui" line="1376"/>
         <source>Listening Port</source>
         <translation>待ち受けポート</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1417"/>
+        <location filename="../gui/options.ui" line="1426"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>ルーターからのポート転送に UPnP / NAT-PMP を使用する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1427"/>
+        <location filename="../gui/options.ui" line="1436"/>
         <source>Use different port on each startup</source>
         <translation>起動時に毎回異なるポートを使用する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1553"/>
+        <location filename="../gui/options.ui" line="1562"/>
         <source>Global maximum number of upload slots:</source>
         <translation>全体の最大アップロードスロット数:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1688"/>
+        <location filename="../gui/options.ui" line="1697"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
         <translation>このオプションを有効にしない場合、プロキシはトラッカーとの接続のみに使用されます</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1691"/>
+        <location filename="../gui/options.ui" line="1700"/>
         <source>Use proxy for peer connections</source>
         <translation>ピアとの接続にプロキシを使用する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1698"/>
+        <location filename="../gui/options.ui" line="1707"/>
         <source>Disable connections not supported by proxies</source>
         <translation>プロキシでサポートされていない接続は無効にする</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1711"/>
+        <location filename="../gui/options.ui" line="1720"/>
         <source>Use proxy only for torrents</source>
         <translation>Torrent に対してのみプロキシを利用する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1708"/>
+        <location filename="../gui/options.ui" line="1717"/>
         <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
         <translation>RSS フィード、検索エンジン、ソフトウェアアップデートやその他 Torrent の転送および関連処理 (ピア交換など) に関係しない通信ではプロキシを使用しません</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1780"/>
+        <location filename="../gui/options.ui" line="1789"/>
         <source>Info: The password is saved unencrypted</source>
         <translation>注意: パスワードは暗号化されません</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1793"/>
+        <location filename="../gui/options.ui" line="1802"/>
         <source>IP Filtering</source>
         <translation>IP フィルタリング</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1834"/>
+        <location filename="../gui/options.ui" line="1843"/>
         <source>Reload the filter</source>
         <translation>フィルターの再読み込み</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1850"/>
+        <location filename="../gui/options.ui" line="1859"/>
         <source>Apply to trackers</source>
         <translation>トラッカーにも適用する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2190"/>
+        <location filename="../gui/options.ui" line="2199"/>
         <source>Apply rate limit to peers on LAN</source>
         <translation>LAN 上のピアに対しても速度制限を適用する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2053"/>
+        <location filename="../gui/options.ui" line="2062"/>
         <source>When:</source>
         <translation>曜日:</translation>
     </message>
@@ -5021,234 +5148,222 @@ Those plugins were disabled.</source>
         <translation>年</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="734"/>
+        <location filename="../gui/options.ui" line="792"/>
         <source>Saving Management</source>
         <translation>保存設定</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="745"/>
         <source>Default Saving Mode:</source>
-        <translation>デフォルトの保存モード:</translation>
+        <translation type="obsolete">デフォルトの保存モード:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="752"/>
         <source>Simple</source>
-        <translation>シンプル</translation>
+        <translation type="obsolete">シンプル</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="784"/>
         <source>Default Save Path</source>
-        <translation>デフォルトの保存先</translation>
+        <translation type="obsolete">デフォルトの保存先</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="840"/>
         <source>Enable Subcategories:</source>
-        <translation>サブカテゴリを有効にする:</translation>
+        <translation type="obsolete">サブカテゴリを有効にする:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="847"/>
         <source>Yes</source>
-        <translation>はい</translation>
+        <translation type="obsolete">はい</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="857"/>
         <source>No</source>
-        <translation>いいえ</translation>
+        <translation type="obsolete">いいえ</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="885"/>
         <source>When Torrent Category changed</source>
-        <translation>Torrent のカテゴリが変更されたとき</translation>
+        <translation type="obsolete">Torrent のカテゴリが変更されたとき</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="891"/>
+        <location filename="../gui/options.ui" line="854"/>
         <source>Relocate torrent</source>
         <translation>Torrent を移動する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="901"/>
         <source>Switch torrent to Simple Mode</source>
-        <translation>Torrent をかんたんモードに切り替える</translation>
+        <translation type="obsolete">Torrent をかんたんモードに切り替える</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="914"/>
         <source>When Default Save Path changed</source>
-        <translation>デフォルトの保存先が変更されたとき</translation>
+        <translation type="obsolete">デフォルトの保存先が変更されたとき</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="920"/>
-        <location filename="../gui/options.ui" line="946"/>
+        <location filename="../gui/options.ui" line="895"/>
+        <location filename="../gui/options.ui" line="936"/>
         <source>Relocate affected torrents</source>
         <translation>影響のある Torrent を移動する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="927"/>
-        <location filename="../gui/options.ui" line="953"/>
         <source>Switch affected torrents to Simple Mode</source>
-        <translation>影響のある Torrent をかんたんモードに切り替える</translation>
+        <translation type="obsolete">影響のある Torrent をかんたんモードに切り替える</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="940"/>
         <source>When Category changed</source>
-        <translation>カテゴリが変更されたとき</translation>
+        <translation type="obsolete">カテゴリが変更されたとき</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2072"/>
+        <location filename="../gui/options.ui" line="2081"/>
         <source>Weekdays</source>
         <translation>平日</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2077"/>
+        <location filename="../gui/options.ui" line="2086"/>
         <source>Weekends</source>
         <translation>週末</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2184"/>
+        <location filename="../gui/options.ui" line="2193"/>
         <source>Rate Limits Settings</source>
         <translation>速度制限設定</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/options.ui" line="2204"/>
+        <location filename="../gui/options.ui" line="2213"/>
         <source>Enable µTP protocol</source>
         <translation>µTP プロトコルを有効にする</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/options.ui" line="2211"/>
+        <location filename="../gui/options.ui" line="2220"/>
         <source>Apply rate limit to µTP protocol</source>
         <translation>速度制限を µTP プロトコルにも適用する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2282"/>
+        <location filename="../gui/options.ui" line="2291"/>
         <source>Privacy</source>
         <translation>プライバシー</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2288"/>
+        <location filename="../gui/options.ui" line="2297"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>より多くのピアを見つけるため DHT (分散ネットワーク) を有効にする</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2301"/>
+        <location filename="../gui/options.ui" line="2310"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>より多くのピアを見つけるためにピア交換 (PeX) を有効にする</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2311"/>
+        <location filename="../gui/options.ui" line="2320"/>
         <source>Look for peers on your local network</source>
         <translation>ローカルネットワーク内のピアも探します</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2369"/>
+        <location filename="../gui/options.ui" line="2378"/>
         <source>Enable when using a proxy or a VPN connection</source>
         <translation>プロキシまたは VPN 接続を使用する場合有効にします</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2372"/>
+        <location filename="../gui/options.ui" line="2381"/>
         <source>Enable anonymous mode</source>
         <translation>匿名モードを有効にする</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2379"/>
+        <location filename="../gui/options.ui" line="2388"/>
         <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;もっと詳しく&lt;/a&gt;)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2521"/>
+        <location filename="../gui/options.ui" line="2530"/>
         <source>Do not count slow torrents in these limits</source>
         <translation>遅いトレントはカウントしない</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2542"/>
+        <location filename="../gui/options.ui" line="2551"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>指定共有比に達するまでシードする ― 共有比が</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2571"/>
+        <location filename="../gui/options.ui" line="2580"/>
         <source>then</source>
         <translation>に達したとき</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2582"/>
+        <location filename="../gui/options.ui" line="2591"/>
         <source>Pause them</source>
         <translation>停止する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2587"/>
+        <location filename="../gui/options.ui" line="2596"/>
         <source>Remove them</source>
         <translation>削除する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2606"/>
+        <location filename="../gui/options.ui" line="2615"/>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>新しいダウンロードに以下のトラッカーを自動で追加する:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2728"/>
+        <location filename="../gui/options.ui" line="2737"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>ルーターからのポート転送に UPnP / NAT-PMP を使用する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2738"/>
+        <location filename="../gui/options.ui" line="2747"/>
         <source>Use HTTPS instead of HTTP</source>
         <translation>HTTP ではなく HTTPS を使用する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2781"/>
+        <location filename="../gui/options.ui" line="2790"/>
         <source>Import SSL Certificate</source>
         <translation>SSL 証明書をインポート</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2834"/>
+        <location filename="../gui/options.ui" line="2843"/>
         <source>Import SSL Key</source>
         <translation>SSL 公開鍵をインポート</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2856"/>
+        <location filename="../gui/options.ui" line="2865"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;証明書について&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2769"/>
+        <location filename="../gui/options.ui" line="2778"/>
         <source>Certificate:</source>
         <translation>証明書:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1984"/>
+        <location filename="../gui/options.ui" line="1993"/>
         <source>Alternative Rate Limits</source>
         <translation>代替速度制限</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2822"/>
+        <location filename="../gui/options.ui" line="2831"/>
         <source>Key:</source>
         <translation>公開鍵:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2901"/>
+        <location filename="../gui/options.ui" line="2910"/>
         <source>Bypass authentication for localhost</source>
         <translation>localhost では認証を行わない</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2925"/>
+        <location filename="../gui/options.ui" line="2934"/>
         <source>Update my dynamic domain name</source>
         <translation>ダイナミックドメイン名を更新する</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2937"/>
+        <location filename="../gui/options.ui" line="2946"/>
         <source>Service:</source>
         <translation>サービス:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2960"/>
+        <location filename="../gui/options.ui" line="2969"/>
         <source>Register</source>
         <translation>登録</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2969"/>
+        <location filename="../gui/options.ui" line="2978"/>
         <source>Domain name:</source>
         <translation>ドメイン名:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1608"/>
+        <location filename="../gui/options.ui" line="1617"/>
         <source>(None)</source>
         <translation>(なし)</translation>
     </message>
@@ -5258,61 +5373,61 @@ Those plugins were disabled.</source>
         <translation>BitTorrent</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1623"/>
+        <location filename="../gui/options.ui" line="1632"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1660"/>
-        <location filename="../gui/options.ui" line="2693"/>
+        <location filename="../gui/options.ui" line="1669"/>
+        <location filename="../gui/options.ui" line="2702"/>
         <source>Port:</source>
         <translation>ポート:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1258"/>
-        <location filename="../gui/options.ui" line="1724"/>
-        <location filename="../gui/options.ui" line="2869"/>
+        <location filename="../gui/options.ui" line="1272"/>
+        <location filename="../gui/options.ui" line="1733"/>
+        <location filename="../gui/options.ui" line="2878"/>
         <source>Authentication</source>
         <translation>認証</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1270"/>
-        <location filename="../gui/options.ui" line="1738"/>
-        <location filename="../gui/options.ui" line="2908"/>
-        <location filename="../gui/options.ui" line="2983"/>
+        <location filename="../gui/options.ui" line="1284"/>
+        <location filename="../gui/options.ui" line="1747"/>
+        <location filename="../gui/options.ui" line="2917"/>
+        <location filename="../gui/options.ui" line="2992"/>
         <source>Username:</source>
         <translation>ユーザー名:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1280"/>
-        <location filename="../gui/options.ui" line="1758"/>
-        <location filename="../gui/options.ui" line="2915"/>
-        <location filename="../gui/options.ui" line="2997"/>
+        <location filename="../gui/options.ui" line="1294"/>
+        <location filename="../gui/options.ui" line="1767"/>
+        <location filename="../gui/options.ui" line="2924"/>
+        <location filename="../gui/options.ui" line="3006"/>
         <source>Password:</source>
         <translation>パスワード:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2407"/>
+        <location filename="../gui/options.ui" line="2416"/>
         <source>Torrent Queueing</source>
         <translation>Torrent キュー</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2531"/>
+        <location filename="../gui/options.ui" line="2540"/>
         <source>Share Ratio Limiting</source>
         <translation>共有比上限</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2679"/>
+        <location filename="../gui/options.ui" line="2688"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>ウェブユーザーインターフェース (リモート制御) を有効にする</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1618"/>
+        <location filename="../gui/options.ui" line="1627"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1805"/>
+        <location filename="../gui/options.ui" line="1814"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>フィルターパス (.dat, .p2p, .p2b):</translation>
     </message>
@@ -5755,18 +5870,18 @@ Those plugins were disabled.</source>
         <translation>あなたの IP アドレスはあまりに多くの回数認証に失敗したためアクセス禁止になりました。</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="380"/>
+        <location filename="../webui/webapplication.cpp" line="422"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.
 </source>
         <translation>エラー: &apos;%1&apos; は正常な Torrent ファイルではありません。</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="388"/>
+        <location filename="../webui/webapplication.cpp" line="430"/>
         <source>Error: Could not add torrent to session.</source>
         <translation>エラー: Torrent をセッションに追加できませんでした。</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="397"/>
+        <location filename="../webui/webapplication.cpp" line="439"/>
         <source>I/O Error: Could not create temporary file.</source>
         <translation>I/O エラー: テンポラリファイルを作成できません。</translation>
     </message>
@@ -5888,33 +6003,33 @@ No further notices will be issued.</source>
         <translation>同意する</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="242"/>
+        <location filename="../app/application.cpp" line="247"/>
         <source>Torrent name: %1</source>
         <translation>Torrent 名: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="243"/>
+        <location filename="../app/application.cpp" line="248"/>
         <source>Torrent size: %1</source>
         <translation>Torrent サイズ: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="244"/>
+        <location filename="../app/application.cpp" line="249"/>
         <source>Save path: %1</source>
         <translation>保存先: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="245"/>
+        <location filename="../app/application.cpp" line="250"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>この Torrent は %1 でダウンロードされました。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="248"/>
+        <location filename="../app/application.cpp" line="253"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>qBittorrent をお使いいただきありがとうございます。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="254"/>
+        <location filename="../app/application.cpp" line="259"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
         <translation>[qBittorrent] &apos;%1&apos; のダウンロードが完了しました</translation>
     </message>
@@ -6054,6 +6169,21 @@ No further notices will be issued.</source>
         <source>Couldn&apos;t migrate torrent. Invalid fastresume file name: %1</source>
         <translation>Torrent を移行できませんでした。高速再開ファイル名が正しくありません: %1</translation>
     </message>
+    <message>
+        <location filename="../base/settingsstorage.cpp" line="214"/>
+        <source>Detected unclean program exit. Using fallback file to restore settings.</source>
+        <translation type="unfinished">プログラムの異常終了が検出されました。設定の復元のためにフォールバックファイルを使用します。</translation>
+    </message>
+    <message>
+        <location filename="../base/settingsstorage.cpp" line="280"/>
+        <source>An access error occurred while trying to write the configuration file.</source>
+        <translation type="unfinished">設定ファイルの書き込み時にアクセスエラーが発生しました。</translation>
+    </message>
+    <message>
+        <location filename="../base/settingsstorage.cpp" line="282"/>
+        <source>A format error occurred while trying to write the configuration file.</source>
+        <translation type="unfinished">設定ファイルの書き込み時にフォーマットエラーが発生しました。</translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
@@ -6068,91 +6198,87 @@ No further notices will be issued.</source>
         <translation>新規購読</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="35"/>
-        <location filename="../gui/rss/rss.ui" line="174"/>
-        <location filename="../gui/rss/rss.ui" line="177"/>
+        <location filename="../gui/rss/rss.ui" line="32"/>
+        <location filename="../gui/rss/rss.ui" line="159"/>
+        <location filename="../gui/rss/rss.ui" line="162"/>
         <source>Mark items read</source>
         <translation>既読にする</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="48"/>
+        <location filename="../gui/rss/rss.ui" line="42"/>
         <source>Update all</source>
         <translation>すべて更新</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="77"/>
+        <location filename="../gui/rss/rss.ui" line="62"/>
         <source>RSS Downloader...</source>
         <translation>RSS ダウンローダー...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="84"/>
+        <location filename="../gui/rss/rss.ui" line="69"/>
         <source>Settings...</source>
         <translation>設定...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="106"/>
+        <location filename="../gui/rss/rss.ui" line="91"/>
         <source>Torrents: (double-click to download)</source>
         <translation>Torrent: (ダブルクリックでダウンロード)</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="137"/>
-        <location filename="../gui/rss/rss.ui" line="140"/>
+        <location filename="../gui/rss/rss.ui" line="122"/>
+        <location filename="../gui/rss/rss.ui" line="125"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="145"/>
+        <location filename="../gui/rss/rss.ui" line="130"/>
         <source>Rename...</source>
         <translation>名前の変更...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="148"/>
+        <location filename="../gui/rss/rss.ui" line="133"/>
         <source>Rename</source>
         <translation>名前の変更</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="153"/>
-        <location filename="../gui/rss/rss.ui" line="156"/>
+        <location filename="../gui/rss/rss.ui" line="138"/>
+        <location filename="../gui/rss/rss.ui" line="141"/>
         <source>Update</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="161"/>
+        <location filename="../gui/rss/rss.ui" line="146"/>
         <source>New subscription...</source>
         <translation>新規購読...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="166"/>
-        <location filename="../gui/rss/rss.ui" line="169"/>
+        <location filename="../gui/rss/rss.ui" line="151"/>
+        <location filename="../gui/rss/rss.ui" line="154"/>
         <source>Update all feeds</source>
         <translation>すべてのフィードの更新</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="182"/>
+        <location filename="../gui/rss/rss.ui" line="167"/>
         <source>Download torrent</source>
         <translation>Torrent のダウンロード</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="187"/>
+        <location filename="../gui/rss/rss.ui" line="172"/>
         <source>Open news URL</source>
         <translation>ニュースの URL を開く</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="192"/>
+        <location filename="../gui/rss/rss.ui" line="177"/>
         <source>Copy feed URL</source>
         <translation>フィード URL を開く</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rss.ui" line="197"/>
+        <location filename="../gui/rss/rss.ui" line="182"/>
         <source>New folder...</source>
         <translation>新規フォルダー...</translation>
     </message>
     <message>
-        <source>Manage cookies...</source>
-        <translation type="obsolete">Cookie の管理...</translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/rss.ui" line="45"/>
+        <location filename="../gui/rss/rss.ui" line="39"/>
         <source>Refresh RSS streams</source>
         <translation>RSS ストリームの更新</translation>
     </message>
@@ -6282,47 +6408,69 @@ No further notices will be issued.</source>
 <context>
     <name>ScanFoldersDelegate</name>
     <message>
-        <location filename="../gui/scanfoldersdelegate.cpp" line="66"/>
         <source>Watch Folder</source>
-        <translation>監視フォルダー</translation>
+        <translation type="obsolete">監視フォルダー</translation>
     </message>
     <message>
-        <location filename="../gui/scanfoldersdelegate.cpp" line="67"/>
         <source>Default Folder</source>
-        <translation>デフォルトフォルダー</translation>
+        <translation type="obsolete">デフォルトフォルダー</translation>
     </message>
     <message>
-        <location filename="../gui/scanfoldersdelegate.cpp" line="68"/>
         <source>Browse...</source>
-        <translation>表示...</translation>
+        <translation type="obsolete">表示...</translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="obsolete">保存先の選択</translation>
     </message>
     <message>
         <location filename="../gui/scanfoldersdelegate.cpp" line="102"/>
-        <source>Choose save path</source>
-        <translation>保存先の選択</translation>
+        <source>Select save location</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
     <message>
-        <location filename="../base/scanfoldersmodel.cpp" line="131"/>
         <source>Watch Folder</source>
-        <translation>監視フォルダー</translation>
+        <translation type="obsolete">監視フォルダー</translation>
     </message>
     <message>
-        <location filename="../base/scanfoldersmodel.cpp" line="134"/>
         <source>Default Folder</source>
-        <translation>デフォルトフォルダー</translation>
+        <translation type="obsolete">デフォルトフォルダー</translation>
     </message>
     <message>
-        <location filename="../base/scanfoldersmodel.cpp" line="156"/>
         <source>Watched Folder</source>
-        <translation>監視フォルダー</translation>
+        <translation type="obsolete">監視フォルダー</translation>
     </message>
     <message>
-        <location filename="../base/scanfoldersmodel.cpp" line="159"/>
         <source>Save Files to</source>
-        <translation>ファイルの保存先</translation>
+        <translation type="obsolete">ファイルの保存先</translation>
+    </message>
+    <message>
+        <location filename="../base/scanfoldersmodel.cpp" line="151"/>
+        <source>Monitored Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/scanfoldersmodel.cpp" line="154"/>
+        <source>Override Save Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/scanfoldersmodel.cpp" line="395"/>
+        <source>Monitored folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/scanfoldersmodel.cpp" line="397"/>
+        <source>Default save location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/scanfoldersmodel.cpp" line="399"/>
+        <source>Browse...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6344,63 +6492,63 @@ No further notices will be issued.</source>
         <translation>プラグインはサポートされていません。</translation>
     </message>
     <message>
-        <location filename="../base/searchengine.cpp" line="337"/>
+        <location filename="../base/searchengine.cpp" line="357"/>
         <source>Update server is temporarily unavailable. %1</source>
         <translation>更新サーバーが一時的に利用できません。%1</translation>
     </message>
     <message>
-        <location filename="../base/searchengine.cpp" line="355"/>
-        <location filename="../base/searchengine.cpp" line="357"/>
+        <location filename="../base/searchengine.cpp" line="375"/>
+        <location filename="../base/searchengine.cpp" line="377"/>
         <source>Failed to download the plugin file. %1</source>
         <translation>プラグインファイルのダウンロードに失敗しました。%1</translation>
     </message>
     <message>
-        <location filename="../base/searchengine.cpp" line="597"/>
+        <location filename="../base/searchengine.cpp" line="638"/>
         <source>An incorrect update info received.</source>
         <translation>誤った更新情報を受信しました。</translation>
     </message>
     <message>
-        <location filename="../base/searchengine.cpp" line="621"/>
+        <location filename="../base/searchengine.cpp" line="662"/>
         <source>All categories</source>
         <translation>すべてのカテゴリ</translation>
     </message>
     <message>
-        <location filename="../base/searchengine.cpp" line="622"/>
+        <location filename="../base/searchengine.cpp" line="663"/>
         <source>Movies</source>
         <translation>映画</translation>
     </message>
     <message>
-        <location filename="../base/searchengine.cpp" line="623"/>
+        <location filename="../base/searchengine.cpp" line="664"/>
         <source>TV shows</source>
         <translation>TV 番組</translation>
     </message>
     <message>
-        <location filename="../base/searchengine.cpp" line="624"/>
+        <location filename="../base/searchengine.cpp" line="665"/>
         <source>Music</source>
         <translation>音楽</translation>
     </message>
     <message>
-        <location filename="../base/searchengine.cpp" line="625"/>
+        <location filename="../base/searchengine.cpp" line="666"/>
         <source>Games</source>
         <translation>ゲーム</translation>
     </message>
     <message>
-        <location filename="../base/searchengine.cpp" line="626"/>
+        <location filename="../base/searchengine.cpp" line="667"/>
         <source>Anime</source>
         <translation>アニメ</translation>
     </message>
     <message>
-        <location filename="../base/searchengine.cpp" line="627"/>
+        <location filename="../base/searchengine.cpp" line="668"/>
         <source>Software</source>
         <translation>ソフトウェア</translation>
     </message>
     <message>
-        <location filename="../base/searchengine.cpp" line="628"/>
+        <location filename="../base/searchengine.cpp" line="669"/>
         <source>Pictures</source>
         <translation>画像</translation>
     </message>
     <message>
-        <location filename="../base/searchengine.cpp" line="629"/>
+        <location filename="../base/searchengine.cpp" line="670"/>
         <source>Books</source>
         <translation>書籍</translation>
     </message>
@@ -6446,45 +6594,45 @@ No further notices will be issued.</source>
         <translation>検索エンジン</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="202"/>
+        <location filename="../gui/search/searchtab.cpp" line="203"/>
         <source>Results (showing &lt;i&gt;%1&lt;/i&gt; out of &lt;i&gt;%2&lt;/i&gt;):</source>
         <comment>i.e: Search results</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchtab.cpp" line="252"/>
-        <source>Torrent names only</source>
-        <translation type="unfinished"></translation>
+        <translation>検索結果 (&lt;i&gt;%2&lt;/i&gt; 件中 &lt;i&gt;%1&lt;/i&gt; 件を表示):</translation>
     </message>
     <message>
         <location filename="../gui/search/searchtab.cpp" line="253"/>
+        <source>Torrent names only</source>
+        <translation>Torrent 名のみ</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="254"/>
         <source>Everywhere</source>
-        <translation type="unfinished"></translation>
+        <translation>すべて</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="265"/>
+        <location filename="../gui/search/searchtab.cpp" line="266"/>
         <source>Searching...</source>
-        <translation type="unfinished">検索しています...</translation>
+        <translation>検索しています...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="267"/>
+        <location filename="../gui/search/searchtab.cpp" line="268"/>
         <source>Search has finished</source>
-        <translation type="unfinished">検索完了</translation>
+        <translation>検索が完了しました</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="269"/>
+        <location filename="../gui/search/searchtab.cpp" line="270"/>
         <source>Search aborted</source>
-        <translation type="unfinished">検索中止</translation>
+        <translation>検索を中止しました</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="271"/>
+        <location filename="../gui/search/searchtab.cpp" line="272"/>
         <source>An error occurred during search...</source>
-        <translation type="unfinished">検索中にエラーが発生しました...</translation>
+        <translation>検索中二エラーが発生しました...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="273"/>
+        <location filename="../gui/search/searchtab.cpp" line="274"/>
         <source>Search returned no results</source>
-        <translation type="unfinished">検索結果は 0 件でした</translation>
+        <translation>検索結果は 0 件でした</translation>
     </message>
     <message>
         <location filename="../gui/search/searchtab.ui" line="14"/>
@@ -6499,290 +6647,265 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/search/searchtab.ui" line="45"/>
         <source>Search in:</source>
-        <translation type="unfinished"></translation>
+        <translation>検索対象:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchtab.ui" line="55"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everyhing returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;一部の検索エンジンは Torrent の名前とともにその説明からも検索します。このモードでどこまでの検索結果を表示するかを指定できます。&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;「すべて」&lt;/span&gt; 検索エンジンが返した結果をすべて表示します。&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;「Torrent 名のみ」&lt;/span&gt; 検索文字列が Torrent の名前と一致したもののみ表示します。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchtab.ui" line="84"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed number of seeders&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;最小および最大シード数で絞り込みます&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchtab.ui" line="87"/>
         <source>Seeds:</source>
-        <translation type="unfinished">シード数:</translation>
+        <translation>シード数:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchtab.ui" line="94"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;最小シード数&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchtab.ui" line="116"/>
         <location filename="../gui/search/searchtab.ui" line="204"/>
         <source>to</source>
-        <translation type="unfinished">終了</translation>
+        <translation>から</translation>
     </message>
     <message>
         <location filename="../gui/search/searchtab.ui" line="123"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;最大シード数&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message utf8="true">
         <location filename="../gui/search/searchtab.ui" line="126"/>
         <location filename="../gui/search/searchtab.ui" line="216"/>
         <source>∞</source>
-        <translation type="unfinished"></translation>
+        <translation>∞</translation>
     </message>
     <message>
         <location filename="../gui/search/searchtab.ui" line="167"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed size of a torrent&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;最小および最大 Torrent サイズで絞り込みます&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchtab.ui" line="170"/>
         <source>Size:</source>
-        <translation type="unfinished">サイズ:</translation>
+        <translation>サイズ:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchtab.ui" line="179"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimal torrent size&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;最小 Torrent サイズ&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchtab.ui" line="213"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal torrent size&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;最大 Torrent サイズ&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>SearchWidget</name>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="14"/>
-        <location filename="../gui/search/searchwidget.ui" line="28"/>
-        <location filename="../gui/search/searchwidget.cpp" line="200"/>
-        <location filename="../gui/search/searchwidget.cpp" line="226"/>
-        <location filename="../gui/search/searchwidget.cpp" line="317"/>
+        <location filename="../gui/search/searchwidget.ui" line="51"/>
+        <location filename="../gui/search/searchwidget.cpp" line="227"/>
+        <location filename="../gui/search/searchwidget.cpp" line="253"/>
+        <location filename="../gui/search/searchwidget.cpp" line="336"/>
         <source>Search</source>
         <translation>検索</translation>
     </message>
     <message>
-        <source>Status:</source>
-        <translation type="obsolete">状態:</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation type="obsolete">停止</translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchwidget.ui" line="54"/>
+        <location filename="../gui/search/searchwidget.ui" line="72"/>
         <source>Download</source>
         <translation>ダウンロード</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="64"/>
+        <location filename="../gui/search/searchwidget.ui" line="82"/>
         <source>Go to description page</source>
         <translation>説明ページヘ移動</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="74"/>
+        <location filename="../gui/search/searchwidget.ui" line="92"/>
         <source>Copy description page URL</source>
         <translation>説明ページの URL をコピー</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="94"/>
+        <location filename="../gui/search/searchwidget.ui" line="112"/>
         <source>Search plugins...</source>
         <translation>検索プラグイン...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="89"/>
+        <location filename="../gui/search/searchwidget.cpp" line="83"/>
         <source>A phrase to search for.</source>
-        <translation type="unfinished"></translation>
+        <translation>検索文字列を入力してください。</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="90"/>
+        <location filename="../gui/search/searchwidget.cpp" line="84"/>
         <source>Spaces in a search term may be protected by double quotes.</source>
-        <translation type="unfinished"></translation>
+        <translation>空白を含む文字列を検索したい場合はダブルクォーテーションで括ってください。</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="86"/>
+        <source>Example:</source>
+        <comment>Search phrase example</comment>
+        <translation>例:</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="88"/>
+        <source>&lt;b&gt;foo bar&lt;/b&gt;: search for &lt;b&gt;foo&lt;/b&gt; and &lt;b&gt;bar&lt;/b&gt;</source>
+        <comment>Search phrase example, illustrates quotes usage, a pair of space delimited words, individal words are highlighted</comment>
+        <translation>&lt;b&gt;foo bar&lt;/b&gt;: 文字列「&lt;b&gt;foo&lt;/b&gt;」と「&lt;b&gt;bar&lt;/b&gt;」を検索します</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="92"/>
-        <source>Example:</source>
-        <comment>Search phrase example</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchwidget.cpp" line="94"/>
-        <source>&lt;b&gt;foo bar&lt;/b&gt;: search for &lt;b&gt;foo&lt;/b&gt; and &lt;b&gt;bar&lt;/b&gt;</source>
-        <comment>Search phrase example, illustrates quotes usage, a pair of space delimited words, individal words are highlighted</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchwidget.cpp" line="98"/>
         <source>&lt;b&gt;&amp;quot;foo bar&amp;quot;&lt;/b&gt;: search for &lt;b&gt;foo bar&lt;/b&gt;</source>
         <comment>Search phrase example, illustrates quotes usage, double quotedpair of space delimited words, the whole pair is highlighted</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;&amp;quot;foo bar&amp;quot;&lt;/b&gt;: 文字列「&lt;b&gt;foo bar&lt;/b&gt;」を検索します</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="141"/>
         <source>All enabled</source>
-        <translation>すべて有効</translation>
+        <translation type="obsolete">有効なものすべて</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="142"/>
+        <location filename="../gui/search/searchwidget.cpp" line="143"/>
         <source>All plugins</source>
         <translation>すべてのプラグイン</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="145"/>
-        <location filename="../gui/search/searchwidget.cpp" line="186"/>
         <source>Multiple...</source>
-        <translation>複数指定...</translation>
+        <translation type="obsolete">複数指定...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="218"/>
-        <location filename="../gui/search/searchwidget.cpp" line="305"/>
-        <location filename="../gui/search/searchwidget.cpp" line="323"/>
+        <location filename="../gui/search/searchwidget.cpp" line="144"/>
+        <source>Only enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="145"/>
+        <source>Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="245"/>
+        <location filename="../gui/search/searchwidget.cpp" line="324"/>
+        <location filename="../gui/search/searchwidget.cpp" line="342"/>
         <source>Search Engine</source>
         <translation>検索エンジン</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="218"/>
+        <location filename="../gui/search/searchwidget.cpp" line="245"/>
         <source>Please install Python to use the Search Engine.</source>
         <translation>検索エンジンを使用するには Python をインストールしてください。</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="236"/>
+        <location filename="../gui/search/searchwidget.cpp" line="263"/>
         <source>Empty search pattern</source>
         <translation>空の検索パターン</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="236"/>
+        <location filename="../gui/search/searchwidget.cpp" line="263"/>
         <source>Please type a search pattern first</source>
         <translation>まず検索パターンを入力してください</translation>
     </message>
     <message>
-        <source>Results &lt;i&gt;(%1)&lt;/i&gt;:</source>
-        <comment>i.e: Search results</comment>
-        <translation type="obsolete">検索結果 &lt;i&gt;(%1)&lt;/i&gt;:</translation>
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="obsolete">検索しています...</translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchwidget.cpp" line="296"/>
+        <location filename="../gui/search/searchwidget.cpp" line="315"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="305"/>
+        <location filename="../gui/search/searchwidget.cpp" line="324"/>
         <source>Search has finished</source>
         <translation>検索完了</translation>
     </message>
     <message>
-        <source>Search aborted</source>
-        <translation type="obsolete">検索中止</translation>
-    </message>
-    <message>
-        <source>Search returned no results</source>
-        <translation type="obsolete">検索結果は 0 件でした</translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchwidget.cpp" line="323"/>
+        <location filename="../gui/search/searchwidget.cpp" line="342"/>
         <source>Search has failed</source>
         <translation>検索に失敗しました</translation>
-    </message>
-    <message>
-        <source>An error occurred during search...</source>
-        <translation type="obsolete">検索中にエラーが発生しました...</translation>
     </message>
 </context>
 <context>
     <name>SettingsStorage</name>
     <message>
-        <location filename="../base/settingsstorage.cpp" line="111"/>
         <source>Detected unclean program exit. Using fallback file to restore settings.</source>
-        <translation>プログラムの異常終了が検出されました。設定の復元のためにフォールバックファイルを使用します。</translation>
+        <translation type="obsolete">プログラムの異常終了が検出されました。設定の復元のためにフォールバックファイルを使用します。</translation>
     </message>
     <message>
-        <location filename="../base/settingsstorage.cpp" line="195"/>
         <source>An access error occurred while trying to write the configuration file.</source>
-        <translation>設定ファイルの書き込み時にアクセスエラーが発生しました。</translation>
+        <translation type="obsolete">設定ファイルの書き込み時にアクセスエラーが発生しました。</translation>
     </message>
     <message>
-        <location filename="../base/settingsstorage.cpp" line="197"/>
         <source>A format error occurred while trying to write the configuration file.</source>
-        <translation>設定ファイルの書き込み時にフォーマットエラーが発生しました。</translation>
+        <translation type="obsolete">設定ファイルの書き込み時にフォーマットエラーが発生しました。</translation>
     </message>
 </context>
 <context>
     <name>ShutdownConfirmDlg</name>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="123"/>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="113"/>
         <source>qBittorrent will now exit.</source>
         <translation>qBittorrent を終了します。</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="125"/>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="115"/>
         <source>E&amp;xit Now</source>
         <translation>いますぐ終了(&amp;X)</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="126"/>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="116"/>
         <source>Exit confirmation</source>
         <translation>終了の確認</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="129"/>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="119"/>
         <source>The computer is going to shutdown.</source>
         <translation>コンピューターをシャットダウンします。</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="131"/>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="121"/>
         <source>&amp;Shutdown Now</source>
         <translation>いますぐシャットダウン(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="135"/>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="125"/>
         <source>The computer is going to enter suspend mode.</source>
         <translation>コンピューターをサスペンドモードにします。</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="137"/>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="127"/>
         <source>&amp;Suspend Now</source>
         <translation>いますぐサスペンド(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="138"/>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="128"/>
         <source>Suspend confirmation</source>
         <translation>サスペンドの確認</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="141"/>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="131"/>
         <source>The computer is going to enter hibernation mode.</source>
         <translation>コンピューターをハイバネートモードにします。</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="143"/>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="133"/>
         <source>&amp;Hibernate Now</source>
         <translation>いますぐハイバネート(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="144"/>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="134"/>
         <source>Hibernate confirmation</source>
         <translation>ハイバネートの確認</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="148"/>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="144"/>
         <source>You can cancel the action within %1 seconds.</source>
         <translation>キャンセルできるのはあと %1 秒までです。</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirm.cpp" line="132"/>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="122"/>
         <source>Shutdown confirmation</source>
         <translation>シャットダウンの確認</translation>
     </message>
@@ -6975,8 +7098,17 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="105"/>
+        <source>Read cache hits:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="184"/>
+        <source>Average time in queue:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Read cache Hits:</source>
-        <translation>読み込みキャッシュヒット:</translation>
+        <translation type="obsolete">読み込みキャッシュヒット:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="126"/>
@@ -6999,9 +7131,8 @@ No further notices will be issued.</source>
         <translation>書き込みキャッシュオーバーロード:</translation>
     </message>
     <message>
-        <location filename="../gui/statsdialog.ui" line="184"/>
         <source>Average time in queue (ms):</source>
-        <translation>平均待ち時間 (ms):</translation>
+        <translation type="obsolete">平均待ち時間 (ms):</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="191"/>
@@ -7017,6 +7148,12 @@ No further notices will be issued.</source>
         <location filename="../gui/statsdialog.ui" line="243"/>
         <source>OK</source>
         <translation>OK</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.cpp" line="101"/>
+        <source>%1 ms</source>
+        <comment>18 milliseconds</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7272,76 +7409,62 @@ No further notices will be issued.</source>
 <context>
     <name>TorrentImportDlg</name>
     <message>
-        <location filename="../gui/torrentimportdlg.ui" line="14"/>
         <source>Torrent Import</source>
-        <translation>Torrent のインポート</translation>
+        <translation type="obsolete">Torrent のインポート</translation>
     </message>
     <message>
-        <location filename="../gui/torrentimportdlg.ui" line="53"/>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translation>このアシスタントはあなたがすでにダウンロード済みの Torrent を qBittorrent で共有する際のお手伝いをします。</translation>
+        <translation type="obsolete">このアシスタントはあなたがすでにダウンロード済みの Torrent を qBittorrent で共有する際のお手伝いをします。</translation>
     </message>
     <message>
-        <location filename="../gui/torrentimportdlg.ui" line="65"/>
         <source>Torrent file to import:</source>
-        <translation>インポートする Torrent ファイル:</translation>
+        <translation type="obsolete">インポートする Torrent ファイル:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentimportdlg.ui" line="109"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
-        <location filename="../gui/torrentimportdlg.ui" line="90"/>
         <source>Content location:</source>
-        <translation>コンテンツの場所:</translation>
+        <translation type="obsolete">コンテンツの場所:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentimportdlg.ui" line="121"/>
         <source>Skip the data checking stage and start seeding immediately</source>
-        <translation>データチェックステージをスキップし、直ちにシードを開始する</translation>
+        <translation type="obsolete">データチェックステージをスキップし、直ちにシードを開始する</translation>
     </message>
     <message>
-        <location filename="../gui/torrentimportdlg.ui" line="131"/>
         <source>Import</source>
-        <translation>インポート</translation>
+        <translation type="obsolete">インポート</translation>
     </message>
     <message>
-        <location filename="../gui/torrentimportdlg.cpp" line="65"/>
         <source>Torrent file to import</source>
-        <translation>インポートする Torrent ファイル</translation>
+        <translation type="obsolete">インポートする Torrent ファイル</translation>
     </message>
     <message>
-        <location filename="../gui/torrentimportdlg.cpp" line="65"/>
         <source>Torrent files</source>
-        <translation>Torrent ファイル</translation>
+        <translation type="obsolete">Torrent ファイル</translation>
     </message>
     <message>
-        <location filename="../gui/torrentimportdlg.cpp" line="89"/>
         <source>&apos;%1&apos; Files</source>
         <comment>%1 is a file extension (e.g. PDF)</comment>
-        <translation>&apos;%1&apos; ファイル</translation>
+        <translation type="obsolete">&apos;%1&apos; ファイル</translation>
     </message>
     <message>
-        <location filename="../gui/torrentimportdlg.cpp" line="91"/>
         <source>Please provide the location of &apos;%1&apos;</source>
         <comment>%1 is a file name</comment>
-        <translation>&apos;%1&apos; の場所を指定してください</translation>
+        <translation type="obsolete">&apos;%1&apos; の場所を指定してください</translation>
     </message>
     <message>
-        <location filename="../gui/torrentimportdlg.cpp" line="124"/>
         <source>Please point to the location of the torrent: %1</source>
-        <translation>Torrent の場所を指定してください: %1</translation>
+        <translation type="obsolete">Torrent の場所を指定してください: %1</translation>
     </message>
     <message>
-        <location filename="../gui/torrentimportdlg.cpp" line="222"/>
         <source>Invalid torrent file</source>
-        <translation>不正な Torrent ファイル</translation>
+        <translation type="obsolete">不正な Torrent ファイル</translation>
     </message>
     <message>
-        <location filename="../gui/torrentimportdlg.cpp" line="222"/>
         <source>This is not a valid torrent file.</source>
-        <translation>これは正常な Torrent ファイルではありません。</translation>
+        <translation type="obsolete">これは正常な Torrent ファイルではありません。</translation>
     </message>
 </context>
 <context>
@@ -7516,84 +7639,84 @@ No further notices will be issued.</source>
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="448"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="445"/>
         <source>All (0)</source>
         <comment>this is for the tracker filter</comment>
         <translation>すべて (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="451"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="448"/>
         <source>Trackerless (0)</source>
         <translation>トラッカーなし (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="454"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="451"/>
         <source>Error (0)</source>
         <translation>エラー (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="457"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="454"/>
         <source>Warning (0)</source>
         <translation>警告 (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="501"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="558"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="498"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="552"/>
         <source>Trackerless (%1)</source>
         <translation>トラッカーなし (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="507"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="553"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="504"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="547"/>
         <source>%1 (%2)</source>
         <comment>openbittorrent.com (10)</comment>
         <translation>%1 (%2)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="583"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="615"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="577"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="609"/>
         <source>Error (%1)</source>
         <translation>エラー (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="596"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="630"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="590"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="624"/>
         <source>Warning (%1)</source>
         <translation>警告 (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="660"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="654"/>
         <source>Couldn&apos;t decode favicon for URL &apos;%1&apos;. Trying to download favicon in PNG format.</source>
         <translation>URL &apos;%1&apos; のファビコンをデコードできませんでした。 PNG フォーマットのダウンロードを試みています。</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="665"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="659"/>
         <source>Couldn&apos;t decode favicon for URL &apos;%1&apos;.</source>
         <translation>URL &apos;%1&apos; のファビコンをデコードできませんでした。</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="679"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="673"/>
         <source>Couldn&apos;t download favicon for URL &apos;%1&apos;. Reason: %2</source>
         <translation>URL &apos;%1&apos; のファビコンをダウンロードできませんでした。理由: %2</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="688"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="682"/>
         <source>Resume torrents</source>
         <translation>Torrent の再開</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="689"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="683"/>
         <source>Pause torrents</source>
         <translation>Torrent の停止</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="690"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="684"/>
         <source>Delete torrents</source>
         <translation>Torrent の削除</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="724"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="738"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="718"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="732"/>
         <source>All (%1)</source>
         <comment>this is for the tracker filter</comment>
         <translation>すべて (%1)</translation>
@@ -7727,32 +7850,32 @@ No further notices will be issued.</source>
         <translation>µTorrent 互換リスト URL:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondlg.cpp" line="73"/>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="79"/>
         <source>I/O Error</source>
         <translation>I/O エラー</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondlg.cpp" line="73"/>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="79"/>
         <source>Error while trying to open the downloaded file.</source>
         <translation>ダウンロードしたファイルを開くときにエラーが発生しました。</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondlg.cpp" line="111"/>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="117"/>
         <source>No change</source>
         <translation>変更なし</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondlg.cpp" line="111"/>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="117"/>
         <source>No additional trackers were found.</source>
         <translation>追加されたトラッカーはありません。</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondlg.cpp" line="119"/>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="125"/>
         <source>Download error</source>
         <translation>ダウンロードエラー</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondlg.cpp" line="119"/>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="125"/>
         <source>The trackers list could not be downloaded, reason: %1</source>
         <translation>トラッカーリストをダウンロードできませんでした。理由: %1</translation>
     </message>
@@ -7861,17 +7984,17 @@ No further notices will be issued.</source>
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="817"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="811"/>
         <source>Status</source>
         <translation>状態</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="825"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="819"/>
         <source>Categories</source>
         <translation>カテゴリ</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="833"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="827"/>
         <source>Trackers</source>
         <translation>トラッカー</translation>
     </message>
@@ -8032,28 +8155,37 @@ Category name must not contain &apos;//&apos; sequence.</source>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="675"/>
-        <source>Enable Advanced Saving Management</source>
-        <translation>詳細保存設定を有効にする</translation>
+        <source>Automatic Torrent Management</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="774"/>
+        <location filename="../gui/transferlistwidget.cpp" line="677"/>
+        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Advanced Saving Management</source>
+        <translation type="obsolete">詳細保存設定を有効にする</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="775"/>
         <source>Category</source>
         <translation>カテゴリ</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="775"/>
+        <location filename="../gui/transferlistwidget.cpp" line="776"/>
         <source>New...</source>
         <comment>New category...</comment>
         <translation>新規...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="776"/>
+        <location filename="../gui/transferlistwidget.cpp" line="777"/>
         <source>Reset</source>
         <comment>Reset category</comment>
         <translation>リセット</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="831"/>
+        <location filename="../gui/transferlistwidget.cpp" line="832"/>
         <source>Priority</source>
         <translation>優先度</translation>
     </message>
@@ -8111,6 +8243,14 @@ Category name must not contain &apos;//&apos; sequence.</source>
         <location filename="../gui/updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
         <translation>共有比上限を設定する</translation>
+    </message>
+</context>
+<context>
+    <name>WebApplication</name>
+    <message>
+        <location filename="../webui/webapplication.cpp" line="781"/>
+        <source>Incorrect category name</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8232,7 +8372,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
 <context>
     <name>confirmShutdownDlg</name>
     <message>
-        <location filename="../gui/confirmshutdowndlg.ui" line="64"/>
+        <location filename="../gui/shutdownconfirmdlg.ui" line="64"/>
         <source>Don&apos;t show again</source>
         <translation>次から表示しない</translation>
     </message>
@@ -8475,82 +8615,82 @@ Category name must not contain &apos;//&apos; sequence.</source>
         <location filename="../base/utils/misc.cpp" line="90"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
-        <translation type="unfinished"></translation>
+        <translation>PiB</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="91"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
-        <translation type="unfinished"></translation>
+        <translation>EiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="288"/>
+        <location filename="../base/utils/misc.cpp" line="286"/>
         <source>Python not detected</source>
         <translation>Python が見つかりませんでした</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="316"/>
+        <location filename="../base/utils/misc.cpp" line="314"/>
         <source>Python version: %1</source>
         <translation>Python バージョン: %1</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="363"/>
+        <location filename="../base/utils/misc.cpp" line="361"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="444"/>
+        <location filename="../base/utils/misc.cpp" line="442"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1時間 %2分</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="448"/>
+        <location filename="../base/utils/misc.cpp" line="446"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1日 %2時間</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="355"/>
+        <location filename="../base/utils/misc.cpp" line="353"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>不明</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="211"/>
+        <location filename="../base/utils/misc.cpp" line="210"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>すべてのダウンロードが完了したので qBittorrent はコンピューターをシャットダウンします。</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="437"/>
+        <location filename="../base/utils/misc.cpp" line="435"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 分</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="440"/>
+        <location filename="../base/utils/misc.cpp" line="438"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 分</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="459"/>
+        <location filename="../webui/btjson.cpp" line="469"/>
         <source>Working</source>
         <translation>動作中</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="457"/>
+        <location filename="../webui/btjson.cpp" line="467"/>
         <source>Updating...</source>
         <translation>更新しています...</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="461"/>
+        <location filename="../webui/btjson.cpp" line="471"/>
         <source>Not working</source>
         <translation>非動作中</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="455"/>
+        <location filename="../webui/btjson.cpp" line="465"/>
         <source>Not contacted yet</source>
         <translation>未接触</translation>
     </message>
@@ -8558,192 +8698,226 @@ Category name must not contain &apos;//&apos; sequence.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1341"/>
-        <location filename="../gui/options_imp.cpp" line="1343"/>
+        <location filename="../gui/options_imp.cpp" line="1385"/>
+        <location filename="../gui/options_imp.cpp" line="1387"/>
         <source>Choose export directory</source>
         <translation>エクスポートディレクトリの選択</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1353"/>
-        <location filename="../gui/options_imp.cpp" line="1355"/>
-        <location filename="../gui/options_imp.cpp" line="1394"/>
-        <location filename="../gui/options_imp.cpp" line="1396"/>
-        <location filename="../gui/options_imp.cpp" line="1407"/>
-        <location filename="../gui/options_imp.cpp" line="1409"/>
+        <location filename="../gui/options_imp.cpp" line="1397"/>
+        <location filename="../gui/options_imp.cpp" line="1399"/>
+        <location filename="../gui/options_imp.cpp" line="1438"/>
+        <location filename="../gui/options_imp.cpp" line="1440"/>
+        <location filename="../gui/options_imp.cpp" line="1451"/>
+        <location filename="../gui/options_imp.cpp" line="1453"/>
         <source>Choose a save directory</source>
         <translation>保存ディレクトリの選択</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1289"/>
         <source>Add directory to scan</source>
-        <translation>スキャンするディレクトリの追加</translation>
+        <translation type="obsolete">スキャンするディレクトリの追加</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="215"/>
+        <location filename="../gui/options_imp.cpp" line="241"/>
         <source>Supported parameters (case sensitive):</source>
         <translation>サポートパラメーター (大文字小文字を区別):</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="216"/>
+        <location filename="../gui/options_imp.cpp" line="242"/>
         <source>%N: Torrent name</source>
         <translation>%N: Torrent 名</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="217"/>
+        <location filename="../gui/options_imp.cpp" line="243"/>
         <source>%L: Category</source>
         <translation>%L: カテゴリ</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="218"/>
+        <location filename="../gui/options_imp.cpp" line="244"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: コンテンツパス (Torrent 内ファイルのルート)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="219"/>
+        <location filename="../gui/options_imp.cpp" line="245"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
         <translation>%R: ルートパス (最初の Torrent のパス)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="220"/>
+        <location filename="../gui/options_imp.cpp" line="246"/>
         <source>%D: Save path</source>
         <translation>%D: 保存パス</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="221"/>
+        <location filename="../gui/options_imp.cpp" line="247"/>
         <source>%C: Number of files</source>
         <translation>%C: ファイル数</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="222"/>
+        <location filename="../gui/options_imp.cpp" line="248"/>
         <source>%Z: Torrent size (bytes)</source>
         <translation>%Z: Torrent サイズ (バイト)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="223"/>
+        <location filename="../gui/options_imp.cpp" line="249"/>
         <source>%T: Current tracker</source>
         <translation>%T: 現在のトラッカー</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="224"/>
+        <location filename="../gui/options_imp.cpp" line="250"/>
         <source>%I: Info hash</source>
         <translation>%I: 情報ハッシュ</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="225"/>
+        <location filename="../gui/options_imp.cpp" line="251"/>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
         <translation>ヒント: パラメーターに空白が含まれるときはダブルクオーテーションで括ってください (例: &quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1296"/>
         <source>Folder is already being watched.</source>
-        <translation>フォルダーはすでに監視されています。</translation>
+        <translation type="obsolete">フォルダーはすでに監視されています。</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1299"/>
         <source>Folder does not exist.</source>
-        <translation>フォルダーが存在しません。</translation>
+        <translation type="obsolete">フォルダーが存在しません。</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1302"/>
         <source>Folder is not readable.</source>
-        <translation>フォルダーが読み込み可能ではありません。</translation>
+        <translation type="obsolete">フォルダーが読み込み可能ではありません。</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1313"/>
         <source>Failure</source>
-        <translation>失敗</translation>
+        <translation type="obsolete">失敗</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1313"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation>スキャンフォルダー &apos;%1&apos; の追加に失敗しました: %2</translation>
+        <translation type="obsolete">スキャンフォルダー &apos;%1&apos; の追加に失敗しました: %2</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1380"/>
-        <location filename="../gui/options_imp.cpp" line="1382"/>
+        <location filename="../gui/options_imp.cpp" line="96"/>
+        <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options_imp.cpp" line="98"/>
+        <source>When these options are enabled, qBittorent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options_imp.cpp" line="103"/>
+        <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options_imp.cpp" line="1333"/>
+        <source>Select folder to monitor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options_imp.cpp" line="1340"/>
+        <source>Folder is already being monitored:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options_imp.cpp" line="1343"/>
+        <source>Folder does not exist:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options_imp.cpp" line="1346"/>
+        <source>Folder is not readable:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options_imp.cpp" line="1357"/>
+        <source>Adding entry failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options_imp.cpp" line="1424"/>
+        <location filename="../gui/options_imp.cpp" line="1426"/>
         <source>Filters</source>
         <translation>フィルター</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1380"/>
-        <location filename="../gui/options_imp.cpp" line="1382"/>
+        <location filename="../gui/options_imp.cpp" line="1424"/>
+        <location filename="../gui/options_imp.cpp" line="1426"/>
         <source>Choose an IP filter file</source>
         <translation>IP フィルターファイルの選択</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1449"/>
+        <location filename="../gui/options_imp.cpp" line="1493"/>
         <source>SSL Certificate</source>
         <translation>SSL 証明書</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1461"/>
+        <location filename="../gui/options_imp.cpp" line="1505"/>
         <source>SSL Key</source>
         <translation>SSL キー</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1494"/>
+        <location filename="../gui/options_imp.cpp" line="1538"/>
         <source>Parsing error</source>
         <translation>解析エラー</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1494"/>
+        <location filename="../gui/options_imp.cpp" line="1538"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>与えられた IP フィルターの解析に失敗しました</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1496"/>
+        <location filename="../gui/options_imp.cpp" line="1540"/>
         <source>Successfully refreshed</source>
         <translation>正常にリフレッシュされました</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1496"/>
+        <location filename="../gui/options_imp.cpp" line="1540"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>IP フィルターの解析に成功しました: %1 ルールが適用されました。</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1583"/>
+        <location filename="../gui/options_imp.cpp" line="1627"/>
         <source>Invalid key</source>
         <translation>不正な鍵</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1583"/>
+        <location filename="../gui/options_imp.cpp" line="1627"/>
         <source>This is not a valid SSL key.</source>
         <translation>これは正常な SSL 鍵ではありません。</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1599"/>
+        <location filename="../gui/options_imp.cpp" line="1643"/>
         <source>Invalid certificate</source>
         <translation>不正な証明書</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1599"/>
+        <location filename="../gui/options_imp.cpp" line="1643"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>これは正常な SSL 証明書ではありません。</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1607"/>
+        <location filename="../gui/options_imp.cpp" line="1651"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>開始時刻と終了時刻は同じにできません。</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1607"/>
+        <location filename="../gui/options_imp.cpp" line="1651"/>
         <source>Time Error</source>
         <translation>時刻エラー</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1616"/>
-        <location filename="../gui/options_imp.cpp" line="1620"/>
+        <location filename="../gui/options_imp.cpp" line="1660"/>
+        <location filename="../gui/options_imp.cpp" line="1664"/>
         <source>Length Error</source>
         <translation>短すぎエラー</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1616"/>
+        <location filename="../gui/options_imp.cpp" line="1660"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Web UI のユーザー名は 3 文字以上にしてください。</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1620"/>
+        <location filename="../gui/options_imp.cpp" line="1664"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation>Web UI のパスワードは 6 文字以上にしてください。</translation>
     </message>
