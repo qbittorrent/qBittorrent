@@ -52,7 +52,8 @@ signals:
 
 private slots:
     void updateCacheSpinSuffix(int value);
-    void updateInterfaceAddressCombo(int index);
+    void updateInterfaceAddressCombo();
+
 private:
     void loadAdvancedSettings();
     template <typename T> void addRow(int row, const QString &rowText, T* widget);

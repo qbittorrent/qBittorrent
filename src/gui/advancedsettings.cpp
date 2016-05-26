@@ -106,7 +106,7 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     // Signals
     connect(&spin_cache, SIGNAL(valueChanged(int)), SLOT(updateCacheSpinSuffix(int)));
-    connect(&combo_iface, SIGNAL(currentIndexChanged(int)), SLOT(updateInterfaceAddressCombo(int)));
+    connect(&combo_iface, SIGNAL(currentIndexChanged(int)), SLOT(updateInterfaceAddressCombo()));
     // Load settings
     loadAdvancedSettings();
     resizeColumnToContents(0);
@@ -156,11 +156,7 @@ void AdvancedSettings::saveAdvancedSettings()
     }
     else {
         QHostAddress ifaceAddr(combo_iface_address.currentText().trimmed());
-        if (ifaceAddr.isNull()) {
-            pref->setNetworkInterfaceAddress(QString::null);
-        } else {
-            pref->setNetworkInterfaceAddress(ifaceAddr.toString());
-        }
+        ifaceAddr.isNull() ? pref->setNetworkInterfaceAddress(QString::null) : pref->setNetworkInterfaceAddress(ifaceAddr.toString());
     }
     // Network Announce address
     QHostAddress networkAddr(txt_network_address.text().trimmed());
@@ -197,41 +193,39 @@ void AdvancedSettings::updateCacheSpinSuffix(int value)
         spin_cache.setSuffix(tr(" MiB"));
 }
 
-void AdvancedSettings::updateInterfaceAddressCombo(int) {
-    //Try to get the currently selected interface name
-    QString ifaceName;
-    if (combo_iface.currentIndex() == 0) {
-        ifaceName = QString();
-    }
-    else {
-        ifaceName = combo_iface.itemData(combo_iface.currentIndex()).toString();
-    }
-    const QNetworkInterface iface = QNetworkInterface::interfaceFromName(ifaceName);
+void AdvancedSettings::updateInterfaceAddressCombo()
+{
+    // Try to get the currently selected interface name
+    const QString ifaceName = combo_iface.itemData(combo_iface.currentIndex()).toString(); // Empty string for the first element
+    const QString currentAddress = Preferences::instance()->getNetworkInterfaceAddress();
 
     //Clear all items and reinsert them, default to all
     combo_iface_address.clear();
-    combo_iface_address.addItem(tr("All Addresses"));
+    combo_iface_address.addItem(tr("All addresses"));
     combo_iface_address.setCurrentIndex(0);
-    if (!iface.isValid()) {
-        return;
-    }
-    //Found a valid interface, try to get the addresses
-    const QList<QNetworkAddressEntry> addresses = iface.addressEntries();
-    const Preferences* const pref = Preferences::instance();
-    const QString currentAddress = pref->getNetworkInterfaceAddress();
 
-    foreach (const QNetworkAddressEntry &entry, addresses) {
-        QHostAddress ip = entry.ip();
-        QString ipString = ip.toString();
-        QAbstractSocket::NetworkLayerProtocol protocol = ip.protocol();
+    auto populateCombo = [this, &currentAddress](const QString &ip, const QAbstractSocket::NetworkLayerProtocol &protocol)
+    {
         Q_ASSERT(protocol == QAbstractSocket::IPv4Protocol || protocol == QAbstractSocket::IPv6Protocol);
         //Only take ipv4 for now?
-        if (protocol != QAbstractSocket::IPv4Protocol)
-            continue;
-        combo_iface_address.addItem( ipString );
+        if (protocol != QAbstractSocket::IPv4Protocol && protocol != QAbstractSocket::IPv6Protocol)
+            return;
+        combo_iface_address.addItem(ip);
         //Try to select the last added one
-        if (ipString == currentAddress) {
+        if (ip == currentAddress)
             combo_iface_address.setCurrentIndex(combo_iface_address.count() - 1);
+    };
+
+    if (ifaceName.isEmpty()) {
+        foreach (const QHostAddress &ip, QNetworkInterface::allAddresses())
+            populateCombo(ip.toString(), ip.protocol());
+    }
+    else {
+        const QNetworkInterface iface = QNetworkInterface::interfaceFromName(ifaceName);
+        const QList<QNetworkAddressEntry> addresses = iface.addressEntries();
+        foreach (const QNetworkAddressEntry &entry, addresses) {
+            const QHostAddress ip = entry.ip();
+            populateCombo(ip.toString(), ip.protocol());
         }
     }
 }
@@ -339,7 +333,7 @@ void AdvancedSettings::loadAdvancedSettings()
     }
     addRow(NETWORK_IFACE, tr("Network Interface (requires restart)"), &combo_iface);
     // Network interface address
-    updateInterfaceAddressCombo(combo_iface.currentIndex());
+    updateInterfaceAddressCombo();
     addRow(NETWORK_IFACE_ADDRESS, tr("Optional IP Address to bind to (requires restart)"), &combo_iface_address);
     // Listen on IPv6 address
     cb_listen_ipv6.setChecked(pref->getListenIPv6());

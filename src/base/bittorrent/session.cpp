@@ -1738,9 +1738,21 @@ const QStringList Session::getListeningIPs()
     const QString ifaceAddr = pref->getNetworkInterfaceAddress();
     const bool listenIPv6 = pref->getListenIPv6();
 
-    //No interface name or address defined just use an empty list
-    if (ifaceName.isEmpty() && ifaceAddr.isEmpty()) {
-        IPs.append(QString());
+    if (!ifaceAddr.isEmpty()) {
+        QHostAddress addr(ifaceAddr);
+        if (addr.isNull()) {
+            logger->addMessage(tr("Configured network interface address %1 isn't valid.", "Configured network interface address 124.5.1568.1 isn't valid.").arg(ifaceAddr), Log::CRITICAL);
+            IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
+            return IPs;
+        }
+    }
+
+    if (ifaceName.isEmpty()) {
+        if (!ifaceAddr.isEmpty())
+            IPs.append(ifaceAddr);
+        else
+            IPs.append(QString());
+
         return IPs;
     }
 
@@ -1767,13 +1779,16 @@ const QStringList Session::getListeningIPs()
             || (listenIPv6 && (protocol == QAbstractSocket::IPv4Protocol)))
             continue;
 
-        //If an iface address has been defined only allow ip's that match it to go through
+        // If an iface address has been defined only allow ip's that match it to go through
         if (!ifaceAddr.isEmpty()) {
-            if (ipString != ifaceAddr) {
-                continue;
+            if (ifaceAddr == ipString) {
+                IPs.append(ipString);
+                break;
             }
         }
-        IPs.append(ipString);
+        else {
+            IPs.append(ipString);
+        }
     }
 
     // Make sure there is at least one IP
