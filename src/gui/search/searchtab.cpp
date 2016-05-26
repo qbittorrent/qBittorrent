@@ -28,6 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QApplication>
 #include <QDir>
 #include <QMetaEnum>
 #include <QTreeView>
@@ -35,6 +36,7 @@
 #include <QHeaderView>
 #include <QSortFilterProxyModel>
 #include <QLabel>
+#include <QPalette>
 #include <QVBoxLayout>
 #ifdef QBT_USES_QT5
 #include <QTableView>
@@ -133,7 +135,7 @@ void SearchTab::downloadItem(const QModelIndex &index)
 {
     QString torrentUrl = m_proxyModel->data(m_proxyModel->index(index.row(), SearchSortModel::DL_LINK)).toString();
     QString siteUrl = m_proxyModel->data(m_proxyModel->index(index.row(), SearchSortModel::ENGINE_URL)).toString();
-    setRowColor(index.row(), "blue");
+    setRowColor(index.row(), QApplication::palette().color(QPalette::LinkVisited));
     m_parent->downloadTorrent(siteUrl, torrentUrl);
 }
 
@@ -173,11 +175,11 @@ QStandardItemModel* SearchTab::getCurrentSearchListModel() const
 }
 
 // Set the color of a row in data model
-void SearchTab::setRowColor(int row, QString color)
+void SearchTab::setRowColor(int row, const QColor &color)
 {
     m_proxyModel->setDynamicSortFilter(false);
     for (int i = 0; i < m_proxyModel->columnCount(); ++i)
-        m_proxyModel->setData(m_proxyModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
+        m_proxyModel->setData(m_proxyModel->index(row, i), color, Qt::ForegroundRole);
 
     m_proxyModel->setDynamicSortFilter(true);
 }

@@ -76,7 +76,7 @@ public:
     QHeaderView* header() const;
 
     bool loadColWidthResultsList();
-    void setRowColor(int row, QString color);
+    void setRowColor(int row, const QColor &color);
 
     enum class Status
     {
