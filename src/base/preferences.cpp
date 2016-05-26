@@ -1339,6 +1339,16 @@ QString Preferences::getNetworkInterfaceName() const
     return value("Preferences/Connection/InterfaceName").toString();
 }
 
+void Preferences::setNetworkInterfaceAddress(const QString& addr)
+{
+    setValue("Preferences/Connection/InterfaceAddress", addr);
+}
+
+QString Preferences::getNetworkInterfaceAddress() const
+{
+    return value("Preferences/Connection/InterfaceAddress").toString();
+}
+
 void Preferences::setNetworkInterfaceName(const QString& iface)
 {
     setValue("Preferences/Connection/InterfaceName", iface);

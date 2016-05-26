@@ -361,6 +361,8 @@ public:
     void setMaxHalfOpenConnections(int value);
     QString getNetworkInterface() const;
     void setNetworkInterface(const QString& iface);
+    QString getNetworkInterfaceAddress() const;
+    void setNetworkInterfaceAddress(const QString& addr);
     QString getNetworkInterfaceName() const;
     void setNetworkInterfaceName(const QString& iface);
     bool getListenIPv6() const;

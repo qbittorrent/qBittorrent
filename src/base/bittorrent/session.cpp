@@ -1735,9 +1735,11 @@ const QStringList Session::getListeningIPs()
     QStringList IPs;
 
     const QString ifaceName = pref->getNetworkInterface();
+    const QString ifaceAddr = pref->getNetworkInterfaceAddress();
     const bool listenIPv6 = pref->getListenIPv6();
 
-    if (ifaceName.isEmpty()) {
+    //No interface name or address defined just use an empty list
+    if (ifaceName.isEmpty() && ifaceAddr.isEmpty()) {
         IPs.append(QString());
         return IPs;
     }
@@ -1764,6 +1766,13 @@ const QStringList Session::getListeningIPs()
         if ((!listenIPv6 && (protocol == QAbstractSocket::IPv6Protocol))
             || (listenIPv6 && (protocol == QAbstractSocket::IPv4Protocol)))
             continue;
+
+        //If an iface address has been defined only allow ip's that match it to go through
+        if (!ifaceAddr.isEmpty()) {
+            if (ipString != ifaceAddr) {
+                continue;
+            }
+        }
         IPs.append(ipString);
     }
 
