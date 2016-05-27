@@ -125,34 +125,25 @@ int FilterParserThread::parseDATFilterFile()
         // IP Range should be split by a dash
         QList<QByteArray> IPs = partsList.first().split('-');
         if (IPs.size() != 2) {
-            qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
-            qDebug("Line was %s", line.constData());
+            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. Line is: %2").arg(nbLine).arg(QString(line)), Log::CRITICAL);
             continue;
         }
 
         libt::address startAddr;
         if (!parseIPAddress(IPs.at(0), startAddr)) {
-            qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
-            qDebug("Start IP of the range is malformated: %s", qPrintable(IPs.at(0)));
+            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. Start IP of the range is malformed: %2").arg(nbLine).arg(QString(IPs.at(0))), Log::CRITICAL);
             continue;
         }
 
         libt::address endAddr;
         if (!parseIPAddress(IPs.at(1), endAddr)) {
-            qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
-            qDebug("End IP of the range is malformated: %s", qPrintable(IPs.at(1)));
+            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. End IP of the range is malformed: %2").arg(nbLine).arg(QString(IPs.at(1))), Log::CRITICAL);
             continue;
         }
 
-        if (startAddr.is_v4() != endAddr.is_v4()) {
-            qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
-            qDebug("One IP is IPv4 and the other is IPv6!");
-            continue;
-        }
-
-        if (startAddr.is_v6() != endAddr.is_v6()) {
-            qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
-            qDebug("One IP is IPv6 and the other is IPv4!");
+        if (startAddr.is_v4() != endAddr.is_v4()
+            || startAddr.is_v6() != endAddr.is_v6()) {
+            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine), Log::CRITICAL);
             continue;
         }
 
@@ -162,11 +153,10 @@ int FilterParserThread::parseDATFilterFile()
             ++ruleCount;
         }
         catch(std::exception &) {
-            qDebug("Bad line in filter file, avoided crash...");
+            Logger::instance()->addMessage(tr("IP filter exception thrown for line %1. Line is: %2").arg(nbLine).arg(QString(line)), Log::CRITICAL);
         }
     }
 
-    file.close();
     return ruleCount;
 }
 
@@ -193,41 +183,32 @@ int FilterParserThread::parseP2PFilterFile()
         // Line is split by :
         QList<QByteArray> partsList = line.split(':');
         if (partsList.size() < 2) {
-            qDebug("p2p file: line %d is malformed.", nbLine);
+            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. Line is: %2").arg(nbLine).arg(QString(line)), Log::CRITICAL);
             continue;
         }
 
         // Get IP range
         QList<QByteArray> IPs = partsList.last().split('-');
         if (IPs.size() != 2) {
-            qDebug("p2p file: line %d is malformed.", nbLine);
-            qDebug("line was: %s", line.constData());
+            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. Line is: %2").arg(nbLine).arg(QString(line)), Log::CRITICAL);
             continue;
         }
 
         libt::address startAddr;
         if (!parseIPAddress(IPs.at(0), startAddr)) {
-            qDebug("p2p file: line %d is malformed.", nbLine);
-            qDebug("Start IP is invalid: %s", qPrintable(IPs.at(0)));
+            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. Start IP of the range is malformed: %2").arg(nbLine).arg(QString(IPs.at(0))), Log::CRITICAL);
             continue;
         }
 
         libt::address endAddr;
         if (!parseIPAddress(IPs.at(1), endAddr)) {
-            qDebug("p2p file: line %d is malformed.", nbLine);
-            qDebug("End IP is invalid: %s", qPrintable(IPs.at(1)));
+            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. End IP of the range is malformed: %2").arg(nbLine).arg(QString(IPs.at(1))), Log::CRITICAL);
             continue;
         }
 
-        if (startAddr.is_v4() != endAddr.is_v4()) {
-            qDebug("p2p file: line %d is malformed.", nbLine);
-            qDebug("One IP is IPv4 and the other is IPv6!");
-            continue;
-        }
-
-        if (startAddr.is_v6() != endAddr.is_v6()) {
-            qDebug("p2p file: line %d is malformed.", nbLine);
-            qDebug("One IP is IPv6 and the other is IPv4!");
+        if (startAddr.is_v4() != endAddr.is_v4()
+            || startAddr.is_v6() != endAddr.is_v6()) {
+            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine), Log::CRITICAL);
             continue;
         }
 
@@ -236,13 +217,10 @@ int FilterParserThread::parseP2PFilterFile()
             ++ruleCount;
         }
         catch(std::exception &) {
-            qDebug("p2p file: line %d is malformed.", nbLine);
-            qDebug("Line was: %s", line.constData());
-            continue;
+            Logger::instance()->addMessage(tr("IP filter exception thrown for line %1. Line is: %2").arg(nbLine).arg(QString(line)), Log::CRITICAL);
         }
     }
 
-    file.close();
     return ruleCount;
 }
 
@@ -373,7 +351,6 @@ int FilterParserThread::parseP2BFilterFile()
         Logger::instance()->addMessage(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
     }
 
-    file.close();
     return ruleCount;
 }
 

@@ -106,6 +106,8 @@ Application::Application(const QString &id, int &argc, char **argv)
     , m_shutdownAct(ShutdownDialogAction::Exit)
     , m_commandLineArgs(parseCommandLine(this->arguments()))
 {
+    qRegisterMetaType<Log::Msg>("Log::Msg");
+
     setApplicationName("qBittorrent");
     validateCommandLineParameters();
 
