@@ -53,7 +53,6 @@ signals:
     void IPFilterError();
 
 protected:
-    QString cleanupIPAddress(QString _ip);
     void run();
 
 private:

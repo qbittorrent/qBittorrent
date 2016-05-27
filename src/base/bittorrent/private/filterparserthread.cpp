@@ -28,15 +28,49 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QFile>
-#include <QHostAddress>
+#include "filterparserthread.h"
+
 #include <QDataStream>
+#include <QFile>
 #include <QStringList>
 
 #include "base/logger.h"
-#include "filterparserthread.h"
 
 namespace libt = libtorrent;
+
+namespace
+{
+    bool parseIPAddress(QString _ip, libt::address &address)
+    {
+        _ip = _ip.trimmed();
+
+        // Emule .DAT files contain leading zeroes in IPv4 addresses
+        // eg 001.009.106.186
+        // We need to remove them because both QHostAddress and Boost.Asio fail to parse them.
+        QStringList octets = _ip.split('.', QString::SkipEmptyParts);
+        if (octets.size() == 4) {
+            QString octet; // it is faster to not recreate this object in the loop
+            for (int i = 0; i < 4; i++) {
+                octet = octets[i];
+                if ((octet[0] == QChar('0')) && (octet.count() > 1)) {
+                    if ((octet[1] == QChar('0')) && (octet.count() > 2))
+                        octet.remove(0, 2);
+                    else
+                        octet.remove(0, 1);
+
+                    octets[i] = octet;
+                }
+            }
+
+            _ip = octets.join(".");
+        }
+
+        boost::system::error_code ec;
+        address = libt::address::from_string(_ip.toLatin1().constData(), ec);
+
+        return !ec;
+    }
+}
 
 FilterParserThread::FilterParserThread(QObject *parent)
     : QThread(parent)
@@ -74,7 +108,19 @@ int FilterParserThread::parseDATFilterFile()
 
         // Line should be split by commas
         QList<QByteArray> partsList = line.split(',');
-        const uint nbElem = partsList.size();
+
+        // Check if there is at least one item (ip range)
+        if (partsList.isEmpty())
+            continue;
+
+        // Check if there is an access value (apparently not mandatory)
+        if (partsList.size() > 1) {
+            // There is possibly one
+            const int nbAccess = partsList.at(1).trimmed().toInt();
+            // Ignoring this rule because access value is too high
+            if (nbAccess > 127)
+                continue;
+        }
 
         // IP Range should be split by a dash
         QList<QByteArray> IPs = partsList.first().split('-');
@@ -84,31 +130,17 @@ int FilterParserThread::parseDATFilterFile()
             continue;
         }
 
-        boost::system::error_code ec;
-        const QString strStartIP = cleanupIPAddress(IPs.at(0));
-        if (strStartIP.isEmpty()) {
+        libt::address startAddr;
+        if (!parseIPAddress(IPs.at(0), startAddr)) {
             qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
-            qDebug("Start IP of the range is malformated: %s", qPrintable(strStartIP));
-            continue;
-        }
-        libt::address startAddr = libt::address::from_string(qPrintable(strStartIP), ec);
-        if (ec) {
-            qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
-            qDebug("Start IP of the range is malformated: %s", qPrintable(strStartIP));
+            qDebug("Start IP of the range is malformated: %s", qPrintable(IPs.at(0)));
             continue;
         }
 
-        const QString strEndIP = cleanupIPAddress(IPs.at(1));
-        if (strEndIP.isEmpty()) {
+        libt::address endAddr;
+        if (!parseIPAddress(IPs.at(1), endAddr)) {
             qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
-            qDebug("End IP of the range is malformated: %s", qPrintable(strEndIP));
-            continue;
-        }
-
-        libt::address endAddr = libt::address::from_string(qPrintable(strEndIP), ec);
-        if (ec) {
-            qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
-            qDebug("End IP of the range is malformated: %s", qPrintable(strEndIP));
+            qDebug("End IP of the range is malformated: %s", qPrintable(IPs.at(1)));
             continue;
         }
 
@@ -118,15 +150,9 @@ int FilterParserThread::parseDATFilterFile()
             continue;
         }
 
-        // Check if there is an access value (apparently not mandatory)
-        int nbAccess = 0;
-        if (nbElem > 1) {
-            // There is possibly one
-            nbAccess = partsList.at(1).trimmed().toInt();
-        }
-
-        if (nbAccess > 127) {
-            // Ignoring this rule because access value is too high
+        if (startAddr.is_v6() != endAddr.is_v6()) {
+            qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
+            qDebug("One IP is IPv6 and the other is IPv4!");
             continue;
         }
 
@@ -179,38 +205,29 @@ int FilterParserThread::parseP2PFilterFile()
             continue;
         }
 
-        boost::system::error_code ec;
-        QString strStartIP = cleanupIPAddress(IPs.at(0));
-        if (strStartIP.isEmpty()) {
+        libt::address startAddr;
+        if (!parseIPAddress(IPs.at(0), startAddr)) {
             qDebug("p2p file: line %d is malformed.", nbLine);
-            qDebug("Start IP is invalid: %s", qPrintable(strStartIP));
+            qDebug("Start IP is invalid: %s", qPrintable(IPs.at(0)));
             continue;
         }
 
-        libt::address startAddr = libt::address::from_string(qPrintable(strStartIP), ec);
-        if (ec) {
+        libt::address endAddr;
+        if (!parseIPAddress(IPs.at(1), endAddr)) {
             qDebug("p2p file: line %d is malformed.", nbLine);
-            qDebug("Start IP is invalid: %s", qPrintable(strStartIP));
-            continue;
-        }
-
-        QString strEndIP = cleanupIPAddress(IPs.at(1));
-        if (strEndIP.isEmpty()) {
-            qDebug("p2p file: line %d is malformed.", nbLine);
-            qDebug("End IP is invalid: %s", qPrintable(strStartIP));
-            continue;
-        }
-
-        libt::address endAddr = libt::address::from_string(qPrintable(strEndIP), ec);
-        if (ec) {
-            qDebug("p2p file: line %d is malformed.", nbLine);
-            qDebug("End IP is invalid: %s", qPrintable(strStartIP));
+            qDebug("End IP is invalid: %s", qPrintable(IPs.at(1)));
             continue;
         }
 
         if (startAddr.is_v4() != endAddr.is_v4()) {
             qDebug("p2p file: line %d is malformed.", nbLine);
-            qDebug("Line was: %s", line.constData());
+            qDebug("One IP is IPv4 and the other is IPv6!");
+            continue;
+        }
+
+        if (startAddr.is_v6() != endAddr.is_v6()) {
+            qDebug("p2p file: line %d is malformed.", nbLine);
+            qDebug("One IP is IPv6 and the other is IPv4!");
             continue;
         }
 
@@ -383,37 +400,6 @@ void FilterParserThread::processFilterFile(const QString &filePath)
 libt::ip_filter FilterParserThread::IPfilter()
 {
     return m_filter;
-}
-
-QString FilterParserThread::cleanupIPAddress(QString _ip)
-{
-    _ip = _ip.trimmed();
-
-    // Emule .DAT files contain leading zeroes in IPv4 addresses
-    // eg 001.009.106.186
-    // We need to remove them because both QHostAddress and Boost.Asio fail to parse them.
-    QStringList octets = _ip.split('.', QString::SkipEmptyParts);
-    if (octets.size() == 4) {
-        QString octet; // it is faster to not recreate this object in the loop
-        for (int i = 0; i < 4; i++) {
-            octet = octets[i];
-            if ((octet[0] == QChar('0')) && (octet.count() > 1)) {
-                if ((octet[1] == QChar('0')) && (octet.count() > 2))
-                    octet.remove(0, 2);
-                else
-                    octet.remove(0, 1);
-
-                octets[i] = octet;
-            }
-        }
-
-        _ip = octets.join(".");
-    }
-
-    QHostAddress ip(_ip);
-    if (ip.isNull()) return QString();
-
-    return ip.toString();
 }
 
 void FilterParserThread::run()
