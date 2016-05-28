@@ -809,7 +809,7 @@
                    <item>
                     <widget class="QComboBox" name="comboSavingMode">
                      <property name="toolTip">
-                      <string>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</string>
+                      <string>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</string>
                      </property>
                      <item>
                       <property name="text">
@@ -1023,7 +1023,7 @@
                   </widget>
                  </item>
                  <item row="1" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_11">
+                  <layout class="QHBoxLayout" name="horizontalLayout_111">
                    <item>
                     <widget class="QLineEdit" name="textTempPath"/>
                    </item>
@@ -1234,7 +1234,7 @@
               <property name="checked">
                <bool>false</bool>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_17">
+              <layout class="QVBoxLayout" name="verticalLayout_171">
                <item>
                 <layout class="QGridLayout" name="gridLayout_9">
                  <item row="0" column="1">
