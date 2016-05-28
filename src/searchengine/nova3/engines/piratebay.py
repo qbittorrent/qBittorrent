@@ -1,4 +1,4 @@
-#VERSION: 2.14
+#VERSION: 2.15
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 #              Arthur (custparasite@gmx.se)
@@ -35,7 +35,7 @@ from helpers import download_file, retrieve_url
 
 class piratebay(object):
     """ Search engine class """
-    url = 'https://thepiratebay.se'
+    url = 'https://thepiratebay.org'
     name = 'The Pirate Bay'
     supported_categories = {'all': '0', 'music': '100', 'movies': '200', 'games': '400', 'software': '300'}
 
