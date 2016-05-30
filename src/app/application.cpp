@@ -264,6 +264,7 @@ void Application::sendNotificationEmail(BitTorrent::TorrentHandle *const torrent
 void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
 {
     Preferences *const pref = Preferences::instance();
+    Logger *logger = Logger::instance();
 
     // AutoRun program
     if (pref->isAutoRunEnabled()) {
@@ -279,12 +280,15 @@ void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
         program.replace("%T", torrent->currentTracker());
         program.replace("%I", torrent->hash());
 
+        logger->addMessage(tr("Torrent: %1, running external program: %2").arg(torrent->name()).arg(program));
         QProcess::startDetached(program);
     }
 
     // Mail notification
-    if (pref->isMailNotificationEnabled())
+    if (pref->isMailNotificationEnabled()) {
+        logger->addMessage(tr("Torrent: %1, sending mail notification").arg(torrent->name()));
         sendNotificationEmail(torrent);
+    }
 }
 
 void Application::allTorrentsFinished()
