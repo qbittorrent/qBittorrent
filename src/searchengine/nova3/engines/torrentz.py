@@ -1,4 +1,4 @@
-#VERSION: 2.17
+#VERSION: 2.20
 #AUTHORS: Diego de las Heras (ngosang@hotmail.es)
 
 # Redistribution and use in source and binary forms, with or without
@@ -36,11 +36,12 @@ class torrentz(object):
     name = 'Torrentz'
     supported_categories = {'all': ''}
 
-    trackers_list = ['udp://tracker.openbittorrent.com:80/announce',
-                    'udp://glotorrents.pw:6969/announce',
-                    'udp://tracker.leechers-paradise.org:6969',
+    trackers_list = ['udp://tracker.coppersurfer.tk:6969/announce',
+                    'udp://tracker.opentrackr.org:1337/announce',
+                    'udp://zer0day.ch:1337/announce',
+                    'udp://tracker.leechers-paradise.org:6969/announce',
                     'udp://9.rarbg.com:2710/announce',
-                    'udp://tracker.coppersurfer.tk:6969']
+                    'udp://explodie.org:6969/announce']
 
     class MyHtmlParser(HTMLParser):
         def __init__(self, results, url, trackers):
