@@ -245,7 +245,7 @@ void SearchTab::fillFilterComboBoxes()
     m_ui->minSizeUnit->setCurrentIndex(static_cast<int>(SizeUnit::MebiByte));
 
     m_ui->maxSize->setValue(-1);
-    m_ui->maxSizeUnit->setCurrentIndex(static_cast<int>(SizeUnit::TebiByte));
+    m_ui->maxSizeUnit->setCurrentIndex(static_cast<int>(SizeUnit::GibiByte));
 
     m_ui->filterMode->clear();
 

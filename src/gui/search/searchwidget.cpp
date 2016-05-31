@@ -140,8 +140,8 @@ void SearchWidget::fillCatCombobox()
 void SearchWidget::fillPluginComboBox()
 {
     selectPlugin->clear();
-    selectPlugin->addItem(tr("All plugins"), QVariant("all"));
     selectPlugin->addItem(tr("Only enabled"), QVariant("enabled"));
+    selectPlugin->addItem(tr("All plugins"), QVariant("all"));
     selectPlugin->addItem(tr("Select..."), QVariant("multi"));
     selectPlugin->insertSeparator(3);
 
