@@ -40,33 +40,61 @@ namespace libt = libtorrent;
 
 namespace
 {
-    bool parseIPAddress(QString _ip, libt::address &address)
-    {
-        _ip = _ip.trimmed();
+    class DATIPv4Parser {
+    public:
+        const char* tryParse(const char* str, bool& ok) {
+            unsigned char number = 0;
 
-        // Emule .DAT files contain leading zeroes in IPv4 addresses
-        // eg 001.009.106.186
-        // We need to remove them because both QHostAddress and Boost.Asio fail to parse them.
-        QStringList octets = _ip.split('.', QString::SkipEmptyParts);
-        if (octets.size() == 4) {
-            QString octet; // it is faster to not recreate this object in the loop
-            for (int i = 0; i < 4; i++) {
-                octet = octets[i];
-                if ((octet[0] == QChar('0')) && (octet.count() > 1)) {
-                    if ((octet[1] == QChar('0')) && (octet.count() > 2))
-                        octet.remove(0, 2);
-                    else
-                        octet.remove(0, 1);
-
-                    octets[i] = octet;
+            const char* numberStart = str;
+            char* endptr;
+            for (; *str; ++str) {
+                if (*str == '.') {
+                    m_buf[number++] = static_cast<unsigned char>(strtol(numberStart, &endptr, 10));
+                    if (endptr != str) {
+                        break;
+                    }
+                    if (number == 4) { // an IP might end with '.': 192.168.1.2.
+                        ok = true;
+                        return str + 1;
+                    }
+                    numberStart = str + 1;
                 }
             }
+#if 1
+            // The following is needed for parsing of a string with IP, but in the eMule files there is always a space after an IP,
+            // and this case is handled above
+            if (str != numberStart) {
+                m_buf[number] = static_cast<unsigned char>(strtol(numberStart, &endptr, 10));
+                if (endptr == str && number == 3) {
+                    ok = true;
+                    return str + 1;
+                }
+            }
+#endif
 
-            _ip = octets.join(".");
+            ok = false;
+            return str + 1;
         }
 
+        libt::address_v4::bytes_type parsed() const {
+            return m_buf;
+        }
+
+    private:
+        libt::address_v4::bytes_type m_buf;
+    };
+
+    bool parseIPAddress(const QByteArray &_ip, libt::address &address)
+    {
+        DATIPv4Parser parser;
         boost::system::error_code ec;
-        address = libt::address::from_string(_ip.toLatin1().constData(), ec);
+        bool ok = false;
+
+        parser.tryParse(_ip.constData(), ok);
+        if (ok)
+            address = libt::address_v4(parser.parsed());
+        else
+            address = libt::address::from_string(_ip.constData(), ec);
 
         return !ec;
     }
@@ -96,54 +124,58 @@ int FilterParserThread::parseDATFilterFile()
         return ruleCount;
     }
 
-    unsigned int nbLine = 0;
-    while (!file.atEnd() && !m_abort) {
-        ++nbLine;
-        QByteArray line = file.readLine();
-        // Ignoring empty lines
-        line = line.trimmed();
-        if (line.isEmpty()) continue;
-        // Ignoring commented lines
-        if (line.startsWith('#') || line.startsWith("//")) continue;
+    const QByteArray data = file.readAll();
+    int start = 0;
+    int endOfLine = -1;
 
-        // Line should be split by commas
-        QList<QByteArray> partsList = line.split(',');
+    while (true) {
+        start = endOfLine + 1;
+        if (start >= data.size())
+            break;
+        if (data[start] == '#' || (data[start] == '/' && data[start + 1] == '/'))
+            continue;
+
+        endOfLine = data.indexOf('\n', start);
+        if (endOfLine == -1) break;
+
+        QVector<int> delimIndices = indicesOfDelimiters(data, ',', start, endOfLine);
 
         // Check if there is at least one item (ip range)
-        if (partsList.isEmpty())
+        if (delimIndices.isEmpty())
             continue;
 
         // Check if there is an access value (apparently not mandatory)
-        if (partsList.size() > 1) {
+        if (delimIndices.size()) {
             // There is possibly one
-            const int nbAccess = partsList.at(1).trimmed().toInt();
+            const QByteArray accesscode(data.constData() + delimIndices[0] + 1, (delimIndices[1] - 1) - (delimIndices[0] + 1) + 1);
+            const int nbAccess = accesscode.toInt();
             // Ignoring this rule because access value is too high
             if (nbAccess > 127)
                 continue;
         }
 
         // IP Range should be split by a dash
-        QList<QByteArray> IPs = partsList.first().split('-');
-        if (IPs.size() != 2) {
-            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. Line is: %2").arg(nbLine).arg(QString(line)), Log::CRITICAL);
+        QVector<int> delimIP = indicesOfDelimiters(data, '-', start, delimIndices[0] - 1);
+        if (delimIP.size() != 1) {
+            //Logger::instance()->addMessage(tr("IP filter line %1 is malformed. Line is: %2").arg(nbLine).arg(QString(line)), Log::CRITICAL);
             continue;
         }
 
         libt::address startAddr;
-        if (!parseIPAddress(IPs.at(0), startAddr)) {
-            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. Start IP of the range is malformed: %2").arg(nbLine).arg(QString(IPs.at(0))), Log::CRITICAL);
+        if (!parseIPAddress(trim(data, start, delimIP[0] - 1), startAddr)) {
+            //Logger::instance()->addMessage(tr("IP filter line %1 is malformed. Start IP of the range is malformed: %2").arg(nbLine).arg(QString(IPs.at(0))), Log::CRITICAL);
             continue;
         }
 
         libt::address endAddr;
-        if (!parseIPAddress(IPs.at(1), endAddr)) {
-            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. End IP of the range is malformed: %2").arg(nbLine).arg(QString(IPs.at(1))), Log::CRITICAL);
+        if (!parseIPAddress(trim(data, delimIP[0] + 1, delimIndices[0] - 1), endAddr)) {
+            //Logger::instance()->addMessage(tr("IP filter line %1 is malformed. End IP of the range is malformed: %2").arg(nbLine).arg(QString(IPs.at(1))), Log::CRITICAL);
             continue;
         }
 
         if (startAddr.is_v4() != endAddr.is_v4()
             || startAddr.is_v6() != endAddr.is_v6()) {
-            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine), Log::CRITICAL);
+            //Logger::instance()->addMessage(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine), Log::CRITICAL);
             continue;
         }
 
@@ -153,7 +185,7 @@ int FilterParserThread::parseDATFilterFile()
             ++ruleCount;
         }
         catch(std::exception &) {
-            Logger::instance()->addMessage(tr("IP filter exception thrown for line %1. Line is: %2").arg(nbLine).arg(QString(line)), Log::CRITICAL);
+            //Logger::instance()->addMessage(tr("IP filter exception thrown for line %1. Line is: %2").arg(nbLine).arg(QString(line)), Log::CRITICAL);
         }
     }
 
@@ -406,4 +438,47 @@ void FilterParserThread::run()
     }
 
     qDebug("IP Filter thread: finished parsing, filter applied");
+}
+
+QVector<int> FilterParserThread::indicesOfDelimiters(const QByteArray &data, const char delimiter, const int start, const int end)
+{
+    if (start >= end) return QVector<int>();
+
+    QVector<int> indices;
+    int index = start;
+    while (true) {
+        index = data.indexOf(delimiter, index);
+        if (index == -1 || index >= end)
+            break;
+        indices.append(index);
+        ++index;
+    }
+
+    return indices;
+}
+
+QByteArray FilterParserThread::trim(const QByteArray &data, const int start, const int end)
+{
+    if (start >= end) return QByteArray();
+
+    int first = start;
+    int last = end;
+
+    for (int i = start; i <= end; ++i) {
+        if (data[i] != ' ') {
+            first = i;
+            break;
+        }
+    }
+
+    for (int i = end; i >= start; --i) {
+        if (data[i] != ' ') {
+            last = i;
+            break;
+        }
+    }
+
+    if (first >= last) return QByteArray();
+
+    return QByteArray(data.constData() + first, last - first + 1);
 }
