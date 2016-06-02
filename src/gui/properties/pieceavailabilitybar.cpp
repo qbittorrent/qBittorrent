@@ -28,21 +28,15 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <cmath>
-#include <QDebug>
 #include "pieceavailabilitybar.h"
 
+#include <cmath>
+
+#include <QDebug>
 
 PieceAvailabilityBar::PieceAvailabilityBar(QWidget *parent)
-    : QWidget(parent)
+    : base {parent}
 {
-    setToolTip(QString("%1\n%2").arg(tr("White: Unavailable pieces")).arg(tr("Blue: Available pieces")));
-
-    m_bgColor = 0xffffff;
-    m_borderColor = palette().color(QPalette::Dark).rgb();
-    m_pieceColor = 0x0000ff;
-
-    updatePieceColors();
 }
 
 QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin, int reqSize)
@@ -126,37 +120,18 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
     return result;
 }
 
-int PieceAvailabilityBar::mixTwoColors(int &rgb1, int &rgb2, float ratio)
+bool PieceAvailabilityBar::updateImage(QImage &image)
 {
-    int r1 = qRed(rgb1);
-    int g1 = qGreen(rgb1);
-    int b1 = qBlue(rgb1);
-
-    int r2 = qRed(rgb2);
-    int g2 = qGreen(rgb2);
-    int b2 = qBlue(rgb2);
-
-    float ratio_n = 1.0 - ratio;
-    int r = (r1 * ratio_n) + (r2 * ratio);
-    int g = (g1 * ratio_n) + (g2 * ratio);
-    int b = (b1 * ratio_n) + (b2 * ratio);
-
-    return qRgb(r, g, b);
-}
-
-void PieceAvailabilityBar::updateImage()
-{
-    QImage image2(width() - 2, 1, QImage::Format_RGB888);
+    QImage image2(width() - 2 * borderWidth, 1, QImage::Format_RGB888);
     if (image2.isNull()) {
         qDebug() << "QImage image2() allocation failed, width():" << width();
-        return;
+        return false;
     }
 
     if (m_pieces.empty()) {
-        image2.fill(0xffffff);
-        m_image = image2;
-        update();
-        return;
+        image2.fill(Qt::white);
+        image = image2;
+        return true;
     }
 
     QVector<float> scaled_pieces = intToFloatVector(m_pieces, image2.width());
@@ -164,61 +139,32 @@ void PieceAvailabilityBar::updateImage()
     // filling image
     for (int x = 0; x < scaled_pieces.size(); ++x) {
         float pieces2_val = scaled_pieces.at(x);
-        image2.setPixel(x, 0, m_pieceColors[pieces2_val * 255]);
+        image2.setPixel(x, 0, pieceColors()[pieces2_val * 255]);
     }
-    m_image = image2;
+    image = image2;
+    return true;
 }
 
 void PieceAvailabilityBar::setAvailability(const QVector<int> &avail)
 {
     m_pieces = avail;
 
-    updateImage();
-    update();
-}
-
-void PieceAvailabilityBar::updatePieceColors()
-{
-    m_pieceColors = QVector<int>(256);
-    for (int i = 0; i < 256; ++i) {
-        float ratio = (i / 255.0);
-        m_pieceColors[i] = mixTwoColors(m_bgColor, m_pieceColor, ratio);
-    }
+    requestImageUpdate();
 }
 
 void PieceAvailabilityBar::clear()
 {
-    m_image = QImage();
-    update();
+    m_pieces.clear();
+    base::clear();
 }
 
-void PieceAvailabilityBar::paintEvent(QPaintEvent *)
+QString PieceAvailabilityBar::simpleToolTipText() const
 {
-    QPainter painter(this);
-    QRect imageRect(1, 1, width() - 2, height() - 2);
-    if (m_image.isNull()) {
-        painter.setBrush(Qt::white);
-        painter.drawRect(imageRect);
-    }
-    else {
-        if (m_image.width() != imageRect.width())
-            updateImage();
-        painter.drawImage(imageRect, m_image);
-    }
-    QPainterPath border;
-    border.addRect(0, 0, width() - 1, height() - 1);
-
-    painter.setPen(m_borderColor);
-    painter.drawPath(border);
+    return tr("White: Unavailable pieces") + '\n'
+           + tr("Blue: Available pieces") + '\n';
 }
 
-void PieceAvailabilityBar::setColors(int background, int border, int available)
+bool PieceAvailabilityBar::isFileNameCorrectionNeeded() const
 {
-    m_bgColor = background;
-    m_borderColor = border;
-    m_pieceColor = available;
-
-    updatePieceColors();
-    updateImage();
-    update();
+    return true;
 }
