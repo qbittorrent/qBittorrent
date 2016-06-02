@@ -253,11 +253,11 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
     QTextStream stream(&toolTipText, QIODevice::WriteOnly);
     bool showDetailedInformation = QApplication::keyboardModifiers().testFlag(Qt::ShiftModifier);
     if (showDetailedInformation) {
-        stream << "<html><body>";
         const int imagePos = e->pos().x() - borderWidth;
         if ((imagePos >=0) && (imagePos < m_image.width())) {
+            stream << "<html><body>";
             PieceIndexToImagePos transform {m_torrent->info(), m_image};
-            int pieceIndex = transform.pieceIndex(e->pos().x() - borderWidth);
+            int pieceIndex = transform.pieceIndex(imagePos);
             QVector<int> files {m_torrent->info().fileIndicesForPiece(pieceIndex)};
 
             QString tooltipTitle;
@@ -281,8 +281,8 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
 
                 renderer(Utils::Misc::friendlyUnit(m_torrent->info().fileSize(f)), filePath);
             }
+            stream << "</body></html>";
         }
-        stream << "</body></html>";
     }
     else {
         stream << simpleToolTipText();
