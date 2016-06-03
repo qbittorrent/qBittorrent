@@ -45,10 +45,14 @@
 #include <QTimer>
 
 #include <cstdlib>
+#include <sstream>
 #include <queue>
 #include <vector>
 
 #include <libtorrent/alert_types.hpp>
+#if LIBTORRENT_VERSION_NUM >= 10100
+#include <libtorrent/bdecode.hpp>
+#endif
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/extensions/ut_metadata.hpp>
@@ -57,7 +61,9 @@
 #include <libtorrent/extensions/smart_ban.hpp>
 #include <libtorrent/identify_client.hpp>
 #include <libtorrent/ip_filter.hpp>
+#if LIBTORRENT_VERSION_NUM < 10100
 #include <libtorrent/lazy_entry.hpp>
+#endif
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/torrent_info.hpp>
@@ -84,15 +90,9 @@
 #include "tracker.h"
 #include "trackerentry.h"
 
-#if LIBTORRENT_VERSION_NUM >= 10100
-namespace libtorrent
-{
-    using proxy_settings = aux::proxy_settings;
-}
-#endif
-
-static const char PEER_ID[] = "qB";
-static const char RESUME_FOLDER[] = "BT_backup";
+const char PEER_ID[] = "qB";
+const char RESUME_FOLDER[] = "BT_backup";
+const char USER_AGENT[] = "qBittorrent " VERSION;
 
 namespace libt = libtorrent;
 using namespace BitTorrent;
@@ -195,6 +195,36 @@ namespace
 
     template <typename T>
     LowerLimited<T> lowerLimited(T limit, T ret) { return LowerLimited<T>(limit, ret); }
+
+#if LIBTORRENT_VERSION_NUM >= 10100
+    std::string makeFingerprint(const char* peerId, int major, int minor, int revision, int tag)
+    {
+        Q_ASSERT(peerId);
+        Q_ASSERT(major >= 0);
+        Q_ASSERT(minor >= 0);
+        Q_ASSERT(revision >= 0);
+        Q_ASSERT(tag >= 0);
+        Q_ASSERT(std::strlen(peerId) == 2);
+
+        auto versionToChar = [](int v) -> char
+        {
+            if (v >= 0 && v < 10) return static_cast<char>('0' + v);
+            if (v >= 10) return static_cast<char>('A' + (v - 10));
+            Q_ASSERT(false);
+            return '0';
+        };
+
+        std::ostringstream buf;
+        buf << '-'
+            << peerId
+            << versionToChar(major)
+            << versionToChar(minor)
+            << versionToChar(revision)
+            << versionToChar(tag)
+            << '-';
+        return buf.str();
+    }
+#endif
 }
 
 // Session
@@ -207,6 +237,10 @@ Session *Session::m_instance = nullptr;
 Session::Session(QObject *parent)
     : QObject(parent)
     , m_deferredConfigureScheduled(false)
+    , m_IPFilteringChanged(false)
+#if LIBTORRENT_VERSION_NUM >= 10100
+    , m_listenInterfaceChanged(true)
+#endif
     , m_isDHTEnabled(BITTORRENT_SESSION_KEY("DHTEnabled"), true)
     , m_isLSDEnabled(BITTORRENT_SESSION_KEY("LSDEnabled"), true)
     , m_isPeXEnabled(BITTORRENT_SESSION_KEY("PeXEnabled"), true)
@@ -273,7 +307,6 @@ Session::Session(QObject *parent)
     , m_isDisableAutoTMMWhenCategorySavePathChanged(BITTORRENT_SESSION_KEY("DisableAutoTMMTriggers/CategorySavePathChanged"), true)
     , m_isTrackerEnabled(BITTORRENT_KEY("TrackerEnabled"), false)
     , m_bannedIPs("State/BannedIPs")
-
     , m_numResumeData(0)
     , m_extraLimit(0)
     , m_useProxy(false)
@@ -286,13 +319,6 @@ Session::Session(QObject *parent)
     m_bigRatioTimer->setInterval(10000);
     connect(m_bigRatioTimer, SIGNAL(timeout()), SLOT(processBigRatios()));
 
-    // Creating BitTorrent session
-
-    // Construct session
-    libt::fingerprint fingerprint(PEER_ID, VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_BUILD);
-    const ushort port = this->port();
-    std::pair<int, int> ports(port, port);
-    const QString ip = getListeningIPs().first();
     // Set severity level of libtorrent session
     int alertMask = libt::alert::error_notification
                     | libt::alert::peer_notification
@@ -305,42 +331,96 @@ Session::Session(QObject *parent)
                     | libt::alert::stats_notification
                     ;
 
-    if (ip.isEmpty()) {
-        logger->addMessage(tr("qBittorrent is trying to listen on any interface port: %1", "e.g: qBittorrent is trying to listen on any interface port: TCP/6881").arg(QString::number(port)), Log::INFO);
-        m_nativeSession = new libt::session(fingerprint, ports, 0, 0, alertMask);
-    }
-    else {
-        logger->addMessage(tr("qBittorrent is trying to listen on interface %1 port: %2", "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881").arg(ip).arg(port), Log::INFO);
-        m_nativeSession = new libt::session(fingerprint, ports, ip.toLatin1().constData(), 0, alertMask);
-    }
-
-    logger->addMessage(tr("Peer ID: ") + Utils::String::fromStdString(fingerprint.to_string()));
-
 #if LIBTORRENT_VERSION_NUM < 10100
+    libt::fingerprint fingerprint(PEER_ID, VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_BUILD);
+    std::string peerId = fingerprint.to_string();
+    const ushort port = this->port();
+    std::pair<int, int> ports(port, port);
+    const QString ip = getListeningIPs().first();
+    m_nativeSession = new libt::session(fingerprint, ports, ip.isEmpty() ? 0 : ip.toLatin1().constData(), 0, alertMask);
+
+    libt::session_settings sessionSettings = m_nativeSession->settings();
+    sessionSettings.user_agent = USER_AGENT;
+    sessionSettings.upnp_ignore_nonrouters = true;
+    sessionSettings.use_dht_as_fallback = false;
+    // Disable support for SSL torrents for now
+    sessionSettings.ssl_listen = 0;
+    // To prevent ISPs from blocking seeding
+    sessionSettings.lazy_bitfields = true;
+    // Speed up exit
+    sessionSettings.stop_tracker_timeout = 1;
+    sessionSettings.auto_scrape_interval = 1200; // 20 minutes
+    sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
+    sessionSettings.connection_speed = 20; // default is 10
+    sessionSettings.no_connect_privileged_ports = false;
+    sessionSettings.seed_choking_algorithm = libt::session_settings::fastest_upload;
+    configure(sessionSettings);
+    m_nativeSession->set_settings(sessionSettings);
+    configureListeningInterface();
     m_nativeSession->set_alert_dispatch([this](std::auto_ptr<libt::alert> alertPtr)
     {
         dispatchAlerts(alertPtr);
     });
 #else
+    std::string peerId = makeFingerprint(PEER_ID, VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_BUILD);
+    libt::settings_pack pack;
+    pack.set_int(libt::settings_pack::alert_mask, alertMask);
+    pack.set_str(libt::settings_pack::peer_fingerprint, peerId);
+    pack.set_bool(libt::settings_pack::listen_system_port_fallback, false);
+    pack.set_str(libt::settings_pack::user_agent, USER_AGENT);
+    pack.set_bool(libt::settings_pack::upnp_ignore_nonrouters, true);
+    pack.set_bool(libt::settings_pack::use_dht_as_fallback, false);
+    // Disable support for SSL torrents for now
+    pack.set_int(libt::settings_pack::ssl_listen, 0);
+    // To prevent ISPs from blocking seeding
+    pack.set_bool(libt::settings_pack::lazy_bitfields, true);
+    // Speed up exit
+    pack.set_int(libt::settings_pack::stop_tracker_timeout, 1);
+    pack.set_int(libt::settings_pack::auto_scrape_interval, 1200); // 20 minutes
+    pack.set_int(libt::settings_pack::auto_scrape_min_interval, 900); // 15 minutes
+    pack.set_int(libt::settings_pack::connection_speed, 20); // default is 10
+    pack.set_bool(libt::settings_pack::no_connect_privileged_ports, false);
+    pack.set_int(libt::settings_pack::seed_choking_algorithm, libt::settings_pack::fastest_upload);
+    configure(pack);
+
+    m_nativeSession = new libt::session(pack, 0);
     m_nativeSession->set_alert_notify([this]()
     {
         QMetaObject::invokeMethod(this, "readAlerts", Qt::QueuedConnection);
     });
 #endif
 
+    if (isDHTEnabled()) {
+        m_nativeSession->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
+        m_nativeSession->add_dht_router(std::make_pair(std::string("router.utorrent.com"), 6881));
+        m_nativeSession->add_dht_router(std::make_pair(std::string("dht.transmissionbt.com"), 6881));
+        m_nativeSession->add_dht_router(std::make_pair(std::string("dht.aelitis.com"), 6881)); // Vuze
+    }
+
     // Enabling plugins
     //m_nativeSession->add_extension(&libt::create_metadata_plugin);
     m_nativeSession->add_extension(&libt::create_ut_metadata_plugin);
     if (isTrackerExchangeEnabled())
         m_nativeSession->add_extension(&libt::create_lt_trackers_plugin);
-    if (isPeXEnabled()) {
+    if (isPeXEnabled())
         m_nativeSession->add_extension(&libt::create_ut_pex_plugin);
-        logger->addMessage(tr("PeX support [ON]"), Log::INFO);
-    }
-    else {
-        logger->addMessage(tr("PeX support [OFF]"), Log::INFO);
-    }
     m_nativeSession->add_extension(&libt::create_smart_ban_plugin);
+
+    logger->addMessage(tr("Peer ID: ") + Utils::String::fromStdString(peerId));
+    logger->addMessage(tr("HTTP User-Agent is '%1'").arg(USER_AGENT));
+    logger->addMessage(tr("DHT support [%1]").arg(isDHTEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
+    logger->addMessage(tr("Local Peer Discovery support [%1]").arg(isLSDEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
+    logger->addMessage(tr("PeX support [%1]").arg(isPeXEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
+    logger->addMessage(tr("Anonymous mode [%1]").arg(isAnonymousModeEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
+    logger->addMessage(tr("Encryption support [%1]")
+                       .arg(encryption() == 0 ? tr("ON") : encryption() == 1 ? tr("FORCED") : tr("OFF"))
+                       , Log::INFO);
+
+    m_nativeSession->set_ip_filter({});
+    if (isFilteringEnabled())
+        enableIPFilter();
+    // Add the banned IPs
+    processBannedIPs();
 
     m_categories = map_cast(m_storedCategories);
     if (isSubcategoriesEnabled()) {
@@ -361,10 +441,6 @@ Session::Session(QObject *parent)
 
     m_statistics = new Statistics(this);
 
-    // Apply user settings to BitTorrent session
-    configure();
-
-    configureListeningInterface();
     updateRatioTimer();
     populateAdditionalTrackers();
 
@@ -410,6 +486,14 @@ void Session::setDHTEnabled(bool enabled)
     if (enabled != m_isDHTEnabled) {
         m_isDHTEnabled = enabled;
         configureDeferred();
+        Logger::instance()->addMessage(
+                    tr("DHT support [%1]").arg(enabled ? tr("ON") : tr("OFF")), Log::INFO);
+        if (enabled) {
+            m_nativeSession->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
+            m_nativeSession->add_dht_router(std::make_pair(std::string("router.utorrent.com"), 6881));
+            m_nativeSession->add_dht_router(std::make_pair(std::string("dht.transmissionbt.com"), 6881));
+            m_nativeSession->add_dht_router(std::make_pair(std::string("dht.aelitis.com"), 6881)); // Vuze
+        }
     }
 }
 
@@ -423,6 +507,9 @@ void Session::setLSDEnabled(bool enabled)
     if (enabled != m_isLSDEnabled) {
         m_isLSDEnabled = enabled;
         configureDeferred();
+        Logger::instance()->addMessage(
+                    tr("Local Peer Discovery support [%1]").arg(enabled ? tr("ON") : tr("OFF"))
+                    , Log::INFO);
     }
 }
 
@@ -823,11 +910,235 @@ Session *Session::instance()
 void Session::adjustLimits()
 {
     if (isQueueingSystemEnabled()) {
+#if LIBTORRENT_VERSION_NUM < 10100
         libt::session_settings sessionSettings(m_nativeSession->settings());
         adjustLimits(sessionSettings);
         m_nativeSession->set_settings(sessionSettings);
+#else
+        libt::settings_pack settingsPack;
+        adjustLimits(settingsPack);
+        m_nativeSession->apply_settings(settingsPack);
+#endif
     }
 }
+
+// Set BitTorrent session configuration
+void Session::configure()
+{
+    qDebug("Configuring session");
+#if LIBTORRENT_VERSION_NUM < 10100
+    libt::session_settings sessionSettings = m_nativeSession->settings();
+    configure(sessionSettings);
+    m_nativeSession->set_settings(sessionSettings);
+#else
+    libt::settings_pack settingsPack;
+    configure(settingsPack);
+    m_nativeSession->apply_settings(settingsPack);
+#endif
+
+    if (m_IPFilteringChanged) {
+        if (isFilteringEnabled())
+            enableIPFilter();
+        else
+            disableIPFilter();
+        m_IPFilteringChanged = false;
+    }
+
+    m_deferredConfigureScheduled = false;
+    qDebug("Session configured");
+}
+
+void Session::processBannedIPs()
+{
+    // First, import current filter
+    libt::ip_filter filter = m_nativeSession->get_ip_filter();
+    foreach (const QString &ip, m_bannedIPs.value()) {
+        boost::system::error_code ec;
+        libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
+        Q_ASSERT(!ec);
+        filter.add_rule(addr, addr, libt::ip_filter::blocked);
+    }
+
+    m_nativeSession->set_ip_filter(filter);
+}
+
+#if LIBTORRENT_VERSION_NUM >= 10100
+void Session::adjustLimits(libt::settings_pack &settingsPack)
+{
+    //Internally increase the queue limits to ensure that the magnet is started
+    int maxDownloads = maxActiveDownloads();
+    int maxActive = maxActiveTorrents();
+
+    settingsPack.set_int(libt::settings_pack::active_downloads
+                         , maxDownloads > -1 ? maxDownloads + m_extraLimit : maxDownloads);
+    settingsPack.set_int(libt::settings_pack::active_limit
+                         , maxActive > -1 ? maxActive + m_extraLimit : maxActive);
+}
+
+void Session::configure(libtorrent::settings_pack &settingsPack)
+{
+    Logger* const logger = Logger::instance();
+
+    if (m_listenInterfaceChanged) {
+        const ushort port = this->port();
+        std::pair<int, int> ports(port, port);
+        settingsPack.set_int(libt::settings_pack::max_retry_port_bind, ports.second - ports.first);
+        foreach (QString ip, getListeningIPs()) {
+            libt::error_code ec;
+            std::string interfacesStr;
+
+            if (ip.isEmpty()) {
+                ip = QLatin1String("0.0.0.0");
+                interfacesStr = std::string((QString("%1:%2").arg(ip).arg(port)).toLatin1().constData());
+                logger->addMessage(tr("qBittorrent is trying to listen on any interface port: %1"
+                                      , "e.g: qBittorrent is trying to listen on any interface port: TCP/6881")
+                                   .arg(QString::number(port))
+                                   , Log::INFO);
+
+                settingsPack.set_str(libt::settings_pack::listen_interfaces, interfacesStr);
+                break;
+            }
+
+            libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
+            if (!ec) {
+                interfacesStr = std::string((addr.is_v6() ? QString("[%1]:%2") : QString("%1:%2"))
+                                            .arg(ip).arg(port).toLatin1().constData());
+                logger->addMessage(tr("qBittorrent is trying to listen on interface %1 port: %2"
+                                      , "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881")
+                                   .arg(ip).arg(port)
+                                   , Log::INFO);
+                settingsPack.set_str(libt::settings_pack::listen_interfaces, interfacesStr);
+                break;
+            }
+        }
+
+        m_listenInterfaceChanged = false;
+    }
+
+    const bool altSpeedLimitEnabled = isAltGlobalSpeedLimitEnabled();
+    settingsPack.set_int(libt::settings_pack::download_rate_limit, altSpeedLimitEnabled ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit());
+    settingsPack.set_int(libt::settings_pack::upload_rate_limit, altSpeedLimitEnabled ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit());
+
+    // The most secure, rc4 only so that all streams are encrypted
+    settingsPack.set_int(libt::settings_pack::allowed_enc_level, libt::settings_pack::pe_rc4);
+    settingsPack.set_bool(libt::settings_pack::prefer_rc4, true);
+    switch (encryption()) {
+    case 0: //Enabled
+        settingsPack.set_int(libt::settings_pack::out_enc_policy, libt::settings_pack::pe_enabled);
+        settingsPack.set_int(libt::settings_pack::in_enc_policy, libt::settings_pack::pe_enabled);
+        break;
+    case 1: // Forced
+        settingsPack.set_int(libt::settings_pack::out_enc_policy, libt::settings_pack::pe_forced);
+        settingsPack.set_int(libt::settings_pack::in_enc_policy, libt::settings_pack::pe_forced);
+        break;
+    default: // Disabled
+        settingsPack.set_int(libt::settings_pack::out_enc_policy, libt::settings_pack::pe_disabled);
+        settingsPack.set_int(libt::settings_pack::in_enc_policy, libt::settings_pack::pe_disabled);
+    }
+
+    auto proxyManager = Net::ProxyConfigurationManager::instance();
+    Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
+    if (m_useProxy || (proxyConfig.type != Net::ProxyType::None)) {
+        if (proxyConfig.type != Net::ProxyType::None) {
+            settingsPack.set_str(libt::settings_pack::proxy_hostname, Utils::String::toStdString(proxyConfig.ip));
+            settingsPack.set_int(libt::settings_pack::proxy_port, proxyConfig.port);
+            if (proxyManager->isAuthenticationRequired()) {
+                settingsPack.set_str(libt::settings_pack::proxy_username, Utils::String::toStdString(proxyConfig.username));
+                settingsPack.set_str(libt::settings_pack::proxy_password, Utils::String::toStdString(proxyConfig.password));
+            }
+            settingsPack.set_bool(libt::settings_pack::proxy_peer_connections, isProxyPeerConnectionsEnabled());
+        }
+
+        switch (proxyConfig.type) {
+        case Net::ProxyType::HTTP:
+            settingsPack.set_int(libt::settings_pack::proxy_type, libt::settings_pack::http);
+            break;
+        case Net::ProxyType::HTTP_PW:
+            settingsPack.set_int(libt::settings_pack::proxy_type, libt::settings_pack::http_pw);
+            break;
+        case Net::ProxyType::SOCKS4:
+            settingsPack.set_int(libt::settings_pack::proxy_type, libt::settings_pack::socks4);
+            break;
+        case Net::ProxyType::SOCKS5:
+            settingsPack.set_int(libt::settings_pack::proxy_type, libt::settings_pack::socks5);
+            break;
+        case Net::ProxyType::SOCKS5_PW:
+            settingsPack.set_int(libt::settings_pack::proxy_type, libt::settings_pack::socks5_pw);
+            break;
+        default:
+            settingsPack.set_int(libt::settings_pack::proxy_type, libt::settings_pack::none);
+        }
+
+        m_useProxy = (proxyConfig.type != Net::ProxyType::None);
+    }
+    settingsPack.set_bool(libt::settings_pack::force_proxy, m_useProxy ? isForceProxyEnabled() : false);
+
+    const bool announceToAll = announceToAllTrackers();
+    settingsPack.set_bool(libt::settings_pack::announce_to_all_trackers, announceToAll);
+    settingsPack.set_bool(libt::settings_pack::announce_to_all_tiers, announceToAll);
+
+    const int cacheSize = diskCacheSize();
+    settingsPack.set_int(libt::settings_pack::cache_size, (cacheSize > 0) ? cacheSize * 64 : -1);
+    settingsPack.set_int(libt::settings_pack::cache_expiry, diskCacheTTL());
+    qDebug() << "Using a disk cache size of" << cacheSize << "MiB";
+
+    libt::settings_pack::io_buffer_mode_t mode = useOSCache() ? libt::settings_pack::enable_os_cache
+                                                              : libt::settings_pack::disable_os_cache;
+    settingsPack.set_int(libt::settings_pack::disk_io_read_mode, mode);
+    settingsPack.set_int(libt::settings_pack::disk_io_write_mode, mode);
+
+    settingsPack.set_bool(libt::settings_pack::anonymous_mode, isAnonymousModeEnabled());
+
+    // Queueing System
+    if (isQueueingSystemEnabled()) {
+        adjustLimits(settingsPack);
+
+        settingsPack.set_int(libt::settings_pack::active_seeds, maxActiveUploads());
+        settingsPack.set_bool(libt::settings_pack::dont_count_slow_torrents, ignoreSlowTorrentsForQueueing());
+    }
+    else {
+        settingsPack.set_int(libt::settings_pack::active_downloads, -1);
+        settingsPack.set_int(libt::settings_pack::active_seeds, -1);
+        settingsPack.set_int(libt::settings_pack::active_limit, -1);
+    }
+    settingsPack.set_int(libt::settings_pack::active_tracker_limit, -1);
+    settingsPack.set_int(libt::settings_pack::active_dht_limit, -1);
+    settingsPack.set_int(libt::settings_pack::active_lsd_limit, -1);
+
+    // Outgoing ports
+    settingsPack.set_int(libt::settings_pack::outgoing_port, outgoingPortsMin());
+    settingsPack.set_int(libt::settings_pack::num_outgoing_ports, outgoingPortsMax() - outgoingPortsMin() + 1);
+
+    // Ignore limits on LAN
+    settingsPack.set_bool(libt::settings_pack::ignore_limits_on_local_network, ignoreLimitsOnLAN());
+    // Include overhead in transfer limits
+    settingsPack.set_bool(libt::settings_pack::rate_limit_ip_overhead, includeOverheadInLimits());
+    // IP address to announce to trackers
+    settingsPack.set_str(libt::settings_pack::announce_ip, Utils::String::toStdString(networkAddress()));
+    // Super seeding
+    settingsPack.set_bool(libt::settings_pack::strict_super_seeding, isSuperSeedingEnabled());
+    // * Max Half-open connections
+    settingsPack.set_int(libt::settings_pack::half_open_limit, maxHalfOpenConnections());
+    // * Max connections limit
+    settingsPack.set_int(libt::settings_pack::connections_limit, maxConnections());
+    // * Global max upload slots
+    settingsPack.set_int(libt::settings_pack::unchoke_slots_limit, maxUploads());
+    // uTP
+    settingsPack.set_bool(libt::settings_pack::enable_incoming_utp, isUTPEnabled());
+    settingsPack.set_bool(libt::settings_pack::enable_outgoing_utp, isUTPEnabled());
+    // uTP rate limiting
+    settingsPack.set_bool(libt::settings_pack::rate_limit_utp, isUTPRateLimited());
+    settingsPack.set_int(libt::settings_pack::mixed_mode_algorithm, isUTPRateLimited()
+                         ? libt::settings_pack::prefer_tcp
+                         : libt::settings_pack::peer_proportional);
+
+    settingsPack.set_bool(libt::settings_pack::apply_ip_filter_to_trackers, isTrackerFilteringEnabled());
+
+    settingsPack.set_bool(libt::settings_pack::enable_dht, isDHTEnabled());
+    settingsPack.set_bool(libt::settings_pack::enable_lsd, isLSDEnabled());
+}
+
+#else
 
 void Session::adjustLimits(libt::session_settings &sessionSettings)
 {
@@ -846,40 +1157,70 @@ void Session::adjustLimits(libt::session_settings &sessionSettings)
         sessionSettings.active_limit = maxActive;
 }
 
-// Set BitTorrent session configuration
-void Session::configure()
+void Session::configure(libtorrent::session_settings &sessionSettings)
 {
-    qDebug("Configuring session");
     Logger* const logger = Logger::instance();
-
-    // * Session settings
-    libt::session_settings sessionSettings = m_nativeSession->settings();
-
-    sessionSettings.user_agent = "qBittorrent " VERSION;
-    logger->addMessage(tr("HTTP User-Agent is '%1'").arg(Utils::String::fromStdString(sessionSettings.user_agent)));
-
-    sessionSettings.upnp_ignore_nonrouters = true;
-    sessionSettings.use_dht_as_fallback = false;
-    // Disable support for SSL torrents for now
-    sessionSettings.ssl_listen = 0;
-    // To prevent ISPs from blocking seeding
-    sessionSettings.lazy_bitfields = true;
-    // Speed up exit
-    sessionSettings.stop_tracker_timeout = 1;
-    sessionSettings.auto_scrape_interval = 1200; // 20 minutes
-    sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
-    sessionSettings.connection_speed = 20; // default is 10
-    sessionSettings.no_connect_privileged_ports = false;
-    sessionSettings.seed_choking_algorithm = libt::session_settings::fastest_upload;
 
     const bool altSpeedLimitEnabled = isAltGlobalSpeedLimitEnabled();
     sessionSettings.download_rate_limit = altSpeedLimitEnabled ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit();
     sessionSettings.upload_rate_limit = altSpeedLimitEnabled ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit();
 
-    // TODO: Use same settings struct with above
-    configureEncryption();
-    configureProxy();
+    // The most secure, rc4 only so that all streams are encrypted
+    libt::pe_settings encryptionSettings;
+    encryptionSettings.allowed_enc_level = libt::pe_settings::rc4;
+    encryptionSettings.prefer_rc4 = true;
+    switch (encryption()) {
+    case 0: //Enabled
+        encryptionSettings.out_enc_policy = libt::pe_settings::enabled;
+        encryptionSettings.in_enc_policy = libt::pe_settings::enabled;
+        break;
+    case 1: // Forced
+        encryptionSettings.out_enc_policy = libt::pe_settings::forced;
+        encryptionSettings.in_enc_policy = libt::pe_settings::forced;
+        break;
+    default: // Disabled
+        encryptionSettings.out_enc_policy = libt::pe_settings::disabled;
+        encryptionSettings.in_enc_policy = libt::pe_settings::disabled;
+    }
+    m_nativeSession->set_pe_settings(encryptionSettings);
 
+    auto proxyManager = Net::ProxyConfigurationManager::instance();
+    Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
+    if (m_useProxy || (proxyConfig.type != Net::ProxyType::None)) {
+        libt::proxy_settings proxySettings;
+        if (proxyConfig.type != Net::ProxyType::None) {
+            proxySettings.hostname = Utils::String::toStdString(proxyConfig.ip);
+            proxySettings.port = proxyConfig.port;
+            if (proxyManager->isAuthenticationRequired()) {
+                proxySettings.username = Utils::String::toStdString(proxyConfig.username);
+                proxySettings.password = Utils::String::toStdString(proxyConfig.password);
+            }
+            proxySettings.proxy_peer_connections = isProxyPeerConnectionsEnabled();
+        }
+
+        switch (proxyConfig.type) {
+        case Net::ProxyType::HTTP:
+            proxySettings.type = libt::proxy_settings::http;
+            break;
+        case Net::ProxyType::HTTP_PW:
+            proxySettings.type = libt::proxy_settings::http_pw;
+            break;
+        case Net::ProxyType::SOCKS4:
+            proxySettings.type = libt::proxy_settings::socks4;
+            break;
+        case Net::ProxyType::SOCKS5:
+            proxySettings.type = libt::proxy_settings::socks5;
+            break;
+        case Net::ProxyType::SOCKS5_PW:
+            proxySettings.type = libt::proxy_settings::socks5_pw;
+            break;
+        default:
+            proxySettings.type = libt::proxy_settings::none;
+        }
+
+        m_nativeSession->set_proxy(proxySettings);
+        m_useProxy = (proxyConfig.type != Net::ProxyType::None);
+    }
     sessionSettings.force_proxy = m_useProxy ? isForceProxyEnabled() : false;
 
     bool announceToAll = announceToAllTrackers();
@@ -895,10 +1236,6 @@ void Session::configure()
     sessionSettings.disk_io_write_mode = mode;
 
     sessionSettings.anonymous_mode = isAnonymousModeEnabled();
-    if (sessionSettings.anonymous_mode)
-        logger->addMessage(tr("Anonymous mode [ON]"), Log::INFO);
-    else
-        logger->addMessage(tr("Anonymous mode [OFF]"), Log::INFO);
 
     // Queueing System
     if (isQueueingSystemEnabled()) {
@@ -917,12 +1254,7 @@ void Session::configure()
     sessionSettings.active_lsd_limit = -1;
 
     // Outgoing ports
-#if LIBTORRENT_VERSION_NUM < 10100
     sessionSettings.outgoing_ports = std::make_pair(outgoingPortsMin(), outgoingPortsMax());
-#else
-    sessionSettings.outgoing_port = outgoingPortsMin();
-    sessionSettings.num_outgoing_ports = outgoingPortsMax() - outgoingPortsMin();
-#endif
 
     // Ignore limits on LAN
     sessionSettings.ignore_limits_on_local_network = ignoreLimitsOnLAN();
@@ -950,24 +1282,17 @@ void Session::configure()
 
     sessionSettings.apply_ip_filter_to_trackers = isTrackerFilteringEnabled();
 
-    m_nativeSession->set_settings(sessionSettings);
-
-    enableDHT(isDHTEnabled());
-    enableLSD(isLSDEnabled());
-
-    if (isFilteringEnabled())
-        enableIPFilter(IPFilterFile());
+    if (isDHTEnabled())
+        m_nativeSession->start_dht();
     else
-        disableIPFilter();
+        m_nativeSession->stop_dht();
 
-    // Add the banned IPs after the possibly disabled IPFilter
-    // which creates an empty filter and overrides all previously
-    // applied bans.
-    FilterParserThread::processFilterList(m_nativeSession, m_bannedIPs);
-
-    m_deferredConfigureScheduled = false;
-    qDebug("Session configured");
+    if (isLSDEnabled())
+        m_nativeSession->start_lsd();
+    else
+        m_nativeSession->stop_lsd();
 }
+#endif
 
 void Session::enableTracker(bool enable)
 {
@@ -1092,9 +1417,15 @@ bool Session::hasUnfinishedTorrents() const
 
 void Session::banIP(const QString &ip)
 {
-    FilterParserThread::processFilterList(m_nativeSession, QStringList(ip));
     QStringList bannedIPs = m_bannedIPs;
     if (!bannedIPs.contains(ip)) {
+        libt::ip_filter filter = m_nativeSession->get_ip_filter();
+        boost::system::error_code ec;
+        libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
+        Q_ASSERT(!ec);
+        filter.add_rule(addr, addr, libt::ip_filter::blocked);
+        m_nativeSession->set_ip_filter(filter);
+
         bannedIPs << ip;
         m_bannedIPs = bannedIPs;
     }
@@ -1550,47 +1881,6 @@ void Session::exportTorrentFile(TorrentHandle *const torrent, TorrentExportFolde
     }
 }
 
-void Session::enableLSD(bool enable)
-{
-    if (enable) {
-        m_nativeSession->start_lsd();
-        Logger::instance()->addMessage(tr("Local Peer Discovery support [ON]"), Log::INFO);
-    }
-    else {
-        m_nativeSession->stop_lsd();
-        Logger::instance()->addMessage(tr("Local Peer Discovery support [OFF]"), Log::INFO);
-    }
-}
-
-// Enable DHT
-void Session::enableDHT(bool enable)
-{
-    Logger* const logger = Logger::instance();
-
-    if (enable) {
-        if (!m_nativeSession->is_dht_running()) {
-            try {
-                m_nativeSession->start_dht();
-                m_nativeSession->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
-                m_nativeSession->add_dht_router(std::make_pair(std::string("router.utorrent.com"), 6881));
-                m_nativeSession->add_dht_router(std::make_pair(std::string("dht.transmissionbt.com"), 6881));
-                m_nativeSession->add_dht_router(std::make_pair(std::string("dht.aelitis.com"), 6881)); // Vuze
-                logger->addMessage(tr("DHT support [ON]"), Log::INFO);
-            }
-            catch (std::exception &e) {
-                qDebug("Could not enable DHT, reason: %s", e.what());
-                logger->addMessage(tr("DHT support [FAILED]. Reason: %1").arg(Utils::String::fromStdString(e.what())), Log::CRITICAL);
-            }
-        }
-    }
-    else {
-        if (m_nativeSession->is_dht_running()) {
-            m_nativeSession->stop_dht();
-            logger->addMessage(tr("DHT support [OFF]"), Log::INFO);
-        }
-    }
-}
-
 void Session::changeSpeedLimitMode_impl(bool alternative)
 {
     qDebug() << Q_FUNC_INFO << alternative;
@@ -1774,6 +2064,7 @@ const QStringList Session::getListeningIPs()
 // the BitTorrent session will listen to
 void Session::configureListeningInterface()
 {
+#if LIBTORRENT_VERSION_NUM < 10100
     const ushort port = this->port();
     qDebug() << Q_FUNC_INFO << port;
 
@@ -1800,6 +2091,10 @@ void Session::configureListeningInterface()
             return;
         }
     }
+#else
+    m_listenInterfaceChanged = true;
+    configureDeferred();
+#endif
 }
 
 int Session::globalDownloadSpeedLimit() const
@@ -2009,7 +2304,11 @@ void Session::setEncryption(int state)
 {
     if (state != encryption()) {
         m_encryption = state;
-        configureEncryption();
+        configureDeferred();
+        Logger::instance()->addMessage(
+                    tr("Encryption support [%1]")
+                    .arg(state == 0 ? tr("ON") : state == 1 ? tr("FORCED") : tr("OFF"))
+                    , Log::INFO);
     }
 }
 
@@ -2071,6 +2370,7 @@ void Session::setFilteringEnabled(bool enabled)
 {
     if (enabled != m_isFilteringEnabled) {
         m_isFilteringEnabled = enabled;
+        m_IPFilteringChanged = true;
         configureDeferred();
     }
 }
@@ -2085,6 +2385,7 @@ void Session::setIPFilterFile(QString path)
     path = Utils::Fs::fromNativePath(path);
     if (path != IPFilterFile()) {
         m_IPFilterFile = path;
+        m_IPFilteringChanged = true;
         configureDeferred();
     }
 }
@@ -2210,6 +2511,9 @@ void Session::setAnonymousModeEnabled(bool enabled)
     if (enabled != m_isAnonymousModeEnabled) {
         m_isAnonymousModeEnabled = enabled;
         configureDeferred();
+        Logger::instance()->addMessage(
+                    tr("Anonymous mode [%1]").arg(isAnonymousModeEnabled() ? tr("ON") : tr("OFF"))
+                    , Log::INFO);
     }
 }
 
@@ -2438,34 +2742,6 @@ void Session::setTrackerFilteringEnabled(bool enabled)
         m_isTrackerFilteringEnabled = enabled;
         configureDeferred();
     }
-}
-
-void Session::configureEncryption()
-{
-    Logger *const logger = Logger::instance();
-
-    // The most secure, rc4 only so that all streams and encrypted
-    libt::pe_settings encryptionSettings;
-    encryptionSettings.allowed_enc_level = libt::pe_settings::rc4;
-    encryptionSettings.prefer_rc4 = true;
-    switch (encryption()) {
-    case 0: //Enabled
-        encryptionSettings.out_enc_policy = libt::pe_settings::enabled;
-        encryptionSettings.in_enc_policy = libt::pe_settings::enabled;
-        logger->addMessage(tr("Encryption support [ON]"), Log::INFO);
-        break;
-    case 1: // Forced
-        encryptionSettings.out_enc_policy = libt::pe_settings::forced;
-        encryptionSettings.in_enc_policy = libt::pe_settings::forced;
-        logger->addMessage(tr("Encryption support [FORCED]"), Log::INFO);
-        break;
-    default: // Disabled
-        encryptionSettings.out_enc_policy = libt::pe_settings::disabled;
-        encryptionSettings.in_enc_policy = libt::pe_settings::disabled;
-        logger->addMessage(tr("Encryption support [OFF]"), Log::INFO);
-    }
-
-    m_nativeSession->set_pe_settings(encryptionSettings);
 }
 
 bool Session::isListening() const
@@ -2709,7 +2985,7 @@ void Session::configureDeferred()
 }
 
 // Enable IP Filtering
-void Session::enableIPFilter(const QString &filterPath, bool force)
+void Session::enableIPFilter()
 {
     qDebug("Enabling IPFilter");
     if (!m_filterParser) {
@@ -2717,10 +2993,8 @@ void Session::enableIPFilter(const QString &filterPath, bool force)
         connect(m_filterParser.data(), SIGNAL(IPFilterParsed(int)), SLOT(handleIPFilterParsed(int)));
         connect(m_filterParser.data(), SIGNAL(IPFilterError()), SLOT(handleIPFilterError()));
     }
-    if (m_filterPath.isEmpty() || m_filterPath != Utils::Fs::fromNativePath(filterPath) || force) {
-        m_filterPath = Utils::Fs::fromNativePath(filterPath);
-        m_filterParser->processFilterFile(Utils::Fs::fromNativePath(filterPath));
-    }
+
+    m_filterParser->processFilterFile(IPFilterFile());
 }
 
 // Disable IP Filtering
@@ -2732,7 +3006,11 @@ void Session::disableIPFilter()
         disconnect(m_filterParser.data(), 0, this, 0);
         delete m_filterParser;
     }
-    m_filterPath = "";
+
+    // Add the banned IPs after the IPFilter disabling
+    // which creates an empty filter and overrides all previously
+    // applied bans.
+    processBannedIPs();
 }
 
 void Session::recursiveTorrentDownload(const InfoHash &hash)
@@ -2765,58 +3043,6 @@ SessionStatus Session::status() const
 CacheStatus Session::cacheStatus() const
 {
     return m_nativeSession->get_cache_status();
-}
-
-// Set Proxy
-void Session::configureProxy()
-{
-    auto proxyManager = Net::ProxyConfigurationManager::instance();
-    Net::ProxyConfiguration config = proxyManager->proxyConfiguration();
-    if (!m_useProxy && (config.type == Net::ProxyType::None)) return;
-
-    libt::proxy_settings proxySettings;
-
-    if (config.type != Net::ProxyType::None) {
-        qDebug("Enabling P2P proxy");
-        proxySettings.hostname = Utils::String::toStdString(config.ip);
-        qDebug("hostname is %s", proxySettings.hostname.c_str());
-        proxySettings.port = config.port;
-        qDebug("port is %d", proxySettings.port);
-        if (proxyManager->isAuthenticationRequired()) {
-            proxySettings.username = Utils::String::toStdString(config.username);
-            proxySettings.password = Utils::String::toStdString(config.password);
-            qDebug("username is %s", proxySettings.username.c_str());
-            qDebug("password is %s", proxySettings.password.c_str());
-        }
-        proxySettings.proxy_peer_connections = isProxyPeerConnectionsEnabled();
-    }
-
-    switch (config.type) {
-    case Net::ProxyType::HTTP:
-        qDebug("type: http");
-        proxySettings.type = libt::proxy_settings::http;
-        break;
-    case Net::ProxyType::HTTP_PW:
-        qDebug("type: http_pw");
-        proxySettings.type = libt::proxy_settings::http_pw;
-        break;
-    case Net::ProxyType::SOCKS4:
-        proxySettings.type = libt::proxy_settings::socks4;
-        break;
-    case Net::ProxyType::SOCKS5:
-        qDebug("type: socks5");
-        proxySettings.type = libt::proxy_settings::socks5;
-        break;
-    case Net::ProxyType::SOCKS5_PW:
-        qDebug("type: socks5_pw");
-        proxySettings.type = libt::proxy_settings::socks5_pw;
-        break;
-    default:
-        proxySettings.type = libt::proxy_settings::none;
-    }
-
-    m_nativeSession->set_proxy(proxySettings);
-    m_useProxy = (config.type != Net::ProxyType::None);
 }
 
 // Will resume torrents in backup directory
@@ -3320,10 +3546,16 @@ namespace
         torrentData.resumed = true;
         torrentData.skipChecking = false;
 
-        libt::lazy_entry fast;
         libt::error_code ec;
+#if LIBTORRENT_VERSION_NUM < 10100
+        libt::lazy_entry fast;
         libt::lazy_bdecode(data.constData(), data.constData() + data.size(), fast, ec);
         if (ec || (fast.type() != libt::lazy_entry::dict_t)) return false;
+#else
+        libt::bdecode_node fast;
+        libt::bdecode(data.constData(), data.constData() + data.size(), fast, ec);
+        if (ec || (fast.type() != libt::bdecode_node::dict_t)) return false;
+#endif
 
         torrentData.savePath = Utils::Fs::fromNativePath(Utils::String::fromStdString(fast.dict_find_string_value("qBt-savePath")));
         torrentData.ratioLimit = Utils::String::fromStdString(fast.dict_find_string_value("qBt-ratioLimit")).toDouble();

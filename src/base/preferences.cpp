@@ -373,17 +373,6 @@ void Preferences::setActionOnDblClOnTorrentFn(int act)
     setValue("Preferences/Downloads/DblClOnTorFn", act);
 }
 
-// Connection options
-bool Preferences::isUPnPEnabled() const
-{
-    return value("Preferences/Connection/UPnP", true).toBool();
-}
-
-void Preferences::setUPnPEnabled(bool enabled)
-{
-    setValue("Preferences/Connection/UPnP", enabled);
-}
-
 QTime Preferences::getSchedulerStartTime() const
 {
     return value("Preferences/Scheduler/start_time", QTime(8,0)).toTime();

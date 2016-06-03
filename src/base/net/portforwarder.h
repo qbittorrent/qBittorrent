@@ -49,11 +49,11 @@ namespace Net
         static void freeInstance();
         static PortForwarder *instance();
 
+        bool isEnabled() const;
+        void setEnabled(bool enabled);
+
         void addPort(quint16 port);
         void deletePort(quint16 port);
-
-    private slots:
-        void configure();
 
     private:
         explicit PortForwarder(libtorrent::session *const provider, QObject *parent = 0);
