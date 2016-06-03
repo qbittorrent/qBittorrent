@@ -51,6 +51,7 @@
 #include "app/application.h"
 #include "base/bittorrent/session.h"
 #include "base/net/dnsupdater.h"
+#include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
 #include "base/scanfoldersmodel.h"
@@ -538,7 +539,7 @@ void OptionsDialog::saveOptions()
     // Connection preferences
     session->setPort(getPort());
     session->setUseRandomPort(m_ui->checkRandomPort->isChecked());
-    pref->setUPnPEnabled(isUPnPEnabled());
+    Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
     const QPair<int, int> down_up_limit = getGlobalBandwidthLimits();
     session->setGlobalDownloadSpeedLimit(down_up_limit.first);
     session->setGlobalUploadSpeedLimit(down_up_limit.second);
@@ -781,7 +782,7 @@ void OptionsDialog::loadOptions()
     // End Downloads preferences
 
     // Connection preferences
-    m_ui->checkUPnP->setChecked(pref->isUPnPEnabled());
+    m_ui->checkUPnP->setChecked(Net::PortForwarder::instance()->isEnabled());
     m_ui->checkRandomPort->setChecked(session->useRandomPort());
     m_ui->spinPort->setValue(session->port());
     m_ui->spinPort->setDisabled(m_ui->checkRandomPort->isChecked());

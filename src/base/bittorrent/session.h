@@ -57,7 +57,11 @@ namespace libtorrent
     class entry;
     struct add_torrent_params;
     struct pe_settings;
+#if LIBTORRENT_VERSION_NUM < 10100
     struct session_settings;
+#else
+    struct settings_pack;
+#endif
     struct session_status;
 
     class alert;
@@ -336,8 +340,6 @@ namespace BitTorrent
         MaxRatioAction maxRatioAction() const;
         void setMaxRatioAction(MaxRatioAction act);
 
-        void enableIPFilter(const QString &filterPath, bool force = false);
-        void disableIPFilter();
         void banIP(const QString &ip);
 
         bool isKnownTorrent(const InfoHash &hash) const;
@@ -436,18 +438,23 @@ namespace BitTorrent
 
         // Session configuration
         Q_INVOKABLE void configure();
-        void adjustLimits();
+#if LIBTORRENT_VERSION_NUM < 10100
+        void configure(libtorrent::session_settings &sessionSettings);
         void adjustLimits(libtorrent::session_settings &sessionSettings);
+#else
+        void configure(libtorrent::settings_pack &settingsPack);
+        void adjustLimits(libtorrent::settings_pack &settingsPack);
+#endif
+        void adjustLimits();
+        void processBannedIPs();
         const QStringList getListeningIPs();
         void configureListeningInterface();
-        void enableLSD(bool enable);
-        void enableDHT(bool enable);
         void changeSpeedLimitMode_impl(bool alternative);
         void enableTracker(bool enable);
         void enableBandwidthScheduler();
         void populateAdditionalTrackers();
-        void configureEncryption();
-        void configureProxy();
+        void enableIPFilter();
+        void disableIPFilter();
 
         void startUpTorrents();
         bool addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri,
@@ -490,6 +497,10 @@ namespace BitTorrent
         libtorrent::session *m_nativeSession;
 
         bool m_deferredConfigureScheduled;
+        bool m_IPFilteringChanged;
+#if LIBTORRENT_VERSION_NUM >= 10100
+        bool m_listenInterfaceChanged; // optimization
+#endif
         CachedSettingValue<bool> m_isDHTEnabled;
         CachedSettingValue<bool> m_isLSDEnabled;
         CachedSettingValue<bool> m_isPeXEnabled;
@@ -560,7 +571,6 @@ namespace BitTorrent
         int m_numResumeData;
         int m_extraLimit;
         QList<BitTorrent::TrackerEntry> m_additionalTrackerList;
-        QString m_filterPath;
         QString m_resumeFolderPath;
         QFile m_resumeFolderLock;
         QHash<InfoHash, QString> m_savePathsToRemove;

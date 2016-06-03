@@ -163,6 +163,7 @@ namespace
             {"Network/Proxy/Password", "Preferences/Connection/Proxy/Password"},
             {"Network/Proxy/IP", "Preferences/Connection/Proxy/IP"},
             {"Network/Proxy/Port", "Preferences/Connection/Proxy/Port"},
+            {"Network/PortForwardingEnabled", "Preferences/Connection/UPnP"},
 #ifdef QBT_USES_QT5
             {"AddNewTorrentDialog/TreeHeaderState", "AddNewTorrentDialog/qt5/treeHeaderState"},
 #else

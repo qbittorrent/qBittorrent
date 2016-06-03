@@ -160,8 +160,6 @@ public:
     void setActionOnDblClOnTorrentFn(int act);
 
     // Connection options
-    bool isUPnPEnabled() const;
-    void setUPnPEnabled(bool enabled);
     QTime getSchedulerStartTime() const;
     void setSchedulerStartTime(const QTime &time);
     QTime getSchedulerEndTime() const;

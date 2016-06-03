@@ -39,6 +39,7 @@
 #include <QTranslator>
 
 #include "base/bittorrent/session.h"
+#include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
 #include "base/scanfoldersmodel.h"
@@ -88,7 +89,7 @@ QByteArray prefjson::getPreferences()
     // Connection
     // Listening Port
     data["listen_port"] = session->port();
-    data["upnp"] = pref->isUPnPEnabled();
+    data["upnp"] = Net::PortForwarder::instance()->isEnabled();
     data["random_port"] = session->useRandomPort();
     // Connections Limits
     data["max_connec"] = session->maxConnections();
@@ -268,7 +269,7 @@ void prefjson::setPreferences(const QString& json)
     if (m.contains("listen_port"))
         session->setPort(m["listen_port"].toInt());
     if (m.contains("upnp"))
-        pref->setUPnPEnabled(m["upnp"].toBool());
+        Net::PortForwarder::instance()->setEnabled(m["upnp"].toBool());
     if (m.contains("random_port"))
         session->setUseRandomPort(m["random_port"].toBool());
     // Connections Limits
