@@ -102,6 +102,7 @@ namespace Rss
         void loadItemsFromDisk();
         void addArticle(const ArticlePtr &article);
         void downloadArticleTorrentIfMatching(const ArticlePtr &article);
+        QString generateSavePath(const QString &savePathTpl, const ArticlePtr &article);
 
     private:
         Manager *m_manager;

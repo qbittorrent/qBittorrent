@@ -39,30 +39,19 @@
 using namespace Rss;
 
 // public constructor
-Article::Article(Feed *parent, const QString &guid)
+Article::Article(Feed *parent)
     : m_parent(parent)
-    , m_guid(guid)
-    , m_read(false)
 {
 }
 
 bool Article::hasAttachment() const
 {
-    return !m_torrentUrl.isEmpty();
+    return !torrentUrl().isEmpty();
 }
 
-QVariantHash Article::toHash() const
+QVariantHash Article::toHash()
 {
-    QVariantHash item;
-    item["title"] = m_title;
-    item["id"] = m_guid;
-    item["torrent_url"] = m_torrentUrl;
-    item["news_link"] = m_link;
-    item["description"] = m_description;
-    item["date"] = m_date;
-    item["author"] = m_author;
-    item["read"] = m_read;
-    return item;
+    return m_hash;
 }
 
 ArticlePtr Article::fromHash(Feed *parent, const QVariantHash &h)
@@ -71,14 +60,8 @@ ArticlePtr Article::fromHash(Feed *parent, const QVariantHash &h)
     if (guid.isEmpty())
         return ArticlePtr();
 
-    ArticlePtr art(new Article(parent, guid));
-    art->m_title = h.value("title", "").toString();
-    art->m_torrentUrl = h.value("torrent_url", "").toString();
-    art->m_link = h.value("news_link", "").toString();
-    art->m_description = h.value("description").toString();
-    art->m_date = h.value("date").toDateTime();
-    art->m_author = h.value("author").toString();
-    art->m_read = h.value("read", false).toBool();
+    ArticlePtr art(new Article(parent));
+    art->m_hash = h;
 
     return art;
 }
@@ -88,56 +71,61 @@ Feed *Article::parent() const
     return m_parent;
 }
 
-const QString &Article::author() const
+const QString Article::author()
 {
-    return m_author;
+    return m_hash.value("author").toString();
 }
 
-const QString &Article::torrentUrl() const
+const QString Article::torrentUrl()
 {
-    return m_torrentUrl;
+    return m_hash.value("torrent_url", "").toString();
 }
 
-const QString &Article::link() const
+const QString Article::link()
 {
-    return m_link;
+    return m_hash.value("news_link", "").toString();
 }
 
 QString Article::description() const
 {
-    return m_description.isNull() ? "" : m_description;
+    return m_hash.value("description", "").toString();
 }
 
-const QDateTime &Article::date() const
+const QDateTime Article::date()
 {
-    return m_date;
+    return m_hash.value("date").toDateTime();
 }
 
 bool Article::isRead() const
 {
-    return m_read;
+    return m_hash.value("read", false).toBool();
 }
 
 void Article::markAsRead()
 {
-    if (!m_read) {
-        m_read = true;
+    if (!isRead()) {
+        m_hash.insert("read", true);
         emit articleWasRead();
     }
 }
 
-const QString &Article::guid() const
+const QString Article::guid()
 {
-    return m_guid;
+    return m_hash.value("id").toString();
 }
 
-const QString &Article::title() const
+const QString Article::title()
 {
-    return m_title;
+    return m_hash.value("title", "").toString();
 }
 
 void Article::handleTorrentDownloadSuccess(const QString &url)
 {
-    if (url == m_torrentUrl)
+    if (url == torrentUrl())
         markAsRead();
+}
+
+const QString Article::getValue(const QString &name) const
+{
+    return m_hash.value(name, name).toString();
 }
