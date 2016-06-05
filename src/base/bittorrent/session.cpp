@@ -2559,7 +2559,7 @@ void Session::handleExternalIPAlert(libt::external_ip_alert *p)
 {
     boost::system::error_code ec;
     m_externalIp = p->external_address.to_string(ec);
-    Logger::instance()->addMessage(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(m_externalIp.c_str()), Log::INFO);
+    Logger::instance()->addMessage(tr("External IP: %1", "e.g. External IP: 87.125.203.161").arg(m_externalIp.c_str()), Log::INFO);
 
     // user-specified ip address has a higher priority
     if (Preferences::instance()->getNetworkAddress().isEmpty()) {
