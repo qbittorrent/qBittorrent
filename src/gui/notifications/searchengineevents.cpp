@@ -26,30 +26,53 @@
  * exception statement from your version.
  */
 
-#ifndef GUINOTIFICATIONSMANAGER_H
-#define GUINOTIFICATIONSMANAGER_H
+#include "searchengineevents.h"
+#include "base/notifications/notificationrequest.h"
 
-#include "base/notifications/notificationsmanager.h"
-
-
-class QWidget;
-class Application;
-
-namespace Notifications
-{
-    class GuiManager: public Manager
+Notifications::SearchEngineEvents::SearchEngineEvents(QObject *parent)
+    : QObjectObserver{
     {
-        Q_OBJECT
-        Q_DISABLE_COPY(GuiManager)
-
-    public:
-        void openPath(const QString &path) const override;
-
-    private:
-        friend class ::Application;
-        explicit GuiManager(QObject *parent = nullptr);
-        Notifier *createNotifier() override;
-    };
+        {
+            EventDescription("searchFailed")
+            .name(tr("Search failed"))
+            .description(tr("Search has failed to retrieve any results"))
+            .enabledByDefault(true),
+            {
+                SIGNAL(searchFailed()),
+                SLOT(handleSearchFailed())
+            }
+        },
+        {
+            EventDescription("searchFinished")
+            .name(tr("Search finished"))
+            .description(tr("Search has finished or was cancelled"))
+            .enabledByDefault(true),
+            {
+                SIGNAL(searchFinished(bool)),
+                SLOT(handleSearchFinished(bool))
+            }
+        }
+    }
+    , parent}
+{
 }
 
-#endif // GUINOTIFICATIONSMANAGER_H
+void Notifications::SearchEngineEvents::handleSearchFailed()
+{
+    Notifications::Request()
+    .title(tr("Search Engine"))
+    .severity(Notifications::Severity::Error)
+    .message(tr("Search has failed"))
+    //         .setWidget(this);
+    .exec();
+}
+
+void Notifications::SearchEngineEvents::handleSearchFinished(bool cancelled)
+{
+    Notifications::Request()
+    .title(tr("Search Engine"))
+    .message(cancelled ? tr("Search was cancelled") : tr("Search has finished"))
+    //      .setWidget(this);
+    .exec();
+}
+

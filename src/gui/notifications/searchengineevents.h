@@ -26,30 +26,26 @@
  * exception statement from your version.
  */
 
-#ifndef GUINOTIFICATIONSMANAGER_H
-#define GUINOTIFICATIONSMANAGER_H
+#ifndef QBT_SEARCHENGINEEVENTS_H
+#define QBT_SEARCHENGINEEVENTS_H
 
-#include "base/notifications/notificationsmanager.h"
+#include <QObject>
 
-
-class QWidget;
-class Application;
+#include "base/notifications/eventsource.h"
 
 namespace Notifications
 {
-    class GuiManager: public Manager
+    class SearchEngineEvents: public QObjectObserver
     {
         Q_OBJECT
-        Q_DISABLE_COPY(GuiManager)
 
     public:
-        void openPath(const QString &path) const override;
+        SearchEngineEvents(QObject *parent = nullptr);
 
-    private:
-        friend class ::Application;
-        explicit GuiManager(QObject *parent = nullptr);
-        Notifier *createNotifier() override;
+    private slots:
+        void handleSearchFinished(bool cancelled);
+        void handleSearchFailed();
     };
 }
 
-#endif // GUINOTIFICATIONSMANAGER_H
+#endif // QBT_SEARCHENGINEEVENTS_H

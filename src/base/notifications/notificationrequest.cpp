@@ -145,17 +145,18 @@ Notifications::Request::this_type &Notifications::Request::userData(const QVaria
     return *this;
 }
 
-Notifications::Request::this_type &Notifications::Request::addAction(const QString &id, const QString &label)
+Notifications::Request::this_type &Notifications::Request::addAction(
+    const QString &id, const QString &label, ActionHandler handler)
 {
     if (!m_actions.contains(id))
-        m_actions[id] = label;
+        m_actions[id] = {handler, label};
     else
         qDebug() << "Action with id " << id << " already exists. Skipping.";
     return *this;
 }
 
-void Notifications::Request::exec() const &
-{
+void Notifications::Request::exec() const
+& {
     Manager::instance().notifier()->showNotification(*this);
 }
 

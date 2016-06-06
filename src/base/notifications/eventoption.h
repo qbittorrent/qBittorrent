@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016 Eugene Shalygin
+ * Copyright (C) 2015 Eugene Shalygin
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,30 +26,48 @@
  * exception statement from your version.
  */
 
-#ifndef GUINOTIFICATIONSMANAGER_H
-#define GUINOTIFICATIONSMANAGER_H
+#ifndef QBT_NOTIFICATIONS_EVENTOPTION_H
+#define QBT_NOTIFICATIONS_EVENTOPTION_H
 
-#include "base/notifications/notificationsmanager.h"
+#include <string>
+#include <QString>
 
-
-class QWidget;
-class Application;
+class QObject;
 
 namespace Notifications
 {
-    class GuiManager: public Manager
+    class EventDescription
     {
-        Q_OBJECT
-        Q_DISABLE_COPY(GuiManager)
-
     public:
-        void openPath(const QString &path) const override;
+        using ThisType = EventDescription;
+        using IdType = std::string;
+        /// For the sake of code readability this constructor creates *invalid* object
+        /// All the setters have to be invoked with valid parameters prior to any manipulations with
+        /// this object.
+        explicit EventDescription(const IdType &id);
+
+
+        ThisType &name(const QString &v);
+        ThisType &description(const QString &v);
+        ThisType &enabledByDefault(bool v);
+
+        const IdType &id() const;
+        const QString &name() const;
+        const QString &description() const;
+        bool isEnabledByDefault() const;
+
+    protected:
+        void assertValidity() const;
 
     private:
-        friend class ::Application;
-        explicit GuiManager(QObject *parent = nullptr);
-        Notifier *createNotifier() override;
+        IdType m_id;
+        QString m_name;
+        QString m_description;
+        bool m_enabledByDefault;
     };
+
+    // compares by id
+    bool operator==(const EventDescription &left, const EventDescription &right);
 }
 
-#endif // GUINOTIFICATIONSMANAGER_H
+#endif // QBT_NOTIFICATIONS_EVENTOPTION_H

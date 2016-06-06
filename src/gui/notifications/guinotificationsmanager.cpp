@@ -31,13 +31,15 @@
 #include <QDesktopServices>
 
 #include "base/notifications/notifier.h"
+#include "base/notifications/notificationrequest.h"
+#include "base/searchengine.h"
 #include "app/application.h"
+#include "gui/mainwindow.h"
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
 #include "base/notifications/dbusnotifier.h"
 #else
 #include "gui/notifications/systemtraynotifier.h"
-#include "gui/mainwindow.h"
 #endif
 
 Notifications::GuiManager::GuiManager(QObject *parent)
@@ -45,17 +47,18 @@ Notifications::GuiManager::GuiManager(QObject *parent)
 {
 }
 
-void Notifications::GuiManager::openUrl(const QUrl &url)
+void Notifications::GuiManager::openPath(const QString &url) const
 {
     QDesktopServices::openUrl(url);
 }
 
-Notifications::Notifier* Notifications::GuiManager::createNotifier()
+Notifications::Notifier *Notifications::GuiManager::createNotifier()
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
     return new Notifications::DBusNotifier(nullptr);
 #else
-    return new Notifications::SystemTrayNotifier(nullptr, static_cast<Application*>(
+    return new Notifications::SystemTrayNotifier(nullptr, static_cast<Application *>(
                                                      QCoreApplication::instance())->mainWindow()->systemTrayIcon());
 #endif
 }
+

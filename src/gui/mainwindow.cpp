@@ -30,9 +30,13 @@
 
 #include "mainwindow.h"
 
+<<<<<<< HEAD
 #include <QClipboard>
 #include <QCloseEvent>
 #include <QCryptographicHash>
+=======
+#include <QtGlobal>
+>>>>>>> Implement dynamically configurable notifications
 #include <QDebug>
 #include <QDesktopServices>
 #include <QFileDialog>
@@ -70,6 +74,12 @@
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
 #include "base/settingsstorage.h"
+<<<<<<< HEAD
+=======
+#include "base/logger.h"
+#include "base/searchengine.h"
+#include "base/utils/misc.h"
+>>>>>>> Implement dynamically configurable notifications
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "cookiesdialog.h"
@@ -107,7 +117,15 @@
 #endif
 #if LIBTORRENT_VERSION_NUM < 10100
 #include "trackerlogin.h"
+<<<<<<< HEAD
 #endif
+=======
+#include "lineedit.h"
+#include "executionlog.h"
+#include "hidabletabwidget.h"
+#include "notifications/searchengineevents.h"
+#include "ui_mainwindow.h"
+>>>>>>> Implement dynamically configurable notifications
 
 #ifdef Q_OS_MAC
 void qt_mac_set_dock_menu(QMenu *menu);
@@ -140,6 +158,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_posInitialized(false)
     , m_forceExit(false)
     , m_unlockDlgShowing(false)
+    , m_searchEventsSource(new Notifications::SearchEngineEvents(this))
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     , m_wasUpdateCheckEnabled(false)
 #endif
@@ -673,14 +692,20 @@ void MainWindow::displaySearchTab(bool enable)
         // RSS tab
         if (!m_searchWidget) {
             m_searchWidget = new SearchWidget(this);
+<<<<<<< HEAD
             m_tabs->insertTab(1, m_searchWidget,
 #ifndef Q_OS_MAC
                 GuiIconProvider::instance()->getIcon("edit-find"),
 #endif
                 tr("Search"));
+=======
+            m_tabs->insertTab(1, m_searchWidget, GuiIconProvider::instance()->getIcon("edit-find"), tr("Search"));
+            m_searchEventsSource->setSubject(m_searchWidget->searchEngine());
+>>>>>>> Implement dynamically configurable notifications
         }
     }
     else if (m_searchWidget) {
+        m_searchEventsSource->setSubject(nullptr);
         delete m_searchWidget;
     }
 }

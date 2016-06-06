@@ -51,6 +51,8 @@
 #include "base/net/geoipmanager.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/net/smtp.h"
+#include "base/notifications/notificationsmanager.h"
+#include "base/notifications/sessionevents.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/rss/rss_autodownloader.h"
@@ -536,6 +538,8 @@ int Application::exec(const QStringList &params)
     m_notificationManager = new Notifications::GuiManager(this);
 #endif // DISABLE_GUI
     Notifications::Manager::setInstance(m_notificationManager.data());
+    m_sessionEvents = new Notifications::SessionEvents(this);
+    Notifications::Manager::instance().addEventSource(m_sessionEvents);
 
     m_running = true;
 

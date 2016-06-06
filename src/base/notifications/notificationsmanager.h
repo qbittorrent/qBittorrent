@@ -29,26 +29,23 @@
 #ifndef NOTIFICATIONSMANAGER_H
 #define NOTIFICATIONSMANAGER_H
 
-#include <QObject>
 #include <QPointer>
+#include <QScopedPointer>
+#include <vector>
+
+#include "eventoption.h"
 
 class Application;
 class QUrl;
-
-namespace BitTorrent
-{
-    class TorrentHandle;
-}
 
 namespace Notifications
 {
     class Notifier;
     class Request;
+    class EventsSource;
+    class CompoundEventsSource;
     enum class CloseReason;
-}
 
-namespace Notifications
-{
     class Manager: public QObject
     {
         Q_OBJECT
@@ -64,6 +61,17 @@ namespace Notifications
         static bool areNotificationsEnabled();
         static void setNotificationsEnabled(bool value);
 
+        void saveNotificationsState();
+        void reloadNotificationsState();
+
+        void setNotificationActive(const std::string &id, bool active);
+        std::vector<EventDescription> supportedNotifications();
+
+        void addEventSource(EventsSource *source);
+        void removeEventSource(EventsSource *source);
+
+        virtual void openPath(const QString &path) const;
+
     protected:
         explicit Manager(Notifier *notifier = nullptr, QObject *parent = nullptr);
 
@@ -74,24 +82,16 @@ namespace Notifications
         static void setInstance(this_type *ptr);
 
     private slots:
-        void handleAddTorrentFailure(const QString &error) const;
-        // called when a torrent has finished
-        void handleTorrentFinished(BitTorrent::TorrentHandle *const torrent) const;
-        // Notification when disk is full
-        void handleFullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const;
-        void handleDownloadFromUrlFailure(QString url, QString reason) const;
-
-        void notificationActionTriggered(const Request &request, const QString &actionId);
+        void notificationActionTriggered(const Request &request, const QString &actionId) const;
         void notificationClosed(const Request &request, CloseReason reason);
 
     private:
-        void connectSlots();
         void resetNotifier(Notifier *notifier = nullptr);
         virtual Notifier *createNotifier();
-        virtual void openUrl(const QUrl &url);
 
         static this_type *m_instance; // threading-related issues are not expected for this class, thus a simple pointer
         QPointer<Notifier> m_notifier;
+        QScopedPointer<CompoundEventsSource> m_eventSource;
     };
 }
 

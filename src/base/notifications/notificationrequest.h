@@ -29,8 +29,11 @@
 #ifndef NOTIFICATIONS_REQUEST_H
 #define NOTIFICATIONS_REQUEST_H
 
+#include <functional>
+
 #include <QMap>
 #include <QVariant>
+
 #include "base/bittorrent/infohash.h"
 
 namespace BitTorrent
@@ -62,13 +65,24 @@ namespace Notifications
         Error
     };
 
+    class Request;
+
+    using ActionHandler = std::function<void (const Request &, const QString &actionId)>;
+
     class Request
     {
     public:
         typedef Request this_type;
 
         static const QString defaultActionName;
-        typedef QMap<QString, QString> ActionsMap;
+
+        struct ActionData
+        {
+            ActionHandler handler;
+            QString label;
+        };
+
+        typedef QMap<QString, ActionData> ActionsMap;
 
         Request();
 
@@ -96,7 +110,7 @@ namespace Notifications
         this_type &timeout(int timeout);
         this_type &userData(const QVariant &data);
 
-        this_type &addAction(const QString &id, const QString &label);
+        this_type &addAction(const QString &id, const QString &label, ActionHandler handler);
 
         void exec() const &;
         void exec() &&;

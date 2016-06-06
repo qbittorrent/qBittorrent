@@ -45,6 +45,7 @@ HEADERS += \
     $$PWD/notifications/dummynotifier.h \
     $$PWD/notifications/notificationsmanager.h \
     $$PWD/notifications/notificationrequest.h \
+    $$PWD/notifications/sessionevents.h \
     $$PWD/preferences.h \
     $$PWD/private/profile_p.h \
     $$PWD/profile.h \
@@ -113,8 +114,11 @@ SOURCES += \
     $$PWD/net/smtp.cpp \
     $$PWD/notifications/notifier.cpp \
     $$PWD/notifications/dummynotifier.cpp \
+    $$PWD/notifications/eventoption.cpp \
+    $$PWD/notifications/eventsource.cpp \
     $$PWD/notifications/notificationsmanager.cpp \
     $$PWD/notifications/notificationrequest.cpp \
+    $$PWD/notifications/sessionevents.cpp \
     $$PWD/preferences.cpp \
     $$PWD/private/profile_p.cpp \
     $$PWD/profile.cpp \

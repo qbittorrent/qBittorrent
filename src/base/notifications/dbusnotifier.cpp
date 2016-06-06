@@ -169,9 +169,9 @@ void Notifications::DBusNotifier::actionInvoked(uint id, const QString &actionKe
 QStringList Notifications::DBusNotifier::getActions(const Notifications::Request &request)
 {
     QStringList actions;
-    for (const auto & a: request.actions().keys()) {
+    for (const auto &a: request.actions().keys()) {
         actions.push_back(a);
-        actions.push_back(request.actions()[a]);
+        actions.push_back(request.actions()[a].label);
     }
     return actions;
 }

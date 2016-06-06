@@ -279,10 +279,16 @@ void SearchWidget::giveFocusToSearchInput()
     m_ui->m_searchPattern->setFocus();
 }
 
+const SearchEngine * SearchWidget::searchEngine() const
+{
+    return m_searchEngine;
+}
+
 // Function called when we click on search button
 void SearchWidget::on_searchButton_clicked()
 {
     if (Utils::Misc::pythonVersion() < 0) {
+        // unconditional notifications, user can not disable it
         Notifications::Request()
             .title(tr("Search Engine"))
             .message(tr("Please install Python to use the Search Engine."))

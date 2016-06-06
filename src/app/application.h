@@ -66,6 +66,7 @@ namespace BitTorrent
 
 {
     class Manager;
+    class SessionEvents;
 }
 
 namespace RSS
@@ -141,6 +142,7 @@ private:
     WebUI *m_webui;
 #endif
     QPointer<Notifications::Manager> m_notificationManager;
+    QPointer<Notifications::SessionEvents> m_sessionEvents;
 
     // FileLog
     QPointer<FileLogger> m_fileLogger;

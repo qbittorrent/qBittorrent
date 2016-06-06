@@ -70,6 +70,7 @@ transferlistwidget.h
 updownratiodlg.h
 utils.h
 notifications/guinotificationsmanager.h
+notifications/searchengineevents.h
 )
 
 set(QBT_GUI_SOURCES
@@ -117,6 +118,7 @@ transferlistwidget.cpp
 updownratiodlg.cpp
 utils.cpp
 notifications/guinotificationsmanager.cpp
+notifications/searchengineevents.cpp
 )
 
 if (APPLE)

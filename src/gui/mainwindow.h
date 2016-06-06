@@ -65,6 +65,11 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
+namespace Notifications
+{
+    class SearchEngineEvents;
+}
+
 namespace Ui
 {
     class MainWindow;
@@ -241,6 +246,7 @@ private:
     QSplitter *m_splitter;
     QPointer<SearchWidget> m_searchWidget;
     QPointer<RSSWidget> m_rssWidget;
+    Notifications::SearchEngineEvents *m_searchEventsSource;
     QPointer<ExecutionLog> m_executionLog;
     // Power Management
     PowerManagement *m_pwr;

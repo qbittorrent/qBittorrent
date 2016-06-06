@@ -27,6 +27,7 @@ HEADERS += \
     $$PWD/mainwindow.h \
     $$PWD/messageboxraised.h \
     $$PWD/notifications/guinotificationsmanager.h \
+    $$PWD/notifications/searchengineevents.h \
     $$PWD/optionsdlg.h \
     $$PWD/previewlistdelegate.h \
     $$PWD/previewselectdialog.h \
@@ -85,6 +86,7 @@ SOURCES += \
     $$PWD/mainwindow.cpp \
     $$PWD/messageboxraised.cpp \
     $$PWD/notifications/guinotificationsmanager.cpp \
+    $$PWD/notifications/searchengineevents.cpp \
     $$PWD/optionsdlg.cpp \
     $$PWD/previewselectdialog.cpp \
     $$PWD/rss/articlelistwidget.cpp \

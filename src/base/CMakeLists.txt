@@ -36,9 +36,12 @@ net/proxyconfigurationmanager.h
 net/reverseresolution.h
 net/smtp.h
 notifications/dummynotifier.h
+notifications/eventoption.h
+notifications/eventsource.h
 notifications/notifier.h
 notifications/notificationsmanager.h
 notifications/notificationrequest.h
+notifications/sessionevents.h
 private/profile_p.h
 rss/private/rss_parser.h
 rss/rss_article.h
@@ -109,9 +112,12 @@ net/proxyconfigurationmanager.cpp
 net/reverseresolution.cpp
 net/smtp.cpp
 notifications/dummynotifier.cpp
+notifications/eventoption.cpp
+notifications/eventsource.cpp
 notifications/notifier.cpp
 notifications/notificationsmanager.cpp
 notifications/notificationrequest.cpp
+notifications/sessionevents.cpp
 private/profile_p.cpp
 rss/private/rss_parser.cpp
 rss/rss_article.cpp

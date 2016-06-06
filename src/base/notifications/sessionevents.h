@@ -26,30 +26,39 @@
  * exception statement from your version.
  */
 
-#ifndef GUINOTIFICATIONSMANAGER_H
-#define GUINOTIFICATIONSMANAGER_H
+#ifndef QBT_SESSION_EVETNS_H
+#define QBT_SESSION_EVETNS_H
 
-#include "base/notifications/notificationsmanager.h"
+#include <QObject>
+#include "eventsource.h"
 
-
-class QWidget;
-class Application;
+namespace BitTorrent
+{
+    class TorrentHandle;
+}
 
 namespace Notifications
 {
-    class GuiManager: public Manager
+    class Request;
+
+    class SessionEvents: public QObjectObserver
     {
         Q_OBJECT
-        Q_DISABLE_COPY(GuiManager)
 
     public:
-        void openPath(const QString &path) const override;
+        SessionEvents(QObject *parent);
+
+    private slots:
+        void handleAddTorrentFailure(const QString &error) const;
+        // called when a torrent has finished
+        void handleTorrentFinished(BitTorrent::TorrentHandle *const torrent) const;
+        // Notification when disk is full
+        void handleFullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const;
+        void handleDownloadFromUrlFailure(QString url, QString reason) const;
 
     private:
-        friend class ::Application;
-        explicit GuiManager(QObject *parent = nullptr);
-        Notifier *createNotifier() override;
+        void torrentFinishedActionHandler(const Request &request, const QString &actionId) const;
     };
 }
 
-#endif // GUINOTIFICATIONSMANAGER_H
+#endif // QBT_SESSION_EVETNS_H
