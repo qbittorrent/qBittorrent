@@ -52,55 +52,100 @@ namespace
     constexpr const char NOTIFICATION_ID_ADD_TORRENT_FAILED[] = "AddTorrentFailed";
     constexpr const char NOTIFICATION_ID_TORRENT_FINISHED[] = "TorrentFinished";
     constexpr const char NOTIFICATION_ID_DOWNLOAD_FROM_URL_FAILED[] = "DownloadFromUrlFailed";
+    constexpr const char NOTIFICATION_ID_NEW_TORRENT[] = "NewTorrent";
+    constexpr const char NOTIFICATION_ID_TORRENTMETADATALOADED[] = "TorrentMetadataLoaded";
+    constexpr const char NOTIFICATION_ID_TORRENTFINISHEDCHECKING[] = "TorrentFinishedChecking";
+    constexpr const char NOTIFICATION_ID_ALLTORRENTSFINISHED[] = "AllTorrentsFinished";
 }
 
 Notifications::SessionEvents::SessionEvents(QObject *parent)
     : QObjectObserver {
     {
-    {
-        EventDescription(NOTIFICATION_ID_ADD_TORRENT_FAILED)
-        .name(tr("Torrent adding failed"))
-        .description(tr("Adding torrent to session failed"))
-        .enabledByDefault(true),
         {
-            SIGNAL(addTorrentFailed(QString)),
-            SLOT(handleAddTorrentFailure(QString))
-        }
-    },
-    {
-        EventDescription(NOTIFICATION_ID_DOWNLOAD_FROM_URL_FAILED)
-        .name(tr("Downloading from an URL failed"))
-        .description(tr("Downloading e.g. torrent from a search engine failed"))
-        .enabledByDefault(true),
+            EventDescription(NOTIFICATION_ID_ADD_TORRENT_FAILED)
+            .name(tr("Torrent adding failed"))
+            .description(tr("Adding torrent to session failed"))
+            .enabledByDefault(true),
+            {
+                SIGNAL(addTorrentFailed(QString)),
+                SLOT(handleAddTorrentFailure(QString))
+            }
+        },
         {
-            SIGNAL(downloadFromUrlFailed(QString,QString)),
-            SLOT(handleDownloadFromUrlFailure(QString,QString))
-        }
-    },
-    {
-        EventDescription(NOTIFICATION_ID_FULL_DISK_ERROR)
-        .name(tr("Disk is full"))
-        .description(tr("Downloading is not possible any more because there is no space left"))
-        .enabledByDefault(true),
+            EventDescription(NOTIFICATION_ID_DOWNLOAD_FROM_URL_FAILED)
+            .name(tr("Downloading from an URL failed"))
+            .description(tr("Downloading e.g. torrent from a search engine failed"))
+            .enabledByDefault(true),
+            {
+                SIGNAL(downloadFromUrlFailed(QString,QString)),
+                SLOT(handleDownloadFromUrlFailure(QString,QString))
+            }
+        },
         {
-            SIGNAL(fullDiskError(BitTorrent::TorrentHandle * const,QString)),
-            SLOT(handleFullDiskError(BitTorrent::TorrentHandle * const,QString))
-        }
-    },
-    {
-        EventDescription(NOTIFICATION_ID_TORRENT_FINISHED)
-        .name(tr("Torrent finished"))
-        .description(tr("Downloading torrent finished successfully"))
-        .enabledByDefault(true),
+            EventDescription(NOTIFICATION_ID_FULL_DISK_ERROR)
+            .name(tr("Disk is full"))
+            .description(tr("Downloading is not possible any more because there is no space left"))
+            .enabledByDefault(true),
+            {
+                SIGNAL(fullDiskError(BitTorrent::TorrentHandle * const,QString)),
+                SLOT(handleFullDiskError(BitTorrent::TorrentHandle * const,QString))
+            }
+        },
         {
-            SIGNAL(torrentFinished(BitTorrent::TorrentHandle * const)),
-            SLOT(handleTorrentFinished(BitTorrent::TorrentHandle * const))
+            EventDescription(NOTIFICATION_ID_TORRENT_FINISHED)
+            .name(tr("Torrent finished"))
+            .description(tr("Downloading torrent finished successfully"))
+            .enabledByDefault(true),
+            {
+                SIGNAL(torrentFinished(BitTorrent::TorrentHandle * const)),
+                SLOT(handleTorrentFinished(BitTorrent::TorrentHandle * const))
+            }
+        },
+        {
+            EventDescription(NOTIFICATION_ID_NEW_TORRENT)
+            .name(tr("New torrent added"))
+            .description(tr("New torrent added to the downloading queue"))
+            .enabledByDefault(false),
+            {
+                SIGNAL(torrentNew(BitTorrent::TorrentHandle * const)),
+                SLOT(handleTorrentNew(BitTorrent::TorrentHandle * const))
+            }
+        },
+        {
+            EventDescription(NOTIFICATION_ID_TORRENTMETADATALOADED)
+            .name(tr("Metadata loaded"))
+            .description(tr("Metadata for a torrent became available"))
+            .enabledByDefault(false),
+            {
+                SIGNAL(torrentMetadataLoaded(BitTorrent::TorrentHandle * const)),
+                SLOT(handleTorrentMetadataLoaded(BitTorrent::TorrentHandle * const))
+            }
+        },
+        {
+            EventDescription(NOTIFICATION_ID_TORRENTFINISHEDCHECKING)
+            .name(tr("Torrent checking finished"))
+            .description(tr("Data checking for torrent completed"))
+            .enabledByDefault(false),
+            {
+                SIGNAL(torrentFinishedChecking(BitTorrent::TorrentHandle * const)),
+                SLOT(handleTorrentFinishedChecking(BitTorrent::TorrentHandle * const))
+            }
+        },
+        {
+            EventDescription(NOTIFICATION_ID_ALLTORRENTSFINISHED)
+            .name(tr("All torrent finished"))
+            .description(tr("All torrents downloaded"))
+            .enabledByDefault(false),
+            {
+                SIGNAL(allTorrentsFinished()),
+                SLOT(handlAllTorrentsFinished())
+            }
         }
     }
-    }
+
     , parent}
 {
-    setSubject(BitTorrent::Session::instance());     // this will connect all signals
+    setSubject(BitTorrent::Session::instance());     // this will connect all the signals
 }
 
 void Notifications::SessionEvents::handleAddTorrentFailure(const QString &error) const
@@ -167,6 +212,63 @@ void Notifications::SessionEvents::handleDownloadFromUrlFailure(QString url, QSt
     .category(Category::Download)
     .severity(Severity::Error)
     .urgency(Urgency::High)
+    .timeout(0)
+    .exec();
+}
+
+void Notifications::SessionEvents::handleTorrentNew(BitTorrent::TorrentHandle *const torrent) const
+{
+    Request()
+    .title(tr("Torrent added"))
+    .message(tr("'%1' was added.", "e.g: xxx.avi was added.").arg(torrent->name()))
+    .category(Category::Generic)
+    .severity(Severity::Information)
+    .torrent(torrent)
+    .exec();
+}
+
+void Notifications::SessionEvents::handleTorrentMetadataLoaded(BitTorrent::TorrentHandle *const torrent) const
+{
+    auto handler = [this](const Notifications::Request &/*request*/, const QString &/*actionId*/)
+                   {
+                       // has to highlight the torrent in the main view
+                   };
+    Request()
+    .title(tr("Metadata downloaded"))
+    .message(tr("Metadata for %1 have been downloaded.", "e.g: Metadata for xxx.avi have been downloaded.")
+                .arg(torrent->name()))
+    .category(Category::Download)
+    .torrent(torrent)
+    .severity(Severity::Information)
+    .timeout(0)
+    .addAction(ACTION_NAME_DEFAULT, tr("View", "View torrent"), handler)
+    .exec();
+}
+
+void Notifications::SessionEvents::handleTorrentFinishedChecking(BitTorrent::TorrentHandle *const torrent) const
+{
+    auto handler = [this](const Notifications::Request &/*request*/, const QString &/*actionId*/)
+                   {
+                       // has to highlight the torrent in the main view
+                   };
+    Request()
+    .title(tr("Checking finished"))
+    .message(tr("Checking %1 has finished.", "e.g: Checking xxx.avi has finished.")
+                .arg(torrent->name()))
+    .category(Category::Download)
+    .torrent(torrent)
+    .severity(Severity::Information)
+    .addAction(ACTION_NAME_DEFAULT, tr("View", "View torrent"), handler)
+    .exec();
+}
+
+void Notifications::SessionEvents::handlAllTorrentsFinished() const
+{
+    Request()
+    .title(tr("All torrents finished"))
+    .message(tr("Downloading all torrents has finished."))
+    .category(Category::Download)
+    .severity(Severity::Information)
     .timeout(0)
     .exec();
 }

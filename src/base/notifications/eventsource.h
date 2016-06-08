@@ -97,8 +97,9 @@ namespace Notifications
 
         QObjectObserver(std::initializer_list<std::pair<EventDescription,Connection>> events, QObject *parent = nullptr);
 
-	private slots:
-		void disableEventsAndDisconnectSubject();
+    private slots:
+        void disableEventsAndDisconnectSubject();
+
     private:
 
         struct ConnectionWithState: public Connection

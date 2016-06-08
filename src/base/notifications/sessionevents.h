@@ -55,6 +55,10 @@ namespace Notifications
         // Notification when disk is full
         void handleFullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const;
         void handleDownloadFromUrlFailure(QString url, QString reason) const;
+        void handleTorrentNew(BitTorrent::TorrentHandle *const torrent) const;
+        void handleTorrentMetadataLoaded(BitTorrent::TorrentHandle *const torrent) const;
+        void handleTorrentFinishedChecking(BitTorrent::TorrentHandle *const torrent) const;
+        void handlAllTorrentsFinished() const;
 
     private:
         void torrentFinishedActionHandler(const Request &request, const QString &actionId) const;
