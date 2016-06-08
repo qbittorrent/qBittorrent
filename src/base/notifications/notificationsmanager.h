@@ -38,6 +38,12 @@
 class Application;
 class QUrl;
 
+namespace BitTorrent
+{
+    class InfoHash;
+    class TorrentHandle;
+}
+
 namespace Notifications
 {
     class Notifier;
@@ -73,6 +79,11 @@ namespace Notifications
         virtual void openPath(const QString &path) const;
 
         StatesList notificationStates() const;
+
+        /// Sets focus to the @ref torrent in the transfers window.
+        /// \note It has to be pure virtual, but because there is no notifications manger
+        /// for WEbUI (yet), it is simply virtual and does nothing here.
+        virtual void highlightTorrent(const BitTorrent::InfoHash &torrent) const;
 
     protected:
         explicit Manager(Notifier *notifier = nullptr, QObject *parent = nullptr);

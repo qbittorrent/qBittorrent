@@ -169,3 +169,7 @@ Notifications::StatesList Notifications::Manager::notificationStates() const
 {
     return m_eventSource->eventsState();
 }
+
+void Notifications::Manager::highlightTorrent(const BitTorrent::InfoHash &/*torrent*/) const
+{
+}

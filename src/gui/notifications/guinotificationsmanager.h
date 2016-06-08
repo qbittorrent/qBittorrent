@@ -31,7 +31,6 @@
 
 #include "base/notifications/notificationsmanager.h"
 
-
 class QWidget;
 class Application;
 
@@ -49,6 +48,7 @@ namespace Notifications
         friend class ::Application;
         explicit GuiManager(QObject *parent = nullptr);
         Notifier *createNotifier() override;
+        void highlightTorrent(const BitTorrent::InfoHash &torrent) const override;
     };
 }
 

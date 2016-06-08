@@ -93,6 +93,7 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const;
 
     BitTorrent::TorrentHandle *torrentHandle(const QModelIndex &index) const;
+    QModelIndex indexOf(const BitTorrent::TorrentHandle *const torrent) const;
 
 private slots:
     void addTorrent(BitTorrent::TorrentHandle *const torrent);

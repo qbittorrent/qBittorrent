@@ -229,9 +229,9 @@ void Notifications::SessionEvents::handleTorrentNew(BitTorrent::TorrentHandle *c
 
 void Notifications::SessionEvents::handleTorrentMetadataLoaded(BitTorrent::TorrentHandle *const torrent) const
 {
-    auto handler = [this](const Notifications::Request &/*request*/, const QString &/*actionId*/)
+    auto handler = [](const Notifications::Request &request, const QString &/*actionId*/)
                    {
-                       // has to highlight the torrent in the main view
+                       Manager::instance().highlightTorrent(request.torrent());
                    };
     Request()
     .title(tr("Metadata downloaded"))
@@ -247,9 +247,9 @@ void Notifications::SessionEvents::handleTorrentMetadataLoaded(BitTorrent::Torre
 
 void Notifications::SessionEvents::handleTorrentFinishedChecking(BitTorrent::TorrentHandle *const torrent) const
 {
-    auto handler = [this](const Notifications::Request &/*request*/, const QString &/*actionId*/)
+    auto handler = [](const Notifications::Request &request, const QString &/*actionId*/)
                    {
-                       // has to highlight the torrent in the main view
+                       Manager::instance().highlightTorrent(request.torrent());
                    };
     Request()
     .title(tr("Checking finished"))

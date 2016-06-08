@@ -296,6 +296,16 @@ BitTorrent::TorrentHandle *TorrentModel::torrentHandle(const QModelIndex &index)
     return m_torrents.value(index.row());
 }
 
+QModelIndex TorrentModel::indexOf(const BitTorrent::TorrentHandle *const torrent) const
+{
+    // QList<T>::indexOf() wants argument of type const T&, thus rejects const BitTorrent::TorrentHandle*
+    for (int i = 0; i < m_torrents.size(); ++i) {
+        if (m_torrents[i] == torrent)
+            return index(i);
+    }
+    return QModelIndex();
+}
+
 void TorrentModel::handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent)
 {
     const int row = m_torrents.indexOf(torrent);

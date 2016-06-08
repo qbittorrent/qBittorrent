@@ -30,11 +30,14 @@
 
 #include <QDesktopServices>
 
+#include "base/bittorrent/session.h"
 #include "base/notifications/notifier.h"
 #include "base/notifications/notificationrequest.h"
 #include "base/searchengine.h"
 #include "app/application.h"
 #include "gui/mainwindow.h"
+#include "gui/transferlistwidget.h"
+#include "gui/torrentmodel.h"
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
 #include "base/notifications/dbusnotifier.h"
@@ -62,3 +65,14 @@ Notifications::Notifier *Notifications::GuiManager::createNotifier()
 #endif
 }
 
+void Notifications::GuiManager::highlightTorrent(const BitTorrent::InfoHash &torrent) const
+{
+    const BitTorrent::TorrentHandle *h = BitTorrent::Session::instance()->findTorrent(torrent);
+    if (h) {
+        TransferListWidget *transfersListWidget = static_cast<Application *>(
+            QCoreApplication::instance())->mainWindow()->transferListWidget();
+        QModelIndex index = transfersListWidget->getSourceModel()->indexOf(h);
+        if (index != QModelIndex())
+            transfersListWidget->setCurrentIndex(transfersListWidget->mapFromSource(index));
+    }
+}

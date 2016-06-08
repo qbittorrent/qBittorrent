@@ -332,7 +332,7 @@ inline QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) con
     return index;
 }
 
-inline QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) const
+QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) const
 {
     Q_ASSERT(index.isValid());
     Q_ASSERT(index.model() == m_sortFilterModel);
