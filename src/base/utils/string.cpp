@@ -51,8 +51,13 @@ namespace
         {
 #ifdef QBT_USES_QT5
 #if defined(Q_OS_WIN)
+            // Without ICU library, QCollator uses the native API on Windows 7+. But that API
+            // sorts older versions of μTorrent differently than the newer ones because the
+            // 'μ' character is encoded differently and the native API can't cope with that.
+            // So default to using our custom natural sorting algorithm instead.
+            // See #5238 and #5240
             // Without ICU library, QCollator doesn't support `setNumericMode(true)` on OS older than Win7
-            if (QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
+            // if (QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
                 return;
 #endif
             m_collator.setNumericMode(true);
@@ -64,8 +69,13 @@ namespace
         {
 #ifdef QBT_USES_QT5
 #if defined(Q_OS_WIN)
+            // Without ICU library, QCollator uses the native API on Windows 7+. But that API
+            // sorts older versions of μTorrent differently than the newer ones because the
+            // 'μ' character is encoded differently and the native API can't cope with that.
+            // So default to using our custom natural sorting algorithm instead.
+            // See #5238 and #5240
             // Without ICU library, QCollator doesn't support `setNumericMode(true)` on OS older than Win7
-            if (QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
+            // if (QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
                 return lessThan(left, right);
 #endif
             return (m_collator.compare(left, right) < 0);
