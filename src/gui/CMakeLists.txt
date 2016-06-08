@@ -43,7 +43,7 @@ ico.h
 loglistwidget.h
 mainwindow.h
 messageboxraised.h
-options_imp.h
+optionsdlg.h
 previewlistdelegate.h
 previewselect.h
 scanfoldersdelegate.h
@@ -79,7 +79,7 @@ ico.cpp
 loglistwidget.cpp
 mainwindow.cpp
 messageboxraised.cpp
-options_imp.cpp
+optionsdlg.cpp
 previewselect.cpp
 scanfoldersdelegate.cpp
 shutdownconfirmdlg.cpp
@@ -121,7 +121,7 @@ executionlog.ui
 addnewtorrentdialog.ui
 autoexpandabledialog.ui
 statsdialog.ui
-options.ui
+optionsdlg.ui
 torrentcreatordlg.ui
 shutdownconfirmdlg.ui
 )
