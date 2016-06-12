@@ -143,6 +143,8 @@ public:
     void setSplashScreenDisabled(bool b);
     bool preventFromSuspend() const;
     void setPreventFromSuspend(bool b);
+    bool isLoadFaviconsEnabled() const;
+    void setLoadFaviconsEnabled(bool b);
 #ifdef Q_OS_WIN
     bool WinStartup() const;
     void setWinStartup(bool b);

@@ -235,6 +235,16 @@ void Preferences::setSplashScreenDisabled(bool b)
     setValue("Preferences/General/NoSplashScreen", b);
 }
 
+bool Preferences::isLoadFaviconsEnabled() const
+{
+    return value("Preferences/General/LoadTrackerFavicons", true).toBool();
+}
+
+void Preferences::setLoadFaviconsEnabled(bool b)
+{
+    setValue("Preferences/General/LoadTrackerFavicons", b);
+}
+
 // Preventing from system suspend while active torrents are presented.
 bool Preferences::preventFromSuspend() const
 {

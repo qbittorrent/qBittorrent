@@ -179,6 +179,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkStartup, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #endif
     connect(m_ui->checkShowSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkLoadFavicons, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkProgramExitConfirm, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkProgramAutoExitConfirm, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkPreventFromSuspend, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -464,6 +465,7 @@ void OptionsDialog::saveOptions()
     pref->setMinimizeToTray(minimizeToTray());
     pref->setStartMinimized(startMinimized());
     pref->setSplashScreenDisabled(isSlashScreenDisabled());
+    pref->setLoadFaviconsEnabled(isLoadFaviconsEnabled());
     pref->setConfirmOnExit(m_ui->checkProgramExitConfirm->isChecked());
     pref->setDontConfirmAutoExit(!m_ui->checkProgramAutoExitConfirm->isChecked());
     pref->setPreventFromSuspend(preventFromSuspend());
@@ -662,6 +664,7 @@ void OptionsDialog::loadOptions()
     m_ui->comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
 
     m_ui->checkShowSplash->setChecked(!pref->isSplashScreenDisabled());
+    m_ui->checkLoadFavicons->setChecked(pref->isLoadFaviconsEnabled());
     m_ui->checkStartMinimized->setChecked(pref->startMinimized());
     m_ui->checkProgramExitConfirm->setChecked(pref->confirmOnExit());
     m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
@@ -1208,6 +1211,11 @@ void OptionsDialog::enableProxy(int index)
 bool OptionsDialog::isSlashScreenDisabled() const
 {
     return !m_ui->checkShowSplash->isChecked();
+}
+
+bool OptionsDialog::isLoadFaviconsEnabled() const
+{
+    return m_ui->checkLoadFavicons->isChecked();
 }
 
 #ifdef Q_OS_WIN

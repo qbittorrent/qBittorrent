@@ -488,7 +488,8 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         trackerItem = new QListWidgetItem();
         trackerItem->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("network-server"));
 
-        downloadFavicon(QString("http://%1/favicon.ico").arg(host));
+        if(Preferences::instance()->isLoadFaviconsEnabled())
+            downloadFavicon(QString("http://%1/favicon.ico").arg(host));
     }
     if (!trackerItem) return;
 
