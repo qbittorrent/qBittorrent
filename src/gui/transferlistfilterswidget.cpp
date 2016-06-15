@@ -440,6 +440,7 @@ int CategoryFiltersList::rowFromCategory(const QString &category) const
 TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *transferList)
     : FiltersBase(parent, transferList)
     , m_totalTorrents(0)
+    , m_isFaviconsLoadingEnabled(Preferences::instance()->isFaviconsLoadingEnabled())
 {
     QListWidgetItem *allTrackers = new QListWidgetItem(this);
     allTrackers->setData(Qt::DisplayRole, QVariant(tr("All (0)", "this is for the tracker filter")));
@@ -457,6 +458,8 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
 
     setCurrentRow(0, QItemSelectionModel::SelectCurrent);
     toggleFilter(Preferences::instance()->getTrackerFilterState());
+
+    connect(Preferences::instance(), SIGNAL(changed()), this, SLOT(handlePreferencesChange()));
 }
 
 TrackerFiltersList::~TrackerFiltersList()
@@ -488,7 +491,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         trackerItem = new QListWidgetItem();
         trackerItem->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("network-server"));
 
-        if(Preferences::instance()->isLoadFaviconsEnabled())
+        if (m_isFaviconsLoadingEnabled)
             downloadFavicon(QString("http://%1/favicon.ico").arg(host));
     }
     if (!trackerItem) return;
@@ -675,6 +678,11 @@ void TrackerFiltersList::handleFavicoFailure(const QString& url, const QString& 
                                    Log::WARNING);
     if (url.endsWith(".ico", Qt::CaseInsensitive))
         downloadFavicon(url.left(url.size() - 4) + ".png");
+}
+
+void TrackerFiltersList::handlePreferencesChange()
+{
+    m_isFaviconsLoadingEnabled = Preferences::instance()->isFaviconsLoadingEnabled();
 }
 
 void TrackerFiltersList::showMenu(QPoint)

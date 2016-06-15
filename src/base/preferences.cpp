@@ -235,12 +235,12 @@ void Preferences::setSplashScreenDisabled(bool b)
     setValue("Preferences/General/NoSplashScreen", b);
 }
 
-bool Preferences::isLoadFaviconsEnabled() const
+bool Preferences::isFaviconsLoadingEnabled() const
 {
     return value("Preferences/General/LoadTrackerFavicons", true).toBool();
 }
 
-void Preferences::setLoadFaviconsEnabled(bool b)
+void Preferences::setFaviconsLoadingEnabled(bool b)
 {
     setValue("Preferences/General/LoadTrackerFavicons", b);
 }

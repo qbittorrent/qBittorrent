@@ -465,7 +465,7 @@ void OptionsDialog::saveOptions()
     pref->setMinimizeToTray(minimizeToTray());
     pref->setStartMinimized(startMinimized());
     pref->setSplashScreenDisabled(isSlashScreenDisabled());
-    pref->setLoadFaviconsEnabled(isLoadFaviconsEnabled());
+    pref->setFaviconsLoadingEnabled(isFaviconsLoadingEnabled());
     pref->setConfirmOnExit(m_ui->checkProgramExitConfirm->isChecked());
     pref->setDontConfirmAutoExit(!m_ui->checkProgramAutoExitConfirm->isChecked());
     pref->setPreventFromSuspend(preventFromSuspend());
@@ -664,7 +664,7 @@ void OptionsDialog::loadOptions()
     m_ui->comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
 
     m_ui->checkShowSplash->setChecked(!pref->isSplashScreenDisabled());
-    m_ui->checkLoadFavicons->setChecked(pref->isLoadFaviconsEnabled());
+    m_ui->checkLoadFavicons->setChecked(pref->isFaviconsLoadingEnabled());
     m_ui->checkStartMinimized->setChecked(pref->startMinimized());
     m_ui->checkProgramExitConfirm->setChecked(pref->confirmOnExit());
     m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
@@ -1213,7 +1213,7 @@ bool OptionsDialog::isSlashScreenDisabled() const
     return !m_ui->checkShowSplash->isChecked();
 }
 
-bool OptionsDialog::isLoadFaviconsEnabled() const
+bool OptionsDialog::isFaviconsLoadingEnabled() const
 {
     return m_ui->checkLoadFavicons->isChecked();
 }
