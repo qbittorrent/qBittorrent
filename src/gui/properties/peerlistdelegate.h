@@ -52,15 +52,22 @@ public:
     painter->save();
     QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
     switch(index.column()) {
+    case PORT:
+        QItemDelegate::drawBackground(painter, opt, index);
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+        QItemDelegate::drawDisplay(painter, opt, option.rect, index.data().toString());
+        break;
     case TOT_DOWN:
     case TOT_UP:
       QItemDelegate::drawBackground(painter, opt, index);
+      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
       break;
     case DOWN_SPEED:
     case UP_SPEED:{
       QItemDelegate::drawBackground(painter, opt, index);
       qreal speed = index.data().toDouble();
+      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       if (speed > 0.0)
         QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed, true));
       break;
@@ -69,6 +76,7 @@ public:
     case RELEVANCE:{
       QItemDelegate::drawBackground(painter, opt, index);
       qreal progress = index.data().toDouble();
+      opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
       QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::String::fromDouble(progress*100.0, 1)+"%");
       break;
     }
