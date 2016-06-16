@@ -50,14 +50,17 @@ void SearchListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
     switch(index.column()) {
     case SearchSortModel::SIZE:
         QItemDelegate::drawBackground(painter, opt, index);
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
         QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
         break;
     case SearchSortModel::SEEDS:
         QItemDelegate::drawBackground(painter, opt, index);
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
         QItemDelegate::drawDisplay(painter, opt, option.rect, (index.data().toLongLong() >= 0) ? index.data().toString() : tr("Unknown"));
         break;
     case SearchSortModel::LEECHES:
         QItemDelegate::drawBackground(painter, opt, index);
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
         QItemDelegate::drawDisplay(painter, opt, option.rect, (index.data().toLongLong() >= 0) ? index.data().toString() : tr("Unknown"));
         break;
     default:
