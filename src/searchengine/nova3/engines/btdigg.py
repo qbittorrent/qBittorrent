@@ -1,4 +1,4 @@
-#VERSION: 1.31
+#VERSION: 1.32
 #AUTHORS: BTDigg team (research@btdigg.org)
 # Contributors: Diego de las Heras (ngosang@hotmail.es)
 
@@ -33,7 +33,6 @@ class btdigg(object):
 
     def search(self, what, cat='all'):
         req = urllib.parse.unquote(what)
-        what_list = req.split()
         i = 0
         results = 0
         while i < 3:
@@ -44,9 +43,6 @@ class btdigg(object):
 
                 info_hash, name, files, size, dl, seen = line.strip().split('\t')[:6]
                 name = name.replace('|', '')
-                # BTDigg returns unrelated results, we need to filter
-                if not all(word in name.lower() for word in what_list):
-                    continue
 
                 res = dict(link = 'magnet:?xt=urn:btih:%s&dn=%s' % (info_hash, urllib.parse.quote(name)),
                            name = name,
