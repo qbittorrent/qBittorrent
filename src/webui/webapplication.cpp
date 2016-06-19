@@ -50,7 +50,7 @@
 #include "webapplication.h"
 
 static const int API_VERSION = 10;
-static const int API_VERSION_MIN = 9;
+static const int API_VERSION_MIN = 10;
 
 const QString WWW_FOLDER = ":/www/public/";
 const QString PRIVATE_FOLDER = ":/www/private/";
