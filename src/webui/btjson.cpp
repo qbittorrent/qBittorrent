@@ -775,7 +775,10 @@ void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
                 syncData[key] = data[key];
             break;
         default:
-            Q_ASSERT(0);
+            Q_ASSERT_X(false, "processMap"
+                       , QString("Unexpected type: %1")
+                       .arg(QMetaType::typeName(static_cast<QMetaType::Type>(data[key].type())))
+                       .toUtf8().constData());
         }
     }
 }
