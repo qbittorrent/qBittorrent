@@ -86,7 +86,6 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_proxyModel = new PeerListSortModel();
     m_proxyModel->setDynamicSortFilter(true);
     m_proxyModel->setSourceModel(m_listModel);
-    m_proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     setModel(m_proxyModel);
     hideColumn(PeerListDelegate::IP_HIDDEN);
     hideColumn(PeerListDelegate::COL_COUNT);
