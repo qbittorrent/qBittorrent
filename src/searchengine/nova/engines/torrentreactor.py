@@ -1,6 +1,7 @@
-#VERSION: 1.31
+#VERSION: 1.42
 #AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
+#              Bruno Barbieri (brunorex@gmail.com)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -27,81 +28,84 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 from novaprinter import prettyPrinter
-import sgmllib
-from helpers import retrieve_url, download_file
+from helpers import download_file, retrieve_url
+import urllib
+from HTMLParser import HTMLParser
+from re import compile as re_compile
 
 class torrentreactor(object):
-	url = 'http://www.torrentreactor.net'
-	name = 'TorrentReactor.Net'
-	supported_categories = {'all': '', 'movies': '5', 'tv': '8', 'music': '6', 'games': '3', 'anime': '1', 'software': '2'}
+    url = 'https://torrentreactor.com'
+    name = 'TorrentReactor'
+    supported_categories = {'all': '', 'movies': '5', 'tv': '8', 'music': '6', 'games': '3', 'anime': '1', 'software': '2'}
 
-	def download_torrent(self, info):
-		print download_file(info)
-		
-	class SimpleSGMLParser(sgmllib.SGMLParser):
-		def __init__(self, results, url, *args):
-			sgmllib.SGMLParser.__init__(self)
-			self.td_counter = None
-			self.current_item = None
-			self.results = results
-			self.id = None
-			self.url = url
+    def download_torrent(self, info):
+        print(download_file(info))
 
-		def start_a(self, attr):
-			params = dict(attr)
-			if 'torrentreactor.net/download.php' in params['href']:
-				self.current_item = {}
-				self.td_counter = 0
-				self.current_item['link'] = params['href'].strip()
-			elif params['href'].startswith('/torrents/'):
-				self.current_item['desc_link'] = 'http://www.torrentreactor.net'+params['href'].strip()
+    class SimpleHTMLParser(HTMLParser):
+        def __init__(self, results, url):
+            HTMLParser.__init__(self)
+            self.td_counter = None
+            self.current_item = None
+            self.results = results
+            self.id = None
+            self.url = url
+            self.torrents_matcher = re_compile("/torrents/\d+.*")
+            self.dispatcher = { 'a' : self.start_a, 'td' : self.start_td }
 
-		def handle_data(self, data):
-			if self.td_counter == 0:
-				if not self.current_item.has_key('name'):
-					self.current_item['name'] = ''
-				self.current_item['name']+= data.strip()
-			if self.td_counter == 1:
-				if not self.current_item.has_key('size'):
-					self.current_item['size'] = ''
-				self.current_item['size']+= data.strip()
-			elif self.td_counter == 2:
-				if not self.current_item.has_key('seeds'):
-					self.current_item['seeds'] = ''
-				self.current_item['seeds']+= data.strip()
-			elif self.td_counter == 3:
-				if not self.current_item.has_key('leech'):
-					self.current_item['leech'] = ''
-				self.current_item['leech']+= data.strip()
+        def handle_starttag(self, tag, attrs):
+            if tag in self.dispatcher:
+                self.dispatcher[tag](attrs)
 
-		def start_td(self,attr):
-			if isinstance(self.td_counter,int):
-				self.td_counter += 1
-				if self.td_counter > 3:
-					self.td_counter = None
-					# add item to results
-					if self.current_item:
-						self.current_item['engine_url'] = self.url
-						if not self.current_item['seeds'].isdigit():
-							self.current_item['seeds'] = 0
-						if not self.current_item['leech'].isdigit():
-							self.current_item['leech'] = 0
-						prettyPrinter(self.current_item)
-						self.has_results = True
-						self.results.append('a')
+        def start_a(self, attr):
+            params = dict(attr)
+            if self.torrents_matcher.match(params['href']):
+                self.current_item = {}
+                self.current_item['desc_link'] = self.url+params['href'].strip()
+            elif 'torrentreactor.net/download.php' in params['href']:
+                self.td_counter = 0
+                self.current_item['link'] = params['href'].strip()
+                self.current_item['name'] = urllib.unquote_plus(params['href'].split('&')[1].split('name=')[1])
 
-	def __init__(self):
-		self.results = []
-		self.parser = self.SimpleSGMLParser(self.results, self.url)
+        def handle_data(self, data):
+            if self.td_counter == 1:
+                if 'size' not in self.current_item:
+                    self.current_item['size'] = ''
+                self.current_item['size']+= data.strip()
+            elif self.td_counter == 2:
+                if 'seeds' not in self.current_item:
+                    self.current_item['seeds'] = ''
+                self.current_item['seeds']+= data.strip()
+            elif self.td_counter == 3:
+                if 'leech' not in self.current_item:
+                    self.current_item['leech'] = ''
+                self.current_item['leech']+= data.strip()
 
-	def search(self, what, cat='all'):
-		i = 0
-		while True and i<11:
-			results = []
-			parser = self.SimpleSGMLParser(results, self.url)
-			dat = retrieve_url(self.url+'/search.php?search=&words=%s&cid=%s&sid=&type=1&orderby=a.seeds&asc=0&skip=%s'%(what, self.supported_categories[cat], (i*35)))
-			parser.feed(dat)
-			parser.close()
-			if len(results) <= 0:
-				break
-			i += 1
+        def start_td(self,attr):
+            if isinstance(self.td_counter,int):
+                self.td_counter += 1
+                if self.td_counter > 3:
+                    self.td_counter = None
+                    # add item to results
+                    if self.current_item:
+                        self.current_item['engine_url'] = self.url
+                        if not self.current_item['seeds'].isdigit():
+                            self.current_item['seeds'] = 0
+                        if not self.current_item['leech'].isdigit():
+                            self.current_item['leech'] = 0
+                        prettyPrinter(self.current_item)
+                        self.has_results = True
+                        self.results.append('a')
+
+    def search(self, what, cat='all'):
+        i = 0
+        dat = ''
+        results = []
+        parser = self.SimpleHTMLParser(results, self.url)
+        while i < 9:
+            dat = retrieve_url('%s/torrents-search/%s/%s?sort=seeders.desc&type=all&period=none&categories=%s'%(self.url, what, (i*35), self.supported_categories[cat]))
+            parser.feed(dat)
+            if len(results) <= 0:
+                break
+            del results[:]
+            i += 1
+        parser.close()

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" dir="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <title>qBittorrent QBT_TR(Web UI)QBT_TR</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      window.onload = function() {
+        $('username').focus();
+        $('username').select();
+      }
+
+      window.addEvent('domready', function() {
+        $('loginform').addEvent('submit', function(e) {
+          new Event(e).stop();
+          submitLoginForm();
+        });
+      });
+
+      function submitLoginForm() {
+        new Request({
+          url: 'login',
+          method: 'post',
+          data: $('loginform').toQueryString(),
+          onComplete: function() {
+            $('password').set('value', '');
+          },
+          onFailure: function(xhr) {
+            if (xhr.responseText != "") {
+              $('error_msg').set('html', xhr.responseText);
+            } else {
+              $('error_msg').set('html', 'QBT_TR(Unable to log in, qBittorrent is probably unreachable.)QBT_TR');
+            }
+          },
+          onSuccess: function(text) {
+            if (text == "Ok.") {
+              // Session started. Simply reload page.
+              window.location.reload();
+            } else {
+              $('error_msg').set('html', 'QBT_TR(Invalid Username or Password.)QBT_TR');
+            }
+          }
+        }).send();
+       }
+    </script>
+    <style type="text/css">
+        .col {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .row {
+            margin-bottom: 5px;
+        }
+        #main {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            padding-top: 5em;
+        }
+        #formplace {
+            text-align: left;
+            padding: 10px;
+        }
+        #error_msg {
+            color: #f00;
+        }
+    </style>
+</head>
+<body>
+	<div id="main">
+		<h1>qBittorrent QBT_TR(Web UI)QBT_TR</h1>
+		<div id="logo" class="col">
+			<img src="images/qbittorrent.png" alt="qBittorrent logo"/>
+		</div>
+		<div id="formplace" class="col">
+			<form id="loginform" action="">
+				<div class="row"><label for="username">QBT_TR(Name)QBT_TR</label><br /><input type="text" id="username" name="username" /></div>
+				<div class="row"><label for="password">QBT_TR(Password)QBT_TR</label><br /><input type="password" id="password" name="password" /></div>
+				<div class="row"><input type="submit" id="login" value="QBT_TR(Login)QBT_TR" /></div>
+			</form>
+		</div>
+		<div id="error_msg"></div>
+	</div>
+</body>
+</html>

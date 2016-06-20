@@ -1,0 +1,42 @@
+﻿For future maintainers on how to update translations from Transifex.
+
+Project page: https://www.transifex.com/projects/p/qbittorrent/
+
+Most of the options are setup in the .tx/config file. You will need to have the Transifex client app in your path.
+The examples use the tx app on Windows. Other OSs should be similar.
+
+===Updating the translations===
+1. In the root folder of the project just run "tx pull"
+2. Commit to git
+
+===Pulling new translation files===
+1. In the root folder of the project just run "tx pull -a"
+2. Commit to git each translation file separately with its own message.
+3. After you commit all new files expose them in app. Edit:
+  a. lang.qrc
+  b. options_imp.cpp: options_imp::languageToLocalizedString()
+  c. src.pro: The TRANSLATIONS var
+  d. preferences_content.html: search for: <select id="locale_select">
+
+Note: This will also pull updated translations if you haven't already 'tx pull'.
+
+===Updating the qBittorrent.desktop file===
+1. In the root folder of the project just run "tx pull -s -r qbittorrent.qbittorrentdesktop_master"
+2. Commit to git
+
+It will pull the source file (en). However, in this case .desktop files contain all other translations
+when you pull the source file.
+
+===When making new branch===
+1. Switch to new branch
+2. Edit the .tx.config file. You should change the resource for the qbt translations from 'qbittorrent.qbittorrent_master'
+   to eg 'qbittorrent.qbittorrent_v3_1_x'. It follows this spec: <project>.<resource_slug>_<branchname>'
+3. Commit to git
+4. Use this command to create the new resource on the server and push the translations files "tx push -s -t"
+
+===Updating the source file==
+When you run lupdate Transifex needs to know that the source is updated. When creating a new resource on transifex
+you should go to the website, select the resource and hit "edit resource". From there you should update the
+"Source file URL". It should point to the exact file in the github repository(eg src/lang/qbittorrent_en.ts). Be sure to copy
+the 'raw' link presented by github and not the regular one. This will make Transifex fetch automatically the source file
+from the repo (maybe once a day). If you want to instantly update the resource then on the correct branch run "tx push -s"

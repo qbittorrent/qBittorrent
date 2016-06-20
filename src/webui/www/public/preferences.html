@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>QBT_TR(Download from URL)QBT_TR</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+        <link rel="stylesheet" href="css/Tabs.css" type="text/css" />
+	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
+        <script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
+        <script type="text/javascript" src="scripts/mocha-yc.js" charset="utf-8"></script>
+</head>
+<body style="padding: 5px;">
+<!-- preferences -->
+<div class="toolbarTabs">
+	<ul id="preferencesTabs" class="tab-menu">
+		<li id="PrefDownloadsLink" class="selected"><a>QBT_TR(Downloads)QBT_TR</a></li>
+		<li id="PrefConnectionLink"><a>QBT_TR(Connection)QBT_TR</a></li>
+		<li id="PrefSpeedLink"><a>QBT_TR(Speed)QBT_TR</a></li>
+		<li id="PrefBittorrentLink"><a>QBT_TR(BitTorrent)QBT_TR</a></li>
+                <li id="PrefWebUILink"><a>QBT_TR(Web UI)QBT_TR</a></li>
+	</ul>
+	<div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+// Tabs
+MochaUI.initializeTabs('preferencesTabs');
+
+$('PrefDownloadsLink').addEvent('click', function(e) {
+  $$('.PrefTab').addClass('invisible');
+  $('DownloadsTab').removeClass('invisible');
+});
+$('PrefConnectionLink').addEvent('click', function(e){
+  $$('.PrefTab').addClass('invisible');
+  $('ConnectionTab').removeClass('invisible');
+});
+$('PrefSpeedLink').addEvent('click', function(e) {
+  $$('.PrefTab').addClass('invisible');
+  $('SpeedTab').removeClass('invisible');
+});
+$('PrefBittorrentLink').addEvent('click', function(e) {
+  $$('.PrefTab').addClass('invisible');
+  $('BittorrentTab').removeClass('invisible');
+});
+$('PrefWebUILink').addEvent('click', function(e) {
+  $$('.PrefTab').addClass('invisible');
+  $('WebUITab').removeClass('invisible');
+});
+</script>
+</body>
+</html>

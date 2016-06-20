@@ -45,7 +45,7 @@ lang_file.write(output)
 lang_file.close()
 
 # update search_engine directory
-os.chdir('searchengine')
+os.chdir('gui/searchengine')
 search_list = []
 for nova_folder in ['nova/', 'nova3']:
   for root, dirs, files in os.walk(nova_folder):
@@ -67,11 +67,11 @@ search_file = open('search.qrc', 'w')
 search_file.write(output)
 search_file.close()
 
-os.chdir('..');
+os.chdir('../..');
 
 # update icons files directory
 icons_list = []
-for root, dirs, files in os.walk('Icons'):
+for root, dirs, files in os.walk('icons'):
   if 'skin_unused' in dirs:
     dirs.remove('skin_unused')
   for file in files:

@@ -1,4664 +1,9082 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="nl_NL" sourcelanguage="en">
+<TS version="2.0" language="nl">
 <context>
     <name>AboutDlg</name>
     <message>
+        <location filename="../gui/about.ui" line="15"/>
         <source>About qBittorrent</source>
         <translation>Over qBittorrent</translation>
     </message>
     <message>
+        <location filename="../gui/about.ui" line="56"/>
         <source>About</source>
         <translation>Over</translation>
     </message>
     <message>
+        <location filename="../gui/about.ui" line="89"/>
         <source>Author</source>
         <translation>Auteur</translation>
     </message>
     <message>
+        <location filename="../gui/about.ui" line="121"/>
+        <location filename="../gui/about.ui" line="212"/>
+        <source>Nationality:</source>
+        <translation>Nationaliteit:</translation>
+    </message>
+    <message>
+        <location filename="../gui/about.ui" line="135"/>
+        <location filename="../gui/about.ui" line="198"/>
         <source>Name:</source>
         <translation>Naam:</translation>
     </message>
     <message>
-        <source>Country:</source>
-        <translation>Land:</translation>
-    </message>
-    <message>
+        <location filename="../gui/about.ui" line="128"/>
+        <location filename="../gui/about.ui" line="205"/>
         <source>E-mail:</source>
         <translation>E-mail:</translation>
     </message>
     <message>
-        <source>Christophe Dumez</source>
-        <translation>Christophe Dumez</translation>
+        <location filename="../gui/about.ui" line="101"/>
+        <source>Greece</source>
+        <translation>Griekenland</translation>
     </message>
     <message>
-        <source>France</source>
-        <translation>Frankrijk</translation>
+        <location filename="../gui/about.ui" line="95"/>
+        <source>Current maintainer</source>
+        <translation>Huidige beheerder</translation>
     </message>
     <message>
-        <source>Translation</source>
-        <translation>Vertaling</translation>
+        <location filename="../gui/about.ui" line="165"/>
+        <source>Original author</source>
+        <translation>Oorspronkelijke auteur</translation>
     </message>
     <message>
-        <source>License</source>
-        <translation>Licentie</translation>
+        <location filename="../gui/about.ui" line="249"/>
+        <source>Special Thanks</source>
+        <translation>Speciale dank</translation>
     </message>
     <message>
-        <source>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</source>
-        <translation>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</translation>
+        <location filename="../gui/about.ui" line="275"/>
+        <source>Translators</source>
+        <translation>Vertalers</translation>
     </message>
     <message>
-        <source>chris@qbittorrent.org</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Thanks to</source>
-        <translation>Met dank aan</translation>
-    </message>
-    <message utf8="true">
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Een Bittorrent client geprogrammeerd in C++, gebaseerd op Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;en libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent op Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message utf8="true">
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2011 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Bug Tracker:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Een geavanceerde Bittorrent client geprogrammeerd in C++, gebaseerd op Qt4 toolkit en libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2011 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Bug Tracker:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent op Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
+        <location filename="../gui/about.ui" line="323"/>
         <source>Libraries</source>
         <translation>Bibliotheken</translation>
     </message>
     <message>
-        <source>This version of qBittorrent was built against the following libraries:</source>
-        <translation>Deze versie van qBittorrent werd gebouw met de volgende bibliotheken:</translation>
+        <location filename="../gui/about.ui" line="329"/>
+        <source>qBittorrent was built with the following libraries:</source>
+        <translation>qBittorrent werd gebouwd met de volgende bibliotheken:</translation>
     </message>
     <message>
-        <source>Qt:</source>
-        <translation>Qt:</translation>
+        <location filename="../gui/about.ui" line="171"/>
+        <source>France</source>
+        <translation>Frankrijk</translation>
     </message>
     <message>
-        <source>Boost:</source>
-        <translation>Verhoog:</translation>
+        <location filename="../gui/about.ui" line="301"/>
+        <source>License</source>
+        <translation>Licentie</translation>
+    </message>
+</context>
+<context>
+    <name>AddNewTorrentDialog</name>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="58"/>
+        <source>Save at</source>
+        <translation>Opslaan op</translation>
     </message>
     <message>
-        <source>Libtorrent:</source>
-        <translation>Libtorrent:</translation>
+        <location filename="../gui/addnewtorrentdialog.ui" line="79"/>
+        <source>Browse...</source>
+        <translation>Bladeren...</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="88"/>
+        <source>Set as default save path</source>
+        <translation>Instellen als standaard pad om op te slaan</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="108"/>
+        <source>Never show again</source>
+        <translation>Niet opnieuw weergeven</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="125"/>
+        <source>Torrent settings</source>
+        <translation>Torrent-instellingen</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="131"/>
+        <source>Set as default category</source>
+        <translation>Instellen als standaardcategorie</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="140"/>
+        <source>Category:</source>
+        <translation>Categorie:</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="165"/>
+        <source>Start torrent</source>
+        <translation>Torrent starten</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="201"/>
+        <source>Torrent information</source>
+        <translation>Torrent-informatie</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="175"/>
+        <source>Skip hash check</source>
+        <translation>Hash-check overslaan</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="254"/>
+        <source>Size:</source>
+        <translation>Grootte:</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="220"/>
+        <source>Hash:</source>
+        <translation>Hash:</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="268"/>
+        <source>Comment:</source>
+        <translation>Opmerkingen:</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="247"/>
+        <source>Date:</source>
+        <translation>Datum:</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="19"/>
+        <source>Torrent Management Mode:</source>
+        <translation>Torrent-beheermodus=</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="26"/>
+        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
+        <translation>Automatische modus betekent dat verschillende torrent-eigenschappen (bijvoorbeeld opslagpad) bepaald zullen worden door de overeenkomstige categorie.</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="30"/>
+        <source>Manual</source>
+        <translation>Manueel</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="35"/>
+        <source>Automatic</source>
+        <translation>Automatisch</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="98"/>
+        <source>When checked, the .torrent file will not be deleted despite the settings at the &quot;Download&quot; page of the options dialog</source>
+        <translation>Indien aangevinkt zal het .torrent-bestand niet verwijderd worden ondanks de instellingen op de &quot;download&quot;-pagina van het opties-venster.</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="101"/>
+        <source>Do not delete .torrent file</source>
+        <translation>Torrentbestand niet verwijderen</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="373"/>
+        <source>Normal</source>
+        <translation>Normaal</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="378"/>
+        <source>High</source>
+        <translation>Hoog</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="383"/>
+        <source>Maximum</source>
+        <translation>Maximum</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.ui" line="388"/>
+        <source>Do not download</source>
+        <translation>Niet downloaden</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="212"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="218"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="681"/>
+        <source>I/O Error</source>
+        <translation>I/O-fout</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="226"/>
+        <source>Invalid torrent</source>
+        <translation>Ongeldige torrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="238"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="243"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="272"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="277"/>
+        <source>Already in download list</source>
+        <translation>Reeds in downloadlijst</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="708"/>
+        <source>Not Available</source>
+        <comment>This comment is unavailable</comment>
+        <translation>Niet beschikbaar</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="709"/>
+        <source>Not Available</source>
+        <comment>This date is unavailable</comment>
+        <translation>Niet beschikbaar</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="717"/>
+        <source>Not available</source>
+        <translation>Niet beschikbaar</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="261"/>
+        <source>Invalid magnet link</source>
+        <translation>Ongeldige magneetlink</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="212"/>
+        <source>The torrent file &apos;%1&apos; does not exist.</source>
+        <translation>Torrentbestand &apos;%1&apos; bestaat niet.</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="218"/>
+        <source>The torrent file &apos;%1&apos; cannot be read from the disk. Probably you don&apos;t have enough permissions.</source>
+        <translation>Het torrentbestand &apos;%1&apos; kan niet van de schijf gelezen worden. U heeft waarschijnlijk niet genoeg rechten.</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="226"/>
+        <source>Failed to load the torrent: %1.
+Error: %2</source>
+        <comment>Don&apos;t remove the &apos;
+&apos; characters. They insert a newline.</comment>
+        <translation>Laden van torrent mislukt: %1.
+Fout: %2</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="238"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="272"/>
+        <source>Torrent is already in download list. Trackers weren&apos;t merged because it is a private torrent.</source>
+        <translation>Torrent staat reeds in downloadlijst. Trackers werden niet samengevoegd omdat het een privé-torrent is.</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="243"/>
+        <source>Torrent is already in download list. Trackers were merged.</source>
+        <translation>Torrent staat reeds in downloadlijst. Trackers werden samengevoegd.</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="247"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="281"/>
+        <source>Cannot add torrent</source>
+        <translation>Kan torrent niet toevoegen</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="247"/>
+        <source>Cannot add this torrent. Perhaps it is already in adding state.</source>
+        <translation>Kan deze torrent niet toevoegen. Misschien wordt hij reeds toegevoegd.</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="261"/>
+        <source>This magnet link was not recognized</source>
+        <translation>Deze magneetlink werd niet herkend</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="277"/>
+        <source>Magnet link is already in download list. Trackers were merged.</source>
+        <translation>Magneetlink staat al in downloadlijst. Trackers werden samengevoegd.</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="281"/>
+        <source>Cannot add this torrent. Perhaps it is already in adding.</source>
+        <translation>Kan deze torrent niet toevoegen. Misschien wordt hij reeds toegevoegd.</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="290"/>
+        <source>Magnet link</source>
+        <translation>Magneetlink</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="298"/>
+        <source>Retrieving metadata...</source>
+        <translation>Metadata ophalen...</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="382"/>
+        <source>Not Available</source>
+        <comment>This size is unavailable.</comment>
+        <translation>Niet beschikbaar</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="384"/>
+        <source>Free space on disk: %1</source>
+        <translation>Vrije ruimte op schijf: %1</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="425"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="427"/>
+        <source>Choose save path</source>
+        <translation>Opslagpad kiezen</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="460"/>
+        <source>Rename the file</source>
+        <translation>Bestandsnaam wijzigen</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="461"/>
+        <source>New name:</source>
+        <translation>Nieuwe naam:</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="465"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="490"/>
+        <source>The file could not be renamed</source>
+        <translation>De bestandsnaam kon niet gewijzigd worden</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="466"/>
+        <source>This file name contains forbidden characters, please choose a different one.</source>
+        <translation>Deze bestandsnaam bevat verboden tekens, gelieve een andere te kiezen.</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="491"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="528"/>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation>Deze naam bestaat al in deze map. Gelieve een andere naam te gebruiken.</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="527"/>
+        <source>The folder could not be renamed</source>
+        <translation>De mapnaam kon niet gewijzigd worden</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="587"/>
+        <source>Rename...</source>
+        <translation>Naam wijzigen...</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="591"/>
+        <source>Priority</source>
+        <translation>Prioriteit</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="682"/>
+        <source>Invalid metadata</source>
+        <translation>Ongeldige metadata</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="689"/>
+        <source>Parsing metadata...</source>
+        <translation>Metadata verwerken...</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="694"/>
+        <source>Metadata retrieval complete</source>
+        <translation>Metadata ophalen voltooid</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="756"/>
+        <source>Download Error</source>
+        <translation>Downloadfout</translation>
     </message>
 </context>
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <source>Property</source>
-        <translation type="obsolete">Eigenschap</translation>
-    </message>
-    <message>
-        <source>Value</source>
-        <translation type="obsolete">Waarde</translation>
-    </message>
-    <message>
-        <source>Ignore transfer limits on local network</source>
-        <translation>Negeer overdrachtlimieten op het locale netwerk</translation>
-    </message>
-    <message>
-        <source>Include TCP/IP overhead in transfer limits</source>
-        <translation type="obsolete">Includeer TCP/IP overheid in de overdrachtlimieten</translation>
-    </message>
-    <message>
+        <location filename="../gui/advancedsettings.cpp" line="260"/>
         <source>Disk write cache size</source>
-        <translation>Disk write cache grootte</translation>
+        <translation>Grootte schrijfbuffer</translation>
     </message>
     <message>
+        <location filename="../gui/advancedsettings.cpp" line="193"/>
         <source> MiB</source>
         <translation>MiB</translation>
     </message>
     <message>
+        <location filename="../gui/advancedsettings.cpp" line="280"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Uitgaande poorten (Min) [0: Uitgeschakeld]</translation>
     </message>
     <message>
+        <location filename="../gui/advancedsettings.cpp" line="285"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>UItgaande poorten (Max) [0: Uitgeschakeld]</translation>
     </message>
     <message>
+        <location filename="../gui/advancedsettings.cpp" line="288"/>
         <source>Recheck torrents on completion</source>
-        <translation>Hercontroleer torrents bij voltooiing</translation>
+        <translation>Torrents opnieuw controleren bij voltooiing</translation>
     </message>
     <message>
+        <location filename="../gui/advancedsettings.cpp" line="294"/>
         <source>Transfer list refresh interval</source>
-        <translation>Overdrachtenlijst vernieuwinterval</translation>
+        <translation>Vernieuwinterval overdrachtlijst</translation>
     </message>
     <message>
+        <location filename="../gui/advancedsettings.cpp" line="293"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation>ms</translation>
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP)</source>
-        <translation>Ontbind peer landen (GeoIP)</translation>
-    </message>
-    <message>
-        <source>Resolve peer host names</source>
-        <translation>Ontbind peer hostnamen</translation>
-    </message>
-    <message>
-        <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation>Maximum aantal van half-open verbindingen [0 Uitgeschakeld]</translation>
-    </message>
-    <message>
-        <source>Strict super seeding</source>
-        <translation>Stricte super seeding</translation>
-    </message>
-    <message>
-        <source>Network Interface (requires restart)</source>
-        <translation>Netwerkinterface (vereist herstart)</translation>
-    </message>
-    <message>
-        <source>Any interface</source>
-        <comment>i.e. Any network interface</comment>
-        <translation>Gelijk welke interface</translation>
-    </message>
-    <message>
-        <source>Display program notification balloons</source>
-        <translation type="obsolete">Toon programma notificatie ballonnen</translation>
-    </message>
-    <message>
-        <source>Enable embedded tracker</source>
-        <translation>Activeer embedded tracker</translation>
-    </message>
-    <message>
-        <source>Embedded tracker port</source>
-        <translation>Embedded trackerpoort</translation>
-    </message>
-    <message>
-        <source>Check for software updates</source>
-        <translation>Controleer op software updates</translation>
-    </message>
-    <message>
-        <source>Use system icon theme</source>
-        <translation>Gebruik systeem iconen thema</translation>
-    </message>
-    <message>
-        <source>Confirm torrent deletion</source>
-        <translation>Bevestig verwijder torrent</translation>
-    </message>
-    <message>
-        <source>IP Address to report to trackers (requires restart)</source>
-        <translation>IP-adres om te melden aan trackers (vereist herstart)</translation>
-    </message>
-    <message>
-        <source>Display program on-screen notifications</source>
-        <translation>Toon programma on-screen meldingen</translation>
-    </message>
-    <message>
+        <location filename="../gui/advancedsettings.cpp" line="98"/>
         <source>Setting</source>
         <translation>Instelling</translation>
     </message>
     <message>
+        <location filename="../gui/advancedsettings.cpp" line="98"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
         <translation>Waarde</translation>
     </message>
     <message>
-        <source>Exchange trackers with other peers</source>
-        <translation>Wissel trackers uit met andere peers</translation>
+        <location filename="../gui/advancedsettings.cpp" line="191"/>
+        <source> (auto)</source>
+        <translation> (auto)</translation>
     </message>
     <message>
+        <location filename="../gui/advancedsettings.cpp" line="204"/>
+        <source>All addresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="239"/>
+        <source>qBittorrent Section</source>
+        <translation>qBittorrent-sectie</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="241"/>
+        <location filename="../gui/advancedsettings.cpp" line="246"/>
+        <source>Open documentation</source>
+        <translation>Documentatie openen</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="244"/>
+        <source>libtorrent Section</source>
+        <translation>libtorrent-sectie</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="265"/>
+        <source> s</source>
+        <comment> seconds</comment>
+        <translation>s</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="266"/>
+        <source>Disk cache expiry interval</source>
+        <translation>Interval voor verstrijken van schijfbuffer</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="269"/>
+        <source>Enable OS cache</source>
+        <translation>Systeembuffer inschakelen</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="274"/>
+        <source> m</source>
+        <comment> minutes</comment>
+        <translation>m</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="297"/>
+        <source>Resolve peer countries (GeoIP)</source>
+        <translation>Landen van peers oplossen (GeoIP)</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="300"/>
+        <source>Resolve peer host names</source>
+        <translation>Hostnamen van peers oplossen</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="308"/>
+        <source>Strict super seeding</source>
+        <translation>Strikt super-seeden.</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="334"/>
+        <source>Network Interface (requires restart)</source>
+        <translation>Netwerkinterface (opnieuw starten vereist)</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="337"/>
+        <source>Optional IP Address to bind to (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="340"/>
+        <source>Listen on IPv6 address (requires restart)</source>
+        <translation>Luisteren op IPv6-adres (opnieuw starten vereist)</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="348"/>
+        <source>Display notifications</source>
+        <translation>Meldingen weergeven</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="351"/>
+        <source>Display notifications for added torrents</source>
+        <translation>Meldingen weergeven voor toegevoegde torrents</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="370"/>
+        <source>Confirm torrent recheck</source>
+        <translation>Torrent opnieuw controleren bevestigen</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="373"/>
+        <source>Exchange trackers with other peers</source>
+        <translation>Trackers uitwisselen met andere peers</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="376"/>
         <source>Always announce to all trackers</source>
-        <translation>Kondig altijd aan naar alle trackers</translation>
+        <translation>Altijd bij alle trackers aankondigen</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="310"/>
+        <source>Any interface</source>
+        <comment>i.e. Any network interface</comment>
+        <translation>Om het even welke interface</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="275"/>
+        <source>Save resume data interval</source>
+        <comment>How often the fastresume file is saved.</comment>
+        <translation>Interval voor opslaan van hervattingsdata</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="305"/>
+        <source>Maximum number of half-open connections [0: Unlimited]</source>
+        <translation>Maximaal aantal halfopen verbindingen [0: ongelimiteerd]</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="343"/>
+        <source>IP Address to report to trackers (requires restart)</source>
+        <translation>IP-adres om te melden aan trackers (opnieuw opstarten vereist)</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="354"/>
+        <source>Enable embedded tracker</source>
+        <translation>Ingebedde tracker inschakelen</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="359"/>
+        <source>Embedded tracker port</source>
+        <translation>Poort ingebedde tracker</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="362"/>
+        <source>Check for software updates</source>
+        <translation>Controleren op software-updates</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="366"/>
+        <source>Use system icon theme</source>
+        <translation>Iconenthema van systeem gebruiken</translation>
+    </message>
+</context>
+<context>
+    <name>Application</name>
+    <message>
+        <location filename="../app/application.cpp" line="131"/>
+        <source>qBittorrent %1 started</source>
+        <comment>qBittorrent v3.2.0alpha started</comment>
+        <translation>qBittorrent %1 gestart</translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="259"/>
+        <source>Torrent: %1, running external program, command: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="266"/>
+        <source>Torrent: %1, run external program command too long (length &gt; %2), execution failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="316"/>
+        <source>Torrent: %1, sending mail notification</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="420"/>
+        <source>Information</source>
+        <translation>Informatie</translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="421"/>
+        <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
+        <translation>Gebruik de Web-UI op http://localhost:%1 om qBittorrent te besturen</translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="422"/>
+        <source>The Web UI administrator user name is: %1</source>
+        <translation>De Web-UI-administrator-gebruikersnaam is: %1</translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="425"/>
+        <source>The Web UI administrator password is still the default one: %1</source>
+        <translation>Het Web-UI-administratorwachtwoord is still nog steeds standaard: %1</translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="426"/>
+        <source>This is a security risk, please consider changing your password from program preferences.</source>
+        <translation>Dit is een beveiligingsrisico, overweeg om uw wachtwoord aan te passen via programmavoorkeuren.</translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="598"/>
+        <source>Saving torrent progress...</source>
+        <translation>Torrent-voortgang opslaan...</translation>
     </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
     <message>
-        <source>Automated RSS Downloader</source>
-        <translation>Automatische RSS Downloader</translation>
-    </message>
-    <message>
-        <source>Enable the automated RSS downloader</source>
-        <translation>Activeer de automatische RSS downloader</translation>
-    </message>
-    <message>
-        <source>Download rules</source>
-        <translation>Downloadregels</translation>
-    </message>
-    <message>
-        <source>Rule definition</source>
-        <translation>Regeldefinitie</translation>
-    </message>
-    <message>
-        <source>Must contain:</source>
-        <translation>Moet bevatten:</translation>
-    </message>
-    <message>
-        <source>Must not contain:</source>
-        <translation>Mag niet bevatten:</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Assign label:</source>
-        <translation>Ken label toe:</translation>
-    </message>
-    <message>
-        <source>Apply rule to feeds:</source>
-        <translation>Pas regel toe op feeds:</translation>
-    </message>
-    <message>
-        <source>Matching RSS articles</source>
-        <translation>Overeenkomstige RSS artikels</translation>
-    </message>
-    <message>
-        <source>Save to a different directory</source>
-        <translation>Opslaan in een andere map</translation>
-    </message>
-    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="208"/>
         <source>Save to:</source>
         <translation>Opslaan in:</translation>
     </message>
     <message>
-        <source>Import...</source>
-        <translation>Importeer...</translation>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="14"/>
+        <source>RSS Downloader</source>
+        <translation>RSS-downloader</translation>
     </message>
     <message>
-        <source>Export...</source>
-        <translation>Exporteer...</translation>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="26"/>
+        <source>Enable Automated RSS Downloader</source>
+        <translation>Automatische RSS-downloader inschakelen</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="48"/>
+        <source>Download Rules</source>
+        <translation>Downloadregels</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="88"/>
+        <source>Rule Definition</source>
+        <translation>Regeldefinitie</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="94"/>
+        <source>Use Regular Expressions</source>
+        <translation>Reguliere expressies gebruiken</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="103"/>
+        <source>Must Contain:</source>
+        <translation>Moet bevatten:</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="110"/>
+        <source>Must Not Contain:</source>
+        <translation>Mag niet bevatten:</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="117"/>
+        <source>Episode Filter:</source>
+        <translation>Afleveringsfilter:</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="180"/>
+        <source>Assign Category:</source>
+        <translation>Categorie toewijzen:</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="196"/>
+        <source>Save to a Different Directory</source>
+        <translation>Opslaan in een andere map</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="236"/>
+        <source>Ignore Subsequent Matches for (0 to Disable)</source>
+        <comment>... X days</comment>
+        <translation>Volgende overeenkomsten negeren voor (0 om uit te schakelen)</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="246"/>
+        <source> days</source>
+        <translation> dagen</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="276"/>
+        <source>Add Paused:</source>
+        <translation>Gepauzeerd toevoegen:</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="284"/>
+        <source>Use global settings</source>
+        <translation>Algemene instellingen gebruiken</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="289"/>
+        <source>Always</source>
+        <translation>Altijd</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="294"/>
+        <source>Never</source>
+        <translation>Nooit</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="315"/>
+        <source>Apply Rule to Feeds:</source>
+        <translation>Regel toepassen op feeds:</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="337"/>
+        <source>Matching RSS Articles</source>
+        <translation>Overeenkomstige RSS-artikels</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="362"/>
+        <source>&amp;Import...</source>
+        <translation>&amp;Importeren...</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="369"/>
+        <source>&amp;Export...</source>
+        <translation>&amp;Exporteren...</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="79"/>
+        <source>Matches articles based on episode filter.</source>
+        <translation>Komt overeen met artikels gebaseerd op afleveringsfilter.</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="79"/>
+        <source>Example: </source>
+        <translation>Voorbeeld:</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="80"/>
+        <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
+        <comment>example X will match</comment>
+        <translation>zal overeenkomen met aflevering 2, 5, 8 tot 15, 30 en verdere van seizoen 1</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="81"/>
+        <source>Episode filter rules: </source>
+        <translation>Afleveringsfilter-regels:</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="81"/>
+        <source>Season number is a mandatory non-zero value</source>
+        <translation>Seizoensnummer is een verplichte &quot;geen nul&quot;-waarde</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="82"/>
+        <source>Episode number is a mandatory non-zero value</source>
+        <translation>Afleveringsnummer is een verplichte &quot;geen nul&quot;-waarde</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="83"/>
+        <source>Filter must end with semicolon</source>
+        <translation>Filter moet eindigen met een puntkomma</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="84"/>
+        <source>Three range types for episodes are supported: </source>
+        <translation>Er worden drie bereiktypes voor afleveringen ondersteund:</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="85"/>
+        <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
+        <translation>Enkel cijfer: &lt;b&gt;1x25;&lt;/b&gt; komt overeen met aflevering 25 van seizoen 1</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="86"/>
+        <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
+        <translation>Normaal bereik: &lt;b&gt;1x25-40;&lt;/b&gt; komt overeen met aflevering 25 tot 40 van seizoen 1</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="87"/>
+        <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one</source>
+        <translation>Oneindig bereik: &lt;b&gt;1x25-;&lt;/b&gt; komt overeen met aflevering 25 en verder van seizoen 1</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="268"/>
+        <source>Last Match: %1 days ago</source>
+        <translation>Laatste overeenkomst: %1 dagen geleden</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="270"/>
+        <source>Last Match: Unknown</source>
+        <translation>Laatste overeenkomst: onbekend</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="360"/>
         <source>New rule name</source>
-        <translation>Nieuwe regel naam</translation>
+        <translation>Naam van nieuwe regel</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="360"/>
         <source>Please type the name of the new download rule.</source>
-        <translation>Type de naam van de nieuwe downloadregel.</translation>
+        <translation>Typ de naam van de nieuwe downloadregel.</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="364"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="482"/>
         <source>Rule name conflict</source>
-        <translation>Regelnaam conflict</translation>
+        <translation>Regelnaam-conflict</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="364"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="482"/>
         <source>A rule with this name already exists, please choose another name.</source>
         <translation>Een regel met deze naam bestaat reeds, kies een andere naam.</translation>
     </message>
     <message>
-        <source>Are you sure you want to remove the download rule named %1?</source>
-        <translation>Bent u zeker dat u de downloadregel met naam %1 wilt verwijderen?</translation>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="382"/>
+        <source>Are you sure you want to remove the download rule named &apos;%1&apos;?</source>
+        <translation>Weet u zeker dat u de downloadregel met naam &apos;%1&apos; wilt verwijderen?</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="384"/>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation>Bent u zeker dat u de geselecteerde downloadregel wilt verwijderen?</translation>
+        <translation>Bent u zeker dat u de geselecteerde downloadregels wilt verwijderen?</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="385"/>
         <source>Rule deletion confirmation</source>
-        <translation>Regelverwijdering bevestiging</translation>
+        <translation>Bevestiging verwijderen regel</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="401"/>
         <source>Destination directory</source>
-        <translation>Bestemmingsmap</translation>
+        <translation>Doelmap</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="409"/>
         <source>Invalid action</source>
-        <translation>Ongeldige actie</translation>
+        <translation>Ongeldige handeling</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="409"/>
         <source>The list is empty, there is nothing to export.</source>
-        <translation>De lijst is leeg, er is niets om te importeren.</translation>
+        <translation>De lijst is leeg, er is niets om te exporteren.</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="413"/>
         <source>Where would you like to save the list?</source>
         <translation>Waar wilt u de lijst opslaan?</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="413"/>
         <source>Rules list (*.rssrules)</source>
-        <translation>Ruleslijst (*.rssrules)</translation>
+        <translation>Regelllijst (*.rssrules)</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="418"/>
         <source>I/O Error</source>
-        <translation>I/O Fout</translation>
+        <translation>I/O-fout</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="418"/>
         <source>Failed to create the destination file</source>
-        <translation>Mislukt om het bestemmingsbestand te maken</translation>
+        <translation>Doelbestand aanmaken mislukt</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="426"/>
         <source>Please point to the RSS download rules file</source>
-        <translation>Gelieve te verwijzen naar het RSS download regelsbestand</translation>
+        <translation>Gelieve te verwijzen naar het bestand met RSS-downloadregels</translation>
     </message>
     <message>
-        <source>Rules list (*.rssrules *.filters)</source>
-        <translation>Regelslijst (*.rssrules *.filters)</translation>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="426"/>
+        <source>Rules list</source>
+        <translation>Lijst van regels</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="430"/>
         <source>Import Error</source>
-        <translation>Import Fout</translation>
+        <translation>Importeerfout</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="430"/>
         <source>Failed to import the selected rules file</source>
-        <translation>Mislukt om de geselecteerd regelslijst te importeren</translation>
+        <translation>Importeren van geselecteerd regelbestand mislukt</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="441"/>
         <source>Add new rule...</source>
-        <translation>Voeg een nieuwe regel toe...</translation>
+        <translation>Nieuwe regel toevoegen...</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="447"/>
         <source>Delete rule</source>
-        <translation>Verwijder regel</translation>
+        <translation>Regel verwijderen</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="449"/>
         <source>Rename rule...</source>
-        <translation>Hernoem regel...</translation>
+        <translation>Regel hernoemen...</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="451"/>
         <source>Delete selected rules</source>
-        <translation>Verwijder geselecteerd regels</translation>
+        <translation>Geselecteerde regels verwijderen</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="478"/>
         <source>Rule renaming</source>
         <translation>Regelhernoeming</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="478"/>
         <source>Please type the new rule name</source>
-        <translation>Gelieve de nieuwe regelnaam te geven</translation>
+        <translation>Typ de naam van de nieuwe regel</translation>
     </message>
     <message>
-        <source>Use regular expressions</source>
-        <translation>Gebruike reguliere expressies</translation>
-    </message>
-    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="580"/>
         <source>Regex mode: use Perl-like regular expressions</source>
-        <translation>Regex modues: gebruik reguliere expressies die gelijkaardig zijn aa Perl</translation>
+        <translation>Regex-modus: Perl-achtige reguliere expressies gebruiken</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="584"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>Wildcard modus: u kan gebruikem maken van &lt;ul&gt;&lt;li&gt;? om één enkel teken voor te stellen&lt;/li&gt;&lt;li&gt;* om nul of meerdere tekens voor te stellen&lt;li&gt;&lt;li&gt;Witruimtes tellen als AND operatoren&lt;li&gt;&lt;lu&gt;</translation>
+        <translation>Jokerteken-modus: u kunt gebruik maken van&lt;ul&gt;&lt;li&gt;? om één enkel teken voor te stellen&lt;/li&gt;&lt;li&gt;* om nul of meerdere tekens voor te stellen&lt;li&gt;&lt;li&gt;Witruimtes tellen als AND-operatoren&lt;li&gt;&lt;lu&gt;</translation>
     </message>
     <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="586"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>Wildcard modus: u kan gebruikem maken van &lt;ul&gt;&lt;li&gt;? om één enkel teken voor te stellen&lt;/li&gt;&lt;li&gt;* om nul of meerdere tekens voor te stellen&lt;li&gt;&lt;li&gt;| wordt gebruikt als als OR operator&lt;li&gt;&lt;lu&gt;</translation>
+        <translation>Jokerteken-modus: u kunt gebruik maken van &lt;ul&gt;&lt;li&gt;? om één enkel teken voor te stellen&lt;/li&gt;&lt;li&gt;* om nul of meerdere tekens voor te stellen&lt;li&gt;&lt;li&gt;| wordt gebruikt als OR-operator&lt;li&gt;&lt;lu&gt;</translation>
     </message>
 </context>
 <context>
-    <name>Bittorrent</name>
+    <name>BitTorrent::Session</name>
     <message>
-        <source>%1 reached the maximum ratio you set.</source>
-        <translation type="obsolete">%1 heeft de maximum ingestelde verhouding bereikt.</translation>
+        <location filename="../base/bittorrent/session.cpp" line="226"/>
+        <source>Peer ID: </source>
+        <translation>Peer-id:</translation>
     </message>
     <message>
-        <source>qBittorrent is bound to port: TCP/%1</source>
-        <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="obsolete">qBittorrent is verbonden met poort: TCP/%1</translation>
+        <location filename="../base/bittorrent/session.cpp" line="601"/>
+        <source>HTTP User-Agent is &apos;%1&apos;</source>
+        <translation>HTTP user-agent is &apos;%1&apos;</translation>
     </message>
     <message>
-        <source>UPnP support [ON]</source>
-        <translation type="obsolete">UPnP ondersteuning [AAN]</translation>
+        <location filename="../base/bittorrent/session.cpp" line="628"/>
+        <source>Anonymous mode [ON]</source>
+        <translation>Anonieme modus [AAN]</translation>
     </message>
     <message>
-        <source>UPnP support [OFF]</source>
-        <translation type="obsolete">UPnP ondersteuning [UIT]</translation>
+        <location filename="../base/bittorrent/session.cpp" line="630"/>
+        <source>Anonymous mode [OFF]</source>
+        <translation>Anonieme modus [UIT]</translation>
     </message>
     <message>
-        <source>NAT-PMP support [ON]</source>
-        <translation type="obsolete">NAT-PMP ondersteuning [AAN]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [OFF]</source>
-        <translation type="obsolete">NAT-PMP ondersteuning [UIT]</translation>
-    </message>
-    <message>
-        <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="obsolete">DHT ondersteuning [AAN], poort: UDP/%1</translation>
-    </message>
-    <message>
-        <source>DHT support [OFF]</source>
-        <translation type="obsolete">DHT ondersteuning [UIT]</translation>
-    </message>
-    <message>
+        <location filename="../base/bittorrent/session.cpp" line="816"/>
         <source>PeX support [ON]</source>
-        <translation type="obsolete">PeX ondersteuning [AAN]</translation>
+        <translation>PeX-ondersteuning [AAN]</translation>
     </message>
     <message>
-        <source>Local Peer Discovery [ON]</source>
-        <translation type="obsolete">Local Peer Discovery [AAN]</translation>
+        <location filename="../base/bittorrent/session.cpp" line="818"/>
+        <source>PeX support [OFF]</source>
+        <translation>PeX-ondersteuning [UIT]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="820"/>
+        <source>Restart is required to toggle PeX support</source>
+        <translation>Opnieuw starten is vereist om PeX-ondersteuning in/uit te schakelen</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="825"/>
+        <source>Local Peer Discovery support [ON]</source>
+        <translation>Local Peer Discovery ondersteuning [AAN]</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="829"/>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation type="obsolete">Local Peer Discovery ondersteuning [UIT]</translation>
+        <translation>Local Peer Discovery ondersteuning [UIT]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="842"/>
         <source>Encryption support [ON]</source>
-        <translation type="obsolete">Encryptie ondersteuning [AAN]</translation>
+        <translation>Encryptie-ondersteuning [AAN]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="847"/>
         <source>Encryption support [FORCED]</source>
-        <translation type="obsolete">Encryptie ondersteuning [GEFORCEERD]</translation>
+        <translation>Encryptie-ondersteuning [GEFORCEERD]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="852"/>
         <source>Encryption support [OFF]</source>
-        <translation type="obsolete">Encryptie ondersteuning [UIT]</translation>
+        <translation>Encryptie-ondersteuning [UIT]</translation>
     </message>
     <message>
-        <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="obsolete">&apos;%1&apos; is geen juiste magnet URI.</translation>
+        <location filename="../base/bittorrent/session.cpp" line="929"/>
+        <source>Embedded Tracker [ON]</source>
+        <translation>Ingebedde tracker [AAN]</translation>
     </message>
     <message>
-        <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; staat al in de downloadlijst.</translation>
+        <location filename="../base/bittorrent/session.cpp" line="931"/>
+        <source>Failed to start the embedded tracker!</source>
+        <translation>Ingebedde tracker starten mislukt!</translation>
     </message>
     <message>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="obsolete">&apos;%1&apos; hervat. (snelle hervatting)</translation>
+        <location filename="../base/bittorrent/session.cpp" line="934"/>
+        <source>Embedded Tracker [OFF]</source>
+        <translation>Ingebedde tracker [UIT]</translation>
     </message>
     <message>
-        <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; toegevoegd aan de downloadlijst.</translation>
+        <location filename="../base/bittorrent/session.cpp" line="972"/>
+        <source>&apos;%1&apos; reached the maximum ratio you set. Removing...</source>
+        <translation>&apos;%1&apos; heeft de maximum ingestelde verhouding bereikt. Verwijderen...</translation>
     </message>
     <message>
-        <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="obsolete">Torrentbestand kan niet worden gedecodeerd: &apos;%1&apos;</translation>
+        <location filename="../base/bittorrent/session.cpp" line="978"/>
+        <source>&apos;%1&apos; reached the maximum ratio you set. Pausing...</source>
+        <translation>&apos;%1&apos; heeft de maximum ingestelde verhouding bereikt. Pauzeren...</translation>
     </message>
     <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
-        <comment>x.y.z.w was blocked</comment>
-        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;is geblokkeerd door de IP filter&lt;/i&gt;</translation>
+        <location filename="../base/bittorrent/session.cpp" line="1714"/>
+        <source>System network status changed to %1</source>
+        <comment>e.g: System network status changed to ONLINE</comment>
+        <translation>Systeem-netwerkstatus gewijzigd in %1</translation>
     </message>
     <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
-        <comment>x.y.z.w was banned</comment>
-        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;is verbannen door onjuiste stukjes&lt;/i&gt;</translation>
+        <location filename="../base/bittorrent/session.cpp" line="1714"/>
+        <source>ONLINE</source>
+        <translation>ONLINE</translation>
     </message>
     <message>
-        <source>Recursive download of file %1 embedded in torrent %2</source>
-        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="obsolete">Recursieve download van bestand %1 in torrent %2</translation>
+        <location filename="../base/bittorrent/session.cpp" line="1714"/>
+        <source>OFFLINE</source>
+        <translation>OFFLINE</translation>
     </message>
     <message>
-        <source>Unable to decode %1 torrent file.</source>
-        <translation type="obsolete">Kon torrentbestand %1 niet decoderen.</translation>
+        <location filename="../base/bittorrent/session.cpp" line="1726"/>
+        <source>Network configuration of %1 has changed, refreshing session binding</source>
+        <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
+        <translation>Netwerkconfiguratie van %1 is gewijzigd, sessie-koppeling vernieuwen</translation>
     </message>
     <message>
-        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="obsolete">UPnP/NAT-PMP: Port mapping fout, bericht: %1</translation>
+        <location filename="../base/bittorrent/session.cpp" line="1744"/>
+        <source>Configured network interface address %1 isn&apos;t valid.</source>
+        <comment>Configured network interface address 124.5.1568.1 isn&apos;t valid.</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="obsolete">UPnP/NAT-PMP: Port mapping succesvol, bericht: %1</translation>
+        <location filename="../base/bittorrent/session.cpp" line="2039"/>
+        <source>Unable to decode &apos;%1&apos; torrent file.</source>
+        <translation>Kon torrentbestand &apos;%1&apos; niet decoderen.</translation>
     </message>
     <message>
-        <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="obsolete">Url seed raadpleging mislukt voor url: %1, bericht: %2</translation>
+        <location filename="../base/bittorrent/session.cpp" line="2154"/>
+        <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
+        <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
+        <translation>Recursieve download van bestand &apos;%1&apos; in torrent &apos;%2&apos;</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="2482"/>
+        <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
+        <translation>Kon &apos;%1.torrent&apos; niet opslaan</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2603"/>
+        <source>because %1 is disabled.</source>
+        <comment>this peer was blocked because uTP is disabled.</comment>
+        <translation>omdat %1 uitgeschakeld is.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2606"/>
+        <source>because %1 is disabled.</source>
+        <comment>this peer was blocked because TCP is disabled.</comment>
+        <translation>omdat %1 uitgeschakeld is.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2624"/>
+        <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
+        <translation>URL-seed raadpleging mislukt voor url: &apos;%1&apos;, bericht: &apos;%2&apos;</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2664"/>
+        <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
+        <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.</comment>
+        <translation>qBittorrent slaagde er niet in om te luisteren naar interface %1 poort: %2/%3. Reden: %4.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1095"/>
+        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation>&apos;%1&apos; werd verwijderd van de overdrachtlijst en harde schijf.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1097"/>
+        <source>&apos;%1&apos; was removed from transfer list.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation>&apos;%1&apos; werd verwijderd van de overdrachtlijst.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1232"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="obsolete">Bezig met downloaden van &apos;%1&apos;, even geduld alstublieft...</translation>
+        <translation>Bezig met downloaden van &apos;%1&apos;, even geduld...</translation>
     </message>
     <message>
-        <source>PeX support [OFF]</source>
-        <translation type="obsolete">PeX ondersteuning [UIT]</translation>
+        <location filename="../base/bittorrent/session.cpp" line="1578"/>
+        <source>DHT support [ON]</source>
+        <translation>DHT-ondersteuning [AAN]</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1583"/>
+        <source>DHT support [OFF]. Reason: %1</source>
+        <translation>DHT-ondersteuning [UIT]. Reden: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1591"/>
+        <source>DHT support [OFF]</source>
+        <translation>DHT-ondersteuning [UIT]</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="218"/>
+        <location filename="../base/bittorrent/session.cpp" line="1820"/>
+        <source>qBittorrent is trying to listen on any interface port: %1</source>
+        <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
+        <translation>qBittorrent probeert te luisteren op om het even welke interface-poort: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1763"/>
+        <source>The network interface defined is invalid: %1</source>
+        <translation>De opgegeven netwerkinterface is ongeldig: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="222"/>
+        <location filename="../base/bittorrent/session.cpp" line="1831"/>
+        <source>qBittorrent is trying to listen on interface %1 port: %2</source>
+        <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
+        <translation>qBittorrent probeert te luisteren op interface %1 poort: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1797"/>
+        <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
+        <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
+        <translation>qBittorent vond geen lokaal %1 adres om op te luisteren</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1824"/>
+        <source>qBittorrent failed to listen on any interface port: %1. Reason: %2.</source>
+        <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
+        <translation>qBittorrent slaagde er niet in om te luisteren op om het even welke interface-poort: %1. Reden: %2.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1950"/>
+        <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
+        <translation>Tracker &apos;%1&apos; werd toegevoegd aan torrent &apos;%2&apos;</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1960"/>
+        <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
+        <translation>Tracker &apos;%1&apos; werd verwijderd uit torrent &apos;%2&apos;</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1975"/>
+        <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
+        <translation>URL-seed &apos;%1&apos; werd toegevoegd aan torrent &apos;%2&apos;</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1981"/>
+        <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
+        <translation>URL-seed &apos;%1&apos; werd verwijderd uit torrent &apos;%2&apos;</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2249"/>
+        <source>Unable to resume torrent &apos;%1&apos;.</source>
+        <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
+        <translation>Kon torrent &apos;%1&apos; niet hervatten.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2308"/>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation>Verwerken van opgegeven IP-filter gelukt: er werden %1 regels toegepast.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2314"/>
+        <source>Error: Failed to parse the provided IP filter.</source>
+        <translation>Fout: verwerken van de opgegeven IP-filter mislukt</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2519"/>
+        <source>Couldn&apos;t add torrent. Reason: %1</source>
+        <translation>Kon torrent niet toevoegen. Reden: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2465"/>
+        <source>&apos;%1&apos; resumed. (fast resume)</source>
+        <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
+        <translation>&apos;%1&apos; hervat. (snel hervatten)</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2496"/>
+        <source>&apos;%1&apos; added to download list.</source>
+        <comment>&apos;torrent name&apos; was added to download list.</comment>
+        <translation>&apos;%1&apos; toegevoegd aan downloadlijst.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2567"/>
+        <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
+        <translation>Er trad een I/O-fout op, &apos;%1&apos; gepauzeerd. %2</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2575"/>
+        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
+        <translation>UPnP/NAT-PMP: port mapping mislukt, bericht: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2581"/>
+        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
+        <translation>UPnP/NAT-PMP: port mapping succesvol, bericht: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2591"/>
+        <source>due to IP filter.</source>
+        <comment>this peer was blocked due to ip filter.</comment>
+        <translation>veroorzaakt door IP-filter.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2594"/>
+        <source>due to port filter.</source>
+        <comment>this peer was blocked due to port filter.</comment>
+        <translation>veroorzaakt door poortfilter.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2597"/>
+        <source>due to i2p mixed mode restrictions.</source>
+        <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
+        <translation>veroorzaakt door i2p mixed mode restricties.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2600"/>
+        <source>because it has a low port.</source>
+        <comment>this peer was blocked because it has a low port.</comment>
+        <translation>omdat het een lage poort heeft.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2638"/>
+        <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
+        <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
+        <translation>qBittorrent luistert met succes naar interface %1 poort: %2/%3</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2673"/>
+        <source>External IP: %1</source>
+        <comment>e.g. External IP: 192.168.0.1</comment>
+        <translation>Externe IP: %1</translation>
     </message>
 </context>
 <context>
-    <name>ConsoleDlg</name>
+    <name>BitTorrent::TorrentHandle</name>
     <message>
-        <source>General</source>
-        <translation type="obsolete">Algemeen</translation>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1392"/>
+        <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
+        <translation>Torrent &apos;%1&apos; kon niet verplaatst worden. Reden: %2</translation>
     </message>
     <message>
-        <source>Blocked IPs</source>
-        <translation type="obsolete">Geblokkeerde IP&apos;s</translation>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1544"/>
+        <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
+        <translation>Bestandgroottes komen niet overeen voor torrent &apos;%1&apos;, wordt gepauzeerd.</translation>
     </message>
     <message>
-        <source>qBittorrent log viewer</source>
-        <translation type="obsolete">qBittorrent log viewer</translation>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1550"/>
+        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
+        <translation>Data voor snel hervatten werd afgewezen voor torrent &apos;%1&apos;. Reden: %2. Opnieuw controleren...</translation>
     </message>
 </context>
 <context>
-    <name>CookiesDlg</name>
+    <name>CategoryFiltersList</name>
     <message>
-        <source>Cookies management</source>
-        <translation>Cookiesbeheer</translation>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="200"/>
+        <source>All (0)</source>
+        <comment>this is for the category filter</comment>
+        <translation>Alles (0)</translation>
     </message>
     <message>
-        <source>Key</source>
-        <extracomment>As in Key/Value pair</extracomment>
-        <translation>Sleutel</translation>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="203"/>
+        <source>Uncategorized (0)</source>
+        <translation>Zonder categorie (0)</translation>
     </message>
     <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="236"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="260"/>
+        <source>%1 (%2)</source>
+        <comment>category_name (10)</comment>
+        <translation>%1 (%2)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="293"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="389"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="409"/>
+        <source>Uncategorized (%1)</source>
+        <translation>Zonder categorie (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="321"/>
+        <source>Add category...</source>
+        <translation>Categorie toevoegen...</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="325"/>
+        <source>Remove category</source>
+        <translation>Categorie verwijderen</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="326"/>
+        <source>Remove unused categories</source>
+        <translation>Niet-gebruikte categorieën verwijderen</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="328"/>
+        <source>Resume torrents</source>
+        <translation>Torrents hervatten</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="329"/>
+        <source>Pause torrents</source>
+        <translation>Torrents pauzeren</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="330"/>
+        <source>Delete torrents</source>
+        <translation>Torrents verwijderen</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="357"/>
+        <source>New Category</source>
+        <translation>Nieuwe categorie</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="357"/>
+        <source>Category:</source>
+        <translation>Categorie:</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="360"/>
+        <source>Invalid category name</source>
+        <translation>Ongeldige categorienaam</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="361"/>
+        <source>Category name must not contain &apos;\&apos;.
+Category name must not start/end with &apos;/&apos;.
+Category name must not contain &apos;//&apos; sequence.</source>
+        <translation>Categorienaam mag geen &apos;\&apos; bevatten.
+Categorienaam mag niet beginnen/eindigen met &apos;/&apos;.
+Categorienaam mag de &apos;//&apos;-opeenvolging niet bevatten.</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="388"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="408"/>
+        <source>All (%1)</source>
+        <comment>this is for the category filter</comment>
+        <translation>Alles (%1)</translation>
+    </message>
+</context>
+<context>
+    <name>CookiesDialog</name>
+    <message>
+        <location filename="../gui/cookiesdialog.ui" line="14"/>
+        <source>Manage Cookies</source>
+        <translation>Cookies beheren</translation>
+    </message>
+</context>
+<context>
+    <name>CookiesModel</name>
+    <message>
+        <location filename="../gui/cookiesmodel.cpp" line="49"/>
+        <source>Domain</source>
+        <translation>Domein</translation>
+    </message>
+    <message>
+        <location filename="../gui/cookiesmodel.cpp" line="51"/>
+        <source>Path</source>
+        <translation>Pad</translation>
+    </message>
+    <message>
+        <location filename="../gui/cookiesmodel.cpp" line="53"/>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <location filename="../gui/cookiesmodel.cpp" line="55"/>
         <source>Value</source>
-        <extracomment>As in Key/Value pair</extracomment>
         <translation>Waarde</translation>
     </message>
     <message>
-        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
-You should get this information from your Web browser preferences.</source>
-        <translation>Algemene sleutel voor cookies zijn : &apos;%1&apos;, &apos;%2&apos;.
-U zou informatie moeten krijgen van u Webbrowser voorkeuren.</translation>
+        <location filename="../gui/cookiesmodel.cpp" line="57"/>
+        <source>Expiration Date</source>
+        <translation>Vervaldatum</translation>
     </message>
 </context>
 <context>
-    <name>DNSUpdater</name>
+    <name>DeletionConfirmationDlg</name>
     <message>
-        <source>Your dynamic DNS was successfuly updated.</source>
-        <translation>U dynamisch DNS werd succesvol geüpdate.</translation>
+        <location filename="../gui/deletionconfirmationdlg.h" line="48"/>
+        <source>Are you sure you want to delete &apos;%1&apos; from the transfer list?</source>
+        <comment>Are you sure you want to delete &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
+        <translation>Weet u zeker dat u &apos;%1&apos; uit de overdrachtlijst wilt verwijderen?</translation>
     </message>
     <message>
-        <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation>Dynamische DNS error: De service is tijdelijk onbeschikbaar, er wordt opnieuw geprobeerd binnen 30 minuten.</translation>
-    </message>
-    <message>
-        <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
-        <translation>Dynamische DNS error: opgegeven hostname bestaat niet bij de opgegeven account.</translation>
-    </message>
-    <message>
-        <source>Dynamic DNS error: Invalid username/password.</source>
-        <translation>Dynamische DNS error: Ongeldige gebruikersnaam/wachtwoord.</translation>
-    </message>
-    <message>
-        <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation>Dynamische DNS error: qBittorrent werd geblacklist door deze service, gelieve de bug te rapporteren op http://bugs.qbittorent.org.</translation>
-    </message>
-    <message>
-        <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation>Dynamische DNS error: %1 werd teruggegeven door de service, gelieve de bug te rapporteren op http://bugs.qbittorrent.org.</translation>
-    </message>
-    <message>
-        <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
-        <translation>Dynamische DNS error: U gebruikersnaam werd geblokkeerd door misbruik.</translation>
-    </message>
-    <message>
-        <source>Dynamic DNS error: supplied domain name is invalid.</source>
-        <translation>Dynamische DNS error: opgegeven domeinnaam is ongeldig.</translation>
-    </message>
-    <message>
-        <source>Dynamic DNS error: supplied username is too short.</source>
-        <translation>Dynamische DNS error: opgegegeven gebruikersnaam is te kort.</translation>
-    </message>
-    <message>
-        <source>Dynamic DNS error: supplied password is too short.</source>
-        <translation>Dynamische DNS error: opgegegeven wachtwoord is te kort.</translation>
+        <location filename="../gui/deletionconfirmationdlg.h" line="50"/>
+        <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
+        <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
+        <translation>Weet u zeker dat u de %1 geselecteerde torrents wilt verwijderen uit de overdrachtlijst?</translation>
     </message>
 </context>
 <context>
-    <name>DownloadThread</name>
+    <name>DownloadedPiecesBar</name>
     <message>
-        <source>I/O Error</source>
-        <translation>I/O Fout</translation>
+        <location filename="../gui/properties/downloadedpiecesbar.cpp" line="177"/>
+        <source>White: Missing pieces</source>
+        <translation>Wit: ontbrekende deeltjes</translation>
     </message>
     <message>
-        <source>The remote host name was not found (invalid hostname)</source>
-        <translation>De remote hostnaam werd niet gevonden (ongeldige hostnaam)</translation>
+        <location filename="../gui/properties/downloadedpiecesbar.cpp" line="178"/>
+        <source>Green: Partial pieces</source>
+        <translation>Groen: gedeeltelijke deeltjes</translation>
     </message>
     <message>
-        <source>The operation was canceled</source>
-        <translation>De operatie werd geannuleerd</translation>
-    </message>
-    <message>
-        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation>De remote server sloot de verbinding permanent, voor de gehele reactie werd ontvangen en verwerkt</translation>
-    </message>
-    <message>
-        <source>The connection to the remote server timed out</source>
-        <translation>De verbinding naar de remote server timede out</translation>
-    </message>
-    <message>
-        <source>SSL/TLS handshake failed</source>
-        <translation>SSL/T|S handshake mislukt</translation>
-    </message>
-    <message>
-        <source>The remote server refused the connection</source>
-        <translation>De remote server weigerde de verbinding</translation>
-    </message>
-    <message>
-        <source>The connection to the proxy server was refused</source>
-        <translation>De verbinding naar de proxy server werd geweigerd</translation>
-    </message>
-    <message>
-        <source>The proxy server closed the connection prematurely</source>
-        <translation>De proxy server sloot de verbinding permanent</translation>
-    </message>
-    <message>
-        <source>The proxy host name was not found</source>
-        <translation>De proxy host name werd niet gevonden</translation>
-    </message>
-    <message>
-        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation>De verbinding naar de proxy timede out of the proxy reageerde niet op tijd op het verzonden verzoek</translation>
-    </message>
-    <message>
-        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation>De proxy vereist authenticatie om in te kunnen gaan op het verzoek maar accepteerde geen van de aangeboden credentials</translation>
-    </message>
-    <message>
-        <source>The access to the remote content was denied (401)</source>
-        <translation>De toegang tot de remote content werd genegeerd (401)</translation>
-    </message>
-    <message>
-        <source>The operation requested on the remote content is not permitted</source>
-        <translation>De gevraagde operatie op de remote content is niet toegestaan</translation>
-    </message>
-    <message>
-        <source>The remote content was not found at the server (404)</source>
-        <translation>De remote content werd niet gevonden op de server (404)</translation>
-    </message>
-    <message>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>De remote server vereist authenticatie om de inhoud te presenteren maar de gegeven credentials werden niet geaccepteerd</translation>
-    </message>
-    <message>
-        <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation>De Network Access API kon niet ingaan op het verzoek want het protocol is niet bekend</translation>
-    </message>
-    <message>
-        <source>The requested operation is invalid for this protocol</source>
-        <translation>De verzochte operatie is niet geldig voor dit protocol</translation>
-    </message>
-    <message>
-        <source>An unknown network-related error was detected</source>
-        <translation>Een onbekende netwerkgerelateerde fout werd gevonden</translation>
-    </message>
-    <message>
-        <source>An unknown proxy-related error was detected</source>
-        <translation>Een onbekende proxy-gerelateerde fout werd gevonden</translation>
-    </message>
-    <message>
-        <source>An unknown error related to the remote content was detected</source>
-        <translation>Een onbekende error gerelateerd tot de remote content werd gevonden</translation>
-    </message>
-    <message>
-        <source>A breakdown in protocol was detected</source>
-        <translation>Een storing in het protocol werd gedetecteerd</translation>
-    </message>
-    <message>
-        <source>Unknown error</source>
-        <translation>Onbekende fout</translation>
-    </message>
-</context>
-<context>
-    <name>EventManager</name>
-    <message>
-        <source>%1/s</source>
-        <comment>e.g. 120 KiB/s</comment>
-        <translation>%1/s</translation>
-    </message>
-    <message>
-        <source>Working</source>
-        <translation>Bezig</translation>
-    </message>
-    <message>
-        <source>Updating...</source>
-        <translation>Updating...</translation>
-    </message>
-    <message>
-        <source>Not working</source>
-        <translation>Niet bezig</translation>
-    </message>
-    <message>
-        <source>Not contacted yet</source>
-        <translation>Nog niet gecontacteerd</translation>
-    </message>
-    <message>
-        <source>this session</source>
-        <translation>Deze sessie</translation>
-    </message>
-    <message>
-        <source>/s</source>
-        <comment>/second (i.e. per second)</comment>
-        <translation>/s</translation>
-    </message>
-    <message>
-        <source>Seeded for %1</source>
-        <comment>e.g. Seeded for 3m10s</comment>
-        <translation>Geseed voor %1</translation>
-    </message>
-    <message>
-        <source>%1 max</source>
-        <comment>e.g. 10 max</comment>
-        <translation>%1 max</translation>
+        <location filename="../gui/properties/downloadedpiecesbar.cpp" line="179"/>
+        <source>Blue: Completed pieces</source>
+        <translation>Blauw: voltooide deeltjes</translation>
     </message>
 </context>
 <context>
     <name>ExecutionLog</name>
     <message>
-        <source>Form</source>
-        <translation type="obsolete">Formulier</translation>
-    </message>
-    <message>
+        <location filename="../gui/executionlog.ui" line="39"/>
         <source>General</source>
         <translation>Algemeen</translation>
     </message>
     <message>
+        <location filename="../gui/executionlog.ui" line="45"/>
         <source>Blocked IPs</source>
         <translation>Geblokkeerde IP&apos;s</translation>
     </message>
-</context>
-<context>
-    <name>FeedDownloader</name>
     <message>
-        <source>RSS Feed downloader</source>
-        <translation type="obsolete">RSS Feed downloader</translation>
+        <location filename="../gui/executionlog.cpp" line="106"/>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked %2</source>
+        <comment>x.y.z.w was blocked</comment>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; is geblokkeerd %2</translation>
     </message>
     <message>
-        <source>RSS feed:</source>
-        <translation type="obsolete">RSS feed:</translation>
-    </message>
-    <message>
-        <source>Feed name</source>
-        <translation type="obsolete">Feed naam</translation>
-    </message>
-    <message>
-        <source>Automatically download torrents from this feed</source>
-        <translation type="obsolete">Automatisch torrents downloaden van deze feed</translation>
-    </message>
-    <message>
-        <source>Download filters</source>
-        <translation type="obsolete">Download filters</translation>
-    </message>
-    <message>
-        <source>Filters:</source>
-        <translation type="obsolete">Filters:</translation>
-    </message>
-    <message>
-        <source>Filter settings</source>
-        <translation type="obsolete">Filterinstellingen</translation>
-    </message>
-    <message>
-        <source>Matches:</source>
-        <translation type="obsolete">Resultaten:</translation>
-    </message>
-    <message>
-        <source>Does not match:</source>
-        <translation type="obsolete">Komt niet overeen:</translation>
-    </message>
-    <message>
-        <source>Destination folder:</source>
-        <translation type="obsolete">Doelmap:</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Filter testing</source>
-        <translation type="obsolete">Filter testen</translation>
-    </message>
-    <message>
-        <source>Torrent title:</source>
-        <translation type="obsolete">Torrent titel:</translation>
-    </message>
-    <message>
-        <source>Result:</source>
-        <translation type="obsolete">Resultaat:</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation type="obsolete">Test</translation>
-    </message>
-    <message>
-        <source>Import...</source>
-        <translation type="obsolete">Importeer...</translation>
-    </message>
-    <message>
-        <source>Export...</source>
-        <translation type="obsolete">Exporteer...</translation>
-    </message>
-    <message>
-        <source>Rename filter</source>
-        <translation type="obsolete">Hernoem filter</translation>
-    </message>
-    <message>
-        <source>Remove filter</source>
-        <translation type="obsolete">Verwijder filter</translation>
-    </message>
-    <message>
-        <source>Add filter</source>
-        <translation type="obsolete">Voeg filter toe</translation>
-    </message>
-</context>
-<context>
-    <name>FeedDownloaderDlg</name>
-    <message>
-        <source>New filter</source>
-        <translation type="obsolete">Nieuwe filter</translation>
-    </message>
-    <message>
-        <source>Please choose a name for this filter</source>
-        <translation type="obsolete">Kies alstublieft een naam voor de filter</translation>
-    </message>
-    <message>
-        <source>Filter name:</source>
-        <translation type="obsolete">Filternaam:</translation>
-    </message>
-    <message>
-        <source>Invalid filter name</source>
-        <translation type="obsolete">Onjuiste filternaam</translation>
-    </message>
-    <message>
-        <source>The filter name cannot be left empty.</source>
-        <translation type="obsolete">De filternaam kan niet leeg blijven.</translation>
-    </message>
-    <message>
-        <source>This filter name is already in use.</source>
-        <translation type="obsolete">Deze filternaam is al gebruikt.</translation>
-    </message>
-    <message>
-        <source>Filter testing error</source>
-        <translation type="obsolete">Filtertest fout</translation>
-    </message>
-    <message>
-        <source>Please specify a test torrent name.</source>
-        <translation type="obsolete">Specificeer een testtorrentnaam.</translation>
-    </message>
-    <message>
-        <source>matches</source>
-        <translation type="obsolete">resultaten</translation>
-    </message>
-    <message>
-        <source>does not match</source>
-        <translation type="obsolete">komt niet overeen</translation>
-    </message>
-    <message>
-        <source>Select file to import</source>
-        <translation type="obsolete">Selecteer bestand om te importeren</translation>
-    </message>
-    <message>
-        <source>Filters Files</source>
-        <translation type="obsolete">Filtert bestanden</translation>
-    </message>
-    <message>
-        <source>Import successful</source>
-        <translation type="obsolete">Importeren gelukt</translation>
-    </message>
-    <message>
-        <source>Filters import was successful.</source>
-        <translation type="obsolete">Filters importeren gelukt.</translation>
-    </message>
-    <message>
-        <source>Import failure</source>
-        <translation type="obsolete">Fout tijdens importeren</translation>
-    </message>
-    <message>
-        <source>Filters could not be imported due to an I/O error.</source>
-        <translation type="obsolete">Filters konden niet worden geïmporteerd door een I/O fout.</translation>
-    </message>
-    <message>
-        <source>Select destination file</source>
-        <translation type="obsolete">Selecteer doelbestand</translation>
-    </message>
-    <message>
-        <source>Export successful</source>
-        <translation type="obsolete">Exporteren gelukt</translation>
-    </message>
-    <message>
-        <source>Filters export was successful.</source>
-        <translation type="obsolete">Filters exporteren gelukt.</translation>
-    </message>
-    <message>
-        <source>Export failure</source>
-        <translation type="obsolete">Fout tijdens exporteren</translation>
-    </message>
-    <message>
-        <source>Filters could not be exported due to an I/O error.</source>
-        <translation type="obsolete">Filters konden niet worden geëxporteerd door een I/O fout.</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">Kies opslag pad</translation>
-    </message>
-</context>
-<context>
-    <name>FeedList</name>
-    <message>
-        <source>Unread</source>
-        <translation type="obsolete">Ongelezen</translation>
+        <location filename="../gui/executionlog.cpp" line="108"/>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
+        <comment>x.y.z.w was banned</comment>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; is verbannen</translation>
     </message>
 </context>
 <context>
     <name>FeedListWidget</name>
     <message>
+        <location filename="../gui/rss/feedlistwidget.cpp" line="46"/>
         <source>RSS feeds</source>
-        <translation>RSS feeds</translation>
+        <translation>RSS-feeds</translation>
     </message>
     <message>
+        <location filename="../gui/rss/feedlistwidget.cpp" line="48"/>
         <source>Unread</source>
         <translation>Ongelezen</translation>
     </message>
 </context>
 <context>
-    <name>GUI</name>
+    <name>FileLogger</name>
     <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
-        <source>Open Torrent Files</source>
-        <translation type="obsolete">Open Torrent bestanden</translation>
-    </message>
-    <message>
-        <source>Torrent Files</source>
-        <translation type="obsolete">Torrent bestanden</translation>
-    </message>
-    <message>
-        <source>Transfers</source>
-        <translation type="obsolete">Overdrachten</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1</source>
-        <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="obsolete">qBittorrent %1</translation>
-    </message>
-    <message>
-        <source>DL speed: %1 KiB/s</source>
-        <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation type="obsolete">DL snelheid: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>UP speed: %1 KiB/s</source>
-        <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="obsolete">UP snelheid: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>%1 has finished downloading.</source>
-        <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation type="obsolete">%1 is klaar met downloaden.</translation>
-    </message>
-    <message>
-        <source>I/O Error</source>
-        <comment>i.e: Input/Output Error</comment>
-        <translation type="obsolete">I/O Fout</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">Zoeken</translation>
-    </message>
-    <message>
-        <source>RSS</source>
-        <translation type="obsolete">RSS</translation>
-    </message>
-    <message>
-        <source>Alt+1</source>
-        <comment>shortcut to switch to first tab</comment>
-        <translation type="obsolete">Alt+1</translation>
-    </message>
-    <message>
-        <source>An I/O error occured for torrent %1.
- Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
- Reason: disk is full.</comment>
-        <translation type="obsolete">Een I/O fout trad op voor torrent %1. Reden: %2</translation>
-    </message>
-    <message>
-        <source>Url download error</source>
-        <translation type="obsolete">Url download fout</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation type="obsolete">Kon bestand niet downloaden vanaf url: %1, reden: %2.</translation>
-    </message>
-    <message>
-        <source>Ctrl+F</source>
-        <comment>shortcut to switch to search tab</comment>
-        <translation type="obsolete">Ctrl+F</translation>
-    </message>
-    <message>
-        <source>Options were saved successfully.</source>
-        <translation type="obsolete">Opties zijn succesvol opgeslagen.</translation>
-    </message>
-    <message>
-        <source>Alt+2</source>
-        <comment>shortcut to switch to third tab</comment>
-        <translation type="obsolete">Alt+2</translation>
-    </message>
-    <message>
-        <source>Alt+3</source>
-        <comment>shortcut to switch to fourth tab</comment>
-        <translation type="obsolete">Alt+3</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="obsolete">Ja</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="obsolete">Nee</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="obsolete">Nooit</translation>
-    </message>
-    <message>
-        <source>A newer version is available</source>
-        <translation type="obsolete">Er is een nieuwere versie beschikbaar</translation>
-    </message>
-    <message>
-        <source>A newer version of qBittorrent is available on Sourceforge.
-Would you like to update qBittorrent to version %1?</source>
-        <translation type="obsolete">Er is een nieuwere versie van qBittorrent beschikbaar op Sourceforge.
-Wil u qBittorrent updaten naar versie %1?</translation>
-    </message>
-    <message>
-        <source>Impossible to update qBittorrent</source>
-        <translation type="obsolete">Onmogelijk om qBittorrent up te daten</translation>
-    </message>
-    <message>
-        <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="obsolete">qBittorrent slaagde er niet in om up te daten, reason: %1</translation>
+        <location filename="../app/filelogger.cpp" line="168"/>
+        <source>An error occured while trying to open the log file. Logging to file is disabled.</source>
+        <translation>Er trad een fout op tijdens het proberen openen van het logbestand. Loggen naar bestand is uitgeschakeld.</translation>
     </message>
 </context>
 <context>
-    <name>GeoIP</name>
+    <name>FilterParserThread</name>
     <message>
-        <source>Australia</source>
-        <translation type="obsolete">Australië</translation>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="65"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="159"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="267"/>
+        <source>I/O Error: Could not open ip filter file in read mode.</source>
+        <translation>I/O-fout: kon ip-filterbestand niet openen in leesmodus.</translation>
     </message>
     <message>
-        <source>Argentina</source>
-        <translation type="obsolete">Argentinië</translation>
-    </message>
-    <message>
-        <source>Austria</source>
-        <translation type="obsolete">Oostenrijk</translation>
-    </message>
-    <message>
-        <source>United Arab Emirates</source>
-        <translation type="obsolete">Verenigde Arabische Emiraten</translation>
-    </message>
-    <message>
-        <source>Brazil</source>
-        <translation type="obsolete">Brazilië</translation>
-    </message>
-    <message>
-        <source>Bulgaria</source>
-        <translation type="obsolete">Bulgarije</translation>
-    </message>
-    <message>
-        <source>Belarus</source>
-        <translation type="obsolete">Wit-Rusland</translation>
-    </message>
-    <message>
-        <source>Belgium</source>
-        <translation type="obsolete">België</translation>
-    </message>
-    <message>
-        <source>Bosnia</source>
-        <translation type="obsolete">Bosnië</translation>
-    </message>
-    <message>
-        <source>Canada</source>
-        <translation type="obsolete">Canada</translation>
-    </message>
-    <message>
-        <source>Czech Republic</source>
-        <translation type="obsolete">Tsjechische Republiek</translation>
-    </message>
-    <message>
-        <source>China</source>
-        <translation type="obsolete">China</translation>
-    </message>
-    <message>
-        <source>Costa Rica</source>
-        <translation type="obsolete">Costa Rica</translation>
-    </message>
-    <message>
-        <source>Switzerland</source>
-        <translation type="obsolete">Zwitserland</translation>
-    </message>
-    <message>
-        <source>Germany</source>
-        <translation type="obsolete">Duitsland</translation>
-    </message>
-    <message>
-        <source>Denmark</source>
-        <translation type="obsolete">Denemarken</translation>
-    </message>
-    <message>
-        <source>Algeria</source>
-        <translation type="obsolete">Algerije</translation>
-    </message>
-    <message>
-        <source>Spain</source>
-        <translation type="obsolete">Spanje</translation>
-    </message>
-    <message>
-        <source>Egypt</source>
-        <translation type="obsolete">Egypte</translation>
-    </message>
-    <message>
-        <source>Finland</source>
-        <translation type="obsolete">Finland</translation>
-    </message>
-    <message>
-        <source>France</source>
-        <translation type="obsolete">Frankrijk</translation>
-    </message>
-    <message>
-        <source>United Kingdom</source>
-        <translation type="obsolete">Verenigd Koninkrijk</translation>
-    </message>
-    <message>
-        <source>Greece</source>
-        <translation type="obsolete">Griekenland</translation>
-    </message>
-    <message>
-        <source>Georgia</source>
-        <translation type="obsolete">Georgië</translation>
-    </message>
-    <message>
-        <source>Hungary</source>
-        <translation type="obsolete">Hongarije</translation>
-    </message>
-    <message>
-        <source>Croatia</source>
-        <translation type="obsolete">Kroatië</translation>
-    </message>
-    <message>
-        <source>Italy</source>
-        <translation type="obsolete">Italië</translation>
-    </message>
-    <message>
-        <source>India</source>
-        <translation type="obsolete">India</translation>
-    </message>
-    <message>
-        <source>Israel</source>
-        <translation type="obsolete">Israël</translation>
-    </message>
-    <message>
-        <source>Ireland</source>
-        <translation type="obsolete">Ierland</translation>
-    </message>
-    <message>
-        <source>Iceland</source>
-        <translation type="obsolete">Ijsland</translation>
-    </message>
-    <message>
-        <source>Indonesia</source>
-        <translation type="obsolete">Indonesië</translation>
-    </message>
-    <message>
-        <source>Japan</source>
-        <translation type="obsolete">Japan</translation>
-    </message>
-    <message>
-        <source>South Korea</source>
-        <translation type="obsolete">Zuid-Korea</translation>
-    </message>
-    <message>
-        <source>Luxembourg</source>
-        <translation type="obsolete">Luxemburg</translation>
-    </message>
-    <message>
-        <source>Mexico</source>
-        <translation type="obsolete">Mexico</translation>
-    </message>
-    <message>
-        <source>Netherlands</source>
-        <translation type="obsolete">Nederland</translation>
-    </message>
-    <message>
-        <source>Norway</source>
-        <translation type="obsolete">Noorwegen</translation>
-    </message>
-    <message>
-        <source>New Zealand</source>
-        <translation type="obsolete">Nieuw-Zeeland</translation>
-    </message>
-    <message>
-        <source>Portugal</source>
-        <translation type="obsolete">Portugal</translation>
-    </message>
-    <message>
-        <source>Poland</source>
-        <translation type="obsolete">Polen</translation>
-    </message>
-    <message>
-        <source>Pakistan</source>
-        <translation type="obsolete">Pakistan</translation>
-    </message>
-    <message>
-        <source>Russia</source>
-        <translation type="obsolete">Rusland</translation>
-    </message>
-    <message>
-        <source>Sweden</source>
-        <translation type="obsolete">Zweden</translation>
-    </message>
-    <message>
-        <source>Slovakia</source>
-        <translation type="obsolete">Slovakije</translation>
-    </message>
-    <message>
-        <source>Singapore</source>
-        <translation type="obsolete">Singapore</translation>
-    </message>
-    <message>
-        <source>Slovenia</source>
-        <translation type="obsolete">Slovenië</translation>
-    </message>
-    <message>
-        <source>Taiwan</source>
-        <translation type="obsolete">Taiwan</translation>
-    </message>
-    <message>
-        <source>Turkey</source>
-        <translation type="obsolete">Turkije</translation>
-    </message>
-    <message>
-        <source>Thailand</source>
-        <translation type="obsolete">Thailand</translation>
-    </message>
-    <message>
-        <source>USA</source>
-        <translation type="obsolete">VSA</translation>
-    </message>
-    <message>
-        <source>Ukraine</source>
-        <translation type="obsolete">Oekraine</translation>
-    </message>
-    <message>
-        <source>South Africa</source>
-        <translation type="obsolete">Zuid-Afrika</translation>
-    </message>
-    <message>
-        <source>Saudi Arabia</source>
-        <translation type="obsolete">Saudi-Arabië</translation>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="278"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="290"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="311"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="320"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="330"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="340"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="360"/>
+        <source>Parsing Error: The filter file is not a valid PeerGuardian P2B file.</source>
+        <translation>Fout bij verwerken: het filterbestand is geen geldig PeerGuardian P2B-bestand.</translation>
     </message>
 </context>
 <context>
-    <name>HeadlessLoader</name>
+    <name>GeoIPDatabase</name>
     <message>
-        <source>Information</source>
-        <translation>Informatie</translation>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="101"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="131"/>
+        <source>Unsupported database file size.</source>
+        <translation>Database-bestandsgrootte niet ondersteund.</translation>
     </message>
     <message>
-        <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation>Om qBittorrent te besturen, gebruik de Web UI op http://localhost:%1</translation>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="236"/>
+        <source>Metadata error: &apos;%1&apos; entry not found.</source>
+        <translation>Metadata-fout: &apos;%1&apos; item niet gevonden.</translation>
     </message>
     <message>
-        <source>The Web UI administrator user name is: %1</source>
-        <translation>De Web UI administrator gebruikersnaam is: %1</translation>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="237"/>
+        <source>Metadata error: &apos;%1&apos; entry has invalid type.</source>
+        <translation>Metadata-fout: &apos;%1&apos; item heeft een ongeldig type.</translation>
     </message>
     <message>
-        <source>The Web UI administrator password is still the default one: %1</source>
-        <translation>Het Web UI administrator paswoord is still nog steeds het standaard: %1</translation>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="246"/>
+        <source>Unsupported database version: %1.%2</source>
+        <translation>Database-versie niet ondersteund: %1.%2</translation>
     </message>
     <message>
-        <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation>Dit is een beveiligingsrisico, gelieve te overwegen om u paswoord aan te passen via programmavoorkeuren.</translation>
-    </message>
-</context>
-<context>
-    <name>HttpConnection</name>
-    <message>
-        <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation>U IP-adres is geband na te veel mislukte autorisatiepogingen.</translation>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="253"/>
+        <source>Unsupported IP version: %1</source>
+        <translation>IP-versie niet ondersteund: %1</translation>
     </message>
     <message>
-        <source>D: %1/s - T: %2</source>
-        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>D: %1/s - O: %2</translation>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="260"/>
+        <source>Unsupported record size: %1</source>
+        <translation>Opnamegrootte niet ondersteund: %1</translation>
     </message>
     <message>
-        <source>U: %1/s - T: %2</source>
-        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>U: %1/s - O: %2</translation>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="273"/>
+        <source>Invalid database type: %1</source>
+        <translation>Ongeldig database-type: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="294"/>
+        <source>Database corrupted: no data section found.</source>
+        <translation>Database beschadigd: geen datasectie teruggevonden.</translation>
     </message>
 </context>
 <context>
     <name>HttpServer</name>
     <message>
+        <location filename="../webui/extra_translations.h" line="36"/>
         <source>File</source>
         <translation>Bestand</translation>
     </message>
     <message>
+        <location filename="../webui/extra_translations.h" line="37"/>
         <source>Edit</source>
-        <translation>Bewerk</translation>
+        <translation>Bewerken</translation>
     </message>
     <message>
+        <location filename="../webui/extra_translations.h" line="38"/>
         <source>Help</source>
         <translation>Help</translation>
     </message>
     <message>
-        <source>Delete from HD</source>
-        <translation type="obsolete">Verwijder van HD</translation>
+        <location filename="../webui/extra_translations.h" line="40"/>
+        <source>Exit qBittorrent</source>
+        <translation>qBittorrent afsluiten</translation>
     </message>
     <message>
-        <source>Download Torrents from their URL or Magnet link</source>
-        <translation>Download Torrent van hun URL of Magnet link</translation>
-    </message>
-    <message>
+        <location filename="../webui/extra_translations.h" line="43"/>
         <source>Only one link per line</source>
-        <translation>Slechts ééen link per lijn</translation>
+        <translation>Slechts één link per regel</translation>
     </message>
     <message>
+        <location filename="../webui/extra_translations.h" line="45"/>
         <source>Download</source>
         <translation>Download</translation>
     </message>
     <message>
-        <source>Download local torrent</source>
-        <translation>Download lokale torrent</translation>
+        <location filename="../webui/extra_translations.h" line="47"/>
+        <source>Global upload rate limit must be greater than 0 or disabled.</source>
+        <translation>Algemene begrenzing voor uploadsnelheid moet groter dan 0 of uitgeschakeld zijn.</translation>
     </message>
     <message>
-        <source>Torrent files were correctly added to download list.</source>
-        <translation>Torrentbestanden werden correct toegevoegd aan de downloadlijst.</translation>
+        <location filename="../webui/extra_translations.h" line="48"/>
+        <source>Global download rate limit must be greater than 0 or disabled.</source>
+        <translation>Algemene begrenzing voor downloadsnelheid moet groter dan 0 of uitgeschakeld zijn.</translation>
     </message>
     <message>
-        <source>Point to torrent file</source>
-        <translation>Wijst naar torrentbestand</translation>
+        <location filename="../webui/extra_translations.h" line="49"/>
+        <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
+        <translation>Alternatieve begrenzing voor uploadsnelheid moet groter dan 0 of uitgeschakeld zijn.</translation>
     </message>
     <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
-        <translation>Bent u zeker dat u de geselecteerde torrents wilt verwijderen van de overdrachtenlijst en harde schijf?</translation>
+        <location filename="../webui/extra_translations.h" line="50"/>
+        <source>Alternative download rate limit must be greater than 0 or disabled.</source>
+        <translation>Alternatieve begrenzing voor downloadsnelheid moet groter dan 0 of uitgeschakeld zijn.</translation>
     </message>
     <message>
-        <source>Download rate limit must be greater than 0 or disabled.</source>
-        <translation>Downloadsnelheidslimiet moet groter zijn dan 0 of uitgeschakeld.</translation>
+        <location filename="../webui/extra_translations.h" line="51"/>
+        <source>Maximum active downloads must be greater than -1.</source>
+        <translation>Maximaal aantal actieve downloads moet groter zijn dan -1.</translation>
     </message>
     <message>
-        <source>Upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Uploadsnelheidslimiet moet groter zijn dan 0 of uitgeschakeld.</translation>
+        <location filename="../webui/extra_translations.h" line="52"/>
+        <source>Maximum active uploads must be greater than -1.</source>
+        <translation>Maximaal aantal actieve uploads moet groter zijn dan -1.</translation>
     </message>
     <message>
+        <location filename="../webui/extra_translations.h" line="53"/>
+        <source>Maximum active torrents must be greater than -1.</source>
+        <translation>Maximaal aantal actieve torrents moet groter zijn dan -1.</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="54"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation>Maximum aantal verbindingen limiet moet groter zijn dan 0 of uitgeschakeld.</translation>
+        <translation>Limiet voor maximaal aantal verbindingen moet groter zijn dan 0 of uitgeschakeld.</translation>
     </message>
     <message>
+        <location filename="../webui/extra_translations.h" line="55"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Maximum aantal verbindingen per torrentlimiet moet groter zijn dan 0 of uitgeschakeld.</translation>
+        <translation>Limiet voor maximaal aantal verbindingen per torrent moet groter zijn dan 0 of uitgeschakeld.</translation>
     </message>
     <message>
+        <location filename="../webui/extra_translations.h" line="56"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Maximum aantal uploadslots per torrent limiet moet groter zijn dan 0 of uigeschakeld.</translation>
+        <translation>Limiet voor maximaal aantal uploadslots per torrent moet groter zijn dan 0 of uitgeschakeld.</translation>
     </message>
     <message>
+        <location filename="../webui/extra_translations.h" line="57"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>Onmogelijk om programmavoorkeuren op te slaan, qBittorrent is waarschijnlijk onbereikbaar.</translation>
     </message>
     <message>
+        <location filename="../webui/extra_translations.h" line="58"/>
         <source>Language</source>
         <translation>Taal</translation>
     </message>
     <message>
-        <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
-        <translation>De poort gebruikt voor inkomende verbindingen moet groter zijn dan 1024 en kleiner dan 65535.</translation>
+        <location filename="../webui/extra_translations.h" line="59"/>
+        <source>The port used for incoming connections must be between 1 and 65535.</source>
+        <translation>De poort gebruikt voor inkomende verbindingen moet liggen tussen 1 en 65535.</translation>
     </message>
     <message>
-        <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
-        <translation>De poort gebruikt voor de Web UI moet groter zijn dan 1024 en kleiner dan 65535.</translation>
+        <location filename="../webui/extra_translations.h" line="60"/>
+        <source>The port used for the Web UI must be between 1 and 65535.</source>
+        <translation>De poort gebruikt voor de Web-UI moet liggen tussen 1 en 65535.</translation>
     </message>
     <message>
-        <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>De Web UI-gebruikersnaam moet minstens 3 characters lang zijn.</translation>
+        <location filename="../webui/extra_translations.h" line="68"/>
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>Niet mogelijk om in te loggen, qBittorrent is waarschijnlijk onbereikbaar.</translation>
     </message>
     <message>
-        <source>The Web UI password must be at least 3 characters long.</source>
-        <translation>Het Web UI-paswoord moet minstens 3 characters lang zijn.</translation>
+        <location filename="../webui/extra_translations.h" line="69"/>
+        <source>Invalid Username or Password.</source>
+        <translation>Ongeldige gebruikersnaam of wachtwoord.</translation>
     </message>
     <message>
+        <location filename="../webui/extra_translations.h" line="70"/>
+        <source>Password</source>
+        <translation>Wachtwoord</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="71"/>
+        <source>Login</source>
+        <translation>Login</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="72"/>
+        <source>Upload Failed!</source>
+        <translation>Uploaden mislukt!</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="73"/>
+        <source>Original authors</source>
+        <translation>Oorspronkelijke auteurs</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="74"/>
+        <source>Upload limit:</source>
+        <translation>Uploadbegrenzing:</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="75"/>
+        <source>Download limit:</source>
+        <translation>Downloadbegrenzing:</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="76"/>
+        <source>Apply</source>
+        <translation>Toepassen</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="77"/>
+        <source>Add</source>
+        <translation>Toevoegen</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="87"/>
+        <source>Category:</source>
+        <translation>Categorie:</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="116"/>
+        <source>Upload Torrents</source>
+        <comment>Upload torrent files to qBittorent using WebUI</comment>
+        <translation>Torrents uploaden</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="78"/>
+        <source>All</source>
+        <translation>Alle</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="79"/>
+        <source>Downloading</source>
+        <translation>Downloaden</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="80"/>
+        <source>Seeding</source>
+        <translation>Seeden</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="81"/>
+        <source>Completed</source>
+        <translation>Voltooid</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="82"/>
+        <source>Resumed</source>
+        <translation>Hervat</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="83"/>
+        <source>Paused</source>
+        <translation>Gepauzeerd</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="84"/>
+        <source>Active</source>
+        <translation>Actief</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="85"/>
+        <source>Inactive</source>
+        <translation>Inactief</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="86"/>
+        <source>Save files to location:</source>
+        <translation>Bestanden opslaan in:</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="88"/>
+        <source>Cookie:</source>
+        <translation>Cookie:</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="89"/>
+        <source>Type folder here</source>
+        <translation>Map hier typen</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="90"/>
+        <source>Run an external program on torrent completion</source>
+        <translation>Een extern programma uitvoeren bij voltooien van de torrent</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="91"/>
+        <source>Enable bandwidth management (uTP)</source>
+        <translation>Bandbreedte-beheer inschakelen (uTP)</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="92"/>
+        <source>Apply rate limit to uTP connections</source>
+        <translation>Snelheidsbegrenzing toepassen op uTP-verbindingen</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="93"/>
+        <source>Alternative Global Rate Limits</source>
+        <translation>Alternatieve algemene snelheidsbegrenzingen</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="94"/>
+        <source>More information</source>
+        <translation>Meer informatie</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="95"/>
+        <source>Information about certificates</source>
+        <translation>Informatie over certificaten</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="96"/>
+        <source>Save Files to</source>
+        <translation>Bestanden opslaan in</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="97"/>
+        <source>Watch Folder</source>
+        <translation>Map in het oog houden</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="98"/>
+        <source>Default Folder</source>
+        <translation>Standaard map</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="103"/>
+        <source>from</source>
+        <comment>from time1 to time2</comment>
+        <translation>van</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="104"/>
+        <source>to</source>
+        <comment>from time1 to time2</comment>
+        <translation>tot</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="105"/>
+        <source>Other...</source>
+        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
+        <translation>Andere...</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="106"/>
+        <source>Every day</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Elke dag</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="107"/>
+        <source>Week days</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Weekdagen</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="108"/>
+        <source>Week ends</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Weekends</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="109"/>
+        <source>Monday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Maandag</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="110"/>
+        <source>Tuesday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Dinsdag</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="111"/>
+        <source>Wednesday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Woensdag</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="112"/>
+        <source>Thursday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Donderdag</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="113"/>
+        <source>Friday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Vrijdag</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="114"/>
+        <source>Saturday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Zaterdag</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="115"/>
+        <source>Sunday</source>
+        <comment>Schedule the use of alternative rate limits on ...</comment>
+        <translation>Zondag</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="102"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Gedownload</translation>
     </message>
     <message>
+        <location filename="../webui/extra_translations.h" line="39"/>
+        <source>Logout</source>
+        <translation>Afmelden</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="41"/>
+        <source>Download from URLs</source>
+        <translation>Downloaden uit url&apos;s</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="42"/>
+        <source>Download Torrents from their URLs or Magnet links</source>
+        <translation>Torrents downloaden via hun url&apos;s of magneetlinks</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="44"/>
+        <source>Upload local torrent</source>
+        <translation>Lokale torrent uploaden</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="46"/>
+        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
+        <translation>Bent u zeker dat u de geselecteerde torrents wilt verwijderen uit de overdrachtenlijst?</translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="61"/>
         <source>Save</source>
-        <translation>Sla op</translation>
+        <translation>Opslaan</translation>
     </message>
     <message>
+        <location filename="../webui/extra_translations.h" line="62"/>
         <source>qBittorrent client is not reachable</source>
-        <translation>qBittorrent client is niet bereikbaar</translation>
+        <translation>qBittorrent-client is niet bereikbaar</translation>
     </message>
     <message>
+        <location filename="../webui/extra_translations.h" line="63"/>
         <source>HTTP Server</source>
-        <translation>HTTP Server</translation>
+        <translation>Http-server</translation>
     </message>
     <message>
-        <source>Torrent path</source>
-        <translation>Torrent pad</translation>
-    </message>
-    <message>
-        <source>Torrent name</source>
-        <translation>Torrent naam</translation>
-    </message>
-    <message>
+        <location filename="../webui/extra_translations.h" line="64"/>
         <source>The following parameters are supported:</source>
         <translation>De volgende parameters worden ondersteund:</translation>
     </message>
-</context>
-<context>
-    <name>LegalNotice</name>
     <message>
-        <source>Legal Notice</source>
-        <translation>Juridische mededeling</translation>
+        <location filename="../webui/extra_translations.h" line="65"/>
+        <source>Torrent path</source>
+        <translation>Torrent-pad</translation>
     </message>
     <message>
-        <source>Legal notice</source>
-        <translation>Juridische mededeling</translation>
+        <location filename="../webui/extra_translations.h" line="66"/>
+        <source>Torrent name</source>
+        <translation>Torrentnaam</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Annuleren</translation>
-    </message>
-    <message>
-        <source>I Agree</source>
-        <translation>Ik ga akkoord</translation>
-    </message>
-    <message>
-        <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
-
-No further notices will be issued.</source>
-        <translation>qBittorrent is een bestanddelingsprogramma. Als u een torrent gebruikt zal zijn data beschikbaar worden gesteld voor anderen door het te uploaden. Elke inhoud die je sharet is alleen jouw verantwoordelijkheid.</translation>
-    </message>
-    <message>
-        <source>Press %1 key to accept and continue...</source>
-        <translation>Druk op de %1 toets om te accepteren en verder te gaan...</translation>
+        <location filename="../webui/extra_translations.h" line="67"/>
+        <source>qBittorrent has been shutdown.</source>
+        <translation>qBittorrent werd afgesloten.</translation>
     </message>
 </context>
 <context>
     <name>LineEdit</name>
     <message>
+        <location filename="../gui/lineedit/src/lineedit.cpp" line="35"/>
         <source>Clear the text</source>
-        <translation>Verwijder de tekst</translation>
+        <translation>Tekst wissen</translation>
     </message>
 </context>
 <context>
     <name>LogListWidget</name>
     <message>
+        <location filename="../gui/loglistwidget.cpp" line="48"/>
         <source>Copy</source>
         <translation>Kopiëren</translation>
+    </message>
+    <message>
+        <location filename="../gui/loglistwidget.cpp" line="49"/>
+        <source>Clear</source>
+        <translation>Wissen</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <source>&amp;File</source>
-        <translation>&amp;Bestand</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Help</translation>
-    </message>
-    <message>
+        <location filename="../gui/mainwindow.ui" line="43"/>
         <source>&amp;Edit</source>
         <translation>&amp;Bewerken</translation>
     </message>
     <message>
-        <source>Preview file</source>
-        <translation type="obsolete">Kijk vooruit op bestand</translation>
-    </message>
-    <message>
-        <source>Clear log</source>
-        <translation type="obsolete">Wist log</translation>
-    </message>
-    <message>
-        <source>Decrease priority</source>
-        <translation>Prioriteit verlagen</translation>
-    </message>
-    <message>
-        <source>Increase priority</source>
-        <translation>Prioriteit verhogen</translation>
-    </message>
-    <message>
+        <location filename="../gui/mainwindow.ui" line="66"/>
         <source>&amp;Tools</source>
-        <translation>&amp;Tools</translation>
+        <translation>&amp;Extra</translation>
     </message>
     <message>
+        <location filename="../gui/mainwindow.ui" line="87"/>
+        <source>&amp;File</source>
+        <translation>&amp;Bestand</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="56"/>
+        <source>&amp;Help</source>
+        <translation>&amp;Help</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="70"/>
+        <source>On Downloads &amp;Done</source>
+        <translation>Wanneer &amp;downloads voltooid zijn</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="96"/>
         <source>&amp;View</source>
-        <translation>&amp;Weergave</translation>
+        <translation>&amp;Beeld</translation>
     </message>
     <message>
-        <source>&amp;Add File...</source>
-        <translation type="obsolete">&amp;Voeg Bestand toe...</translation>
-    </message>
-    <message>
+        <location filename="../gui/mainwindow.ui" line="176"/>
         <source>&amp;Options...</source>
         <translation>&amp;Opties...</translation>
     </message>
     <message>
-        <source>Add &amp;URL...</source>
-        <translation type="obsolete">Voeg &amp;URL toe...</translation>
+        <location filename="../gui/mainwindow.ui" line="186"/>
+        <source>&amp;Resume</source>
+        <translation>&amp;Hervatten</translation>
     </message>
     <message>
-        <source>Torrent &amp;creator</source>
-        <translation>Torrent &amp;creator</translation>
+        <location filename="../gui/mainwindow.ui" line="209"/>
+        <source>Torrent &amp;Creator</source>
+        <translation>Torrent &amp;aanmaken</translation>
     </message>
     <message>
-        <source>Set upload limit...</source>
-        <translation>Stel uploadlimiet in...</translation>
+        <location filename="../gui/mainwindow.ui" line="214"/>
+        <source>Set Upload Limit...</source>
+        <translation>Uploadbegrenzing instellen...</translation>
     </message>
     <message>
-        <source>Set download limit...</source>
-        <translation>stel downloadlimiet in...</translation>
+        <location filename="../gui/mainwindow.ui" line="219"/>
+        <source>Set Download Limit...</source>
+        <translation>Downloadbegrenzing instellen...</translation>
     </message>
     <message>
-        <source>Set global download limit...</source>
-        <translation>Stel globale downloadlimiet in...</translation>
+        <location filename="../gui/mainwindow.ui" line="229"/>
+        <source>Set Global Download Limit...</source>
+        <translation>Algemene downloadbegrenzing instellen...</translation>
     </message>
     <message>
-        <source>Set global upload limit...</source>
-        <translation>Stel globale uploadlimiet in...</translation>
+        <location filename="../gui/mainwindow.ui" line="234"/>
+        <source>Set Global Upload Limit...</source>
+        <translation>Algemene uploadbegrenzing instellen...</translation>
     </message>
     <message>
-        <source>&amp;Log viewer...</source>
-        <translation type="obsolete">&amp;Log viewer...</translation>
+        <location filename="../gui/mainwindow.ui" line="239"/>
+        <source>Minimum Priority</source>
+        <translation>Laagste prioriteit</translation>
     </message>
     <message>
-        <source>Top &amp;tool bar</source>
+        <location filename="../gui/mainwindow.ui" line="247"/>
+        <source>Top Priority</source>
+        <translation>Hoogste prioriteit</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="255"/>
+        <source>Decrease Priority</source>
+        <translation>Prioriteit verlagen</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="263"/>
+        <source>Increase Priority</source>
+        <translation>Prioriteit verhogen</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="274"/>
+        <location filename="../gui/mainwindow.ui" line="277"/>
+        <source>Alternative Speed Limits</source>
+        <translation>Alternatieve snelheidsbegrenzing</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="285"/>
+        <source>&amp;Top Toolbar</source>
         <translation>Bovenste &amp;werkbalk</translation>
     </message>
     <message>
-        <source>Display top tool bar</source>
-        <translation>Toon bovenste werkbalk</translation>
+        <location filename="../gui/mainwindow.ui" line="288"/>
+        <source>Display Top Toolbar</source>
+        <translation>Bovenste werkbalk weergeven</translation>
     </message>
     <message>
-        <source>&amp;Speed in title bar</source>
+        <location filename="../gui/mainwindow.ui" line="296"/>
+        <source>S&amp;peed in Title Bar</source>
         <translation>&amp;Snelheid in titelbalk</translation>
     </message>
     <message>
-        <source>Show transfer speed in title bar</source>
-        <translation>Toon overdrachtsnelheid in titelbar</translation>
+        <location filename="../gui/mainwindow.ui" line="299"/>
+        <source>Show Transfer Speed in Title Bar</source>
+        <translation>Overdrachtsnelheid weergeven in titelbalk</translation>
     </message>
     <message>
-        <source>Alternative speed limits</source>
-        <translation>Alternative snelheidslimieten</translation>
+        <location filename="../gui/mainwindow.ui" line="307"/>
+        <source>&amp;RSS Reader</source>
+        <translation>&amp;RSS-reader</translation>
     </message>
     <message>
+        <location filename="../gui/mainwindow.ui" line="315"/>
+        <source>Search &amp;Engine</source>
+        <translation>Zoek&amp;machine</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="320"/>
+        <source>L&amp;ock qBittorrent</source>
+        <translation>qBittorrent vergrendelen</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="331"/>
+        <source>Do&amp;nate!</source>
+        <translation>Do&amp;neren!</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="339"/>
+        <source>R&amp;esume All</source>
+        <translation>All&amp;es hervatten</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="412"/>
+        <source>Manage Cookies...</source>
+        <translation>Cookies beheren...</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="415"/>
+        <source>Manage stored network cookies</source>
+        <translation>Opgeslagen netwerkcookies beheren</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="431"/>
+        <source>Normal Messages</source>
+        <translation>Normale berichten</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="439"/>
+        <source>Information Messages</source>
+        <translation>Informatieberichten</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="447"/>
+        <source>Warning Messages</source>
+        <translation>Waarschuwingsberichten</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="455"/>
+        <source>Critical Messages</source>
+        <translation>Kritieke berichten</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="100"/>
+        <source>&amp;Log</source>
+        <translation>&amp;Log</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="352"/>
+        <source>&amp;Exit qBittorrent</source>
+        <translation>qBittorrent afsluit&amp;en</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="360"/>
+        <source>&amp;Suspend System</source>
+        <translation>&amp;Slaapstand</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="368"/>
+        <source>&amp;Hibernate System</source>
+        <translation>&amp;Sluimerstand</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="376"/>
+        <source>S&amp;hutdown System</source>
+        <translation>&amp;Afsluiten</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="384"/>
+        <source>&amp;Disabled</source>
+        <translation>Uitgeschakel&amp;d</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="399"/>
+        <source>&amp;Statistics</source>
+        <translation>&amp;Statistieken</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="404"/>
+        <source>Check for Updates</source>
+        <translation>Controleren op updates</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="407"/>
+        <source>Check for Program Updates</source>
+        <translation>Op programma-updates controleren</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="181"/>
         <source>&amp;About</source>
         <translation>&amp;Over</translation>
     </message>
     <message>
+        <location filename="../gui/mainwindow.ui" line="191"/>
         <source>&amp;Pause</source>
-        <translation>&amp;Pauzeer</translation>
+        <translation>&amp;Pauzeren</translation>
     </message>
     <message>
+        <location filename="../gui/mainwindow.ui" line="196"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Verwijder</translation>
+        <translation>&amp;Verwijderen</translation>
     </message>
     <message>
+        <location filename="../gui/mainwindow.ui" line="344"/>
         <source>P&amp;ause All</source>
-        <translation>P&amp;auzeer alles</translation>
+        <translation>Alles p&amp;auzeren</translation>
     </message>
     <message>
-        <source>Visit &amp;Website</source>
-        <translation>Bezoek de &amp;Website</translation>
+        <location filename="../gui/mainwindow.ui" line="163"/>
+        <source>&amp;Add Torrent File...</source>
+        <translation>Torrentbest&amp;and toevoegen...</translation>
     </message>
     <message>
-        <source>Report a &amp;bug</source>
-        <translation>Rapporteer een &amp;bug</translation>
+        <location filename="../gui/mainwindow.ui" line="166"/>
+        <source>Open</source>
+        <translation>Openen</translation>
     </message>
     <message>
+        <location filename="../gui/mainwindow.ui" line="171"/>
+        <source>E&amp;xit</source>
+        <translation>Slu&amp;iten</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="204"/>
+        <source>Open URL</source>
+        <translation>URL openen</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="224"/>
         <source>&amp;Documentation</source>
         <translation>&amp;Documentatie</translation>
     </message>
     <message>
-        <source>&amp;RSS reader</source>
-        <translation>&amp;RSS reader</translation>
+        <location filename="../gui/mainwindow.ui" line="323"/>
+        <source>Lock</source>
+        <translation>Vergrendelen</translation>
     </message>
     <message>
-        <source>Search &amp;engine</source>
-        <translation>Zoek &amp;machine</translation>
+        <location filename="../gui/mainwindow.ui" line="389"/>
+        <location filename="../gui/mainwindow.ui" line="423"/>
+        <location filename="../gui/mainwindow.cpp" line="1401"/>
+        <source>Show</source>
+        <translation>Weergeven</translation>
     </message>
     <message>
-        <source>Log viewer</source>
-        <translation type="obsolete">Log viewer</translation>
+        <location filename="../gui/mainwindow.cpp" line="1587"/>
+        <source>Check for program updates</source>
+        <translation>Op programma-updates controleren</translation>
     </message>
     <message>
-        <source>Lock qBittorrent</source>
-        <translation>Vergrendel qBittorrent</translation>
+        <location filename="../gui/mainwindow.ui" line="201"/>
+        <source>Add Torrent &amp;Link...</source>
+        <translation>Torrent-link toevoegen</translation>
     </message>
     <message>
-        <source>Ctrl+L</source>
-        <translation>Ctrl+L</translation>
-    </message>
-    <message>
-        <source>Shutdown computer when downloads complete</source>
-        <translation type="obsolete">Sluit de computer af wanneer de downloads voltooid zijn</translation>
-    </message>
-    <message>
-        <source>&amp;Resume</source>
-        <translation>&amp;Herneem</translation>
-    </message>
-    <message>
-        <source>R&amp;esume All</source>
-        <translation>H&amp;erneem alles</translation>
-    </message>
-    <message>
-        <source>Shutdown qBittorrent when downloads complete</source>
-        <translation type="obsolete">Sluit qBittorrent af wanneer de downloads voltooid zijn</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation>Afsluiten</translation>
-    </message>
-    <message>
-        <source>Import torrent...</source>
-        <translation>Importeer torrent...</translation>
-    </message>
-    <message>
-        <source>Donate money</source>
-        <translation>Doneer geld</translation>
-    </message>
-    <message>
+        <location filename="../gui/mainwindow.ui" line="334"/>
         <source>If you like qBittorrent, please donate!</source>
         <translation>Als u qBittorrent goed vindt, gelieve te doneren!</translation>
     </message>
     <message>
-        <source>qBittorrent %1</source>
-        <comment>e.g: qBittorrent v0.x</comment>
-        <translation>qBittorrent %1</translation>
-    </message>
-    <message>
-        <source>Set the password...</source>
-        <translation>Stel paswoord in...</translation>
-    </message>
-    <message>
-        <source>Transfers</source>
-        <translation>Overdrachten</translation>
-    </message>
-    <message>
-        <source>Torrent file association</source>
-        <translation>Torrentbestand associatie</translation>
-    </message>
-    <message>
-        <source>qBittorrent is not the default application to open torrent files or Magnet links.
-Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation>qBittorrent is niet het standaardprogramma om torrentbestanden of Magnetlinks te openen.
-Wilt u qBittorrent associëren met torrentbestanden en Magnetlinks?</translation>
-    </message>
-    <message>
-        <source>UI lock password</source>
-        <translation>UI lock paswoord</translation>
-    </message>
-    <message>
-        <source>Please type the UI lock password:</source>
-        <translation>Gelieve het UI lock paswoord op te geven:</translation>
-    </message>
-    <message>
-        <source>Password update</source>
-        <translation>Paswoord update</translation>
-    </message>
-    <message>
-        <source>The UI lock password has been successfully updated</source>
-        <translation>Het UI lock paswoord is succesvol geupdated</translation>
-    </message>
-    <message>
-        <source>RSS</source>
-        <translation>RSS</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation>Zoeken</translation>
-    </message>
-    <message>
-        <source>Transfers (%1)</source>
-        <translation>Overdrachten (%1)</translation>
-    </message>
-    <message>
-        <source>Download completion</source>
-        <translation>Download voltooid</translation>
-    </message>
-    <message>
-        <source>%1 has finished downloading.</source>
-        <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation>%1 is klaar met downloaden.</translation>
-    </message>
-    <message>
-        <source>I/O Error</source>
-        <comment>i.e: Input/Output Error</comment>
-        <translation>I/O Fout</translation>
-    </message>
-    <message>
-        <source>An I/O error occured for torrent %1.
- Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
- Reason: disk is full.</comment>
-        <translation>Een I/O fout trad op voor torrent %1. Reden: %2</translation>
-    </message>
-    <message>
-        <source>Alt+1</source>
-        <comment>shortcut to switch to first tab</comment>
-        <translation>Alt+1</translation>
-    </message>
-    <message>
-        <source>Alt+2</source>
-        <comment>shortcut to switch to third tab</comment>
-        <translation>Alt+2</translation>
-    </message>
-    <message>
-        <source>Ctrl+F</source>
-        <comment>shortcut to switch to search tab</comment>
-        <translation>Ctrl+F</translation>
-    </message>
-    <message>
-        <source>Alt+3</source>
-        <comment>shortcut to switch to fourth tab</comment>
-        <translation>Alt+3</translation>
-    </message>
-    <message>
-        <source>Recursive download confirmation</source>
-        <translation>Recursieve donwloadbevestiging</translation>
-    </message>
-    <message>
-        <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation>De torrent %1 bevat torrentbestanden, wilt u verdergaan met hun download?</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation>Ja</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation>Nee</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation>Nooit</translation>
-    </message>
-    <message>
-        <source>Url download error</source>
-        <translation>Url download fout</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation>Kon bestand niet downloaden vanaf url: %1, reden: %2.</translation>
-    </message>
-    <message>
-        <source>Global Upload Speed Limit</source>
-        <translation>Globale uploadsnelheidslimiet</translation>
-    </message>
-    <message>
-        <source>Global Download Speed Limit</source>
-        <translation>Globale downloadsnelheidslimiet</translation>
-    </message>
-    <message>
-        <source>Invalid password</source>
-        <translation>Ongeldig paswoord</translation>
-    </message>
-    <message>
-        <source>The password is invalid</source>
-        <translation>Het paswoord is ongeldig</translation>
-    </message>
-    <message>
-        <source>Exiting qBittorrent</source>
-        <translation>qBittorrent wordt afgesloten</translation>
-    </message>
-    <message>
-        <source>Some files are currently transferring.
-Are you sure you want to quit qBittorrent?</source>
-        <translation>Sommige bestanden worden momenteel overgedragen.
-Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
-    </message>
-    <message>
-        <source>Always</source>
-        <translation>Altijd</translation>
-    </message>
-    <message>
-        <source>Open Torrent Files</source>
-        <translation>Open Torrent bestanden</translation>
-    </message>
-    <message>
-        <source>Torrent Files</source>
-        <translation>Torrent bestanden</translation>
-    </message>
-    <message>
-        <source>Options were saved successfully.</source>
-        <translation>Opties zijn succesvol opgeslagen.</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
-    </message>
-    <message>
-        <source>DL speed: %1 KiB/s</source>
-        <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation>DL snelheid: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>UP speed: %1 KiB/s</source>
-        <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>UP snelheid: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
-        <comment>%1 is qBittorrent version</comment>
-        <translation type="obsolete">qBittorrent %1 (Down: %2/s, Up: %3/s)</translation>
-    </message>
-    <message>
-        <source>A newer version is available</source>
-        <translation>Er is een nieuwere versie beschikbaar</translation>
-    </message>
-    <message>
-        <source>A newer version of qBittorrent is available on Sourceforge.
-Would you like to update qBittorrent to version %1?</source>
-        <translation>Er is een nieuwere versie van qBittorrent beschikbaar op Sourceforge.
-Wil u qBittorrent updaten naar versie %1?</translation>
-    </message>
-    <message>
-        <source>Impossible to update qBittorrent</source>
-        <translation>Onmogelijk om qBittorrent up te daten</translation>
-    </message>
-    <message>
-        <source>qBittorrent failed to update, reason: %1</source>
-        <translation>qBittorrent slaagde er niet in om up te daten, reason: %1</translation>
-    </message>
-    <message>
-        <source>&amp;Add torrent file...</source>
-        <translation>&amp;Voeg torrent bestand toe...</translation>
-    </message>
-    <message>
-        <source>Add &amp;link to torrent...</source>
-        <translation>Voeg &amp;link toe aan torrent...</translation>
-    </message>
-    <message>
-        <source>Import existing torrent...</source>
-        <translation>Importeer bestaande torrent...</translation>
-    </message>
-    <message>
-        <source>Execution &amp;Log</source>
-        <translation>Uitvoerings&amp;log</translation>
-    </message>
-    <message>
+        <location filename="../gui/mainwindow.cpp" line="1615"/>
         <source>Execution Log</source>
         <translation>Uitvoeringslog</translation>
     </message>
     <message>
-        <source>Auto-Shutdown on downloads completion</source>
-        <translation>Autmatisch aflsuiten als de downloads volledig zijn</translation>
+        <location filename="../gui/mainwindow.cpp" line="569"/>
+        <source>Clear the password</source>
+        <translation>Wachtwoord wissen</translation>
     </message>
     <message>
-        <source>Exit qBittorrent</source>
-        <translation>Sluit qBittorrent</translation>
+        <location filename="../gui/mainwindow.cpp" line="210"/>
+        <source>Filter torrent list...</source>
+        <translation>Torrentlijst filteren...</translation>
     </message>
     <message>
-        <source>Suspend system</source>
-        <translation>Schors systeem</translation>
+        <location filename="../gui/mainwindow.cpp" line="180"/>
+        <source>&amp;Set Password</source>
+        <translation>Wachtwoord in&amp;stellen</translation>
     </message>
     <message>
-        <source>Shutdown system</source>
-        <translation>Sluit het systeem af</translation>
+        <location filename="../gui/mainwindow.cpp" line="182"/>
+        <source>&amp;Clear Password</source>
+        <translation>Wachtwoord &amp;wissen</translation>
     </message>
     <message>
-        <source>Disabled</source>
-        <translation>Uitgeschakeld</translation>
+        <location filename="../gui/mainwindow.cpp" line="228"/>
+        <source>Transfers</source>
+        <translation>Overdrachten</translation>
     </message>
     <message>
+        <location filename="../gui/mainwindow.cpp" line="382"/>
+        <source>Torrent file association</source>
+        <translation>Torrent-bestandsassociatie</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="383"/>
+        <source>qBittorrent is not the default application to open torrent files or Magnet links.
+Do you want to associate qBittorrent to torrent files and Magnet links?</source>
+        <translation>qBittorrent is niet het standaardprogramma om torrentbestanden of magneetlinks te openen.
+Wilt u qBittorrent koppelen met torrentbestanden en magneetlinks?</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="458"/>
+        <source>Icons Only</source>
+        <translation>Alleen pictogrammen</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="460"/>
+        <source>Text Only</source>
+        <translation>Alleen tekst</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="462"/>
+        <source>Text Alongside Icons</source>
+        <translation>Tekst naast pictogrammen</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="464"/>
+        <source>Text Under Icons</source>
+        <translation>Tekst onder pictogrammen</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="466"/>
+        <source>Follow System Style</source>
+        <translation>Systeemstijl volgen</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="553"/>
+        <location filename="../gui/mainwindow.cpp" line="581"/>
+        <location filename="../gui/mainwindow.cpp" line="888"/>
+        <source>UI lock password</source>
+        <translation>Wachtwoord UI-vergrendeling</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="553"/>
+        <location filename="../gui/mainwindow.cpp" line="581"/>
+        <location filename="../gui/mainwindow.cpp" line="888"/>
+        <source>Please type the UI lock password:</source>
+        <translation>Geef het wachtwoord voor UI-vergrendeling op:</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="557"/>
         <source>The password should contain at least 3 characters</source>
         <translation>Het wachtwoord moet minstens 3 tekens bevatten</translation>
     </message>
     <message>
-        <source>Show</source>
-        <translation>Toon</translation>
+        <location filename="../gui/mainwindow.cpp" line="562"/>
+        <source>Password update</source>
+        <translation>Wachtwoord-update</translation>
     </message>
     <message>
-        <source>Hide</source>
-        <translation>Verberg</translation>
+        <location filename="../gui/mainwindow.cpp" line="562"/>
+        <source>The UI lock password has been successfully updated</source>
+        <translation>Het wachtwoord voor UI-vergrendeling is succesvol bijgewerkt</translation>
     </message>
     <message>
-        <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
+        <location filename="../gui/mainwindow.cpp" line="569"/>
+        <source>Are you sure you want to clear the password?</source>
+        <translation>Weet u zeker dat u het wachtwoord wilt wissen?</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="621"/>
+        <source>Search</source>
+        <translation>Zoeken</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="632"/>
+        <source>Transfers (%1)</source>
+        <translation>Overdrachten (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="722"/>
+        <source>Error</source>
+        <translation>Fout</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="722"/>
+        <source>Failed to add torrent: %1</source>
+        <translation>Toevoegen van torrent mislukt: %1</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="729"/>
+        <source>Torrent added</source>
+        <translation>Torrent toegevoegd</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="729"/>
+        <source>&apos;%1&apos; was added.</source>
+        <comment>e.g: xxx.avi was added.</comment>
+        <translation>&apos;%1&apos; werd toegevoegd.</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="735"/>
+        <source>Download completion</source>
+        <translation>Gedownload</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="741"/>
+        <source>I/O Error</source>
+        <comment>i.e: Input/Output Error</comment>
+        <translation>I/O-fout</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="802"/>
+        <source>Recursive download confirmation</source>
+        <translation>Recursieve donwloadbevestiging</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="803"/>
+        <source>Yes</source>
+        <translation>Ja</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="804"/>
+        <source>No</source>
+        <translation>Nee</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="805"/>
+        <source>Never</source>
+        <translation>Nooit</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="825"/>
+        <source>Global Upload Speed Limit</source>
+        <translation>Algemene uploadsnelheidbegrenzing</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="841"/>
+        <source>Global Download Speed Limit</source>
+        <translation>Algemene downloadsnelheidbegrenzing</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="991"/>
+        <source>&amp;No</source>
+        <translation>&amp;Nee</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="992"/>
+        <source>&amp;Yes</source>
+        <translation>&amp;Ja</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="993"/>
+        <source>&amp;Always Yes</source>
+        <translation>&amp;Altijd ja</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1488"/>
+        <source>Python found in %1</source>
+        <translation>Python teruggevonden in %1</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1506"/>
+        <source>Old Python Interpreter</source>
+        <translation>Oude Python-interpreter</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1506"/>
+        <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
+Minimum requirement: 2.7.9 / 3.3.0.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1571"/>
+        <source>qBittorrent Update Available</source>
+        <translation>qBittorrent-update beschikbaar</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1572"/>
+        <source>A new version is available.
+Do you want to download %1?</source>
+        <translation>Er is een nieuwe versie beschikbaar.
+Wilt u %1 downloaden?</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1581"/>
+        <source>Already Using the Latest qBittorrent Version</source>
+        <translation>De laatste versie van qBittorrent wordt al gebruikt</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1516"/>
+        <source>Undetermined Python version</source>
+        <translation>Niet-bepaalde Pythonversie</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="735"/>
+        <source>&apos;%1&apos; has finished downloading.</source>
+        <comment>e.g: xxx.avi has finished downloading.</comment>
+        <translation>&apos;%1&apos; is klaar met downloaden.</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="741"/>
+        <source>An I/O error occurred for torrent &apos;%1&apos;.
+ Reason: %2</source>
+        <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
+ Reason: disk is full.</comment>
+        <translation>Een I/O fout trad op voor torrent &apos;%1&apos;.
+Reden: %2</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="802"/>
+        <source>The torrent &apos;%1&apos; contains torrent files, do you want to proceed with their download?</source>
+        <translation>Torrent &apos;%1&apos; bevat torrentbestanden, wilt u verdergaan met hun download?</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="817"/>
+        <source>Couldn&apos;t download file at URL &apos;%1&apos;, reason: %2.</source>
+        <translation>Kon bestand niet downloaden vanaf URL &apos;%1&apos;, reden: %2.</translation>
+    </message>
+    <message>
+        <source>Your Python version %1 is outdated. Please upgrade to latest version for search engines to work. Minimum requirement: 2.7.0/3.3.0.</source>
+        <translation type="obsolete">Uw Pythonversie %1 is verouderd. Gelieve bij te werken naar de laatste versie om zoekmachines te laten werken. Minimale vereiste: 2.7.0/3.3.0.</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1516"/>
+        <source>Couldn&apos;t determine your Python version (%1). Search engine disabled.</source>
+        <translation>Kon uw Pythonversie niet bepalen (%1). Zoekmachine uitgeschakeld.</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1527"/>
+        <location filename="../gui/mainwindow.cpp" line="1539"/>
+        <source>Missing Python Interpreter</source>
+        <translation>Ontbrekende Python-interpreter</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1528"/>
+        <source>Python is required to use the search engine but it does not seem to be installed.
+Do you want to install it now?</source>
+        <translation>Python is vereist om de zoekmachine te gebruiken maar dit lijkt niet geïnstalleerd.
+Wilt u het nu installeren?</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1539"/>
+        <source>Python is required to use the search engine but it does not seem to be installed.</source>
+        <translation>Python is vereist om de zoekmachine te gebruiken maar dit lijkt niet geïnstalleerd.</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1582"/>
+        <source>No updates available.
+You are already using the latest version.</source>
+        <translation>Geen updates beschikbaar.
+U gebruikt de laatste versie al.</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1586"/>
+        <source>&amp;Check for Updates</source>
+        <translation>&amp;Controleren op updates</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1729"/>
+        <source>Checking for Updates...</source>
+        <translation>Controleren op updates...</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1730"/>
+        <source>Already checking for program updates in the background</source>
+        <translation>Reeds aan het controleren op programma-updates op de achtergrond</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1745"/>
+        <source>Python found in &apos;%1&apos;</source>
+        <translation>Python teruggevonden in &apos;%1&apos;</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1798"/>
+        <source>Download error</source>
+        <translation>Downloadfout</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1798"/>
+        <source>Python setup could not be downloaded, reason: %1.
+Please install it manually.</source>
+        <translation>Python-installatie kon niet gedownload worden, reden: %1.
+Gelieve het manueel te installeren.</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="557"/>
+        <location filename="../gui/mainwindow.cpp" line="903"/>
+        <source>Invalid password</source>
+        <translation>Ongeldig wachtwoord</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="599"/>
+        <location filename="../gui/mainwindow.cpp" line="611"/>
+        <source>RSS (%1)</source>
+        <translation>RSS (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="817"/>
+        <source>URL download error</source>
+        <translation>URL-downloadfout</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="903"/>
+        <source>The password is invalid</source>
+        <translation>Het wachtwoord is ongeldig</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1291"/>
+        <location filename="../gui/mainwindow.cpp" line="1298"/>
+        <source>DL speed: %1</source>
+        <comment>e.g: Download speed: 10 KiB/s</comment>
+        <translation>Downloadsnelheid: %1</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1294"/>
+        <location filename="../gui/mainwindow.cpp" line="1300"/>
+        <source>UP speed: %1</source>
+        <comment>e.g: Upload speed: 10 KiB/s</comment>
+        <translation>Uploadsnelheid: %1</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1306"/>
+        <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[D: %1/s, U: %2/s] qBittorrent %3</translation>
+        <translation>[D: %1, U: %2] qBittorrent %3</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1401"/>
+        <source>Hide</source>
+        <translation>Verbergen</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="988"/>
+        <source>Exiting qBittorrent</source>
+        <translation>qBittorrent afsluiten</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="989"/>
+        <source>Some files are currently transferring.
+Are you sure you want to quit qBittorrent?</source>
+        <translation>Er worden momenteel een aantal bestanden overgedragen.
+Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1132"/>
+        <source>Open Torrent Files</source>
+        <translation>Torrentbestanden openen</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1133"/>
+        <source>Torrent Files</source>
+        <translation>Torrentbestanden</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1168"/>
+        <source>Options were saved successfully.</source>
+        <translation>Opties zijn succesvol opgeslagen.</translation>
     </message>
 </context>
 <context>
-    <name>PeerAdditionDlg</name>
+    <name>Net::DNSUpdater</name>
     <message>
-        <source>Invalid IP</source>
-        <translation>Ongeldig IP</translation>
+        <location filename="../base/net/dnsupdater.cpp" line="197"/>
+        <source>Your dynamic DNS was successfully updated.</source>
+        <translation>Uw dynamische DNS werd succesvol bijgewerkt.</translation>
     </message>
     <message>
-        <source>The IP you provided is invalid.</source>
-        <translation>Het gegeven IP is ongeldig.</translation>
+        <location filename="../base/net/dnsupdater.cpp" line="202"/>
+        <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
+        <translation>Dynamische DNS fout: de dienst is tijdelijk niet beschikbaar, er wordt opnieuw geprobeerd binnen 30 minuten.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/dnsupdater.cpp" line="212"/>
+        <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
+        <translation>Dynamische DNS fout: opgegeven hostnaam bestaat niet bij de opgegeven account.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/dnsupdater.cpp" line="218"/>
+        <source>Dynamic DNS error: Invalid username/password.</source>
+        <translation>Dynamische DNS fout: ongeldige gebruikersnaam/wachtwoord.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/dnsupdater.cpp" line="224"/>
+        <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
+        <translation>Dynamische DNS fout: qBittorrent werd geblacklist door deze dienst, gelieve de bug te rapporteren op http://bugs.qbittorrent.org.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/dnsupdater.cpp" line="231"/>
+        <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
+        <translation>Dynamische DNS fout: %1 werd teruggegeven door de dienst, gelieve de bug te rapporteren op http://bugs.qbittorrent.org.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/dnsupdater.cpp" line="238"/>
+        <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
+        <translation>Dynamische DNS fout: uw gebruikersnaam werd geblokkeerd door misbruik.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/dnsupdater.cpp" line="259"/>
+        <source>Dynamic DNS error: supplied domain name is invalid.</source>
+        <translation>Dynamische DNS fout: opgegeven domeinnaam is ongeldig.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/dnsupdater.cpp" line="270"/>
+        <source>Dynamic DNS error: supplied username is too short.</source>
+        <translation>Dynamische DNS fout: opgegeven gebruikersnaam is te kort.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/dnsupdater.cpp" line="281"/>
+        <source>Dynamic DNS error: supplied password is too short.</source>
+        <translation>Dynamische DNS fout: opgegeven wachtwoord is te kort.</translation>
     </message>
 </context>
 <context>
-    <name>PeerListDelegate</name>
+    <name>Net::DownloadHandler</name>
     <message>
-        <source>/s</source>
-        <comment>/second (i.e. per second)</comment>
-        <translation>/s</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="104"/>
+        <source>I/O Error</source>
+        <translation>I/O-fout</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadhandler.cpp" line="117"/>
+        <source>The file size is %1. It exceeds the download limit of %2.</source>
+        <translation>De bestandsgrootte is %1. Ze overschrijdt de downloadlimiet van %2.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadhandler.cpp" line="186"/>
+        <source>Unexpected redirect to magnet URI.</source>
+        <translation>Onverwachte omleiding naar magneetlink.</translation>
+    </message>
+</context>
+<context>
+    <name>Net::GeoIPManager</name>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="104"/>
+        <location filename="../base/net/geoipmanager.cpp" line="431"/>
+        <source>GeoIP database loaded. Type: %1. Build time: %2.</source>
+        <translation>GeoIP-database geladen. Type: %1. Build-tijd: %2.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="108"/>
+        <location filename="../base/net/geoipmanager.cpp" line="452"/>
+        <source>Couldn&apos;t load GeoIP database. Reason: %1</source>
+        <translation>Kon GeoIP-database niet laden. Reden: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="380"/>
+        <source>Venezuela, Bolivarian Republic of</source>
+        <translation>Venezuela</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="383"/>
+        <source>Viet Nam</source>
+        <translation>Vietnam</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="393"/>
+        <location filename="../base/net/geoipmanager.cpp" line="397"/>
+        <source>N/A</source>
+        <translation>N/B</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="143"/>
+        <source>Andorra</source>
+        <translation>Andorra</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="144"/>
+        <source>United Arab Emirates</source>
+        <translation>Verenigde Arabische Emiraten</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="145"/>
+        <source>Afghanistan</source>
+        <translation>Afghanistan</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="146"/>
+        <source>Antigua and Barbuda</source>
+        <translation>Antigua en Barbuda</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="147"/>
+        <source>Anguilla</source>
+        <translation>Anguilla</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="148"/>
+        <source>Albania</source>
+        <translation>Albanië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="149"/>
+        <source>Armenia</source>
+        <translation>Armenië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="150"/>
+        <source>Angola</source>
+        <translation>Angola</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="151"/>
+        <source>Antarctica</source>
+        <translation>Antarctica</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="152"/>
+        <source>Argentina</source>
+        <translation>Argentinië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="153"/>
+        <source>American Samoa</source>
+        <translation>Amerikaans-Samoa</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="154"/>
+        <source>Austria</source>
+        <translation>Oostenrijk</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="155"/>
+        <source>Australia</source>
+        <translation>Australië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="156"/>
+        <source>Aruba</source>
+        <translation>Aruba</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="158"/>
+        <source>Azerbaijan</source>
+        <translation>Azerbeidzjan</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="159"/>
+        <source>Bosnia and Herzegovina</source>
+        <translation>Bosnië en Herzegovina</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="160"/>
+        <source>Barbados</source>
+        <translation>Barbados</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="161"/>
+        <source>Bangladesh</source>
+        <translation>Bangladesh</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="162"/>
+        <source>Belgium</source>
+        <translation>België</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="163"/>
+        <source>Burkina Faso</source>
+        <translation>Burkina Faso</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="164"/>
+        <source>Bulgaria</source>
+        <translation>Bulgarije</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="165"/>
+        <source>Bahrain</source>
+        <translation>Bahrein</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="166"/>
+        <source>Burundi</source>
+        <translation>Burundi</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="167"/>
+        <source>Benin</source>
+        <translation>Benin</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="169"/>
+        <source>Bermuda</source>
+        <translation>Bermuda</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="170"/>
+        <source>Brunei Darussalam</source>
+        <translation>Brunei</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="173"/>
+        <source>Brazil</source>
+        <translation>Brazilië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="174"/>
+        <source>Bahamas</source>
+        <translation>Bahama&apos;s</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="175"/>
+        <source>Bhutan</source>
+        <translation>Bhutan</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="176"/>
+        <source>Bouvet Island</source>
+        <translation>Bouvet Island</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="177"/>
+        <source>Botswana</source>
+        <translation>Botswana</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="178"/>
+        <source>Belarus</source>
+        <translation>Wit-Rusland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="179"/>
+        <source>Belize</source>
+        <translation>Belize</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="180"/>
+        <source>Canada</source>
+        <translation>Canada</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="181"/>
+        <source>Cocos (Keeling) Islands</source>
+        <translation>Cocoseilanden</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="182"/>
+        <source>Congo, The Democratic Republic of the</source>
+        <translation>Congo-Kinshasa</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="183"/>
+        <source>Central African Republic</source>
+        <translation>Centraal-Afrikaanse Republiek</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="184"/>
+        <source>Congo</source>
+        <translation>Congo</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="185"/>
+        <source>Switzerland</source>
+        <translation>Zwitserland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="187"/>
+        <source>Cook Islands</source>
+        <translation>Cookeilanden</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="188"/>
+        <source>Chile</source>
+        <translation>Chili</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="189"/>
+        <source>Cameroon</source>
+        <translation>Kameroen</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="190"/>
+        <source>China</source>
+        <translation>China</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="191"/>
+        <source>Colombia</source>
+        <translation>Colombia</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="192"/>
+        <source>Costa Rica</source>
+        <translation>Costa Rica</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="193"/>
+        <source>Cuba</source>
+        <translation>Cuba</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="194"/>
+        <source>Cape Verde</source>
+        <translation>Kaapverdië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="195"/>
+        <source>Curacao</source>
+        <translation>Curaçao</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="196"/>
+        <source>Christmas Island</source>
+        <translation>Christmaseiland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="197"/>
+        <source>Cyprus</source>
+        <translation>Cyprus</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="198"/>
+        <source>Czech Republic</source>
+        <translation>Tsjechië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="199"/>
+        <source>Germany</source>
+        <translation>Duitsland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="200"/>
+        <source>Djibouti</source>
+        <translation>Djibouti</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="201"/>
+        <source>Denmark</source>
+        <translation>Denemarken</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="202"/>
+        <source>Dominica</source>
+        <translation>Dominica</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="203"/>
+        <source>Dominican Republic</source>
+        <translation>Dominicaanse republiek</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="204"/>
+        <source>Algeria</source>
+        <translation>Algerije</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="205"/>
+        <source>Ecuador</source>
+        <translation>Ecuador</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="206"/>
+        <source>Estonia</source>
+        <translation>Estland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="207"/>
+        <source>Egypt</source>
+        <translation>Egypte</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="208"/>
+        <source>Western Sahara</source>
+        <translation>Westelijke Sahara</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="209"/>
+        <source>Eritrea</source>
+        <translation>Eritrea</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="210"/>
+        <source>Spain</source>
+        <translation>Spanje</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="211"/>
+        <source>Ethiopia</source>
+        <translation>Ethiopië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="212"/>
+        <source>Finland</source>
+        <translation>Finland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="213"/>
+        <source>Fiji</source>
+        <translation>Fiji</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="214"/>
+        <source>Falkland Islands (Malvinas)</source>
+        <translation>Falklandeilanden (Malvinas)</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="215"/>
+        <source>Micronesia, Federated States of</source>
+        <translation>Micronesia</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="216"/>
+        <source>Faroe Islands</source>
+        <translation>Faeröer</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="217"/>
+        <source>France</source>
+        <translation>Frankrijk</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="218"/>
+        <source>Gabon</source>
+        <translation>Gabon</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="219"/>
+        <source>United Kingdom</source>
+        <translation>Verenigd Koninkrijk</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="220"/>
+        <source>Grenada</source>
+        <translation>Grenada</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="221"/>
+        <source>Georgia</source>
+        <translation>Georgië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="222"/>
+        <source>French Guiana</source>
+        <translation>Frans-Guyana</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="224"/>
+        <source>Ghana</source>
+        <translation>Ghana</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="225"/>
+        <source>Gibraltar</source>
+        <translation>Gibraltar</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="226"/>
+        <source>Greenland</source>
+        <translation>Groenland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="227"/>
+        <source>Gambia</source>
+        <translation>Gambia</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="228"/>
+        <source>Guinea</source>
+        <translation>Guinee</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="229"/>
+        <source>Guadeloupe</source>
+        <translation>Guadeloupe</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="230"/>
+        <source>Equatorial Guinea</source>
+        <translation>Equatoriaal-Guinea</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="231"/>
+        <source>Greece</source>
+        <translation>Griekenland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="232"/>
+        <source>South Georgia and the South Sandwich Islands</source>
+        <translation>Zuid-Georgia en de Zuidelijke Sandwicheilanden</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="233"/>
+        <source>Guatemala</source>
+        <translation>Guatemala</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="234"/>
+        <source>Guam</source>
+        <translation>Guam</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="235"/>
+        <source>Guinea-Bissau</source>
+        <translation>Guinee-Bissau</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="236"/>
+        <source>Guyana</source>
+        <translation>Guyana</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="237"/>
+        <source>Hong Kong</source>
+        <translation>Hongkong</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="238"/>
+        <source>Heard Island and McDonald Islands</source>
+        <translation>Heard en McDonaldeilanden</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="239"/>
+        <source>Honduras</source>
+        <translation>Honduras</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="240"/>
+        <source>Croatia</source>
+        <translation>Kroatië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="241"/>
+        <source>Haiti</source>
+        <translation>Haïti</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="242"/>
+        <source>Hungary</source>
+        <translation>Hongarije</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="243"/>
+        <source>Indonesia</source>
+        <translation>Indonesië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="244"/>
+        <source>Ireland</source>
+        <translation>Ierland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="245"/>
+        <source>Israel</source>
+        <translation>Israël</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="247"/>
+        <source>India</source>
+        <translation>India</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="248"/>
+        <source>British Indian Ocean Territory</source>
+        <translation>Brits Indische Oceaanterritorium</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="249"/>
+        <source>Iraq</source>
+        <translation>Irak</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="250"/>
+        <source>Iran, Islamic Republic of</source>
+        <translation>Iran</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="251"/>
+        <source>Iceland</source>
+        <translation>Ijsland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="252"/>
+        <source>Italy</source>
+        <translation>Italië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="254"/>
+        <source>Jamaica</source>
+        <translation>Jamaica</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="255"/>
+        <source>Jordan</source>
+        <translation>Jordanië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="256"/>
+        <source>Japan</source>
+        <translation>Japan</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="257"/>
+        <source>Kenya</source>
+        <translation>Kenia</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="258"/>
+        <source>Kyrgyzstan</source>
+        <translation>Kirgizië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="259"/>
+        <source>Cambodia</source>
+        <translation>Cambodja</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="260"/>
+        <source>Kiribati</source>
+        <translation>Kiribati</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="261"/>
+        <source>Comoros</source>
+        <translation>Comoren</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="262"/>
+        <source>Saint Kitts and Nevis</source>
+        <translation>Saint Kitts en Nevis</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="263"/>
+        <source>Korea, Democratic People&apos;s Republic of</source>
+        <translation>Noord-Korea</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="264"/>
+        <source>Korea, Republic of</source>
+        <translation>Zuid-Korea</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="265"/>
+        <source>Kuwait</source>
+        <translation>Koeweit</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="266"/>
+        <source>Cayman Islands</source>
+        <translation>Kaaimaneilanden</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="267"/>
+        <source>Kazakhstan</source>
+        <translation>Kazachstan</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="268"/>
+        <source>Lao People&apos;s Democratic Republic</source>
+        <translation>Laos</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="269"/>
+        <source>Lebanon</source>
+        <translation>Libanon</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="270"/>
+        <source>Saint Lucia</source>
+        <translation>Saint Lucia</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="271"/>
+        <source>Liechtenstein</source>
+        <translation>Liechtenstein</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="272"/>
+        <source>Sri Lanka</source>
+        <translation>Sri Lanka</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="273"/>
+        <source>Liberia</source>
+        <translation>Liberia</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="274"/>
+        <source>Lesotho</source>
+        <translation>Lesotho</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="275"/>
+        <source>Lithuania</source>
+        <translation>Litouwen</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="276"/>
+        <source>Luxembourg</source>
+        <translation>Luxemburg</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="277"/>
+        <source>Latvia</source>
+        <translation>Letland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="279"/>
+        <source>Morocco</source>
+        <translation>Marokko</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="280"/>
+        <source>Monaco</source>
+        <translation>Monaco</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="281"/>
+        <source>Moldova, Republic of</source>
+        <translation>Moldavië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="284"/>
+        <source>Madagascar</source>
+        <translation>Madagaskar</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="285"/>
+        <source>Marshall Islands</source>
+        <translation>Marshalleilanden</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="287"/>
+        <source>Mali</source>
+        <translation>Mali</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="288"/>
+        <source>Myanmar</source>
+        <translation>Myanmar</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="289"/>
+        <source>Mongolia</source>
+        <translation>Mongolië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="291"/>
+        <source>Northern Mariana Islands</source>
+        <translation>Noordelijke Marianen</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="292"/>
+        <source>Martinique</source>
+        <translation>Martinique</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="293"/>
+        <source>Mauritania</source>
+        <translation>Mauritanië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="294"/>
+        <source>Montserrat</source>
+        <translation>Montserrat</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="295"/>
+        <source>Malta</source>
+        <translation>Malta</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="296"/>
+        <source>Mauritius</source>
+        <translation>Mauritius</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="297"/>
+        <source>Maldives</source>
+        <translation>Maldiven</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="298"/>
+        <source>Malawi</source>
+        <translation>Malawi</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="299"/>
+        <source>Mexico</source>
+        <translation>Mexico</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="300"/>
+        <source>Malaysia</source>
+        <translation>Maleisië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="301"/>
+        <source>Mozambique</source>
+        <translation>Mozambique</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="302"/>
+        <source>Namibia</source>
+        <translation>Namibië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="303"/>
+        <source>New Caledonia</source>
+        <translation>Nieuw-Caledonië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="304"/>
+        <source>Niger</source>
+        <translation>Niger</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="305"/>
+        <source>Norfolk Island</source>
+        <translation>Norfolk</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="306"/>
+        <source>Nigeria</source>
+        <translation>Nigeria</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="307"/>
+        <source>Nicaragua</source>
+        <translation>Nicaragua</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="308"/>
+        <source>Netherlands</source>
+        <translation>Nederland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="309"/>
+        <source>Norway</source>
+        <translation>Noorwegen</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="310"/>
+        <source>Nepal</source>
+        <translation>Nepal</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="311"/>
+        <source>Nauru</source>
+        <translation>Nauru</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="312"/>
+        <source>Niue</source>
+        <translation>Niue</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="313"/>
+        <source>New Zealand</source>
+        <translation>Nieuw-Zeeland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="314"/>
+        <source>Oman</source>
+        <translation>Oman</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="315"/>
+        <source>Panama</source>
+        <translation>Panama</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="316"/>
+        <source>Peru</source>
+        <translation>Peru</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="317"/>
+        <source>French Polynesia</source>
+        <translation>Frans-Polynesië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="318"/>
+        <source>Papua New Guinea</source>
+        <translation>Papoea-Nieuw-Guinea</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="319"/>
+        <source>Philippines</source>
+        <translation>Filipijnen</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="320"/>
+        <source>Pakistan</source>
+        <translation>Pakistan</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="321"/>
+        <source>Poland</source>
+        <translation>Polen</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="322"/>
+        <source>Saint Pierre and Miquelon</source>
+        <translation>Saint-Pierre en Miquelon</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="324"/>
+        <source>Puerto Rico</source>
+        <translation>Puerto Rico</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="326"/>
+        <source>Portugal</source>
+        <translation>Portugal</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="327"/>
+        <source>Palau</source>
+        <translation>Palau</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="328"/>
+        <source>Paraguay</source>
+        <translation>Paraguay</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="329"/>
+        <source>Qatar</source>
+        <translation>Qatar</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="330"/>
+        <source>Reunion</source>
+        <translation>Réunion</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="331"/>
+        <source>Romania</source>
+        <translation>Roemenië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="333"/>
+        <source>Russian Federation</source>
+        <translation>Rusland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="334"/>
+        <source>Rwanda</source>
+        <translation>Rwanda</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="335"/>
+        <source>Saudi Arabia</source>
+        <translation>Saoedi-Arabië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="336"/>
+        <source>Solomon Islands</source>
+        <translation>Salomonseilanden</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="337"/>
+        <source>Seychelles</source>
+        <translation>Seychellen</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="338"/>
+        <source>Sudan</source>
+        <translation>Soedan</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="339"/>
+        <source>Sweden</source>
+        <translation>Zweden</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="340"/>
+        <source>Singapore</source>
+        <translation>Singapore</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="342"/>
+        <source>Slovenia</source>
+        <translation>Slovenië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="343"/>
+        <source>Svalbard and Jan Mayen</source>
+        <translation> Spitsbergen en Jan Mayen</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="344"/>
+        <source>Slovakia</source>
+        <translation>Slowakije</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="345"/>
+        <source>Sierra Leone</source>
+        <translation>Sierra Leone</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="346"/>
+        <source>San Marino</source>
+        <translation>San Marino</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="347"/>
+        <source>Senegal</source>
+        <translation>Senegal</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="348"/>
+        <source>Somalia</source>
+        <translation>Somalië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="349"/>
+        <source>Suriname</source>
+        <translation>Suriname</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="351"/>
+        <source>Sao Tome and Principe</source>
+        <translation>Sao Tomé en Principe</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="352"/>
+        <source>El Salvador</source>
+        <translation>El Salvador</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="354"/>
+        <source>Syrian Arab Republic</source>
+        <translation>Syrië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="355"/>
+        <source>Swaziland</source>
+        <translation>Swaziland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="356"/>
+        <source>Turks and Caicos Islands</source>
+        <translation>Turks- en Caicoseilanden</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="357"/>
+        <source>Chad</source>
+        <translation>Tsjaad</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="358"/>
+        <source>French Southern Territories</source>
+        <translation>Franse Zuidelijke en Antarctische Gebieden</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="359"/>
+        <source>Togo</source>
+        <translation>Togo</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="360"/>
+        <source>Thailand</source>
+        <translation>Thailand</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="361"/>
+        <source>Tajikistan</source>
+        <translation>Tadzjikistan</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="362"/>
+        <source>Tokelau</source>
+        <translation>Tokelau</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="364"/>
+        <source>Turkmenistan</source>
+        <translation>Turkmenistan</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="365"/>
+        <source>Tunisia</source>
+        <translation>Tunesië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="366"/>
+        <source>Tonga</source>
+        <translation>Tonga</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="363"/>
+        <source>Timor-Leste</source>
+        <translation>Oost-Timor</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="171"/>
+        <source>Bolivia, Plurinational State of</source>
+        <translation>Bolivia</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="172"/>
+        <source>Bonaire, Sint Eustatius and Saba</source>
+        <translation>Bonaire, Sint Eustatius en Saba</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="186"/>
+        <source>Cote d&apos;Ivoire</source>
+        <translation>Ivoorkust</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="278"/>
+        <source>Libya</source>
+        <translation>Libië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="283"/>
+        <source>Saint Martin (French part)</source>
+        <translation>Sint-Maarten (Franse Antillen)</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="286"/>
+        <source>Macedonia, The Former Yugoslav Republic of</source>
+        <translation>Macedonië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="290"/>
+        <source>Macao</source>
+        <translation>Macau</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="323"/>
+        <source>Pitcairn</source>
+        <translation>Pitcairneilanden</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="325"/>
+        <source>Palestine, State of</source>
+        <translation>Palestina</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="341"/>
+        <source>Saint Helena, Ascension and Tristan da Cunha</source>
+        <translation>Sint-Helena, Ascension en Tristan da Cunha</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="350"/>
+        <source>South Sudan</source>
+        <translation>Zuid-Soedan</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="353"/>
+        <source>Sint Maarten (Dutch part)</source>
+        <translation>Sint Maarten (Nederlands deel)</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="367"/>
+        <source>Turkey</source>
+        <translation>Turkije</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="368"/>
+        <source>Trinidad and Tobago</source>
+        <translation>Trinidad en Tobago</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="369"/>
+        <source>Tuvalu</source>
+        <translation>Tuvalu</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="370"/>
+        <source>Taiwan</source>
+        <translation>Taiwan</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="371"/>
+        <source>Tanzania, United Republic of</source>
+        <translation>Tanzania</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="372"/>
+        <source>Ukraine</source>
+        <translation>Oekraïne</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="373"/>
+        <source>Uganda</source>
+        <translation>Oeganda</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="374"/>
+        <source>United States Minor Outlying Islands</source>
+        <translation>Kleine Pacifische eilanden van de Verenigde Staten</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="375"/>
+        <source>United States</source>
+        <translation>Verenigde Staten</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="376"/>
+        <source>Uruguay</source>
+        <translation>Uruguay</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="377"/>
+        <source>Uzbekistan</source>
+        <translation>Oezbekistan</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="378"/>
+        <source>Holy See (Vatican City State)</source>
+        <translation>Vaticaanstad</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="379"/>
+        <source>Saint Vincent and the Grenadines</source>
+        <translation>Saint Vincent en de Grenadines</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="381"/>
+        <source>Virgin Islands, British</source>
+        <translation>Britse Maagdeneilanden</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="382"/>
+        <source>Virgin Islands, U.S.</source>
+        <translation>Amerikaanse Maagdeneilanden</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="384"/>
+        <source>Vanuatu</source>
+        <translation>Vanuatu</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="385"/>
+        <source>Wallis and Futuna</source>
+        <translation>Wallis en Futuna</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="386"/>
+        <source>Samoa</source>
+        <translation>Samoa</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="387"/>
+        <source>Yemen</source>
+        <translation>Jemen</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="388"/>
+        <source>Mayotte</source>
+        <translation>Mayotte</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="332"/>
+        <source>Serbia</source>
+        <translation>Servië</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="389"/>
+        <source>South Africa</source>
+        <translation>Zuid-Afrika</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="390"/>
+        <source>Zambia</source>
+        <translation>Zambia</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="282"/>
+        <source>Montenegro</source>
+        <translation>Montenegro</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="391"/>
+        <source>Zimbabwe</source>
+        <translation>Zimbabwe</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="157"/>
+        <source>Aland Islands</source>
+        <translation>Åland</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="223"/>
+        <source>Guernsey</source>
+        <translation>Guernsey</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="246"/>
+        <source>Isle of Man</source>
+        <translation>Man</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="253"/>
+        <source>Jersey</source>
+        <translation>Jersey</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="168"/>
+        <source>Saint Barthelemy</source>
+        <translation>Saint-Barthélemy</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="420"/>
+        <source>Could not uncompress GeoIP database file.</source>
+        <translation>Kon GeoIP-databasebestand niet uitpakken.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="441"/>
+        <source>Couldn&apos;t save downloaded GeoIP database file.</source>
+        <translation>Kon gedownload GeoIP-databasebestand niet opslaan.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="444"/>
+        <source>Successfully updated GeoIP database.</source>
+        <translation>GeoIP-database succesvol bijgewerkt.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="459"/>
+        <source>Couldn&apos;t download GeoIP database file. Reason: %1</source>
+        <translation>Kon GeoIP-database niet downloaden. Reden: %1</translation>
+    </message>
+</context>
+<context>
+    <name>Net::PortForwarder</name>
+    <message>
+        <location filename="../base/net/portforwarder.cpp" line="110"/>
+        <source>UPnP / NAT-PMP support [ON]</source>
+        <translation>UPnP/NAT-PMP-ondersteuning [AAN]</translation>
+    </message>
+    <message>
+        <location filename="../base/net/portforwarder.cpp" line="119"/>
+        <source>UPnP / NAT-PMP support [OFF]</source>
+        <translation>UPnP/NAT-PMP-ondersteuning [UIT]</translation>
+    </message>
+</context>
+<context>
+    <name>Net::Smtp</name>
+    <message>
+        <location filename="../base/net/smtp.cpp" line="500"/>
+        <source>Email Notification Error:</source>
+        <translation>E-mail meldingsfout:</translation>
+    </message>
+</context>
+<context>
+    <name>OptionsDialog</name>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="14"/>
+        <source>Options</source>
+        <translation type="unfinished">Opties</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="49"/>
+        <source>Behavior</source>
+        <translation type="unfinished">Gedrag</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="54"/>
+        <source>Downloads</source>
+        <translation type="unfinished">Downloads</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="59"/>
+        <source>Connection</source>
+        <translation type="unfinished">Verbinding</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="64"/>
+        <source>Speed</source>
+        <translation type="unfinished">Snelheid</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="69"/>
+        <source>BitTorrent</source>
+        <translation type="unfinished">BitTorrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="74"/>
+        <source>Web UI</source>
+        <translation type="unfinished">Web-UI</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="79"/>
+        <source>Advanced</source>
+        <translation type="unfinished">Geavanceerd</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="125"/>
+        <source>Language</source>
+        <translation type="unfinished">Taal</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="133"/>
+        <source>User Interface Language:</source>
+        <translation type="unfinished">Taal gebruikersinterface:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="161"/>
+        <source>(Requires restart)</source>
+        <translation type="unfinished">(opnieuw opstarten vereist)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="189"/>
+        <source>Transfer List</source>
+        <translation type="unfinished">Overdrachtlijst</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="195"/>
+        <source>Confirm when deleting torrents</source>
+        <translation type="unfinished">Bevestigen bij verwijderen torrents</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="205"/>
+        <source>Use alternating row colors</source>
+        <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
+        <translation type="unfinished">Afwisselende rijkleuren gebruiken</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="217"/>
+        <source>Hide zero and infinity values</source>
+        <translation type="unfinished">Waarden nul en oneindig verbergen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="225"/>
+        <source>Always</source>
+        <translation type="unfinished">Altijd</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="230"/>
+        <source>Paused torrents only</source>
+        <translation type="unfinished">Alleen gepauzeerde torrents</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="259"/>
+        <source>Action on double-click</source>
+        <translation type="unfinished">Actie bij dubbelklikken</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="268"/>
+        <source>Downloading torrents:</source>
+        <translation type="unfinished">Downloadende torrents:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="285"/>
+        <location filename="../gui/optionsdlg.ui" line="311"/>
+        <source>Start / Stop Torrent</source>
+        <translation type="unfinished">Torrent starten/stoppen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="290"/>
+        <location filename="../gui/optionsdlg.ui" line="316"/>
+        <source>Open destination folder</source>
+        <translation type="unfinished">Doelmap openen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="295"/>
+        <location filename="../gui/optionsdlg.ui" line="321"/>
+        <source>No action</source>
+        <translation type="unfinished">Geen actie</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="303"/>
+        <source>Completed torrents:</source>
+        <translation type="unfinished">Voltooide torrents:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="335"/>
+        <source>Desktop</source>
+        <translation type="unfinished">Bureaublad</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="341"/>
+        <source>Start qBittorrent on Windows start up</source>
+        <translation type="unfinished">qBittorrent starten bij opstarten van Windows</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="348"/>
+        <source>Show splash screen on start up</source>
+        <translation type="unfinished">Splash-screen weergeven bij opstarten</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="358"/>
+        <source>Start qBittorrent minimized</source>
+        <translation type="unfinished">qBittorrent geminimaliseerd starten</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="365"/>
+        <source>Confirmation on exit when torrents are active</source>
+        <translation type="unfinished">Bevestiging bij afsluiten wanneer torrents actief zijn</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="375"/>
+        <source>Confirmation on auto-exit when downloads finish</source>
+        <translation type="unfinished">Bevestiging bij automatisch afsluiten wanneer downloads voltooid zijn</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="385"/>
+        <source>Show qBittorrent in notification area</source>
+        <translation type="unfinished">qBittorrent weergeven in systeemvak</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="394"/>
+        <source>Minimize qBittorrent to notification area</source>
+        <translation type="unfinished">qBittorrent naar systeemvak minimaliseren</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="404"/>
+        <source>Close qBittorrent to notification area</source>
+        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
+        <translation type="unfinished">qBittorrent naar systeemvak sluiten</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="413"/>
+        <source>Tray icon style:</source>
+        <translation type="unfinished">Stijl systeemvakpictogram</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="421"/>
+        <source>Normal</source>
+        <translation type="unfinished">Normaal</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="426"/>
+        <source>Monochrome (Dark theme)</source>
+        <translation type="unfinished">Monochroom (donker thema)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="431"/>
+        <source>Monochrome (Light theme)</source>
+        <translation type="unfinished">Monochroom (licht thema)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="444"/>
+        <source>File association</source>
+        <translation type="unfinished">Bestandskoppeling</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="450"/>
+        <source>Use qBittorrent for .torrent files</source>
+        <translation type="unfinished">qBittorrent gebruiken voor .torrent-bestanden</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="457"/>
+        <source>Use qBittorrent for magnet links</source>
+        <translation type="unfinished">qBittorrent gebruiken voor magneetlinks</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="470"/>
+        <source>Power Management</source>
+        <translation type="unfinished">Energiebeheer</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="476"/>
+        <source>Inhibit system sleep when torrents are active</source>
+        <translation type="unfinished">Slaapstand voorkomen wanneer torrents actief zijn</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="486"/>
+        <source>Log file</source>
+        <translation type="unfinished">Logbestand</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="500"/>
+        <source>Save path:</source>
+        <translation type="unfinished">Opslagpad:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="530"/>
+        <source>Backup the log file after:</source>
+        <translation type="unfinished">Logbestand back-uppen na:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="537"/>
+        <source> MB</source>
+        <translation type="unfinished">MB</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="573"/>
+        <source>Delete backup logs older than:</source>
+        <translation type="unfinished">Back-up-logs verwijderen die ouder zijn dan:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="597"/>
+        <source>days</source>
+        <comment>Delete backup logs older than 10 months</comment>
+        <translation type="unfinished">dagen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="602"/>
+        <source>months</source>
+        <comment>Delete backup logs older than 10 months</comment>
+        <translation type="unfinished">maand</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="607"/>
+        <source>years</source>
+        <comment>Delete backup logs older than 10 years</comment>
+        <translation type="unfinished">jaar</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="681"/>
+        <source>When adding a torrent</source>
+        <translation type="unfinished">Bij toevoegen torrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="687"/>
+        <source>Display torrent content and some options</source>
+        <translation type="unfinished">Torrentinhoud en enkele opties weergeven</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="699"/>
+        <source>Bring torrent dialog to the front</source>
+        <translation type="unfinished">Torrent-dialoogvenster naar voor brengen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="712"/>
+        <source>Do not start the download automatically</source>
+        <comment>The torrent will be added to download list in pause state</comment>
+        <translation type="unfinished">Download niet automatisch starten</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="719"/>
+        <source>Should the .torrent file be deleted after adding it</source>
+        <translation type="unfinished">Moet het .torrentbestand verwijderd worden na toevoegen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="722"/>
+        <source>Delete .torrent files afterwards </source>
+        <translation type="unfinished">Torrentbestanden nadien verwijderen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="734"/>
+        <source>Also delete .torrent files whose addition was cancelled</source>
+        <translation type="unfinished">Ook .torrentbestanden verwijderen waarvan de toevoeging geannuleerd werd.</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="737"/>
+        <source>Also when addition is cancelled</source>
+        <translation type="unfinished">Ook wanneer toevoeging geannuleerd is</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="759"/>
+        <source>Warning! Data loss possible!</source>
+        <translation type="unfinished">Waarschuwing! Dataverlies mogelijk!</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="774"/>
+        <source>Saving Management</source>
+        <translation type="unfinished">Opslagbeheer</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="782"/>
+        <source>Default Torrent Management Mode:</source>
+        <translation type="unfinished">Standaard torrent-beheermodus:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="794"/>
+        <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="798"/>
+        <source>Manual</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="803"/>
+        <source>Automatic</source>
+        <translation type="unfinished">Automatisch</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="826"/>
+        <source>When Torrent Category changed:</source>
+        <translation type="unfinished">Wanneer torrentcategorie wijzigt:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="836"/>
+        <source>Relocate torrent</source>
+        <translation type="unfinished">Torrent verplaatsen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="841"/>
+        <source>Switch torrent to Manual Mode</source>
+        <translation type="unfinished">Torrent wisselen naar handmatige modus</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="864"/>
+        <source>When Default Save Path changed:</source>
+        <translation type="unfinished">Wanneer standaard opslagpad wijzigt:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="877"/>
+        <location filename="../gui/optionsdlg.ui" line="918"/>
+        <source>Relocate affected torrents</source>
+        <translation type="unfinished">Beïnvloede torrents verplaatsen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="882"/>
+        <location filename="../gui/optionsdlg.ui" line="923"/>
+        <source>Switch affected torrents to Manual Mode</source>
+        <translation type="unfinished">Beïnvloede torrents wisselen naar handmatige modus</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="905"/>
+        <source>When Category changed:</source>
+        <translation type="unfinished">Wanneer categorie wijzigt:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="948"/>
+        <source>Use Subcategories</source>
+        <translation type="unfinished">Gebruik subcategorieën</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="957"/>
+        <source>Default Save Path:</source>
+        <translation type="unfinished">Standaard opslagpad:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1003"/>
+        <source>Keep incomplete torrents in:</source>
+        <translation type="unfinished">Onvoltooide torrents bewaren in:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1042"/>
+        <source>Copy .torrent files to:</source>
+        <translation type="unfinished">.torrentbestanden kopiëren naar:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1075"/>
+        <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished">.torrentbestanden voor voltooide downloads kopiëren naar:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1110"/>
+        <source>Pre-allocate disk space for all files</source>
+        <translation type="unfinished">Schijfruimte voor alle bestanden vooraf toewijzen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1117"/>
+        <source>Append .!qB extension to incomplete files</source>
+        <translation type="unfinished">.!qB-extensie toevoegen aan onvolledige bestanden</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1127"/>
+        <source>Automatically add torrents from:</source>
+        <translation type="unfinished">Torrents automatisch toevoegen vanuit:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1174"/>
+        <source>Add entry</source>
+        <translation type="unfinished">Entry toevoegen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1184"/>
+        <source>Remove entry</source>
+        <translation type="unfinished">Entry verwijderen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1211"/>
+        <source>Email notification upon download completion</source>
+        <translation type="unfinished">Melding via e-mail wanneer download voltooid is</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1228"/>
+        <source>Destination email:</source>
+        <translation type="unfinished">E-mail ontvanger:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1235"/>
+        <source>SMTP server:</source>
+        <translation type="unfinished">SMTP-server:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1247"/>
+        <source>This server requires a secure connection (SSL)</source>
+        <translation type="unfinished">Deze server vereist een veilige verbinding (SSL)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1254"/>
+        <location filename="../gui/optionsdlg.ui" line="1666"/>
+        <location filename="../gui/optionsdlg.ui" line="2803"/>
+        <source>Authentication</source>
+        <translation type="unfinished">Authenticatie</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1266"/>
+        <location filename="../gui/optionsdlg.ui" line="1680"/>
+        <location filename="../gui/optionsdlg.ui" line="2842"/>
+        <location filename="../gui/optionsdlg.ui" line="2917"/>
+        <source>Username:</source>
+        <translation type="unfinished">Gebruikersnaam:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1276"/>
+        <location filename="../gui/optionsdlg.ui" line="1690"/>
+        <location filename="../gui/optionsdlg.ui" line="2849"/>
+        <location filename="../gui/optionsdlg.ui" line="2931"/>
+        <source>Password:</source>
+        <translation type="unfinished">Wachtwoord:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1296"/>
+        <source>Run external program on torrent completion</source>
+        <translation type="unfinished">Extern programma uitvoeren bij voltooien van de torrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1356"/>
+        <source>Listening Port</source>
+        <translation type="unfinished">Luisterpoort</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1364"/>
+        <source>Port used for incoming connections:</source>
+        <translation type="unfinished">Poort voor inkomende verbindingen:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1384"/>
+        <source>Random</source>
+        <translation type="unfinished">Willekeurig</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1406"/>
+        <source>Use UPnP / NAT-PMP port forwarding from my router</source>
+        <translation type="unfinished">UPnP/NAT-PMP port forwarding van mijn router gebruiken</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1416"/>
+        <source>Use different port on each startup</source>
+        <translation type="unfinished">Bij elke opstart een andere poort gebruiken</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1426"/>
+        <source>Connections Limits</source>
+        <translation type="unfinished">Verbindingslimieten</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1442"/>
+        <source>Maximum number of connections per torrent:</source>
+        <translation type="unfinished">Maximaal aantal verbindingen per torrent:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1452"/>
+        <source>Global maximum number of connections:</source>
+        <translation type="unfinished">Algemeen maximaal aantal verbindingen:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1491"/>
+        <source>Maximum number of upload slots per torrent:</source>
+        <translation type="unfinished">Maximaal aantal uploadslots per torrent:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1501"/>
+        <source>Global maximum number of upload slots:</source>
+        <translation type="unfinished">Algemeen maximaal aantal uploadslots:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1540"/>
+        <source>Proxy Server</source>
+        <translation type="unfinished">Proxy-server</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1548"/>
+        <source>Type:</source>
+        <translation type="unfinished">Type:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1556"/>
+        <source>(None)</source>
+        <translation type="unfinished">(Geen)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1561"/>
+        <source>SOCKS4</source>
+        <translation type="unfinished">SOCKS4</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1566"/>
+        <source>SOCKS5</source>
+        <translation type="unfinished">SOCKS5</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1571"/>
+        <source>HTTP</source>
+        <translation type="unfinished">HTTP</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1582"/>
+        <source>Host:</source>
+        <translation type="unfinished">Host:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1602"/>
+        <location filename="../gui/optionsdlg.ui" line="2627"/>
+        <source>Port:</source>
+        <translation type="unfinished">Poort:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1630"/>
+        <source>Otherwise, the proxy server is only used for tracker connections</source>
+        <translation type="unfinished">Anders wordt  de proxy server alleen gebruikt voor trackerverbindingen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1633"/>
+        <source>Use proxy for peer connections</source>
+        <translation type="unfinished">Proxy gebruiken voor peer-verbindingen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1640"/>
+        <source>Disable connections not supported by proxies</source>
+        <translation type="unfinished">Verbindingen die niet ondersteund worden door proxy&apos;s uitschakelen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1650"/>
+        <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
+        <translation type="unfinished">RSS-feeds, zoekmachine, software-updates of iets anders dan torrent-overdrachten en gerelateerde handelingen (zoals peer-uitwisselingen) zullen een directe verbinding gebruiken</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1653"/>
+        <source>Use proxy only for torrents</source>
+        <translation type="unfinished">Proxy alleen voor torrents gebruiken</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1706"/>
+        <source>Info: The password is saved unencrypted</source>
+        <translation type="unfinished">Info: het wachtwoord is onversleuteld opgeslagen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1719"/>
+        <source>IP Filtering</source>
+        <translation type="unfinished">IP-filtering</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1733"/>
+        <source>Filter path (.dat, .p2p, .p2b):</source>
+        <translation type="unfinished">Filterpad (.dat, p2p, p2b):</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1762"/>
+        <source>Reload the filter</source>
+        <translation type="unfinished">Filter opnieuw laden</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1771"/>
+        <source>Apply to trackers</source>
+        <translation type="unfinished">Toepassen op trackers</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1829"/>
+        <source>Global Rate Limits</source>
+        <translation type="unfinished">Algemene snelheidsbegrenzing</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1851"/>
+        <location filename="../gui/optionsdlg.ui" line="2042"/>
+        <source>Upload:</source>
+        <translation type="unfinished">Upload:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1858"/>
+        <location filename="../gui/optionsdlg.ui" line="1881"/>
+        <location filename="../gui/optionsdlg.ui" line="2088"/>
+        <location filename="../gui/optionsdlg.ui" line="2095"/>
+        <source>KiB/s</source>
+        <translation type="unfinished">KiB/s</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1895"/>
+        <location filename="../gui/optionsdlg.ui" line="2049"/>
+        <source>Download:</source>
+        <translation type="unfinished">Download:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1918"/>
+        <source>Alternative Rate Limits</source>
+        <translation type="unfinished">Alternatieve snelheidsbegrenzingen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1924"/>
+        <source>Schedule the use of alternative rate limits</source>
+        <translation type="unfinished">Gebruik van alternatieve snelheidbegrenzing inplannen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1936"/>
+        <source>From:</source>
+        <extracomment>from (time1 to time2)</extracomment>
+        <translation type="unfinished">Van:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1960"/>
+        <source>To:</source>
+        <extracomment>time1 to time2</extracomment>
+        <translation type="unfinished">Aan:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1987"/>
+        <source>When:</source>
+        <translation type="unfinished">Wanneer:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2001"/>
+        <source>Every day</source>
+        <translation type="unfinished">Elke dag</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2006"/>
+        <source>Weekdays</source>
+        <translation type="unfinished">Weekdagen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2011"/>
+        <source>Weekends</source>
+        <translation type="unfinished">Weekends</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2118"/>
+        <source>Rate Limits Settings</source>
+        <translation type="unfinished">Snelheidsbegrenzingsinstellingen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2124"/>
+        <source>Apply rate limit to peers on LAN</source>
+        <translation type="unfinished">Snelheidsbegrenzing toepassen op peers op LAN</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2131"/>
+        <source>Apply rate limit to transport overhead</source>
+        <translation type="unfinished">Snelheidbegrenzing toepassen op transport-overhead</translation>
+    </message>
+    <message utf8="true">
+        <location filename="../gui/optionsdlg.ui" line="2138"/>
+        <source>Enable µTP protocol</source>
+        <translation type="unfinished">µTP-protocol inschakelen</translation>
+    </message>
+    <message utf8="true">
+        <location filename="../gui/optionsdlg.ui" line="2145"/>
+        <source>Apply rate limit to µTP protocol</source>
+        <translation type="unfinished">Snelheidsbegrenzing toepassen op µTP-protocol</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2216"/>
+        <source>Privacy</source>
+        <translation type="unfinished">Privacy</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2222"/>
+        <source>Enable DHT (decentralized network) to find more peers</source>
+        <translation type="unfinished">DHT (decentralized network) inschakelen om meer peers te vinden</translation>
+    </message>
+    <message utf8="true">
+        <location filename="../gui/optionsdlg.ui" line="2232"/>
+        <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
+        <translation type="unfinished">Peers uitwisselen met compatibele Bittorrent-clients (µTorrent, Vuze, ...)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2235"/>
+        <source>Enable Peer Exchange (PeX) to find more peers</source>
+        <translation type="unfinished">Peer Exchange (PeX) inschakelen om meer peers te vinden</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2245"/>
+        <source>Look for peers on your local network</source>
+        <translation type="unfinished">Zoeken naar peers in uw lokaal netwerk</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2248"/>
+        <source>Enable Local Peer Discovery to find more peers</source>
+        <translation type="unfinished">Lokale peer-ontdekking inschakelen om meer peers te vinden</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2260"/>
+        <source>Encryption mode:</source>
+        <translation type="unfinished">Encryptiemodus:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2268"/>
+        <source>Prefer encryption</source>
+        <translation type="unfinished">Encryptie verkiezen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2273"/>
+        <source>Require encryption</source>
+        <translation type="unfinished">Encryptie vereisen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2278"/>
+        <source>Disable encryption</source>
+        <translation type="unfinished">Encryptie uitschakelen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2303"/>
+        <source>Enable when using a proxy or a VPN connection</source>
+        <translation type="unfinished">Inschakelen bij gebruik van een proxy of vpn-verbinding</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2306"/>
+        <source>Enable anonymous mode</source>
+        <translation type="unfinished">Anonieme modus inschakelen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2313"/>
+        <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished">(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Meer informatie&lt;/a&gt;)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2341"/>
+        <source>Torrent Queueing</source>
+        <translation type="unfinished">Torrents in wachtrij plaatsen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2356"/>
+        <source>Maximum active downloads:</source>
+        <translation type="unfinished">Maximaal aantal actieve downloads:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2376"/>
+        <source>Maximum active uploads:</source>
+        <translation type="unfinished">Maximaal aantal actieve uploads:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2396"/>
+        <source>Maximum active torrents:</source>
+        <translation type="unfinished">Maximaal aantal actieve torrents:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2455"/>
+        <source>Do not count slow torrents in these limits</source>
+        <translation type="unfinished">Trage torrents niet meerekenen bij deze limieten</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2465"/>
+        <source>Share Ratio Limiting</source>
+        <translation type="unfinished">Deelverhouding begrenzen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2476"/>
+        <source>Seed torrents until their ratio reaches</source>
+        <translation type="unfinished">Torrents seeden totdat ze een verhouding bereiken van</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2505"/>
+        <source>then</source>
+        <translation type="unfinished">en ze dan</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2516"/>
+        <source>Pause them</source>
+        <translation type="unfinished">pauzeren</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2521"/>
+        <source>Remove them</source>
+        <translation type="unfinished">verwijderen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2540"/>
+        <source>Automatically add these trackers to new downloads:</source>
+        <translation type="unfinished">Deze trackers automatisch toevoegen aan nieuwe downloads:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2613"/>
+        <source>Enable Web User Interface (Remote control)</source>
+        <translation type="unfinished">Web-gebruikersinterface inschakelen (bediening op afstand)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2662"/>
+        <source>Use UPnP / NAT-PMP to forward the port from my router</source>
+        <translation type="unfinished">UPnP/NAT-PMP gebruiken om de poort van mijn router te forwarden</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2672"/>
+        <source>Use HTTPS instead of HTTP</source>
+        <translation type="unfinished">HTTPS in plaats van HTTP gebruiken</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2703"/>
+        <source>Certificate:</source>
+        <translation type="unfinished">Certificaat:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2715"/>
+        <source>Import SSL Certificate</source>
+        <translation type="unfinished">SSL-certificaat importeren</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2756"/>
+        <source>Key:</source>
+        <translation type="unfinished">Sleutel:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2768"/>
+        <source>Import SSL Key</source>
+        <translation type="unfinished">SSL-sleutel importeren</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2790"/>
+        <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation type="unfinished">&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Informatie over certificaten&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2835"/>
+        <source>Bypass authentication for localhost</source>
+        <translation type="unfinished">Authenticatie overslaan voor localhost</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2859"/>
+        <source>Update my dynamic domain name</source>
+        <translation type="unfinished">Mijn dynamische domeinnaam bijwerken</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2871"/>
+        <source>Service:</source>
+        <translation type="unfinished">Dienst:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2894"/>
+        <source>Register</source>
+        <translation type="unfinished">Registreren</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2903"/>
+        <source>Domain name:</source>
+        <translation type="unfinished">Domeinnaam:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="99"/>
+        <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
+        <translation type="unfinished">Door deze opties in te schakelen, kunt u uw .torrent bestanden &lt;strong&gt;onomkeerbaar kwijtraken&lt;/strong&gt;!</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="101"/>
+        <source>When these options are enabled, qBittorent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
+        <translation type="unfinished">Wanneer deze opties zijn ingeschakeld, zal qBittorrent .torrent bestanden &lt;strong&gt;verwijderen&lt;/strong&gt; nadat ze succesvol (de eerste optie) of niet (de tweede optie) toegevoegd zijn aan de download wachtrij. Dit wordt &lt;strong&gt;niet alleen&lt;/strong&gt; toegepast op de bestanden dia via de &amp;ldquo;Torrent toevoegen&amp;rdquo; menu optie worden geopend, maar ook op de bestanden die via de &lt;strong&gt;bestandstype extensie associatie&lt;/strong&gt; worden geopend</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="106"/>
+        <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
+        <translation type="unfinished">Als u de tweede optie inschakelt (&amp;ldquo;Ook als toevoegen wordt geannuleerd&amp;rdquo;), zal het .torrent bestand &lt;strong&gt;worden verwijderd&lt;/strong&gt; zelfs als u op &amp;ldquo;&lt;strong&gt;Annuleren&lt;/strong&gt;&amp;rdquo; drukt in het &amp;ldquo;Torrent toevoegen&amp;rdquo; scherm</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="244"/>
+        <source>Supported parameters (case sensitive):</source>
+        <translation type="unfinished">Ondersteunde parameters (hoofdlettergevoelig):</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="245"/>
+        <source>%N: Torrent name</source>
+        <translation type="unfinished">%N: naam torrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="246"/>
+        <source>%L: Category</source>
+        <translation type="unfinished">%L: categorie</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="247"/>
+        <source>%F: Content path (same as root path for multifile torrent)</source>
+        <translation type="unfinished">%F: pad naar inhoud (zelfde als root-pad voor torrent met meerdere bestanden)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="248"/>
+        <source>%R: Root path (first torrent subdirectory path)</source>
+        <translation type="unfinished">%R: root-pad (pad naar eerste submap van torrent)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="249"/>
+        <source>%D: Save path</source>
+        <translation type="unfinished">%D: opslagpad</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="250"/>
+        <source>%C: Number of files</source>
+        <translation type="unfinished">%C: aantal bestanden</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="251"/>
+        <source>%Z: Torrent size (bytes)</source>
+        <translation type="unfinished">%Z: grootte torrent (bytes)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="252"/>
+        <source>%T: Current tracker</source>
+        <translation type="unfinished">%T: huidige tracker</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="253"/>
+        <source>%I: Info hash</source>
+        <translation type="unfinished">%I: info-hash</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="254"/>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation type="unfinished">Tip: omring de parameter met aanhalingstekens om te vermijden dat tekst afgekapt wordt bij witruimte (bijvoorbeeld: &quot;%N&quot;)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1336"/>
+        <source>Select folder to monitor</source>
+        <translation type="unfinished">Map selecteren om te monitoren</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1343"/>
+        <source>Folder is already being monitored:</source>
+        <translation type="unfinished">Map wordt reeds gemonitord:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1346"/>
+        <source>Folder does not exist:</source>
+        <translation type="unfinished">Map bestaat niet:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1349"/>
+        <source>Folder is not readable:</source>
+        <translation type="unfinished">Map kan niet gelezen worden:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1360"/>
+        <source>Adding entry failed</source>
+        <translation type="unfinished">Entry toevoegen mislukt</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1388"/>
+        <location filename="../gui/optionsdlg.cpp" line="1390"/>
+        <source>Choose export directory</source>
+        <translation type="unfinished">Export-map kiezen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1400"/>
+        <location filename="../gui/optionsdlg.cpp" line="1402"/>
+        <location filename="../gui/optionsdlg.cpp" line="1437"/>
+        <location filename="../gui/optionsdlg.cpp" line="1439"/>
+        <location filename="../gui/optionsdlg.cpp" line="1450"/>
+        <location filename="../gui/optionsdlg.cpp" line="1452"/>
+        <source>Choose a save directory</source>
+        <translation type="unfinished">Opslagmap kiezen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1425"/>
+        <source>Choose an IP filter file</source>
+        <translation type="unfinished">IP-filterbestand kiezen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1425"/>
+        <source>All supported filters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1492"/>
+        <source>SSL Certificate</source>
+        <translation type="unfinished">SSL-certificaat</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1504"/>
+        <source>SSL Key</source>
+        <translation type="unfinished">SSL-sleutel</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1537"/>
+        <source>Parsing error</source>
+        <translation type="unfinished">Verwerkingsfout</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1537"/>
+        <source>Failed to parse the provided IP filter</source>
+        <translation type="unfinished">Verwerken van opgegeven IP-filter mislukt</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1539"/>
+        <source>Successfully refreshed</source>
+        <translation type="unfinished">Vernieuwen gelukt</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1539"/>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished">Verwerken van opgegeven IP-filter gelukt: er werden %1 regels toegepast.</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1626"/>
+        <source>Invalid key</source>
+        <translation type="unfinished">Ongeldige sleutel</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1626"/>
+        <source>This is not a valid SSL key.</source>
+        <translation type="unfinished">Dit is geen geldige SSL-sleutel.</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1642"/>
+        <source>Invalid certificate</source>
+        <translation type="unfinished">Ongeldig certificaat</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1642"/>
+        <source>This is not a valid SSL certificate.</source>
+        <translation type="unfinished">Dit is geen geldig SSL-certificaat.</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1650"/>
+        <source>Time Error</source>
+        <translation type="unfinished">Tijd-fout</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1650"/>
+        <source>The start time and the end time can&apos;t be the same.</source>
+        <translation type="unfinished">De starttijd en de eindtijd kan niet hetzelfde zijn.</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1659"/>
+        <location filename="../gui/optionsdlg.cpp" line="1663"/>
+        <source>Length Error</source>
+        <translation type="unfinished">Lengte-fout</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1659"/>
+        <source>The Web UI username must be at least 3 characters long.</source>
+        <translation type="unfinished">De Web-UI-gebruikersnaam moet minstens 3 tekens lang zijn.</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1663"/>
+        <source>The Web UI password must be at least 6 characters long.</source>
+        <translation type="unfinished">Het Web-UI-wachtwoord moet minstens 6 tekens lang zijn.</translation>
+    </message>
+</context>
+<context>
+    <name>PeerInfo</name>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="293"/>
+        <source>interested(local) and choked(peer)</source>
+        <translation>geïnteresseerd (lokaal) en gestopt (peer)</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="299"/>
+        <source>interested(local) and unchoked(peer)</source>
+        <translation>geïnteresseerd (lokaal) en voortgezet (peer)</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="308"/>
+        <source>interested(peer) and choked(local)</source>
+        <translation>geïnteresseerd (peer) en gestopt (lokaal)</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="314"/>
+        <source>interested(peer) and unchoked(local)</source>
+        <translation>geïnteresseerd (peer) en voortgezet (lokaal)</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="322"/>
+        <source>optimistic unchoke</source>
+        <translation>optimistisch voortzetten</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="329"/>
+        <source>peer snubbed</source>
+        <translation>peer gestopt met uploaden</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="336"/>
+        <source>incoming connection</source>
+        <translation>inkomende verbinding</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="343"/>
+        <source>not interested(local) and unchoked(peer)</source>
+        <translation>niet geïnteresseerd (lokaal) en voortgezet (peer)</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="350"/>
+        <source>not interested(peer) and unchoked(local)</source>
+        <translation>niet geïnteresseerd (peer) en voortgezet (lokaal)</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="357"/>
+        <source>peer from PEX</source>
+        <translation>peer van PEX</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="364"/>
+        <source>peer from DHT</source>
+        <translation>peer van DHT</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="371"/>
+        <source>encrypted traffic</source>
+        <translation>versleuteld verkeer</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="378"/>
+        <source>encrypted handshake</source>
+        <translation>versleutelde handdruk</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="393"/>
+        <source>peer from LSD</source>
+        <translation>peer van LSD</translation>
     </message>
 </context>
 <context>
     <name>PeerListWidget</name>
     <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="73"/>
         <source>IP</source>
         <translation>IP</translation>
     </message>
     <message>
-        <source>Client</source>
-        <comment>i.e.: Client application</comment>
-        <translation>Client</translation>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="74"/>
+        <source>Port</source>
+        <translation>Poort</translation>
     </message>
     <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="75"/>
+        <source>Flags</source>
+        <translation>Vlaggen</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="76"/>
+        <source>Connection</source>
+        <translation>Verbinding</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="77"/>
+        <source>Client</source>
+        <comment>i.e.: Client application</comment>
+        <translation>Cliënt</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="78"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation>Voortgang</translation>
     </message>
     <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="79"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Down-snelheid</translation>
+        <translation>Downloadsnelheid</translation>
     </message>
     <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="80"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Up-snelheid</translation>
+        <translation>Uploadsnelheid</translation>
     </message>
     <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="81"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
         <translation>Gedownload</translation>
     </message>
     <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="82"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation>Geupload</translation>
+        <translation>Geüpload</translation>
     </message>
     <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="83"/>
+        <source>Relevance</source>
+        <comment>i.e: How relevant this peer is to us. How many pieces it has that we don&apos;t.</comment>
+        <translation>Relevantie</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="84"/>
+        <source>Files</source>
+        <comment>i.e. files that are being downloaded right now</comment>
+        <translation>Bestanden</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="153"/>
+        <source>Column visibility</source>
+        <translation>Kolom-zichtbaarheid</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="230"/>
+        <source>Add a new peer...</source>
+        <translation>Nieuwe peer toevoegen...</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="238"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="276"/>
         <source>Ban peer permanently</source>
-        <translation>Peer permanent verbannen</translation>
+        <translation>Peer permanent bannen</translation>
     </message>
     <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="250"/>
+        <source>Manually adding peer &apos;%1&apos;...</source>
+        <translation>Peer &apos;%1&apos; manueel toevoegen...</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="254"/>
+        <source>The peer &apos;%1&apos; could not be added to this torrent.</source>
+        <translation>Peer &apos;%1&apos; kon niet toegevoegd worden aan deze torrent.</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="287"/>
+        <source>Manually banning peer &apos;%1&apos;...</source>
+        <translation>Peer &apos;%1&apos; manueel bannen...</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="258"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="260"/>
         <source>Peer addition</source>
-        <translation>Peer toevoeging</translation>
+        <translation>Peer toevoegen</translation>
     </message>
     <message>
-        <source>The peer was added to this torrent.</source>
-        <translation>De peer werd toegevoegd aan de torrent.</translation>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="72"/>
+        <source>Country</source>
+        <translation>Land</translation>
     </message>
     <message>
-        <source>The peer could not be added to this torrent.</source>
-        <translation>De peer kon niet toegevoegd worden aan deze torrent.</translation>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="236"/>
+        <source>Copy IP:port</source>
+        <translation>IP:poort kopiëren</translation>
     </message>
     <message>
-        <source>Are you sure? -- qBittorrent</source>
-        <translation>Weet u het zeker? -- qBittorrent</translation>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="258"/>
+        <source>Some peers could not be added. Check the Log for details.</source>
+        <translation>Een aantal peers konden niet toegevoegd worden. Controleer het logbestand voor details.</translation>
     </message>
     <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="260"/>
+        <source>The peers were added to this torrent.</source>
+        <translation>De peers werden toegevoegd aan deze torrent.</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="276"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation>Bent u zeker dat u de geselecteerd peer permanent wilt verbannen?</translation>
+        <translation>Bent u zeker dat u de geselecteerde peer permanent wilt bannen?</translation>
     </message>
     <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="277"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="277"/>
         <source>&amp;No</source>
         <translation>&amp;Nee</translation>
     </message>
+</context>
+<context>
+    <name>PeersAdditionDlg</name>
     <message>
-        <source>Manually banning peer %1...</source>
-        <translation>Peer %1 wordt manueel verbannen...</translation>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="58"/>
+        <source>No peer entered</source>
+        <translation>Geen peer ingevoerd</translation>
     </message>
     <message>
-        <source>Upload rate limiting</source>
-        <translation>Uploadsnelheid limieteren</translation>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="59"/>
+        <source>Please type at least one peer.</source>
+        <translation>Typ ten minste één peer.</translation>
     </message>
     <message>
-        <source>Download rate limiting</source>
-        <translation>Downloadsnelheid limieteren</translation>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="69"/>
+        <source>Invalid peer</source>
+        <translation>Ongeldige peer</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>Voeg nieuwe peer toe...</translation>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="70"/>
+        <source>The peer &apos;%1&apos; is invalid.</source>
+        <translation>Peer &apos;%1&apos; is ongeldig.</translation>
+    </message>
+</context>
+<context>
+    <name>PieceAvailabilityBar</name>
+    <message>
+        <location filename="../gui/properties/pieceavailabilitybar.cpp" line="163"/>
+        <source>White: Unavailable pieces</source>
+        <translation>Wit: niet-beschikbare deeltjes</translation>
     </message>
     <message>
-        <source>Limit download rate...</source>
-        <translation>Limieteer downloadsnelheid...</translation>
+        <location filename="../gui/properties/pieceavailabilitybar.cpp" line="164"/>
+        <source>Blue: Available pieces</source>
+        <translation>Blauw: beschikbare deeltjes</translation>
+    </message>
+</context>
+<context>
+    <name>PiecesBar</name>
+    <message>
+        <location filename="../gui/properties/piecesbar.cpp" line="265"/>
+        <source>Files in this piece:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Limit upload rate...</source>
-        <translation>Limieteer uploadsnelheid...</translation>
+        <location filename="../gui/properties/piecesbar.cpp" line="269"/>
+        <source>File in this piece</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Copy IP</source>
-        <translation>Kopiëer IP</translation>
+        <location filename="../gui/properties/piecesbar.cpp" line="271"/>
+        <source>File in these pieces</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Connection</source>
-        <translation>Verbinding</translation>
+        <location filename="../gui/properties/piecesbar.cpp" line="289"/>
+        <source>Hold Shift key for detailed information</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PluginSelectDlg</name>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="17"/>
+        <source>Search plugins</source>
+        <translation>Zoekplugins</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="30"/>
+        <source>Installed search plugins:</source>
+        <translation>Geïnstalleerde zoekplugins:</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="50"/>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="55"/>
+        <source>Version</source>
+        <translation>Versie</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="60"/>
+        <source>Url</source>
+        <translation>Url</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="65"/>
+        <location filename="../gui/search/pluginselectdlg.ui" line="121"/>
+        <source>Enabled</source>
+        <translation>Ingeschakeld</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="83"/>
+        <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
+        <translation>U kunt hier nieuwe zoekmachineplugins vinden:&lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="95"/>
+        <source>Install a new one</source>
+        <translation>Een nieuwe installeren</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="102"/>
+        <source>Check for updates</source>
+        <translation>Op updates controleren</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="109"/>
+        <source>Close</source>
+        <translation>Sluiten</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.ui" line="126"/>
+        <source>Uninstall</source>
+        <translation>Deïnstalleren</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="162"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="224"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="283"/>
+        <source>Yes</source>
+        <translation>Ja</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="166"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="205"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="228"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="287"/>
+        <source>No</source>
+        <translation>Nee</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="211"/>
+        <source>Uninstall warning</source>
+        <translation>Deïnstallatie-waarschuwing</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="211"/>
+        <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
+Those plugins were disabled.</source>
+        <translation>Niet alle plugins konden verwijderd worden omdat ze bij qBittorrent horen. Alleen de door uzelf toegevoegde plugins kunnen worden verwijderd.
+Deze plugins zijn uitgeschakeld.</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="213"/>
+        <source>Uninstall success</source>
+        <translation>Deïnstallatie gelukt</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="213"/>
+        <source>All selected plugins were uninstalled successfully</source>
+        <translation>Alle gekozen plugins zijn succesvol verwijderd</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="333"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="340"/>
+        <source>New search engine plugin URL</source>
+        <translation>Nieuwe zoekmachineplugin-url</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="334"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="341"/>
+        <source>URL:</source>
+        <translation>URL:</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="338"/>
+        <source>Invalid link</source>
+        <translation>Ongeldige link</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="338"/>
+        <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
+        <translation>De link lijkt niet te wijzen naar een zoekmachine-plugin.</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="354"/>
+        <source>Select search plugins</source>
+        <translation>Zoekplugins selecteren</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="355"/>
+        <source>qBittorrent search plugin</source>
+        <translation>qBittorrent zoekplugin</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="395"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="408"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="437"/>
+        <source>Search plugin update</source>
+        <translation>Plugin-update zoeken</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="395"/>
+        <source>All your plugins are already up to date.</source>
+        <translation>Uw plugins zijn al up-to-date.</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="408"/>
+        <source>Sorry, couldn&apos;t check for plugin updates. %1</source>
+        <translation>Sorry, kon niet controleren op plugin-updates. %1</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="415"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="421"/>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="430"/>
+        <source>Search plugin install</source>
+        <translation>Installatie zoekplugin</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="415"/>
+        <source>&quot;%1&quot; search engine plugin was successfully installed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation>&quot;%1&quot; zoekmachineplugin is succesvol geïnstalleerd.</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="421"/>
+        <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
+        <translation>Kon &quot;%1&quot; zoekmachineplugin niet installeren. %2</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="430"/>
+        <source>&quot;%1&quot; search engine plugin was successfully updated.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation>&quot;%1&quot; zoekmachineplugin is succesvol bijgewerkt.</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginselectdlg.cpp" line="437"/>
+        <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
+        <translation>Kon &quot;%1&quot; zoekmachineplugin niet bijwerken. %2</translation>
+    </message>
+</context>
+<context>
+    <name>PluginSourceDlg</name>
+    <message>
+        <location filename="../gui/search/pluginsourcedlg.ui" line="14"/>
+        <source>Plugin source</source>
+        <translation>Plugin-bron</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginsourcedlg.ui" line="27"/>
+        <source>Search plugin source:</source>
+        <translation>Zoekplugin-bron:</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginsourcedlg.ui" line="36"/>
+        <source>Local file</source>
+        <translation>Lokaal bestand</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/pluginsourcedlg.ui" line="43"/>
+        <source>Web link</source>
+        <translation>Weblink</translation>
     </message>
 </context>
 <context>
     <name>Preferences</name>
     <message>
-        <source>UI</source>
-        <extracomment>User Interface</extracomment>
-        <translation type="obsolete">UI</translation>
-    </message>
-    <message>
         <source>Downloads</source>
-        <translation>Downloads</translation>
+        <translation type="obsolete">Downloads</translation>
     </message>
     <message>
         <source>Connection</source>
-        <translation>Verbinding</translation>
+        <translation type="obsolete">Verbinding</translation>
     </message>
     <message>
-        <source>Bittorrent</source>
-        <translation type="obsolete">Bittorrent</translation>
-    </message>
-    <message>
-        <source>Proxy</source>
-        <translation type="obsolete">Proxy</translation>
+        <source>Speed</source>
+        <translation type="obsolete">Snelheid</translation>
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Web UI</translation>
+        <translation type="obsolete">Web-UI</translation>
     </message>
     <message>
-        <source>Language:</source>
-        <translation type="obsolete">Taal:</translation>
+        <source>Advanced</source>
+        <translation type="obsolete">Geavanceerd</translation>
     </message>
     <message>
         <source>(Requires restart)</source>
-        <translation>(herstart vereist)</translation>
-    </message>
-    <message>
-        <source>Visual style:</source>
-        <translation type="obsolete">Visuele stijl:</translation>
-    </message>
-    <message>
-        <source>Transfer list</source>
-        <translation type="obsolete">Overdrachtenlijst</translation>
+        <translation type="obsolete">(opnieuw opstarten vereist)</translation>
     </message>
     <message>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
-        <translation>Gebruik alternatieve rijkleuren</translation>
+        <translation type="obsolete">Afwisselende rijkleuren gebruiken</translation>
     </message>
     <message>
-        <source>File system</source>
-        <translation type="obsolete">Bestandssysteem</translation>
-    </message>
-    <message>
-        <source>Torrent queueing</source>
-        <translation type="obsolete">Torrent wachtrij</translation>
-    </message>
-    <message>
-        <source>Maximum active downloads:</source>
-        <translation>Maximum actieve downloads:</translation>
-    </message>
-    <message>
-        <source>Maximum active uploads:</source>
-        <translation>Maximum actieve uploads:</translation>
-    </message>
-    <message>
-        <source>Maximum active torrents:</source>
-        <translation>Maximum actieve torrents:</translation>
-    </message>
-    <message>
-        <source>When adding a torrent</source>
-        <translation>Tijdens torrent toevoegen</translation>
-    </message>
-    <message>
-        <source>Display torrent content and some options</source>
-        <translation>Torrentinhoud en enkele opties weergeven</translation>
-    </message>
-    <message>
-        <source>Listening port</source>
-        <translation type="obsolete">Luisterpoort</translation>
-    </message>
-    <message>
-        <source>Port used for incoming connections:</source>
-        <translation>Poort voor inkomende verbindingen:</translation>
-    </message>
-    <message>
-        <source>Random</source>
-        <translation>Willekeurig</translation>
-    </message>
-    <message>
-        <source>Enable UPnP port mapping</source>
-        <translation type="obsolete">UPnP port mapping inschakelen</translation>
-    </message>
-    <message>
-        <source>Enable NAT-PMP port mapping</source>
-        <translation type="obsolete">NAT-PMP port mapping inschakelen</translation>
-    </message>
-    <message>
-        <source>Connections limit</source>
-        <translation type="obsolete">Verbindingslimiet</translation>
-    </message>
-    <message>
-        <source>Global maximum number of connections:</source>
-        <translation>Globale verbindingslimiet:</translation>
-    </message>
-    <message>
-        <source>Maximum number of connections per torrent:</source>
-        <translation>Verbindingslimiet per torrent:</translation>
-    </message>
-    <message>
-        <source>Maximum number of upload slots per torrent:</source>
-        <translation>Maximum aantal uploads per torrent:</translation>
-    </message>
-    <message>
-        <source>Upload:</source>
-        <translation>Upload:</translation>
-    </message>
-    <message>
-        <source>Download:</source>
-        <translation>Download:</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation>KiB/s</translation>
-    </message>
-    <message>
-        <source>Bittorrent features</source>
-        <translation type="obsolete">Bittorrent features</translation>
-    </message>
-    <message>
-        <source>Enable DHT network (decentralized)</source>
-        <translation type="obsolete">DHT (gedecentraliseerd) netwerk inschakelen</translation>
-    </message>
-    <message>
-        <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="obsolete">Gebruik een andere poort voor DHT en Bittorrent</translation>
-    </message>
-    <message>
-        <source>DHT port:</source>
-        <translation>DHT poort:</translation>
-    </message>
-    <message>
-        <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translation type="obsolete">Schakel Peer Exchange in / PeX (herstart vereist)</translation>
-    </message>
-    <message>
-        <source>Enable Local Peer Discovery</source>
-        <translation type="obsolete">Local Peer Discovery inschakelen</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="obsolete">Ingeschakeld</translation>
-    </message>
-    <message>
-        <source>Forced</source>
-        <translation type="obsolete">Geforceerd</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation type="obsolete">Uitgeschakeld</translation>
-    </message>
-    <message>
-        <source>Type:</source>
-        <translation>Type:</translation>
-    </message>
-    <message>
-        <source>(None)</source>
-        <translation>(Geen)</translation>
-    </message>
-    <message>
-        <source>HTTP</source>
-        <translation>HTTP</translation>
-    </message>
-    <message>
-        <source>Port:</source>
-        <translation>Poort:</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>Authenticatie</translation>
-    </message>
-    <message>
-        <source>Username:</source>
-        <translation>Gebruikersnaam:</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation>Paswoord:</translation>
-    </message>
-    <message>
-        <source>SOCKS5</source>
-        <translation>SOCKS5</translation>
-    </message>
-    <message>
-        <source>HTTP Server</source>
-        <translation type="obsolete">HTTP Server</translation>
-    </message>
-    <message>
-        <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation>Filter pad (.dat, p2p, p2b):</translation>
-    </message>
-    <message>
-        <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation type="obsolete">HTTP Communicaties (trackers, Web seeds, zoekmachine)</translation>
-    </message>
-    <message>
-        <source>Host:</source>
-        <translation>Host:</translation>
-    </message>
-    <message>
-        <source>Peer Communications</source>
-        <translation type="obsolete">Peer communicaties</translation>
-    </message>
-    <message>
-        <source>SOCKS4</source>
-        <translation>SOCKS4</translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Snelheid</translation>
-    </message>
-    <message>
-        <source>Global speed limits</source>
-        <translation type="obsolete">Globale snelheidslimieten</translation>
-    </message>
-    <message>
-        <source>Alternative global speed limits</source>
-        <translation type="obsolete">Alternatieve globale snelheidslimieten</translation>
-    </message>
-    <message>
-        <source>to</source>
-        <extracomment>time1 to time2</extracomment>
-        <translation>tot</translation>
-    </message>
-    <message>
-        <source>Every day</source>
-        <translation>Elke dag</translation>
-    </message>
-    <message>
-        <source>Week days</source>
-        <translation>Weekdagen</translation>
-    </message>
-    <message>
-        <source>Week ends</source>
-        <translation>Weekenden</translation>
-    </message>
-    <message>
-        <source>Advanced</source>
-        <translation>Geavanceerd</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files to:</source>
-        <translation>Kopieer .torrentbestanden naar:</translation>
-    </message>
-    <message>
-        <source>Remove folder</source>
-        <translation>Verwijder map</translation>
+        <source>Start / Stop Torrent</source>
+        <translation type="obsolete">Torrent starten/stoppen</translation>
     </message>
     <message>
         <source>No action</source>
-        <translation>Geen actie</translation>
+        <translation type="obsolete">Geen actie</translation>
+    </message>
+    <message>
+        <source>Append .!qB extension to incomplete files</source>
+        <translation type="obsolete">.!qB-extensie toevoegen aan onvolledige bestanden</translation>
+    </message>
+    <message>
+        <source>Copy .torrent files to:</source>
+        <translation type="obsolete">.torrentbestanden kopiëren naar:</translation>
+    </message>
+    <message>
+        <source>Connections Limits</source>
+        <translation type="obsolete">Verbindingslimieten</translation>
+    </message>
+    <message>
+        <source>Proxy Server</source>
+        <translation type="obsolete">Proxy-server</translation>
+    </message>
+    <message>
+        <source>Global Rate Limits</source>
+        <translation type="obsolete">Algemene snelheidsbegrenzing</translation>
+    </message>
+    <message>
+        <source>Apply rate limit to transport overhead</source>
+        <translation type="obsolete">Snelheidbegrenzing toepassen op transport-overhead</translation>
+    </message>
+    <message>
+        <source>Schedule the use of alternative rate limits</source>
+        <translation type="obsolete">Gebruik van alternatieve snelheidbegrenzing inplannen</translation>
+    </message>
+    <message>
+        <source>From:</source>
+        <extracomment>from (time1 to time2)</extracomment>
+        <translation type="obsolete">Van:</translation>
+    </message>
+    <message>
+        <source>To:</source>
+        <extracomment>time1 to time2</extracomment>
+        <translation type="obsolete">Aan:</translation>
+    </message>
+    <message>
+        <source>Enable Local Peer Discovery to find more peers</source>
+        <translation type="obsolete">Lokale peer-ontdekking inschakelen om meer peers te vinden</translation>
+    </message>
+    <message>
+        <source>Encryption mode:</source>
+        <translation type="obsolete">Encryptiemodus:</translation>
+    </message>
+    <message>
+        <source>Prefer encryption</source>
+        <translation type="obsolete">Encryptie verkiezen</translation>
+    </message>
+    <message>
+        <source>Require encryption</source>
+        <translation type="obsolete">Encryptie vereisen</translation>
+    </message>
+    <message>
+        <source>Disable encryption</source>
+        <translation type="obsolete">Encryptie uitschakelen</translation>
+    </message>
+    <message>
+        <source>Maximum active downloads:</source>
+        <translation type="obsolete">Maximaal aantal actieve downloads:</translation>
+    </message>
+    <message>
+        <source>Maximum active uploads:</source>
+        <translation type="obsolete">Maximaal aantal actieve uploads:</translation>
+    </message>
+    <message>
+        <source>Maximum active torrents:</source>
+        <translation type="obsolete">Maximaal aantal actieve torrents:</translation>
+    </message>
+    <message>
+        <source>When adding a torrent</source>
+        <translation type="obsolete">Bij toevoegen torrent</translation>
+    </message>
+    <message>
+        <source>Behavior</source>
+        <translation type="obsolete">Gedrag</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="obsolete">Taal</translation>
+    </message>
+    <message>
+        <source>Display torrent content and some options</source>
+        <translation type="obsolete">Torrentinhoud en enkele opties weergeven</translation>
+    </message>
+    <message>
+        <source>Run external program on torrent completion</source>
+        <translation type="obsolete">Extern programma uitvoeren bij voltooien van de torrent</translation>
+    </message>
+    <message>
+        <source>Port used for incoming connections:</source>
+        <translation type="obsolete">Poort voor inkomende verbindingen:</translation>
+    </message>
+    <message>
+        <source>Random</source>
+        <translation type="obsolete">Willekeurig</translation>
+    </message>
+    <message>
+        <source>Global maximum number of connections:</source>
+        <translation type="obsolete">Algemeen maximaal aantal verbindingen:</translation>
+    </message>
+    <message>
+        <source>Maximum number of connections per torrent:</source>
+        <translation type="obsolete">Maximaal aantal verbindingen per torrent:</translation>
+    </message>
+    <message>
+        <source>Maximum number of upload slots per torrent:</source>
+        <translation type="obsolete">Maximaal aantal uploadslots per torrent:</translation>
+    </message>
+    <message>
+        <source>Upload:</source>
+        <translation type="obsolete">Upload:</translation>
+    </message>
+    <message>
+        <source>Download:</source>
+        <translation type="obsolete">Download:</translation>
+    </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="obsolete">KiB/s</translation>
+    </message>
+    <message>
+        <source>Every day</source>
+        <translation type="obsolete">Elke dag</translation>
+    </message>
+    <message utf8="true">
+        <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
+        <translation type="obsolete">Peers uitwisselen met compatibele Bittorrent-clients (µTorrent, Vuze, ...)</translation>
+    </message>
+    <message>
+        <source>Host:</source>
+        <translation type="obsolete">Host:</translation>
+    </message>
+    <message>
+        <source>SOCKS4</source>
+        <translation type="obsolete">SOCKS4</translation>
+    </message>
+    <message>
+        <source>Type:</source>
+        <translation type="obsolete">Type:</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Instellingen</translation>
-    </message>
-    <message>
-        <source>Visual Appearance</source>
-        <translation type="obsolete">Visuele stijl</translation>
+        <translation type="obsolete">Opties</translation>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation>Actie bij dubbel-klikken</translation>
+        <translation type="obsolete">Actie bij dubbelklikken</translation>
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation>Download torrents:</translation>
-    </message>
-    <message>
-        <source>Start / Stop</source>
-        <translation type="obsolete">Start / Stop</translation>
+        <translation type="obsolete">Downloadende torrents:</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>Open doel map</translation>
+        <translation type="obsolete">Doelmap openen</translation>
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation>Voltooide torrents:</translation>
+        <translation type="obsolete">Voltooide torrents:</translation>
     </message>
     <message>
         <source>Desktop</source>
-        <translation>Bureaublad</translation>
+        <translation type="obsolete">Bureaublad</translation>
     </message>
     <message>
         <source>Show splash screen on start up</source>
-        <translation>Toon splash screen bij het opstarten</translation>
+        <translation type="obsolete">Splash-screen weergeven bij opstarten</translation>
     </message>
     <message>
         <source>Start qBittorrent minimized</source>
-        <translation>Start qBittorrent geminimaliseerd</translation>
-    </message>
-    <message>
-        <source>Show qBittorrent icon in notification area</source>
-        <translation type="obsolete">Toon qBittorrenpictogram in notificatie ruimte</translation>
+        <translation type="obsolete">qBittorrent geminimaliseerd starten</translation>
     </message>
     <message>
         <source>Minimize qBittorrent to notification area</source>
-        <translation>Miminalizeer qBittorrent naar de notificatie ruimte</translation>
+        <translation type="obsolete">qBittorrent naar systeemvak minimaliseren</translation>
     </message>
     <message>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>Sluit qBittorrent naar de notificatie ruimte</translation>
+        <translation type="obsolete">qBittorrent naar systeemvak sluiten</translation>
+    </message>
+    <message>
+        <source>Tray icon style:</source>
+        <translation type="obsolete">Stijl systeemvakpictogram</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="obsolete">Normaal</translation>
+    </message>
+    <message>
+        <source>Monochrome (Dark theme)</source>
+        <translation type="obsolete">Monochroom (donker thema)</translation>
+    </message>
+    <message>
+        <source>Monochrome (Light theme)</source>
+        <translation type="obsolete">Monochroom (licht thema)</translation>
+    </message>
+    <message>
+        <source>User Interface Language:</source>
+        <translation type="obsolete">Taal gebruikersinterface:</translation>
+    </message>
+    <message>
+        <source>Transfer List</source>
+        <translation type="obsolete">Overdrachtlijst</translation>
+    </message>
+    <message>
+        <source>Confirm when deleting torrents</source>
+        <translation type="obsolete">Bevestigen bij verwijderen torrents</translation>
+    </message>
+    <message>
+        <source>Start qBittorrent on Windows start up</source>
+        <translation type="obsolete">qBittorrent starten bij opstarten van Windows</translation>
+    </message>
+    <message>
+        <source>Confirmation on exit when torrents are active</source>
+        <translation type="obsolete">Bevestiging bij afsluiten wanneer torrents actief zijn</translation>
+    </message>
+    <message>
+        <source>Show qBittorrent in notification area</source>
+        <translation type="obsolete">qBittorrent weergeven in systeemvak</translation>
+    </message>
+    <message>
+        <source>File association</source>
+        <translation type="obsolete">Bestandskoppeling</translation>
+    </message>
+    <message>
+        <source>Use qBittorrent for .torrent files</source>
+        <translation type="obsolete">qBittorrent gebruiken voor .torrent-bestanden</translation>
+    </message>
+    <message>
+        <source>Use qBittorrent for magnet links</source>
+        <translation type="obsolete">qBittorrent gebruiken voor magneetlinks</translation>
+    </message>
+    <message>
+        <source>Power Management</source>
+        <translation type="obsolete">Energiebeheer</translation>
+    </message>
+    <message>
+        <source>Inhibit system sleep when torrents are active</source>
+        <translation type="obsolete">Slaapstand voorkomen wanneer torrents actief zijn</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation>Start the download niet automatisch</translation>
+        <translation type="obsolete">Download niet automatisch starten</translation>
     </message>
     <message>
-        <source>Save files to location:</source>
-        <translation>Sla bestanden op op locatie:</translation>
+        <source>Bring torrent dialog to the front</source>
+        <translation type="obsolete">Torrent-dialoogvenster naar voor brengen</translation>
     </message>
     <message>
-        <source>Append the label of the torrent to the save path</source>
-        <translation>Voeg het label toe aan het opslag pad van de torrent</translation>
+        <source>Should the .torrent file be deleted after adding it</source>
+        <translation type="obsolete">Moet het .torrentbestand verwijderd worden na toevoegen</translation>
+    </message>
+    <message>
+        <source>Delete .torrent files afterwards </source>
+        <translation type="obsolete">Torrentbestanden nadien verwijderen</translation>
+    </message>
+    <message>
+        <source>Also delete .torrent files whose addition was cancelled</source>
+        <translation type="obsolete">Ook .torrentbestanden verwijderen waarvan de toevoeging geannuleerd werd.</translation>
+    </message>
+    <message>
+        <source>Also when addition is cancelled</source>
+        <translation type="obsolete">Ook wanneer toevoeging geannuleerd is</translation>
+    </message>
+    <message>
+        <source>Warning! Data loss possible!</source>
+        <translation type="obsolete">Waarschuwing! Dataverlies mogelijk!</translation>
+    </message>
+    <message>
+        <source>Default Torrent Management Mode:</source>
+        <translation type="obsolete">Standaard torrent-beheermodus:</translation>
+    </message>
+    <message>
+        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
+        <translation type="obsolete">Automatische modus betekent dat verschillende torrent-eigenschappen (bijvoorbeeld opslagpad) bepaald zullen worden door de overeenkomstige categorie.</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation type="obsolete">Handmatig</translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="obsolete">Automatisch</translation>
+    </message>
+    <message>
+        <source>When Torrent Category changed:</source>
+        <translation type="obsolete">Wanneer torrentcategorie wijzigt:</translation>
+    </message>
+    <message>
+        <source>Switch torrent to Manual Mode</source>
+        <translation type="obsolete">Torrent wisselen naar handmatige modus</translation>
+    </message>
+    <message>
+        <source>When Default Save Path changed:</source>
+        <translation type="obsolete">Wanneer standaard opslagpad wijzigt:</translation>
+    </message>
+    <message>
+        <source>Switch affected torrents to Manual Mode</source>
+        <translation type="obsolete">Beïnvloede torrents wisselen naar handmatige modus</translation>
+    </message>
+    <message>
+        <source>When Category changed:</source>
+        <translation type="obsolete">Wanneer categorie wijzigt:</translation>
+    </message>
+    <message>
+        <source>Use Subcategories</source>
+        <translation type="obsolete">Gebruik subcategorieën</translation>
+    </message>
+    <message>
+        <source>Default Save Path:</source>
+        <translation type="obsolete">Standaard opslagpad:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
-        <translation>Pre-allocate schijfruimte voor alle bestanden</translation>
+        <translation type="obsolete">Schijfruimte voor alle bestanden vooraf toewijzen</translation>
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation>Bewaar onvoltooide torrent in:</translation>
-    </message>
-    <message>
-        <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation type="obsolete">Voeg de .!qB-extensie toe aan onvoltooide bestanden hun namen</translation>
+        <translation type="obsolete">Onvoltooide torrents bewaren in:</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation>Voeg automatisch torrents toe van:</translation>
+        <translation type="obsolete">Torrents automatisch toevoegen vanuit:</translation>
     </message>
     <message>
-        <source>Add folder...</source>
-        <translation>Voeg map toe...</translation>
+        <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="obsolete">.torrentbestanden voor voltooide downloads kopiëren naar:</translation>
     </message>
     <message>
-        <source>IP Filtering</source>
-        <translation>IP Filtering</translation>
+        <source>Add entry</source>
+        <translation type="obsolete">Entry toevoegen</translation>
     </message>
     <message>
-        <source>Schedule the use of alternative speed limits</source>
-        <translation type="obsolete">Plan het gebruik van alternatieve snelheidslimieten</translation>
-    </message>
-    <message>
-        <source>from</source>
-        <extracomment>from (time1 to time2)</extracomment>
-        <translation>van</translation>
-    </message>
-    <message>
-        <source>When:</source>
-        <translation>Wanneer:</translation>
-    </message>
-    <message>
-        <source>Look for peers on your local network</source>
-        <translation>Zoek naar peers in u lokaal netwerk</translation>
-    </message>
-    <message>
-        <source>Protocol encryption:</source>
-        <translation type="obsolete">Protocol encryptie:</translation>
-    </message>
-    <message>
-        <source>Enable Web User Interface (Remote control)</source>
-        <translation>Schakel Webuserinterface in (Remote control)</translation>
-    </message>
-    <message>
-        <source>Share ratio limiting</source>
-        <translation type="obsolete">Deelverhouding limieteren</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation>Seed torrents totdat hun verhouding bereikt is</translation>
-    </message>
-    <message>
-        <source>then</source>
-        <translation>dan</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation>Pauseer hen</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation>Verwijder hen</translation>
-    </message>
-    <message utf8="true">
-        <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation>Wissel peers uit met compatibele Bittorrent clients (µTorrent, Vuze, ...)</translation>
+        <source>Remove entry</source>
+        <translation type="obsolete">Entry verwijderen</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation>Email notificatie wanneer download voltooid</translation>
+        <translation type="obsolete">Melding via e-mail wanneer download voltooid is</translation>
     </message>
     <message>
         <source>Destination email:</source>
-        <translation>Bestemming email:</translation>
+        <translation type="obsolete">E-mail ontvanger:</translation>
     </message>
     <message>
         <source>SMTP server:</source>
-        <translation>SMTP server:</translation>
-    </message>
-    <message>
-        <source>Run an external program on torrent completion</source>
-        <translation>Voer een extern programma uit bij de voltooiing van de torrent</translation>
-    </message>
-    <message>
-        <source>Use %f to pass the torrent path in parameters</source>
-        <translation type="obsolete">Gebruik %f om het torrentpad door te geven in parameters</translation>
-    </message>
-    <message>
-        <source>Proxy server</source>
-        <translation type="obsolete">Proxy server</translation>
-    </message>
-    <message>
-        <source>BitTorrent</source>
-        <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Start / Stop Torrent</source>
-        <translation>Start / Stop Torrent</translation>
-    </message>
-    <message>
-        <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Gebruik UPnP / NAT-PMP port forwarding van mijn router</translation>
-    </message>
-    <message>
-        <source>Privacy</source>
-        <translation>Privacy</translation>
-    </message>
-    <message>
-        <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Schakel DHT (decentralized network) in om andere peers te vinden</translation>
-    </message>
-    <message>
-        <source>Use a different port for DHT and BitTorrent</source>
-        <translation>Gebruik een verschillende poort voor DHT en BitTorrent</translation>
-    </message>
-    <message>
-        <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Schakel Peer Exchange (PeX) in om peers te vinden</translation>
-    </message>
-    <message>
-        <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Schakel Local Peer Discovery in om meer peers te vinden</translation>
-    </message>
-    <message>
-        <source>Encryption mode:</source>
-        <translation>Encryptiemodus:</translation>
-    </message>
-    <message>
-        <source>Prefer encryption</source>
-        <translation>Verkies encryptie</translation>
-    </message>
-    <message>
-        <source>Require encryption</source>
-        <translation>Vereis encryptie</translation>
-    </message>
-    <message>
-        <source>Disable encryption</source>
-        <translation>Schakel encryptie uit</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation type="obsolete">Gebruikersinterface</translation>
-    </message>
-    <message>
-        <source>Reload the filter</source>
-        <translation>Herlaad de filter</translation>
-    </message>
-    <message>
-        <source>Behavior</source>
-        <translation>Gedrag</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation>Taal</translation>
-    </message>
-    <message>
-        <source>Power Management</source>
-        <translation>Power Management</translation>
-    </message>
-    <message>
-        <source>Inhibit system sleep when torrents are active</source>
-        <translation>Stop systeem sleep wanneer torrent actief zijn</translation>
-    </message>
-    <message>
-        <source>Bypass authentication for localhost</source>
-        <translation>Sla authenticatie over voor localhost</translation>
-    </message>
-    <message>
-        <source>Ask for program exit confirmation</source>
-        <translation>Vraag voor programma afsluiten bevestiging</translation>
-    </message>
-    <message>
-        <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="obsolete">Gebruik monochrome system tray icon (vereist herstart)</translation>
-    </message>
-    <message>
-        <source>The following parameters are supported:
-&lt;ul&gt;
-&lt;li&gt;%f: Torrent path&lt;/li&gt;
-&lt;li&gt;%n: Torrent name&lt;/li&gt;
-&lt;/ul&gt;</source>
-        <translation>De volgende parameters worden ondersteund:
-&lt;ul&gt;
-&lt;li&gt;%f: Torrent pad&lt;/li&gt;
-&lt;li&gt;%n: Torrent naam&lt;/li&gt;
-&lt;/ul&gt;</translation>
-    </message>
-    <message>
-        <source>Tray icon style:</source>
-        <translation>Tray icon stijl:</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation>Normaal</translation>
-    </message>
-    <message>
-        <source>Monochrome (Dark theme)</source>
-        <translation>Monochroom (Donker thema)</translation>
-    </message>
-    <message>
-        <source>Monochrome (Light theme)</source>
-        <translation>Monochroom (Licht thema)</translation>
+        <translation type="obsolete">SMTP-server:</translation>
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
-        <translation>Deze server vereist een veilige verbinding (SSL)</translation>
-    </message>
-    <message>
-        <source>User Interface Language:</source>
-        <translation>Gebuikersinterface taal:</translation>
-    </message>
-    <message>
-        <source>Transfer List</source>
-        <translation>Overdrachtenlijst</translation>
-    </message>
-    <message>
-        <source>Show qBittorrent in notification area</source>
-        <translation>Toon qBittorrent in de notificatie ruimte</translation>
-    </message>
-    <message>
-        <source>Hard Disk</source>
-        <translation>Harde Schijf</translation>
+        <translation type="obsolete">Deze server vereist een veilige verbinding (SSL)</translation>
     </message>
     <message>
         <source>Listening Port</source>
-        <translation>Luisterpoort</translation>
+        <translation type="obsolete">Luisterpoort</translation>
     </message>
     <message>
-        <source>Connections Limits</source>
-        <translation>Connectielimieten</translation>
+        <source>Use UPnP / NAT-PMP port forwarding from my router</source>
+        <translation type="obsolete">UPnP/NAT-PMP port forwarding van mijn router gebruiken</translation>
     </message>
     <message>
-        <source>Proxy Server</source>
-        <translation>Proxy Server</translation>
+        <source>Use different port on each startup</source>
+        <translation type="obsolete">Bij elke opstart een andere poort gebruiken</translation>
     </message>
     <message>
-        <source>Torrent Queueing</source>
-        <translation>Torrent op de wachtlijst plaatsen</translation>
-    </message>
-    <message>
-        <source>Share Ratio Limiting</source>
-        <translation>Deel ratio limietering</translation>
-    </message>
-    <message>
-        <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation>Gebruik UPnP / NAT-PMP om de poort van de router te forwarden</translation>
-    </message>
-    <message>
-        <source>Update my dynamic domain name</source>
-        <translation>Update mijn dynamische domeinnaam</translation>
-    </message>
-    <message>
-        <source>Service:</source>
-        <translation>Service:</translation>
-    </message>
-    <message>
-        <source>Register</source>
-        <translation>Registreer</translation>
-    </message>
-    <message>
-        <source>Domain name:</source>
-        <translation>Domeinnaam:</translation>
-    </message>
-    <message>
-        <source>Global Rate Limits</source>
-        <translation>Globale rate limieten</translation>
-    </message>
-    <message>
-        <source>Apply rate limit to uTP connections</source>
-        <translation>Pas rate limiet toe op uTP connecties</translation>
-    </message>
-    <message>
-        <source>Apply rate limit to transport overhead</source>
-        <translation>Pas rate limiet to op transport overhead</translation>
-    </message>
-    <message>
-        <source>Alternative Global Rate Limits</source>
-        <translation>Alternatieve globale rate limieten</translation>
-    </message>
-    <message>
-        <source>Schedule the use of alternative rate limits</source>
-        <translation>Stel het gebruik van alternatieve limieten in</translation>
-    </message>
-    <message>
-        <source>Enable bandwidth management (uTP)</source>
-        <translation>Schakel bandbreedte management in (uTP)</translation>
+        <source>Global maximum number of upload slots:</source>
+        <translation type="obsolete">Algemeen maximaal aantal uploadslots:</translation>
     </message>
     <message>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation>Anders, de proxy server wordt alleen gebruikt voor tracker connecties</translation>
+        <translation type="obsolete">Anders wordt  de proxy server alleen gebruikt voor trackerverbindingen</translation>
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation>Gebruik proxy voor peer connecties</translation>
+        <translation type="obsolete">Proxy gebruiken voor peer-verbindingen</translation>
     </message>
     <message>
-        <source>Append .!qB extension to incomplete files</source>
-        <translation>Voeg .!qB extensie toe aan onvolledige bestanden</translation>
+        <source>Disable connections not supported by proxies</source>
+        <translation type="obsolete">Verbindingen die niet ondersteund worden door proxy&apos;s uitschakelen</translation>
     </message>
     <message>
-        <source>Use HTTPS instead of HTTP</source>
-        <translation>Gebruik HTTPS in plaats van HTTP</translation>
+        <source>Use proxy only for torrents</source>
+        <translation type="obsolete">Proxy alleen voor torrents gebruiken</translation>
     </message>
     <message>
-        <source>Import SSL Certificate</source>
-        <translation>Importeer SSL certificaat</translation>
+        <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
+        <translation type="obsolete">RSS-feeds, zoekmachine, software-updates of iets anders dan torrent-overdrachten en gerelateerde handelingen (zoals peer-uitwisselingen) zullen een directe verbinding gebruiken</translation>
     </message>
     <message>
-        <source>Import SSL Key</source>
-        <translation>Importeer SSL Key</translation>
+        <source>Info: The password is saved unencrypted</source>
+        <translation type="obsolete">Info: het wachtwoord is onversleuteld opgeslagen</translation>
     </message>
     <message>
-        <source>Certificate:</source>
-        <translation>Certificaat:</translation>
+        <source>IP Filtering</source>
+        <translation type="obsolete">IP-filtering</translation>
     </message>
     <message>
-        <source>Key:</source>
-        <translation>Key:</translation>
+        <source>Reload the filter</source>
+        <translation type="obsolete">Filter opnieuw laden</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Informatie over certificaten&lt;/a&gt;</translation>
+        <source>Apply to trackers</source>
+        <translation type="obsolete">Toepassen op trackers</translation>
     </message>
     <message>
-        <source>File association</source>
-        <translation>Bestandskoppeling</translation>
+        <source>Apply rate limit to peers on LAN</source>
+        <translation type="obsolete">Snelheidsbegrenzing toepassen op peers op LAN</translation>
     </message>
     <message>
-        <source>Use qBittorrent for .torrent files</source>
-        <translation>Gebruik qBittorrent vor .torrent-bestanden</translation>
+        <source>When:</source>
+        <translation type="obsolete">Wanneer:</translation>
     </message>
     <message>
-        <source>Use qBittorrent for magnet links</source>
-        <translation>Gebruik qBittorrent voor magnet links</translation>
+        <source>Hide zero and infinity values</source>
+        <translation type="obsolete">Waarden nul en oneindig verbergen</translation>
     </message>
     <message>
-        <source>Do not count slow torrents in these limits</source>
-        <translation>Tel trage torrents niet mee bij deze limieten</translation>
+        <source>Always</source>
+        <translation type="obsolete">Altijd</translation>
+    </message>
+    <message>
+        <source>Paused torrents only</source>
+        <translation type="obsolete">Alleen gepauzeerde torrents</translation>
+    </message>
+    <message>
+        <source>Confirmation on auto-exit when downloads finish</source>
+        <translation type="obsolete">Bevestiging bij automatisch afsluiten wanneer downloads voltooid zijn</translation>
+    </message>
+    <message>
+        <source>Log file</source>
+        <translation type="obsolete">Logbestand</translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation type="obsolete">Opslagpad:</translation>
+    </message>
+    <message>
+        <source>Backup the log file after:</source>
+        <translation type="obsolete">Logbestand back-uppen na:</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation type="obsolete">MB</translation>
+    </message>
+    <message>
+        <source>Delete backup logs older than:</source>
+        <translation type="obsolete">Back-up-logs verwijderen die ouder zijn dan:</translation>
+    </message>
+    <message>
+        <source>days</source>
+        <comment>Delete backup logs older than 10 months</comment>
+        <translation type="obsolete">dagen</translation>
+    </message>
+    <message>
+        <source>months</source>
+        <comment>Delete backup logs older than 10 months</comment>
+        <translation type="obsolete">maand</translation>
+    </message>
+    <message>
+        <source>years</source>
+        <comment>Delete backup logs older than 10 years</comment>
+        <translation type="obsolete">jaar</translation>
+    </message>
+    <message>
+        <source>Saving Management</source>
+        <translation type="obsolete">Opslagbeheer</translation>
+    </message>
+    <message>
+        <source>Relocate torrent</source>
+        <translation type="obsolete">Torrent verplaatsen</translation>
+    </message>
+    <message>
+        <source>Relocate affected torrents</source>
+        <translation type="obsolete">Beïnvloede torrents verplaatsen</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation type="obsolete">Weekdagen</translation>
+    </message>
+    <message>
+        <source>Weekends</source>
+        <translation type="obsolete">Weekends</translation>
+    </message>
+    <message>
+        <source>Rate Limits Settings</source>
+        <translation type="obsolete">Snelheidsbegrenzingsinstellingen</translation>
+    </message>
+    <message utf8="true">
+        <source>Enable µTP protocol</source>
+        <translation type="obsolete">µTP-protocol inschakelen</translation>
+    </message>
+    <message utf8="true">
+        <source>Apply rate limit to µTP protocol</source>
+        <translation type="obsolete">Snelheidsbegrenzing toepassen op µTP-protocol</translation>
+    </message>
+    <message>
+        <source>Privacy</source>
+        <translation type="obsolete">Privacy</translation>
+    </message>
+    <message>
+        <source>Enable DHT (decentralized network) to find more peers</source>
+        <translation type="obsolete">DHT (decentralized network) inschakelen om meer peers te vinden</translation>
+    </message>
+    <message>
+        <source>Enable Peer Exchange (PeX) to find more peers</source>
+        <translation type="obsolete">Peer Exchange (PeX) inschakelen om meer peers te vinden</translation>
+    </message>
+    <message>
+        <source>Look for peers on your local network</source>
+        <translation type="obsolete">Zoeken naar peers in uw lokaal netwerk</translation>
+    </message>
+    <message>
+        <source>Enable when using a proxy or a VPN connection</source>
+        <translation type="obsolete">Inschakelen bij gebruik van een proxy of vpn-verbinding</translation>
     </message>
     <message>
         <source>Enable anonymous mode</source>
-        <translation>Activeer anonieme modus</translation>
+        <translation type="obsolete">Anonieme modus inschakelen</translation>
     </message>
     <message>
-        <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Meer informatie&lt;/a&gt;)</translation>
+        <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="obsolete">(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Meer informatie&lt;/a&gt;)</translation>
+    </message>
+    <message>
+        <source>Do not count slow torrents in these limits</source>
+        <translation type="obsolete">Trage torrents niet meerekenen bij deze limieten</translation>
+    </message>
+    <message>
+        <source>Seed torrents until their ratio reaches</source>
+        <translation type="obsolete">Torrents seeden totdat ze een verhouding bereiken van</translation>
+    </message>
+    <message>
+        <source>then</source>
+        <translation type="obsolete">en ze dan</translation>
+    </message>
+    <message>
+        <source>Pause them</source>
+        <translation type="obsolete">pauzeren</translation>
+    </message>
+    <message>
+        <source>Remove them</source>
+        <translation type="obsolete">verwijderen</translation>
+    </message>
+    <message>
+        <source>Automatically add these trackers to new downloads:</source>
+        <translation type="obsolete">Deze trackers automatisch toevoegen aan nieuwe downloads:</translation>
+    </message>
+    <message>
+        <source>Use UPnP / NAT-PMP to forward the port from my router</source>
+        <translation type="obsolete">UPnP/NAT-PMP gebruiken om de poort van mijn router te forwarden</translation>
+    </message>
+    <message>
+        <source>Use HTTPS instead of HTTP</source>
+        <translation type="obsolete">HTTPS in plaats van HTTP gebruiken</translation>
+    </message>
+    <message>
+        <source>Import SSL Certificate</source>
+        <translation type="obsolete">SSL-certificaat importeren</translation>
+    </message>
+    <message>
+        <source>Import SSL Key</source>
+        <translation type="obsolete">SSL-sleutel importeren</translation>
+    </message>
+    <message>
+        <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation type="obsolete">&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Informatie over certificaten&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <source>Certificate:</source>
+        <translation type="obsolete">Certificaat:</translation>
+    </message>
+    <message>
+        <source>Alternative Rate Limits</source>
+        <translation type="obsolete">Alternatieve snelheidsbegrenzingen</translation>
+    </message>
+    <message>
+        <source>Key:</source>
+        <translation type="obsolete">Sleutel:</translation>
+    </message>
+    <message>
+        <source>Bypass authentication for localhost</source>
+        <translation type="obsolete">Authenticatie overslaan voor localhost</translation>
+    </message>
+    <message>
+        <source>Update my dynamic domain name</source>
+        <translation type="obsolete">Mijn dynamische domeinnaam bijwerken</translation>
+    </message>
+    <message>
+        <source>Service:</source>
+        <translation type="obsolete">Dienst:</translation>
+    </message>
+    <message>
+        <source>Register</source>
+        <translation type="obsolete">Registreren</translation>
+    </message>
+    <message>
+        <source>Domain name:</source>
+        <translation type="obsolete">Domeinnaam:</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation type="obsolete">(Geen)</translation>
+    </message>
+    <message>
+        <source>BitTorrent</source>
+        <translation type="obsolete">BitTorrent</translation>
+    </message>
+    <message>
+        <source>HTTP</source>
+        <translation type="obsolete">HTTP</translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation type="obsolete">Poort:</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation type="obsolete">Authenticatie</translation>
+    </message>
+    <message>
+        <source>Username:</source>
+        <translation type="obsolete">Gebruikersnaam:</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation type="obsolete">Wachtwoord:</translation>
+    </message>
+    <message>
+        <source>Torrent Queueing</source>
+        <translation type="obsolete">Torrents in wachtrij plaatsen</translation>
+    </message>
+    <message>
+        <source>Share Ratio Limiting</source>
+        <translation type="obsolete">Deelverhouding begrenzen</translation>
+    </message>
+    <message>
+        <source>Enable Web User Interface (Remote control)</source>
+        <translation type="obsolete">Web-gebruikersinterface inschakelen (bediening op afstand)</translation>
+    </message>
+    <message>
+        <source>SOCKS5</source>
+        <translation type="obsolete">SOCKS5</translation>
+    </message>
+    <message>
+        <source>Filter path (.dat, .p2p, .p2b):</source>
+        <translation type="obsolete">Filterpad (.dat, p2p, p2b):</translation>
     </message>
 </context>
 <context>
     <name>PreviewSelect</name>
     <message>
+        <location filename="../gui/previewselect.cpp" line="54"/>
         <source>Name</source>
         <translation>Naam</translation>
     </message>
     <message>
+        <location filename="../gui/previewselect.cpp" line="55"/>
         <source>Size</source>
         <translation>Grootte</translation>
     </message>
     <message>
+        <location filename="../gui/previewselect.cpp" line="56"/>
         <source>Progress</source>
         <translation>Voortgang</translation>
     </message>
     <message>
+        <location filename="../gui/previewselect.cpp" line="90"/>
+        <location filename="../gui/previewselect.cpp" line="127"/>
         <source>Preview impossible</source>
-        <translation>Vooruitkijken onmogelijk</translation>
+        <translation>Voorbeeld onmogelijk</translation>
     </message>
     <message>
+        <location filename="../gui/previewselect.cpp" line="90"/>
+        <location filename="../gui/previewselect.cpp" line="127"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Sorry, we kunnen dit bestand niet vooruit bekijken</translation>
-    </message>
-</context>
-<context>
-    <name>ProgramUpdater</name>
-    <message>
-        <source>Could not create the file %1</source>
-        <translation type="obsolete">Kon het bestand %1 niet maken</translation>
-    </message>
-    <message>
-        <source>Failed to download the update at %1</source>
-        <comment>%1 is an URL</comment>
-        <translation type="obsolete">Mislukt om de update te downloaden van %1</translation>
+        <translation>Sorry, we kunnen geen voorbeeld weergeven van dit bestand</translation>
     </message>
 </context>
 <context>
     <name>PropListDelegate</name>
     <message>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="115"/>
+        <source>Not downloaded</source>
+        <translation>Niet gedownload</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="124"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="171"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normaal</translation>
     </message>
     <message>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="118"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="172"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Hoog</translation>
     </message>
     <message>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="73"/>
+        <source>N/A</source>
+        <translation>N/B</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="112"/>
+        <source>Mixed</source>
+        <comment>Mixed (priorities</comment>
+        <translation>Gemengd</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="121"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="173"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Maximum</translation>
-    </message>
-    <message>
-        <source>Not downloaded</source>
-        <translation>Niet gedownload</translation>
-    </message>
-    <message>
-        <source>Mixed</source>
-        <comment>Mixed (priorities</comment>
-        <translation>Meerdere</translation>
     </message>
 </context>
 <context>
     <name>PropTabBar</name>
     <message>
+        <location filename="../gui/properties/proptabbar.cpp" line="46"/>
         <source>General</source>
         <translation>Algemeen</translation>
     </message>
     <message>
+        <location filename="../gui/properties/proptabbar.cpp" line="51"/>
         <source>Trackers</source>
         <translation>Trackers</translation>
     </message>
     <message>
+        <location filename="../gui/properties/proptabbar.cpp" line="55"/>
         <source>Peers</source>
         <translation>Peers</translation>
     </message>
     <message>
-        <source>URL Seeds</source>
-        <translation type="obsolete">URL Seeds</translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation type="obsolete">Bestanden</translation>
-    </message>
-    <message>
+        <location filename="../gui/properties/proptabbar.cpp" line="59"/>
         <source>HTTP Sources</source>
-        <translation>HTTP Bronnen</translation>
+        <translation>HTTP-bronnen</translation>
     </message>
     <message>
+        <location filename="../gui/properties/proptabbar.cpp" line="63"/>
         <source>Content</source>
         <translation>Inhoud</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/proptabbar.cpp" line="69"/>
+        <source>Speed</source>
+        <translation>Snelheid</translation>
     </message>
 </context>
 <context>
     <name>PropertiesWidget</name>
     <message>
-        <source>Save path:</source>
-        <translation>Opslag pad:</translation>
-    </message>
-    <message>
-        <source>Torrent hash:</source>
-        <translation>Torrent hash:</translation>
-    </message>
-    <message>
-        <source>Comment:</source>
-        <translation>Opmerkingen:</translation>
-    </message>
-    <message>
-        <source>Share ratio:</source>
-        <translation>Deelratio:</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation type="obsolete">Algemeen</translation>
-    </message>
-    <message>
-        <source>Trackers</source>
-        <translation type="obsolete">Trackers</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation>Prioriteit</translation>
-    </message>
-    <message>
-        <source>New url seed</source>
-        <comment>New HTTP source</comment>
-        <translation>Nieuwe url seed</translation>
-    </message>
-    <message>
-        <source>New url seed:</source>
-        <translation>Nieuwe url seed:</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
-    </message>
-    <message>
-        <source>This url seed is already in the list.</source>
-        <translation>Deze url seed staat al in de lijst.</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation>Kies opslag pad</translation>
-    </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">Opslag pad aanmaak fout</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">Kon het opslag pad niet aanmaken</translation>
-    </message>
-    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="330"/>
         <source>Downloaded:</source>
         <translation>Gedownload:</translation>
     </message>
     <message>
-        <source>Transfer</source>
-        <translation>Transfer</translation>
-    </message>
-    <message>
-        <source>Uploaded:</source>
-        <translation>Geüpload:</translation>
-    </message>
-    <message>
-        <source>Wasted:</source>
-        <translation>Verspild:</translation>
-    </message>
-    <message>
-        <source>UP limit:</source>
-        <translation>UP limiet:</translation>
-    </message>
-    <message>
-        <source>DL limit:</source>
-        <translation>DL limiet:</translation>
-    </message>
-    <message>
-        <source>Time elapsed:</source>
-        <translation type="obsolete">Tijd verstreken:</translation>
-    </message>
-    <message>
-        <source>Connections:</source>
-        <translation>Verbindingen:</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Informatie</translation>
-    </message>
-    <message>
-        <source>Created on:</source>
-        <translation>Gecreëerd op:</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation>Normaal</translation>
-    </message>
-    <message>
-        <source>Maximum</source>
-        <translation>Maximum</translation>
-    </message>
-    <message>
-        <source>High</source>
-        <translation>Hoog</translation>
-    </message>
-    <message>
-        <source>this session</source>
-        <translation>Deze sessie</translation>
-    </message>
-    <message>
-        <source>%1 max</source>
-        <comment>e.g. 10 max</comment>
-        <translation>%1 max</translation>
-    </message>
-    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="107"/>
         <source>Availability:</source>
         <translation>Beschikbaarheid:</translation>
     </message>
     <message>
-        <source>/s</source>
-        <comment>/second (i.e. per second)</comment>
-        <translation>/s</translation>
+        <location filename="../gui/properties/propertieswidget.ui" line="78"/>
+        <source>Progress:</source>
+        <translation>Voortgang:</translation>
     </message>
     <message>
-        <source>Seeded for %1</source>
-        <comment>e.g. Seeded for 3m10s</comment>
-        <translation>Geseed voor %1</translation>
+        <location filename="../gui/properties/propertieswidget.ui" line="154"/>
+        <source>Transfer</source>
+        <translation>Overdracht</translation>
     </message>
     <message>
-        <source>Rename...</source>
-        <translation>Hernoem...</translation>
-    </message>
-    <message>
-        <source>New name:</source>
-        <translation>Nieuwe naam:</translation>
-    </message>
-    <message>
-        <source>The file could not be renamed</source>
-        <translation>Het bestand kon niet hernoemd worden</translation>
-    </message>
-    <message>
-        <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Deze naam bestaat al in deze map. Gelieve een andere naam te gebruiken.</translation>
-    </message>
-    <message>
-        <source>The folder could not be renamed</source>
-        <translation>Deze map kon niet hernoemd worden</translation>
-    </message>
-    <message>
-        <source>Rename the file</source>
-        <translation>Hernoem het bestand</translation>
-    </message>
-    <message>
-        <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Dit bestand bevat verboden character, gelieven een andere te kiezen.</translation>
-    </message>
-    <message>
-        <source>I/O Error</source>
-        <translation>I/O Fout</translation>
-    </message>
-    <message>
-        <source>This file does not exist yet.</source>
-        <translation>Dit bestand bestaat nog niet.</translation>
-    </message>
-    <message>
-        <source>This folder does not exist yet.</source>
-        <translation>Deze map bestaat nog niet.</translation>
-    </message>
-    <message>
-        <source>Reannounce in:</source>
-        <translation>Heraankondigen in:</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation>Selecteer Alles</translation>
-    </message>
-    <message>
-        <source>Select None</source>
-        <translation>Selecteer Geen</translation>
-    </message>
-    <message>
-        <source>Do not download</source>
-        <translation>Download niet</translation>
-    </message>
-    <message>
-        <source>Pieces size:</source>
-        <translation>Delen grootte:</translation>
-    </message>
-    <message>
-        <source>Time active:</source>
+        <location filename="../gui/properties/propertieswidget.ui" line="546"/>
+        <source>Time Active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
         <translation>Tijd actief:</translation>
     </message>
     <message>
-        <source>Torrent content:</source>
-        <translation>Torrent inhoud:</translation>
+        <location filename="../gui/properties/propertieswidget.ui" line="575"/>
+        <source>ETA:</source>
+        <translation>Geschatte resterende tijd:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="504"/>
+        <source>Uploaded:</source>
+        <translation>Geüpload:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="433"/>
+        <source>Seeds:</source>
+        <translation>Seeds:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="449"/>
+        <source>Download Speed:</source>
+        <translation>Downloadsnelheid:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="185"/>
+        <source>Upload Speed:</source>
+        <translation>Uploadsnelheid:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="214"/>
+        <source>Peers:</source>
+        <translation>Peers:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="272"/>
+        <source>Download Limit:</source>
+        <translation>Downloadbegrenzing:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="346"/>
+        <source>Upload Limit:</source>
+        <translation>Uploadbegrenzing:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="591"/>
+        <source>Wasted:</source>
+        <translation>Verloren:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="230"/>
+        <source>Connections:</source>
+        <translation>Verbindingen:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="604"/>
+        <source>Information</source>
+        <translation>Informatie</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="863"/>
+        <source>Comment:</source>
+        <translation>Opmerkingen:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="1020"/>
+        <source>Select All</source>
+        <translation>Alles selecteren</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="1027"/>
+        <source>Select None</source>
+        <translation>Niets selecteren</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="1103"/>
+        <source>Normal</source>
+        <translation>Normaal</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="1098"/>
+        <source>High</source>
+        <translation>Hoog</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="288"/>
+        <source>Share Ratio:</source>
+        <translation>Deelverhouding:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="404"/>
+        <source>Reannounce In:</source>
+        <translation>Opnieuw aankondigen binnen:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="362"/>
+        <source>Last Seen Complete:</source>
+        <translation>Laatst volledig gezien:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="622"/>
+        <source>Total Size:</source>
+        <translation>Totale grootte:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="651"/>
+        <source>Pieces:</source>
+        <translation>Deeltjes:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="680"/>
+        <source>Created By:</source>
+        <translation>Aangemaakt door:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="709"/>
+        <source>Added On:</source>
+        <translation>Toegevoegd op:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="738"/>
+        <source>Completed On:</source>
+        <translation>Voltooid op:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="767"/>
+        <source>Created On:</source>
+        <translation>Aangemaakt op:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="796"/>
+        <source>Torrent Hash:</source>
+        <translation>Torrent-hash:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="828"/>
+        <source>Save Path:</source>
+        <translation>Opslagpad:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="1093"/>
+        <source>Maximum</source>
+        <translation>Maximum</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.ui" line="1085"/>
+        <location filename="../gui/properties/propertieswidget.ui" line="1088"/>
+        <source>Do not download</source>
+        <translation>Niet downloaden</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="440"/>
+        <source>Never</source>
+        <translation>Nooit</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="447"/>
+        <source>%1 x %2 (have %3)</source>
+        <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
+        <translation>%1 x %2 (%3 in bezit)</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="392"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="395"/>
+        <source>%1 (%2 this session)</source>
+        <translation>%1 (%2 deze sessie)</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="404"/>
+        <source>%1 (seeded for %2)</source>
+        <comment>e.g. 4m39s (seeded for 3m10s)</comment>
+        <translation>%1 (geseed voor %2)</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="411"/>
+        <source>%1 (%2 max)</source>
+        <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
+        <translation>%1 (%2 max)</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="424"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="428"/>
+        <source>%1 (%2 total)</source>
+        <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
+        <translation>%1 (%2 totaal)</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="432"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="436"/>
+        <source>%1 (%2 avg.)</source>
+        <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
+        <translation>%1 (%2 gem.)</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="582"/>
+        <source>Open</source>
+        <translation>Openen</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="583"/>
+        <source>Open Containing Folder</source>
+        <translation>Bijbehorende map openen</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="584"/>
+        <source>Rename...</source>
+        <translation>Naam wijzigen...</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="589"/>
+        <source>Priority</source>
+        <translation>Prioriteit</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="639"/>
+        <source>New Web seed</source>
+        <translation>Nieuwe webseed</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="645"/>
+        <source>Remove Web seed</source>
+        <translation>Webseed verwijderen</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="647"/>
+        <source>Copy Web seed URL</source>
+        <translation>Webseed-url kopiëren</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="648"/>
+        <source>Edit Web seed URL</source>
+        <translation>Webseed-url bewerken</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="674"/>
+        <source>Rename the file</source>
+        <translation>Bestandsnaam wijzigen</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="675"/>
+        <source>New name:</source>
+        <translation>Nieuwe naam:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="679"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="706"/>
+        <source>The file could not be renamed</source>
+        <translation>De bestandsnaam kon niet gewijzigd worden</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="680"/>
+        <source>This file name contains forbidden characters, please choose a different one.</source>
+        <translation>Deze bestandsnaam bevat verboden tekens, gelieve een andere te kiezen.</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="707"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="749"/>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation>Deze naam bestaat al in deze map. Gelieve een andere naam te gebruiken.</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="748"/>
+        <source>The folder could not be renamed</source>
+        <translation>De mapnaam kon niet gewijzigd worden</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="856"/>
+        <source>qBittorrent</source>
+        <translation>qBittorrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="83"/>
+        <source>Filter files...</source>
+        <translation>Bestanden filteren...</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="796"/>
+        <source>New URL seed</source>
+        <comment>New HTTP source</comment>
+        <translation>Nieuwe URL-seed</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="797"/>
+        <source>New URL seed:</source>
+        <translation>Nieuwe URL-seed:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="803"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="857"/>
+        <source>This URL seed is already in the list.</source>
+        <translation>Deze URL-seed staat al in de lijst.</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="849"/>
+        <source>Web seed editing</source>
+        <translation>Webseed bewerken</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="850"/>
+        <source>Web seed URL:</source>
+        <translation>Webseed-url:</translation>
     </message>
 </context>
 <context>
-    <name>QBtSession</name>
+    <name>QObject</name>
     <message>
-        <source>%1 reached the maximum ratio you set.</source>
-        <translation>%1 heeft de maximum ingestelde verhouding bereikt.</translation>
+        <location filename="../webui/abstractwebapplication.cpp" line="111"/>
+        <source>Your IP address has been banned after too many failed authentication attempts.</source>
+        <translation>Uw IP-adres is geblokkeerd na te veel mislukte authenticatie-pogingen.</translation>
     </message>
     <message>
-        <source>Removing torrent %1...</source>
-        <translation>Verwijderen torrent %1...</translation>
+        <location filename="../webui/webapplication.cpp" line="422"/>
+        <source>Error: &apos;%1&apos; is not a valid torrent file.
+</source>
+        <translation>Fout: &apos;%1&apos; is geen geldig torrentbestand.
+</translation>
     </message>
     <message>
-        <source>Pausing torrent %1...</source>
-        <translation>Pauzeren torrent %1...</translation>
+        <location filename="../webui/webapplication.cpp" line="430"/>
+        <source>Error: Could not add torrent to session.</source>
+        <translation>Fout: kon torrent niet aan sessie toevoegen.</translation>
     </message>
     <message>
-        <source>qBittorrent is bound to port: TCP/%1</source>
-        <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation>qBittorrent is verbonden met poort: TCP/%1</translation>
+        <location filename="../webui/webapplication.cpp" line="439"/>
+        <source>I/O Error: Could not create temporary file.</source>
+        <translation>I/O-fout: kon geen tijdelijk bestand aanmaken.</translation>
     </message>
     <message>
-        <source>UPnP support [ON]</source>
-        <translation type="obsolete">UPnP ondersteuning [AAN]</translation>
+        <location filename="../app/main.cpp" line="145"/>
+        <source>%1 is an unknown command line parameter.</source>
+        <comment>--random-parameter is an unknown command line parameter.</comment>
+        <translation>%1 is een onbekende opdrachtregelparameter</translation>
     </message>
     <message>
-        <source>UPnP support [OFF]</source>
-        <translation type="obsolete">UPnP ondersteuning [UIT]</translation>
+        <location filename="../app/main.cpp" line="157"/>
+        <location filename="../app/main.cpp" line="170"/>
+        <source>%1 must be the single command line parameter.</source>
+        <translation>%1 moet de enige opdrachtregelparameter zijn</translation>
     </message>
     <message>
-        <source>NAT-PMP support [ON]</source>
-        <translation type="obsolete">NAT-PMP ondersteuning [AAN]</translation>
+        <location filename="../app/main.cpp" line="180"/>
+        <source>%1 must specify the correct port (1 to 65535).</source>
+        <translation>%1 moet de correcte poort specificeren (1 tot 65535).</translation>
     </message>
     <message>
-        <source>NAT-PMP support [OFF]</source>
-        <translation type="obsolete">NAT-PMP ondersteuning [UIT]</translation>
+        <location filename="../app/main.cpp" line="204"/>
+        <source>You cannot use %1: qBittorrent is already running for this user.</source>
+        <translation>U kunt %1 niet gebruiken: qBittorrent wordt al uitgevoerd voor deze gebruiker.</translation>
     </message>
     <message>
-        <source>HTTP user agent is %1</source>
-        <translation>HTTP user agent is %1</translation>
+        <location filename="../app/main.cpp" line="387"/>
+        <source>Usage:</source>
+        <translation>Gebruik:</translation>
     </message>
     <message>
-        <source>Using a disk cache size of %1 MiB</source>
-        <translation type="obsolete">Gebruikt een disk cache grootte van %1 MiB</translation>
+        <location filename="../app/main.cpp" line="400"/>
+        <source>Options:</source>
+        <translation>Opties:</translation>
     </message>
     <message>
-        <source>DHT support [ON], port: UDP/%1</source>
-        <translation>DHT ondersteuning [AAN], poort: UDP/%1</translation>
+        <location filename="../app/main.cpp" line="402"/>
+        <source>Displays program version</source>
+        <translation>Geeft programmaversie weer</translation>
     </message>
     <message>
-        <source>DHT support [OFF]</source>
-        <translation>DHT ondersteuning [UIT]</translation>
+        <location filename="../app/main.cpp" line="404"/>
+        <source>Displays this help message</source>
+        <translation>Geeft dit helpbericht weer</translation>
     </message>
     <message>
-        <source>PeX support [ON]</source>
-        <translation>PeX ondersteuning [AAN]</translation>
+        <location filename="../app/main.cpp" line="406"/>
+        <source>Changes the Web UI port (current: %1)</source>
+        <translation>Wijzigt de web-UI-poort (huidige: %1)</translation>
     </message>
     <message>
-        <source>PeX support [OFF]</source>
-        <translation>PeX ondersteuning [UIT]</translation>
+        <location filename="../app/main.cpp" line="409"/>
+        <source>Disable splash screen</source>
+        <translation>Opstartscherm uitschakelen</translation>
     </message>
     <message>
-        <source>Restart is required to toggle PeX support</source>
-        <translation>Herstart is vereist om Pex supporten om te wisselen</translation>
+        <location filename="../app/main.cpp" line="411"/>
+        <source>Run in daemon-mode (background)</source>
+        <translation>Uitvoeren in daemon-modus (achtergrond)</translation>
     </message>
     <message>
-        <source>Local Peer Discovery [ON]</source>
-        <translation type="obsolete">Local Peer Discovery [AAN]</translation>
+        <location filename="../app/main.cpp" line="413"/>
+        <source>Downloads the torrents passed by the user</source>
+        <translation>Downloadt de torrents doorgegeven door de gebruiker</translation>
     </message>
     <message>
-        <source>Local Peer Discovery support [OFF]</source>
-        <translation>Local Peer Discovery ondersteuning [UIT]</translation>
+        <location filename="../app/main.cpp" line="423"/>
+        <source>Help</source>
+        <translation>Help</translation>
     </message>
     <message>
-        <source>Encryption support [ON]</source>
-        <translation>Encryptie ondersteuning [AAN]</translation>
+        <location filename="../app/main.cpp" line="432"/>
+        <source>Run application with -h option to read about command line parameters.</source>
+        <translation>Voer de toepassing uit met optie -h om te lezen over opdrachtregelparameters</translation>
     </message>
     <message>
-        <source>Encryption support [FORCED]</source>
-        <translation>Encryptie ondersteuning [GEFORCEERD]</translation>
+        <location filename="../app/main.cpp" line="434"/>
+        <source>Bad command line</source>
+        <translation>Slechte opdrachtregel</translation>
     </message>
     <message>
-        <source>Encryption support [OFF]</source>
-        <translation>Encryptie ondersteuning [UIT]</translation>
+        <location filename="../app/main.cpp" line="440"/>
+        <source>Bad command line: </source>
+        <translation>Slechte opdrachtregel:</translation>
     </message>
     <message>
-        <source>Embedded Tracker [ON]</source>
-        <translation>Embedded Trackker[AAN]</translation>
+        <location filename="../app/main.cpp" line="453"/>
+        <source>Legal Notice</source>
+        <translation>Juridische mededeling</translation>
     </message>
     <message>
-        <source>Failed to start the embedded tracker!</source>
-        <translation>Mistlukt om the embedded tracker te starten!</translation>
+        <location filename="../app/main.cpp" line="454"/>
+        <location filename="../app/main.cpp" line="464"/>
+        <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
+
+No further notices will be issued.</source>
+        <translation>qBittorrent is een bestanddelingsprogramma. Als u een torrent gebruikt zal zijn data beschikbaar worden gesteld voor anderen door het te uploaden. Elke inhoud die u deelt is alleen uw verantwoordelijkheid.
+
+Er zullen geen verdere kennisgevingen meer gedaan worden.</translation>
     </message>
     <message>
-        <source>Embedded Tracker [OFF]</source>
-        <translation>Embedded Tracker [OFF]</translation>
+        <location filename="../app/main.cpp" line="455"/>
+        <source>Press %1 key to accept and continue...</source>
+        <translation>Druk op de %1-toets om te accepteren en verder te gaan...</translation>
     </message>
     <message>
-        <source>The Web UI is listening on port %1</source>
-        <translation>De Web UI luistert naar poort %1</translation>
+        <location filename="../app/main.cpp" line="465"/>
+        <source>Legal notice</source>
+        <translation>Juridische mededeling</translation>
     </message>
     <message>
-        <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation>Webgebruikersinterface fout - Niet mogelijk om Web UI te binden aan poort %1</translation>
+        <location filename="../app/main.cpp" line="466"/>
+        <source>Cancel</source>
+        <translation>Annuleren</translation>
     </message>
     <message>
-        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; werd verwijderd van de overdrachtenlijst en harde schijf.</translation>
+        <location filename="../app/main.cpp" line="467"/>
+        <source>I Agree</source>
+        <translation>Akkoord</translation>
     </message>
     <message>
-        <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; werd verwijderd van de overdrachtenlijst.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation>&apos;%1&apos; is geen geldige magnet URI.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation>&apos;%1&apos; staat al in de downloadlijst.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation>&apos;%1&apos; hervat. (snelle hervatting)</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation>&apos;%1&apos; toegevoegd aan de downloadlijst.</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation>Torrentbestand kan niet worden gedecodeerd: &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>Dit bestand is ofwel corrupt of is geen torrent.</translation>
-    </message>
-    <message>
-        <source>Error: The torrent %1 does not contain any file.</source>
-        <translation>Fout: De torrent %1 bevat geen enkel bestand.</translation>
-    </message>
-    <message>
-        <source>Note: new trackers were added to the existing torrent.</source>
-        <translation>Opmerking: nieuwe trackers werden toegevoegd aan de bestaande torrent.</translation>
-    </message>
-    <message>
-        <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation>Opmerking: nieuwe URL seeds werden toegevoegd aan de bestaande torrent.</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
-        <comment>x.y.z.w was blocked</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;is geblokkeerd door de IP filter&lt;/i&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
-        <comment>x.y.z.w was banned</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;is verbannen door onjuiste delen&lt;/i&gt;</translation>
-    </message>
-    <message>
-        <source>Recursive download of file %1 embedded in torrent %2</source>
-        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation>Recursieve download van bestand %1 in torrent %2</translation>
-    </message>
-    <message>
-        <source>Unable to decode %1 torrent file.</source>
-        <translation>Kon torrentbestand %1 niet decoderen.</translation>
-    </message>
-    <message>
+        <location filename="../app/application.cpp" line="290"/>
         <source>Torrent name: %1</source>
-        <translation>Torrentnaam: %1</translation>
+        <translation>Naam torrent: %1</translation>
     </message>
     <message>
+        <location filename="../app/application.cpp" line="291"/>
         <source>Torrent size: %1</source>
-        <translation>Torrentgrootte %1</translation>
+        <translation>Grootte torrent: %1</translation>
     </message>
     <message>
+        <location filename="../app/application.cpp" line="292"/>
         <source>Save path: %1</source>
         <translation>Opslagpad: %1</translation>
     </message>
     <message>
+        <location filename="../app/application.cpp" line="293"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>De torrent werd gedownload in %1.</translation>
     </message>
     <message>
+        <location filename="../app/application.cpp" line="296"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Bedankt om qBittorrent te gebruiken.</translation>
     </message>
     <message>
-        <source>[qBittorrent] %1 has finished downloading</source>
-        <translation>[qBittorrent] %1 is klaar met downloaden</translation>
+        <location filename="../app/application.cpp" line="302"/>
+        <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
+        <translation>[qBittorrent] &apos;%1&apos; is klaar met downloaden</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation>I/O fout gebeurd, &apos;%1&apos; gepauzeerd.</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="204"/>
+        <source>The remote host name was not found (invalid hostname)</source>
+        <translation>De externe hostnaam werd niet teruggevonden (ongeldige hostnaam)</translation>
     </message>
     <message>
-        <source>Reason: %1</source>
-        <translation>Reden: %1</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="206"/>
+        <source>The operation was canceled</source>
+        <translation>De handeling werd geannuleerd</translation>
     </message>
     <message>
-        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation>UPnP/NAT-PMP: Port mapping fout, bericht: %1</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="208"/>
+        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
+        <translation>De externe server heeft de verbinding vroegtijdig afgesloten, voordat het volledige antwoord ontvangen en verwerkt werd</translation>
     </message>
     <message>
-        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation>UPnP/NAT-PMP: Port mapping succesvol, bericht: %1</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="210"/>
+        <source>The connection to the remote server timed out</source>
+        <translation>De verbinding met de externe server is verlopen</translation>
     </message>
     <message>
-        <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation>Bestandgroottes komen niet overeen voor torrent %1, wordt gepauzeerd.</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="212"/>
+        <source>SSL/TLS handshake failed</source>
+        <translation>SSL/TLS handshake mislukt</translation>
     </message>
     <message>
-        <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation>Snel hernemen van de data werd afgewezen door torrent %1, wordt opnieuw gecontroleerd...</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="214"/>
+        <source>The remote server refused the connection</source>
+        <translation>De externe server heeft de verbinding geweigerd</translation>
     </message>
     <message>
-        <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation>Url seed raadpleging mislukt voor url: %1, bericht: %2</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="216"/>
+        <source>The connection to the proxy server was refused</source>
+        <translation>De verbinding naar de proxyserver werd geweigerd</translation>
     </message>
     <message>
-        <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation>Bezig met downloaden van &apos;%1&apos;, even geduld alstublieft...</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="218"/>
+        <source>The proxy server closed the connection prematurely</source>
+        <translation>De proxyserver heeft de verbinding vroegtijdig afgesloten</translation>
     </message>
     <message>
-        <source>The network interface defined is invalid: %1</source>
-        <translation>De gedefiniëerde netwerkinterface is ongeldig: %1</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="220"/>
+        <source>The proxy host name was not found</source>
+        <translation>De proxy-hostnaam werd niet gevonden</translation>
     </message>
     <message>
-        <source>Trying any other network interface available instead.</source>
-        <translation>Probeer een andere beeschikbaar netwerkinterface in de plaats.</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="222"/>
+        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
+        <translation>De verbinding naar de proxy is verlopen of de proxy reageerde niet op tijd op het verzonden verzoek</translation>
     </message>
     <message>
-        <source>Listening on IP address %1 on network interface %2...</source>
-        <translation>Luisteren naar IP-adres %1 via netwerkinterface %2...</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="224"/>
+        <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
+        <translation>De proxy vereist authenticatie om in te kunnen gaan op het verzoek maar accepteerde geen van de aangeboden aanmeldingsgegevens</translation>
     </message>
     <message>
-        <source>Failed to listen on network interface %1</source>
-        <translation>Mislukt om te luisteren naar netwerkinterface %1</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="226"/>
+        <source>The access to the remote content was denied (401)</source>
+        <translation>De toegang tot de externe inhoud werd geweigerd (401)</translation>
     </message>
     <message>
-        <source>UPnP / NAT-PMP support [ON]</source>
-        <translation>UPnP / NAT-PMP support [AAN]</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="228"/>
+        <source>The operation requested on the remote content is not permitted</source>
+        <translation>De gevraagde handeling op de externe inhoud is niet toegestaan</translation>
     </message>
     <message>
-        <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation>UPnP / NAT-PMP support [UIT]</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="230"/>
+        <source>The remote content was not found at the server (404)</source>
+        <translation>De externe inhoud werd niet teruggevonden op de server (404)</translation>
     </message>
     <message>
-        <source>Local Peer Discovery support [ON]</source>
-        <translation>Local Peer Discovery support [AAN]</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="232"/>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation>De externe server vereist authenticatie om de inhoud aan te bieden maar de gegeven aanmeldingsgegevens werden niet geaccepteerd</translation>
     </message>
     <message>
-        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
-        <comment>%1 is a number</comment>
-        <translation>De opgegeven IP filter werd succesvol ontleed: %1 regels werden toegepast.</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="234"/>
+        <source>The Network Access API cannot honor the request because the protocol is not known</source>
+        <translation>De netwerktoegang-API kon niet ingaan op het verzoek omdat het protocol niet bekend is</translation>
     </message>
     <message>
-        <source>Error: Failed to parse the provided IP filter.</source>
-        <translation>Error: Mislukt om de opgegeven IP filter te ontleden.</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="236"/>
+        <source>The requested operation is invalid for this protocol</source>
+        <translation>De gevraagde handeling is niet geldig voor dit protocol</translation>
     </message>
     <message>
-        <source>Reporting IP address %1 to trackers...</source>
-        <translation>Melden van IP-adres %1 aan trackers...</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="238"/>
+        <source>An unknown network-related error was detected</source>
+        <translation>Er werd een onbekende netwerkgerelateerde fout gevonden</translation>
     </message>
     <message>
-        <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation>De computer zal nu in sleep modus gaan tenzij u annuleert binnen 15 seconden...</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="240"/>
+        <source>An unknown proxy-related error was detected</source>
+        <translation>Er werd een onbekende proxy-gerelateerde fout gevonden</translation>
     </message>
     <message>
-        <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation>De computer zal nu afgesloten worden tenzij u annuleert binnen 15 seconden...</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="242"/>
+        <source>An unknown error related to the remote content was detected</source>
+        <translation>Er werd een onbekende fout, gerelateerd aan de externe inhoud, gevonden</translation>
     </message>
     <message>
-        <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation>qBittorrent zal nu afsluiten tenzij u annuleert binnen 15 seconden...</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="244"/>
+        <source>A breakdown in protocol was detected</source>
+        <translation>Er werd een storing in het protocol gedetecteerd</translation>
     </message>
     <message>
-        <source>Anonymous mode [ON]</source>
-        <translation>Anonieme modues [AAN]</translation>
+        <location filename="../base/net/downloadhandler.cpp" line="246"/>
+        <source>Unknown error</source>
+        <translation>Onbekende fout</translation>
+    </message>
+    <message>
+        <location filename="../app/upgrade.h" line="54"/>
+        <location filename="../app/upgrade.h" line="67"/>
+        <source>Upgrade</source>
+        <translation>Upgraden</translation>
+    </message>
+    <message>
+        <location filename="../app/upgrade.h" line="57"/>
+        <source>You updated from an older version that saved things differently. You must migrate to the new saving system. You will not be able to use an older version than v3.3.0 again. Continue? [y/n]</source>
+        <translation>U heeft bijgewerkt vanaf een oudere versie die dingen op een andere manier opsloeg. U moet migreren naar het nieuwe opslagsysteem. U zult een oudere versie dan v3.3.0 niet meer opnieuw kunnen gebruiken. Doorgaan? [j/n]</translation>
+    </message>
+    <message>
+        <location filename="../app/upgrade.h" line="66"/>
+        <source>You updated from an older version that saved things differently. You must migrate to the new saving system. If you continue, you will not be able to use an older version than v3.3.0 again.</source>
+        <translation>U heeft bijgewerkt vanaf een oudere versie die dingen op een andere manier opsloeg. U moet migreren naar het nieuwe opslagsysteem. Als u verdergaat, zult u een oudere versie dan v3.3.0 niet meer opnieuw kunnen gebruiken.</translation>
+    </message>
+    <message>
+        <location filename="../app/upgrade.h" line="166"/>
+        <source>Couldn&apos;t migrate torrent with hash: %1</source>
+        <translation>Kon torrent met hash %1 niet migreren </translation>
+    </message>
+    <message>
+        <location filename="../app/upgrade.h" line="169"/>
+        <source>Couldn&apos;t migrate torrent. Invalid fastresume file name: %1</source>
+        <translation>Kon torrent niet migreren. Ongeldige bestandsnaam voor snel hervatten: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/settingsstorage.cpp" line="214"/>
+        <source>Detected unclean program exit. Using fallback file to restore settings.</source>
+        <translation>Programma is foutief beëindigd. Fallback-bestand wordt gebruikt om instellingen te herstellen.</translation>
+    </message>
+    <message>
+        <location filename="../base/settingsstorage.cpp" line="280"/>
+        <source>An access error occurred while trying to write the configuration file.</source>
+        <translation>Er trad toegangsfout op tijdens het proberen schrijven van het configuratiebestand.</translation>
+    </message>
+    <message>
+        <location filename="../base/settingsstorage.cpp" line="282"/>
+        <source>A format error occurred while trying to write the configuration file.</source>
+        <translation>Er trad een formatteringsfout op tijdens het proberen schrijven van het configuratiebestand.</translation>
     </message>
 </context>
 <context>
     <name>RSS</name>
     <message>
+        <location filename="../gui/rss/rss.ui" line="17"/>
         <source>Search</source>
         <translation>Zoeken</translation>
     </message>
     <message>
+        <location filename="../gui/rss/rss.ui" line="25"/>
         <source>New subscription</source>
-        <translation>Nieuwe subscriptie</translation>
+        <translation>Nieuw abonnement</translation>
     </message>
     <message>
+        <location filename="../gui/rss/rss.ui" line="32"/>
+        <location filename="../gui/rss/rss.ui" line="159"/>
+        <location filename="../gui/rss/rss.ui" line="162"/>
         <source>Mark items read</source>
-        <translation>Markeer items als gelezen</translation>
+        <translation>Items als gelezen markeren</translation>
     </message>
     <message>
+        <location filename="../gui/rss/rss.ui" line="42"/>
         <source>Update all</source>
-        <translation>Update alles</translation>
+        <translation>Alles bijwerken</translation>
     </message>
     <message>
-        <source>Feed URL</source>
-        <translation type="obsolete">Feed URL</translation>
+        <location filename="../gui/rss/rss.ui" line="62"/>
+        <source>RSS Downloader...</source>
+        <translation>RSS-downloader...</translation>
     </message>
     <message>
-        <source>Update</source>
-        <translation>Updaten</translation>
-    </message>
-    <message>
-        <source>RSS feeds</source>
-        <translation type="obsolete">RSS feeds</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(dubbelklik om te downloaden)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Update all feeds</source>
-        <translation>Update alle feeds</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>Verwijderen</translation>
-    </message>
-    <message>
-        <source>Rename</source>
-        <translation>Hernoemen</translation>
-    </message>
-    <message>
-        <source>Download torrent</source>
-        <translation>Download torrent</translation>
-    </message>
-    <message>
-        <source>Open news URL</source>
-        <translation>Open nieuws URL</translation>
-    </message>
-    <message>
-        <source>Copy feed URL</source>
-        <translation>Kopieer feed URL</translation>
-    </message>
-    <message>
-        <source>Refresh RSS streams</source>
-        <translation>Vernieuw RRS streams</translation>
-    </message>
-    <message>
-        <source>Article title</source>
-        <translation type="obsolete">Artikeltitel</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation>Hernoemen...</translation>
-    </message>
-    <message>
-        <source>New subscription...</source>
-        <translation>Nieuw abonnement...</translation>
-    </message>
-    <message>
-        <source>New folder...</source>
-        <translation>Nieuwe map...</translation>
-    </message>
-    <message>
-        <source>Manage cookies...</source>
-        <translation>Beheer cookies...</translation>
-    </message>
-    <message>
+        <location filename="../gui/rss/rss.ui" line="69"/>
         <source>Settings...</source>
         <translation>Instellingen...</translation>
     </message>
     <message>
-        <source>RSS Downloader...</source>
-        <translation>RSS Downloader...</translation>
+        <location filename="../gui/rss/rss.ui" line="91"/>
+        <source>Torrents: (double-click to download)</source>
+        <translation>Torrents: (dubbelklikken om te downloaden)</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rss.ui" line="122"/>
+        <location filename="../gui/rss/rss.ui" line="125"/>
+        <source>Delete</source>
+        <translation>Verwijderen</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rss.ui" line="130"/>
+        <source>Rename...</source>
+        <translation>Naam wijzigen...</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rss.ui" line="133"/>
+        <source>Rename</source>
+        <translation>Naam wijzigen</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rss.ui" line="138"/>
+        <location filename="../gui/rss/rss.ui" line="141"/>
+        <source>Update</source>
+        <translation>Bijwerken</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rss.ui" line="146"/>
+        <source>New subscription...</source>
+        <translation>Nieuw abonnement...</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rss.ui" line="151"/>
+        <location filename="../gui/rss/rss.ui" line="154"/>
+        <source>Update all feeds</source>
+        <translation>Alle feeds bijwerken</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rss.ui" line="167"/>
+        <source>Download torrent</source>
+        <translation>Torrent downloaden</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rss.ui" line="172"/>
+        <source>Open news URL</source>
+        <translation>Nieuws-url openen</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rss.ui" line="177"/>
+        <source>Copy feed URL</source>
+        <translation>Feed-url kopiëren</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rss.ui" line="182"/>
+        <source>New folder...</source>
+        <translation>Nieuwe map...</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rss.ui" line="39"/>
+        <source>Refresh RSS streams</source>
+        <translation>RSS-streams vernieuwen</translation>
     </message>
 </context>
 <context>
     <name>RSSImp</name>
     <message>
-        <source>Please type a rss stream url</source>
-        <translation>Geef alstublieft een rss stream url</translation>
-    </message>
-    <message>
+        <location filename="../gui/rss/rss_imp.cpp" line="197"/>
         <source>Stream URL:</source>
-        <translation>Stream URL:</translation>
+        <translation>Stream-url:</translation>
     </message>
     <message>
-        <source>Are you sure? -- qBittorrent</source>
-        <translation>Weet u het zeker? -- qBittorrent</translation>
+        <location filename="../gui/rss/rss_imp.cpp" line="197"/>
+        <source>Please type a RSS stream URL</source>
+        <translation>Gelieve een RSS-stream-URL in te geven</translation>
     </message>
     <message>
-        <source>&amp;Yes</source>
-        <translation>&amp;Ja</translation>
+        <location filename="../gui/rss/rss_imp.cpp" line="207"/>
+        <source>This RSS feed is already in the list.</source>
+        <translation>Deze RSS-feed staat al in de lijst.</translation>
     </message>
     <message>
-        <source>&amp;No</source>
-        <translation>&amp;Nee</translation>
-    </message>
-    <message>
+        <location filename="../gui/rss/rss_imp.cpp" line="151"/>
         <source>Please choose a folder name</source>
-        <translation>Kies een mapnaam</translation>
+        <translation>Mapnaam kiezen</translation>
     </message>
     <message>
+        <location filename="../gui/rss/rss_imp.cpp" line="151"/>
         <source>Folder name:</source>
         <translation>Mapnaam:</translation>
     </message>
     <message>
+        <location filename="../gui/rss/rss_imp.cpp" line="151"/>
         <source>New folder</source>
         <translation>Nieuwe map</translation>
     </message>
     <message>
-        <source>Overwrite attempt</source>
-        <translation>Overschrijfpoging</translation>
+        <location filename="../gui/rss/rss_imp.cpp" line="235"/>
+        <source>Deletion confirmation</source>
+        <translation>Verwijderbevestiging</translation>
     </message>
     <message>
-        <source>You cannot overwrite %1 item.</source>
-        <comment>You cannot overwrite myFolder item.</comment>
-        <translation>Kan %1 item niet overschrijven.</translation>
+        <location filename="../gui/rss/rss_imp.cpp" line="236"/>
+        <source>Are you sure you want to delete the selected RSS feeds?</source>
+        <translation>Weet u zeker dat u de geselecteerde RSS-feeds wilt verwijderen?</translation>
     </message>
     <message>
-        <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
-    </message>
-    <message>
-        <source>This rss feed is already in the list.</source>
-        <translation>Deze rss feed staat al in de lijst.</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete these elements from the list?</source>
-        <translation>Weet u zeker dat u deze elementen van de lijst wil verwijderen?</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete this element from the list?</source>
-        <translation>Weet u zeker dat u dit element van de lijst wil verwijderen?</translation>
-    </message>
-    <message>
+        <location filename="../gui/rss/rss_imp.cpp" line="383"/>
         <source>Please choose a new name for this RSS feed</source>
-        <translation>Kies een nieuwe naam voor deze RSS feed</translation>
+        <translation>Nieuwe naam kiezen voor deze rss-feed</translation>
     </message>
     <message>
+        <location filename="../gui/rss/rss_imp.cpp" line="383"/>
         <source>New feed name:</source>
-        <translation>Nieuwe feed naam:</translation>
+        <translation>Nieuwe feed-naam:</translation>
     </message>
     <message>
+        <location filename="../gui/rss/rss_imp.cpp" line="387"/>
         <source>Name already in use</source>
         <translation>Naam al in gebruik</translation>
     </message>
     <message>
+        <location filename="../gui/rss/rss_imp.cpp" line="387"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Deze naam is al gebruikt door een ander item, kies een andere naam.</translation>
     </message>
     <message>
+        <location filename="../gui/rss/rss_imp.cpp" line="557"/>
         <source>Date: </source>
         <translation>Datum: </translation>
     </message>
     <message>
+        <location filename="../gui/rss/rss_imp.cpp" line="559"/>
         <source>Author: </source>
         <translation>Auteur: </translation>
     </message>
     <message>
+        <location filename="../gui/rss/rss_imp.cpp" line="636"/>
         <source>Unread</source>
         <translation>Ongelezen</translation>
     </message>
 </context>
 <context>
-    <name>RssArticle</name>
+    <name>Rss::Feed</name>
     <message>
-        <source>No description available</source>
-        <translation type="obsolete">Geen omschrijving beschikbaar</translation>
+        <location filename="../base/rss/rssfeed.cpp" line="381"/>
+        <source>Automatic download of &apos;%1&apos; from &apos;%2&apos; RSS feed failed because it doesn&apos;t contain a torrent or a magnet link...</source>
+        <translation>Automatische download van &apos;%1&apos; van &apos;%2&apos; RSS-feed mislukt omdat het geen torrent of magneetlink bevat...</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rssfeed.cpp" line="386"/>
+        <source>Automatically downloading &apos;%1&apos; torrent from &apos;%2&apos; RSS feed...</source>
+        <translation>Automatisch downloaden van &apos;%1&apos; torrent van &apos;%2&apos; RSS-feed...</translation>
     </message>
 </context>
 <context>
-    <name>RssFeed</name>
+    <name>Rss::Private::Parser</name>
     <message>
-        <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation>Download automatisch %1 torrent van %2 RSS feed...</translation>
-    </message>
-</context>
-<context>
-    <name>RssItem</name>
-    <message>
-        <source>No description available</source>
-        <translation type="obsolete">Geen omschrijving beschikbaar</translation>
-    </message>
-</context>
-<context>
-    <name>RssSettings</name>
-    <message>
-        <source>RSS feeds refresh interval:</source>
-        <translation type="obsolete">RSS feeds vernieuwingsinterval:</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">minuten</translation>
-    </message>
-    <message>
-        <source>Maximum number of articles per feed:</source>
-        <translation type="obsolete">Maximum aantal artikelen per feed:</translation>
+        <location filename="../base/rss/private/rssparser.cpp" line="248"/>
+        <source>Invalid RSS feed.</source>
+        <translation>Ongeldige rss-feed.</translation>
     </message>
 </context>
 <context>
     <name>RssSettingsDlg</name>
     <message>
+        <location filename="../gui/rss/rsssettingsdlg.ui" line="14"/>
         <source>RSS Reader Settings</source>
-        <translation>RSS Reader instellingen</translation>
+        <translation>Instellingen rss-lezer</translation>
     </message>
     <message>
+        <location filename="../gui/rss/rsssettingsdlg.ui" line="32"/>
         <source>RSS feeds refresh interval:</source>
-        <translation>RSS feeds vernieuwingsinterval:</translation>
+        <translation>Vernieuwinterval rss-feeds:</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation>minuten</translation>
+        <location filename="../gui/rss/rsssettingsdlg.ui" line="39"/>
+        <source> min</source>
+        <translation>min</translation>
     </message>
     <message>
+        <location filename="../gui/rss/rsssettingsdlg.ui" line="55"/>
         <source>Maximum number of articles per feed:</source>
-        <translation>Maximum aantal artikelen per feed:</translation>
+        <translation>Maximaal aantal artikels per feed:</translation>
+    </message>
+</context>
+<context>
+    <name>ScanFoldersDelegate</name>
+    <message>
+        <location filename="../gui/scanfoldersdelegate.cpp" line="102"/>
+        <source>Select save location</source>
+        <translation>Selecteer opslaglocatie</translation>
     </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
     <message>
-        <source>Watched Folder</source>
-        <translation>Bekeken map</translation>
+        <location filename="../base/scanfoldersmodel.cpp" line="151"/>
+        <source>Monitored Folder</source>
+        <translation>Gemonitorde map</translation>
     </message>
     <message>
-        <source>Download here</source>
-        <translation>Download hier</translation>
-    </message>
-</context>
-<context>
-    <name>SearchCategories</name>
-    <message>
-        <source>All categories</source>
-        <translation>Alle categorieën</translation>
+        <location filename="../base/scanfoldersmodel.cpp" line="154"/>
+        <source>Override Save Location</source>
+        <translation>Opslaglocatie overschrijven</translation>
     </message>
     <message>
-        <source>Movies</source>
-        <translation>Films</translation>
+        <location filename="../base/scanfoldersmodel.cpp" line="395"/>
+        <source>Monitored folder</source>
+        <translation>Gemonitorde map</translation>
     </message>
     <message>
-        <source>TV shows</source>
-        <translation>TV programma&apos;s</translation>
+        <location filename="../base/scanfoldersmodel.cpp" line="397"/>
+        <source>Default save location</source>
+        <translation>Standaard opslaglocatie</translation>
     </message>
     <message>
-        <source>Music</source>
-        <translation>Muziek</translation>
-    </message>
-    <message>
-        <source>Games</source>
-        <translation>Spellen</translation>
-    </message>
-    <message>
-        <source>Anime</source>
-        <translation>Anime</translation>
-    </message>
-    <message>
-        <source>Software</source>
-        <translation>Software</translation>
-    </message>
-    <message>
-        <source>Pictures</source>
-        <translation>Afbeeldingen</translation>
-    </message>
-    <message>
-        <source>Books</source>
-        <translation>Boeken</translation>
+        <location filename="../base/scanfoldersmodel.cpp" line="399"/>
+        <source>Browse...</source>
+        <translation>Bladeren...</translation>
     </message>
 </context>
 <context>
     <name>SearchEngine</name>
     <message>
-        <source>Empty search pattern</source>
-        <translation>Leeg zoekpatroon</translation>
+        <location filename="../base/searchengine.cpp" line="171"/>
+        <source>Unknown search engine plugin file format.</source>
+        <translation>Onbekend bestandsformaat zoekmachineplugin.</translation>
     </message>
     <message>
-        <source>Please type a search pattern first</source>
-        <translation>Type alstublieft eerst een zoekpatroon</translation>
+        <location filename="../base/searchengine.cpp" line="185"/>
+        <source>A more recent version of this plugin is already installed.</source>
+        <translation>Een nieuwere versie van deze plugin is al geïnstalleerd.</translation>
     </message>
     <message>
-        <source>Results</source>
-        <translation>Resultaten</translation>
+        <location filename="../base/searchengine.cpp" line="213"/>
+        <location filename="../base/searchengine.cpp" line="216"/>
+        <source>Plugin is not supported.</source>
+        <translation>Plugin wordt niet ondersteund.</translation>
     </message>
     <message>
-        <source>Searching...</source>
-        <translation>Zoeken...</translation>
+        <location filename="../base/searchengine.cpp" line="357"/>
+        <source>Update server is temporarily unavailable. %1</source>
+        <translation>Updateserver is tijdelijk niet bereikbaar. %1</translation>
     </message>
     <message>
-        <source>Cut</source>
-        <translation>Knippen</translation>
+        <location filename="../base/searchengine.cpp" line="375"/>
+        <location filename="../base/searchengine.cpp" line="377"/>
+        <source>Failed to download the plugin file. %1</source>
+        <translation>Downloaden van pluginbestand mislukt. %1</translation>
     </message>
     <message>
-        <source>Copy</source>
-        <translation>Kopiëren</translation>
+        <location filename="../base/searchengine.cpp" line="638"/>
+        <source>An incorrect update info received.</source>
+        <translation>Onjuiste update-info ontvangen.</translation>
     </message>
     <message>
-        <source>Paste</source>
-        <translation>Plakken</translation>
+        <location filename="../base/searchengine.cpp" line="662"/>
+        <source>All categories</source>
+        <translation>Alle categorieën</translation>
     </message>
     <message>
-        <source>Clear field</source>
-        <translation>Veld wissen</translation>
+        <location filename="../base/searchengine.cpp" line="663"/>
+        <source>Movies</source>
+        <translation>Films</translation>
     </message>
     <message>
-        <source>Clear completion history</source>
-        <translation>Wis aanvulgeschiedenis</translation>
+        <location filename="../base/searchengine.cpp" line="664"/>
+        <source>TV shows</source>
+        <translation>Tv-shows</translation>
     </message>
     <message>
-        <source>Search Engine</source>
-        <translation>Zoekmachine</translation>
+        <location filename="../base/searchengine.cpp" line="665"/>
+        <source>Music</source>
+        <translation>Muziek</translation>
     </message>
     <message>
-        <source>Search has finished</source>
-        <translation>Zoeken is klaar</translation>
+        <location filename="../base/searchengine.cpp" line="666"/>
+        <source>Games</source>
+        <translation>Spellen</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
-        <translation>Een fout trad op tijdens zoeken...</translation>
+        <location filename="../base/searchengine.cpp" line="667"/>
+        <source>Anime</source>
+        <translation>Anime</translation>
     </message>
     <message>
-        <source>Search aborted</source>
-        <translation>Zoeken afgebroken</translation>
+        <location filename="../base/searchengine.cpp" line="668"/>
+        <source>Software</source>
+        <translation>Software</translation>
     </message>
     <message>
-        <source>Search returned no results</source>
-        <translation>Zoeken gaf geen resultaten</translation>
+        <location filename="../base/searchengine.cpp" line="669"/>
+        <source>Pictures</source>
+        <translation>Afbeeldingen</translation>
     </message>
     <message>
-        <source>Results</source>
-        <comment>i.e: Search results</comment>
-        <translation>Resultaten</translation>
+        <location filename="../base/searchengine.cpp" line="670"/>
+        <source>Books</source>
+        <translation>Boeken</translation>
     </message>
+</context>
+<context>
+    <name>SearchListDelegate</name>
     <message>
+        <location filename="../gui/search/searchlistdelegate.cpp" line="57"/>
+        <location filename="../gui/search/searchlistdelegate.cpp" line="61"/>
         <source>Unknown</source>
         <translation>Onbekend</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation>Zoeken</translation>
-    </message>
-    <message>
-        <source>Download error</source>
-        <translation>Download fout</translation>
-    </message>
-    <message>
-        <source>Python setup could not be downloaded, reason: %1.
-Please install it manually.</source>
-        <translation>Python-installatie kon niet worden gedownload, reason: %1.
-Gelieve het manueel te installeren.</translation>
-    </message>
-    <message>
-        <source>Missing Python Interpreter</source>
-        <translation>Ontbrekende Python Interpreter</translation>
-    </message>
-    <message>
-        <source>Python 2.x is required to use the search engine but it does not seem to be installed.
-Do you want to install it now?</source>
-        <translation>Python 2.x is vereist om de zoekmachine te gebruiken maar dit lijkt niet geinstalleerd.
-Wilt u het nu installeren?</translation>
-    </message>
-    <message>
-        <source>Confirmation</source>
-        <translation>Bevestiging</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to clear the history?</source>
-        <translation>Bent u zeker dat u de geschiedenis wilt wissen?</translation>
     </message>
 </context>
 <context>
     <name>SearchTab</name>
     <message>
+        <location filename="../gui/search/searchtab.cpp" line="81"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>Naam</translation>
     </message>
     <message>
+        <location filename="../gui/search/searchtab.cpp" line="82"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>Grootte</translation>
     </message>
     <message>
+        <location filename="../gui/search/searchtab.cpp" line="83"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
-        <translation>Uploaders</translation>
+        <translation>Seeders</translation>
     </message>
     <message>
+        <location filename="../gui/search/searchtab.cpp" line="84"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation>Downloaders</translation>
+        <translation>Leechers</translation>
     </message>
     <message>
+        <location filename="../gui/search/searchtab.cpp" line="85"/>
         <source>Search engine</source>
         <translation>Zoekmachine</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="205"/>
+        <source>Results (showing &lt;i&gt;%1&lt;/i&gt; out of &lt;i&gt;%2&lt;/i&gt;):</source>
+        <comment>i.e: Search results</comment>
+        <translation>Resultaten (&lt;i&gt;%1&lt;/i&gt; van &lt;i&gt;%2&lt;/i&gt;):</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="255"/>
+        <source>Torrent names only</source>
+        <translation>Alleen torrentnamen</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="256"/>
+        <source>Everywhere</source>
+        <translation>Overal</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="268"/>
+        <source>Searching...</source>
+        <translation>Zoeken...</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="270"/>
+        <source>Search has finished</source>
+        <translation>Zoeken is klaar</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="272"/>
+        <source>Search aborted</source>
+        <translation>Zoeken afgebroken</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="274"/>
+        <source>An error occurred during search...</source>
+        <translation>Er trad een fout op tijdens het zoeken...</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.cpp" line="276"/>
+        <source>Search returned no results</source>
+        <translation>Zoeken gaf geen resultaten</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="14"/>
+        <source>Form</source>
+        <translation>Vorm</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="22"/>
+        <source>Results(xxx)</source>
+        <translation>Resultaten(xxx)</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="45"/>
+        <source>Search in:</source>
+        <translation>Zoeken in:</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="55"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everyhing returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sommige zoekmachines zoeken ook in de beschrijving van de torrent en de naam van het torrentbestand. Of deze resultaten weergegeven worden in onderstaande lijst, wordt geregeld via deze modus.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Overal &lt;/span&gt;schakelt filteren uit en geeft alles weer dat door de zoekmachines gevonden werd.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Alleen torrentnamen&lt;/span&gt; geeft alleen torrents weer waarvan de namen overeenkomen met de zoekopdracht.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="84"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed number of seeders&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimaal en maximaal aantal toegestane seeders instellen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="87"/>
+        <source>Seeds:</source>
+        <translation>Seeds:</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="94"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimaal aantal seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="116"/>
+        <location filename="../gui/search/searchtab.ui" line="204"/>
+        <source>to</source>
+        <translation>tot</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="123"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximaal aantal seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message utf8="true">
+        <location filename="../gui/search/searchtab.ui" line="126"/>
+        <location filename="../gui/search/searchtab.ui" line="216"/>
+        <source>∞</source>
+        <translation>∞</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="167"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed size of a torrent&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimale en maximale toegestane grootte van een torrent instellen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="170"/>
+        <source>Size:</source>
+        <translation>Grootte:</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="179"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimal torrent size&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimale torrentgrootte&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchtab.ui" line="213"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal torrent size&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximale torrentgrootte&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>SearchWidget</name>
+    <message>
+        <location filename="../gui/search/searchwidget.ui" line="14"/>
+        <location filename="../gui/search/searchwidget.ui" line="51"/>
+        <location filename="../gui/search/searchwidget.cpp" line="227"/>
+        <location filename="../gui/search/searchwidget.cpp" line="253"/>
+        <location filename="../gui/search/searchwidget.cpp" line="336"/>
+        <source>Search</source>
+        <translation>Zoeken</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.ui" line="72"/>
+        <source>Download</source>
+        <translation>Download</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.ui" line="82"/>
+        <source>Go to description page</source>
+        <translation>Naar de beschrijvingspagina gaan</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.ui" line="92"/>
+        <source>Copy description page URL</source>
+        <translation>Link van beschrijvingspagina kopiëren</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.ui" line="112"/>
+        <source>Search plugins...</source>
+        <translation>Zoekplugins...</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="83"/>
+        <source>A phrase to search for.</source>
+        <translation>Een zin om naar te zoeken.</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="84"/>
+        <source>Spaces in a search term may be protected by double quotes.</source>
+        <translation>Spaties in een zoekterm kunnen beschermd worden door dubbele aanhalingstekens.</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="86"/>
+        <source>Example:</source>
+        <comment>Search phrase example</comment>
+        <translation>Voorbeeld:</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="88"/>
+        <source>&lt;b&gt;foo bar&lt;/b&gt;: search for &lt;b&gt;foo&lt;/b&gt; and &lt;b&gt;bar&lt;/b&gt;</source>
+        <comment>Search phrase example, illustrates quotes usage, a pair of space delimited words, individal words are highlighted</comment>
+        <translation>&lt;b&gt;foo bar&lt;/b&gt;: zoekt naar &lt;b&gt;foo&lt;/b&gt; en &lt;b&gt;bar&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="92"/>
+        <source>&lt;b&gt;&amp;quot;foo bar&amp;quot;&lt;/b&gt;: search for &lt;b&gt;foo bar&lt;/b&gt;</source>
+        <comment>Search phrase example, illustrates quotes usage, double quotedpair of space delimited words, the whole pair is highlighted</comment>
+        <translation>&lt;b&gt;&amp;quot;foo bar&amp;quot;&lt;/b&gt;: zoekt naar &lt;b&gt;foo bar&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="144"/>
+        <source>All plugins</source>
+        <translation>Alle plugins</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="143"/>
+        <source>Only enabled</source>
+        <translation>Alleen ingeschakeld</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="145"/>
+        <source>Select...</source>
+        <translation>Selecteer...</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="245"/>
+        <location filename="../gui/search/searchwidget.cpp" line="324"/>
+        <location filename="../gui/search/searchwidget.cpp" line="342"/>
+        <source>Search Engine</source>
+        <translation>Zoekmachine</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="245"/>
+        <source>Please install Python to use the Search Engine.</source>
+        <translation>Installeer Python om de zoekmachine te gebruiken.</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="263"/>
+        <source>Empty search pattern</source>
+        <translation>Leeg zoekpatroon</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="263"/>
+        <source>Please type a search pattern first</source>
+        <translation>Typ eerst een zoekpatroon</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="315"/>
+        <source>Stop</source>
+        <translation>Stoppen</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="324"/>
+        <source>Search has finished</source>
+        <translation>Zoeken is klaar</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchwidget.cpp" line="342"/>
+        <source>Search has failed</source>
+        <translation>Zoeken mislukt</translation>
     </message>
 </context>
 <context>
     <name>ShutdownConfirmDlg</name>
     <message>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="113"/>
+        <source>qBittorrent will now exit.</source>
+        <translation>qBittorrent zal nu afsluiten.</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="115"/>
+        <source>E&amp;xit Now</source>
+        <translation>Nu a&amp;fsluiten</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="116"/>
+        <source>Exit confirmation</source>
+        <translation>Afsluiten bevestigen</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="119"/>
+        <source>The computer is going to shutdown.</source>
+        <translation>De computer zal afsluiten.</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="121"/>
+        <source>&amp;Shutdown Now</source>
+        <translation>Nu af&amp;sluiten</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="125"/>
+        <source>The computer is going to enter suspend mode.</source>
+        <translation>De computer zal in stand-by gaan.</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="127"/>
+        <source>&amp;Suspend Now</source>
+        <translation>Nu in &amp;stand-by</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="128"/>
+        <source>Suspend confirmation</source>
+        <translation>Bevestiging voor stand-by</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="131"/>
+        <source>The computer is going to enter hibernation mode.</source>
+        <translation>De computer zal in sluimerstand gaan.</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="133"/>
+        <source>&amp;Hibernate Now</source>
+        <translation>Nu in &amp;sluimerstand</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="134"/>
+        <source>Hibernate confirmation</source>
+        <translation>Bevestiging voor sluimerstand</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="144"/>
+        <source>You can cancel the action within %1 seconds.</source>
+        <translation>U kunt de handeling annuleren binnen %1 seconden.</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirmdlg.cpp" line="122"/>
         <source>Shutdown confirmation</source>
-        <translation>Afsluit bevestiging</translation>
+        <translation>Bevestiging voor afsluiten</translation>
     </message>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
     <message>
+        <location filename="../gui/speedlimitdlg.cpp" line="78"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
+    </message>
+</context>
+<context>
+    <name>SpeedPlotView</name>
+    <message>
+        <location filename="../gui/properties/speedplotview.cpp" line="51"/>
+        <source>Total Upload</source>
+        <translation>Totale upload</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedplotview.cpp" line="52"/>
+        <source>Total Download</source>
+        <translation>Totale download</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedplotview.cpp" line="56"/>
+        <source>Payload Upload</source>
+        <translation>Payload-upload</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedplotview.cpp" line="57"/>
+        <source>Payload Download</source>
+        <translation>Payload-download</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedplotview.cpp" line="61"/>
+        <source>Overhead Upload</source>
+        <translation>Overhead-upload</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedplotview.cpp" line="62"/>
+        <source>Overhead Download</source>
+        <translation>Overhead-download</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedplotview.cpp" line="66"/>
+        <source>DHT Upload</source>
+        <translation>DHT-upload</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedplotview.cpp" line="67"/>
+        <source>DHT Download</source>
+        <translation>DHT-download</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedplotview.cpp" line="71"/>
+        <source>Tracker Upload</source>
+        <translation>Tracker-upload</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedplotview.cpp" line="72"/>
+        <source>Tracker Download</source>
+        <translation>Tracker-download</translation>
+    </message>
+</context>
+<context>
+    <name>SpeedWidget</name>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="66"/>
+        <source>Period:</source>
+        <translation>Tijdspanne:</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="69"/>
+        <source>1 Minute</source>
+        <translation>1 minuut</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="70"/>
+        <source>5 Minutes</source>
+        <translation>5 minuten</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="71"/>
+        <source>30 Minutes</source>
+        <translation>30 minuten</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="72"/>
+        <source>6 Hours</source>
+        <translation>6 uur</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="101"/>
+        <source>Select Graphs</source>
+        <translation>Grafieken selecteren</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="77"/>
+        <source>Total Upload</source>
+        <translation>Totale upload</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="78"/>
+        <source>Total Download</source>
+        <translation>Totale download</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="79"/>
+        <source>Payload Upload</source>
+        <translation>Payload-upload</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="80"/>
+        <source>Payload Download</source>
+        <translation>Payload-download</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="81"/>
+        <source>Overhead Upload</source>
+        <translation>Overhead-upload</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="82"/>
+        <source>Overhead Download</source>
+        <translation>Overhead-download</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="83"/>
+        <source>DHT Upload</source>
+        <translation>DHT-upload</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="84"/>
+        <source>DHT Download</source>
+        <translation>DHT-download</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="85"/>
+        <source>Tracker Upload</source>
+        <translation>Tracker-upload</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="86"/>
+        <source>Tracker Download</source>
+        <translation>Tracker-download</translation>
+    </message>
+</context>
+<context>
+    <name>StatsDialog</name>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="14"/>
+        <source>Statistics</source>
+        <translation>Statistieken</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="20"/>
+        <source>User statistics</source>
+        <translation>Gebruikersstatistieken</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="26"/>
+        <source>Total peer connections:</source>
+        <translation>Totaal aantal peerverbindingen:</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="33"/>
+        <source>Global ratio:</source>
+        <translation>Algemene verhouding:</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="47"/>
+        <source>Alltime download:</source>
+        <translation>Totale download:</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="68"/>
+        <source>Alltime upload:</source>
+        <translation>Totale upload:</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="82"/>
+        <source>Total waste (this session):</source>
+        <translation>Totaal verloren (deze sessie):</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="99"/>
+        <source>Cache statistics</source>
+        <translation>Buffer-statistieken</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="105"/>
+        <source>Read cache hits:</source>
+        <translation>Leesbuffer-hits:</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="184"/>
+        <source>Average time in queue:</source>
+        <translation>Gemiddelde tijd in wachtrij:</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="126"/>
+        <source>Total buffers size:</source>
+        <translation>Totale grootte buffers:</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="136"/>
+        <source>Performance statistics</source>
+        <translation>Prestatiestatistieken</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="170"/>
+        <source>Queued I/O jobs:</source>
+        <translation>I/O-taken in wachtrij:</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="177"/>
+        <source>Write cache overload:</source>
+        <translation>Schrijfbuffer-overbelasting:</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="191"/>
+        <source>Read cache overload:</source>
+        <translation>Leesbuffer-overbelasting:</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="198"/>
+        <source>Total queued size:</source>
+        <translation>Totale grootte van wachtrij:</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.ui" line="243"/>
+        <source>OK</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <location filename="../gui/statsdialog.cpp" line="101"/>
+        <source>%1 ms</source>
+        <comment>18 milliseconds</comment>
+        <translation>%1 ms</translation>
     </message>
 </context>
 <context>
     <name>StatusBar</name>
     <message>
+        <location filename="../gui/statusbar.cpp" line="67"/>
+        <location filename="../gui/statusbar.cpp" line="189"/>
         <source>Connection status:</source>
         <translation>Verbindingsstatus:</translation>
     </message>
     <message>
+        <location filename="../gui/statusbar.cpp" line="67"/>
+        <location filename="../gui/statusbar.cpp" line="189"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Geen directe verbindingen. Dit kan komen door netwerkconfiguratieproblemen.</translation>
     </message>
     <message>
+        <location filename="../gui/statusbar.cpp" line="87"/>
+        <location filename="../gui/statusbar.cpp" line="198"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 nodes</translation>
     </message>
     <message>
-        <source>Connection Status:</source>
-        <translation>Verbindingsstatus:</translation>
-    </message>
-    <message>
-        <source>Online</source>
-        <translation>Online</translation>
-    </message>
-    <message>
-        <source>Global Download Speed Limit</source>
-        <translation>Globale downloadsnelheidslimit</translation>
-    </message>
-    <message>
-        <source>Global Upload Speed Limit</source>
-        <translation>Globale uploadsnelheidslimit</translation>
-    </message>
-    <message>
-        <source>D: %1/s - T: %2</source>
-        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="obsolete">D: %1/s - O: %2</translation>
-    </message>
-    <message>
-        <source>U: %1/s - T: %2</source>
-        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="obsolete">U: %1/s - O: %2</translation>
-    </message>
-    <message>
-        <source>D: %1 B/s - T: %2</source>
-        <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation type="obsolete">D: %1 B/s - O: %2</translation>
-    </message>
-    <message>
-        <source>U: %1 B/s - T: %2</source>
-        <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation type="obsolete">U: %1 B/s - O: %2</translation>
-    </message>
-    <message>
-        <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
-        <translation>Offline. Dit betekent meestal dat qBittorrent mislukte om te luisteren naar de geselecteerde poort voor inkomende verbindingen.</translation>
-    </message>
-    <message>
-        <source>Click to disable alternative speed limits</source>
-        <translation type="obsolete">Klik om de alternatieve snelheidslimieten uit te schakelen</translation>
-    </message>
-    <message>
-        <source>Click to enable alternative speed limits</source>
-        <translation type="obsolete">Klik om de alternatieve snelheidslimieten in te schakelen</translation>
-    </message>
-    <message>
+        <location filename="../gui/statusbar.cpp" line="157"/>
         <source>qBittorrent needs to be restarted</source>
         <translation>qBittorrent moet opnieuw opgestart worden</translation>
     </message>
     <message>
+        <location filename="../gui/statusbar.cpp" line="167"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation>qBittorrent is geüpdatet en moet opnieuw opgestart worden zodat de veranderingen doorgevoerd zijn.</translation>
+        <translation>qBittorrent is bijgewerkt en moet opnieuw opgestart worden om de wijzigingen toe te passen.</translation>
     </message>
     <message>
+        <location filename="../gui/statusbar.cpp" line="179"/>
+        <location filename="../gui/statusbar.cpp" line="185"/>
+        <source>Connection Status:</source>
+        <translation>Verbindingsstatus:</translation>
+    </message>
+    <message>
+        <location filename="../gui/statusbar.cpp" line="179"/>
+        <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
+        <translation>Offline. Dit betekent meestal dat qBittorrent mislukte om te luisteren naar de geselecteerde poort voor inkomende verbindingen.</translation>
+    </message>
+    <message>
+        <location filename="../gui/statusbar.cpp" line="185"/>
+        <source>Online</source>
+        <translation>Online</translation>
+    </message>
+    <message>
+        <location filename="../gui/statusbar.cpp" line="238"/>
         <source>Click to switch to alternative speed limits</source>
-        <translation>Klik om om te schakelen naar alternatieve snelheidslimieten</translation>
+        <translation>Klikken om alternatieve snelheidbegrenzing in te schakelen</translation>
     </message>
     <message>
+        <location filename="../gui/statusbar.cpp" line="233"/>
         <source>Click to switch to regular speed limits</source>
-        <translation>Klik om om te schakelen naar algemene snelheidslimieten</translation>
+        <translation>Klikken om algemene snelheidbegrenzing in te schakelen</translation>
     </message>
     <message>
-        <source>%1/s</source>
-        <comment>Per second</comment>
-        <translation>%1/s</translation>
+        <location filename="../gui/statusbar.cpp" line="248"/>
+        <source>Manual change of rate limits mode. The scheduler is disabled.</source>
+        <translation>Handmatige wijziging van snelheidbegrenzing. De planner is uitgeschakeld.</translation>
+    </message>
+    <message>
+        <location filename="../gui/statusbar.cpp" line="256"/>
+        <source>Global Download Speed Limit</source>
+        <translation>Algemene begrenzing downloadsnelheid</translation>
+    </message>
+    <message>
+        <location filename="../gui/statusbar.cpp" line="284"/>
+        <source>Global Upload Speed Limit</source>
+        <translation>Algemene begrenzing uploadsnelheid</translation>
+    </message>
+</context>
+<context>
+    <name>StatusFiltersWidget</name>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="117"/>
+        <source>All (0)</source>
+        <comment>this is for the status filter</comment>
+        <translation>Alles (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="120"/>
+        <source>Downloading (0)</source>
+        <translation>Downloaden (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="123"/>
+        <source>Seeding (0)</source>
+        <translation>Seeden (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="126"/>
+        <source>Completed (0)</source>
+        <translation>Voltooid (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="129"/>
+        <source>Resumed (0)</source>
+        <translation>Hervat (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="132"/>
+        <source>Paused (0)</source>
+        <translation>Gepauzeerd (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="135"/>
+        <source>Active (0)</source>
+        <translation>Actief (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="138"/>
+        <source>Inactive (0)</source>
+        <translation>Niet actief (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="141"/>
+        <source>Errored (0)</source>
+        <translation>Met fouten (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="158"/>
+        <source>All (%1)</source>
+        <translation>Alles (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="159"/>
+        <source>Downloading (%1)</source>
+        <translation>Downloaden (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="160"/>
+        <source>Seeding (%1)</source>
+        <translation>Seeden (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="161"/>
+        <source>Completed (%1)</source>
+        <translation>Voltooid (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="162"/>
+        <source>Paused (%1)</source>
+        <translation>Gepauzeerd (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="163"/>
+        <source>Resumed (%1)</source>
+        <translation>Hervat (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="164"/>
+        <source>Active (%1)</source>
+        <translation>Actief (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="165"/>
+        <source>Inactive (%1)</source>
+        <translation>Niet actief (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="166"/>
+        <source>Errored (%1)</source>
+        <translation>Met fouten (%1)</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentContentModel</name>
+    <message>
+        <location filename="../gui/torrentcontentmodel.cpp" line="59"/>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcontentmodel.cpp" line="59"/>
+        <source>Size</source>
+        <translation>Grootte</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcontentmodel.cpp" line="59"/>
+        <source>Progress</source>
+        <translation>Voortgang</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcontentmodel.cpp" line="59"/>
+        <source>Download Priority</source>
+        <translation>Downloadprioriteit</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcontentmodel.cpp" line="59"/>
+        <source>Remaining</source>
+        <translation>Resterend</translation>
     </message>
 </context>
 <context>
     <name>TorrentCreatorDlg</name>
     <message>
+        <location filename="../gui/torrentcreatordlg.cpp" line="78"/>
         <source>Select a folder to add to the torrent</source>
-        <translation>Selecteer een map om toe te voegen aan de torrent</translation>
+        <translation>Map selecteren om toe te voegen aan de torrent</translation>
     </message>
     <message>
+        <location filename="../gui/torrentcreatordlg.cpp" line="92"/>
         <source>Select a file to add to the torrent</source>
-        <translation>Selecteer een bestand om toe te voegen aan de torrent</translation>
+        <translation>Bestand selecteren om toe te voegen aan de torrent</translation>
     </message>
     <message>
-        <source>Please type an announce URL</source>
-        <translation type="obsolete">Type een announce URL</translation>
-    </message>
-    <message>
-        <source>Announce URL:</source>
-        <comment>Tracker URL</comment>
-        <translation type="obsolete">Announce URL:</translation>
-    </message>
-    <message>
-        <source>Please type a web seed url</source>
-        <translation type="obsolete">Type een web seed url</translation>
-    </message>
-    <message>
-        <source>Web seed URL:</source>
-        <translation type="obsolete">Web seed URL:</translation>
-    </message>
-    <message>
+        <location filename="../gui/torrentcreatordlg.cpp" line="114"/>
         <source>No input path set</source>
-        <translation>Geen bron pad gekozen</translation>
+        <translation>Geen invoerpad ingesteld</translation>
     </message>
     <message>
+        <location filename="../gui/torrentcreatordlg.cpp" line="114"/>
         <source>Please type an input path first</source>
-        <translation>Geef alstublieft eerst een doel pad</translation>
+        <translation>Geef eerst een invoerpad op</translation>
     </message>
     <message>
+        <location filename="../gui/torrentcreatordlg.cpp" line="124"/>
         <source>Select destination torrent file</source>
-        <translation>Kies torrent doelbestand</translation>
+        <translation>Doel-torrentbestand selecteren</translation>
     </message>
     <message>
-        <source>Torrent Files</source>
-        <translation>Torrent bestanden</translation>
+        <location filename="../gui/torrentcreatordlg.cpp" line="124"/>
+        <source>Torrent Files (*.torrent)</source>
+        <translation>Torrentbestanden (*.torrent)</translation>
     </message>
     <message>
+        <location filename="../gui/torrentcreatordlg.cpp" line="176"/>
+        <source>Torrent was created successfully: %1</source>
+        <comment>%1 is the path of the torrent</comment>
+        <translation>Torrent succesvol aangemaakt: %1</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.cpp" line="152"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="165"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="176"/>
         <source>Torrent creation</source>
-        <translation>Torrent maken</translation>
+        <translation>Torrent aanmaken</translation>
     </message>
     <message>
+        <location filename="../gui/torrentcreatordlg.cpp" line="152"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Fout tijdens het maken van torrent, reden: %1</translation>
     </message>
     <message>
+        <location filename="../gui/torrentcreatordlg.cpp" line="165"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation>Gecreëerd torrentbestand is onjuist. Het wordt niet toegevoegd aan de downloadlijst.</translation>
-    </message>
-    <message>
-        <source>Torrent was created successfully:</source>
-        <translation>Torrent was succesvol gemaakt:</translation>
-    </message>
-</context>
-<context>
-    <name>TorrentFilesModel</name>
-    <message>
-        <source>Name</source>
-        <translation>Naam</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation>Grootte</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation>Voortgang</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation>Prioriteit</translation>
-    </message>
-</context>
-<context>
-    <name>TorrentImportDlg</name>
-    <message>
-        <source>Torrent Import</source>
-        <translation>Torrent Import</translation>
-    </message>
-    <message>
-        <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translation>Deze assistent zal u helpen om een torrent te delen met qBittorrent dat u reeds gedownload hebt.</translation>
-    </message>
-    <message>
-        <source>Torrent file to import:</source>
-        <translation>Torrentbestand om te importeren:</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Content location:</source>
-        <translation>Inhoudlocatie:</translation>
-    </message>
-    <message>
-        <source>Skip the data checking stage and start seeding immediately</source>
-        <translation>Sla het controleren van de data over en start onmiddellijk het seeden</translation>
-    </message>
-    <message>
-        <source>Import</source>
-        <translation>Importeer</translation>
-    </message>
-    <message>
-        <source>Torrent file to import</source>
-        <translation>Torrentbestand om te importeren</translation>
-    </message>
-    <message>
-        <source>Torrent files (*.torrent)</source>
-        <translation>Torrentbestanden (*.torrent)</translation>
-    </message>
-    <message>
-        <source>%1 Files</source>
-        <comment>%1 is a file extension (e.g. PDF)</comment>
-        <translation>%1 bestanden</translation>
-    </message>
-    <message>
-        <source>Please provide the location of %1</source>
-        <comment>%1 is a file name</comment>
-        <translation>Gelieve de locatie van %1 op te geven</translation>
-    </message>
-    <message>
-        <source>Please point to the location of the torrent: %1</source>
-        <translation>Gelieve de locatie op te geven van de torrent: %1</translation>
-    </message>
-    <message>
-        <source>Invalid torrent file</source>
-        <translation>Ongeldig torrentbestand</translation>
-    </message>
-    <message>
-        <source>This is not a valid torrent file.</source>
-        <translation>Dit is geen geldig torrentbestand.</translation>
+        <translation>Aangemaakt torrentbestand is ongeldig. Het wordt niet toegevoegd aan de downloadlijst.</translation>
     </message>
 </context>
 <context>
     <name>TorrentModel</name>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="97"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
         <translation>Naam</translation>
     </message>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="98"/>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Grootte</translation>
     </message>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="99"/>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation>Gereed</translation>
+        <translation>Klaar</translation>
     </message>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="100"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
         <translation>Status</translation>
     </message>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="101"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>Uploaders</translation>
+        <translation>Seeds</translation>
     </message>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="102"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
         <translation>Peers</translation>
     </message>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="103"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Down-snelheid</translation>
+        <translation>Downloadsnelheid</translation>
     </message>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="104"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Up-snelheid</translation>
+        <translation>Uploadsnelheid</translation>
     </message>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="105"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
         <translation>Verhouding</translation>
     </message>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="106"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation>Geschatte resterende tijd</translation>
     </message>
     <message>
-        <source>Label</source>
-        <translation>Label</translation>
+        <location filename="../gui/torrentmodel.cpp" line="107"/>
+        <source>Category</source>
+        <translation>Categorie</translation>
     </message>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="108"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
         <translation>Toegevoegd op</translation>
     </message>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="109"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
         <translation>Voltooid op</translation>
     </message>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="110"/>
         <source>Tracker</source>
         <translation>Tracker</translation>
     </message>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="111"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation>Down-limiet</translation>
+        <translation>Downloadbegrenzing</translation>
     </message>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="112"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation>Up-limiet</translation>
+        <translation>Uploadbegrenzing</translation>
     </message>
     <message>
-        <source>Amount downloaded</source>
+        <location filename="../gui/torrentmodel.cpp" line="113"/>
+        <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation>Hoeveel gedownload</translation>
+        <translation>Gedownload</translation>
     </message>
     <message>
-        <source>Amount left</source>
+        <location filename="../gui/torrentmodel.cpp" line="114"/>
+        <source>Uploaded</source>
+        <comment>Amount of data uploaded (e.g. in MB)</comment>
+        <translation>Geüpload</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentmodel.cpp" line="115"/>
+        <source>Session Download</source>
+        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
+        <translation>Sessie-download</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentmodel.cpp" line="116"/>
+        <source>Session Upload</source>
+        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
+        <translation>Sessie-upload</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentmodel.cpp" line="117"/>
+        <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation>Hoeveel over</translation>
+        <translation>Resterend</translation>
     </message>
     <message>
+        <location filename="../gui/torrentmodel.cpp" line="118"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
         <translation>Tijd actief</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentmodel.cpp" line="119"/>
+        <source>Save path</source>
+        <comment>Torrent save path</comment>
+        <translation>Opslagpad</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentmodel.cpp" line="120"/>
+        <source>Completed</source>
+        <comment>Amount of data completed (e.g. in MB)</comment>
+        <translation>Voltooid</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentmodel.cpp" line="121"/>
+        <source>Ratio Limit</source>
+        <comment>Upload share ratio limit</comment>
+        <translation>Begrenzing deelverhouding</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentmodel.cpp" line="122"/>
+        <source>Last Seen Complete</source>
+        <comment>Indicates the time when the torrent was last seen complete/whole</comment>
+        <translation>Laatst volledig gezien</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentmodel.cpp" line="123"/>
+        <source>Last Activity</source>
+        <comment>Time passed since a chunk was downloaded/uploaded</comment>
+        <translation>Laatste activiteit</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentmodel.cpp" line="124"/>
+        <source>Total Size</source>
+        <comment>i.e. Size including unwanted data</comment>
+        <translation>Totale grootte</translation>
+    </message>
+</context>
+<context>
+    <name>TrackerFiltersList</name>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="445"/>
+        <source>All (0)</source>
+        <comment>this is for the tracker filter</comment>
+        <translation>Alles (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="448"/>
+        <source>Trackerless (0)</source>
+        <translation>Zonder trackers (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="451"/>
+        <source>Error (0)</source>
+        <translation>Fout (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="454"/>
+        <source>Warning (0)</source>
+        <translation>Waarschuwing (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="498"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="552"/>
+        <source>Trackerless (%1)</source>
+        <translation>Zonder trackers (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="504"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="547"/>
+        <source>%1 (%2)</source>
+        <comment>openbittorrent.com (10)</comment>
+        <translation>%1 (%2)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="577"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="609"/>
+        <source>Error (%1)</source>
+        <translation>Fout (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="590"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="624"/>
+        <source>Warning (%1)</source>
+        <translation>Waarschuwing (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="654"/>
+        <source>Couldn&apos;t decode favicon for URL &apos;%1&apos;. Trying to download favicon in PNG format.</source>
+        <translation>Kon favicon voor URL &apos;%1&apos; niet decoderen. Proberen om favicon te downloaden in PNG-formaat.</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="659"/>
+        <source>Couldn&apos;t decode favicon for URL &apos;%1&apos;.</source>
+        <translation>Kon favicon voor URL &apos;%1&apos; niet decoderen.</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="673"/>
+        <source>Couldn&apos;t download favicon for URL &apos;%1&apos;. Reason: %2</source>
+        <translation>Kon favicon voor URL &apos;%1&apos; niet downloaden. Reden: %2</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="682"/>
+        <source>Resume torrents</source>
+        <translation>Torrents hervatten</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="683"/>
+        <source>Pause torrents</source>
+        <translation>Torrents pauzeren</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="684"/>
+        <source>Delete torrents</source>
+        <translation>Torrents verwijderen</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="718"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="732"/>
+        <source>All (%1)</source>
+        <comment>this is for the tracker filter</comment>
+        <translation>Alles (%1)</translation>
     </message>
 </context>
 <context>
     <name>TrackerList</name>
     <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="69"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="70"/>
         <source>Status</source>
         <translation>Status</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="71"/>
         <source>Peers</source>
         <translation>Peers</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="72"/>
         <source>Message</source>
         <translation>Bericht</translation>
     </message>
     <message>
-        <source>[DHT]</source>
-        <translation>[DHT]</translation>
-    </message>
-    <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="217"/>
+        <location filename="../gui/properties/trackerlist.cpp" line="286"/>
         <source>Working</source>
-        <translation>Bezig</translation>
+        <translation>Werkend</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="218"/>
         <source>Disabled</source>
         <translation>Uitgeschakeld</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="239"/>
         <source>This torrent is private</source>
         <translation>Deze torrent is privé</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="290"/>
         <source>Updating...</source>
-        <translation>Updating...</translation>
+        <translation>Bijwerken...</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="294"/>
         <source>Not working</source>
-        <translation>Niet bezig</translation>
+        <translation>Niet werkend</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="298"/>
         <source>Not contacted yet</source>
         <translation>Nog niet gecontacteerd</translation>
     </message>
     <message>
-        <source>[PeX]</source>
-        <translation>[PeX]</translation>
+        <location filename="../gui/properties/trackerlist.cpp" line="380"/>
+        <source>Tracker URL:</source>
+        <translation>Tracker-url:</translation>
     </message>
     <message>
-        <source>[LSD]</source>
-        <translation>[LSD]</translation>
+        <location filename="../gui/properties/trackerlist.cpp" line="380"/>
+        <source>Tracker editing</source>
+        <translation>Tracker bewerken</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="386"/>
+        <location filename="../gui/properties/trackerlist.cpp" line="397"/>
+        <source>Tracker editing failed</source>
+        <translation>Tracker bewerken mislukt</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="386"/>
+        <source>The tracker URL entered is invalid.</source>
+        <translation>De ingevoerde tracker-url is ongeldig</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="397"/>
+        <source>The tracker URL already exists.</source>
+        <translation>De tracker-url bestaat al</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="448"/>
         <source>Add a new tracker...</source>
-        <translation>Voeg een nieuwe tracker toe...</translation>
+        <translation>Nieuwe tracker toevoegen...</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="454"/>
+        <source>Copy tracker URL</source>
+        <translation>Tracker-URL kopiëren</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="455"/>
+        <source>Edit selected tracker URL</source>
+        <translation>Geselecteerde tracker-url bewerken</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="460"/>
+        <source>Force reannounce to selected trackers</source>
+        <translation>Opnieuw aankondigen bij geselecteerde trackers forceren</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="462"/>
+        <source>Force reannounce to all trackers</source>
+        <translation>Altijd naar alle trackers aankondigen</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlist.cpp" line="453"/>
         <source>Remove tracker</source>
-        <translation>Verwijder tracker</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation>Forceer heraankondiging</translation>
+        <translation>Tracker verwijderen</translation>
     </message>
 </context>
 <context>
     <name>TrackersAdditionDlg</name>
     <message>
+        <location filename="../gui/properties/trackersadditiondlg.ui" line="14"/>
         <source>Trackers addition dialog</source>
-        <translation>Trackers toevoegen dialoog</translation>
+        <translation>Trackers toevoegen-venster</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackersadditiondlg.ui" line="20"/>
         <source>List of trackers to add (one per line):</source>
         <translation>Lijst van toe te voegen trackers (een per regel):</translation>
     </message>
     <message utf8="true">
+        <location filename="../gui/properties/trackersadditiondlg.ui" line="44"/>
         <source>µTorrent compatible list URL:</source>
-        <translation>µTorrent compatibiliteitslijst URL:</translation>
+        <translation>Url µTorrent-compatibele lijst:</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="79"/>
         <source>I/O Error</source>
-        <translation>I/O Fout</translation>
+        <translation>I/O-fout</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="79"/>
         <source>Error while trying to open the downloaded file.</source>
-        <translation>Fout tijdens het openen van het gedownloade bestand.</translation>
+        <translation>Fout bij openen van gedownload bestand.</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="117"/>
         <source>No change</source>
-        <translation>Geen verandering</translation>
+        <translation>Geen wijziging</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="117"/>
         <source>No additional trackers were found.</source>
-        <translation>Geen extre trackers werden gevonden.</translation>
+        <translation>Er werden geen extra trackers gevonden.</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="125"/>
         <source>Download error</source>
-        <translation>Download-fout</translation>
+        <translation>Downloadfout</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="125"/>
         <source>The trackers list could not be downloaded, reason: %1</source>
-        <translation>De trackerslijst kon niet worden gedownload, reden: %1</translation>
+        <translation>Lijst met trackers kon niet gedownload worden, reden: %1</translation>
     </message>
 </context>
 <context>
     <name>TransferListDelegate</name>
     <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="240"/>
         <source>Downloading</source>
         <translation>Downloaden</translation>
     </message>
     <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="246"/>
+        <source>Downloading metadata</source>
+        <comment>used when loading a magnet link</comment>
+        <translation>Metadata downloaden</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="252"/>
+        <source>Allocating</source>
+        <comment>qBittorrent is allocating the files on disk</comment>
+        <translation>Toewijzen</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="276"/>
         <source>Paused</source>
         <translation>Gepauzeerd</translation>
     </message>
     <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="263"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
-        <translation>In de wachtlijn geplaatst</translation>
+        <translation>In wachtrij</translation>
     </message>
     <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="256"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
         <translation>Seeden</translation>
     </message>
     <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="243"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
-        <translation>Wacht</translation>
+        <translation>Wachten</translation>
     </message>
     <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="249"/>
+        <source>[F] Downloading</source>
+        <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
+        <translation>[F] downloaden</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="259"/>
+        <source>[F] Seeding</source>
+        <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
+        <translation>[F] seeden</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="267"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
-        <translation>Wordt gecontroleerd</translation>
+        <translation>Controleren</translation>
     </message>
     <message>
-        <source>/s</source>
-        <comment>/second (.i.e per second)</comment>
-        <translation>/s</translation>
+        <location filename="../gui/transferlistdelegate.cpp" line="270"/>
+        <source>Queued for checking</source>
+        <comment>i.e. torrent is queued for hash checking</comment>
+        <translation>In wachtrij voor controleren</translation>
     </message>
     <message>
-        <source>KiB/s</source>
-        <comment>KiB/second (.i.e per second)</comment>
-        <translation>KiB/s</translation>
+        <location filename="../gui/transferlistdelegate.cpp" line="273"/>
+        <source>Checking resume data</source>
+        <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
+        <translation>Hervattingsdata controleren</translation>
     </message>
     <message>
-        <source>Seeded for %1</source>
-        <comment>e.g. Seeded for 3m10s</comment>
-        <translation>Geseed voor %1</translation>
+        <location filename="../gui/transferlistdelegate.cpp" line="279"/>
+        <source>Completed</source>
+        <translation>Voltooid</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="282"/>
+        <source>Missing Files</source>
+        <translation>Ontbrekende bestanden</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="285"/>
+        <source>Errored</source>
+        <comment>torrent status, the torrent has an error</comment>
+        <translation>Met fouten</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="133"/>
+        <source>%1 (seeded for %2)</source>
+        <comment>e.g. 4m39s (seeded for 3m10s)</comment>
+        <translation>%1 (geseed voor %2)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="199"/>
+        <source>%1 ago</source>
+        <comment>e.g.: 1h 20m ago</comment>
+        <translation>%1 geleden</translation>
     </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <source>All</source>
-        <translation>Alle</translation>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="811"/>
+        <source>Status</source>
+        <translation>Status</translation>
     </message>
     <message>
-        <source>Downloading</source>
-        <translation>Downloaden</translation>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="819"/>
+        <source>Categories</source>
+        <translation>Categorieën</translation>
     </message>
     <message>
-        <source>Completed</source>
-        <translation>Voltooid</translation>
-    </message>
-    <message>
-        <source>Active</source>
-        <translation>Actief</translation>
-    </message>
-    <message>
-        <source>Inactive</source>
-        <translation>Inactief</translation>
-    </message>
-    <message>
-        <source>All labels</source>
-        <translation>Alle labels</translation>
-    </message>
-    <message>
-        <source>Unlabeled</source>
-        <translation>Ongelabeld</translation>
-    </message>
-    <message>
-        <source>Remove label</source>
-        <translation>Verwijder label</translation>
-    </message>
-    <message>
-        <source>New Label</source>
-        <translation>Nieuw label</translation>
-    </message>
-    <message>
-        <source>Label:</source>
-        <translation>Label:</translation>
-    </message>
-    <message>
-        <source>Invalid label name</source>
-        <translation>Ongeldige labelnaam</translation>
-    </message>
-    <message>
-        <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Gelieve geen speciale characters te gebruiken in de labelnaam.</translation>
-    </message>
-    <message>
-        <source>Paused</source>
-        <translation>Gepauzeerd</translation>
-    </message>
-    <message>
-        <source>Add label...</source>
-        <translation>Voeg label toe...</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation>Herneem torrents</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation>Pauzeer torrents</translation>
-    </message>
-    <message>
-        <source>Delete torrents</source>
-        <translation>Verwijder torrents</translation>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="827"/>
+        <source>Trackers</source>
+        <translation>Trackers</translation>
     </message>
 </context>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <source>ETA</source>
-        <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="obsolete">Geschatte resterende tijd</translation>
-    </message>
-    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="512"/>
         <source>Column visibility</source>
-        <translation>Kolom zichtbaarheid</translation>
+        <translation>Kolom-zichtbaarheid</translation>
     </message>
     <message>
-        <source>Open destination folder</source>
-        <translation>Open doel map</translation>
+        <location filename="../gui/transferlistwidget.cpp" line="253"/>
+        <source>Choose save path</source>
+        <translation>Opslagpad kiezen</translation>
     </message>
     <message>
-        <source>Force recheck</source>
-        <translation>Forceer hercontrole</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation>Kopieer magnet link</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <comment>i.e: torrent name</comment>
-        <translation type="obsolete">Naam</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: torrent size</comment>
-        <translation type="obsolete">Grootte</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="obsolete">Status</translation>
-    </message>
-    <message>
-        <source>Seeds</source>
-        <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="obsolete">Uploaders</translation>
-    </message>
-    <message>
-        <source>Ratio</source>
-        <comment>Share ratio</comment>
-        <translation type="obsolete">Verhouding</translation>
-    </message>
-    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="440"/>
         <source>Torrent Download Speed Limiting</source>
-        <translation>Torrent downloadsnelheidsbeperking</translation>
+        <translation>Begrenzing downloadsnelheid torrent</translation>
     </message>
     <message>
+        <location filename="../gui/transferlistwidget.cpp" line="469"/>
         <source>Torrent Upload Speed Limiting</source>
-        <translation>Torrent uploadsnelheidsbeperking</translation>
+        <translation>Begrenzing uploadsnelheid torrent</translation>
     </message>
     <message>
-        <source>Super seeding mode</source>
-        <translation>Super seeding modus</translation>
+        <location filename="../gui/transferlistwidget.cpp" line="500"/>
+        <source>Recheck confirmation</source>
+        <translation>Bevestiging opnieuw controleren</translation>
     </message>
     <message>
-        <source>Download in sequential order</source>
-        <translation>Download in sequentiële volgorde</translation>
+        <location filename="../gui/transferlistwidget.cpp" line="500"/>
+        <source>Are you sure you want to recheck the selected torrent(s)?</source>
+        <translation>Weet u zeker dat u de geselecteerde torrent(s) opnieuw wilt controleren?</translation>
     </message>
     <message>
-        <source>Download first and last piece first</source>
-        <translation>Download het eerste en het laatste deel eerst</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>Label</translation>
-    </message>
-    <message>
-        <source>New Label</source>
-        <translation>Nieuw label</translation>
-    </message>
-    <message>
-        <source>Label:</source>
-        <translation>Label:</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New label...</comment>
-        <translation>Nieuw...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset label</comment>
-        <translation>Reset</translation>
-    </message>
-    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="610"/>
         <source>Rename</source>
-        <translation>Hernoemen</translation>
+        <translation>Naam wijzigen</translation>
     </message>
     <message>
+        <location filename="../gui/transferlistwidget.cpp" line="610"/>
         <source>New name:</source>
         <translation>Nieuwe naam:</translation>
     </message>
     <message>
-        <source>Rename...</source>
-        <translation>Hernoem...</translation>
-    </message>
-    <message>
-        <source>Invalid label name</source>
-        <translation>Ongeldige labelnaam</translation>
-    </message>
-    <message>
-        <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Gelieve geen speciale characters te gebruiken in de labelnaam.</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation>Kies opslag pad</translation>
-    </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">Opslag pad aanmaak fout</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">Kon het opslag pad niet aanmaken</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation>Stel locatie in...</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation>Bekijk bestand vooraf...</translation>
-    </message>
-    <message>
-        <source>Limit upload rate...</source>
-        <translation>Uploadverhoudingslimiet...</translation>
-    </message>
-    <message>
-        <source>Limit download rate...</source>
-        <translation>Downloadverhoudingslimiet...</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation>Verplaats omhoog</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation>Verplaats omlaag</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation>Verplaats naar de top</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation>Verplaats naar het einde</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation>Prioriteit</translation>
-    </message>
-    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="630"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Herneem</translation>
+        <translation>Hervatten</translation>
     </message>
     <message>
+        <location filename="../gui/transferlistwidget.cpp" line="634"/>
+        <source>Force Resume</source>
+        <comment>Force Resume/start the torrent</comment>
+        <translation>Hervatten forceren</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="632"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Pauzeer</translation>
+        <translation>Pauzeren</translation>
     </message>
     <message>
+        <location filename="../gui/transferlistwidget.cpp" line="582"/>
+        <source>New Category</source>
+        <translation>Nieuwe categorie</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="582"/>
+        <source>Category:</source>
+        <translation>Categorie:</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="585"/>
+        <source>Invalid category name</source>
+        <translation>Ongeldige categorienaam</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="586"/>
+        <source>Category name must not contain &apos;\&apos;.
+Category name must not start/end with &apos;/&apos;.
+Category name must not contain &apos;//&apos; sequence.</source>
+        <translation>Categorienaam mag geen &apos;\&apos; bevatten.
+Categorienaam mag niet beginnen/eindigen met &apos;/&apos;.
+Categorienaam mag de &apos;//&apos;-opeenvolging niet bevatten.</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="636"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Verwijderen</translation>
     </message>
     <message>
+        <location filename="../gui/transferlistwidget.cpp" line="638"/>
+        <source>Preview file...</source>
+        <translation>Voorbeeld van bestand weergeven...</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="640"/>
         <source>Limit share ratio...</source>
-        <translation>Limiet deel ratio...</translation>
+        <translation>Deelverhouding begrenzen...</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="642"/>
+        <source>Limit upload rate...</source>
+        <translation>Uploadsnelheid begrenzen...</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="644"/>
+        <source>Limit download rate...</source>
+        <translation>Downloadsnelheid begrenzen...</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="646"/>
+        <source>Open destination folder</source>
+        <translation>Doelmap openen</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="648"/>
+        <source>Move up</source>
+        <comment>i.e. move up in the queue</comment>
+        <translation>Omhoog verplaatsen</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="650"/>
+        <source>Move down</source>
+        <comment>i.e. Move down in the queue</comment>
+        <translation>Omlaag verplaatsen</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="652"/>
+        <source>Move to top</source>
+        <comment>i.e. Move to top of the queue</comment>
+        <translation>Bovenaan plaatsen</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="654"/>
+        <source>Move to bottom</source>
+        <comment>i.e. Move to bottom of the queue</comment>
+        <translation>Onderaan plaatsen</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="656"/>
+        <source>Set location...</source>
+        <translation>Locatie instellen...</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="662"/>
+        <source>Copy name</source>
+        <translation>Naam kopiëren</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="672"/>
+        <source>Download first and last pieces first</source>
+        <translation>Eerste en laatste deeltjes eerst downloaden</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="675"/>
+        <source>Automatic Torrent Management</source>
+        <translation>Automatisch torrent-beheer</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="677"/>
+        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
+        <translation>Automatische modus betekent dat verschillende torrent-eigenschappen (bijvoorbeeld opslagpad) bepaald zullen worden door de overeenkomstige categorie.</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="775"/>
+        <source>Category</source>
+        <translation>Categorie</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="776"/>
+        <source>New...</source>
+        <comment>New category...</comment>
+        <translation>Nieuw...</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="777"/>
+        <source>Reset</source>
+        <comment>Reset category</comment>
+        <translation>Herstellen</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="832"/>
+        <source>Priority</source>
+        <translation>Prioriteit</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="658"/>
+        <source>Force recheck</source>
+        <translation>Opnieuw controleren forceren</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="660"/>
+        <source>Copy magnet link</source>
+        <translation>Magneetlink kopiëren</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="664"/>
+        <source>Super seeding mode</source>
+        <translation>Super-seeding-modus</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="667"/>
+        <source>Rename...</source>
+        <translation>Naam wijzigen...</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="669"/>
+        <source>Download in sequential order</source>
+        <translation>In sequentiële volgorde downloaden</translation>
     </message>
 </context>
 <context>
     <name>UpDownRatioDlg</name>
     <message>
+        <location filename="../gui/updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Torrent Upload/Download Ratio limietering</translation>
+        <translation>Upload/downloadverhouding van torrent begrenzen</translation>
     </message>
     <message>
+        <location filename="../gui/updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation>Gebruik globale ratio limiet</translation>
+        <translation>Algemene deelverhoudingsbegrenzing gebruiken</translation>
     </message>
     <message>
+        <location filename="../gui/updownratiodlg.ui" line="23"/>
+        <location filename="../gui/updownratiodlg.ui" line="33"/>
+        <location filename="../gui/updownratiodlg.ui" line="45"/>
         <source>buttonGroup</source>
-        <translation>knopGroep</translation>
+        <translation>knopgroep</translation>
     </message>
     <message>
+        <location filename="../gui/updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation>Zet geen ratio limiet</translation>
+        <translation>Geen deelverhoudingsbegrenzing instellen</translation>
     </message>
     <message>
+        <location filename="../gui/updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation>Zet ratio limiet op</translation>
+        <translation>Deelverhoudingsbegrenzing instellen op</translation>
     </message>
 </context>
 <context>
-    <name>UsageDisplay</name>
+    <name>WebApplication</name>
     <message>
-        <source>Usage:</source>
-        <translation>Gebruik:</translation>
+        <location filename="../webui/webapplication.cpp" line="781"/>
+        <source>Incorrect category name</source>
+        <translation>Incorrecte categorienaam</translation>
+    </message>
+</context>
+<context>
+    <name>WebUI</name>
+    <message>
+        <location filename="../webui/webui.cpp" line="85"/>
+        <source>The Web UI is listening on port %1</source>
+        <translation>De web-UI luistert naar poort %1</translation>
     </message>
     <message>
-        <source>displays program version</source>
-        <translation>Toon programmaversie</translation>
-    </message>
-    <message>
-        <source>disable splash screen</source>
-        <translation>deactiveer splash screen</translation>
-    </message>
-    <message>
-        <source>displays this help message</source>
-        <translation>toon dit helpbericht</translation>
-    </message>
-    <message>
-        <source>changes the webui port (current: %1)</source>
-        <translation>verandert de webui-poort (huidige: %1)</translation>
-    </message>
-    <message>
-        <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
-        <translation>[bestanden of urls]: download de torrent doorgegeven door de gebruiker (optioneel)</translation>
+        <location filename="../webui/webui.cpp" line="87"/>
+        <source>Web UI Error - Unable to bind Web UI to port %1</source>
+        <translation>Web-gebruikersinterface fout - Niet mogelijk om Web-UI te binden aan poort %1</translation>
     </message>
 </context>
 <context>
     <name>about</name>
     <message>
-        <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <location filename="../gui/about_imp.h" line="63"/>
+        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
+        <translation>Een geavanceerde BitTorrent client geprogrammeerd in C + +, gebaseerd op Qt4-toolkit en libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
-        <translation>Ik wil de volgende mensen graag bedanken die qBittorrent hebben vertaald:</translation>
+        <location filename="../gui/about_imp.h" line="64"/>
+        <source>Copyright %1 2006-2016 The qBittorrent project</source>
+        <translation>Auteursrecht %1 2006-2016 het qBittorrent-project</translation>
     </message>
     <message>
-        <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
-        <translation>Neem contact met me op als u qBittorrent naar uw eigen taal wilt vertalen.</translation>
-    </message>
-</context>
-<context>
-    <name>addPeerDialog</name>
-    <message>
-        <source>Peer addition</source>
-        <translation>Peer toevoeging</translation>
+        <location filename="../gui/about_imp.h" line="65"/>
+        <source>Home Page:</source>
+        <translation>Homepagina:</translation>
     </message>
     <message>
-        <source>IP</source>
-        <translation>IP</translation>
+        <location filename="../gui/about_imp.h" line="66"/>
+        <source>Forum:</source>
+        <translation>Forum:</translation>
     </message>
     <message>
-        <source>Port</source>
-        <translation>Poort</translation>
+        <location filename="../gui/about_imp.h" line="67"/>
+        <source>Bug Tracker:</source>
+        <translation>Bug-tracker:</translation>
     </message>
 </context>
 <context>
-    <name>addTorrentDialog</name>
+    <name>addPeersDialog</name>
     <message>
-        <source>Torrent addition dialog</source>
-        <translation>Torrent toevoegen dialoog</translation>
+        <location filename="../gui/properties/peersadditiondlg.ui" line="14"/>
+        <source>Add Peers</source>
+        <translation>Peers</translation>
     </message>
     <message>
-        <source>Save path:</source>
-        <translation>Opslag pad:</translation>
+        <location filename="../gui/properties/peersadditiondlg.ui" line="20"/>
+        <source>List of peers to add (one per line):</source>
+        <translation>Lijst van toe te voegen peers (een per regel):</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Torrent size:</source>
-        <translation>Torrent grootte:</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Onbekend</translation>
-    </message>
-    <message>
-        <source>Free disk space:</source>
-        <translation>Vrije schijfruimte:</translation>
-    </message>
-    <message>
-        <source>Torrent content:</source>
-        <translation>Torrent inhoud:</translation>
-    </message>
-    <message>
-        <source>Download in sequential order (slower but good for previewing)</source>
-        <translation>Download in sequentiële volgorde (langzamer maar goed om voorbeeld weer te geven)</translation>
-    </message>
-    <message>
-        <source>Add to download list in paused state</source>
-        <translation>Aan download lijst toevoegen in pauze stand</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation>Toevoegen</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Annuleren</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation>Normaal</translation>
-    </message>
-    <message>
-        <source>High</source>
-        <translation>Hoog</translation>
-    </message>
-    <message>
-        <source>Maximum</source>
-        <translation>Maximum</translation>
-    </message>
-    <message>
-        <source>Skip file checking and start seeding immediately</source>
-        <translation>Sla het controleren van het bestand over en start onmiddellijk met het seeden</translation>
-    </message>
-    <message>
-        <source>Label:</source>
-        <translation>Label:</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation>Selecteer alles</translation>
-    </message>
-    <message>
-        <source>Select None</source>
-        <translation>Selecteer geen</translation>
-    </message>
-    <message>
-        <source>Do not download</source>
-        <translation>Download niet</translation>
-    </message>
-    <message>
-        <source>Set as default save path</source>
-        <translation>Stel in als standaard pad om op te slaan</translation>
+        <location filename="../gui/properties/peersadditiondlg.ui" line="37"/>
+        <source>Format: IPv4:port / [IPv6]:port</source>
+        <translation>Formaat: IPv4:poort / [IPv6]:poort</translation>
     </message>
 </context>
 <context>
     <name>authentication</name>
     <message>
+        <location filename="../gui/login.ui" line="14"/>
+        <location filename="../gui/login.ui" line="47"/>
         <source>Tracker authentication</source>
-        <translation>Tracker authenticatie</translation>
+        <translation>Tracker-aanmelding</translation>
     </message>
     <message>
+        <location filename="../gui/login.ui" line="64"/>
         <source>Tracker:</source>
         <translation>Tracker:</translation>
     </message>
     <message>
+        <location filename="../gui/login.ui" line="86"/>
         <source>Login</source>
         <translation>Login</translation>
     </message>
     <message>
+        <location filename="../gui/login.ui" line="94"/>
         <source>Username:</source>
         <translation>Gebruikersnaam:</translation>
     </message>
     <message>
+        <location filename="../gui/login.ui" line="117"/>
         <source>Password:</source>
         <translation>Wachtwoord:</translation>
     </message>
     <message>
+        <location filename="../gui/login.ui" line="154"/>
         <source>Log in</source>
-        <translation>Log in</translation>
+        <translation>Aanmelden</translation>
     </message>
     <message>
+        <location filename="../gui/login.ui" line="161"/>
         <source>Cancel</source>
         <translation>Annuleren</translation>
     </message>
@@ -4666,816 +9084,524 @@ Wilt u het nu installeren?</translation>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
+        <location filename="../gui/confirmdeletiondlg.ui" line="20"/>
         <source>Deletion confirmation - qBittorrent</source>
         <translation>Verwijderbevestiging - qBittorrent</translation>
     </message>
     <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Bent u zeker dat u de geselecteerde torrents wilt verwijderen van de overdrachtenlijst?</translation>
-    </message>
-    <message>
+        <location filename="../gui/confirmdeletiondlg.ui" line="67"/>
         <source>Remember choice</source>
-        <translation>Onthoudt de keuze</translation>
+        <translation>Keuze onthouden</translation>
     </message>
     <message>
+        <location filename="../gui/confirmdeletiondlg.ui" line="94"/>
         <source>Also delete the files on the hard disk</source>
-        <translation>Verwijder ook de bestanden op de harde schijf</translation>
+        <translation>Ook bestanden op de harde schijf verwijderen</translation>
+    </message>
+</context>
+<context>
+    <name>confirmShutdownDlg</name>
+    <message>
+        <location filename="../gui/shutdownconfirmdlg.ui" line="64"/>
+        <source>Don&apos;t show again</source>
+        <translation>Niet opnieuw weergeven</translation>
     </message>
 </context>
 <context>
     <name>createTorrentDialog</name>
     <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="308"/>
         <source>Cancel</source>
         <translation>Annuleren</translation>
     </message>
     <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="14"/>
         <source>Torrent Creation Tool</source>
-        <translation>Hulpprogramma voor torrent maken</translation>
+        <translation>Hulpprogramma voor aanmaken torrent</translation>
     </message>
     <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="38"/>
         <source>Torrent file creation</source>
-        <translation>Torrentbestand maken</translation>
+        <translation>Torrentbestand aanmaken</translation>
     </message>
     <message>
-        <source>Announce urls (trackers):</source>
-        <translation type="obsolete">Announce urls (trackers):</translation>
+        <location filename="../gui/torrentcreatordlg.ui" line="60"/>
+        <source>Add file</source>
+        <translation>Bestand toevoegen</translation>
     </message>
     <message>
-        <source>Comment (optional):</source>
-        <translation type="obsolete">Commentaar (optioneel):</translation>
+        <location filename="../gui/torrentcreatordlg.ui" line="67"/>
+        <source>Add folder</source>
+        <translation>Map toevoegen</translation>
     </message>
     <message>
-        <source>Web seeds urls (optional):</source>
-        <translation type="obsolete">Web seeds urls (optioneel):</translation>
-    </message>
-    <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="48"/>
         <source>File or folder to add to the torrent:</source>
         <translation>Bestand of map om toe te voegen aan de torrent:</translation>
     </message>
     <message>
-        <source>Add file</source>
-        <translation>Voeg bestand toe</translation>
-    </message>
-    <message>
-        <source>Add folder</source>
-        <translation>Voeg map toe</translation>
-    </message>
-    <message>
-        <source>Piece size:</source>
-        <translation>Stukgrootte:</translation>
-    </message>
-    <message>
-        <source>32 KiB</source>
-        <translation>32 KiB</translation>
-    </message>
-    <message>
-        <source>64 KiB</source>
-        <translation>64 KiB</translation>
-    </message>
-    <message>
-        <source>128 KiB</source>
-        <translation>128 KiB</translation>
-    </message>
-    <message>
-        <source>256 KiB</source>
-        <translation>256 KiB</translation>
-    </message>
-    <message>
-        <source>512 KiB</source>
-        <translation>512 KiB</translation>
-    </message>
-    <message>
-        <source>1 MiB</source>
-        <translation>1 MiB</translation>
-    </message>
-    <message>
-        <source>2 MiB</source>
-        <translation>2 MiB</translation>
-    </message>
-    <message>
-        <source>4 MiB</source>
-        <translation>4 MiB</translation>
-    </message>
-    <message>
-        <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
-        <translation>Privé (wordt niet verdeeld op het DHT netwerk indien ingeschakeld)</translation>
-    </message>
-    <message>
-        <source>Start seeding after creation</source>
-        <translation>Begin met delen na creatie</translation>
-    </message>
-    <message>
-        <source>Create and save...</source>
-        <translation>Aanmaken en opslaan...</translation>
-    </message>
-    <message>
-        <source>Progress:</source>
-        <translation>Voortgang:</translation>
-    </message>
-    <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="78"/>
         <source>Tracker URLs:</source>
-        <translation>Tracker URLs:</translation>
+        <translation>Tracker-url&apos;s:</translation>
     </message>
     <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="88"/>
         <source>Web seeds urls:</source>
-        <translation>Web seeds urls:</translation>
+        <translation>Webseeds-url&apos;s:</translation>
     </message>
     <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="98"/>
         <source>Comment:</source>
         <translation>Opmerkingen:</translation>
     </message>
     <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="127"/>
+        <source>You can separate tracker tiers / groups with an empty line.</source>
+        <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
+        <translation>U kunt tracker tiers/groepen scheiden met een lege regel.</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="148"/>
+        <source>Piece size:</source>
+        <translation>Grootte deeltjes:</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="165"/>
+        <source>16 KiB</source>
+        <translation>16 KiB</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="170"/>
+        <source>32 KiB</source>
+        <translation>32 KiB</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="175"/>
+        <source>64 KiB</source>
+        <translation>64 KiB</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="180"/>
+        <source>128 KiB</source>
+        <translation>128 KiB</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="185"/>
+        <source>256 KiB</source>
+        <translation>256 KiB</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="190"/>
+        <source>512 KiB</source>
+        <translation>512 KiB</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="195"/>
+        <source>1 MiB</source>
+        <translation>1 MiB</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="200"/>
+        <source>2 MiB</source>
+        <translation>2 MiB</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="205"/>
+        <source>4 MiB</source>
+        <translation>4 MiB</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="210"/>
+        <source>8 MiB</source>
+        <translation>8 MiB</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="215"/>
+        <source>16 MiB</source>
+        <translation>16 MiB</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.ui" line="223"/>
         <source>Auto</source>
-        <translation>Auto</translation>
-    </message>
-</context>
-<context>
-    <name>createtorrent</name>
-    <message>
-        <source>Select destination torrent file</source>
-        <translation type="obsolete">Kies torrent doelbestand</translation>
+        <translation>Automatisch</translation>
     </message>
     <message>
-        <source>Torrent Files</source>
-        <translation type="obsolete">Torrent bestanden</translation>
+        <location filename="../gui/torrentcreatordlg.ui" line="248"/>
+        <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
+        <translation>Privé (wordt niet verdeeld op het DHT-netwerk indien ingeschakeld)</translation>
     </message>
     <message>
-        <source>No input path set</source>
-        <translation type="obsolete">Geen bron pad gekozen</translation>
+        <location filename="../gui/torrentcreatordlg.ui" line="255"/>
+        <source>Start seeding after creation</source>
+        <translation>Beginnen met seeden na aanmaken</translation>
     </message>
     <message>
-        <source>Please type an input path first</source>
-        <translation type="obsolete">Geef alstublieft eerst een doel pad</translation>
+        <location filename="../gui/torrentcreatordlg.ui" line="265"/>
+        <source>Ignore share ratio limits for this torrent</source>
+        <translation>Deelverhoudingsbegrenzing negeren voor deze torrent</translation>
     </message>
     <message>
-        <source>Torrent creation</source>
-        <translation type="obsolete">Torrent maken</translation>
+        <location filename="../gui/torrentcreatordlg.ui" line="301"/>
+        <source>Create and save...</source>
+        <translation>Aanmaken en opslaan...</translation>
     </message>
     <message>
-        <source>Torrent was created successfully:</source>
-        <translation type="obsolete">Torrent was succesvol gemaakt:</translation>
-    </message>
-    <message>
-        <source>Select a folder to add to the torrent</source>
-        <translation type="obsolete">Selecteer een map om toe te voegen aan de torrent</translation>
-    </message>
-    <message>
-        <source>Please type an announce URL</source>
-        <translation type="obsolete">Type een announce URL</translation>
-    </message>
-    <message>
-        <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="obsolete">Fout tijdens het maken van torrent, reden: %1</translation>
-    </message>
-    <message>
-        <source>Announce URL:</source>
-        <comment>Tracker URL</comment>
-        <translation type="obsolete">Announce URL:</translation>
-    </message>
-    <message>
-        <source>Please type a web seed url</source>
-        <translation type="obsolete">Type een web seed url</translation>
-    </message>
-    <message>
-        <source>Web seed URL:</source>
-        <translation type="obsolete">Web seed URL:</translation>
-    </message>
-    <message>
-        <source>Select a file to add to the torrent</source>
-        <translation type="obsolete">Selecteer een bestand om toe te voegen aan de torrent</translation>
-    </message>
-    <message>
-        <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="obsolete">Gecreëerd torrent bestand is onjuist. Het wordt niet toegevoegd aan de downloadlijst.</translation>
+        <location filename="../gui/torrentcreatordlg.ui" line="272"/>
+        <source>Progress:</source>
+        <translation>Voortgang:</translation>
     </message>
 </context>
 <context>
     <name>downloadFromURL</name>
     <message>
-        <source>Download Torrents from URLs</source>
-        <translation type="obsolete">Download Torrents via URLs</translation>
+        <location filename="../gui/downloadfromurldlg.ui" line="28"/>
+        <source>Add torrent links</source>
+        <translation>Torrent-links toevoegen</translation>
     </message>
     <message>
-        <source>Only one URL per line</source>
-        <translation type="obsolete">1 url per lijn</translation>
+        <location filename="../gui/downloadfromurldlg.ui" line="58"/>
+        <source>One per line (HTTP links, Magnet links and info-hashes are supported)</source>
+        <translation>Een per regel (http-verbindingen, magneetkoppelingen en info-hashes worden ondersteund)</translation>
     </message>
     <message>
+        <location filename="../gui/downloadfromurldlg.ui" line="80"/>
         <source>Download</source>
-        <translation>Download</translation>
+        <translation>Downloaden</translation>
     </message>
     <message>
+        <location filename="../gui/downloadfromurldlg.ui" line="87"/>
         <source>Cancel</source>
         <translation>Annuleren</translation>
     </message>
     <message>
+        <location filename="../gui/downloadfromurldlg.ui" line="14"/>
         <source>Download from urls</source>
-        <translation>Download uit urls</translation>
+        <translation>Downloaden uit url&apos;s</translation>
     </message>
     <message>
+        <location filename="../gui/downloadfromurldlg.h" line="96"/>
         <source>No URL entered</source>
-        <translation>Geen URL ingevoerd</translation>
+        <translation>Geen url ingevoerd</translation>
     </message>
     <message>
+        <location filename="../gui/downloadfromurldlg.h" line="96"/>
         <source>Please type at least one URL.</source>
-        <translation>Typ op zijn minst één URL.</translation>
-    </message>
-    <message>
-        <source>Add torrent links</source>
-        <translation>Voeg torrent links toe</translation>
-    </message>
-    <message>
-        <source>Both HTTP and Magnet links are supported</source>
-        <translation>Zowel HTTP als Magnet links worden ondersteund</translation>
+        <translation>Typ op zijn minst één url.</translation>
     </message>
 </context>
 <context>
-    <name>downloadThread</name>
+    <name>errorDialog</name>
     <message>
-        <source>I/O Error</source>
-        <translation type="obsolete">I/O Fout</translation>
-    </message>
-    <message>
-        <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="obsolete">De remote hostnaam werd niet gevonden (ongeldige hostnaam)</translation>
-    </message>
-    <message>
-        <source>The operation was canceled</source>
-        <translation type="obsolete">De operatie werd geannuleerd</translation>
-    </message>
-    <message>
-        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="obsolete">De remote server sloot the verbinding permanent, voor the gehele reactie werd ontvangen en verwerkt</translation>
-    </message>
-    <message>
-        <source>The connection to the remote server timed out</source>
-        <translation type="obsolete">De verbinding naar de remote server timede out</translation>
-    </message>
-    <message>
-        <source>SSL/TLS handshake failed</source>
-        <translation type="obsolete">SSL/T|S handshake mislukt</translation>
-    </message>
-    <message>
-        <source>The remote server refused the connection</source>
-        <translation type="obsolete">De remote server weigerde de verbinding</translation>
-    </message>
-    <message>
-        <source>The connection to the proxy server was refused</source>
-        <translation type="obsolete">De verbinding naar de proxy server werd geweigerd</translation>
-    </message>
-    <message>
-        <source>The proxy server closed the connection prematurely</source>
-        <translation type="obsolete">De proxy server sloot de verbinding permanent</translation>
-    </message>
-    <message>
-        <source>The proxy host name was not found</source>
-        <translation type="obsolete">De proxy host name werd niet gevonden</translation>
-    </message>
-    <message>
-        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="obsolete">De verbinding naar de proxy timede out of the proxy reageerde niet op tijd op het verzonden verzoek</translation>
-    </message>
-    <message>
-        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="obsolete">De proxy vereist authenticatie om in te kunnen gaan op het verzoek maar accepteerde geen van de aangeboden credentials</translation>
-    </message>
-    <message>
-        <source>The access to the remote content was denied (401)</source>
-        <translation type="obsolete">De toegang tot de remote content werd genegeerd (401)</translation>
-    </message>
-    <message>
-        <source>The operation requested on the remote content is not permitted</source>
-        <translation type="obsolete">De gevraagde operatie op de remote content is niet toegestaan</translation>
-    </message>
-    <message>
-        <source>The remote content was not found at the server (404)</source>
-        <translation type="obsolete">De remote content werd niet gevonden op de server (404)</translation>
-    </message>
-    <message>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="obsolete">De remote server vereist authenticatie om de inhoud te presenteren maar de gegeven credentials werden niet geaccepteerd</translation>
-    </message>
-    <message>
-        <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="obsolete">De Network Access API kon niet ingaan op het verzoek want het protocol is niet bekend</translation>
-    </message>
-    <message>
-        <source>The requested operation is invalid for this protocol</source>
-        <translation type="obsolete">De verzochte operatie is niet geldig voor dit protocol</translation>
-    </message>
-    <message>
-        <source>An unknown network-related error was detected</source>
-        <translation type="obsolete">Een onbekende netwerkgerelateerde fout werd gevonden</translation>
-    </message>
-    <message>
-        <source>An unknown proxy-related error was detected</source>
-        <translation type="obsolete">Een onbekende proxy-gerelateerde fout werd gevonden</translation>
-    </message>
-    <message>
-        <source>An unknown error related to the remote content was detected</source>
-        <translation type="obsolete">Een onbekende error gerelateerd tot de remote content werd gevonden</translation>
-    </message>
-    <message>
-        <source>A breakdown in protocol was detected</source>
-        <translation type="obsolete">Een storing in het protocol werd gedetecteerd</translation>
-    </message>
-    <message>
-        <source>Unknown error</source>
-        <translation type="obsolete">Onbekende fout</translation>
+        <location filename="../app/stacktrace_win_dlg.ui" line="14"/>
+        <source>Crash info</source>
+        <translation>Crash-info</translation>
     </message>
 </context>
 <context>
-    <name>engineSelect</name>
+    <name>fsutils</name>
     <message>
-        <source>Search plugins</source>
-        <translation>Zoekplugins</translation>
-    </message>
-    <message>
-        <source>Installed search engines:</source>
-        <translation>Geïnstalleerde zoekplugins:</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Naam</translation>
-    </message>
-    <message>
-        <source>Url</source>
-        <translation>Url</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation>Ingeschakeld</translation>
-    </message>
-    <message>
-        <source>Install a new one</source>
-        <translation>Installeer een nieuwe</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation>Controleer op updates</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation>Sluiten</translation>
-    </message>
-    <message>
-        <source>Enable</source>
-        <translation type="obsolete">Inschakelen</translation>
-    </message>
-    <message>
-        <source>Disable</source>
-        <translation type="obsolete">Uitschakelen</translation>
-    </message>
-    <message>
-        <source>Uninstall</source>
-        <translation>Deïnstalleren</translation>
-    </message>
-    <message>
-        <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation>U kan hier nieuwe zoekmachineplugins vinden:&lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>engineSelectDlg</name>
-    <message>
-        <source>Uninstall warning</source>
-        <translation>Deïnstallatie waarschuwing</translation>
-    </message>
-    <message>
-        <source>Some plugins could not be uninstalled because they are included in qBittorrent.
- Only the ones you added yourself can be uninstalled.
-However, those plugins were disabled.</source>
-        <translation>Niet alle plugins konden worden gedeïnstalleerd omdat ze bij qBittorrent horen.
-Alleen de door u toegevoegde plugins kunnen worden gedeïnstalleerd.
-De plugins zijn uitgeschakeld.</translation>
-    </message>
-    <message>
-        <source>Uninstall success</source>
-        <translation>Deïnstallatie succesvol</translation>
-    </message>
-    <message>
-        <source>Select search plugins</source>
-        <translation>Kies zoekplugins</translation>
-    </message>
-    <message>
-        <source>qBittorrent search plugins</source>
-        <translation>qBittorrent zoekplugins</translation>
-    </message>
-    <message>
-        <source>Search plugin install</source>
-        <translation>Zoekplugins installatie</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation>Ja</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation>Nee</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
-    </message>
-    <message>
-        <source>A more recent version of %1 search engine plugin is already installed.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation>Een nieuwere versie van %1 zoekmachineplugin is al geïnstalleerd.</translation>
-    </message>
-    <message>
-        <source>Search plugin update</source>
-        <translation>Zoekplugin update</translation>
-    </message>
-    <message>
-        <source>Sorry, update server is temporarily unavailable.</source>
-        <translation>Sorry, updateserver is tijdelijk niet bereikbaar.</translation>
-    </message>
-    <message>
-        <source>All your plugins are already up to date.</source>
-        <translation>Uw plugins zijn al het nieuwst.</translation>
-    </message>
-    <message>
-        <source>All selected plugins were uninstalled successfully</source>
-        <translation>Alle gekozen plugins zijn succesvol gedeïnstalleerd</translation>
-    </message>
-    <message>
-        <source>%1 search engine plugin could not be updated, keeping old version.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation>%1 zoekmachineplugin kon niet worden vernieuwd. Oude versie wordt behouden.</translation>
-    </message>
-    <message>
-        <source>%1 search engine plugin could not be installed.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation>%1 zoekmachineplugin kon niet worden geïnstalleerd.</translation>
-    </message>
-    <message>
-        <source>%1 search engine plugin was successfully updated.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation>%1 zoekmachineplugin is succesvol vernieuwd.</translation>
-    </message>
-    <message>
-        <source>%1 search engine plugin was successfully installed.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation>%1 zoekmachineplugin is succesvol geïnstalleerd.</translation>
-    </message>
-    <message>
-        <source>Sorry, %1 search plugin install failed.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation>%1 zoekplugin installatie mislukt.</translation>
-    </message>
-    <message>
-        <source>New search engine plugin URL</source>
-        <translation>Nieuwe zoekmachineplugin URL</translation>
-    </message>
-    <message>
-        <source>URL:</source>
-        <translation>URL:</translation>
+        <location filename="../base/utils/fs.cpp" line="447"/>
+        <location filename="../base/utils/fs.cpp" line="454"/>
+        <location filename="../base/utils/fs.cpp" line="464"/>
+        <location filename="../base/utils/fs.cpp" line="497"/>
+        <location filename="../base/utils/fs.cpp" line="509"/>
+        <source>Downloads</source>
+        <translation>Downloads</translation>
     </message>
 </context>
 <context>
     <name>misc</name>
     <message>
+        <location filename="../base/utils/misc.cpp" line="85"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
+        <location filename="../base/utils/misc.cpp" line="86"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
     </message>
     <message>
+        <location filename="../base/utils/misc.cpp" line="87"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
+        <location filename="../base/utils/misc.cpp" line="88"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
+        <location filename="../base/utils/misc.cpp" line="89"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
     </message>
     <message>
-        <source>Unknown</source>
-        <translation>Onbekend</translation>
+        <location filename="../base/utils/misc.cpp" line="90"/>
+        <source>PiB</source>
+        <comment>pebibytes (1024 tebibytes)</comment>
+        <translation>PiB</translation>
     </message>
     <message>
+        <location filename="../base/utils/misc.cpp" line="91"/>
+        <source>EiB</source>
+        <comment>exbibytes (1024 pebibytes)</comment>
+        <translation>EiB</translation>
+    </message>
+    <message>
+        <location filename="../base/utils/misc.cpp" line="286"/>
+        <source>Python not detected</source>
+        <translation>Python niet gedetecteerd</translation>
+    </message>
+    <message>
+        <location filename="../base/utils/misc.cpp" line="314"/>
+        <source>Python version: %1</source>
+        <translation>Python versie: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/utils/misc.cpp" line="361"/>
+        <source>/s</source>
+        <comment>per second</comment>
+        <translation>/s</translation>
+    </message>
+    <message>
+        <location filename="../base/utils/misc.cpp" line="442"/>
+        <source>%1h %2m</source>
+        <comment>e.g: 3hours 5minutes</comment>
+        <translation>%1 u %2 m</translation>
+    </message>
+    <message>
+        <location filename="../base/utils/misc.cpp" line="446"/>
+        <source>%1d %2h</source>
+        <comment>e.g: 2days 10hours</comment>
+        <translation>%1 d %2 u</translation>
+    </message>
+    <message>
+        <location filename="../base/utils/misc.cpp" line="353"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Onbekend</translation>
     </message>
     <message>
+        <location filename="../base/utils/misc.cpp" line="210"/>
+        <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
+        <translation>qBittorrent zal de computer afsluiten omdat alle downloads voltooid zijn.</translation>
+    </message>
+    <message>
+        <location filename="../base/utils/misc.cpp" line="435"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
-        <translation>&lt; 1m</translation>
+        <translation>&lt; 1 m</translation>
     </message>
     <message>
+        <location filename="../base/utils/misc.cpp" line="438"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
-        <translation>%1m</translation>
+        <translation>%1 m</translation>
     </message>
     <message>
-        <source>%1h %2m</source>
-        <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1u %2m</translation>
+        <location filename="../webui/btjson.cpp" line="469"/>
+        <source>Working</source>
+        <translation>Werkend</translation>
     </message>
     <message>
-        <source>%1d %2h</source>
-        <comment>e.g: 2days 10hours</comment>
-        <translation>%1d %2u</translation>
+        <location filename="../webui/btjson.cpp" line="467"/>
+        <source>Updating...</source>
+        <translation>Bijwerken...</translation>
     </message>
     <message>
-        <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation>qBittorrent zal de computer afsluiten, want alle downloads zijn voltooid.</translation>
+        <location filename="../webui/btjson.cpp" line="471"/>
+        <source>Not working</source>
+        <translation>Niet werkend</translation>
     </message>
     <message>
-        <source>Downloads</source>
-        <translation type="unfinished">Downloads</translation>
+        <location filename="../webui/btjson.cpp" line="465"/>
+        <source>Not contacted yet</source>
+        <translation>Nog niet gecontacteerd</translation>
     </message>
 </context>
 <context>
     <name>options_imp</name>
     <message>
-        <source>Choose a save directory</source>
-        <translation>Kies een opslagmap</translation>
+        <source>Choose export directory</source>
+        <translation type="obsolete">Export-map kiezen</translation>
     </message>
     <message>
-        <source>Choose an ip filter file</source>
-        <translation>Kies een ip filter bestand</translation>
+        <source>Choose a save directory</source>
+        <translation type="obsolete">Opslagmap kiezen</translation>
+    </message>
+    <message>
+        <source>Supported parameters (case sensitive):</source>
+        <translation type="obsolete">Ondersteunde parameters (hoofdlettergevoelig):</translation>
+    </message>
+    <message>
+        <source>%N: Torrent name</source>
+        <translation type="obsolete">%N: naam torrent</translation>
+    </message>
+    <message>
+        <source>%L: Category</source>
+        <translation type="obsolete">%L: categorie</translation>
+    </message>
+    <message>
+        <source>%F: Content path (same as root path for multifile torrent)</source>
+        <translation type="obsolete">%F: pad naar inhoud (zelfde als root-pad voor torrent met meerdere bestanden)</translation>
+    </message>
+    <message>
+        <source>%R: Root path (first torrent subdirectory path)</source>
+        <translation type="obsolete">%R: root-pad (pad naar eerste submap van torrent)</translation>
+    </message>
+    <message>
+        <source>%D: Save path</source>
+        <translation type="obsolete">%D: opslagpad</translation>
+    </message>
+    <message>
+        <source>%C: Number of files</source>
+        <translation type="obsolete">%C: aantal bestanden</translation>
+    </message>
+    <message>
+        <source>%Z: Torrent size (bytes)</source>
+        <translation type="obsolete">%Z: grootte torrent (bytes)</translation>
+    </message>
+    <message>
+        <source>%T: Current tracker</source>
+        <translation type="obsolete">%T: huidige tracker</translation>
+    </message>
+    <message>
+        <source>%I: Info hash</source>
+        <translation type="obsolete">%I: info-hash</translation>
+    </message>
+    <message>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation type="obsolete">Tip: omring de parameter met aanhalingstekens om te vermijden dat tekst afgekapt wordt bij witruimte (bijvoorbeeld: &quot;%N&quot;)</translation>
+    </message>
+    <message>
+        <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
+        <translation type="obsolete">Door deze opties in te schakelen, kunt u uw .torrent bestanden &lt;strong&gt;onomkeerbaar kwijtraken&lt;/strong&gt;!</translation>
+    </message>
+    <message>
+        <source>When these options are enabled, qBittorent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
+        <translation type="obsolete">Wanneer deze opties zijn ingeschakeld, zal qBittorrent .torrent bestanden &lt;strong&gt;verwijderen&lt;/strong&gt; nadat ze succesvol (de eerste optie) of niet (de tweede optie) toegevoegd zijn aan de download wachtrij. Dit wordt &lt;strong&gt;niet alleen&lt;/strong&gt; toegepast op de bestanden dia via de &amp;ldquo;Torrent toevoegen&amp;rdquo; menu optie worden geopend, maar ook op de bestanden die via de &lt;strong&gt;bestandstype extensie associatie&lt;/strong&gt; worden geopend</translation>
+    </message>
+    <message>
+        <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
+        <translation type="obsolete">Als u de tweede optie inschakelt (&amp;ldquo;Ook als toevoegen wordt geannuleerd&amp;rdquo;), zal het .torrent bestand &lt;strong&gt;worden verwijderd&lt;/strong&gt; zelfs als u op &amp;ldquo;&lt;strong&gt;Annuleren&lt;/strong&gt;&amp;rdquo; drukt in het &amp;ldquo;Torrent toevoegen&amp;rdquo; scherm</translation>
+    </message>
+    <message>
+        <source>Select folder to monitor</source>
+        <translation type="obsolete">Map selecteren om te monitoren</translation>
+    </message>
+    <message>
+        <source>Folder is already being monitored:</source>
+        <translation type="obsolete">Map wordt reeds gemonitord:</translation>
+    </message>
+    <message>
+        <source>Folder does not exist:</source>
+        <translation type="obsolete">Map bestaat niet:</translation>
+    </message>
+    <message>
+        <source>Folder is not readable:</source>
+        <translation type="obsolete">Map kan niet gelezen worden:</translation>
+    </message>
+    <message>
+        <source>Adding entry failed</source>
+        <translation type="obsolete">Entry toevoegen mislukt</translation>
     </message>
     <message>
         <source>Filters</source>
-        <translation>Filters</translation>
+        <translation type="obsolete">Filters</translation>
     </message>
     <message>
-        <source>Choose export directory</source>
-        <translation>Kies export map</translation>
+        <source>Choose an IP filter file</source>
+        <translation type="obsolete">IP-filterbestand kiezen</translation>
     </message>
     <message>
-        <source>Add directory to scan</source>
-        <translation>Voeg map toe aan scannen</translation>
+        <source>SSL Certificate</source>
+        <translation type="obsolete">SSL-certificaat</translation>
     </message>
     <message>
-        <source>Folder is already being watched.</source>
-        <translation>Map wordt reeds bekeken.</translation>
-    </message>
-    <message>
-        <source>Folder does not exist.</source>
-        <translation>Map bestaat niet.</translation>
-    </message>
-    <message>
-        <source>Folder is not readable.</source>
-        <translation>Map kan niet gelezen worden.</translation>
-    </message>
-    <message>
-        <source>Failure</source>
-        <translation>Fout</translation>
-    </message>
-    <message>
-        <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation>Mislukt om scan map toe te voegen &apos;%1&apos;: %2</translation>
+        <source>SSL Key</source>
+        <translation type="obsolete">SSL-sleutel</translation>
     </message>
     <message>
         <source>Parsing error</source>
-        <translation>Ontledings error</translation>
+        <translation type="obsolete">Verwerkingsfout</translation>
     </message>
     <message>
         <source>Failed to parse the provided IP filter</source>
-        <translation>Mislukt om de opgegeven IP filter te ontleden</translation>
-    </message>
-    <message>
-        <source>Succesfully refreshed</source>
-        <translation type="obsolete">Succesvol vernieuwd</translation>
-    </message>
-    <message>
-        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
-        <comment>%1 is a number</comment>
-        <translation>De opgegeven IP filter werd succesvol ontleed: %1 regels werden toegepast.</translation>
+        <translation type="obsolete">Verwerken van opgegeven IP-filter mislukt</translation>
     </message>
     <message>
         <source>Successfully refreshed</source>
-        <translation>Succesvol vernieuwd</translation>
+        <translation type="obsolete">Vernieuwen gelukt</translation>
     </message>
     <message>
-        <source>SSL Certificate (*.crt *.pem)</source>
-        <translation>SSL Cerfticaat (*.crt *.pem)</translation>
-    </message>
-    <message>
-        <source>SSL Key (*.key *.pem)</source>
-        <translation>SSL Sleutel (*.key *pem)</translation>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="obsolete">Verwerken van opgegeven IP-filter gelukt: er werden %1 regels toegepast.</translation>
     </message>
     <message>
         <source>Invalid key</source>
-        <translation>Ongeldige sleutel</translation>
+        <translation type="obsolete">Ongeldige sleutel</translation>
     </message>
     <message>
         <source>This is not a valid SSL key.</source>
-        <translation>Dit is geen geldige SSL sleutel.</translation>
+        <translation type="obsolete">Dit is geen geldige SSL-sleutel.</translation>
     </message>
     <message>
         <source>Invalid certificate</source>
-        <translation>Ongeldig certificaat</translation>
+        <translation type="obsolete">Ongeldig certificaat</translation>
     </message>
     <message>
         <source>This is not a valid SSL certificate.</source>
-        <translation>Dit is geen geldig SSL certificaat.</translation>
-    </message>
-</context>
-<context>
-    <name>pluginSourceDlg</name>
-    <message>
-        <source>Plugin source</source>
-        <translation>Pluginbron</translation>
+        <translation type="obsolete">Dit is geen geldig SSL-certificaat.</translation>
     </message>
     <message>
-        <source>Search plugin source:</source>
-        <translation>Zoekpluginbron:</translation>
+        <source>The start time and the end time can&apos;t be the same.</source>
+        <translation type="obsolete">De starttijd en de eindtijd kan niet hetzelfde zijn.</translation>
     </message>
     <message>
-        <source>Local file</source>
-        <translation>Lokaal bestand</translation>
+        <source>Time Error</source>
+        <translation type="obsolete">Tijd-fout</translation>
     </message>
     <message>
-        <source>Web link</source>
-        <translation>Weblink</translation>
+        <source>Length Error</source>
+        <translation type="obsolete">Lengte-fout</translation>
+    </message>
+    <message>
+        <source>The Web UI username must be at least 3 characters long.</source>
+        <translation type="obsolete">De Web-UI-gebruikersnaam moet minstens 3 tekens lang zijn.</translation>
+    </message>
+    <message>
+        <source>The Web UI password must be at least 6 characters long.</source>
+        <translation type="obsolete">Het Web-UI-wachtwoord moet minstens 6 tekens lang zijn.</translation>
     </message>
 </context>
 <context>
     <name>preview</name>
     <message>
+        <location filename="../gui/preview.ui" line="14"/>
         <source>Preview selection</source>
-        <translation>Vooruitblik selectie</translation>
+        <translation>Voorbeeld van selectie weergeven</translation>
     </message>
     <message>
-        <source>File preview</source>
-        <translation>Bestand vooruitblik</translation>
+        <location filename="../gui/preview.ui" line="26"/>
+        <source>The following files support previewing, please select one of them:</source>
+        <translation>De volgende bestanden ondersteunen het weergeven van een voorbeeld, selecteer er een van:</translation>
     </message>
     <message>
-        <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation>De volgende bestanden ondersteunen vooruitkijken.
-selecteer alstublieft een er van:</translation>
-    </message>
-    <message>
+        <location filename="../gui/preview.ui" line="61"/>
         <source>Preview</source>
-        <translation>Vooruitblik</translation>
+        <translation>Voorbeeld weergeven</translation>
     </message>
     <message>
+        <location filename="../gui/preview.ui" line="68"/>
         <source>Cancel</source>
         <translation>Annuleren</translation>
-    </message>
-</context>
-<context>
-    <name>previewSelect</name>
-    <message>
-        <source>Preview impossible</source>
-        <translation type="obsolete">Vooruitkijken onmogelijk</translation>
-    </message>
-    <message>
-        <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="obsolete">Sorry, we kunnen dit bestand niet vooruit bekijken</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Naam</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Grootte</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">Voortgang</translation>
-    </message>
-</context>
-<context>
-    <name>search_engine</name>
-    <message>
-        <source>Search</source>
-        <translation>Zoeken</translation>
-    </message>
-    <message>
-        <source>Status:</source>
-        <translation>Status:</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation>Gestopt</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation>Download</translation>
-    </message>
-    <message>
-        <source>Search engines...</source>
-        <translation>Zoekmachines...</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation>Ga naar de beschrijvingspagina</translation>
-    </message>
-</context>
-<context>
-    <name>torrentAdditionDialog</name>
-    <message>
-        <source>Unable to decode torrent file:</source>
-        <translation>Torrentfile kan niet gedecodeerd worden:</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation>Kies opslag pad</translation>
-    </message>
-    <message>
-        <source>(%1 left after torrent download)</source>
-        <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation>(%1 over na torrent download)</translation>
-    </message>
-    <message>
-        <source>(%1 more are required to download)</source>
-        <comment>e.g. (100MiB more are required to download)</comment>
-        <translation>(%1 extra is nodig om te downloaden)</translation>
-    </message>
-    <message>
-        <source>Empty save path</source>
-        <translation>Leeg opslag pad</translation>
-    </message>
-    <message>
-        <source>Please enter a save path</source>
-        <translation>Geef alstublieft een opslag pad</translation>
-    </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation>Opslag pad aanmaak fout</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation>Kon het opslag pad niet aanmaken</translation>
-    </message>
-    <message>
-        <source>Invalid file selection</source>
-        <translation>Ongeldige bestand selectie</translation>
-    </message>
-    <message>
-        <source>You must select at least one file in the torrent</source>
-        <translation>U moet tenminste een bestand in de torrent selecteren</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation>Prioriteit</translation>
-    </message>
-    <message>
-        <source>Seeding mode error</source>
-        <translation>Seeding modus fout</translation>
-    </message>
-    <message>
-        <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation>U kiest ervoor om bestandscontrole over te slaan. Alhoewel, lokale bestanden blijken niet te bestaan in de huidige bestemmingsmap. Gelieve deze feature uit te schakelen of update het opslagpad.</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation>Hernoemen...</translation>
-    </message>
-    <message>
-        <source>New name:</source>
-        <translation>Nieuwe naam:</translation>
-    </message>
-    <message>
-        <source>The file could not be renamed</source>
-        <translation>Dit bestand kon niet hernoemd worden</translation>
-    </message>
-    <message>
-        <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Deze naam bestaat reeds in deze map. Gelieve een andere naam te gebruiken.</translation>
-    </message>
-    <message>
-        <source>The folder could not be renamed</source>
-        <translation>Deze map kon niet hernoemd worden</translation>
-    </message>
-    <message>
-        <source>Rename the file</source>
-        <translation>Hernoem het bestand</translation>
-    </message>
-    <message>
-        <source>Unable to decode magnet link:</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Magnet Link</source>
-        <translation>Magnetlink</translation>
-    </message>
-    <message>
-        <source>Invalid label name</source>
-        <translation>Ongeldige labelnaam</translation>
-    </message>
-    <message>
-        <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Gelieve geen speciale characters te gebruiken in de labelnaam.</translation>
-    </message>
-    <message>
-        <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Deze bestandsnaam bevat verboden character, gelieve een andere te kiezen.</translation>
     </message>
 </context>
 </TS>

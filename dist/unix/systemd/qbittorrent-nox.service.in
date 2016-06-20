@@ -1,0 +1,11 @@
+[Unit]
+Description=qBittorrent Daemon Service
+After=network.target
+
+[Service]
+Type=forking
+User=1000
+ExecStart=@EXPAND_BINDIR@/qbittorrent-nox -d
+
+[Install]
+WantedBy=multi-user.target

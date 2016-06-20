@@ -1,3 +1,8 @@
+#VERSION: 1.40
+
+# Author:
+#  Christophe DUMEZ (chris@qbittorrent.org)
+
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
 #
@@ -22,11 +27,6 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-#VERSION: 1.31
-
-# Author:
-#  Christophe DUMEZ (chris@qbittorrent.org)
-
 import re, html.entities
 import tempfile
 import os
@@ -35,6 +35,9 @@ import socket
 import socks
 import re
 
+# Some sites blocks default python User-agent
+user_agent = 'Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0'
+headers    = {'User-Agent': user_agent}
 # SOCKS5 Proxy support
 if "sock_proxy" in os.environ and len(os.environ["sock_proxy"].strip()) > 0:
     proxy_str = os.environ["sock_proxy"].strip()
@@ -52,17 +55,29 @@ def htmlentitydecode(s):
             return chr(html.entities.name2codepoint[entity])
         return " "  # Unknown entity: We replace with a space.
     t = re.sub('&(%s);' % '|'.join(html.entities.name2codepoint), entity2char, s)
-  
+
     # Then convert numerical entities (such as &#233;)
     t = re.sub('&#(\d+);', lambda x: chr(int(x.group(1))), t)
-   
+
     # Then convert hexa entities (such as &#x00E9;)
     return re.sub('&#x(\w+);', lambda x: chr(int(x.group(1),16)), t)
-    
+
 def retrieve_url(url):
     """ Return the content of the url page as a string """
-    response = urllib.request.urlopen(url)
+    req = urllib.request.Request(url, headers = headers)
+    try:
+        response = urllib.request.urlopen(req)
+    except urllib.error.URLError as errno:
+        print(" ".join(("Connection error:", str(errno.reason))))
+        return ""
     dat = response.read()
+    # Check if it is gzipped
+    if dat[:2] == b'\x1f\x8b':
+        # Data is gzip encoded, decode it
+        compressedstream = io.BytesIO(dat)
+        gzipper = gzip.GzipFile(fileobj=compressedstream)
+        extracted_data = gzipper.read()
+        dat = extracted_data
     info = response.info()
     charset = 'utf-8'
     try:
@@ -79,7 +94,7 @@ def download_file(url, referer=None):
     file, path = tempfile.mkstemp()
     file = os.fdopen(file, "wb")
     # Download url
-    req = urllib.request.Request(url)
+    req = urllib.request.Request(url, headers = headers)
     if referer is not None:
         req.add_header('referer', referer)
     response = urllib.request.urlopen(req)
@@ -91,7 +106,7 @@ def download_file(url, referer=None):
         gzipper = gzip.GzipFile(fileobj=compressedstream)
         extracted_data = gzipper.read()
         dat = extracted_data
-        
+
     # Write it to a file
     file.write(dat)
     file.close()

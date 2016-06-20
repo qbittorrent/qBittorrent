@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>914</width>
+    <height>563</height>
+   </rect>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::CustomContextMenu</enum>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="centralWidgetLayout">
+    <property name="leftMargin">
+     <number>7</number>
+    </property>
+    <property name="topMargin">
+     <number>3</number>
+    </property>
+    <property name="rightMargin">
+     <number>5</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>914</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actionStart"/>
+    <addaction name="actionPause"/>
+    <addaction name="separator"/>
+    <addaction name="actionDelete"/>
+    <addaction name="actionTopPriority"/>
+    <addaction name="actionIncreasePriority"/>
+    <addaction name="actionDecreasePriority"/>
+    <addaction name="actionBottomPriority"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionDocumentation"/>
+    <addaction name="actionCheckForUpdates"/>
+    <addaction name="separator"/>
+    <addaction name="actionDonateMoney"/>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuOptions">
+    <property name="title">
+     <string>&amp;Tools</string>
+    </property>
+    <widget class="QMenu" name="menuAutoShutdownOnDownloadsCompletion">
+     <property name="title">
+      <string>On Downloads &amp;Done</string>
+     </property>
+     <addaction name="actionAutoShutdownDisabled"/>
+     <addaction name="actionAutoExit"/>
+     <addaction name="actionAutoSuspend"/>
+     <addaction name="actionAutoHibernate"/>
+     <addaction name="actionAutoShutdown"/>
+    </widget>
+    <addaction name="actionCreateTorrent"/>
+    <addaction name="separator"/>
+    <addaction name="actionManageCookies"/>
+    <addaction name="actionOptions"/>
+    <addaction name="separator"/>
+    <addaction name="menuAutoShutdownOnDownloadsCompletion"/>
+   </widget>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionDownloadFromURL"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <widget class="QMenu" name="menuLog">
+     <property name="title">
+      <string>&amp;Log</string>
+     </property>
+     <addaction name="actionExecutionLogs"/>
+     <addaction name="separator"/>
+     <addaction name="actionNormalMessages"/>
+     <addaction name="actionInformationMessages"/>
+     <addaction name="actionWarningMessages"/>
+     <addaction name="actionCriticalMessages"/>
+    </widget>
+    <addaction name="separator"/>
+    <addaction name="actionTopToolBar"/>
+    <addaction name="actionSpeedInTitleBar"/>
+    <addaction name="separator"/>
+    <addaction name="actionSearchWidget"/>
+    <addaction name="actionRSSReader"/>
+    <addaction name="menuLog"/>
+    <addaction name="separator"/>
+    <addaction name="actionStatistics"/>
+    <addaction name="separator"/>
+    <addaction name="actionLock"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuOptions"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonFollowStyle</enum>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionDownloadFromURL"/>
+   <addaction name="actionOpen"/>
+   <addaction name="actionDelete"/>
+   <addaction name="separator"/>
+   <addaction name="actionStart"/>
+   <addaction name="actionPause"/>
+   <addaction name="actionTopPriority"/>
+   <addaction name="actionIncreasePriority"/>
+   <addaction name="actionDecreasePriority"/>
+   <addaction name="actionBottomPriority"/>
+   <addaction name="separator"/>
+   <addaction name="actionOptions"/>
+   <addaction name="actionLock"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionOpen">
+   <property name="text">
+    <string>&amp;Add Torrent File...</string>
+   </property>
+   <property name="iconText">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>E&amp;xit</string>
+   </property>
+  </action>
+  <action name="actionOptions">
+   <property name="text">
+    <string>&amp;Options...</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>&amp;About</string>
+   </property>
+  </action>
+  <action name="actionStart">
+   <property name="text">
+    <string>&amp;Resume</string>
+   </property>
+  </action>
+  <action name="actionPause">
+   <property name="text">
+    <string>&amp;Pause</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="text">
+    <string>&amp;Delete</string>
+   </property>
+  </action>
+  <action name="actionDownloadFromURL">
+   <property name="text">
+    <string>Add Torrent &amp;Link...</string>
+   </property>
+   <property name="iconText">
+    <string>Open URL</string>
+   </property>
+  </action>
+  <action name="actionCreateTorrent">
+   <property name="text">
+    <string>Torrent &amp;Creator</string>
+   </property>
+  </action>
+  <action name="actionSetUploadLimit">
+   <property name="text">
+    <string>Set Upload Limit...</string>
+   </property>
+  </action>
+  <action name="actionSetDownloadLimit">
+   <property name="text">
+    <string>Set Download Limit...</string>
+   </property>
+  </action>
+  <action name="actionDocumentation">
+   <property name="text">
+    <string>&amp;Documentation</string>
+   </property>
+  </action>
+  <action name="actionSetGlobalDownloadLimit">
+   <property name="text">
+    <string>Set Global Download Limit...</string>
+   </property>
+  </action>
+  <action name="actionSetGlobalUploadLimit">
+   <property name="text">
+    <string>Set Global Upload Limit...</string>
+   </property>
+  </action>
+  <action name="actionBottomPriority">
+   <property name="text">
+    <string>Minimum Priority</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionTopPriority">
+   <property name="text">
+    <string>Top Priority</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionDecreasePriority">
+   <property name="text">
+    <string>Decrease Priority</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionIncreasePriority">
+   <property name="text">
+    <string>Increase Priority</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionUseAlternativeSpeedLimits">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Alternative Speed Limits</string>
+   </property>
+   <property name="toolTip">
+    <string>Alternative Speed Limits</string>
+   </property>
+  </action>
+  <action name="actionTopToolBar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Top Toolbar</string>
+   </property>
+   <property name="toolTip">
+    <string>Display Top Toolbar</string>
+   </property>
+  </action>
+  <action name="actionSpeedInTitleBar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>S&amp;peed in Title Bar</string>
+   </property>
+   <property name="toolTip">
+    <string>Show Transfer Speed in Title Bar</string>
+   </property>
+  </action>
+  <action name="actionRSSReader">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;RSS Reader</string>
+   </property>
+  </action>
+  <action name="actionSearchWidget">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Search &amp;Engine</string>
+   </property>
+  </action>
+  <action name="actionLock">
+   <property name="text">
+    <string>L&amp;ock qBittorrent</string>
+   </property>
+   <property name="iconText">
+    <string>Lock</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionDonateMoney">
+   <property name="text">
+    <string>Do&amp;nate!</string>
+   </property>
+   <property name="toolTip">
+    <string>If you like qBittorrent, please donate!</string>
+   </property>
+  </action>
+  <action name="actionStartAll">
+   <property name="text">
+    <string>R&amp;esume All</string>
+   </property>
+  </action>
+  <action name="actionPauseAll">
+   <property name="text">
+    <string>P&amp;ause All</string>
+   </property>
+  </action>
+  <action name="actionAutoExit">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Exit qBittorrent</string>
+   </property>
+  </action>
+  <action name="actionAutoSuspend">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Suspend System</string>
+   </property>
+  </action>
+  <action name="actionAutoHibernate">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Hibernate System</string>
+   </property>
+  </action>
+  <action name="actionAutoShutdown">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>S&amp;hutdown System</string>
+   </property>
+  </action>
+  <action name="actionAutoShutdownDisabled">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Disabled</string>
+   </property>
+  </action>
+  <action name="actionToggleVisibility">
+   <property name="text">
+    <string>Show</string>
+   </property>
+  </action>
+  <action name="actionMinimize">
+   <property name="text">
+    <string notr="true">Minimize</string>
+   </property>
+  </action>
+  <action name="actionStatistics">
+   <property name="text">
+    <string>&amp;Statistics</string>
+   </property>
+  </action>
+  <action name="actionCheckForUpdates">
+   <property name="text">
+    <string>Check for Updates</string>
+   </property>
+   <property name="toolTip">
+    <string>Check for Program Updates</string>
+   </property>
+  </action>
+  <action name="actionManageCookies">
+   <property name="text">
+    <string>Manage Cookies...</string>
+   </property>
+   <property name="toolTip">
+    <string>Manage stored network cookies</string>
+   </property>
+  </action>
+  <action name="actionExecutionLogs">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show</string>
+   </property>
+  </action>
+  <action name="actionNormalMessages">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Normal Messages</string>
+   </property>
+  </action>
+  <action name="actionInformationMessages">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Information Messages</string>
+   </property>
+  </action>
+  <action name="actionWarningMessages">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Warning Messages</string>
+   </property>
+  </action>
+  <action name="actionCriticalMessages">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Critical Messages</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
