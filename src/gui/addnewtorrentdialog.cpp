@@ -731,8 +731,8 @@ void AddNewTorrentDialog::setupTreeview()
             ui->contentTreeView->header()->restoreState(m_headerState);
 
         // Hide useless columns after loading the header state
-        ui->content_tree->hideColumn(PROGRESS);
-        ui->content_tree->hideColumn(REMAINING);
+        ui->contentTreeView->hideColumn(PROGRESS);
+        ui->contentTreeView->hideColumn(REMAINING);
 
         // Expand root folder
         ui->contentTreeView->setExpanded(m_contentModel->index(0, 0), true);
