@@ -23,6 +23,9 @@
       <bool>false</bool>
      </property>
      <widget class="QListWidget" name="tabSelection">
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
