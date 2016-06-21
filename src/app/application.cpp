@@ -262,8 +262,9 @@ void Application::runExternalProgram(BitTorrent::TorrentHandle *const torrent) c
     QProcess::startDetached(QLatin1String("/bin/sh"), {QLatin1String("-c"), program});
 #elif defined(Q_OS_WIN)  // test cmd: `echo "%F" > "c:\ab ba.txt"`
     program.prepend(QLatin1String("cmd.exe /C "));
-    if (program.size() >= MAX_PATH) {
-        logger->addMessage(tr("Torrent: %1, run external program command too long (length > %2), execution failed.").arg(torrent->name()).arg(MAX_PATH), Log::CRITICAL);
+    const uint cmdMaxLength = 32768;  // max length (incl. terminate char) for `lpCommandLine` in `CreateProcessW()`
+    if ((program.size() + 1) > cmdMaxLength) {
+        logger->addMessage(tr("Torrent: %1, run external program command too long (length > %2), execution failed.").arg(torrent->name()).arg(cmdMaxLength), Log::CRITICAL);
         return;
     }
 
