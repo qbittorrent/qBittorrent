@@ -304,8 +304,8 @@ public:
     void setRssSideSplitterState(const QByteArray &state);
     QByteArray getRssMainSplitterState() const;
     void setRssMainSplitterState(const QByteArray &state);
-    QString getSearchColsWidth() const;
-    void setSearchColsWidth(const QString &width);
+    QByteArray getSearchTabHeaderState() const;
+    void setSearchTabHeaderState(const QByteArray &state);
     QStringList getSearchEngDisabled() const;
     void setSearchEngDisabled(const QStringList &engines);
     QString getCreateTorLastAddPath() const;

@@ -1320,14 +1320,22 @@ void Preferences::setRssMainSplitterState(const QByteArray &state)
 #endif
 }
 
-QString Preferences::getSearchColsWidth() const
+QByteArray Preferences::getSearchTabHeaderState() const
 {
-    return value("SearchResultsColsWidth").toString();
+#ifdef QBT_USES_QT5
+    return value("SearchTab/qt5/SearchTabHeaderState").toByteArray();
+#else
+    return value("SearchTab/SearchTabHeaderState").toByteArray();
+#endif
 }
 
-void Preferences::setSearchColsWidth(const QString &width)
+void Preferences::setSearchTabHeaderState(const QByteArray &state)
 {
-    setValue("SearchResultsColsWidth", width);
+#ifdef QBT_USES_QT5
+    setValue("SearchTab/qt5/SearchTabHeaderState", state);
+#else
+    setValue("SearchTab/SearchTabHeaderState", state);
+#endif
 }
 
 QStringList Preferences::getSearchEngDisabled() const

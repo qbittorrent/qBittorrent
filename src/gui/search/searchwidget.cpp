@@ -267,7 +267,6 @@ void SearchWidget::on_searchButton_clicked()
     // Tab Addition
     m_currentSearchTab = new SearchTab(this);
     m_activeSearchTab = m_currentSearchTab;
-    connect(m_currentSearchTab->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveResultsColumnsWidth()));
     m_allTabs.append(m_currentSearchTab);
     QString tabName = pattern;
     tabName.replace(QRegExp("&{1}"), "&&");
@@ -291,21 +290,6 @@ void SearchWidget::on_searchButton_clicked()
 
     // Launch search
     m_searchEngine->startSearch(pattern, selectedCategory(), plugins);
-}
-
-void SearchWidget::saveResultsColumnsWidth()
-{
-    if (m_allTabs.isEmpty()) return;
-
-    QTreeView *treeview = m_allTabs.first()->getCurrentTreeView();
-    QStringList newWidthList;
-    short nbColumns = m_allTabs.first()->getCurrentSearchListModel()->columnCount();
-    for (short i = 0; i < nbColumns; ++i)
-        if (treeview->columnWidth(i) > 0)
-            newWidthList << QString::number(treeview->columnWidth(i));
-    // Don't save the width of the last column (auto column width)
-    newWidthList.removeLast();
-    Preferences::instance()->setSearchColsWidth(newWidthList.join(" "));
 }
 
 void SearchWidget::searchStarted()
