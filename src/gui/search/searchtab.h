@@ -98,6 +98,7 @@ private slots:
     void loadSettings();
     void saveSettings() const;
     void updateFilter();
+    void displayToggleColumnsMenu(const QPoint&);
 
 private:
     void fillFilterComboBoxes();
