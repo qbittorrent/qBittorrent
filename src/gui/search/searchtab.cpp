@@ -74,7 +74,9 @@ SearchTab::SearchTab(SearchWidget *parent)
     m_ui->resultsBrowser->header()->setParent(m_ui->resultsBrowser);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
 #endif
+    loadSettings();
     m_ui->resultsBrowser->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    header()->setStretchLastSection(false);
 
     // Set Search results list model
     m_searchListModel = new QStandardItemModel(0, SearchSortModel::NB_SEARCH_COLUMNS, this);
@@ -106,9 +108,8 @@ SearchTab::SearchTab(SearchWidget *parent)
     // Connect signals to slots (search part)
     connect(m_ui->resultsBrowser, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(downloadItem(const QModelIndex&)));
 
-    // Load last columns width for search results list
-    if (!loadColWidthResultsList())
-        m_ui->resultsBrowser->header()->resizeSection(0, 275);
+    connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
+    connect(header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(saveSettings()));
 
     // Sort by Seeds
     m_ui->resultsBrowser->sortByColumn(SearchSortModel::SEEDS, Qt::DescendingOrder);
@@ -132,6 +133,7 @@ SearchTab::SearchTab(SearchWidget *parent)
 
 SearchTab::~SearchTab()
 {
+    saveSettings();
     delete m_ui;
 }
 
@@ -146,21 +148,6 @@ void SearchTab::downloadItem(const QModelIndex &index)
 QHeaderView* SearchTab::header() const
 {
     return m_ui->resultsBrowser->header();
-}
-
-bool SearchTab::loadColWidthResultsList()
-{
-    QString line = Preferences::instance()->getSearchColsWidth();
-    if (line.isEmpty()) return false;
-
-    QStringList widthList = line.split(' ');
-    if (widthList.size() > m_searchListModel->columnCount())
-        return false;
-
-    for (int i = 0; i < widthList.size(); ++i)
-        m_ui->resultsBrowser->header()->resizeSection(i, widthList.at(i).toInt());
-
-    return true;
 }
 
 QTreeView* SearchTab::getCurrentTreeView() const
@@ -306,4 +293,14 @@ SearchTab::NameFilteringMode SearchTab::filteringMode() const
     QMetaEnum metaEnum =
         this->metaObject()->enumerator(this->metaObject()->indexOfEnumerator("NameFilteringMode"));
     return static_cast<NameFilteringMode>(metaEnum.keyToValue(m_ui->filterMode->itemData(m_ui->filterMode->currentIndex()).toByteArray()));
+}
+
+void SearchTab::loadSettings()
+{
+    header()->restoreState(Preferences::instance()->getSearchTabHeaderState());
+}
+
+void SearchTab::saveSettings() const
+{
+    Preferences::instance()->setSearchTabHeaderState(header()->saveState());
 }
