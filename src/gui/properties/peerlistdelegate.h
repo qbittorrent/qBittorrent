@@ -35,6 +35,7 @@
 #include <QPainter>
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "base/preferences.h"
 
 class PeerListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -50,6 +51,7 @@ public:
 
   void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const {
     painter->save();
+    const bool hideValues = Preferences::instance()->getHideZeroValues();
     QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
     switch(index.column()) {
     case PORT:
@@ -58,10 +60,14 @@ public:
         QItemDelegate::drawDisplay(painter, opt, option.rect, index.data().toString());
         break;
     case TOT_DOWN:
-    case TOT_UP:
+    case TOT_UP: {
+        qlonglong size = index.data().toLongLong();
+        if (hideValues && (size <= 0))
+            break;
       QItemDelegate::drawBackground(painter, opt, index);
       opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-      QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
+      QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(size));
+      }
       break;
     case DOWN_SPEED:
     case UP_SPEED:{
