@@ -1368,9 +1368,6 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
     p.max_connections = pref->getMaxConnecsPerTorrent();
     p.max_uploads = pref->getMaxUploadsPerTorrent();
     p.save_path = Utils::String::toStdString(Utils::Fs::toNativePath(savePath));
-    // Check if save path exists, creating it otherwise
-    if (!QDir(savePath).exists())
-        QDir().mkpath(savePath);
 
     m_addingTorrents.insert(hash, addData);
     // Adding torrent to BitTorrent session
@@ -1460,9 +1457,6 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
 
     QString savePath = QString("%1/%2").arg(QDir::tempPath()).arg(hash);
     p.save_path = Utils::String::toStdString(Utils::Fs::toNativePath(savePath));
-    // Check if save path exists, creating it otherwise
-    if (!QDir(savePath).exists())
-        QDir().mkpath(savePath);
 
     // Forced start
     p.flags &= ~libt::add_torrent_params::flag_paused;
