@@ -1284,10 +1284,6 @@ void TorrentHandle::moveStorage(const QString &newPath)
         if (QDir(oldPath) == QDir(newPath)) return;
 
         qDebug("move storage: %s to %s", qPrintable(oldPath), qPrintable(newPath));
-        // Create destination directory if necessary
-        // or move_storage() will fail...
-        QDir().mkpath(newPath);
-
         try {
             // Actually move the storage
             m_nativeHandle.move_storage(newPath.toUtf8().constData());
