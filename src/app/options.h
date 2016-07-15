@@ -38,11 +38,13 @@
 #include <QString>
 #include <QStringList>
 
+#include "base/tristatebool.h"
+
 class QProcessEnvironment;
 
 struct QBtCommandLineParameters
 {
-    bool showHelp;
+    bool showHelp, relativeFastresumePaths, portableMode, skipChecking, sequential, firstLastPiecePriority;
 #ifndef Q_OS_WIN
     bool showVersion;
 #endif
@@ -52,14 +54,12 @@ struct QBtCommandLineParameters
     bool shouldDaemonize;
 #endif
     int webUiPort;
-    QString profileDir;
-    bool relativeFastresumePaths;
-    bool portableMode;
-    QString configurationName;
+    TriStateBool addPaused, skipDialog;
     QStringList torrents;
-    QString unknownParameter;
+    QString profileDir, configurationName, savePath, category, unknownParameter;
 
     QBtCommandLineParameters(const QProcessEnvironment&);
+    QStringList paramList() const;
 };
 
 class CommandLineParameterError: public std::runtime_error

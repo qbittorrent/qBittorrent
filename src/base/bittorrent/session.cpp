@@ -3666,6 +3666,8 @@ namespace
         magnetUri = MagnetUri(QString::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
         torrentData.addPaused = fast.dict_find_int_value("qBt-paused");
         torrentData.addForced = fast.dict_find_int_value("qBt-forced");
+        torrentData.firstLastPiecePriority = fast.dict_find_int_value("qBt-firstLastPiecePriority");
+        torrentData.sequential = fast.dict_find_int_value("qBt-sequential");
 
         prio = fast.dict_find_int_value("qBt-queuePosition");
 

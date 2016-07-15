@@ -407,15 +407,63 @@ void Application::processParams(const QStringList &params)
         return;
     }
 #endif
+    BitTorrent::AddTorrentParams torrentParams;
+    TriStateBool skipTorrentDialog;
 
     foreach (QString param, params) {
         param = param.trimmed();
+
+        // Process strings indicating options specified by the user.
+        
+        if (param.startsWith(QLatin1String("@savePath="))) {
+            torrentParams.savePath = param.mid(10);
+            continue;
+        }
+
+        if (param.startsWith(QLatin1String("@addPaused="))) {
+            torrentParams.addPaused = param.mid(11).toInt() ? TriStateBool::True : TriStateBool::False;
+            continue;
+        }
+
+        if (param == QLatin1String("@skipChecking")) {
+            torrentParams.skipChecking = true;
+            continue;
+        }
+
+        if (param.startsWith(QLatin1String("@category="))) {
+            torrentParams.category = param.mid(10);
+            continue;
+        }
+
+        if (param == QLatin1String("@sequential")) {
+            torrentParams.sequential = true;
+            continue;
+        }
+
+        if (param == QLatin1String("@firstLastPiecePriority")) {
+            torrentParams.firstLastPiecePriority = true;
+            continue;
+        }
+
+        if (param.startsWith(QLatin1String("@skipDialog="))) {
+            skipTorrentDialog = param.mid(12).toInt() ? TriStateBool::True : TriStateBool::False;
+            continue;
+        }
+
 #ifndef DISABLE_GUI
-        if (AddNewTorrentDialog::isEnabled())
-            AddNewTorrentDialog::show(param, m_window);
+        // There are two circumstances in which we want to show the torrent
+        // dialog. One is when the application settings specify that it should
+        // be shown and skipTorrentDialog is undefined. The other is when
+        // skipTorrentDialog is false, meaning that the application setting
+        // should be overridden.
+        const bool showDialogForThisTorrent =
+            ((AddNewTorrentDialog::isEnabled() && skipTorrentDialog == TriStateBool::Undefined)
+             || skipTorrentDialog == TriStateBool::False);
+        if (showDialogForThisTorrent)
+            AddNewTorrentDialog::show(param, torrentParams, m_window);
         else
 #endif
-            BitTorrent::Session::instance()->addTorrent(param);
+            BitTorrent::Session::instance()->addTorrent(param, torrentParams);
     }
 }
 

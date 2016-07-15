@@ -343,7 +343,7 @@ void RSSWidget::downloadSelectedTorrents()
 
         if (!article->torrentUrl().isEmpty()) {
             if (AddNewTorrentDialog::isEnabled())
-                AddNewTorrentDialog::show(article->torrentUrl());
+                AddNewTorrentDialog::show(article->torrentUrl(), window());
             else
                 BitTorrent::Session::instance()->addTorrent(article->torrentUrl());
         }
