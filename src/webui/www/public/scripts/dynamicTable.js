@@ -811,14 +811,14 @@ var TorrentPeersTable = new Class({
             this.newColumn('country', 'width: 4px', '');
             this.newColumn('ip', 'width: 80px', 'QBT_TR(IP)QBT_TR');
             this.newColumn('port', 'width: 35px', 'QBT_TR(Port)QBT_TR');
-            this.newColumn('client', 'width: 110px', 'QBT_TR(Client)QBT_TR');
-            this.newColumn('progress', 'width: 30px', 'QBT_TR(Progress)QBT_TR');
-            this.newColumn('dl_speed', 'width: 30px', 'QBT_TR(Down Speed)QBT_TR');
-            this.newColumn('up_speed', 'width: 30px', 'QBT_TR(Up Speed)QBT_TR');
-            this.newColumn('downloaded', 'width: 30px', 'QBT_TR(Downloaded)QBT_TR[CONTEXT=PeerListWidget]');
-            this.newColumn('uploaded', 'width: 30px', 'QBT_TR(Uploaded)QBT_TR[CONTEXT=PeerListWidget]');
-            this.newColumn('connection', 'width: 30px', 'QBT_TR(Connection)QBT_TR');
-            this.newColumn('flags', 'width: 30px', 'QBT_TR(Flags)QBT_TR');
+            this.newColumn('client', 'width: 140px', 'QBT_TR(Client)QBT_TR');
+            this.newColumn('progress', 'width: 50px', 'QBT_TR(Progress)QBT_TR');
+            this.newColumn('dl_speed', 'width: 50px', 'QBT_TR(Down Speed)QBT_TR');
+            this.newColumn('up_speed', 'width: 50px', 'QBT_TR(Up Speed)QBT_TR');
+            this.newColumn('downloaded', 'width: 50px', 'QBT_TR(Downloaded)QBT_TR[CONTEXT=PeerListWidget]');
+            this.newColumn('uploaded', 'width: 50px', 'QBT_TR(Uploaded)QBT_TR[CONTEXT=PeerListWidget]');
+            this.newColumn('connection', 'width: 50px', 'QBT_TR(Connection)QBT_TR');
+            this.newColumn('flags', 'width: 50px', 'QBT_TR(Flags)QBT_TR');
             this.newColumn('relevance', 'width: 30px', 'QBT_TR(Relevance)QBT_TR');
 
             this.columns['country'].dataProperties.push('country_code');
