@@ -266,6 +266,7 @@ void Application::runExternalProgram(BitTorrent::TorrentHandle *const torrent) c
         GetSystemDirectoryW(systemPath, sizeof(systemPath) / sizeof(WCHAR));
         return QString::fromWCharArray(systemPath) + QLatin1String("\\cmd.exe /C ");
     }();
+    program.prepend(QLatin1String("\"")).append(QLatin1String("\""));
     program.prepend(cmdPath);
     const uint cmdMaxLength = 32768;  // max length (incl. terminate char) for `lpCommandLine` in `CreateProcessW()`
     if ((program.size() + 1) > cmdMaxLength) {
