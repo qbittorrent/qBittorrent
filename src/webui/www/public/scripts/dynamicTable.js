@@ -35,14 +35,14 @@ var DynamicTable = new Class({
 
         initialize : function () {},
 
-        setup : function (tableId, tableHeaderId, context_menu) {
+        setup : function (tableId, tableHeaderId, contextMenu) {
             this.tableId = tableId;
             this.tableHeaderId = tableHeaderId;
             this.table = $(tableId);
             this.rows = new Hash();
-            this.cur = new Array();
+            this.selectedRows = new Array();
             this.columns = new Array();
-            this.context_menu = context_menu;
+            this.contextMenu = contextMenu;
             this.sortedColumn = getLocalStorageItem('sorted_column_' + this.tableId, 0);
             this.reverseSort = getLocalStorageItem('reverse_sort_' + this.tableId, '0');
             this.initColumns();
@@ -163,8 +163,8 @@ var DynamicTable = new Class({
         },
 
         getSelectedRowId : function () {
-            if (this.cur.length > 0)
-                return this.cur[0];
+            if (this.selectedRows.length > 0)
+                return this.selectedRows[0];
             return '';
         },
 
@@ -183,24 +183,24 @@ var DynamicTable = new Class({
         },
 
         selectAll : function () {
-            this.cur.empty();
+            this.selectedRows.empty();
 
             var trs = this.table.getElements('tr');
             for (var i = 0; i < trs.length; i++) {
                 var tr = trs[i];
-                this.cur.push(tr.rowId);
+                this.selectedRows.push(tr.rowId);
                 if (!tr.hasClass('selected'))
                     tr.addClass('selected');
             }
         },
 
         deselectAll : function () {
-            this.cur.empty();
+            this.selectedRows.empty();
         },
 
         selectRow : function (rowId) {
-            this.cur.empty();
-            this.cur.push(rowId);
+            this.selectedRows.empty();
+            this.selectedRows.push(rowId);
             var trs = this.table.getElements('tr');
             for (var i = 0; i < trs.length; i++) {
                 var tr = trs[i];
@@ -272,9 +272,9 @@ var DynamicTable = new Class({
 
             var rows = this.getFilteredAndSortedRows();
 
-            for (var i = 0; i < this.cur.length; i++)
-                if (!(this.cur[i] in rows)) {
-                    this.cur.splice(i, 1);
+            for (var i = 0; i < this.selectedRows.length; i++)
+                if (!(this.selectedRows[i] in rows)) {
+                    this.selectedRows.splice(i, 1);
                     i--;
                 }
 
@@ -304,7 +304,7 @@ var DynamicTable = new Class({
 
                     tr._this = this;
                     tr.addEvent('contextmenu', function (e) {
-                        if (!this._this.cur.contains(this.rowId))
+                        if (!this._this.selectedRows.contains(this.rowId))
                             this._this.selectRow(this.rowId);
                         return true;
                     });
@@ -312,37 +312,37 @@ var DynamicTable = new Class({
                         e.stop();
                         if (e.control) {
                             // CTRL key was pressed
-                            if (this._this.cur.contains(this.rowId)) {
+                            if (this._this.selectedRows.contains(this.rowId)) {
                                 // remove it
-                                this._this.cur.erase(this.rowId);
+                                this._this.selectedRows.erase(this.rowId);
                                 // Remove selected style
                                 this.removeClass('selected');
                             }
                             else {
-                                this._this.cur.push(this.rowId);
+                                this._this.selectedRows.push(this.rowId);
                                 // Add selected style
                                 this.addClass('selected');
                             }
                         }
                         else {
-                            if (e.shift && this._this.cur.length == 1) {
+                            if (e.shift && this._this.selectedRows.length == 1) {
                                 // Shift key was pressed
-                                var first_row_id = this._this.cur[0];
+                                var first_row_id = this._this.selectedRows[0];
                                 var last_row_id = this.rowId;
-                                this._this.cur.empty();
+                                this._this.selectedRows.empty();
                                 var trs = this._this.table.getElements('tr');
                                 var select = false;
                                 for (var i = 0; i < trs.length; i++) {
                                     var tr = trs[i];
 
                                     if ((tr.rowId == first_row_id) || (tr.rowId == last_row_id)) {
-                                        this._this.cur.push(tr.rowId);
+                                        this._this.selectedRows.push(tr.rowId);
                                         tr.addClass('selected');
                                         select = !select;
                                     }
                                     else {
                                         if (select) {
-                                            this._this.cur.push(tr.rowId);
+                                            this._this.selectedRows.push(tr.rowId);
                                             tr.addClass('selected');
                                         }
                                         else
@@ -377,8 +377,8 @@ var DynamicTable = new Class({
                     }
 
                     // Update context menu
-                    if (this.context_menu)
-                        this.context_menu.addTarget(tr);
+                    if (this.contextMenu)
+                        this.contextMenu.addTarget(tr);
 
                     this.updateRow(tr, true);
                 }
@@ -407,7 +407,7 @@ var DynamicTable = new Class({
         },
 
         removeRow : function (rowId) {
-            this.cur.erase(rowId);
+            this.selectedRows.erase(rowId);
             var tr = this.getTrByRowId(rowId);
             if (tr != null) {
                 tr.dispose();
@@ -418,7 +418,7 @@ var DynamicTable = new Class({
         },
 
         clear : function () {
-            this.cur.empty();
+            this.selectedRows.empty();
             this.rows.empty();
             var trs = this.table.getElements('tr');
             while (trs.length > 0) {
@@ -428,7 +428,7 @@ var DynamicTable = new Class({
         },
 
         selectedRowsIds : function () {
-            return this.cur.slice();
+            return this.selectedRows.slice();
         },
 
         getRowIds : function () {
