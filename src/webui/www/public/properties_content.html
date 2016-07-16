@@ -65,13 +65,21 @@
 
 <div id="prop_peers" class="invisible">
     <div id="peers">
-        <table class="dynamicTable" style="width: 100%">
-            <thead>
-                <tr id="torrentPeersTableHeader" class="dynamicTableHeader">
-                </tr>
-            </thead>
-            <tbody id="torrentPeersTable"></tbody>
-        </table>
+        <div id="torrentPeersTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+            <table class="dynamicTable" style="position:relative;">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+            </table>
+        </div>
+        <div id="torrentPeersTableDiv" class="dynamicTableDiv">
+            <table class="dynamicTable">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -106,6 +114,6 @@
 </div>
 
 <script type="text/javascript">
-    //torrentPeersTable.setup('torrentPeersTable', 'torrentPeersTableHeader', null);
+    torrentPeersTable.setup('torrentPeersTableDiv', 'torrentPeersTableFixedHeaderDiv', null);
     $(getLocalStorageItem('selected_tab', 'PropGeneralLink')).click();
 </script>
