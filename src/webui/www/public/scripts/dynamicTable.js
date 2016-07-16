@@ -35,19 +35,65 @@ var DynamicTable = new Class({
 
         initialize : function () {},
 
-        setup : function (tableId, tableHeaderId, contextMenu) {
-            this.tableId = tableId;
-            this.tableHeaderId = tableHeaderId;
-            this.table = $(tableId);
+        setup : function (dynamicTableDivId, dynamicTableFixedHeaderDivId, contextMenu) {
+            this.dynamicTableDivId = dynamicTableDivId;
+            this.dynamicTableFixedHeaderDivId = dynamicTableFixedHeaderDivId;
+            this.fixedTableHeader = $(dynamicTableFixedHeaderDivId).getElements('tr')[0];
+            this.hiddenTableHeader = $(dynamicTableDivId).getElements('tr')[0];
+            this.tableBody = $(dynamicTableDivId).getElements('tbody')[0];
             this.rows = new Hash();
             this.selectedRows = new Array();
             this.columns = new Array();
             this.contextMenu = contextMenu;
-            this.sortedColumn = getLocalStorageItem('sorted_column_' + this.tableId, 0);
-            this.reverseSort = getLocalStorageItem('reverse_sort_' + this.tableId, '0');
+            this.sortedColumn = getLocalStorageItem('sorted_column_' + this.dynamicTableDivId, 0);
+            this.reverseSort = getLocalStorageItem('reverse_sort_' + this.dynamicTableDivId, '0');
             this.initColumns();
             this.loadColumnsOrder();
-            this.updateHeader();
+            this.updateTableHeaders();
+            this.setupEvents();
+        },
+
+        setupEvents : function () {
+            var scrollFn = function() {
+                $(this.dynamicTableFixedHeaderDivId).getElements('table')[0].style.left =
+                       -$(this.dynamicTableDivId).scrollLeft + 'px';
+            }.bind(this);
+
+            $(this.dynamicTableDivId).addEvent('scroll', scrollFn);
+
+            var resizeFn = function() {
+                var panel = $(this.dynamicTableDivId).getParent('.panel');
+                var h = panel.getBoundingClientRect().height - $(this.dynamicTableFixedHeaderDivId).getBoundingClientRect().height;
+                $(this.dynamicTableDivId).style.height = h + 'px';
+
+                // Workaround due to inaccurate calculation of elements heights by browser
+
+                var n = 2;
+
+                while (panel.clientWidth != panel.offsetWidth && n > 0) { // is panel vertical scrollbar visible ?
+                    n--;
+                    h -= 0.5;
+                    $(this.dynamicTableDivId).style.height = h + 'px';
+                }
+
+                this.lastPanelHeight = panel.getBoundingClientRect().height;
+            }.bind(this);
+
+            $(this.dynamicTableDivId).getParent('.panel').addEvent('resize', resizeFn);
+
+            this.lastPanelHeight = 0;
+
+            // Workaround. Resize event is called not always (for example it isn't called when browser window changes it's size)
+
+            var checkResizeFn = function() {
+                var panel = $(this.dynamicTableDivId).getParent('.panel');
+                if (this.lastPanelHeight != panel.getBoundingClientRect().height) {
+                    this.lastPanelHeight = panel.getBoundingClientRect().height;
+                    panel.fireEvent('resize');
+                }
+            }.bind(this);
+
+            setInterval(checkResizeFn, 500);
         },
 
         initColumns : function () {},
@@ -55,7 +101,7 @@ var DynamicTable = new Class({
         newColumn : function (name, style, caption) {
             var column = {};
             column['name'] = name;
-            column['visible'] = getLocalStorageItem('column_' + name + '_visible_' + this.tableId, '1');
+            column['visible'] = getLocalStorageItem('column_' + name + '_visible_' + this.dynamicTableDivId, '1');
             column['force_hide'] = false;
             column['caption'] = caption;
             column['style'] = style;
@@ -79,12 +125,13 @@ var DynamicTable = new Class({
             this.columns.push(column);
             this.columns[name] = column;
 
-            $(this.tableHeaderId).appendChild(new Element('th'));
+            this.hiddenTableHeader.appendChild(new Element('th'));
+            this.fixedTableHeader.appendChild(new Element('th'));
         },
 
         loadColumnsOrder : function () {
             columnsOrder = ['state_icon']; // status icon column is always the first
-            val = localStorage.getItem('columns_order_' + this.tableId);
+            val = localStorage.getItem('columns_order_' + this.dynamicTableDivId);
             if (val === null || val === undefined) return;
             val.split(',').forEach(function(v) {
                 if ((v in this.columns) && (!columnsOrder.contains(v)))
@@ -106,11 +153,16 @@ var DynamicTable = new Class({
                     val += ',';
                 val += this.columns[i].name;
             }
-            localStorage.setItem('columns_order_' + this.tableId, val);
+            localStorage.setItem('columns_order_' + this.dynamicTableDivId, val);
         },
 
-        updateHeader : function () {
-            var ths = $(this.tableHeaderId).getElements('th');
+        updateTableHeaders : function () {
+            this.updateHeader(this.hiddenTableHeader);
+            this.updateHeader(this.fixedTableHeader);
+        },
+
+        updateHeader : function (header) {
+            var ths = header.getElements('th');
 
             for (var i = 0; i < ths.length; i++) {
                 th = ths[i];
@@ -135,17 +187,22 @@ var DynamicTable = new Class({
         updateColumn : function (columnName) {
             var pos = this.getColumnPos(columnName);
             var visible = ((this.columns[pos].visible != '0') && !this.columns[pos].force_hide);
-            var ths = $(this.tableHeaderId).getElements('th');
-            if (visible)
+            var ths = this.hiddenTableHeader.getElements('th');
+            var fths = this.fixedTableHeader.getElements('th');
+            var trs = this.tableBody.getElements('tr');
+
+            if (visible) {
                 ths[pos].removeClass('invisible');
-            else
-                ths[pos].addClass('invisible');
-            var trs = this.table.getElements('tr');
-            for (var i = 0; i < trs.length; i++)
-                if (visible)
+                fths[pos].removeClass('invisible');
+                for (var i = 0; i < trs.length; i++)
                     trs[i].getElements('td')[pos].removeClass('invisible');
-                else
+            }
+            else {
+                ths[pos].addClass('invisible');
+                fths[pos].addClass('invisible');
+                for (var i = 0; i < trs.length; i++)
                     trs[i].getElements('td')[pos].addClass('invisible');
+            }
         },
 
         setSortedColumn : function (column) {
@@ -157,8 +214,8 @@ var DynamicTable = new Class({
                 // Toggle sort order
                 this.reverseSort = this.reverseSort == '0' ? '1' : '0';
             }
-            localStorage.setItem('sorted_column_' + this.tableId, column);
-            localStorage.setItem('reverse_sort_' + this.tableId, this.reverseSort);
+            localStorage.setItem('sorted_column_' + this.dynamicTableDivId, column);
+            localStorage.setItem('reverse_sort_' + this.dynamicTableDivId, this.reverseSort);
             this.updateTable(false);
         },
 
@@ -172,7 +229,7 @@ var DynamicTable = new Class({
             if (!MUI.ieLegacySupport)
                 return;
 
-            var trs = this.table.getElements('tr');
+            var trs = this.tableBody.getElements('tr');
             trs.each(function (el, i) {
                 if (i % 2) {
                     el.addClass('alt');
@@ -185,7 +242,7 @@ var DynamicTable = new Class({
         selectAll : function () {
             this.selectedRows.empty();
 
-            var trs = this.table.getElements('tr');
+            var trs = this.tableBody.getElements('tr');
             for (var i = 0; i < trs.length; i++) {
                 var tr = trs[i];
                 this.selectedRows.push(tr.rowId);
@@ -201,7 +258,7 @@ var DynamicTable = new Class({
         selectRow : function (rowId) {
             this.selectedRows.empty();
             this.selectedRows.push(rowId);
-            var trs = this.table.getElements('tr');
+            var trs = this.tableBody.getElements('tr');
             for (var i = 0; i < trs.length; i++) {
                 var tr = trs[i];
                 if (tr.rowId == rowId) {
@@ -259,7 +316,7 @@ var DynamicTable = new Class({
         },
 
         getTrByRowId : function (rowId) {
-            trs = this.table.getElements('tr');
+            trs = this.tableBody.getElements('tr');
             for (var i = 0; i < trs.length; i++)
                 if (trs[i].rowId == rowId)
                     return trs[i];
@@ -278,7 +335,7 @@ var DynamicTable = new Class({
                     i--;
                 }
 
-            var trs = this.table.getElements('tr');
+            var trs = this.tableBody.getElements('tr');
 
             for (var rowPos = 0; rowPos < rows.length; rowPos++) {
                 var rowId = rows[rowPos]['rowId'];
@@ -330,7 +387,7 @@ var DynamicTable = new Class({
                                 var first_row_id = this._this.selectedRows[0];
                                 var last_row_id = this.rowId;
                                 this._this.selectedRows.empty();
-                                var trs = this._this.table.getElements('tr');
+                                var trs = this._this.tableBody.getElements('tr');
                                 var select = false;
                                 for (var i = 0; i < trs.length; i++) {
                                     var tr = trs[i];
@@ -368,7 +425,7 @@ var DynamicTable = new Class({
 
                     // Insert
                     if (rowPos >= trs.length) {
-                        tr.inject(this.table);
+                        tr.inject(this.tableBody);
                         trs.push(tr);
                     }
                     else {
@@ -420,7 +477,7 @@ var DynamicTable = new Class({
         clear : function () {
             this.selectedRows.empty();
             this.rows.empty();
-            var trs = this.table.getElements('tr');
+            var trs = this.tableBody.getElements('tr');
             while (trs.length > 0) {
                 trs[trs.length - 1].dispose();
                 trs.pop();
@@ -442,7 +499,7 @@ var TorrentsTable = new Class({
         initColumns : function () {
             this.newColumn('priority', 'width: 30px', '#');
             this.newColumn('state_icon', 'width: 16px; cursor: default', '');
-            this.newColumn('name', 'min-width: 200px', 'QBT_TR(Name)QBT_TR');
+            this.newColumn('name', 'width: 200px', 'QBT_TR(Name)QBT_TR');
             this.newColumn('size', 'width: 100px', 'QBT_TR(Size)QBT_TR');
             this.newColumn('progress', 'width: 80px', 'QBT_TR(Done)QBT_TR');
             this.newColumn('num_seeds', 'width: 100px', 'QBT_TR(Seeds)QBT_TR');
@@ -763,7 +820,7 @@ var TorrentPeersTable = new Class({
             this.newColumn('uploaded', 'width: 30px', 'QBT_TR(Uploaded)QBT_TR[CONTEXT=PeerListWidget]');
             this.newColumn('connection', 'width: 30px', 'QBT_TR(Connection)QBT_TR');
             this.newColumn('flags', 'width: 30px', 'QBT_TR(Flags)QBT_TR');
-            this.newColumn('relevance', 'min-width: 30px', 'QBT_TR(Relevance)QBT_TR');
+            this.newColumn('relevance', 'width: 30px', 'QBT_TR(Relevance)QBT_TR');
 
             this.columns['country'].dataProperties.push('country_code');
             this.columns['flags'].dataProperties.push('flags_desc');
