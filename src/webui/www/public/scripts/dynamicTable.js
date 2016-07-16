@@ -168,6 +168,7 @@ var DynamicTable = new Class({
                 th = ths[i];
                 th._this = this;
                 th.setAttribute('onclick', this.columns[i].onclick);
+                th.setAttribute('title', this.columns[i].caption);
                 th.innerHTML = this.columns[i].caption;
                 th.setAttribute('style', this.columns[i].style);
                 if ((this.columns[i].visible == '0') || this.columns[i].force_hide)
