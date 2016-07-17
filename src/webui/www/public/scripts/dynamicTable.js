@@ -342,7 +342,6 @@ var DynamicTable = new Class({
                 tr_found = false;
                 for (j = rowPos; j < trs.length; j++)
                     if (trs[j]['rowId'] == rowId) {
-                        trs[rowPos].removeClass('over');
                         tr_found = true;
                         if (rowPos == j)
                             break;
