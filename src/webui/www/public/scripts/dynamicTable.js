@@ -50,10 +50,11 @@ var DynamicTable = new Class({
             this.initColumns();
             this.loadColumnsOrder();
             this.updateTableHeaders();
-            this.setupEvents();
+            this.setupCommonEvents();
+            this.setupHeaderEvents();
         },
 
-        setupEvents : function () {
+        setupCommonEvents : function () {
             var scrollFn = function() {
                 $(this.dynamicTableFixedHeaderDivId).getElements('table')[0].style.left =
                        -$(this.dynamicTableDivId).scrollLeft + 'px';
@@ -96,16 +97,96 @@ var DynamicTable = new Class({
             setInterval(checkResizeFn, 500);
         },
 
+        setupHeaderEvents : function () {
+            this.currentHeaderAction = '';
+            this.canResize = false;
+
+            var mouseMoveFn = function (e) {
+                var brect = e.target.getBoundingClientRect();
+                var mouseXRelative = e.event.clientX - brect.left;
+                if (this.currentHeaderAction === '') {
+                    if (brect.width - mouseXRelative < 5) {
+                        this.resizeTh = e.target;
+                        this.canResize = true;
+                        e.target.getParent("tr").style.cursor = 'col-resize';
+                    }
+                    else if ((mouseXRelative < 5) && e.target.getPrevious('[class=""]')) {
+                        this.resizeTh = e.target.getPrevious('[class=""]');
+                        this.canResize = true;
+                        e.target.getParent("tr").style.cursor = 'col-resize';
+                    } else {
+                        this.canResize = false;
+                        e.target.getParent("tr").style.cursor = '';
+                    }
+                }
+                this.lastHoverTh = e.target;
+                this.lastClientX = e.event.clientX;
+            }.bind(this);
+
+            var mouseOutFn = function (e) {
+            }.bind(this);
+
+            var onBeforeStart = function (el) {
+                this.clickedTh = el;
+                this.currentHeaderAction = 'start';
+                this.dragMovement = false;
+                this.dragStartX = this.lastClientX;
+            }.bind(this);
+
+            var onStart = function (el, event) {
+                if (this.canResize)
+                    this.currentHeaderAction = 'resize';
+                this.startWidth = this.resizeTh.getStyle('width').toFloat();
+            }.bind(this);
+
+            var onDrag = function (el, event) {
+                if (this.currentHeaderAction === 'resize') {
+                    var width = this.startWidth + (event.page.x - this.dragStartX);
+                    if (width < 16)
+                        width = 16;
+                    this.columns[this.resizeTh.columnName].width = width;
+                    this.updateColumn(this.resizeTh.columnName);
+                }
+            }.bind(this);
+
+            var onComplete = function (el, event) {
+                if (this.currentHeaderAction === 'resize')
+                    localStorage.setItem('column_' + this.resizeTh.columnName + '_width_' + this.dynamicTableDivId, this.columns[this.resizeTh.columnName].width);
+                this.currentHeaderAction = '';
+            }.bind(this);
+
+            var onCancel = function (el) {
+                this.currentHeaderAction = '';
+                this.setSortedColumn(el.columnName);
+            }.bind(this);
+
+            var ths = this.fixedTableHeader.getElements('th');
+
+            for (var i = 0; i < ths.length; i++) {
+                var th = ths[i];
+                th.addEvent('mousemove', mouseMoveFn);
+                th.addEvent('mouseout', mouseOutFn);
+                th.makeResizable({
+                    modifiers : {x: '', y: ''},
+                    onBeforeStart : onBeforeStart,
+                    onStart : onStart,
+                    onDrag : onDrag,
+                    onComplete : onComplete,
+                    onCancel : onCancel
+                })
+            }
+        },
+
         initColumns : function () {},
 
-        newColumn : function (name, style, caption) {
+        newColumn : function (name, style, caption, defaultWidth) {
             var column = {};
             column['name'] = name;
             column['visible'] = getLocalStorageItem('column_' + name + '_visible_' + this.dynamicTableDivId, '1');
             column['force_hide'] = false;
             column['caption'] = caption;
             column['style'] = style;
-            column['onclick'] = 'this._this.setSortedColumn(\'' + name + '\');';
+            column['width'] = getLocalStorageItem('column_' + name + '_width_' + this.dynamicTableDivId, defaultWidth);
             column['dataProperties'] = [name];
             column['getRowValue'] = function (row, pos) {
                 if (pos == undefined)
@@ -167,10 +248,10 @@ var DynamicTable = new Class({
             for (var i = 0; i < ths.length; i++) {
                 th = ths[i];
                 th._this = this;
-                th.setAttribute('onclick', this.columns[i].onclick);
                 th.setAttribute('title', this.columns[i].caption);
                 th.innerHTML = this.columns[i].caption;
-                th.setAttribute('style', this.columns[i].style);
+                th.setAttribute('style', 'width: ' + this.columns[i].width + 'px;' + this.columns[i].style);
+                th.columnName = this.columns[i].name;
                 if ((this.columns[i].visible == '0') || this.columns[i].force_hide)
                     th.addClass('invisible');
                 else
@@ -191,6 +272,10 @@ var DynamicTable = new Class({
             var ths = this.hiddenTableHeader.getElements('th');
             var fths = this.fixedTableHeader.getElements('th');
             var trs = this.tableBody.getElements('tr');
+            var style = 'width: ' + this.columns[pos].width + 'px;' + this.columns[pos].style;
+
+            ths[pos].setAttribute('style', style);
+            fths[pos].setAttribute('style', style);
 
             if (visible) {
                 ths[pos].removeClass('invisible');
@@ -497,19 +582,19 @@ var TorrentsTable = new Class({
         Extends: DynamicTable,
 
         initColumns : function () {
-            this.newColumn('priority', 'width: 30px', '#');
-            this.newColumn('state_icon', 'width: 16px; cursor: default', '');
-            this.newColumn('name', 'width: 200px', 'QBT_TR(Name)QBT_TR');
-            this.newColumn('size', 'width: 100px', 'QBT_TR(Size)QBT_TR');
-            this.newColumn('progress', 'width: 80px', 'QBT_TR(Done)QBT_TR');
-            this.newColumn('num_seeds', 'width: 100px', 'QBT_TR(Seeds)QBT_TR');
-            this.newColumn('num_leechs', 'width: 100px', 'QBT_TR(Peers)QBT_TR');
-            this.newColumn('dlspeed', 'width: 100px', 'QBT_TR(Down Speed)QBT_TR');
-            this.newColumn('upspeed', 'width: 100px', 'QBT_TR(Up Speed)QBT_TR');
-            this.newColumn('eta', 'width: 100px', 'QBT_TR(ETA)QBT_TR');
-            this.newColumn('ratio', 'width: 100px', 'QBT_TR(Ratio)QBT_TR');
-            this.newColumn('category', 'width: 100px', 'QBT_TR(Category)QBT_TR');
-            this.newColumn('added_on', 'width: 100px', 'QBT_TR(Added on)QBT_TR');
+            this.newColumn('priority', '', '#', 30);
+            this.newColumn('state_icon', 'cursor: default', '', 22);
+            this.newColumn('name', '', 'QBT_TR(Name)QBT_TR', 200);
+            this.newColumn('size', '', 'QBT_TR(Size)QBT_TR', 100);
+            this.newColumn('progress', '', 'QBT_TR(Done)QBT_TR', 85);
+            this.newColumn('num_seeds', '', 'QBT_TR(Seeds)QBT_TR', 100);
+            this.newColumn('num_leechs', '', 'QBT_TR(Peers)QBT_TR', 100);
+            this.newColumn('dlspeed', '', 'QBT_TR(Down Speed)QBT_TR', 100);
+            this.newColumn('upspeed', '', 'QBT_TR(Up Speed)QBT_TR', 100);
+            this.newColumn('eta', '', 'QBT_TR(ETA)QBT_TR', 100);
+            this.newColumn('ratio', '', 'QBT_TR(Ratio)QBT_TR', 100);
+            this.newColumn('category', '', 'QBT_TR(Category)QBT_TR', 100);
+            this.newColumn('added_on', '', 'QBT_TR(Added on)QBT_TR', 100);
 
             this.columns['state_icon'].onclick = '';
             this.columns['state_icon'].dataProperties[0] = 'state';
@@ -809,18 +894,18 @@ var TorrentPeersTable = new Class({
         Extends: DynamicTable,
 
         initColumns : function () {
-            this.newColumn('country', 'width: 4px', '');
-            this.newColumn('ip', 'width: 80px', 'QBT_TR(IP)QBT_TR');
-            this.newColumn('port', 'width: 35px', 'QBT_TR(Port)QBT_TR');
-            this.newColumn('client', 'width: 140px', 'QBT_TR(Client)QBT_TR');
-            this.newColumn('progress', 'width: 50px', 'QBT_TR(Progress)QBT_TR');
-            this.newColumn('dl_speed', 'width: 50px', 'QBT_TR(Down Speed)QBT_TR');
-            this.newColumn('up_speed', 'width: 50px', 'QBT_TR(Up Speed)QBT_TR');
-            this.newColumn('downloaded', 'width: 50px', 'QBT_TR(Downloaded)QBT_TR[CONTEXT=PeerListWidget]');
-            this.newColumn('uploaded', 'width: 50px', 'QBT_TR(Uploaded)QBT_TR[CONTEXT=PeerListWidget]');
-            this.newColumn('connection', 'width: 50px', 'QBT_TR(Connection)QBT_TR');
-            this.newColumn('flags', 'width: 50px', 'QBT_TR(Flags)QBT_TR');
-            this.newColumn('relevance', 'width: 30px', 'QBT_TR(Relevance)QBT_TR');
+            this.newColumn('country', '', '', 22);
+            this.newColumn('ip', '', 'QBT_TR(IP)QBT_TR', 80);
+            this.newColumn('port', '', 'QBT_TR(Port)QBT_TR', 35);
+            this.newColumn('client', '', 'QBT_TR(Client)QBT_TR', 140);
+            this.newColumn('progress', '', 'QBT_TR(Progress)QBT_TR', 50);
+            this.newColumn('dl_speed', '', 'QBT_TR(Down Speed)QBT_TR', 50);
+            this.newColumn('up_speed', '', 'QBT_TR(Up Speed)QBT_TR', 50);
+            this.newColumn('downloaded', '', 'QBT_TR(Downloaded)QBT_TR[CONTEXT=PeerListWidget]', 50);
+            this.newColumn('uploaded', '', 'QBT_TR(Uploaded)QBT_TR[CONTEXT=PeerListWidget]', 50);
+            this.newColumn('connection', '', 'QBT_TR(Connection)QBT_TR', 50);
+            this.newColumn('flags', '', 'QBT_TR(Flags)QBT_TR', 50);
+            this.newColumn('relevance', '', 'QBT_TR(Relevance)QBT_TR', 30);
 
             this.columns['country'].dataProperties.push('country_code');
             this.columns['flags'].dataProperties.push('flags_desc');
