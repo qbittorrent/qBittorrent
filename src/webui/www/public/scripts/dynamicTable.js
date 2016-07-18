@@ -320,10 +320,10 @@ var DynamicTable = new Class({
 
         initColumns : function () {},
 
-        newColumn : function (name, style, caption, defaultWidth) {
+        newColumn : function (name, style, caption, defaultWidth, defaultVisible) {
             var column = {};
             column['name'] = name;
-            column['visible'] = getLocalStorageItem('column_' + name + '_visible_' + this.dynamicTableDivId, '1');
+            column['visible'] = getLocalStorageItem('column_' + name + '_visible_' + this.dynamicTableDivId, defaultVisible ? '1' : '0');
             column['force_hide'] = false;
             column['caption'] = caption;
             column['style'] = style;
@@ -723,19 +723,34 @@ var TorrentsTable = new Class({
         Extends: DynamicTable,
 
         initColumns : function () {
-            this.newColumn('priority', '', '#', 30);
-            this.newColumn('state_icon', 'cursor: default', '', 22);
-            this.newColumn('name', '', 'QBT_TR(Name)QBT_TR', 200);
-            this.newColumn('size', '', 'QBT_TR(Size)QBT_TR', 100);
-            this.newColumn('progress', '', 'QBT_TR(Done)QBT_TR', 85);
-            this.newColumn('num_seeds', '', 'QBT_TR(Seeds)QBT_TR', 100);
-            this.newColumn('num_leechs', '', 'QBT_TR(Peers)QBT_TR', 100);
-            this.newColumn('dlspeed', '', 'QBT_TR(Down Speed)QBT_TR', 100);
-            this.newColumn('upspeed', '', 'QBT_TR(Up Speed)QBT_TR', 100);
-            this.newColumn('eta', '', 'QBT_TR(ETA)QBT_TR', 100);
-            this.newColumn('ratio', '', 'QBT_TR(Ratio)QBT_TR', 100);
-            this.newColumn('category', '', 'QBT_TR(Category)QBT_TR', 100);
-            this.newColumn('added_on', '', 'QBT_TR(Added On)QBT_TR', 100);
+            this.newColumn('priority', '', '#', 30, true);
+            this.newColumn('state_icon', 'cursor: default', '', 22, true);
+            this.newColumn('name', '', 'QBT_TR(Name)QBT_TR[CONTEXT=TorrentModel]', 200, true);
+            this.newColumn('size', '', 'QBT_TR(Size)QBT_TR[CONTEXT=TorrentModel]', 100, true);
+            this.newColumn('progress', '', 'QBT_TR(Done)QBT_TR[CONTEXT=TorrentModel]', 85, true);
+            this.newColumn('num_seeds', '', 'QBT_TR(Seeds)QBT_TR[CONTEXT=TorrentModel]', 100, true);
+            this.newColumn('num_leechs', '', 'QBT_TR(Peers)QBT_TR[CONTEXT=TorrentModel]', 100, true);
+            this.newColumn('dlspeed', '', 'QBT_TR(Down Speed)QBT_TR[CONTEXT=TorrentModel]', 100, true);
+            this.newColumn('upspeed', '', 'QBT_TR(Up Speed)QBT_TR[CONTEXT=TorrentModel]', 100, true);
+            this.newColumn('eta', '', 'QBT_TR(ETA)QBT_TR[CONTEXT=TorrentModel]', 100, true);
+            this.newColumn('ratio', '', 'QBT_TR(Ratio)QBT_TR[CONTEXT=TorrentModel]', 100, true);
+            this.newColumn('category', '', 'QBT_TR(Category)QBT_TR[CONTEXT=TorrentModel]', 100, true);
+            this.newColumn('added_on', '', 'QBT_TR(Added On)QBT_TR[CONTEXT=TorrentModel]', 100, true);
+            this.newColumn('completion_on', '', 'QBT_TR(Completed On)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('tracker', '', 'QBT_TR(Tracker)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('dl_limit', '', 'QBT_TR(Down Limit)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('up_limit', '', 'QBT_TR(Up Limit)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('downloaded', '', 'QBT_TR(Downloaded)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('uploaded', '', 'QBT_TR(Uploaded)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('downloaded_session', '', 'QBT_TR(Session Download)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('uploaded_session', '', 'QBT_TR(Session Upload)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('amount_left', '', 'QBT_TR(Remaining)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('save_path', '', 'QBT_TR(Save path)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('completed', '', 'QBT_TR(Completed)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('ratio_limit', '', 'QBT_TR(Ratio Limit)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('seen_complete', '', 'QBT_TR(Last Seen Complete)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('last_activity', '', 'QBT_TR(Last Activity)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('total_size', '', 'QBT_TR(Total Size)QBT_TR[CONTEXT=TorrentModel]', 100, false);
 
             this.columns['state_icon'].onclick = '';
             this.columns['state_icon'].dataProperties[0] = 'state';
@@ -909,6 +924,64 @@ var TorrentsTable = new Class({
                 var date = new Date(this.getRowValue(row) * 1000).toLocaleString();
                 td.set('html', date);
             };
+
+            // completion_on
+
+            this.columns['completion_on'].updateTd = function (td, row) {
+                var val = this.getRowValue(row);
+                if (val === 0xffffffff || val < 0)
+                    td.set('html', '');
+                else {
+                    var date = new Date(this.getRowValue(row) * 1000).toLocaleString();
+                    td.set('html', date);
+                }
+            };
+
+            // seen_complete
+
+            this.columns['seen_complete'].updateTd = this.columns['completion_on'].updateTd;
+
+            //  dl_limit, up_limit
+
+            this.columns['dl_limit'].updateTd = function (td, row) {
+                var speed = this.getRowValue(row);
+                if (speed === 0)
+                    td.set('html', '∞')
+                else
+                    td.set('html', friendlyUnit(speed, true));
+            };
+
+            this.columns['up_limit'].updateTd = this.columns['dl_limit'].updateTd;
+
+            // downloaded, uploaded, downloaded_session, uploaded_session, amount_left, completed, total_size
+
+            this.columns['downloaded'].updateTd = this.columns['size'].updateTd;
+            this.columns['uploaded'].updateTd = this.columns['size'].updateTd;
+            this.columns['downloaded_session'].updateTd = this.columns['size'].updateTd;
+            this.columns['uploaded_session'].updateTd = this.columns['size'].updateTd;
+            this.columns['amount_left'].updateTd = this.columns['size'].updateTd;
+            this.columns['amount_left'].updateTd = this.columns['size'].updateTd;
+            this.columns['completed'].updateTd = this.columns['size'].updateTd;
+            this.columns['total_size'].updateTd = this.columns['size'].updateTd;
+
+            // save_path, tracker
+
+            this.columns['save_path'].updateTd = this.columns['name'].updateTd;
+            this.columns['tracker'].updateTd = this.columns['name'].updateTd;
+
+            // ratio_limit
+
+            this.columns['ratio_limit'].updateTd = this.columns['ratio'].updateTd;
+
+            // last_activity
+
+            this.columns['last_activity'].updateTd = function (td, row) {
+                var val = this.getRowValue(row);
+                if (val < 1)
+                    td.set('html', '∞');
+                else
+                    td.set('html', 'QBT_TR(%1 ago)QBT_TR[CONTEXT=TransferListDelegate]'.replace('%1', friendlyDuration((new Date()) / 1000 - val, true)));
+            };
         },
 
         applyFilter : function (row, filterName, categoryHash) {
@@ -1035,18 +1108,19 @@ var TorrentPeersTable = new Class({
         Extends: DynamicTable,
 
         initColumns : function () {
-            this.newColumn('country', '', 'QBT_TR(Country)QBT_TR', 22);
-            this.newColumn('ip', '', 'QBT_TR(IP)QBT_TR', 80);
-            this.newColumn('port', '', 'QBT_TR(Port)QBT_TR', 35);
-            this.newColumn('client', '', 'QBT_TR(Client)QBT_TR', 140);
-            this.newColumn('progress', '', 'QBT_TR(Progress)QBT_TR', 50);
-            this.newColumn('dl_speed', '', 'QBT_TR(Down Speed)QBT_TR', 50);
-            this.newColumn('up_speed', '', 'QBT_TR(Up Speed)QBT_TR', 50);
-            this.newColumn('downloaded', '', 'QBT_TR(Downloaded)QBT_TR[CONTEXT=PeerListWidget]', 50);
-            this.newColumn('uploaded', '', 'QBT_TR(Uploaded)QBT_TR[CONTEXT=PeerListWidget]', 50);
-            this.newColumn('connection', '', 'QBT_TR(Connection)QBT_TR', 50);
-            this.newColumn('flags', '', 'QBT_TR(Flags)QBT_TR', 50);
-            this.newColumn('relevance', '', 'QBT_TR(Relevance)QBT_TR', 30);
+            this.newColumn('country', '', 'QBT_TR(Country)QBT_TR[CONTEXT=PeerListWidget]', 22, true);
+            this.newColumn('ip', '', 'QBT_TR(IP)QBT_TR[CONTEXT=PeerListWidget]', 80, true);
+            this.newColumn('port', '', 'QBT_TR(Port)QBT_TR[CONTEXT=PeerListWidget]', 35, true);
+            this.newColumn('client', '', 'QBT_TR(Client)QBT_TR[CONTEXT=PeerListWidget]', 140, true);
+            this.newColumn('progress', '', 'QBT_TR(Progress)QBT_TR[CONTEXT=PeerListWidget]', 50, true);
+            this.newColumn('dl_speed', '', 'QBT_TR(Down Speed)QBT_TR[CONTEXT=PeerListWidget]', 50, true);
+            this.newColumn('up_speed', '', 'QBT_TR(Up Speed)QBT_TR[CONTEXT=PeerListWidget]', 50, true);
+            this.newColumn('downloaded', '', 'QBT_TR(Downloaded)QBT_TR[CONTEXT=PeerListWidget]', 50, true);
+            this.newColumn('uploaded', '', 'QBT_TR(Uploaded)QBT_TR[CONTEXT=PeerListWidget]', 50, true);
+            this.newColumn('connection', '', 'QBT_TR(Connection)QBT_TR[CONTEXT=PeerListWidget]', 50, true);
+            this.newColumn('flags', '', 'QBT_TR(Flags)QBT_TR[CONTEXT=PeerListWidget]', 50, true);
+            this.newColumn('relevance', '', 'QBT_TR(Relevance)QBT_TR[CONTEXT=PeerListWidget]', 30, true);
+            this.newColumn('files', '', 'QBT_TR(Files)QBT_TR[CONTEXT=PeerListWidget]', 100, true);
 
             this.columns['country'].dataProperties.push('country_code');
             this.columns['flags'].dataProperties.push('flags_desc');
@@ -1139,6 +1213,13 @@ var TorrentPeersTable = new Class({
             this.columns['flags'].updateTd = function (td, row) {
                 td.innerHTML = this.getRowValue(row, 0);
                 td.title = this.getRowValue(row, 1);
+            };
+
+            // files
+
+            this.columns['files'].updateTd = function (td, row) {
+                td.innerHTML = escapeHtml(this.getRowValue(row, 0).replace('\n', ';'));
+                td.title = escapeHtml(this.getRowValue(row, 0));
             };
 
         }
