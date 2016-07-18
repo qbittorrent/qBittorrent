@@ -101,6 +101,19 @@ var DynamicTable = new Class({
             this.currentHeaderAction = '';
             this.canResize = false;
 
+            var resetElementBorderStyle = function (el, side) {
+                if (side === 'left' || side !== 'right') {
+                    el.setStyle('border-left-style', '');
+                    el.setStyle('border-left-color', '');
+                    el.setStyle('border-left-width', '');
+                }
+                if (side === 'right' || side !== 'left') {
+                    el.setStyle('border-right-style', '');
+                    el.setStyle('border-right-color', '');
+                    el.setStyle('border-right-width', '');
+                }
+            }
+
             var mouseMoveFn = function (e) {
                 var brect = e.target.getBoundingClientRect();
                 var mouseXRelative = e.event.clientX - brect.left;
@@ -119,11 +132,44 @@ var DynamicTable = new Class({
                         e.target.getParent("tr").style.cursor = '';
                     }
                 }
+                if (this.currentHeaderAction === 'drag') {
+                    var previousVisibleSibling = e.target.getPrevious('[class=""]');
+                    var borderChangeElement = previousVisibleSibling;
+                    var changeBorderSide = 'right';
+
+                    if (mouseXRelative > brect.width / 2) {
+                        borderChangeElement = e.target;
+                        this.dropSide = 'right';
+                    }
+                    else {
+                        this.dropSide = 'left';
+                    }
+
+                    e.target.getParent("tr").style.cursor = 'move';
+
+                    if (!previousVisibleSibling) { // right most column
+                        borderChangeElement = e.target;
+
+                        if (mouseXRelative <= brect.width / 2)
+                            changeBorderSide = 'left';
+                    }
+
+                    borderChangeElement.setStyle('border-' + changeBorderSide + '-style', 'solid');
+                    borderChangeElement.setStyle('border-' + changeBorderSide + '-color', '#e60');
+                    borderChangeElement.setStyle('border-' + changeBorderSide + '-width', 'initial');
+
+                    resetElementBorderStyle(borderChangeElement, changeBorderSide === 'right' ? 'left' : 'right');
+
+                    borderChangeElement.getSiblings('[class=""]').each(function(el){
+                        resetElementBorderStyle(el);
+                    });
+                }
                 this.lastHoverTh = e.target;
                 this.lastClientX = e.event.clientX;
             }.bind(this);
 
             var mouseOutFn = function (e) {
+                resetElementBorderStyle(e.target);
             }.bind(this);
 
             var onBeforeStart = function (el) {
@@ -134,9 +180,14 @@ var DynamicTable = new Class({
             }.bind(this);
 
             var onStart = function (el, event) {
-                if (this.canResize)
+                if (this.canResize) {
                     this.currentHeaderAction = 'resize';
-                this.startWidth = this.resizeTh.getStyle('width').toFloat();
+                    this.startWidth = this.resizeTh.getStyle('width').toFloat();
+                }
+                else {
+                    this.currentHeaderAction = 'drag';
+                    el.setStyle('background-color', '#C1D5E7');
+                }
             }.bind(this);
 
             var onDrag = function (el, event) {
@@ -150,8 +201,30 @@ var DynamicTable = new Class({
             }.bind(this);
 
             var onComplete = function (el, event) {
+                resetElementBorderStyle(this.lastHoverTh);
+                el.setStyle('background-color', '');
                 if (this.currentHeaderAction === 'resize')
                     localStorage.setItem('column_' + this.resizeTh.columnName + '_width_' + this.dynamicTableDivId, this.columns[this.resizeTh.columnName].width);
+                if ((this.currentHeaderAction === 'drag') && (el !== this.lastHoverTh)) {
+                    this.saveColumnsOrder();
+                    var val = localStorage.getItem('columns_order_' + this.dynamicTableDivId).split(',');
+                    val.erase(el.columnName);
+                    var pos = val.indexOf(this.lastHoverTh.columnName);
+                    if (this.dropSide === 'right') pos++;
+                    val.splice(pos, 0, el.columnName);
+                    localStorage.setItem('columns_order_' + this.dynamicTableDivId, val.join(','));
+                    this.loadColumnsOrder();
+                    this.updateTableHeaders();
+                    while (this.tableBody.firstChild)
+                        this.tableBody.removeChild(this.tableBody.firstChild);
+                    this.updateTable(true);
+                }
+                if (this.currentHeaderAction === 'drag') {
+                    resetElementBorderStyle(el);
+                    el.getSiblings('[class=""]').each(function(el){
+                        resetElementBorderStyle(el);
+                    });
+                }
                 this.currentHeaderAction = '';
             }.bind(this);
 
@@ -211,8 +284,8 @@ var DynamicTable = new Class({
         },
 
         loadColumnsOrder : function () {
-            columnsOrder = ['state_icon']; // status icon column is always the first
-            val = localStorage.getItem('columns_order_' + this.dynamicTableDivId);
+            var columnsOrder = [];
+            var val = localStorage.getItem('columns_order_' + this.dynamicTableDivId);
             if (val === null || val === undefined) return;
             val.split(',').forEach(function(v) {
                 if ((v in this.columns) && (!columnsOrder.contains(v)))
