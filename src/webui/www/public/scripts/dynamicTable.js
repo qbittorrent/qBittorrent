@@ -282,7 +282,7 @@ var DynamicTable = new Class({
 
             var menuId = this.dynamicTableDivId + '_headerMenu';
 
-            var ul = new Element('ul', {id: menuId, class: 'contextMenu'});
+            var ul = new Element('ul', {id: menuId, class: 'contextMenu scrollableMenu'});
 
             var createLi = function(columnName, text) {
                     var html = '<a href="#' + columnName + '" ><img src="theme/checked"/>' + escapeHtml(text) + '</a>';

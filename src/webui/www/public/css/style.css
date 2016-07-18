@@ -165,6 +165,11 @@ a.propButton img {
     margin-bottom: -4px;
 }
 
+.scrollableMenu {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 /* context menu specific */
 
 .contextMenu { border:1px solid #999; padding:0; background:#eee; list-style-type:none; display:none;}
