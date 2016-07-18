@@ -735,7 +735,7 @@ var TorrentsTable = new Class({
             this.newColumn('eta', '', 'QBT_TR(ETA)QBT_TR', 100);
             this.newColumn('ratio', '', 'QBT_TR(Ratio)QBT_TR', 100);
             this.newColumn('category', '', 'QBT_TR(Category)QBT_TR', 100);
-            this.newColumn('added_on', '', 'QBT_TR(Added on)QBT_TR', 100);
+            this.newColumn('added_on', '', 'QBT_TR(Added On)QBT_TR', 100);
 
             this.columns['state_icon'].onclick = '';
             this.columns['state_icon'].dataProperties[0] = 'state';
@@ -1035,7 +1035,7 @@ var TorrentPeersTable = new Class({
         Extends: DynamicTable,
 
         initColumns : function () {
-            this.newColumn('country', '', '', 22);
+            this.newColumn('country', '', 'QBT_TR(Country)QBT_TR', 22);
             this.newColumn('ip', '', 'QBT_TR(IP)QBT_TR', 80);
             this.newColumn('port', '', 'QBT_TR(Port)QBT_TR', 35);
             this.newColumn('client', '', 'QBT_TR(Client)QBT_TR', 140);
