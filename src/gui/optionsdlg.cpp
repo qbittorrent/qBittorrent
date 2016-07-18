@@ -149,6 +149,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
 #if defined(QT_NO_OPENSSL)
     m_ui->checkWebUiHttps->setVisible(false);
+    m_ui->checkSmtpSSL->setVisible(false);
 #endif
 
 #ifndef Q_OS_WIN
