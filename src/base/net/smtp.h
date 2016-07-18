@@ -39,6 +39,8 @@
 #include <QObject>
 #include <QByteArray>
 #include <QHash>
+#include <QAbstractSocket>
+#include <QMetaType>
 
 QT_BEGIN_NAMESPACE
 class QTextStream;
@@ -64,6 +66,7 @@ namespace Net
 
     private slots:
         void readyRead();
+        void error(QAbstractSocket::SocketError socketError);
 
     private:
         enum States
@@ -122,5 +125,9 @@ namespace Net
         QString m_password;
     };
 }
+
+#ifndef QBT_USES_QT5
+Q_DECLARE_METATYPE(QAbstractSocket::SocketError)
+#endif
 
 #endif
