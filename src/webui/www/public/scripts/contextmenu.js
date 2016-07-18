@@ -57,6 +57,11 @@ var ContextMenu = new Class({
     adjustMenuPosition: function(e) {
         this.updateMenuItems();
 
+        var scrollableMenuMaxHeight = document.documentElement.clientHeight * 0.75;
+
+        if (this.menu.hasClass('scrollableMenu'))
+            this.menu.setStyle('max-height', scrollableMenuMaxHeight);
+
         // draw the menu off-screen to know the menu dimentions
         this.menu.setStyles({
             left: '-999em',
@@ -69,7 +74,7 @@ var ContextMenu = new Class({
         if (xPos + this.menu.offsetWidth > document.documentElement.clientWidth)
             xPos -= this.menu.offsetWidth;
         if (yPos + this.menu.offsetHeight > document.documentElement.clientHeight)
-            yPos -= this.menu.offsetHeight;
+            yPos = document.documentElement.clientHeight - this.menu.offsetHeight;
         if (xPos < 0)
             xPos = 0;
         if (yPos < 0)
@@ -85,6 +90,8 @@ var ContextMenu = new Class({
         var uls = this.menu.getElementsByTagName('ul');
         for (var i = 0; i < uls.length; i++) {
             var ul = uls[i];
+            if (ul.hasClass('scrollableMenu'))
+                ul.setStyle('max-height', scrollableMenuMaxHeight);
             var rectParent = ul.parentNode.getBoundingClientRect();
             var xPosOrigin = rectParent.left;
             var yPosOrigin = rectParent.bottom;
@@ -93,7 +100,7 @@ var ContextMenu = new Class({
             if (xPos + ul.offsetWidth > document.documentElement.clientWidth)
                 xPos -= (ul.offsetWidth + rectParent.width - 2);
             if (yPos + ul.offsetHeight > document.documentElement.clientHeight)
-                yPos -= (ul.offsetHeight - rectParent.height - 2);
+                yPos = document.documentElement.clientHeight - ul.offsetHeight;
             if (xPos < 0)
                 xPos = 0;
             if (yPos < 0)
