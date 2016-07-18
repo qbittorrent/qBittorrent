@@ -31,6 +31,8 @@
 
  **************************************************************/
 
+var DynamicTableHeaderContextMenuClass = null;
+
 var DynamicTable = new Class({
 
         initialize : function () {},
@@ -52,6 +54,7 @@ var DynamicTable = new Class({
             this.updateTableHeaders();
             this.setupCommonEvents();
             this.setupHeaderEvents();
+            this.setupHeaderMenu();
         },
 
         setupCommonEvents : function () {
@@ -248,6 +251,71 @@ var DynamicTable = new Class({
                     onCancel : onCancel
                 })
             }
+        },
+
+        setupDynamicTableHeaderContextMenuClass : function () {
+            if (!DynamicTableHeaderContextMenuClass) {
+                DynamicTableHeaderContextMenuClass = new Class({
+                    Extends: ContextMenu,
+                    updateMenuItems: function () {
+                        for (var i = 0; i < this.dynamicTable.columns.length; i++) {
+                            if (this.dynamicTable.columns[i].caption === '')
+                                continue;
+                            if (this.dynamicTable.columns[i].visible !== '0')
+                                this.setItemChecked(this.dynamicTable.columns[i].name, true);
+                            else
+                                this.setItemChecked(this.dynamicTable.columns[i].name, false);
+                        }
+                    }
+                });
+            }
+        },
+
+        showColumn : function (columnName, show) {
+            this.columns[columnName].visible = show ? '1' : '0';
+            localStorage.setItem('column_' + columnName + '_visible_' + this.dynamicTableDivId, show ? '1' : '0');
+            this.updateColumn(columnName);
+        },
+
+        setupHeaderMenu : function () {
+            this.setupDynamicTableHeaderContextMenuClass();
+
+            var menuId = this.dynamicTableDivId + '_headerMenu';
+
+            var ul = new Element('ul', {id: menuId, class: 'contextMenu'});
+
+            var createLi = function(columnName, text) {
+                    var html = '<a href="#' + columnName + '" ><img src="theme/checked"/>' + escapeHtml(text) + '</a>';
+                    return new Element('li', {html: html});
+                };
+
+            var actions = {};
+
+            var onMenuItemClicked = function (element, ref, action) {
+                    this.showColumn(action, this.columns[action].visible === '0');
+                }.bind(this);
+
+            for (var i = 0; i < this.columns.length; i++) {
+                var text = this.columns[i].caption;
+                if (text === '')
+                    continue;
+                ul.appendChild(createLi(this.columns[i].name, text));
+                actions[this.columns[i].name] = onMenuItemClicked;
+            }
+
+            ul.inject(document.body);
+
+            this.headerContextMenu = new DynamicTableHeaderContextMenuClass({
+                targets: '#' + this.dynamicTableFixedHeaderDivId + ' tr',
+                actions: actions,
+                menu : menuId,
+                offsets : {
+                    x : -15,
+                    y : 2
+                }
+            });
+
+            this.headerContextMenu.dynamicTable = this;
         },
 
         initColumns : function () {},

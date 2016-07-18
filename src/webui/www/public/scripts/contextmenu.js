@@ -228,7 +228,7 @@ var ContextMenu = new Class({
     //execute an action
     execute: function (action, element) {
         if (this.options.actions[action]) {
-            this.options.actions[action](element, this);
+            this.options.actions[action](element, this, action);
         }
         return this;
     }
